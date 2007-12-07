@@ -1,0 +1,13 @@
+extension org::eclipse::xtend::util::stdlib::io;
+extension org::eclipse::xtend::util::stdlib::naming;
+
+String reportError( String message ): JAVA org.eclipse.xtend.util.stdlib.ExtIssueReporter.reportError(java.lang.String);
+String reportWarning( String message ): JAVA org.eclipse.xtend.util.stdlib.ExtIssueReporter.reportWarning(java.lang.String);
+
+String reportError( Object object, String message ): reportErrorInternal( object.qualifiedName(), message );
+String reportWarning( Object object, String message ): reportWarningInternal( object.qualifiedName(), message );
+
+String reportErrorInternal( String qfn, String message ): JAVA org.eclipse.xtend.util.stdlib.ExtIssueReporter.reportError(java.lang.String, java.lang.String);
+String reportWarningInternal( String qfn, String message ): JAVA org.eclipse.xtend.util.stdlib.ExtIssueReporter.reportWarning(java.lang.String, java.lang.String);
+
+   

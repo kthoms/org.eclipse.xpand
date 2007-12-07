@@ -1,0 +1,8 @@
+
+private Object internalGetProperty(String s) :
+   JAVA org.eclipse.xtend.util.stdlib.PropertiesExtension.getProperty(java.lang.String)
+;
+
+String getProperty(String s) :
+   internalGetProperty(s).toString()
+;

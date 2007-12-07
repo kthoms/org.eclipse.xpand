@@ -1,0 +1,17 @@
+some unprotected content
+
+//PROTECTED REGION ID(region1) START
+this is an disabled protected region; the content is not protected
+//PROTECTED REGION END
+
+more unprotected content 
+
+//PROTECTED REGION ID(region2) ENABLED START
+this is an enabled protected region
+//PROTECTED REGION END
+
+and more unprotected content 
+
+//PROTECTED REGION ID(region3) ENABLED START
+this is another enabled protected region
+//PROTECTED REGION END

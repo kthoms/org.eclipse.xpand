@@ -1,0 +1,19 @@
+«IMPORT org::eclipse::xpand::internal::tests::evaluate::nested»
+«EXTENSION org::eclipse::xpand::internal::tests::evaluate::Extensions»
+
+«DEFINE start FOR String»
+«EXPAND define2»
+«EXPAND define1 FOR this»
+«EXPAND AnotherTemplate::define1 FOR this»
+«ENDDEFINE»
+
+«DEFINE define1 FOR String»
+«EXPAND Nested::define FOREACH this.toCharList()»
+«ENDDEFINE»
+
+«DEFINE define2 FOR String»
+«FOREACH this.toCharList() AS c SEPARATOR ", "»
+«EXPAND Nested::define FOR c»
+«trueFunc("test")»
+«ENDFOREACH»
+«ENDDEFINE»

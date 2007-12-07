@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<referee:SubAndReferring xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:nested="http://expressions/tests/nested" xmlns:referee="http://expressions/tests/referee" xsi:schemaLocation="http://expressions/tests/nested ../mm1.ecore#//nested http://expressions/tests/referee mm2.ecore" stuff="BLA">
+  <ref xsi:type="nested:SubA" stuff="fgdfgdf"/>
+</referee:SubAndReferring>

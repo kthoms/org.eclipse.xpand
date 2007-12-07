@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<workflow>
+
+	<component id="recipe" class=".RecipeCreator">
+		<appProject value="recipe.eclipsechecks.plugin"/>
+		<srcPath value="src-test"/>
+		<modelSlot value="model"/>
+		<recipeFile value="recipes.recipes"/>
+	</component>   
+
+</workflow>

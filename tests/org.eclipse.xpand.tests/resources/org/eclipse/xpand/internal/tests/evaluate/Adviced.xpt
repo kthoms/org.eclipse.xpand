@@ -1,0 +1,6 @@
+«DEFINE test1 FOR Object»«ENDDEFINE»
+«DEFINE test2 FOR Object»«ENDDEFINE»
+«DEFINE te2st FOR Object»«ENDDEFINE»
+«DEFINE test1 FOR String»«ENDDEFINE»
+«DEFINE test1(String s) FOR String»«ENDDEFINE»
+«DEFINE test1(String s, String s2) FOR String»«ENDDEFINE»

@@ -1,0 +1,49 @@
+extension org::eclipse::xtend::util::stdlib::io;
+
+String namespace(Object this): (getEContainer() != null) ? concat( getEContainer().namespace(), getName(getEContainer()) ) : null;
+String qualifiedName(Object this): concat( namespace(), getName() );
+
+String loc(Object this): 
+	namespace() == null ? 
+		"["+this.metaType+", "+getName()+"]" : 
+		"["+this.metaType+", "+namespace()+"."+getName()+"]"; 
+
+Object findChildByName( Object contextObject, String name, oaw::Type t ):
+	contextObject.getEContents().selectFirst( e | t.isAssignableFrom(e.metaType) && e.getName() == name );
+			
+Object findByName( Collection candidates, String name ):
+	candidates.selectFirst( e | e.getName() == name );
+			
+Object findSiblingByName( Object object, String name, oaw::Type t ):
+	findChildByName( object.getEContainer(), name, t );
+	
+Object resolveNameFromHere( Object ctx, String name, oaw::Type t ):
+	!name.isQualifiedName()	? findSiblingByName( ctx, name, t ) :
+		findObjectByQualifiedName( ctx.getERootContainer(), name, t );
+		
+Object resolveNameFromParent( Object ctx, String name, oaw::Type t ):
+	resolveNameFromHere( ctx.getEContainer(), name, t );
+	
+Object resolveNameFromParent( Object ctx, String name ):
+	resolveNameFromHere( ctx.getEContainer(), name, Object );
+		
+Object findObjectByQualifiedName( Object root, String qName, oaw::Type t ):
+	root.getEAllContents().selectFirst(e | t.isInstance(e) && e.qualifiedName() == qName );
+		
+			
+boolean isQualifiedName( String name ): name.contains(".");
+			
+private String getName( Object o ): o.metaType.getProperty("name").get(o);
+private Object getEContainer( Object o ): o.metaType.getProperty("eContainer").get(o);
+private Object getERootContainer( Object o ): o.metaType.getProperty("eRootContainer").get(o);
+private Collection getEContents( Object o ): o.metaType.getProperty("eContents").get(o);
+private Collection getEAllContents( Object o ): o.metaType.getProperty("eAllContents").get(o);
+
+private String concat( String s1, String s2 ): 
+	switch {
+		case ((s1 == null) && (s2 == null)): null
+		case ((s1 == null) && (s2 != null)): s2
+		case ((s1 != null) && (s2 == null)): s1
+		default: s1+"."+s2
+	};
+ 

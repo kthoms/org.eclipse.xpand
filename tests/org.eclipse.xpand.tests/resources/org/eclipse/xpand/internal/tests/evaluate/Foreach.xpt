@@ -1,0 +1,5 @@
+«DEFINE test FOR String»
+«FOREACH this.toCharList() AS c»«c»«ENDFOREACH»,
+«FOREACH this.toCharList() AS c SEPARATOR this»«c»«ENDFOREACH»,
+«FOREACH this.toCharList() AS c ITERATOR i»«i.counter1»«c»«ENDFOREACH»
+«ENDDEFINE»

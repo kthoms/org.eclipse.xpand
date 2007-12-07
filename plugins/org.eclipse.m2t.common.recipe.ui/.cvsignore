@@ -1,0 +1,6 @@
+temp.folder
+eclipse-plugin_*.zip
+architectureware-eclipsesrc.zip
+bin
+oaw-recipe-eclipse.jar
+build.xml

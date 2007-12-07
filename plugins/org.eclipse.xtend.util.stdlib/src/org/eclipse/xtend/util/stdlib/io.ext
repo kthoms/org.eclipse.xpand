@@ -1,0 +1,30 @@
+
+private Void internalSyserr(Object s) :
+   JAVA org.eclipse.xtend.util.stdlib.IOExtensions.syserr(java.lang.Object);
+
+private Void internalSyserr(Object s, String prefix) :
+   JAVA org.eclipse.xtend.util.stdlib.IOExtensions.syserr(java.lang.Object, java.lang.String);
+ 
+private Void internalDebug(Object s) :
+   JAVA org.eclipse.xtend.util.stdlib.IOExtensions.debug(java.lang.Object);
+
+private Void internalInfo(Object s) :
+   JAVA org.eclipse.xtend.util.stdlib.IOExtensions.info(java.lang.Object);
+
+private Void internalError(Object s) :
+   JAVA org.eclipse.xtend.util.stdlib.IOExtensions.error(java.lang.Object);
+
+syserr(Object o) :
+   internalSyserr(o) -> o;
+
+syserr(Object o, String prefix) :
+   internalSyserr(o, prefix) -> o;
+
+debug(Object o) :
+   internalDebug(o) -> o;
+
+info(Object o) :
+   internalInfo(o) -> o;
+
+error(Object o) :
+   internalError(o) -> o; 

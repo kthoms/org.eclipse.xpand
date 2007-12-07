@@ -1,0 +1,89 @@
+/*
+ * <copyright>
+ *
+ * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Sven Efftinge (http://www.efftinge.de) - Initial API and implementation
+ *
+ * </copyright>
+ */
+package org.eclipse.internal.xtend.expression.ast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.xtend.expression.AnalysationIssue;
+import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.typesystem.Type;
+
+/**
+ * @author Sven Efftinge (http://www.efftinge.de)
+ * @author Arno Haase
+ * @author Bernd Kolb
+ */
+public class ListLiteral extends Expression {
+
+    private Expression[] elements;
+
+    public ListLiteral(final Expression[] contents) {
+        elements = contents;
+    }
+
+    public Expression[] getElements() {
+        return elements;
+    }
+
+    public List<Expression> getElementsAsList () {
+        return Arrays.asList(elements);
+    }
+    
+    @Override
+    public Object evaluateInternal(final ExecutionContext ctx) {
+        final List<Object> col = new ArrayList<Object>();
+        final Expression[] params = getElements();
+        for (int i = 0; i < params.length; i++) {
+            col.add(params[i].evaluate(ctx));
+        }
+        return col;
+    }
+
+    public Type analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+        Type t = null;
+        for (int i = 0; i < elements.length; i++) {
+            final Expression element = elements[i];
+            final Type exprType = element.analyze(ctx, issues);
+            if (exprType == null)
+                return null;
+            if (t == null || exprType.isAssignableFrom(t)) {
+                t = exprType;
+            }
+        }
+        return ctx.getListType(t);
+    }
+
+    @Override
+	protected String toStringInternal() {
+        return "{" + expressionsToString() + "}";
+    }
+
+    private String expressionsToString() {
+        String r = "";
+        for (int i = 0; i < elements.length; i++) {
+            r += elements[i].toString();
+            if (i + 1 < elements.length) {
+                r += ",";
+            }
+
+        }
+        return r;
+    }
+    
+  
+}

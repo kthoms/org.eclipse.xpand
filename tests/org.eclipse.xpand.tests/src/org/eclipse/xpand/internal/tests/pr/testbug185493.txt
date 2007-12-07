@@ -1,0 +1,6 @@
+some unprotected content
+
+This bug: Also '&&' in protected regions Id must be valid
+//PROTECTED REGION ID(&&) ENABLED START
+this is an disabled protected region; the content is not protected
+//PROTECTED REGION END

@@ -1,0 +1,5 @@
+trueFunc(Object any) :
+	true
+;
+
+anotherFunc(String s1, String s2) : s1 + s2;

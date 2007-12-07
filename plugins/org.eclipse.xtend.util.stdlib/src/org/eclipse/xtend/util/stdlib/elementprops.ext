@@ -1,0 +1,5 @@
+Void setProperty( Object element, String name, Object value ):
+	JAVA org.eclipse.xtend.util.stdlib.ElementPropertiesExtensions.setProperty(java.lang.Object,java.lang.String,java.lang.Object);
+	
+Object getProperty( Object element, String name ):
+	JAVA org.eclipse.xtend.util.stdlib.ElementPropertiesExtensions.getProperty(java.lang.Object,java.lang.String);	

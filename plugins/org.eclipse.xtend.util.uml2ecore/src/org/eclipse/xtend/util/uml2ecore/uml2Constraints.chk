@@ -1,0 +1,24 @@
+// this file contains a number of constraints that are evaluated
+// on the UML2 model before it is transformed into eCore
+
+// this imports the UML2 meta model
+import uml;
+ 
+// load the debug extension in case we need to debug stuff
+extension org::openarchitectureware::util::stdlib::io;   
+// this is the transformation file; we call one helper function
+// from that file (the mapTypeName()), that's why we import it
+extension org::openarchitectureware::util::uml2ecore::uml2ecore;   
+ 
+// and this verifies that we can map the used primitive types 
+// to Ecore. This mapping is implemented by the mapTypeName() 
+// extension in uml2ecore.ext; if it returns null, no mapping
+// is available
+context PrimitiveType WARNING "cannot map type to Ecore (type is "+name+")":
+ 	name.mapTypeName() != null;
+
+context Property if isNavigable() ERROR "navigable properties must be named: "+owner:
+	name != null;
+	
+context Class if isAnonymous() ERROR "you cannot have anonymous classes that are subclasses of a non-anonymous class: "+name:
+	superClass.typeSelect(Class).forAll(s|s.isAnonymous());

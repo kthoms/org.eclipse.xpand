@@ -1,0 +1,16 @@
+
+private Void internalStoreGlobalVar(String s, Object o) :
+   JAVA org.eclipse.xtend.util.stdlib.GlobalVarExtensions.storeGlobalVar(java.lang.String, java.lang.Object)
+;
+
+private Object internalGetGlobalVar(String s) :
+   JAVA org.eclipse.xtend.util.stdlib.GlobalVarExtensions.getGlobalVar(java.lang.String)
+;
+
+storeGlobalVar(String s, Object o) :
+   internalStoreGlobalVar(s,o) -> o 
+;
+
+getGlobalVar(String s) :
+   internalGetGlobalVar(s)
+;

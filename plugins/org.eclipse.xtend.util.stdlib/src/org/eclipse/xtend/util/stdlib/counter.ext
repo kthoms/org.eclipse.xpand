@@ -1,0 +1,26 @@
+
+int counterInc(Object o) :
+   internalCounterInc(o);
+   
+int counterDec(Object o) :
+   internalCounterDec(o);
+
+int counterReset(Object o) :
+   internalCounterReset(o) -> 0;
+
+int counterGet(Object o) :
+   internalCounterGet(o);
+
+
+private Void internalCounterReset(Object o) :
+   JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterReset(java.lang.Object);
+
+private Object internalCounterInc(Object o) :
+   JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterInc(java.lang.Object);
+   
+private Object internalCounterDec(Object o) :
+   JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterDec(java.lang.Object);
+
+private Object internalCounterGet(Object o) :
+   JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterGet(java.lang.Object);
+   

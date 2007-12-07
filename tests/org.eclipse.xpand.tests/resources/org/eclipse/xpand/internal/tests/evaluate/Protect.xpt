@@ -1,0 +1,4 @@
+«DEFINE test FOR String»
+«PROTECT CSTART '/*' CEND '*/' ID this DISABLE»«this»«ENDPROTECT»,
+«PROTECT CSTART '/*' CEND '*/' ID this»«this»«ENDPROTECT»
+«ENDDEFINE»

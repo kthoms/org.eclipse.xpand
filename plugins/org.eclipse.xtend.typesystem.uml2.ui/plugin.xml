@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.xtend.shared.ui.metamodelContributor">
+      <metamodelContributor
+            class="org.eclipse.xtend.typesystem.uml2.ui.Uml2MetamodelContributor"
+            name="UML2 profiles"/>
+   </extension>
+</plugin>

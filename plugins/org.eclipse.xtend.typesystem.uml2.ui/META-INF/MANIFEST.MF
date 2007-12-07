@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.xtend.typesystem.uml2.ui; singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.xtend.typesystem.uml2.ui.Uml2AdapterPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.eclipse.uml2.uml,
+ org.eclipse.uml2.uml.ecore.importer,
+ org.eclipse.jdt.core,
+ org.eclipse.xtend,
+ org.eclipse.xtend.typesystem.emf,
+ org.eclipse.xtend.shared.ui,
+ org.eclipse.xtend.typesystem.uml2
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.xtend.typesystem.uml2.ui
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

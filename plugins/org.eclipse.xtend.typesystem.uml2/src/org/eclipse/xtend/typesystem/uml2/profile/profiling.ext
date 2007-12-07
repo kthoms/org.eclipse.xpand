@@ -1,0 +1,35 @@
+import uml;
+
+/* 
+Standard UML2 Extensions for Profile support.
+*/
+
+Profile applyProfile (Model model, String uri) :
+	JAVA org.openarchitectureware.uml2.profile.ProfilingExtensions.applyProfile(org.eclipse.uml2.uml.Model, java.lang.String);
+
+	
+cached Stereotype getStereotype (Model m, String stereotype) :
+	m.getAppliedProfiles().allOwnedElements().typeSelect(Stereotype).select(st|st.qualifiedName==stereotype).first();
+	
+// allOwnedElements().getApplicableStereotypes()
+Void setTaggedValue (Element elem, String stereotypeName, String taggedValueName, Object value) :
+	JAVA org.openarchitectureware.uml2.profile.ProfilingExtensions.setTaggedValue(
+		org.eclipse.uml2.uml.Element,
+		java.lang.String,
+		java.lang.String,
+		java.lang.Object
+	);
+
+Void addTaggedValue (Element elem, String stereotypeName, String taggedValueName, Object value) :
+	JAVA org.openarchitectureware.uml2.profile.ProfilingExtensions.addTaggedValue(
+		org.eclipse.uml2.uml.Element,
+		java.lang.String,
+		java.lang.String,
+		java.lang.Object
+	);
+
+Void applyStereotype (Element elem, String stereotypeName) :
+	JAVA org.openarchitectureware.uml2.profile.ProfilingExtensions.applyStereotype(
+		org.eclipse.uml2.uml.Element,
+		java.lang.String
+	);

@@ -1,0 +1,5 @@
+bin
+*.settings
+*.folder
+javaCompiler...args
+build.xml

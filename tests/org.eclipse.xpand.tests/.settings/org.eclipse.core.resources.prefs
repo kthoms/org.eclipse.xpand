@@ -1,0 +1,11 @@
+#Fri Oct 19 00:35:34 CEST 2007
+eclipse.preferences.version=1
+encoding//src/org/eclipse/xpand/internal/tests/output/bug175488_beautified.xml=UTF-8
+encoding//src/org/eclipse/xpand/internal/tests/output/test_defaultEncoding.xml=UTF-8
+encoding//src/org/eclipse/xpand/internal/tests/output/test_defaultEncoding_beautified.xml=UTF-8
+encoding//src/org/eclipse/xpand/internal/tests/output/test_iso-8859-1.xml=ISO-8859-1
+encoding//src/org/eclipse/xpand/internal/tests/output/test_iso-8859-1_beautified.xml=iso-8859-1
+encoding//src/org/eclipse/xpand/internal/tests/output/test_iso-8859-1_header.xml=iso-8859-1
+encoding//src/org/eclipse/xpand/internal/tests/output/test_utf8.xml=UTF-8
+encoding//src/org/eclipse/xpand/internal/tests/output/test_utf8_beautified.xml=UTF8
+encoding//src/org/eclipse/xpand/internal/tests/output/test_utf8_header.xml=UTF-8

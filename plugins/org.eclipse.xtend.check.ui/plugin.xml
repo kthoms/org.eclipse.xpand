@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.xtend.check.ui.editor.CheckEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="chk"
+            icon="icons/checkfile.gif"
+            id="org.eclipse.xtend.check.editor.CheckEditor"
+            name="Check Editor">
+      </editor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.xtend.shared.ui.resourceContributor">
+      <resourceContributor class="org.eclipse.xtend.check.ui.core.internal.builder.CheckResourceParser"/>
+   </extension>
+   
+<!-- ================================================================================ -->
+<!-- wizard                                                                          -->
+<!-- ================================================================================ -->
+   
+      
+	<extension
+	      point = "org.eclipse.ui.newWizards">
+		<category 
+		   id = "org.eclipse.xtend.ui.newWizards"
+		   name="Xtend">
+	</category>
+		 <wizard
+         category="org.eclipse.xtend.ui.newWizards"
+         class="org.eclipse.xtend.check.ui.wizard.NewCheckFileWizard"
+         icon="icons/checkfile.gif"
+         id="org.eclipse.xtend.check.ui.wizard.NewCheckFileWizard"
+         name="Check File"
+         >
+	       <description>Create a new Check File</description>
+		   <selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+	</extension>   
+   
+</plugin>

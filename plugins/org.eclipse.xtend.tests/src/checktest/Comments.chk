@@ -1,0 +1,4 @@
+/*
+ test
+*/
+context String ERROR "stuff" : this=="stuff";

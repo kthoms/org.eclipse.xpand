@@ -1,0 +1,14 @@
+import ecore;
+import uml;
+
+List[EClass] owners(EClass cls):
+	cls.ePackage.eClassifiers.typeSelect(EClass).eReferences.select(r|r.eType == cls).select(r|r.containment).eContainer;
+	
+List[EClass] allOwners(EClass cls):
+	cls.eSuperTypes.isEmpty ? cls.owners() : cls.eSuperTypes.typeSelect(EClass).allOwners().union(cls.owners()).toList();
+	
+EClass owner(EClass cls):
+	cls.allOwners().get(0);
+	
+boolean needsNamingUtils(EPackage this): GLOBALVAR addNameAttribute;	
+

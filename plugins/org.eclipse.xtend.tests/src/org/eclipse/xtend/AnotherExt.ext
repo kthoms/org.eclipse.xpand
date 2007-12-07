@@ -1,0 +1,8 @@
+extension org::eclipse::xtend::Extensions reexport;
+
+/*
+ * test
+ */
+doStuff(String s) : doStuff(s,null);
+
+doStuff(String s,String s2) : s+appendStuff(s);

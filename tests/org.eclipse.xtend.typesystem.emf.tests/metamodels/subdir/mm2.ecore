@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="referee"
+    nsURI="http://expressions/tests/referee" nsPrefix="referee">
+  <eClassifiers xsi:type="ecore:EClass" name="SubAndReferring" eSuperTypes="../mm1.ecore#//nested/SubA">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="foo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="ecore:EClass ../mm1.ecore#//BaseType"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

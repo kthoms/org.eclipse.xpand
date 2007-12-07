@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.xtend.shared.ui.test
+Bundle-Version: 0.7.0.qualifier
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.junit,
+ org.eclipse.jdt.core,
+ org.eclipse.xtend,
+ org.eclipse.xpand,
+ org.eclipse.ui,
+ org.eclipse.emf,
+ org.eclipse.emf.ecore,
+ org.eclipse.ui.ide,
+ org.eclipse.xtend.shared.ui,
+ org.eclipse.xpand.ui,
+ org.eclipse.xtend.ui,
+ org.eclipse.emf.mwe.core
+Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
+Export-Package: org.eclipse.xtend.shared.ui.test,
+ org.eclipse.xtend.shared.ui.test.xpand2.core
+

@@ -1,0 +1,5 @@
+around nofile::doStuff(String s) :
+    "AROUND"+ctx.proceed()+"END";
+    
+around nofile::doStuff(*) :
+    "AROUND"+ctx.proceed()+"END";

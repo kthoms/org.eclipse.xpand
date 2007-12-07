@@ -1,0 +1,10 @@
+«AROUND *test* FOR Object»1«targetDef.proceed()»«ENDAROUND»
+«AROUND *test1 FOR Object»2«targetDef.proceed()»«ENDAROUND»
+«AROUND *test2 FOR Object»3«targetDef.proceed()»«ENDAROUND»
+«AROUND *e2s* FOR Object»4«targetDef.proceed()»«ENDAROUND»
+«AROUND *test* FOR String»5«targetDef.proceed()»«ENDAROUND»
+«AROUND *test1(Object x) FOR String»6«targetDef.proceed()»«ENDAROUND»
+«AROUND *test1(Object x,*) FOR String»7«targetDef.proceed()»«ENDAROUND»
+«AROUND *test1(*) FOR String»8«targetDef.proceed()»«ENDAROUND»
+
+

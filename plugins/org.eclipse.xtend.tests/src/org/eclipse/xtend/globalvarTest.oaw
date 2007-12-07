@@ -1,0 +1,7 @@
+<workflow>
+  <component class="org.eclipse.xtend.XtendComponent">
+    <globalVarDef name="xy" value="'Hello'" />
+    <invoke value="org::eclipse::xtend::globalvarExt::abc()" />
+    <outputSlot value="result" />
+  </component>
+</workflow>

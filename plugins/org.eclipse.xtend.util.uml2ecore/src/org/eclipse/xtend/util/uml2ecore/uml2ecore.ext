@@ -1,0 +1,249 @@
+// this is the transformation that transforms UML2 
+// class models into eCore models. Not very long, but
+// you need to be somewhat familiar with the UML2 
+// metamodel to understand this code. You should also
+// read the reference docs for the Xtend language first.
+// You should also take a look at the xTend sample first,
+// since it explains how xTend can be used.
+ 
+// this imports the ecore metamodel; since we want to 
+// transform into an instance of ecore, we need to load 
+// this metamodel
+import ecore;
+// import the UML2 metamodel - this is what we transform from
+import uml; 
+     
+// and we also load the io extensions, for the purpose of
+// debugging, in case we need it   
+extension org::openarchitectureware::util::stdlib::io;   
+extension org::openarchitectureware::util::stdlib::issues;   
+extension org::openarchitectureware::util::stdlib::counter;   
+ 
+Object top( Model m ):
+	resourcePerToplevelPackage(m) == "true" ? transformToSeveralFiles(m) : transformToplevelPackage(m);
+	 
+List transformToSeveralFiles(Model m): 
+	m.ownedElement.typeSelect(uml::Package).select(p|p.shouldBeIncluded()).transformToplevelPackage();
+	 
+    
+// on top level, we transform a UML model into an EPackage. A 
+// create extension is used for this. Create extensions have
+// the sideeffect of creating an instance of the type given
+// after the create keyword. Note that the newly created 
+// EPackage can be accessed by "this" inside the function
+create EPackage this transformToplevelPackage(Package p): 
+ 	// the name of the new package should be the same as the UML model
+	setName(p.name) -> 
+	// the nsUri will be concatenated by the return value of nsUri() - 
+	// a function call - and the name
+	setNsURI( nsUri().endsWith("/") ? nsUri()+name : nsUri()+"/"+name ) ->
+	// ... and the prefix ...
+	setNsPrefix( name ) ->
+	// handle the rest of the content, just like any other packages
+	handlePackage(p, this);
+
+EPackage handlePackage( uml::Package pack, EPackage this):
+	// the classifiers in the EPackage consists of an EClass foreach
+	// UML class in the UML model. We select all the classes from the
+	// UML model, and then call mapClass() on each of them.
+	eClassifiers.addAll( pack.ownedElement.typeSelect(Class).mapClass() ) ->
+	eClassifiers.addAll( pack.ownedElement.typeSelect(Enumeration).mapEnumeration() ) ->
+	eClassifiers.addAll( pack.ownedElement.typeSelect(Interface).mapInterface() ) ->
+	// finally, we also pick all the associations in the UML model
+	// and map them to unidirectional or bidirectional references
+	pack.ownedMember.typeSelect( Association ).mapAssociation() ->
+	// handle all the subpackages
+	pack.ownedElement.typeSelect(uml::Package).select(p|p.shouldBeIncluded()).handlePackage(this) ->
+	this;
+	
+private boolean shouldBeIncluded(uml::Package p): includedPackages().matches(".*"+p.name+".*");
+	
+// this one returns the value of the global variable includedPackages
+// global variables are defined in the workflow file, take a look
+// at uml2ecoreWorkflow.oaw	
+private String includedPackages(): GLOBALVAR includedPackages;	
+
+// determines whether a separate resource per toplevel 
+// package needs to be generated
+private String resourcePerToplevelPackage(uml::Package p): GLOBALVAR resourcePerToplevelPackage;	
+
+// this one returns the value of the global variable nsUriPrefix
+// global variables are defined in the workflow file, take a look
+// at uml2ecoreWorkflow.oaw	
+private String nsUri(): GLOBALVAR nsUriPrefix;	
+	
+// this one returns the value of the global variable addNameAttribute
+// global variables are defined in the workflow file, take a look
+// at uml2ecoreWorkflow.oaw	
+private boolean addNameAttr(): GLOBALVAR addNameAttribute;	
+	
+// this one determines whether the Association a is unidirectional or
+// bidirectional. Because of some strange quirks in the UML2 metamodel,
+// you can detect this by checking whether the Assocaiton owns any ends
+// itself. So if it does, it's a bidirectional association.... 
+// depending on what it is, we call the respective helper functions
+private mapAssociation(Association a): 
+	a.ownedEnd.isEmpty ? a.mapBiDirAssociation() : a.mapUniDirAssociation();
+
+// for unidirectional associations, we determine which of the two ends is
+// navigable (by definition, in a unidir assocation, only one end can be
+// navigable!). For tht end, we create an Ecore reference by calling the
+// respective helper function createRef().
+private mapUniDirAssociation(Association a): 
+	a.memberEnd.get(0).isNavigable() ? a.memberEnd.get(0).createRef() : null ->
+	a.memberEnd.get(1).isNavigable() ? a.memberEnd.get(1).createRef() : null;
+
+
+private boolean crossesViewpoints(Association a): 
+	((Class)a.memberEnd.get(0).type).viewpoint() != 
+	((Class)a.memberEnd.get(1).type).viewpoint();
+
+
+// the mapping of bidirectional associations must be to two EReferences
+// that know each other as their opposite. So, we create a reference 
+// for each side, and then set one as the opposite of the other. Since
+// createRef() returns the created reference, all of this can be written
+// very consisely.
+// hm. For some very strange reason we now have to set the EOpposite properties
+// in both directions... this has worked with setting it in only one way before.
+// Strange.
+private mapBiDirAssociation(Association a): 
+	a.memberEnd.get(0).createRef().setEOpposite( a.memberEnd.get(1).createRef() ) ->
+	a.memberEnd.get(1).createRef().setEOpposite( a.memberEnd.get(0).createRef() ) ->
+	handleSpecialChangeableFlag( a.memberEnd.get(1).createRef(), a.memberEnd.get(0).createRef() );
+	
+// in containment references, only the "parent" end must be changeable,
+// the "way back" is set automatically by the eopposite feature	
+private handleSpecialChangeableFlag( EReference ref1, EReference ref2 ):	
+	ref1.containment && !ref2.containment ? ref2.setChangeable(false) : null ->
+	!ref1.containment && ref2.containment ? ref1.setChangeable(false) : null;
+
+// this helper function creates an EReference for a Property (a Property 
+// is basically the "docking point" of an association at the respective
+// class
+create EReference this createRef( Property a ): 
+	// the reference has the same name as the property
+	setName( a.name ) -> 
+	// the type is the result of mapping the UML class
+	// associated with the property to the respective EClass
+	switch {
+		case Class.isInstance(a.type): setEType( ((Class)a.type).mapClass() )
+		case Enumeration.isInstance(a.type): setEType( ((Enumeration)a.type).mapEnumeration() )
+		default: reportError( a.type, "references can only point to classes; this is a "+a.type.metaType+" and the refernece is in "+((Classifier)a.owner).name ) 
+	} ->
+	// the next couple of lines determine the multiplicity
+    a.lowerValue.stringValue() == "1" ? setLowerBound(1) : null -> 
+    a.lowerValue.stringValue() == "0" ? setLowerBound(0) : null -> 
+	a.lowerValue == null ? setLowerBound(0) : null ->
+    a.upperValue.stringValue() == "1" ? setUpperBound(1) : null -> 
+    a.upperValue.stringValue() != "1" ? setUpperBound(-1) : null ->	
+	a.upperValue == null ? setUpperBound(1) : null ->
+	// this one copies the containment
+	setContainment( a.isComposite ) ->
+	// and finally, we add the refernce to the result of mapping 
+	// the UML class associated with the property to the respective EClass
+	// Note: we can call mapClass() as often as we want, since create
+	// extensions are cached and, when invoked several times with the 
+	// same arguments are executed only upon first invocation. Subsequent
+	// invocations return the cached result of the first invocation
+	a.class.mapClass().eStructuralFeatures.add(this);
+	
+// that one creates an EEnum from an UML Enumeration	
+create EEnum this mapEnumeration(Enumeration e):
+	e.counterReset() ->
+	// copies the name 
+	setName(e.name) ->
+	setELiterals( e.ownedLiteral.mapLiteral(e) );
+
+// maps the literals of an enumeration	
+create EEnumLiteral mapLiteral( EnumerationLiteral literal, Enumeration enum ):
+	setName( literal.name ) ->
+	setValue( enum.counterInc() );
+	
+// that one creates an EClass from an UML Class	
+create EClass this mapClass(Class c):
+	// copies the name
+	setName(c.name) ->
+	// copies the isAbstract property 
+	setAbstract(c.isAbstract) ->
+	// copy the super classes; note how we iterate over all generalization
+	// objects of the current class, ask it for it's general end (i.e. the super
+	// class) and then map that UML class to an EClass, as usual
+	setESuperTypes(c.generalization.general.typeSelect(Class).mapClass()) ->
+	// finally, we copy attributes. Attributes are by definition all Properties
+	// that have a PrimitiveType as their type. mapAttribute converts a UML 
+	// Property into an EAttribute
+	setEStructuralFeatures( 
+		c.ownedAttribute.select(a|PrimitiveType.isInstance(a.type)).mapAttribute() ) ->
+	eStructuralFeatures.addAll( c.ownedAttribute.select(a|Enumeration.isInstance(a.type)).mapAttribute() ) ->
+	// add the name attribute, if it needs to be added automatically
+	( addNameAttr() && this.eSuperTypes.isEmpty && !eAttributes.collect(a|a.name).contains("name") &&!c.isAnonymous() ? 
+		 eStructuralFeatures.add(createNameAttr()) : null ) ->
+	// handle operations
+	setEOperations( c.ownedOperation.mapOperation() );
+
+// that one creates an EClass with interface == true from an UML Interface;
+create EClass this mapInterface(Interface c):
+	// copies the name
+	setName(c.name) ->
+   	// set the interface tag
+	setInterface(true) ->
+	// sets the supertype(s). Must also be interfaces!
+	setESuperTypes(c.generalization.general.typeSelect(Interface).mapInterface()) ->
+	// copy the operations
+	setEOperations( c.ownedOperation.mapOperation() );
+
+
+// copy Operations
+private create EOperation mapOperation( Operation o ):
+	setName(o.name) ->
+	o.type == null ? setEType( o.class.mapClass() ) : setEType( handleType( o.type ) ) ->
+	setEParameters( o.ownedParameter.select(p|p.direction.toString().toLowerCase()!="return").mapParameter() ) ->
+	setEAnnotations( { o.createBodyAnnotation() } );
+
+private create EAnnotation createBodyAnnotation( Operation o ):
+	setSource( "http://www.eclipse.org/emf/2002/GenModel" ) ->
+	setDetails( { createAnnDetail(o) } );
+	
+private create EStringToStringMapEntry createAnnDetail( Operation o ):
+	setKey( "body" ) -> setValue( createBody( o.class.name, o.name, o.ownedParameter.select(p|p.direction.toString().toLowerCase()!="return").name ) );
+
+private String createBody( String className, String opName, List params ): 
+	JAVA org.openarchitectureware.util.uml2ecore.AnnotationBodyCreator.createBody( java.lang.String, java.lang.String, java.util.List );
+
+create EParameter this mapParameter( Parameter p ):
+	setName( p.name ) ->
+	setEType( handleType( p.type ) );
+
+// creates the additional name attribute, if necessary	
+create EAttribute this createNameAttr(EClass cls):
+	setName("name") -> setEType( "String".mapTypeName() );	
+
+// copying attributes is easy, just copy name and type
+create EAttribute this mapAttribute( Property a ):
+	setName( a.name ) ->
+	// note how we call the mapTypeName() operation on the
+	// name of the type
+	setEType( handleType( a.type ) );
+	  
+private cached handleType( uml::Type t ):	
+	switch {
+	 	case Class.isInstance( t ): ((Class)t).mapClass()
+	 	case Enumeration.isInstance( t ): ((Enumeration)t).mapEnumeration()
+	 	default: t.name.mapTypeName()
+	 };
+	  
+// finally, because of a number of EMF intricacies, we delegate the
+// actual type mapping to a Java method; take a look at the respective
+// method to see how it works	  
+ecore::EClassifier mapTypeName(String t):
+	JAVA org.openarchitectureware.util.uml2ecore.TypeMapper.mapType( java.lang.String );
+	
+	
+boolean isAnonymous( Class c ):
+	c.getAppliedStereotypes().collect(s|s.name).contains("anonymous");
+		
+Package viewpoint( Class c ):
+	c.package.getAppliedStereotypes().collect(s|s.name).contains("viewpoint") ? c.package : null;		
+
+  

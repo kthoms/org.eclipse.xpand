@@ -1,0 +1,4 @@
+String createUID( Object o ): JAVA org.eclipse.xtend.util.stdlib.UIDHelper.createNewUID( java.lang.Object );
+
+cached String uid( Object o ): JAVA org.eclipse.xtend.util.stdlib.UIDHelper.uid( java.lang.Object );
+ 

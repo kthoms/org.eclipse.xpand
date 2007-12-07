@@ -1,0 +1,23 @@
+extension org::eclipse::xtend::util::stdlib::naming;
+extension org::eclipse::xtend::util::stdlib::issues;
+
+Object getMandatoryMixin( Object mixinModel, Object ctx, oaw::Type t ):
+	let m = getMixin( mixinModel, ctx, t ): m != null ? m : ( reportError( ctx, "no mixin of type "+t.name+" found in mixin model "+mixinModel.metaType.getName()+". Available mixins of that type are "+mixinModel.all(t) ) -> createEmpty(t) );
+
+private Collection all( Object container, oaw::Type t ):
+	container.getEAllContents().select(e | t.isInstance(e) ).collect( e| e.getName() );
+	
+private createEmpty( oaw::Type t ): t.newInstance();
+
+Object getOptionalMixin( Object mixinModel, Object ctx, oaw::Type t ):
+	getMixin( mixinModel, ctx, t );
+
+private Object getMixin( Object mixinModel, Object ctx, oaw::Type t ):
+	mixinModel.getEAllContents().selectFirst(e | t.isInstance(e) && e.getName() == ctx.qualifiedName() );
+	
+	
+private Collection getEAllContents( Object o ): o.metaType.getProperty("eAllContents").get(o);
+private String getName( Object o ): 
+	let p = o.metaType.getProperty("name"): p != null ? p.get(o) : reportError(o, " has no name attribute; mixing model elements need to have a name (type: "+o.metaType+")!");
+	
+	

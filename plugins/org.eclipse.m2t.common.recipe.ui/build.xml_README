@@ -1,0 +1,8 @@
+Hint:
+don't check in build.xml.
+It must be created from plugin.xml locally.
+
+right click on plugin.xml
+--> PDE Tools
+ --> Create Ant Build File
+ 

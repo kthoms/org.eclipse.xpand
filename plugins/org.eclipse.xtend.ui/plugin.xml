@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.xtend.shared.ui.resourceContributor">
+      <resourceContributor class="org.eclipse.xtend.ui.core.internal.builder.XtendResourceParser"/>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.xtend.ui.editor.XtendEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="ext"
+            icon="icons/extensionfile.gif"
+            id="org.eclipse.xtend.ui.XtendEditor"
+            name="Extension Editor">
+      </editor>
+   </extension>
+   
+<!-- ================================================================================ -->
+<!-- wizard                                                                          -->
+<!-- ================================================================================ -->
+   
+      
+	<extension
+	      point = "org.eclipse.ui.newWizards">
+		<category 
+		   id = "org.eclipse.xtend.ui.newWizards"
+		   name="Xtend">
+	</category>
+		 <wizard
+         category="org.eclipse.xtend.ui.newWizards"
+         class="org.eclipse.xtend.ui.wizard.NewXtendFileWizard"
+         icon="icons/extensionfile.gif"
+         id="org.eclipse.xtend.xtend.wizard.NewXtendFileWizard"
+         name="xTend File">
+	       <description>Create a new xTend File</description>
+		   <selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+	</extension>
+ <extension
+       point="org.eclipse.emf.mwe.ui.debugAdapters">
+    <adapter
+          name="Expression Debug Adapters"
+          pluginClass="org.eclipse.xtend.ui.debug.ExpressionPluginAdapter"
+          runtimeClass="org.eclipse.internal.xtend.expression.debug.ExpressionElementAdapter">
+    </adapter>
+ </extension>  
+	
+   
+   
+   
+</plugin>

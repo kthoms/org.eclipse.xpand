@@ -1,0 +1,9 @@
+extension org::eclipse::xtend::Reexported reexport;
+
+bla() : "bla";
+
+overwrite1(String this) :
+	"1-String";
+	
+overwrite2(Object this) :
+	"2-Object";

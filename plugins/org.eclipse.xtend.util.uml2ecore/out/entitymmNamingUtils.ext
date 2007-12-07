@@ -1,0 +1,36 @@
+import entitymm;
+
+String concat( String s1, String s2 ): s1 == null ? s2 : s1+"."+s2;
+
+// ----------- Model ------------		
+String namespace(Model this): null;
+String qualifiedName(Model this): name;
+			
+			
+			
+// ----------- Attribute ------------		
+			
+String namespace(Attribute this): name == null ? null : ( (((Entity)eContainer) != null) ? concat( ((Entity)eContainer).namespace(), ((Entity)eContainer).name ) : null );
+String qualifiedName(Attribute this): concat( namespace(), name );
+			
+			
+// ----------- Type ------------		
+			
+String namespace(Type this): name == null ? null : ( (((Model)eContainer) != null) ? concat( ((Model)eContainer).namespace(), ((Model)eContainer).name ) : null );
+String qualifiedName(Type this): concat( namespace(), name );
+			
+			
+// ----------- PrimitiveType ------------		
+			
+String namespace(PrimitiveType this): name == null ? null : ( (((Model)eContainer) != null) ? concat( ((Model)eContainer).namespace(), ((Model)eContainer).name ) : null );
+String qualifiedName(PrimitiveType this): concat( namespace(), name );
+			
+			
+// ----------- Entity ------------		
+			
+String namespace(Entity this): name == null ? null : ( (((Model)eContainer) != null) ? concat( ((Model)eContainer).namespace(), ((Model)eContainer).name ) : null );
+String qualifiedName(Entity this): concat( namespace(), name );
+			
+			
+		
+	

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<workflow>
+
+	<component class="org.openarchitectureware.util.uml2ecore.ParamChecker"
+	 	resourcePerToplevelPackage="${resourcePerToplevelPackage}"
+	 	uri="${uri}"/>
+
+
+	<!-- note that this workflow file expects to be called from
+	     an application specific file that supplies the three 
+	     parameters ${uml2FileName}, ${ecoreFileName} and 
+	     ${nsUriPrefix} -->
+
+	<property name="fileEncoding" value="ISO-8859-1"/>
+
+	<!-- first we have to initialize the support for UML2 models -->
+    <bean class="oaw.uml2.Setup" standardUML2Setup="true"/> 
+    
+    <!-- here we read the UML2 model file. We put it into 
+         the uml2model workflow slot (a kind of workflow-wide
+         hash map, uml2model is the key of the entry, the 
+         model object read by the reader will be the value  -->
+	<component id="XmiReader.uml2model" class="oaw.emf.XmiReader">
+		<modelFile value="${uml2ModelFile}"/>
+		<outputSlot value="uml2model"/>
+	</component>
+    
+    <!-- this component checks a number of constraints in the parsed 
+         UML2 model -->
+	<component id="CheckComponent.uml2model" class="org.openarchitectureware.check.CheckComponent">
+		<!-- Working on UML2 models also requires the EcorePackage to 
+		     be configured as a meta model, so we do this here -->
+	    <metaModel id="mm.emf" class="oaw.type.emf.EmfMetaModel">
+			<metaModelPackage value="org.eclipse.emf.ecore.EcorePackage"/>
+		</metaModel>
+		<!-- and workin with UML2 also requires the UML2 meta model -->
+		<metaModel id="mm.UML2" class="oaw.uml2.UML2MetaModel"/>
+		<!-- this is the file that contains the constraints; note the use of
+		     :: as the namespace delimiter; we also don't specify the .chk
+		     extension of the uml2Constraints file. The namespaces correspond
+		     to Java packages; so you know where to look in the source folder -->
+		<checkFile value="org::openarchitectureware::util::uml2ecore::uml2Constraints"/>
+		<!-- we check the complete set of model elements under the uml2model 
+		     slot in the workflow; this will be the Model object and all its
+		     children, recusively -->
+		<emfAllChildrenSlot value="uml2model"/>
+		<!-- finally, if we encounter errors here (i.e. failed constraints)
+		     we stop the workflow here. We won't invoke the transformation if
+		     the input model is faulty -->
+		<abortOnError value="true"/>
+	</component>		
+	
+	<component class="org.openarchitectureware.util.stdlib.ExtIssueReporter"/>
+	
+	<!-- this one runs the transformation from UML2 to Ecore. -->
+	<component id="XtendComponent.uml2ecore" class="oaw.xtend.XtendComponent">
+		<!-- again, we need the two meta models introduced above; we refernece
+		     them using XML's idRef mechanism -->
+	   <metaModel idRef="mm.emf"/>
+	   <metaModel idRef="mm.UML2"/>
+	   <!-- this statement makes the value "${nsUriPrefix"} passed in
+	        by the external workflow file available as a global variable
+	        that is accessed by the nsUri() function in uml2ecore.ext -->
+	   <globalVarDef name="nsUriPrefix" value="'${nsUriPrefix}'"/>
+	   <!-- and we also make the addNameAttribute property globally available. -->
+	   <globalVarDef name="addNameAttribute" value="${addNameAttribute}"/>
+	   <!-- as well as the packages that sould be included in the transformation -->
+	   <globalVarDef name="includedPackages" value="'${includedPackages}'"/>
+	   <!-- as well as the packages that sould be included in the transformation -->
+	   <globalVarDef name="resourcePerToplevelPackage" value="'${resourcePerToplevelPackage}'"/>
+	   <!-- finally, we run the transformation itself. there's an 
+	        extension file called uml2ecore.ext in the respective location
+	        in the classpath that contains a function called transform that
+	        takes an object of type UML2::Model as its parameter. Note that 
+	        we can use the slot name uml2model as a variable in this expression -->
+	   <invoke value="org::openarchitectureware::util::uml2ecore::uml2ecore::top(uml2model)"/>
+	   <!-- finally, we specify that we want to put the return value of the 
+	        function invoked above into the ecoreModel slot in the workflow -->
+	   <outputSlot value="ecoreModel"/>
+	</component>
+
+	<component class="org.eclipse.mwe.emf.Writer">
+		<uri value="${uri}" />
+		<useSingleGlobalResourceSet value="true"/>
+		<modelSlot value="ecoreModel" />
+		<multipleResourcesInCaseOfList value="true"/>
+	</component>
+	
+	<component id="Generator.contraintsEtc" class="oaw.xpand2.Generator" skipOnErrors="true">
+		<metaModel idRef="mm.emf"/>
+	   	<globalVarDef name="addNameAttribute" value="${addNameAttribute}"/>
+		<expand value="org::openarchitectureware::util::uml2ecore::templates::files::root FOR ecoreModel"/>
+		<outlet path="${outputPath}"/>
+		<fileEncoding value="${fileEncoding}"/>
+	</component>   
+
+</workflow>

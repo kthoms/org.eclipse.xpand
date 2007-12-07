@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC  "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" [<!ENTITY MappingFile SYSTEM "hibernate/config/hibernate.mappings.include"> ]>
+<hibernate-configuration>&MappingFile;</hibernate-configuration>

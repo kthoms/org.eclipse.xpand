@@ -1,0 +1,24 @@
+extension org::eclipse::xtend::util::stdlib::naming;
+extension org::eclipse::xtend::util::stdlib::io;
+extension org::eclipse::xtend::util::stdlib::issues;
+
+
+Void createTrace( Object from, Object to, String kind, String backKind ): 
+	createTrace( from, to, kind ) -> createTrace( to, from, backKind );
+
+Void createTrace( Object from, Object to, String kind ): 
+	JAVA org.eclipse.xtend.util.stdlib.TraceComponent.createTrace(java.lang.Object, java.lang.Object, java.lang.String);
+
+Void clearTrace(Object ctx):  
+	JAVA org.eclipse.xtend.util.stdlib.TraceComponent.clearTrace(java.lang.Object);
+
+Object getSingleTraceTarget( Object from, String kind ): 
+	let t = getTargetInternal(from, kind):
+		t != null ? t : reportError("cannot find a "+kind+" trace for "+from.qualifiedName() );
+
+boolean hasTrace( Object from, String kind ): 
+	getTargetInternal(from, kind) != null;
+
+private Object getTargetInternal( Object from, String kind ): 
+	JAVA org.eclipse.xtend.util.stdlib.TraceComponent.getSingleTraceTarget(java.lang.Object, java.lang.String);
+	   

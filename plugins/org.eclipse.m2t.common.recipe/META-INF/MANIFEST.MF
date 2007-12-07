@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.m2t.common.recipe
+Bundle-Version: 0.7.0.qualifier
+Bundle-Localization: plugin
+Require-Bundle: org.apache.ant,
+ org.eclipse.emf.ecore,
+ org.apache.commons.logging
+Export-Package: org.eclipse.m2t.common.recipe,
+ org.eclipse.m2t.common.recipe.core,
+ org.eclipse.m2t.common.recipe.eval,
+ org.eclipse.m2t.common.recipe.io,
+ org.eclipse.m2t.common.recipe.util
+Bundle-Vendor: %providerName
+Eclipse-BuddyPolicy: dependent
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

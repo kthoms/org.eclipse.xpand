@@ -1,0 +1,6 @@
+import emf;
+
+
+List[EObject] getReferencingObjects(EObject target) :
+JAVA org.eclipse.xtend.util.stdlib.EmfUtils.getReferencingObjects(org.eclipse.emf.ecore.EObject)
+;

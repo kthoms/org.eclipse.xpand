@@ -1,0 +1,9 @@
+
+doStuff(String s) :
+	s;
+	
+overwrite1(Object this) :
+	"1-Object";
+	
+overwrite2(Object this) :
+	"2-Object-from-reexported";

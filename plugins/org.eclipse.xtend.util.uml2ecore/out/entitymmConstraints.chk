@@ -1,0 +1,25 @@
+import entitymm;
+context Entity ERROR "attributes cannot be empty":
+	!attributes.isEmpty;
+context Entity ERROR "attributes must have unique names":
+	attributes.forAll(e1| !attributes.exists(e2| (e1 != e2) && (e1.name == e2.name) ) );
+context Model ERROR "types must have unique names":
+	types.forAll(e1| !types.exists(e2| (e1 != e2) && (e1.name == e2.name) ) );
+context Attribute ERROR "entity must bet set":
+	entity != null;
+context Attribute ERROR "type must bet set":
+	type != null;
+	
+context Model WARNING "name not specified!":
+	name != null;
+context Attribute WARNING "name not specified!":
+	name != null;
+context Type WARNING "name not specified!":
+	name != null;
+context PrimitiveType WARNING "name not specified!":
+	name != null;
+context Entity WARNING "name not specified!":
+	name != null;
+		
+	
+	

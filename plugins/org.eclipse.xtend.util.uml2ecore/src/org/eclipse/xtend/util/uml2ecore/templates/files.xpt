@@ -1,0 +1,57 @@
+«IMPORT ecore»
+«EXTENSION org::openarchitectureware::util::uml2ecore::templates::utils»
+
+«DEFINE root FOR List»
+	«EXPAND root FOREACH (Collection[EPackage])this»
+«ENDDEFINE»
+
+
+«DEFINE root FOR EPackage»
+	«EXPAND constraintsFile»
+«ENDDEFINE»
+
+«DEFINE constraintsFile FOR EPackage»
+	«FILE name+"Constraints.chk"-»
+import «nsPrefix»;
+
+extension org::openarchitectureware::util::stdlib::naming;
+
+context «eClassifiers.get(0).name» ERROR "dummy - will hopefully be removed sometime :-)": true;
+
+		«EXPAND constraintsForClass FOREACH eAllContents.typeSelect(EClass)-»
+		«IF needsNamingUtils()»
+			«FOREACH eClassifiers.typeSelect(EClass) AS c-»
+				«IF c.eAttributes.collect(a|a.name).contains("name")»
+context «c.name» WARNING loc()+" name not specified: ["+metaType.name+"]":
+	name != null;
+				«ENDIF»
+			«ENDFOREACH»
+		«ENDIF»
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE constraintsForClass FOR EClass-»
+	«FOREACH eReferences AS r-»
+		«IF r.lowerBound == 1-»
+			«IF r.upperBound == 1-»
+context «name» ERROR loc()+" «r.name» must bet set: "+(metaType.getProperty("name") != null ? metaType.getProperty("name").get(this): "") +" ["+metaType.name+"]":
+	«r.name» != null;
+			«ENDIF-»
+			«IF r.upperBound > 1 || r.upperBound == -1-»
+context «name» ERROR loc()+" «r.name» cannot be empty: "+(metaType.getProperty("name") != null ? metaType.getProperty("name").get(this): "") +" ["+metaType.name+"]":
+	!«r.name».isEmpty;
+			«ENDIF-»
+		«ENDIF-»
+	«ENDFOREACH-»
+	«IF ePackage.needsNamingUtils()-»
+		«FOREACH eReferences.select(r|r.containment).select(r|r.upperBound > 1 || r.upperBound == -1) AS r-»
+			«IF ((EClass)r.eType).eAttributes.collect(a|a.name).contains("name")»
+context «r.eType.name» ERROR loc()+" «r.name» must have unique names: "+name:
+	((«name»)eContainer).«r.name».select( c | c.name == name ).size == 1;
+			«ENDIF»
+		«ENDFOREACH-»
+	«ENDIF-»
+«ENDDEFINE»
+
+
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension-point id="check" name="check" schema="schema/check.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Recipes"
+            id="recipes">
+      </category>
+      <view
+            name="Recipes"
+            icon="icons/recipeView.gif"
+            category="recipes"
+            class="org.eclipse.m2t.common.recipe.ui.recipeBrowser.RecipeBrowserView"
+            id="org.openarchitectureware.eclipse.recipeBrowser.RecipeBrowserView">
+      </view>
+	</extension>
+	
+	<extension point = "org.eclipse.ui.popupMenus">
+    	 <objectContribution
+        	id="org.eclipse.m2t.common.recipe.ui.open"
+	        objectClass="org.eclipse.core.resources.IFile"
+		    nameFilter="*.recipes">
+		    	<action id="org.openarchitectureware.recipe.open.action"
+		   		        label="Open Recipes"
+						icon="icons/recipeView.gif"
+						menubarPath="additions"
+						class="org.eclipse.m2t.common.recipe.ui.action.OpenRecipesAction"	
+			  	        enablesFor="1">
+  	       
+			    </action>
+		 </objectContribution>
+	</extension>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.m2t.common.recipe.ui.recipeBrowser.RecipeViewHelper"
+            extensions="recipes"
+            icon="icons/recipeFile.gif"
+            id="org.eclipse.m2t.common.recipe.ui.RecipeFileEditor"
+            name="Recipe File Editor">
+      </editor>
+   </extension>
+</plugin>

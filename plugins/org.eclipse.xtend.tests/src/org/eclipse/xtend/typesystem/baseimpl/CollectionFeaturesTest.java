@@ -90,8 +90,14 @@ public class CollectionFeaturesTest extends TestCase {
         assertEquals(Boolean.TRUE, ef.evaluate("vals.exists(s| s == \"3\")", Collections.singletonMap("vals", vals)));
         assertEquals(Boolean.FALSE, ef.evaluate("vals.exists(s| s == \"33\")", Collections.singletonMap("vals", vals)));
     }
+    
+    public final void testNotExists() {
+        assertEquals(Boolean.FALSE, ef.evaluate("vals.notExists(s| s == \"3\")", Collections.singletonMap("vals", vals)));
+        assertEquals(Boolean.TRUE, ef.evaluate("vals.notExists(s| s == \"33\")", Collections.singletonMap("vals", vals)));
+    }
 
     public final void testForAll() {
+    	assertEquals(Boolean.FALSE, ef.evaluate("{}.forAll(s | true)"));
         assertEquals(Boolean.TRUE, ef.evaluate("vals.forAll(s| s.length == 1)", Collections.singletonMap("vals", vals)));
         assertEquals(Boolean.FALSE, ef.evaluate("vals.forAll(s| s == \"3\")", Collections.singletonMap("vals", vals)));
     }

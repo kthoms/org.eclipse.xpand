@@ -117,6 +117,7 @@ public class CollectionExpression extends FeatureCall {
 	}
 
 	private Object executeForAll(final Collection collection, ExecutionContext ctx) {
+		if ( collection.size()== 0) return Boolean.FALSE;
         for (final Iterator iter = collection.iterator(); iter.hasNext();) {
             ctx = ctx.cloneWithVariable(new Variable(getElementName(), iter.next()));
             final Object result = closure.evaluate(ctx);
@@ -137,13 +138,8 @@ public class CollectionExpression extends FeatureCall {
     }
 
     private Object executeNotExists(final Collection collection, ExecutionContext ctx) {
-        for (final Iterator iter = collection.iterator(); iter.hasNext();) {
-            ctx = ctx.cloneWithVariable(new Variable(getElementName(), iter.next()));
-            final Object result = closure.evaluate(ctx);
-            if (result instanceof Boolean && ((Boolean) result).booleanValue())
-                return Boolean.FALSE;
-        }
-        return Boolean.TRUE;
+        Boolean bool = (Boolean) executeExists(collection, ctx);
+        return Boolean.valueOf(!bool);
     }
 
 	private Object executeReject(final Collection collection, ExecutionContext ctx) {

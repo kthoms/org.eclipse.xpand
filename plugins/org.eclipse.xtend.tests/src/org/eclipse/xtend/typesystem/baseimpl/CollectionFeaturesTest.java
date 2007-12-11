@@ -29,6 +29,7 @@ import org.eclipse.xtend.expression.ExpressionFacade;
 /**
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
+ * @author Bernd Kolb
  */
 public class CollectionFeaturesTest extends TestCase {
     ExecutionContextImpl ec;

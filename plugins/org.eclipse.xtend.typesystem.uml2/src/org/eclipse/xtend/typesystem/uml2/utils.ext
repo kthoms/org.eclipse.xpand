@@ -5,5 +5,5 @@ Retrieves an element's XMI ID.
 @param elem An element
 @return The element's id. 
 */
-String xmiId (Element elem) : JAVA org.openarchitectureware.uml2.UML2Util2.getXmiId(org.eclipse.uml2.uml.Element);
+String xmiId (Element elem) : JAVA org.eclipse.xtend.typesystem.uml2.UML2Util2.getXmiId(org.eclipse.uml2.uml.Element);
  

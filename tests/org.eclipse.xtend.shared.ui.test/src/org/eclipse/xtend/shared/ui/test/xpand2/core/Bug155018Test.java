@@ -1,17 +1,14 @@
-/*
- * <copyright>
- *
- * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.
- * All rights reserved.   This program and the accompanying materials
+/*******************************************************************************
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     Sven Efftinge (http://www.efftinge.de) - Initial API and implementation
- *
- * </copyright>
- */
+ *     committers of openArchitectureWare - initial API and implementation
+ *******************************************************************************/
+
 package org.eclipse.xtend.shared.ui.test.xpand2.core;
 
 import java.io.ByteArrayOutputStream;
@@ -23,7 +20,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.xtend.expression.Analyzable;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;

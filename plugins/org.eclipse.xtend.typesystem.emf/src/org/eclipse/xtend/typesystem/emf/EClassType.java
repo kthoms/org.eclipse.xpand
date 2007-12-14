@@ -1,4 +1,4 @@
-/*
+/**
  * <copyright>
  *
  * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.

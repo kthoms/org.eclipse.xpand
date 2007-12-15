@@ -10,7 +10,6 @@ public class AllTests {
 				"Test for org.eclipse.xtend.typesystem.emf");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(EmfMetaModelTest.class);
-		suite.addTest(AllTests.suite());
 		suite.addTestSuite(EnumTypeTest.class);
 		//$JUnit-END$
 		return suite;

@@ -21,6 +21,10 @@
       <update label="%updateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/"/>
    </url>
 
+   <includes
+         id="org.eclipse.xtend"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.xtend"/>
       <import plugin="org.apache.commons.logging"/>

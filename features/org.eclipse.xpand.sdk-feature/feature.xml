@@ -26,23 +26,11 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.xpand.tests"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.xpand.tests"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.xpand.ui"
          version="0.0.0"/>
 
    <includes
          id="org.eclipse.xtend.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.xpand.tests.source"
          version="0.0.0"/>
 
    <includes
@@ -54,11 +42,11 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.xtend.tests.source"
+         id="org.eclipse.xtend.ui.source"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.xtend.ui.source"
+         id="org.eclipse.xpand.doc"
          version="0.0.0"/>
 
 </feature>

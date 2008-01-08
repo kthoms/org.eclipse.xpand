@@ -26,11 +26,11 @@
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.xtend"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.jdt.core" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.text" version="3.2.0" match="compatible"/>
       <import plugin="org.antlr.runtime"/>
+      <import feature="org.eclipse.xtend" version="0.7.0.qualifier"/>
    </requires>
 
    <plugin

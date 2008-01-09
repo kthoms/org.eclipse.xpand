@@ -37,7 +37,7 @@ import org.eclipse.text.edits.TextEdit;
  * @author Sven Efftinge (http://www.efftinge.de) (initial)
  * @author Bernd Kolb
  * @author Peter Friese
- * @author Markus Völter
+ * @author Markus Voelter
  * @since 4.0
  */
 public class JavaBeautifier implements PostProcessor {

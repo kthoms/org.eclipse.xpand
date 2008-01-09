@@ -74,7 +74,7 @@
                 <arg line="./antJavadoc.sh ${eclipseDir}"/>
         </exec>
 
-		<antcall target="build.index"/>
+		<!--<antcall target="build.index"/>-->
 
 		<zip destfile="${build.result.folder}/doc.zip" compress="true">
 			<zipfileset dir="css" prefix="css"/>

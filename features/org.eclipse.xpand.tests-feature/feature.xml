@@ -41,6 +41,19 @@
       <import plugin="org.eclipse.xtend.typesystem.emf"/>
       <import plugin="org.eclipse.emf.mwe.utils"/>
    </requires>
+   
+  <plugin
+     id="org.eclipse.test"
+     download-size="0"
+     install-size="0"
+     version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.ant.optional.junit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
 
    <plugin
          id="org.eclipse.xpand.tests"

@@ -35,8 +35,6 @@ abstract class CharsetRecog_sbcs extends CharsetRecognizer {
     
     static class NGramParser
     {
-        @SuppressWarnings("unused")
-		private static final int N_GRAM_SIZE = 3;
         private static final int N_GRAM_MASK = 0xFFFFFF;
 
         private int byteIndex = 0;

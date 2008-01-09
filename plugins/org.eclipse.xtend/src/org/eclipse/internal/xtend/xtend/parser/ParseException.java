@@ -10,8 +10,10 @@
  *******************************************************************************/
 package org.eclipse.internal.xtend.xtend.parser;
 
-@SuppressWarnings("serial")
 public class ParseException extends RuntimeException {
+
+	private static final long serialVersionUID = 2367973065443415423L;
+
 	public ParseException(XtendError e) {
 		super(e.toString());
 	}

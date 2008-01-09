@@ -89,24 +89,6 @@ public class RefactorActionGroup extends ActionGroup {
 	 */
 	public static final String GROUP_CODING2 = "codingGroup2"; //$NON-NLS-1$
 
-	/**
-	 * Pop-up menu: id of the reorg group 2 of the refactor sub menu (value
-	 * <code>reorgGroup2</code>).
-	 * 
-	 * @since 3.2
-	 */
-	@SuppressWarnings("unused")
-	private static final String GROUP_REORG2 = "reorgGroup2"; //$NON-NLS-1$ //TODO(3.3): make public
-
-	/**
-	 * Pop-up menu: id of the type group 2 of the refactor sub menu (value
-	 * <code>typeGroup2</code>).
-	 * 
-	 * @since 3.2
-	 */
-	@SuppressWarnings("unused")
-	private static final String GROUP_TYPE2 = "typeGroup2"; //$NON-NLS-1$ //TODO(3.3): make public
-
 	private final IWorkbenchSite fSite;
 	private final XpandEditor fEditor;
 	private String fGroupName = "";
@@ -175,11 +157,6 @@ public class RefactorActionGroup extends ActionGroup {
 		quickAccessAction = new RefactorQuickAccessAction();
 		keyBindingService = editor.getEditorSite().getKeyBindingService();
 		keyBindingService.registerAction(quickAccessAction);
-	}
-
-	@SuppressWarnings("unused")
-	private void initAction(SelectionDispatchAction action, ISelection selection, String actionDefinitionId) {
-		initUpdatingAction(action, null, selection, actionDefinitionId);
 	}
 
 	/**

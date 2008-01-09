@@ -80,7 +80,7 @@
 
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${docPlugin}_${pluginVersion}"/>
-		<copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}" failonerror="true" overwrite="false">
+		<copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="${filesToInclude}"/>
 		</copy>
 		<eclipse.versionReplacer 

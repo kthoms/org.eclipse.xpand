@@ -1,0 +1,100 @@
+todo
+----
+Adapter für Xpand und Xtend
+
+make classes final where meaningful
+Check: SourcePos-Infos in Fehlern, Exceptions in ExpressionBase ordentlich gewrappt
+
+Outlets: Funktionen "registerOutlet" parallel zu "file" --> Outlets registrieren (inkl. Default-Outlet),
+  Convenience mit Primitives und "richtige" Outlets. Outlet: Liefert Writer für identifizierenden
+  String (d.h. Filenamen)
+
+BackendContributor: init-Methode statt Constructor-Parameter
+static properties; enums
+
+Marker-Interface / Annotation "FunctionDefs" o.ä. --> generische Unterscheidung für Java-Importer, ob Klasse
+  als Bean oder als "Funktionen-Container"
+
+JavaBeansType: Interfaces als Supertypen
+
+syslib
+testen, insbes. syslib
+
+DefinitionType in FunctionType mergen
+
+globalVars rauswerfen?
+
+dead code elimination?
+
+isInstance
+
+AOP
+
+Buddy Policy für syslib und backend
+
+syslib-Funktion: allFunctions (List<Type>) --> auch Funktionen ohne Parameter zur Laufzeit 
+  finden (oder built-in? --> syslib-Aufruf verlässt den Scope)
+Function-Match (z.B. &myFunc (String, Foo) --> spät binden! --> dynamisch durchgereichter Kram
+  wird gematcht
+Currying
+Map als Builtin-Typ
+Typesystem je Compilationunit
+Properties über getter/setter abbilden (z.B. im mm keine property mehr)?
+Eigene Properties definieren (d.h. generische Map dafür an jedem Objekt)?
+"final" (auch als Hint für Optimierung --> wird nicht durch dynamische Exytensions
+  erweitert --> Tail Recursion geht nur dort)
+Initialisierung der Functions mit FunctionDefContext: Nicht zwingend eager
+  in voller Tiefe, sondern lazy beim ersten Einstieg in eine neue CompilationUnit
+zusätzlich zu statisch unterschiedenem this / Collection-Sonderfall außerdem
+  den generischen Fall --> aber nur dann (Ref-Typ "Object"), wenn es statisch
+  nicht entscheidbar ist. --> volle Rückwärtskompatibilität
+globale Type-Registry für alle zurückgegebenen Objekte --> nach beliebigem Rumreichen
+  kann man an ihnen zumindest die eingebauten Operations aufrufen, auf ihre Properties
+  zugreifen
+
+Konzept für stufenweises Überschreiben - syslib --> built-in operation --> Extension (oder so)
+
+toString() überschreibbar, trotz lazy evaluation
+Debugger: ein Source-Primitive kann aus mehreren Runtime-Primitives bestehen - in der RT 
+	markieren, wo neuer Source-Primitive beginnt? Oder einfach Mapping in Rückrichtung 
+	und vergleichen?
+tail recursion
+replace/add von Extensions im dynamischen Scope
+
+equals auf Type-Implementierungen
+
+
+Decisions
+---------
+Overwriting / hiding of functions is only posible for functions without guards (to avoid 
+  the necessity of comparing guards for equality)
+IteratorType is now handled via the Java type system
+
+Ideen für die Zukunft
+---------------------
+"async" -Keyword --> Ausnutzung von Multicore???
+
+
+statisch behandeln
+----------------
+hasThis etc. im FunctionDefContext statisch handeln?
+"this"-Mehrdeutigkeit (welche Reihenfolge?)
+Collection-Resolution-Mehrdeutigkeit
+
+
+done
+----
+Interface ExecutionContextAware für Java-Extensions
+cached
+PolymorphicResolver
+int / long: gnädig bei Java-Extensions
+double / float: gnädig bei Java-Extensions
+Array / List
+optimierter String --> an Schnittstellen ggf. konvertieren
+optimierter String --> hierarchische Dirty-Propagation nach oben
+JavaBeansTypesystem
+Konzept für FunctionType - braucht der Parametertypen!?
+metaType etc.
+EMF-Typesystem
+setExecutionContext bei ExecutionContextAware nicht als exportierte Funktion behandeln
+

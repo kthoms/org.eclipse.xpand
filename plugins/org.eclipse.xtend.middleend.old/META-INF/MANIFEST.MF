@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Old Plug-in
+Bundle-SymbolicName: org.eclipse.xtend.middleend.old
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.xtend.backend,
+ org.eclipse.emf.ecore,
+ org.eclipse.xtend.middleend,
+ org.eclipse.xtend.backend.emftypes,
+ org.eclipse.xtend.backend.syslib,
+ org.eclipse.xtend,
+ org.eclipse.xpand,
+ org.eclipse.xtend.typesystem.emf
+Export-Package: org.eclipse.xtend.middleend.old

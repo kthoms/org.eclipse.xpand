@@ -188,8 +188,8 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
 
                     @Override
                     public String getDocumentation() {
-                        return "returns a List of Integers starting with the value of the target expression, up to"
-                                + "the value of the specified Integer, incremented by one.<br/>"
+                        return "returns a List of Integers starting with the value of the target expression, up to "
+                                + "the value of the specified Integer, incremented by one."
                                 + "e.g. '1.upTo(5)' evaluates to {1,2,3,4,5}";
                     }
 
@@ -209,8 +209,8 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
 
                     @Override
                     public String getDocumentation() {
-                        return "returns a List of Integers starting with the value of the target expression, up to"
-                                + "the value of the first paramter, incremented by the second parameter.<br/>"
+                        return "returns a List of Integers starting with the value of the target expression, up to "
+                                + "the value of the first paramter, incremented by the second parameter."
                                 + "e.g. '1.upTo(10, 2)' evaluates to {1,3,5,7,9}";
                     }
 

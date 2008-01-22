@@ -1,0 +1,11 @@
+«EXTENSION org::eclipse::xtend::middleend::old::first::first»
+
+«DEFINE greeting FOR String»
+Hello, «this»: «test(this)»
+«EXPAND name FOR this»
+«ENDDEFINE»
+
+«DEFINE name FOR String»
+  Name: «this» 
+«ENDDEFINE»
+

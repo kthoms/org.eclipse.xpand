@@ -1,3 +1,13 @@
+/*
+Copyright (c) 2008 Arno Haase.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    Arno Haase - initial API and implementation
+ */
 package org.eclipse.xtend.middleend.old;
 
 import java.util.ArrayList;
@@ -147,7 +157,7 @@ final class OldXtendRegistry {
     }
     
     public Collection<NamedFunction> getContributedFunctions (String xtendFile) {
-        return _exportedFunctionsByResource.get (xtendFile);
+        return _exportedFunctionsByResource.get (OldXtendHelper.normalizeXtendResourceName(xtendFile));
     }
 }
 

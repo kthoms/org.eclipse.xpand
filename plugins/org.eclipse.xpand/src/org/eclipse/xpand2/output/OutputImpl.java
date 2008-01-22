@@ -49,6 +49,10 @@ public class OutputImpl implements Output {
 		outlets.put(outlet.getName(), outlet);
 	}
 
+	public Outlet getOutlet (String name) {
+	    return outlets.get (name);
+	}
+	
 	protected FileHandle current() {
 		return (fileHandles.isEmpty() ? null : fileHandles.peek());
 	}

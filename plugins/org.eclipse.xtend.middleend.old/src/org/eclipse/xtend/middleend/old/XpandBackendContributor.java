@@ -14,6 +14,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipose.xtend.middleend.FunctionDefContextFactory;
+import org.eclipse.xpand2.XpandExecutionContextImpl;
+import org.eclipse.xpand2.output.Outlet;
+import org.eclipse.xpand2.output.Output;
+import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
@@ -21,7 +25,6 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.iface.BackendContributor;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
-import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 
@@ -29,23 +32,28 @@ import org.eclipse.xtend.typesystem.MetaModel;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class XtendBackendContributor implements BackendContributor {
-    private final OldXtendRegistry _registry;
-    private final String _xtendFile;
+public final class XpandBackendContributor implements BackendContributor {
+    private final OldXtendRegistry _extensions;
+    private final OldXpandRegistry _registry;
+    private final String _xpandFile;
     private final BackendTypesystem _ts;
     
-    public XtendBackendContributor (String xtendFile, Collection<MetaModel> mms, CompositeTypesystem ts) {
-        _xtendFile = OldXtendHelper.normalizeXtendResourceName (xtendFile);
+    public XpandBackendContributor (String xpandFile, Collection<MetaModel> mms, CompositeTypesystem ts, Collection <Outlet> outlets) {
+        _xpandFile = OldXtendHelper.normalizeXpandResourceName (xpandFile);
         _ts = ts;
         
-        final ExecutionContextImpl ctx = new ExecutionContextImpl ();
+        final Output output = new OutputImpl ();
+        for (Outlet outlet: outlets)
+            output.addOutlet (outlet);
+        //TODO ProtectedRegionResolver
+        final XpandExecutionContextImpl ctx = new XpandExecutionContextImpl (output, null);
         for (MetaModel mm: mms)
             ctx.registerMetaModel (mm);
         ctx.setFileEncoding("iso-8859-1"); //TODO really set the encoding
-
-        //TODO redesign to allow reuse of the registry?
-        _registry = new OldXtendRegistry ( ctx, ts);
-        _registry.registerExtension(xtendFile);
+        
+        _extensions = new OldXtendRegistry (ctx, ts);
+        _registry = new OldXpandRegistry (ctx, ts, _extensions);
+        _registry.registerXpandFile (xpandFile);
     }
     
     public BackendType convertToType (List<String> segments) {
@@ -53,7 +61,7 @@ public final class XtendBackendContributor implements BackendContributor {
     }
 
     public Collection<NamedFunction> getContributedFunctions () {
-        return _registry.getContributedFunctions (_xtendFile);
+        return _registry.getContributedFunctions (_xpandFile);
     }
     
     public FunctionDefContext getFunctionDefContext () {

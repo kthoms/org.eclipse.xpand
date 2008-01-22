@@ -10,9 +10,12 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import org.eclipse.xtend.backend.common.BackendType;
+import java.util.List;
+
+import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.Helpers;
 import org.eclipse.xtend.backend.common.SourcePos;
 
 
@@ -20,16 +23,23 @@ import org.eclipse.xtend.backend.common.SourcePos;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class CreateUncachedExpression extends ExpressionBase {
-    private final BackendType _t;
+public final class ConcatExpression extends ExpressionBase {
+    private final List<? extends ExpressionBase> _parts;
 
-    public CreateUncachedExpression (BackendType t, SourcePos sourcePos) {
+    public ConcatExpression (List<? extends ExpressionBase> parts, SourcePos sourcePos) {
         super(sourcePos);
-        _t = t;
+        
+        _parts = parts;
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
-        return _t.create();
+    protected Object evaluateInternal (ExecutionContext ctx) {
+        final EfficientLazyString result = new EfficientLazyString ();
+
+        for (ExpressionBase expr: _parts)
+            result.append (Helpers.overridableToString (ctx, expr.evaluate(ctx)));
+
+        return result;
     }
+
 }

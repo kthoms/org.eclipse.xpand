@@ -1,13 +1,21 @@
+/*
+Copyright (c) 2008 Arno Haase.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    Arno Haase - initial API and implementation
+ */
 package org.eclipose.xtend.middleend;
 
-import java.io.InputStream;
+import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.java.GlobalJavaBeansTypesystem;
-import org.eclipse.xtend.backend.util.ErrorHandler;
-import org.eclipse.xtend.backend.util.ResourceToList;
 
 
 /**
@@ -15,28 +23,33 @@ import org.eclipse.xtend.backend.util.ResourceToList;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class BackendTypesystemFactory {
-    public static final String BACKEND_TYPESYSTEM_RESOURCE = "/xtend.backend.typesystems";
     
-    public CompositeTypesystem create () {
+    /**
+     * This generic factory requires the caller to provide a complete list of typesystems that
+     *  will comprise the actual typesystem. The ordering in this list is semantically
+     *  relevant because types are searched from beginning to end.
+     */
+    public static CompositeTypesystem create (List<? extends BackendTypesystem> typesystems) {
+        final CompositeTypesystem result = new CompositeTypesystem ();
+        
+        for (BackendTypesystem ts: typesystems)
+            result.register(ts);
+         
+        return result;
+    }
+
+    /**
+     * This is a convenience factory method to create a typesystem that supports both EMF
+     *  and Java Beans. UML is left out for performance reasons - the UML metamodel requires
+     *  the UML metamodel to be parsed initially which takes significant time.
+     */
+    public static CompositeTypesystem createWithoutUml () {
         final CompositeTypesystem result = new CompositeTypesystem ();
 
-        final InputStream in = getClass().getResourceAsStream (BACKEND_TYPESYSTEM_RESOURCE);
-        if (in == null) {
-            result.register (new EmfTypesystem ());
-            result.register (new GlobalJavaBeansTypesystem ());
-        }
-        else {
-            for (String s: new ResourceToList (in).getResult()) {
-                try {
-                    final Class<?> cls = Class.forName (s);
-                    final Object o = cls.newInstance();
-                    result.register ((BackendTypesystem) o);
-                } catch (Exception e) {
-                    ErrorHandler.handle(e);
-                }
-            }
-        }
-        
+        result.register (new EmfTypesystem ());
+        result.register (new GlobalJavaBeansTypesystem ());
+
         return result;
     }
 }
+

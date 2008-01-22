@@ -1,8 +1,17 @@
+/*
+Copyright (c) 2008 Arno Haase.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    Arno Haase - initial API and implementation
+ */
 package org.eclipse.xtend.middleend.old;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,12 +31,15 @@ import org.eclipse.internal.xpand2.type.IteratorType;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
+import org.eclipse.xpand2.XpandExecutionContext;
+import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.expr.ConcatExpression;
 import org.eclipse.xtend.backend.expr.HidingLocalVarDefExpression;
 import org.eclipse.xtend.backend.expr.IfExpression;
 import org.eclipse.xtend.backend.expr.InitClosureExpression;
@@ -37,6 +49,7 @@ import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
 import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
+import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.XtendIterator;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.SyntaxConstants;
@@ -118,10 +131,7 @@ final class OldDefinitionConverter {
         for (Statement stmt: statements)
             parts.add(convertStatement (stmt));
         
-        final SourcePos newPos = OldExpressionConverter.getSourcePos (oldPos, _definitionName);
-        final ExpressionBase paramExpr = new LiteralExpression (parts, newPos);
-        
-        return new InvocationOnObjectExpression (SyntaxConstants.CONCAT, Collections.singletonList (paramExpr), newPos);
+        return new ConcatExpression (parts, getSourcePos(oldPos));
     }
     
     private ExpressionBase convertStatement (Statement stmt) {
@@ -293,7 +303,22 @@ final class OldDefinitionConverter {
     }
     
     private ExpressionBase convertFileStatement (FileStatement stmt) {
-        throw new UnsupportedOperationException(); //TODO implement FileStatement
+        final ExpressionBase body = convertStatmentSequence (stmt.getBody(), stmt);
+        final ExpressionBase filename = convertExpression (stmt.getTargetFileName());
+  
+        final Outlet outlet = ((XpandExecutionContext) _ctx).getOutput().getOutlet (stmt.getOutletName());
+        if (outlet == null) {
+            if (stmt.getOutletName() == null)
+                throw new IllegalStateException ("no default outlet was registered");
+            else
+                throw new IllegalStateException ("no outlet for name '" + stmt.getOutletName() + "' was registered");
+        }
+        
+        final ExpressionBase outletName = new LiteralExpression ((stmt.getOutletName() != null) ? stmt.getOutletName() : FileIoOperations.DEFAULT_OUTLET_NAME, getSourcePos(stmt));
+        final ExpressionBase append = new LiteralExpression (outlet.isAppend(), getSourcePos(stmt));
+        
+        //TODO register the outlets
+        return new InvocationOnObjectExpression (SyntaxConstants.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, body), getSourcePos (stmt));
     }
     
     private ExpressionBase convertProtectStatement (ProtectStatement stmt) {

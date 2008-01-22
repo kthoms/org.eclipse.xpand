@@ -1,0 +1,25 @@
+
+
+getOwnedProperties(oaw::Type t) :
+	t.allProperties.select(p|p.owner == t)
+;
+
+getOwnedOperations(oaw::Type t) :
+	t.allOperations.select(p|p.owner == t)
+;
+
+fileName(oaw::Type t) :
+	t.name.replaceAll("::","_")+".html"
+;
+
+linkedName(oaw::Type t) :
+	linkedName(t, null)
+;
+
+linkedName(oaw::Type t, String target) :
+	"<a href='" +t.fileName() +"' "+(target!=null ? "target='"+target+"'" : "")+">" +t +"</a>"
+;
+
+
+db_linkedName (oaw::Type t) :
+	"<classname><link linkend='builtin_api_"+t.name+"'>"+t.name+"</link></classname>";

@@ -1,0 +1,4 @@
+«DEFINE Root FOR List[oaw::Type]»
+«EXPAND ApiDoc::all»
+«EXPAND DocBook::Start»
+«ENDDEFINE» 

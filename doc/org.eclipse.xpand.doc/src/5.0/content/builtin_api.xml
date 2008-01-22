@@ -6,7 +6,6 @@
 	<section id="builtin_api_Object">
 		<title><classname>Object</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 none
 		</para>
@@ -15,7 +14,6 @@ none
 
 		<table frame='all' id="builtin_api_Object_Properties">
 			<title>Properties of <classname>Object</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -171,7 +169,6 @@ none
 	<section id="builtin_api_String">
 		<title><classname>String</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -180,7 +177,6 @@ none
 
 		<table frame='all' id="builtin_api_String_Properties">
 			<title>Properties of <classname>String</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -432,7 +428,6 @@ none
 	<section id="builtin_api_Integer">
 		<title><classname>Integer</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Real'>Real</link></classname>
 		</para>
@@ -629,7 +624,6 @@ none
 	<section id="builtin_api_Boolean">
 		<title><classname>Boolean</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -682,7 +676,6 @@ none
 	<section id="builtin_api_Real">
 		<title><classname>Real</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -855,7 +848,6 @@ none
 	<section id="builtin_api_Collection">
 		<title><classname>Collection</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -864,7 +856,6 @@ none
 
 		<table frame='all' id="builtin_api_Collection_Properties">
 			<title>Properties of <classname>Collection</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1091,7 +1082,6 @@ none
 	<section id="builtin_api_List">
 		<title><classname>List</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Collection'>Collection</link></classname>
 		</para>
@@ -1216,7 +1206,6 @@ none
 	<section id="builtin_api_Set">
 		<title><classname>Set</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Collection'>Collection</link></classname>
 		</para>
@@ -1240,7 +1229,6 @@ none
 	<section id="builtin_api_oaw::Type">
 		<title><classname>oaw::Type</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -1249,7 +1237,6 @@ none
 
 		<table frame='all' id="builtin_api_oaw::Type_Properties">
 			<title>Properties of <classname>oaw::Type</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1459,7 +1446,6 @@ none
 	<section id="builtin_api_oaw::Feature">
 		<title><classname>oaw::Feature</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -1468,7 +1454,6 @@ none
 
 		<table frame='all' id="builtin_api_oaw::Feature_Properties">
 			<title>Properties of <classname>oaw::Feature</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1544,7 +1529,6 @@ none
 	<section id="builtin_api_oaw::Property">
 		<title><classname>oaw::Property</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_oaw::Feature'>oaw::Feature</link></classname>
 		</para>
@@ -1609,7 +1593,6 @@ none
 	<section id="builtin_api_oaw::Operation">
 		<title><classname>oaw::Operation</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_oaw::Feature'>oaw::Feature</link></classname>
 		</para>
@@ -1674,7 +1657,6 @@ none
 	<section id="builtin_api_oaw::StaticProperty">
 		<title><classname>oaw::StaticProperty</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_oaw::Feature'>oaw::Feature</link></classname>
 		</para>
@@ -1727,7 +1709,6 @@ none
 	<section id="builtin_api_Void">
 		<title><classname>Void</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -1751,7 +1732,6 @@ none
 	<section id="builtin_api_xtend::AdviceContext">
 		<title><classname>xtend::AdviceContext</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -1760,7 +1740,6 @@ none
 
 		<table frame='all' id="builtin_api_xtend::AdviceContext_Properties">
 			<title>Properties of <classname>xtend::AdviceContext</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1877,7 +1856,6 @@ none
 	<section id="builtin_api_xpand2::Definition">
 		<title><classname>xpand2::Definition</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -1886,7 +1864,6 @@ none
 
 		<table frame='all' id="builtin_api_xpand2::Definition_Properties">
 			<title>Properties of <classname>xpand2::Definition</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -2015,7 +1992,6 @@ none
 	<section id="builtin_api_xpand2::Iterator">
 		<title><classname>xpand2::Iterator</classname></title>
 		<para>
-           <?dbfo keep-with-next="always" ?>
 			Supertype: 
 <classname><link linkend='builtin_api_Object'>Object</link></classname>
 		</para>
@@ -2024,7 +2000,6 @@ none
 
 		<table frame='all' id="builtin_api_xpand2::Iterator_Properties">
 			<title>Properties of <classname>xpand2::Iterator</classname></title>
-			<?dbfo keep-together.within-column="auto" ?>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>

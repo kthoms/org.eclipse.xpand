@@ -47,9 +47,13 @@ public class XtendTokens {
     public final static String REEXPORT = "reexport";
 
     public final static String AROUND = "around";
+
     public final static String IF = "if";
+
+    public final static String THEN = "then";
+
     public final static String ELSE = "else";
-    
+
     public final static String CTX = "context";
 
     public final static String ERR = "ERROR";
@@ -58,6 +62,6 @@ public class XtendTokens {
 
     public final static String[] allKeywords() {
         return new String[] { CTX, ERR, WARN, PRIVATE, CREATE, REEXPORT, EXTENSION, IMPORT, SWITCH, CASE, DEFAULT, NEW, TRUE_CONST,
-                FALSE_CONST, NULL_CONST, THIS, JAVA, WORKFLOWSLOT, CACHED, LET, AROUND, IF, ELSE };
+                FALSE_CONST, NULL_CONST, THIS, JAVA, WORKFLOWSLOT, CACHED, LET, AROUND, IF, THEN, ELSE };
     }
 }

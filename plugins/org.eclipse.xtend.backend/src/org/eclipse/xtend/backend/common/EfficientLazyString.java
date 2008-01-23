@@ -31,12 +31,27 @@ import java.util.List;
  */
 public class EfficientLazyString implements CharSequence {
     private boolean _isDirty = false;
+    private boolean _isImmutable = false;
     private String _asString = "";
     private final List<Object> _contents = new ArrayList<Object>();
 
     private EfficientLazyString _parent = null;
     
-    public void append (Object o) {
+    
+    public static EfficientLazyString createAppendedString (EfficientLazyString s, Object o) {
+        if (s._isImmutable) {
+            final EfficientLazyString result = new EfficientLazyString ();
+            result.append (s);
+            result.append (o);
+            return result;
+        }
+        else {
+            s.append (o);
+            return s;
+        }
+    }
+    
+    private void append (Object o) {
         if (o != null) {
             setDirty();
             _contents.add(o);
@@ -46,6 +61,15 @@ public class EfficientLazyString implements CharSequence {
         }
     }
 
+    /**
+     * makes this EfficientLazyString immutable, forcing concatenation to create a new EfficientLazyString instance. This 
+     *  is done to comply with caching semantics, where the string value once returned from a function should not be 
+     *  modified implicitly from outside that function.
+     */
+    public void makeImmutable () {
+        _isImmutable = true;
+    }
+    
     /**
      * if a hierarchy of EfficientLazyStrings was toString'ed, and later on of the parts down in 
      *  the tree becomes dirty again, all parents are dirty as well by implication.

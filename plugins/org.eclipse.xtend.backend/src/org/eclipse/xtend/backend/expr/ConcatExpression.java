@@ -34,10 +34,10 @@ public final class ConcatExpression extends ExpressionBase {
 
     @Override
     protected Object evaluateInternal (ExecutionContext ctx) {
-        final EfficientLazyString result = new EfficientLazyString ();
+        EfficientLazyString result = new EfficientLazyString ();
 
-        for (ExpressionBase expr: _parts)
-            result.append (Helpers.overridableToString (ctx, expr.evaluate(ctx)));
+        for (ExpressionBase expr: _parts) 
+            result = EfficientLazyString.createAppendedString (result, Helpers.overridableToString (ctx, expr.evaluate(ctx)));
 
         return result;
     }

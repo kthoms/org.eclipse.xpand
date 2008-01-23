@@ -14,9 +14,7 @@ class EfficientLazyStringConverter implements JavaBuiltinConverter {
         if (o == null)
             return null;
         
-        final EfficientLazyString result = new EfficientLazyString ();
-        result.append (o);
-        return result;
+        return EfficientLazyString.createAppendedString (new EfficientLazyString(), o);
     }
 
     public Object javaToBackend (Object o) {

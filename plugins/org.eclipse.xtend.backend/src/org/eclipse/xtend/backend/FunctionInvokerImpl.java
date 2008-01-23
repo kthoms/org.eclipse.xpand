@@ -12,6 +12,7 @@ package org.eclipse.xtend.backend;
 
 import java.util.List;
 
+import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionInvoker;
@@ -26,7 +27,12 @@ final class FunctionInvokerImpl implements FunctionInvoker {
 	private final DoubleKeyCache <Function, List<?>, Object> _cache = new DoubleKeyCache<Function, List<?>, Object> () {
 		@Override
 		protected Object create (Function f, List<?> params) {
-			return f.invoke (_ctx, params.toArray());
+			final Object result = f.invoke (_ctx, params.toArray());
+			
+			if (result instanceof EfficientLazyString)
+			    ((EfficientLazyString) result).makeImmutable();
+			
+			return result;
 		}
 	};
 

@@ -80,6 +80,7 @@ public class ExpandStatement extends Statement {
         return target;
     }
 
+    @Override
     public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
         final Type[] paramTypes = new Type[getParameters().length];
         for (int i = 0; i < getParameters().length; i++) {

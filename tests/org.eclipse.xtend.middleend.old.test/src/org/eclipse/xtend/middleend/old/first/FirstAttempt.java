@@ -36,7 +36,7 @@ public class FirstAttempt {
             final XpandBackendContributor xp = new XpandBackendContributor ("org::eclipse::xtend::middleend::old::first::aTemplate", mms, ts, new ArrayList<Outlet>());
             final ExecutionContext ctx = BackendFacade.createExecutionContext (xp.getFunctionDefContext(), ts);
             
-            System.err.println (BackendFacade.invoke (ctx, "greeting", Arrays.asList("Arno")));
+            System.err.println (BackendFacade.invoke (ctx, "org/eclipse/xtend/middleend/old/first/aTemplate/greeting", Arrays.asList("Arno")));
         }
         
         {

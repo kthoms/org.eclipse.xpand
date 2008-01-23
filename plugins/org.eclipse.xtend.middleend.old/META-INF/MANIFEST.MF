@@ -11,5 +11,6 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.xtend,
  org.eclipse.xpand,
  org.eclipse.xtend.typesystem.emf,
- org.eclipse.emf.mwe.core
+ org.eclipse.emf.mwe.core,
+ org.eclipse.xtend.backend.xtendlib
 Export-Package: org.eclipse.xtend.middleend.old

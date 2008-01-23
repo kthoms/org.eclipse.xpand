@@ -60,6 +60,7 @@ import org.eclipse.xtend.backend.expr.PropertyOnCollectionExpression;
 import org.eclipse.xtend.backend.expr.PropertyOnObjectExpression;
 import org.eclipse.xtend.backend.expr.PropertyOnWhateverExpression;
 import org.eclipse.xtend.backend.expr.SequenceExpression;
+import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.Pair;
 import org.eclipse.xtend.expression.AnalysationIssue;
@@ -169,15 +170,15 @@ final class OldExpressionConverter {
         //TODO make "!" a built-in operation?
         
         if ("+".equals (functionName))
-            return org.eclipse.xtend.backend.util.SyntaxConstants.OPERATOR_PLUS;
+            return SysLibNames.OPERATOR_PLUS;
         if ("-".equals (functionName))
-            return org.eclipse.xtend.backend.util.SyntaxConstants.OPERATOR_MINUS;
+            return SysLibNames.OPERATOR_MINUS;
         if ("*".equals (functionName))
-            return org.eclipse.xtend.backend.util.SyntaxConstants.OPERATOR_MULT;
+            return SysLibNames.OPERATOR_MULT;
         if ("/".equals (functionName))
-            return org.eclipse.xtend.backend.util.SyntaxConstants.OPERATOR_DIV;
+            return SysLibNames.OPERATOR_DIV;
         if ("%".equals (functionName))
-            return org.eclipse.xtend.backend.util.SyntaxConstants.OPERATOR_MOD;
+            return SysLibNames.OPERATOR_MOD;
 
         return functionName;
     }

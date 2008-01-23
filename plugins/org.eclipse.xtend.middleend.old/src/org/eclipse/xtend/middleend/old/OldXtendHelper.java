@@ -12,6 +12,7 @@ package org.eclipse.xtend.middleend.old;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.xtend.XtendFile;
+import org.eclipse.xpand2.XpandUtil;
 
 
 /**
@@ -28,6 +29,20 @@ final class OldXtendHelper {
     }
     
     public static String normalizeXpandResourceName (String xpandName) {
+        if (! xpandName.endsWith("." + XpandUtil.TEMPLATE_EXTENSION))
+            xpandName += "." + XpandUtil.TEMPLATE_EXTENSION;
+
+        xpandName = xpandName.replace (SyntaxConstants.NS_DELIM, "/");
+        
+        return xpandName;
+    }
+    
+    public static String xpandFileAsOldResourceName (String xpandName) {
+        if (xpandName.toLowerCase().endsWith (XpandUtil.TEMPLATE_EXTENSION))
+            xpandName = xpandName.substring (0, xpandName.length() - XpandUtil.TEMPLATE_EXTENSION.length() - 1);
+        
+        xpandName = xpandName.replace ("/", SyntaxConstants.NS_DELIM);
+        
         return xpandName;
     }
 }

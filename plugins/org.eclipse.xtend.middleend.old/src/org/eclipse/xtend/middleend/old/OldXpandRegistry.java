@@ -13,8 +13,10 @@ package org.eclipse.xtend.middleend.old;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipose.xtend.middleend.FunctionDefContextFactory;
 import org.eclipse.internal.xpand2.ast.Template;
@@ -63,7 +65,7 @@ final class OldXpandRegistry {
     
     
     /**
-     * parses and converts an Xpand file and all other files it depends on.
+     * parses and converts an Xpand file and all other files it depends on. 
      */
     public void registerXpandFile (String xpandFile) {
         xpandFile = OldXtendHelper.normalizeXpandResourceName (xpandFile);
@@ -71,9 +73,12 @@ final class OldXpandRegistry {
         if (_functionsByResource.containsKey (xpandFile))
             return;
         
-        final Template file = (Template) _ctx.getResourceManager().loadResource (xpandFile, XpandUtil.TEMPLATE_EXTENSION);
+        System.err.println ("registering xpand file " + xpandFile);
+
+        final String xpandResourceName = OldXtendHelper.xpandFileAsOldResourceName(xpandFile);
+        final Template file = (Template) _ctx.getResourceManager().loadResource (xpandResourceName, XpandUtil.TEMPLATE_EXTENSION);
         if (file == null)
-            throw new IllegalArgumentException ("could not find extension '" + xpandFile + "'");
+            throw new IllegalArgumentException ("could not find Xpand file '" + xpandResourceName + "'");
         
         final XpandExecutionContext ctx = (XpandExecutionContext) _ctx.cloneWithResource (file);
         
@@ -84,10 +89,11 @@ final class OldXpandRegistry {
         final FunctionDefContextImpl fdc = getFunctionDefContext (xpandFile);
         
         //TODO imported namespaces
-        //TODO referenced other template files
+        
+        final Set<XpandDefinitionName> referenced = new HashSet<XpandDefinitionName> ();
         
         for (XpandDefinition ext: file.getDefinitions ())
-            defined.add (definitionFactory.create (ext, fdc));
+            defined.add (definitionFactory.create (ext, fdc, referenced));
         
         
         _functionsByResource.put (xpandFile, defined);
@@ -101,10 +107,26 @@ final class OldXpandRegistry {
             for (NamedFunction f: _extensions.getContributedFunctions(imported))
                 fdc.register (f);
         }
-    }
         
+        System.err.println ("referenced template definitions: " + referenced);
+        
+        // read all referenced template files...
+        final Set<String> xpandFileNames = new HashSet<String> ();
+        for (XpandDefinitionName n: referenced)
+            xpandFileNames.add (n.getCanonicalTemplateFileName());
+        
+        for (String xpandFileName: xpandFileNames)
+            registerXpandFile (xpandFileName);
+        
+        // ... and register all registered extensions in this fdc
+        for (String xpandFileName: xpandFileNames)
+            for (NamedFunction f: _functionsByResource.get (xpandFileName))
+                fdc.register(f);
+    }
+
+
     public Collection<NamedFunction> getContributedFunctions (String xpandFile) {
-        return _functionsByResource.get (OldXtendHelper.normalizeXpandResourceName (xpandFile));
+        return _functionsByResource.get (xpandFile);
     }
 }
 

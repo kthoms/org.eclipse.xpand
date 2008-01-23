@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.ErrorStatement;
@@ -50,9 +51,11 @@ import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
 import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
-import org.eclipse.xtend.backend.syslib.XtendIterator;
+import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.SyntaxConstants;
+import org.eclipse.xtend.backend.xtendlib.XtendIterator;
+import org.eclipse.xtend.backend.xtendlib.XtendLibNames;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
@@ -66,7 +69,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 final class OldDefinitionConverter {
-    private ExecutionContext _ctx;
+    private XpandExecutionContext _ctx;
     private final TypeToBackendType _typeConverter;
     
     private String _definitionName;
@@ -74,7 +77,7 @@ final class OldDefinitionConverter {
     private int _localVarCounter = 0;
     
     
-    public OldDefinitionConverter (ExecutionContext ctx, TypeToBackendType typeConverter) {
+    public OldDefinitionConverter (XpandExecutionContext ctx, TypeToBackendType typeConverter) {
         _ctx = ctx;
         _typeConverter = typeConverter;
     }
@@ -83,74 +86,75 @@ final class OldDefinitionConverter {
     /**
      * converts an extension to a function, taking care of mutual registration with its fdc
      */
-    public NamedFunction create (XpandDefinition def, FunctionDefContextImpl fdc) {
-        final NamedFunction result = createUnregistered (def, fdc);
+    public NamedFunction create (XpandDefinition def, FunctionDefContextImpl fdc, Set<XpandDefinitionName> referencedDefinitions) {
+        final NamedFunction result = createUnregistered (def, fdc, referencedDefinitions);
         fdc.register (result);
         return result;
     }
 
-    private NamedFunction createUnregistered (XpandDefinition def, FunctionDefContextImpl fdc) {
-        if (def instanceof Definition)
-            return new NamedFunction (def.getName(), createNormalDefinition ((Definition) def, fdc));
+    private NamedFunction createUnregistered (XpandDefinition def, FunctionDefContextImpl fdc, Set<XpandDefinitionName> referencedDefinitions) {
+        if (def instanceof Definition) {
+            final String canonicalName = new XpandDefinitionName (def).getCanonicalDefinitionName();
+            return new NamedFunction (canonicalName, createNormalDefinition ((Definition) def, fdc, referencedDefinitions));
+        }
         
         throw new IllegalArgumentException ("unsupported definition type " + def.getClass().getName());
     }
 
     //TODO imported namespaces (probably one level up)
-    //TODO included extensions (probably one level up)
     
-    private Function createNormalDefinition (Definition def, FunctionDefContext fdc) {
-        final ExecutionContext oldCtx = _ctx;
+    private Function createNormalDefinition (Definition def, FunctionDefContext fdc, Set<XpandDefinitionName> referencedDefinitions) {
+        final XpandExecutionContext oldCtx = _ctx;
         
         try {
             final List<String> paramNames = new ArrayList<String>();
             final List<BackendType> paramTypes = new ArrayList<BackendType>();
             
             final Type ft = _ctx.getTypeForName (def.getTargetType());
-            _ctx = _ctx.cloneWithVariable (new Variable (ExecutionContext.IMPLICIT_VARIABLE, ft));
+            _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (ExecutionContext.IMPLICIT_VARIABLE, ft));
             paramNames.add (SyntaxConstants.THIS);
             paramTypes.add (_typeConverter.convertToBackendType(ft));
             
             for (DeclaredParameter dp: def.getParams()) {
                 final Type pt = _ctx.getTypeForName (dp.getType().getValue());
-                _ctx = _ctx.cloneWithVariable (new Variable (dp.getName().getValue(), pt));
+                _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (dp.getName().getValue(), pt));
                 paramNames.add (dp.getName().getValue());
                 paramTypes.add (_typeConverter.convertToBackendType (pt));
             }
 
-            return new SourceDefinedFunction (def.getName(), paramNames, paramTypes, fdc, convertStatmentSequence (def.getBody(), def), false, null);
+            return new SourceDefinedFunction (def.getName(), paramNames, paramTypes, fdc, convertStatmentSequence (def.getBody(), def, referencedDefinitions), false, null);
         }
         finally {
             _ctx = oldCtx;
         }
     }
 
-    private ExpressionBase convertStatmentSequence (Statement[] statements, SyntaxElement oldPos) {
+    private ExpressionBase convertStatmentSequence (Statement[] statements, SyntaxElement oldPos, Set<XpandDefinitionName> referencedDefinitions) {
         final List<ExpressionBase> parts = new ArrayList<ExpressionBase> ();
         
         for (Statement stmt: statements)
-            parts.add(convertStatement (stmt));
+            parts.add (convertStatement (stmt, referencedDefinitions));
         
         return new ConcatExpression (parts, getSourcePos(oldPos));
     }
     
-    private ExpressionBase convertStatement (Statement stmt) {
+    private ExpressionBase convertStatement (Statement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         if (stmt instanceof ErrorStatement)
             return convertErrorStatement((ErrorStatement) stmt);
         if (stmt instanceof ExpandStatement)
-            return convertExpandStatement ((ExpandStatement) stmt);
+            return convertExpandStatement ((ExpandStatement) stmt, referencedDefinitions);
         if (stmt instanceof ExpressionStatement)
             return convertExpressionStatement ((ExpressionStatement) stmt);
         if (stmt instanceof FileStatement)
-            return convertFileStatement ((FileStatement) stmt);
+            return convertFileStatement ((FileStatement) stmt, referencedDefinitions);
         if (stmt instanceof ForEachStatement)
-            return convertForEachStatement ((ForEachStatement) stmt);
+            return convertForEachStatement ((ForEachStatement) stmt, referencedDefinitions);
         if (stmt instanceof IfStatement)
-            return convertIfStatement ((IfStatement) stmt);
+            return convertIfStatement ((IfStatement) stmt, referencedDefinitions);
         if (stmt instanceof LetStatement)
-            return convertLetStatement ((LetStatement) stmt);
+            return convertLetStatement ((LetStatement) stmt, referencedDefinitions);
         if (stmt instanceof ProtectStatement)
-            return convertProtectStatement ((ProtectStatement) stmt);
+            return convertProtectStatement ((ProtectStatement) stmt, referencedDefinitions);
         if (stmt instanceof TextStatement)
             return convertTextStatement ((TextStatement) stmt);
         
@@ -169,9 +173,7 @@ final class OldDefinitionConverter {
         };
     }
     
-    private ExpressionBase convertExpandStatement (ExpandStatement stmt) {
-        //TODO mitloggen, was aufgerufen wird --> in den fdc ziehen
-        
+    private ExpressionBase convertExpandStatement (ExpandStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         if (stmt.isForeach()) {
             final ExpressionBase separator = (stmt.getSeparator() != null) ? convertExpression (stmt.getSeparator()) : null;
             final ExpressionBase target = convertExpression (stmt.getTarget());
@@ -182,13 +184,24 @@ final class OldDefinitionConverter {
             for (Expression e: stmt.getParameters())
                 params.add (convertExpression (e));
             
-            final ExpressionBase invocationExpression = new InvocationOnObjectExpression (stmt.getDefinition().getValue(), params, getSourcePos(stmt));
+            
+            final Type targetType = ((ParameterizedType) stmt.getTarget().analyze (_ctx, new HashSet<AnalysationIssue> ())).getInnerType();
+            
+            final Type[] argTypes = new Type[stmt.getParametersAsList().size()];
+            for (int i=0; i<stmt.getParametersAsList().size(); i++)
+                argTypes[i] = stmt.getParametersAsList().get(i).analyze (_ctx, new HashSet<AnalysationIssue> ());
+
+            final XpandDefinitionName called = new XpandDefinitionName (stmt.getDefinition().getValue(), targetType, argTypes, _ctx);
+            referencedDefinitions.add (called);
+            
+            
+            final ExpressionBase invocationExpression = new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, getSourcePos(stmt));
             final ExpressionBase loopBody = new InitClosureExpression (Arrays.asList(closureParamName), Arrays.asList(ObjectType.INSTANCE), invocationExpression, getSourcePos(stmt));
             
             if (separator == null)
-                return new InvocationOnObjectExpression (SyntaxConstants.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody), getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (SyntaxConstants.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody, separator), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody, separator), getSourcePos (stmt));
         }
         else {
             final List<ExpressionBase> params = new ArrayList<ExpressionBase>();
@@ -200,10 +213,11 @@ final class OldDefinitionConverter {
             for (Expression e: stmt.getParameters())
                 params.add (convertExpression (e));
             
-            return new InvocationOnObjectExpression (stmt.getDefinition().getValue(), params, getSourcePos(stmt));
+            final XpandDefinitionName called = new XpandDefinitionName (stmt.getDefinition().getValue(), stmt.getTarget(), stmt.getParametersAsList(), _ctx);
+            referencedDefinitions.add (called);
+            return new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, getSourcePos(stmt));
         }
     }
-    
     
     private String createUniqueLocalVarName () {
         return "$localVar_" + _localVarCounter++;
@@ -214,8 +228,8 @@ final class OldDefinitionConverter {
         return convertExpression (stmt.getExpression());
     }
     
-    private ExpressionBase convertForEachStatement (ForEachStatement stmt) {
-        final ExecutionContext oldContext = _ctx;
+    private ExpressionBase convertForEachStatement (ForEachStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
+        final XpandExecutionContext oldContext = _ctx;
         
         final ExpressionBase separator = (stmt.getSeparator() != null) ? convertExpression (stmt.getSeparator()) : null;
         final ExpressionBase target = convertExpression (stmt.getTarget());
@@ -229,9 +243,9 @@ final class OldDefinitionConverter {
 
         if (stmt.getIteratorName() == null) {
             // forEach without an iterator
-            _ctx = _ctx.cloneWithVariable (new Variable (varName, eleType));
+            _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (varName, eleType));
             try {
-                body = convertStatmentSequence (stmt.getBody(), stmt);
+                body = convertStatmentSequence (stmt.getBody(), stmt, referencedDefinitions);
             }
             finally {
                 _ctx = oldContext;
@@ -239,16 +253,16 @@ final class OldDefinitionConverter {
             final ExpressionBase closureCreation = new InitClosureExpression (Arrays.asList (varName), Arrays.asList (_typeConverter.convertToBackendType(eleType)), body, getSourcePos (stmt));
 
             if (separator == null)
-                return new InvocationOnObjectExpression (SyntaxConstants.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation), getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (SyntaxConstants.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation, separator), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation, separator), getSourcePos (stmt));
         }
         else {
             // forEach with an iterator
-            _ctx = _ctx.cloneWithVariable (new Variable (varName, eleType));
-            _ctx = _ctx.cloneWithVariable (new Variable (stmt.getIteratorName().getValue(), _ctx.getTypeForName (IteratorType.TYPE_NAME)));
+            _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (varName, eleType));
+            _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (stmt.getIteratorName().getValue(), _ctx.getTypeForName (IteratorType.TYPE_NAME)));
             try {
-                body = convertStatmentSequence (stmt.getBody(), stmt);
+                body = convertStatmentSequence (stmt.getBody(), stmt, referencedDefinitions);
             }
             finally {
                 _ctx = oldContext;
@@ -260,37 +274,37 @@ final class OldDefinitionConverter {
             final ExpressionBase closureCreation = new InitClosureExpression (paramNames, paramTypes, body, getSourcePos (stmt));
 
             if (separator == null)
-                return new InvocationOnObjectExpression (SyntaxConstants.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation), getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (SyntaxConstants.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation, separator), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation, separator), getSourcePos (stmt));
         }
     }
     
-    private ExpressionBase convertIfStatement (IfStatement stmt) {
+    private ExpressionBase convertIfStatement (IfStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         if (stmt.getCondition() != null) {
             final ExpressionBase condExpr = convertExpression (stmt.getCondition());
-            final ExpressionBase ifExpr = convertStatement (stmt.getUpperIf());
-            final ExpressionBase elseExpr = stmt.getElseIf() != null ? convertStatement (stmt.getElseIf()) : new LiteralExpression (null, getSourcePos (stmt));
+            final ExpressionBase ifExpr = convertStatement (stmt.getUpperIf(), referencedDefinitions);
+            final ExpressionBase elseExpr = stmt.getElseIf() != null ? convertStatement (stmt.getElseIf(), referencedDefinitions) : new LiteralExpression (null, getSourcePos (stmt));
             
             return new IfExpression (condExpr, ifExpr, elseExpr, getSourcePos (stmt));
         }
         else {
             // the else part is an IfStatement with null condition
-            return convertStatmentSequence (stmt.getBody(), stmt);
+            return convertStatmentSequence (stmt.getBody(), stmt, referencedDefinitions);
         }
     }
     
     
-    private ExpressionBase convertLetStatement (LetStatement stmt) {
+    private ExpressionBase convertLetStatement (LetStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         final String varName = stmt.getVarName().getValue();
         final Type type = stmt.getVarValue().analyze (_ctx, new HashSet<AnalysationIssue> ());
         
-        final ExecutionContext oldContext = _ctx;
-        _ctx = _ctx.cloneWithVariable (new Variable (varName, type));
+        final XpandExecutionContext oldContext = _ctx;
+        _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (varName, type));
         
         try {
             final ExpressionBase def = convertExpression (stmt.getVarValue());
-            final ExpressionBase body = convertStatmentSequence (stmt.getBody(), stmt);
+            final ExpressionBase body = convertStatmentSequence (stmt.getBody(), stmt, referencedDefinitions);
             
             if (oldContext.getVisibleVariables().containsKey (varName))
                 return new HidingLocalVarDefExpression (varName, def, body, getSourcePos (stmt));
@@ -302,11 +316,11 @@ final class OldDefinitionConverter {
         }
     }
     
-    private ExpressionBase convertFileStatement (FileStatement stmt) {
-        final ExpressionBase body = convertStatmentSequence (stmt.getBody(), stmt);
+    private ExpressionBase convertFileStatement (FileStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
+        final ExpressionBase body = convertStatmentSequence (stmt.getBody(), stmt, referencedDefinitions);
         final ExpressionBase filename = convertExpression (stmt.getTargetFileName());
   
-        final Outlet outlet = ((XpandExecutionContext) _ctx).getOutput().getOutlet (stmt.getOutletName());
+        final Outlet outlet = _ctx.getOutput().getOutlet (stmt.getOutletName());
         if (outlet == null) {
             if (stmt.getOutletName() == null)
                 throw new IllegalStateException ("no default outlet was registered");
@@ -318,10 +332,10 @@ final class OldDefinitionConverter {
         final ExpressionBase append = new LiteralExpression (outlet.isAppend(), getSourcePos(stmt));
         
         //TODO register the outlets
-        return new InvocationOnObjectExpression (SyntaxConstants.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, body), getSourcePos (stmt));
+        return new InvocationOnObjectExpression (SysLibNames.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, body), getSourcePos (stmt));
     }
     
-    private ExpressionBase convertProtectStatement (ProtectStatement stmt) {
+    private ExpressionBase convertProtectStatement (ProtectStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         throw new UnsupportedOperationException(); //TODO implement ProtectStatement
     }
     

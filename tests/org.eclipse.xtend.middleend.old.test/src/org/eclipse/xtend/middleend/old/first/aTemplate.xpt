@@ -3,6 +3,12 @@
 «DEFINE greeting FOR String»
 Hello, «this»: «test(this)»
 «EXPAND name FOR this»
+
+«EXPAND otherTemplate::ot FOR this»
+«EXPAND sub::templateInOtherPackage::other FOR this»
+«EXPAND sub::templateInOtherPackage::other»
+«EXPAND org::eclipse::xtend::middleend::old::first::sub::templateInOtherPackage::other»
+
 «ENDDEFINE»
 
 «DEFINE name FOR String»

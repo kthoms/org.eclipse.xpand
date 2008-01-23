@@ -33,6 +33,9 @@ import org.eclipse.internal.xpand2.pr.util.BASE64;
 import org.eclipse.internal.xpand2.pr.util.FSIO;
 import org.eclipse.internal.xpand2.pr.util.GenericFileFilter;
 
+/**
+ * Default implementation of the {@link ProtectedRegionResolver} interface. 
+ */
 public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
     private static final String ENABLED = "ENABLED";
@@ -163,7 +166,7 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
     private final Log log = LogFactory.getLog(getClass());
 
-    private String srcPathes = null;
+    private File[] srcPaths = null;
 
     private boolean defaultExcludes = true;
 
@@ -173,10 +176,27 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
     private String ignoreList = null;
 
+    /**
+     * This map stores all scanned protected regions.
+     * <p>
+     * Key: Protected Region ID<br>
+     * Value: The Protected Region
+     */
     private Map<String, ProtectedRegionImpl> regionMap = null;
 
+    /** 
+     * All already queried Protected Region Ids. Is used for detecting ambigious usage of
+     * Protected Regions.
+     */ 
     private Set<String> usedSet = null;
 
+    /**
+     * Retrieves all Protected Regions from a source file.
+     * @param file The source file to scan.
+     * @return All found Protected Regions in the specified file.
+     * @throws ProtectedRegionSyntaxException If one of the Protected Regions in the file is incomplete or invalid.
+     * @throws IOException On errors occuring when reading the file
+     */
     protected Collection<ProtectedRegionImpl> getAllRegions(final File file) throws ProtectedRegionSyntaxException, IOException {
         final List<ProtectedRegionImpl> regions = new ArrayList<ProtectedRegionImpl>();
 
@@ -258,86 +278,95 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 //            return null;
 //        }
         if (!usedSet.add(id)) {
+        	// id was not added to usedSet -> id was already queried before! 
             log.warn("Protected region with ID '" + id + "' referenced more than once");
         }
 
         return regionMap.get(id);
     }
 
-    private File[] getSrcPathes() {
-        if ("".equals(srcPathes)) {
-            return new File[0];
-        }
-        final String[] s = srcPathes.split(",");
-        final File[] f = new File[s.length];
-        for (int i = 0; i < f.length; i++) {
-            f[i] = new File(s[i]);
-        }
-        return f;
-    }
-    
-    public void init() {
-        if (regionMap != null)
+    /**
+     * Initializes the ProtectedRegionResolver. This starts the scan over all configured paths (property 'srcPaths').
+     * <p>
+     * A second call (already initialized) to this method will return immediately. 
+     * 
+     * @throws IllegalStateException If a Protected Region Id is detected the second time, i.e. it is not unique.
+     */
+    public void init() throws IllegalStateException {
+    	// Already initialized?
+        if (regionMap != null) {
             return;
+        }
 
+        // Initialize the Protected Region map        
         regionMap = new HashMap<String, ProtectedRegionImpl>();
         usedSet = new HashSet<String>();
-        final File[] sourcePath = getSrcPathes();
-        if (sourcePath != null) {
-            long time = 0;
-            long fileCount = 0;
 
-            if (log.isInfoEnabled()) {
-                log.info("Source scan started ...");
-                time = System.currentTimeMillis();
-            }
+        if (srcPaths==null) {
+        	log.warn("No source paths configured for scanning.");
+        	// abort 
+        	return;
+        }
+        
+        long time = 0;
+        long fileCount = 0;
 
-            final GenericFileFilter filter = new GenericFileFilter(ignoreList, defaultExcludes);
+        if (log.isInfoEnabled()) {
+            log.info("Source scan started ...");
+            time = System.currentTimeMillis();
+        }
 
-            for (int i = 0; i < sourcePath.length; i += 1) {
-                try {
-                    if (!sourcePath[i].isDirectory())
-                        throw new IllegalArgumentException("Source path component " + sourcePath[i]
-                                + " not found or no directory");
+        // create the file filter 
+        final GenericFileFilter filter = new GenericFileFilter(ignoreList, defaultExcludes);
 
-                    final File[] files = FSIO.getAllFiles(sourcePath[i], filter);
+        // Scan all configured paths 
+        for (int i = 0; i < srcPaths.length; i += 1) {
+            try {
+            	// retrieve (recursive) all files from a path matching the configured filter 
+                final File[] files = FSIO.getAllFiles(srcPaths[i], filter);
 
-                    fileCount += files.length;
+                fileCount += files.length;
 
-                    for (int j = 0; j < files.length; j += 1) {
-                        final Iterator<ProtectedRegionImpl> regions = getAllRegions(files[j]).iterator();
+                // scan all files
+                for (int j = 0; j < files.length; j += 1) {
+                	// retrieve the Protected Regions from the current file
+                    final Iterator<ProtectedRegionImpl> regions = getAllRegions(files[j]).iterator();
 
-                        while (regions.hasNext()) {
-                            final ProtectedRegionImpl region = regions.next();
+                    while (regions.hasNext()) {
+                        final ProtectedRegionImpl region = regions.next();
 
-                            final String id = region.getId();
-
-                            if (regionMap.containsKey(id))
-                                throw new RuntimeException("Id '" + id + "' occuring in files " + region.getFile()
-                                        + " and " + regionMap.get(id).getFile()
-                                        + " is not unique");
-                            else {
-                                regionMap.put(id, region);
-                            }
+                        final String id = region.getId();
+                        // check for non-uniqueness of a Protected Region Id
+                        if (regionMap.containsKey(id)) {
+                            throw new IllegalStateException ("Id '" + id + "' occuring in files " + region.getFile()
+                                    + " and " + regionMap.get(id).getFile()
+                                    + " is not unique");
                         }
+                    	// Store this region
+                        regionMap.put(id, region);
                     }
-                } catch (final IOException e) {
-                    throw new RuntimeException("Unexpected I/O exception", e);
-                } catch (final ProtectedRegionSyntaxException e) {
-                    throw new RuntimeException(e.getMessage(), e);
                 }
-            }
-
-            if (log.isInfoEnabled()) {
-                time = System.currentTimeMillis() - time;
-
-                log.info("Source scan finished in " + (time / 1000.0) + "s");
-                log.info("Files scanned: " + fileCount);
-                log.info("Regions found: " + regionMap.size());
+            } catch (final IOException e) {
+                throw new RuntimeException("Unexpected I/O exception", e);
+            } catch (final ProtectedRegionSyntaxException e) {
+                throw new RuntimeException(e.getMessage(), e);
             }
         }
+
+        if (log.isInfoEnabled()) {
+            time = System.currentTimeMillis() - time;
+
+            log.info("Source scan finished in " + (time / 1000.0) + "s");
+            log.info("Files scanned: " + fileCount);
+            log.info("Regions found: " + regionMap.size());
+        }
+
     }
 
+    /**
+     * Dumps all known protected regions to files. For each protected region a file is created. 
+     * @param dumpPath Directory where the dump files are created within.
+     */
     public void reportRegions(final File dumpPath) {
         final int unused = regionMap.size() - usedSet.size();
 
@@ -385,20 +414,56 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
         }
     }
 
+    /**
+     * This flag determines whether default file exclusion patterns should be used.
+     * @param defaultExcludes <code>true</code>: Use default file exclusion patterns, <code>false</code>: ignore them, just use
+     * the patterns specified by {@link #setIgnoreList(String) ignoreList}
+     * @see Xpand reference manual 
+     */
     public void setDefaultExcludes(final boolean defaultExcludes) {
         this.defaultExcludes = defaultExcludes;
     }
 
+    /**
+     * Sets the file encoding to be used when reading files.
+     * @param encoding A valid encoding string.
+     */
     public void setFileEncoding(final String encoding) {
         this.encoding = encoding;
     }
 
+    /**
+     * Sets a custom list of file patterns that should be filtered during scanning of source files 
+     * and directories.
+     * @param ignoreList A comma separated list of file patterns to ignore during scan.
+     */
     public void setIgnoreList(final String ignoreList) {
         this.ignoreList = ignoreList;
     }
 
-    public void setSrcPathes(final String srcPathes) {
-        this.srcPathes = srcPathes;
+    /**
+     * Sets the source paths that should be scanned. 
+     * @param srcPathsAsString A comma separated list of directory paths.
+     * @throws IllegalArgumentException If one of the passed arguments is not a directory or does not exist
+     */
+    public void setSrcPathes(final String srcPathsAsString) throws IllegalArgumentException {
+    	// Split the paths and initialize the
+    	// file array 'srcPaths' from it
+        if ("".equals(srcPathsAsString)) {
+            this.srcPaths =  new File[0];
+        } else {
+	        final String[] s = srcPathsAsString.split(",");
+	        this.srcPaths = new File[s.length];
+	        for (int i = 0; i < this.srcPaths.length; i++) {
+	            this.srcPaths[i] = new File(s[i].trim());
+	            // The configured path must point to an existing directory
+	            if (!srcPaths[i].isDirectory()) {
+	                throw new IllegalArgumentException("Source path component " + srcPaths[i]
+	                        + " not found or no directory");
+	            }
+	        }
+	        
+        }
     }
 
     public void setUseBASE64(final boolean useBASE64) {

@@ -24,11 +24,15 @@ import org.eclipse.internal.xpand2.pr.ProtectedRegionResolverImpl.ProtectedRegio
 import org.eclipse.internal.xpand2.pr.util.FSIO;
 
 
+/**
+ * Unittest for class {@link ProtectedRegionResolverImpl}.
+ * @author Karsten Thoms
+ */
 public class ProtectedRegionResolverImplTest extends TestCase {
 	private File file1;
 	private File tempDir;
 	/**
-	 * Provides access to protected methods
+	 * Provides access to protected methods that should be tested here.
 	 */
 	class ProtectedRegionResolverTestImpl extends ProtectedRegionResolverImpl {
 	    public Collection<ProtectedRegionImpl> _getAllRegions(final File file) throws ProtectedRegionSyntaxException, IOException {
@@ -36,22 +40,32 @@ public class ProtectedRegionResolverImplTest extends TestCase {
 	    }
 	}
 	
+	/** Instance under test */
 	private ProtectedRegionResolverTestImpl prResolver;
 	
+	@Override
 	public void setUp () throws Exception {
 		prResolver = new ProtectedRegionResolverTestImpl();
+		
+		// create a temporary directory for this test. The directory will be deleted automatically.
 		tempDir = new File(System.getProperty("java.io.tmpdir")+"/oaw/");
 		tempDir.mkdir();
 		tempDir.deleteOnExit();
 		
+		// Use the temp dir for scanning
 		prResolver.setSrcPathes(tempDir.getPath());
 
+		// Create a test file with the content of 'testfile1.txt'
 		file1 = new File(tempDir.getPath(),"file1.txt");
 		file1.deleteOnExit();
 		FSIO.writeSingleFile(new FileWriter(file1), new InputStreamReader(getClass().getResourceAsStream("testfile1.txt")));
 	}
 	
-	
+	/**
+	 * Tests method <tt>getAllRegions()</tt>. 
+	 * @throws Exception
+	 * @since 22.01.2008
+	 */
 	public void testGetAllRegions () throws Exception {
 		Collection<ProtectedRegionImpl> allRegions = prResolver._getAllRegions(file1);
 		assertNotNull(allRegions);
@@ -60,7 +74,10 @@ public class ProtectedRegionResolverImplTest extends TestCase {
 		assertEquals("Enabled protected regions", 2, allRegions.size());
 	}
 	
-	public void testGetProtectedRegion () throws Exception {
+	/**
+	 * Tests method {@link ProtectedRegionResolverImpl#getProtectedRegion(String)}. 
+	 */
+	public void testGetProtectedRegion () {
 		assertNull ("Disabled protected region must not be found", prResolver.getProtectedRegion("region1"));
 		assertNotNull ("Enabled protected region must be found", prResolver.getProtectedRegion("region2"));
 	}
@@ -81,11 +98,57 @@ public class ProtectedRegionResolverImplTest extends TestCase {
 		assertEquals("disabled", false, pr.isDisabled());
 	}
 	
+	/**
+	 * In Bug#185493 it is reported that using '&&' as Protected Region ID.  
+	 * @throws Exception On any unexpected exception
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=185493
+	 */
 	public void testBug185493 () throws Exception {
 		File file = new File(tempDir.getPath(),"testbug185493.txt");
 		FSIO.writeSingleFile(new FileWriter(file), new InputStreamReader(getClass().getResourceAsStream("testbug185493.txt")));
 		file.deleteOnExit();
 		ProtectedRegionImpl pr = (ProtectedRegionImpl) prResolver.getProtectedRegion("&&");
 		assertNotNull(pr);
+	}
+	
+	/**
+	 * Bug#206137 reports that setting multiple source paths in a comma separated list will fail when 
+	 * {@link ProtectedRegionResolverImpl#init()} is called.
+	 * 
+	 * @since 22.01.2008
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=206137
+	 */
+	public void testBug206137 () throws Exception{
+		File dir1 = new File(tempDir, "dir1/");
+		dir1.mkdir();
+		dir1.deleteOnExit();
+		
+		File dir2 = new File(tempDir, "dir2/");
+		dir2.mkdir();
+		dir2.deleteOnExit();
+		
+		try {
+			// With Bug#206137 this will raise an IllegalArgumentException
+			prResolver.setSrcPathes(dir1.getAbsolutePath()+", "+dir2.getAbsolutePath());
+			prResolver.init();
+		} catch (IllegalArgumentException e) {
+			fail ("Failure of Bug#206137 detected");
+		}
+	}
+	
+	/**
+	 * Sets an invalid value for srcPaths and checks that the appropriate exception is thrown
+	 * 
+	 * @since 22.01.2008
+	 */
+	public void testInitWithNonExistingDir () {
+		File dir1 = new File(tempDir, getName());
+		assertFalse(dir1.exists());
+		try {
+			prResolver.setSrcPathes(dir1.getAbsolutePath());
+			fail("IllegalArgumentException expected.");
+		} catch (IllegalArgumentException e) {
+			; // OK 
+		}
 	}
 }

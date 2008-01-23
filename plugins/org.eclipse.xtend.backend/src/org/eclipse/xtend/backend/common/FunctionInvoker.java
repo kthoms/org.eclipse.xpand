@@ -20,5 +20,4 @@ import java.util.List;
  */ 
 public interface FunctionInvoker {
     Object invoke (ExecutionContext ctx, Function f, List<?> params);
-
 }

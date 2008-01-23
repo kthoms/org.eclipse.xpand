@@ -118,7 +118,8 @@ final class OldXpandRegistry {
         for (String xpandFileName: xpandFileNames)
             registerXpandFile (xpandFileName);
         
-        // ... and register all registered extensions in this fdc
+        // ... and register all template definitions from these files. It is necessary to have them all registered to enable 
+        //  polymorphism - static type analysis does not find all potential matches.
         for (String xpandFileName: xpandFileNames)
             for (NamedFunction f: _functionsByResource.get (xpandFileName))
                 fdc.register(f);

@@ -166,9 +166,6 @@ final class OldExpressionConverter {
      * transform built-in operator names from the old to the new special names
      */
     private String transformFunctionName (String functionName) {
-        //TODO missing operators: !, ...
-        //TODO make "!" a built-in operation?
-        
         if ("+".equals (functionName))
             return SysLibNames.OPERATOR_PLUS;
         if ("-".equals (functionName))
@@ -180,6 +177,22 @@ final class OldExpressionConverter {
         if ("%".equals (functionName))
             return SysLibNames.OPERATOR_MOD;
 
+        if ("==".equals (functionName))
+            return SysLibNames.OPERATOR_EQUALS;
+        if ("!=".equals (functionName))
+            return SysLibNames.OPERATOR_NOT_EQUALS;
+        if ("<".equals (functionName))
+            return SysLibNames.OPERATOR_LESS;
+        if ("<=".equals (functionName))
+            return SysLibNames.OPERATOR_LESS_OR_EQUALS;
+        if (">=".equals (functionName))
+            return SysLibNames.OPERATOR_GREATER_OR_EQUALS;
+        if (">".equals (functionName))
+            return SysLibNames.OPERATOR_GREATER;
+        
+        if ("!".equals (functionName))
+            return SysLibNames.OPERATOR_NOT;
+        
         return functionName;
     }
     

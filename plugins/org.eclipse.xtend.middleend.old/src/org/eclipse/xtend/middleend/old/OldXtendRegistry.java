@@ -27,6 +27,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
+import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.expression.ExecutionContext;
 
 
@@ -100,6 +101,9 @@ final class OldXtendRegistry {
         final List<NamedFunction> exported = new ArrayList<NamedFunction>();
         
         final FunctionDefContextImpl fdc = getFunctionDefContext (xtendFile);
+
+        // register the XtendLib. Do this first so the extension can override functions
+        fdc.register (new XtendLibContributor (_ts));
         
         for (Extension ext: file.getExtensions()) {
             final NamedFunction f = extensionFactory.create (ext, fdc);

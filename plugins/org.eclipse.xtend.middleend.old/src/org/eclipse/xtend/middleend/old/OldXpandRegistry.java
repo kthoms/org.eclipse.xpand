@@ -27,6 +27,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
+import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 
 
 /**
@@ -73,8 +74,6 @@ final class OldXpandRegistry {
         if (_functionsByResource.containsKey (xpandFile))
             return;
         
-        System.err.println ("registering xpand file " + xpandFile);
-
         final String xpandResourceName = OldXtendHelper.xpandFileAsOldResourceName(xpandFile);
         final Template file = (Template) _ctx.getResourceManager().loadResource (xpandResourceName, XpandUtil.TEMPLATE_EXTENSION);
         if (file == null)
@@ -87,6 +86,9 @@ final class OldXpandRegistry {
         
         final List<NamedFunction> defined = new ArrayList<NamedFunction>();
         final FunctionDefContextImpl fdc = getFunctionDefContext (xpandFile);
+        
+        // register the XtendLib. Do this first so the extension can override functions
+        fdc.register (new XtendLibContributor (_ts));
         
         //TODO imported namespaces
         
@@ -107,8 +109,6 @@ final class OldXpandRegistry {
             for (NamedFunction f: _extensions.getContributedFunctions(imported))
                 fdc.register (f);
         }
-        
-        System.err.println ("referenced template definitions: " + referenced);
         
         // read all referenced template files...
         final Set<String> xpandFileNames = new HashSet<String> ();

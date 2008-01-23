@@ -244,13 +244,21 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	/**
 	 * Finds oaw projects that depend on the given project, recursively. Uses a Map to collect projects
 	 * since sometimes the same project is referenced through different IProject objects.
+	 * @param project The project whose referenced projects should be retrieved
+	 * @param referencingProjects Result map where the assignment of a project to its referencing projects is stored
+	 * @param visited All project names that where already visited during this recursion. This is to avoid loops when having
+	 *        circular dependencies. 
 	 */
-	private void collectReferencingExtXptProjects(IProject project, Map<String, IProject> referencingProjects) {
+	private void collectReferencingExtXptProjects(IProject project, Map<String, IProject> referencingProjects, Set<String>  visited) {
+		if (visited.contains(project.getName()))
+			return;
+		visited.add(project.getName());
+		
 		for (IProject p : project.getReferencingProjects()) {
 			if (Activator.getExtXptModelManager().findProject(p) != null) {
 				referencingProjects.put(p.getName(), p);
 			}
-			collectReferencingExtXptProjects(p, referencingProjects);
+			collectReferencingExtXptProjects(p, referencingProjects, visited);
 		}
 	}
 
@@ -262,6 +270,7 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	 */
 	private void analyzeAndRebuildProjects(Set<IProject> projects) {
 		Map<String, IProject> referencingProjects = new HashMap<String, IProject>();
+		Set<String> visited = new HashSet<String>();
 		for (IProject p : projects) {
 			ProjectAnalyzer pa = getProjectAnalyzer(p);
 			if (pa!=null) {
@@ -269,7 +278,7 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 					pa.schedule();
 				}
 			}
-			collectReferencingExtXptProjects(p, referencingProjects);
+			collectReferencingExtXptProjects(p, referencingProjects, visited);
 		}
 		// remove those projects that we just analyzed. they will be built in their ProjectAnalyzer.
 		// so we shouldn't start another builder here.

@@ -2,6 +2,9 @@ todo
 ----
 Adapter für Xpand und Xtend
 
+BackendType.getStaticProperty???
+
+UML typesystem
 make classes final where meaningful
 Check: SourcePos-Infos in Fehlern, Exceptions in ExpressionBase ordentlich gewrappt
 

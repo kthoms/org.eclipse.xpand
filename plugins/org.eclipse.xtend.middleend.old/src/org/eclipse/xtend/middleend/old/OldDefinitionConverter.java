@@ -336,7 +336,14 @@ final class OldDefinitionConverter {
         final ExpressionBase append = new LiteralExpression (outlet.isAppend(), getSourcePos(stmt));
         
         //TODO register the outlets
-        return new InvocationOnObjectExpression (SysLibNames.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, body), getSourcePos (stmt));
+        
+        final List<ExpressionBase> emptyParamList = Collections.emptyList();
+        final ExpressionBase initIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_INIT, emptyParamList, getSourcePos (stmt));
+
+        final ExpressionBase postprocessIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_POSTPROCESS, Arrays.asList(body), getSourcePos (stmt));
+        final ExpressionBase writeToFileExpression = new InvocationOnObjectExpression (SysLibNames.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, postprocessIsDeleteLineExpression), getSourcePos (stmt));
+        
+        return new SequenceExpression (Arrays.asList (initIsDeleteLineExpression, writeToFileExpression), getSourcePos (stmt));
     }
     
     private ExpressionBase convertProtectStatement (ProtectStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {

@@ -1935,13 +1935,13 @@
             
             <mediaobject>
               <imageobject role="fo">
-                <imagedata fileref="images/xPandReference/metamodelexample.gif"
+                <imagedata fileref="images/Xpand/metamodelexample.gif"
                   scale="80"/>
               </imageobject>
               
               <imageobject role="html">
                 <imagedata
-                  fileref="images/xPandReference/metamodelexample.gif"/>
+                  fileref="images/Xpand/metamodelexample.gif"/>
               </imageobject>
             </mediaobject>
           </figure></para>

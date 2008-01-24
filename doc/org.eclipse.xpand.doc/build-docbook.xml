@@ -73,7 +73,7 @@
 			<sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
 			<sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
 			<arg value="-o" />
-			<arg value="${build.dir}/${product.name}_documentation.fo" />
+			<arg value="${build.dir}/${product.name.files}_documentation.fo" />
 			<arg value="${build.dir}/index.xml" />
 			<arg value="${pdf.stylesheet}" />
 			<arg value="draft.mode=no" />

@@ -63,9 +63,14 @@ public class OutputStringImpl implements Output {
     }
 
 	public void addOutlet(Outlet outlet) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("This implementation does not support outlets");
 	}
+
+	public Outlet getOutlet(String name) {
+		throw new UnsupportedOperationException("This implementation does not support outlets");
+	}
+	
+	
     
     
 }

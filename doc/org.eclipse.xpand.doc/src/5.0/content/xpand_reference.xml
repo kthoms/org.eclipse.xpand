@@ -4,7 +4,7 @@
 %isopub;
 ]>
 
-<chapter id="core_reference" xreflabel="core reference">
+<chapter id="core_reference" xreflabel="Core reference">
   <title><emphasis>Check</emphasis> / <emphasis>Xtend</emphasis> /
     <emphasis>Xpand</emphasis> Reference</title>
   
@@ -2416,9 +2416,10 @@
       
       <para>This section describes the workflow component that is provided to perform the
         code generation, i.e. run the templates. You should have a basic idea of how the
-        workflow engine works. <phrase conditon="main">(see <emphasis> <xref
-          linkend="workflow_reference"/> </emphasis>).</phrase> A simple generator
-        component configuration could look as follows:
+        workflow engine works. (see <emphasis> <phrase condition="main"> <xref
+          linkend="workflow_reference"/></phrase><phrase
+          condition="individual">Workflow reference</phrase></emphasis>). A
+        simple generator component configuration could look as follows:
         
         
         <programlisting>&lt;component class="oaw.xpand2.Generator"&gt;

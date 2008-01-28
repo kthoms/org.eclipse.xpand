@@ -43,9 +43,8 @@ public abstract class AbstractType implements BackendType {
     public AbstractType(String name, BackendType... superTypes) {
         _name = name;
         
-        if (superTypes.length == 0) {
+        if (superTypes.length == 0) 
             _superTypes = Collections.singletonList((BackendType) ObjectType.INSTANCE);
-        }
         else
             _superTypes = Arrays.asList(superTypes);
     }

@@ -13,6 +13,7 @@ package org.eclipse.xtend.backend.types;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.xtend.backend.common.BackendType;
@@ -26,6 +27,7 @@ import org.eclipse.xtend.backend.types.builtin.DoubleType;
 import org.eclipse.xtend.backend.types.builtin.FunctionType;
 import org.eclipse.xtend.backend.types.builtin.ListType;
 import org.eclipse.xtend.backend.types.builtin.LongType;
+import org.eclipse.xtend.backend.types.builtin.MapType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.types.builtin.PropertyType;
 import org.eclipse.xtend.backend.types.builtin.SetType;
@@ -103,6 +105,9 @@ public final class CompositeTypesystem implements BackendTypesystem {
             return SetType.INSTANCE;
         if (Collection.class.isAssignableFrom(cls))
             return CollectionType.INSTANCE;
+        
+        if (Map.class.isAssignableFrom(cls))
+            return MapType.INSTANCE;
         
         if (CharSequence.class.isAssignableFrom(cls))
             return StringType.INSTANCE;

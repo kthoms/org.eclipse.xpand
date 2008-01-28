@@ -35,7 +35,7 @@ public final class SetPropertyExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         final Object o = _inner.evaluate(ctx);
         if (o == null) {
             ctx.logNullDeRef (getPos());

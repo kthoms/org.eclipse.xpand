@@ -30,7 +30,7 @@ public final class SequenceExpression extends ExpressionBase {
     }
     
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         Object result = null;
         
         for (ExpressionBase e: _inner)

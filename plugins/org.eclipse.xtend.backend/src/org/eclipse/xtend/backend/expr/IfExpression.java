@@ -31,7 +31,7 @@ public final class IfExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal (ExecutionContext ctx) {
+    protected Object evaluateInternal (ExecutionContext ctx) {
         final Object cond = _cond.evaluate(ctx);
         
         if (cond == null) {

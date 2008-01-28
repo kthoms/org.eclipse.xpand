@@ -29,7 +29,7 @@ public final class CreateUncachedExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         return _t.create();
     }
 }

@@ -29,7 +29,7 @@ public final class GlobalVarExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         return ctx.getGlobalVarContext().getGlobalVars().get (_varName);
     }
 }

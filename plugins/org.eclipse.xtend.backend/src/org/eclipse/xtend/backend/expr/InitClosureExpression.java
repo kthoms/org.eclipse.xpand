@@ -40,7 +40,7 @@ public final class InitClosureExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         return new Closure (ctx.getLocalVarContext(), ctx.getFunctionDefContext(), _paramNames, _paramTypes, _def);
     }
 }

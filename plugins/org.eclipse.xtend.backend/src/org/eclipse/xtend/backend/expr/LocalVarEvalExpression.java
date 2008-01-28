@@ -28,7 +28,7 @@ public final class LocalVarEvalExpression extends ExpressionBase {
     }
     
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         //expects a static check to have been performed that a local variable of this name exists
         return ctx.getLocalVarContext().getLocalVars().get (_localVarName);
     }

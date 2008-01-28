@@ -36,7 +36,7 @@ public final class PropertyOnCollectionExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         final Collection<?> coll = (Collection<?>) _inner.evaluate(ctx);
         if (coll == null) {
             ctx.logNullDeRef (getPos());

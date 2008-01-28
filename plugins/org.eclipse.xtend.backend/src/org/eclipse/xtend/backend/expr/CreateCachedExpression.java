@@ -35,7 +35,7 @@ public final class CreateCachedExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         final List<Object> params = new ArrayList<Object>();
         
         for (ExpressionBase e: _paramExpr)

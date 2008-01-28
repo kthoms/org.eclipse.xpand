@@ -28,7 +28,7 @@ public final class LiteralExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         return _value;
     }
 }

@@ -33,7 +33,7 @@ public final class NewLocalVarDefExpression extends ExpressionBase {
     }
     
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         ctx.getLocalVarContext().getLocalVars().put (_localVarName, _defExpression.evaluate(ctx));
 
         try {

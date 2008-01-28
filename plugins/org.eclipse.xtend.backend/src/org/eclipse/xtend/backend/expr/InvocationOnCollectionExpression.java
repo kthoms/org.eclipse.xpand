@@ -38,7 +38,7 @@ public final class InvocationOnCollectionExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         final Collection<?> coll = (Collection<?>) _coll.evaluate(ctx);
         
         if (coll == null) {

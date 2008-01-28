@@ -31,7 +31,7 @@ public final class AndExpression extends ExpressionBase {
     }
 
     @Override
-    public Object evaluateInternal(ExecutionContext ctx) {
+    protected Object evaluateInternal(ExecutionContext ctx) {
         final Object left = _left.evaluate(ctx);
         if (left == null) {
             ctx.logNullDeRef (getPos());

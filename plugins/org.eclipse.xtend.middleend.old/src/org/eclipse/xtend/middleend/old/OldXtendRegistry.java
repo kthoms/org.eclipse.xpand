@@ -23,9 +23,9 @@ import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
-import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -38,7 +38,7 @@ import org.eclipse.xtend.expression.ExecutionContext;
  */
 final class OldXtendRegistry {
     private final ExecutionContext _ctx;
-    private final CompositeTypesystem _ts;
+    private final BackendTypesystem _ts;
 
     private final Cache<String, FunctionDefContextImpl> _functionDefContexts = new Cache<String, FunctionDefContextImpl> () {
         @Override
@@ -65,7 +65,7 @@ final class OldXtendRegistry {
     private final Map<String, List<NamedFunction>> _locallyExportedFunctionsByResource = new HashMap <String, List<NamedFunction>>();
 
     
-    public OldXtendRegistry (ExecutionContext ctx, CompositeTypesystem ts) {
+    public OldXtendRegistry (ExecutionContext ctx, BackendTypesystem ts) {
         _ctx = ctx;
         _ts = ts;
     }

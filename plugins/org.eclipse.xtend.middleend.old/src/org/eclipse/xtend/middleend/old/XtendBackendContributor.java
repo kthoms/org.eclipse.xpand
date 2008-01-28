@@ -30,6 +30,7 @@ import org.eclipse.xtend.typesystem.MetaModel;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class XtendBackendContributor implements BackendContributor {
+    //TODO merge with XpandBackendFacade
     private final OldXtendRegistry _registry;
     private final String _xtendFile;
     private final BackendTypesystem _ts;

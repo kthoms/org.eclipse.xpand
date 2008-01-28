@@ -38,7 +38,7 @@ final class XpandDefinitionName {
     
     public XpandDefinitionName (XpandDefinition def) {
         _canonicalTemplateFileName = def.getFileName();
-        _canonicalDefinitionName = _canonicalTemplateFileName.substring (0, _canonicalTemplateFileName.length() - 4) + "/" + def.getName(); 
+        _canonicalDefinitionName = _canonicalTemplateFileName.substring (0, _canonicalTemplateFileName.length() - 4) + "/" + def.getName();
     }
     
     /**

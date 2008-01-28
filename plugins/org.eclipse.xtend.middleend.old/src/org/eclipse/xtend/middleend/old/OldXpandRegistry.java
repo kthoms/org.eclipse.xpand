@@ -23,9 +23,9 @@ import org.eclipse.internal.xpand2.ast.Template;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.xpand2.XpandExecutionContext;
 import org.eclipse.xpand2.XpandUtil;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
-import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 
@@ -37,7 +37,7 @@ import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
  */
 final class OldXpandRegistry {
     private final XpandExecutionContext _ctx;
-    private final CompositeTypesystem _ts;
+    private final BackendTypesystem _ts;
     private final OldXtendRegistry _extensions;
 
     private final Cache<String, FunctionDefContextImpl> _functionDefContexts = new Cache<String, FunctionDefContextImpl> () {
@@ -53,7 +53,7 @@ final class OldXpandRegistry {
     private final Map<String, List<NamedFunction>> _functionsByResource = new HashMap <String, List<NamedFunction>>();
     
 
-    public OldXpandRegistry (XpandExecutionContext ctx, CompositeTypesystem ts, OldXtendRegistry extensions) {
+    public OldXpandRegistry (XpandExecutionContext ctx, BackendTypesystem ts, OldXtendRegistry extensions) {
         _ctx = ctx;
         _ts = ts;
         _extensions = extensions;
@@ -101,15 +101,12 @@ final class OldXpandRegistry {
         _functionsByResource.put (xpandFile, defined);
         
         // make sure all imported resources are registered as well
-        for (String imported: file.getImportedExtensions())
-            _extensions.registerExtension (imported);
-
-        // make all imported extensions visible for the scope of this compilation unit
         for (String imported: file.getImportedExtensions()) {
+            _extensions.registerExtension (imported);
             for (NamedFunction f: _extensions.getContributedFunctions(imported))
                 fdc.register (f);
         }
-        
+
         // read all referenced template files...
         final Set<String> xpandFileNames = new HashSet<String> ();
         for (XpandDefinitionName n: referenced)

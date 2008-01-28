@@ -35,6 +35,7 @@ import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.builtin.TypeType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
+import org.eclipse.xtend.backend.types.java.GlobalJavaBeansTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
 
 
@@ -47,6 +48,12 @@ import org.eclipse.xtend.backend.util.Cache;
 public final class CompositeTypesystem implements BackendTypesystem {
     private BackendTypesystem _rootTypesystem = this;
     private final List<BackendTypesystem> _inner = new ArrayList<BackendTypesystem>();
+    
+    private final BackendTypesystem _javaBeansTypesystem = new  GlobalJavaBeansTypesystem ();
+    {
+        _javaBeansTypesystem.setRootTypesystem (_rootTypesystem);
+    }
+    
     
     private final Cache<Class<?>, BackendType> _cache = new Cache<Class<?>, BackendType>() {
         @Override
@@ -61,19 +68,26 @@ public final class CompositeTypesystem implements BackendTypesystem {
                     return result;
             }
             
+            final BackendType jbResult = _javaBeansTypesystem.findType(key);
+            if (jbResult != null)
+                return jbResult;
+            
             return ObjectType.INSTANCE;
         }
     };
 
+    //TODO remove this - add "asBackendType" to frontend type instead
+    public Collection<BackendTypesystem> getInner () {
+        final Collection<BackendTypesystem> result = new ArrayList<BackendTypesystem> (_inner);
+        result.add (_javaBeansTypesystem);
+        return result;
+    }
+    
     public void register (BackendTypesystem ts) {
         _inner.add(ts);
         ts.setRootTypesystem (getRootTypesystem());
     }
 
-    public List<BackendTypesystem> getInner () {
-        return _inner;
-    }
-    
     public BackendType findType (Object o) {
         if (o == null)
             return VoidType.INSTANCE;
@@ -93,6 +107,8 @@ public final class CompositeTypesystem implements BackendTypesystem {
         _rootTypesystem = ts;
         for (BackendTypesystem child : _inner)
             child.setRootTypesystem(ts);
+        
+        _javaBeansTypesystem.setRootTypesystem (ts);
     }
         
     private BackendType findSimpleBuiltinType (Class<?> cls) {
@@ -135,5 +151,6 @@ public final class CompositeTypesystem implements BackendTypesystem {
 
         return null;
     }
-
 }
+
+

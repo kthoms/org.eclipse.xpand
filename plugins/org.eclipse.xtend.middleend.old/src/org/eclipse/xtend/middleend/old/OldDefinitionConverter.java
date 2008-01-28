@@ -132,17 +132,20 @@ final class OldDefinitionConverter {
         }
     }
     
-    private ExpressionBase convertStatementSequence (Statement[] statements, SyntaxElement oldPos, Set<XpandDefinitionName> referencedDefinitions) {
+    public ExpressionBase convertStatementSequence (Statement[] statements, SyntaxElement oldPos, Set<XpandDefinitionName> referencedDefinitions) {
         final List<ExpressionBase> parts = new ArrayList<ExpressionBase> ();
 
         for (Statement stmt: statements)
             parts.add (convertStatement (stmt, referencedDefinitions));
 
-        return new ConcatExpression (parts, getSourcePos(oldPos));
+        if (parts.size() == 1)
+            return parts.get (0);
+        else
+            return new ConcatExpression (parts, getSourcePos(oldPos));
     }
 
     
-    private ExpressionBase convertStatement (Statement stmt, Set<XpandDefinitionName> referencedDefinitions) {
+    public ExpressionBase convertStatement (Statement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         if (stmt instanceof ErrorStatement)
             return convertErrorStatement((ErrorStatement) stmt);
         if (stmt instanceof ExpandStatement)

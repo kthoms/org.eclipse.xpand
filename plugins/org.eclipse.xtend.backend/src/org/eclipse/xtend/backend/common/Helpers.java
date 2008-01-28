@@ -18,6 +18,8 @@ import java.util.Collections;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public class Helpers {
+    public static String TO_STRING_METHOD_NAME = "toString";
+    
     /**
      * This method is public static so as to be available as a helper method for all code that needs to call "toString".
      *  It calls "toString" on an object, taking into account all potential overriding extensions.<br>
@@ -29,7 +31,7 @@ public class Helpers {
         if (o instanceof EfficientLazyString)
             return (CharSequence) o;
         
-        final Object resultRaw = ctx.getFunctionDefContext().invoke (ctx, "toString", Collections.singletonList (o));
+        final Object resultRaw = ctx.getFunctionDefContext().invoke (ctx, TO_STRING_METHOD_NAME, Collections.singletonList (o));
         if (resultRaw instanceof CharSequence)
             return (CharSequence) resultRaw;
         

@@ -15,12 +15,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipose.xtend.middleend.BackendTypesystemFactory;
+import org.eclipse.emf.mwe.core.WorkflowContext;
+import org.eclipse.emf.mwe.core.issues.IssuesImpl;
+import org.eclipse.emf.mwe.internal.core.WorkflowContextDefaultImpl;
 import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
-import org.eclipse.xtend.middleend.old.XpandBackendContributor;
+import org.eclipse.xtend.middleend.old.XpandBackendFacade;
+import org.eclipse.xtend.middleend.old.XpandWorkflowComponent;
 import org.eclipse.xtend.middleend.old.XtendBackendContributor;
 import org.eclipse.xtend.typesystem.MetaModel;
 
@@ -33,10 +37,20 @@ public class FirstAttempt {
         final CompositeTypesystem ts = BackendTypesystemFactory.createWithoutUml();
 
         {
-            final XpandBackendContributor xp = new XpandBackendContributor ("org::eclipse::xtend::middleend::old::first::aTemplate", mms, ts, new ArrayList<Outlet>());
+            final XpandBackendFacade xp = XpandBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first::aTemplate", mms, new ArrayList<Outlet>());
             final ExecutionContext ctx = BackendFacade.createExecutionContext (xp.getFunctionDefContext(), ts);
             
             System.err.println (BackendFacade.invoke (ctx, "org/eclipse/xtend/middleend/old/first/aTemplate/greeting", Arrays.asList("Arno")));
+        }
+        
+        {
+            final XpandWorkflowComponent xwc = new XpandWorkflowComponent ();
+            xwc.setExpand ("org::eclipse::xtend::middleend::old::first::WithFileOutput::WithFileOutput FOR toBeGreeted");
+            xwc.addOutlet (new Outlet (false, "iso-8859-1", null, true, "src-gen"));
+            
+            final WorkflowContext wfContext = new WorkflowContextDefaultImpl ();
+            wfContext.set ("toBeGreeted", "Arno");
+            xwc.invoke (wfContext, null, new IssuesImpl ());
         }
         
         {

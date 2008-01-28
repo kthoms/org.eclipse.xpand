@@ -60,16 +60,16 @@ import org.eclipse.xtend.typesystem.emf.EObjectType;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 final class TypeToBackendType {
-    private final CompositeTypesystem _backendTypes;
+    private final BackendTypesystem _backendTypes;
     private final EmfTypesystem _emfTypes;
     private final ExecutionContext _ctx;
     
-    public TypeToBackendType (CompositeTypesystem backendTypes, ExecutionContext ctx) {
+    public TypeToBackendType (BackendTypesystem backendTypes, ExecutionContext ctx) {
         _backendTypes = backendTypes;
         _ctx = ctx;
         
         EmfTypesystem ets = null;
-        for (BackendTypesystem bts: _backendTypes.getInner()) {
+        for (BackendTypesystem bts: ((CompositeTypesystem) _backendTypes).getInner()) {
             if (bts instanceof EmfTypesystem)
                 ets = (EmfTypesystem) bts;
         }

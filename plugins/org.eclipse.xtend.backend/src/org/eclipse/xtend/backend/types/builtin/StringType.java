@@ -12,6 +12,7 @@ package org.eclipse.xtend.backend.types.builtin;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.util.ReflectionHelper;
 
 
 /**
@@ -27,7 +28,11 @@ import org.eclipse.xtend.backend.types.AbstractType;
 public final class StringType extends AbstractType {
     public static final StringType INSTANCE = new StringType();
     
-    private StringType () {super ("String"); }
+    private StringType () {
+        super ("String");
+        
+        register (new BuiltinProperty (this, StringType.INSTANCE, "length", ReflectionHelper.getKnownMethod(CharSequence.class, "length"), null));
+    }
 
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;

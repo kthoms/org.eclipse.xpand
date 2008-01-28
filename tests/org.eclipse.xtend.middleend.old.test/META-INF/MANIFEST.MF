@@ -7,4 +7,5 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.xtend.middleend.old,
  org.eclipse.xtend.middleend,
  org.eclipse.xtend,
- org.eclipse.xpand
+ org.eclipse.xpand,
+ org.eclipse.emf.mwe.core

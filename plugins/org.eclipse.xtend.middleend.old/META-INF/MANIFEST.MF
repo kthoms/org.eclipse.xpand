@@ -12,5 +12,6 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.xpand,
  org.eclipse.xtend.typesystem.emf,
  org.eclipse.emf.mwe.core,
- org.eclipse.xtend.backend.xtendlib
+ org.eclipse.xtend.backend.xtendlib,
+ org.apache.commons.logging
 Export-Package: org.eclipse.xtend.middleend.old

@@ -47,7 +47,6 @@ public final class BackendTypesystemFactory {
         final CompositeTypesystem result = new CompositeTypesystem ();
 
         result.register (new EmfTypesystem ());
-        result.register (new GlobalJavaBeansTypesystem ());
 
         return result;
     }

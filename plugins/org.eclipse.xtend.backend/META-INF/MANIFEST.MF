@@ -11,5 +11,6 @@ Export-Package: org.eclipse.xtend.backend,
  org.eclipse.xtend.backend.iface,
  org.eclipse.xtend.backend.types,
  org.eclipse.xtend.backend.types.builtin,
+ org.eclipse.xtend.backend.types.java,
  org.eclipse.xtend.backend.util
 Require-Bundle: org.apache.commons.logging

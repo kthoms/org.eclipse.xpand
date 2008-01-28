@@ -11,6 +11,8 @@ Contributors:
 package org.eclipse.xtend.middleend.old;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +43,9 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.FileOutlet;
+import org.eclipse.xtend.backend.syslib.InMemoryPostprocessor;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
+import org.eclipse.xtend.backend.syslib.UriBasedPostprocessor;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.expression.Variable;
@@ -136,6 +140,8 @@ public final class XpandBackendFacade {
             if (oldOutlet.getFileEncoding() != null)
                 newOutlet.setFileEncoding (oldOutlet.getFileEncoding());
             newOutlet.setOverwrite (oldOutlet.isOverwrite());
+
+            // TODO register old postprocessors via adapters
             
             final String outletName = (oldOutlet.getName() != null) ? oldOutlet.getName() : FileIoOperations.DEFAULT_OUTLET_NAME;
             ctx.getFunctionDefContext ().invoke (ctx, SysLibNames.REGISTER_OUTLET, Arrays.asList (outletName, newOutlet));

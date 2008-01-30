@@ -24,8 +24,8 @@ import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.middleend.old.XpandBackendFacade;
-import org.eclipse.xtend.middleend.old.XpandWorkflowComponent;
-import org.eclipse.xtend.middleend.old.XtendBackendContributor;
+import org.eclipse.xtend.middleend.old.XpandComponent;
+import org.eclipse.xtend.middleend.old.XtendBackendFacade;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 
@@ -37,14 +37,14 @@ public class FirstAttempt {
         final CompositeTypesystem ts = BackendTypesystemFactory.createWithoutUml();
 
         {
-            final XpandBackendFacade xp = XpandBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first::aTemplate", mms, new ArrayList<Outlet>());
+            final XpandBackendFacade xp = XpandBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first::aTemplate", "iso-8859-1", mms, new ArrayList<Outlet>());
             final ExecutionContext ctx = BackendFacade.createExecutionContext (xp.getFunctionDefContext(), ts);
             
             System.err.println (BackendFacade.invoke (ctx, "org/eclipse/xtend/middleend/old/first/aTemplate/greeting", Arrays.asList("Arno")));
         }
         
         {
-            final XpandWorkflowComponent xwc = new XpandWorkflowComponent ();
+            final XpandComponent xwc = new XpandComponent ();
             xwc.setExpand ("org::eclipse::xtend::middleend::old::first::WithFileOutput::WithFileOutput FOR toBeGreeted");
             xwc.addOutlet (new Outlet (false, "iso-8859-1", null, true, "src-gen"));
             
@@ -54,7 +54,7 @@ public class FirstAttempt {
         }
         
         {
-            final XtendBackendContributor bc = new XtendBackendContributor ("org::eclipse::xtend::middleend::old::first::first", mms, ts);
+            final XtendBackendFacade bc = XtendBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first::first", "iso-8859-1", mms);
             final ExecutionContext ctx = BackendFacade.createExecutionContext (bc.getFunctionDefContext(), ts);
 
             System.err.println (BackendFacade.invoke (ctx, "test", Arrays.asList ("Arno")));
@@ -66,6 +66,13 @@ public class FirstAttempt {
             p.setName ("Testarossa");
 
             System.err.println (BackendFacade.invoke (ctx, "testPerson", Arrays.asList(p)));
+        }
+        
+        {
+            System.err.println ("--");
+            System.err.println (XtendBackendFacade.invokeXtendFunction ("org::eclipse::xtend::middleend::old::first::first", null, mms, "test", "Arno"));
+            System.err.println (XtendBackendFacade.evaluateExpression ("1 + 2 + \"asdf\".length", null, null));
+            System.err.println (XtendBackendFacade.evaluateExpression ("1 + 2 + test(\"Arno\").length", "org::eclipse::xtend::middleend::old::first::first", null, mms, null));
         }
     }
 }

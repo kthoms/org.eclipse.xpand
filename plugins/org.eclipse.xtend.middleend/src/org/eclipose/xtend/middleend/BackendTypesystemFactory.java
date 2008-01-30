@@ -15,7 +15,6 @@ import java.util.List;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
-import org.eclipse.xtend.backend.types.java.GlobalJavaBeansTypesystem;
 
 
 /**

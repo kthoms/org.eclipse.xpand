@@ -10,9 +10,16 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.old;
 
+import java.util.Collection;
+
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.xpand2.XpandUtil;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
+import org.eclipse.xtend.typesystem.MetaModel;
+import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
 
 /**
@@ -20,6 +27,31 @@ import org.eclipse.xpand2.XpandUtil;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 final class OldXtendHelper {
+    public static BackendTypesystem guessTypesystem (Collection<MetaModel> mms) {
+        boolean hasEmf = false;
+        
+        for (MetaModel mm: mms) {
+            if (mm instanceof EmfRegistryMetaModel)
+                hasEmf = true;
+        }
+        
+        final CompositeTypesystem result = new CompositeTypesystem ();
+        if (hasEmf)
+            result.register (new EmfTypesystem ());
+        //TODO register uml mm
+        //TODO replace this by adding "asBackendType" to the frontend types
+        
+        return result;
+    }
+
+    
+    public static String normalizedFileEncoding (String fileEncoding) {
+        if (fileEncoding == null)
+            return System.getProperty ("file.encoding");
+
+        return fileEncoding;
+    }
+    
     public static String normalizeXtendResourceName (String xtendName) {
         xtendName = xtendName.replace (SyntaxConstants.NS_DELIM, "/");
         if (xtendName.endsWith ("." + XtendFile.FILE_EXTENSION))

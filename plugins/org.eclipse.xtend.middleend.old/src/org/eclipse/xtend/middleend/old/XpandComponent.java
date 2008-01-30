@@ -30,6 +30,7 @@ import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
+import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
 
 
@@ -39,10 +40,9 @@ import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public class XpandWorkflowComponent extends AbstractExpressionsUsingWorkflowComponent {
+public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
     //TODO genPath, srcPath
     //TODO profiler
-    //TODO beautifier
     //TODO advice / AOP
     
     private String _genPath = null;
@@ -52,8 +52,26 @@ public class XpandWorkflowComponent extends AbstractExpressionsUsingWorkflowComp
     private String _fileEncoding = null;
     private boolean _automaticHyphens = false;
     private Output _output = null;
+
+    private List<PostProcessor> _postprocessors = new ArrayList <PostProcessor>();
     private List<Outlet> _initializedOutlets = new ArrayList<Outlet> ();
 
+    
+    public List<PostProcessor> getBeautifier() {
+        return _postprocessors;
+    }
+
+    public void addBeautifier (PostProcessor beautifier) {
+        _postprocessors.add (beautifier);
+    }
+    
+    public List<PostProcessor> getPostprocessors() {
+        return _postprocessors;
+    }
+    
+    public void addPostprocessor (PostProcessor postprocessor) {
+        _postprocessors.add (postprocessor);
+    }
     
     public void setAutomaticHyphens(boolean automaticHyphens) {
         this._automaticHyphens = automaticHyphens;
@@ -156,9 +174,14 @@ public class XpandWorkflowComponent extends AbstractExpressionsUsingWorkflowComp
                     result.add (new Outlet (false, _fileEncoding, "ONCE", false, _srcPath));
             }
 
-            for (Outlet o: result) 
+            for (Outlet o: result) {
+                if (o.postprocessors.isEmpty()) 
+                    for (PostProcessor pp: _postprocessors)
+                        o.addPostprocessor (pp);
+
                 if (o.hasDefaultEncoding() && _fileEncoding!=null) 
                     o.setFileEncoding(_fileEncoding);
+            }
         }        
         
         return _initializedOutlets;

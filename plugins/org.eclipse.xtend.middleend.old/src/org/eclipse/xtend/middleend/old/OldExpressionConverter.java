@@ -115,7 +115,7 @@ final class OldExpressionConverter {
             return convertBooleanOperation ((BooleanOperation) expr);
         
         if (expr instanceof GlobalVarExpression)
-            return new org.eclipse.xtend.backend.expr.GlobalVarExpression (((GlobalVarExpression) expr).getVarName(), getSourcePos(expr));
+            return new org.eclipse.xtend.backend.expr.GlobalParamExpression (((GlobalVarExpression) expr).getVarName(), getSourcePos(expr));
         if (expr instanceof LetExpression)
             return convertLetExpression((LetExpression) expr);
         if (expr instanceof ChainExpression)

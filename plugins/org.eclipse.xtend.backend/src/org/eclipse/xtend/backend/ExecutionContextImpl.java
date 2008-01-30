@@ -18,7 +18,7 @@ import org.eclipse.xtend.backend.common.CreationCache;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.FunctionInvoker;
-import org.eclipse.xtend.backend.common.GlobalVarContext;
+import org.eclipse.xtend.backend.common.GlobalParamContext;
 import org.eclipse.xtend.backend.common.LocalVarContext;
 import org.eclipse.xtend.backend.common.SourcePos;
 
@@ -33,7 +33,7 @@ final class ExecutionContextImpl implements ExecutionContext {
 	private LocalVarContext _localVarContext = new LocalVarContext ();
 	private final FunctionInvoker _functionInvoker = new FunctionInvokerImpl ();
 	private final BackendTypesystem _typeSystem;
-	private final GlobalVarContext _globalVarContext = new GlobalVarContextImpl ();
+	private final GlobalParamContext _globalParamContext = new GlobalParamContextImpl ();
 	
 	private final ContributionStateContext _contributionStateContext = new ContributionStateContext ();
 	
@@ -70,8 +70,8 @@ final class ExecutionContextImpl implements ExecutionContext {
 		return _typeSystem;
 	}
 
-	public GlobalVarContext getGlobalVarContext() {
-		return _globalVarContext;
+	public GlobalParamContext getGlobalParamContext() {
+		return _globalParamContext;
 	}
 
 	public void logNullDeRef (SourcePos pos) {

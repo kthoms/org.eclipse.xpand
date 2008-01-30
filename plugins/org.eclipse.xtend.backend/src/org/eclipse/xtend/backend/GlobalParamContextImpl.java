@@ -8,15 +8,22 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.common;
+package org.eclipse.xtend.backend;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import org.eclipse.xtend.backend.common.GlobalParamContext;
 
 
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public interface GlobalVarContext {
-    Map<String, Object> getGlobalVars();
+final class GlobalParamContextImpl implements GlobalParamContext {
+	private final Map<String, Object> _globalVars = new HashMap<String, Object> ();
+
+	public Map<String, Object> getGlobalParams() {
+		return _globalVars;
+	}
 }

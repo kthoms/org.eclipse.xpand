@@ -20,16 +20,16 @@ import org.eclipse.xtend.backend.common.SourcePos;
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class GlobalVarExpression extends ExpressionBase {
+public final class GlobalParamExpression extends ExpressionBase {
     private final String _varName;
 
-    public GlobalVarExpression (String varName, SourcePos sourcePos) {
+    public GlobalParamExpression (String varName, SourcePos sourcePos) {
         super(sourcePos);
         _varName = varName;
     }
 
     @Override
     protected Object evaluateInternal(ExecutionContext ctx) {
-        return ctx.getGlobalVarContext().getGlobalVars().get (_varName);
+        return ctx.getGlobalParamContext().getGlobalParams().get (_varName);
     }
 }

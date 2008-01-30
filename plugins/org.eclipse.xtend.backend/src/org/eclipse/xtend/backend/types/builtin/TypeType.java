@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ReflectionHelper;
 
@@ -35,7 +36,7 @@ public final class TypeType extends AbstractType {
         register (new BuiltinProperty (this, ListType.INSTANCE, "allProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getProperties"), null));
         register (new BuiltinProperty (this, ListType.INSTANCE, "allStaticProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getStaticProperties"), null));
         
-        register (new BuiltinProperty (this, ListType.INSTANCE, "allOperations", null, null) {
+        register (new AbstractProperty (this, ListType.INSTANCE, "allOperations") {
             @Override
             public Object get (ExecutionContext ctx, Object o) {
                 final BackendType t = (BackendType) o;

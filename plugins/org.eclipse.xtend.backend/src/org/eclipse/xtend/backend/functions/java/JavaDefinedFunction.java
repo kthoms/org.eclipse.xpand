@@ -13,6 +13,7 @@ package org.eclipse.xtend.backend.functions.java;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
@@ -157,7 +158,15 @@ public final class JavaDefinedFunction implements Function {
             return _returnValueConverter.javaToBackend (resultRaw);
             
         } catch (Exception e) {
-            ErrorHandler.handle(e);
+            final List<String> paramTypes = new ArrayList<String> ();
+            for (Object p: params) {
+                if (p == null)
+                    paramTypes.add (Void.TYPE.getName());
+                else
+                    paramTypes.add (p.getClass().getName());
+            }
+            
+            ErrorHandler.handle ("could not invoke method " + _mtd + " with parameters " + Arrays.asList(params) + " of types " + paramTypes, e);
             return null; // to make the compiler happy - this is never executed
         }
     }

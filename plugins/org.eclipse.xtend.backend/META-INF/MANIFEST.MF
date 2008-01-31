@@ -3,14 +3,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Backend Plug-in
 Bundle-SymbolicName: org.eclipse.xtend.backend
 Bundle-Version: 1.0.0
-Export-Package: org.eclipse.xtend.backend,
+Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.common,
- org.eclipse.xtend.backend.expr,
- org.eclipse.xtend.backend.functions,
- org.eclipse.xtend.backend.functions.java,
- org.eclipse.xtend.backend.iface,
- org.eclipse.xtend.backend.types,
- org.eclipse.xtend.backend.types.builtin,
- org.eclipse.xtend.backend.types.java,
+ org.eclipse.xtend.backend.expr;uses:="org.eclipse.xtend.backend.common",
+ org.eclipse.xtend.backend.functions;uses:="org.eclipse.xtend.backend.common",
+ org.eclipse.xtend.backend.functions.internal;x-friends:="org.eclipse.xtend.backend.test",
+ org.eclipse.xtend.backend.functions.java;uses:="org.eclipse.xtend.backend.iface,org.eclipse.xtend.backend.common",
+ org.eclipse.xtend.backend.syslib,
+ org.eclipse.xtend.backend.types;uses:="org.eclipse.xtend.backend.common",
+ org.eclipse.xtend.backend.types.builtin;uses:="org.eclipse.xtend.backend.common,org.eclipse.xtend.backend.types",
  org.eclipse.xtend.backend.util
 Require-Bundle: org.apache.commons.logging

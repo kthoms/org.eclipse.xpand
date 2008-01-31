@@ -18,14 +18,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipose.xtend.middleend.FunctionDefContextFactory;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
+import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -40,9 +40,9 @@ final class OldXtendRegistry {
     private final ExecutionContext _ctx;
     private final BackendTypesystem _ts;
 
-    private final Cache<String, FunctionDefContextImpl> _functionDefContexts = new Cache<String, FunctionDefContextImpl> () {
+    private final Cache<String, FunctionDefContextInternal> _functionDefContexts = new Cache<String, FunctionDefContextInternal> () {
         @Override
-        protected FunctionDefContextImpl create (String compilationUnit) {
+        protected FunctionDefContextInternal create (String compilationUnit) {
             return new FunctionDefContextFactory (_ts).create();
         }
     };
@@ -71,7 +71,7 @@ final class OldXtendRegistry {
     }
     
     
-    private FunctionDefContextImpl getFunctionDefContext (String xtendName) {
+    private FunctionDefContextInternal getFunctionDefContext (String xtendName) {
         return _functionDefContexts.get (OldXtendHelper.normalizeXtendResourceName (xtendName));
     }
     
@@ -100,10 +100,10 @@ final class OldXtendRegistry {
         final List<NamedFunction> defined = new ArrayList<NamedFunction>();
         final List<NamedFunction> exported = new ArrayList<NamedFunction>();
         
-        final FunctionDefContextImpl fdc = getFunctionDefContext (xtendFile);
+        final FunctionDefContextInternal fdc = getFunctionDefContext (xtendFile);
 
         // register the XtendLib. Do this first so the extension can override functions
-        fdc.register (new XtendLibContributor (_ts));
+        fdc.register (new XtendLibContributor (_ts).getContributedFunctions());
         
         for (Extension ext: file.getExtensions()) {
             final NamedFunction f = extensionFactory.create (ext, fdc);

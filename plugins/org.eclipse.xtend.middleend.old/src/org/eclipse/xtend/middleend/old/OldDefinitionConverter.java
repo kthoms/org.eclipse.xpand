@@ -50,7 +50,7 @@ import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
 import org.eclipse.xtend.backend.expr.SequenceExpression;
-import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
@@ -89,13 +89,13 @@ final class OldDefinitionConverter {
     /**
      * converts an extension to a function, taking care of mutual registration with its fdc
      */
-    public NamedFunction create (XpandDefinition def, FunctionDefContextImpl fdc, Set<XpandDefinitionName> referencedDefinitions) {
+    public NamedFunction create (XpandDefinition def, FunctionDefContextInternal fdc, Set<XpandDefinitionName> referencedDefinitions) {
         final NamedFunction result = createUnregistered (def, fdc, referencedDefinitions);
         fdc.register (result);
         return result;
     }
 
-    private NamedFunction createUnregistered (XpandDefinition def, FunctionDefContextImpl fdc, Set<XpandDefinitionName> referencedDefinitions) {
+    private NamedFunction createUnregistered (XpandDefinition def, FunctionDefContextInternal fdc, Set<XpandDefinitionName> referencedDefinitions) {
         if (def instanceof Definition) {
             final String canonicalName = new XpandDefinitionName (def).getCanonicalDefinitionName();
             return new NamedFunction (canonicalName, createNormalDefinition ((Definition) def, fdc, referencedDefinitions));

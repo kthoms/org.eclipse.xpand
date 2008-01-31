@@ -28,7 +28,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.expr.CreateCachedExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
-import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.util.SyntaxConstants;
 import org.eclipse.xtend.expression.AnalysationIssue;
@@ -56,13 +56,13 @@ final class OldExtensionConverter {
     /**
      * converts an extension to a function, taking care of mutual registration with its fdc
      */
-    public NamedFunction create (Extension extension, FunctionDefContextImpl fdc) {
-        final NamedFunction result = new NamedFunction (extension.getName(), createUnregistered(extension, fdc));
+    public NamedFunction create (Extension extension, FunctionDefContextInternal fdc) {
+        final NamedFunction result = new NamedFunction (extension.getName(), createUnregistered (extension, fdc));
         fdc.register (result);
         return result;
     }
 
-    private Function createUnregistered (Extension extension, FunctionDefContextImpl fdc) {
+    private Function createUnregistered (Extension extension, FunctionDefContextInternal fdc) {
         if (extension instanceof JavaExtensionStatement)
             return createJavaExtension ((JavaExtensionStatement) extension);
         

@@ -1,38 +1,32 @@
 todo
 ----
-Adapter für Xpand und Xtend
+registry of handlers for different kinds of resources (including classes and byte code (?)); classes need way to express their fdc!!! --> rethink fdc concept?
+make the concept of the "XyzRegistry" explicit, common abstraction --> interoperability of languages
+configuration of backend type system - parameters to the backend?
+globalVars rauswerfen? --> ContributionStateContext?
 
-potential bug - EfficientLazyString is mutable || return value from cached function
+JavaBeansType: Interfaces als Supertypen
+UML type system
+logNullDeRef: log call stack including call parameters - runtime flag to log "verbosely"?
+AOP
+Profiler
 
-UML typesystem
 Check: SourcePos-Infos in Fehlern, Exceptions in ExpressionBase ordentlich gewrappt
 
-logNullDeRef: log call stack including call parameters 
-
-Outlets: Funktionen "registerOutlet" parallel zu "file" --> Outlets registrieren (inkl. Default-Outlet),
-  Convenience mit Primitives und "richtige" Outlets. Outlet: Liefert Writer für identifizierenden
-  String (d.h. Filenamen)
-
-BackendContributor: init-Methode statt Constructor-Parameter
 static properties; enums
+
+kommentieren
 
 Marker-Interface / Annotation "FunctionDefs" o.ä. --> generische Unterscheidung für Java-Importer, ob Klasse
   als Bean oder als "Funktionen-Container"
 
-JavaBeansType: Interfaces als Supertypen
-
-syslib vervollständigen
 testen, insbes. syslib
 
 DefinitionType in FunctionType mergen
 
-globalVars rauswerfen?
-
 dead code elimination?
 
 isInstance
-
-AOP
 
 Buddy Policy für syslib und backend
 
@@ -42,7 +36,6 @@ Function-Match (z.B. &myFunc (String, Foo) --> spät binden! --> dynamisch durchg
   wird gematcht
 Currying
 Map als Builtin-Typ
-Typesystem je Compilationunit
 Properties über getter/setter abbilden (z.B. im mm keine property mehr)?
 Eigene Properties definieren (d.h. generische Map dafür an jedem Objekt)?
 "final" (auch als Hint für Optimierung --> wird nicht durch dynamische Exytensions
@@ -67,11 +60,18 @@ replace/add von Extensions im dynamischen Scope
 equals auf Type-Implementierungen
 
 
+Unterstützung
+-------------
+UML und EMF testen
+
+
 Decisions
 ---------
 Overwriting / hiding of functions is only posible for functions without guards (to avoid 
   the necessity of comparing guards for equality)
 IteratorType is now handled via the Java type system
+Only one global type system to avoid ambiguities when objects are passed from one compilation unit to another
+
 
 Ideen für die Zukunft
 ---------------------
@@ -101,4 +101,7 @@ metaType etc.
 EMF-Typesystem
 setExecutionContext bei ExecutionContextAware nicht als exportierte Funktion behandeln
 toString() überschreibbar, trotz lazy evaluation
+Operators: implies, <, <=, ==, !=, >=, >, !, unary -, 
+potential bug - EfficientLazyString is mutable || return value from cached function --> 
+  flag "isImmutable" in EfficientLazyString; static method "concat" insetad of "append" to treat this transparently
 

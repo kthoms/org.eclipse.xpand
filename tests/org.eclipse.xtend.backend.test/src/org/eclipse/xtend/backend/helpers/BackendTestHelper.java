@@ -16,8 +16,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
-import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
-import org.eclipse.xtend.backend.syslib.SyslibContributor;
+import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 
 
@@ -34,7 +33,7 @@ public class BackendTestHelper {
      */
     public static ExecutionContext createEmptyExecutionContext () {
         final BackendTypesystem ts = new CompositeTypesystem ();
-        return BackendFacade.createExecutionContext (new FunctionDefContextImpl (new SyslibContributor (ts)), ts);
+        return BackendFacade.createExecutionContext (new FunctionDefContextFactory (ts).create(), ts);
     }
 
     public static ExpressionBase createLiteral (Object literal) {

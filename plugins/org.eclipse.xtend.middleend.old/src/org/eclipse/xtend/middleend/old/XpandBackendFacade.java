@@ -20,7 +20,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipose.xtend.middleend.FunctionDefContextFactory;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.Template;
@@ -39,7 +38,8 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
+import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.FileOutlet;
@@ -113,7 +113,7 @@ public final class XpandBackendFacade {
         final ExpressionBase converted = defConverter.convertStatementSequence (statements, tpl, referenced);
 
         
-        final FunctionDefContextImpl fdc = new FunctionDefContextFactory (ts).create();
+        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ts).create();
         
         //TODO refactor this to extract common code - both from here and from OldXpandRegistry
         final OldXpandRegistry oxr = new OldXpandRegistry (ctx, ts, new OldXtendRegistry (ctx, ts));

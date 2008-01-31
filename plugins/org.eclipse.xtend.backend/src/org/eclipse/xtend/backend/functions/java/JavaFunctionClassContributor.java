@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.iface.BackendContributor;
 
 
 /**
@@ -27,16 +25,12 @@ import org.eclipse.xtend.backend.iface.BackendContributor;
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class JavaFunctionClassContributor implements BackendContributor {
+public final class JavaFunctionClassContributor {
     private final List<NamedFunction> _functions = new ArrayList<NamedFunction>();
 
     public JavaFunctionClassContributor (Class<?> cls, BackendTypesystem ts) {
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (cls, ts))
             _functions.add (new NamedFunction (f.getName(), f));
-    }
-
-    public BackendType convertToType (List<String> segments) {
-        return null; // no types are contributed
     }
 
     public Collection<NamedFunction> getContributedFunctions () {

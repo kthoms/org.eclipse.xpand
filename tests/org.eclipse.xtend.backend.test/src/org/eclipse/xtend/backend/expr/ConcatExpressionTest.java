@@ -16,8 +16,18 @@ import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createLiteral;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
+import java.util.List;
 
+import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.Helpers;
+import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
+import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.junit.Test;
 
 
@@ -38,5 +48,36 @@ public class ConcatExpressionTest {
     
     private Object eval (ExpressionBase... parts) {
         return new ConcatExpression (Arrays.asList(parts), SOURCE_POS).evaluate (createEmptyExecutionContext()).toString();
+    }
+    
+    @Test public void testUsesToStringExtension () {
+        final NamedFunction myToString = new NamedFunction (Helpers.TO_STRING_METHOD_NAME, new Function () {
+            public ExpressionBase getGuard () {
+                return null;
+            }
+
+            public List<? extends BackendType> getParameterTypes () {
+                return Arrays.asList (ObjectType.INSTANCE);
+            }
+
+            public Object invoke (ExecutionContext ctx, Object[] params) {
+                return "#" + params[0] + "!";
+            }
+
+            public boolean isCached () {
+                return false;
+            }            
+        });
+        
+        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
+        fdc.register (myToString);
+
+        final ExpressionBase expr = new ConcatExpression (Arrays.asList (createLiteral("a"), createLiteral("b")), SOURCE_POS);
+        
+        final ExecutionContext ctx = createEmptyExecutionContext();
+        assertEquals ("ab", expr.evaluate(ctx).toString());
+        
+        ctx.setFunctionDefContext(fdc);
+        assertEquals ("#a!#b!", expr.evaluate(ctx).toString());
     }
 }

@@ -14,8 +14,8 @@ import java.lang.reflect.Method;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
-import org.eclipse.xtend.backend.functions.java.JavaBuiltinConverter;
-import org.eclipse.xtend.backend.functions.java.JavaBuiltinConverterFactory;
+import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
+import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 

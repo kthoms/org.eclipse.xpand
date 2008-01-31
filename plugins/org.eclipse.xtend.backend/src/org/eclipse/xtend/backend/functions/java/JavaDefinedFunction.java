@@ -21,6 +21,8 @@ import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
+import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
 

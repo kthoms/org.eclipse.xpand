@@ -16,7 +16,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
-import org.eclipse.xtend.backend.functions.Closure;
+import org.eclipse.xtend.backend.functions.internal.Closure;
 
 
 /**

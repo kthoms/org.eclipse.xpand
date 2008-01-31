@@ -18,13 +18,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipose.xtend.middleend.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextImpl;
+import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.helpers.CheckEvaluationExpression;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.StringType;
@@ -126,7 +126,7 @@ public class SwitchExpressionTest {
             }            
         });
         
-        final FunctionDefContextImpl fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
+        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
         fdc.register (myStringEquals);
         
         final ExecutionContext ctx = createEmptyExecutionContext();

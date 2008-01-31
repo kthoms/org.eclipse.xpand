@@ -35,7 +35,7 @@ import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.builtin.TypeType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
-import org.eclipse.xtend.backend.types.java.GlobalJavaBeansTypesystem;
+import org.eclipse.xtend.backend.types.java.internal.GlobalJavaBeansTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
 
 

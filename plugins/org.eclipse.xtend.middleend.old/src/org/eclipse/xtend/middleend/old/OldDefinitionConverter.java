@@ -202,13 +202,13 @@ final class OldDefinitionConverter {
             referencedDefinitions.add (called);
             
             
-            final ExpressionBase invocationExpression = new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, getSourcePos(stmt));
+            final ExpressionBase invocationExpression = new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, false, getSourcePos(stmt));
             final ExpressionBase loopBody = new InitClosureExpression (Arrays.asList(closureParamName), Arrays.asList(ObjectType.INSTANCE), invocationExpression, getSourcePos(stmt));
             
             if (separator == null)
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody), true, getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody, separator), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody, separator), true, getSourcePos (stmt));
         }
         else {
             final List<ExpressionBase> params = new ArrayList<ExpressionBase>();
@@ -222,7 +222,7 @@ final class OldDefinitionConverter {
             
             final XpandDefinitionName called = new XpandDefinitionName (stmt.getDefinition().getValue(), stmt.getTarget(), stmt.getParametersAsList(), _ctx);
             referencedDefinitions.add (called);
-            return new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, getSourcePos(stmt));
+            return new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, true, getSourcePos(stmt));
         }
     }
     
@@ -260,9 +260,9 @@ final class OldDefinitionConverter {
             final ExpressionBase closureCreation = new InitClosureExpression (Arrays.asList (varName), Arrays.asList (_typeConverter.convertToBackendType(eleType)), body, getSourcePos (stmt));
 
             if (separator == null)
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation), true, getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation, separator), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation, separator), true, getSourcePos (stmt));
         }
         else {
             // forEach with an iterator
@@ -281,9 +281,9 @@ final class OldDefinitionConverter {
             final ExpressionBase closureCreation = new InitClosureExpression (paramNames, paramTypes, body, getSourcePos (stmt));
 
             if (separator == null)
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation), true, getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation, separator), getSourcePos (stmt));
+                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation, separator), true, getSourcePos (stmt));
         }
     }
     
@@ -341,10 +341,10 @@ final class OldDefinitionConverter {
         //TODO register the outlets
         
         final List<ExpressionBase> emptyParamList = Collections.emptyList();
-        final ExpressionBase initIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_INIT, emptyParamList, getSourcePos (stmt));
+        final ExpressionBase initIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_INIT, emptyParamList, false, getSourcePos (stmt));
 
-        final ExpressionBase postprocessIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_POSTPROCESS, Arrays.asList(body), getSourcePos (stmt));
-        final ExpressionBase writeToFileExpression = new InvocationOnObjectExpression (SysLibNames.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, postprocessIsDeleteLineExpression), getSourcePos (stmt));
+        final ExpressionBase postprocessIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_POSTPROCESS, Arrays.asList(body), false, getSourcePos (stmt));
+        final ExpressionBase writeToFileExpression = new InvocationOnObjectExpression (SysLibNames.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, postprocessIsDeleteLineExpression), false, getSourcePos (stmt));
         
         return new SequenceExpression (Arrays.asList (initIsDeleteLineExpression, writeToFileExpression), getSourcePos (stmt));
     }
@@ -356,7 +356,7 @@ final class OldDefinitionConverter {
     private ExpressionBase convertTextStatement (TextStatement stmt) {
         if (stmt.isDeleteLine()) {
             final List<ExpressionBase> emptyParamList = Collections.emptyList();
-            final ExpressionBase registerExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_REGISTER, emptyParamList, getSourcePos(stmt));
+            final ExpressionBase registerExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_REGISTER, emptyParamList, false, getSourcePos(stmt));
             
             final ExpressionBase markerExpression = new LiteralExpression (XpandIsDeleteLine.MARKER_FOR_IS_DELETE_LINE, getSourcePos(stmt));
             final ExpressionBase contentExpression = new LiteralExpression (stmt.getValue(), getSourcePos (stmt));

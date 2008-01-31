@@ -21,12 +21,7 @@ import org.eclipse.xtend.backend.types.AbstractType;
 public final class LongType extends AbstractType {
     public static final LongType INSTANCE = new LongType();
     
-    private LongType () {super ("Int"); }
-
-    @Override
-    public Object create() {
-        throw new UnsupportedOperationException ();
-    }
+    private LongType () {super ("Long"); }
 
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;

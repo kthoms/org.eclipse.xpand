@@ -1,0 +1,23 @@
+todo
+----
+properties are inherited (--> List.size)
+overwriting of extensions, e.g. syslib
+eine Instanz je JavaDefinedFunction-Klasse
+creation cache
+immutable auf cached-ergebnis
+polymorphic resolver
+efficientLazyString: streaming
+Java-Type <--> Cacnonical type
+expression-Implementierungen
+Aufruf der Listener
+CurriedFunction, CurryingExpression
+GlobalParamExpression
+Verwendung von syslib für toString: ConcatExpression, operatorPlus, 
+
+
+syslib-Implementierungen
+Schreiben in Files
+
+Xpand und Xtend: Middleends...
+
+

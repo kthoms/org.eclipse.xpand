@@ -148,18 +148,18 @@ final class OldExpressionConverter {
                 // if a function matches directly (i.e. without implicitly passing 'this' as a first parameter), that
                 //  has precedence in matching
                 if (_ctx.getExtensionForTypes (functionName, paramTypes.toArray (new Type[0])) != null) 
-                    return new InvocationOnObjectExpression (functionName, params, sourcePos);
+                    return new InvocationOnObjectExpression (functionName, params, false, sourcePos);
                 else {
                     final ExpressionBase thisExpression = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
                     final Type thisType = (Type) _ctx.getVariable (ExecutionContext.IMPLICIT_VARIABLE).getValue();
-                    return createInvocationOnTargetExpression(functionName, thisExpression, thisType, params, paramTypes, sourcePos);
+                    return createInvocationOnTargetExpression (functionName, thisExpression, thisType, params, paramTypes, true, sourcePos);
                 }
             }
             else 
-                return new InvocationOnObjectExpression (functionName, params, sourcePos);
+                return new InvocationOnObjectExpression (functionName, params, false, sourcePos);
         }
         else
-            return createInvocationOnTargetExpression(functionName, convert (expr.getTarget()), expr.getTarget ().analyze (_ctx, new HashSet<AnalysationIssue> ()), params, paramTypes, sourcePos);
+            return createInvocationOnTargetExpression(functionName, convert (expr.getTarget()), expr.getTarget ().analyze (_ctx, new HashSet<AnalysationIssue> ()), params, paramTypes, true, sourcePos);
     }
     
     /**
@@ -196,7 +196,7 @@ final class OldExpressionConverter {
         return functionName;
     }
     
-    private ExpressionBase createInvocationOnTargetExpression (String functionName, ExpressionBase targetExpression, Type targetType, List<ExpressionBase> params, List<Type> paramTypes, SourcePos sourcePos) {
+    private ExpressionBase createInvocationOnTargetExpression (String functionName, ExpressionBase targetExpression, Type targetType, List<ExpressionBase> params, List<Type> paramTypes, boolean isMethodStyle, SourcePos sourcePos) {
         final List<ExpressionBase> paramsWithoutFirst = params;
         final List<ExpressionBase> allParams = new ArrayList<ExpressionBase> ();
         allParams.add (targetExpression);
@@ -208,7 +208,7 @@ final class OldExpressionConverter {
             
             if (_ctx.getExtensionForTypes (functionName, paramTypeArray) != null) 
                 // check if there is a function that directly matches the collection
-                return new InvocationOnObjectExpression (functionName, allParams, sourcePos);
+                return new InvocationOnObjectExpression (functionName, allParams, true, sourcePos);
             else
                 // otherwise, do a 'collect' and call the function on all elements of the collection
                 return new InvocationOnCollectionExpression (targetExpression, functionName, paramsWithoutFirst, sourcePos);
@@ -216,10 +216,10 @@ final class OldExpressionConverter {
         
         if (isObjectType (targetType))
             // if the static type is "Object", we do not know if it is a collection, so we do the logic at runtime
-            return new InvocationOnWhateverExpression (functionName, allParams, sourcePos);
+            return new InvocationOnWhateverExpression (functionName, allParams, isMethodStyle, sourcePos);
         
         // otherwise we know that it is not a collection and can avoid repeating this logic at runtime
-        return new InvocationOnObjectExpression (functionName, allParams, sourcePos);
+        return new InvocationOnObjectExpression (functionName, allParams, true, sourcePos);
     }
     
     private ExpressionBase convertTypeSelectExpression (TypeSelectExpression expr) {
@@ -233,10 +233,10 @@ final class OldExpressionConverter {
                 throw new IllegalStateException ("typeSelect with neither a target nor an implicit 'this'");
             
             final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
-            return new InvocationOnObjectExpression ("typeSelect", Arrays.asList (thisExpr, typeExpr), sourcePos);
+            return new InvocationOnObjectExpression (SysLibNames.TYPE_SELECT, Arrays.asList (thisExpr, typeExpr), true, sourcePos);
         }
         else
-            return new InvocationOnObjectExpression ("typeSelect", Arrays.asList(convert (expr.getTarget()), typeExpr), sourcePos);
+            return new InvocationOnObjectExpression (SysLibNames.TYPE_SELECT, Arrays.asList(convert (expr.getTarget()), typeExpr), false, sourcePos);
     }
     
     private ExpressionBase convertSwitchExpression (SwitchExpression expr) {
@@ -318,7 +318,7 @@ final class OldExpressionConverter {
     
     private ExpressionBase createPropertyExpression (ExpressionBase target, Type type, String varName, SourcePos sourcePos) {
         if (isCollectionType (type)) {
-            if ("size".equals (varName) || "isEmpty".equals (varName)) 
+            if ("size".equals (varName) || "isEmpty".equals (varName)) //TODO reference the type system for this
                 return new PropertyOnObjectExpression (target, varName, sourcePos);
             else
                 return new PropertyOnCollectionExpression (target, varName, sourcePos);
@@ -352,10 +352,10 @@ final class OldExpressionConverter {
                 throw new IllegalStateException (functionName + " with neither a target nor an implicit 'this'");
             
             final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
-            return new InvocationOnObjectExpression (functionName, Arrays.asList (thisExpr, closureExpr), sourcePos);
+            return new InvocationOnObjectExpression (functionName, Arrays.asList (thisExpr, closureExpr), true, sourcePos);
         }
         else
-            return new InvocationOnObjectExpression (functionName, Arrays.asList(convert (expr.getTarget()), closureExpr), sourcePos);
+            return new InvocationOnObjectExpression (functionName, Arrays.asList(convert (expr.getTarget()), closureExpr), true, sourcePos);
     }
     
     private ExpressionBase convertChainExpression (ChainExpression expr) {
@@ -391,7 +391,7 @@ final class OldExpressionConverter {
         if ("||".equals (expr.getOperator().getValue()))
             return new OrExpression (left, right, getSourcePos(expr));
         if ("implies".equals (expr.getOperator().getValue()))
-            return new InvocationOnObjectExpression ("implies", Arrays.asList(left, right), getSourcePos(expr));
+            return new InvocationOnObjectExpression (SysLibNames.IMPLIES, Arrays.asList(left, right), true, getSourcePos(expr));
         
         throw new IllegalArgumentException ("unknown boolean operator " + expr.getOperator().getValue());
     }

@@ -31,7 +31,7 @@ public final class StringType extends AbstractType {
     private StringType () {
         super ("String");
         
-        register (new BuiltinProperty (this, StringType.INSTANCE, "length", ReflectionHelper.getKnownMethod (CharSequence.class, "length"), null));
+        register (new BuiltinProperty (this, this, "length", ReflectionHelper.getKnownMethod (CharSequence.class, "length"), null));
     }
 
     public boolean isAssignableFrom (BackendType other) {

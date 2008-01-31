@@ -32,6 +32,7 @@ public final class BuiltinProperty extends AbstractProperty {
     
     public BuiltinProperty (BackendType owner, BackendType type, String name, Method getter, Method setter) {
         super (owner, type, name);
+        
         _getter = getter;
         _setter = setter;
         

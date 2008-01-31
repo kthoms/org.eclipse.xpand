@@ -21,7 +21,7 @@ import org.eclipse.xtend.backend.types.AbstractType;
 public final class DoubleType extends AbstractType {
     public static final DoubleType INSTANCE = new DoubleType();
     
-    private DoubleType () {super ("double"); }
+    private DoubleType () {super ("Double"); }
 
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE; 

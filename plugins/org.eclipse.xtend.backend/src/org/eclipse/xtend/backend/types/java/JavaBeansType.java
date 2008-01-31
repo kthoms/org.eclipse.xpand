@@ -155,6 +155,11 @@ final class JavaBeansType implements BackendType {
     public Collection<BackendType> getSuperTypes () {
         return _superTypes;
     }
+    
+    @Override
+    public String toString () {
+        return "JavaBeansType[" + _javaClass.getName()  + "]";
+    }
 }
 
 

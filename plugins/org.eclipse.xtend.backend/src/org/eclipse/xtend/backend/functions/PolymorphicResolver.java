@@ -12,8 +12,8 @@ package org.eclipse.xtend.backend.functions;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
@@ -40,32 +40,23 @@ final class PolymorphicResolver {
 	 */
 	public Collection<Function> getBestFitCandidates (Collection<Function> functions) {
 		// shortcut for a common case
-		if (functions.size() == 1)
+		if (functions.size() <= 1)
 			return functions;
-		if (functions.isEmpty())
-		    throw new IllegalArgumentException ("no matches found");
+//		if (functions.isEmpty())
+//		    throw new IllegalArgumentException ("no matches found");
 		
-		Iterator<Function> iter = functions.iterator();
+		final List<Function> sorted = new ArrayList<Function> (functions);
+		Collections.sort (sorted, _paramTypeComparator);
 		
-		Function firstBestMatch = iter.next();
-		List<Function> bestMatches2 = new ArrayList<Function> ();
-		bestMatches2.add (firstBestMatch);
-		
-		while (iter.hasNext()) {
-		    final Function candidate = iter.next();
-		    final int compResult = _paramTypeComparator.compare (candidate, firstBestMatch);
-		    
-		    if (compResult < 0) {
-		        firstBestMatch = candidate;
-		        bestMatches2 = new ArrayList<Function>();
-		        bestMatches2.add (candidate);
-		    }
-		    else if (compResult == 0) {
-		        bestMatches2.add (candidate);
-		    }
+		final List<Function> result = new ArrayList<Function> ();
+		for (Function f: sorted) {
+		    if (_paramTypeComparator.compare (f, sorted.get(0)) == 0)
+		        result.add (f);
+		    else
+		        break;
 		}
 		
-		return bestMatches2;
+		return result;
 	}
 	
 	private Function evaluateGuards (ExecutionContext ctx, Function function) {
@@ -103,10 +94,12 @@ final class PolymorphicResolver {
 		if (passedInspection != null)
 			return passedInspection;
 		
-		if (unguarded.size() > 0)
-			return unguarded.get (unguarded.size() - 1); // this is where the overwriting of extensions is implemented
+		if (unguarded.size() == 1)
+			return unguarded.get (0); // TODO implement the overwriting of extensions 
+		if (unguarded.isEmpty())
+		    throw new IllegalArgumentException ("call to " + _name + " could not be resolved - no guard allowed passage, and there are no unguarded implementations.");
 		
-		throw new IllegalArgumentException ("call to " + _name + " could not be resolved - no guard allowed passage, and there are no unguarded implementations.");
+		throw new IllegalArgumentException ("call to " + _name + " could not be resolved - ambiuity between " +  unguarded);
 	}
 	
 

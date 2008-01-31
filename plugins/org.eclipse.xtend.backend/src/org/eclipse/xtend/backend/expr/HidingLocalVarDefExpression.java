@@ -24,8 +24,7 @@ public final class HidingLocalVarDefExpression extends ExpressionBase {
     private final ExpressionBase _defExpression;
     private final ExpressionBase _inner;
 
-    public HidingLocalVarDefExpression (String localVarName, ExpressionBase defExpression, ExpressionBase inner, 
-            SourcePos sourcePos) {
+    public HidingLocalVarDefExpression (String localVarName, ExpressionBase defExpression, ExpressionBase inner, SourcePos sourcePos) {
         super (sourcePos);
         _localVarName = localVarName;
         _defExpression = defExpression;

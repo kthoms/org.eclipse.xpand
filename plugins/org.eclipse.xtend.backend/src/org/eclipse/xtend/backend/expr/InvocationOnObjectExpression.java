@@ -25,12 +25,14 @@ import org.eclipse.xtend.backend.common.SourcePos;
 public final class InvocationOnObjectExpression extends ExpressionBase {
     private final String _functionName;
     private final List<? extends ExpressionBase> _params;
+    private final boolean _nullIfFirstParamIsNull;
     
-    public InvocationOnObjectExpression (String functionName, List<? extends ExpressionBase> params, SourcePos sourcePos) {
+    public InvocationOnObjectExpression (String functionName, List<? extends ExpressionBase> params, boolean nullIfFirstParamIsNull, SourcePos sourcePos) {
         super (sourcePos);
         
         _functionName = functionName;
         _params = params;
+        _nullIfFirstParamIsNull = nullIfFirstParamIsNull;
     }
     
     @Override
@@ -38,6 +40,15 @@ public final class InvocationOnObjectExpression extends ExpressionBase {
         final List<Object> params = new ArrayList<Object> ();
         for (ExpressionBase expr: _params)
         	params.add (expr.evaluate(ctx));
+        
+        // this is for "method-style" invocations: if the first parameter (i.e. the one "before the dot") is null,
+        //  shortcut the evaluation and return null
+        //
+        // CAUTION - without this shortcut, the polymorphic resolution may be ambiguous in unexpected ways
+        if (_nullIfFirstParamIsNull && params.get(0) == null) {
+            ctx.logNullDeRef (getPos());
+            return null;
+        }
         
         return ctx.getFunctionDefContext().invoke (ctx, _functionName, params);
     }

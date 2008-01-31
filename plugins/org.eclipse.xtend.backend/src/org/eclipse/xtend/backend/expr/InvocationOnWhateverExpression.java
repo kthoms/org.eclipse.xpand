@@ -27,12 +27,14 @@ import org.eclipse.xtend.backend.common.SourcePos;
 public final class InvocationOnWhateverExpression extends ExpressionBase {
     private final String _functionName;
     private final List<? extends ExpressionBase> _params;
+    private final boolean _nullIfFirstParamIsNull;
     
-    public InvocationOnWhateverExpression (String functionName, List<? extends ExpressionBase> params, SourcePos sourcePos) {
+    public InvocationOnWhateverExpression (String functionName, List<? extends ExpressionBase> params, boolean nullIfFirstParamIsNull, SourcePos sourcePos) {
         super (sourcePos);
         
         _functionName = functionName;
         _params = params;
+        _nullIfFirstParamIsNull = nullIfFirstParamIsNull;
     }
     
     @Override
@@ -41,10 +43,15 @@ public final class InvocationOnWhateverExpression extends ExpressionBase {
         for (ExpressionBase expr: _params)
         	params.add (expr.evaluate(ctx));
 
+        if (_nullIfFirstParamIsNull && params.get(0) == null) {
+            ctx.logNullDeRef (getPos());
+            return null;
+        }
+        
         if (params.get (0) instanceof Collection<?>) {
             // check if this is a function on Collection itself
-            if (ctx.getFunctionDefContext().hasMatch(ctx, _functionName, params))
-                return ctx.getFunctionDefContext().invoke(ctx, _functionName, params);
+            if (ctx.getFunctionDefContext().hasMatch (ctx, _functionName, params))
+                return ctx.getFunctionDefContext().invoke (ctx, _functionName, params);
 
             final Collection<?> coll = (Collection<?>) params.get (0);
             

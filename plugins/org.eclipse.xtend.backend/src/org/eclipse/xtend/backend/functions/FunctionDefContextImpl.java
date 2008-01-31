@@ -49,7 +49,7 @@ public final class FunctionDefContextImpl implements FunctionDefContext {
     	
         @Override
         protected Collection<Function> create (String functionName, List<BackendType> paramTypes) {
-            return new PolymorphicResolver(functionName).getBestFitCandidates (findCandidates (functionName, paramTypes));
+            return new PolymorphicResolver(functionName).getBestFitCandidates (findCandidates (functionName, paramTypes)); // TODO go around this cache if there is a dynamically provided function 
         }
         
         private Collection<Function> findCandidates (String functionName, List<BackendType> paramTypes) {
@@ -143,7 +143,7 @@ public final class FunctionDefContextImpl implements FunctionDefContext {
     }
     
     public boolean hasMatch (ExecutionContext ctx, String functionName, List<? extends Object> params) {
-        return findFunctionCandidates(ctx, functionName, params).size() > 0;
+        return findFunctionCandidates (ctx, functionName, params).size() > 0;
     }
     
     @Override

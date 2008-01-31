@@ -17,37 +17,50 @@ import org.eclipse.xtend.backend.common.BackendType;
 
 
 /**
+ * This comparator defines a partial order on lists of types by assignability, i.e. l1 <= l2 iff
+ *  all types in l2 are assignable from their respective counterparts in l1. It treats all lists of
+ *  types as "equal" if neither is fully assignable from the other.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 final class TypesComparator implements Comparator<List<? extends BackendType>> {
-    /**
-     * 
-     * returns -1 if the second list of types is not assignable to the first
-     * list of types returns 0 if the second list of types exactly matches the
-     * first list of types returns 1 if the second list of types is assignable
-     * to the first list of types
-     */
+
     public int compare(final List<? extends BackendType> types1, final List<? extends BackendType> types2) {
         if (types1 == null || types2 == null)
             throw new NullPointerException ();
         if (types1.size() != types2.size ())
-            return -1;
-        boolean directMatch = true;
+            throw new IllegalArgumentException ("can not compare type lists of different sizes");
+        
+        boolean less = false;
+        boolean greater = false;
+        
         for (int i = 0, x = types1.size (); i < x; i++) {
             final BackendType type1 = types1.get (i);
             final BackendType type2 = types2.get (i);
-            if (type1.isAssignableFrom (type2)) {
-                if (!type1.equals (type2)) {
-                    directMatch = false;
-                }
-            } else
-                return -1;
+
+            if (type1.equals (type2))
+                continue;
+            
+            if (type2.isAssignableFrom (type1)) {
+                if (greater)
+                    return 0;
+
+                less = true;
+            } 
+            else if (type1.isAssignableFrom (type2)) {
+                if (less)
+                    return 0;
+                
+                greater = true;
+            }
         }
-        if (directMatch)
-            return 0;
-        else
+        
+        if (greater)
             return 1;
+        if (less)
+            return -1;
+        
+        return 0;
     }
 
 }

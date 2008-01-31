@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.Helpers;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.util.Pair;
 
@@ -45,21 +46,11 @@ public final class SwitchExpression extends ExpressionBase {
         for (Pair<ExpressionBase, ExpressionBase> curCase: _cases) {
             final Object curVal = curCase.getFirst().evaluate(ctx);
                 
-            if (nullSafeEquals (switchVal, curVal))
+            if (Helpers.nullSafeEquals (ctx, switchVal, curVal))
                 return curCase.getSecond().evaluate(ctx);
         }
         
         return _defaultExpr.evaluate(ctx);
-    }
-    
-    private static boolean nullSafeEquals (Object o1, Object o2) {
-        if (o1 == o2)
-            return true;
-        
-        if (o1 == null || o2 == null)
-            return false;
-        
-        return o1.equals (o2);
     }
 }
 

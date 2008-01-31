@@ -10,15 +10,18 @@ Contributors:
  */
 package org.eclipse.xtend.backend.common;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 
 /**
+ * This class contains commonly used helper operations.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public class Helpers {
     public static String TO_STRING_METHOD_NAME = "toString";
+    public static String EQUALS_NAME = "operatorEquals";
     
     /**
      * This method is public static so as to be available as a helper method for all code that needs to call "toString".
@@ -38,4 +41,13 @@ public class Helpers {
         return String.valueOf (resultRaw);
     }
 
+    public static boolean nullSafeEquals (ExecutionContext ctx, Object o1, Object o2) {
+        if (o1 == o2)
+            return true;
+        
+        if (o1 == null || o2 == null)
+            return false;
+        
+        return (Boolean) ctx.getFunctionDefContext().invoke (ctx, EQUALS_NAME, Arrays.asList (o1, o2));
+    }
 }

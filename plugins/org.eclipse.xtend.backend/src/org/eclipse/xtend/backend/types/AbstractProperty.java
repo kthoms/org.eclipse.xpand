@@ -25,6 +25,11 @@ public abstract class AbstractProperty implements Property {
     protected final String _name;
     
     public AbstractProperty (BackendType owner, BackendType type, String name) {
+        if (owner == null)
+            throw new IllegalArgumentException ();
+        if (type == null)
+            throw new IllegalArgumentException ();
+        
         _owner = owner;
         _type = type;
         _name = name;

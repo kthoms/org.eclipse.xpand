@@ -75,7 +75,7 @@ public abstract class AbstractType implements BackendType {
     }
 
     public final Object getProperty (ExecutionContext ctx, Object o, String name) {
-        final Property p = _properties.get (name);
+        final Property p = getProperties().get (name);
         if (p == null)
             throw new IllegalArgumentException ("no property " + name + " in type " + getName());
         
@@ -83,7 +83,7 @@ public abstract class AbstractType implements BackendType {
     }
 
     public final void setProperty (ExecutionContext ctx, Object o, String name, Object value) {
-        final Property p = _properties.get (name);
+        final Property p = getProperties().get (name);
         if (p == null)
             throw new IllegalArgumentException ("no property " + name + " in type " + getName());
         
@@ -100,7 +100,15 @@ public abstract class AbstractType implements BackendType {
     }
 
     public final Map<String, ? extends Property> getProperties () {
-        return _properties;
+        //this could be statically initialized in the constructor, but is intentionally done dynamically to prepare for 
+        //  "dynamic properties" that are attached at runtime
+        final Map<String, Property> result = new HashMap<String, Property> ();
+        
+        for (BackendType t: _superTypes)
+            result.putAll (t.getProperties());
+        
+        result.putAll (_properties);
+        return result;
     }
 
     public final Map<String, ? extends StaticProperty> getStaticProperties () {

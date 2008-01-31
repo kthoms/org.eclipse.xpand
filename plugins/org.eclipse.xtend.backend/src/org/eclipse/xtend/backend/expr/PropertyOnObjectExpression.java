@@ -38,6 +38,6 @@ public final class PropertyOnObjectExpression extends ExpressionBase {
             return null;
         }
         
-        return ctx.getTypesystem().findType(o).getProperty(ctx, o, _propertyName);
+        return ctx.getTypesystem().findType (o).getProperty (ctx, o, _propertyName);
     }
 }

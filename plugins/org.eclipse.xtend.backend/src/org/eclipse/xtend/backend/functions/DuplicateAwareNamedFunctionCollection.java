@@ -85,5 +85,10 @@ public final class DuplicateAwareNamedFunctionCollection {
         
         return f1.getFunction().getParameterTypes().equals (f2.getFunction().getParameterTypes());
     }
+    
+    @Override
+    public String toString () {
+        return _allFunctions.toString();
+    }
 } 
 

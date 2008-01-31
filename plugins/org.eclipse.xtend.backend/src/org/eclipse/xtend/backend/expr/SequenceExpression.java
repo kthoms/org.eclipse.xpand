@@ -22,9 +22,9 @@ import org.eclipse.xtend.backend.common.SourcePos;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class SequenceExpression extends ExpressionBase {
-    private final List<ExpressionBase> _inner;
+    private final List<? extends ExpressionBase> _inner;
 
-    public SequenceExpression (List<ExpressionBase> inner, SourcePos sourcePos) {
+    public SequenceExpression (List<? extends ExpressionBase> inner, SourcePos sourcePos) {
         super (sourcePos);
         _inner = inner;
     }

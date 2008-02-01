@@ -40,41 +40,44 @@ public class EvaluationTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		ec = new ExecutionContextImpl();
-		ec.registerMetaModel(new JavaMetaModel("asdf",
-						new JavaBeansStrategy()));
+		ec.registerMetaModel(new JavaMetaModel("asdf", new JavaBeansStrategy()));
 	}
 
-	private Expression parse(final String expression) {
+	private Expression parse (final String expression) {
 		return ParseFacade.expression(expression);
 	}
 
+	private Object eval (Expression expr) {
+	    return expr.evaluate (ec);
+	}
+	
 	public final void testSimple() {
 		final Expression expr = parse("true == null");
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 		assertFalse(((Boolean) result).booleanValue());
 	}
 
 	public final void testStaticPropertyCall() {
 		final Expression expr = parse("org::eclipse::xtend::expression::Type1::TYPE1_OBJECT_OBJECT");
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 		assertEquals(Type1.TYPE1_OBJECT_OBJECT, result);
 	}
 
 	public final void testCollectionLiteral1() {
 		final Expression expr = parse("{\"hallo\"}");
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 		assertEquals("hallo", ((List) result).iterator().next());
 	}
 
 	public final void testCollectionLiteral3() {
 		final Expression expr = parse("{3}");
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 		assertEquals(new Long(3), ((List) result).iterator().next());
 	}
 
 	public final void testCollectionLiteral2() {
 		final Expression expr = parse("{\"hallo\",3}");
-		final List result = (List) expr.evaluate(ec);
+		final List result = (List) eval (expr);
 		assertEquals(2, result.size());
 		assertEquals("hallo", result.get(0));
 		assertEquals(new Long(3), result.get(1));
@@ -84,7 +87,7 @@ public class EvaluationTest extends TestCase {
 		final Expression expr = parse("test");
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 		assertEquals(new AType().getTest(), result);
 	}
 
@@ -92,7 +95,7 @@ public class EvaluationTest extends TestCase {
 		final Expression expr = parse("this.test");
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 		assertEquals(new AType().getTest(), result);
 
 	}
@@ -101,7 +104,7 @@ public class EvaluationTest extends TestCase {
 		final Expression expr = parse("myOperation()");
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 
 		assertEquals(new AType().myOperation(), result);
 
@@ -111,7 +114,7 @@ public class EvaluationTest extends TestCase {
 		final Expression expr = parse("myOperation(\"Test\")");
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 
 		assertEquals(new AType().myOperation("Test"), result);
 	}
@@ -120,7 +123,7 @@ public class EvaluationTest extends TestCase {
 		final Expression expr = parse("this.myOperation()");
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 
 		assertEquals(new AType().myOperation(), result);
 
@@ -130,7 +133,7 @@ public class EvaluationTest extends TestCase {
 		final Expression expr = parse("this.myOperation(\"Test\")");
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = expr.evaluate(ec);
+		final Object result = eval (expr);
 
 		assertEquals(new AType().myOperation("Test"), result);
 
@@ -140,64 +143,64 @@ public class EvaluationTest extends TestCase {
 		Expression expr;
 
 		expr = parse("4 * 2 + 3");
-		assertEquals(new Long(11), expr.evaluate(ec));
+		assertEquals(new Long(11), eval (expr));
 
 		expr = parse("3 + 4 * 2");
-		assertEquals(new Long(11), expr.evaluate(ec));
+		assertEquals(new Long(11), eval (expr));
 
 		expr = parse("4 * 2 + 3 / 3");
-		assertEquals(new Long(9), expr.evaluate(ec));
+		assertEquals(new Long(9), eval (expr));
 	}
 
 	public final void testArithmetic2() {
 		Expression expr = parse("3 + 4.0 * 2");
-		assertEquals(new Double(11), expr.evaluate(ec));
+		assertEquals(new Double(11), eval (expr));
 
 		expr = parse("4.0 * 2 + 3");
-		assertEquals(new Double(11), expr.evaluate(ec));
+		assertEquals(new Double(11), eval (expr));
 
 		expr = parse("4 * 2 + 3 / 3.0");
-		assertEquals(new Double(9), expr.evaluate(ec));
+		assertEquals(new Double(9), eval (expr));
 
 	}
 
 	public final void testArithmetic3() {
 		Expression expr = parse("5 / 2");
-		assertEquals(new Long(2), expr.evaluate(ec));
+		assertEquals(new Long(2), eval (expr));
 
 		expr = parse("5 / 2.0");
-		assertEquals(new Double(2.5), expr.evaluate(ec));
+		assertEquals(new Double(2.5), eval (expr));
 
 	}
 
 	public final void testStringConcatenation() {
 		final Expression expr = parse("\"test\" + 3 + 4");
-		assertEquals("test34", expr.evaluate(ec));
+		assertEquals("test34", eval (expr));
 	}
 
 	public final void testNullReference() {
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				"nullRef", null));
 		final Expression expr = parse("nullRef + \"test\" + 3 + 4");
-		assertEquals(null, expr.evaluate(ec));
+		assertEquals(null, eval (expr));
 
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("this",
 				null));
-		assertNull(parse("this.unknownMember").evaluate(ec));
+		assertNull(eval (parse("this.unknownMember")));
 	}
 
 	public final void testTypeLiteral1() {
-		assertEquals(ec.getStringType(), parse("String").evaluate(ec));
+		assertEquals(ec.getStringType(), eval (parse("String")));
 	}
 
 	public final void testTypeLiteral2() {
 		final Expression e = parse("String.getProperty('length')");
-		assertTrue(e.evaluate(ec) instanceof Property);
+		assertTrue (eval (e) instanceof Property);
 	}
 
 	public final void testTypeLiteral3() {
 		final Expression e = parse(getATypeName() + "::TEST");
-		assertEquals(AType.TEST, e.evaluate(ec));
+		assertEquals(AType.TEST, eval(e));
 	}
 
 	private String getATypeName() {
@@ -207,7 +210,7 @@ public class EvaluationTest extends TestCase {
 
 	public final void testPath1() {
 		final Expression expr = parse("{'a','b','c'}.toUpperCase()");
-		final List result = (List) expr.evaluate(ec);
+		final List result = (List) eval (expr);
 		assertEquals("A", result.get(0));
 		assertEquals("B", result.get(1));
 		assertEquals("C", result.get(2));
@@ -215,12 +218,12 @@ public class EvaluationTest extends TestCase {
 
 	public final void testPath2() {
 		final Expression expr = parse("{'a','b','c'}.size");
-		assertEquals(new Long(3), expr.evaluate(ec));
+		assertEquals(new Long(3), eval (expr));
 	}
 
 	public final void testPath3() {
 		final Expression expr = parse("{'a','b2','c'}.toUpperCase().length");
-		final List result = (List) expr.evaluate(ec);
+		final List result = (List) eval (expr);
 		assertEquals(new Long(1), result.get(0));
 		assertEquals(new Long(2), result.get(1));
 		assertEquals(new Long(1), result.get(2));
@@ -228,7 +231,7 @@ public class EvaluationTest extends TestCase {
 
 	public final void testPath4() {
 		final Expression expr = parse("{'a,b2,c','a,b,c','a,b,c'}.split(',').length");
-		final List result = (List) expr.evaluate(ec);
+		final List result = (List) eval (expr);
 		assertEquals(9, result.size());
 		assertEquals(new Long(1), result.get(0));
 		assertEquals(new Long(2), result.get(1));
@@ -246,53 +249,53 @@ public class EvaluationTest extends TestCase {
 		list.add(new Long(4));
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("col",
 				list));
-		assertEquals(Boolean.FALSE, expr.evaluate(ec));
+		assertEquals(Boolean.FALSE, eval (expr));
 		list.add(new Long(5));
-		assertEquals(Boolean.TRUE, expr.evaluate(ec));
+		assertEquals(Boolean.TRUE, eval (expr));
 	}
 
 	public final void testTypeSelectWithNull() {
 		final Expression expr = parse("{null, 'test'}.typeSelect(String).size");
-		assertEquals(new Long(1), expr.evaluate(ec));
+		assertEquals(new Long(1), eval (expr));
 	}
 
 	public final void testGlobalVar() {
 		ec = new ExecutionContextImpl(Collections.singletonMap("horst",
 				new Variable("horst", "TEST")));
 		final Expression expr = parse("GLOBALVAR horst");
-		assertEquals("TEST", expr.evaluate(ec));
+		assertEquals("TEST", eval (expr));
 	}
 
 	public final void testLet1() {
 		final Expression expr = parse("let x = {'a,b2,c','a,b,c','1,2,3'} : x.get(1)");
-		assertEquals("a,b,c", expr.evaluate(ec));
+		assertEquals("a,b,c", eval (expr));
 	}
 
 	public final void testCollectShortcut1() {
 		final Expression expr = parse("{'a','b','c'}.toUpperCase()");
-		assertEquals("C", ((List) expr.evaluate(ec)).get(2));
+		assertEquals("C", ((List) eval (expr)).get(2));
 	}
 
 	public final void testCollectShortcut2() {
 		final Expression expr = parse("{}.toUpperCase()");
-		assertTrue(((List) expr.evaluate(ec)).isEmpty());
+		assertTrue(((List) eval (expr)).isEmpty());
 	}
 
 	public final void testCollectShortcut3() {
 		final Expression expr = parse("{'a','b','c'}.length");
-		assertEquals(1l, ((List) expr.evaluate(ec)).get(2));
+		assertEquals(1l, ((List) eval (expr)).get(2));
 	}
 
 	public final void testCollectShortcut4() {
 		final Expression expr = parse("{}.length");
-		assertTrue(((List) expr.evaluate(ec)).isEmpty());
+		assertTrue(((List) eval (expr)).isEmpty());
 	}
 
 	public final void testCollectShortcut5() {
 		final Expression expr = parse("String.name");
 		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
 				ExecutionContext.IMPLICIT_VARIABLE, new ArrayList<Object>()));
-		assertEquals("String", expr.evaluate(ec));
+		assertEquals("String", eval (expr));
 	}
 
 	public final void testLet2() {
@@ -302,15 +305,15 @@ public class EvaluationTest extends TestCase {
 		l.add("1");
 		l.add("2");
 		l.add("3");
-		assertEquals(l, expr.evaluate(ec));
+		assertEquals(l, eval (expr));
 	}
 
 	public final void testConstruction() {
 		final Expression expr = parse("new String");
-		assertEquals("", expr.evaluate(ec));
+		assertEquals("", eval (expr));
 
 		try {
-			parse("new Unkown").evaluate(ec);
+			eval (parse("new Unkown"));
 			fail();
 		} catch (final EvaluationException ee) {
 			// expected
@@ -323,7 +326,7 @@ public class EvaluationTest extends TestCase {
 		l.add("AA");
 		l.add("BBB");
 		l.add("X");
-		assertEquals(l, expr.evaluate(ec));
+		assertEquals(l, eval (expr));
 	}
 
 	public void testSortBy2() throws Exception {
@@ -332,18 +335,14 @@ public class EvaluationTest extends TestCase {
 		l.add("X");
 		l.add("AA");
 		l.add("BBB");
-		assertEquals(l, expr.evaluate(ec));
+		assertEquals(l, eval (expr));
 	}
 
 	public void testIfExpression() throws Exception {
-		assertEquals(true, parse("if true then true else 'stuff'").evaluate(ec));
-		assertEquals("stuff", parse("if false then false else 'stuff'")
-				.evaluate(ec));
-		assertEquals("stuff", parse(
-				"if false then false else if true then 'stuff' else null ")
-				.evaluate(ec));
-		assertEquals(null, parse(
-				"if false then false else if false then 'stuff' ").evaluate(ec));
+		assertEquals(true, eval (parse("if true then true else 'stuff'")));
+		assertEquals("stuff", eval (parse("if false then false else 'stuff'")));
+		assertEquals("stuff", eval (parse("if false then false else if true then 'stuff' else null ")));
+		assertEquals(null, eval (parse("if false then false else if false then 'stuff' ")));
 	}
 	
 	
@@ -351,11 +350,11 @@ public class EvaluationTest extends TestCase {
 	public void testCollectShortCutWithFeatureCalls() throws Exception {
 		Expression e = parse("x.list.list.strings.toLowerCase()");
 		TestMetaModel mm = new TestMetaModel();
-		ExecutionContextImpl ctx = new ExecutionContextImpl();
-		ctx.registerMetaModel(mm);
+		ec = new ExecutionContextImpl();
+		ec.registerMetaModel(mm);
 		List<?> var = Collections.singletonList(mm.singleType.newInstance());
-		ctx = (ExecutionContextImpl) ctx.cloneWithVariable(new Variable("x", var));
-		List<String> result = (List<String>) e.evaluate(ctx);
+		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x", var));
+		List<String> result = (List<String>) eval (e);
 		assertEquals(1, result.size());
 		assertEquals("test", result.get(0));
 	}
@@ -363,11 +362,11 @@ public class EvaluationTest extends TestCase {
 	public void testCollectShortCutWithOperationCalls() throws Exception {
 		Expression e = parse("x.list().list().strings().toLowerCase()");
 		TestMetaModel mm = new TestMetaModel();
-		ExecutionContextImpl ctx = new ExecutionContextImpl();
-		ctx.registerMetaModel(mm);
+		ec = new ExecutionContextImpl();
+		ec.registerMetaModel(mm);
 		List<?> var = Collections.singletonList(mm.singleType.newInstance());
-		ctx = (ExecutionContextImpl) ctx.cloneWithVariable(new Variable("x", var));
-		List<String> result = (List<String>) e.evaluate(ctx);
+		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x", var));
+		List<String> result = (List<String>) eval (e);
 		assertEquals(1, result.size());
 		assertEquals("test", result.get(0));
 	}
@@ -375,18 +374,18 @@ public class EvaluationTest extends TestCase {
 	public void testCollectShortCutWithMixedCalls() throws Exception {
 		Expression e = parse("x.list.list().list.strings().toLowerCase()");
 		TestMetaModel mm = new TestMetaModel();
-		ExecutionContextImpl ctx = new ExecutionContextImpl();
-		ctx.registerMetaModel(mm);
+		ec = new ExecutionContextImpl();
+		ec.registerMetaModel(mm);
 		List<?> var = Collections.singletonList(mm.singleType.newInstance());
-		ctx = (ExecutionContextImpl) ctx.cloneWithVariable(new Variable("x", var));
-		List<String> result = (List<String>) e.evaluate(ctx);
+		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x", var));
+		List<String> result = (List<String>) eval (e);
 		assertEquals(1, result.size());
 		assertEquals("test", result.get(0));
 	}
 	
 	public void testCollectOnNull() throws Exception {
 		Expression e = parse("null.collect(e|e.size)");
-		assertNull(e.evaluate(ec));
+		assertNull(eval(e));
 	}
 	
 	public void testEvaluationOrderOfOperands() throws Exception {
@@ -398,8 +397,8 @@ public class EvaluationTest extends TestCase {
 			}
 		};
 		Expression e = parse("x.toString() + x.toString()");
-		ExecutionContextImpl ctx = new ExecutionContextImpl();
-		ctx = (ExecutionContextImpl) ctx.cloneWithVariable(new Variable("x",x));
-		assertEquals("12",e.evaluate(ctx));
+		ec = new ExecutionContextImpl ();
+		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x",x));
+		assertEquals("12",eval (e));
 	}
 }

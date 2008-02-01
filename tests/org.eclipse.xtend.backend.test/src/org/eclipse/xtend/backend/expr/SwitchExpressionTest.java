@@ -15,17 +15,15 @@ import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExe
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.helpers.CheckEvaluationExpression;
+import org.eclipse.xtend.backend.helpers.NamedFunctionFactory;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.util.Pair;
@@ -106,25 +104,11 @@ public class SwitchExpressionTest {
 
         
         // register an equals function that returns "true" for any two strings
-        final NamedFunction myStringEquals = new NamedFunction ("operatorEquals", new Function () {
-
-            public ExpressionBase getGuard () {
-                return null;
-            }
-
-            public List<? extends BackendType> getParameterTypes () {
-                return Arrays.asList(StringType.INSTANCE, StringType.INSTANCE);
-            }
-
+        final NamedFunction myStringEquals = new NamedFunctionFactory ("operatorEquals", StringType.INSTANCE, StringType.INSTANCE) {
             public Object invoke (ExecutionContext ctx, Object[] params) {
-                System.err.println ("!!!");
                 return true;
             }
-
-            public boolean isCached () {
-                return false;
-            }            
-        });
+        }.create(); 
         
         final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
         fdc.register (myStringEquals);

@@ -87,7 +87,7 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
         }
     };
 
-    public void register (Collection<NamedFunction> functions) {
+    public void register (Collection<? extends NamedFunction> functions) {
         for (NamedFunction f: functions)
             register (f);
     }

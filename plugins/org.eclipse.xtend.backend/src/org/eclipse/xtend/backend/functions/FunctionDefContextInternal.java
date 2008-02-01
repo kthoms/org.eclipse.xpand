@@ -25,5 +25,5 @@ import org.eclipse.xtend.backend.common.NamedFunction;
  */
 public interface FunctionDefContextInternal extends FunctionDefContext {
     void register (NamedFunction f);
-    void register (Collection <NamedFunction> f);
+    void register (Collection <? extends NamedFunction> f);
 }

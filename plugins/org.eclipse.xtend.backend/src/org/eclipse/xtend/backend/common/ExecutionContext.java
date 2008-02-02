@@ -10,6 +10,8 @@ Contributors:
  */
 package org.eclipse.xtend.backend.common;
 
+import java.util.List;
+
 
 /**
  * 
@@ -29,6 +31,15 @@ public interface ExecutionContext {
     CreationCache getCreationCache ();
     
     void logNullDeRef (SourcePos pos);
+    
+    boolean isLogStacktrace ();
+    /**
+     * Maintaining the stack trace requires expensive operations during regular 
+     *  operation - it can not be done retrospectively. Therefore the stacktrace
+     *  is maintained only if the isLogStacktrace flag is set, otherwise this
+     *  method returns an empty list.
+     */
+    List<StacktraceEntry> getStacktrace ();
     
     ContributionStateContext getContributionStateContext ();
 }

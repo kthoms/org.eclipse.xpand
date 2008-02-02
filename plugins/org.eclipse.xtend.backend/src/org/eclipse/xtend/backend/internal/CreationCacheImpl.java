@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend;
+package org.eclipse.xtend.backend.internal;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import org.eclipse.xtend.backend.util.DoubleKeyCache;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class CreationCacheImpl implements CreationCache {
+public final class CreationCacheImpl implements CreationCache {
 	private DoubleKeyCache<BackendType, List<Object>, Object> _cache = new DoubleKeyCache<BackendType, List<Object>, Object> () {
 		@Override
 		protected Object create(BackendType t, List<Object> key2) {

@@ -52,11 +52,11 @@ public abstract class ExpressionBase {
             return result;
         }
         catch (ExecutionException exc) {
-            exc.addStackTraceElement (_sourcePos, ctx.getLocalVarContext().getLocalVars());
+            exc.addStackTraceElement (new StacktraceEntry (_sourcePos, ctx)); 
             throw exc;
         }
         catch (Exception exc) {
-            throw new ExecutionException (exc, _sourcePos, ctx.getLocalVarContext().getLocalVars());
+            throw new ExecutionException (exc, new StacktraceEntry (_sourcePos, ctx));
         }
     }
     

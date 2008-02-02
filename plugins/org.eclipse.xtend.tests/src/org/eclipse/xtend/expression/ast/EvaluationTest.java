@@ -12,6 +12,7 @@
 package org.eclipse.xtend.expression.ast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,195 +44,107 @@ public class EvaluationTest extends TestCase {
 		ec.registerMetaModel(new JavaMetaModel("asdf", new JavaBeansStrategy()));
 	}
 
-	private Expression parse (final String expression) {
-		return ParseFacade.expression(expression);
-	}
-
-	private Object eval (Expression expr) {
+	private Object eval (String expression) {
+	    final Expression expr = ParseFacade.expression(expression);
 	    return expr.evaluate (ec);
 	}
 	
+	private Object eval (String expression, String localVarName, Object localVarValue) {
+	    ec = (ExecutionContextImpl) ec.cloneWithVariable (new Variable (localVarName, localVarValue));
+	    return eval (expression);
+	}
+	
 	public final void testSimple() {
-		final Expression expr = parse("true == null");
-		final Object result = eval (expr);
+		final Object result = eval ("true == null");
 		assertFalse(((Boolean) result).booleanValue());
 	}
 
 	public final void testStaticPropertyCall() {
-		final Expression expr = parse("org::eclipse::xtend::expression::Type1::TYPE1_OBJECT_OBJECT");
-		final Object result = eval (expr);
+		final Object result = eval ("org::eclipse::xtend::expression::Type1::TYPE1_OBJECT_OBJECT");
 		assertEquals(Type1.TYPE1_OBJECT_OBJECT, result);
 	}
 
-	public final void testCollectionLiteral1() {
-		final Expression expr = parse("{\"hallo\"}");
-		final Object result = eval (expr);
-		assertEquals("hallo", ((List) result).iterator().next());
-	}
-
-	public final void testCollectionLiteral3() {
-		final Expression expr = parse("{3}");
-		final Object result = eval (expr);
-		assertEquals(new Long(3), ((List) result).iterator().next());
-	}
-
-	public final void testCollectionLiteral2() {
-		final Expression expr = parse("{\"hallo\",3}");
-		final List result = (List) eval (expr);
-		assertEquals(2, result.size());
-		assertEquals("hallo", result.get(0));
-		assertEquals(new Long(3), result.get(1));
+	@SuppressWarnings("unchecked")
+    public final void testCollectionLiteral1() {
+		assertEquals(Arrays.asList("hallo"), eval ("{\"hallo\"}"));
+		assertEquals(Arrays.asList(3L), eval ("{3}"));
+	    assertEquals (Arrays.asList("hallo", 3L), eval ("{\"hallo\",3}"));
 	}
 
 	public final void testFeatureCall() {
-		final Expression expr = parse("test");
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = eval (expr);
+		final Object result = eval ("test", ExecutionContext.IMPLICIT_VARIABLE, new AType ());
 		assertEquals(new AType().getTest(), result);
 	}
 
 	public final void testFeatureCall1() {
-		final Expression expr = parse("this.test");
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = eval (expr);
+		final Object result = eval ("this.test", ExecutionContext.IMPLICIT_VARIABLE, new AType ());
 		assertEquals(new AType().getTest(), result);
-
 	}
 
 	public final void testOperationCall1() {
-		final Expression expr = parse("myOperation()");
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = eval (expr);
-
+		final Object result = eval ("myOperation()", ExecutionContext.IMPLICIT_VARIABLE, new AType ());
 		assertEquals(new AType().myOperation(), result);
-
 	}
 
 	public final void testOperationCall2() {
-		final Expression expr = parse("myOperation(\"Test\")");
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = eval (expr);
-
+		final Object result = eval ("myOperation(\"Test\")", ExecutionContext.IMPLICIT_VARIABLE, new AType ());
 		assertEquals(new AType().myOperation("Test"), result);
 	}
 
 	public final void testOperationCall3() {
-		final Expression expr = parse("this.myOperation()");
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = eval (expr);
-
+		final Object result = eval ("this.myOperation()", ExecutionContext.IMPLICIT_VARIABLE, new AType ());
 		assertEquals(new AType().myOperation(), result);
-
 	}
 
 	public final void testOperationCall4() {
-		final Expression expr = parse("this.myOperation(\"Test\")");
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				ExecutionContext.IMPLICIT_VARIABLE, new AType()));
-		final Object result = eval (expr);
-
+		final Object result = eval ("this.myOperation(\"Test\")", ExecutionContext.IMPLICIT_VARIABLE, new AType ());
 		assertEquals(new AType().myOperation("Test"), result);
-
 	}
 
 	public final void testArithmetic() {
-		Expression expr;
+		assertEquals(new Long(11), eval ("4 * 2 + 3"));
+		assertEquals(new Long(11), eval ("3 + 4 * 2"));
+		assertEquals(new Long(9), eval ("4 * 2 + 3 / 3"));
 
-		expr = parse("4 * 2 + 3");
-		assertEquals(new Long(11), eval (expr));
+		assertEquals(new Double(11), eval ("3 + 4.0 * 2"));
+		assertEquals(new Double(11), eval ("4.0 * 2 + 3"));
+		assertEquals(new Double(9), eval ("4 * 2 + 3 / 3.0"));
 
-		expr = parse("3 + 4 * 2");
-		assertEquals(new Long(11), eval (expr));
-
-		expr = parse("4 * 2 + 3 / 3");
-		assertEquals(new Long(9), eval (expr));
-	}
-
-	public final void testArithmetic2() {
-		Expression expr = parse("3 + 4.0 * 2");
-		assertEquals(new Double(11), eval (expr));
-
-		expr = parse("4.0 * 2 + 3");
-		assertEquals(new Double(11), eval (expr));
-
-		expr = parse("4 * 2 + 3 / 3.0");
-		assertEquals(new Double(9), eval (expr));
-
-	}
-
-	public final void testArithmetic3() {
-		Expression expr = parse("5 / 2");
-		assertEquals(new Long(2), eval (expr));
-
-		expr = parse("5 / 2.0");
-		assertEquals(new Double(2.5), eval (expr));
-
+		assertEquals(new Long(2), eval ("5 / 2"));
+		assertEquals(new Double(2.5), eval ("5 / 2.0"));
 	}
 
 	public final void testStringConcatenation() {
-		final Expression expr = parse("\"test\" + 3 + 4");
-		assertEquals("test34", eval (expr));
+		assertEquals("test34", eval ("\"test\" + 3 + 4"));
 	}
 
 	public final void testNullReference() {
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				"nullRef", null));
-		final Expression expr = parse("nullRef + \"test\" + 3 + 4");
-		assertEquals(null, eval (expr));
-
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("this",
-				null));
-		assertNull(eval (parse("this.unknownMember")));
+		assertEquals(null, eval ("nullRef + \"test\" + 3 + 4", "nullRef", null));
+		assertNull(eval ("this.unknownMember", "this", null));
 	}
 
 	public final void testTypeLiteral1() {
-		assertEquals(ec.getStringType(), eval (parse("String")));
-	}
+		assertEquals(ec.getStringType(), eval ("String"));
 
-	public final void testTypeLiteral2() {
-		final Expression e = parse("String.getProperty('length')");
-		assertTrue (eval (e) instanceof Property);
-	}
+		assertTrue (eval ("String.getProperty('length')") instanceof Property);
 
-	public final void testTypeLiteral3() {
-		final Expression e = parse(getATypeName() + "::TEST");
-		assertEquals(AType.TEST, eval(e));
+		assertEquals(AType.TEST, eval(getATypeName() + "::TEST"));
 	}
 
 	private String getATypeName() {
-		return AType.class.getName()
-				.replaceAll("\\.", SyntaxConstants.NS_DELIM);
+		return AType.class.getName().replaceAll("\\.", SyntaxConstants.NS_DELIM);
 	}
 
 	public final void testPath1() {
-		final Expression expr = parse("{'a','b','c'}.toUpperCase()");
-		final List result = (List) eval (expr);
-		assertEquals("A", result.get(0));
-		assertEquals("B", result.get(1));
-		assertEquals("C", result.get(2));
-	}
+	    assertEquals (Arrays.asList("A", "B", "C"), eval ("{'a','b','c'}.toUpperCase()"));
 
-	public final void testPath2() {
-		final Expression expr = parse("{'a','b','c'}.size");
-		assertEquals(new Long(3), eval (expr));
-	}
+	    assertEquals(new Long(3), eval ("{'a','b','c'}.size"));
 
-	public final void testPath3() {
-		final Expression expr = parse("{'a','b2','c'}.toUpperCase().length");
-		final List result = (List) eval (expr);
-		assertEquals(new Long(1), result.get(0));
-		assertEquals(new Long(2), result.get(1));
-		assertEquals(new Long(1), result.get(2));
+	    assertEquals (Arrays.asList (1L, 2L, 1L), eval ("{'a','b2','c'}.toUpperCase().length"));
 	}
 
 	public final void testPath4() {
-		final Expression expr = parse("{'a,b2,c','a,b,c','a,b,c'}.split(',').length");
-		final List result = (List) eval (expr);
+		final List<?> result = (List<?>) eval ("{'a,b2,c','a,b,c','a,b,c'}.split(',').length");
 		assertEquals(9, result.size());
 		assertEquals(new Long(1), result.get(0));
 		assertEquals(new Long(2), result.get(1));
@@ -239,81 +152,51 @@ public class EvaluationTest extends TestCase {
 	}
 
 	public final void testNestedCollExpr() {
-		final Expression expr = parse("col.typeSelect(String).forAll(e|"
-				+ "col.typeSelect(Integer).exists(a| a == e.length))");
-		final List<Comparable> list = new ArrayList<Comparable>();
+		final List<Object> list = new ArrayList<Object>();
 		list.add("123");
 		list.add("1234");
 		list.add("12345");
 		list.add(new Long(3));
 		list.add(new Long(4));
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("col",
-				list));
-		assertEquals(Boolean.FALSE, eval (expr));
+
+		final String expr = "col.typeSelect(String).forAll(e|col.typeSelect(Integer).exists(a| a == e.length))";
+		assertEquals(Boolean.FALSE, eval (expr, "col", list));
+		
 		list.add(new Long(5));
-		assertEquals(Boolean.TRUE, eval (expr));
+		assertEquals(Boolean.TRUE, eval (expr, "col", list));
 	}
 
 	public final void testTypeSelectWithNull() {
-		final Expression expr = parse("{null, 'test'}.typeSelect(String).size");
-		assertEquals(new Long(1), eval (expr));
+		assertEquals(new Long(1), eval ("{null, 'test'}.typeSelect(String).size"));
 	}
 
 	public final void testGlobalVar() {
-		ec = new ExecutionContextImpl(Collections.singletonMap("horst",
-				new Variable("horst", "TEST")));
-		final Expression expr = parse("GLOBALVAR horst");
-		assertEquals("TEST", eval (expr));
+		ec = new ExecutionContextImpl(Collections.singletonMap("horst",	new Variable("horst", "TEST")));
+		assertEquals("TEST", eval ("GLOBALVAR horst"));
 	}
 
-	public final void testLet1() {
-		final Expression expr = parse("let x = {'a,b2,c','a,b,c','1,2,3'} : x.get(1)");
-		assertEquals("a,b,c", eval (expr));
+	public final void testLet() {
+		assertEquals("a,b,c", eval ("let x = {'a,b2,c','a,b,c','1,2,3'} : x.get(1)"));
+		assertEquals(Arrays.asList("1", "2", "3"), eval ("let x = {} : x.add('1') -> x.add('2') -> x.add('3') -> x"));
 	}
 
 	public final void testCollectShortcut1() {
-		final Expression expr = parse("{'a','b','c'}.toUpperCase()");
-		assertEquals("C", ((List) eval (expr)).get(2));
-	}
+		assertEquals(Arrays.asList("A", "B", "C"), eval ("{'a','b','c'}.toUpperCase()"));
+		assertEquals(Arrays.asList(1L, 1L, 1L), eval ("{'a','b','c'}.length"));
 
-	public final void testCollectShortcut2() {
-		final Expression expr = parse("{}.toUpperCase()");
-		assertTrue(((List) eval (expr)).isEmpty());
-	}
-
-	public final void testCollectShortcut3() {
-		final Expression expr = parse("{'a','b','c'}.length");
-		assertEquals(1l, ((List) eval (expr)).get(2));
-	}
-
-	public final void testCollectShortcut4() {
-		final Expression expr = parse("{}.length");
-		assertTrue(((List) eval (expr)).isEmpty());
+		assertEquals(Collections.emptyList(), eval ("{}.toUpperCase()"));
+		assertEquals (Collections.emptyList(), eval ("{}.length"));
 	}
 
 	public final void testCollectShortcut5() {
-		final Expression expr = parse("String.name");
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-				ExecutionContext.IMPLICIT_VARIABLE, new ArrayList<Object>()));
-		assertEquals("String", eval (expr));
-	}
-
-	public final void testLet2() {
-		final Expression expr = parse("let x = {} : x.add('1') -> x.add('2')"
-				+ " -> x.add('3') -> x");
-		final List<String> l = new ArrayList<String>();
-		l.add("1");
-		l.add("2");
-		l.add("3");
-		assertEquals(l, eval (expr));
+		assertEquals ("String", eval ("String.name", ExecutionContext.IMPLICIT_VARIABLE, new ArrayList<Object>()));
 	}
 
 	public final void testConstruction() {
-		final Expression expr = parse("new String");
-		assertEquals("", eval (expr));
+		assertEquals("", eval ("new String"));
 
 		try {
-			eval (parse("new Unkown"));
+			eval ("new Unkown");
 			fail();
 		} catch (final EvaluationException ee) {
 			// expected
@@ -321,84 +204,41 @@ public class EvaluationTest extends TestCase {
 	}
 
 	public void testSortBy() throws Exception {
-		final Expression expr = parse("{'X','AA','BBB'}.sortBy(e|e)");
-		final List<String> l = new ArrayList<String>();
-		l.add("AA");
-		l.add("BBB");
-		l.add("X");
-		assertEquals(l, eval (expr));
-	}
-
-	public void testSortBy2() throws Exception {
-		final Expression expr = parse("{'X','AA','BBB'}.sortBy(e|e.length)");
-		final List<String> l = new ArrayList<String>();
-		l.add("X");
-		l.add("AA");
-		l.add("BBB");
-		assertEquals(l, eval (expr));
+		assertEquals(Arrays.asList("AA", "BBB", "X"), eval ("{'X','AA','BBB'}.sortBy(e|e)"));
+		assertEquals(Arrays.asList("X", "AA", "BBB"), eval ("{'X','AA','BBB'}.sortBy(e|e.length)"));
 	}
 
 	public void testIfExpression() throws Exception {
-		assertEquals(true, eval (parse("if true then true else 'stuff'")));
-		assertEquals("stuff", eval (parse("if false then false else 'stuff'")));
-		assertEquals("stuff", eval (parse("if false then false else if true then 'stuff' else null ")));
-		assertEquals(null, eval (parse("if false then false else if false then 'stuff' ")));
+		assertEquals(true, eval ("if true then true else 'stuff'"));
+		assertEquals("stuff", eval ("if false then false else 'stuff'"));
+		assertEquals("stuff", eval ("if false then false else if true then 'stuff' else null "));
+		assertEquals(null, eval ("if false then false else if false then 'stuff' "));
 	}
-	
 	
 
 	public void testCollectShortCutWithFeatureCalls() throws Exception {
-		Expression e = parse("x.list.list.strings.toLowerCase()");
 		TestMetaModel mm = new TestMetaModel();
 		ec = new ExecutionContextImpl();
 		ec.registerMetaModel(mm);
-		List<?> var = Collections.singletonList(mm.singleType.newInstance());
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x", var));
-		List<String> result = (List<String>) eval (e);
-		assertEquals(1, result.size());
-		assertEquals("test", result.get(0));
-	}
-
-	public void testCollectShortCutWithOperationCalls() throws Exception {
-		Expression e = parse("x.list().list().strings().toLowerCase()");
-		TestMetaModel mm = new TestMetaModel();
-		ec = new ExecutionContextImpl();
-		ec.registerMetaModel(mm);
-		List<?> var = Collections.singletonList(mm.singleType.newInstance());
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x", var));
-		List<String> result = (List<String>) eval (e);
-		assertEquals(1, result.size());
-		assertEquals("test", result.get(0));
-	}
-
-	public void testCollectShortCutWithMixedCalls() throws Exception {
-		Expression e = parse("x.list.list().list.strings().toLowerCase()");
-		TestMetaModel mm = new TestMetaModel();
-		ec = new ExecutionContextImpl();
-		ec.registerMetaModel(mm);
-		List<?> var = Collections.singletonList(mm.singleType.newInstance());
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x", var));
-		List<String> result = (List<String>) eval (e);
-		assertEquals(1, result.size());
-		assertEquals("test", result.get(0));
+		
+		assertEquals (Arrays.asList("test"), eval ("x.list.list.strings.toLowerCase()", "x", Collections.singletonList(mm.singleType.newInstance())));
+		assertEquals (Arrays.asList("test"), eval ("x.list().list().strings().toLowerCase()", "x", Collections.singletonList(mm.singleType.newInstance())));
+		assertEquals (Arrays.asList("test"), eval ("x.list.list().list.strings().toLowerCase()", "x", Collections.singletonList(mm.singleType.newInstance())));
 	}
 	
 	public void testCollectOnNull() throws Exception {
-		Expression e = parse("null.collect(e|e.size)");
-		assertNull(eval(e));
+		assertNull(eval("null.collect(e|e.size)"));
 	}
 	
 	public void testEvaluationOrderOfOperands() throws Exception {
-		Object x = new Object(){
-			int c = 1;
-			@Override
-			public String toString() {
-				return ""+c++;
-			}
-		};
-		Expression e = parse("x.toString() + x.toString()");
-		ec = new ExecutionContextImpl ();
-		ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable("x",x));
-		assertEquals("12",eval (e));
+		assertEquals("12",eval ("x.toString() + x.toString()", "x", new Cls ()));
+	}
+	
+	public static class Cls {
+	       int c = 1;
+           @Override
+           public String toString() {
+               return ""+c++;
+           }
 	}
 }

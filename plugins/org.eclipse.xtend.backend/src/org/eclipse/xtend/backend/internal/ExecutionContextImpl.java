@@ -8,7 +8,10 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend;
+package org.eclipse.xtend.backend.internal;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
@@ -21,25 +24,29 @@ import org.eclipse.xtend.backend.common.FunctionInvoker;
 import org.eclipse.xtend.backend.common.GlobalParamContext;
 import org.eclipse.xtend.backend.common.LocalVarContext;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.common.StacktraceEntry;
 
 
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class ExecutionContextImpl implements ExecutionContext {
+public final class ExecutionContextImpl implements ExecutionContext {
 	private final CreationCache _creationCache = new CreationCacheImpl ();
 	private FunctionDefContext _functionDefContext;
 	private LocalVarContext _localVarContext = new LocalVarContext ();
 	private final FunctionInvoker _functionInvoker = new FunctionInvokerImpl ();
 	private final BackendTypesystem _typeSystem;
 	private final GlobalParamContext _globalParamContext = new GlobalParamContextImpl ();
+	private final boolean _logStacktrace;
+	private final List<StacktraceEntry> _stacktrace = new ArrayList<StacktraceEntry> ();
 	
 	private final ContributionStateContext _contributionStateContext = new ContributionStateContext ();
 	
-	public ExecutionContextImpl (FunctionDefContext initialFunctionDefContext, BackendTypesystem typesystem) {
+	public ExecutionContextImpl (FunctionDefContext initialFunctionDefContext, BackendTypesystem typesystem, boolean logStacktrace) {
 		_functionDefContext = initialFunctionDefContext;
 		_typeSystem = typesystem;
+		_logStacktrace = logStacktrace;
 	}
 
 	public CreationCache getCreationCache() {
@@ -75,10 +82,22 @@ final class ExecutionContextImpl implements ExecutionContext {
 	}
 
 	public void logNullDeRef (SourcePos pos) {
-	    LogFactory.getLog (Constants.LOG_NULL_DEREF).warn ("dereferenced null (" + pos + ")");
+	    final StringBuilder sb = new StringBuilder ("dereferenced null (" + pos + ")");
+	    for (int i=_stacktrace.size() - 1; i>= 0; i--)
+	        sb.append ("\n  " + _stacktrace.get (i));
+	    
+	    LogFactory.getLog (Constants.LOG_NULL_DEREF).warn (sb);
 	}
 	
 	public ContributionStateContext getContributionStateContext () {
 	    return _contributionStateContext;
 	}
+
+    public List<StacktraceEntry> getStacktrace () {
+        return _stacktrace;
+    }
+
+    public boolean isLogStacktrace () {
+        return _logStacktrace;
+    }
 }

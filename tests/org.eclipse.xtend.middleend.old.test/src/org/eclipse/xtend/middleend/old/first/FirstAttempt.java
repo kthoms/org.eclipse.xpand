@@ -34,11 +34,11 @@ public class FirstAttempt {
         final List<MetaModel> mms = new ArrayList<MetaModel> ();
         mms.add (new JavaBeansMetaModel ());
         
-        final CompositeTypesystem ts = BackendTypesystemFactory.createWithoutUml();
+        final CompositeTypesystem ts = BackendTypesystemFactory.createJustEmf();
 
         {
             final XpandBackendFacade xp = XpandBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first::aTemplate", "iso-8859-1", mms, new ArrayList<Outlet>());
-            final ExecutionContext ctx = BackendFacade.createExecutionContext (xp.getFunctionDefContext(), ts);
+            final ExecutionContext ctx = BackendFacade.createExecutionContext (xp.getFunctionDefContext(), ts, true);
             
             System.err.println (BackendFacade.invoke (ctx, "org/eclipse/xtend/middleend/old/first/aTemplate/greeting", Arrays.asList("Arno")));
         }
@@ -55,7 +55,7 @@ public class FirstAttempt {
         
         {
             final XtendBackendFacade bc = XtendBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first::first", "iso-8859-1", mms);
-            final ExecutionContext ctx = BackendFacade.createExecutionContext (bc.getFunctionDefContext(), ts);
+            final ExecutionContext ctx = BackendFacade.createExecutionContext (bc.getFunctionDefContext(), ts, true);
 
             System.err.println (BackendFacade.invoke (ctx, "test", Arrays.asList ("Arno")));
             System.err.println (BackendFacade.invoke (ctx, "testColl", Arrays.asList (Arrays.asList (1L, "Hallo"))));

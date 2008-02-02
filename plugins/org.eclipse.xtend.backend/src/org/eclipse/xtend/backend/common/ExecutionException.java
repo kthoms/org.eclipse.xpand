@@ -12,9 +12,6 @@ package org.eclipse.xtend.backend.common;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import org.eclipse.xtend.backend.util.Pair;
 
 
 /**
@@ -22,21 +19,19 @@ import org.eclipse.xtend.backend.util.Pair;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public class ExecutionException extends RuntimeException {
-    private final List<Pair<SourcePos, Map<String, Object>>> _stackTrace = new ArrayList<Pair<SourcePos,Map<String,Object>>> ();
-    
+    private final List<StacktraceEntry> _stackTrace = new ArrayList<StacktraceEntry> ();
     
     public ExecutionException (Exception exc) {
         super (exc);
     }
     
-    
-    public ExecutionException (Exception exc, SourcePos sourcePos, Map<String, Object> localVars) {
+    public ExecutionException (Exception exc, StacktraceEntry ste) {
         super (exc);
-        addStackTraceElement (sourcePos, localVars);
+        addStackTraceElement (ste);
     }
     
-    public void addStackTraceElement (SourcePos sourcePos, Map<String, Object> localVars) {
-        _stackTrace.add (new Pair<SourcePos, Map<String, Object>> (sourcePos, localVars));
+    public void addStackTraceElement (StacktraceEntry ste) {
+        _stackTrace.add (ste);
     }
     
     @Override
@@ -44,8 +39,8 @@ public class ExecutionException extends RuntimeException {
         final StringBuilder result = new StringBuilder ();
         
         result.append (getCause().getMessage() + "\n");
-        for (Pair<SourcePos, Map<String, Object>> ste: _stackTrace)
-            result.append ("at " + ste.getFirst() + " " + ste.getSecond() + "\n");
+        for (StacktraceEntry ste: _stackTrace)
+            result.append (ste + "\n");
         
         return result.toString();
     }

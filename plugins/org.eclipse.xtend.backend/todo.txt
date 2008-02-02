@@ -1,41 +1,32 @@
 todo
 ----
 registry of handlers for different kinds of resources (including classes and byte code (?)); classes need way to express their fdc!!! --> rethink fdc concept?
+  --> via extension point (with a static "priority" getter to allow ordering)? Compiled first?
 make the concept of the "XyzRegistry" explicit, common abstraction --> interoperability of languages
-configuration of backend type system - parameters to the backend?
 globalVars rauswerfen? --> ContributionStateContext?
 
 JavaBeansType: Interfaces als Supertypen
 UML type system
-logNullDeRef: log call stack including call parameters - runtime flag to log "verbosely"?
 AOP
 Profiler
+Protected Region Resolver
 
-Check: SourcePos-Infos in Fehlern, Exceptions in ExpressionBase ordentlich gewrappt
+List.sortBy(closure)
+new String --> ""
 
 static properties; enums
 
 kommentieren
 
-Marker-Interface / Annotation "FunctionDefs" o.ä. --> generische Unterscheidung für Java-Importer, ob Klasse
-  als Bean oder als "Funktionen-Container"
-
-testen, insbes. syslib
-
-DefinitionType in FunctionType mergen
-
 dead code elimination?
 
 isInstance
-
-Buddy Policy für syslib und backend
 
 syslib-Funktion: allFunctions (List<Type>) --> auch Funktionen ohne Parameter zur Laufzeit 
   finden (oder built-in? --> syslib-Aufruf verlässt den Scope)
 Function-Match (z.B. &myFunc (String, Foo) --> spät binden! --> dynamisch durchgereichter Kram
   wird gematcht
 Currying
-Map als Builtin-Typ
 Properties über getter/setter abbilden (z.B. im mm keine property mehr)?
 Eigene Properties definieren (d.h. generische Map dafür an jedem Objekt)?
 "final" (auch als Hint für Optimierung --> wird nicht durch dynamische Exytensions
@@ -59,6 +50,9 @@ replace/add von Extensions im dynamischen Scope
 
 equals auf Type-Implementierungen
 
+move to m2t.common
+
+JET support: JET templates are treated just like any other Java Bean
 
 Unterstützung
 -------------
@@ -104,4 +98,5 @@ toString() überschreibbar, trotz lazy evaluation
 Operators: implies, <, <=, ==, !=, >=, >, !, unary -, 
 potential bug - EfficientLazyString is mutable || return value from cached function --> 
   flag "isImmutable" in EfficientLazyString; static method "concat" insetad of "append" to treat this transparently
-
+logNullDeRef: log call stack including call parameters - runtime flag to log "verbosely"?
+Map als Builtin-Typ

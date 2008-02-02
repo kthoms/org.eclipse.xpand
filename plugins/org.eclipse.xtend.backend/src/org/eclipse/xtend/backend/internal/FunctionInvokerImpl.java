@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend;
+package org.eclipse.xtend.backend.internal;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import org.eclipse.xtend.backend.util.DoubleKeyCache;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class FunctionInvokerImpl implements FunctionInvoker {
+public final class FunctionInvokerImpl implements FunctionInvoker {
 	private final DoubleKeyCache <Function, List<?>, Object> _cache = new DoubleKeyCache<Function, List<?>, Object> () {
 		@Override
 		protected Object create (Function f, List<?> params) {

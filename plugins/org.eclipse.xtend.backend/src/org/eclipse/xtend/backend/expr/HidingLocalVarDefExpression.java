@@ -13,6 +13,7 @@ package org.eclipse.xtend.backend.expr;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.common.StacktraceEntry;
 
 
 /**
@@ -36,10 +37,14 @@ public final class HidingLocalVarDefExpression extends ExpressionBase {
         final Object oldValue = ctx.getLocalVarContext().getLocalVars().get(_localVarName);
         ctx.getLocalVarContext().getLocalVars().put (_localVarName, _defExpression.evaluate(ctx));
 
+        if (ctx.isLogStacktrace())
+            ctx.getStacktrace().add (new StacktraceEntry (getPos(), ctx));
+
         try {
             return _inner.evaluate(ctx);
         }
         finally {
+            ctx.getStacktrace ().remove (ctx.getStacktrace().size() - 1);
             ctx.getLocalVarContext().getLocalVars().put(_localVarName, oldValue);
         }
     }

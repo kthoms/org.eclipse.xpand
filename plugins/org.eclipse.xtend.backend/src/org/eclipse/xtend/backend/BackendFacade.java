@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
+import org.eclipse.xtend.backend.internal.ExecutionContextImpl;
 
 
 /**
@@ -22,8 +23,8 @@ import org.eclipse.xtend.backend.common.FunctionDefContext;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public class BackendFacade {
-	public static ExecutionContext createExecutionContext (FunctionDefContext initialContext, BackendTypesystem typesystem) {
-		return new ExecutionContextImpl (initialContext, typesystem);
+	public static ExecutionContext createExecutionContext (FunctionDefContext initialContext, BackendTypesystem typesystem, boolean logStacktrace) {
+		return new ExecutionContextImpl (initialContext, typesystem, logStacktrace);
 	}
 	
 	public static Object invoke (ExecutionContext ctx, String functionName, List<? extends Object> params) {

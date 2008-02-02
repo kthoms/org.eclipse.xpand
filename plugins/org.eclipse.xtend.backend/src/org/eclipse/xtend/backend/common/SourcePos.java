@@ -39,7 +39,7 @@ public class SourcePos {
     
     @Override
     public String toString () {
-        return "line " + _lineNumber + "@" + _callableName + " [" + _compilationUnit + "]";
+        return  _callableName + "@" + _lineNumber + " [" + _compilationUnit + "]";
     }
 }
 

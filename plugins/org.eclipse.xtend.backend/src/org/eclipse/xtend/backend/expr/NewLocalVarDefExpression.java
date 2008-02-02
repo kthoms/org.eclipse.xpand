@@ -13,6 +13,7 @@ package org.eclipse.xtend.backend.expr;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.common.StacktraceEntry;
 
 
 /**
@@ -24,8 +25,7 @@ public final class NewLocalVarDefExpression extends ExpressionBase {
     private final ExpressionBase _defExpression;
     private final ExpressionBase _inner;
 
-    public NewLocalVarDefExpression (String localVarName, ExpressionBase defExpression, ExpressionBase inner, 
-            SourcePos sourcePos) {
+    public NewLocalVarDefExpression (String localVarName, ExpressionBase defExpression, ExpressionBase inner, SourcePos sourcePos) {
         super (sourcePos);
         _localVarName = localVarName;
         _defExpression = defExpression;
@@ -36,11 +36,15 @@ public final class NewLocalVarDefExpression extends ExpressionBase {
     protected Object evaluateInternal(ExecutionContext ctx) {
         ctx.getLocalVarContext().getLocalVars().put (_localVarName, _defExpression.evaluate(ctx));
 
+        if (ctx.isLogStacktrace())
+            ctx.getStacktrace().add (new StacktraceEntry (getPos(), ctx));
+        
         try {
             return _inner.evaluate(ctx);
         }
         finally {
-            ctx.getLocalVarContext().getLocalVars().remove(_localVarName);
+            ctx.getStacktrace ().remove (ctx.getStacktrace().size() - 1);
+            ctx.getLocalVarContext ().getLocalVars ().remove (_localVarName);
         }
     }
 }

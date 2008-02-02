@@ -77,7 +77,7 @@ public final class XtendBackendFacade {
         final ExpressionBase newAst = new OldExpressionConverter (ctx, typeConverter, "<no file>").convert(oldAst);
 
         final FunctionDefContext fdc = (initialXtendFileName != null) ? createForFile (initialXtendFileName, fileEncoding, mms).getFunctionDefContext() : new FunctionDefContextFactory (ts).create();
-        final ExecutionContext newCtx = BackendFacade.createExecutionContext (fdc, ts);
+        final ExecutionContext newCtx = BackendFacade.createExecutionContext (fdc, ts, true); //TODO configure isLogStacktrace
         newCtx.getLocalVarContext().getLocalVars().putAll (localVars);
         
         return newAst.evaluate (newCtx);
@@ -90,7 +90,7 @@ public final class XtendBackendFacade {
     public static Object invokeXtendFunction (String xtendFileName, String fileEncoding, Collection<MetaModel> mms, String functionName, Object... parameters) {
         final XtendBackendFacade xbf = createForFile (xtendFileName, fileEncoding, mms);
         final FunctionDefContext fdc = xbf.getFunctionDefContext();
-        final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, OldXtendHelper.guessTypesystem (mms));
+        final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, OldXtendHelper.guessTypesystem (mms), true); //TODO configure isLogStacktrace
         return fdc.invoke (ctx, functionName, Arrays.asList (parameters));
     }
     

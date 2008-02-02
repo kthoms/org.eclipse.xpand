@@ -124,7 +124,7 @@ public final class XpandBackendFacade {
                 fdc.register (f);
         }
         
-        final ExecutionContext backendCtx = BackendFacade.createExecutionContext (fdc, ts);
+        final ExecutionContext backendCtx = BackendFacade.createExecutionContext (fdc, ts, true); //TODO configure isLogStacktrace 
         backendCtx.getLocalVarContext().getLocalVars().putAll (variables);
         registerOutlets (backendCtx, outlets);
 

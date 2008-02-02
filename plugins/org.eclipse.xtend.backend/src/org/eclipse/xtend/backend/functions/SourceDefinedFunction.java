@@ -18,6 +18,7 @@ import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.LocalVarContext;
+import org.eclipse.xtend.backend.common.StacktraceEntry;
 
 
 /**
@@ -79,9 +80,16 @@ public final class SourceDefinedFunction implements Function {
         final LocalVarContext oldLvc = ctx.getLocalVarContext();
         try {
             ctx.setLocalVarContext(lvc);
+            
+            if (ctx.isLogStacktrace())
+                ctx.getStacktrace().add (new StacktraceEntry (_def.getPos(), ctx));
+            
             return _def.evaluate(ctx);
         }
         finally {
+            if (ctx.isLogStacktrace())
+                ctx.getStacktrace().remove (ctx.getStacktrace().size() - 1);
+            
             ctx.setLocalVarContext(oldLvc);
         }
     }

@@ -99,7 +99,7 @@ public class InitClosureExpressionTest {
             
         }));
         
-        final ExecutionContext initCtx = BackendFacade.createExecutionContext (fdc, ts);
+        final ExecutionContext initCtx = BackendFacade.createExecutionContext (fdc, ts, true);
         final ExpressionBase body = new InvocationOnObjectExpression ("myFunction", new ArrayList<ExpressionBase> (), false, SOURCE_POS);
         final Function closure = (Function) new InitClosureExpression (new ArrayList<String>(), new ArrayList<BackendType>(), body, SOURCE_POS).evaluate (initCtx);
         

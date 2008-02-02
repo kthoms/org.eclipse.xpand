@@ -1,7 +1,5 @@
 todo
 ----
-Java-Type <--> Canonical type
-Aufruf der Listener
 CurriedFunction, CurryingExpression
 GlobalParamExpression
 

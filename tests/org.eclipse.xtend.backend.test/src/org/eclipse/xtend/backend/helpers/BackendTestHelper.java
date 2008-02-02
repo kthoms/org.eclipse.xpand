@@ -33,7 +33,7 @@ public class BackendTestHelper {
      */
     public static ExecutionContext createEmptyExecutionContext () {
         final BackendTypesystem ts = new CompositeTypesystem ();
-        return BackendFacade.createExecutionContext (new FunctionDefContextFactory (ts).create(), ts);
+        return BackendFacade.createExecutionContext (new FunctionDefContextFactory (ts).create(), ts, true);
     }
 
     public static ExpressionBase createLiteral (Object literal) {

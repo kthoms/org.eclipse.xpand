@@ -157,7 +157,7 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
         for (int i = 0; i < as.length; i++) {
             final XpandAdvice advice = as[i];
             if (registeredAdvices.contains(advice)) {
-                log.warn("advice " + advice.toString() + " allready registered!");
+                log.warn("advice " + advice.toString() + " already registered!");
             } else {
                 registeredAdvices.add(advice);
             }

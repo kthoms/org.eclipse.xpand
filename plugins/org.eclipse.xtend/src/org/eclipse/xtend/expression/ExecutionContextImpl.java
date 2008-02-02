@@ -355,7 +355,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 		final List<Around> as = ext.getArounds();
 		for (Around around : as) {
 			if (registeredExtensionAdvices.contains(around)) {
-				log.warn("advice " + around.toString() + " allready registered!");
+				log.warn("advice " + around.toString() + " already registered!");
 			} else {
 				registeredExtensionAdvices.add(around);
 			}

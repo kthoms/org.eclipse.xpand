@@ -42,9 +42,9 @@ public class OutputImpl implements Output {
 	public void addOutlet(final Outlet outlet) {
 		if (outlets.containsKey(outlet.getName())) {
 			if (outlet.getName() == null)
-				throw new IllegalArgumentException("A default outlet is allready registered!");
+				throw new IllegalArgumentException("A default outlet is already registered!");
 			else
-				throw new IllegalArgumentException("An outlet with name " + outlet.getName() + " is allready registered!");
+				throw new IllegalArgumentException("An outlet with name " + outlet.getName() + " is already registered!");
 		}
 		outlets.put(outlet.getName(), outlet);
 	}

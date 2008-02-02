@@ -63,7 +63,7 @@ public class FileHandleImpl implements FileHandle {
 	public void writeAndClose() {
 		try {
 			if (!isOverwrite() && targetFile.exists()) {
-				log.debug("Skipping file : " + targetFile.getAbsolutePath() + " cause it exists allready");
+				log.debug("Skipping file : " + targetFile.getAbsolutePath() + " cause it exists already");
 				return;
 			}
 			log.debug("Opening file : " + targetFile.getAbsolutePath());

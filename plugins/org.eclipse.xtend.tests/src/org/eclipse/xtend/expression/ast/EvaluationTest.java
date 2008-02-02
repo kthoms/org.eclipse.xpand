@@ -44,6 +44,10 @@ public class EvaluationTest extends TestCase {
 		ec.registerMetaModel(new JavaMetaModel("asdf", new JavaBeansStrategy()));
 	}
 
+	private Expression parse (final String expression) {
+	    return ParseFacade.expression(expression);
+	}
+
 	private Object eval (String expression) {
 	    final Expression expr = ParseFacade.expression(expression);
 	    return expr.evaluate (ec);
@@ -52,6 +56,10 @@ public class EvaluationTest extends TestCase {
 	private Object eval (String expression, String localVarName, Object localVarValue) {
 	    ec = (ExecutionContextImpl) ec.cloneWithVariable (new Variable (localVarName, localVarValue));
 	    return eval (expression);
+	}
+	
+	private Object eval (Expression expr) {
+	    return expr.evaluate (ec);
 	}
 	
 	public final void testSimple() {
@@ -124,7 +132,7 @@ public class EvaluationTest extends TestCase {
 	}
 
 	public final void testTypeLiteral1() {
-		assertEquals(ec.getStringType(), eval ("String"));
+		assertEquals(ec.getStringType(), eval (parse("String")));
 
 		assertTrue (eval ("String.getProperty('length')") instanceof Property);
 

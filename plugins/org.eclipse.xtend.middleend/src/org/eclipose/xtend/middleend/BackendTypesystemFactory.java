@@ -42,7 +42,7 @@ public final class BackendTypesystemFactory {
      *  and Java Beans. UML is left out for performance reasons - the UML metamodel requires
      *  the UML metamodel to be parsed initially which takes significant time.
      */
-    public static CompositeTypesystem createWithoutUml () {
+    public static CompositeTypesystem createJustEmf () {
         final CompositeTypesystem result = new CompositeTypesystem ();
 
         result.register (new EmfTypesystem ());

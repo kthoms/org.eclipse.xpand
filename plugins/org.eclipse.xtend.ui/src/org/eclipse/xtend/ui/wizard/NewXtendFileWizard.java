@@ -16,7 +16,7 @@ import org.eclipse.xtend.shared.ui.wizards.NewExtXptResourceWizard;
 public class NewXtendFileWizard extends NewExtXptResourceWizard {
 	
     public NewXtendFileWizard() {
-        super("NewXtendFile.ext", "ext", "New xTend File", "Creates a new xTend File", null);
+        super("NewXtendFile.ext", "ext", "New Xtend File", "Creates a new xTend File", null);
     }
 
 }

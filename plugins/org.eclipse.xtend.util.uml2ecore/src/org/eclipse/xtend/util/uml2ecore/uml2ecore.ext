@@ -3,8 +3,8 @@
 // you need to be somewhat familiar with the UML2 
 // metamodel to understand this code. You should also
 // read the reference docs for the Xtend language first.
-// You should also take a look at the xTend sample first,
-// since it explains how xTend can be used.
+// You should also take a look at the Xtend sample first,
+// since it explains how Xtend can be used.
  
 // this imports the ecore metamodel; since we want to 
 // transform into an instance of ecore, we need to load 

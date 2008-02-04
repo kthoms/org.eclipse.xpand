@@ -258,7 +258,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 		if (storage != null && (searchJars || (storage instanceof IFile))) {
 			IXtendXpandResource result = null;
 			// get the file extension and find the appropriate ResourceContributor for this
-			// kind of resource (xPand/xTend)
+			// kind of resource (Xpand/Xtend)
 			String fileExtension = storage.getName().substring(
 					storage.getName().lastIndexOf(".") + 1);
 			final ResourceContributor contr = Activator
@@ -334,7 +334,8 @@ public class XtendXpandProject implements IXtendXpandProject {
 	/**
 	 * Returns the name of the underlying project.
 	 */
-	public String toString() {
+	@Override
+    public String toString() {
 		return project.getPath().toString();
 	}
 

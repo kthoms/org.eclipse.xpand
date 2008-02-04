@@ -87,7 +87,7 @@
          class="org.eclipse.xpand.ui.wizard.NewTemplateFileWizard"
          icon="icons/templatefile.gif"
          id="org.eclipse.xpand.ui.wizard.NewTemplateFileWizard"
-         name="xPand Template">
+         name="Xpand Template">
 	       <description>Create a new Xpand Template File</description>
 		   <selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>

@@ -16,7 +16,7 @@ import org.eclipse.xtend.shared.ui.wizards.NewExtXptResourceWizard;
 public class NewTemplateFileWizard extends NewExtXptResourceWizard {
 	
     public NewTemplateFileWizard() {
-        super("NewTemplateFile.xpt", "xpt", "New Template File", "Creates a new xPand Template File", null);
+        super("NewTemplateFile.xpt", "xpt", "New Template File", "Creates a new Xpand Template File", null);
     }
 
 }

@@ -36,8 +36,8 @@
          class="org.eclipse.xtend.ui.wizard.NewXtendFileWizard"
          icon="icons/extensionfile.gif"
          id="org.eclipse.xtend.xtend.wizard.NewXtendFileWizard"
-         name="xTend File">
-	       <description>Create a new xTend File</description>
+         name="Xtend File">
+	       <description>Create a new Xtend File</description>
 		   <selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>

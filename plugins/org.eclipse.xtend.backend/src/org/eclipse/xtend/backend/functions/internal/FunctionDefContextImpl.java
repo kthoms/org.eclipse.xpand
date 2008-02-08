@@ -24,6 +24,7 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.backend.util.DoubleKeyCache;
 import org.eclipse.xtend.backend.util.ErrorHandler;
+import org.eclipse.xtend.backend.util.StringHelper;
 
 
 /**
@@ -103,7 +104,14 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     
     public Object invoke (ExecutionContext ctx, String functionName, List<? extends Object> params) {
     	final Collection<Function> candidates = findFunctionCandidates (ctx, functionName, params);
-    	final Function f = new PolymorphicResolver(functionName).evaluateGuards(ctx, candidates);
+    	
+    	Function f = null;
+    	try {
+    	    f = new PolymorphicResolver(functionName).evaluateGuards(ctx, candidates);
+    	}
+    	catch (Exception exc) {
+    	    ErrorHandler.handle ("could not resolve function '" + functionName + "' for parameter types " + StringHelper.getTypesAsString (params) + " - candidates were " + candidates, exc);
+    	}
     	return ctx.getFunctionInvoker().invoke (ctx, f, params);
     }
 

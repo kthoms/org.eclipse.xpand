@@ -10,7 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.functions;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;

@@ -14,7 +14,9 @@ package org.eclipse.xtend.expression.ast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
@@ -23,11 +25,13 @@ import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
+import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Type1;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.old.XtendBackendFacade;
 import org.eclipse.xtend.typesystem.Property;
 
 /**
@@ -39,27 +43,68 @@ public class EvaluationTest extends TestCase {
 	private ExecutionContextImpl ec;
 
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		ec = new ExecutionContextImpl();
-		ec.registerMetaModel(new JavaMetaModel("asdf", new JavaBeansStrategy()));
-	}
-
-	private Expression parse (final String expression) {
-	    return ParseFacade.expression(expression);
+		ec.registerMetaModel (new JavaMetaModel("asdf", new JavaBeansStrategy()));
 	}
 
 	private Object eval (String expression) {
-	    final Expression expr = ParseFacade.expression(expression);
-	    return expr.evaluate (ec);
+	    final Object oldResult = evalOld (expression);
+	    final Object newResult = evalNew (expression);
+
+	    checkEquals (oldResult, newResult);
+	    
+	    setUp (); // re-init ec
+	    
+	    return oldResult;
 	}
+
+	private Object evalOld (String expression) {
+        final Expression expr = ParseFacade.expression(expression);
+        return expr.evaluate (ec);
+	}
+	
+	private Object evalNew (String expression) {
+        final Map<String, Object> newLocalVars = new HashMap<String, Object> ();
+        for (String vn: ec.getVisibleVariables().keySet())
+            newLocalVars.put (vn, ec.getVisibleVariables().get(vn).getValue());
+        
+        final Map<String, Object> newGlobalVars = new HashMap<String, Object> ();
+        for (String vn: ec.getGlobalVariables().keySet())
+            newGlobalVars.put (vn, ec.getGlobalVariables().get(vn).getValue());
+        
+        return XtendBackendFacade.evaluateExpression (expression, ec.getMetaModels(), newLocalVars, newGlobalVars);
+	}
+	
+	// be lenient about type equality - the new backend is more consistent at converting types than the old runtime is...
+    private void checkEquals (Object o1, Object o2) {
+        if (o1 == null) {
+            assertTrue (o2 == null);
+            return;
+        }
+        
+        if (o1 instanceof Double && o2 instanceof Double) {
+            assertEquals ((Double) o1, (Double) o2, .0000001);
+            return;
+        }
+        
+        if (o1 instanceof Number && o2 instanceof Number) {
+            assertEquals (((Number) o1).longValue(), ((Number) o2).longValue());
+            return;
+        }
+        
+        if (o1 instanceof CharSequence && o2 instanceof CharSequence) {
+                assertEquals (o1.toString(), o2.toString());
+                return;
+        }
+
+        assertEquals (o1, o2);
+    }
+
 	
 	private Object eval (String expression, String localVarName, Object localVarValue) {
 	    ec = (ExecutionContextImpl) ec.cloneWithVariable (new Variable (localVarName, localVarValue));
 	    return eval (expression);
-	}
-	
-	private Object eval (Expression expr) {
-	    return expr.evaluate (ec);
 	}
 	
 	public final void testSimple() {
@@ -113,6 +158,7 @@ public class EvaluationTest extends TestCase {
 		assertEquals(new Long(11), eval ("4 * 2 + 3"));
 		assertEquals(new Long(11), eval ("3 + 4 * 2"));
 		assertEquals(new Long(9), eval ("4 * 2 + 3 / 3"));
+		assertEquals(new Long(4), eval ("4 * 2 - (9 / 2)"));
 
 		assertEquals(new Double(11), eval ("3 + 4.0 * 2"));
 		assertEquals(new Double(11), eval ("4.0 * 2 + 3"));
@@ -132,11 +178,13 @@ public class EvaluationTest extends TestCase {
 	}
 
 	public final void testTypeLiteral1() {
-		assertEquals(ec.getStringType(), eval (parse("String")));
+		assertEquals (ec.getStringType(), evalOld ("String"));
+		assertEquals (StringType.INSTANCE, evalNew ("String"));
 
-		assertTrue (eval ("String.getProperty('length')") instanceof Property);
+		assertTrue (evalOld ("String.getProperty('length')") instanceof Property);
+		assertTrue (evalNew ("String.getProperty('length')") instanceof org.eclipse.xtend.backend.common.Property);
 
-		assertEquals(AType.TEST, eval(getATypeName() + "::TEST"));
+		assertEquals (AType.TEST, eval (getATypeName() + "::TEST"));
 	}
 
 	private String getATypeName() {
@@ -167,7 +215,7 @@ public class EvaluationTest extends TestCase {
 		list.add(new Long(3));
 		list.add(new Long(4));
 
-		final String expr = "col.typeSelect(String).forAll(e|col.typeSelect(Integer).exists(a| a == e.length))";
+		final String expr = "col.typeSelect(String).forAll (e|col.typeSelect(Integer).exists(a | a == e.length))";
 		assertEquals(Boolean.FALSE, eval (expr, "col", list));
 		
 		list.add(new Long(5));
@@ -179,7 +227,7 @@ public class EvaluationTest extends TestCase {
 	}
 
 	public final void testGlobalVar() {
-		ec = new ExecutionContextImpl(Collections.singletonMap("horst",	new Variable("horst", "TEST")));
+		ec = new ExecutionContextImpl (Collections.singletonMap ("horst", new Variable("horst", "TEST")));
 		assertEquals("TEST", eval ("GLOBALVAR horst"));
 	}
 
@@ -201,7 +249,7 @@ public class EvaluationTest extends TestCase {
 	}
 
 	public final void testConstruction() {
-		assertEquals("", eval ("new String"));
+		assertEquals(new AType (), eval ("new org::eclipse::xtend::expression::ast::AType"));
 
 		try {
 			eval ("new Unkown");
@@ -225,13 +273,9 @@ public class EvaluationTest extends TestCase {
 	
 
 	public void testCollectShortCutWithFeatureCalls() throws Exception {
-		TestMetaModel mm = new TestMetaModel();
-		ec = new ExecutionContextImpl();
-		ec.registerMetaModel(mm);
-		
-		assertEquals (Arrays.asList("test"), eval ("x.list.list.strings.toLowerCase()", "x", Collections.singletonList(mm.singleType.newInstance())));
-		assertEquals (Arrays.asList("test"), eval ("x.list().list().strings().toLowerCase()", "x", Collections.singletonList(mm.singleType.newInstance())));
-		assertEquals (Arrays.asList("test"), eval ("x.list.list().list.strings().toLowerCase()", "x", Collections.singletonList(mm.singleType.newInstance())));
+		assertEquals (Arrays.asList ("test"), eval ("x.list.list.strings.toLowerCase()", "x", Collections.singletonList (new TestType ())));
+		assertEquals (Arrays.asList ("test"), eval ("x.list().list().strings().toLowerCase()", "x", Collections.singletonList (new TestType ())));
+		assertEquals (Arrays.asList ("test"), eval ("x.list.list().list.strings().toLowerCase()", "x", Collections.singletonList (new TestType ())));
 	}
 	
 	public void testCollectOnNull() throws Exception {
@@ -239,13 +283,17 @@ public class EvaluationTest extends TestCase {
 	}
 	
 	public void testEvaluationOrderOfOperands() throws Exception {
-		assertEquals("12",eval ("x.toString() + x.toString()", "x", new Cls ()));
+	    ec = (ExecutionContextImpl) ec.cloneWithVariable (new Variable ("x", new Cls()));
+		checkEquals ("12", evalOld ("x.asString() + x.asString()"));
+
+		ec = (ExecutionContextImpl) ec.cloneWithVariable (new Variable ("x", new Cls()));
+		checkEquals ("12", evalNew ("x.asString() + x.asString()"));
 	}
 	
 	public static class Cls {
 	       int c = 1;
-           @Override
-           public String toString() {
+
+	       public String asString() {
                return ""+c++;
            }
 	}

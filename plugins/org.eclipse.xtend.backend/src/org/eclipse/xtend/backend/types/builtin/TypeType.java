@@ -11,10 +11,13 @@ Contributors:
 package org.eclipse.xtend.backend.types.builtin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ReflectionHelper;
@@ -45,6 +48,29 @@ public final class TypeType extends AbstractType {
                 result.addAll (t.getBuiltinOperations());
                 return result;
             } 
+        });
+        
+        register ("getProperty", new Function () {
+            final List<? extends BackendType> _paramTypes = Arrays.asList (TypeType.this, StringType.INSTANCE);
+            
+            public ExpressionBase getGuard () {
+                return null;
+            }
+
+            public List<? extends BackendType> getParameterTypes () {
+                return _paramTypes;
+            }
+
+            public Object invoke (ExecutionContext ctx, Object[] params) {
+                final BackendType t = (BackendType) params[0];
+                final String propname = (String) params[1];
+                
+                return t.getProperties().get(propname);
+            }
+
+            public boolean isCached () {
+                return false;
+            }
         });
     }
 

@@ -12,9 +12,11 @@ package org.eclipse.xtend.backend.util;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -25,6 +27,23 @@ import java.util.Iterator;
 public final class StringHelper {
     private static final NumberFormat _numFormat = NumberFormat.getNumberInstance();
 
+    public static String getTypeAsString (Object o) {
+        if (o == null)
+            return "<null>";
+        else
+            return o.getClass().getSimpleName();
+    }
+    
+    public static List<String> getTypesAsString (List<?> l) {
+        final List<String> result = new ArrayList<String> ();
+        
+        for (Object o: l)
+            result.add (getTypeAsString(o));
+            
+        return result;
+    }
+    
+    
     /**
      * formats a number using the default locale settings.
      */

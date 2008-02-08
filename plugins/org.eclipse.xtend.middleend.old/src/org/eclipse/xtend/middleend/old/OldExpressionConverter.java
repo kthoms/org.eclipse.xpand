@@ -12,7 +12,6 @@ package org.eclipse.xtend.middleend.old;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.internal.xtend.expression.ast.BooleanLiteral;
@@ -61,9 +60,10 @@ import org.eclipse.xtend.backend.expr.PropertyOnObjectExpression;
 import org.eclipse.xtend.backend.expr.PropertyOnWhateverExpression;
 import org.eclipse.xtend.backend.expr.SequenceExpression;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
+import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
+import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.Pair;
-import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.StaticProperty;
@@ -123,8 +123,9 @@ final class OldExpressionConverter {
 
         if (expr instanceof ConstructorCallExpression)
             return convertConstructorCallExpression ((ConstructorCallExpression) expr);
+        
         if (expr instanceof IfExpression)
-            convertIfExpression((IfExpression) expr);
+            return convertIfExpression((IfExpression) expr);
         if (expr instanceof SwitchExpression)
             return convertSwitchExpression ((SwitchExpression) expr);
         
@@ -141,13 +142,13 @@ final class OldExpressionConverter {
 
         final List<Type> paramTypes = new ArrayList<Type>();
         for (Expression e: expr.getParams())
-            paramTypes.add (e.analyze(_ctx, new HashSet<AnalysationIssue>()));
+            paramTypes.add (new OldTypeAnalyzer ().analyze (_ctx, e));
         
         if (expr.getTarget() == null) {
             if (hasThis()) {
                 // if a function matches directly (i.e. without implicitly passing 'this' as a first parameter), that
                 //  has precedence in matching
-                if (_ctx.getExtensionForTypes (functionName, paramTypes.toArray (new Type[0])) != null) 
+                if (hasMatchingOperationCall (functionName, paramTypes.toArray (new Type[0]))) 
                     return new InvocationOnObjectExpression (functionName, params, false, sourcePos);
                 else {
                     final ExpressionBase thisExpression = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
@@ -159,8 +160,20 @@ final class OldExpressionConverter {
                 return new InvocationOnObjectExpression (functionName, params, false, sourcePos);
         }
         else
-            return createInvocationOnTargetExpression(functionName, convert (expr.getTarget()), expr.getTarget ().analyze (_ctx, new HashSet<AnalysationIssue> ()), params, paramTypes, true, sourcePos);
+            return createInvocationOnTargetExpression(functionName, convert (expr.getTarget()), new OldTypeAnalyzer ().analyze (_ctx, expr.getTarget ()), params, paramTypes, true, sourcePos);
     }
+    
+    private boolean hasMatchingOperationCall (String functionName, Type[] paramTypes) {
+        if (_ctx.getExtensionForTypes (functionName, paramTypes) != null)
+            return true;
+
+        if (paramTypes.length == 0)
+            return false;
+        
+        final Type target = paramTypes[0];
+        return target.getOperation(functionName, CollectionHelper.withoutFirst (paramTypes)) != null;
+    }
+    
     
     /**
      * transform built-in operator names from the old to the new special names
@@ -193,6 +206,11 @@ final class OldExpressionConverter {
         if ("!".equals (functionName))
             return SysLibNames.OPERATOR_NOT;
         
+        if ("subString".equals (functionName))
+            return SysLibNames.SUBSTRING;
+        if ("replaceAll".equals (functionName))
+            return SysLibNames.REPLACE_ALL_REGEX;
+        
         return functionName;
     }
     
@@ -206,7 +224,7 @@ final class OldExpressionConverter {
             paramTypes.add (0, targetType);
             final Type[] paramTypeArray = paramTypes.toArray(new Type[0]);
             
-            if (_ctx.getExtensionForTypes (functionName, paramTypeArray) != null) 
+            if (hasMatchingOperationCall (functionName, paramTypeArray)) 
                 // check if there is a function that directly matches the collection
                 return new InvocationOnObjectExpression (functionName, allParams, true, sourcePos);
             else
@@ -258,7 +276,7 @@ final class OldExpressionConverter {
     
     private ExpressionBase convertLetExpression (LetExpression expr) {
         final ExpressionBase varExpr = convert (expr.getVarExpression());
-        final Type varType = expr.getVarExpression().analyze(_ctx, new HashSet<AnalysationIssue>());
+        final Type varType = new OldTypeAnalyzer ().analyze (_ctx, expr.getVarExpression());
         
         final ExecutionContext oldCtx = _ctx;
         _ctx = _ctx.cloneWithVariable (new Variable (expr.getName(), varType));
@@ -275,10 +293,12 @@ final class OldExpressionConverter {
     }
     
     private ExpressionBase convertIfExpression (IfExpression expr) {
+        final ExpressionBase elseExpr = (expr.getElsePart() != null) ? convert (expr.getElsePart()) : new LiteralExpression (null, getSourcePos (expr));
+        
         return new org.eclipse.xtend.backend.expr.IfExpression (
                 convert (expr.getCondition()),
                 convert (expr.getThenPart()),
-                convert (expr.getElsePart()),
+                elseExpr,
                 getSourcePos(expr));
     }
     
@@ -311,14 +331,14 @@ final class OldExpressionConverter {
         }
         else {
             // evaluate the target and evaluate the property on the result
-            final Type t = expr.getTarget().analyze (_ctx, new HashSet<AnalysationIssue>());
+            final Type t = new OldTypeAnalyzer ().analyze (_ctx,expr.getTarget());
             return createPropertyExpression(convert (expr.getTarget()), t, expr.getName().getValue(), sourcePos);
         }
     }
     
     private ExpressionBase createPropertyExpression (ExpressionBase target, Type type, String varName, SourcePos sourcePos) {
         if (isCollectionType (type)) {
-            if ("size".equals (varName) || "isEmpty".equals (varName)) //TODO reference the type system for this
+            if (CollectionType.INSTANCE.getProperties().keySet().contains (varName))
                 return new PropertyOnObjectExpression (target, varName, sourcePos);
             else
                 return new PropertyOnCollectionExpression (target, varName, sourcePos);

@@ -44,6 +44,8 @@ public final class JavaBuiltinConverterFactory {
         _converters.put (Character.TYPE, new CharConverter ());
         
         _converters.put (String.class, new StringConverter ());
+        _converters.put (StringBuilder.class, new StringBuilderConverter ());
+        _converters.put (StringBuffer.class, new StringBufferConverter ());
         _converters.put (EfficientLazyString.class, new EfficientLazyStringConverter ());
     }
     

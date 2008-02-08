@@ -11,7 +11,7 @@ AOP
 Profiler
 Protected Region Resolver
 
-List.sortBy(closure)
+complete syslib: toUpper etc., List.sortBy(closure)
 new String --> ""
 
 static properties; enums
@@ -65,7 +65,10 @@ Overwriting / hiding of functions is only posible for functions without guards (
   the necessity of comparing guards for equality)
 IteratorType is now handled via the Java type system
 Only one global type system to avoid ambiguities when objects are passed from one compilation unit to another
-
+Collection.remove, Collection.removeAll return a boolean instead of the collection now, same as the JDK implementations
+many collection operations (e.g. "flatten") retain the collection type now instead of always returning a list
+renamed "flatten" to "flattenedCopy"
+removed Collection.forAll (--> duplicate for notExists) and List.sortBy (very special functionality)
 
 Ideen für die Zukunft
 ---------------------

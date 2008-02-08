@@ -10,7 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.common;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;

@@ -12,12 +12,12 @@ package org.eclipse.xtend.backend.expr;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.syslib.CollectionOperations;
 
 
 /**
@@ -51,11 +51,12 @@ public final class InvocationOnCollectionExpression extends ExpressionBase {
         for (ExpressionBase expr: _params)
         	params.add (expr.evaluate (ctx));
         
-        final Collection<Object> result = (coll instanceof List) ? new ArrayList<Object> () : new HashSet<Object> ();
+        final Collection<Object> result = CollectionOperations.createMatchingCollection (coll);
         
         for (Object o: coll) {
         	params.set (0, o);
-            result.add (ctx.getFunctionDefContext().invoke (ctx, _functionName, params));
+
+        	CollectionOperations.addFlattened (result, ctx.getFunctionDefContext().invoke (ctx, _functionName, params));
         }
         
         return result;

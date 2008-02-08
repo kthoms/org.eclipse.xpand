@@ -10,15 +10,13 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.syslib.CollectionOperations;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
 
 
@@ -53,10 +51,10 @@ public final class PropertyOnWhateverExpression extends ExpressionBase {
             if (isProperty (t, _propertyName))
                 return t.getProperty (ctx, o, _propertyName);
             
-            final Collection<Object> result = (o instanceof List) ? new ArrayList<Object> () : new HashSet<Object> ();
+            final Collection<Object> result = CollectionOperations.createMatchingCollection ((Collection<?>) o);
 
-            for (Object obj: (Collection<?>) o)
-                result.add (ctx.getTypesystem().findType(obj).getProperty(ctx, obj, _propertyName));
+            for (Object obj: (Collection<?>) o) 
+                CollectionOperations.addFlattened (result, ctx.getTypesystem().findType(obj).getProperty(ctx, obj, _propertyName));
 
             return result;
         }

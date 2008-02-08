@@ -82,7 +82,7 @@ public final class ExecutionContextImpl implements ExecutionContext {
 	}
 
 	public void logNullDeRef (SourcePos pos) {
-	    final StringBuilder sb = new StringBuilder ("dereferenced null (" + pos + ")");
+	    final StringBuilder sb = new StringBuilder ("dereferenced null " + ((pos != null) ? ("(" + pos + ")") : ""));
 	    for (int i=_stacktrace.size() - 1; i>= 0; i--)
 	        sb.append ("\n  " + _stacktrace.get (i));
 	    

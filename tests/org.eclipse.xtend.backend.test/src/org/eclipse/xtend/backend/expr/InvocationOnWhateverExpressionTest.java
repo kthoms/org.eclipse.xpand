@@ -10,9 +10,9 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExecutionContext;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createLiteral;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLiteral;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -31,13 +31,13 @@ public class InvocationOnWhateverExpressionTest {
      @Test public void testInvocationOnObject () {
         assertEquals (3L, new InvocationOnWhateverExpression ("operatorPlus", Arrays.asList (createLiteral (1L), createLiteral (2L)), false, SOURCE_POS).evaluate (createEmptyExecutionContext ()));
         assertEquals (3L, new InvocationOnWhateverExpression ("operatorPlus", Arrays.asList (createLiteral (1L), createLiteral (2L)), true, SOURCE_POS).evaluate (createEmptyExecutionContext ()));
-        assertEquals (Arrays.asList (1L), new InvocationOnWhateverExpression ("asList", Arrays.asList (createLiteral (Arrays.asList(1L))), false, SOURCE_POS).evaluate (createEmptyExecutionContext()));
-        assertEquals (Arrays.asList (1L), new InvocationOnWhateverExpression ("asList", Arrays.asList (createLiteral (Arrays.asList(1L))), true, SOURCE_POS).evaluate (createEmptyExecutionContext()));
+        assertEquals (Arrays.asList (1L), new InvocationOnWhateverExpression ("toList", Arrays.asList (createLiteral (Arrays.asList(1L))), false, SOURCE_POS).evaluate (createEmptyExecutionContext()));
+        assertEquals (Arrays.asList (1L), new InvocationOnWhateverExpression ("toList", Arrays.asList (createLiteral (Arrays.asList(1L))), true, SOURCE_POS).evaluate (createEmptyExecutionContext()));
 
-        assertEquals (Arrays.asList (Collections.singleton (1L)), new InvocationOnWhateverExpression ("asList", Arrays.asList (createLiteral (Collections.singleton (Collections.singleton (1L)))), false, SOURCE_POS).evaluate (createEmptyExecutionContext()));
-        assertEquals (Arrays.asList (Collections.singleton (1L)), new InvocationOnWhateverExpression ("asList", Arrays.asList (createLiteral (Collections.singleton (Collections.singleton (1L)))), true, SOURCE_POS).evaluate (createEmptyExecutionContext()));
+        assertEquals (Arrays.asList (Collections.singleton (1L)), new InvocationOnWhateverExpression ("toList", Arrays.asList (createLiteral (Collections.singleton (Collections.singleton (1L)))), false, SOURCE_POS).evaluate (createEmptyExecutionContext()));
+        assertEquals (Arrays.asList (Collections.singleton (1L)), new InvocationOnWhateverExpression ("toList", Arrays.asList (createLiteral (Collections.singleton (Collections.singleton (1L)))), true, SOURCE_POS).evaluate (createEmptyExecutionContext()));
         
-        assertEquals (null, new InvocationOnWhateverExpression ("asList", Arrays.asList (createLiteral (null)), true, SOURCE_POS).evaluate (createEmptyExecutionContext()));
+        assertEquals (null, new InvocationOnWhateverExpression ("toList", Arrays.asList (createLiteral (null)), true, SOURCE_POS).evaluate (createEmptyExecutionContext()));
         assertEquals (null, new InvocationOnWhateverExpression ("operatorPlus", Arrays.asList (createLiteral (null), createLiteral (2L)), true, SOURCE_POS).evaluate (createEmptyExecutionContext()));
 
         try {
@@ -56,5 +56,9 @@ public class InvocationOnWhateverExpressionTest {
     @Test public void testInvocationOnCollection () {
         assertEquals (Arrays.asList (1L, 2L, 3L), new InvocationOnWhateverExpression ("operatorMinus", Arrays.asList (createLiteral (Arrays.asList (3L, 4L, 5L)), createLiteral (2L)), true, SOURCE_POS).evaluate (createEmptyExecutionContext ()));
         assertEquals (Arrays.asList (1L, 2L, 3L), new InvocationOnWhateverExpression ("operatorMinus", Arrays.asList (createLiteral (Arrays.asList (3L, 4L, 5L)), createLiteral (2L)), false, SOURCE_POS).evaluate (createEmptyExecutionContext ()));
+    }
+    
+    @Test public void testFlatten () {
+        assertEquals (Arrays.asList("a","b","b","c","d"), new InvocationOnWhateverExpression ("split", Arrays.asList (createLiteral (Arrays.asList ("a,b", "b,c,d")), createLiteral (",")), false, SOURCE_POS).evaluate (createEmptyExecutionContext()));
     }
 }

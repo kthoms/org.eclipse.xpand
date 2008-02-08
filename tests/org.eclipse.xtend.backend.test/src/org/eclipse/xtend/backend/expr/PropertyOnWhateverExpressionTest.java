@@ -10,14 +10,14 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExecutionContext;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createLiteral;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLiteral;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import org.eclipse.xtend.backend.helpers.BeanWithSizeProperty;
+import org.eclipse.xtend.backend.testhelpers.BeanWithSizeProperty;
 import org.junit.Test;
 
 
@@ -36,5 +36,9 @@ public class PropertyOnWhateverExpressionTest {
     
     private Object eval (Object param, String propertyName) {
         return new PropertyOnWhateverExpression (createLiteral (param), propertyName, SOURCE_POS).evaluate (createEmptyExecutionContext());
+    }
+    
+    @Test public void testFlatten () {
+        assertEquals (Arrays.asList("a0","a1","a0","a1","a2"), new PropertyOnWhateverExpression (createLiteral (Arrays.asList (new BeanWithSizeProperty (2), new BeanWithSizeProperty (3))), "chunks", SOURCE_POS).evaluate (createEmptyExecutionContext()));
     }
 }

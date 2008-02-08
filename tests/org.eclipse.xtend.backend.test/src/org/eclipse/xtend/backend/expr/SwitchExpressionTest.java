@@ -10,8 +10,8 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
-import org.eclipse.xtend.backend.helpers.CheckEvaluationExpression;
-import org.eclipse.xtend.backend.helpers.NamedFunctionFactory;
+import org.eclipse.xtend.backend.testhelpers.CheckEvaluationExpression;
+import org.eclipse.xtend.backend.testhelpers.NamedFunctionFactory;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.util.Pair;

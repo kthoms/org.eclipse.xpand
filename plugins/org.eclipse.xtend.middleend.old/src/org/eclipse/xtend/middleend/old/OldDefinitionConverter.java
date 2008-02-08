@@ -191,8 +191,8 @@ final class OldDefinitionConverter {
             for (Expression e: stmt.getParameters())
                 params.add (convertExpression (e));
             
-            
-            final Type targetType = ((ParameterizedType) stmt.getTarget().analyze (_ctx, new HashSet<AnalysationIssue> ())).getInnerType();
+            final Type rawTargetType = new OldTypeAnalyzer().analyze(_ctx, stmt.getTarget());
+            final Type targetType = (rawTargetType instanceof ParameterizedType) ? ((ParameterizedType) rawTargetType).getInnerType() : _ctx.getObjectType();
             
             final Type[] argTypes = new Type[stmt.getParametersAsList().size()];
             for (int i=0; i<stmt.getParametersAsList().size(); i++)
@@ -241,7 +241,7 @@ final class OldDefinitionConverter {
         final ExpressionBase separator = (stmt.getSeparator() != null) ? convertExpression (stmt.getSeparator()) : null;
         final ExpressionBase target = convertExpression (stmt.getTarget());
         
-        final Type collType = stmt.getTarget().analyze(oldContext, new HashSet<AnalysationIssue>());
+        final Type collType = new OldTypeAnalyzer().analyze (oldContext, stmt.getTarget());
         final Type eleType = (collType instanceof ParameterizedType) ? ((ParameterizedType) collType).getInnerType() : _ctx.getObjectType(); 
 
         final String varName = stmt.getVariable().getValue();
@@ -304,7 +304,7 @@ final class OldDefinitionConverter {
     
     private ExpressionBase convertLetStatement (LetStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         final String varName = stmt.getVarName().getValue();
-        final Type type = stmt.getVarValue().analyze (_ctx, new HashSet<AnalysationIssue> ());
+        final Type type = new OldTypeAnalyzer().analyze (_ctx, stmt.getVarValue());
         
         final XpandExecutionContext oldContext = _ctx;
         _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (varName, type));

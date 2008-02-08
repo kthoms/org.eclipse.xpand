@@ -10,8 +10,8 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 

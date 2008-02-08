@@ -10,12 +10,13 @@ Contributors:
  */
 package org.eclipse.xtend.backend.functions;
 
-import static org.junit.Assert.*;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.functions.java.ParameterConverter;
 import org.eclipse.xtend.backend.functions.java.internal.IntConverter;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
@@ -116,9 +117,22 @@ public class JavaBuiltinConverterTest {
         checkEquals (new Character ('a'), JavaBuiltinConverterFactory.getConverter (Character.class).backendToJava ("a"));
         checkEquals (null, JavaBuiltinConverterFactory.getConverter (Character.class).backendToJava (null));
         
+        checkEquals ("a", JavaBuiltinConverterFactory.getConverter (String.class).backendToJava (new StringBuilder ("a")));
+        checkEquals (null, JavaBuiltinConverterFactory.getConverter (String.class).backendToJava (null));
+        
+        checkEquals (new StringBuilder ("a"), JavaBuiltinConverterFactory.getConverter (StringBuilder.class).backendToJava ("a"));
+        checkEquals (null, JavaBuiltinConverterFactory.getConverter (StringBuilder.class).backendToJava (null));
+        
+        checkEquals (new StringBuffer ("a"), JavaBuiltinConverterFactory.getConverter (StringBuffer.class).backendToJava ("a"));
+        checkEquals (null, JavaBuiltinConverterFactory.getConverter (StringBuffer.class).backendToJava (null));
+
+        final EfficientLazyString els = (EfficientLazyString) JavaBuiltinConverterFactory.getConverter (EfficientLazyString.class).backendToJava ("a");
+        assertEquals ("a", els.toString());
+        checkEquals (null, JavaBuiltinConverterFactory.getConverter (EfficientLazyString.class).backendToJava (null));
+        
         checkEquals ("a", JavaBuiltinConverterFactory.getConverter (Character.TYPE).javaToBackend ('a'));
         checkEquals ("a", JavaBuiltinConverterFactory.getConverter (Character.class).javaToBackend ('a'));
-        checkEquals (null, JavaBuiltinConverterFactory.getConverter (Long.class).javaToBackend (null));
+        checkEquals (null, JavaBuiltinConverterFactory.getConverter (Character.class).javaToBackend (null));
     }
     
     @Test public void testList () {
@@ -126,11 +140,23 @@ public class JavaBuiltinConverterTest {
         checkArraysEqual (new String[] {"a", "b", "c"}, (Object[]) JavaBuiltinConverterFactory.getConverter (new String[0].getClass()).backendToJava(Arrays.asList("a", "b", "c")));
     }
     
+    
+    /**
+     * This is necessary because JUnit's assertEquals is lenient in comparing numbers - it always compares their longValue, and
+     *  since we are testing type conversion here, that's not what we want ;-) 
+     */
     private void checkEquals (Object o1, Object o2) {
         if (o1 == null)
             assertTrue (o2 == null);
-        else
-            assertTrue (o1.equals (o2));
+        else {
+            assertEquals (o1.getClass(), o2.getClass());
+            
+            // this is necessary because some CharSequence implementations do not have equals methods, e.g. StringBuilder ;-(
+            if (o1 instanceof CharSequence)
+                assertEquals (o1.toString(), o2.toString());
+            else
+                assertEquals (o1, o2);
+        }
     }
     
     private void checkArraysEqual (Object[] a1, Object[] a2) {

@@ -26,6 +26,9 @@ public interface SysLibNames {
     
     String IMPLIES = "implies";
     
+    String SUBSTRING = "substring";
+    String REPLACE_ALL_REGEX = "replaceAllUsingRegex";
+    
     // function names for operator overloading
     String OPERATOR_PLUS = "operatorPlus";
     String OPERATOR_MINUS = "operatorMinus";

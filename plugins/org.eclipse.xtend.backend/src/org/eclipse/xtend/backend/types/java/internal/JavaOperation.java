@@ -12,8 +12,11 @@ package org.eclipse.xtend.backend.types.java.internal;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
@@ -23,6 +26,7 @@ import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.ErrorHandler;
+import org.eclipse.xtend.backend.util.StringHelper;
 
 
 
@@ -32,7 +36,9 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class JavaOperation implements Function {
+public final class JavaOperation implements Function {
+    private final Log _log = LogFactory.getLog(getClass());
+    
     private final Method _mtd;
     private final List<BackendType> _parameterTypes;
     private final ExpressionBase _guard;
@@ -46,7 +52,7 @@ final class JavaOperation implements Function {
         _guard = guard;
         
         for (int i=0; i<mtd.getParameterTypes().length; i++) {
-            final ParameterConverter pc = JavaBuiltinConverterFactory.getParameterConverter (mtd.getParameterTypes()[i], i);
+            final ParameterConverter pc = JavaBuiltinConverterFactory.getParameterConverter (mtd.getParameterTypes()[i], i+1);
             if (pc != null)
                 _parameterConverters.add(pc);
         }
@@ -67,7 +73,22 @@ final class JavaOperation implements Function {
             pc.convert(params);
 
         try {
+            if (_log.isDebugEnabled()) {
+                final Object target = params[0];
+                final List<?> realParams = Arrays.asList(CollectionHelper.withoutFirst(params));
+                
+                _log.debug ("invoking method " + _mtd + " on " + 
+                        target + "[" + StringHelper.getTypeAsString (target) + "] " +
+                        "for (" + realParams + ": " + StringHelper.getTypesAsString (realParams) + ")");
+            }
+            
             final Object resultRaw = _mtd.invoke (params[0], CollectionHelper.withoutFirst (params));
+
+            if (_log.isDebugEnabled()) {
+                final Object convertedResult = _returnValueConverter.javaToBackend (resultRaw);
+                _log.debug ("  ... result: " + convertedResult + " [" + StringHelper.getTypeAsString(convertedResult) + "]"); 
+            }
+            
             return _returnValueConverter.javaToBackend (resultRaw);
         } catch (Exception e) {
             ErrorHandler.handle (e);

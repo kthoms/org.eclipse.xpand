@@ -48,7 +48,11 @@ public final class XtendBackendFacade {
      * Both mms and localVars may be null.
      */
     public static Object evaluateExpression (String expression, Collection<MetaModel> mms, Map<String, Object> localVars) {
-        return evaluateExpression (expression, null, null, mms, localVars);
+        return evaluateExpression (expression, mms, localVars, null);
+    }
+        
+    public static Object evaluateExpression (String expression, Collection<MetaModel> mms, Map<String, Object> localVars, Map<String, Object> globalVars) {
+        return evaluateExpression (expression, null, null, mms, localVars, globalVars);
     }
 
     /**
@@ -57,19 +61,24 @@ public final class XtendBackendFacade {
      * The fileEncoding may be null, in which case the platform's default encoding is used. Both mms and localVars may be null.
      */
     public static Object evaluateExpression (String expression, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> localVars) {
+        return evaluateExpression (expression, initialXtendFileName, fileEncoding, mms, localVars, null);
+    }
+        
+    public static Object evaluateExpression (String expression, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> localVars, Map<String, Object> globalVars) {
         if (localVars == null)
             localVars = new HashMap<String, Object> ();
+        if (globalVars == null)
+            globalVars = new HashMap<String, Object> ();
         if (mms == null)
             mms = new ArrayList<MetaModel> ();
 
         final Expression oldAst = ParseFacade.expression (expression);
-
         
         ExecutionContextImpl ctx = new ExecutionContextImpl ();
         for (MetaModel mm: mms)
             ctx.registerMetaModel (mm);
         for (String varName: localVars.keySet())
-            ctx = (ExecutionContextImpl) ctx.cloneWithVariable (new Variable (varName, localVars.get (varName)));
+            ctx = (ExecutionContextImpl) ctx.cloneWithVariable (new Variable (varName, ctx.getType (localVars.get (varName))));
             
         final BackendTypesystem ts = OldXtendHelper.guessTypesystem (mms);
         final TypeToBackendType typeConverter = new TypeToBackendType (ts, ctx);
@@ -79,7 +88,8 @@ public final class XtendBackendFacade {
         final FunctionDefContext fdc = (initialXtendFileName != null) ? createForFile (initialXtendFileName, fileEncoding, mms).getFunctionDefContext() : new FunctionDefContextFactory (ts).create();
         final ExecutionContext newCtx = BackendFacade.createExecutionContext (fdc, ts, true); //TODO configure isLogStacktrace
         newCtx.getLocalVarContext().getLocalVars().putAll (localVars);
-        
+        newCtx.getGlobalParamContext().getGlobalParams().putAll (globalVars);
+
         return newAst.evaluate (newCtx);
     }
     

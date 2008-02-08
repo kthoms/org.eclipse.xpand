@@ -10,7 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.functions;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.java.JavaDefinedFunction;
-import org.eclipse.xtend.backend.helpers.CounterFunction;
-import org.eclipse.xtend.backend.helpers.NamedFunctionFactory;
+import org.eclipse.xtend.backend.testhelpers.CounterFunction;
+import org.eclipse.xtend.backend.testhelpers.NamedFunctionFactory;
 import org.junit.Test;
 
 

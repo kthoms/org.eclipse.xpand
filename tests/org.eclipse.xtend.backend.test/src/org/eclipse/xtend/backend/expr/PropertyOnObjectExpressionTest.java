@@ -10,14 +10,14 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createEmptyExecutionContext;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.createLiteral;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLiteral;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import org.eclipse.xtend.backend.helpers.BeanWithSizeProperty;
+import org.eclipse.xtend.backend.testhelpers.BeanWithSizeProperty;
 import org.junit.Test;
 
 

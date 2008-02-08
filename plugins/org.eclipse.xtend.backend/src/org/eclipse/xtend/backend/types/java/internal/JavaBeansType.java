@@ -38,7 +38,7 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class JavaBeansType implements BackendType {
+public final class JavaBeansType implements BackendType {
     private final Class<?> _javaClass;
     private final List<NamedFunction> _operations = new ArrayList<NamedFunction>();
     private final Map<String, JavaBeansProperty> _properties = new HashMap<String, JavaBeansProperty> ();

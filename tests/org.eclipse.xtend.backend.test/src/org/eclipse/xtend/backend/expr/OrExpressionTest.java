@@ -10,10 +10,10 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.*;
 
-import org.eclipse.xtend.backend.helpers.ExceptionThrowingExpression;
+import org.eclipse.xtend.backend.testhelpers.ExceptionThrowingExpression;
 import org.junit.Test;
 
 

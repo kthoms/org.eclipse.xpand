@@ -10,14 +10,12 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.syslib.CollectionOperations;
 
 
 /**
@@ -43,10 +41,13 @@ public final class PropertyOnCollectionExpression extends ExpressionBase {
             return null;
         }
 
-        final Collection<Object> result = (coll instanceof List) ? new ArrayList<Object> () : new HashSet<Object> ();
+        final Collection<Object> result = CollectionOperations.createMatchingCollection (coll); 
 
-        for (Object o: coll)
-            result.add (ctx.getTypesystem().findType(o).getProperty(ctx, o, _propertyName));
+        if (_log.isDebugEnabled())
+            _log.debug ("evaluating property " + _propertyName + " on collection " + coll);
+        
+        for (Object o: coll) 
+            CollectionOperations.addFlattened (result, ctx.getTypesystem().findType(o).getProperty(ctx, o, _propertyName));
         
         return result;
     }

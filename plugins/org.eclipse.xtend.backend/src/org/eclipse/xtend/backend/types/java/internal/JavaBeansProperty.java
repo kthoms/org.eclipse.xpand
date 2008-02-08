@@ -23,7 +23,7 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class JavaBeansProperty implements Property {
+public final class JavaBeansProperty implements Property {
     private final PropertyDescriptor _pd;
     private final BackendType _owner;
     private final BackendType _type;

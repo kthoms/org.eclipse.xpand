@@ -11,7 +11,7 @@ Contributors:
 package org.eclipse.xtend.backend.types;
 
 import static org.junit.Assert.*;
-import static org.eclipse.xtend.backend.helpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 
 import java.util.Arrays;
 

@@ -120,6 +120,10 @@ public class ExecutionContextImpl implements ExecutionContext {
 		typeSystem.registerMetaModel(mm);
 	}
 
+	public List<MetaModel> getMetaModels () {
+	    return typeSystem.getMetaModels();
+	}
+	
 	public Operation findOperation(final String name, final Object target, final Object[] params) {
 		return typeSystem.findOperation(name, target, params);
 	}

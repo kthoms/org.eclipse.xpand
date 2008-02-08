@@ -69,7 +69,7 @@ public final class PrimitiveOperations {
         if (d == null || l == null)
             return null;
         
-        return d - l;
+        return l - d;
     }
     
     
@@ -121,7 +121,7 @@ public final class PrimitiveOperations {
         if (d == null || l == null)
             return null;
         
-        return d / l;
+        return l / d;
     }
     
     
@@ -147,7 +147,7 @@ public final class PrimitiveOperations {
         if (d == null || l == null)
             return null;
         
-        return d % l;
+        return l % d;
     }
     
     //////////////////////////////////////////

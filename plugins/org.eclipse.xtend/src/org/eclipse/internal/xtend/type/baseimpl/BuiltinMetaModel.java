@@ -246,13 +246,13 @@ public final class BuiltinMetaModel implements MetaModel {
 				return getVoidType();
 			}
 			if (obj instanceof Set) {
-				return getSetType(null);
+				return getSetType(getObjectType());
 			}
 			if (obj instanceof List) {
-				return getListType(null);
+				return getListType(getObjectType());
 			}
 			if (obj instanceof Collection) {
-				return getCollectionType(null);
+				return getCollectionType(getObjectType());
 			}
 			// datatypes
 			if (stringType.isInstance(obj)) {

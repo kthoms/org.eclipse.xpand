@@ -10,7 +10,6 @@ Contributors:
 */
 package org.eclipse.xtend.middleend.old;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.internal.xpand2.model.XpandDefinition;
@@ -18,7 +17,6 @@ import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.xpand2.XpandExecutionContext;
-import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -60,13 +58,13 @@ final class XpandDefinitionName {
         if (target == null)
             target = new FeatureCall (new Identifier (ExecutionContext.IMPLICIT_VARIABLE), null); // no target is treated as a 'this' reference
         
-        return target.analyze (ctx, new HashSet<AnalysationIssue> ());
+        return new OldTypeAnalyzer().analyze (ctx, target);
     }
     
     private static Type[] typesForArgExpressions (List<Expression> args, XpandExecutionContext ctx) {
         final Type[] result = new Type[args.size()];
         for (int i=0; i<args.size(); i++)
-            result[i] = args.get(i).analyze(ctx, new HashSet<AnalysationIssue> ());
+            result[i] = new OldTypeAnalyzer().analyze (ctx, args.get(i));
         return result;
     }
     

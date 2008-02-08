@@ -12,15 +12,21 @@ package org.eclipse.xtend.backend.expr;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.syslib.CollectionOperations;
 
 
 /**
+ * This expression invokes a function on the first argument, deciding at runtime whether to do the "collection magic" of
+ *  invoking the function on every member of the collection that is the first argument and returning the collection of
+ *  all the arguments.<br>
+ *  
+ * This expression does *not* do implicit "this" resolution - it is the responsibility of the initializing code, e.g. in the
+ *  middle end, to statically resolve that.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
@@ -55,11 +61,12 @@ public final class InvocationOnWhateverExpression extends ExpressionBase {
 
             final Collection<?> coll = (Collection<?>) params.get (0);
             
-            final Collection<Object> result = (coll instanceof List) ? new ArrayList<Object> () : new HashSet<Object> ();
+            final Collection<Object> result = CollectionOperations.createMatchingCollection (coll);
             
             for (Object o: coll) {
                 params.set (0, o);
-                result.add (ctx.getFunctionDefContext().invoke (ctx, _functionName, params));
+                
+                CollectionOperations.addFlattened (result, ctx.getFunctionDefContext().invoke (ctx, _functionName, params));
             }
             
             return result;

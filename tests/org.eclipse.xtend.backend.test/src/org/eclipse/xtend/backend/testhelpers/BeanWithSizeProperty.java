@@ -8,7 +8,10 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.helpers;
+package org.eclipse.xtend.backend.testhelpers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -29,5 +32,23 @@ public class BeanWithSizeProperty {
     
     public void setSize (long size) {
         _size = size;
+    }
+    
+    public List<String> getChunks () {
+        final List<String> result = new ArrayList<String>();
+        
+        for (int i=0; i<_size; i++)
+            result.add ("a" + i);
+        
+        return result;
+    }
+    
+    public Object myFunction (StringBuilder s, int i) {
+        return "asdf" + s + getSize() + " - " + (getSize() - i);
+    }
+    
+    @Override
+    public String toString () {
+        return "BeanWithSize [" + _size + "]";
     }
 }

@@ -13,6 +13,9 @@ package org.eclipse.xtend.backend.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 /**
  * 
@@ -22,6 +25,8 @@ public abstract class ExpressionBase {
     private final SourcePos _sourcePos;
     private final List<ExecutionListener> _listeners = new ArrayList<ExecutionListener> ();
 
+    protected final Log _log = LogFactory.getLog (getClass ());
+    
     public ExpressionBase (SourcePos sourcePos) {
         _sourcePos = sourcePos;
     }

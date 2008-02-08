@@ -57,6 +57,10 @@ public class TypeSystemImpl implements TypeSystem {
 		metaModels.add(metaModel);
 	}
 
+	public List<MetaModel> getMetaModels () {
+	    return metaModels;
+	}
+	
 	private Type[] toTypes(final Object[] params) {
 		final Type[] types = new Type[params.length];
 		for (int i = 0; i < types.length; i++) {
@@ -140,6 +144,7 @@ public class TypeSystemImpl implements TypeSystem {
 					}
 				}
 			}
+			
 			return bestMatch;
 		}
 

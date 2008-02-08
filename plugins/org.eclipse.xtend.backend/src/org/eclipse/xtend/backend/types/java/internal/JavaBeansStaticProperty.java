@@ -21,7 +21,7 @@ import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class JavaBeansStaticProperty implements StaticProperty {
+public final class JavaBeansStaticProperty implements StaticProperty {
     private final String _name;
     private final Object _value;
     private final BackendType _owner;

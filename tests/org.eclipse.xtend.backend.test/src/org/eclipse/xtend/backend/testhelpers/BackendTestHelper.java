@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.helpers;
+package org.eclipse.xtend.backend.testhelpers;
 
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.BackendTypesystem;

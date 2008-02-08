@@ -1,4 +1,4 @@
-package org.eclipse.xtend.backend.helpers;
+package org.eclipse.xtend.backend.testhelpers;
 
 
 public class CounterFunction {

@@ -28,8 +28,8 @@ import org.eclipse.xtend.ui.core.IXtendResource;
 
 public class XtendContentOutlinePage extends AbstractExtXptContentOutlinePage {
 
-	public static final int PRIVATE_CREATE_EXTENSION = 2,
-			PRIVATE_EXTENSION = 3, CREATE_EXTENSION = 4, EXTENSION = 5;
+	public static final int PRIVATE_CREATE_EXTENSION = 3,
+			PRIVATE_EXTENSION = 4, CREATE_EXTENSION = 5, EXTENSION = 6;
 
 	public XtendContentOutlinePage(AbstractXtendXpandEditor editor) {
 		super(editor);

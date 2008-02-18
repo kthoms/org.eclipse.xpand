@@ -37,6 +37,7 @@ import org.eclipse.xtend.backend.types.builtin.TypeType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
 import org.eclipse.xtend.backend.types.java.internal.GlobalJavaBeansTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
+import org.eclipse.xtend.backend.util.IdentityCache;
 
 
 /**
@@ -54,21 +55,40 @@ public final class CompositeTypesystem implements BackendTypesystem {
         _javaBeansTypesystem.setRootTypesystem (_rootTypesystem);
     }
     
+    private final IdentityCache<Object, BackendType> _typeByInstanceCache = new IdentityCache<Object, BackendType>() {
+
+        @Override
+        protected BackendType create (Object o) {
+            if (o == null)
+                return VoidType.INSTANCE;
+
+            BackendType bestMatch = findSimpleBuiltinType (o.getClass());
+            for (BackendTypesystem ts: _inner)
+                bestMatch = bestMatch (bestMatch, ts.findType (o));
+            
+            if (bestMatch != null)
+                return bestMatch;
+            
+            bestMatch = _javaBeansTypesystem.findType (o);
+            if (bestMatch != null)
+                return bestMatch;
+            
+            return ObjectType.INSTANCE;
+        }
+    };
     
-    private final Cache<Class<?>, BackendType> _cache = new Cache<Class<?>, BackendType>() {
+    private final Cache<Class<?>, BackendType> _typeByClassCache = new Cache<Class<?>, BackendType>() {
         @Override
         protected BackendType create (Class<?> key) {
-            final BackendType builtin = findSimpleBuiltinType (key);
-            if (builtin != null)
-                return builtin;
+            BackendType bestMatch = findSimpleBuiltinType (key);
             
-            for (BackendTypesystem ts : _inner) {
-                final BackendType result = ts.findType(key);
-                if (result != null)
-                    return result;
-            }
+            for (BackendTypesystem ts : _inner) 
+                bestMatch = bestMatch (bestMatch, ts.findType(key));
+
+            if (bestMatch != null)
+                return bestMatch;
             
-            final BackendType jbResult = _javaBeansTypesystem.findType(key);
+            final BackendType jbResult = _javaBeansTypesystem.findType (key);
             if (jbResult != null)
                 return jbResult;
             
@@ -76,6 +96,20 @@ public final class CompositeTypesystem implements BackendTypesystem {
         }
     };
 
+    private BackendType bestMatch (BackendType t1, BackendType t2) {
+        if (t1 == null)
+            return t2;
+        if (t2 == null)
+            return t1;
+        
+        if (t1.isAssignableFrom(t2))
+            return t2;
+        if (t2.isAssignableFrom(t1))
+            return t1;
+        
+        throw new IllegalArgumentException ("no unique best match for types " + t1 + " and " + t2);
+    }
+    
     //TODO remove this - add "asBackendType" to frontend type instead
     public Collection<BackendTypesystem> getInner () {
         final Collection<BackendTypesystem> result = new ArrayList<BackendTypesystem> (_inner);
@@ -89,14 +123,11 @@ public final class CompositeTypesystem implements BackendTypesystem {
     }
 
     public BackendType findType (Object o) {
-        if (o == null)
-            return VoidType.INSTANCE;
-
-        return findType (o.getClass());
+        return _typeByInstanceCache.get (o);
     }
 
     public BackendType findType (Class<?> cls) {
-        return _cache.get (cls);
+        return _typeByClassCache.get (cls);
     }
 
     public BackendTypesystem getRootTypesystem () {

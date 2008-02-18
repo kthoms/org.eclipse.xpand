@@ -21,8 +21,6 @@ public interface ExecutionContext {
     LocalVarContext getLocalVarContext ();
     void setLocalVarContext (LocalVarContext ctx);
     
-    GlobalParamContext getGlobalParamContext (); 
-    
     BackendTypesystem getTypesystem ();
     FunctionDefContext getFunctionDefContext ();
     void setFunctionDefContext (FunctionDefContext ctx);

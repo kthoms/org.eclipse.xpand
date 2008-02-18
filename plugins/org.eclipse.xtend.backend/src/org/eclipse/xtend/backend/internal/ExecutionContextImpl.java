@@ -21,7 +21,6 @@ import org.eclipse.xtend.backend.common.CreationCache;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.FunctionInvoker;
-import org.eclipse.xtend.backend.common.GlobalParamContext;
 import org.eclipse.xtend.backend.common.LocalVarContext;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.StacktraceEntry;
@@ -37,7 +36,6 @@ public final class ExecutionContextImpl implements ExecutionContext {
 	private LocalVarContext _localVarContext = new LocalVarContext ();
 	private final FunctionInvoker _functionInvoker = new FunctionInvokerImpl ();
 	private final BackendTypesystem _typeSystem;
-	private final GlobalParamContext _globalParamContext = new GlobalParamContextImpl ();
 	private final boolean _logStacktrace;
 	private final List<StacktraceEntry> _stacktrace = new ArrayList<StacktraceEntry> ();
 	
@@ -75,10 +73,6 @@ public final class ExecutionContextImpl implements ExecutionContext {
 
 	public BackendTypesystem getTypesystem() {
 		return _typeSystem;
-	}
-
-	public GlobalParamContext getGlobalParamContext() {
-		return _globalParamContext;
 	}
 
 	public void logNullDeRef (SourcePos pos) {

@@ -25,7 +25,10 @@ import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
+import org.eclipse.xtend.backend.xtendlib.XtendGlobalVarOperations;
+import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.MetaModel;
@@ -85,13 +88,23 @@ public final class XtendBackendFacade {
         
         final ExpressionBase newAst = new OldExpressionConverter (ctx, typeConverter, "<no file>").convert(oldAst);
 
-        final FunctionDefContext fdc = (initialXtendFileName != null) ? createForFile (initialXtendFileName, fileEncoding, mms).getFunctionDefContext() : new FunctionDefContextFactory (ts).create();
+        final FunctionDefContext fdc = createEmptyFdc (ts, initialXtendFileName, fileEncoding, mms);
         final ExecutionContext newCtx = BackendFacade.createExecutionContext (fdc, ts, true); //TODO configure isLogStacktrace
         newCtx.getLocalVarContext().getLocalVars().putAll (localVars);
-        newCtx.getGlobalParamContext().getGlobalParams().putAll (globalVars);
+        newCtx.getContributionStateContext().storeState (XtendGlobalVarOperations.GLOBAL_VAR_VALUES_KEY, globalVars);
 
         return newAst.evaluate (newCtx);
     }
+
+    private static FunctionDefContext createEmptyFdc (BackendTypesystem ts, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms) {
+        if (initialXtendFileName != null) 
+            return createForFile (initialXtendFileName, fileEncoding, mms).getFunctionDefContext();
+
+        final FunctionDefContextInternal result = new FunctionDefContextFactory (ts).create();
+        result.register (new XtendLibContributor (ts).getContributedFunctions());
+        return result;
+    }
+    
     
     /**
      * This function invokes a single Xtend function, returning the result. The fileEncoding may be null, in which case the platform's default file

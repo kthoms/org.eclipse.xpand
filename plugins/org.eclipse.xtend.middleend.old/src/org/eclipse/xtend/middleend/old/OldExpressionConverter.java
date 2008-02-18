@@ -64,6 +64,7 @@ import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.Pair;
+import org.eclipse.xtend.backend.xtendlib.XtendLibNames;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.StaticProperty;
@@ -115,7 +116,7 @@ final class OldExpressionConverter {
             return convertBooleanOperation ((BooleanOperation) expr);
         
         if (expr instanceof GlobalVarExpression)
-            return new org.eclipse.xtend.backend.expr.GlobalParamExpression (((GlobalVarExpression) expr).getVarName(), getSourcePos(expr));
+            return convertGlobalVarExpression ((GlobalVarExpression) expr);
         if (expr instanceof LetExpression)
             return convertLetExpression((LetExpression) expr);
         if (expr instanceof ChainExpression)
@@ -400,6 +401,10 @@ final class OldExpressionConverter {
             result.add (convert (expr.getNext()));
         
         return result;
+    }
+    
+    private ExpressionBase convertGlobalVarExpression (GlobalVarExpression expr) {
+        return new InvocationOnObjectExpression (XtendLibNames.GLOBAL_VAR_VALUE, Arrays.asList (new LiteralExpression (expr.getVarName(), getSourcePos(expr))), true, getSourcePos (expr));
     }
     
     private ExpressionBase convertBooleanOperation (BooleanOperation expr) {

@@ -28,7 +28,8 @@ import org.junit.Test;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public class InvocationOnWhateverExpressionTest {
-     @Test public void testInvocationOnObject () {
+    @SuppressWarnings("unchecked")
+    @Test public void testInvocationOnObject () {
         assertEquals (3L, new InvocationOnWhateverExpression ("operatorPlus", Arrays.asList (createLiteral (1L), createLiteral (2L)), false, SOURCE_POS).evaluate (createEmptyExecutionContext ()));
         assertEquals (3L, new InvocationOnWhateverExpression ("operatorPlus", Arrays.asList (createLiteral (1L), createLiteral (2L)), true, SOURCE_POS).evaluate (createEmptyExecutionContext ()));
         assertEquals (Arrays.asList (1L), new InvocationOnWhateverExpression ("toList", Arrays.asList (createLiteral (Arrays.asList(1L))), false, SOURCE_POS).evaluate (createEmptyExecutionContext()));

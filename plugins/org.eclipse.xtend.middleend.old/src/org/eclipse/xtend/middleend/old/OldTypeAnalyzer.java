@@ -157,7 +157,7 @@ public class OldTypeAnalyzer {
         return ctx.getListType (innerType);
     }
 
-    private Type analyzeOperationCall (ExecutionContext ctx, OperationCall expr) {
+    private Type analyzeOperationCall (ExecutionContext ctx, @SuppressWarnings("unused") OperationCall expr) {
         return ctx.getObjectType(); 
         
         // it would require extreme effort to find matching extensions etc. because we do not know

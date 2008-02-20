@@ -38,4 +38,9 @@ public final class StringType extends AbstractType {
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
     }
+    
+    @Override
+    public Object create () {
+        return "";
+    }
 }

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name.0
+Bundle-SymbolicName: org.eclipse.xtend.backend.uml2types
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.xtend.backend,
+ org.eclipse.uml2.uml,
+ org.apache.commons.logging,
+ org.eclipse.xtend.backend.emftypes
+Bundle-Localization: plugin

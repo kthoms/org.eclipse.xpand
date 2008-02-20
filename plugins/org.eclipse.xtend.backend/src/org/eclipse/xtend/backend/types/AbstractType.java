@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
+import org.eclipse.xtend.backend.types.builtin.VoidType;
 
 
 /**
@@ -38,7 +40,7 @@ public abstract class AbstractType implements BackendType {
     private final Map<String, Property> _properties = new HashMap<String, Property> ();
     private final Map<String, StaticProperty> _staticProperties = new HashMap<String, StaticProperty> ();
     
-    private final List<NamedFunction> _builtinOperations = new ArrayList<NamedFunction> ();
+    private final Collection<NamedFunction> _builtinOperations = new HashSet<NamedFunction> ();
     
     public AbstractType(String name, BackendType... superTypes) {
         _name = name;
@@ -47,6 +49,12 @@ public abstract class AbstractType implements BackendType {
             _superTypes = Collections.singletonList((BackendType) ObjectType.INSTANCE);
         else
             _superTypes = Arrays.asList(superTypes);
+        
+        for (BackendType superType: superTypes) {
+            _builtinOperations.addAll (superType.getBuiltinOperations());
+            _properties.putAll (superType.getProperties());
+            _staticProperties.putAll (superType.getStaticProperties());
+        }
     }
 
     public AbstractType(String name, Collection<? extends BackendType> superTypes) {
@@ -113,6 +121,20 @@ public abstract class AbstractType implements BackendType {
 
     public final Map<String, ? extends StaticProperty> getStaticProperties () {
         return _staticProperties;
+    }
+
+    public boolean isAssignableFrom (BackendType other) {
+        if (other == VoidType.INSTANCE)
+            return true;
+
+        if (other.equals (this))
+            return true;
+        
+        for (BackendType st: other.getSuperTypes())
+            if (isAssignableFrom (st))
+                return true;
+        
+        return false;
     }
     
     @Override

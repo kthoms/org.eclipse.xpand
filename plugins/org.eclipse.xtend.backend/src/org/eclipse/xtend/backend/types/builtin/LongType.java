@@ -23,6 +23,7 @@ public final class LongType extends AbstractType {
     
     private LongType () {super ("Long"); }
 
+    @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
     }

@@ -73,10 +73,6 @@ public final class TypeType extends AbstractType {
             }
         });
     }
-
-    public boolean isAssignableFrom (BackendType other) {
-        return other == this || other == VoidType.INSTANCE;
-    }
 }
 
 

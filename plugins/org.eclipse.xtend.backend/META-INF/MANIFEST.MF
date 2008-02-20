@@ -10,8 +10,11 @@ Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.commo
  org.eclipse.xtend.backend.functions.internal;x-friends:="org.eclipse.xtend.backend.test",
  org.eclipse.xtend.backend.functions.java;uses:="org.eclipse.xtend.backend.iface,org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.functions.java.internal;x-friends:="org.eclipse.xtend.backend.test",
+ org.eclipse.xtend.backend.internal;x-internal:=true,
  org.eclipse.xtend.backend.syslib,
  org.eclipse.xtend.backend.types;uses:="org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.types.builtin;uses:="org.eclipse.xtend.backend.common,org.eclipse.xtend.backend.types",
+ org.eclipse.xtend.backend.types.java.internal;x-internal:=true,
  org.eclipse.xtend.backend.util
-Require-Bundle: org.apache.commons.logging
+Require-Bundle: org.apache.commons.logging,
+ org.eclipse.emf.ecore

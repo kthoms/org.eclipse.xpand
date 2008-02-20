@@ -13,7 +13,6 @@ package org.eclipse.xtend.backend.types.builtin;
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ReflectionHelper;
 
@@ -35,9 +34,5 @@ public final class MapType extends AbstractType {
     @Override
     public Object create() {
         return new HashMap <Object,Object> ();
-    }
-
-    public boolean isAssignableFrom (BackendType other) {
-        return other == this || other == VoidType.INSTANCE;
     }
 }

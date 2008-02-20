@@ -34,6 +34,7 @@ public final class StringType extends AbstractType {
         register (new BuiltinProperty (this, this, "length", ReflectionHelper.getKnownMethod (CharSequence.class, "length"), null));
     }
 
+    @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
     }

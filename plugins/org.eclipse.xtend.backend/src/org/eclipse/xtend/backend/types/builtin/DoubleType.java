@@ -23,6 +23,7 @@ public final class DoubleType extends AbstractType {
     
     private DoubleType () {super ("Double"); }
 
+    @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE; 
     }

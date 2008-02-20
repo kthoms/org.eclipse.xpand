@@ -12,7 +12,6 @@ package org.eclipse.xtend.backend.types.builtin;
 
 import java.util.Collection;
 
-import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ReflectionHelper;
 
@@ -29,10 +28,6 @@ public final class CollectionType extends AbstractType {
     
         register (new BuiltinProperty (this, LongType.INSTANCE, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null));
         register (new BuiltinProperty (this, BooleanType.INSTANCE, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null));
-    }
-    
-    public boolean isAssignableFrom (BackendType other) {
-        return other == this || other == ListType.INSTANCE || other == SetType.INSTANCE || other == VoidType.INSTANCE;
     }
 }
 

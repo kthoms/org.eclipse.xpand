@@ -31,6 +31,7 @@ public final class PropertyType extends AbstractType {
         register (new BuiltinProperty (this, TypeType.INSTANCE, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null));
     }
 
+    @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
     }

@@ -49,6 +49,7 @@ public final class FunctionType extends AbstractType {
         });
     }
     
+    @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
     }

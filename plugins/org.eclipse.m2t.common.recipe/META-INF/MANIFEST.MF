@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: %pluginName (Incubation)
 Bundle-SymbolicName: org.eclipse.m2t.common.recipe
 Bundle-Version: 0.7.0.qualifier
 Bundle-Localization: plugin

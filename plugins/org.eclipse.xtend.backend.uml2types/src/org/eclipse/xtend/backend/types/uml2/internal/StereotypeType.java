@@ -134,11 +134,11 @@ public final class StereotypeType extends AbstractType {
     
     private final class StereotypeProperty extends AbstractProperty {
         public StereotypeProperty (BackendType type, String name) {
-            super (StereotypeType.this, type, name);
+            super (StereotypeType.this, type, Object.class, name, false);
         }
         
         @Override
-        public Object get (ExecutionContext ctx, Object target) {
+        public Object getRaw (ExecutionContext ctx, Object target) {
             if (target instanceof Element) {
                 final Element ele = (Element) target;
                 

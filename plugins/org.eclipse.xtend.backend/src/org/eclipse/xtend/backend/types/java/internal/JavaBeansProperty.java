@@ -14,8 +14,7 @@ import java.beans.PropertyDescriptor;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
-import org.eclipse.xtend.backend.common.Property;
-import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
+import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
 
@@ -23,48 +22,33 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class JavaBeansProperty implements Property {
+public final class JavaBeansProperty extends AbstractProperty {
     private final PropertyDescriptor _pd;
-    private final BackendType _owner;
-    private final BackendType _type;
-    private final JavaBuiltinConverter _converter;
     
 
-    public JavaBeansProperty (PropertyDescriptor pd, BackendType owner, BackendType type, JavaBuiltinConverter converter) {
+    public JavaBeansProperty (PropertyDescriptor pd, BackendType owner, BackendType type) {
+        super (owner, type, pd.getPropertyType(), pd.getName(), pd.getWriteMethod() != null);
+        
         _pd = pd;
-        _owner = owner;
-        _type = type;
-        _converter = converter;
     }
 
-    public String getName () {
-        return _pd.getName();
-    }
-
-    public BackendType getOwner () {
-        return _owner;
-    }
-
-    public BackendType getType () {
-        return _type;
-    }
-
-    public Object get (ExecutionContext ctx, Object o) {
+    @Override
+    public Object getRaw (ExecutionContext ctx, Object o) {
         try {
-            if (_pd.getReadMethod() == null)
-                throw new IllegalArgumentException ("no readable property " + _pd.getName() + " for type " + _owner.getName());
-            return _converter.javaToBackend (_pd.getReadMethod().invoke (o));
+            return _pd.getReadMethod().invoke (o);
         } catch (Exception e) {
             ErrorHandler.handle(e);
             return null; // to make the compiler happy - this is never executed
         }
     }
     
-    public void set (ExecutionContext ctx, Object o, Object newValue) {
+    @Override
+    public void setRaw (ExecutionContext ctx, Object o, Object newValue) {
         try {
             if (_pd.getWriteMethod() == null)
-                throw new IllegalArgumentException ("no writeable property " + _pd.getName() + " for type " + _owner.getName());
-            _pd.getWriteMethod().invoke (o, _converter.backendToJava (newValue));
+                super.setRaw (ctx, o, newValue);
+            
+            _pd.getWriteMethod().invoke (o, newValue);
         } catch (Exception e) {
             ErrorHandler.handle (e);
         }

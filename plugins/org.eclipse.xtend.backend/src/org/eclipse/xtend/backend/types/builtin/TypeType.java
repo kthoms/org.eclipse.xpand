@@ -39,9 +39,9 @@ public final class TypeType extends AbstractType {
         register (new BuiltinProperty (this, ListType.INSTANCE, "allProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getProperties"), null));
         register (new BuiltinProperty (this, ListType.INSTANCE, "allStaticProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getStaticProperties"), null));
         
-        register (new AbstractProperty (this, ListType.INSTANCE, "allOperations") {
+        register (new AbstractProperty (this, ListType.INSTANCE, java.util.List.class, "allOperations", false) {
             @Override
-            public Object get (ExecutionContext ctx, Object o) {
+            public Object getRaw (ExecutionContext ctx, Object o) {
                 final BackendType t = (BackendType) o;
                 final List<Object> result = new ArrayList<Object>();
                 result.addAll (ctx.getFunctionDefContext().getByFirstParameterType(t));

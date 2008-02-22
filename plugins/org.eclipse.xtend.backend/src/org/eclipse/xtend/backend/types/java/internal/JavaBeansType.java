@@ -75,7 +75,7 @@ public final class JavaBeansType implements BackendType {
             if (pd.getReadMethod().getDeclaringClass() == Object.class)
                 continue;
             
-            _properties.put (pd.getName(), new JavaBeansProperty (pd, this, ts.getRootTypesystem().findType (pd.getPropertyType()), JavaBuiltinConverterFactory.getConverter (pd.getPropertyType ())));
+            _properties.put (pd.getName(), new JavaBeansProperty (pd, this, ts.getRootTypesystem().findType (pd.getPropertyType())));
         }
         
         // static properties

@@ -13,6 +13,8 @@ package org.eclipse.xtend.backend.types;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Property;
+import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
+import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 
 
 /**
@@ -23,8 +25,10 @@ public abstract class AbstractProperty implements Property {
     protected final BackendType _owner;
     protected final BackendType _type;
     protected final String _name;
-    
-    public AbstractProperty (BackendType owner, BackendType type, String name) {
+    protected final boolean _isWritable;
+    protected final JavaBuiltinConverter _converter;
+
+    public AbstractProperty (BackendType owner, BackendType type, Class<?> javaType, String name, boolean isWritable) {
         if (owner == null)
             throw new IllegalArgumentException ();
         if (type == null)
@@ -33,6 +37,9 @@ public abstract class AbstractProperty implements Property {
         _owner = owner;
         _type = type;
         _name = name;
+        _isWritable = isWritable;
+        
+        _converter = JavaBuiltinConverterFactory.getConverter (javaType);
     }
 
     public String getName () {
@@ -47,11 +54,23 @@ public abstract class AbstractProperty implements Property {
         return _type;
     }
     
-    public Object get (ExecutionContext ctx, Object o) {
-        throw new IllegalStateException ("property " + _name + " of type " + _owner.getName() + " can not be read");
+    public final Object get (ExecutionContext ctx, Object o) {
+        return _converter.javaToBackend (getRaw (ctx, o));
     }
 
-    public void set (ExecutionContext ctx, Object o, Object newValue) {
+    
+    public final void set (ExecutionContext ctx, Object o, Object newValue) {
+        setRaw (ctx, o, _converter.backendToJava (newValue));
+    }
+
+    protected abstract Object getRaw (ExecutionContext ctx, Object o);
+    
+    @SuppressWarnings("unused")
+    public void setRaw (ExecutionContext ctx,  Object o, Object newValue) {
         throw new IllegalStateException ("property " + _name + " of type " + _owner.getName() + " can not be set");
+    }
+    
+    public boolean isWritable () {
+        return _isWritable;
     }
 }

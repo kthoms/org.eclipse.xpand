@@ -21,12 +21,14 @@ import java.util.Map;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
+import org.eclipse.xtend.backend.util.StringHelper;
 
 
 /**
@@ -64,6 +66,10 @@ public abstract class AbstractType implements BackendType {
 
     protected void register (Property p) {
         _properties.put (p.getName(), p);
+        
+        register ("get" + StringHelper.firstUpper (p.getName()), new GetterOperation (p));
+        if (p.isWritable())
+            register ("set" + StringHelper.firstUpper (p.getName()), new SetterOperation (p));
     }
     
     protected void register (StaticProperty p) {
@@ -140,6 +146,61 @@ public abstract class AbstractType implements BackendType {
     @Override
     public String toString () {
         return _name;
+    }
+    
+    private class SetterOperation implements Function {
+        private final List<BackendType> _paramTypes = new ArrayList<BackendType> ();
+        private final Property _property;
+
+        public SetterOperation (Property property) {
+            _property = property;
+
+            _paramTypes.add (AbstractType.this);
+            _paramTypes.add (property.getType ());
+        }
+        
+        public ExpressionBase getGuard () {
+            return null;
+        }
+
+        public List<? extends BackendType> getParameterTypes () {
+            return _paramTypes;
+        }
+
+        public Object invoke (ExecutionContext ctx, Object[] params) {
+            _property.set (ctx, params[0], params[1]);
+            return null;
+        }
+
+        public boolean isCached () {
+            return false;
+        }
+    }
+    
+    private class GetterOperation implements Function {
+        private final List<BackendType> _paramTypes = new ArrayList<BackendType> ();
+        private final Property _property;
+        
+        public GetterOperation (Property property) {
+            _property = property;
+            _paramTypes.add (AbstractType.this);
+        }
+        
+        public ExpressionBase getGuard () {
+            return null;
+        }
+        
+        public List<? extends BackendType> getParameterTypes () {
+            return _paramTypes;
+        }
+        
+        public Object invoke (ExecutionContext ctx, Object[] params) {
+            return _property.get (ctx, params[0]);
+        }
+        
+        public boolean isCached () {
+            return false;
+        }
     }
 }
 

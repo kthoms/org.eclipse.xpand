@@ -14,8 +14,6 @@ import java.lang.reflect.Method;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
-import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
-import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
@@ -28,15 +26,11 @@ public final class BuiltinProperty extends AbstractProperty {
     private final Method _getter;
     private final Method _setter;
     
-    private final JavaBuiltinConverter _converter;
-    
     public BuiltinProperty (BackendType owner, BackendType type, String name, Method getter, Method setter) {
-        super (owner, type, name);
+        super (owner, type, getJavaClassForProperty(getter, setter), name, setter != null);
         
         _getter = getter;
         _setter = setter;
-        
-        _converter = JavaBuiltinConverterFactory.getConverter (getJavaClassForProperty (getter, setter));
     }
 
     private static Class<?> getJavaClassForProperty (Method getter, Method setter) {
@@ -46,12 +40,9 @@ public final class BuiltinProperty extends AbstractProperty {
     }
     
     @Override
-    public Object get (ExecutionContext ctx, Object o) {
-        if (_getter == null)
-            super.get (ctx, o);
-        
+    public Object getRaw (ExecutionContext ctx, Object o) {
         try {
-            return _converter.javaToBackend (_getter.invoke(o));
+            return _getter.invoke(o);
         } catch (Exception e) {
             ErrorHandler.handle(e);
             return null; // to make the compiler happy - this is never executed
@@ -59,12 +50,12 @@ public final class BuiltinProperty extends AbstractProperty {
     }
 
     @Override
-    public void set (ExecutionContext ctx, Object o, Object newValue) {
+    public void setRaw (ExecutionContext ctx, Object o, Object newValue) {
         if (_setter == null)
-            super.set (ctx, o, newValue);
+            super.setRaw (ctx, o, newValue);
         
         try {
-            _setter.invoke (o, _converter.backendToJava (newValue));
+            _setter.invoke (o, newValue);
         } catch (Exception e) {
             ErrorHandler.handle(e);
         }

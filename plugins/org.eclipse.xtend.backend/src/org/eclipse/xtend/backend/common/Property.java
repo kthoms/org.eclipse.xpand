@@ -23,4 +23,6 @@ public interface Property {
     
     Object get (ExecutionContext ctx, Object o);
     void set (ExecutionContext ctx, Object o, Object newValue);
+    
+    boolean isWritable ();
 }

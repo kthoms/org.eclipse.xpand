@@ -65,6 +65,9 @@ public final class JavaBuiltinConverterFactory {
     }
     
     public static JavaBuiltinConverter getConverter (Class<?> cls) {
+        if (cls == null)
+            return NullConverter.INSTANCE;
+        
         final JavaBuiltinConverter resultRaw = _converters.get (cls);
         if (resultRaw != null)
             return resultRaw;

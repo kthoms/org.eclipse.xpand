@@ -52,9 +52,9 @@ public final class EnumType extends AbstractType {
                 }
             });
         
-        register (new AbstractProperty (this, StringType.INSTANCE, "literal") {
+        register (new AbstractProperty (this, StringType.INSTANCE, String.class, "literal", false) {
             @Override
-            public Object get (ExecutionContext ctx, Object o) {
+            public Object getRaw (ExecutionContext ctx, Object o) {
                 if (o == null)
                     return null;
                 

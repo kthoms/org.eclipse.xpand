@@ -64,9 +64,9 @@ import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.Pair;
-import org.eclipse.xtend.backend.xtendlib.XtendLibNames;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibNames;
 import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
 

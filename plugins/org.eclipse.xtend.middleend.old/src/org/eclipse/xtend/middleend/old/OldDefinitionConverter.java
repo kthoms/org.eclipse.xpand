@@ -56,12 +56,12 @@ import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.SyntaxConstants;
-import org.eclipse.xtend.backend.xtendlib.XpandIsDeleteLine;
-import org.eclipse.xtend.backend.xtendlib.XtendIterator;
-import org.eclipse.xtend.backend.xtendlib.XtendLibNames;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.old.internal.xtendlib.XpandIsDeleteLine;
+import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendIterator;
+import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibNames;
 import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Type;
 

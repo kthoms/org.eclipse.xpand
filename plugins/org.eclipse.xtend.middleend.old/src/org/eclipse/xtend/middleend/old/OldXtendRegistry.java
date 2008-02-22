@@ -27,8 +27,8 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.util.Cache;
-import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
 
 
 /**

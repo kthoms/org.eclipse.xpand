@@ -27,10 +27,10 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
-import org.eclipse.xtend.backend.xtendlib.XtendGlobalVarOperations;
-import org.eclipse.xtend.backend.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendGlobalVarOperations;
+import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 

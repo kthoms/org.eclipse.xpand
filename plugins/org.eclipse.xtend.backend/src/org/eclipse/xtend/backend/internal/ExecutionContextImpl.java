@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.xtend.backend.aop.AdviceContextImpl;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.Constants;
 import org.eclipse.xtend.backend.common.ContributionStateContext;
@@ -38,6 +39,8 @@ public final class ExecutionContextImpl implements ExecutionContext {
 	private final BackendTypesystem _typeSystem;
 	private final boolean _logStacktrace;
 	private final List<StacktraceEntry> _stacktrace = new ArrayList<StacktraceEntry> ();
+	
+	private AdviceContextImpl _adviceContext = new AdviceContextImpl ();
 	
 	private final ContributionStateContext _contributionStateContext = new ContributionStateContext ();
 	
@@ -93,5 +96,13 @@ public final class ExecutionContextImpl implements ExecutionContext {
 
     public boolean isLogStacktrace () {
         return _logStacktrace;
+    }
+
+    public AdviceContextImpl getAdviceContext () {
+        return _adviceContext;
+    }
+
+    public void setAdviceContext (AdviceContextImpl ctx) {
+        _adviceContext = ctx;
     }
 }

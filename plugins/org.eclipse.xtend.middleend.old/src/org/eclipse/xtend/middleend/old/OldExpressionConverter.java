@@ -152,7 +152,7 @@ final class OldExpressionConverter {
                 if (hasMatchingOperationCall (functionName, paramTypes.toArray (new Type[0]))) 
                     return new InvocationOnObjectExpression (functionName, params, false, sourcePos);
                 else {
-                    final ExpressionBase thisExpression = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
+                    final ExpressionBase thisExpression = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
                     final Type thisType = (Type) _ctx.getVariable (ExecutionContext.IMPLICIT_VARIABLE).getValue();
                     return createInvocationOnTargetExpression (functionName, thisExpression, thisType, params, paramTypes, true, sourcePos);
                 }
@@ -251,7 +251,7 @@ final class OldExpressionConverter {
             if (! hasThis())
                 throw new IllegalStateException ("typeSelect with neither a target nor an implicit 'this'");
             
-            final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
+            final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
             return new InvocationOnObjectExpression (SysLibNames.TYPE_SELECT, Arrays.asList (thisExpr, typeExpr), true, sourcePos);
         }
         else
@@ -324,7 +324,7 @@ final class OldExpressionConverter {
             
             // 4. check for "this"
             if (hasThis()) {
-                final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
+                final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
                 return createPropertyExpression (thisExpr, (Type) _ctx.getVisibleVariables().get (ExecutionContext.IMPLICIT_VARIABLE).getValue(), expr.getName().getValue(), sourcePos);
             }
             
@@ -372,7 +372,7 @@ final class OldExpressionConverter {
             if (! hasThis())
                 throw new IllegalStateException (functionName + " with neither a target nor an implicit 'this'");
             
-            final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.util.SyntaxConstants.THIS, sourcePos);
+            final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
             return new InvocationOnObjectExpression (functionName, Arrays.asList (thisExpr, closureExpr), true, sourcePos);
         }
         else

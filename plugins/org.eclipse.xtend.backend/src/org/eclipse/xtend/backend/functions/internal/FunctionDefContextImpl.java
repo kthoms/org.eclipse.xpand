@@ -107,11 +107,12 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     	
     	Function f = null;
     	try {
-    	    f = new PolymorphicResolver(functionName).evaluateGuards(ctx, candidates);
+    	    f = new PolymorphicResolver (functionName).evaluateGuards (ctx, candidates);
     	}
     	catch (Exception exc) {
     	    ErrorHandler.handle ("could not resolve function '" + functionName + "' for parameter types " + StringHelper.getTypesAsString (params) + " - candidates were " + candidates, exc);
     	}
+    	
     	return ctx.getFunctionInvoker().invoke (ctx, f, params);
     }
 

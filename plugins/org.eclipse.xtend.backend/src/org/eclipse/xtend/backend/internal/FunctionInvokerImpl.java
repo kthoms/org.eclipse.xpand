@@ -38,7 +38,7 @@ public final class FunctionInvokerImpl implements FunctionInvoker {
 
 	private ExecutionContext _ctx;
 	
-	public Object invoke(ExecutionContext ctx, Function f, List<?> params) {
+	public Object invoke (ExecutionContext ctx, Function f, List<?> params) {
 		if (f.isCached()) {
 			_ctx = ctx;
 			return _cache.get(f, params);

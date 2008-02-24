@@ -8,14 +8,17 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.util;
+package org.eclipse.xtend.backend.common;
+
+import org.eclipse.xtend.backend.aop.AdvisedFunction;
+import org.eclipse.xtend.backend.aop.AroundAdvice;
 
 
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public interface SyntaxConstants {
-    String NS_DELIM = "::";
-    String THIS = "this";
+public interface AdviceContext {
+    AdviceContext copyWithAdvice (AroundAdvice advice);
+    AdvisedFunction getAdvice (String functionName, Function f);
 }

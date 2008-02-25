@@ -12,8 +12,6 @@ package org.eclipse.xtend.backend.common;
 
 import java.util.List;
 
-import org.eclipse.xtend.backend.aop.internal.AdviceContextImpl;
-
 
 /**
  * 
@@ -30,8 +28,8 @@ public interface ExecutionContext {
     FunctionInvoker getFunctionInvoker ();
     CreationCache getCreationCache ();
     
-    AdviceContextImpl getAdviceContext ();
-    void setAdviceContext (AdviceContextImpl ctx);
+    AdviceContext getAdviceContext ();
+    void setAdviceContext (AdviceContext ctx);
     
     void logNullDeRef (SourcePos pos);
     

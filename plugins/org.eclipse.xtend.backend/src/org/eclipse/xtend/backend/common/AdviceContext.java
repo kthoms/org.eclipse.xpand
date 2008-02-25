@@ -10,8 +10,13 @@ Contributors:
  */
 package org.eclipse.xtend.backend.common;
 
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.xtend.backend.aop.AdvisedFunction;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
+import org.eclipse.xtend.backend.util.ObjectWrapper;
+import org.eclipse.xtend.backend.util.Triplet;
 
 
 /**
@@ -21,4 +26,5 @@ import org.eclipse.xtend.backend.aop.AroundAdvice;
 public interface AdviceContext {
     AdviceContext copyWithAdvice (AroundAdvice advice);
     AdvisedFunction getAdvice (String functionName, Function f);
+    public Map<Triplet<Function, AroundAdvice, List<?>>, ObjectWrapper> getResultCache ();
 }

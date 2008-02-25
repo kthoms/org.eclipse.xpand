@@ -8,13 +8,15 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
 */
-package org.eclipse.xtend.backend.aop;
+package org.eclipse.xtend.backend.aop.internal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.xtend.backend.aop.AdvisedFunction;
+import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.AdviceContext;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.util.DoubleKeyCache;

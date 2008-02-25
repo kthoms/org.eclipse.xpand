@@ -13,6 +13,8 @@ package org.eclipse.xtend.backend.aop;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.xtend.backend.aop.internal.ThisJoinPoint;
+import org.eclipse.xtend.backend.aop.internal.ThisJoinPointStaticPart;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.util.ObjectWrapper;

@@ -13,6 +13,7 @@ package org.eclipse.xtend.backend.aop;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.eclipse.xtend.backend.aop.internal.AdviceParamType;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.util.Pair;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.LogFactory;
-import org.eclipse.xtend.backend.aop.AdviceContextImpl;
+import org.eclipse.xtend.backend.aop.internal.AdviceContextImpl;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.Constants;
 import org.eclipse.xtend.backend.common.ContributionStateContext;

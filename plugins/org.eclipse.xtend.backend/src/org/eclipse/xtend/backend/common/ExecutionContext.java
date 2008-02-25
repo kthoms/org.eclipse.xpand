@@ -12,7 +12,7 @@ package org.eclipse.xtend.backend.common;
 
 import java.util.List;
 
-import org.eclipse.xtend.backend.aop.AdviceContextImpl;
+import org.eclipse.xtend.backend.aop.internal.AdviceContextImpl;
 
 
 /**

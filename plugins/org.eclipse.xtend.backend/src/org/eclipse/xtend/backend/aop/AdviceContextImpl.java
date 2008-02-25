@@ -62,8 +62,13 @@ public final class AdviceContextImpl implements AdviceContext {
     }
     
     public AdviceContextImpl copyWithAdvice (AroundAdvice advice) {
-        // the result cache survives the addition (and going out-of-scope!) of advice. This
-        //  is possible because newly applied advice is applied "around" advice applied earlier.
+        // Advice is applied in the order of registration: Last applied is the innermost. That
+        //  means that the application of new advice invalidates the entire cache. It might
+        //  be possible to fine-tune this, invalidating only those parts of the cache that are
+        //  directly affected by the newly registered advice, but that would mean very complex
+        //  semantics, possibly significant performance impact and would be difficult to specify
+        //  precisely (or rather, implement according to a precise specification) because of
+        //  the complexities of wildcard matching.
         final AdviceContextImpl result = new AdviceContextImpl (_resultCache);
 
         result._advice.addAll (_advice);
@@ -75,9 +80,9 @@ public final class AdviceContextImpl implements AdviceContext {
     //TODO test this (including the order in which advice is applied)!!!
     
     /**
-     * returns the advice to be applied to this function, starting with the innermost
-     *  advice, i.e. the advice that is to be directly applied to the result of the
-     *  advised function. 
+     * returns the advice to be applied to this function, starting with the outermost
+     *  advice, i.e. the advice that is to wrapped around all other advice applicable
+     *  to a given function. 
      */
     public AdvisedFunction getAdvice (String functionName, Function f) {
         return _advisedFunctionCache.get (functionName, f);

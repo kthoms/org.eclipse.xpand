@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xpand3 Plug-in
+Bundle-SymbolicName: org.eclipse.xpand3
+Bundle-Version: 0.9
+Bundle-Vendor: www.eclipse.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

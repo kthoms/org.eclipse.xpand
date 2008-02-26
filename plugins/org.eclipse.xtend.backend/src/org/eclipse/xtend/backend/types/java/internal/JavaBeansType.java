@@ -72,10 +72,10 @@ public final class JavaBeansType implements BackendType {
         }
         
         for (PropertyDescriptor pd: Introspector.getBeanInfo(_javaClass).getPropertyDescriptors()) {
-            if (pd.getReadMethod().getDeclaringClass() == Object.class)
+            if (getDeclaringClass (pd) == Object.class)
                 continue;
             
-            _properties.put (pd.getName(), new JavaBeansProperty (pd, this, ts.getRootTypesystem().findType (pd.getPropertyType())));
+            _properties.put (pd.getName(), new JavaBeansProperty (pd, this, ts.getRootTypesystem().findType (pd.getPropertyType()))); //TODO apply primitive type conversion!
         }
         
         // static properties
@@ -98,6 +98,13 @@ public final class JavaBeansType implements BackendType {
                 _staticProperties.put (curEnum.name(), new JavaBeansStaticProperty (this, ts.getRootTypesystem().findType(curEnum), curEnum.name(), curEnum));
             }
         }
+    }
+    
+    private Class<?> getDeclaringClass (PropertyDescriptor pd) {
+        if (pd.getReadMethod() != null)
+            return pd.getReadMethod().getDeclaringClass();
+        
+        return pd.getWriteMethod().getDeclaringClass();
     }
     
     public Object create () {

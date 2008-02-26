@@ -12,5 +12,7 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.xtend.typesystem.emf,
  org.eclipse.emf.mwe.core,
  org.apache.commons.logging
-Export-Package: org.eclipse.xtend.middleend.old,
- org.eclipse.xtend.middleend.old.internal.xtendlib;x-internal:=true
+Export-Package: org.eclipse.xtend.middleend.old.common,
+ org.eclipse.xtend.middleend.old.internal.xtendlib,
+ org.eclipse.xtend.middleend.old.xpand,
+ org.eclipse.xtend.middleend.old.xtend

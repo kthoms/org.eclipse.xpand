@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.xtend;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +28,8 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.middleend.old.common.OldHelper;
+import org.eclipse.xtend.middleend.old.common.TypeToBackendType;
 import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
 
 
@@ -36,7 +38,7 @@ import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class OldXtendRegistry {
+public final class OldXtendRegistry {
     private final ExecutionContext _ctx;
     private final BackendTypesystem _ts;
 
@@ -72,7 +74,7 @@ final class OldXtendRegistry {
     
     
     private FunctionDefContextInternal getFunctionDefContext (String xtendName) {
-        return _functionDefContexts.get (OldXtendHelper.normalizeXtendResourceName (xtendName));
+        return _functionDefContexts.get (OldHelper.normalizeXtendResourceName (xtendName));
     }
     
     
@@ -80,12 +82,12 @@ final class OldXtendRegistry {
      * parses and converts an Xtend file and all other files it depends on.
      */
     public void registerExtension (String xtendFile) {
-        xtendFile = OldXtendHelper.normalizeXtendResourceName (xtendFile);
+        xtendFile = OldHelper.normalizeXtendResourceName (xtendFile);
         
         if (_definedFunctionsByResource.containsKey(xtendFile))
             return;
         
-        final XtendFile file = (XtendFile) _ctx.getResourceManager().loadResource (xtendFile, XtendFile.FILE_EXTENSION);
+        final ExtensionFile file = (ExtensionFile) _ctx.getResourceManager().loadResource (xtendFile, XtendFile.FILE_EXTENSION);
         if (file == null)
             throw new IllegalArgumentException ("could not find extension '" + xtendFile + "'");
         
@@ -104,6 +106,8 @@ final class OldXtendRegistry {
 
         // register the XtendLib. Do this first so the extension can override functions
         fdc.register (new XtendLibContributor (_ts).getContributedFunctions());
+        
+        fdc.register (new CheckConverter (ctx, typeConverter).createCheckFunction(_ts, fdc, file));
         
         for (Extension ext: file.getExtensions()) {
             final NamedFunction f = extensionFactory.create (ext, fdc);
@@ -124,7 +128,7 @@ final class OldXtendRegistry {
 
         // make all imported extensions visible for the scope of this compilation unit
         for (String importedResource: file.getImportedExtensions()) {
-            for (NamedFunction f: _locallyExportedFunctionsByResource.get (OldXtendHelper.normalizeXtendResourceName (importedResource)))
+            for (NamedFunction f: _locallyExportedFunctionsByResource.get (OldHelper.normalizeXtendResourceName (importedResource)))
                 fdc.register (f);
         }
 
@@ -140,7 +144,7 @@ final class OldXtendRegistry {
     }
     
     private void getReexported (String xtendFile, Collection<NamedFunction> result, Set<String> harvestedCompilationUnits, Set<String> processedCompilationUnits) {
-        xtendFile = OldXtendHelper.normalizeXtendResourceName (xtendFile);
+        xtendFile = OldHelper.normalizeXtendResourceName (xtendFile);
         
         if (processedCompilationUnits.contains (xtendFile))
             return;
@@ -161,7 +165,7 @@ final class OldXtendRegistry {
     }
     
     public Collection<NamedFunction> getContributedFunctions (String xtendFile) {
-        return _exportedFunctionsByResource.get (OldXtendHelper.normalizeXtendResourceName(xtendFile));
+        return _exportedFunctionsByResource.get (OldHelper.normalizeXtendResourceName(xtendFile));
     }
 }
 

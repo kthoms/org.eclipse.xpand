@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.common;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -62,7 +62,7 @@ import org.eclipse.xtend.typesystem.Type;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public class OldTypeAnalyzer {
+public final class OldTypeAnalyzer {
     public Type analyze (ExecutionContext ctx, Extension ext, Type[] paramTypes) {
         if (ext instanceof JavaExtensionStatement)
             return analyzeJavaExtension (ctx, (JavaExtensionStatement) ext);

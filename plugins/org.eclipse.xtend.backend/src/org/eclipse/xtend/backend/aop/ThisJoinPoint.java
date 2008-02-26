@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
 */
-package org.eclipse.xtend.backend.aop.internal;
+package org.eclipse.xtend.backend.aop;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.xtend;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -34,6 +34,8 @@ import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.old.common.OldExpressionConverter;
+import org.eclipse.xtend.middleend.old.common.TypeToBackendType;
 import org.eclipse.xtend.typesystem.Type;
 
 

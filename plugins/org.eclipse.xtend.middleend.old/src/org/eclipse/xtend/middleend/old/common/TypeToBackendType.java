@@ -8,14 +8,16 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.common;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.types.BooleanTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl;
@@ -59,7 +61,7 @@ import org.eclipse.xtend.typesystem.emf.EObjectType;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class TypeToBackendType {
+public final class TypeToBackendType {
     private final BackendTypesystem _backendTypes;
     private final EmfTypesystem _emfTypes;
     private final ExecutionContext _ctx;
@@ -77,7 +79,11 @@ final class TypeToBackendType {
         _emfTypes = ets;
     }
     
-    public BackendType convertToBackendType (List<String> segments) {
+    public BackendType convertToBackendType (Identifier typeName) {
+        return convertToBackendType (Arrays.asList (typeName.getValue().split (SyntaxConstants.NS_DELIM)));
+    }
+    
+    private BackendType convertToBackendType (List<String> segments) {
         final StringBuilder sb = new StringBuilder();
         boolean first = true;
         

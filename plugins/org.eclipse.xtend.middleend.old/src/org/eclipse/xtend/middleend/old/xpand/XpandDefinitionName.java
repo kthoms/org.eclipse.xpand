@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
 */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.xpand;
 
 import java.util.List;
 
@@ -18,6 +18,7 @@ import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.xpand2.XpandExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.middleend.old.common.OldTypeAnalyzer;
 import org.eclipse.xtend.typesystem.Type;
 
 

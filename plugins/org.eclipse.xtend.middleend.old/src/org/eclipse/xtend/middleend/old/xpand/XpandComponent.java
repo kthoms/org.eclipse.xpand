@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.xpand;
 
 import java.io.StringReader;
 import java.util.ArrayList;

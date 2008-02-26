@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.xpand;
 
 import java.io.File;
 import java.io.StringReader;
@@ -47,6 +47,9 @@ import org.eclipse.xtend.backend.syslib.InMemoryPostprocessor;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.syslib.UriBasedPostprocessor;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.old.common.OldHelper;
+import org.eclipse.xtend.middleend.old.common.TypeToBackendType;
+import org.eclipse.xtend.middleend.old.xtend.OldXtendRegistry;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 
@@ -92,8 +95,8 @@ public final class XpandBackendFacade {
      * Both the "variables" and "outlets" parameter may be null.
      */
     public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets) {
-        fileEncoding = OldXtendHelper.normalizedFileEncoding (fileEncoding);
-        final BackendTypesystem ts = OldXtendHelper.guessTypesystem (mms);
+        fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
+        final BackendTypesystem ts = OldHelper.guessTypesystem (mms);
         
         if (variables == null)
             variables = new HashMap<String, Object> ();
@@ -231,7 +234,7 @@ public final class XpandBackendFacade {
     
     
     private static XpandExecutionContext createOldExecutionContext (String fileEncoding, Collection<MetaModel> mms, Collection<Outlet> outlets) {
-        fileEncoding = OldXtendHelper.normalizedFileEncoding (fileEncoding);
+        fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
         
         final Output output = new OutputImpl ();
         for (Outlet outlet: outlets)
@@ -247,8 +250,8 @@ public final class XpandBackendFacade {
     }
     
     private XpandBackendFacade (String xpandFilename, String fileEncoding, Collection<MetaModel> mms, Collection <Outlet> outlets) {
-        _xpandFile = OldXtendHelper.normalizeXpandResourceName (xpandFilename);
-        _ts = OldXtendHelper.guessTypesystem (mms);
+        _xpandFile = OldHelper.normalizeXpandResourceName (xpandFilename);
+        _ts = OldHelper.guessTypesystem (mms);
         
         final XpandExecutionContext ctx = createOldExecutionContext (fileEncoding, mms, outlets);
         

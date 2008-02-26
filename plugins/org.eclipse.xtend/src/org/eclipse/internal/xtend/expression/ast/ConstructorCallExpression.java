@@ -29,6 +29,10 @@ public class ConstructorCallExpression extends Expression {
         this.type = type;
     }
 
+    public Identifier getType () {
+        return type;
+    }
+    
     public String getTypeName () {
         return type.getValue();
     }

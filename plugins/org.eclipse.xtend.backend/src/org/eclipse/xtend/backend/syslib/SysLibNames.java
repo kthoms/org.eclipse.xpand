@@ -22,6 +22,7 @@ public interface SysLibNames {
     String WRITE_TO_FILE = "writeToFile";
     String REGISTER_OUTLET = "registerOutlet";
     
+    String COLLECT = "collect";
     String TYPE_SELECT = "typeSelect";
     
     String IMPLIES = "implies";

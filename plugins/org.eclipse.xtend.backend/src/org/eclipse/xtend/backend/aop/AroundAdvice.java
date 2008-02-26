@@ -10,8 +10,6 @@ Contributors:
 */
 package org.eclipse.xtend.backend.aop;
 
-import org.eclipse.xtend.backend.aop.internal.ThisJoinPoint;
-import org.eclipse.xtend.backend.aop.internal.ThisJoinPointStaticPart;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SyntaxConstants;

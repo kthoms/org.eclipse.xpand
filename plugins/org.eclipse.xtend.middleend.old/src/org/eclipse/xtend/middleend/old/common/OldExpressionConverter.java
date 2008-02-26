@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,7 +76,7 @@ import org.eclipse.xtend.typesystem.Type;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class OldExpressionConverter {
+public final class OldExpressionConverter {
     private final TypeToBackendType _typeConverter;
     private ExecutionContext _ctx;
     private final String _extensionName;
@@ -172,7 +172,7 @@ final class OldExpressionConverter {
             return false;
         
         final Type target = paramTypes[0];
-        return target.getOperation(functionName, CollectionHelper.withoutFirst (paramTypes)) != null;
+        return target.getOperation (functionName, CollectionHelper.withoutFirst (paramTypes)) != null;
     }
     
     
@@ -318,7 +318,7 @@ final class OldExpressionConverter {
             
             // 3. check for a type literal
             try {
-                return new LiteralExpression (_typeConverter.convertToBackendType (Arrays.asList (expr.getName().getValue().split(SyntaxConstants.NS_DELIM))), sourcePos);
+                return new LiteralExpression (_typeConverter.convertToBackendType (expr.getName()), sourcePos);
             }
             catch (IllegalArgumentException exc) {} // do nothing - this means it is not a type literal
             
@@ -352,7 +352,7 @@ final class OldExpressionConverter {
     }
     
     private ExpressionBase convertConstructorCallExpression (ConstructorCallExpression expr) {
-        final BackendType t = _typeConverter.convertToBackendType (Arrays.asList(expr.getTypeName()));
+        final BackendType t = _typeConverter.convertToBackendType (expr.getType ());
         return new CreateUncachedExpression (t, getSourcePos(expr));
     }
     

@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.xtend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +29,9 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.old.common.OldExpressionConverter;
+import org.eclipse.xtend.middleend.old.common.OldHelper;
+import org.eclipse.xtend.middleend.old.common.TypeToBackendType;
 import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendGlobalVarOperations;
 import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
 import org.eclipse.xtend.typesystem.MetaModel;
@@ -83,7 +86,7 @@ public final class XtendBackendFacade {
         for (String varName: localVars.keySet())
             ctx = (ExecutionContextImpl) ctx.cloneWithVariable (new Variable (varName, ctx.getType (localVars.get (varName))));
             
-        final BackendTypesystem ts = OldXtendHelper.guessTypesystem (mms);
+        final BackendTypesystem ts = OldHelper.guessTypesystem (mms);
         final TypeToBackendType typeConverter = new TypeToBackendType (ts, ctx);
         
         final ExpressionBase newAst = new OldExpressionConverter (ctx, typeConverter, "<no file>").convert(oldAst);
@@ -96,6 +99,7 @@ public final class XtendBackendFacade {
         return newAst.evaluate (newCtx);
     }
 
+    
     private static FunctionDefContext createEmptyFdc (BackendTypesystem ts, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms) {
         if (initialXtendFileName != null) 
             return createForFile (initialXtendFileName, fileEncoding, mms).getFunctionDefContext();
@@ -113,7 +117,7 @@ public final class XtendBackendFacade {
     public static Object invokeXtendFunction (String xtendFileName, String fileEncoding, Collection<MetaModel> mms, String functionName, Object... parameters) {
         final XtendBackendFacade xbf = createForFile (xtendFileName, fileEncoding, mms);
         final FunctionDefContext fdc = xbf.getFunctionDefContext();
-        final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, OldXtendHelper.guessTypesystem (mms), true); //TODO configure isLogStacktrace
+        final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, OldHelper.guessTypesystem (mms), true); //TODO configure isLogStacktrace
         return fdc.invoke (ctx, functionName, Arrays.asList (parameters));
     }
     
@@ -126,9 +130,9 @@ public final class XtendBackendFacade {
         if (mms == null)
             mms = new ArrayList<MetaModel> ();
         
-        fileEncoding = OldXtendHelper.normalizedFileEncoding (fileEncoding);
-        _xtendFile = OldXtendHelper.normalizeXtendResourceName (xtendFileName);
-        _ts = OldXtendHelper.guessTypesystem (mms);
+        fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
+        _xtendFile = OldHelper.normalizeXtendResourceName (xtendFileName);
+        _ts = OldHelper.guessTypesystem (mms);
         
         final ExecutionContextImpl ctx = new ExecutionContextImpl ();
         for (MetaModel mm: mms)

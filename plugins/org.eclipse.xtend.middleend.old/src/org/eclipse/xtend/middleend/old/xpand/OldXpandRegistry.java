@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old;
+package org.eclipse.xtend.middleend.old.xpand;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,7 +27,10 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.util.Cache;
+import org.eclipse.xtend.middleend.old.common.OldHelper;
+import org.eclipse.xtend.middleend.old.common.TypeToBackendType;
 import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
+import org.eclipse.xtend.middleend.old.xtend.OldXtendRegistry;
 
 
 /**
@@ -61,7 +64,7 @@ final class OldXpandRegistry {
     
     
     private FunctionDefContextInternal getFunctionDefContext (String xtendName) {
-        return _functionDefContexts.get (OldXtendHelper.normalizeXtendResourceName (xtendName));
+        return _functionDefContexts.get (OldHelper.normalizeXtendResourceName (xtendName));
     }
     
     
@@ -69,12 +72,12 @@ final class OldXpandRegistry {
      * parses and converts an Xpand file and all other files it depends on. 
      */
     public void registerXpandFile (String xpandFile) {
-        xpandFile = OldXtendHelper.normalizeXpandResourceName (xpandFile);
+        xpandFile = OldHelper.normalizeXpandResourceName (xpandFile);
         
         if (_functionsByResource.containsKey (xpandFile))
             return;
         
-        final String xpandResourceName = OldXtendHelper.xpandFileAsOldResourceName(xpandFile);
+        final String xpandResourceName = OldHelper.xpandFileAsOldResourceName(xpandFile);
         final Template file = (Template) _ctx.getResourceManager().loadResource (xpandResourceName, XpandUtil.TEMPLATE_EXTENSION);
         if (file == null)
             throw new IllegalArgumentException ("could not find Xpand file '" + xpandResourceName + "'");

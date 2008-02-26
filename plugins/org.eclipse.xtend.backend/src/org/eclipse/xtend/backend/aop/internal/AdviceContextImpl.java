@@ -96,6 +96,8 @@ public final class AdviceContextImpl implements AdviceContext {
         return result;
     }
 
+    //TODO test this (including the order in which advice is applied)!!!
+    
     /**
      * returns the advice to be applied to this function, starting with the outermost
      *  advice, i.e. the advice that is to wrapped around all other advice applicable

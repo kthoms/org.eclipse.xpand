@@ -61,6 +61,8 @@ public final class ExecutionPointcut implements Pointcut {
         _varArgsType = varArgsType;
     }
 
+    //TODO testen!!!
+    
     public boolean matches (String name, Function function) {
         if (! matchesName (name))
             return false;

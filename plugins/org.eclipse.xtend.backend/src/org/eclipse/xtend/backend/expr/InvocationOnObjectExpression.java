@@ -45,7 +45,7 @@ public final class InvocationOnObjectExpression extends ExpressionBase {
         //  shortcut the evaluation and return null
         //
         // CAUTION - without this shortcut, the polymorphic resolution may be ambiguous in unexpected ways
-        if (_nullIfFirstParamIsNull && params.get(0) == null) {
+        if (_nullIfFirstParamIsNull && params.size() > 0 && params.get(0) == null) {
             ctx.logNullDeRef (getPos());
             return null;
         }

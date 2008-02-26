@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
 */
-package org.eclipse.xtend.backend.aop.internal;
+package org.eclipse.xtend.backend.aop;
 
 import org.eclipse.xtend.backend.common.BackendType;
 
@@ -26,8 +26,6 @@ public final class AdviceParamType {
         _includingSubtypes = includingSubtypes;
     }
 
-    //TODO testen!
-    
     public boolean matches (BackendType type) {
         if (_includingSubtypes)
             return _type.isAssignableFrom (type);

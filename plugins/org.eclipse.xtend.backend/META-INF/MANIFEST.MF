@@ -4,6 +4,8 @@ Bundle-Name: Backend Plug-in (Incubation)
 Bundle-SymbolicName: org.eclipse.xtend.backend
 Bundle-Version: 0.7.0
 Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
+ org.eclipse.xtend.backend.aop,
+ org.eclipse.xtend.backend.aop.internal;x-internal:=true,
  org.eclipse.xtend.backend.common,
  org.eclipse.xtend.backend.expr;uses:="org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.functions;uses:="org.eclipse.xtend.backend.common",

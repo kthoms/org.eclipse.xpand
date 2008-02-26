@@ -10,6 +10,7 @@ Contributors:
 */
 package org.eclipse.xtend.backend.aop;
 
+import org.eclipse.xtend.backend.aop.internal.AdviceScopeCounter;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
@@ -42,7 +43,8 @@ public final class AroundAdvice {
      * actually evaluates the advice, regardless of caching - that is context sensitive and must
      *  be taken care of by callers
      */
-    public Object evaluate (ExecutionContext ctx, ThisJoinPoint thisJoinPoint, ThisJoinPointStaticPart thisJoinPointStaticPart) {
+    public Object evaluate (ExecutionContext ctx, AdviceScopeCounter scopeCounter, ThisJoinPoint thisJoinPoint, ThisJoinPointStaticPart thisJoinPointStaticPart) {
+        scopeCounter.enterAdvice();
         ctx.getLocalVarContext().getLocalVars().put (SyntaxConstants.THIS_JOINPOINT, thisJoinPoint);
         ctx.getLocalVarContext().getLocalVars().put (SyntaxConstants.THIS_JOINPOINT_STATICPART, thisJoinPointStaticPart);
         
@@ -52,6 +54,7 @@ public final class AroundAdvice {
         finally {
             ctx.getLocalVarContext ().getLocalVars ().remove (SyntaxConstants.THIS_JOINPOINT);
             ctx.getLocalVarContext ().getLocalVars ().remove (SyntaxConstants.THIS_JOINPOINT_STATICPART);
+            scopeCounter.leaveAdvice();
         }
     }
 

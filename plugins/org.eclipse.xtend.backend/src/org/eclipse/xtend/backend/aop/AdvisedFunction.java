@@ -10,9 +10,9 @@ Contributors:
 */
 package org.eclipse.xtend.backend.aop;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.xtend.backend.aop.internal.AdviceScopeCounter;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.util.ObjectWrapper;
@@ -35,13 +35,15 @@ public final class AdvisedFunction {
     private final Function _function;
     private final List<AroundAdvice> _advice;
     private final int _firstCacheableIndex;
+    private final AdviceScopeCounter _scopeCounter;
     
     private final ThisJoinPointStaticPart _thisJoinPointStaticPart;
 
     
-    public AdvisedFunction (String functionName, Function function, List<AroundAdvice> advice) {
+    public AdvisedFunction (String functionName, Function function, List<AroundAdvice> advice, AdviceScopeCounter scopeCounter) {
         _function = function;
         _advice = advice;
+        _scopeCounter = scopeCounter;
 
         _thisJoinPointStaticPart = new ThisJoinPointStaticPart (functionName, _function);
         
@@ -56,7 +58,7 @@ public final class AdvisedFunction {
             _firstCacheableIndex = advice.size();
     }
 
-    public Object evaluate (ExecutionContext ctx, Object[] params) {
+    public Object evaluate (ExecutionContext ctx, List<?> params) {
         // the evaluation of the advice is performed in three stages:
         //  1. all advice that is "outside" the outermost non-cacheable advice
         //       is always actually evaluated
@@ -68,28 +70,28 @@ public final class AdvisedFunction {
         return proceedInternal (ctx, 0, params);
     }
     
-    private Object proceedInternal (final ExecutionContext ctx, final int indNextAdvice, final Object[] params) {
+    private Object proceedInternal (final ExecutionContext ctx, final int indNextAdvice, final List<?> params) {
         if (indNextAdvice >= _advice.size())
-            return ctx.getFunctionInvoker().invoke (ctx, _function, Arrays.asList (params));
+            return ctx.getFunctionInvoker().invoke (ctx, _function, params);
 
         if (indNextAdvice >= _firstCacheableIndex) {
-            final ObjectWrapper ow = ctx.getAdviceContext().getResultCache().get (new Triplet<Function, AroundAdvice, List<?>> (_function, _advice.get (indNextAdvice), Arrays.asList(params)));
+            final ObjectWrapper ow = ctx.getAdviceContext().getResultCache().get (new Triplet<Function, AroundAdvice, List<?>> (_function, _advice.get (indNextAdvice), params));
             if (ow != null)
                 return ow._content;
         }
 
         final ThisJoinPoint thisJoinPoint = new ThisJoinPoint (ctx.getStacktrace(), params) {
             @Override
-            public Object proceed (Object[] localParams) {
+            public Object proceed (List<?> localParams) {
                 return proceedInternal (ctx, indNextAdvice+1, localParams);
             }
         };
 
         final AroundAdvice advice = _advice.get (indNextAdvice);
-        final Object result = advice.evaluate (ctx, thisJoinPoint, _thisJoinPointStaticPart); 
+        final Object result = advice.evaluate (ctx, _scopeCounter, thisJoinPoint, _thisJoinPointStaticPart); 
         
         if (indNextAdvice >= _firstCacheableIndex) {
-            final Triplet<Function, AroundAdvice, List<?>> key = new Triplet<Function, AroundAdvice, List<?>> (_function, _advice.get (indNextAdvice), Arrays.asList(params));
+            final Triplet<Function, AroundAdvice, List<?>> key = new Triplet<Function, AroundAdvice, List<?>> (_function, _advice.get (indNextAdvice), params);
             ctx.getAdviceContext().getResultCache().put (key, new ObjectWrapper (result));
         }
         

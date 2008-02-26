@@ -11,6 +11,7 @@ Contributors:
 package org.eclipse.xtend.backend.aop.internal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,22 @@ import org.eclipse.xtend.backend.util.Triplet;
  */
 public final class AdviceContextImpl implements AdviceContext {
     private final List<AroundAdvice> _advice = new ArrayList<AroundAdvice> ();
+    private int _numAdviceInScope = 0;
+    
+    private final AdviceScopeCounter _scopeCounter = new AdviceScopeCounter () {
+        public void enterAdvice () {
+            _numAdviceInScope++;
+        }
+
+        public void leaveAdvice () {
+            _numAdviceInScope--;
+        }
+
+        public boolean isWithinAdvice () {
+            return _numAdviceInScope > 0;
+        }
+    };
+    
     
     private final DoubleKeyCache <String, Function, AdvisedFunction> _advisedFunctionCache = new DoubleKeyCache<String, Function, AdvisedFunction> () {
         @Override
@@ -48,7 +65,7 @@ public final class AdviceContextImpl implements AdviceContext {
                 if (advice.getPointcut().matches (functionName, f))
                     applicableAdvice.add (advice);
 
-            return new AdvisedFunction (functionName, f, applicableAdvice);
+            return new AdvisedFunction (functionName, f, applicableAdvice, _scopeCounter);
         }
     };
     
@@ -79,17 +96,28 @@ public final class AdviceContextImpl implements AdviceContext {
         return result;
     }
 
-    //TODO test this (including the order in which advice is applied)!!!
-    
     /**
      * returns the advice to be applied to this function, starting with the outermost
      *  advice, i.e. the advice that is to wrapped around all other advice applicable
      *  to a given function. 
      */
     public AdvisedFunction getAdvice (String functionName, Function f) {
-        return _advisedFunctionCache.get (functionName, f);
+        // this distinction adds an implicit " && ! within <any advice>" to every pointcut. That is
+        //  done to avoid endless recursion when a function is called from within advice that is
+        //  applicable to this function
+        
+        if (_scopeCounter.isWithinAdvice()) {
+            return unadvisedFunction (functionName, f);
+        }
+        else
+            return _advisedFunctionCache.get (functionName, f);
     }
 
+    @SuppressWarnings("unchecked")
+    private AdvisedFunction unadvisedFunction (String functionName, Function f) {
+        return new AdvisedFunction (functionName, f, Collections.EMPTY_LIST, _scopeCounter);
+    }
+    
     public Map<Triplet<Function, AroundAdvice, List<?>>, ObjectWrapper> getResultCache () {
         return _resultCache;
     }

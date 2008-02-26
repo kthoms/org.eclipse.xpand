@@ -113,7 +113,8 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     	    ErrorHandler.handle ("could not resolve function '" + functionName + "' for parameter types " + StringHelper.getTypesAsString (params) + " - candidates were " + candidates, exc);
     	}
     	
-    	return ctx.getFunctionInvoker().invoke (ctx, f, params);
+    	return ctx.getAdviceContext().getAdvice (functionName, f).evaluate(ctx, params);
+//    	return ctx.getFunctionInvoker().invoke (ctx, f, params);
     }
 
     /**

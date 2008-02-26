@@ -22,9 +22,9 @@ import org.eclipse.xtend.backend.common.StacktraceEntry;
  */
 public abstract class ThisJoinPoint {
     private final List<StacktraceEntry> _stackTrace;
-    private final Object[] _params;
+    private final List<?> _params;
 
-    public ThisJoinPoint (List<StacktraceEntry> stackTrace, Object[] params) {
+    public ThisJoinPoint (List<StacktraceEntry> stackTrace, List<?> params) {
         _stackTrace = stackTrace;
         _params = params;
     }
@@ -33,7 +33,7 @@ public abstract class ThisJoinPoint {
         return _stackTrace;
     }
 
-    public Object[] getParameters () {
+    public List<?> getParameters () {
         return _params;
     }
     
@@ -41,5 +41,5 @@ public abstract class ThisJoinPoint {
         return proceed (_params);
     }
     
-    public abstract Object proceed (Object[] params); 
+    public abstract Object proceed (List<?> params); 
 }

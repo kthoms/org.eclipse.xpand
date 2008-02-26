@@ -10,8 +10,8 @@ Contributors:
  */
 package org.eclipse.xtend.backend.util;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -20,8 +20,13 @@ import java.util.List;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class CollectionHelper {
+
+    @SuppressWarnings("unchecked")
     public static<T> T[] withoutFirst (T[] o) {
-        return Arrays.copyOfRange (o, 1, o.length);
+        final Class<?> memberClass = o.getClass().getComponentType();
+        final T[] result = (T[]) Array.newInstance (memberClass, o.length - 1);
+        System.arraycopy (o, 1, result, 0, result.length);
+        return result;
     }
 
     public static<T> List<T> withoutFirst (List<T> o) {

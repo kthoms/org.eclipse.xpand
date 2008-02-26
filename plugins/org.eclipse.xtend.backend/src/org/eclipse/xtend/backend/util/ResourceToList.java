@@ -52,7 +52,7 @@ public final class ResourceToList {
     private void processLine (String line) {
         line = stripComment (line);
         line = line.trim ();
-        if (line.isEmpty())
+        if (line.length() == 0)
             return;
         
         _result.add (line);

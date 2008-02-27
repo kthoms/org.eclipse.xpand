@@ -1,82 +1,108 @@
 lexer grammar Xpand3;
+@members {
+   private boolean xpandMode = false;
+}
 @header { 	
 package org.eclipse.xpand3.parser; 
 }
 
-T18 : 'import' ;
-T19 : ';' ;
-T20 : 'extension' ;
-T21 : 'reexport' ;
-T22 : 'context' ;
-T23 : 'if' ;
-T24 : 'ERROR' ;
-T25 : 'WARNING' ;
-T26 : ':' ;
-T27 : 'around' ;
-T28 : '(' ;
-T29 : ',' ;
-T30 : '*' ;
-T31 : ')' ;
-T32 : '::' ;
-T33 : 'private' ;
-T34 : 'cached' ;
-T35 : 'create' ;
-T36 : 'JAVA' ;
-T37 : '.' ;
-T38 : 'Collection' ;
-T39 : 'List' ;
-T40 : 'Set' ;
-T41 : 'let' ;
-T42 : '=' ;
-T43 : '->' ;
-T44 : '?' ;
-T45 : 'then' ;
-T46 : 'else' ;
-T47 : 'switch' ;
-T48 : 'default' ;
-T49 : '}' ;
-T50 : 'case' ;
-T51 : '||' ;
-T52 : '&&' ;
-T53 : 'implies' ;
-T54 : '==' ;
-T55 : '!=' ;
-T56 : '>=' ;
-T57 : '<=' ;
-T58 : '>' ;
-T59 : '<' ;
-T60 : '+' ;
-T61 : '-' ;
-T62 : '/' ;
-T63 : '!' ;
-T64 : 'GLOBALVAR' ;
-T65 : '[' ;
-T66 : ']' ;
-T67 : 'new' ;
-T68 : 'false' ;
-T69 : 'true' ;
-T70 : 'null' ;
-T71 : 'typeSelect' ;
-T72 : 'collect' ;
-T73 : 'select' ;
-T74 : 'selectFirst' ;
-T75 : 'reject' ;
-T76 : 'exists' ;
-T77 : 'notExists' ;
-T78 : 'sortBy' ;
-T79 : 'forAll' ;
-T80 : '|' ;
+T24 : 'IMPORT' ;
+T25 : 'EXTENSION' ;
+T26 : 'import' ;
+T27 : ';' ;
+T28 : 'extension' ;
+T29 : 'reexport' ;
+T30 : '(' ;
+T31 : ',' ;
+T32 : '*' ;
+T33 : ')' ;
+T34 : 'FOR' ;
+T35 : '-' ;
+T36 : 'ERROR' ;
+T37 : 'EXPAND' ;
+T38 : 'FOREACH' ;
+T39 : 'SEPARATOR' ;
+T40 : 'FILE' ;
+T41 : 'ENDFILE' ;
+T42 : 'AS' ;
+T43 : 'ITERATOR' ;
+T44 : 'ENDFOREACH' ;
+T45 : 'IF' ;
+T46 : 'ENDIF' ;
+T47 : 'ELSEIF' ;
+T48 : 'ELSE' ;
+T49 : 'LET' ;
+T50 : 'ENDLET' ;
+T51 : 'PROTECT' ;
+T52 : 'CSTART' ;
+T53 : 'CEND' ;
+T54 : 'ID' ;
+T55 : 'DISABLE' ;
+T56 : 'ENDPROTECT' ;
+T57 : 'context' ;
+T58 : 'if' ;
+T59 : 'WARNING' ;
+T60 : ':' ;
+T61 : 'around' ;
+T62 : '::' ;
+T63 : 'private' ;
+T64 : 'cached' ;
+T65 : 'create' ;
+T66 : 'JAVA' ;
+T67 : '.' ;
+T68 : 'Collection' ;
+T69 : 'List' ;
+T70 : 'Set' ;
+T71 : 'let' ;
+T72 : '=' ;
+T73 : '->' ;
+T74 : '?' ;
+T75 : 'then' ;
+T76 : 'else' ;
+T77 : 'switch' ;
+T78 : 'default' ;
+T79 : '}' ;
+T80 : 'case' ;
+T81 : '||' ;
+T82 : '&&' ;
+T83 : 'implies' ;
+T84 : '==' ;
+T85 : '!=' ;
+T86 : '>=' ;
+T87 : '<=' ;
+T88 : '>' ;
+T89 : '<' ;
+T90 : '+' ;
+T91 : '/' ;
+T92 : '!' ;
+T93 : 'GLOBALVAR' ;
+T94 : '[' ;
+T95 : ']' ;
+T96 : 'new' ;
+T97 : 'false' ;
+T98 : 'true' ;
+T99 : 'null' ;
+T100 : 'typeSelect' ;
+T101 : 'collect' ;
+T102 : 'select' ;
+T103 : 'selectFirst' ;
+T104 : 'reject' ;
+T105 : 'exists' ;
+T106 : 'notExists' ;
+T107 : 'sortBy' ;
+T108 : 'forAll' ;
+T109 : '|' ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 237
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 349
 IntLiteral : ('0' | '1'..'9' '0'..'9'*) ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 239
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 351
 StringLiteral
     :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
     |  '\'' ( EscapeSequence | ~('\''|'\\') )* '\''
     ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 244
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 356
 fragment
 EscapeSequence
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
@@ -84,7 +110,7 @@ EscapeSequence
     |   OctalEscape
     ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 251
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 363
 fragment
 OctalEscape
     :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
@@ -92,21 +118,33 @@ OctalEscape
     |   '\\' ('0'..'7')
     ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 258
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 370
 fragment
 UnicodeEscape
     :   '\\' 'u' HexDigit HexDigit HexDigit HexDigit
     ;
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 262
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 374
 fragment
 HexDigit : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 265
+
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 378
+DEFINE 	: {xpandMode=true;}	 'DEFINE';
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 379
+ENDDEFINE 
+	: 'ENDDEFINE' {xpandMode=false;};
+	
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 382
+AROUND 	:	{xpandMode=true;}'AROUND';
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 383
+ENDAROUND :	'ENDAROUND'{xpandMode=false;};
+
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 385
 Identifier 
     :   ('^')? Letter (Letter|JavaIDDigit)*
     ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 269
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 389
 fragment
 Letter
     :  '\u0024' |
@@ -124,7 +162,7 @@ Letter
        '\uf900'..'\ufaff'
     ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 286
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 406
 fragment
 JavaIDDigit
     :  '\u0030'..'\u0039' |
@@ -144,23 +182,34 @@ JavaIDDigit
        '\u1040'..'\u1049'
    ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 305
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 425
 WS  :  (' '|'\r'|'\t'|'\u000C'|'\n') {$channel=HIDDEN;}
     ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 308
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 428
 COMMENT
     :   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 312
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 432
 LINE_COMMENT
     : '//' ~('\n'|'\r')* ('\r'? '\n'|EOF) {$channel=HIDDEN;}
     ;
+    
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 436
+REM_COMMENT :
+	'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' {$channel=HIDDEN;}
+;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 316
-XPAND_TAG_OPEN 
+
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 441
+TEXT :
+  {xpandMode}? RG ~(LG)* (LG)?
+;
+
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 445
+LG 
 	: '\u00AB';
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 318
-XPAND_TAG_CLOSE
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 447
+RG
 	: '\u00BB';	

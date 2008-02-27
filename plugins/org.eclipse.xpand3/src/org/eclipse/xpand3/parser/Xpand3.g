@@ -1,4 +1,7 @@
 grammar Xpand3;
+@lexer::members {
+   private boolean xpandMode = false;
+}
 
 @parser::header { 	
 package org.eclipse.xpand3.parser; 
@@ -9,6 +12,8 @@ package org.eclipse.xpand3.parser;
 }
 
 
+
+
 r_file  :
 	(r_nsImport)*
 	(r_abstractDeclaration )*
@@ -16,15 +21,122 @@ r_file  :
 ;
 
 r_nsImport :
-	'import' r_type  ';' 
-	|'extension' r_type ('reexport')? ';' 
+	LG 'IMPORT' r_type RG |
+	LG 'EXTENSION' r_type RG |
+	'import' r_type  ';' | 
+	'extension' r_type ('reexport')? ';' 
 ;
 
 r_abstractDeclaration :
 	r_check |
 	r_around |
-	r_extension 
+	r_extension |
+	r_definition |
+	r_definitionAround
 ;
+
+// XPAND start
+
+r_definition :
+	LG DEFINE r_identifier ('(' (r_declaredParameterList (','? '*')? | '*')? ')')? 'FOR' r_type
+	r_sequence
+	ENDDEFINE RG
+;
+	
+r_definitionAround :	
+	LG AROUND r_pointcut ('(' (r_declaredParameterList (','? '*')? | '*')? ')')? 'FOR' r_type
+	r_sequence
+	ENDAROUND RG
+;	
+
+r_sequence :
+	 r_textSequence 
+	 (r_statement 
+	  r_textSequence)*		
+;
+
+r_statement :
+  r_simpleStatement 
+| r_fileStatement 
+| r_foreachStatement 
+| r_ifStatement 
+| r_letStatement 
+| r_protectStatement
+;
+	
+r_textSequence :
+	r_text (r_text)*
+;
+
+r_text :
+	'-'? TEXT
+;
+
+r_simpleStatement :
+  r_errorStatement
+| r_expandStatement
+| r_expressionStmt
+;
+
+r_errorStatement :
+  'ERROR' r_expression
+;
+
+r_expandStatement :
+  'EXPAND' r_simpleType ('(' r_parameterList ')')? (('FOR' r_expression)
+  | ('FOREACH'r_expression ('SEPARATOR' r_expression)?))?
+;
+
+r_expressionStmt  :
+	r_expression
+;
+
+r_fileStatement :
+	'FILE' r_expression (r_identifier)?
+		r_sequence 
+	'ENDFILE'
+;
+	
+r_foreachStatement :
+	 'FOREACH' r_expression 'AS' r_identifier ('ITERATOR' r_identifier)? ('SEPARATOR' r_expression)?
+  		r_sequence 
+	 'ENDFOREACH'
+;
+
+r_ifStatement : 
+     'IF' r_expression
+		r_sequence 
+	 r_elseIfStatement*
+	 r_elseStatement?
+	 'ENDIF'
+;
+
+r_elseIfStatement :
+	'ELSEIF' r_expression
+		r_sequence 
+;
+	
+r_elseStatement :
+	'ELSE'
+		r_sequence
+;
+	
+r_letStatement :
+	 'LET' r_expression 'AS' r_identifier
+  		r_sequence 
+	 'ENDLET'
+;
+	
+r_protectStatement :
+	'PROTECT' 
+		'CSTART' r_expression 
+		'CEND' r_expression 
+         	'ID' r_expression 'DISABLE'?
+ 		r_sequence 
+	'ENDPROTECT'
+;
+
+// Xtend start
 
 r_check :
 	'context' r_type ('if' r_expression)? ('ERROR'|'WARNING') r_expression ':'
@@ -262,6 +374,14 @@ UnicodeEscape
 fragment
 HexDigit : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
+
+DEFINE 	: {xpandMode=true;}	 'DEFINE';
+ENDDEFINE 
+	: 'ENDDEFINE' {xpandMode=false;};
+	
+AROUND 	:	{xpandMode=true;}'AROUND';
+ENDAROUND :	'ENDAROUND'{xpandMode=false;};
+
 Identifier 
     :   ('^')? Letter (Letter|JavaIDDigit)*
     ;
@@ -312,8 +432,17 @@ COMMENT
 LINE_COMMENT
     : '//' ~('\n'|'\r')* ('\r'? '\n'|EOF) {$channel=HIDDEN;}
     ;
+    
+REM_COMMENT :
+	'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' {$channel=HIDDEN;}
+;
 
-XPAND_TAG_OPEN 
+
+TEXT :
+  {xpandMode}? RG ~(LG)* (LG)?
+;
+
+LG 
 	: '\u00AB';
-XPAND_TAG_CLOSE
+RG
 	: '\u00BB';	

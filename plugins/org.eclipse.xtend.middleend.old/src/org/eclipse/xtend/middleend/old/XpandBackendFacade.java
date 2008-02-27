@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipose.xtend.middleend.MiddleEnd;
+import org.eclipose.xtend.middleend.MiddleEndFactory;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.Template;
@@ -260,7 +261,7 @@ public final class XpandBackendFacade {
             outlets = new ArrayList<Outlet> ();
 
         _xpandFile = OldHelper.normalizeXpandResourceName (xpandFilename);
-        _middleEnd = new MiddleEnd (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
+        _middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
         
         _fileEncoding = fileEncoding;
         _mms = mms;

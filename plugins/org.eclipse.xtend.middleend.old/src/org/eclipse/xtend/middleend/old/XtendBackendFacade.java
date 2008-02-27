@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipose.xtend.middleend.MiddleEnd;
+import org.eclipose.xtend.middleend.MiddleEndFactory;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
 import org.eclipse.xtend.backend.BackendFacade;
@@ -161,7 +162,7 @@ public final class XtendBackendFacade {
         
         _xtendFile = OldHelper.normalizeXtendResourceName (xtendFileName);
         _mms = mms;
-        _middleEnd = new MiddleEnd (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
+        _middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
     }
     
     public FunctionDefContext getFunctionDefContext () {

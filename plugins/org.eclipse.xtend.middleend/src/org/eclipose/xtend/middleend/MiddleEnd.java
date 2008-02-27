@@ -11,11 +11,9 @@ Contributors:
 package org.eclipose.xtend.middleend;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipose.xtend.middleend.internal.Activator;
 import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
@@ -36,10 +34,10 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public class MiddleEnd {
+public final class MiddleEnd {
     private static final Log _log = LogFactory.getLog (MiddleEnd.class);
     
-    private final List<LanguageSpecificMiddleEnd> _middleEnds;
+    private final List<LanguageSpecificMiddleEnd> _languageHandlers;
     private final ExecutionContext _ctx;
     private final BackendTypesystem _ts;
     
@@ -48,14 +46,14 @@ public class MiddleEnd {
      *  The key must be the class implementing the LanguageSpecificMiddleEnd interface
      *  and contributed via the extension point.
      */
-    public MiddleEnd (BackendTypesystem ts, Map<Class<?>, Object> specificParams) {
+    public MiddleEnd (BackendTypesystem ts, List<LanguageSpecificMiddleEnd> languageHandlers) {
         _ctx = BackendFacade.createExecutionContext (new FunctionDefContextFactory (ts).create(), ts, false);
         _ts = ts;
-        _middleEnds = Activator.getInstance().getFreshMiddleEnds (this, specificParams);
+        _languageHandlers = languageHandlers;
     }
     
     private LanguageSpecificMiddleEnd findHandler (String resourceName) {
-        for (LanguageSpecificMiddleEnd candidate: _middleEnds) {
+        for (LanguageSpecificMiddleEnd candidate: _languageHandlers) {
             if (candidate.canHandle (resourceName)) {
                 _log.debug ("middle end " + candidate.getName() + " handles resource " + resourceName);
                 return candidate;

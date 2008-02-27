@@ -27,15 +27,15 @@ public class AopTestFunctions {
         return "second";
     }
     
-    public String f (Object o) {
+    public String f (@SuppressWarnings("unused") Object o) {
         return "f(Object)";
     }
     
-    public String f (Collection<?> c) {
+    public String f (@SuppressWarnings("unused") Collection<?> c) {
         return "f(Collection)";
     }
     
-    public String f(List<?> l) {
+    public String f(@SuppressWarnings("unused") List<?> l) {
         return "f(List)";
     }
 }

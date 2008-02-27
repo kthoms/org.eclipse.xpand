@@ -1,8 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Middleend Plug-in (Incubation)
-Bundle-SymbolicName: org.eclipse.xtend.middleend
+Bundle-SymbolicName: org.eclipse.xtend.middleend;singleton:=true
 Bundle-Version: 0.7.0
 Require-Bundle: org.eclipse.xtend.backend,
- org.eclipse.xtend.backend.emftypes
-Export-Package: org.eclipose.xtend.middleend
+ org.eclipse.xtend.backend.emftypes,
+ org.eclipse.equinox.registry,
+ org.eclipse.osgi,
+ org.apache.commons.logging
+Export-Package: org.eclipose.xtend.middleend,
+ org.eclipose.xtend.middleend.plugins
+Bundle-Activator: org.eclipose.xtend.middleend.internal.Activator
+Eclipse-LazyStart: true

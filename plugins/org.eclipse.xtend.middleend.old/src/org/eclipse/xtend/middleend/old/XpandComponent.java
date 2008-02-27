@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old.xpand;
+package org.eclipse.xtend.middleend.old;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -136,7 +136,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         for (String name: wfContext.getSlotNames())
             variables.put (name, wfContext.get (name));
 
-        XpandBackendFacade.executeStatement (code, metaModels, variables, outlets);
+        XpandBackendFacade.executeStatement (code, _fileEncoding, metaModels, variables, outlets);
     }
 
     private final List<Outlet> outlets = new ArrayList<Outlet>();

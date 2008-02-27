@@ -56,7 +56,7 @@ public class ConcatExpressionTest {
         }.create(); 
         
         final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
-        fdc.register (myToString);
+        fdc.register (myToString, true);
 
         final ExpressionBase expr = new ConcatExpression (Arrays.asList (createLiteral("a"), createLiteral("b")), SOURCE_POS);
         

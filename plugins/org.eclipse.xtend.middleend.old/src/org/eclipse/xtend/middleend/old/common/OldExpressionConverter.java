@@ -35,7 +35,6 @@ import org.eclipse.internal.xtend.expression.ast.StringLiteral;
 import org.eclipse.internal.xtend.expression.ast.SwitchExpression;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.expression.ast.TypeSelectExpression;
-import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ListTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;

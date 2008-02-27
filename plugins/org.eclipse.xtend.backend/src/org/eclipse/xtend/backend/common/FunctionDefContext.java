@@ -42,4 +42,6 @@ public interface FunctionDefContext {
      *  types and those registered separately.
      */
     boolean hasMatch (ExecutionContext ctx, String functionName, List<? extends Object> params);
+    
+    Collection<NamedFunction> getPublicFunctions ();
 }

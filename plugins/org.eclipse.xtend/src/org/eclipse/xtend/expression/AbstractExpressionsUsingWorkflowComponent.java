@@ -33,7 +33,7 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends
 
 	protected final List<MetaModel> metaModels = new ArrayList<MetaModel>();
 
-	private List<GlobalVarDef> globalVarDefs = new ArrayList<GlobalVarDef>();
+	protected final List<GlobalVarDef> globalVarDefs = new ArrayList<GlobalVarDef>();
 
 	public void addMetaModel(final MetaModel metaModel) {
 		assert metaModel != null;

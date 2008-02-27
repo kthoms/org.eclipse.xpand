@@ -54,8 +54,8 @@ public class OverrideTest {
         final ExpressionBase expr = new ConcatExpression (Arrays.asList (createLiteral (25L), createLiteral ("Abc")), SOURCE_POS);
         
         final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
-        fdc.register (myLongToString);
-        fdc.register (myObjectToString);
+        fdc.register (myLongToString, true);
+        fdc.register (myObjectToString, true);
         
         final ExecutionContext ctx = createEmptyExecutionContext();
         assertEquals ("25Abc", expr.evaluate (ctx).toString());

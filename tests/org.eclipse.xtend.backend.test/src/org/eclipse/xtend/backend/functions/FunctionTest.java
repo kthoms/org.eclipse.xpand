@@ -36,18 +36,18 @@ public class FunctionTest {
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (CounterFunction.class, ctx.getTypesystem()))
-            fdc.register (new NamedFunction (f.getName(), f));
+            fdc.register (new NamedFunction (f.getName(), f), true);
         
         fdc.register (new NamedFunctionFactory ("myCached", true) {
             public Object invoke (ExecutionContext innerCtx, Object[] params) {
                 return innerCtx.getFunctionDefContext().invoke (innerCtx, "nextCounterValue", new ArrayList<Object> ());
             }
-        }.create());
+        }.create(), true);
         fdc.register (new NamedFunctionFactory ("myUncached", false) {
             public Object invoke (ExecutionContext innerCtx, Object[] params) {
                 return innerCtx.getFunctionDefContext().invoke (innerCtx, "nextCounterValue", new ArrayList<Object> ());
             }
-        }.create());
+        }.create(), true);
         
         assertEquals (0L, fdc.invoke (ctx, "myUncached", new ArrayList<Object> ()));
         assertEquals (1L, fdc.invoke (ctx, "myUncached", new ArrayList<Object> ()));
@@ -70,7 +70,7 @@ public class FunctionTest {
                 final EfficientLazyString result = new EfficientLazyString ();
                 return EfficientLazyString.createAppendedString (result, "Hi Arno");
             }
-        }.create());
+        }.create(), true);
         
         assertEquals ("Hi Arno", fdc.invoke (ctx, "myCached", new ArrayList<Object> ()).toString());
         EfficientLazyString.createAppendedString ((EfficientLazyString) fdc.invoke (ctx, "myCached", new ArrayList<Object> ()), "... and something else");

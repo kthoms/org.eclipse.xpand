@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old.xpand;
+package org.eclipse.xtend.middleend.old;
 
 import java.io.File;
 import java.io.StringReader;
@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.Template;
@@ -33,14 +34,12 @@ import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.backend.BackendFacade;
-import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
-import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.FileOutlet;
 import org.eclipse.xtend.backend.syslib.InMemoryPostprocessor;
@@ -49,7 +48,10 @@ import org.eclipse.xtend.backend.syslib.UriBasedPostprocessor;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.middleend.old.common.OldHelper;
 import org.eclipse.xtend.middleend.old.common.TypeToBackendType;
-import org.eclipse.xtend.middleend.old.xtend.OldXtendRegistry;
+import org.eclipse.xtend.middleend.old.internal.xpand.OldDefinitionConverter;
+import org.eclipse.xtend.middleend.old.internal.xpand.XpandDefinitionName;
+import org.eclipse.xtend.middleend.old.plugin.OldXpandRegistryFactory;
+import org.eclipse.xtend.middleend.old.plugin.OldXtendRegistryFactory;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 
@@ -58,14 +60,14 @@ import org.eclipse.xtend.typesystem.MetaModel;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class XpandBackendFacade {
-    private final OldXtendRegistry _extensions;
-    private final OldXpandRegistry _registry;
     private final String _xpandFile;
-    private final BackendTypesystem _ts;
-    
+    private final MiddleEnd _middleEnd;
+
+    private final String _fileEncoding;
+    private final Collection<MetaModel> _mms;
+    private final Collection<Outlet> _outlets;
     
     /**
-     * This method executes Xpand code that is passed in as a string, script language style.<br>
      * This method executes Xpand code that is passed in as a string, script language style.<br>
      * 
      * There are two restrictions. Firstly, no DEFINEs are allowed - the string that is passed in must be a valid body for a DEFINE. Never
@@ -95,41 +97,35 @@ public final class XpandBackendFacade {
      * Both the "variables" and "outlets" parameter may be null.
      */
     public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets) {
-        fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
-        final BackendTypesystem ts = OldHelper.guessTypesystem (mms);
+        return createForFile (null, fileEncoding, mms, outlets).executeStatement (code, variables);
+    }
         
+    public Object executeStatement (String code, Map<String, Object> variables) {
         if (variables == null)
             variables = new HashMap<String, Object> ();
-        if (outlets == null)
-            outlets = new ArrayList<Outlet> ();
         
         final Template tpl = XpandParseFacade.file (new StringReader (XpandTokens.LT + "DEFINE dUmMy FOR dUmMy" + XpandTokens.RT + code + XpandTokens.RT + XpandTokens.LT + "ENDDEFINE" + XpandTokens.RT), null);
         final Statement[] statements = ((Definition) tpl.getDefinitions()[0]).getBody();
+
+        System.err.println (_fileEncoding);
         
-        
-        XpandExecutionContext ctx = createOldExecutionContext (fileEncoding, mms, outlets);
+        XpandExecutionContext ctx = createXpandExecutionContext (_fileEncoding, _mms, _outlets);
         for (String varName: variables.keySet())
             ctx = (XpandExecutionContext) ctx.cloneWithVariable (new Variable (varName, ctx.getType (variables.get (varName))));
         
         final Set<XpandDefinitionName> referenced = new HashSet<XpandDefinitionName>();
-        final OldDefinitionConverter defConverter = new OldDefinitionConverter (ctx, new TypeToBackendType (ts, ctx));
+        final OldDefinitionConverter defConverter = new OldDefinitionConverter (ctx, new TypeToBackendType (_middleEnd.getTypesystem(), ctx));
         final ExpressionBase converted = defConverter.convertStatementSequence (statements, tpl, referenced);
 
+        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ts).create();
+        for (XpandDefinitionName xdn: referenced)
+            for (NamedFunction f: _middleEnd.getFunctions (xdn.getCanonicalTemplateFileName ()).getPublicFunctions())
+                fdc.register (f, false);
         
-        //TODO refactor this to extract common code - both from here and from OldXpandRegistry
-        final OldXpandRegistry oxr = new OldXpandRegistry (ctx, ts, new OldXtendRegistry (ctx, ts));
-        for (XpandDefinitionName xdn: referenced) {
-            oxr.registerXpandFile (xdn.getCanonicalTemplateFileName());
-            
-            for (NamedFunction f: oxr.getContributedFunctions (xdn.getCanonicalTemplateFileName()))
-                fdc.register (f);
-        }
-        
-        final ExecutionContext backendCtx = BackendFacade.createExecutionContext (fdc, ts, true); //TODO configure isLogStacktrace 
+        final ExecutionContext backendCtx = BackendFacade.createExecutionContext (fdc, _middleEnd.getTypesystem(), true); //TODO configure isLogStacktrace 
         backendCtx.getLocalVarContext().getLocalVars().putAll (variables);
-        registerOutlets (backendCtx, outlets);
+        registerOutlets (backendCtx, _outlets);
 
         return converted.evaluate (backendCtx);
     }
@@ -233,7 +229,7 @@ public final class XpandBackendFacade {
     }
     
     
-    private static XpandExecutionContext createOldExecutionContext (String fileEncoding, Collection<MetaModel> mms, Collection<Outlet> outlets) {
+    private XpandExecutionContext createXpandExecutionContext (String fileEncoding, Collection<MetaModel> mms, Collection<Outlet> outlets) {
         fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
         
         final Output output = new OutputImpl ();
@@ -245,30 +241,41 @@ public final class XpandBackendFacade {
         for (MetaModel mm: mms)
             ctx.registerMetaModel (mm);
         ctx.setFileEncoding (fileEncoding);
-        
+
         return ctx;
     }
     
+    private Map<Class<?>, Object> createSpecificParameters (String fileEncoding, Collection<MetaModel> mms, Collection<Outlet> outlets) {
+        final XpandExecutionContext ctx = createXpandExecutionContext (fileEncoding, mms, outlets);
+
+        final Map<Class<?>, Object> result = new HashMap<Class<?>, Object> ();
+        result.put (OldXtendRegistryFactory.class, ctx);
+        result.put (OldXpandRegistryFactory.class, ctx);
+        return result;
+    }
+
+    
     private XpandBackendFacade (String xpandFilename, String fileEncoding, Collection<MetaModel> mms, Collection <Outlet> outlets) {
+        if (outlets == null)
+            outlets = new ArrayList<Outlet> ();
+
         _xpandFile = OldHelper.normalizeXpandResourceName (xpandFilename);
-        _ts = OldHelper.guessTypesystem (mms);
+        _middleEnd = new MiddleEnd (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
         
-        final XpandExecutionContext ctx = createOldExecutionContext (fileEncoding, mms, outlets);
-        
-        _extensions = new OldXtendRegistry (ctx, _ts);
-        _registry = new OldXpandRegistry (ctx, _ts, _extensions);
-        _registry.registerXpandFile (xpandFilename);
+        _fileEncoding = fileEncoding;
+        _mms = mms;
+        _outlets = outlets;
     }
     
     public Collection<NamedFunction> getContributedFunctions () {
-        return _registry.getContributedFunctions (_xpandFile);
+        return _middleEnd.getFunctions(_xpandFile).getPublicFunctions();
     }
     
     public FunctionDefContext getFunctionDefContext () {
-        if (getContributedFunctions().isEmpty())
-            return new FunctionDefContextFactory(_ts).create();
+        if (_xpandFile == null)
+            return new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
         
-        return ((SourceDefinedFunction) getContributedFunctions().iterator().next().getFunction()).getFunctionDefContext();
+        return _middleEnd.getFunctions (_xpandFile);
     }
 }
 

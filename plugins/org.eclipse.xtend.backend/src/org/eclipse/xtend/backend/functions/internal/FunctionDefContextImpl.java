@@ -88,12 +88,12 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
         }
     };
 
-    public void register (Collection<? extends NamedFunction> functions) {
-        for (NamedFunction f: functions)
-            register (f);
-    }
+    private final DuplicateAwareNamedFunctionCollection _publicFunctions = new DuplicateAwareNamedFunctionCollection ();
     
-    public void register (NamedFunction f) {
+    public void register (NamedFunction f, boolean isPublic) {
+        if (isPublic)
+            _publicFunctions.register (f);
+        
         final NamedFunction old = _functions.get (f.getName(), f.getFunction().getParameterTypes().size()).register (f);
         if (old != null && old.getFunction().getParameterTypes().size() > 0)
             _byFirstParameterType.get (old.getFunction().getParameterTypes().get (0)).remove (old);
@@ -159,6 +159,10 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     @Override
     public String toString () {
         return "FunctionDefContextImpl [" + _functions.getMap().values() + "]";
+    }
+
+    public Collection<NamedFunction> getPublicFunctions () {
+        return _publicFunctions.getFunctions();
     }
 }
 

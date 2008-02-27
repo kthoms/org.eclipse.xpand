@@ -111,7 +111,7 @@ public class SwitchExpressionTest {
         }.create(); 
         
         final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
-        fdc.register (myStringEquals);
+        fdc.register (myStringEquals, true);
         
         final ExecutionContext ctx = createEmptyExecutionContext();
         assertEquals ("defaultValue", expr.evaluate (ctx));

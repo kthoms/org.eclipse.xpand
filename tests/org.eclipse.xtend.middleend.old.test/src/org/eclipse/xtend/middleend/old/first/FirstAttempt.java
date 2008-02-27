@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipose.xtend.middleend.BackendTypesystemFactory;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.internal.core.WorkflowContextDefaultImpl;
@@ -23,18 +22,21 @@ import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
-import org.eclipse.xtend.middleend.old.xpand.XpandBackendFacade;
-import org.eclipse.xtend.middleend.old.xpand.XpandComponent;
-import org.eclipse.xtend.middleend.old.xtend.XtendBackendFacade;
+import org.eclipse.xtend.middleend.old.XpandBackendFacade;
+import org.eclipse.xtend.middleend.old.XpandComponent;
+import org.eclipse.xtend.middleend.old.XtendBackendFacade;
 import org.eclipse.xtend.typesystem.MetaModel;
+import org.junit.Test;
 
 
 public class FirstAttempt {
-    public static void main (String[] args) {
+    @Test
+    public void main() throws Exception {
         final List<MetaModel> mms = new ArrayList<MetaModel> ();
         mms.add (new JavaBeansMetaModel ());
         
-        final CompositeTypesystem ts = BackendTypesystemFactory.createJustEmf();
+        final CompositeTypesystem ts = new CompositeTypesystem ();
+//        ts.register (new EmfTypesystem ());
 
         {
             final XpandBackendFacade xp = XpandBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first::aTemplate", "iso-8859-1", mms, new ArrayList<Outlet>());
@@ -47,6 +49,7 @@ public class FirstAttempt {
             final XpandComponent xwc = new XpandComponent ();
             xwc.setExpand ("org::eclipse::xtend::middleend::old::first::WithFileOutput::WithFileOutput FOR toBeGreeted");
             xwc.addOutlet (new Outlet (false, "iso-8859-1", null, true, "src-gen"));
+            xwc.setFileEncoding ("iso-8859-1");
             
             final WorkflowContext wfContext = new WorkflowContextDefaultImpl ();
             wfContext.set ("toBeGreeted", "Arno");

@@ -53,6 +53,9 @@ public final class OldHelper {
     }
     
     public static String normalizeXtendResourceName (String xtendName) {
+        if (xtendName == null)
+            return null;
+        
         xtendName = xtendName.replace (SyntaxConstants.NS_DELIM, "/");
         if (xtendName.endsWith ("." + XtendFile.FILE_EXTENSION))
             xtendName = xtendName.substring (0, xtendName.length() - (XtendFile.FILE_EXTENSION.length() + 1));
@@ -61,6 +64,9 @@ public final class OldHelper {
     }
     
     public static String normalizeXpandResourceName (String xpandName) {
+        if (xpandName == null)
+            return null;
+        
         if (! xpandName.endsWith("." + XpandUtil.TEMPLATE_EXTENSION))
             xpandName += "." + XpandUtil.TEMPLATE_EXTENSION;
 
@@ -70,6 +76,9 @@ public final class OldHelper {
     }
     
     public static String xpandFileAsOldResourceName (String xpandName) {
+        if (xpandName == null)
+            return null;
+        
         if (xpandName.toLowerCase().endsWith (XpandUtil.TEMPLATE_EXTENSION))
             xpandName = xpandName.substring (0, xpandName.length() - XpandUtil.TEMPLATE_EXTENSION.length() - 1);
         

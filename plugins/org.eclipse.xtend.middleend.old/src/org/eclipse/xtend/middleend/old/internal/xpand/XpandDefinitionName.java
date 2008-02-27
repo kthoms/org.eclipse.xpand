@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
 */
-package org.eclipse.xtend.middleend.old.xpand;
+package org.eclipse.xtend.middleend.old.internal.xpand;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import org.eclipse.xtend.typesystem.Type;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class XpandDefinitionName {
+public final class XpandDefinitionName {
     private final String _canonicalDefinitionName;
     private final String _canonicalTemplateFileName;
 

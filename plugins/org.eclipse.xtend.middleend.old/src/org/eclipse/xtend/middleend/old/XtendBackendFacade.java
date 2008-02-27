@@ -8,25 +8,25 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old.xtend;
+package org.eclipse.xtend.middleend.old;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
 import org.eclipse.xtend.backend.BackendFacade;
-import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
-import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.middleend.old.common.OldExpressionConverter;
@@ -34,6 +34,7 @@ import org.eclipse.xtend.middleend.old.common.OldHelper;
 import org.eclipse.xtend.middleend.old.common.TypeToBackendType;
 import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendGlobalVarOperations;
 import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
+import org.eclipse.xtend.middleend.old.plugin.OldXtendRegistryFactory;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 
@@ -42,10 +43,9 @@ import org.eclipse.xtend.typesystem.MetaModel;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class XtendBackendFacade {
-    private final OldXtendRegistry _registry;
     private final String _xtendFile;
-    private final BackendTypesystem _ts;
-
+    private final MiddleEnd _middleEnd;
+    private final Collection<MetaModel> _mms;
     
     /**
      * This method invokes a "stand alone" expression that knows nothing about any functions defined in files. It is useful for
@@ -58,7 +58,7 @@ public final class XtendBackendFacade {
     }
         
     public static Object evaluateExpression (String expression, Collection<MetaModel> mms, Map<String, Object> localVars, Map<String, Object> globalVars) {
-        return evaluateExpression (expression, null, null, mms, localVars, globalVars);
+        return evaluateExpression (expression, null, null, mms, localVars, globalVars, null);
     }
 
     /**
@@ -67,45 +67,57 @@ public final class XtendBackendFacade {
      * The fileEncoding may be null, in which case the platform's default encoding is used. Both mms and localVars may be null.
      */
     public static Object evaluateExpression (String expression, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> localVars) {
-        return evaluateExpression (expression, initialXtendFileName, fileEncoding, mms, localVars, null);
+        return evaluateExpression (expression, initialXtendFileName, fileEncoding, mms, localVars, null, null);
     }
         
-    public static Object evaluateExpression (String expression, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> localVars, Map<String, Object> globalVars) {
+    public static Object evaluateExpression (String expression, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> localVars, Map<String, Object> globalVars, List<String> adviceResources) {
+        return createForFile (initialXtendFileName, fileEncoding, mms).evaluateExpression (expression, localVars, globalVars, adviceResources);
+    }
+        
+    public Object evaluateExpression (String expression, Map<String, Object> localVars) {
+        return evaluateExpression (expression, localVars, null, null);
+    }
+    
+    public Object evaluateExpression (String expression, Map<String, Object> localVars, Map<String, Object> globalVars, List<String> adviceResources) {
         if (localVars == null)
             localVars = new HashMap<String, Object> ();
         if (globalVars == null)
             globalVars = new HashMap<String, Object> ();
-        if (mms == null)
-            mms = new ArrayList<MetaModel> ();
+        if (adviceResources == null)
+            adviceResources = new ArrayList<String> ();
+        
+        for (String a: adviceResources)
+            _middleEnd.applyAdvice (a);
 
         final Expression oldAst = ParseFacade.expression (expression);
         
         ExecutionContextImpl ctx = new ExecutionContextImpl ();
-        for (MetaModel mm: mms)
+        for (MetaModel mm: _mms)
             ctx.registerMetaModel (mm);
         for (String varName: localVars.keySet())
             ctx = (ExecutionContextImpl) ctx.cloneWithVariable (new Variable (varName, ctx.getType (localVars.get (varName))));
             
-        final BackendTypesystem ts = OldHelper.guessTypesystem (mms);
-        final TypeToBackendType typeConverter = new TypeToBackendType (ts, ctx);
-        
-        final ExpressionBase newAst = new OldExpressionConverter (ctx, typeConverter, "<no file>").convert(oldAst);
+        final TypeToBackendType typeConverter = new TypeToBackendType (_middleEnd.getTypesystem(), ctx);
+        final ExpressionBase newAst = new OldExpressionConverter (ctx, typeConverter, "<no file>").convert (oldAst);
 
-        final FunctionDefContext fdc = createEmptyFdc (ts, initialXtendFileName, fileEncoding, mms);
-        final ExecutionContext newCtx = BackendFacade.createExecutionContext (fdc, ts, true); //TODO configure isLogStacktrace
-        newCtx.getLocalVarContext().getLocalVars().putAll (localVars);
-        newCtx.getContributionStateContext().storeState (XtendGlobalVarOperations.GLOBAL_VAR_VALUES_KEY, globalVars);
+        final FunctionDefContext fdc = createFdc ();
+        _middleEnd.getExecutionContext().setFunctionDefContext (fdc);
+        //TODO configure isLogStacktrace
+        _middleEnd.getExecutionContext().getLocalVarContext().getLocalVars().putAll (localVars);
+        _middleEnd.getExecutionContext().getContributionStateContext().storeState (XtendGlobalVarOperations.GLOBAL_VAR_VALUES_KEY, globalVars);
 
-        return newAst.evaluate (newCtx);
+        return newAst.evaluate (_middleEnd.getExecutionContext());
     }
 
     
-    private static FunctionDefContext createEmptyFdc (BackendTypesystem ts, String initialXtendFileName, String fileEncoding, Collection<MetaModel> mms) {
-        if (initialXtendFileName != null) 
-            return createForFile (initialXtendFileName, fileEncoding, mms).getFunctionDefContext();
+    private FunctionDefContext createFdc () {
+        if (_xtendFile != null) 
+            return getFunctionDefContext();
 
-        final FunctionDefContextInternal result = new FunctionDefContextFactory (ts).create();
-        result.register (new XtendLibContributor (ts).getContributedFunctions());
+        final FunctionDefContextInternal result = new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
+        
+        for (NamedFunction f: new XtendLibContributor (_middleEnd.getTypesystem()).getContributedFunctions())
+            result.register (f, false);
         return result;
     }
     
@@ -115,9 +127,12 @@ public final class XtendBackendFacade {
      *  encoding is used.
      */
     public static Object invokeXtendFunction (String xtendFileName, String fileEncoding, Collection<MetaModel> mms, String functionName, Object... parameters) {
-        final XtendBackendFacade xbf = createForFile (xtendFileName, fileEncoding, mms);
-        final FunctionDefContext fdc = xbf.getFunctionDefContext();
-        final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, OldHelper.guessTypesystem (mms), true); //TODO configure isLogStacktrace
+        return createForFile (xtendFileName, fileEncoding, mms).invokeXtendFunction (functionName, parameters);
+    }
+        
+    public Object invokeXtendFunction (String functionName, Object... parameters) {
+        final FunctionDefContext fdc = getFunctionDefContext();
+        final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, _middleEnd.getTypesystem(), true); //TODO configure isLogStacktrace
         return fdc.invoke (ctx, functionName, Arrays.asList (parameters));
     }
     
@@ -125,34 +140,35 @@ public final class XtendBackendFacade {
     public static XtendBackendFacade createForFile (String xtendFileName, String fileEncoding, Collection<MetaModel> mms) {
         return new XtendBackendFacade (xtendFileName, fileEncoding, mms);
     }
+
+    private Map<Class<?>, Object> getSpecificParameters (String fileEncoding, Collection<MetaModel> mms) {
+        fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
+
+        final ExecutionContextImpl ctx = new ExecutionContextImpl ();
+        ctx.setFileEncoding (fileEncoding);
+        for (MetaModel mm: mms)
+            ctx.registerMetaModel (mm);
+        
+        final Map<Class<?>, Object> result = new HashMap<Class<?>, Object> ();
+        result.put (OldXtendRegistryFactory.class, ctx);
+        return result;
+    }
+    
     
     private XtendBackendFacade (String xtendFileName, String fileEncoding, Collection<MetaModel> mms) {
         if (mms == null)
             mms = new ArrayList<MetaModel> ();
         
-        fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
         _xtendFile = OldHelper.normalizeXtendResourceName (xtendFileName);
-        _ts = OldHelper.guessTypesystem (mms);
-        
-        final ExecutionContextImpl ctx = new ExecutionContextImpl ();
-        for (MetaModel mm: mms)
-            ctx.registerMetaModel (mm);
-        ctx.setFileEncoding (fileEncoding); 
-
-        //TODO redesign to allow reuse of the registry?
-        _registry = new OldXtendRegistry ( ctx, _ts);
-        _registry.registerExtension (xtendFileName);
-    }
-    
-    public Collection<NamedFunction> getContributedFunctions () {
-        return _registry.getContributedFunctions (_xtendFile);
+        _mms = mms;
+        _middleEnd = new MiddleEnd (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
     }
     
     public FunctionDefContext getFunctionDefContext () {
-        if (getContributedFunctions().isEmpty())
-            return new FunctionDefContextFactory(_ts).create();
-        
-        return ((SourceDefinedFunction) getContributedFunctions().iterator().next().getFunction()).getFunctionDefContext();
+        if (_xtendFile == null)
+            return new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
+
+        return _middleEnd.getFunctions (_xtendFile);
     }
 }
 

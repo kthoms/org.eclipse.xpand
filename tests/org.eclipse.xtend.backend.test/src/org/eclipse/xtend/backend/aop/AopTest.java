@@ -51,7 +51,7 @@ public class AopTest {
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (CounterFunction.class, ctx.getTypesystem()))
-            fdc.register (new NamedFunction (f.getName(), f));
+            fdc.register (new NamedFunction (f.getName(), f), true);
 
         @SuppressWarnings("unchecked")
         final Pointcut pointCut = new ExecutionPointcut ("*", Collections.EMPTY_LIST, true, new AdviceParamType (ObjectType.INSTANCE, true));
@@ -78,7 +78,7 @@ public class AopTest {
     }
 
     private void registerAdvice (ExecutionContext ctx, String prefix, String postfix, boolean proceed, Pointcut pointCut, boolean cached) {
-        ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (new AroundAdvice (ConcatAdviceFactory.createConcatExpression (prefix, postfix, proceed), pointCut, cached)));
+        ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (new AroundAdvice (ConcatAdviceFactory.createConcatExpression (prefix, postfix, proceed), pointCut, cached, createEmptyFdc (ctx))));
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +90,7 @@ public class AopTest {
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (AopTestFunctions.class, ctx.getTypesystem()))
-            fdc.register (new NamedFunction (f.getName(), f));
+            fdc.register (new NamedFunction (f.getName(), f), true);
 
         final Pointcut pointCutObject = new ExecutionPointcut ("f", Collections.EMPTY_LIST, true, new AdviceParamType (ObjectType.INSTANCE, false));
         final Pointcut pointCutObjectPlus = new ExecutionPointcut ("f", Collections.EMPTY_LIST, true, new AdviceParamType (ObjectType.INSTANCE, true));
@@ -117,7 +117,7 @@ public class AopTest {
         ctx.setFunctionDefContext (fdc);
         
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (AopTestFunctions.class, ctx.getTypesystem()))
-            fdc.register (new NamedFunction (f.getName(), f));
+            fdc.register (new NamedFunction (f.getName(), f), true);
         
         final Pointcut pointCutObject = new ExecutionPointcut ("f", Arrays.asList (new Pair<String, AdviceParamType> ("o", new AdviceParamType (ObjectType.INSTANCE, false))), false, null);
         final Pointcut pointCutObjectPlus = new ExecutionPointcut ("f", Arrays.asList (new Pair<String, AdviceParamType> ("o", new AdviceParamType (ObjectType.INSTANCE, true))), false, null);
@@ -144,7 +144,7 @@ public class AopTest {
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (AopTestFunctions.class, ctx.getTypesystem()))
-            fdc.register (new NamedFunction (f.getName(), f));
+            fdc.register (new NamedFunction (f.getName(), f), true);
 
         final Pointcut pointCutFirstPre = new ExecutionPointcut ("first*", Collections.EMPTY_LIST, true, new AdviceParamType (ObjectType.INSTANCE, true));
         final Pointcut pointCutFirstPost = new ExecutionPointcut ("*tFunction", Collections.EMPTY_LIST, true, new AdviceParamType (ObjectType.INSTANCE, true));
@@ -185,7 +185,7 @@ public class AopTest {
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (CounterFunction.class, ctx.getTypesystem()))
-            fdc.register (new NamedFunction (f.getName(), f));
+            fdc.register (new NamedFunction (f.getName(), f), true);
 
         fdc.register (new NamedFunction ("f", new Function () {
 
@@ -204,7 +204,7 @@ public class AopTest {
             public boolean isCached () {
                 return true;
             }
-        }));
+        }), true);
         
         final Pointcut pointCut = new ExecutionPointcut ("f", Collections.EMPTY_LIST, false, null);
         
@@ -226,8 +226,12 @@ public class AopTest {
         toBeConcatenated.add (new LiteralExpression (" ", null));
         toBeConcatenated.add (ConcatAdviceFactory.createProceedExpression());
         
-        ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (new AroundAdvice (new ConcatExpression (toBeConcatenated, null), pointCut, cacheable)));
+        ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (new AroundAdvice (new ConcatExpression (toBeConcatenated, null), pointCut, cacheable, ctx.getFunctionDefContext())));
     }        
+    
+    private FunctionDefContextInternal createEmptyFdc (ExecutionContext ctx) {
+        return new FunctionDefContextFactory (ctx.getTypesystem()).create();
+    }
 }
 
 

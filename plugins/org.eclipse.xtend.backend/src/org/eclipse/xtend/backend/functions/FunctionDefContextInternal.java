@@ -10,8 +10,6 @@ Contributors:
  */
 package org.eclipse.xtend.backend.functions;
 
-import java.util.Collection;
-
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 
@@ -24,6 +22,5 @@ import org.eclipse.xtend.backend.common.NamedFunction;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public interface FunctionDefContextInternal extends FunctionDefContext {
-    void register (NamedFunction f);
-    void register (Collection <? extends NamedFunction> f);
+    void register (NamedFunction f, boolean isPublic);
 }

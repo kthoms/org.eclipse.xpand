@@ -8,11 +8,12 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old.xtend;
+package org.eclipse.xtend.middleend.old;
 
 import java.util.Collection;
 
 import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.xtend.middleend.old.internal.xtend.CheckConverter;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 

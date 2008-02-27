@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old.xtend;
+package org.eclipse.xtend.middleend.old.internal.xtend;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,11 +18,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipose.xtend.middleend.MiddleEnd;
+import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.internal.xtend.xtend.XtendFile;
+import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
@@ -38,9 +43,13 @@ import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class OldXtendRegistry {
+public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
     private final ExecutionContext _ctx;
-    private final BackendTypesystem _ts;
+    
+    @SuppressWarnings("unused")
+    private final MiddleEnd _middleEnd;
+    
+    private BackendTypesystem _ts;
 
     private final Cache<String, FunctionDefContextInternal> _functionDefContexts = new Cache<String, FunctionDefContextInternal> () {
         @Override
@@ -66,12 +75,21 @@ public final class OldXtendRegistry {
      */
     private final Map<String, List<NamedFunction>> _locallyExportedFunctionsByResource = new HashMap <String, List<NamedFunction>>();
 
+    private final Map<String, List<AroundAdvice>> _advice = new HashMap<String, List<AroundAdvice>> ();
+
     
-    public OldXtendRegistry (ExecutionContext ctx, BackendTypesystem ts) {
-        _ctx = ctx;
-        _ts = ts;
+    /**
+     * the specificData field contains an ExecutionContext initialized with the MetaModels and the file encoding
+     */
+    public OldXtendRegistry (MiddleEnd middleEnd, Object specificData) {
+        if (specificData == null)
+            throw new IllegalArgumentException (getName() + " middle end is not initialized - will not contribute");
+
+        _middleEnd = middleEnd;
+        _ts = middleEnd.getTypesystem();
+        _ctx = (ExecutionContext) specificData;
     }
-    
+
     
     private FunctionDefContextInternal getFunctionDefContext (String xtendName) {
         return _functionDefContexts.get (OldHelper.normalizeXtendResourceName (xtendName));
@@ -81,22 +99,22 @@ public final class OldXtendRegistry {
     /**
      * parses and converts an Xtend file and all other files it depends on.
      */
-    public void registerExtension (String xtendFile) {
+    public void registerExtensionFile (String xtendFile) {
         xtendFile = OldHelper.normalizeXtendResourceName (xtendFile);
         
-        if (_definedFunctionsByResource.containsKey(xtendFile))
+        if (_definedFunctionsByResource.containsKey (xtendFile))
             return;
         
-        final ExtensionFile file = (ExtensionFile) _ctx.getResourceManager().loadResource (xtendFile, XtendFile.FILE_EXTENSION);
-        if (file == null)
+        final ExtensionFile extensionFile = (ExtensionFile) _ctx.getResourceManager().loadResource (xtendFile, XtendFile.FILE_EXTENSION);
+        if (extensionFile == null)
             throw new IllegalArgumentException ("could not find extension '" + xtendFile + "'");
         
-        final ExecutionContext ctx = _ctx.cloneWithResource (file);
+        final ExecutionContext ctx = _ctx.cloneWithResource (extensionFile);
         
         final TypeToBackendType typeConverter = new TypeToBackendType (_ts, ctx);
         final OldExtensionConverter extensionFactory = new OldExtensionConverter (ctx, typeConverter);
         
-        for (Extension ext: file.getExtensions())
+        for (Extension ext: extensionFile.getExtensions())
             ext.init (ctx);
         
         final List<NamedFunction> defined = new ArrayList<NamedFunction>();
@@ -105,11 +123,12 @@ public final class OldXtendRegistry {
         final FunctionDefContextInternal fdc = getFunctionDefContext (xtendFile);
 
         // register the XtendLib. Do this first so the extension can override functions
-        fdc.register (new XtendLibContributor (_ts).getContributedFunctions());
+        for (NamedFunction f: new XtendLibContributor (_ts).getContributedFunctions())
+            fdc.register (f, false);
         
-        fdc.register (new CheckConverter (ctx, typeConverter).createCheckFunction(_ts, fdc, file));
+        fdc.register (new CheckConverter (ctx, typeConverter).createCheckFunction(_ts, fdc, extensionFile), false);
         
-        for (Extension ext: file.getExtensions()) {
+        for (Extension ext: extensionFile.getExtensions()) {
             final NamedFunction f = extensionFactory.create (ext, fdc);
 
             defined.add(f);
@@ -123,13 +142,13 @@ public final class OldXtendRegistry {
         _locallyExportedFunctionsByResource.put (xtendFile, new ArrayList<NamedFunction> (exported));
         
         // make sure all imported resources are registered as well
-        for (String imported: file.getImportedExtensions())
-            registerExtension (imported);
+        for (String imported: extensionFile.getImportedExtensions())
+            registerExtensionFile (imported);
 
         // make all imported extensions visible for the scope of this compilation unit
-        for (String importedResource: file.getImportedExtensions()) {
+        for (String importedResource: extensionFile.getImportedExtensions()) {
             for (NamedFunction f: _locallyExportedFunctionsByResource.get (OldHelper.normalizeXtendResourceName (importedResource)))
-                fdc.register (f);
+                fdc.register (f, false);
         }
 
         final Set<String> visitedForReexport = new HashSet<String>();
@@ -139,8 +158,13 @@ public final class OldXtendRegistry {
         
         for (NamedFunction f: reexported) {
             exported.add (f);
-            fdc.register (f);
+            fdc.register (f, true);
         }
+
+        final List<AroundAdvice> advice = new ArrayList<AroundAdvice> ();
+        _advice.put (xtendFile, advice);
+        for (Around a: extensionFile.getArounds())
+            advice.add (extensionFactory.create (a, fdc));
     }
     
     private void getReexported (String xtendFile, Collection<NamedFunction> result, Set<String> harvestedCompilationUnits, Set<String> processedCompilationUnits) {
@@ -164,8 +188,33 @@ public final class OldXtendRegistry {
         }
     }
     
-    public Collection<NamedFunction> getContributedFunctions (String xtendFile) {
-        return _exportedFunctionsByResource.get (OldHelper.normalizeXtendResourceName(xtendFile));
+    public boolean canHandle (String resourceName) {
+        resourceName = OldHelper.normalizeXtendResourceName (resourceName);
+        
+        if (_definedFunctionsByResource.containsKey (resourceName))
+            return true;
+        
+        try {
+            final ExtensionFile extensionFile = (ExtensionFile) _ctx.getResourceManager().loadResource (resourceName, XtendFile.FILE_EXTENSION);
+            return extensionFile != null;
+        }
+        catch (Exception exc) {
+            return false;
+        }
+    }
+
+    public FunctionDefContext getContributedFunctions (String xtendFile) {
+        registerExtensionFile (xtendFile);
+        return getFunctionDefContext(xtendFile);
+    }
+    
+    public List<AroundAdvice> getContributedAdvice (String resourceName) {
+        registerExtensionFile (resourceName);
+        return _advice.get (OldHelper.normalizeXtendResourceName (resourceName));
+    }
+
+    public String getName () {
+        return "Xtend";
     }
 }
 

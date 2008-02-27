@@ -96,8 +96,7 @@ public class InitClosureExpressionTest {
             public boolean isCached () {
                 return false;
             }
-            
-        }));
+        }), true);
         
         final ExecutionContext initCtx = BackendFacade.createExecutionContext (fdc, ts, true);
         final ExpressionBase body = new InvocationOnObjectExpression ("myFunction", new ArrayList<ExpressionBase> (), false, SOURCE_POS);

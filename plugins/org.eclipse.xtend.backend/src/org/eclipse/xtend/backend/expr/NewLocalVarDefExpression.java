@@ -43,7 +43,8 @@ public final class NewLocalVarDefExpression extends ExpressionBase {
             return _inner.evaluate(ctx);
         }
         finally {
-            ctx.getStacktrace ().remove (ctx.getStacktrace().size() - 1);
+            if (ctx.isLogStacktrace())
+                ctx.getStacktrace ().remove (ctx.getStacktrace().size() - 1);
             ctx.getLocalVarContext ().getLocalVars ().remove (_localVarName);
         }
     }

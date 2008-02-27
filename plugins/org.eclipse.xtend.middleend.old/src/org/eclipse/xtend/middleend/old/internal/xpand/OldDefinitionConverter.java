@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.old.xpand;
+package org.eclipse.xtend.middleend.old.internal.xpand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,7 +74,7 @@ import org.eclipse.xtend.typesystem.Type;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class OldDefinitionConverter {
+public final class OldDefinitionConverter {
     private XpandExecutionContext _ctx;
     private final TypeToBackendType _typeConverter;
     
@@ -94,7 +94,7 @@ final class OldDefinitionConverter {
      */
     public NamedFunction create (XpandDefinition def, FunctionDefContextInternal fdc, Set<XpandDefinitionName> referencedDefinitions) {
         final NamedFunction result = createUnregistered (def, fdc, referencedDefinitions);
-        fdc.register (result);
+        fdc.register (result, true);
         return result;
     }
 

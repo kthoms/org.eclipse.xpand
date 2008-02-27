@@ -11,6 +11,7 @@ Contributors:
 package org.eclipse.xtend.backend.functions;
 
 import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.internal.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.syslib.SyslibContributor;
 
@@ -28,7 +29,10 @@ public final class FunctionDefContextFactory {
     
     public FunctionDefContextInternal create () {
         final FunctionDefContextInternal result = new FunctionDefContextImpl ();
-        result.register (_syslib.getContributedFunctions());
+        
+        for (NamedFunction f: _syslib.getContributedFunctions())
+            result.register (f, false);
+        
         return result;
     }
 }

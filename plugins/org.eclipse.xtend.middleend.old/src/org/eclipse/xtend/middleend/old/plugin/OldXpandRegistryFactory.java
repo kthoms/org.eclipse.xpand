@@ -10,7 +10,6 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.old.plugin;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEndFactory;
 import org.eclipse.xtend.middleend.old.internal.xpand.OldXpandRegistry;
@@ -22,8 +21,8 @@ import org.eclipse.xtend.middleend.old.internal.xpand.OldXpandRegistry;
  */
 public final class OldXpandRegistryFactory implements LanguageSpecificMiddleEndFactory {
 
-    public LanguageSpecificMiddleEnd create (MiddleEnd middleEnd, Object specificData) {
-        return new OldXpandRegistry (middleEnd, specificData);
+    public LanguageSpecificMiddleEnd create (Object specificData) {
+        return new OldXpandRegistry (specificData);
     }
 
     public String getName () {

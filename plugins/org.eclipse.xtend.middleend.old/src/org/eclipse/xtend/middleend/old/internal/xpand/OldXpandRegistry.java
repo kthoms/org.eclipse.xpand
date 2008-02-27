@@ -42,8 +42,8 @@ import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibContributor;
  */
 public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
     private final XpandExecutionContext _ctx;
-    private final BackendTypesystem _ts;
-    private final MiddleEnd _middleEnd;
+    private BackendTypesystem _ts;
+    private MiddleEnd _middleEnd;
 
     private final Cache<String, FunctionDefContextInternal> _functionDefContexts = new Cache<String, FunctionDefContextInternal> () {
         @Override
@@ -63,11 +63,14 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
     }
 
     
-    public OldXpandRegistry (MiddleEnd middleEnd, Object specificData) {
+    public OldXpandRegistry (Object specificData) {
         if (specificData == null)
             throw new IllegalArgumentException (getName() + " middle end is not initialized - will not contribute");
 
         _ctx = (XpandExecutionContext) specificData;
+    }
+    
+    public void setMiddleEnd (MiddleEnd middleEnd) {
         _middleEnd = middleEnd;
         _ts = middleEnd.getTypesystem();
     }

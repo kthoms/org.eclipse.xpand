@@ -47,7 +47,7 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
     private final ExecutionContext _ctx;
     
     @SuppressWarnings("unused")
-    private final MiddleEnd _middleEnd;
+    private MiddleEnd _middleEnd;
     
     private BackendTypesystem _ts;
 
@@ -81,15 +81,18 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
     /**
      * the specificData field contains an ExecutionContext initialized with the MetaModels and the file encoding
      */
-    public OldXtendRegistry (MiddleEnd middleEnd, Object specificData) {
+    public OldXtendRegistry (Object specificData) {
         if (specificData == null)
             throw new IllegalArgumentException (getName() + " middle end is not initialized - will not contribute");
 
-        _middleEnd = middleEnd;
-        _ts = middleEnd.getTypesystem();
         _ctx = (ExecutionContext) specificData;
     }
 
+    public void setMiddleEnd (MiddleEnd middleEnd) {
+        _middleEnd = middleEnd;
+        _ts = middleEnd.getTypesystem();
+    }
+    
     
     private FunctionDefContextInternal getFunctionDefContext (String xtendName) {
         return _functionDefContexts.get (OldHelper.normalizeXtendResourceName (xtendName));

@@ -10,8 +10,6 @@ Contributors:
  */
 package org.eclipose.xtend.middleend.plugins;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
-
 
 /**
  * This interface is the common abstraction through which all handlers for different
@@ -46,5 +44,5 @@ public interface LanguageSpecificMiddleEndFactory {
      *  from the list of registered middle ends. This is done on a per-call basis
      *  and avoids the necessity to always initialize all middle end implementations.
      */
-    LanguageSpecificMiddleEnd create (MiddleEnd middleEnd, Object specificData);
+    LanguageSpecificMiddleEnd create (Object specificData);
 }

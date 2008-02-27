@@ -10,7 +10,6 @@ Contributors:
  */
 package org.eclipose.xtend.middleend;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -44,10 +43,6 @@ public final class MiddleEndFactory {
      *  and contributed via the extension point.
      */
     public static MiddleEnd create (BackendTypesystem ts, Map<Class<?>, Object> specificParams) {
-        final List<LanguageSpecificMiddleEnd> languageHandlers = new ArrayList<LanguageSpecificMiddleEnd> ();
-        final MiddleEnd result = new MiddleEnd (ts, languageHandlers);
-        
-        languageHandlers.addAll (Activator.getInstance().getFreshMiddleEnds (result, specificParams));
-        return result;
+        return new MiddleEnd (ts, Activator.getInstance().getFreshMiddleEnds (specificParams));
     }
 }

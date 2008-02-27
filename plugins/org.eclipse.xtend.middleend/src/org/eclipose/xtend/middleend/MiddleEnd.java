@@ -50,6 +50,9 @@ public final class MiddleEnd {
         _ctx = BackendFacade.createExecutionContext (new FunctionDefContextFactory (ts).create(), ts, false);
         _ts = ts;
         _languageHandlers = languageHandlers;
+
+        for (LanguageSpecificMiddleEnd handler: languageHandlers)
+            handler.setMiddleEnd (this);
     }
     
     private LanguageSpecificMiddleEnd findHandler (String resourceName) {

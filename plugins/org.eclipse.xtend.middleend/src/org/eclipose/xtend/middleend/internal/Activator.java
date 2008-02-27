@@ -18,7 +18,6 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEndFactory;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -40,21 +39,18 @@ public class Activator implements BundleActivator {
         return _instance;
     }
 
-    private final List<LanguageSpecificMiddleEndFactory> _middleEndContributions = new ArrayList<LanguageSpecificMiddleEndFactory>();
-
-	private boolean _isInitialized;
+    private final List<LanguageSpecificMiddleEndFactory> _middleEndContributions = new ArrayList<LanguageSpecificMiddleEndFactory> ();
+    private boolean _isInitialized = false;
 
     
-    public List<LanguageSpecificMiddleEnd> getFreshMiddleEnds (MiddleEnd middleEnd, Map<Class<?>, Object> specificParams) {
-    	if (!_isInitialized) {
-    		init();
-    		_isInitialized = true;
-    	}
+    public List<LanguageSpecificMiddleEnd> getFreshMiddleEnds (Map<Class<?>, Object> specificParams) {
+        init ();
+        
         final List<LanguageSpecificMiddleEnd> result = new ArrayList<LanguageSpecificMiddleEnd>();
         
         for (LanguageSpecificMiddleEndFactory factory: _middleEndContributions) {
             try {
-                result.add (factory.create (middleEnd, specificParams.get (factory.getClass())));
+                result.add (factory.create (specificParams.get (factory.getClass())));
             }
             catch (IllegalArgumentException exc) {
                 // this is the official way for an implementation to withdraw from the pool for this call
@@ -66,15 +62,19 @@ public class Activator implements BundleActivator {
     }
     
     public void start (BundleContext context) throws Exception {
-    	_isInitialized = false;
+        //TODO Bernd: implement error handling and logging to be both robust and independent of Eclipse
+        
+        _isInitialized = false;
         _instance = this;
     }
     
     private void init () {
+        if (_isInitialized)
+            return;
+        
+        _isInitialized = true;
         _middleEndContributions.clear ();
 
-        //TODO Bernd: implement error handling and logging to be both robust and independent of Eclipse
-        _log.info ("Initializing Modeling Middle End - the following middle ends are registered:");
         try {
             final IConfigurationElement[] confEl = RegistryFactory.getRegistry().getConfigurationElementsFor ("org.eclipse.xtend.middleend.MiddleEnd");
 
@@ -93,11 +93,13 @@ public class Activator implements BundleActivator {
             }
         });
         
+        _log.info ("Activating Eclipse Modeling Middle End - the following middle ends are registered:");
         for (LanguageSpecificMiddleEndFactory factory: _middleEndContributions)
             _log.info ("  " + factory.getName());
     }
 
     public void stop (BundleContext context) throws Exception {
         _instance = null;
+        _middleEndContributions.clear();
     }
 }

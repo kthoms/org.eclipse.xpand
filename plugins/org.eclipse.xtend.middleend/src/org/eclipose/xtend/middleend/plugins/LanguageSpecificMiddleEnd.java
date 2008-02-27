@@ -12,6 +12,7 @@ package org.eclipose.xtend.middleend.plugins;
 
 import java.util.List;
 
+import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 
@@ -23,6 +24,12 @@ import org.eclipse.xtend.backend.common.FunctionDefContext;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public interface LanguageSpecificMiddleEnd {
+    /**
+     * This method is used to break the circular dependency between MiddleEnd and the
+     *  language specific handlers. It is called by the MiddleEnd on creation.
+     */
+    void setMiddleEnd (MiddleEnd middleEnd);
+    
     String getName ();
     
     /**

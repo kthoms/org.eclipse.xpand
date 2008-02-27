@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2008/02/27 13:21:09 sefftinge Exp $
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/m2t/xpand/xpand3" 
+       class = "org.eclipse.xpand3.ast.xpand3.Xpand3Package"
+       genModel = "src/xpand3.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/m2t/xpand/xpand3/expession" 
+       class = "org.eclipse.xpand3.ast.expression.expression.ExpressionPackage"
+       genModel = "src/xpand3.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/m2t/xpand/xpand3/statement" 
+       class = "org.eclipse.xpand3.ast.statement.statement.StatementPackage"
+       genModel = "src/xpand3.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/m2t/xpand/xpand3/declararation" 
+       class = "org.eclipse.xpand3.ast.declaration.declaration.DeclarationPackage"
+       genModel = "src/xpand3.genmodel" /> 
+  </extension>
+
+</plugin>

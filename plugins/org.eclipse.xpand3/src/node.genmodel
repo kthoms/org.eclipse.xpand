@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xpand3/emf-gen"
+    modelPluginID="org.eclipse.xpand3" modelName="Node" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>node.ecore</foreignModel>
+  <genPackages prefix="Node" basePackage="org.eclipse.xpand3" disposableProviderFactory="true"
+      ecorePackage="node.ecore#/">
+    <genClasses ecoreClass="node.ecore#//CompositeNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference node.ecore#//CompositeNode/children"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//CompositeNode/rule"/>
+      <genOperations ecoreOperation="node.ecore#//CompositeNode/start"/>
+      <genOperations ecoreOperation="node.ecore#//CompositeNode/end"/>
+      <genOperations ecoreOperation="node.ecore#//CompositeNode/line"/>
+      <genOperations ecoreOperation="node.ecore#//CompositeNode/text"/>
+    </genClasses>
+    <genClasses ecoreClass="node.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//Node/alias"/>
+      <genOperations ecoreOperation="node.ecore#//Node/start"/>
+      <genOperations ecoreOperation="node.ecore#//Node/end"/>
+      <genOperations ecoreOperation="node.ecore#//Node/line"/>
+      <genOperations ecoreOperation="node.ecore#//Node/text"/>
+    </genClasses>
+    <genClasses ecoreClass="node.ecore#//LeafNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference node.ecore#//LeafNode/token"/>
+      <genOperations ecoreOperation="node.ecore#//LeafNode/line"/>
+      <genOperations ecoreOperation="node.ecore#//LeafNode/text"/>
+      <genOperations ecoreOperation="node.ecore#//LeafNode/start"/>
+      <genOperations ecoreOperation="node.ecore#//LeafNode/end"/>
+    </genClasses>
+    <genClasses ecoreClass="node.ecore#//LexedToken">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//LexedToken/hidden"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//LexedToken/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//LexedToken/end"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//LexedToken/line"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//LexedToken/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute node.ecore#//LexedToken/tokenType"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

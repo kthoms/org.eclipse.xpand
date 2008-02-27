@@ -1,7 +1,29 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xpand3 Plug-in
-Bundle-SymbolicName: org.eclipse.xpand3
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.xpand3; singleton:=true
 Bundle-Version: 0.9
-Bundle-Vendor: www.eclipse.org
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.antlr;bundle-version="3.0.0",
+ org.junit
+Export-Package: org.eclipse.xpand3,
+ org.eclipse.xpand3.declaration,
+ org.eclipse.xpand3.declaration.impl,
+ org.eclipse.xpand3.declaration.util,
+ org.eclipse.xpand3.expression,
+ org.eclipse.xpand3.expression.impl,
+ org.eclipse.xpand3.expression.util,
+ org.eclipse.xpand3.impl,
+ org.eclipse.xpand3.node,
+ org.eclipse.xpand3.node.impl,
+ org.eclipse.xpand3.node.util,
+ org.eclipse.xpand3.parser,
+ org.eclipse.xpand3.statement,
+ org.eclipse.xpand3.statement.impl,
+ org.eclipse.xpand3.statement.util,
+ org.eclipse.xpand3.util

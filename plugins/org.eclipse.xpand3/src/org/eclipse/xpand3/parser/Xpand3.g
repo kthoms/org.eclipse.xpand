@@ -172,8 +172,12 @@ r_javaType  :
 //
 // Expressions
 //
+
+test_expression:	
+ 	r_expression EOF
+;
 r_expression :
-	r_letExpression 
+	r_letExpression
 ;
 
 r_letExpression  :
@@ -271,7 +275,7 @@ r_featureCall  :
 ;
 
 r_listLiteral  :
-	'['(r_expression (',' r_expression)*)?']'
+	'{'(r_expression (',' r_expression)*)?'}'
 ;
 
 r_constructorCall  :

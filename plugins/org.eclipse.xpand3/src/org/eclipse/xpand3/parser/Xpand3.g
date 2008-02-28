@@ -183,12 +183,12 @@ r_letExpression  :
 ;
 
 r_castedExpression :
-    ('(' r_type ')' r_castedExpression)=>
+    ('(' r_type ')' r_chainExpression)=>
 	'(' r_type ')' r_chainExpression 
 	| r_chainExpression 
 ;
 
-r_chainExpression  :
+r_chainExpression  : {/*HUHU*/}
 	r_ifExpression  ( '->' r_ifExpression )*
 ;
 
@@ -198,7 +198,7 @@ r_ifExpression  :
 ;
 
 r_switchExpression  :
-   'switch' ('(' r_orExpression ')')?
+   'switch' ('(' r_orExpression ')')? '{'
 	r_casePart*
    'default' ':' r_orExpression
    '}'
@@ -247,7 +247,7 @@ r_infixExpression :
 ;
 	
 r_primaryExpression 	 :
-   StringLiteral 	
+    r_stringLiteral 	
 |   r_featureCall 
 |   r_booleanLiteral 
 |   r_numberLiteral 
@@ -256,6 +256,10 @@ r_primaryExpression 	 :
 |   r_constructorCall 
 |   r_globalVarExpression 
 |   r_paranthesizedExpression 
+;
+
+r_stringLiteral :
+   StringLiteral
 ;
 
 r_paranthesizedExpression :

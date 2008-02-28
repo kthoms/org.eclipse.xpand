@@ -77,4 +77,9 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 		return rootNode;
 	}
 
+	@Override
+	protected void assignNextNodeTo(String alias) {
+		// TODO Auto-generated method stub
+	}
+
 }

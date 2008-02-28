@@ -1,5 +1,7 @@
 grammar Xpand3;
 
+options {output=AST;} 
+
 @lexer::members {
    private boolean xpandMode = false;
 }
@@ -13,14 +15,14 @@ package org.eclipse.xpand3.parser;
 }
 
 r_file  :
-	(r_nsImport)*
-	(r_abstractDeclaration )*
+	(imp=r_nsImport)*
+	(decl=r_abstractDeclaration )*
 	 EOF
 ;
 
-r_nsImport :
-	LG 'IMPORT' r_type RG |
-	LG 'EXTENSION' r_type RG |
+r_nsImport:
+	LG 'IMPORT' ns=r_type RG |
+	LG 'EXTENSION' ns=r_type RG |
 	'import' r_type  ';' | 
 	'extension' r_type ('reexport')? ';' 
 ;
@@ -36,7 +38,7 @@ r_abstractDeclaration :
 // XPAND start
 
 r_definition :
-	LG DEFINE r_identifier ('(' (r_declaredParameterList (','? '*')? | '*')? ')')? 'FOR' r_type
+	LG DEFINE name=r_identifier ('(' (r_declaredParameterList (','? '*')? | '*')? ')')? 'FOR' r_type
 	r_sequence
 	ENDDEFINE RG
 ;
@@ -188,7 +190,7 @@ r_castedExpression :
 	| r_chainExpression 
 ;
 
-r_chainExpression  : {/*HUHU*/}
+r_chainExpression  :
 	r_ifExpression  ( '->' r_ifExpression )*
 ;
 

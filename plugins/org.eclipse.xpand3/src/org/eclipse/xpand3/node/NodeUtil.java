@@ -56,7 +56,7 @@ public class NodeUtil {
 	}
 	
 	public static String toString(CompositeNode n) {
-		String s = indent(n)+"Rule: "+n.getRule()+"\n";
+		String s = indent(n)+(n.getAlias()!=null?n.getAlias()+"=":"")+"Rule: "+n.getRule()+"\n";
 		for (Node node : n.getChildren()) {
 			s += toString(node);
 		}
@@ -64,7 +64,7 @@ public class NodeUtil {
 	}
 	
 	public static String toString(LeafNode n) {
-		return indent(n)+n.getToken().getText()+"\n";
+		return indent(n)+(n.getAlias()!=null?n.getAlias()+"=":"")+n.getToken().getText()+"\n";
 	}
 	
 	private static String indent(Node n) {

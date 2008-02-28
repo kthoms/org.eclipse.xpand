@@ -33,10 +33,11 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 		}
 		current = newOne;
 	}
+
 	@Override
 	public void ruleLeft(String ruleName) {
 		CompositeNode parent = (CompositeNode) current.eContainer();
-		if (parent!=null && normalizableRules().contains(current.getRule())
+		if (normalizableRules().contains(current.getRule())
 				&& current.getChildren().size() == 1
 				&& (current.getChildren().get(0) instanceof CompositeNode)) {
 			Node child = current.getChildren().get(0);
@@ -58,16 +59,18 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 
 	@Override
 	public void tokenConsumed(String var, CommonToken ct) {
-		LeafNode n = NodeFactory.eINSTANCE.createLeafNode();
-		current.getChildren().add(n);
-		if (var!=null)
-			n.setAlias(var);
-		LexedToken myToken = NodeFactory.eINSTANCE.createLexedToken();
-		n.setToken(myToken);
-		myToken.setText(ct.getText());
-		myToken.setStart(ct.getStartIndex());
-		myToken.setEnd(ct.getStopIndex());
-		myToken.setLine(ct.getLine());
+		if (ct.getText() != null) {
+			LeafNode n = NodeFactory.eINSTANCE.createLeafNode();
+			current.getChildren().add(n);
+			if (var != null)
+				n.setAlias(var);
+			LexedToken myToken = NodeFactory.eINSTANCE.createLexedToken();
+			n.setToken(myToken);
+			myToken.setText(ct.getText());
+			myToken.setStart(ct.getStartIndex());
+			myToken.setEnd(ct.getStopIndex());
+			myToken.setLine(ct.getLine());
+		}
 	}
 
 	public Node getRootNode() {

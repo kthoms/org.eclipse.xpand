@@ -16,7 +16,7 @@ import org.eclipse.xpand3.node.NodeFactory;
 public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 
 	private CompositeNode current = null;
-	private CompositeNode rootNode = null;
+	private Node rootNode = null;
 
 	public AbstractXpand3NodeParser(TokenStream input) {
 		super(input);
@@ -49,9 +49,13 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 				&& current.getChildren().size() == 1
 				&& (current.getChildren().get(0) instanceof CompositeNode)) {
 			Node child = current.getChildren().get(0);
-			int i = parent.getChildren().indexOf(current);
-			parent.getChildren().remove(i);
-			parent.getChildren().add(i, child);
+			if (parent != null) {
+				int i = parent.getChildren().indexOf(current);
+				parent.getChildren().remove(i);
+				parent.getChildren().add(i, child);
+			} else {
+				rootNode = child;
+			}
 		}
 		current = parent;
 	}

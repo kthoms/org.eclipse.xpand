@@ -40,7 +40,7 @@ public class Xpand3NodeParserTest extends TestCase {
 	}
 //	
 	public void testPerf() throws Exception {
-		String s = "foo.bar.honolulu('lola',[true,false,45]).collect(e|2.minor + 34 / (x - 2))";
+		String s = "foo.bar.honolulu('lola',{true,false,45}).collect(e|2.minor + 34 / (x - 2))";
 		for (int i = 0; i<10;i++) {
 			s = s+" -> "+s;
 		}

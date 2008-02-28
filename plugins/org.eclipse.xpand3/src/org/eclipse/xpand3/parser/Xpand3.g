@@ -1,7 +1,4 @@
 grammar Xpand3;
-options{
-	trace=true;
-}
 
 @lexer::members {
    private boolean xpandMode = false;

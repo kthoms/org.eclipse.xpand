@@ -1,4 +1,5 @@
 grammar Xpand3;
+
 @lexer::members {
    private boolean xpandMode = false;
 }
@@ -10,9 +11,6 @@ package org.eclipse.xpand3.parser;
 @lexer::header { 	
 package org.eclipse.xpand3.parser; 
 }
-
-
-
 
 r_file  :
 	(r_nsImport)*

@@ -2,11 +2,11 @@ package org.eclipse.xpand3.parser;
 
 import java.util.Set;
 
-import org.antlr.runtime.BitSet;
 import org.antlr.runtime.CommonToken;
-import org.antlr.runtime.IntStream;
 import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
+import org.antlr.runtime.tree.CommonTreeAdaptor;
 import org.eclipse.xpand3.node.CompositeNode;
 import org.eclipse.xpand3.node.LeafNode;
 import org.eclipse.xpand3.node.LexedToken;
@@ -20,6 +20,14 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 
 	public AbstractXpand3NodeParser(TokenStream input) {
 		super(input);
+		setTreeAdaptor(new CommonTreeAdaptor() {
+			@Override
+			public Object create(Token arg0) {
+				if (arg0 != null)
+					createLexedToken((CommonToken) arg0);
+				return super.create(arg0);
+			}
+		});
 	}
 
 	protected abstract Set<String> normalizableRules();
@@ -53,19 +61,15 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 		throw new RuntimeException(getErrorMessage(arg0, getTokenNames()), arg0);
 	}
 
-	@Override
-	public void match(IntStream arg0, int arg1, BitSet arg2)
-			throws RecognitionException {
+	public void createLexedToken(CommonToken ct) {
 		LeafNode n = NodeFactory.eINSTANCE.createLeafNode();
 		current.getChildren().add(n);
 		LexedToken myToken = NodeFactory.eINSTANCE.createLexedToken();
 		n.setToken(myToken);
-		CommonToken ct = (CommonToken) input.LT(1);
 		myToken.setText(ct.getText());
 		myToken.setStart(ct.getStartIndex());
 		myToken.setEnd(ct.getStopIndex());
 		myToken.setLine(ct.getLine());
-		super.match(arg0, arg1, arg2);
 	}
 
 	public Node getRootNode() {

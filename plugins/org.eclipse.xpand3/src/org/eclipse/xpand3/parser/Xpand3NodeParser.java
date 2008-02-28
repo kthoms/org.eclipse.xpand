@@ -43,626 +43,626 @@ public class Xpand3NodeParser extends AbstractXpand3NodeParser {
 
 	// Following code is generated (or at least should be)
 	@Override
-	public void r_abstractDeclaration() throws RecognitionException {
+	public r_abstractDeclaration_return r_abstractDeclaration() throws RecognitionException {
 		try {
 			ruleStart("r_abstractDeclaration");
-			super.r_abstractDeclaration();
+			return super.r_abstractDeclaration();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_additiveExpression() throws RecognitionException {
+	public r_additiveExpression_return r_additiveExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_additiveExpression");
-			super.r_additiveExpression();
+			return super.r_additiveExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_andExpression() throws RecognitionException {
+	public r_andExpression_return r_andExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_andExpression");
-			super.r_andExpression();
+			return super.r_andExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_around() throws RecognitionException {
+	public r_around_return r_around() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_around");
-			super.r_around();
+			return super.r_around();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_booleanLiteral() throws RecognitionException {
+	public r_booleanLiteral_return r_booleanLiteral() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_booleanLiteral");
-			super.r_booleanLiteral();
+			return super.r_booleanLiteral();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_casePart() throws RecognitionException {
+	public r_casePart_return r_casePart() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_casePart");
-			super.r_casePart();
+			return super.r_casePart();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_castedExpression() throws RecognitionException {
+	public r_castedExpression_return r_castedExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_castedExpression");
-			super.r_castedExpression();
+			return super.r_castedExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_chainExpression() throws RecognitionException {
+	public r_chainExpression_return r_chainExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_chainExpression");
-			super.r_chainExpression();
+			return super.r_chainExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_check() throws RecognitionException {
+	public r_check_return r_check() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_check");
-			super.r_check();
+			return super.r_check();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_collectionExpression() throws RecognitionException {
+	public r_collectionExpression_return r_collectionExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_collectionExpression");
-			super.r_collectionExpression();
+			return super.r_collectionExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_collectionType() throws RecognitionException {
+	public r_collectionType_return r_collectionType() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_collectionType");
-			super.r_collectionType();
+			return super.r_collectionType();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_constructorCall() throws RecognitionException {
+	public r_constructorCall_return r_constructorCall() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_constructorCall");
-			super.r_constructorCall();
+			return super.r_constructorCall();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_declaredParameter() throws RecognitionException {
+	public r_declaredParameter_return r_declaredParameter() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_declaredParameter");
-			super.r_declaredParameter();
+			return super.r_declaredParameter();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_declaredParameterList() throws RecognitionException {
+	public r_declaredParameterList_return r_declaredParameterList() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_declaredParameterList");
-			super.r_declaredParameterList();
+			return super.r_declaredParameterList();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_expression() throws RecognitionException {
+	public r_expression_return r_expression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_expression");
-			super.r_expression();
+			return super.r_expression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_extension() throws RecognitionException {
+	public r_extension_return r_extension() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_extension");
-			super.r_extension();
+			return super.r_extension();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_featureCall() throws RecognitionException {
+	public r_featureCall_return r_featureCall() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_featureCall");
-			super.r_featureCall();
+			return super.r_featureCall();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_file() throws RecognitionException {
+	public r_file_return r_file() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_file");
-			super.r_file();
+			return super.r_file();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_globalVarExpression() throws RecognitionException {
+	public r_globalVarExpression_return r_globalVarExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_globalVarExpression");
-			super.r_globalVarExpression();
+			return super.r_globalVarExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_identifier() throws RecognitionException {
+	public r_identifier_return r_identifier() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_identifier");
-			super.r_identifier();
+			return super.r_identifier();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_ifExpression() throws RecognitionException {
+	public r_ifExpression_return r_ifExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_ifExpression");
-			super.r_ifExpression();
+			return super.r_ifExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_impliesExpression() throws RecognitionException {
+	public r_impliesExpression_return r_impliesExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_impliesExpression");
-			super.r_impliesExpression();
+			return super.r_impliesExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_infixExpression() throws RecognitionException {
+	public r_infixExpression_return r_infixExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_infixExpression");
-			super.r_infixExpression();
+			return super.r_infixExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_javaType() throws RecognitionException {
+	public r_javaType_return r_javaType() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_javaType");
-			super.r_javaType();
+			return super.r_javaType();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_letExpression() throws RecognitionException {
+	public r_letExpression_return r_letExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_letExpression");
-			super.r_letExpression();
+			return super.r_letExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_listLiteral() throws RecognitionException {
+	public r_listLiteral_return r_listLiteral() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_listLiteral");
-			super.r_listLiteral();
+			return super.r_listLiteral();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_multiplicativeExpression() throws RecognitionException {
+	public r_multiplicativeExpression_return r_multiplicativeExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_multiplicativeExpression");
-			super.r_multiplicativeExpression();
+			return super.r_multiplicativeExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_nsImport() throws RecognitionException {
+	public r_nsImport_return r_nsImport() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_nsImport");
-			super.r_nsImport();
+			return super.r_nsImport();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_nullLiteral() throws RecognitionException {
+	public r_nullLiteral_return r_nullLiteral() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_nullLiteral");
-			super.r_nullLiteral();
+			return super.r_nullLiteral();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_numberLiteral() throws RecognitionException {
+	public r_numberLiteral_return r_numberLiteral() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_numberLiteral");
-			super.r_numberLiteral();
+			return super.r_numberLiteral();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_orExpression() throws RecognitionException {
+	public r_orExpression_return r_orExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_orExpression");
-			super.r_orExpression();
+			return super.r_orExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_parameterList() throws RecognitionException {
+	public r_parameterList_return r_parameterList() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_parameterList");
-			super.r_parameterList();
+			return super.r_parameterList();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_paranthesizedExpression() throws RecognitionException {
+	public r_paranthesizedExpression_return r_paranthesizedExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_paranthesizedExpression");
-			super.r_paranthesizedExpression();
+			return super.r_paranthesizedExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_pointcut() throws RecognitionException {
+	public r_pointcut_return r_pointcut() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_pointcut");
-			super.r_pointcut();
+			return super.r_pointcut();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_primaryExpression() throws RecognitionException {
+	public r_primaryExpression_return r_primaryExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_primaryExpression");
-			super.r_primaryExpression();
+			return super.r_primaryExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_relationalExpression() throws RecognitionException {
+	public r_relationalExpression_return r_relationalExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_relationalExpression");
-			super.r_relationalExpression();
+			return super.r_relationalExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_simpleType() throws RecognitionException {
+	public r_simpleType_return r_simpleType() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_simpleType");
-			super.r_simpleType();
+			return super.r_simpleType();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_switchExpression() throws RecognitionException {
+	public r_switchExpression_return r_switchExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_switchExpression");
-			super.r_switchExpression();
+			return super.r_switchExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_type() throws RecognitionException {
+	public r_type_return r_type() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_type");
-			super.r_type();
+			return super.r_type();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_unaryExpression() throws RecognitionException {
+	public r_unaryExpression_return r_unaryExpression() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_unaryExpression");
-			super.r_unaryExpression();
+			return super.r_unaryExpression();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_definition() throws RecognitionException {
+	public r_definition_return r_definition() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_definition");
-			super.r_definition();
+			return super.r_definition();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_definitionAround() throws RecognitionException {
+	public r_definitionAround_return r_definitionAround() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_definitionAround");
-			super.r_definitionAround();
+			return super.r_definitionAround();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_elseIfStatement() throws RecognitionException {
+	public r_elseIfStatement_return r_elseIfStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_elseIfStatement");
-			super.r_elseIfStatement();
+			return super.r_elseIfStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_elseStatement() throws RecognitionException {
+	public r_elseStatement_return r_elseStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_elseStatement");
-			super.r_elseStatement();
+			return super.r_elseStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_errorStatement() throws RecognitionException {
+	public r_errorStatement_return r_errorStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_errorStatement");
-			super.r_errorStatement();
+			return super.r_errorStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_expandStatement() throws RecognitionException {
+	public r_expandStatement_return r_expandStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_expandStatement");
-			super.r_expandStatement();
+			return super.r_expandStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_expressionStmt() throws RecognitionException {
+	public r_expressionStmt_return r_expressionStmt() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_expressionStmt");
-			super.r_expressionStmt();
+			return super.r_expressionStmt();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_fileStatement() throws RecognitionException {
+	public r_fileStatement_return r_fileStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_fileStatement");
-			super.r_fileStatement();
+			return super.r_fileStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_foreachStatement() throws RecognitionException {
+	public r_foreachStatement_return r_foreachStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_foreachStatement");
-			super.r_foreachStatement();
+			return super.r_foreachStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_ifStatement() throws RecognitionException {
+	public r_ifStatement_return r_ifStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_ifStatement");
-			super.r_ifStatement();
+			return super.r_ifStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_letStatement() throws RecognitionException {
+	public r_letStatement_return r_letStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_letStatement");
-			super.r_letStatement();
+			return super.r_letStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_protectStatement() throws RecognitionException {
+	public r_protectStatement_return r_protectStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_protectStatement");
-			super.r_protectStatement();
+			return super.r_protectStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_sequence() throws RecognitionException {
+	public r_sequence_return r_sequence() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_sequence");
-			super.r_sequence();
+			return super.r_sequence();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_simpleStatement() throws RecognitionException {
+	public r_simpleStatement_return r_simpleStatement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_simpleStatement");
-			super.r_simpleStatement();
+			return super.r_simpleStatement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_statement() throws RecognitionException {
+	public r_statement_return r_statement() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_statement");
-			super.r_statement();
+			return super.r_statement();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_text() throws RecognitionException {
+	public r_text_return r_text() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_text");
-			super.r_text();
+			return super.r_text();
 		} finally {
 			ruleEnd();
 		}
 	}
 
 	@Override
-	public void r_textSequence() throws RecognitionException {
+	public r_textSequence_return r_textSequence() throws RecognitionException {
 		// Auto-generated method
 		try {
 			ruleStart("r_textSequence");
-			super.r_textSequence();
+			return super.r_textSequence();
 		} finally {
 			ruleEnd();
 		}

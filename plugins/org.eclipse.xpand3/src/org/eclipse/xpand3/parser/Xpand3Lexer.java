@@ -1,4 +1,4 @@
-// $ANTLR 3.0 src/org/eclipse/xpand3/parser/Xpand3.g 2008-02-28 09:34:54
+// $ANTLR 3.0.1 src/org/eclipse/xpand3/parser/Xpand3.g 2008-02-28 11:47:30
  	
 package org.eclipse.xpand3.parser; 
 
@@ -128,10 +128,10 @@ public class Xpand3Lexer extends Lexer {
     public String getGrammarFileName() { return "src/org/eclipse/xpand3/parser/Xpand3.g"; }
 
     // $ANTLR start T25
-    public void mT25() throws RecognitionException {
+    public final void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:9:7: ( 'IMPORT' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:9:5: ( 'IMPORT' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:9:7: 'IMPORT'
             {
             match("IMPORT"); 
@@ -147,10 +147,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T25
 
     // $ANTLR start T26
-    public void mT26() throws RecognitionException {
+    public final void mT26() throws RecognitionException {
         try {
             int _type = T26;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:10:7: ( 'EXTENSION' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:10:5: ( 'EXTENSION' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:10:7: 'EXTENSION'
             {
             match("EXTENSION"); 
@@ -166,10 +166,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T26
 
     // $ANTLR start T27
-    public void mT27() throws RecognitionException {
+    public final void mT27() throws RecognitionException {
         try {
             int _type = T27;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:11:7: ( 'import' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:11:5: ( 'import' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:11:7: 'import'
             {
             match("import"); 
@@ -185,10 +185,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T27
 
     // $ANTLR start T28
-    public void mT28() throws RecognitionException {
+    public final void mT28() throws RecognitionException {
         try {
             int _type = T28;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:12:7: ( ';' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:12:5: ( ';' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:12:7: ';'
             {
             match(';'); 
@@ -203,10 +203,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T28
 
     // $ANTLR start T29
-    public void mT29() throws RecognitionException {
+    public final void mT29() throws RecognitionException {
         try {
             int _type = T29;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:13:7: ( 'extension' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:13:5: ( 'extension' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:13:7: 'extension'
             {
             match("extension"); 
@@ -222,10 +222,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T29
 
     // $ANTLR start T30
-    public void mT30() throws RecognitionException {
+    public final void mT30() throws RecognitionException {
         try {
             int _type = T30;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:14:7: ( 'reexport' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:14:5: ( 'reexport' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:14:7: 'reexport'
             {
             match("reexport"); 
@@ -241,10 +241,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T30
 
     // $ANTLR start T31
-    public void mT31() throws RecognitionException {
+    public final void mT31() throws RecognitionException {
         try {
             int _type = T31;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:15:7: ( '(' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:15:5: ( '(' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:15:7: '('
             {
             match('('); 
@@ -259,10 +259,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T31
 
     // $ANTLR start T32
-    public void mT32() throws RecognitionException {
+    public final void mT32() throws RecognitionException {
         try {
             int _type = T32;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:16:7: ( ',' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:16:5: ( ',' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:16:7: ','
             {
             match(','); 
@@ -277,10 +277,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T32
 
     // $ANTLR start T33
-    public void mT33() throws RecognitionException {
+    public final void mT33() throws RecognitionException {
         try {
             int _type = T33;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:17:7: ( '*' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:17:5: ( '*' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:17:7: '*'
             {
             match('*'); 
@@ -295,10 +295,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T33
 
     // $ANTLR start T34
-    public void mT34() throws RecognitionException {
+    public final void mT34() throws RecognitionException {
         try {
             int _type = T34;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:18:7: ( ')' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:18:5: ( ')' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:18:7: ')'
             {
             match(')'); 
@@ -313,10 +313,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T34
 
     // $ANTLR start T35
-    public void mT35() throws RecognitionException {
+    public final void mT35() throws RecognitionException {
         try {
             int _type = T35;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:19:7: ( 'FOR' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:19:5: ( 'FOR' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:19:7: 'FOR'
             {
             match("FOR"); 
@@ -332,10 +332,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T35
 
     // $ANTLR start T36
-    public void mT36() throws RecognitionException {
+    public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:20:7: ( '-' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:20:5: ( '-' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:20:7: '-'
             {
             match('-'); 
@@ -350,10 +350,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T36
 
     // $ANTLR start T37
-    public void mT37() throws RecognitionException {
+    public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:21:7: ( 'ERROR' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:21:5: ( 'ERROR' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:21:7: 'ERROR'
             {
             match("ERROR"); 
@@ -369,10 +369,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T37
 
     // $ANTLR start T38
-    public void mT38() throws RecognitionException {
+    public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:22:7: ( 'EXPAND' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:22:5: ( 'EXPAND' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:22:7: 'EXPAND'
             {
             match("EXPAND"); 
@@ -388,10 +388,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T38
 
     // $ANTLR start T39
-    public void mT39() throws RecognitionException {
+    public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:23:7: ( 'FOREACH' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:23:5: ( 'FOREACH' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:23:7: 'FOREACH'
             {
             match("FOREACH"); 
@@ -407,10 +407,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T39
 
     // $ANTLR start T40
-    public void mT40() throws RecognitionException {
+    public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:24:7: ( 'SEPARATOR' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:24:5: ( 'SEPARATOR' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:24:7: 'SEPARATOR'
             {
             match("SEPARATOR"); 
@@ -426,10 +426,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T40
 
     // $ANTLR start T41
-    public void mT41() throws RecognitionException {
+    public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:25:7: ( 'FILE' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:25:5: ( 'FILE' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:25:7: 'FILE'
             {
             match("FILE"); 
@@ -445,10 +445,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T41
 
     // $ANTLR start T42
-    public void mT42() throws RecognitionException {
+    public final void mT42() throws RecognitionException {
         try {
             int _type = T42;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:26:7: ( 'ENDFILE' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:26:5: ( 'ENDFILE' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:26:7: 'ENDFILE'
             {
             match("ENDFILE"); 
@@ -464,10 +464,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T42
 
     // $ANTLR start T43
-    public void mT43() throws RecognitionException {
+    public final void mT43() throws RecognitionException {
         try {
             int _type = T43;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:27:7: ( 'AS' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:27:5: ( 'AS' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:27:7: 'AS'
             {
             match("AS"); 
@@ -483,10 +483,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T43
 
     // $ANTLR start T44
-    public void mT44() throws RecognitionException {
+    public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:28:7: ( 'ITERATOR' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:28:5: ( 'ITERATOR' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:28:7: 'ITERATOR'
             {
             match("ITERATOR"); 
@@ -502,10 +502,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T44
 
     // $ANTLR start T45
-    public void mT45() throws RecognitionException {
+    public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:29:7: ( 'ENDFOREACH' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:29:5: ( 'ENDFOREACH' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:29:7: 'ENDFOREACH'
             {
             match("ENDFOREACH"); 
@@ -521,10 +521,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T45
 
     // $ANTLR start T46
-    public void mT46() throws RecognitionException {
+    public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:30:7: ( 'IF' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:30:5: ( 'IF' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:30:7: 'IF'
             {
             match("IF"); 
@@ -540,10 +540,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T46
 
     // $ANTLR start T47
-    public void mT47() throws RecognitionException {
+    public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:31:7: ( 'ENDIF' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:31:5: ( 'ENDIF' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:31:7: 'ENDIF'
             {
             match("ENDIF"); 
@@ -559,10 +559,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T47
 
     // $ANTLR start T48
-    public void mT48() throws RecognitionException {
+    public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:32:7: ( 'ELSEIF' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:32:5: ( 'ELSEIF' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:32:7: 'ELSEIF'
             {
             match("ELSEIF"); 
@@ -578,10 +578,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T48
 
     // $ANTLR start T49
-    public void mT49() throws RecognitionException {
+    public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:33:7: ( 'ELSE' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:33:5: ( 'ELSE' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:33:7: 'ELSE'
             {
             match("ELSE"); 
@@ -597,10 +597,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T49
 
     // $ANTLR start T50
-    public void mT50() throws RecognitionException {
+    public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:34:7: ( 'LET' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:34:5: ( 'LET' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:34:7: 'LET'
             {
             match("LET"); 
@@ -616,10 +616,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T50
 
     // $ANTLR start T51
-    public void mT51() throws RecognitionException {
+    public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:35:7: ( 'ENDLET' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:35:5: ( 'ENDLET' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:35:7: 'ENDLET'
             {
             match("ENDLET"); 
@@ -635,10 +635,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T51
 
     // $ANTLR start T52
-    public void mT52() throws RecognitionException {
+    public final void mT52() throws RecognitionException {
         try {
             int _type = T52;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:36:7: ( 'PROTECT' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:36:5: ( 'PROTECT' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:36:7: 'PROTECT'
             {
             match("PROTECT"); 
@@ -654,10 +654,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T52
 
     // $ANTLR start T53
-    public void mT53() throws RecognitionException {
+    public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:37:7: ( 'CSTART' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:37:5: ( 'CSTART' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:37:7: 'CSTART'
             {
             match("CSTART"); 
@@ -673,10 +673,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T53
 
     // $ANTLR start T54
-    public void mT54() throws RecognitionException {
+    public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:38:7: ( 'CEND' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:38:5: ( 'CEND' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:38:7: 'CEND'
             {
             match("CEND"); 
@@ -692,10 +692,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T54
 
     // $ANTLR start T55
-    public void mT55() throws RecognitionException {
+    public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:39:7: ( 'ID' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:39:5: ( 'ID' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:39:7: 'ID'
             {
             match("ID"); 
@@ -711,10 +711,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T55
 
     // $ANTLR start T56
-    public void mT56() throws RecognitionException {
+    public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:40:7: ( 'DISABLE' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:40:5: ( 'DISABLE' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:40:7: 'DISABLE'
             {
             match("DISABLE"); 
@@ -730,10 +730,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T56
 
     // $ANTLR start T57
-    public void mT57() throws RecognitionException {
+    public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:41:7: ( 'ENDPROTECT' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:41:5: ( 'ENDPROTECT' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:41:7: 'ENDPROTECT'
             {
             match("ENDPROTECT"); 
@@ -749,10 +749,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T57
 
     // $ANTLR start T58
-    public void mT58() throws RecognitionException {
+    public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:42:7: ( 'context' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:42:5: ( 'context' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:42:7: 'context'
             {
             match("context"); 
@@ -768,10 +768,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T58
 
     // $ANTLR start T59
-    public void mT59() throws RecognitionException {
+    public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:43:7: ( 'if' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:43:5: ( 'if' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:43:7: 'if'
             {
             match("if"); 
@@ -787,10 +787,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T59
 
     // $ANTLR start T60
-    public void mT60() throws RecognitionException {
+    public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:44:7: ( 'WARNING' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:44:5: ( 'WARNING' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:44:7: 'WARNING'
             {
             match("WARNING"); 
@@ -806,10 +806,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T60
 
     // $ANTLR start T61
-    public void mT61() throws RecognitionException {
+    public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:45:7: ( ':' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:45:5: ( ':' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:45:7: ':'
             {
             match(':'); 
@@ -824,10 +824,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T61
 
     // $ANTLR start T62
-    public void mT62() throws RecognitionException {
+    public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:46:7: ( 'around' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:46:5: ( 'around' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:46:7: 'around'
             {
             match("around"); 
@@ -843,10 +843,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T62
 
     // $ANTLR start T63
-    public void mT63() throws RecognitionException {
+    public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:47:7: ( '::' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:47:5: ( '::' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:47:7: '::'
             {
             match("::"); 
@@ -862,10 +862,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T63
 
     // $ANTLR start T64
-    public void mT64() throws RecognitionException {
+    public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:48:7: ( 'private' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:48:5: ( 'private' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:48:7: 'private'
             {
             match("private"); 
@@ -881,10 +881,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T64
 
     // $ANTLR start T65
-    public void mT65() throws RecognitionException {
+    public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:49:7: ( 'cached' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:49:5: ( 'cached' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:49:7: 'cached'
             {
             match("cached"); 
@@ -900,10 +900,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T65
 
     // $ANTLR start T66
-    public void mT66() throws RecognitionException {
+    public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:50:7: ( 'create' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:50:5: ( 'create' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:50:7: 'create'
             {
             match("create"); 
@@ -919,10 +919,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T66
 
     // $ANTLR start T67
-    public void mT67() throws RecognitionException {
+    public final void mT67() throws RecognitionException {
         try {
             int _type = T67;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:51:7: ( 'JAVA' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:51:5: ( 'JAVA' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:51:7: 'JAVA'
             {
             match("JAVA"); 
@@ -938,10 +938,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T67
 
     // $ANTLR start T68
-    public void mT68() throws RecognitionException {
+    public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:52:7: ( '.' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:52:5: ( '.' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:52:7: '.'
             {
             match('.'); 
@@ -956,10 +956,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T68
 
     // $ANTLR start T69
-    public void mT69() throws RecognitionException {
+    public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:53:7: ( 'Collection' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:53:5: ( 'Collection' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:53:7: 'Collection'
             {
             match("Collection"); 
@@ -975,10 +975,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T69
 
     // $ANTLR start T70
-    public void mT70() throws RecognitionException {
+    public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:54:7: ( 'List' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:54:5: ( 'List' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:54:7: 'List'
             {
             match("List"); 
@@ -994,10 +994,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T70
 
     // $ANTLR start T71
-    public void mT71() throws RecognitionException {
+    public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:55:7: ( 'Set' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:55:5: ( 'Set' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:55:7: 'Set'
             {
             match("Set"); 
@@ -1013,10 +1013,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T71
 
     // $ANTLR start T72
-    public void mT72() throws RecognitionException {
+    public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:56:7: ( 'let' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:56:5: ( 'let' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:56:7: 'let'
             {
             match("let"); 
@@ -1032,10 +1032,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T72
 
     // $ANTLR start T73
-    public void mT73() throws RecognitionException {
+    public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:57:7: ( '=' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:57:5: ( '=' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:57:7: '='
             {
             match('='); 
@@ -1050,10 +1050,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T73
 
     // $ANTLR start T74
-    public void mT74() throws RecognitionException {
+    public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:58:7: ( '->' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:58:5: ( '->' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:58:7: '->'
             {
             match("->"); 
@@ -1069,10 +1069,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T74
 
     // $ANTLR start T75
-    public void mT75() throws RecognitionException {
+    public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:59:7: ( '?' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:59:5: ( '?' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:59:7: '?'
             {
             match('?'); 
@@ -1087,10 +1087,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T75
 
     // $ANTLR start T76
-    public void mT76() throws RecognitionException {
+    public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:60:7: ( 'then' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:60:5: ( 'then' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:60:7: 'then'
             {
             match("then"); 
@@ -1106,10 +1106,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T76
 
     // $ANTLR start T77
-    public void mT77() throws RecognitionException {
+    public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:61:7: ( 'else' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:61:5: ( 'else' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:61:7: 'else'
             {
             match("else"); 
@@ -1125,10 +1125,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T77
 
     // $ANTLR start T78
-    public void mT78() throws RecognitionException {
+    public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:62:7: ( 'switch' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:62:5: ( 'switch' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:62:7: 'switch'
             {
             match("switch"); 
@@ -1144,10 +1144,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T78
 
     // $ANTLR start T79
-    public void mT79() throws RecognitionException {
+    public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:63:7: ( 'default' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:63:5: ( 'default' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:63:7: 'default'
             {
             match("default"); 
@@ -1163,10 +1163,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T79
 
     // $ANTLR start T80
-    public void mT80() throws RecognitionException {
+    public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:64:7: ( '}' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:64:5: ( '}' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:64:7: '}'
             {
             match('}'); 
@@ -1181,10 +1181,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T80
 
     // $ANTLR start T81
-    public void mT81() throws RecognitionException {
+    public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:65:7: ( 'case' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:65:5: ( 'case' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:65:7: 'case'
             {
             match("case"); 
@@ -1200,10 +1200,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T81
 
     // $ANTLR start T82
-    public void mT82() throws RecognitionException {
+    public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:66:7: ( '||' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:66:5: ( '||' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:66:7: '||'
             {
             match("||"); 
@@ -1219,10 +1219,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T82
 
     // $ANTLR start T83
-    public void mT83() throws RecognitionException {
+    public final void mT83() throws RecognitionException {
         try {
             int _type = T83;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:67:7: ( '&&' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:67:5: ( '&&' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:67:7: '&&'
             {
             match("&&"); 
@@ -1238,10 +1238,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T83
 
     // $ANTLR start T84
-    public void mT84() throws RecognitionException {
+    public final void mT84() throws RecognitionException {
         try {
             int _type = T84;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:68:7: ( 'implies' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:68:5: ( 'implies' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:68:7: 'implies'
             {
             match("implies"); 
@@ -1257,10 +1257,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T84
 
     // $ANTLR start T85
-    public void mT85() throws RecognitionException {
+    public final void mT85() throws RecognitionException {
         try {
             int _type = T85;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:69:7: ( '==' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:69:5: ( '==' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:69:7: '=='
             {
             match("=="); 
@@ -1276,10 +1276,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T85
 
     // $ANTLR start T86
-    public void mT86() throws RecognitionException {
+    public final void mT86() throws RecognitionException {
         try {
             int _type = T86;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:70:7: ( '!=' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:70:5: ( '!=' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:70:7: '!='
             {
             match("!="); 
@@ -1295,10 +1295,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T86
 
     // $ANTLR start T87
-    public void mT87() throws RecognitionException {
+    public final void mT87() throws RecognitionException {
         try {
             int _type = T87;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:71:7: ( '>=' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:71:5: ( '>=' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:71:7: '>='
             {
             match(">="); 
@@ -1314,10 +1314,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T87
 
     // $ANTLR start T88
-    public void mT88() throws RecognitionException {
+    public final void mT88() throws RecognitionException {
         try {
             int _type = T88;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:72:7: ( '<=' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:72:5: ( '<=' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:72:7: '<='
             {
             match("<="); 
@@ -1333,10 +1333,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T88
 
     // $ANTLR start T89
-    public void mT89() throws RecognitionException {
+    public final void mT89() throws RecognitionException {
         try {
             int _type = T89;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:73:7: ( '>' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:73:5: ( '>' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:73:7: '>'
             {
             match('>'); 
@@ -1351,10 +1351,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T89
 
     // $ANTLR start T90
-    public void mT90() throws RecognitionException {
+    public final void mT90() throws RecognitionException {
         try {
             int _type = T90;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:74:7: ( '<' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:74:5: ( '<' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:74:7: '<'
             {
             match('<'); 
@@ -1369,10 +1369,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T90
 
     // $ANTLR start T91
-    public void mT91() throws RecognitionException {
+    public final void mT91() throws RecognitionException {
         try {
             int _type = T91;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:75:7: ( '+' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:75:5: ( '+' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:75:7: '+'
             {
             match('+'); 
@@ -1387,10 +1387,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T91
 
     // $ANTLR start T92
-    public void mT92() throws RecognitionException {
+    public final void mT92() throws RecognitionException {
         try {
             int _type = T92;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:76:7: ( '/' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:76:5: ( '/' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:76:7: '/'
             {
             match('/'); 
@@ -1405,10 +1405,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T92
 
     // $ANTLR start T93
-    public void mT93() throws RecognitionException {
+    public final void mT93() throws RecognitionException {
         try {
             int _type = T93;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:77:7: ( '!' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:77:5: ( '!' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:77:7: '!'
             {
             match('!'); 
@@ -1423,10 +1423,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T93
 
     // $ANTLR start T94
-    public void mT94() throws RecognitionException {
+    public final void mT94() throws RecognitionException {
         try {
             int _type = T94;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:78:7: ( 'GLOBALVAR' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:78:5: ( 'GLOBALVAR' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:78:7: 'GLOBALVAR'
             {
             match("GLOBALVAR"); 
@@ -1442,10 +1442,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T94
 
     // $ANTLR start T95
-    public void mT95() throws RecognitionException {
+    public final void mT95() throws RecognitionException {
         try {
             int _type = T95;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:79:7: ( '[' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:79:5: ( '[' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:79:7: '['
             {
             match('['); 
@@ -1460,10 +1460,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T95
 
     // $ANTLR start T96
-    public void mT96() throws RecognitionException {
+    public final void mT96() throws RecognitionException {
         try {
             int _type = T96;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:80:7: ( ']' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:80:5: ( ']' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:80:7: ']'
             {
             match(']'); 
@@ -1478,10 +1478,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T96
 
     // $ANTLR start T97
-    public void mT97() throws RecognitionException {
+    public final void mT97() throws RecognitionException {
         try {
             int _type = T97;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:81:7: ( 'new' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:81:5: ( 'new' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:81:7: 'new'
             {
             match("new"); 
@@ -1497,10 +1497,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T97
 
     // $ANTLR start T98
-    public void mT98() throws RecognitionException {
+    public final void mT98() throws RecognitionException {
         try {
             int _type = T98;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:82:7: ( 'false' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:82:5: ( 'false' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:82:7: 'false'
             {
             match("false"); 
@@ -1516,10 +1516,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T98
 
     // $ANTLR start T99
-    public void mT99() throws RecognitionException {
+    public final void mT99() throws RecognitionException {
         try {
             int _type = T99;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:83:7: ( 'true' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:83:5: ( 'true' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:83:7: 'true'
             {
             match("true"); 
@@ -1535,10 +1535,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T99
 
     // $ANTLR start T100
-    public void mT100() throws RecognitionException {
+    public final void mT100() throws RecognitionException {
         try {
             int _type = T100;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:84:8: ( 'null' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:84:6: ( 'null' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:84:8: 'null'
             {
             match("null"); 
@@ -1554,10 +1554,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T100
 
     // $ANTLR start T101
-    public void mT101() throws RecognitionException {
+    public final void mT101() throws RecognitionException {
         try {
             int _type = T101;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:85:8: ( 'typeSelect' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:85:6: ( 'typeSelect' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:85:8: 'typeSelect'
             {
             match("typeSelect"); 
@@ -1573,10 +1573,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T101
 
     // $ANTLR start T102
-    public void mT102() throws RecognitionException {
+    public final void mT102() throws RecognitionException {
         try {
             int _type = T102;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:86:8: ( 'collect' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:86:6: ( 'collect' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:86:8: 'collect'
             {
             match("collect"); 
@@ -1592,10 +1592,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T102
 
     // $ANTLR start T103
-    public void mT103() throws RecognitionException {
+    public final void mT103() throws RecognitionException {
         try {
             int _type = T103;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:87:8: ( 'select' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:87:6: ( 'select' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:87:8: 'select'
             {
             match("select"); 
@@ -1611,10 +1611,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T103
 
     // $ANTLR start T104
-    public void mT104() throws RecognitionException {
+    public final void mT104() throws RecognitionException {
         try {
             int _type = T104;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:88:8: ( 'selectFirst' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:88:6: ( 'selectFirst' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:88:8: 'selectFirst'
             {
             match("selectFirst"); 
@@ -1630,10 +1630,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T104
 
     // $ANTLR start T105
-    public void mT105() throws RecognitionException {
+    public final void mT105() throws RecognitionException {
         try {
             int _type = T105;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:89:8: ( 'reject' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:89:6: ( 'reject' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:89:8: 'reject'
             {
             match("reject"); 
@@ -1649,10 +1649,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T105
 
     // $ANTLR start T106
-    public void mT106() throws RecognitionException {
+    public final void mT106() throws RecognitionException {
         try {
             int _type = T106;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:90:8: ( 'exists' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:90:6: ( 'exists' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:90:8: 'exists'
             {
             match("exists"); 
@@ -1668,10 +1668,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T106
 
     // $ANTLR start T107
-    public void mT107() throws RecognitionException {
+    public final void mT107() throws RecognitionException {
         try {
             int _type = T107;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:91:8: ( 'notExists' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:91:6: ( 'notExists' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:91:8: 'notExists'
             {
             match("notExists"); 
@@ -1687,10 +1687,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T107
 
     // $ANTLR start T108
-    public void mT108() throws RecognitionException {
+    public final void mT108() throws RecognitionException {
         try {
             int _type = T108;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:92:8: ( 'sortBy' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:92:6: ( 'sortBy' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:92:8: 'sortBy'
             {
             match("sortBy"); 
@@ -1706,10 +1706,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T108
 
     // $ANTLR start T109
-    public void mT109() throws RecognitionException {
+    public final void mT109() throws RecognitionException {
         try {
             int _type = T109;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:93:8: ( 'forAll' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:93:6: ( 'forAll' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:93:8: 'forAll'
             {
             match("forAll"); 
@@ -1725,10 +1725,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T109
 
     // $ANTLR start T110
-    public void mT110() throws RecognitionException {
+    public final void mT110() throws RecognitionException {
         try {
             int _type = T110;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:94:8: ( '|' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:94:6: ( '|' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:94:8: '|'
             {
             match('|'); 
@@ -1743,13 +1743,13 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end T110
 
     // $ANTLR start IntLiteral
-    public void mIntLiteral() throws RecognitionException {
+    public final void mIntLiteral() throws RecognitionException {
         try {
             int _type = IntLiteral;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:351:14: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:351:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:350:12: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:350:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:351:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:350:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1761,23 +1761,23 @@ public class Xpand3Lexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("351:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )", 2, 0, input);
+                    new NoViableAltException("350:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )", 2, 0, input);
 
                 throw nvae;
             }
             switch (alt2) {
                 case 1 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:351:15: '0'
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:350:15: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:351:21: '1' .. '9' ( '0' .. '9' )*
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:350:21: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:351:30: ( '0' .. '9' )*
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:350:30: ( '0' .. '9' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -1790,7 +1790,7 @@ public class Xpand3Lexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:351:30: '0' .. '9'
+                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:350:30: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1819,10 +1819,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end IntLiteral
 
     // $ANTLR start StringLiteral
-    public void mStringLiteral() throws RecognitionException {
+    public final void mStringLiteral() throws RecognitionException {
         try {
             int _type = StringLiteral;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:354:8: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:353:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1834,16 +1834,16 @@ public class Xpand3Lexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("353:1: StringLiteral : ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' );", 5, 0, input);
+                    new NoViableAltException("352:1: StringLiteral : ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' );", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:354:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:353:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
                     {
                     match('\"'); 
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:354:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:353:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -1859,14 +1859,14 @@ public class Xpand3Lexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:354:14: EscapeSequence
+                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:353:14: EscapeSequence
                     	    {
                     	    mEscapeSequence(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:354:31: ~ ( '\\\\' | '\"' )
+                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:353:31: ~ ( '\\\\' | '\"' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1892,10 +1892,10 @@ public class Xpand3Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:355:8: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\''
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:354:8: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\''
                     {
                     match('\''); 
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:355:13: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )*
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:354:13: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1911,14 +1911,14 @@ public class Xpand3Lexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:355:15: EscapeSequence
+                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:354:15: EscapeSequence
                     	    {
                     	    mEscapeSequence(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:355:32: ~ ( '\\'' | '\\\\' )
+                    	    // src/org/eclipse/xpand3/parser/Xpand3.g:354:32: ~ ( '\\'' | '\\\\' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1953,9 +1953,9 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end StringLiteral
 
     // $ANTLR start EscapeSequence
-    public void mEscapeSequence() throws RecognitionException {
+    public final void mEscapeSequence() throws RecognitionException {
         try {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:360:9: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:359:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
             int alt6=3;
             int LA6_0 = input.LA(1);
 
@@ -1992,7 +1992,7 @@ public class Xpand3Lexer extends Lexer {
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("358:1: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 1, input);
+                        new NoViableAltException("357:1: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 1, input);
 
                     throw nvae;
                 }
@@ -2000,13 +2000,13 @@ public class Xpand3Lexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("358:1: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 0, input);
+                    new NoViableAltException("357:1: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:360:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:359:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2023,14 +2023,14 @@ public class Xpand3Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:361:9: UnicodeEscape
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:360:9: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
                     }
                     break;
                 case 3 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:362:9: OctalEscape
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:361:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -2045,9 +2045,9 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end EscapeSequence
 
     // $ANTLR start OctalEscape
-    public void mOctalEscape() throws RecognitionException {
+    public final void mOctalEscape() throws RecognitionException {
         try {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:367:9: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:366:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt7=3;
             int LA7_0 = input.LA(1);
 
@@ -2080,26 +2080,54 @@ public class Xpand3Lexer extends Lexer {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("365:1: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 1, input);
+                        new NoViableAltException("364:1: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("365:1: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 0, input);
+                    new NoViableAltException("364:1: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:366:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:14: ( '0' .. '3' )
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:15: '0' .. '3'
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:366:14: ( '0' .. '3' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:366:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
+
+                    }
+
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:366:25: ( '0' .. '7' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:366:26: '0' .. '7'
+                    {
+                    matchRange('0','7'); 
+
+                    }
+
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:366:36: ( '0' .. '7' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:366:37: '0' .. '7'
+                    {
+                    matchRange('0','7'); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    {
+                    match('\\'); 
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:14: ( '0' .. '7' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:15: '0' .. '7'
+                    {
+                    matchRange('0','7'); 
 
                     }
 
@@ -2110,43 +2138,15 @@ public class Xpand3Lexer extends Lexer {
 
                     }
 
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:36: ( '0' .. '7' )
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:367:37: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
-                    {
-                    match('\\'); 
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:14: ( '0' .. '7' )
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:15: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
-
-                    }
-
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:25: ( '0' .. '7' )
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:26: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
-
-                    }
-
 
                     }
                     break;
                 case 3 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:369:9: '\\\\' ( '0' .. '7' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:369:14: ( '0' .. '7' )
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:369:15: '0' .. '7'
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:14: ( '0' .. '7' )
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:368:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2164,10 +2164,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end OctalEscape
 
     // $ANTLR start UnicodeEscape
-    public void mUnicodeEscape() throws RecognitionException {
+    public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:374:9: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:374:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // src/org/eclipse/xpand3/parser/Xpand3.g:373:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:373:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
             match('u'); 
@@ -2185,10 +2185,10 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end UnicodeEscape
 
     // $ANTLR start HexDigit
-    public void mHexDigit() throws RecognitionException {
+    public final void mHexDigit() throws RecognitionException {
         try {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:377:12: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:377:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:376:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:376:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -2210,11 +2210,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end HexDigit
 
     // $ANTLR start DEFINE
-    public void mDEFINE() throws RecognitionException {
+    public final void mDEFINE() throws RecognitionException {
         try {
             int _type = DEFINE;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:380:11: ( 'DEFINE' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:380:11: 'DEFINE'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:379:9: ( 'DEFINE' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:379:11: 'DEFINE'
             {
             xpandMode=true;
             match("DEFINE"); 
@@ -2230,11 +2230,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end DEFINE
 
     // $ANTLR start ENDDEFINE
-    public void mENDDEFINE() throws RecognitionException {
+    public final void mENDDEFINE() throws RecognitionException {
         try {
             int _type = ENDDEFINE;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:382:4: ( 'ENDDEFINE' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:382:4: 'ENDDEFINE'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:381:2: ( 'ENDDEFINE' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:381:4: 'ENDDEFINE'
             {
             match("ENDDEFINE"); 
 
@@ -2250,11 +2250,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end ENDDEFINE
 
     // $ANTLR start AROUND
-    public void mAROUND() throws RecognitionException {
+    public final void mAROUND() throws RecognitionException {
         try {
             int _type = AROUND;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:384:11: ( 'AROUND' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:384:11: 'AROUND'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:383:9: ( 'AROUND' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:383:11: 'AROUND'
             {
             xpandMode=true;
             match("AROUND"); 
@@ -2270,11 +2270,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end AROUND
 
     // $ANTLR start ENDAROUND
-    public void mENDAROUND() throws RecognitionException {
+    public final void mENDAROUND() throws RecognitionException {
         try {
             int _type = ENDAROUND;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:385:13: ( 'ENDAROUND' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:385:13: 'ENDAROUND'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:384:11: ( 'ENDAROUND' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:384:13: 'ENDAROUND'
             {
             match("ENDAROUND"); 
 
@@ -2290,13 +2290,13 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end ENDAROUND
 
     // $ANTLR start Identifier
-    public void mIdentifier() throws RecognitionException {
+    public final void mIdentifier() throws RecognitionException {
         try {
             int _type = Identifier;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:388:9: ( ( '^' )? Letter ( Letter | JavaIDDigit )* )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:388:9: ( '^' )? Letter ( Letter | JavaIDDigit )*
+            // src/org/eclipse/xpand3/parser/Xpand3.g:387:5: ( ( '^' )? Letter ( Letter | JavaIDDigit )* )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:387:9: ( '^' )? Letter ( Letter | JavaIDDigit )*
             {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:388:9: ( '^' )?
+            // src/org/eclipse/xpand3/parser/Xpand3.g:387:9: ( '^' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -2305,7 +2305,7 @@ public class Xpand3Lexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:388:10: '^'
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:387:10: '^'
                     {
                     match('^'); 
 
@@ -2315,7 +2315,7 @@ public class Xpand3Lexer extends Lexer {
             }
 
             mLetter(); 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:388:23: ( Letter | JavaIDDigit )*
+            // src/org/eclipse/xpand3/parser/Xpand3.g:387:23: ( Letter | JavaIDDigit )*
             loop9:
             do {
                 int alt9=2;
@@ -2360,9 +2360,9 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end Identifier
 
     // $ANTLR start Letter
-    public void mLetter() throws RecognitionException {
+    public final void mLetter() throws RecognitionException {
         try {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:393:8: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:392:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:
             {
             if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
@@ -2385,9 +2385,9 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end Letter
 
     // $ANTLR start JavaIDDigit
-    public void mJavaIDDigit() throws RecognitionException {
+    public final void mJavaIDDigit() throws RecognitionException {
         try {
-            // src/org/eclipse/xpand3/parser/Xpand3.g:410:8: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:409:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='\u0660' && input.LA(1)<='\u0669')||(input.LA(1)>='\u06F0' && input.LA(1)<='\u06F9')||(input.LA(1)>='\u0966' && input.LA(1)<='\u096F')||(input.LA(1)>='\u09E6' && input.LA(1)<='\u09EF')||(input.LA(1)>='\u0A66' && input.LA(1)<='\u0A6F')||(input.LA(1)>='\u0AE6' && input.LA(1)<='\u0AEF')||(input.LA(1)>='\u0B66' && input.LA(1)<='\u0B6F')||(input.LA(1)>='\u0BE7' && input.LA(1)<='\u0BEF')||(input.LA(1)>='\u0C66' && input.LA(1)<='\u0C6F')||(input.LA(1)>='\u0CE6' && input.LA(1)<='\u0CEF')||(input.LA(1)>='\u0D66' && input.LA(1)<='\u0D6F')||(input.LA(1)>='\u0E50' && input.LA(1)<='\u0E59')||(input.LA(1)>='\u0ED0' && input.LA(1)<='\u0ED9')||(input.LA(1)>='\u1040' && input.LA(1)<='\u1049') ) {
@@ -2410,11 +2410,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end JavaIDDigit
 
     // $ANTLR start WS
-    public void mWS() throws RecognitionException {
+    public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:427:8: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:427:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:426:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:426:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -2438,15 +2438,15 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end WS
 
     // $ANTLR start COMMENT
-    public void mCOMMENT() throws RecognitionException {
+    public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:431:9: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:431:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:430:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:430:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:431:14: ( options {greedy=false; } : . )*
+            // src/org/eclipse/xpand3/parser/Xpand3.g:430:14: ( options {greedy=false; } : . )*
             loop10:
             do {
                 int alt10=2;
@@ -2471,7 +2471,7 @@ public class Xpand3Lexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // src/org/eclipse/xpand3/parser/Xpand3.g:431:42: .
+            	    // src/org/eclipse/xpand3/parser/Xpand3.g:430:42: .
             	    {
             	    matchAny(); 
 
@@ -2497,15 +2497,15 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end COMMENT
 
     // $ANTLR start LINE_COMMENT
-    public void mLINE_COMMENT() throws RecognitionException {
+    public final void mLINE_COMMENT() throws RecognitionException {
         try {
             int _type = LINE_COMMENT;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:435:7: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF ) )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:435:7: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:434:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF ) )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:434:7: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF )
             {
             match("//"); 
 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:435:12: (~ ( '\\n' | '\\r' ) )*
+            // src/org/eclipse/xpand3/parser/Xpand3.g:434:12: (~ ( '\\n' | '\\r' ) )*
             loop11:
             do {
                 int alt11=2;
@@ -2518,7 +2518,7 @@ public class Xpand3Lexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // src/org/eclipse/xpand3/parser/Xpand3.g:435:12: ~ ( '\\n' | '\\r' )
+            	    // src/org/eclipse/xpand3/parser/Xpand3.g:434:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2539,7 +2539,7 @@ public class Xpand3Lexer extends Lexer {
                 }
             } while (true);
 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:435:26: ( ( '\\r' )? '\\n' | EOF )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:434:26: ( ( '\\r' )? '\\n' | EOF )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2550,9 +2550,9 @@ public class Xpand3Lexer extends Lexer {
                 alt13=2;}
             switch (alt13) {
                 case 1 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:435:27: ( '\\r' )? '\\n'
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:434:27: ( '\\r' )? '\\n'
                     {
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:435:27: ( '\\r' )?
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:434:27: ( '\\r' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -2561,7 +2561,7 @@ public class Xpand3Lexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // src/org/eclipse/xpand3/parser/Xpand3.g:435:27: '\\r'
+                            // src/org/eclipse/xpand3/parser/Xpand3.g:434:27: '\\r'
                             {
                             match('\r'); 
 
@@ -2575,7 +2575,7 @@ public class Xpand3Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:435:38: EOF
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:434:38: EOF
                     {
                     match(EOF); 
 
@@ -2596,11 +2596,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end LINE_COMMENT
 
     // $ANTLR start REM_COMMENT_OUT
-    public void mREM_COMMENT_OUT() throws RecognitionException {
+    public final void mREM_COMMENT_OUT() throws RecognitionException {
         try {
             int _type = REM_COMMENT_OUT;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:440:4: ({...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:440:4: {...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG
+            // src/org/eclipse/xpand3/parser/Xpand3.g:439:2: ({...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:439:4: {...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG
             {
             if ( !(!xpandMode) ) {
                 throw new FailedPredicateException(input, "REM_COMMENT_OUT", "!xpandMode");
@@ -2609,7 +2609,7 @@ public class Xpand3Lexer extends Lexer {
             match("REM"); 
 
             mRG(); 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:440:32: ( options {greedy=false; } : . )*
+            // src/org/eclipse/xpand3/parser/Xpand3.g:439:32: ( options {greedy=false; } : . )*
             loop14:
             do {
                 int alt14=2;
@@ -2688,7 +2688,7 @@ public class Xpand3Lexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // src/org/eclipse/xpand3/parser/Xpand3.g:440:60: .
+            	    // src/org/eclipse/xpand3/parser/Xpand3.g:439:60: .
             	    {
             	    matchAny(); 
 
@@ -2715,11 +2715,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end REM_COMMENT_OUT
 
     // $ANTLR start REM_COMMENT
-    public void mREM_COMMENT() throws RecognitionException {
+    public final void mREM_COMMENT() throws RecognitionException {
         try {
             int _type = REM_COMMENT;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:444:2: ({...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:444:2: {...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:442:13: ({...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:443:2: {...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM'
             {
             if ( !(xpandMode) ) {
                 throw new FailedPredicateException(input, "REM_COMMENT", "xpandMode");
@@ -2727,7 +2727,7 @@ public class Xpand3Lexer extends Lexer {
             match("REM"); 
 
             mRG(); 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:444:26: ( options {greedy=false; } : . )*
+            // src/org/eclipse/xpand3/parser/Xpand3.g:443:26: ( options {greedy=false; } : . )*
             loop15:
             do {
                 int alt15=2;
@@ -2797,7 +2797,7 @@ public class Xpand3Lexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // src/org/eclipse/xpand3/parser/Xpand3.g:444:54: .
+            	    // src/org/eclipse/xpand3/parser/Xpand3.g:443:54: .
             	    {
             	    matchAny(); 
 
@@ -2823,17 +2823,17 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end REM_COMMENT
 
     // $ANTLR start TEXT
-    public void mTEXT() throws RecognitionException {
+    public final void mTEXT() throws RecognitionException {
         try {
             int _type = TEXT;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:449:3: ({...}? => RG (~ ( LG ) )* ( LG )? )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:449:3: {...}? => RG (~ ( LG ) )* ( LG )?
+            // src/org/eclipse/xpand3/parser/Xpand3.g:447:6: ({...}? => RG (~ ( LG ) )* ( LG )? )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:448:3: {...}? => RG (~ ( LG ) )* ( LG )?
             {
             if ( !(xpandMode) ) {
                 throw new FailedPredicateException(input, "TEXT", "xpandMode");
             }
             mRG(); 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:449:21: (~ ( LG ) )*
+            // src/org/eclipse/xpand3/parser/Xpand3.g:448:21: (~ ( LG ) )*
             loop16:
             do {
                 int alt16=2;
@@ -2846,7 +2846,7 @@ public class Xpand3Lexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // src/org/eclipse/xpand3/parser/Xpand3.g:449:21: ~ ( LG )
+            	    // src/org/eclipse/xpand3/parser/Xpand3.g:448:21: ~ ( LG )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\u00AA')||(input.LA(1)>='\u00AC' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2867,7 +2867,7 @@ public class Xpand3Lexer extends Lexer {
                 }
             } while (true);
 
-            // src/org/eclipse/xpand3/parser/Xpand3.g:449:28: ( LG )?
+            // src/org/eclipse/xpand3/parser/Xpand3.g:448:28: ( LG )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2876,7 +2876,7 @@ public class Xpand3Lexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // src/org/eclipse/xpand3/parser/Xpand3.g:449:29: LG
+                    // src/org/eclipse/xpand3/parser/Xpand3.g:448:29: LG
                     {
                     mLG(); 
 
@@ -2896,11 +2896,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end TEXT
 
     // $ANTLR start LG
-    public void mLG() throws RecognitionException {
+    public final void mLG() throws RecognitionException {
         try {
             int _type = LG;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:453:4: ( '\\u00AB' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:453:4: '\\u00AB'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:452:2: ( '\\u00AB' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:452:4: '\\u00AB'
             {
             match('\u00AB'); 
 
@@ -2914,11 +2914,11 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end LG
 
     // $ANTLR start RG
-    public void mRG() throws RecognitionException {
+    public final void mRG() throws RecognitionException {
         try {
             int _type = RG;
-            // src/org/eclipse/xpand3/parser/Xpand3.g:455:4: ( '\\u00BB' )
-            // src/org/eclipse/xpand3/parser/Xpand3.g:455:4: '\\u00BB'
+            // src/org/eclipse/xpand3/parser/Xpand3.g:454:2: ( '\\u00BB' )
+            // src/org/eclipse/xpand3/parser/Xpand3.g:454:4: '\\u00BB'
             {
             match('\u00BB'); 
 
@@ -2932,7 +2932,7 @@ public class Xpand3Lexer extends Lexer {
     // $ANTLR end RG
 
     public void mTokens() throws RecognitionException {
-        // src/org/eclipse/xpand3/parser/Xpand3.g:1:10: ( T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | T100 | T101 | T102 | T103 | T104 | T105 | T106 | T107 | T108 | T109 | T110 | IntLiteral | StringLiteral | DEFINE | ENDDEFINE | AROUND | ENDAROUND | Identifier | WS | COMMENT | LINE_COMMENT | REM_COMMENT_OUT | REM_COMMENT | TEXT | LG | RG )
+        // src/org/eclipse/xpand3/parser/Xpand3.g:1:8: ( T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | T100 | T101 | T102 | T103 | T104 | T105 | T106 | T107 | T108 | T109 | T110 | IntLiteral | StringLiteral | DEFINE | ENDDEFINE | AROUND | ENDAROUND | Identifier | WS | COMMENT | LINE_COMMENT | REM_COMMENT_OUT | REM_COMMENT | TEXT | LG | RG )
         int alt18=101;
         int LA18_0 = input.LA(1);
 

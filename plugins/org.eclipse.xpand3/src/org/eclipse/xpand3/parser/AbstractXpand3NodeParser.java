@@ -4,9 +4,7 @@ import java.util.Set;
 
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
-import org.antlr.runtime.tree.CommonTreeAdaptor;
 import org.eclipse.xpand3.node.CompositeNode;
 import org.eclipse.xpand3.node.LeafNode;
 import org.eclipse.xpand3.node.LexedToken;
@@ -20,19 +18,12 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 
 	public AbstractXpand3NodeParser(TokenStream input) {
 		super(input);
-		setTreeAdaptor(new CommonTreeAdaptor() {
-			@Override
-			public Object create(Token arg0) {
-				if (arg0 != null)
-					createLexedToken((CommonToken) arg0);
-				return super.create(arg0);
-			}
-		});
 	}
 
 	protected abstract Set<String> normalizableRules();
 
-	public void ruleStart(String rulename) {
+	@Override
+	public void ruleEntered(String rulename) {
 		CompositeNode newOne = NodeFactory.eINSTANCE.createCompositeNode();
 		newOne.setRule(rulename);
 		if (current != null) {
@@ -42,10 +33,10 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 		}
 		current = newOne;
 	}
-
-	public void ruleEnd() {
+	@Override
+	public void ruleLeft(String ruleName) {
 		CompositeNode parent = (CompositeNode) current.eContainer();
-		if (normalizableRules().contains(current.getRule())
+		if (parent!=null && normalizableRules().contains(current.getRule())
 				&& current.getChildren().size() == 1
 				&& (current.getChildren().get(0) instanceof CompositeNode)) {
 			Node child = current.getChildren().get(0);
@@ -65,9 +56,12 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 		throw new RuntimeException(getErrorMessage(arg0, getTokenNames()), arg0);
 	}
 
-	public void createLexedToken(CommonToken ct) {
+	@Override
+	public void tokenConsumed(String var, CommonToken ct) {
 		LeafNode n = NodeFactory.eINSTANCE.createLeafNode();
 		current.getChildren().add(n);
+		if (var!=null)
+			n.setAlias(var);
 		LexedToken myToken = NodeFactory.eINSTANCE.createLexedToken();
 		n.setToken(myToken);
 		myToken.setText(ct.getText());

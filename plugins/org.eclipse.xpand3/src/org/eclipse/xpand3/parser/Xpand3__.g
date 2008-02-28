@@ -6,92 +6,92 @@ lexer grammar Xpand3;
 package org.eclipse.xpand3.parser; 
 }
 
-T24 : 'IMPORT' ;
-T25 : 'EXTENSION' ;
-T26 : 'import' ;
-T27 : ';' ;
-T28 : 'extension' ;
-T29 : 'reexport' ;
-T30 : '(' ;
-T31 : ',' ;
-T32 : '*' ;
-T33 : ')' ;
-T34 : 'FOR' ;
-T35 : '-' ;
-T36 : 'ERROR' ;
-T37 : 'EXPAND' ;
-T38 : 'FOREACH' ;
-T39 : 'SEPARATOR' ;
-T40 : 'FILE' ;
-T41 : 'ENDFILE' ;
-T42 : 'AS' ;
-T43 : 'ITERATOR' ;
-T44 : 'ENDFOREACH' ;
-T45 : 'IF' ;
-T46 : 'ENDIF' ;
-T47 : 'ELSEIF' ;
-T48 : 'ELSE' ;
-T49 : 'LET' ;
-T50 : 'ENDLET' ;
-T51 : 'PROTECT' ;
-T52 : 'CSTART' ;
-T53 : 'CEND' ;
-T54 : 'ID' ;
-T55 : 'DISABLE' ;
-T56 : 'ENDPROTECT' ;
-T57 : 'context' ;
-T58 : 'if' ;
-T59 : 'WARNING' ;
-T60 : ':' ;
-T61 : 'around' ;
-T62 : '::' ;
-T63 : 'private' ;
-T64 : 'cached' ;
-T65 : 'create' ;
-T66 : 'JAVA' ;
-T67 : '.' ;
-T68 : 'Collection' ;
-T69 : 'List' ;
-T70 : 'Set' ;
-T71 : 'let' ;
-T72 : '=' ;
-T73 : '->' ;
-T74 : '?' ;
-T75 : 'then' ;
-T76 : 'else' ;
-T77 : 'switch' ;
-T78 : 'default' ;
-T79 : '}' ;
-T80 : 'case' ;
-T81 : '||' ;
-T82 : '&&' ;
-T83 : 'implies' ;
-T84 : '==' ;
-T85 : '!=' ;
-T86 : '>=' ;
-T87 : '<=' ;
-T88 : '>' ;
-T89 : '<' ;
-T90 : '+' ;
-T91 : '/' ;
-T92 : '!' ;
-T93 : 'GLOBALVAR' ;
-T94 : '[' ;
-T95 : ']' ;
-T96 : 'new' ;
-T97 : 'false' ;
-T98 : 'true' ;
-T99 : 'null' ;
-T100 : 'typeSelect' ;
-T101 : 'collect' ;
-T102 : 'select' ;
-T103 : 'selectFirst' ;
-T104 : 'reject' ;
-T105 : 'exists' ;
-T106 : 'notExists' ;
-T107 : 'sortBy' ;
-T108 : 'forAll' ;
-T109 : '|' ;
+T25 : 'IMPORT' ;
+T26 : 'EXTENSION' ;
+T27 : 'import' ;
+T28 : ';' ;
+T29 : 'extension' ;
+T30 : 'reexport' ;
+T31 : '(' ;
+T32 : ',' ;
+T33 : '*' ;
+T34 : ')' ;
+T35 : 'FOR' ;
+T36 : '-' ;
+T37 : 'ERROR' ;
+T38 : 'EXPAND' ;
+T39 : 'FOREACH' ;
+T40 : 'SEPARATOR' ;
+T41 : 'FILE' ;
+T42 : 'ENDFILE' ;
+T43 : 'AS' ;
+T44 : 'ITERATOR' ;
+T45 : 'ENDFOREACH' ;
+T46 : 'IF' ;
+T47 : 'ENDIF' ;
+T48 : 'ELSEIF' ;
+T49 : 'ELSE' ;
+T50 : 'LET' ;
+T51 : 'ENDLET' ;
+T52 : 'PROTECT' ;
+T53 : 'CSTART' ;
+T54 : 'CEND' ;
+T55 : 'ID' ;
+T56 : 'DISABLE' ;
+T57 : 'ENDPROTECT' ;
+T58 : 'context' ;
+T59 : 'if' ;
+T60 : 'WARNING' ;
+T61 : ':' ;
+T62 : 'around' ;
+T63 : '::' ;
+T64 : 'private' ;
+T65 : 'cached' ;
+T66 : 'create' ;
+T67 : 'JAVA' ;
+T68 : '.' ;
+T69 : 'Collection' ;
+T70 : 'List' ;
+T71 : 'Set' ;
+T72 : 'let' ;
+T73 : '=' ;
+T74 : '->' ;
+T75 : '?' ;
+T76 : 'then' ;
+T77 : 'else' ;
+T78 : 'switch' ;
+T79 : 'default' ;
+T80 : '}' ;
+T81 : 'case' ;
+T82 : '||' ;
+T83 : '&&' ;
+T84 : 'implies' ;
+T85 : '==' ;
+T86 : '!=' ;
+T87 : '>=' ;
+T88 : '<=' ;
+T89 : '>' ;
+T90 : '<' ;
+T91 : '+' ;
+T92 : '/' ;
+T93 : '!' ;
+T94 : 'GLOBALVAR' ;
+T95 : '[' ;
+T96 : ']' ;
+T97 : 'new' ;
+T98 : 'false' ;
+T99 : 'true' ;
+T100 : 'null' ;
+T101 : 'typeSelect' ;
+T102 : 'collect' ;
+T103 : 'select' ;
+T104 : 'selectFirst' ;
+T105 : 'reject' ;
+T106 : 'exists' ;
+T107 : 'notExists' ;
+T108 : 'sortBy' ;
+T109 : 'forAll' ;
+T110 : '|' ;
 
 // $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 349
 IntLiteral : ('0' | '1'..'9' '0'..'9'*) ;
@@ -196,20 +196,26 @@ LINE_COMMENT
     : '//' ~('\n'|'\r')* ('\r'? '\n'|EOF) {$channel=HIDDEN;}
     ;
     
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 436
-REM_COMMENT :
-	'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' {$channel=HIDDEN;}
+    
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 437
+REM_COMMENT_OUT 
+	:	{!xpandMode}?=> LG 'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' RG {$channel=HIDDEN;}
 ;
-
-
+    
 // $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 441
-TEXT :
-  {xpandMode}? RG ~(LG)* (LG)?
+REM_COMMENT :
+	{xpandMode}?=> 'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' {$channel=HIDDEN;}
 ;
 
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 445
+
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 446
+TEXT :
+  {xpandMode}?=> RG ~(LG)* (LG)?
+;
+
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 450
 LG 
 	: '\u00AB';
-// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 447
+// $ANTLR src "src/org/eclipse/xpand3/parser/Xpand3.g" 452
 RG
 	: '\u00BB';	

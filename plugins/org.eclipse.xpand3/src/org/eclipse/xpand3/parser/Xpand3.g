@@ -433,13 +433,18 @@ LINE_COMMENT
     : '//' ~('\n'|'\r')* ('\r'? '\n'|EOF) {$channel=HIDDEN;}
     ;
     
+    
+REM_COMMENT_OUT 
+	:	{!xpandMode}?=> LG 'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' RG {$channel=HIDDEN;}
+;
+    
 REM_COMMENT :
-	'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' {$channel=HIDDEN;}
+	{xpandMode}?=> 'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' {$channel=HIDDEN;}
 ;
 
 
 TEXT :
-  {xpandMode}? RG ~(LG)* (LG)?
+  {xpandMode}?=> RG ~(LG)* (LG)?
 ;
 
 LG 

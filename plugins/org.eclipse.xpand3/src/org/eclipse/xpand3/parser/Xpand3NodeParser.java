@@ -1,14 +1,46 @@
 package org.eclipse.xpand3.parser;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
 
 public class Xpand3NodeParser extends AbstractXpand3NodeParser {
 
+	private HashSet<String> normalizableRules;
+
 	public Xpand3NodeParser(TokenStream input) {
 		super(input);
+		normalizableRules = new HashSet<String>();
+		normalizableRules.add("r_abstractDeclaration");
+		normalizableRules.add("r_statement");
+		normalizableRules.add("r_textSequence");
+		normalizableRules.add("r_simpleStatement");
+		normalizableRules.add("r_expression");
+		normalizableRules.add("r_letExpression");
+		normalizableRules.add("r_castedExpression");
+		normalizableRules.add("r_chainExpression");
+		normalizableRules.add("r_ifExpression");
+		normalizableRules.add("r_switchExpression");
+		normalizableRules.add("r_orExpression");
+		normalizableRules.add("r_andExpression");
+		normalizableRules.add("r_impliesExpression");
+		normalizableRules.add("r_relationalExpression");
+		normalizableRules.add("r_additiveExpression");
+		normalizableRules.add("r_multiplicativeExpression");
+		normalizableRules.add("r_unaryExpression");
+		normalizableRules.add("r_infixExpression");
+		normalizableRules.add("r_primaryExpression");
+		normalizableRules.add("r_featureCall");
+		normalizableRules.add("r_type");
 	}
 	
+	@Override
+	protected Set<String> normalizableRules() {
+		return normalizableRules;
+	}
+
 	// Following code is generated (or at least should be)
 	@Override
 	public void r_abstractDeclaration() throws RecognitionException {
@@ -448,5 +480,193 @@ public class Xpand3NodeParser extends AbstractXpand3NodeParser {
 			ruleEnd();
 		}
 	}
+
+	@Override
+	public void r_definition() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_definition");
+			super.r_definition();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_definitionAround() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_definitionAround");
+			super.r_definitionAround();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_elseIfStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_elseIfStatement");
+			super.r_elseIfStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_elseStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_elseStatement");
+			super.r_elseStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_errorStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_errorStatement");
+			super.r_errorStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_expandStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_expandStatement");
+			super.r_expandStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_expressionStmt() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_expressionStmt");
+			super.r_expressionStmt();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_fileStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_fileStatement");
+			super.r_fileStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_foreachStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_foreachStatement");
+			super.r_foreachStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_ifStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_ifStatement");
+			super.r_ifStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_letStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_letStatement");
+			super.r_letStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_protectStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_protectStatement");
+			super.r_protectStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_sequence() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_sequence");
+			super.r_sequence();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_simpleStatement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_simpleStatement");
+			super.r_simpleStatement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_statement() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_statement");
+			super.r_statement();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_text() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_text");
+			super.r_text();
+		} finally {
+			ruleEnd();
+		}
+	}
+
+	@Override
+	public void r_textSequence() throws RecognitionException {
+		// Auto-generated method
+		try {
+			ruleStart("r_textSequence");
+			super.r_textSequence();
+		} finally {
+			ruleEnd();
+		}
+	}
+
 
 }

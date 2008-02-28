@@ -1,4 +1,4 @@
-// $ANTLR 3.0 src/org/eclipse/xpand3/parser/Xpand3.g 2008-02-27 17:07:41
+// $ANTLR 3.0 src/org/eclipse/xpand3/parser/Xpand3.g 2008-02-28 08:51:40
  	
 package org.eclipse.xpand3.parser; 
 
@@ -11,14 +11,14 @@ import java.util.Map;
 import java.util.HashMap;
 public class Xpand3Parser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LG", "RG", "DEFINE", "ENDDEFINE", "AROUND", "ENDAROUND", "TEXT", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "COMMENT", "LINE_COMMENT", "REM_COMMENT", "'IMPORT'", "'EXTENSION'", "'import'", "';'", "'extension'", "'reexport'", "'('", "','", "'*'", "')'", "'FOR'", "'-'", "'ERROR'", "'EXPAND'", "'FOREACH'", "'SEPARATOR'", "'FILE'", "'ENDFILE'", "'AS'", "'ITERATOR'", "'ENDFOREACH'", "'IF'", "'ENDIF'", "'ELSEIF'", "'ELSE'", "'LET'", "'ENDLET'", "'PROTECT'", "'CSTART'", "'CEND'", "'ID'", "'DISABLE'", "'ENDPROTECT'", "'context'", "'if'", "'WARNING'", "':'", "'around'", "'::'", "'private'", "'cached'", "'create'", "'JAVA'", "'.'", "'Collection'", "'List'", "'Set'", "'let'", "'='", "'->'", "'?'", "'then'", "'else'", "'switch'", "'default'", "'}'", "'case'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'/'", "'!'", "'GLOBALVAR'", "'['", "']'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LG", "RG", "DEFINE", "ENDDEFINE", "AROUND", "ENDAROUND", "TEXT", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "COMMENT", "LINE_COMMENT", "REM_COMMENT_OUT", "REM_COMMENT", "'IMPORT'", "'EXTENSION'", "'import'", "';'", "'extension'", "'reexport'", "'('", "','", "'*'", "')'", "'FOR'", "'-'", "'ERROR'", "'EXPAND'", "'FOREACH'", "'SEPARATOR'", "'FILE'", "'ENDFILE'", "'AS'", "'ITERATOR'", "'ENDFOREACH'", "'IF'", "'ENDIF'", "'ELSEIF'", "'ELSE'", "'LET'", "'ENDLET'", "'PROTECT'", "'CSTART'", "'CEND'", "'ID'", "'DISABLE'", "'ENDPROTECT'", "'context'", "'if'", "'WARNING'", "':'", "'around'", "'::'", "'private'", "'cached'", "'create'", "'JAVA'", "'.'", "'Collection'", "'List'", "'Set'", "'let'", "'='", "'->'", "'?'", "'then'", "'else'", "'switch'", "'default'", "'}'", "'case'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'/'", "'!'", "'GLOBALVAR'", "'['", "']'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'"
     };
     public static final int IntLiteral=12;
     public static final int Identifier=13;
     public static final int HexDigit=17;
     public static final int WS=20;
     public static final int ENDDEFINE=7;
-    public static final int REM_COMMENT=23;
+    public static final int REM_COMMENT=24;
     public static final int RG=5;
     public static final int COMMENT=21;
     public static final int StringLiteral=11;
@@ -32,6 +32,7 @@ public class Xpand3Parser extends Parser {
     public static final int TEXT=10;
     public static final int ENDAROUND=9;
     public static final int OctalEscape=16;
+    public static final int REM_COMMENT_OUT=23;
     public static final int AROUND=8;
     public static final int LG=4;
 
@@ -62,13 +63,13 @@ public class Xpand3Parser extends Parser {
                 if ( (LA1_0==LG) ) {
                     int LA1_2 = input.LA(2);
 
-                    if ( ((LA1_2>=24 && LA1_2<=25)) ) {
+                    if ( ((LA1_2>=25 && LA1_2<=26)) ) {
                         alt1=1;
                     }
 
 
                 }
-                else if ( (LA1_0==26||LA1_0==28) ) {
+                else if ( (LA1_0==27||LA1_0==29) ) {
                     alt1=1;
                 }
 
@@ -96,7 +97,7 @@ public class Xpand3Parser extends Parser {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( (LA2_0==LG||LA2_0==Identifier||LA2_0==57||LA2_0==61||(LA2_0>=63 && LA2_0<=65)||(LA2_0>=68 && LA2_0<=70)) ) {
+                if ( (LA2_0==LG||LA2_0==Identifier||LA2_0==58||LA2_0==62||(LA2_0>=64 && LA2_0<=66)||(LA2_0>=69 && LA2_0<=71)) ) {
                     alt2=1;
                 }
 
@@ -145,10 +146,10 @@ public class Xpand3Parser extends Parser {
                 {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==25) ) {
+                if ( (LA4_1==26) ) {
                     alt4=2;
                 }
-                else if ( (LA4_1==24) ) {
+                else if ( (LA4_1==25) ) {
                     alt4=1;
                 }
                 else {
@@ -160,12 +161,12 @@ public class Xpand3Parser extends Parser {
                 }
                 }
                 break;
-            case 26:
+            case 27:
                 {
                 alt4=3;
                 }
                 break;
-            case 28:
+            case 29:
                 {
                 alt4=4;
                 }
@@ -183,7 +184,7 @@ public class Xpand3Parser extends Parser {
                     // src/org/eclipse/xpand3/parser/Xpand3.g:24:2: LG 'IMPORT' r_type RG
                     {
                     match(input,LG,FOLLOW_LG_in_r_nsImport65); if (failed) return ;
-                    match(input,24,FOLLOW_24_in_r_nsImport67); if (failed) return ;
+                    match(input,25,FOLLOW_25_in_r_nsImport67); if (failed) return ;
                     pushFollow(FOLLOW_r_type_in_r_nsImport69);
                     r_type();
                     _fsp--;
@@ -196,7 +197,7 @@ public class Xpand3Parser extends Parser {
                     // src/org/eclipse/xpand3/parser/Xpand3.g:25:2: LG 'EXTENSION' r_type RG
                     {
                     match(input,LG,FOLLOW_LG_in_r_nsImport76); if (failed) return ;
-                    match(input,25,FOLLOW_25_in_r_nsImport78); if (failed) return ;
+                    match(input,26,FOLLOW_26_in_r_nsImport78); if (failed) return ;
                     pushFollow(FOLLOW_r_type_in_r_nsImport80);
                     r_type();
                     _fsp--;
@@ -208,19 +209,19 @@ public class Xpand3Parser extends Parser {
                 case 3 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:26:2: 'import' r_type ';'
                     {
-                    match(input,26,FOLLOW_26_in_r_nsImport87); if (failed) return ;
+                    match(input,27,FOLLOW_27_in_r_nsImport87); if (failed) return ;
                     pushFollow(FOLLOW_r_type_in_r_nsImport89);
                     r_type();
                     _fsp--;
                     if (failed) return ;
-                    match(input,27,FOLLOW_27_in_r_nsImport92); if (failed) return ;
+                    match(input,28,FOLLOW_28_in_r_nsImport92); if (failed) return ;
 
                     }
                     break;
                 case 4 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:27:2: 'extension' r_type ( 'reexport' )? ';'
                     {
-                    match(input,28,FOLLOW_28_in_r_nsImport98); if (failed) return ;
+                    match(input,29,FOLLOW_29_in_r_nsImport98); if (failed) return ;
                     pushFollow(FOLLOW_r_type_in_r_nsImport100);
                     r_type();
                     _fsp--;
@@ -229,21 +230,21 @@ public class Xpand3Parser extends Parser {
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
-                    if ( (LA3_0==29) ) {
+                    if ( (LA3_0==30) ) {
                         alt3=1;
                     }
                     switch (alt3) {
                         case 1 :
                             // src/org/eclipse/xpand3/parser/Xpand3.g:27:22: 'reexport'
                             {
-                            match(input,29,FOLLOW_29_in_r_nsImport103); if (failed) return ;
+                            match(input,30,FOLLOW_30_in_r_nsImport103); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    match(input,27,FOLLOW_27_in_r_nsImport107); if (failed) return ;
+                    match(input,28,FOLLOW_28_in_r_nsImport107); if (failed) return ;
 
                     }
                     break;
@@ -268,23 +269,23 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:31:2: ( r_check | r_around | r_extension | r_definition | r_definitionAround )
             int alt5=5;
             switch ( input.LA(1) ) {
-            case 57:
+            case 58:
                 {
                 alt5=1;
                 }
                 break;
-            case 61:
+            case 62:
                 {
                 alt5=2;
                 }
                 break;
             case Identifier:
-            case 63:
             case 64:
             case 65:
-            case 68:
+            case 66:
             case 69:
             case 70:
+            case 71:
                 {
                 alt5=3;
                 }
@@ -398,22 +399,22 @@ public class Xpand3Parser extends Parser {
             int alt9=2;
             int LA9_0 = input.LA(1);
 
-            if ( (LA9_0==30) ) {
+            if ( (LA9_0==31) ) {
                 alt9=1;
             }
             switch (alt9) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:41:26: '(' ( r_declaredParameterList ( ( ',' )? '*' )? | '*' )? ')'
                     {
-                    match(input,30,FOLLOW_30_in_r_definition157); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_definition157); if (failed) return ;
                     // src/org/eclipse/xpand3/parser/Xpand3.g:41:30: ( r_declaredParameterList ( ( ',' )? '*' )? | '*' )?
                     int alt8=3;
                     int LA8_0 = input.LA(1);
 
-                    if ( (LA8_0==Identifier||(LA8_0>=68 && LA8_0<=70)) ) {
+                    if ( (LA8_0==Identifier||(LA8_0>=69 && LA8_0<=71)) ) {
                         alt8=1;
                     }
-                    else if ( (LA8_0==32) ) {
+                    else if ( (LA8_0==33) ) {
                         alt8=2;
                     }
                     switch (alt8) {
@@ -428,7 +429,7 @@ public class Xpand3Parser extends Parser {
                             int alt7=2;
                             int LA7_0 = input.LA(1);
 
-                            if ( ((LA7_0>=31 && LA7_0<=32)) ) {
+                            if ( ((LA7_0>=32 && LA7_0<=33)) ) {
                                 alt7=1;
                             }
                             switch (alt7) {
@@ -439,21 +440,21 @@ public class Xpand3Parser extends Parser {
                                     int alt6=2;
                                     int LA6_0 = input.LA(1);
 
-                                    if ( (LA6_0==31) ) {
+                                    if ( (LA6_0==32) ) {
                                         alt6=1;
                                     }
                                     switch (alt6) {
                                         case 1 :
                                             // src/org/eclipse/xpand3/parser/Xpand3.g:41:56: ','
                                             {
-                                            match(input,31,FOLLOW_31_in_r_definition163); if (failed) return ;
+                                            match(input,32,FOLLOW_32_in_r_definition163); if (failed) return ;
 
                                             }
                                             break;
 
                                     }
 
-                                    match(input,32,FOLLOW_32_in_r_definition166); if (failed) return ;
+                                    match(input,33,FOLLOW_33_in_r_definition166); if (failed) return ;
 
                                     }
                                     break;
@@ -466,21 +467,21 @@ public class Xpand3Parser extends Parser {
                         case 2 :
                             // src/org/eclipse/xpand3/parser/Xpand3.g:41:69: '*'
                             {
-                            match(input,32,FOLLOW_32_in_r_definition172); if (failed) return ;
+                            match(input,33,FOLLOW_33_in_r_definition172); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    match(input,33,FOLLOW_33_in_r_definition176); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_definition176); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            match(input,34,FOLLOW_34_in_r_definition180); if (failed) return ;
+            match(input,35,FOLLOW_35_in_r_definition180); if (failed) return ;
             pushFollow(FOLLOW_r_type_in_r_definition182);
             r_type();
             _fsp--;
@@ -523,22 +524,22 @@ public class Xpand3Parser extends Parser {
             int alt13=2;
             int LA13_0 = input.LA(1);
 
-            if ( (LA13_0==30) ) {
+            if ( (LA13_0==31) ) {
                 alt13=1;
             }
             switch (alt13) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:47:24: '(' ( r_declaredParameterList ( ( ',' )? '*' )? | '*' )? ')'
                     {
-                    match(input,30,FOLLOW_30_in_r_definitionAround209); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_definitionAround209); if (failed) return ;
                     // src/org/eclipse/xpand3/parser/Xpand3.g:47:28: ( r_declaredParameterList ( ( ',' )? '*' )? | '*' )?
                     int alt12=3;
                     int LA12_0 = input.LA(1);
 
-                    if ( (LA12_0==Identifier||(LA12_0>=68 && LA12_0<=70)) ) {
+                    if ( (LA12_0==Identifier||(LA12_0>=69 && LA12_0<=71)) ) {
                         alt12=1;
                     }
-                    else if ( (LA12_0==32) ) {
+                    else if ( (LA12_0==33) ) {
                         alt12=2;
                     }
                     switch (alt12) {
@@ -553,7 +554,7 @@ public class Xpand3Parser extends Parser {
                             int alt11=2;
                             int LA11_0 = input.LA(1);
 
-                            if ( ((LA11_0>=31 && LA11_0<=32)) ) {
+                            if ( ((LA11_0>=32 && LA11_0<=33)) ) {
                                 alt11=1;
                             }
                             switch (alt11) {
@@ -564,21 +565,21 @@ public class Xpand3Parser extends Parser {
                                     int alt10=2;
                                     int LA10_0 = input.LA(1);
 
-                                    if ( (LA10_0==31) ) {
+                                    if ( (LA10_0==32) ) {
                                         alt10=1;
                                     }
                                     switch (alt10) {
                                         case 1 :
                                             // src/org/eclipse/xpand3/parser/Xpand3.g:47:54: ','
                                             {
-                                            match(input,31,FOLLOW_31_in_r_definitionAround215); if (failed) return ;
+                                            match(input,32,FOLLOW_32_in_r_definitionAround215); if (failed) return ;
 
                                             }
                                             break;
 
                                     }
 
-                                    match(input,32,FOLLOW_32_in_r_definitionAround218); if (failed) return ;
+                                    match(input,33,FOLLOW_33_in_r_definitionAround218); if (failed) return ;
 
                                     }
                                     break;
@@ -591,21 +592,21 @@ public class Xpand3Parser extends Parser {
                         case 2 :
                             // src/org/eclipse/xpand3/parser/Xpand3.g:47:67: '*'
                             {
-                            match(input,32,FOLLOW_32_in_r_definitionAround224); if (failed) return ;
+                            match(input,33,FOLLOW_33_in_r_definitionAround224); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    match(input,33,FOLLOW_33_in_r_definitionAround228); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_definitionAround228); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            match(input,34,FOLLOW_34_in_r_definitionAround232); if (failed) return ;
+            match(input,35,FOLLOW_35_in_r_definitionAround232); if (failed) return ;
             pushFollow(FOLLOW_r_type_in_r_definitionAround234);
             r_type();
             _fsp--;
@@ -648,7 +649,7 @@ public class Xpand3Parser extends Parser {
                 int alt14=2;
                 int LA14_0 = input.LA(1);
 
-                if ( ((LA14_0>=StringLiteral && LA14_0<=Identifier)||LA14_0==30||(LA14_0>=35 && LA14_0<=38)||LA14_0==40||LA14_0==45||LA14_0==49||LA14_0==51||LA14_0==58||(LA14_0>=68 && LA14_0<=71)||LA14_0==77||(LA14_0>=92 && LA14_0<=94)||(LA14_0>=96 && LA14_0<=108)) ) {
+                if ( ((LA14_0>=StringLiteral && LA14_0<=Identifier)||LA14_0==31||(LA14_0>=36 && LA14_0<=39)||LA14_0==41||LA14_0==46||LA14_0==50||LA14_0==52||LA14_0==59||(LA14_0>=69 && LA14_0<=72)||LA14_0==78||(LA14_0>=93 && LA14_0<=95)||(LA14_0>=97 && LA14_0<=109)) ) {
                     alt14=1;
                 }
 
@@ -699,20 +700,19 @@ public class Xpand3Parser extends Parser {
             case StringLiteral:
             case IntLiteral:
             case Identifier:
-            case 30:
-            case 35:
+            case 31:
             case 36:
             case 37:
-            case 58:
-            case 68:
+            case 38:
+            case 59:
             case 69:
             case 70:
             case 71:
-            case 77:
-            case 92:
+            case 72:
+            case 78:
             case 93:
             case 94:
-            case 96:
+            case 95:
             case 97:
             case 98:
             case 99:
@@ -725,31 +725,32 @@ public class Xpand3Parser extends Parser {
             case 106:
             case 107:
             case 108:
+            case 109:
                 {
                 alt15=1;
                 }
                 break;
-            case 40:
+            case 41:
                 {
                 alt15=2;
                 }
                 break;
-            case 38:
+            case 39:
                 {
                 alt15=3;
                 }
                 break;
-            case 45:
+            case 46:
                 {
                 alt15=4;
                 }
                 break;
-            case 49:
+            case 50:
                 {
                 alt15=5;
                 }
                 break;
-            case 51:
+            case 52:
                 {
                 alt15=6;
                 }
@@ -854,7 +855,7 @@ public class Xpand3Parser extends Parser {
                 int alt16=2;
                 int LA16_0 = input.LA(1);
 
-                if ( (LA16_0==35) ) {
+                if ( (LA16_0==36) ) {
                     int LA16_2 = input.LA(2);
 
                     if ( (LA16_2==TEXT) ) {
@@ -911,14 +912,14 @@ public class Xpand3Parser extends Parser {
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( (LA17_0==35) ) {
+            if ( (LA17_0==36) ) {
                 alt17=1;
             }
             switch (alt17) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:72:2: '-'
                     {
-                    match(input,35,FOLLOW_35_in_r_text332); if (failed) return ;
+                    match(input,36,FOLLOW_36_in_r_text332); if (failed) return ;
 
                     }
                     break;
@@ -948,12 +949,12 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:76:3: ( r_errorStatement | r_expandStatement | r_expressionStmt )
             int alt18=3;
             switch ( input.LA(1) ) {
-            case 36:
+            case 37:
                 {
                 alt18=1;
                 }
                 break;
-            case 37:
+            case 38:
                 {
                 alt18=2;
                 }
@@ -961,18 +962,17 @@ public class Xpand3Parser extends Parser {
             case StringLiteral:
             case IntLiteral:
             case Identifier:
-            case 30:
-            case 35:
-            case 58:
-            case 68:
+            case 31:
+            case 36:
+            case 59:
             case 69:
             case 70:
             case 71:
-            case 77:
-            case 92:
+            case 72:
+            case 78:
             case 93:
             case 94:
-            case 96:
+            case 95:
             case 97:
             case 98:
             case 99:
@@ -985,6 +985,7 @@ public class Xpand3Parser extends Parser {
             case 106:
             case 107:
             case 108:
+            case 109:
                 {
                 alt18=3;
                 }
@@ -1049,7 +1050,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:82:3: ( 'ERROR' r_expression )
             // src/org/eclipse/xpand3/parser/Xpand3.g:82:3: 'ERROR' r_expression
             {
-            match(input,36,FOLLOW_36_in_r_errorStatement365); if (failed) return ;
+            match(input,37,FOLLOW_37_in_r_errorStatement365); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_errorStatement367);
             r_expression();
             _fsp--;
@@ -1076,7 +1077,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:86:3: ( 'EXPAND' r_simpleType ( '(' r_parameterList ')' )? ( ( 'FOR' r_expression ) | ( 'FOREACH' r_expression ( 'SEPARATOR' r_expression )? ) )? )
             // src/org/eclipse/xpand3/parser/Xpand3.g:86:3: 'EXPAND' r_simpleType ( '(' r_parameterList ')' )? ( ( 'FOR' r_expression ) | ( 'FOREACH' r_expression ( 'SEPARATOR' r_expression )? ) )?
             {
-            match(input,37,FOLLOW_37_in_r_expandStatement378); if (failed) return ;
+            match(input,38,FOLLOW_38_in_r_expandStatement378); if (failed) return ;
             pushFollow(FOLLOW_r_simpleType_in_r_expandStatement380);
             r_simpleType();
             _fsp--;
@@ -1085,19 +1086,19 @@ public class Xpand3Parser extends Parser {
             int alt19=2;
             int LA19_0 = input.LA(1);
 
-            if ( (LA19_0==30) ) {
+            if ( (LA19_0==31) ) {
                 alt19=1;
             }
             switch (alt19) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:86:26: '(' r_parameterList ')'
                     {
-                    match(input,30,FOLLOW_30_in_r_expandStatement383); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_expandStatement383); if (failed) return ;
                     pushFollow(FOLLOW_r_parameterList_in_r_expandStatement385);
                     r_parameterList();
                     _fsp--;
                     if (failed) return ;
-                    match(input,33,FOLLOW_33_in_r_expandStatement387); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_expandStatement387); if (failed) return ;
 
                     }
                     break;
@@ -1108,10 +1109,10 @@ public class Xpand3Parser extends Parser {
             int alt21=3;
             int LA21_0 = input.LA(1);
 
-            if ( (LA21_0==34) ) {
+            if ( (LA21_0==35) ) {
                 alt21=1;
             }
-            else if ( (LA21_0==38) ) {
+            else if ( (LA21_0==39) ) {
                 alt21=2;
             }
             switch (alt21) {
@@ -1121,7 +1122,7 @@ public class Xpand3Parser extends Parser {
                     // src/org/eclipse/xpand3/parser/Xpand3.g:86:53: ( 'FOR' r_expression )
                     // src/org/eclipse/xpand3/parser/Xpand3.g:86:54: 'FOR' r_expression
                     {
-                    match(input,34,FOLLOW_34_in_r_expandStatement393); if (failed) return ;
+                    match(input,35,FOLLOW_35_in_r_expandStatement393); if (failed) return ;
                     pushFollow(FOLLOW_r_expression_in_r_expandStatement395);
                     r_expression();
                     _fsp--;
@@ -1138,7 +1139,7 @@ public class Xpand3Parser extends Parser {
                     // src/org/eclipse/xpand3/parser/Xpand3.g:87:5: ( 'FOREACH' r_expression ( 'SEPARATOR' r_expression )? )
                     // src/org/eclipse/xpand3/parser/Xpand3.g:87:6: 'FOREACH' r_expression ( 'SEPARATOR' r_expression )?
                     {
-                    match(input,38,FOLLOW_38_in_r_expandStatement403); if (failed) return ;
+                    match(input,39,FOLLOW_39_in_r_expandStatement403); if (failed) return ;
                     pushFollow(FOLLOW_r_expression_in_r_expandStatement404);
                     r_expression();
                     _fsp--;
@@ -1147,14 +1148,14 @@ public class Xpand3Parser extends Parser {
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
-                    if ( (LA20_0==39) ) {
+                    if ( (LA20_0==40) ) {
                         alt20=1;
                     }
                     switch (alt20) {
                         case 1 :
                             // src/org/eclipse/xpand3/parser/Xpand3.g:87:29: 'SEPARATOR' r_expression
                             {
-                            match(input,39,FOLLOW_39_in_r_expandStatement407); if (failed) return ;
+                            match(input,40,FOLLOW_40_in_r_expandStatement407); if (failed) return ;
                             pushFollow(FOLLOW_r_expression_in_r_expandStatement409);
                             r_expression();
                             _fsp--;
@@ -1222,7 +1223,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:95:2: ( 'FILE' r_expression ( r_identifier )? r_sequence 'ENDFILE' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:95:2: 'FILE' r_expression ( r_identifier )? r_sequence 'ENDFILE'
             {
-            match(input,40,FOLLOW_40_in_r_fileStatement435); if (failed) return ;
+            match(input,41,FOLLOW_41_in_r_fileStatement435); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_fileStatement437);
             r_expression();
             _fsp--;
@@ -1252,7 +1253,7 @@ public class Xpand3Parser extends Parser {
             r_sequence();
             _fsp--;
             if (failed) return ;
-            match(input,41,FOLLOW_41_in_r_fileStatement450); if (failed) return ;
+            match(input,42,FOLLOW_42_in_r_fileStatement450); if (failed) return ;
 
             }
 
@@ -1275,12 +1276,12 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:101:3: ( 'FOREACH' r_expression 'AS' r_identifier ( 'ITERATOR' r_identifier )? ( 'SEPARATOR' r_expression )? r_sequence 'ENDFOREACH' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:101:3: 'FOREACH' r_expression 'AS' r_identifier ( 'ITERATOR' r_identifier )? ( 'SEPARATOR' r_expression )? r_sequence 'ENDFOREACH'
             {
-            match(input,38,FOLLOW_38_in_r_foreachStatement462); if (failed) return ;
+            match(input,39,FOLLOW_39_in_r_foreachStatement462); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_foreachStatement464);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,42,FOLLOW_42_in_r_foreachStatement466); if (failed) return ;
+            match(input,43,FOLLOW_43_in_r_foreachStatement466); if (failed) return ;
             pushFollow(FOLLOW_r_identifier_in_r_foreachStatement468);
             r_identifier();
             _fsp--;
@@ -1289,14 +1290,14 @@ public class Xpand3Parser extends Parser {
             int alt23=2;
             int LA23_0 = input.LA(1);
 
-            if ( (LA23_0==43) ) {
+            if ( (LA23_0==44) ) {
                 alt23=1;
             }
             switch (alt23) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:101:45: 'ITERATOR' r_identifier
                     {
-                    match(input,43,FOLLOW_43_in_r_foreachStatement471); if (failed) return ;
+                    match(input,44,FOLLOW_44_in_r_foreachStatement471); if (failed) return ;
                     pushFollow(FOLLOW_r_identifier_in_r_foreachStatement473);
                     r_identifier();
                     _fsp--;
@@ -1311,14 +1312,14 @@ public class Xpand3Parser extends Parser {
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( (LA24_0==39) ) {
+            if ( (LA24_0==40) ) {
                 alt24=1;
             }
             switch (alt24) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:101:72: 'SEPARATOR' r_expression
                     {
-                    match(input,39,FOLLOW_39_in_r_foreachStatement478); if (failed) return ;
+                    match(input,40,FOLLOW_40_in_r_foreachStatement478); if (failed) return ;
                     pushFollow(FOLLOW_r_expression_in_r_foreachStatement480);
                     r_expression();
                     _fsp--;
@@ -1333,7 +1334,7 @@ public class Xpand3Parser extends Parser {
             r_sequence();
             _fsp--;
             if (failed) return ;
-            match(input,44,FOLLOW_44_in_r_foreachStatement493); if (failed) return ;
+            match(input,45,FOLLOW_45_in_r_foreachStatement493); if (failed) return ;
 
             }
 
@@ -1356,7 +1357,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:107:6: ( 'IF' r_expression r_sequence ( r_elseIfStatement )* ( r_elseStatement )? 'ENDIF' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:107:6: 'IF' r_expression r_sequence ( r_elseIfStatement )* ( r_elseStatement )? 'ENDIF'
             {
-            match(input,45,FOLLOW_45_in_r_ifStatement508); if (failed) return ;
+            match(input,46,FOLLOW_46_in_r_ifStatement508); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_ifStatement510);
             r_expression();
             _fsp--;
@@ -1371,7 +1372,7 @@ public class Xpand3Parser extends Parser {
                 int alt25=2;
                 int LA25_0 = input.LA(1);
 
-                if ( (LA25_0==47) ) {
+                if ( (LA25_0==48) ) {
                     alt25=1;
                 }
 
@@ -1397,7 +1398,7 @@ public class Xpand3Parser extends Parser {
             int alt26=2;
             int LA26_0 = input.LA(1);
 
-            if ( (LA26_0==48) ) {
+            if ( (LA26_0==49) ) {
                 alt26=1;
             }
             switch (alt26) {
@@ -1414,7 +1415,7 @@ public class Xpand3Parser extends Parser {
 
             }
 
-            match(input,46,FOLLOW_46_in_r_ifStatement529); if (failed) return ;
+            match(input,47,FOLLOW_47_in_r_ifStatement529); if (failed) return ;
 
             }
 
@@ -1437,7 +1438,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:115:2: ( 'ELSEIF' r_expression r_sequence )
             // src/org/eclipse/xpand3/parser/Xpand3.g:115:2: 'ELSEIF' r_expression r_sequence
             {
-            match(input,47,FOLLOW_47_in_r_elseIfStatement539); if (failed) return ;
+            match(input,48,FOLLOW_48_in_r_elseIfStatement539); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_elseIfStatement541);
             r_expression();
             _fsp--;
@@ -1468,7 +1469,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:120:2: ( 'ELSE' r_sequence )
             // src/org/eclipse/xpand3/parser/Xpand3.g:120:2: 'ELSE' r_sequence
             {
-            match(input,48,FOLLOW_48_in_r_elseStatement557); if (failed) return ;
+            match(input,49,FOLLOW_49_in_r_elseStatement557); if (failed) return ;
             pushFollow(FOLLOW_r_sequence_in_r_elseStatement561);
             r_sequence();
             _fsp--;
@@ -1495,12 +1496,12 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:125:3: ( 'LET' r_expression 'AS' r_identifier r_sequence 'ENDLET' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:125:3: 'LET' r_expression 'AS' r_identifier r_sequence 'ENDLET'
             {
-            match(input,49,FOLLOW_49_in_r_letStatement573); if (failed) return ;
+            match(input,50,FOLLOW_50_in_r_letStatement573); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_letStatement575);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,42,FOLLOW_42_in_r_letStatement577); if (failed) return ;
+            match(input,43,FOLLOW_43_in_r_letStatement577); if (failed) return ;
             pushFollow(FOLLOW_r_identifier_in_r_letStatement579);
             r_identifier();
             _fsp--;
@@ -1509,7 +1510,7 @@ public class Xpand3Parser extends Parser {
             r_sequence();
             _fsp--;
             if (failed) return ;
-            match(input,50,FOLLOW_50_in_r_letStatement590); if (failed) return ;
+            match(input,51,FOLLOW_51_in_r_letStatement590); if (failed) return ;
 
             }
 
@@ -1532,18 +1533,18 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:131:2: ( 'PROTECT' 'CSTART' r_expression 'CEND' r_expression 'ID' r_expression ( 'DISABLE' )? r_sequence 'ENDPROTECT' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:131:2: 'PROTECT' 'CSTART' r_expression 'CEND' r_expression 'ID' r_expression ( 'DISABLE' )? r_sequence 'ENDPROTECT'
             {
-            match(input,51,FOLLOW_51_in_r_protectStatement601); if (failed) return ;
-            match(input,52,FOLLOW_52_in_r_protectStatement606); if (failed) return ;
+            match(input,52,FOLLOW_52_in_r_protectStatement601); if (failed) return ;
+            match(input,53,FOLLOW_53_in_r_protectStatement606); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_protectStatement608);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,53,FOLLOW_53_in_r_protectStatement613); if (failed) return ;
+            match(input,54,FOLLOW_54_in_r_protectStatement613); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_protectStatement615);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,54,FOLLOW_54_in_r_protectStatement628); if (failed) return ;
+            match(input,55,FOLLOW_55_in_r_protectStatement628); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_protectStatement630);
             r_expression();
             _fsp--;
@@ -1552,14 +1553,14 @@ public class Xpand3Parser extends Parser {
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( (LA27_0==55) ) {
+            if ( (LA27_0==56) ) {
                 alt27=1;
             }
             switch (alt27) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:134:29: 'DISABLE'
                     {
-                    match(input,55,FOLLOW_55_in_r_protectStatement632); if (failed) return ;
+                    match(input,56,FOLLOW_56_in_r_protectStatement632); if (failed) return ;
 
                     }
                     break;
@@ -1570,7 +1571,7 @@ public class Xpand3Parser extends Parser {
             r_sequence();
             _fsp--;
             if (failed) return ;
-            match(input,56,FOLLOW_56_in_r_protectStatement642); if (failed) return ;
+            match(input,57,FOLLOW_57_in_r_protectStatement642); if (failed) return ;
 
             }
 
@@ -1593,7 +1594,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:142:2: ( 'context' r_type ( 'if' r_expression )? ( 'ERROR' | 'WARNING' ) r_expression ':' r_expression ';' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:142:2: 'context' r_type ( 'if' r_expression )? ( 'ERROR' | 'WARNING' ) r_expression ':' r_expression ';'
             {
-            match(input,57,FOLLOW_57_in_r_check654); if (failed) return ;
+            match(input,58,FOLLOW_58_in_r_check654); if (failed) return ;
             pushFollow(FOLLOW_r_type_in_r_check656);
             r_type();
             _fsp--;
@@ -1602,14 +1603,14 @@ public class Xpand3Parser extends Parser {
             int alt28=2;
             int LA28_0 = input.LA(1);
 
-            if ( (LA28_0==58) ) {
+            if ( (LA28_0==59) ) {
                 alt28=1;
             }
             switch (alt28) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:142:20: 'if' r_expression
                     {
-                    match(input,58,FOLLOW_58_in_r_check659); if (failed) return ;
+                    match(input,59,FOLLOW_59_in_r_check659); if (failed) return ;
                     pushFollow(FOLLOW_r_expression_in_r_check661);
                     r_expression();
                     _fsp--;
@@ -1620,7 +1621,7 @@ public class Xpand3Parser extends Parser {
 
             }
 
-            if ( input.LA(1)==36||input.LA(1)==59 ) {
+            if ( input.LA(1)==37||input.LA(1)==60 ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -1635,12 +1636,12 @@ public class Xpand3Parser extends Parser {
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,60,FOLLOW_60_in_r_check673); if (failed) return ;
+            match(input,61,FOLLOW_61_in_r_check673); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_check677);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,27,FOLLOW_27_in_r_check679); if (failed) return ;
+            match(input,28,FOLLOW_28_in_r_check679); if (failed) return ;
 
             }
 
@@ -1663,20 +1664,20 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:147:5: ( 'around' r_pointcut '(' ( r_declaredParameterList ( ( ',' )? '*' )? | '*' )? ')' ':' r_expression ';' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:147:5: 'around' r_pointcut '(' ( r_declaredParameterList ( ( ',' )? '*' )? | '*' )? ')' ':' r_expression ';'
             {
-            match(input,61,FOLLOW_61_in_r_around694); if (failed) return ;
+            match(input,62,FOLLOW_62_in_r_around694); if (failed) return ;
             pushFollow(FOLLOW_r_pointcut_in_r_around696);
             r_pointcut();
             _fsp--;
             if (failed) return ;
-            match(input,30,FOLLOW_30_in_r_around698); if (failed) return ;
+            match(input,31,FOLLOW_31_in_r_around698); if (failed) return ;
             // src/org/eclipse/xpand3/parser/Xpand3.g:147:29: ( r_declaredParameterList ( ( ',' )? '*' )? | '*' )?
             int alt31=3;
             int LA31_0 = input.LA(1);
 
-            if ( (LA31_0==Identifier||(LA31_0>=68 && LA31_0<=70)) ) {
+            if ( (LA31_0==Identifier||(LA31_0>=69 && LA31_0<=71)) ) {
                 alt31=1;
             }
-            else if ( (LA31_0==32) ) {
+            else if ( (LA31_0==33) ) {
                 alt31=2;
             }
             switch (alt31) {
@@ -1691,7 +1692,7 @@ public class Xpand3Parser extends Parser {
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
-                    if ( ((LA30_0>=31 && LA30_0<=32)) ) {
+                    if ( ((LA30_0>=32 && LA30_0<=33)) ) {
                         alt30=1;
                     }
                     switch (alt30) {
@@ -1702,21 +1703,21 @@ public class Xpand3Parser extends Parser {
                             int alt29=2;
                             int LA29_0 = input.LA(1);
 
-                            if ( (LA29_0==31) ) {
+                            if ( (LA29_0==32) ) {
                                 alt29=1;
                             }
                             switch (alt29) {
                                 case 1 :
                                     // src/org/eclipse/xpand3/parser/Xpand3.g:147:55: ','
                                     {
-                                    match(input,31,FOLLOW_31_in_r_around704); if (failed) return ;
+                                    match(input,32,FOLLOW_32_in_r_around704); if (failed) return ;
 
                                     }
                                     break;
 
                             }
 
-                            match(input,32,FOLLOW_32_in_r_around707); if (failed) return ;
+                            match(input,33,FOLLOW_33_in_r_around707); if (failed) return ;
 
                             }
                             break;
@@ -1729,20 +1730,20 @@ public class Xpand3Parser extends Parser {
                 case 2 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:147:68: '*'
                     {
-                    match(input,32,FOLLOW_32_in_r_around713); if (failed) return ;
+                    match(input,33,FOLLOW_33_in_r_around713); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            match(input,33,FOLLOW_33_in_r_around717); if (failed) return ;
-            match(input,60,FOLLOW_60_in_r_around719); if (failed) return ;
+            match(input,34,FOLLOW_34_in_r_around717); if (failed) return ;
+            match(input,61,FOLLOW_61_in_r_around719); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_around726);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,27,FOLLOW_27_in_r_around728); if (failed) return ;
+            match(input,28,FOLLOW_28_in_r_around728); if (failed) return ;
 
             }
 
@@ -1769,7 +1770,7 @@ public class Xpand3Parser extends Parser {
             int alt32=2;
             int LA32_0 = input.LA(1);
 
-            if ( (LA32_0==32) ) {
+            if ( (LA32_0==33) ) {
                 alt32=1;
             }
             else if ( (LA32_0==Identifier) ) {
@@ -1786,7 +1787,7 @@ public class Xpand3Parser extends Parser {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:152:4: '*'
                     {
-                    match(input,32,FOLLOW_32_in_r_pointcut745); if (failed) return ;
+                    match(input,33,FOLLOW_33_in_r_pointcut745); if (failed) return ;
 
                     }
                     break;
@@ -1808,7 +1809,7 @@ public class Xpand3Parser extends Parser {
             do {
                 int alt33=4;
                 switch ( input.LA(1) ) {
-                case 32:
+                case 33:
                     {
                     alt33=1;
                     }
@@ -1818,7 +1819,7 @@ public class Xpand3Parser extends Parser {
                     alt33=2;
                     }
                     break;
-                case 62:
+                case 63:
                     {
                     alt33=3;
                     }
@@ -1830,7 +1831,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:154:6: '*'
             	    {
-            	    match(input,32,FOLLOW_32_in_r_pointcut759); if (failed) return ;
+            	    match(input,33,FOLLOW_33_in_r_pointcut759); if (failed) return ;
 
             	    }
             	    break;
@@ -1847,7 +1848,7 @@ public class Xpand3Parser extends Parser {
             	case 3 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:156:6: '::'
             	    {
-            	    match(input,62,FOLLOW_62_in_r_pointcut775); if (failed) return ;
+            	    match(input,63,FOLLOW_63_in_r_pointcut775); if (failed) return ;
 
             	    }
             	    break;
@@ -1885,7 +1886,7 @@ public class Xpand3Parser extends Parser {
                 int alt34=2;
                 int LA34_0 = input.LA(1);
 
-                if ( ((LA34_0>=63 && LA34_0<=65)) ) {
+                if ( ((LA34_0>=64 && LA34_0<=66)) ) {
                     alt34=1;
                 }
 
@@ -1894,7 +1895,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:
             	    {
-            	    if ( (input.LA(1)>=63 && input.LA(1)<=65) ) {
+            	    if ( (input.LA(1)>=64 && input.LA(1)<=66) ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
             	    }
@@ -1918,13 +1919,13 @@ public class Xpand3Parser extends Parser {
             int alt35=2;
             int LA35_0 = input.LA(1);
 
-            if ( ((LA35_0>=68 && LA35_0<=70)) ) {
+            if ( ((LA35_0>=69 && LA35_0<=71)) ) {
                 alt35=1;
             }
             else if ( (LA35_0==Identifier) ) {
                 int LA35_2 = input.LA(2);
 
-                if ( (LA35_2==62) ) {
+                if ( (LA35_2==63) ) {
                     alt35=1;
                 }
                 else if ( (LA35_2==Identifier) ) {
@@ -1970,12 +1971,12 @@ public class Xpand3Parser extends Parser {
 
             }
 
-            match(input,30,FOLLOW_30_in_r_extension806); if (failed) return ;
+            match(input,31,FOLLOW_31_in_r_extension806); if (failed) return ;
             // src/org/eclipse/xpand3/parser/Xpand3.g:160:72: ( r_declaredParameterList )?
             int alt37=2;
             int LA37_0 = input.LA(1);
 
-            if ( (LA37_0==Identifier||(LA37_0>=68 && LA37_0<=70)) ) {
+            if ( (LA37_0==Identifier||(LA37_0>=69 && LA37_0<=71)) ) {
                 alt37=1;
             }
             switch (alt37) {
@@ -1992,16 +1993,16 @@ public class Xpand3Parser extends Parser {
 
             }
 
-            match(input,33,FOLLOW_33_in_r_extension811); if (failed) return ;
-            match(input,60,FOLLOW_60_in_r_extension813); if (failed) return ;
+            match(input,34,FOLLOW_34_in_r_extension811); if (failed) return ;
+            match(input,61,FOLLOW_61_in_r_extension813); if (failed) return ;
             // src/org/eclipse/xpand3/parser/Xpand3.g:161:3: ( 'JAVA' r_javaType '.' r_identifier '(' ( r_javaType ( ',' r_javaType )* )? ')' | r_expression )
             int alt40=2;
             int LA40_0 = input.LA(1);
 
-            if ( (LA40_0==66) ) {
+            if ( (LA40_0==67) ) {
                 alt40=1;
             }
-            else if ( ((LA40_0>=StringLiteral && LA40_0<=Identifier)||LA40_0==30||LA40_0==35||LA40_0==58||(LA40_0>=68 && LA40_0<=71)||LA40_0==77||(LA40_0>=92 && LA40_0<=94)||(LA40_0>=96 && LA40_0<=108)) ) {
+            else if ( ((LA40_0>=StringLiteral && LA40_0<=Identifier)||LA40_0==31||LA40_0==36||LA40_0==59||(LA40_0>=69 && LA40_0<=72)||LA40_0==78||(LA40_0>=93 && LA40_0<=95)||(LA40_0>=97 && LA40_0<=109)) ) {
                 alt40=2;
             }
             else {
@@ -2015,17 +2016,17 @@ public class Xpand3Parser extends Parser {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:161:4: 'JAVA' r_javaType '.' r_identifier '(' ( r_javaType ( ',' r_javaType )* )? ')'
                     {
-                    match(input,66,FOLLOW_66_in_r_extension818); if (failed) return ;
+                    match(input,67,FOLLOW_67_in_r_extension818); if (failed) return ;
                     pushFollow(FOLLOW_r_javaType_in_r_extension820);
                     r_javaType();
                     _fsp--;
                     if (failed) return ;
-                    match(input,67,FOLLOW_67_in_r_extension822); if (failed) return ;
+                    match(input,68,FOLLOW_68_in_r_extension822); if (failed) return ;
                     pushFollow(FOLLOW_r_identifier_in_r_extension824);
                     r_identifier();
                     _fsp--;
                     if (failed) return ;
-                    match(input,30,FOLLOW_30_in_r_extension826); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_extension826); if (failed) return ;
                     // src/org/eclipse/xpand3/parser/Xpand3.g:161:42: ( r_javaType ( ',' r_javaType )* )?
                     int alt39=2;
                     int LA39_0 = input.LA(1);
@@ -2047,7 +2048,7 @@ public class Xpand3Parser extends Parser {
                                 int alt38=2;
                                 int LA38_0 = input.LA(1);
 
-                                if ( (LA38_0==31) ) {
+                                if ( (LA38_0==32) ) {
                                     alt38=1;
                                 }
 
@@ -2056,7 +2057,7 @@ public class Xpand3Parser extends Parser {
                             	case 1 :
                             	    // src/org/eclipse/xpand3/parser/Xpand3.g:161:55: ',' r_javaType
                             	    {
-                            	    match(input,31,FOLLOW_31_in_r_extension831); if (failed) return ;
+                            	    match(input,32,FOLLOW_32_in_r_extension831); if (failed) return ;
                             	    pushFollow(FOLLOW_r_javaType_in_r_extension833);
                             	    r_javaType();
                             	    _fsp--;
@@ -2076,7 +2077,7 @@ public class Xpand3Parser extends Parser {
 
                     }
 
-                    match(input,33,FOLLOW_33_in_r_extension840); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_extension840); if (failed) return ;
 
                     }
                     break;
@@ -2093,7 +2094,7 @@ public class Xpand3Parser extends Parser {
 
             }
 
-            match(input,27,FOLLOW_27_in_r_extension850); if (failed) return ;
+            match(input,28,FOLLOW_28_in_r_extension850); if (failed) return ;
 
             }
 
@@ -2126,19 +2127,19 @@ public class Xpand3Parser extends Parser {
                 int alt42=2;
                 int LA42_0 = input.LA(1);
 
-                if ( (LA42_0==67) ) {
+                if ( (LA42_0==68) ) {
                     int LA42_1 = input.LA(2);
 
                     if ( (LA42_1==Identifier) ) {
                         int LA42_3 = input.LA(3);
 
-                        if ( (LA42_3==31||LA42_3==33||LA42_3==67) ) {
+                        if ( (LA42_3==32||LA42_3==34||LA42_3==68) ) {
                             alt42=1;
                         }
 
 
                     }
-                    else if ( ((LA42_1>=68 && LA42_1<=70)) ) {
+                    else if ( ((LA42_1>=69 && LA42_1<=71)) ) {
                         alt42=1;
                     }
 
@@ -2150,7 +2151,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:167:3: '.' ( r_identifier | 'Collection' | 'List' | 'Set' )
             	    {
-            	    match(input,67,FOLLOW_67_in_r_javaType867); if (failed) return ;
+            	    match(input,68,FOLLOW_68_in_r_javaType867); if (failed) return ;
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:167:7: ( r_identifier | 'Collection' | 'List' | 'Set' )
             	    int alt41=4;
             	    switch ( input.LA(1) ) {
@@ -2159,17 +2160,17 @@ public class Xpand3Parser extends Parser {
             	        alt41=1;
             	        }
             	        break;
-            	    case 68:
+            	    case 69:
             	        {
             	        alt41=2;
             	        }
             	        break;
-            	    case 69:
+            	    case 70:
             	        {
             	        alt41=3;
             	        }
             	        break;
-            	    case 70:
+            	    case 71:
             	        {
             	        alt41=4;
             	        }
@@ -2196,21 +2197,21 @@ public class Xpand3Parser extends Parser {
             	        case 2 :
             	            // src/org/eclipse/xpand3/parser/Xpand3.g:167:22: 'Collection'
             	            {
-            	            match(input,68,FOLLOW_68_in_r_javaType873); if (failed) return ;
+            	            match(input,69,FOLLOW_69_in_r_javaType873); if (failed) return ;
 
             	            }
             	            break;
             	        case 3 :
             	            // src/org/eclipse/xpand3/parser/Xpand3.g:168:2: 'List'
             	            {
-            	            match(input,69,FOLLOW_69_in_r_javaType879); if (failed) return ;
+            	            match(input,70,FOLLOW_70_in_r_javaType879); if (failed) return ;
 
             	            }
             	            break;
             	        case 4 :
             	            // src/org/eclipse/xpand3/parser/Xpand3.g:168:10: 'Set'
             	            {
-            	            match(input,70,FOLLOW_70_in_r_javaType882); if (failed) return ;
+            	            match(input,71,FOLLOW_71_in_r_javaType882); if (failed) return ;
 
             	            }
             	            break;
@@ -2275,10 +2276,10 @@ public class Xpand3Parser extends Parser {
             int alt43=2;
             int LA43_0 = input.LA(1);
 
-            if ( (LA43_0==71) ) {
+            if ( (LA43_0==72) ) {
                 alt43=1;
             }
-            else if ( ((LA43_0>=StringLiteral && LA43_0<=Identifier)||LA43_0==30||LA43_0==35||LA43_0==58||(LA43_0>=68 && LA43_0<=70)||LA43_0==77||(LA43_0>=92 && LA43_0<=94)||(LA43_0>=96 && LA43_0<=108)) ) {
+            else if ( ((LA43_0>=StringLiteral && LA43_0<=Identifier)||LA43_0==31||LA43_0==36||LA43_0==59||(LA43_0>=69 && LA43_0<=71)||LA43_0==78||(LA43_0>=93 && LA43_0<=95)||(LA43_0>=97 && LA43_0<=109)) ) {
                 alt43=2;
             }
             else {
@@ -2292,17 +2293,17 @@ public class Xpand3Parser extends Parser {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:179:4: 'let' r_identifier '=' r_castedExpression ':' r_expression
                     {
-                    match(input,71,FOLLOW_71_in_r_letExpression912); if (failed) return ;
+                    match(input,72,FOLLOW_72_in_r_letExpression912); if (failed) return ;
                     pushFollow(FOLLOW_r_identifier_in_r_letExpression914);
                     r_identifier();
                     _fsp--;
                     if (failed) return ;
-                    match(input,72,FOLLOW_72_in_r_letExpression916); if (failed) return ;
+                    match(input,73,FOLLOW_73_in_r_letExpression916); if (failed) return ;
                     pushFollow(FOLLOW_r_castedExpression_in_r_letExpression918);
                     r_castedExpression();
                     _fsp--;
                     if (failed) return ;
-                    match(input,60,FOLLOW_60_in_r_letExpression920); if (failed) return ;
+                    match(input,61,FOLLOW_61_in_r_letExpression920); if (failed) return ;
                     pushFollow(FOLLOW_r_expression_in_r_letExpression922);
                     r_expression();
                     _fsp--;
@@ -2345,12 +2346,12 @@ public class Xpand3Parser extends Parser {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:184:5: ( '(' r_type ')' r_castedExpression )=> '(' r_type ')' r_chainExpression
                     {
-                    match(input,30,FOLLOW_30_in_r_castedExpression954); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_castedExpression954); if (failed) return ;
                     pushFollow(FOLLOW_r_type_in_r_castedExpression956);
                     r_type();
                     _fsp--;
                     if (failed) return ;
-                    match(input,33,FOLLOW_33_in_r_castedExpression958); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_castedExpression958); if (failed) return ;
                     pushFollow(FOLLOW_r_chainExpression_in_r_castedExpression960);
                     r_chainExpression();
                     _fsp--;
@@ -2399,7 +2400,7 @@ public class Xpand3Parser extends Parser {
                 int alt45=2;
                 int LA45_0 = input.LA(1);
 
-                if ( (LA45_0==73) ) {
+                if ( (LA45_0==74) ) {
                     alt45=1;
                 }
 
@@ -2408,7 +2409,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:190:20: '->' r_ifExpression
             	    {
-            	    match(input,73,FOLLOW_73_in_r_chainExpression983); if (failed) return ;
+            	    match(input,74,FOLLOW_74_in_r_chainExpression983); if (failed) return ;
             	    pushFollow(FOLLOW_r_ifExpression_in_r_chainExpression985);
             	    r_ifExpression();
             	    _fsp--;
@@ -2445,10 +2446,10 @@ public class Xpand3Parser extends Parser {
             int alt48=2;
             int LA48_0 = input.LA(1);
 
-            if ( ((LA48_0>=StringLiteral && LA48_0<=Identifier)||LA48_0==30||LA48_0==35||(LA48_0>=68 && LA48_0<=70)||LA48_0==77||(LA48_0>=92 && LA48_0<=94)||(LA48_0>=96 && LA48_0<=108)) ) {
+            if ( ((LA48_0>=StringLiteral && LA48_0<=Identifier)||LA48_0==31||LA48_0==36||(LA48_0>=69 && LA48_0<=71)||LA48_0==78||(LA48_0>=93 && LA48_0<=95)||(LA48_0>=97 && LA48_0<=109)) ) {
                 alt48=1;
             }
-            else if ( (LA48_0==58) ) {
+            else if ( (LA48_0==59) ) {
                 alt48=2;
             }
             else {
@@ -2470,19 +2471,19 @@ public class Xpand3Parser extends Parser {
                     int alt46=2;
                     int LA46_0 = input.LA(1);
 
-                    if ( (LA46_0==74) ) {
+                    if ( (LA46_0==75) ) {
                         alt46=1;
                     }
                     switch (alt46) {
                         case 1 :
                             // src/org/eclipse/xpand3/parser/Xpand3.g:194:22: '?' r_expression ':' r_switchExpression
                             {
-                            match(input,74,FOLLOW_74_in_r_ifExpression1002); if (failed) return ;
+                            match(input,75,FOLLOW_75_in_r_ifExpression1002); if (failed) return ;
                             pushFollow(FOLLOW_r_expression_in_r_ifExpression1004);
                             r_expression();
                             _fsp--;
                             if (failed) return ;
-                            match(input,60,FOLLOW_60_in_r_ifExpression1006); if (failed) return ;
+                            match(input,61,FOLLOW_61_in_r_ifExpression1006); if (failed) return ;
                             pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression1008);
                             r_switchExpression();
                             _fsp--;
@@ -2499,12 +2500,12 @@ public class Xpand3Parser extends Parser {
                 case 2 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:195:3: 'if' r_expression 'then' r_switchExpression ( 'else' r_switchExpression )?
                     {
-                    match(input,58,FOLLOW_58_in_r_ifExpression1015); if (failed) return ;
+                    match(input,59,FOLLOW_59_in_r_ifExpression1015); if (failed) return ;
                     pushFollow(FOLLOW_r_expression_in_r_ifExpression1017);
                     r_expression();
                     _fsp--;
                     if (failed) return ;
-                    match(input,75,FOLLOW_75_in_r_ifExpression1019); if (failed) return ;
+                    match(input,76,FOLLOW_76_in_r_ifExpression1019); if (failed) return ;
                     pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression1021);
                     r_switchExpression();
                     _fsp--;
@@ -2513,14 +2514,14 @@ public class Xpand3Parser extends Parser {
                     int alt47=2;
                     int LA47_0 = input.LA(1);
 
-                    if ( (LA47_0==76) ) {
+                    if ( (LA47_0==77) ) {
                         alt47=1;
                     }
                     switch (alt47) {
                         case 1 :
                             // src/org/eclipse/xpand3/parser/Xpand3.g:195:48: 'else' r_switchExpression
                             {
-                            match(input,76,FOLLOW_76_in_r_ifExpression1024); if (failed) return ;
+                            match(input,77,FOLLOW_77_in_r_ifExpression1024); if (failed) return ;
                             pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression1026);
                             r_switchExpression();
                             _fsp--;
@@ -2556,10 +2557,10 @@ public class Xpand3Parser extends Parser {
             int alt51=2;
             int LA51_0 = input.LA(1);
 
-            if ( (LA51_0==77) ) {
+            if ( (LA51_0==78) ) {
                 alt51=1;
             }
-            else if ( ((LA51_0>=StringLiteral && LA51_0<=Identifier)||LA51_0==30||LA51_0==35||(LA51_0>=68 && LA51_0<=70)||(LA51_0>=92 && LA51_0<=94)||(LA51_0>=96 && LA51_0<=108)) ) {
+            else if ( ((LA51_0>=StringLiteral && LA51_0<=Identifier)||LA51_0==31||LA51_0==36||(LA51_0>=69 && LA51_0<=71)||(LA51_0>=93 && LA51_0<=95)||(LA51_0>=97 && LA51_0<=109)) ) {
                 alt51=2;
             }
             else {
@@ -2573,24 +2574,24 @@ public class Xpand3Parser extends Parser {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:199:4: 'switch' ( '(' r_orExpression ')' )? ( r_casePart )* 'default' ':' r_orExpression '}'
                     {
-                    match(input,77,FOLLOW_77_in_r_switchExpression1042); if (failed) return ;
+                    match(input,78,FOLLOW_78_in_r_switchExpression1042); if (failed) return ;
                     // src/org/eclipse/xpand3/parser/Xpand3.g:199:13: ( '(' r_orExpression ')' )?
                     int alt49=2;
                     int LA49_0 = input.LA(1);
 
-                    if ( (LA49_0==30) ) {
+                    if ( (LA49_0==31) ) {
                         alt49=1;
                     }
                     switch (alt49) {
                         case 1 :
                             // src/org/eclipse/xpand3/parser/Xpand3.g:199:14: '(' r_orExpression ')'
                             {
-                            match(input,30,FOLLOW_30_in_r_switchExpression1045); if (failed) return ;
+                            match(input,31,FOLLOW_31_in_r_switchExpression1045); if (failed) return ;
                             pushFollow(FOLLOW_r_orExpression_in_r_switchExpression1047);
                             r_orExpression();
                             _fsp--;
                             if (failed) return ;
-                            match(input,33,FOLLOW_33_in_r_switchExpression1049); if (failed) return ;
+                            match(input,34,FOLLOW_34_in_r_switchExpression1049); if (failed) return ;
 
                             }
                             break;
@@ -2603,7 +2604,7 @@ public class Xpand3Parser extends Parser {
                         int alt50=2;
                         int LA50_0 = input.LA(1);
 
-                        if ( (LA50_0==80) ) {
+                        if ( (LA50_0==81) ) {
                             alt50=1;
                         }
 
@@ -2625,13 +2626,13 @@ public class Xpand3Parser extends Parser {
                         }
                     } while (true);
 
-                    match(input,78,FOLLOW_78_in_r_switchExpression1060); if (failed) return ;
-                    match(input,60,FOLLOW_60_in_r_switchExpression1062); if (failed) return ;
+                    match(input,79,FOLLOW_79_in_r_switchExpression1060); if (failed) return ;
+                    match(input,61,FOLLOW_61_in_r_switchExpression1062); if (failed) return ;
                     pushFollow(FOLLOW_r_orExpression_in_r_switchExpression1064);
                     r_orExpression();
                     _fsp--;
                     if (failed) return ;
-                    match(input,79,FOLLOW_79_in_r_switchExpression1069); if (failed) return ;
+                    match(input,80,FOLLOW_80_in_r_switchExpression1069); if (failed) return ;
 
                     }
                     break;
@@ -2666,12 +2667,12 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:207:2: ( 'case' r_expression ':' r_expression )
             // src/org/eclipse/xpand3/parser/Xpand3.g:207:2: 'case' r_expression ':' r_expression
             {
-            match(input,80,FOLLOW_80_in_r_casePart1085); if (failed) return ;
+            match(input,81,FOLLOW_81_in_r_casePart1085); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_casePart1087);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,60,FOLLOW_60_in_r_casePart1089); if (failed) return ;
+            match(input,61,FOLLOW_61_in_r_casePart1089); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_casePart1091);
             r_expression();
             _fsp--;
@@ -2708,7 +2709,7 @@ public class Xpand3Parser extends Parser {
                 int alt52=2;
                 int LA52_0 = input.LA(1);
 
-                if ( (LA52_0==81) ) {
+                if ( (LA52_0==82) ) {
                     alt52=1;
                 }
 
@@ -2717,7 +2718,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:210:22: '||' r_andExpression
             	    {
-            	    match(input,81,FOLLOW_81_in_r_orExpression1107); if (failed) return ;
+            	    match(input,82,FOLLOW_82_in_r_orExpression1107); if (failed) return ;
             	    pushFollow(FOLLOW_r_andExpression_in_r_orExpression1109);
             	    r_andExpression();
             	    _fsp--;
@@ -2763,7 +2764,7 @@ public class Xpand3Parser extends Parser {
                 int alt53=2;
                 int LA53_0 = input.LA(1);
 
-                if ( (LA53_0==82) ) {
+                if ( (LA53_0==83) ) {
                     alt53=1;
                 }
 
@@ -2772,7 +2773,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:214:24: '&&' r_impliesExpression
             	    {
-            	    match(input,82,FOLLOW_82_in_r_andExpression1128); if (failed) return ;
+            	    match(input,83,FOLLOW_83_in_r_andExpression1128); if (failed) return ;
             	    pushFollow(FOLLOW_r_impliesExpression_in_r_andExpression1130);
             	    r_impliesExpression();
             	    _fsp--;
@@ -2818,7 +2819,7 @@ public class Xpand3Parser extends Parser {
                 int alt54=2;
                 int LA54_0 = input.LA(1);
 
-                if ( (LA54_0==83) ) {
+                if ( (LA54_0==84) ) {
                     alt54=1;
                 }
 
@@ -2827,7 +2828,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:218:27: 'implies' r_relationalExpression
             	    {
-            	    match(input,83,FOLLOW_83_in_r_impliesExpression1149); if (failed) return ;
+            	    match(input,84,FOLLOW_84_in_r_impliesExpression1149); if (failed) return ;
             	    pushFollow(FOLLOW_r_relationalExpression_in_r_impliesExpression1151);
             	    r_relationalExpression();
             	    _fsp--;
@@ -2873,7 +2874,7 @@ public class Xpand3Parser extends Parser {
                 int alt55=2;
                 int LA55_0 = input.LA(1);
 
-                if ( ((LA55_0>=84 && LA55_0<=89)) ) {
+                if ( ((LA55_0>=85 && LA55_0<=90)) ) {
                     alt55=1;
                 }
 
@@ -2882,7 +2883,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:223:3: ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r_additiveExpression
             	    {
-            	    if ( (input.LA(1)>=84 && input.LA(1)<=89) ) {
+            	    if ( (input.LA(1)>=85 && input.LA(1)<=90) ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
             	    }
@@ -2938,16 +2939,16 @@ public class Xpand3Parser extends Parser {
                 int alt56=2;
                 int LA56_0 = input.LA(1);
 
-                if ( (LA56_0==35) ) {
+                if ( (LA56_0==36) ) {
                     int LA56_2 = input.LA(2);
 
-                    if ( ((LA56_2>=StringLiteral && LA56_2<=Identifier)||LA56_2==30||LA56_2==35||(LA56_2>=68 && LA56_2<=70)||(LA56_2>=92 && LA56_2<=94)||(LA56_2>=96 && LA56_2<=108)) ) {
+                    if ( ((LA56_2>=StringLiteral && LA56_2<=Identifier)||LA56_2==31||LA56_2==36||(LA56_2>=69 && LA56_2<=71)||(LA56_2>=93 && LA56_2<=95)||(LA56_2>=97 && LA56_2<=109)) ) {
                         alt56=1;
                     }
 
 
                 }
-                else if ( (LA56_0==90) ) {
+                else if ( (LA56_0==91) ) {
                     alt56=1;
                 }
 
@@ -2956,7 +2957,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:228:5: ( '+' | '-' ) r_multiplicativeExpression
             	    {
-            	    if ( input.LA(1)==35||input.LA(1)==90 ) {
+            	    if ( input.LA(1)==36||input.LA(1)==91 ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
             	    }
@@ -3012,7 +3013,7 @@ public class Xpand3Parser extends Parser {
                 int alt57=2;
                 int LA57_0 = input.LA(1);
 
-                if ( (LA57_0==32||LA57_0==91) ) {
+                if ( (LA57_0==33||LA57_0==92) ) {
                     alt57=1;
                 }
 
@@ -3021,7 +3022,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:233:3: ( '*' | '/' ) r_unaryExpression
             	    {
-            	    if ( input.LA(1)==32||input.LA(1)==91 ) {
+            	    if ( input.LA(1)==33||input.LA(1)==92 ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
             	    }
@@ -3070,13 +3071,12 @@ public class Xpand3Parser extends Parser {
             case StringLiteral:
             case IntLiteral:
             case Identifier:
-            case 30:
-            case 68:
+            case 31:
             case 69:
             case 70:
-            case 93:
+            case 71:
             case 94:
-            case 96:
+            case 95:
             case 97:
             case 98:
             case 99:
@@ -3089,16 +3089,17 @@ public class Xpand3Parser extends Parser {
             case 106:
             case 107:
             case 108:
+            case 109:
                 {
                 alt58=1;
                 }
                 break;
-            case 92:
+            case 93:
                 {
                 alt58=2;
                 }
                 break;
-            case 35:
+            case 36:
                 {
                 alt58=3;
                 }
@@ -3125,7 +3126,7 @@ public class Xpand3Parser extends Parser {
                 case 2 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:239:3: '!' r_infixExpression
                     {
-                    match(input,92,FOLLOW_92_in_r_unaryExpression1268); if (failed) return ;
+                    match(input,93,FOLLOW_93_in_r_unaryExpression1268); if (failed) return ;
                     pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression1270);
                     r_infixExpression();
                     _fsp--;
@@ -3136,7 +3137,7 @@ public class Xpand3Parser extends Parser {
                 case 3 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:240:3: '-' r_infixExpression
                     {
-                    match(input,35,FOLLOW_35_in_r_unaryExpression1275); if (failed) return ;
+                    match(input,36,FOLLOW_36_in_r_unaryExpression1275); if (failed) return ;
                     pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression1277);
                     r_infixExpression();
                     _fsp--;
@@ -3175,7 +3176,7 @@ public class Xpand3Parser extends Parser {
                 int alt59=2;
                 int LA59_0 = input.LA(1);
 
-                if ( (LA59_0==67) ) {
+                if ( (LA59_0==68) ) {
                     alt59=1;
                 }
 
@@ -3184,7 +3185,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:244:25: '.' r_featureCall
             	    {
-            	    match(input,67,FOLLOW_67_in_r_infixExpression1293); if (failed) return ;
+            	    match(input,68,FOLLOW_68_in_r_infixExpression1293); if (failed) return ;
             	    pushFollow(FOLLOW_r_featureCall_in_r_infixExpression1295);
             	    r_featureCall();
             	    _fsp--;
@@ -3226,10 +3227,9 @@ public class Xpand3Parser extends Parser {
                 }
                 break;
             case Identifier:
-            case 68:
             case 69:
             case 70:
-            case 100:
+            case 71:
             case 101:
             case 102:
             case 103:
@@ -3238,12 +3238,13 @@ public class Xpand3Parser extends Parser {
             case 106:
             case 107:
             case 108:
+            case 109:
                 {
                 alt60=2;
                 }
                 break;
-            case 97:
             case 98:
+            case 99:
                 {
                 alt60=3;
                 }
@@ -3253,27 +3254,27 @@ public class Xpand3Parser extends Parser {
                 alt60=4;
                 }
                 break;
-            case 99:
+            case 100:
                 {
                 alt60=5;
                 }
                 break;
-            case 94:
+            case 95:
                 {
                 alt60=6;
                 }
                 break;
-            case 96:
+            case 97:
                 {
                 alt60=7;
                 }
                 break;
-            case 93:
+            case 94:
                 {
                 alt60=8;
                 }
                 break;
-            case 30:
+            case 31:
                 {
                 alt60=9;
                 }
@@ -3395,12 +3396,12 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:260:5: ( '(' r_expression ')' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:260:5: '(' r_expression ')'
             {
-            match(input,30,FOLLOW_30_in_r_paranthesizedExpression1384); if (failed) return ;
+            match(input,31,FOLLOW_31_in_r_paranthesizedExpression1384); if (failed) return ;
             pushFollow(FOLLOW_r_expression_in_r_paranthesizedExpression1386);
             r_expression();
             _fsp--;
             if (failed) return ;
-            match(input,33,FOLLOW_33_in_r_paranthesizedExpression1388); if (failed) return ;
+            match(input,34,FOLLOW_34_in_r_paranthesizedExpression1388); if (failed) return ;
 
             }
 
@@ -3423,7 +3424,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:264:5: ( 'GLOBALVAR' r_identifier )
             // src/org/eclipse/xpand3/parser/Xpand3.g:264:5: 'GLOBALVAR' r_identifier
             {
-            match(input,93,FOLLOW_93_in_r_globalVarExpression1403); if (failed) return ;
+            match(input,94,FOLLOW_94_in_r_globalVarExpression1403); if (failed) return ;
             pushFollow(FOLLOW_r_identifier_in_r_globalVarExpression1405);
             r_identifier();
             _fsp--;
@@ -3454,10 +3455,10 @@ public class Xpand3Parser extends Parser {
                 {
                 int LA62_1 = input.LA(2);
 
-                if ( (LA62_1==EOF||LA62_1==TEXT||LA62_1==Identifier||LA62_1==27||(LA62_1>=31 && LA62_1<=33)||(LA62_1>=35 && LA62_1<=36)||LA62_1==39||LA62_1==42||(LA62_1>=53 && LA62_1<=55)||(LA62_1>=59 && LA62_1<=60)||LA62_1==62||LA62_1==67||(LA62_1>=73 && LA62_1<=76)||(LA62_1>=78 && LA62_1<=91)||LA62_1==95) ) {
+                if ( (LA62_1==EOF||LA62_1==TEXT||LA62_1==Identifier||LA62_1==28||(LA62_1>=32 && LA62_1<=34)||(LA62_1>=36 && LA62_1<=37)||LA62_1==40||LA62_1==43||(LA62_1>=54 && LA62_1<=56)||(LA62_1>=60 && LA62_1<=61)||LA62_1==63||LA62_1==68||(LA62_1>=74 && LA62_1<=77)||(LA62_1>=79 && LA62_1<=92)||LA62_1==96) ) {
                     alt62=2;
                 }
-                else if ( (LA62_1==30) ) {
+                else if ( (LA62_1==31) ) {
                     alt62=1;
                 }
                 else {
@@ -3469,14 +3470,13 @@ public class Xpand3Parser extends Parser {
                 }
                 }
                 break;
-            case 68:
             case 69:
             case 70:
+            case 71:
                 {
                 alt62=2;
                 }
                 break;
-            case 100:
             case 101:
             case 102:
             case 103:
@@ -3485,6 +3485,7 @@ public class Xpand3Parser extends Parser {
             case 106:
             case 107:
             case 108:
+            case 109:
                 {
                 alt62=3;
                 }
@@ -3505,12 +3506,12 @@ public class Xpand3Parser extends Parser {
                     r_identifier();
                     _fsp--;
                     if (failed) return ;
-                    match(input,30,FOLLOW_30_in_r_featureCall1421); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_featureCall1421); if (failed) return ;
                     // src/org/eclipse/xpand3/parser/Xpand3.g:267:22: ( r_parameterList )?
                     int alt61=2;
                     int LA61_0 = input.LA(1);
 
-                    if ( ((LA61_0>=StringLiteral && LA61_0<=Identifier)||LA61_0==30||LA61_0==35||LA61_0==58||(LA61_0>=68 && LA61_0<=71)||LA61_0==77||(LA61_0>=92 && LA61_0<=94)||(LA61_0>=96 && LA61_0<=108)) ) {
+                    if ( ((LA61_0>=StringLiteral && LA61_0<=Identifier)||LA61_0==31||LA61_0==36||LA61_0==59||(LA61_0>=69 && LA61_0<=72)||LA61_0==78||(LA61_0>=93 && LA61_0<=95)||(LA61_0>=97 && LA61_0<=109)) ) {
                         alt61=1;
                     }
                     switch (alt61) {
@@ -3527,7 +3528,7 @@ public class Xpand3Parser extends Parser {
 
                     }
 
-                    match(input,33,FOLLOW_33_in_r_featureCall1428); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_featureCall1428); if (failed) return ;
 
                     }
                     break;
@@ -3572,12 +3573,12 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:273:2: ( '[' ( r_expression ( ',' r_expression )* )? ']' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:273:2: '[' ( r_expression ( ',' r_expression )* )? ']'
             {
-            match(input,94,FOLLOW_94_in_r_listLiteral1455); if (failed) return ;
+            match(input,95,FOLLOW_95_in_r_listLiteral1455); if (failed) return ;
             // src/org/eclipse/xpand3/parser/Xpand3.g:273:5: ( r_expression ( ',' r_expression )* )?
             int alt64=2;
             int LA64_0 = input.LA(1);
 
-            if ( ((LA64_0>=StringLiteral && LA64_0<=Identifier)||LA64_0==30||LA64_0==35||LA64_0==58||(LA64_0>=68 && LA64_0<=71)||LA64_0==77||(LA64_0>=92 && LA64_0<=94)||(LA64_0>=96 && LA64_0<=108)) ) {
+            if ( ((LA64_0>=StringLiteral && LA64_0<=Identifier)||LA64_0==31||LA64_0==36||LA64_0==59||(LA64_0>=69 && LA64_0<=72)||LA64_0==78||(LA64_0>=93 && LA64_0<=95)||(LA64_0>=97 && LA64_0<=109)) ) {
                 alt64=1;
             }
             switch (alt64) {
@@ -3594,7 +3595,7 @@ public class Xpand3Parser extends Parser {
                         int alt63=2;
                         int LA63_0 = input.LA(1);
 
-                        if ( (LA63_0==31) ) {
+                        if ( (LA63_0==32) ) {
                             alt63=1;
                         }
 
@@ -3603,7 +3604,7 @@ public class Xpand3Parser extends Parser {
                     	case 1 :
                     	    // src/org/eclipse/xpand3/parser/Xpand3.g:273:20: ',' r_expression
                     	    {
-                    	    match(input,31,FOLLOW_31_in_r_listLiteral1460); if (failed) return ;
+                    	    match(input,32,FOLLOW_32_in_r_listLiteral1460); if (failed) return ;
                     	    pushFollow(FOLLOW_r_expression_in_r_listLiteral1462);
                     	    r_expression();
                     	    _fsp--;
@@ -3623,7 +3624,7 @@ public class Xpand3Parser extends Parser {
 
             }
 
-            match(input,95,FOLLOW_95_in_r_listLiteral1467); if (failed) return ;
+            match(input,96,FOLLOW_96_in_r_listLiteral1467); if (failed) return ;
 
             }
 
@@ -3646,7 +3647,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:277:2: ( 'new' r_simpleType )
             // src/org/eclipse/xpand3/parser/Xpand3.g:277:2: 'new' r_simpleType
             {
-            match(input,96,FOLLOW_96_in_r_constructorCall1478); if (failed) return ;
+            match(input,97,FOLLOW_97_in_r_constructorCall1478); if (failed) return ;
             pushFollow(FOLLOW_r_simpleType_in_r_constructorCall1480);
             r_simpleType();
             _fsp--;
@@ -3673,7 +3674,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:282:2: ( 'false' | 'true' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:
             {
-            if ( (input.LA(1)>=97 && input.LA(1)<=98) ) {
+            if ( (input.LA(1)>=98 && input.LA(1)<=99) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -3706,7 +3707,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:286:2: ( 'null' )
             // src/org/eclipse/xpand3/parser/Xpand3.g:286:2: 'null'
             {
-            match(input,99,FOLLOW_99_in_r_nullLiteral1506); if (failed) return ;
+            match(input,100,FOLLOW_100_in_r_nullLiteral1506); if (failed) return ;
 
             }
 
@@ -3733,13 +3734,13 @@ public class Xpand3Parser extends Parser {
             if ( (LA65_0==IntLiteral) ) {
                 int LA65_1 = input.LA(2);
 
-                if ( (LA65_1==67) ) {
+                if ( (LA65_1==68) ) {
                     int LA65_2 = input.LA(3);
 
                     if ( (LA65_2==IntLiteral) ) {
                         alt65=2;
                     }
-                    else if ( (LA65_2==Identifier||(LA65_2>=68 && LA65_2<=70)||(LA65_2>=100 && LA65_2<=108)) ) {
+                    else if ( (LA65_2==Identifier||(LA65_2>=69 && LA65_2<=71)||(LA65_2>=101 && LA65_2<=109)) ) {
                         alt65=1;
                     }
                     else {
@@ -3750,7 +3751,7 @@ public class Xpand3Parser extends Parser {
                         throw nvae;
                     }
                 }
-                else if ( (LA65_1==EOF||LA65_1==TEXT||LA65_1==Identifier||LA65_1==27||(LA65_1>=31 && LA65_1<=33)||(LA65_1>=35 && LA65_1<=36)||LA65_1==39||LA65_1==42||(LA65_1>=53 && LA65_1<=55)||(LA65_1>=59 && LA65_1<=60)||(LA65_1>=73 && LA65_1<=76)||(LA65_1>=78 && LA65_1<=91)||LA65_1==95) ) {
+                else if ( (LA65_1==EOF||LA65_1==TEXT||LA65_1==Identifier||LA65_1==28||(LA65_1>=32 && LA65_1<=34)||(LA65_1>=36 && LA65_1<=37)||LA65_1==40||LA65_1==43||(LA65_1>=54 && LA65_1<=56)||(LA65_1>=60 && LA65_1<=61)||(LA65_1>=74 && LA65_1<=77)||(LA65_1>=79 && LA65_1<=92)||LA65_1==96) ) {
                     alt65=1;
                 }
                 else {
@@ -3780,7 +3781,7 @@ public class Xpand3Parser extends Parser {
                     // src/org/eclipse/xpand3/parser/Xpand3.g:291:4: IntLiteral '.' IntLiteral
                     {
                     match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral1525); if (failed) return ;
-                    match(input,67,FOLLOW_67_in_r_numberLiteral1527); if (failed) return ;
+                    match(input,68,FOLLOW_68_in_r_numberLiteral1527); if (failed) return ;
                     match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral1529); if (failed) return ;
 
                     }
@@ -3807,10 +3808,10 @@ public class Xpand3Parser extends Parser {
             int alt67=2;
             int LA67_0 = input.LA(1);
 
-            if ( (LA67_0==100) ) {
+            if ( (LA67_0==101) ) {
                 alt67=1;
             }
-            else if ( ((LA67_0>=101 && LA67_0<=108)) ) {
+            else if ( ((LA67_0>=102 && LA67_0<=109)) ) {
                 alt67=2;
             }
             else {
@@ -3824,20 +3825,20 @@ public class Xpand3Parser extends Parser {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:295:3: 'typeSelect' '(' r_type ')'
                     {
-                    match(input,100,FOLLOW_100_in_r_collectionExpression1542); if (failed) return ;
-                    match(input,30,FOLLOW_30_in_r_collectionExpression1546); if (failed) return ;
+                    match(input,101,FOLLOW_101_in_r_collectionExpression1542); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_collectionExpression1546); if (failed) return ;
                     pushFollow(FOLLOW_r_type_in_r_collectionExpression1548);
                     r_type();
                     _fsp--;
                     if (failed) return ;
-                    match(input,33,FOLLOW_33_in_r_collectionExpression1550); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_collectionExpression1550); if (failed) return ;
 
                     }
                     break;
                 case 2 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:298:4: ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' ( r_identifier '|' )? r_expression ')'
                     {
-                    if ( (input.LA(1)>=101 && input.LA(1)<=108) ) {
+                    if ( (input.LA(1)>=102 && input.LA(1)<=109) ) {
                         input.consume();
                         errorRecovery=false;failed=false;
                     }
@@ -3848,7 +3849,7 @@ public class Xpand3Parser extends Parser {
                         recoverFromMismatchedSet(input,mse,FOLLOW_set_in_r_collectionExpression1559);    throw mse;
                     }
 
-                    match(input,30,FOLLOW_30_in_r_collectionExpression1609); if (failed) return ;
+                    match(input,31,FOLLOW_31_in_r_collectionExpression1609); if (failed) return ;
                     // src/org/eclipse/xpand3/parser/Xpand3.g:305:19: ( r_identifier '|' )?
                     int alt66=2;
                     int LA66_0 = input.LA(1);
@@ -3856,7 +3857,7 @@ public class Xpand3Parser extends Parser {
                     if ( (LA66_0==Identifier) ) {
                         int LA66_1 = input.LA(2);
 
-                        if ( (LA66_1==109) ) {
+                        if ( (LA66_1==110) ) {
                             alt66=1;
                         }
                     }
@@ -3868,7 +3869,7 @@ public class Xpand3Parser extends Parser {
                             r_identifier();
                             _fsp--;
                             if (failed) return ;
-                            match(input,109,FOLLOW_109_in_r_collectionExpression1614); if (failed) return ;
+                            match(input,110,FOLLOW_110_in_r_collectionExpression1614); if (failed) return ;
 
                             }
                             break;
@@ -3879,7 +3880,7 @@ public class Xpand3Parser extends Parser {
                     r_expression();
                     _fsp--;
                     if (failed) return ;
-                    match(input,33,FOLLOW_33_in_r_collectionExpression1620); if (failed) return ;
+                    match(input,34,FOLLOW_34_in_r_collectionExpression1620); if (failed) return ;
 
                     }
                     break;
@@ -3914,10 +3915,10 @@ public class Xpand3Parser extends Parser {
                 int alt68=2;
                 int LA68_0 = input.LA(1);
 
-                if ( (LA68_0==31) ) {
+                if ( (LA68_0==32) ) {
                     int LA68_1 = input.LA(2);
 
-                    if ( (LA68_1==Identifier||(LA68_1>=68 && LA68_1<=70)) ) {
+                    if ( (LA68_1==Identifier||(LA68_1>=69 && LA68_1<=71)) ) {
                         alt68=1;
                     }
 
@@ -3929,7 +3930,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:312:23: ',' r_declaredParameter
             	    {
-            	    match(input,31,FOLLOW_31_in_r_declaredParameterList1640); if (failed) return ;
+            	    match(input,32,FOLLOW_32_in_r_declaredParameterList1640); if (failed) return ;
             	    pushFollow(FOLLOW_r_declaredParameter_in_r_declaredParameterList1642);
             	    r_declaredParameter();
             	    _fsp--;
@@ -4005,7 +4006,7 @@ public class Xpand3Parser extends Parser {
                 int alt69=2;
                 int LA69_0 = input.LA(1);
 
-                if ( (LA69_0==31) ) {
+                if ( (LA69_0==32) ) {
                     alt69=1;
                 }
 
@@ -4014,7 +4015,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:320:20: ',' r_expression
             	    {
-            	    match(input,31,FOLLOW_31_in_r_parameterList1676); if (failed) return ;
+            	    match(input,32,FOLLOW_32_in_r_parameterList1676); if (failed) return ;
             	    pushFollow(FOLLOW_r_expression_in_r_parameterList1678);
             	    r_expression();
             	    _fsp--;
@@ -4051,7 +4052,7 @@ public class Xpand3Parser extends Parser {
             int alt70=2;
             int LA70_0 = input.LA(1);
 
-            if ( ((LA70_0>=68 && LA70_0<=70)) ) {
+            if ( ((LA70_0>=69 && LA70_0<=71)) ) {
                 alt70=1;
             }
             else if ( (LA70_0==Identifier) ) {
@@ -4106,7 +4107,7 @@ public class Xpand3Parser extends Parser {
             // src/org/eclipse/xpand3/parser/Xpand3.g:331:3: ( ( 'Collection' | 'List' | 'Set' ) ( '[' r_simpleType ']' )? )
             // src/org/eclipse/xpand3/parser/Xpand3.g:331:3: ( 'Collection' | 'List' | 'Set' ) ( '[' r_simpleType ']' )?
             {
-            if ( (input.LA(1)>=68 && input.LA(1)<=70) ) {
+            if ( (input.LA(1)>=69 && input.LA(1)<=71) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -4121,19 +4122,19 @@ public class Xpand3Parser extends Parser {
             int alt71=2;
             int LA71_0 = input.LA(1);
 
-            if ( (LA71_0==94) ) {
+            if ( (LA71_0==95) ) {
                 alt71=1;
             }
             switch (alt71) {
                 case 1 :
                     // src/org/eclipse/xpand3/parser/Xpand3.g:332:4: '[' r_simpleType ']'
                     {
-                    match(input,94,FOLLOW_94_in_r_collectionType1733); if (failed) return ;
+                    match(input,95,FOLLOW_95_in_r_collectionType1733); if (failed) return ;
                     pushFollow(FOLLOW_r_simpleType_in_r_collectionType1735);
                     r_simpleType();
                     _fsp--;
                     if (failed) return ;
-                    match(input,95,FOLLOW_95_in_r_collectionType1737); if (failed) return ;
+                    match(input,96,FOLLOW_96_in_r_collectionType1737); if (failed) return ;
 
                     }
                     break;
@@ -4172,7 +4173,7 @@ public class Xpand3Parser extends Parser {
                 int alt72=2;
                 int LA72_0 = input.LA(1);
 
-                if ( (LA72_0==62) ) {
+                if ( (LA72_0==63) ) {
                     alt72=1;
                 }
 
@@ -4181,7 +4182,7 @@ public class Xpand3Parser extends Parser {
             	case 1 :
             	    // src/org/eclipse/xpand3/parser/Xpand3.g:337:3: '::' r_identifier
             	    {
-            	    match(input,62,FOLLOW_62_in_r_simpleType1755); if (failed) return ;
+            	    match(input,63,FOLLOW_63_in_r_simpleType1755); if (failed) return ;
             	    pushFollow(FOLLOW_r_identifier_in_r_simpleType1757);
             	    r_identifier();
             	    _fsp--;
@@ -4237,12 +4238,12 @@ public class Xpand3Parser extends Parser {
         // src/org/eclipse/xpand3/parser/Xpand3.g:184:5: ( '(' r_type ')' r_castedExpression )
         // src/org/eclipse/xpand3/parser/Xpand3.g:184:6: '(' r_type ')' r_castedExpression
         {
-        match(input,30,FOLLOW_30_in_synpred1943); if (failed) return ;
+        match(input,31,FOLLOW_31_in_synpred1943); if (failed) return ;
         pushFollow(FOLLOW_r_type_in_synpred1945);
         r_type();
         _fsp--;
         if (failed) return ;
-        match(input,33,FOLLOW_33_in_synpred1947); if (failed) return ;
+        match(input,34,FOLLOW_34_in_synpred1947); if (failed) return ;
         pushFollow(FOLLOW_r_castedExpression_in_synpred1949);
         r_castedExpression();
         _fsp--;
@@ -4274,22 +4275,22 @@ public class Xpand3Parser extends Parser {
     static final String DFA44_eofS =
         "\6\uffff\1\2\60\uffff";
     static final String DFA44_minS =
-        "\2\13\1\uffff\1\40\1\36\1\15\1\12\1\15\1\76\2\uffff\1\0\13\uffff"+
-        "\1\12\1\uffff\1\40\1\15\1\40\3\0\2\36\4\0\2\15\1\0\1\76\1\15\3\0"+
-        "\2\41\1\15\1\0\1\15\1\76\1\41\1\15\1\41\1\76";
+        "\2\13\1\uffff\1\41\1\37\1\15\1\12\1\15\1\77\2\uffff\1\0\13\uffff"+
+        "\1\12\1\uffff\1\41\1\15\1\41\3\0\2\37\4\0\2\15\1\0\1\77\1\15\3\0"+
+        "\2\42\1\15\1\0\1\15\1\77\1\42\1\15\1\42\1\77";
     static final String DFA44_maxS =
-        "\2\154\1\uffff\1\136\1\133\1\15\1\154\1\15\1\137\2\uffff\1\0\13"+
-        "\uffff\1\154\1\uffff\1\133\1\15\1\133\3\0\2\36\4\0\2\15\1\0\1\137"+
-        "\1\106\3\0\1\136\1\76\1\15\1\0\1\15\1\137\1\76\1\15\1\41\1\137";
+        "\2\155\1\uffff\1\137\1\134\1\15\1\155\1\15\1\140\2\uffff\1\0\13"+
+        "\uffff\1\155\1\uffff\1\134\1\15\1\134\3\0\2\37\4\0\2\15\1\0\1\140"+
+        "\1\107\3\0\1\137\1\77\1\15\1\0\1\15\1\140\1\77\1\15\1\42\1\140";
     static final String DFA44_acceptS =
         "\2\uffff\1\2\6\uffff\2\1\1\uffff\13\1\1\uffff\1\1\36\uffff";
     static final String DFA44_specialS =
         "\6\uffff\1\10\4\uffff\1\13\20\uffff\1\4\1\3\1\15\2\uffff\1\7\1\14"+
         "\1\5\1\0\2\uffff\1\6\2\uffff\1\2\1\1\1\11\3\uffff\1\12\6\uffff}>";
     static final String[] DFA44_transitionS = {
-            "\3\2\20\uffff\1\1\4\uffff\1\2\26\uffff\1\2\11\uffff\3\2\6\uffff"+
+            "\3\2\21\uffff\1\1\4\uffff\1\2\26\uffff\1\2\11\uffff\3\2\6\uffff"+
             "\1\2\16\uffff\3\2\1\uffff\15\2",
-            "\2\2\1\4\20\uffff\1\2\4\uffff\1\2\26\uffff\1\2\11\uffff\3\3"+
+            "\2\2\1\4\21\uffff\1\2\4\uffff\1\2\26\uffff\1\2\11\uffff\3\3"+
             "\1\2\5\uffff\1\2\16\uffff\3\2\1\uffff\15\2",
             "",
             "\1\2\1\6\1\uffff\1\2\37\uffff\1\2\5\uffff\2\2\6\uffff\13\2\2"+
@@ -4297,7 +4298,7 @@ public class Xpand3Parser extends Parser {
             "\1\2\1\uffff\1\2\1\6\1\uffff\1\2\32\uffff\1\7\4\uffff\1\2\5"+
             "\uffff\2\2\6\uffff\13\2",
             "\1\10",
-            "\1\2\1\12\1\20\1\13\15\uffff\1\2\2\uffff\1\25\3\2\1\uffff\1"+
+            "\1\2\1\12\1\20\1\13\16\uffff\1\2\2\uffff\1\25\3\2\1\uffff\1"+
             "\27\1\2\2\uffff\1\2\2\uffff\1\2\12\uffff\3\2\2\uffff\1\30\2"+
             "\2\6\uffff\1\2\3\14\2\uffff\3\2\1\uffff\1\11\1\2\1\uffff\14"+
             "\2\1\26\1\24\1\22\1\2\1\23\2\17\1\21\1\15\10\16",
@@ -4317,7 +4318,7 @@ public class Xpand3Parser extends Parser {
             "",
             "",
             "",
-            "\1\2\1\34\1\42\1\35\20\uffff\1\47\4\uffff\1\2\40\uffff\3\36"+
+            "\1\2\1\34\1\42\1\35\21\uffff\1\47\4\uffff\1\2\40\uffff\3\36"+
             "\25\uffff\1\2\1\46\1\44\1\uffff\1\45\2\41\1\43\1\37\10\40",
             "",
             "\1\2\1\6\1\uffff\1\2\32\uffff\1\7\4\uffff\1\2\5\uffff\2\2\6"+
@@ -4337,7 +4338,7 @@ public class Xpand3Parser extends Parser {
             "\1\54",
             "\1\uffff",
             "\1\32\40\uffff\1\33",
-            "\1\56\66\uffff\3\55",
+            "\1\56\67\uffff\3\55",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -4515,39 +4516,39 @@ public class Xpand3Parser extends Parser {
                         int index44_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA44_6==77) && (synpred1())) {s = 9;}
+                        if ( (LA44_6==78) && (synpred1())) {s = 9;}
 
                         else if ( (LA44_6==StringLiteral) && (synpred1())) {s = 10;}
 
                         else if ( (LA44_6==Identifier) ) {s = 11;}
 
-                        else if ( ((LA44_6>=68 && LA44_6<=70)) && (synpred1())) {s = 12;}
+                        else if ( ((LA44_6>=69 && LA44_6<=71)) && (synpred1())) {s = 12;}
 
-                        else if ( (LA44_6==100) && (synpred1())) {s = 13;}
+                        else if ( (LA44_6==101) && (synpred1())) {s = 13;}
 
-                        else if ( ((LA44_6>=101 && LA44_6<=108)) && (synpred1())) {s = 14;}
+                        else if ( ((LA44_6>=102 && LA44_6<=109)) && (synpred1())) {s = 14;}
 
-                        else if ( ((LA44_6>=97 && LA44_6<=98)) && (synpred1())) {s = 15;}
+                        else if ( ((LA44_6>=98 && LA44_6<=99)) && (synpred1())) {s = 15;}
 
                         else if ( (LA44_6==IntLiteral) && (synpred1())) {s = 16;}
 
-                        else if ( (LA44_6==99) && (synpred1())) {s = 17;}
+                        else if ( (LA44_6==100) && (synpred1())) {s = 17;}
 
-                        else if ( (LA44_6==94) && (synpred1())) {s = 18;}
+                        else if ( (LA44_6==95) && (synpred1())) {s = 18;}
 
-                        else if ( (LA44_6==96) && (synpred1())) {s = 19;}
+                        else if ( (LA44_6==97) && (synpred1())) {s = 19;}
 
-                        else if ( (LA44_6==93) && (synpred1())) {s = 20;}
+                        else if ( (LA44_6==94) && (synpred1())) {s = 20;}
 
-                        else if ( (LA44_6==30) && (synpred1())) {s = 21;}
+                        else if ( (LA44_6==31) && (synpred1())) {s = 21;}
 
-                        else if ( (LA44_6==92) && (synpred1())) {s = 22;}
+                        else if ( (LA44_6==93) && (synpred1())) {s = 22;}
 
-                        else if ( (LA44_6==35) ) {s = 23;}
+                        else if ( (LA44_6==36) ) {s = 23;}
 
-                        else if ( (LA44_6==58) && (synpred1())) {s = 24;}
+                        else if ( (LA44_6==59) && (synpred1())) {s = 24;}
 
-                        else if ( (LA44_6==EOF||LA44_6==TEXT||LA44_6==27||(LA44_6>=31 && LA44_6<=33)||LA44_6==36||LA44_6==39||LA44_6==42||(LA44_6>=53 && LA44_6<=55)||(LA44_6>=59 && LA44_6<=60)||LA44_6==67||(LA44_6>=73 && LA44_6<=75)||LA44_6==78||(LA44_6>=80 && LA44_6<=91)||LA44_6==95) ) {s = 2;}
+                        else if ( (LA44_6==EOF||LA44_6==TEXT||LA44_6==28||(LA44_6>=32 && LA44_6<=34)||LA44_6==37||LA44_6==40||LA44_6==43||(LA44_6>=54 && LA44_6<=56)||(LA44_6>=60 && LA44_6<=61)||LA44_6==68||(LA44_6>=74 && LA44_6<=76)||LA44_6==79||(LA44_6>=81 && LA44_6<=92)||LA44_6==96) ) {s = 2;}
 
                          
                         input.seek(index44_6);
@@ -4638,24 +4639,24 @@ public class Xpand3Parser extends Parser {
     }
  
 
-    public static final BitSet FOLLOW_r_nsImport_in_r_file42 = new BitSet(new long[]{0xA200000014002010L,0x0000000000000073L});
-    public static final BitSet FOLLOW_r_abstractDeclaration_in_r_file48 = new BitSet(new long[]{0xA200000000002010L,0x0000000000000073L});
+    public static final BitSet FOLLOW_r_nsImport_in_r_file42 = new BitSet(new long[]{0x4400000028002010L,0x00000000000000E7L});
+    public static final BitSet FOLLOW_r_abstractDeclaration_in_r_file48 = new BitSet(new long[]{0x4400000000002010L,0x00000000000000E7L});
     public static final BitSet FOLLOW_EOF_in_r_file55 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LG_in_r_nsImport65 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_r_nsImport67 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
+    public static final BitSet FOLLOW_LG_in_r_nsImport65 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_r_nsImport67 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
     public static final BitSet FOLLOW_r_type_in_r_nsImport69 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RG_in_r_nsImport71 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LG_in_r_nsImport76 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_r_nsImport78 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
+    public static final BitSet FOLLOW_LG_in_r_nsImport76 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_r_nsImport78 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
     public static final BitSet FOLLOW_r_type_in_r_nsImport80 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RG_in_r_nsImport82 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_r_nsImport87 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_r_nsImport89 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_nsImport92 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_r_nsImport98 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_r_nsImport100 = new BitSet(new long[]{0x0000000028000000L});
-    public static final BitSet FOLLOW_29_in_r_nsImport103 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_nsImport107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_r_nsImport87 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_r_nsImport89 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_r_nsImport92 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_r_nsImport98 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_r_nsImport100 = new BitSet(new long[]{0x0000000050000000L});
+    public static final BitSet FOLLOW_30_in_r_nsImport103 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_r_nsImport107 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_check_in_r_abstractDeclaration118 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_around_in_r_abstractDeclaration123 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_extension_in_r_abstractDeclaration128 = new BitSet(new long[]{0x0000000000000002L});
@@ -4663,221 +4664,221 @@ public class Xpand3Parser extends Parser {
     public static final BitSet FOLLOW_r_definitionAround_in_r_abstractDeclaration138 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LG_in_r_definition150 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_DEFINE_in_r_definition152 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_definition154 = new BitSet(new long[]{0x0000000440000000L});
-    public static final BitSet FOLLOW_30_in_r_definition157 = new BitSet(new long[]{0x0000000300002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definition160 = new BitSet(new long[]{0x0000000380000000L});
-    public static final BitSet FOLLOW_31_in_r_definition163 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_r_definition166 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_32_in_r_definition172 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_definition176 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_definition180 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_r_definition182 = new BitSet(new long[]{0x0000000800000400L});
+    public static final BitSet FOLLOW_r_identifier_in_r_definition154 = new BitSet(new long[]{0x0000000880000000L});
+    public static final BitSet FOLLOW_31_in_r_definition157 = new BitSet(new long[]{0x0000000600002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definition160 = new BitSet(new long[]{0x0000000700000000L});
+    public static final BitSet FOLLOW_32_in_r_definition163 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_r_definition166 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_33_in_r_definition172 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_definition176 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_r_definition180 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_r_definition182 = new BitSet(new long[]{0x0000001000000400L});
     public static final BitSet FOLLOW_r_sequence_in_r_definition185 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_ENDDEFINE_in_r_definition188 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RG_in_r_definition190 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LG_in_r_definitionAround202 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_AROUND_in_r_definitionAround204 = new BitSet(new long[]{0x0000000100002000L});
-    public static final BitSet FOLLOW_r_pointcut_in_r_definitionAround206 = new BitSet(new long[]{0x0000000440000000L});
-    public static final BitSet FOLLOW_30_in_r_definitionAround209 = new BitSet(new long[]{0x0000000300002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definitionAround212 = new BitSet(new long[]{0x0000000380000000L});
-    public static final BitSet FOLLOW_31_in_r_definitionAround215 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_r_definitionAround218 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_32_in_r_definitionAround224 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_definitionAround228 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_definitionAround232 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_r_definitionAround234 = new BitSet(new long[]{0x0000000800000400L});
+    public static final BitSet FOLLOW_AROUND_in_r_definitionAround204 = new BitSet(new long[]{0x0000000200002000L});
+    public static final BitSet FOLLOW_r_pointcut_in_r_definitionAround206 = new BitSet(new long[]{0x0000000880000000L});
+    public static final BitSet FOLLOW_31_in_r_definitionAround209 = new BitSet(new long[]{0x0000000600002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definitionAround212 = new BitSet(new long[]{0x0000000700000000L});
+    public static final BitSet FOLLOW_32_in_r_definitionAround215 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_r_definitionAround218 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_33_in_r_definitionAround224 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_definitionAround228 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_r_definitionAround232 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_r_definitionAround234 = new BitSet(new long[]{0x0000001000000400L});
     public static final BitSet FOLLOW_r_sequence_in_r_definitionAround237 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_ENDAROUND_in_r_definitionAround240 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RG_in_r_definitionAround242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_textSequence_in_r_sequence254 = new BitSet(new long[]{0x040A217840003802L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_statement_in_r_sequence260 = new BitSet(new long[]{0x0000000800000400L});
-    public static final BitSet FOLLOW_r_textSequence_in_r_sequence266 = new BitSet(new long[]{0x040A217840003802L,0x00001FFF700020F0L});
+    public static final BitSet FOLLOW_r_textSequence_in_r_sequence254 = new BitSet(new long[]{0x081442F080003802L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_statement_in_r_sequence260 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_textSequence_in_r_sequence266 = new BitSet(new long[]{0x081442F080003802L,0x00003FFEE00041E0L});
     public static final BitSet FOLLOW_r_simpleStatement_in_r_statement281 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_fileStatement_in_r_statement286 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_foreachStatement_in_r_statement291 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_ifStatement_in_r_statement296 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_letStatement_in_r_statement301 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_protectStatement_in_r_statement306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_text_in_r_textSequence317 = new BitSet(new long[]{0x0000000800000402L});
-    public static final BitSet FOLLOW_r_text_in_r_textSequence320 = new BitSet(new long[]{0x0000000800000402L});
-    public static final BitSet FOLLOW_35_in_r_text332 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_r_text_in_r_textSequence317 = new BitSet(new long[]{0x0000001000000402L});
+    public static final BitSet FOLLOW_r_text_in_r_textSequence320 = new BitSet(new long[]{0x0000001000000402L});
+    public static final BitSet FOLLOW_36_in_r_text332 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_TEXT_in_r_text335 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_errorStatement_in_r_simpleStatement346 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_expandStatement_in_r_simpleStatement350 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_expressionStmt_in_r_simpleStatement354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_r_errorStatement365 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
+    public static final BitSet FOLLOW_37_in_r_errorStatement365 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
     public static final BitSet FOLLOW_r_expression_in_r_errorStatement367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_r_expandStatement378 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_expandStatement380 = new BitSet(new long[]{0x0000004440000002L});
-    public static final BitSet FOLLOW_30_in_r_expandStatement383 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_parameterList_in_r_expandStatement385 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_expandStatement387 = new BitSet(new long[]{0x0000004400000002L});
-    public static final BitSet FOLLOW_34_in_r_expandStatement393 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
+    public static final BitSet FOLLOW_38_in_r_expandStatement378 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_expandStatement380 = new BitSet(new long[]{0x0000008880000002L});
+    public static final BitSet FOLLOW_31_in_r_expandStatement383 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_parameterList_in_r_expandStatement385 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_expandStatement387 = new BitSet(new long[]{0x0000008800000002L});
+    public static final BitSet FOLLOW_35_in_r_expandStatement393 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
     public static final BitSet FOLLOW_r_expression_in_r_expandStatement395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_r_expandStatement403 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_expandStatement404 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_39_in_r_expandStatement407 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
+    public static final BitSet FOLLOW_39_in_r_expandStatement403 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_expandStatement404 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_40_in_r_expandStatement407 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
     public static final BitSet FOLLOW_r_expression_in_r_expandStatement409 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_expression_in_r_expressionStmt425 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_r_fileStatement435 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_fileStatement437 = new BitSet(new long[]{0x0000000800002400L});
-    public static final BitSet FOLLOW_r_identifier_in_r_fileStatement440 = new BitSet(new long[]{0x0000000800000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_fileStatement446 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_r_fileStatement450 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_r_foreachStatement462 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement464 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_r_foreachStatement466 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement468 = new BitSet(new long[]{0x0000088800000400L});
-    public static final BitSet FOLLOW_43_in_r_foreachStatement471 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement473 = new BitSet(new long[]{0x0000008800000400L});
-    public static final BitSet FOLLOW_39_in_r_foreachStatement478 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement480 = new BitSet(new long[]{0x0000000800000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_foreachStatement488 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_44_in_r_foreachStatement493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_r_ifStatement508 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_ifStatement510 = new BitSet(new long[]{0x0000000800000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_ifStatement514 = new BitSet(new long[]{0x0001C00000000000L});
-    public static final BitSet FOLLOW_r_elseIfStatement_in_r_ifStatement519 = new BitSet(new long[]{0x0001C00000000000L});
-    public static final BitSet FOLLOW_r_elseStatement_in_r_ifStatement524 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_r_ifStatement529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_r_elseIfStatement539 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_elseIfStatement541 = new BitSet(new long[]{0x0000000800000400L});
+    public static final BitSet FOLLOW_41_in_r_fileStatement435 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_fileStatement437 = new BitSet(new long[]{0x0000001000002400L});
+    public static final BitSet FOLLOW_r_identifier_in_r_fileStatement440 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_fileStatement446 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_r_fileStatement450 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_r_foreachStatement462 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement464 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_r_foreachStatement466 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement468 = new BitSet(new long[]{0x0000111000000400L});
+    public static final BitSet FOLLOW_44_in_r_foreachStatement471 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement473 = new BitSet(new long[]{0x0000011000000400L});
+    public static final BitSet FOLLOW_40_in_r_foreachStatement478 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement480 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_foreachStatement488 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_45_in_r_foreachStatement493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_r_ifStatement508 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_ifStatement510 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_ifStatement514 = new BitSet(new long[]{0x0003800000000000L});
+    public static final BitSet FOLLOW_r_elseIfStatement_in_r_ifStatement519 = new BitSet(new long[]{0x0003800000000000L});
+    public static final BitSet FOLLOW_r_elseStatement_in_r_ifStatement524 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_r_ifStatement529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_r_elseIfStatement539 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_elseIfStatement541 = new BitSet(new long[]{0x0000001000000400L});
     public static final BitSet FOLLOW_r_sequence_in_r_elseIfStatement545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_r_elseStatement557 = new BitSet(new long[]{0x0000000800000400L});
+    public static final BitSet FOLLOW_49_in_r_elseStatement557 = new BitSet(new long[]{0x0000001000000400L});
     public static final BitSet FOLLOW_r_sequence_in_r_elseStatement561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_r_letStatement573 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_letStatement575 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_r_letStatement577 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_letStatement579 = new BitSet(new long[]{0x0000000800000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_letStatement585 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_r_letStatement590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_r_protectStatement601 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_r_protectStatement606 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_protectStatement608 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_53_in_r_protectStatement613 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_protectStatement615 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_r_protectStatement628 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_protectStatement630 = new BitSet(new long[]{0x0080000800000400L});
-    public static final BitSet FOLLOW_55_in_r_protectStatement632 = new BitSet(new long[]{0x0000000800000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_protectStatement638 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_r_protectStatement642 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_r_check654 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_r_check656 = new BitSet(new long[]{0x0C00001000000000L});
-    public static final BitSet FOLLOW_58_in_r_check659 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_check661 = new BitSet(new long[]{0x0800001000000000L});
-    public static final BitSet FOLLOW_set_in_r_check665 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_check671 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_r_check673 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_check677 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_check679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_r_around694 = new BitSet(new long[]{0x0000000100002000L});
-    public static final BitSet FOLLOW_r_pointcut_in_r_around696 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_r_around698 = new BitSet(new long[]{0x0000000300002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_around701 = new BitSet(new long[]{0x0000000380000000L});
-    public static final BitSet FOLLOW_31_in_r_around704 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_r_around707 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_32_in_r_around713 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_around717 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_r_around719 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_around726 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_around728 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_r_pointcut745 = new BitSet(new long[]{0x4000000100002002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_pointcut751 = new BitSet(new long[]{0x4000000100002002L});
-    public static final BitSet FOLLOW_32_in_r_pointcut759 = new BitSet(new long[]{0x4000000100002002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_pointcut767 = new BitSet(new long[]{0x4000000100002002L});
-    public static final BitSet FOLLOW_62_in_r_pointcut775 = new BitSet(new long[]{0x4000000100002002L});
-    public static final BitSet FOLLOW_set_in_r_extension789 = new BitSet(new long[]{0x8000000000002000L,0x0000000000000073L});
+    public static final BitSet FOLLOW_50_in_r_letStatement573 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_letStatement575 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_r_letStatement577 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_letStatement579 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_letStatement585 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_r_letStatement590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_r_protectStatement601 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_r_protectStatement606 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_protectStatement608 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_r_protectStatement613 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_protectStatement615 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_55_in_r_protectStatement628 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_protectStatement630 = new BitSet(new long[]{0x0100001000000400L});
+    public static final BitSet FOLLOW_56_in_r_protectStatement632 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_protectStatement638 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_57_in_r_protectStatement642 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_r_check654 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_r_check656 = new BitSet(new long[]{0x1800002000000000L});
+    public static final BitSet FOLLOW_59_in_r_check659 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_check661 = new BitSet(new long[]{0x1000002000000000L});
+    public static final BitSet FOLLOW_set_in_r_check665 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_check671 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_r_check673 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_check677 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_r_check679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_r_around694 = new BitSet(new long[]{0x0000000200002000L});
+    public static final BitSet FOLLOW_r_pointcut_in_r_around696 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_around698 = new BitSet(new long[]{0x0000000600002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_around701 = new BitSet(new long[]{0x0000000700000000L});
+    public static final BitSet FOLLOW_32_in_r_around704 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_r_around707 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_33_in_r_around713 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_around717 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_r_around719 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_around726 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_r_around728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_r_pointcut745 = new BitSet(new long[]{0x8000000200002002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_pointcut751 = new BitSet(new long[]{0x8000000200002002L});
+    public static final BitSet FOLLOW_33_in_r_pointcut759 = new BitSet(new long[]{0x8000000200002002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_pointcut767 = new BitSet(new long[]{0x8000000200002002L});
+    public static final BitSet FOLLOW_63_in_r_pointcut775 = new BitSet(new long[]{0x8000000200002002L});
+    public static final BitSet FOLLOW_set_in_r_extension789 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E7L});
     public static final BitSet FOLLOW_r_type_in_r_extension798 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_extension801 = new BitSet(new long[]{0x0000000040002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_extension803 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_r_extension806 = new BitSet(new long[]{0x0000000200002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_extension808 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_extension811 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_r_extension813 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F4L});
-    public static final BitSet FOLLOW_66_in_r_extension818 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_javaType_in_r_extension820 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_r_extension822 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_extension824 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_r_extension826 = new BitSet(new long[]{0x0000000200002000L});
-    public static final BitSet FOLLOW_r_javaType_in_r_extension828 = new BitSet(new long[]{0x0000000280000000L});
-    public static final BitSet FOLLOW_31_in_r_extension831 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_javaType_in_r_extension833 = new BitSet(new long[]{0x0000000280000000L});
-    public static final BitSet FOLLOW_33_in_r_extension840 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_r_expression_in_r_extension847 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_extension850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_javaType861 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_r_javaType867 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_identifier_in_r_javaType870 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_68_in_r_javaType873 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_69_in_r_javaType879 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_70_in_r_javaType882 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_r_identifier_in_r_extension801 = new BitSet(new long[]{0x0000000080002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_extension803 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_extension806 = new BitSet(new long[]{0x0000000400002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_extension808 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_extension811 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_r_extension813 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E8L});
+    public static final BitSet FOLLOW_67_in_r_extension818 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_javaType_in_r_extension820 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_r_extension822 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_extension824 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_extension826 = new BitSet(new long[]{0x0000000400002000L});
+    public static final BitSet FOLLOW_r_javaType_in_r_extension828 = new BitSet(new long[]{0x0000000500000000L});
+    public static final BitSet FOLLOW_32_in_r_extension831 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_javaType_in_r_extension833 = new BitSet(new long[]{0x0000000500000000L});
+    public static final BitSet FOLLOW_34_in_r_extension840 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_r_expression_in_r_extension847 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_r_extension850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_javaType861 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_r_javaType867 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_identifier_in_r_javaType870 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_69_in_r_javaType873 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_70_in_r_javaType879 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_71_in_r_javaType882 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
     public static final BitSet FOLLOW_r_letExpression_in_r_expression898 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_r_letExpression912 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_letExpression914 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_r_letExpression916 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF70002070L});
-    public static final BitSet FOLLOW_r_castedExpression_in_r_letExpression918 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_r_letExpression920 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
+    public static final BitSet FOLLOW_72_in_r_letExpression912 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_letExpression914 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_r_letExpression916 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00040E0L});
+    public static final BitSet FOLLOW_r_castedExpression_in_r_letExpression918 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_r_letExpression920 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
     public static final BitSet FOLLOW_r_expression_in_r_letExpression922 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_castedExpression_in_r_letExpression928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_r_castedExpression954 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_r_castedExpression956 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_castedExpression958 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF70002070L});
+    public static final BitSet FOLLOW_31_in_r_castedExpression954 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_r_castedExpression956 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_castedExpression958 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00040E0L});
     public static final BitSet FOLLOW_r_chainExpression_in_r_castedExpression960 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_chainExpression_in_r_castedExpression966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression978 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_r_chainExpression983 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF70002070L});
-    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression985 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000200L});
-    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression999 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_r_ifExpression1002 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_ifExpression1004 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_r_ifExpression1006 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70002070L});
+    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression978 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_r_chainExpression983 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00040E0L});
+    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression985 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression999 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_r_ifExpression1002 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_ifExpression1004 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_r_ifExpression1006 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00040E0L});
     public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression1008 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_r_ifExpression1015 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_ifExpression1017 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_r_ifExpression1019 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70002070L});
-    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression1021 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
-    public static final BitSet FOLLOW_76_in_r_ifExpression1024 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70002070L});
+    public static final BitSet FOLLOW_59_in_r_ifExpression1015 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_ifExpression1017 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+    public static final BitSet FOLLOW_76_in_r_ifExpression1019 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00040E0L});
+    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression1021 = new BitSet(new long[]{0x0000000000000002L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_r_ifExpression1024 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00040E0L});
     public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression1026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_r_switchExpression1042 = new BitSet(new long[]{0x0000000040000000L,0x0000000000014000L});
-    public static final BitSet FOLLOW_30_in_r_switchExpression1045 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression1047 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_switchExpression1049 = new BitSet(new long[]{0x0000000000000000L,0x0000000000014000L});
-    public static final BitSet FOLLOW_r_casePart_in_r_switchExpression1054 = new BitSet(new long[]{0x0000000000000000L,0x0000000000014000L});
-    public static final BitSet FOLLOW_78_in_r_switchExpression1060 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_r_switchExpression1062 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression1064 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_r_switchExpression1069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_78_in_r_switchExpression1042 = new BitSet(new long[]{0x0000000080000000L,0x0000000000028000L});
+    public static final BitSet FOLLOW_31_in_r_switchExpression1045 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression1047 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_switchExpression1049 = new BitSet(new long[]{0x0000000000000000L,0x0000000000028000L});
+    public static final BitSet FOLLOW_r_casePart_in_r_switchExpression1054 = new BitSet(new long[]{0x0000000000000000L,0x0000000000028000L});
+    public static final BitSet FOLLOW_79_in_r_switchExpression1060 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_r_switchExpression1062 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression1064 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_r_switchExpression1069 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression1074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_r_casePart1085 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_casePart1087 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_r_casePart1089 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
+    public static final BitSet FOLLOW_81_in_r_casePart1085 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_casePart1087 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_r_casePart1089 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
     public static final BitSet FOLLOW_r_expression_in_r_casePart1091 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression1103 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020000L});
-    public static final BitSet FOLLOW_81_in_r_orExpression1107 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression1109 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020000L});
-    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression1124 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_r_andExpression1128 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression1130 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
-    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression1145 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_83_in_r_impliesExpression1149 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression1151 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
-    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression1167 = new BitSet(new long[]{0x0000000000000002L,0x0000000003F00000L});
-    public static final BitSet FOLLOW_set_in_r_relationalExpression1172 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression1196 = new BitSet(new long[]{0x0000000000000002L,0x0000000003F00000L});
-    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression1209 = new BitSet(new long[]{0x0000000800000002L,0x0000000004000000L});
-    public static final BitSet FOLLOW_set_in_r_additiveExpression1216 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression1223 = new BitSet(new long[]{0x0000000800000002L,0x0000000004000000L});
-    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression1236 = new BitSet(new long[]{0x0000000100000002L,0x0000000008000000L});
-    public static final BitSet FOLLOW_set_in_r_multiplicativeExpression1241 = new BitSet(new long[]{0x0000000840003800L,0x00001FFF70000070L});
-    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression1249 = new BitSet(new long[]{0x0000000100000002L,0x0000000008000000L});
+    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression1103 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_r_orExpression1107 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression1109 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
+    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression1124 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
+    public static final BitSet FOLLOW_83_in_r_andExpression1128 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression1130 = new BitSet(new long[]{0x0000000000000002L,0x0000000000080000L});
+    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression1145 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_r_impliesExpression1149 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression1151 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression1167 = new BitSet(new long[]{0x0000000000000002L,0x0000000007E00000L});
+    public static final BitSet FOLLOW_set_in_r_relationalExpression1172 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression1196 = new BitSet(new long[]{0x0000000000000002L,0x0000000007E00000L});
+    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression1209 = new BitSet(new long[]{0x0000001000000002L,0x0000000008000000L});
+    public static final BitSet FOLLOW_set_in_r_additiveExpression1216 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression1223 = new BitSet(new long[]{0x0000001000000002L,0x0000000008000000L});
+    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression1236 = new BitSet(new long[]{0x0000000200000002L,0x0000000010000000L});
+    public static final BitSet FOLLOW_set_in_r_multiplicativeExpression1241 = new BitSet(new long[]{0x0000001080003800L,0x00003FFEE00000E0L});
+    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression1249 = new BitSet(new long[]{0x0000000200000002L,0x0000000010000000L});
     public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression1263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_r_unaryExpression1268 = new BitSet(new long[]{0x0000000040003800L,0x00001FFF60000070L});
+    public static final BitSet FOLLOW_93_in_r_unaryExpression1268 = new BitSet(new long[]{0x0000000080003800L,0x00003FFEC00000E0L});
     public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression1270 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_r_unaryExpression1275 = new BitSet(new long[]{0x0000000040003800L,0x00001FFF60000070L});
+    public static final BitSet FOLLOW_36_in_r_unaryExpression1275 = new BitSet(new long[]{0x0000000080003800L,0x00003FFEC00000E0L});
     public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression1277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_primaryExpression_in_r_infixExpression1288 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_r_infixExpression1293 = new BitSet(new long[]{0x0000000000002000L,0x00001FF000000070L});
-    public static final BitSet FOLLOW_r_featureCall_in_r_infixExpression1295 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_r_primaryExpression_in_r_infixExpression1288 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_r_infixExpression1293 = new BitSet(new long[]{0x0000000000002000L,0x00003FE0000000E0L});
+    public static final BitSet FOLLOW_r_featureCall_in_r_infixExpression1295 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
     public static final BitSet FOLLOW_StringLiteral_in_r_primaryExpression1313 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_featureCall_in_r_primaryExpression1321 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_booleanLiteral_in_r_primaryExpression1328 = new BitSet(new long[]{0x0000000000000002L});
@@ -4887,61 +4888,61 @@ public class Xpand3Parser extends Parser {
     public static final BitSet FOLLOW_r_constructorCall_in_r_primaryExpression1356 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_globalVarExpression_in_r_primaryExpression1363 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_paranthesizedExpression_in_r_primaryExpression1370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_r_paranthesizedExpression1384 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_paranthesizedExpression1386 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_paranthesizedExpression1388 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_r_globalVarExpression1403 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_31_in_r_paranthesizedExpression1384 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_paranthesizedExpression1386 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_paranthesizedExpression1388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_r_globalVarExpression1403 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_r_identifier_in_r_globalVarExpression1405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_featureCall1419 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_r_featureCall1421 = new BitSet(new long[]{0x0400000A40003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_parameterList_in_r_featureCall1424 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_featureCall1428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_featureCall1419 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_featureCall1421 = new BitSet(new long[]{0x0800001480003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_parameterList_in_r_featureCall1424 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_featureCall1428 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_type_in_r_featureCall1435 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_collectionExpression_in_r_featureCall1443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_r_listLiteral1455 = new BitSet(new long[]{0x0400000840003800L,0x00001FFFF00020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_listLiteral1457 = new BitSet(new long[]{0x0000000080000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_r_listLiteral1460 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_listLiteral1462 = new BitSet(new long[]{0x0000000080000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_95_in_r_listLiteral1467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_r_constructorCall1478 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_95_in_r_listLiteral1455 = new BitSet(new long[]{0x0800001080003800L,0x00003FFFE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_listLiteral1457 = new BitSet(new long[]{0x0000000100000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_r_listLiteral1460 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_listLiteral1462 = new BitSet(new long[]{0x0000000100000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_96_in_r_listLiteral1467 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_r_constructorCall1478 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_r_simpleType_in_r_constructorCall1480 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_r_booleanLiteral0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_r_nullLiteral1506 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_r_nullLiteral1506 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral1519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral1525 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_r_numberLiteral1527 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral1525 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_r_numberLiteral1527 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral1529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_r_collectionExpression1542 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_r_collectionExpression1546 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_r_collectionExpression1548 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_collectionExpression1550 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_r_collectionExpression1559 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_r_collectionExpression1609 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_identifier_in_r_collectionExpression1612 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_109_in_r_collectionExpression1614 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_collectionExpression1618 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_collectionExpression1620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList1637 = new BitSet(new long[]{0x0000000080000002L});
-    public static final BitSet FOLLOW_31_in_r_declaredParameterList1640 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList1642 = new BitSet(new long[]{0x0000000080000002L});
+    public static final BitSet FOLLOW_101_in_r_collectionExpression1542 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_collectionExpression1546 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_r_collectionExpression1548 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_collectionExpression1550 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_r_collectionExpression1559 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_collectionExpression1609 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_identifier_in_r_collectionExpression1612 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_110_in_r_collectionExpression1614 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_collectionExpression1618 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_collectionExpression1620 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList1637 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_r_declaredParameterList1640 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList1642 = new BitSet(new long[]{0x0000000100000002L});
     public static final BitSet FOLLOW_r_type_in_r_declaredParameter1655 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_r_identifier_in_r_declaredParameter1657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_expression_in_r_parameterList1672 = new BitSet(new long[]{0x0000000080000002L});
-    public static final BitSet FOLLOW_31_in_r_parameterList1676 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF700020F0L});
-    public static final BitSet FOLLOW_r_expression_in_r_parameterList1678 = new BitSet(new long[]{0x0000000080000002L});
+    public static final BitSet FOLLOW_r_expression_in_r_parameterList1672 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_r_parameterList1676 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00041E0L});
+    public static final BitSet FOLLOW_r_expression_in_r_parameterList1678 = new BitSet(new long[]{0x0000000100000002L});
     public static final BitSet FOLLOW_r_collectionType_in_r_type1695 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_r_simpleType_in_r_type1700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_r_collectionType1715 = new BitSet(new long[]{0x0000000000000002L,0x0000000040000000L});
-    public static final BitSet FOLLOW_94_in_r_collectionType1733 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_collectionType1735 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_95_in_r_collectionType1737 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_simpleType1750 = new BitSet(new long[]{0x4000000000000002L});
-    public static final BitSet FOLLOW_62_in_r_simpleType1755 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_simpleType1757 = new BitSet(new long[]{0x4000000000000002L});
+    public static final BitSet FOLLOW_set_in_r_collectionType1715 = new BitSet(new long[]{0x0000000000000002L,0x0000000080000000L});
+    public static final BitSet FOLLOW_95_in_r_collectionType1733 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_collectionType1735 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_96_in_r_collectionType1737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_simpleType1750 = new BitSet(new long[]{0x8000000000000002L});
+    public static final BitSet FOLLOW_63_in_r_simpleType1755 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_simpleType1757 = new BitSet(new long[]{0x8000000000000002L});
     public static final BitSet FOLLOW_Identifier_in_r_identifier1773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_synpred1943 = new BitSet(new long[]{0x0000000000002000L,0x0000000000000070L});
-    public static final BitSet FOLLOW_r_type_in_synpred1945 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_synpred1947 = new BitSet(new long[]{0x0400000840003800L,0x00001FFF70002070L});
+    public static final BitSet FOLLOW_31_in_synpred1943 = new BitSet(new long[]{0x0000000000002000L,0x00000000000000E0L});
+    public static final BitSet FOLLOW_r_type_in_synpred1945 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_synpred1947 = new BitSet(new long[]{0x0800001080003800L,0x00003FFEE00040E0L});
     public static final BitSet FOLLOW_r_castedExpression_in_synpred1949 = new BitSet(new long[]{0x0000000000000002L});
 
 }

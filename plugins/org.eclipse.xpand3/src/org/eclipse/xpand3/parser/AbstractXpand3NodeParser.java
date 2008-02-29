@@ -7,6 +7,7 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 import org.antlr.runtime.tree.TreeAdaptor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.xpand3.node.CompositeNode;
 import org.eclipse.xpand3.node.LeafNode;
 import org.eclipse.xpand3.node.LexedToken;
@@ -20,7 +21,7 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 
 	public AbstractXpand3NodeParser(TokenStream input) {
 		super(input);
-		setTreeAdaptor(new TreeAdaptor(){
+		setTreeAdaptor(new TreeAdaptor() {
 
 			public void addChild(Object t, Object child) {
 			}
@@ -109,7 +110,8 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 			}
 
 			public void setType(Object t, int type) {
-			}});
+			}
+		});
 	}
 
 	protected abstract Set<String> normalizableRules();
@@ -119,7 +121,7 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 		CompositeNode newOne = NodeFactory.eINSTANCE.createCompositeNode();
 		newOne.setRule(rulename);
 		newOne.setAlias(next);
-		next=null;
+		next = null;
 		if (current != null) {
 			current.getChildren().add(newOne);
 		} else {
@@ -127,26 +129,32 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 		}
 		current = newOne;
 	}
-	private String next=null;
+
+	private String next = null;
+
 	@Override
 	protected void assignNextNodeTo(String alias) {
 		this.next = alias;
 	}
 
-	
 	@Override
 	public void ruleLeft(String ruleName) {
 		CompositeNode parent = (CompositeNode) current.eContainer();
-		if (normalizableRules().contains(current.getRule())
-				&& current.getChildren().size() == 1
-				&& (current.getChildren().get(0) instanceof CompositeNode)) {
-			Node child = current.getChildren().get(0);
-			if (parent != null) {
-				int i = parent.getChildren().indexOf(current);
-				parent.getChildren().remove(i);
-				parent.getChildren().add(i, child);
-			} else {
-				rootNode = child;
+		if (normalizableRules().contains(current.getRule())) {
+			EList<Node> children = current.getChildren();
+			if (children.isEmpty() && parent == null) {
+				rootNode = null;
+			} else if (children.size() == 1
+					&& (children.get(0) instanceof CompositeNode)) {
+				Node child = children.get(0);
+				if (parent != null) {
+					int i = parent.getChildren().indexOf(current);
+					parent.getChildren().remove(i);
+					parent.getChildren().add(i, child);
+				} else {
+					children.remove(0);
+					rootNode = child;
+				}
 			}
 		}
 		current = parent;
@@ -168,7 +176,7 @@ public abstract class AbstractXpand3NodeParser extends Xpand3Parser {
 			n.setToken(myToken);
 			myToken.setText(ct.getText());
 			myToken.setStart(ct.getStartIndex());
-			myToken.setEnd(ct.getStopIndex());
+			myToken.setEnd(ct.getStopIndex() + 1);
 			myToken.setLine(ct.getLine());
 		}
 	}

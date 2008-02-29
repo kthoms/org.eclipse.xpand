@@ -12,7 +12,7 @@ public class NodeUtil {
 		if (n.getChildren().isEmpty()) {
 			return -1;
 		}
-		return n.getChildren().get(n.getChildren().size()-1).end();
+		return n.getChildren().get(n.getChildren().size() - 1).end();
 	}
 
 	public static int line(CompositeNode n) {
@@ -29,7 +29,7 @@ public class NodeUtil {
 		}
 		return buff.toString();
 	}
-	
+
 	public static int start(LeafNode ln) {
 		return ln.getToken().getStart();
 	}
@@ -45,16 +45,16 @@ public class NodeUtil {
 	public static String text(LeafNode ln) {
 		return ln.getToken().getText();
 	}
-	
+
 	public static String toString(Node n) {
 		if (n instanceof CompositeNode) {
-			return toString((CompositeNode)n);
+			return toString((CompositeNode) n);
 		} else if (n instanceof LeafNode) {
-			return toString((LeafNode)n);
+			return toString((LeafNode) n);
 		}
 		throw new IllegalArgumentException();
 	}
-	
+
 	public static String toString(CompositeNode n) {
 		String s = indent(n)+(n.getAlias()!=null?n.getAlias()+"=":"")+"Rule: "+n.getRule()+"\n";
 		for (Node node : n.getChildren()) {
@@ -62,22 +62,25 @@ public class NodeUtil {
 		}
 		return s;
 	}
-	
+
 	public static String toString(LeafNode n) {
 		return indent(n)+(n.getAlias()!=null?n.getAlias()+"=":"")+n.getToken().getText()+"\n";
 	}
-	
+
 	private static String indent(Node n) {
-		return n.eContainer()==null ? "" : "\t"+indent((Node) n.eContainer());
+		return n.eContainer() == null ? "" : "\t"
+				+ indent((Node) n.eContainer());
 	}
+
 	public static String serialize(Node n) {
 		if (n instanceof CompositeNode) {
-			return serialize((CompositeNode)n);
+			return serialize((CompositeNode) n);
 		} else if (n instanceof LeafNode) {
-			return serialize((LeafNode)n);
+			return serialize((LeafNode) n);
 		}
 		throw new IllegalArgumentException();
 	}
+
 	public static String serialize(CompositeNode n) {
 		String s = "";
 		for (Node node : n.getChildren()) {
@@ -85,9 +88,9 @@ public class NodeUtil {
 		}
 		return s;
 	}
-	
+
 	public static String serialize(LeafNode n) {
-		return n.getToken().getText()+"\n";
+		return n.getToken().getText() + "\n";
 	}
-	
+
 }

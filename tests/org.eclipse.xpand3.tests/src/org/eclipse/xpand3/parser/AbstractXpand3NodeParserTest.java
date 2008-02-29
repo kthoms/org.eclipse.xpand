@@ -71,8 +71,8 @@ public abstract class AbstractXpand3NodeParserTest extends TestCase {
 		return collectionType;
 	}
 
-	protected CompositeNode checkChildIsIdentifier(CompositeNode parent,
-			int index, String identifierName) {
+	protected CompositeNode checkChildIsIdentifier(Node parent, int index,
+			String identifierName) {
 		CompositeNode identifier = checkChildIsRule(parent, index,
 				"r_identifier", 1);
 		checkChildIsToken(identifier, 0, identifierName);
@@ -80,12 +80,14 @@ public abstract class AbstractXpand3NodeParserTest extends TestCase {
 	}
 
 	protected CompositeNode checkChildIsScopedType(Node parent, int index,
-			String scopeName, String identifierName) {
+			String... scopeName) {
 		CompositeNode scopedType = checkChildIsRule(parent, index,
-				"r_simpleType", 3);
-		checkChildIsIdentifier(scopedType, 0, scopeName);
-		checkChildIsToken(scopedType, 1, "::");
-		checkChildIsIdentifier(scopedType, 2, identifierName);
+				"r_simpleType", 2 * scopeName.length - 1);
+		checkChildIsIdentifier(scopedType, 0, scopeName[0]);
+		for (int i = 1; i < scopeName.length; i++) {
+			checkChildIsToken(scopedType, 2 * i - 1, "::");
+			checkChildIsIdentifier(scopedType, 2 * i, scopeName[i]);
+		}
 		return scopedType;
 	}
 
@@ -126,6 +128,20 @@ public abstract class AbstractXpand3NodeParserTest extends TestCase {
 
 	protected String tag(final String str) {
 		return LG + str + RG;
+	}
+
+	protected CompositeNode checkChildIsSequenceText(Node parent, int index,
+			String textWithoutGuillemots, int numChildren) {
+		CompositeNode sequence = checkChildIsRule(parent, index, "r_sequence",
+				numChildren);
+		return checkChildIsText(sequence, 0, textWithoutGuillemots);
+	}
+
+	protected CompositeNode checkChildIsText(CompositeNode sequence, int index,
+			String textWithoutGuillemots) {
+		CompositeNode text = checkChildIsRule(sequence, index, "r_text", 1);
+		checkChildIsToken(text, 0, RGS + textWithoutGuillemots + LGS);
+		return sequence;
 	}
 
 }

@@ -49,101 +49,200 @@ public class StatementParserTest extends AbstractXpand3NodeParserTest {
 		checkIsRule(expr, "r_definition", 8);
 		checkChildIsToken(expr, 0, LGS);
 		checkChildIsToken(expr, 1, "DEFINE");
+		checkChildIsIdentifier(expr, 2, "test");
 		checkChildIsToken(expr, 3, "FOR");
-		checkChildIsToken(expr, 6, "ENDEFINE");
+		checkChildIsScopedType(expr, 4, "ecore", "EClass");
+		checkChildIsSequenceText(expr, 5, "", 1);
+		checkChildIsToken(expr, 6, "ENDDEFINE");
 		checkChildIsToken(expr, 7, RGS);
 
 	}
-	//
-	// public final void testDoubleDefine() throws Exception {
-	// final Template t = parse(tag("DEFINE test FOR ecore::EClass") +
-	// tag("ENDDEFINE")
-	// + tag("DEFINE test2(String txt) FOR ecore::EClass") + tag("ENDDEFINE"));
-	// assertEquals(2, t.getDefinitions().length);
-	// }
-	//
-	// public final void testMoreComplexDefine() throws Exception {
-	// final Template t = parse(tag("DEFINE test(ecore::EPackage a,String b) FOR
-	// ecore::EClass")
-	// + tag("FILE name+\".txt\"") + "Text und so " + tag("name") + tag("FOREACH
-	// eAllattributes AS attr")
-	// + "Attribute : " + tag("attr.name") + tag("ENDFOREACH") + tag("ENDFILE")
-	// +
-	// tag("ENDDEFINE"));
-	// assertEquals(1, t.getDefinitions().length);
-	// final Definition def = (Definition) t.getDefinitions()[0];
-	// assertEquals("test", def.getName());
-	// assertEquals(2, def.getParams().length);
-	// DeclaredParameter param = def.getParams()[0];
-	// assertEquals("a", param.getName().getValue());
-	// assertEquals("ecore::EPackage", param.getType().getValue());
-	// param = def.getParams()[1];
-	// assertEquals("b", param.getName().getValue());
-	// assertEquals("String", param.getType().getValue());
-	// assertEquals("ecore::EClass", def.getType().getValue());
-	// List<Statement> statements = Arrays.asList(def.getBody());
-	// assertEquals(3, statements.size());
-	// final FileStatement f = (FileStatement) statements.get(1);
-	// final Expression concat = f.getTargetFileName();
-	// assertNotNull(concat);
-	// statements = Arrays.asList(f.getBody());
-	// assertEquals(5, statements.size());
-	// assertEquals("Text und so ", ((TextStatement)
-	// statements.get(0)).getValue());
-	// }
-	//
-	// public final void testImportDeclaration() throws Exception {
-	// Template t;
-	// t = parse(tag("IMPORT org::eclipse::xtend") + tag("IMPORT
-	// org::eclipse::xtend::xpand")
-	// + tag("DEFINE test FOR ecore::EClass") + tag("ENDDEFINE"));
-	// assertEquals(1, t.getDefinitions().length);
-	// assertEquals(2, t.getImports().length);
-	//
-	// }
-	//
-	// public final void testFileStatement() throws Exception {
-	// final Template t = parse(tag("DEFINE test FOR ecore::EClass") + tag("FILE
-	// \"test.txt\" ONCE") + tag("ENDFILE")
-	// + tag("ENDDEFINE"));
-	// assertEquals(1, t.getDefinitions().length);
-	// final FileStatement file = (FileStatement) ((Definition)
-	// t.getDefinitions()[0]).getBody()[1];
-	// assertEquals("ONCE", file.getMode().getValue());
-	// }
-	//
-	// public final void testIfStatement() throws Exception {
-	// final Template t = parse(tag("DEFINE test FOR ecore::EClass") + tag("IF
-	// !true") + tag("ELSEIF false")
-	// + tag("ELSE") + tag("ENDIF") + tag("ENDDEFINE"));
-	// assertEquals(1, t.getDefinitions().length);
-	//
-	// final IfStatement ifSt = (IfStatement) ((Definition)
-	// t.getDefinitions()[0]).getBody()[1];
-	// assertNotNull(ifSt);
-	// assertNotNull(ifSt.getCondition());
-	// assertNotNull(ifSt.getElseIf());
-	// assertNotNull(ifSt.getElseIf().getCondition());
-	// assertNotNull(ifSt.getElseIf().getElseIf());
-	// assertNull(ifSt.getElseIf().getElseIf().getCondition());
-	// }
-	//    
-	// public void testLocation() throws Exception {
-	// String defineStart = tag("DEFINE test FOR ecore::EClass");
-	// String ifStmnt = tag("IF !true") + tag("ELSEIF false")
-	// + tag("ELSE") + tag("ENDIF");
-	// String string = defineStart + ifStmnt + tag("ENDDEFINE");
-	// final Template t = parse(string);
-	// assertEquals(0,t.getStart());
-	// assertEquals(string.length(),t.getEnd());
-	//    	
-	// Definition xpandDefinition = (Definition) t.getDefinitions()[0];
-	// assertEquals(1,xpandDefinition.getStart());
-	// assertEquals(string.length()-1,xpandDefinition.getEnd());
-	//    	
-	// Statement statement = xpandDefinition.getBody()[1];
-	// assertEquals(defineStart.length()+1,statement.getStart());
-	// assertEquals(defineStart.length()+ifStmnt.length()-1,statement.getEnd());
-	// }
 
+	public final void testDoubleDefine() throws Exception {
+		Node file = parse(tag("DEFINE test FOR ecore::EClass")
+				+ tag("ENDDEFINE")
+				+ tag("DEFINE test2(String txt) FOR ecore::EClass")
+				+ tag("ENDDEFINE"));
+		checkIsRule(file, "r_file", 2);
+		CompositeNode expr = checkChildIsRule(file, 0, "r_definition", 8);
+		checkChildIsToken(expr, 0, LGS);
+		checkChildIsToken(expr, 1, "DEFINE");
+		checkChildIsIdentifier(expr, 2, "test");
+		checkChildIsToken(expr, 3, "FOR");
+		checkChildIsScopedType(expr, 4, "ecore", "EClass");
+		checkChildIsSequenceText(expr, 5, "", 1);
+		checkChildIsToken(expr, 6, "ENDDEFINE");
+		checkChildIsToken(expr, 7, RGS);
+
+		CompositeNode expr1 = checkChildIsRule(file, 1, "r_definition", 11);
+		checkChildIsToken(expr1, 0, LGS);
+		checkChildIsToken(expr1, 1, "DEFINE");
+		checkChildIsIdentifier(expr1, 2, "test2");
+		checkChildIsToken(expr1, 3, "(");
+		CompositeNode dpl = checkChildIsRule(expr1, 4,
+				"r_declaredParameterList", 1);
+		CompositeNode dp = checkChildIsRule(dpl, 0, "r_declaredParameter", 2);
+		checkChildIsSimpleType(dp, 0, "String");
+		checkChildIsIdentifier(dp, 1, "txt");
+		checkChildIsToken(expr1, 5, ")");
+		checkChildIsToken(expr1, 6, "FOR");
+		checkChildIsScopedType(expr1, 7, "ecore", "EClass");
+		checkChildIsSequenceText(expr1, 8, "", 1);
+		checkChildIsToken(expr1, 9, "ENDDEFINE");
+		checkChildIsToken(expr1, 10, RGS);
+
+	}
+
+	public final void testMoreComplexDefine() throws Exception {
+		Node expr = parse(tag("DEFINE test(ecore::EPackage a,String b) FOR ecore::EClass")
+				+ tag("FILE name+\".txt\"")
+				+ "Text und so "
+				+ tag("name")
+				+ tag("FOREACH eAllAttributes AS attr")
+				+ "Attribute : "
+				+ tag("attr.name")
+				+ tag("ENDFOREACH")
+				+ tag("ENDFILE")
+				+ tag("ENDDEFINE"));
+		checkIsRule(expr, "r_definition", 11);
+		checkChildIsToken(expr, 0, LGS);
+		checkChildIsToken(expr, 1, "DEFINE");
+		checkChildIsIdentifier(expr, 2, "test");
+		checkChildIsToken(expr, 3, "(");
+		CompositeNode dpl = checkChildIsRule(expr, 4,
+				"r_declaredParameterList", 3);
+		CompositeNode dp0 = checkChildIsRule(dpl, 0, "r_declaredParameter", 2);
+		checkChildIsScopedType(dp0, 0, "ecore", "EPackage");
+		checkChildIsIdentifier(dp0, 1, "a");
+		checkChildIsToken(dpl, 1, ",");
+		CompositeNode dp = checkChildIsRule(dpl, 2, "r_declaredParameter", 2);
+		checkChildIsSimpleType(dp, 0, "String");
+		checkChildIsIdentifier(dp, 1, "b");
+		checkChildIsToken(expr, 5, ")");
+		checkChildIsToken(expr, 6, "FOR");
+		checkChildIsScopedType(expr, 7, "ecore", "EClass");
+		CompositeNode rs = checkChildIsSequenceText(expr, 8, "", 3);
+		CompositeNode fs = checkChildIsRule(rs, 1, "r_fileStatement", 4);
+		checkChildIsToken(fs, 0, "FILE");
+		CompositeNode ae = checkChildIsRule(fs, 1, "r_additiveExpression", 3);
+		checkChildIsSimpleType(ae, 0, "name");
+		checkChildIsToken(ae, 1, "+");
+		checkChildIsStringLiteral(ae, 2, "\".txt\"");
+		CompositeNode s0 = checkChildIsSequenceText(fs, 2, "Text und so ", 5);
+		CompositeNode es = checkChildIsRule(s0, 1, "r_expressionStmt", 1);
+		checkChildIsSimpleType(es, 0, "name");
+		checkChildIsText(s0, 2, "");
+		CompositeNode fes = checkChildIsRule(s0, 3, "r_foreachStatement", 6);
+		checkChildIsToken(fes, 0, "FOREACH");
+		checkChildIsSimpleType(fes, 1, "eAllAttributes");
+		checkChildIsToken(fes, 2, "AS");
+		checkChildIsIdentifier(fes, 3, "attr");
+		CompositeNode s1 = checkChildIsSequenceText(fes, 4, "Attribute : ", 3);
+		CompositeNode es1 = checkChildIsRule(s1, 1, "r_expressionStmt", 1);
+		CompositeNode ie = checkChildIsRule(es1, 0, "r_infixExpression", 3);
+		checkChildIsSimpleType(ie, 0, "attr");
+		checkChildIsToken(ie, 1, ".");
+		checkChildIsSimpleType(ie, 2, "name");
+		checkChildIsText(s1, 2, "");
+		checkChildIsToken(fes, 5, "ENDFOREACH");
+		checkChildIsText(s0, 4, "");
+		checkChildIsToken(fs, 3, "ENDFILE");
+		checkChildIsText(rs, 2, "");
+		checkChildIsToken(expr, 9, "ENDDEFINE");
+		checkChildIsToken(expr, 10, RGS);
+	}
+
+	public final void testImportDeclaration() throws Exception {
+		Node expr = parse(tag("IMPORT org::eclipse::xtend")
+				+ tag("IMPORT org::eclipse::xtend::xpand")
+				+ tag("DEFINE test FOR ecore::EClass") + tag("ENDDEFINE"));
+		checkIsRule(expr, "r_file", 3);
+		CompositeNode i0 = checkChildIsRule(expr, 0, "r_nsImport", 4);
+		checkChildIsToken(i0, 0, LGS);
+		checkChildIsToken(i0, 1, "IMPORT");
+		checkChildIsScopedType(i0, 2, "org", "eclipse", "xtend");
+		checkChildIsToken(i0, 3, RGS);
+
+		CompositeNode i1 = checkChildIsRule(expr, 1, "r_nsImport", 4);
+		checkChildIsToken(i1, 0, LGS);
+		checkChildIsToken(i1, 1, "IMPORT");
+		checkChildIsScopedType(i1, 2, "org", "eclipse", "xtend", "xpand");
+		checkChildIsToken(i1, 3, RGS);
+
+		CompositeNode d = checkChildIsRule(expr, 2, "r_definition", 8);
+		checkChildIsToken(d, 0, LGS);
+		checkChildIsToken(d, 1, "DEFINE");
+		checkChildIsIdentifier(d, 2, "test");
+		checkChildIsToken(d, 6, "ENDDEFINE");
+		checkChildIsToken(d, 7, RGS);
+	}
+
+	public final void testFileStatement() throws Exception {
+		Node expr = parse(tag("DEFINE test FOR ecore::EClass")
+				+ tag("FILE \"test.txt\" ONCE") + tag("ENDFILE")
+				+ tag("ENDDEFINE"));
+		checkIsRule(expr, "r_definition", 8);
+		checkChildIsToken(expr, 0, LGS);
+		checkChildIsToken(expr, 1, "DEFINE");
+		checkChildIsIdentifier(expr, 2, "test");
+		checkChildIsToken(expr, 3, "FOR");
+		checkChildIsScopedType(expr, 4, "ecore", "EClass");
+		CompositeNode s = checkChildIsSequenceText(expr, 5, "", 3);
+		CompositeNode fs = checkChildIsRule(s, 1, "r_fileStatement", 5);
+		checkChildIsToken(fs, 0, "FILE");
+		checkChildIsStringLiteral(fs, 1, "\"test.txt\"");
+		checkChildIsIdentifier(fs, 2, "ONCE");
+		checkChildIsSequenceText(fs, 3, "", 1);
+		checkChildIsToken(fs, 4, "ENDFILE");
+		checkChildIsText(s, 2, "");
+		checkChildIsToken(expr, 6, "ENDDEFINE");
+		checkChildIsToken(expr, 7, RGS);
+	}
+
+	public final void testIfStatement() throws Exception {
+		Node expr = parse(tag("DEFINE test FOR ecore::EClass")
+				+ tag("IF !true") + tag("ELSEIF false") + tag("ELSE")
+				+ tag("ENDIF") + tag("ENDDEFINE"));
+		checkIsRule(expr, "r_definition", 8);
+		checkChildIsToken(expr, 0, LGS);
+		checkChildIsToken(expr, 1, "DEFINE");
+		checkChildIsIdentifier(expr, 2, "test");
+		checkChildIsToken(expr, 3, "FOR");
+		checkChildIsScopedType(expr, 4, "ecore", "EClass");
+		CompositeNode s = checkChildIsSequenceText(expr, 5, "", 3);
+		CompositeNode is = checkChildIsRule(s, 1, "r_ifStatement", 6);
+		checkChildIsToken(is, 0, "IF");
+		CompositeNode ue = checkChildIsRule(is, 1, "r_unaryExpression", 2);
+		checkChildIsToken(ue, 0, "!");
+		checkChildIsTrueLiteral(ue, 1);
+		checkChildIsSequenceText(is, 2, "", 1);
+		CompositeNode eis = checkChildIsRule(is, 3, "r_elseIfStatement", 3);
+		checkChildIsToken(eis, 0, "ELSEIF");
+		checkChildIsFalseLiteral(eis, 1);
+		checkChildIsSequenceText(eis, 2, "", 1);
+		CompositeNode es = checkChildIsRule(is, 4, "r_elseStatement", 2);
+		checkChildIsToken(es, 0, "ELSE");
+		checkChildIsSequenceText(es, 1, "", 1);
+		checkChildIsText(s, 2, "");
+		checkChildIsToken(expr, 6, "ENDDEFINE");
+		checkChildIsToken(expr, 7, RGS);
+	}
+
+	public void testLocation() throws Exception {
+		String defineStart = tag("DEFINE test FOR ecore::EClass");
+		String ifStmnt = tag("IF !true") + tag("ELSEIF false") + tag("ELSE")
+				+ tag("ENDIF");
+		String string = defineStart + ifStmnt + tag("ENDDEFINE");
+		CompositeNode expr = parse(string);
+		assertEquals(0, expr.start());
+		assertEquals(string.length(), expr.end());
+
+		assertEquals(1, expr.getChildren().get(1).start());
+		assertEquals(string.length() - 1, expr.getChildren().get(6).end());
+
+		assertEquals(defineStart.length() - 1, expr.getChildren().get(5)
+				.start());
+		assertEquals(defineStart.length() + ifStmnt.length() + 1, expr
+				.getChildren().get(5).end());
+	}
 }

@@ -2,13 +2,13 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="org.eclipse.xtend.middleend.MiddleEnd">
+         point="org.eclipse.xtend.backend.MiddleEnd">
       <element_1
             class="org.eclipse.xtend.middleend.old.plugin.OldXtendRegistryFactory">
       </element_1>
    </extension>
    <extension
-         point="org.eclipse.xtend.middleend.MiddleEnd">
+         point="org.eclipse.xtend.backend.MiddleEnd">
       <element_1
             class="org.eclipse.xtend.middleend.old.plugin.OldXpandRegistryFactory">
       </element_1>

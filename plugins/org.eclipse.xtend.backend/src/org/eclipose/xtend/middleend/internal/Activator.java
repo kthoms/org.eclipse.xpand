@@ -76,7 +76,7 @@ public class Activator implements BundleActivator {
         _middleEndContributions.clear ();
 
         try {
-            final IConfigurationElement[] confEl = RegistryFactory.getRegistry().getConfigurationElementsFor ("org.eclipse.xtend.middleend.MiddleEnd");
+            final IConfigurationElement[] confEl = RegistryFactory.getRegistry().getConfigurationElementsFor ("org.eclipse.xtend.backend.MiddleEnd");
 
             for (IConfigurationElement curEl: confEl) {
                 final Object o = curEl.createExecutableExtension ("class");

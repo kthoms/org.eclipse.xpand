@@ -4,5 +4,4 @@ Bundle-Name: Test Plug-in
 Bundle-SymbolicName: org.eclipse.xtend.backend.test
 Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.xtend.backend,
- org.junit4,
- org.eclipse.xtend.middleend
+ org.junit4

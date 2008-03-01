@@ -1,9 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Backend Plug-in (Incubation)
-Bundle-SymbolicName: org.eclipse.xtend.backend
+Bundle-SymbolicName: org.eclipse.xtend.backend;singleton:=true
 Bundle-Version: 0.7.0
-Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
+Export-Package: org.eclipose.xtend.middleend,
+ org.eclipose.xtend.middleend.internal;x-internal:=true,
+ org.eclipose.xtend.middleend.plugins,
+ org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.aop,
  org.eclipse.xtend.backend.aop.internal;x-internal:=true,
  org.eclipse.xtend.backend.common,
@@ -19,4 +22,8 @@ Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.commo
  org.eclipse.xtend.backend.types.java.internal;x-internal:=true,
  org.eclipse.xtend.backend.util
 Require-Bundle: org.apache.commons.logging,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.eclipse.osgi,
+ org.eclipse.equinox.registry
+Eclipse-LazyStart: true
+Bundle-Activator: org.eclipose.xtend.middleend.internal.Activator

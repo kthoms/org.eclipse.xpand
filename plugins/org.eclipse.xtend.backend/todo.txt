@@ -1,26 +1,26 @@
 todo
 ----
-registry of handlers for different kinds of resources (including classes and byte code (?)); classes need way to express their fdc!!! --> rethink fdc concept?
+merge middleend and backend
+merge emftypes into backend?
+
+"compiled" LangueSpecificMiddleEnd
+move to m2t.common
+
+compiler / registry of handlers for different kinds of resources (including classes and byte code (?)); classes need way to express/serialize their fdc!!! --> rethink fdc concept?
   --> via extension point (with a static "priority" getter to allow ordering)? Compiled first?
-make the concept of the "XyzRegistry" explicit, common abstraction --> interoperability of languages
-globalVars rauswerfen? --> ContributionStateContext?
 
 JavaBeansType: Interfaces als Supertypen
-UML type system
-AOP
 Profiler
 Protected Region Resolver
+Classic
 
 complete syslib: toUpper etc., List.sortBy(closure)
-new String --> ""
 
 static properties; enums
 
 kommentieren
 
 dead code elimination?
-
-isInstance
 
 syslib-Funktion: allFunctions (List<Type>) --> auch Funktionen ohne Parameter zur Laufzeit 
   finden (oder built-in? --> syslib-Aufruf verlässt den Scope)
@@ -36,23 +36,12 @@ Initialisierung der Functions mit FunctionDefContext: Nicht zwingend eager
 zusätzlich zu statisch unterschiedenem this / Collection-Sonderfall außerdem
   den generischen Fall --> aber nur dann (Ref-Typ "Object"), wenn es statisch
   nicht entscheidbar ist. --> volle Rückwärtskompatibilität
-globale Type-Registry für alle zurückgegebenen Objekte --> nach beliebigem Rumreichen
-  kann man an ihnen zumindest die eingebauten Operations aufrufen, auf ihre Properties
-  zugreifen
-
-Konzept für stufenweises Überschreiben - syslib --> built-in operation --> Extension (oder so)
 
 Debugger: ein Source-Primitive kann aus mehreren Runtime-Primitives bestehen - in der RT 
 	markieren, wo neuer Source-Primitive beginnt? Oder einfach Mapping in Rückrichtung 
 	und vergleichen?
 tail recursion
 replace/add von Extensions im dynamischen Scope
-
-equals auf Type-Implementierungen
-
-move to m2t.common
-
-JET support: JET templates are treated just like any other Java Bean
 
 Unterstützung
 -------------
@@ -69,6 +58,7 @@ Collection.remove, Collection.removeAll return a boolean instead of the collecti
 many collection operations (e.g. "flatten") retain the collection type now instead of always returning a list
 renamed "flatten" to "flattenedCopy"
 removed Collection.forAll (--> duplicate for notExists) and List.sortBy (very special functionality)
+JET support: JET templates are treated just like any other Java Bean
 
 Ideen für die Zukunft
 ---------------------
@@ -103,3 +93,11 @@ potential bug - EfficientLazyString is mutable || return value from cached funct
   flag "isImmutable" in EfficientLazyString; static method "concat" insetad of "append" to treat this transparently
 logNullDeRef: log call stack including call parameters - runtime flag to log "verbosely"?
 Map als Builtin-Typ
+globalVars rauswerfen? --> ContributionStateContext?
+UML type system
+equals auf Type-Implementierungen
+new String --> ""
+Optimierung: recursiveSupertypes initial ermitteln, speichern, bereitstellen & f. isAssignableFrom verwenden
+AOP
+Check
+make the concept of the "XyzRegistry" explicit, common abstraction --> interoperability of languages

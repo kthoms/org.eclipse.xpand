@@ -136,7 +136,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         for (String name: wfContext.getSlotNames())
             variables.put (name, wfContext.get (name));
 
-        XpandBackendFacade.executeStatement (code, code, metaModels, variables, _outlets, _advice);
+        XpandBackendFacade.executeStatement (code, _fileEncoding, metaModels, variables, _outlets, _advice);
     }
 
     public void addOutlet (Outlet outlet) {

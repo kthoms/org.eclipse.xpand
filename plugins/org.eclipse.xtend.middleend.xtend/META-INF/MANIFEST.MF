@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xtend Plug-in
+Bundle-SymbolicName: org.eclipse.xtend.middleend.xtend;singleton:=true
+Bundle-Version: 1.0.0
+Export-Package: org.eclipse.xtend.middleend.xtend,
+ org.eclipse.xtend.middleend.xtend.internal;x-friends:="org.eclipse.xtend.middleend.xpand",
+ org.eclipse.xtend.middleend.xtend.internal.xtend;x-internal:=true,
+ org.eclipse.xtend.middleend.xtend.internal.xtendlib;x-friends:="org.eclipse.xtend.middleend.xpand",
+ org.eclipse.xtend.middleend.xtend.plugin
+Require-Bundle: org.eclipse.xtend.backend,
+ org.eclipse.xtend,
+ org.apache.commons.logging,
+ org.eclipse.emf.mwe.core,
+ org.eclipse.emf.ecore,
+ org.eclipse.xtend.typesystem.emf,
+ org.eclipse.xpand

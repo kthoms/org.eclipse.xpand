@@ -19,7 +19,9 @@ import java.util.Set;
 
 import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
+import org.eclipse.internal.xpand2.ast.Advice;
 import org.eclipse.internal.xpand2.ast.Template;
+import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.xpand2.XpandExecutionContext;
 import org.eclipse.xpand2.XpandUtil;
@@ -56,7 +58,8 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
      * all functions actually defined in a given compilation unit
      */
     private final Map<String, List<NamedFunction>> _functionsByResource = new HashMap <String, List<NamedFunction>>();
-    
+
+    private final Map<String, List<AroundAdvice>> _adviceByResource = new HashMap <String, List<AroundAdvice>> ();
 
     private FunctionDefContextInternal getFunctionDefContext (String xtendName) {
         return _functionDefContexts.get (OldHelper.normalizeXtendResourceName (xtendName));
@@ -108,6 +111,11 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
             defined.add (definitionFactory.create (ext, fdc, referenced));
         
         _functionsByResource.put (xpandFile, defined);
+
+        final List<AroundAdvice> newAdvice = new ArrayList<AroundAdvice>();
+        for (XpandAdvice a: file.getAdvices()) 
+            newAdvice.add (definitionFactory.create ((Advice) a, referenced, fdc));
+        _adviceByResource.put(xpandResourceName, newAdvice);
         
         // make sure all imported resources are registered as well
         for (String imported: file.getImportedExtensions()) 
@@ -124,6 +132,7 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
         for (String xpandFileName: xpandFileNames)
             for (NamedFunction f: _middleEnd.getFunctions (xpandFileName).getPublicFunctions())
                 fdc.register (f, false);
+        
     }
 
 
@@ -151,10 +160,9 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
 
 
     public List<AroundAdvice> getContributedAdvice (String resourceName) {
-        //TODO Xpand advice
-        return new ArrayList<AroundAdvice>();
+        registerXpandFile (resourceName);
+        return _adviceByResource.get (OldHelper.normalizeXpandResourceName (resourceName));
     }
-
 
     public String getName () {
         return "Xpand";

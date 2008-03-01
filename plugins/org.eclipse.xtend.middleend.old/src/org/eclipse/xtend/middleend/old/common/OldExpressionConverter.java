@@ -20,6 +20,7 @@ import org.eclipse.internal.xtend.expression.ast.Case;
 import org.eclipse.internal.xtend.expression.ast.ChainExpression;
 import org.eclipse.internal.xtend.expression.ast.CollectionExpression;
 import org.eclipse.internal.xtend.expression.ast.ConstructorCallExpression;
+import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.GlobalVarExpression;
@@ -39,9 +40,15 @@ import org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ListTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.SetTypeImpl;
+import org.eclipse.xtend.backend.aop.AdviceParamType;
+import org.eclipse.xtend.backend.aop.AroundAdvice;
+import org.eclipse.xtend.backend.aop.ExecutionPointcut;
+import org.eclipse.xtend.backend.aop.Pointcut;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.expr.AndExpression;
 import org.eclipse.xtend.backend.expr.CreateUncachedExpression;
 import org.eclipse.xtend.backend.expr.HidingLocalVarDefExpression;
@@ -64,6 +71,7 @@ import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.Pair;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.middleend.old.internal.xtendlib.XtendLibNames;
 import org.eclipse.xtend.typesystem.StaticProperty;
@@ -71,7 +79,7 @@ import org.eclipse.xtend.typesystem.Type;
 
 
 /**
- * converts a single expression
+ * converts a single expression or advice
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
@@ -84,6 +92,28 @@ public final class OldExpressionConverter {
         _typeConverter = typeConverter;
         _ctx = ctx;
         _extensionName = extensionName;
+    }
+    
+    private static final List<String> _adviceLocalVarNames = Arrays.asList (SyntaxConstants.THIS_JOINPOINT, SyntaxConstants.THIS_JOINPOINT_STATICPART);
+    
+    public List<String> getAdviceLocalVarNames () {
+        return _adviceLocalVarNames;
+    }
+    
+    public List<Type> getAdviceLocalVarTypes (TypeSystem ts) {
+        return Arrays.asList (ts.getStringType(), ts.getStringType()); // any type other than Object will do - as a hint for the right optimizations
+    }
+    
+    private static final AdviceParamType _wildCardParamType = new AdviceParamType (ObjectType.INSTANCE, true);
+
+    public AroundAdvice convertAdvice (ExpressionBase body, String namePattern, List<DeclaredParameter> params, boolean hasVarArgs, FunctionDefContext fdc) {
+        final List <Pair <String, AdviceParamType>> paramTypes = new ArrayList <Pair <String, AdviceParamType>> ();
+        for (DeclaredParameter dp: params)
+            paramTypes.add (new Pair <String, AdviceParamType> (dp.getName().getValue(), new AdviceParamType (_typeConverter.convertToBackendType (dp.getType()), true)));
+
+        final Pointcut pointcut = new ExecutionPointcut (namePattern, paramTypes, hasVarArgs, _wildCardParamType);
+
+        return new AroundAdvice (body, pointcut, false, fdc);
     }
     
     public ExpressionBase convert (Expression expr) {

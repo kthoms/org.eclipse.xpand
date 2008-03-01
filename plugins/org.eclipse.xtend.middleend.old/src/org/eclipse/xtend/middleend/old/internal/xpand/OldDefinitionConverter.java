@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.internal.xpand2.ast.Advice;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.ErrorStatement;
 import org.eclipse.internal.xpand2.ast.ExpandStatement;
@@ -35,6 +36,7 @@ import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.xpand2.XpandExecutionContext;
 import org.eclipse.xpand2.output.Outlet;
+import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
@@ -89,6 +91,27 @@ public final class OldDefinitionConverter {
     }
     
     
+    public AroundAdvice create (Advice a, Set<XpandDefinitionName> referencedDefinitions, FunctionDefContext fdc) {
+        final XpandExecutionContext oldCtx = _ctx;
+        
+        try {
+            final OldExpressionConverter exprConv = new OldExpressionConverter (_ctx, _typeConverter, "<around>");
+
+            _ctx = (XpandExecutionContext) _ctx.cloneWithoutVariables();
+            
+            final List<String> localVarNames = exprConv.getAdviceLocalVarNames();
+            final List<Type> localVarTypes = exprConv.getAdviceLocalVarTypes (oldCtx);
+            for (int i=0; i<localVarNames.size(); i++)
+                _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (localVarNames.get(i), localVarTypes.get(i)));
+        
+            final ExpressionBase body = convertStatementSequence (a.getBody(), a, referencedDefinitions);
+            return exprConv.convertAdvice (body, a.getName(), Arrays.asList (a.getParams()), a.isWildcardParams(), fdc);
+        }
+        finally {
+            _ctx = oldCtx;
+        }
+    }
+    
     /**
      * converts an extension to a function, taking care of mutual registration with its fdc
      */
@@ -107,7 +130,6 @@ public final class OldDefinitionConverter {
         throw new IllegalArgumentException ("unsupported definition type " + def.getClass().getName());
     }
 
-    //TODO imported namespaces (probably one level up)
     
     private Function createNormalDefinition (Definition def, FunctionDefContext fdc, Set<XpandDefinitionName> referencedDefinitions) {
         final XpandExecutionContext oldCtx = _ctx;
@@ -340,8 +362,6 @@ public final class OldDefinitionConverter {
         
         final ExpressionBase outletName = new LiteralExpression ((stmt.getOutletName() != null) ? stmt.getOutletName() : FileIoOperations.DEFAULT_OUTLET_NAME, getSourcePos(stmt));
         final ExpressionBase append = new LiteralExpression (outlet.isAppend(), getSourcePos(stmt));
-        
-        //TODO register the outlets
         
         final List<ExpressionBase> emptyParamList = Collections.emptyList();
         final ExpressionBase initIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_INIT, emptyParamList, false, getSourcePos (stmt));

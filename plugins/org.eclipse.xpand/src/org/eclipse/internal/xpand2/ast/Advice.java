@@ -50,6 +50,10 @@ public class Advice extends AbstractDefinition implements XpandAdvice {
 
 	private Pattern p = null;
 
+	public boolean isWildcardParams () {
+	    return wildParams;
+	}
+	
 	public boolean matches(final XpandDefinition def, XpandExecutionContext ctx) {
 		if (p == null) {
 			p = Pattern.compile(getName().replaceAll("\\*", ".*"));

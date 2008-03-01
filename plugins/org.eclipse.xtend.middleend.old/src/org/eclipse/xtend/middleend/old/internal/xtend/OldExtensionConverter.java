@@ -12,21 +12,16 @@ package org.eclipse.xtend.middleend.old.internal.xtend;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.CreateExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.ExpressionExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.JavaExtensionStatement;
-import org.eclipse.xtend.backend.aop.AdviceParamType;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
-import org.eclipse.xtend.backend.aop.ExecutionPointcut;
-import org.eclipse.xtend.backend.aop.Pointcut;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
@@ -38,8 +33,6 @@ import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
-import org.eclipse.xtend.backend.types.builtin.ObjectType;
-import org.eclipse.xtend.backend.util.Pair;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
@@ -63,26 +56,11 @@ public final class OldExtensionConverter {
         _typeConverter = typeConverter;
     }
     
-    private static final AdviceParamType _wildCardParamType = new AdviceParamType (ObjectType.INSTANCE, true);
-    
     public AroundAdvice create (Around around, FunctionDefContext fdc) {
-        final List<String> localVarNames = Arrays.asList (SyntaxConstants.THIS_JOINPOINT, SyntaxConstants.THIS_JOINPOINT_STATICPART);
-        final List<Type> localVarTypes = Arrays.asList (_ctx.getStringType(), _ctx.getStringType()); // any type other than Object will do - as a hint for the right optimizations
-        final ExpressionBase body = convertExpression (around.getExpression(), localVarNames, localVarTypes, "<around>");
-
-        final String namePattern = around.getPointCut().getValue();
-        
-        final List <Pair <String, AdviceParamType>> paramTypes = new ArrayList <Pair <String, AdviceParamType>> ();
-        for (DeclaredParameter dp: around.getParams())
-            paramTypes.add (new Pair <String, AdviceParamType> (dp.getName().getValue(), new AdviceParamType (_typeConverter.convertToBackendType (dp.getType()), true)));
-        
-        final boolean hasVarArgs = around.isWildparams(); 
-        
-        final Pointcut pointcut = new ExecutionPointcut (namePattern, paramTypes, hasVarArgs, _wildCardParamType);
-        
-        return new AroundAdvice (body, pointcut, false, fdc);
-    }
-    
+        final OldExpressionConverter exprConv = new OldExpressionConverter (_ctx, _typeConverter, "<around>");
+        final ExpressionBase body = convertExpression (around.getExpression(), exprConv.getAdviceLocalVarNames(), exprConv.getAdviceLocalVarTypes(_ctx), "<around>");
+        return exprConv.convertAdvice (body, around.getPointCut().getValue(), around.getParams(), around.isWildparams(), fdc);
+    }    
     
     /**
      * converts an extension to a function, taking care of mutual registration with its fdc

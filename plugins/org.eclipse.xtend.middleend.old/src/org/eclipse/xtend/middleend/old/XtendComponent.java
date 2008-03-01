@@ -11,9 +11,7 @@ Contributors:
 package org.eclipse.xtend.middleend.old;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -31,22 +29,17 @@ import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
  */
 public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 
-//    private final Log _log = LogFactory.getLog(getClass());
-
-    
-    private List<String> _extensionAdvices = new ArrayList<String>();
-
-    public void addExtensionAdvice (String resourceName) {
-		if ( !_extensionAdvices.contains (resourceName) ) 
-			_extensionAdvices.add (resourceName );
-	}
-
     /** Stores the value of the 'invoke' property. Needed for error analysis. */ 
     private String _invokeExpression;
     String _extensionFile = null;
     private String _expression = null;
     private String _outputSlot = WorkflowContext.DEFAULT_SLOT;
+    
+    private String _fileEncoding = null;
 
+    public void setFileEncoding (String fileEncoding) {
+        _fileEncoding = fileEncoding;
+    }
     
     @Override
     public String getLogMessage() {
@@ -75,11 +68,6 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
             return;
         }
         
-        final List<String> adviceResources = new ArrayList<String>();
-        for (String rawAdvice : _extensionAdvices) 
-            for (String a: rawAdvice.split (","))
-                adviceResources.add (a.trim());
-        
         final Map<String, Object> localVars = new HashMap<String, Object> ();
         for (String slotName: ctx.getSlotNames())
             localVars.put (slotName, ctx.get (slotName));
@@ -88,8 +76,7 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
         for (GlobalVarDef gvd: globalVarDefs)
             globalVars.put (gvd.getName(), gvd.getValue());
         
-        //TODO allow file encoding configuration
-        final Object result = XtendBackendFacade.evaluateExpression (_expression, _extensionFile, null, metaModels, localVars, globalVars, adviceResources);
+        final Object result = XtendBackendFacade.evaluateExpression (_expression, _extensionFile, _fileEncoding, metaModels, localVars, globalVars, _advice);
         ctx.set (_outputSlot, result);
     }
 

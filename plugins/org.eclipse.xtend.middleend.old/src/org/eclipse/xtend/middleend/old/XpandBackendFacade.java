@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -37,7 +38,6 @@ import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
@@ -61,7 +61,6 @@ import org.eclipse.xtend.typesystem.MetaModel;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class XpandBackendFacade {
-    private final String _xpandFile;
     private final MiddleEnd _middleEnd;
 
     private final String _fileEncoding;
@@ -86,7 +85,6 @@ public final class XpandBackendFacade {
     
     /**
      * This method executes Xpand code that is passed in as a string, script language style.<br>
-     * This method executes Xpand code that is passed in as a string, script language style.<br>
      * 
      * There are two restrictions. Firstly, no DEFINEs are allowed - the string that is passed in must be a valid body for a DEFINE. Never
      *  mind the "parameters" - the "variables" parameter defines all variables that will be defined during execution. Use "this" as a 
@@ -98,18 +96,34 @@ public final class XpandBackendFacade {
      * Both the "variables" and "outlets" parameter may be null.
      */
     public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets) {
-        return createForFile (null, fileEncoding, mms, outlets).executeStatement (code, variables);
+        return executeStatement(code, fileEncoding, mms, variables, outlets, null);
     }
-        
-    public Object executeStatement (String code, Map<String, Object> variables) {
+
+    /**
+     * This method executes Xpand code that is passed in as a string, script language style.<br>
+     * 
+     * There are two restrictions. Firstly, no DEFINEs are allowed - the string that is passed in must be a valid body for a DEFINE. Never
+     *  mind the "parameters" - the "variables" parameter defines all variables that will be defined during execution. Use "this" as a 
+     *  variable name to specify the variable that is implicitly bound as the "special" parameter passed to a definition.<br>
+     *  
+     * Secondly, no IMPORT or EXTENSION statements are possible. So types must be referenced by their fully qualified names, and no calls
+     *  to extensions are possible. Calls to other templates that are available as files are possible, just as you would expect.<br>
+     *  
+     * The "variables", "outlets" and "advice" parameters parameter may be null.
+     */
+    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, List<String> advice) {
+        return createForFile (fileEncoding, mms, outlets).executeStatement (code, variables, advice);
+    }
+
+    public Object executeStatement (String code, Map<String, Object> variables, List<String> advice) {
         if (variables == null)
             variables = new HashMap<String, Object> ();
+        if (advice == null)
+            advice = new ArrayList<String> ();
         
         final Template tpl = XpandParseFacade.file (new StringReader (XpandTokens.LT + "DEFINE dUmMy FOR dUmMy" + XpandTokens.RT + code + XpandTokens.RT + XpandTokens.LT + "ENDDEFINE" + XpandTokens.RT), null);
         final Statement[] statements = ((Definition) tpl.getDefinitions()[0]).getBody();
 
-        System.err.println (_fileEncoding);
-        
         XpandExecutionContext ctx = createXpandExecutionContext (_fileEncoding, _mms, _outlets);
         for (String varName: variables.keySet())
             ctx = (XpandExecutionContext) ctx.cloneWithVariable (new Variable (varName, ctx.getType (variables.get (varName))));
@@ -131,7 +145,7 @@ public final class XpandBackendFacade {
         return converted.evaluate (backendCtx);
     }
     
-    public static void registerOutlets (ExecutionContext ctx, Collection<Outlet> outlets) {
+    private static void registerOutlets (ExecutionContext ctx, Collection<Outlet> outlets) {
         for (Outlet oldOutlet: outlets) {
             final FileOutlet newOutlet = new FileOutlet ();
             newOutlet.setAppend (oldOutlet.isAppend());
@@ -225,8 +239,8 @@ public final class XpandBackendFacade {
         }
     }
     
-    public static XpandBackendFacade createForFile (String xpandFilename, String fileEncoding, Collection<MetaModel> mms, Collection <Outlet> outlets) {
-        return new XpandBackendFacade (xpandFilename, fileEncoding, mms, outlets);
+    public static XpandBackendFacade createForFile (String fileEncoding, Collection<MetaModel> mms, Collection <Outlet> outlets) {
+        return new XpandBackendFacade (fileEncoding, mms, outlets);
     }
     
     
@@ -255,28 +269,21 @@ public final class XpandBackendFacade {
         return result;
     }
 
-    
-    private XpandBackendFacade (String xpandFilename, String fileEncoding, Collection<MetaModel> mms, Collection <Outlet> outlets) {
+    private XpandBackendFacade (String fileEncoding, Collection<MetaModel> mms, Collection <Outlet> outlets) {
         if (outlets == null)
             outlets = new ArrayList<Outlet> ();
 
-        _xpandFile = OldHelper.normalizeXpandResourceName (xpandFilename);
+        //TODO replace with version without OSGi dependency!
+        //TODO externalize middleend initialization into the workflow!
         _middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
         
         _fileEncoding = fileEncoding;
         _mms = mms;
         _outlets = outlets;
     }
-    
-    public Collection<NamedFunction> getContributedFunctions () {
-        return _middleEnd.getFunctions(_xpandFile).getPublicFunctions();
-    }
-    
-    public FunctionDefContext getFunctionDefContext () {
-        if (_xpandFile == null)
-            return new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
-        
-        return _middleEnd.getFunctions (_xpandFile);
+
+    public void applyAdvice (String resourceName) {
+        _middleEnd.applyAdvice (resourceName);
     }
 }
 

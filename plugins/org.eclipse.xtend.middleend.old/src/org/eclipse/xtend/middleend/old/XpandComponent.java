@@ -41,9 +41,7 @@ import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
-    //TODO genPath, srcPath
     //TODO profiler
-    //TODO advice / AOP
     
     private String _genPath = null;
     private String _srcPath = null;
@@ -52,6 +50,8 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
     private String _fileEncoding = null;
     private boolean _automaticHyphens = false;
     private Output _output = null;
+
+    private final List<Outlet> _outlets = new ArrayList<Outlet>();
 
     private List<PostProcessor> _postprocessors = new ArrayList <PostProcessor>();
     private List<Outlet> _initializedOutlets = new ArrayList<Outlet> ();
@@ -136,13 +136,11 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         for (String name: wfContext.getSlotNames())
             variables.put (name, wfContext.get (name));
 
-        XpandBackendFacade.executeStatement (code, _fileEncoding, metaModels, variables, outlets);
+        XpandBackendFacade.executeStatement (code, code, metaModels, variables, _outlets, _advice);
     }
 
-    private final List<Outlet> outlets = new ArrayList<Outlet>();
-
     public void addOutlet (Outlet outlet) {
-        outlets.add(outlet);
+        _outlets.add(outlet);
     }
     
     public void setOutput (Output output) {
@@ -160,10 +158,10 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         return _output;
     }
 
-
+    
     private List<Outlet> getInitializedOutlets() {
         if (_initializedOutlets.isEmpty()) {
-            final List<Outlet> result = new ArrayList<Outlet> (outlets);
+            final List<Outlet> result = new ArrayList<Outlet> (_outlets);
             if (result.isEmpty()) {
                 if (_genPath != null) { // backward compatibility
                     result.add (new Outlet (false, _fileEncoding, null, true, _genPath));
@@ -205,7 +203,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         if (_genPath == null && getInitializedOutlets().isEmpty()) 
             issues.addError(this, "You need to configure at least one outlet!");
 
-        if ((_genPath != null || _srcPath != null) && !outlets.isEmpty()) 
+        if ((_genPath != null || _srcPath != null) && !_outlets.isEmpty()) 
             issues.addWarning(this, "'genPath' is ignored since you have specified outlets!");
         
         int defaultOutlets = 0;

@@ -39,6 +39,7 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
     
     private List<String> extensionAdvices = new ArrayList<String>();
 
+    @Override
     public void addExtensionAdvice(String extensionAdvices) {
 		if ( !this.extensionAdvices.contains(extensionAdvices) ) 
 			this.extensionAdvices.add( extensionAdvices );

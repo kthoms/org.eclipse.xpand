@@ -35,6 +35,33 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends
 
 	protected final List<GlobalVarDef> globalVarDefs = new ArrayList<GlobalVarDef>();
 
+    protected final List<String> _advice = new ArrayList<String>();
+
+    public void addAdvice (String advice) {
+        for (String singleAdvice: advice.split (",")) {
+            singleAdvice = singleAdvice.trim();
+            if (singleAdvice.length() == 0)
+                continue;
+            
+            if (!_advice.contains (singleAdvice)) 
+                _advice.add (singleAdvice);
+        }
+    }
+    
+    public void addAdvices (String advice) {
+        addAdvices (advice);
+    }
+    
+    public void addExtensionAdvice (String advice) {
+        addAdvice (advice);
+    }
+
+    public void addExtensionAdvices (String advice) {
+        addExtensionAdvice (advice);
+    }
+
+
+	
 	public void addMetaModel(final MetaModel metaModel) {
 		assert metaModel != null;
 		metaModels.add(metaModel);

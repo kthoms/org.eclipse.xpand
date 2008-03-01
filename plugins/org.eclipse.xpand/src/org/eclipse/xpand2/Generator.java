@@ -90,19 +90,23 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
     	return "generating '"+expand+"' => directory '"+genPath+"'";
     }
     
+    @Override
     public void addAdvices(final String advice) {
         if ( !this.advices.contains(advice) ) this.advices.add( advice );
     }
     
+    @Override
     public void addAdvice(final String advice) {
     	if ( !this.advices.contains(advice) ) this.advices.add( advice );
     }
     
+    @Override
     public void addExtensionAdvices(String extensionAdvices) {
     	if ( !this.extensionAdvices.contains(extensionAdvices) ) 
     		this.extensionAdvices.add( extensionAdvices );
 	}
 
+    @Override
     public void addExtensionAdvice(String extensionAdvice) {
     	if ( !this.extensionAdvices.contains(extensionAdvice) ) 
 		this.extensionAdvices.add( extensionAdvice );

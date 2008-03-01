@@ -5,7 +5,6 @@ Bundle-SymbolicName: org.eclipse.xtend.middleend.old;singleton:=true
 Bundle-Version: 0.7.0
 Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.emf.ecore,
- org.eclipse.xtend.backend.emftypes,
  org.eclipse.xtend,
  org.eclipse.xpand,
  org.eclipse.xtend.typesystem.emf,

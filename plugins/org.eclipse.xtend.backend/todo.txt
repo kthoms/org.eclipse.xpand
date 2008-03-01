@@ -1,6 +1,5 @@
 todo
 ----
-merge middleend and backend
 merge emftypes into backend?
 
 "compiled" LangueSpecificMiddleEnd
@@ -42,6 +41,7 @@ Debugger: ein Source-Primitive kann aus mehreren Runtime-Primitives bestehen - i
 	und vergleichen?
 tail recursion
 replace/add von Extensions im dynamischen Scope
+
 
 Unterstützung
 -------------

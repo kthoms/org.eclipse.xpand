@@ -19,6 +19,8 @@ Export-Package: org.eclipose.xtend.middleend,
  org.eclipse.xtend.backend.syslib,
  org.eclipse.xtend.backend.types;uses:="org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.types.builtin;uses:="org.eclipse.xtend.backend.common,org.eclipse.xtend.backend.types",
+ org.eclipse.xtend.backend.types.emf,
+ org.eclipse.xtend.backend.types.emf.internal;x-internal:=true,
  org.eclipse.xtend.backend.types.java.internal;x-internal:=true,
  org.eclipse.xtend.backend.util
 Require-Bundle: org.apache.commons.logging,

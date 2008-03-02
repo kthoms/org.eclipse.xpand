@@ -24,8 +24,8 @@ Require-Bundle: org.junit,
  org.eclipse.xtend,
  org.antlr.runtime,
  org.eclipse.emf.common,
- org.eclipse.xtend.middleend.old,
  org.apache.log4j,
  org.apache.commons.logging,
- org.eclipse.xtend.backend
+ org.eclipse.xtend.backend,
+ org.eclipse.xtend.middleend.xtend
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

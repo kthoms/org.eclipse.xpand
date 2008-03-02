@@ -10,7 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.functions;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.java.JavaDefinedFunction;
 import org.eclipse.xtend.backend.testhelpers.CounterFunction;
 import org.eclipse.xtend.backend.testhelpers.NamedFunctionFactory;
+import org.eclipse.xtend.middleend.javaannotations.JavaDefinedFunction;
 import org.junit.Test;
 
 
@@ -32,7 +32,7 @@ public class FunctionTest {
     @Test public void testCachedAndSingleInstance () {
         final ExecutionContext ctx = createEmptyExecutionContext ();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ctx.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (CounterFunction.class, ctx.getTypesystem()))
@@ -62,7 +62,7 @@ public class FunctionTest {
     @Test public void testImmutableCachedStringResult () {
         final ExecutionContext ctx = createEmptyExecutionContext ();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ctx.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
         ctx.setFunctionDefContext (fdc);
         
         fdc.register (new NamedFunctionFactory ("myCached", true) {

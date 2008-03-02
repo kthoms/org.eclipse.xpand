@@ -10,8 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.StringType;
@@ -78,7 +76,7 @@ public class InitClosureExpressionTest {
     @Test public void testFdcPropagation () {
         final BackendTypesystem ts = new CompositeTypesystem ();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ts).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ts);
         fdc.register (new NamedFunction ("myFunction", new Function () {
 
             public ExpressionBase getGuard () {

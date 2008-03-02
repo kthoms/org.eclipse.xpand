@@ -59,18 +59,22 @@ public final class OldHelper {
         xtendName = xtendName.replace (SyntaxConstants.NS_DELIM, "/");
         if (xtendName.endsWith ("." + XtendFile.FILE_EXTENSION))
             xtendName = xtendName.substring (0, xtendName.length() - (XtendFile.FILE_EXTENSION.length() + 1));
-
+        if (xtendName.startsWith("/"))
+            xtendName = xtendName.substring (1);
+        
         return xtendName;
     }
     
     public static String normalizeXpandResourceName (String xpandName) {
         if (xpandName == null)
             return null;
-        
+
         if (! xpandName.endsWith("." + XpandUtil.TEMPLATE_EXTENSION))
             xpandName += "." + XpandUtil.TEMPLATE_EXTENSION;
 
         xpandName = xpandName.replace (SyntaxConstants.NS_DELIM, "/");
+        if (xpandName.startsWith ("/"))
+            xpandName = xpandName.substring (1);
         
         return xpandName;
     }

@@ -22,9 +22,9 @@ import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
-import org.eclipse.xtend.middleend.old.XpandBackendFacade;
-import org.eclipse.xtend.middleend.old.XpandComponent;
-import org.eclipse.xtend.middleend.old.XtendBackendFacade;
+import org.eclipse.xtend.middleend.xpand.XpandBackendFacade;
+import org.eclipse.xtend.middleend.xpand.XpandComponent;
+import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Test;
 

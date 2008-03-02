@@ -10,8 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.List;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.testhelpers.CheckEvaluationExpression;
 import org.eclipse.xtend.backend.testhelpers.NamedFunctionFactory;
@@ -110,7 +108,7 @@ public class SwitchExpressionTest {
             }
         }.create(); 
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (new CompositeTypesystem ());
         fdc.register (myStringEquals, true);
         
         final ExecutionContext ctx = createEmptyExecutionContext();

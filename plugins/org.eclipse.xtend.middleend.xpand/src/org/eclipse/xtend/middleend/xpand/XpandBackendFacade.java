@@ -31,7 +31,6 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.FileOutlet;
@@ -129,7 +128,7 @@ public final class XpandBackendFacade {
         final OldDefinitionConverter defConverter = new OldDefinitionConverter (ctx, new TypeToBackendType (_middleEnd.getTypesystem(), ctx));
         final ExpressionBase converted = defConverter.convertStatementSequence (statements, tpl, referenced);
 
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = _middleEnd.createEmptyFdc();
         
         for (XpandDefinitionName xdn: referenced)
             for (NamedFunction f: _middleEnd.getFunctions (xdn.getCanonicalTemplateFileName ()).getPublicFunctions())
@@ -285,7 +284,7 @@ public final class XpandBackendFacade {
     
     public FunctionDefContext getFunctionDefContext () {
         if (_xpandFile == null)
-            return new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
+            return _middleEnd.createEmptyFdc();
         
         return _middleEnd.getFunctions (_xpandFile);
     }

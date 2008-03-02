@@ -8,19 +8,24 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.functions.java;
+package org.eclipse.xtend.middleend.javaannotations;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
 
 
 /**
- * This marker interface gives Java extensions access to the execution context.
- *  if the class providing a Java extension implements this interface, the executor
- *  calls the setExecutionContext method to ensure that the method has access to 
- *  the current ExecutionContext.
+ * This is a convenient default implementation of the marker interface ExecutionContextAware.
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public interface ExecutionContextAware {
-    void setExecutionContext (ExecutionContext ctx);
+public abstract class AbstractExecutionContextAware implements ExecutionContextAware {
+    protected ExecutionContext _ctx;
+    
+    public final void setExecutionContext (ExecutionContext ctx) {
+        _ctx = ctx;
+    }
+    
+    protected ExecutionContext getExecutionContext () {
+        return _ctx;
+    }
 }

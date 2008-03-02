@@ -10,15 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.syslib;
 
-import java.io.InputStream;
-import java.util.Collection;
-
-import org.eclipse.xtend.backend.common.BackendTypesystem;
-import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.DuplicateAwareNamedFunctionCollection;
-import org.eclipse.xtend.backend.functions.java.JavaFunctionClassContributor;
-import org.eclipse.xtend.backend.util.ErrorHandler;
-import org.eclipse.xtend.backend.util.ResourceToList;
+import static org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor.classAsResource;
 
 
 /**
@@ -26,34 +18,13 @@ import org.eclipse.xtend.backend.util.ResourceToList;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class SyslibContributor {
-    public static final String SYSLIB_EXTENSION_RESOURCE = "/xtend.syslib.extensions";
+    private static final String[] _sysLibResources = new String[] {
+        classAsResource (StringOperations.class),
+        classAsResource (CollectionOperations.class),
+        classAsResource (FileIoOperations.class),
+        classAsResource (PrimitiveOperations.class)};
     
-    private final DuplicateAwareNamedFunctionCollection _functions = new DuplicateAwareNamedFunctionCollection ();
-    
-    public SyslibContributor (BackendTypesystem ts) {
-        // register built-in functions
-        registerExtensionClass (ts, StringOperations.class);
-        registerExtensionClass (ts, CollectionOperations.class);
-        registerExtensionClass (ts, FileIoOperations.class);
-        registerExtensionClass (ts, PrimitiveOperations.class);
-
-        // allow external overwriting and extension
-        final InputStream in = getClass().getResourceAsStream (SYSLIB_EXTENSION_RESOURCE);
-        for (String s: new ResourceToList (in).getResult()) {
-            try {
-                registerExtensionClass(ts, Class.forName(s));
-            } catch (ClassNotFoundException e) {
-                ErrorHandler.handle (e);
-            }
-        }
-    }
-
-    private void registerExtensionClass (BackendTypesystem ts, Class<?> cls) {
-        for (NamedFunction f: new JavaFunctionClassContributor (cls, ts).getContributedFunctions())
-            _functions.register (f);
-    }
-    
-    public Collection<NamedFunction> getContributedFunctions () {
-        return _functions.getFunctions();
+    public static String[] getSysLibResources () {
+        return _sysLibResources;
     }
 }

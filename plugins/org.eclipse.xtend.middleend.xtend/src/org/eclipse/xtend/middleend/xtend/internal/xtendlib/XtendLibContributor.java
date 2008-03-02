@@ -10,12 +10,13 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xtend.internal.xtendlib;
 
+import static org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor.classAsResource;
+
 import java.util.Collection;
 
-import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.DuplicateAwareNamedFunctionCollection;
-import org.eclipse.xtend.backend.functions.java.JavaFunctionClassContributor;
 
 
 /**
@@ -25,14 +26,14 @@ import org.eclipse.xtend.backend.functions.java.JavaFunctionClassContributor;
 public class XtendLibContributor {
     private final DuplicateAwareNamedFunctionCollection _functions = new DuplicateAwareNamedFunctionCollection ();
 
-    public XtendLibContributor (BackendTypesystem ts) {
-        registerExtensionClass (ts, XtendCollectionOperations.class);
-        registerExtensionClass (ts, XpandIsDeleteLine.class);
-        registerExtensionClass (ts, XtendGlobalVarOperations.class);
+    public XtendLibContributor (MiddleEnd middleEnd) {
+        registerExtensionClass (middleEnd, XtendCollectionOperations.class);
+        registerExtensionClass (middleEnd, XpandIsDeleteLine.class);
+        registerExtensionClass (middleEnd, XtendGlobalVarOperations.class);
     }
 
-    private void registerExtensionClass (BackendTypesystem ts, Class<?> cls) {
-        for (NamedFunction f: new JavaFunctionClassContributor (cls, ts).getContributedFunctions())
+    private void registerExtensionClass (MiddleEnd middleEnd, Class<?> cls) {
+        for (NamedFunction f: middleEnd.getFunctions (classAsResource (cls)).getPublicFunctions())
             _functions.register (f);
     }
 

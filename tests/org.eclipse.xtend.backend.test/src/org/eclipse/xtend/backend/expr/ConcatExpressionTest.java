@@ -10,9 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLiteral;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -21,7 +19,6 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Helpers;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.testhelpers.NamedFunctionFactory;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
@@ -55,7 +52,7 @@ public class ConcatExpressionTest {
             }
         }.create(); 
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (new CompositeTypesystem ()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (new CompositeTypesystem ());
         fdc.register (myToString, true);
 
         final ExpressionBase expr = new ConcatExpression (Arrays.asList (createLiteral("a"), createLiteral("b")), SOURCE_POS);

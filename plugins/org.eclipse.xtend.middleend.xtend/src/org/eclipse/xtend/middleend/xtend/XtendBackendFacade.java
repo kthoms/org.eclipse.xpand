@@ -26,7 +26,6 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
@@ -115,9 +114,9 @@ public final class XtendBackendFacade {
         if (_xtendFile != null) 
             return getFunctionDefContext();
 
-        final FunctionDefContextInternal result = new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
+        final FunctionDefContextInternal result = _middleEnd.createEmptyFdc();
         
-        for (NamedFunction f: new XtendLibContributor (_middleEnd.getTypesystem()).getContributedFunctions())
+        for (NamedFunction f: new XtendLibContributor (_middleEnd).getContributedFunctions())
             result.register (f, false);
         return result;
     }
@@ -167,7 +166,7 @@ public final class XtendBackendFacade {
     
     public FunctionDefContext getFunctionDefContext () {
         if (_xtendFile == null)
-            return new FunctionDefContextFactory (_middleEnd.getTypesystem()).create();
+            return _middleEnd.createEmptyFdc();
 
         return _middleEnd.getFunctions (_xtendFile);
     }

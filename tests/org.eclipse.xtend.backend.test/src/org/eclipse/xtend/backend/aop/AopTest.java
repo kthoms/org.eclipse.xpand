@@ -10,7 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.aop;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -28,13 +28,12 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.expr.ConcatExpression;
 import org.eclipse.xtend.backend.expr.InvocationOnObjectExpression;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
-import org.eclipse.xtend.backend.functions.java.JavaDefinedFunction;
 import org.eclipse.xtend.backend.testhelpers.CounterFunction;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.Pair;
+import org.eclipse.xtend.middleend.javaannotations.JavaDefinedFunction;
 import org.junit.Test;
 
 
@@ -47,7 +46,7 @@ public class AopTest {
     public void testUncached () {
         final ExecutionContext ctx = createEmptyExecutionContext();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ctx.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (CounterFunction.class, ctx.getTypesystem()))
@@ -78,7 +77,7 @@ public class AopTest {
     }
 
     private void registerAdvice (ExecutionContext ctx, String prefix, String postfix, boolean proceed, Pointcut pointCut, boolean cached) {
-        ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (new AroundAdvice (ConcatAdviceFactory.createConcatExpression (prefix, postfix, proceed), pointCut, cached, createEmptyFdc (ctx))));
+        ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (new AroundAdvice (ConcatAdviceFactory.createConcatExpression (prefix, postfix, proceed), pointCut, cached, createEmptyFdc (ctx.getTypesystem()))));
     }
 
     @SuppressWarnings("unchecked")
@@ -86,7 +85,7 @@ public class AopTest {
     public void testVarArgsParamTypeMatching () {
         final ExecutionContext ctx = createEmptyExecutionContext();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ctx.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (AopTestFunctions.class, ctx.getTypesystem()))
@@ -113,7 +112,7 @@ public class AopTest {
     public void testExplicitParamTypeMatching () {
         final ExecutionContext ctx = createEmptyExecutionContext();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ctx.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
         ctx.setFunctionDefContext (fdc);
         
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (AopTestFunctions.class, ctx.getTypesystem()))
@@ -140,7 +139,7 @@ public class AopTest {
     public void testNameMatching () {
         final ExecutionContext ctx = createEmptyExecutionContext();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ctx.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (AopTestFunctions.class, ctx.getTypesystem()))
@@ -181,7 +180,7 @@ public class AopTest {
         
         final ExecutionContext ctx = createEmptyExecutionContext();
         
-        final FunctionDefContextInternal fdc = new FunctionDefContextFactory (ctx.getTypesystem()).create();
+        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
         ctx.setFunctionDefContext (fdc);
 
         for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (CounterFunction.class, ctx.getTypesystem()))
@@ -228,10 +227,6 @@ public class AopTest {
         
         ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (new AroundAdvice (new ConcatExpression (toBeConcatenated, null), pointCut, cacheable, ctx.getFunctionDefContext())));
     }        
-    
-    private FunctionDefContextInternal createEmptyFdc (ExecutionContext ctx) {
-        return new FunctionDefContextFactory (ctx.getTypesystem()).create();
-    }
 }
 
 

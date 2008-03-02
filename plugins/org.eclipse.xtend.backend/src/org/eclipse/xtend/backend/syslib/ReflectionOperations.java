@@ -17,7 +17,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.StaticProperty;
-import org.eclipse.xtend.backend.functions.java.AbstractExecutionContextAware;
+import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
 
 
 /**

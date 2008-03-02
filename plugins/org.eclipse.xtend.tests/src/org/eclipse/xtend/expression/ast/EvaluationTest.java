@@ -31,7 +31,7 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Type1;
 import org.eclipse.xtend.expression.Variable;
-import org.eclipse.xtend.middleend.old.XtendBackendFacade;
+import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.eclipse.xtend.typesystem.Property;
 
 /**

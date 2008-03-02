@@ -10,13 +10,14 @@ Contributors:
  */
 package org.eclipse.xtend.backend.testhelpers;
 
+import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 
 
@@ -33,9 +34,13 @@ public class BackendTestHelper {
      */
     public static ExecutionContext createEmptyExecutionContext () {
         final BackendTypesystem ts = new CompositeTypesystem ();
-        return BackendFacade.createExecutionContext (new FunctionDefContextFactory (ts).create(), ts, true);
+        return BackendFacade.createExecutionContext (new MiddleEnd (ts, null).createEmptyFdc(), ts, true);
     }
 
+    public static FunctionDefContextInternal createEmptyFdc (BackendTypesystem ts) {
+        return new MiddleEnd (ts, null).createEmptyFdc();
+    }
+    
     public static ExpressionBase createLiteral (Object literal) {
         return new LiteralExpression (literal, SOURCE_POS);
     }

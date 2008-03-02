@@ -15,7 +15,6 @@ import java.util.Map;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
-import org.eclipse.xtend.backend.functions.java.ParameterConverter;
 import org.eclipse.xtend.backend.types.builtin.DoubleType;
 import org.eclipse.xtend.backend.types.builtin.ListType;
 import org.eclipse.xtend.backend.types.builtin.LongType;

@@ -23,8 +23,8 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.Helpers;
-import org.eclipse.xtend.backend.functions.java.AbstractExecutionContextAware;
-import org.eclipse.xtend.backend.functions.java.M2tHidden;
+import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
+import org.eclipse.xtend.middleend.javaannotations.M2tHidden;
 
 
 /**

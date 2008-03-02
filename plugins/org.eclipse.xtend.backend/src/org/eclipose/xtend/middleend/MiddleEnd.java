@@ -10,6 +10,7 @@ Contributors:
  */
 package org.eclipose.xtend.middleend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -20,7 +21,11 @@ import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
+import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
+import org.eclipse.xtend.backend.functions.internal.FunctionDefContextImpl;
+import org.eclipse.xtend.backend.syslib.SyslibContributor;
+import org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor;
 
 
 /**
@@ -42,17 +47,33 @@ public final class MiddleEnd {
     private final BackendTypesystem _ts;
     
     /**
+     * this flag marks the temporary state while the syslib is added to a newly created fdc. During
+     *  this phase, newly created fdcs are returned *without* registering the syslib to avoid endless
+     *  recursion.
+     */
+    private boolean _isInitializingSyslib = false;
+    
+    /**
      * The map with "specific params" is used to initialize the contributed middle ends.
      *  The key must be the class implementing the LanguageSpecificMiddleEnd interface
      *  and contributed via the extension point.
      */
     public MiddleEnd (BackendTypesystem ts, List<LanguageSpecificMiddleEnd> languageHandlers) {
-        _ctx = BackendFacade.createExecutionContext (new FunctionDefContextFactory (ts).create(), ts, false);
+        if (languageHandlers == null)
+            languageHandlers = new ArrayList<LanguageSpecificMiddleEnd> ();
+        
+        // this is a "built-in" handler that is, among other things, necessary for the syslib
+        languageHandlers.add (new JavaFunctionClassContributor ());
+        
         _ts = ts;
         _languageHandlers = languageHandlers;
 
         for (LanguageSpecificMiddleEnd handler: languageHandlers)
             handler.setMiddleEnd (this);
+
+        // it is important that the middle end is properly initialized before an fdc is created because 
+        //  syslib registration relies on an initialized middle end.
+        _ctx = BackendFacade.createExecutionContext (createEmptyFdc(), ts, false);
     }
     
     private LanguageSpecificMiddleEnd findHandler (String resourceName) {
@@ -94,5 +115,25 @@ public final class MiddleEnd {
     
     public BackendTypesystem getTypesystem () {
         return _ts;
+    }
+    
+    public FunctionDefContextInternal createEmptyFdc () {
+        final FunctionDefContextInternal result = new FunctionDefContextImpl ();
+        
+        if (_isInitializingSyslib)
+            return result;
+        
+        _isInitializingSyslib = true;
+        
+        try {
+            for (String resourceName: SyslibContributor.getSysLibResources())
+                for (NamedFunction f: getFunctions(resourceName).getPublicFunctions())
+                    result.register (f, true);
+            
+            return result;
+        }
+        finally {
+            _isInitializingSyslib = false;
+        }
     }
 }

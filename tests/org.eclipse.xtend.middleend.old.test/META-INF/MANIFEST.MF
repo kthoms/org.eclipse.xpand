@@ -4,9 +4,10 @@ Bundle-Name: Test Plug-in
 Bundle-SymbolicName: org.eclipse.xtend.middleend.old.test
 Bundle-Version: 1.0.0
 Require-Bundle: org.eclipse.xtend.backend,
- org.eclipse.xtend.middleend.old,
  org.eclipse.xtend,
  org.eclipse.xpand,
  org.eclipse.emf.mwe.core,
  org.apache.commons.logging,
- org.junit4
+ org.junit4,
+ org.eclipse.xtend.middleend.xpand,
+ org.eclipse.xtend.middleend.xtend

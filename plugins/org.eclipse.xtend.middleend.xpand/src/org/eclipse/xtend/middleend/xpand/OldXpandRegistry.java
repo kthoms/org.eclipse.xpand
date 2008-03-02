@@ -29,7 +29,6 @@ import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.middleend.xpand.internal.OldDefinitionConverter;
@@ -52,7 +51,7 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
     private final Cache<String, FunctionDefContextInternal> _functionDefContexts = new Cache<String, FunctionDefContextInternal> () {
         @Override
         protected FunctionDefContextInternal create (String compilationUnit) {
-            return new FunctionDefContextFactory (_ts).create();
+            return _middleEnd.createEmptyFdc();
         }
     };
     
@@ -104,7 +103,7 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
         final FunctionDefContextInternal fdc = getFunctionDefContext (xpandFile);
         
         // register the XtendLib. Do this first so the extension can override functions
-        for (NamedFunction f: new XtendLibContributor (_ts).getContributedFunctions())
+        for (NamedFunction f: new XtendLibContributor (_middleEnd).getContributedFunctions())
             fdc.register (f, false);
         
         final Set<XpandDefinitionName> referenced = new HashSet<XpandDefinitionName> ();

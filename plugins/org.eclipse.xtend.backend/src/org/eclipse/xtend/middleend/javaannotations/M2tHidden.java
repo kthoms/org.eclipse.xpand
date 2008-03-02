@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.functions.java;
+package org.eclipse.xtend.middleend.javaannotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

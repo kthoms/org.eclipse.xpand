@@ -14,8 +14,8 @@ import java.util.Collection;
 
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.Function;
-import org.eclipse.xtend.backend.functions.java.AbstractExecutionContextAware;
 import org.eclipse.xtend.backend.syslib.StringOperations;
+import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
 
 
 /**

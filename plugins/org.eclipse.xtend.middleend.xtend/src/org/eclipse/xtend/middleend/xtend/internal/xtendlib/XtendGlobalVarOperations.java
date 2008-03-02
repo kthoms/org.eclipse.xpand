@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipse.xtend.backend.functions.java.AbstractExecutionContextAware;
+import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
 
 
 public class XtendGlobalVarOperations extends AbstractExecutionContextAware {

@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.functions.java;
+package org.eclipse.xtend.middleend.javaannotations;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -23,6 +23,7 @@ import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
+import org.eclipse.xtend.backend.functions.java.internal.ParameterConverter;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
 
@@ -46,6 +47,8 @@ public final class JavaDefinedFunction implements Function {
     private final JavaBuiltinConverter _returnValueConverter;
     
     
+    //TODO move this factory to JavaFunctionClassContributor
+    //TODO separate internal API
     /**
      * This is a convenience factory method that creates functions for all public methods for an entire class.
      */

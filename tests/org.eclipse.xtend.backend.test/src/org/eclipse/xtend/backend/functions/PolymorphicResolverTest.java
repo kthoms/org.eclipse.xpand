@@ -10,7 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.functions;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -46,7 +46,7 @@ public class PolymorphicResolverTest {
     }
     
     private Collection<Function> getCandidates (Object... params) {
-        final FunctionDefContextImpl fdc = (FunctionDefContextImpl) new FunctionDefContextFactory (new CompositeTypesystem ()).create();
+        final FunctionDefContextImpl fdc = (FunctionDefContextImpl) createEmptyFdc (new CompositeTypesystem ());
         return new PolymorphicResolver ("operatorPlus").getBestFitCandidates (fdc.findFunctionCandidates (createEmptyExecutionContext(), "operatorPlus", Arrays.asList (params)));
     }
     

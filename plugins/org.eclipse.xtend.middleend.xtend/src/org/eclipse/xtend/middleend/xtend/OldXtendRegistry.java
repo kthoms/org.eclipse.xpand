@@ -29,7 +29,6 @@ import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextFactory;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -56,7 +55,7 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
     private final Cache<String, FunctionDefContextInternal> _functionDefContexts = new Cache<String, FunctionDefContextInternal> () {
         @Override
         protected FunctionDefContextInternal create (String compilationUnit) {
-            return new FunctionDefContextFactory (_ts).create();
+            return _middleEnd.createEmptyFdc();
         }
     };
 
@@ -128,7 +127,7 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
         final FunctionDefContextInternal fdc = getFunctionDefContext (xtendFile);
 
         // register the XtendLib. Do this first so the extension can override functions
-        for (NamedFunction f: new XtendLibContributor (_ts).getContributedFunctions())
+        for (NamedFunction f: new XtendLibContributor (_middleEnd).getContributedFunctions())
             fdc.register (f, false);
         
         fdc.register (new CheckConverter (ctx, typeConverter).createCheckFunction(_ts, fdc, extensionFile), false);

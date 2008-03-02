@@ -16,8 +16,8 @@ import java.util.List;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Helpers;
-import org.eclipse.xtend.backend.functions.java.AbstractExecutionContextAware;
-import org.eclipse.xtend.backend.functions.java.M2tHidden;
+import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
+import org.eclipse.xtend.middleend.javaannotations.M2tHidden;
 
 
 /**

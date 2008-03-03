@@ -70,6 +70,5 @@ public interface TypeSystemFacade {
 	 * @return
 	 */
 	Function addArguments(DeclaredFunction f, TypeMirror... args);
-
 	
 }

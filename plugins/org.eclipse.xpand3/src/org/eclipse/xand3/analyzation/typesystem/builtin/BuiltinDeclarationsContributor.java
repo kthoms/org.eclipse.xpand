@@ -15,6 +15,8 @@
  */
 package org.eclipse.xand3.analyzation.typesystem.builtin;
 
+import java.util.Set;
+
 import org.eclipse.xand3.analyzation.typesystem.declaration.DeclarationsContributor;
 import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredFunction;
 import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredType;
@@ -28,7 +30,7 @@ public class BuiltinDeclarationsContributor implements DeclarationsContributor {
 	/* (non-Javadoc)
 	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#functionsForName(java.lang.String)
 	 */
-	public DeclaredFunction[] functionsForName(String name) {
+	public Set<DeclaredFunction> functionsForName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

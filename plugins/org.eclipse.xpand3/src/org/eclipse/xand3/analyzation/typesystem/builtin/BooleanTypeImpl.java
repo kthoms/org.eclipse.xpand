@@ -11,52 +11,31 @@
 
 package org.eclipse.xand3.analyzation.typesystem.builtin;
 
-import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
-import org.eclipse.internal.xtend.type.baseimpl.OperationImpl;
-import org.eclipse.xtend.expression.TypeSystem;
-import org.eclipse.xtend.typesystem.Feature;
-import org.eclipse.xtend.typesystem.Type;
+import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredTypeParameter;
+import org.eclipse.xand3.analyzation.typesystem.type.Type;
 
-public final class BooleanTypeImpl extends BuiltinBaseType implements Type {
-	public BooleanTypeImpl(final TypeSystem ts, final String name) {
-		super(ts, name);
+
+public final class BooleanTypeImpl extends BuiltinBaseType  {
+	public BooleanTypeImpl(final String name) {
+		super(name);
 	}
 
-	public boolean isInstance(final Object o) {
-		return o instanceof Boolean;
-	}
-
-	@Override
-	public Object convert(final Object src, final Class targetType) {
-		if (targetType == Boolean.class || targetType == Boolean.TYPE)
-			return src;
-		return super.convert(src, targetType);
-	}
-
-	public Object newInstance() {
-		return Boolean.FALSE;
-	}
-
-	@Override
-	public Feature[] getContributedFeatures() {
-		return new Feature[] { 
-			new OperationImpl(this, "!",BooleanTypeImpl.this) {
-			@Override
-			public Object evaluateInternal(final Object target,
-					final Object[] params) {
-				return target == null ? null : new Boolean(!((Boolean) target)
-						.booleanValue());
-			}
-		}
-
-		};
-	}
-
-	@Override
+	/* (non-Javadoc)
+	 * @see org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredType#getSuperTypes()
+	 */
 	public Set<Type> getSuperTypes() {
-		return Collections.singleton(getTypeSystem().getObjectType());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredType#getTypeParameters()
+	 */
+	public List<DeclaredTypeParameter> getTypeParameters() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

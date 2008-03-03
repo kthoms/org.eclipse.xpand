@@ -15,7 +15,7 @@
  */
 package org.eclipse.xand3.analyzation.typesystem.declaration;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Sven Efftinge
@@ -23,5 +23,5 @@ import java.util.List;
  */
 public interface DeclarationsContributor {
 	DeclaredType typeForName(String name);
-	List<DeclaredFunction> functionsForName(String name);
+	Set<DeclaredFunction> functionsForName(String name);
 }

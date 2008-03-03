@@ -13,12 +13,15 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.declaration;
+
+import java.util.List;
 
 /**
  * @author Sven Efftinge
- *
+ * 
  */
-public interface DeclaredProperty extends DeclaredFeature {
-	TypeMirror getPropertyType();
+public interface DeclarationsContributor {
+	DeclaredType typeForName(String name);
+	List<DeclaredFunction> functionsForName(String name);
 }

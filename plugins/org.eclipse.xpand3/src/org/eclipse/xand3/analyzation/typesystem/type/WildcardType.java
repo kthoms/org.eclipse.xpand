@@ -13,12 +13,20 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.type;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface TypeMirror {
+public interface WildcardType extends TypeMirror {
+	/**
+	 * @return the lower bounds (specified using e.g. <* super MyType>) 
+	 */
+	TypeMirror[] getLowerBounds();
 	
+	/**
+	 * @return the upper bounds (specified using e.g. <* extends Comparable,Serializable>) 
+	 */
+	TypeMirror[] getUpperBounds();
 }

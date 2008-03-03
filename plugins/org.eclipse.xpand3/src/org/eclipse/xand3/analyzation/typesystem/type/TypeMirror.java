@@ -13,12 +13,12 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.type;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface TypeVariable extends TypeMirror {
-	DeclaredTypeParameter getDeclaration();
+public interface TypeMirror {
+	
 }

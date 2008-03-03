@@ -15,11 +15,16 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
+import java.util.List;
+
+import org.eclipse.xand3.analyzation.typesystem.type.Type;
+import org.eclipse.xand3.analyzation.typesystem.type.TypeMirror;
+
 /**
  * @author Sven Efftinge
  *
  */
 public interface Operation extends Feature {
-	Type[] getParameterTypes();
-	Type getReturnType();
+	List<Type> getParameterTypes();
+	TypeMirror getReturnType();
 }

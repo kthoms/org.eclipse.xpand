@@ -13,15 +13,12 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.type;
+
+import org.eclipse.xand3.analyzation.typesystem.AbstractNamed;
+import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredType;
 
 public interface Type extends AbstractNamed, TypeMirror {
-	Type[] getSuperTypes();
-
-	Feature[] getFeatures();
-	Property[] getProperties();
-	Operation[] getOperations();
-	
 	/**
 	 * @return returns either the type this type is a bound instance of or just <code>this</code>, if the originally declared type wasn't generic
 	 */

@@ -13,12 +13,11 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.type;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface DeclaredStaticProperty extends DeclaredFeature {
-	Type getPropertyType();
+public interface VoidType extends TypeMirror {
 }

@@ -13,15 +13,14 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.declaration;
+
+import org.eclipse.xand3.analyzation.typesystem.type.Type;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface DeclaredFeature extends AbstractNamed {
-	/**
-	 * @return the declaring type
-	 */
-	DeclaredType getDeclaringType();
+public interface DeclaredStaticProperty extends DeclaredFeature {
+	Type getPropertyType();
 }

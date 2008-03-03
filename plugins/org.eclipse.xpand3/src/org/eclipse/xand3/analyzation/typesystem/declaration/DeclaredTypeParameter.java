@@ -13,11 +13,17 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.declaration;
+
+import java.util.Set;
+
+import org.eclipse.xand3.analyzation.typesystem.AbstractNamed;
+import org.eclipse.xand3.analyzation.typesystem.type.Type;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface VoidType extends TypeMirror {
+public interface DeclaredTypeParameter extends AbstractNamed {
+	Set<Type> getUpperBounds();
 }

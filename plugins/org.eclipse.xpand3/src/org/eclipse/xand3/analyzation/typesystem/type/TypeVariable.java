@@ -13,12 +13,14 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.type;
+
+import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredTypeParameter;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface DeclaredTypeParameter extends AbstractNamed {
-	Type[] getUpperBounds();
+public interface TypeVariable extends TypeMirror {
+	DeclaredTypeParameter getDeclaration();
 }

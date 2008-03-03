@@ -13,18 +13,23 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.declaration;
+
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.xand3.analyzation.typesystem.type.Type;
 
 /**
  * @author Sven Efftinge
  *
  */
 public interface DeclaredType {
-	Type[] getSuperTypes();
+	Set<Type> getSuperTypes();
 
-	DeclaredFeature[] getDeclaredFeatures();
-	DeclaredProperty[] getDeclaredProperties();
-	DeclaredOperation[] getDeclaredOperations();
+	Set<DeclaredFeature> getDeclaredFeatures();
+	Set<DeclaredProperty> getDeclaredProperties();
+	Set<DeclaredOperation> getDeclaredOperations();
 	
-	DeclaredTypeParameter[] getTypeParameters();
+	List<DeclaredTypeParameter> getTypeParameters();
 }

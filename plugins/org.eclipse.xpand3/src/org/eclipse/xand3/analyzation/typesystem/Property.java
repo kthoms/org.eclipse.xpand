@@ -15,6 +15,8 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
+import org.eclipse.xand3.analyzation.typesystem.type.Type;
+
 /**
  * @author Sven Efftinge
  *

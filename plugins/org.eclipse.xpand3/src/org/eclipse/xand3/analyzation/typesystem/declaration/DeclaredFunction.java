@@ -13,17 +13,19 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.declaration;
 
 import java.util.List;
 
+import org.eclipse.xand3.analyzation.typesystem.AbstractNamed;
 import org.eclipse.xand3.analyzation.typesystem.type.TypeMirror;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface Function extends AbstractNamed {
+public interface DeclaredFunction extends AbstractNamed {
+	DeclaredTypeParameter[] getTypeParameters();
 	TypeMirror getReturnType();
 	List<TypeMirror> getParameterTypes();
 }

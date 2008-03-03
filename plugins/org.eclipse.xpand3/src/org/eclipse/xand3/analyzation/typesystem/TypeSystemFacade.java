@@ -15,6 +15,12 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
+import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredFunction;
+import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredType;
+import org.eclipse.xand3.analyzation.typesystem.type.Type;
+import org.eclipse.xand3.analyzation.typesystem.type.TypeMirror;
+import org.eclipse.xand3.analyzation.typesystem.type.WildcardType;
+
 /**
  * @author Sven Efftinge
  * 

@@ -13,13 +13,17 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation.typesystem.declaration;
+
+import org.eclipse.xand3.analyzation.typesystem.AbstractNamed;
 
 /**
  * @author Sven Efftinge
  *
  */
-public interface DeclaredOperation extends DeclaredFeature {
-	TypeMirror getReturnType();
-	TypeMirror[] getParameterTypes();
+public interface DeclaredFeature extends AbstractNamed {
+	/**
+	 * @return the declaring type
+	 */
+	DeclaredType getDeclaringType();
 }

@@ -49,9 +49,7 @@ public interface TypeSystemFacade {
 	Type typeForName(String name);
 
 	/**
-	 * this is like currying for generic types
-	 * just pass an unbound type and the compatible type arguments and you'll get a new
-	 * (partly) bound instance of that type.
+	 * creates a type for a declared type and the needed arguments
 	 * @param type - the type to be instantiated
 	 * @param args
 	 * @return
@@ -66,9 +64,7 @@ public interface TypeSystemFacade {
 	Function functionForNameAndParameterTypes(String name, Type[]... paramTypes);
 
 	/**
-	 * this is like currying for generic functions
-	 * just pass an unbound functions and the compatible type arguments and you'll get a new
-	 * (partly) bound instance of that function.
+	 * creates a function for a declared function and the needed arguments
 	 * @param f - the function to be instantiated
 	 * @param args - the type arguments
 	 * @return

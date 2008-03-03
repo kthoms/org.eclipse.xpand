@@ -19,14 +19,5 @@ package org.eclipse.xand3.analyzation.typesystem;
  * @author Sven Efftinge
  *
  */
-public interface WildcardTypeArgument extends TypeArgument {
-	/**
-	 * @return the lower bound type (specified using e.g. <* super MyType>) 
-	 */
-	Type getLowerBound();
-	
-	/**
-	 * @return the upper bounds (specified using e.g. <* extends Comparable,Serializable>) 
-	 */
-	Type[] getUpperBounds();
+public interface VoidType extends TypeMirror {
 }

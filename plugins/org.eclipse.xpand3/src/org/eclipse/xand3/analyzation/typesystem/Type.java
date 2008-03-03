@@ -15,7 +15,7 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
-public interface Type extends NamedElement {
+public interface Type extends AbstractNamed, TypeMirror {
 	Type[] getSuperTypes();
 
 	Feature[] getFeatures();
@@ -23,7 +23,10 @@ public interface Type extends NamedElement {
 	Operation[] getOperations();
 	
 	/**
-	 * @return returns either the {@link DeclaredType} this type is a bound instance of or this, if the originally declared type wasn't unbound
+	 * @return returns either the type this type is a bound instance of or just <code>this</code>, if the originally declared type wasn't generic
 	 */
 	DeclaredType getDeclaredType();
+	
+	TypeMirror[] getActualTypeArguments();
+	
 }

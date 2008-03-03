@@ -19,6 +19,6 @@ package org.eclipse.xand3.analyzation.typesystem;
  * @author Sven Efftinge
  *
  */
-public interface Property {
-
+public interface Property extends Feature {
+	Type getPropertyType();
 }

@@ -19,12 +19,8 @@ package org.eclipse.xand3.analyzation.typesystem;
  * @author Sven Efftinge
  *
  */
-public interface DeclaredType {
-	Type[] getSuperTypes();
-
-	DeclaredFeature[] getDeclaredFeatures();
-	DeclaredProperty[] getDeclaredProperties();
-	DeclaredOperation[] getDeclaredOperations();
-	
+public interface DeclaredFunction extends AbstractNamed {
 	DeclaredTypeParameter[] getTypeParameters();
+	TypeMirror getReturnType();
+	TypeMirror[] getParameterTypes();
 }

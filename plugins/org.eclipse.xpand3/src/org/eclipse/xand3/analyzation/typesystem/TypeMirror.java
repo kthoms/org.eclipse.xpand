@@ -19,6 +19,6 @@ package org.eclipse.xand3.analyzation.typesystem;
  * @author Sven Efftinge
  *
  */
-public interface ConcreteTypeArgument extends TypeArgument{
-	Type[] getType();
+public interface TypeMirror {
+	
 }

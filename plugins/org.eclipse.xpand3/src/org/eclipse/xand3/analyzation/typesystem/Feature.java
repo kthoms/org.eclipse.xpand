@@ -19,6 +19,9 @@ package org.eclipse.xand3.analyzation.typesystem;
  * @author Sven Efftinge
  *
  */
-public interface Feature {
-
+public interface Feature extends AbstractNamed {
+	/**
+	 * @return the declaring type
+	 */
+	Type getDeclaringType();
 }

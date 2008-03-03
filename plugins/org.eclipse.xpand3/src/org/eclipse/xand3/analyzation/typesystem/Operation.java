@@ -19,6 +19,7 @@ package org.eclipse.xand3.analyzation.typesystem;
  * @author Sven Efftinge
  *
  */
-public interface Operation {
-
+public interface Operation extends Feature {
+	Type[] getParameterTypes();
+	Type getReturnType();
 }

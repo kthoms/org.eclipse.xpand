@@ -15,6 +15,10 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
-public interface DeclaredTypeParameter extends NamedElement {
-	DeclaredType[] getUpperBounds();
+/**
+ * @author Sven Efftinge
+ *
+ */
+public interface DeclaredTypeParameter extends AbstractNamed {
+	Type[] getUpperBounds();
 }

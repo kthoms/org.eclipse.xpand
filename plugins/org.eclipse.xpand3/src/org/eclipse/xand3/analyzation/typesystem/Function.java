@@ -19,6 +19,7 @@ package org.eclipse.xand3.analyzation.typesystem;
  * @author Sven Efftinge
  *
  */
-public interface NamedElement {
-	String getName();
+public interface Function extends AbstractNamed {
+	TypeMirror getReturnType();
+	TypeMirror[] getParameterTypes();
 }

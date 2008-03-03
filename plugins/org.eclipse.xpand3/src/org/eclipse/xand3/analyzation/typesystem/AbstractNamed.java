@@ -15,5 +15,10 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
-public interface TypeArgument {
+/**
+ * @author Sven Efftinge
+ *
+ */
+public interface AbstractNamed {
+	String getName();
 }

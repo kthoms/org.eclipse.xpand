@@ -49,6 +49,7 @@ public class BuiltinDeclarationsContributor implements DeclarationsContributor {
 	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#typeForName(java.lang.String)
 	 */
 	public DeclaredType typeForName(String name) {
+		backendTypesystem.
 		return null;
 	}
 	

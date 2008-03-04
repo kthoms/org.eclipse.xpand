@@ -15,13 +15,12 @@
  */
 package org.eclipse.xand3.analyzation.typesystem.builtin;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor;
 import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 
 /**
  * @author Sven Efftinge
@@ -29,13 +28,15 @@ import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
  */
 public class BuiltinDeclarationsContributor implements DeclarationsContributor {
 	
-//	private BackendTypesystem backendTypesystem = null;
+	private BackendTypesystem backendTypesystem = null;
 	
-	private Map<String, DeclaredType> types = new HashMap<String, DeclaredType>();
-	{
-		
+	/**
+	 * 
+	 */
+	public BuiltinDeclarationsContributor(BackendTypesystem backendTypesystem) {
+		this.backendTypesystem = backendTypesystem;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#functionsForName(java.lang.String)
 	 */
@@ -48,7 +49,6 @@ public class BuiltinDeclarationsContributor implements DeclarationsContributor {
 	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#typeForName(java.lang.String)
 	 */
 	public DeclaredType typeForName(String name) {
-		
 		return null;
 	}
 	

@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackage.java,v 1.1 2008/03/04 10:52:59 sefftinge Exp $
+ * $Id: DeclarationPackage.java,v 1.2 2008/03/04 11:00:30 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.declaration;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -116,13 +117,22 @@ public interface DeclarationPackage extends EPackage {
 	int DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = StaticTypesystemPackage.ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Backend Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__BACKEND_TYPE = StaticTypesystemPackage.ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Declared Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_TYPE_FEATURE_COUNT = StaticTypesystemPackage.ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DECLARED_TYPE_FEATURE_COUNT = StaticTypesystemPackage.ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredOperationImpl <em>Declared Operation</em>}' class.
@@ -402,6 +412,17 @@ public interface DeclarationPackage extends EPackage {
 	EReference getDeclaredType_DeclaredTypeParameters();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getBackendType <em>Backend Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Backend Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getBackendType()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EAttribute getDeclaredType_BackendType();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation <em>Declared Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -590,6 +611,14 @@ public interface DeclarationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = eINSTANCE.getDeclaredType_DeclaredTypeParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Backend Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECLARED_TYPE__BACKEND_TYPE = eINSTANCE.getDeclaredType_BackendType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredOperationImpl <em>Declared Operation</em>}' class.

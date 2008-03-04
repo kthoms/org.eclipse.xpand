@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackageImpl.java,v 1.1 2008/03/04 10:53:01 sefftinge Exp $
+ * $Id: StaticTypesystemPackageImpl.java,v 1.2 2008/03/04 11:00:31 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -26,6 +27,7 @@ import org.eclipse.xpand3.staticTypesystem.WildcardType;
 import org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage;
 
 import org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclarationPackageImpl;
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,6 +84,13 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * @generated
 	 */
 	private EClass functionTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType backendTypeEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -296,6 +305,15 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getBackendType() {
+		return backendTypeEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StaticTypesystemFactory getStaticTypesystemFactory() {
 		return (StaticTypesystemFactory)getEFactoryInstance();
 	}
@@ -340,6 +358,9 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		functionTypeEClass = createEClass(FUNCTION_TYPE);
 		createEReference(functionTypeEClass, FUNCTION_TYPE__DECLARED_FUNCTION);
 		createEReference(functionTypeEClass, FUNCTION_TYPE__ACTUAL_TYPE_ARGUMENTS);
+
+		// Create data types
+		backendTypeEDataType = createEDataType(BACKEND_TYPE);
 	}
 
 	/**
@@ -404,6 +425,9 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		initEClass(functionTypeEClass, FunctionType.class, "FunctionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionType_DeclaredFunction(), theDeclarationPackage.getDeclaredFunction(), null, "declaredFunction", null, 1, 1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionType_ActualTypeArguments(), this.getAbstractTypeReference(), null, "actualTypeArguments", null, 0, -1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(backendTypeEDataType, BackendType.class, "BackendType", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

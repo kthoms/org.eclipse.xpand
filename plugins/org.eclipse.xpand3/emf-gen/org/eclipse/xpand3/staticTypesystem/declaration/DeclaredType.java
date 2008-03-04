@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredType.java,v 1.1 2008/03/04 10:52:58 sefftinge Exp $
+ * $Id: DeclaredType.java,v 1.2 2008/03/04 11:00:30 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.declaration;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.xpand3.staticTypesystem.AbstractNamedElement;
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +23,7 @@ import org.eclipse.xpand3.staticTypesystem.AbstractNamedElement;
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getBackendType <em>Backend Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,5 +97,31 @@ public interface DeclaredType extends AbstractNamedElement {
 	 * @generated
 	 */
 	EList<DeclaredTypeParameter> getDeclaredTypeParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Backend Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Backend Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Backend Type</em>' attribute.
+	 * @see #setBackendType(BackendType)
+	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredType_BackendType()
+	 * @model dataType="org.eclipse.xpand3.staticTypesystem.BackendType" required="true"
+	 * @generated
+	 */
+	BackendType getBackendType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getBackendType <em>Backend Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Backend Type</em>' attribute.
+	 * @see #getBackendType()
+	 * @generated
+	 */
+	void setBackendType(BackendType value);
 
 } // DeclaredType

@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackage.java,v 1.1 2008/03/04 10:53:03 sefftinge Exp $
+ * $Id: StaticTypesystemPackage.java,v 1.2 2008/03/04 11:00:30 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -267,6 +268,17 @@ public interface StaticTypesystemPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Backend Type</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xtend.backend.common.BackendType
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getBackendType()
+	 * @generated
+	 */
+	int BACKEND_TYPE = 7;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.AbstractNamedElement <em>Abstract Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -425,6 +437,17 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getFunctionType_ActualTypeArguments();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.xtend.backend.common.BackendType <em>Backend Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Backend Type</em>'.
+	 * @see org.eclipse.xtend.backend.common.BackendType
+	 * @model instanceClass="org.eclipse.xtend.backend.common.BackendType"
+	 * @generated
+	 */
+	EDataType getBackendType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -579,6 +602,16 @@ public interface StaticTypesystemPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTION_TYPE__ACTUAL_TYPE_ARGUMENTS = eINSTANCE.getFunctionType_ActualTypeArguments();
+
+		/**
+		 * The meta object literal for the '<em>Backend Type</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xtend.backend.common.BackendType
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getBackendType()
+		 * @generated
+		 */
+		EDataType BACKEND_TYPE = eINSTANCE.getBackendType();
 
 	}
 

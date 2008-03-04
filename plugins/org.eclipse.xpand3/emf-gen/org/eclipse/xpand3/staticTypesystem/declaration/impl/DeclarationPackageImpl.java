@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackageImpl.java,v 1.1 2008/03/04 10:53:02 sefftinge Exp $
+ * $Id: DeclarationPackageImpl.java,v 1.2 2008/03/04 11:00:31 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.declaration.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -205,6 +206,15 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDeclaredType_BackendType() {
+		return (EAttribute)declaredTypeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDeclaredOperation() {
 		return declaredOperationEClass;
 	}
@@ -341,6 +351,7 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 		createEReference(declaredTypeEClass, DECLARED_TYPE__PROPERTIES);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__OPERATIONS);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__DECLARED_TYPE_PARAMETERS);
+		createEAttribute(declaredTypeEClass, DECLARED_TYPE__BACKEND_TYPE);
 
 		declaredOperationEClass = createEClass(DECLARED_OPERATION);
 		createEReference(declaredOperationEClass, DECLARED_OPERATION__DECLARED_PARAMETERS);
@@ -406,6 +417,7 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 		initEReference(getDeclaredType_Properties(), this.getDeclaredProperty(), null, "properties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_Operations(), this.getDeclaredOperation(), this.getDeclaredOperation_DeclaringType(), "operations", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_DeclaredTypeParameters(), this.getDeclaredTypeParameter(), null, "declaredTypeParameters", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeclaredType_BackendType(), theStaticTypesystemPackage.getBackendType(), "backendType", null, 1, 1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredOperationEClass, DeclaredOperation.class, "DeclaredOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredOperation_DeclaredParameters(), this.getDeclaredParameter(), null, "declaredParameters", null, 0, -1, DeclaredOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -30,6 +30,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actualTypeArguments" upperBound="-1"
         eType="#//AbstractTypeReference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="BackendType" instanceClassName="org.eclipse.xtend.backend.common.BackendType"/>
   <eSubpackages name="declaration" nsURI="http://www.eclipse.org/m2t/xpand3/staticTypesystem/declaration"
       nsPrefix="declaration">
     <eClassifiers xsi:type="ecore:EClass" name="DeclaredType" eSuperTypes="#//AbstractNamedElement">
@@ -41,6 +42,8 @@
           eType="#//declaration/DeclaredOperation" containment="true" eOpposite="#//declaration/DeclaredOperation/declaringType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
           upperBound="-1" eType="#//declaration/DeclaredTypeParameter" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="backendType" lowerBound="1"
+          eType="#//BackendType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DeclaredOperation" eSuperTypes="#//AbstractNamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"

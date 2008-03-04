@@ -10,7 +10,8 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.antlr.patched;bundle-version="3.0.0",
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.junit
+ org.junit,
+ org.eclipse.xtend.backend;bundle-version="0.7.0"
 Export-Package: org.eclipse.xpand3,
  org.eclipse.xpand3.declaration,
  org.eclipse.xpand3.declaration.impl,

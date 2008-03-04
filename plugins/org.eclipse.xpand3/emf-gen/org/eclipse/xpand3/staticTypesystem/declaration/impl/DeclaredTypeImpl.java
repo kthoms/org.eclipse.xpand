@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeImpl.java,v 1.1 2008/03/04 10:53:02 sefftinge Exp $
+ * $Id: DeclaredTypeImpl.java,v 1.2 2008/03/04 11:00:31 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.declaration.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -27,6 +29,7 @@ import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredTypeParameter;
 
 import org.eclipse.xpand3.staticTypesystem.impl.AbstractNamedElementImpl;
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +42,7 @@ import org.eclipse.xpand3.staticTypesystem.impl.AbstractNamedElementImpl;
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getBackendType <em>Backend Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +88,26 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * @ordered
 	 */
 	protected EList<DeclaredTypeParameter> declaredTypeParameters;
+
+	/**
+	 * The default value of the '{@link #getBackendType() <em>Backend Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBackendType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BackendType BACKEND_TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getBackendType() <em>Backend Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBackendType()
+	 * @generated
+	 * @ordered
+	 */
+	protected BackendType backendType = BACKEND_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,6 +181,27 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BackendType getBackendType() {
+		return backendType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBackendType(BackendType newBackendType) {
+		BackendType oldBackendType = backendType;
+		backendType = newBackendType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE, oldBackendType, backendType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -203,6 +248,8 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return getOperations();
 			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return getDeclaredTypeParameters();
+			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+				return getBackendType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -232,6 +279,9 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				getDeclaredTypeParameters().clear();
 				getDeclaredTypeParameters().addAll((Collection<? extends DeclaredTypeParameter>)newValue);
 				return;
+			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+				setBackendType((BackendType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -256,6 +306,9 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				getDeclaredTypeParameters().clear();
 				return;
+			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+				setBackendType(BACKEND_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -276,8 +329,26 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return operations != null && !operations.isEmpty();
 			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return declaredTypeParameters != null && !declaredTypeParameters.isEmpty();
+			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+				return BACKEND_TYPE_EDEFAULT == null ? backendType != null : !BACKEND_TYPE_EDEFAULT.equals(backendType);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (backendType: ");
+		result.append(backendType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DeclaredTypeImpl

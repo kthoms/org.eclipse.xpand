@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactoryImpl.java,v 1.1 2008/03/04 10:53:02 sefftinge Exp $
+ * $Id: StaticTypesystemFactoryImpl.java,v 1.2 2008/03/04 11:00:31 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.xpand3.staticTypesystem.*;
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,6 +77,36 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case StaticTypesystemPackage.BACKEND_TYPE:
+				return createBackendTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case StaticTypesystemPackage.BACKEND_TYPE:
+				return convertBackendTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Type createType() {
 		TypeImpl type = new TypeImpl();
 		return type;
@@ -118,6 +150,24 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 	public FunctionType createFunctionType() {
 		FunctionTypeImpl functionType = new FunctionTypeImpl();
 		return functionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BackendType createBackendTypeFromString(EDataType eDataType, String initialValue) {
+		return (BackendType)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBackendTypeToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

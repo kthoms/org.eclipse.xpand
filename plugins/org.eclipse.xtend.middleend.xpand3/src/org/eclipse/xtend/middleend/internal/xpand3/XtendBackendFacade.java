@@ -51,24 +51,8 @@ public class XtendBackendFacade {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
-	public static Object evaluateExpression(String extensionFile, String expression, Map<String, Object> localVars) {
-		return createForFile(extensionFile).evaluateExpression(expression, localVars);
-	}
-
 	private static XtendBackendFacade createForFile(String extensionFile) {
 		return new XtendBackendFacade(extensionFile);
-	}
-
-	private Object evaluateExpression(String expression, Map<String, Object> localVars) {
-		if (localVars == null)
-			localVars = new HashMap<String, Object>();
-		File f = parse();
-
-		Extension ext = ctx.findExtension(expression, f.getDeclarations());
-		ExpressionBase expr = new XtendFrontendASTConverter(ctx, typeConverter, extensionFile
-				+ SyntaxConstants.NS_DELIM + ext.getName().getValue()).convert(ext);
-
-		return expr.evaluate(middleEnd.getExecutionContext());
 	}
 
 	private File parse() {

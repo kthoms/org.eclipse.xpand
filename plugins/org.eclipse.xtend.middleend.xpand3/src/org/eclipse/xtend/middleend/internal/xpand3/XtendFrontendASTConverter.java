@@ -20,6 +20,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.xand3.analyzation.AnalyzeContext;
+import org.eclipse.xand3.analyzation.TypeSystem;
+import org.eclipse.xand3.analyzation.AnalyzeContext.Var;
+import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.expression.AbstractExpression;
 import org.eclipse.xpand3.expression.BooleanLiteral;
@@ -42,6 +45,8 @@ import org.eclipse.xpand3.expression.StringLiteral;
 import org.eclipse.xpand3.expression.SwitchExpression;
 import org.eclipse.xpand3.expression.TypeSelectExpression;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.FunctionType;
+import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.StaticProperty;
@@ -74,6 +79,7 @@ public class XtendFrontendASTConverter {
 	private String extensionName;
 	private final BackendTypeConverter typeConverter;
 	private AnalyzeContext ctx;
+	private TypeSystem typeSystem;
 
 	public XtendFrontendASTConverter(AnalyzeContext ctx, BackendTypeConverter typeConverter, String extensionName) {
 		this.ctx = ctx;
@@ -140,7 +146,7 @@ public class XtendFrontendASTConverter {
 				return new LiteralExpression(staticProp.get(), sourcePos);
 
 			// 2. check for a local variable
-			if (ctx.getLocalVars().containsKey(expr.getName().getValue()))
+			if (ctx.getVariable(expr.getName().getValue()) != null)
 				return new LocalVarEvalExpression(expr.getName().getValue(), sourcePos);
 
 			// 3. check for a type literal
@@ -172,9 +178,10 @@ public class XtendFrontendASTConverter {
 		final String functionName = expr.getName().getValue();
 
 		final AnalyzeContext oldCtx = ctx;
-		ctx = ctx.cloneWithVariable(expr.getEleName(), null /*
-		 * TODO ObjectType
-		 */);
+		ctx = ctx.cloneWith(new AnalyzeContext.Var(BackendTypeConverter.qualify(expr.getEleName()), null) /*
+																											 * TODO
+																											 * ObjectType
+																											 */);
 		final ExpressionBase bodyExpr = convert(expr.getClosure());
 		ctx = oldCtx;
 
@@ -196,7 +203,9 @@ public class XtendFrontendASTConverter {
 	public ExpressionBase convert(TypeSelectExpression expr) {
 		final SourcePos sourcePos = getSourcePos(expr);
 
-		final AbstractExpression t = ctx.getTypeForName(expr.getTypeLiteral());
+		final Type t = typeSystem.typeForName(toString(expr.getTypeLiteral()));// TODO
+																				// type
+																				// args
 		final ExpressionBase typeExpr = new LiteralExpression(typeConverter.convertToBackendType(t), sourcePos);
 
 		if (expr.getTarget() == null) {
@@ -210,6 +219,14 @@ public class XtendFrontendASTConverter {
 		} else
 			return new InvocationOnObjectExpression(SysLibNames.TYPE_SELECT, Arrays.asList(convert(expr.getTarget()),
 					typeExpr), false, sourcePos);
+	}
+
+	/**
+	 * @param typeLiteral
+	 * @return
+	 */
+	private String toString(Identifier id) {
+		return BackendTypeConverter.qualify(id);
 	}
 
 	public ExpressionBase convert(OperationCall expr) {
@@ -234,7 +251,8 @@ public class XtendFrontendASTConverter {
 				else {
 					final ExpressionBase thisExpression = new LocalVarEvalExpression(
 							org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
-					final AbstractTypeReference thisType = ctx.getVariable(AnalyzeContext.IMPLICIT_VARIABLE);
+					Var thisVar = ctx.getThis();
+					final AbstractTypeReference thisType = thisVar.getValue();
 					return createInvocationOnTargetExpression(functionName, thisExpression, thisType, params,
 							paramTypes, true, sourcePos);
 				}
@@ -263,15 +281,16 @@ public class XtendFrontendASTConverter {
 		final AbstractTypeReference varType = analyze(expr.getVarExpression());
 
 		final AnalyzeContext oldCtx = ctx;
-		ctx = ctx.cloneWithVariable(expr.getVarName(), varType);
+		String varName = toString(expr.getVarName());
+		ctx = ctx.cloneWith(new AnalyzeContext.Var(varName, varType));
 
 		try {
-			if (oldCtx.getLocalVars().containsKey(expr.getVarName()))
-				return new HidingLocalVarDefExpression(expr.getVarName().getValue(), varExpr, convert(expr
-						.getTargetExpression()), getSourcePos(expr));
+			if (oldCtx.getVariable(varName) != null)
+				return new HidingLocalVarDefExpression(varName, varExpr, convert(expr.getTargetExpression()),
+						getSourcePos(expr));
 			else
-				return new NewLocalVarDefExpression(expr.getVarName().getValue(), varExpr, convert(expr
-						.getTargetExpression()), getSourcePos(expr));
+				return new NewLocalVarDefExpression(varName, varExpr, convert(expr.getTargetExpression()),
+						getSourcePos(expr));
 		} finally {
 			ctx = oldCtx;
 		}
@@ -364,14 +383,12 @@ public class XtendFrontendASTConverter {
 	}
 
 	private boolean hasMatchingOperationCall(String functionName, AbstractTypeReference[] paramTypes) {
-		if (ctx.getExtensionForTypes(functionName, paramTypes) != null)
+		FunctionType functionType = typeSystem.functionForNameAndParameterTypes(functionName, paramTypes);
+		if (functionType != null) {
 			return true;
-
-		if (paramTypes.length == 0)
+		} else {
 			return false;
-
-		final AbstractTypeReference target = paramTypes[0];
-		return ctx.getOperationFor(target, functionName, CollectionHelper.withoutFirst(paramTypes)) != null;
+		}
 	}
 
 	private ExpressionBase createPropertyExpression(ExpressionBase target, Object type, String varName,

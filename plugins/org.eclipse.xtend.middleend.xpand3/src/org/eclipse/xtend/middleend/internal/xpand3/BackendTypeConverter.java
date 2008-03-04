@@ -37,7 +37,7 @@ public class BackendTypeConverter {
 		return getEnumLiteral(qualify(name));
 	}
 
-	private String qualify(Identifier name) {
+	public static String qualify(Identifier name) {
 		String value = name.getValue();
 		if (name.getNext() != null) {
 			value += SyntaxConstants.NS_DELIM + qualify(name.getNext());

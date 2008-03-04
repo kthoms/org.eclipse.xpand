@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3Switch.java,v 1.1 2008/02/27 13:21:09 sefftinge Exp $
+ * $Id: Xpand3Switch.java,v 1.2 2008/03/04 09:20:37 sefftinge Exp $
  */
 package org.eclipse.xpand3.util;
 
@@ -114,22 +114,6 @@ public class Xpand3Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Xpand3Package.SIMPLE_IDENTIFIER: {
-				SimpleIdentifier simpleIdentifier = (SimpleIdentifier)theEObject;
-				T result = caseSimpleIdentifier(simpleIdentifier);
-				if (result == null) result = caseIdentifier(simpleIdentifier);
-				if (result == null) result = caseSyntaxElement(simpleIdentifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case Xpand3Package.COMPOSED_IDENTIFIER: {
-				ComposedIdentifier composedIdentifier = (ComposedIdentifier)theEObject;
-				T result = caseComposedIdentifier(composedIdentifier);
-				if (result == null) result = caseIdentifier(composedIdentifier);
-				if (result == null) result = caseSyntaxElement(composedIdentifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case Xpand3Package.DECLARED_PARAMETER: {
 				DeclaredParameter declaredParameter = (DeclaredParameter)theEObject;
 				T result = caseDeclaredParameter(declaredParameter);
@@ -198,36 +182,6 @@ public class Xpand3Switch<T> {
 	 * @generated
 	 */
 	public T caseIdentifier(Identifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple Identifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimpleIdentifier(SimpleIdentifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composed Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composed Identifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseComposedIdentifier(ComposedIdentifier object) {
 		return null;
 	}
 

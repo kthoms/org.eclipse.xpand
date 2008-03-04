@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3PackageImpl.java,v 1.1 2008/02/27 13:21:07 sefftinge Exp $
+ * $Id: Xpand3PackageImpl.java,v 1.2 2008/03/04 09:20:37 sefftinge Exp $
  */
 package org.eclipse.xpand3.impl;
 
@@ -69,20 +69,6 @@ public class Xpand3PackageImpl extends EPackageImpl implements Xpand3Package {
 	 * @generated
 	 */
 	private EClass identifierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simpleIdentifierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass composedIdentifierEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -283,8 +269,8 @@ public class Xpand3PackageImpl extends EPackageImpl implements Xpand3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSimpleIdentifier() {
-		return simpleIdentifierEClass;
+	public EReference getIdentifier_Next() {
+		return (EReference)identifierEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -292,26 +278,8 @@ public class Xpand3PackageImpl extends EPackageImpl implements Xpand3Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleIdentifier_Value() {
-		return (EAttribute)simpleIdentifierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getComposedIdentifier() {
-		return composedIdentifierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getComposedIdentifier_Identifiers() {
-		return (EReference)composedIdentifierEClass.getEStructuralFeatures().get(0);
+	public EAttribute getIdentifier_Value() {
+		return (EAttribute)identifierEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -384,12 +352,8 @@ public class Xpand3PackageImpl extends EPackageImpl implements Xpand3Package {
 		createEAttribute(importStatementEClass, IMPORT_STATEMENT__EXPORTED);
 
 		identifierEClass = createEClass(IDENTIFIER);
-
-		simpleIdentifierEClass = createEClass(SIMPLE_IDENTIFIER);
-		createEAttribute(simpleIdentifierEClass, SIMPLE_IDENTIFIER__VALUE);
-
-		composedIdentifierEClass = createEClass(COMPOSED_IDENTIFIER);
-		createEReference(composedIdentifierEClass, COMPOSED_IDENTIFIER__IDENTIFIERS);
+		createEReference(identifierEClass, IDENTIFIER__NEXT);
+		createEAttribute(identifierEClass, IDENTIFIER__VALUE);
 
 		declaredParameterEClass = createEClass(DECLARED_PARAMETER);
 		createEReference(declaredParameterEClass, DECLARED_PARAMETER__NAME);
@@ -437,8 +401,6 @@ public class Xpand3PackageImpl extends EPackageImpl implements Xpand3Package {
 		fileEClass.getESuperTypes().add(this.getSyntaxElement());
 		importStatementEClass.getESuperTypes().add(this.getSyntaxElement());
 		identifierEClass.getESuperTypes().add(this.getSyntaxElement());
-		simpleIdentifierEClass.getESuperTypes().add(this.getIdentifier());
-		composedIdentifierEClass.getESuperTypes().add(this.getIdentifier());
 		declaredParameterEClass.getESuperTypes().add(this.getSyntaxElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -456,13 +418,9 @@ public class Xpand3PackageImpl extends EPackageImpl implements Xpand3Package {
 		initEReference(getImportStatement_ImportedId(), this.getIdentifier(), null, "importedId", null, 0, 1, ImportStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImportStatement_Exported(), ecorePackage.getEBoolean(), "exported", null, 0, 1, ImportStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(identifierEClass, Identifier.class, "Identifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(simpleIdentifierEClass, SimpleIdentifier.class, "SimpleIdentifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimpleIdentifier_Value(), ecorePackage.getEString(), "value", null, 0, 1, SimpleIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(composedIdentifierEClass, ComposedIdentifier.class, "ComposedIdentifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComposedIdentifier_Identifiers(), this.getIdentifier(), null, "identifiers", null, 1, -1, ComposedIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIdentifier_Next(), this.getIdentifier(), null, "next", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIdentifier_Value(), ecorePackage.getEString(), "value", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredParameterEClass, DeclaredParameter.class, "DeclaredParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredParameter_Name(), this.getIdentifier(), null, "name", null, 0, 1, DeclaredParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

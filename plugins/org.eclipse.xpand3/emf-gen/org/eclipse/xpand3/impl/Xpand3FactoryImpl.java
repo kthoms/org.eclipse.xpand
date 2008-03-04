@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3FactoryImpl.java,v 1.1 2008/02/27 13:21:07 sefftinge Exp $
+ * $Id: Xpand3FactoryImpl.java,v 1.2 2008/03/04 09:20:37 sefftinge Exp $
  */
 package org.eclipse.xpand3.impl;
 
@@ -62,8 +62,7 @@ public class Xpand3FactoryImpl extends EFactoryImpl implements Xpand3Factory {
 		switch (eClass.getClassifierID()) {
 			case Xpand3Package.FILE: return createFile();
 			case Xpand3Package.IMPORT_STATEMENT: return createImportStatement();
-			case Xpand3Package.SIMPLE_IDENTIFIER: return createSimpleIdentifier();
-			case Xpand3Package.COMPOSED_IDENTIFIER: return createComposedIdentifier();
+			case Xpand3Package.IDENTIFIER: return createIdentifier();
 			case Xpand3Package.DECLARED_PARAMETER: return createDeclaredParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -95,19 +94,9 @@ public class Xpand3FactoryImpl extends EFactoryImpl implements Xpand3Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleIdentifier createSimpleIdentifier() {
-		SimpleIdentifierImpl simpleIdentifier = new SimpleIdentifierImpl();
-		return simpleIdentifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComposedIdentifier createComposedIdentifier() {
-		ComposedIdentifierImpl composedIdentifier = new ComposedIdentifierImpl();
-		return composedIdentifier;
+	public Identifier createIdentifier() {
+		IdentifierImpl identifier = new IdentifierImpl();
+		return identifier;
 	}
 
 	/**

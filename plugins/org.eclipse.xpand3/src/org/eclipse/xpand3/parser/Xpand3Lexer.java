@@ -3,10 +3,12 @@
 package org.eclipse.xpand3.parser; 
 
 
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.FailedPredicateException;
+import org.antlr.runtime.Lexer;
+import org.antlr.runtime.MismatchedSetException;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
 
 public class Xpand3Lexer extends Lexer {
     public static final int T29=29;

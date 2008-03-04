@@ -13,16 +13,18 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation;
+package org.eclipse.xand3.analyzation.typesystem;
 
-import org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor;
+import java.util.Set;
+
+import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction;
+import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
 
 /**
  * @author Sven Efftinge
- *
+ * 
  */
-public class DeclarationsContributorFactory {
-	public static DeclarationsContributor createDeclarationContributor(String namespace) {
-		return null;
-	}
+public interface DeclarationsContributor {
+	DeclaredType typeForName(String name);
+	Set<DeclaredFunction> functionsForName(String name);
 }

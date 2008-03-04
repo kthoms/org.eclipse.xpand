@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xpand3/emf-gen"
+    modelPluginID="org.eclipse.xpand3" modelName="Static_typesystem" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>static_typesystem.ecore</foreignModel>
+  <genPackages prefix="StaticTypesystem" basePackage="org.eclipse.xpand3" disposableProviderFactory="true"
+      ecorePackage="static_typesystem.ecore#/">
+    <genClasses image="false" ecoreClass="static_typesystem.ecore#//AbstractNamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute static_typesystem.ecore#//AbstractNamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="static_typesystem.ecore#//AbstractTypeReference"/>
+    <genClasses ecoreClass="static_typesystem.ecore#//Type">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//Type/declaredType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//Type/actualTypeArguments"/>
+    </genClasses>
+    <genClasses ecoreClass="static_typesystem.ecore#//TypeVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//TypeVariable/declaredTypeParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="static_typesystem.ecore#//VoidType"/>
+    <genClasses ecoreClass="static_typesystem.ecore#//WildcardType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//WildcardType/lowerBounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//WildcardType/upperBounds"/>
+    </genClasses>
+    <nestedGenPackages prefix="Declaration" disposableProviderFactory="true" ecorePackage="static_typesystem.ecore#//declaration">
+      <genClasses ecoreClass="static_typesystem.ecore#//declaration/DeclaredType">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredType/staticProperties"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredType/properties"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredType/operations"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredType/declaredTypeParameters"/>
+      </genClasses>
+      <genClasses ecoreClass="static_typesystem.ecore#//declaration/DeclaredOperation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredOperation/declaredParameters"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredOperation/declaringType"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredOperation/returnType"/>
+      </genClasses>
+      <genClasses ecoreClass="static_typesystem.ecore#//declaration/DeclaredFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredFunction/declaredParameters"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredFunction/declaredTypeParameters"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference static_typesystem.ecore#//declaration/DeclaredFunction/returnType"/>
+      </genClasses>
+      <genClasses ecoreClass="static_typesystem.ecore#//declaration/DeclaredProperty"/>
+      <genClasses ecoreClass="static_typesystem.ecore#//declaration/DeclaredStaticProperty"/>
+      <genClasses ecoreClass="static_typesystem.ecore#//declaration/DeclaredTypeParameter"/>
+      <genClasses ecoreClass="static_typesystem.ecore#//declaration/DeclaredParameter"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

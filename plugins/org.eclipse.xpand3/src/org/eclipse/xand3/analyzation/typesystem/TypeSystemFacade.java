@@ -15,44 +15,56 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
-import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredFunction;
-import org.eclipse.xand3.analyzation.typesystem.declaration.DeclaredType;
-import org.eclipse.xand3.analyzation.typesystem.type.Type;
-import org.eclipse.xand3.analyzation.typesystem.type.TypeMirror;
-import org.eclipse.xand3.analyzation.typesystem.type.WildcardType;
+import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.FunctionType;
+import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
+import org.eclipse.xpand3.staticTypesystem.Type;
+import org.eclipse.xpand3.staticTypesystem.WildcardType;
+import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction;
+import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
 
 /**
  * @author Sven Efftinge
  * 
  */
-public interface TypeSystemFacade {
+public final class TypeSystemFacade {
+	private TypeSystemFacade(){}
+	
+	public static TypeSystemFacade create() {
+		return new TypeSystemFacade();
+	}
+	
+	private StaticTypesystemFactory FACTORY = StaticTypesystemFactory.eINSTANCE;
 	// factory methods for type arguments
 	/**
 	 * creates and returns a simple wild card type argument
 	 */
-	WildcardType createWildCard();
+	public WildcardType createWildcard() {
+		WildcardType wildcardType = FACTORY.createWildcardType();
+		return wildcardType;
+	}
 
 	/**
 	 * creates and returns a wild card type argument with the passed lower bound as well as upper bounds
 	 */
-	WildcardType createWildCardWithLowerAndUpper(Type lower,
-			Type... upperBounds);
+	public WildcardType createWildcardWithLower(AbstractTypeReference... lowerBounds) {
+		WildcardType wildCard = createWildcard();
+		for (AbstractTypeReference abstractTypeReference : lowerBounds) {
+			wildCard.getLowerBounds().add(abstractTypeReference);
+		}
+		return wildCard;
+	}
 
 	/**
 	 * creates and returns a wild card type argument with the passed upper bounds
 	 */
-	WildcardType createWildCardWithUpper(Type... upperBounds);
-
-	/**
-	 * creates and returns a simple type argument, parameterized with a concrete type
-	 */
-	WildcardType createSimpleArgument(Type type);
-
-	/**
-	 * @param name - a simple name (not parameterized!)
-	 * @return the type (maybe unbound) or null if there is no type with the given name
-	 */
-	Type typeForName(String name);
+	public WildcardType createWildcardWithUpper(Type... upperBounds){
+		WildcardType wildCard = createWildcard();
+		for (AbstractTypeReference abstractTypeReference : upperBounds) {
+			wildCard.getLowerBounds().add(abstractTypeReference);
+		}
+		return wildCard;
+	}
 
 	/**
 	 * creates a type for a declared type and the needed arguments
@@ -60,21 +72,27 @@ public interface TypeSystemFacade {
 	 * @param args
 	 * @return
 	 */
-	Type addArguments(DeclaredType dt, TypeMirror... args);
+	public Type typeReference(DeclaredType dt, AbstractTypeReference... args) {
+		Type type = FACTORY.createType();
+		type.setDeclaredType(dt);
+		for (AbstractTypeReference ref : args) {
+			type.getActualTypeArguments().add(ref);
+		}
+		return type;
+	}
 
 	/**
 	 * @param name - a simple name (not parameterized!)
 	 * @param paramTypes - the types of the parameters to be passed
 	 * @return the type (maybe unbound) or null if there is no type with the given name
 	 */
-	Function functionForNameAndParameterTypes(String name, Type[]... paramTypes);
+	public FunctionType functionType(DeclaredFunction func, AbstractTypeReference... args){
+		FunctionType funcType = FACTORY.createFunctionType();
+		funcType.setDeclaredFunction(func);
+		for (AbstractTypeReference ref : args) {
+			funcType.getActualTypeArguments().add(ref);
+		}
+		return funcType;
+	}
 
-	/**
-	 * creates a function for a declared function and the needed arguments
-	 * @param f - the function to be instantiated
-	 * @param args - the type arguments
-	 * @return
-	 */
-	Function addArguments(DeclaredFunction f, TypeMirror... args);
-	
 }

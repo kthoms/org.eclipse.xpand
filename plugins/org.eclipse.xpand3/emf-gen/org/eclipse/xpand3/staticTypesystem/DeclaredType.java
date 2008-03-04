@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredType.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: DeclaredType.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -20,7 +20,6 @@ import org.eclipse.xtend.backend.common.BackendType;
  * <ul>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getStaticProperties <em>Static Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getBackendType <em>Backend Type</em>}</li>
  * </ul>
@@ -62,24 +61,6 @@ public interface DeclaredType extends AbstractNamedElement {
 	 * @generated
 	 */
 	EList<DeclaredProperty> getProperties();
-
-	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaringType <em>Declaring Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operations</em>' containment reference list.
-	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredType_Operations()
-	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaringType
-	 * @model opposite="declaringType" containment="true"
-	 * @generated
-	 */
-	EList<DeclaredOperation> getOperations();
 
 	/**
 	 * Returns the value of the '<em><b>Declared Type Parameters</b></em>' containment reference list.

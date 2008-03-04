@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WildcardTypeImpl.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: WildcardTypeImpl.java,v 1.3 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 

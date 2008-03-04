@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredFunctionImpl.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: DeclaredFunctionImpl.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredParameter;
-import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
 
@@ -71,7 +71,7 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	 * @generated
 	 * @ordered
 	 */
-	protected DeclaredType returnType;
+	protected AbstractTypeReference returnType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,10 +121,10 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeclaredType getReturnType() {
+	public AbstractTypeReference getReturnType() {
 		if (returnType != null && returnType.eIsProxy()) {
 			InternalEObject oldReturnType = (InternalEObject)returnType;
-			returnType = (DeclaredType)eResolveProxy(oldReturnType);
+			returnType = (AbstractTypeReference)eResolveProxy(oldReturnType);
 			if (returnType != oldReturnType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, oldReturnType, returnType));
@@ -138,7 +138,7 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeclaredType basicGetReturnType() {
+	public AbstractTypeReference basicGetReturnType() {
 		return returnType;
 	}
 
@@ -147,8 +147,8 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReturnType(DeclaredType newReturnType) {
-		DeclaredType oldReturnType = returnType;
+	public void setReturnType(AbstractTypeReference newReturnType) {
+		AbstractTypeReference oldReturnType = returnType;
 		returnType = newReturnType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, oldReturnType, returnType));
@@ -207,7 +207,7 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 				getDeclaredTypeParameters().addAll((Collection<? extends DeclaredTypeParameter>)newValue);
 				return;
 			case StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE:
-				setReturnType((DeclaredType)newValue);
+				setReturnType((AbstractTypeReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,7 +228,7 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 				getDeclaredTypeParameters().clear();
 				return;
 			case StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE:
-				setReturnType((DeclaredType)null);
+				setReturnType((AbstractTypeReference)null);
 				return;
 		}
 		super.eUnset(featureID);

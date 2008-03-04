@@ -35,27 +35,17 @@
         eType="#//DeclaredStaticProperty" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//DeclaredProperty" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
-        eType="#//DeclaredOperation" containment="true" eOpposite="#//DeclaredOperation/declaringType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
         upperBound="-1" eType="#//DeclaredTypeParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="backendType" lowerBound="1"
         eType="#//BackendType"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeclaredOperation" eSuperTypes="#//AbstractNamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
-        eType="#//DeclaredParameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="declaringType" lowerBound="1"
-        eType="#//DeclaredType" eOpposite="#//DeclaredType/operations"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" lowerBound="1"
-        eType="#//AbstractTypeReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredFunction" eSuperTypes="#//AbstractNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
         eType="#//DeclaredParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
         upperBound="-1" eType="#//DeclaredTypeParameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//DeclaredType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//AbstractTypeReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredProperty" eSuperTypes="#//AbstractNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//AbstractTypeReference"/>

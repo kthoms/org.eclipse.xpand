@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemSwitch.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: StaticTypesystemSwitch.java,v 1.3 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.util;
 
@@ -138,13 +138,6 @@ public class StaticTypesystemSwitch<T> {
 				DeclaredType declaredType = (DeclaredType)theEObject;
 				T result = caseDeclaredType(declaredType);
 				if (result == null) result = caseAbstractNamedElement(declaredType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StaticTypesystemPackage.DECLARED_OPERATION: {
-				DeclaredOperation declaredOperation = (DeclaredOperation)theEObject;
-				T result = caseDeclaredOperation(declaredOperation);
-				if (result == null) result = caseAbstractNamedElement(declaredOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -304,21 +297,6 @@ public class StaticTypesystemSwitch<T> {
 	 * @generated
 	 */
 	public T caseDeclaredType(DeclaredType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Declared Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Declared Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDeclaredOperation(DeclaredOperation object) {
 		return null;
 	}
 

@@ -68,7 +68,6 @@ public class BuiltinDeclarationsContributor implements DeclarationsContributor {
 				.createDeclaredFunction();
 		functions.put(backendFunction.getName(), df);
 		df.setName(backendFunction.getName());
-		
 		return df;
 	}
 	/**

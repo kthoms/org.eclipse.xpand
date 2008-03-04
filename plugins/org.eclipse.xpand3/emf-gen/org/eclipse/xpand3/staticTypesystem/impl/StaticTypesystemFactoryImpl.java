@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactoryImpl.java,v 1.3 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: StaticTypesystemFactoryImpl.java,v 1.4 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -69,7 +69,6 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 			case StaticTypesystemPackage.WILDCARD_TYPE: return createWildcardType();
 			case StaticTypesystemPackage.FUNCTION_TYPE: return createFunctionType();
 			case StaticTypesystemPackage.DECLARED_TYPE: return createDeclaredType();
-			case StaticTypesystemPackage.DECLARED_OPERATION: return createDeclaredOperation();
 			case StaticTypesystemPackage.DECLARED_FUNCTION: return createDeclaredFunction();
 			case StaticTypesystemPackage.DECLARED_PROPERTY: return createDeclaredProperty();
 			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY: return createDeclaredStaticProperty();
@@ -168,16 +167,6 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 	public DeclaredType createDeclaredType() {
 		DeclaredTypeImpl declaredType = new DeclaredTypeImpl();
 		return declaredType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DeclaredOperation createDeclaredOperation() {
-		DeclaredOperationImpl declaredOperation = new DeclaredOperationImpl();
-		return declaredOperation;
 	}
 
 	/**

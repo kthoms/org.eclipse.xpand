@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactory.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: StaticTypesystemFactory.java,v 1.3 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -78,15 +78,6 @@ public interface StaticTypesystemFactory extends EFactory {
 	 * @generated
 	 */
 	DeclaredType createDeclaredType();
-
-	/**
-	 * Returns a new object of class '<em>Declared Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Declared Operation</em>'.
-	 * @generated
-	 */
-	DeclaredOperation createDeclaredOperation();
 
 	/**
 	 * Returns a new object of class '<em>Declared Function</em>'.

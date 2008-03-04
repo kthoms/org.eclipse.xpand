@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemAdapterFactory.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: StaticTypesystemAdapterFactory.java,v 1.3 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.util;
 
@@ -102,10 +102,6 @@ public class StaticTypesystemAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDeclaredType(DeclaredType object) {
 				return createDeclaredTypeAdapter();
-			}
-			@Override
-			public Adapter caseDeclaredOperation(DeclaredOperation object) {
-				return createDeclaredOperationAdapter();
 			}
 			@Override
 			public Adapter caseDeclaredFunction(DeclaredFunction object) {
@@ -256,20 +252,6 @@ public class StaticTypesystemAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeclaredTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation <em>Declared Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredOperation
-	 * @generated
-	 */
-	public Adapter createDeclaredOperationAdapter() {
 		return null;
 	}
 

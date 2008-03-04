@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredProperty.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: DeclaredProperty.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -24,7 +24,6 @@ package org.eclipse.xpand3.staticTypesystem;
  * @generated
  */
 public interface DeclaredProperty extends AbstractNamedElement {
-
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -50,4 +49,5 @@ public interface DeclaredProperty extends AbstractNamedElement {
 	 * @generated
 	 */
 	void setType(AbstractTypeReference value);
+
 } // DeclaredProperty

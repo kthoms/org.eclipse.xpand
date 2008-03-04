@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredFunction.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: DeclaredFunction.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -68,12 +68,12 @@ public interface DeclaredFunction extends AbstractNamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Return Type</em>' reference.
-	 * @see #setReturnType(DeclaredType)
+	 * @see #setReturnType(AbstractTypeReference)
 	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredFunction_ReturnType()
 	 * @model
 	 * @generated
 	 */
-	DeclaredType getReturnType();
+	AbstractTypeReference getReturnType();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}' reference.
@@ -83,6 +83,6 @@ public interface DeclaredFunction extends AbstractNamedElement {
 	 * @see #getReturnType()
 	 * @generated
 	 */
-	void setReturnType(DeclaredType value);
+	void setReturnType(AbstractTypeReference value);
 
 } // DeclaredFunction

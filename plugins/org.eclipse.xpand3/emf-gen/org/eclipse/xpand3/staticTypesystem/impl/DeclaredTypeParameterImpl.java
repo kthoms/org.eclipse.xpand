@@ -2,15 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeParameterImpl.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: DeclaredTypeParameterImpl.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;

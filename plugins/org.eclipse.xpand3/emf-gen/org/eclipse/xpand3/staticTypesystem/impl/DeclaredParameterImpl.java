@@ -2,15 +2,17 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredParameterImpl.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
+ * $Id: DeclaredParameterImpl.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredParameter;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;

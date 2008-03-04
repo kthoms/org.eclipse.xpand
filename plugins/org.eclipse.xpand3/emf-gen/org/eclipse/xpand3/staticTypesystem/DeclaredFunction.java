@@ -2,13 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredFunction.java,v 1.1 2008/03/04 10:52:57 sefftinge Exp $
+ * $Id: DeclaredFunction.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
  */
-package org.eclipse.xpand3.staticTypesystem.declaration;
+package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.xpand3.staticTypesystem.AbstractNamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,20 +16,20 @@ import org.eclipse.xpand3.staticTypesystem.AbstractNamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction#getDeclaredParameters <em>Declared Parameters</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getDeclaredParameters <em>Declared Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredFunction()
+ * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredFunction()
  * @model
  * @generated
  */
 public interface DeclaredFunction extends AbstractNamedElement {
 	/**
 	 * Returns the value of the '<em><b>Declared Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredParameter}.
+	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.DeclaredParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Declared Parameters</em>' containment reference list isn't clear,
@@ -39,7 +37,7 @@ public interface DeclaredFunction extends AbstractNamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declared Parameters</em>' containment reference list.
-	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredFunction_DeclaredParameters()
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredFunction_DeclaredParameters()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -47,7 +45,7 @@ public interface DeclaredFunction extends AbstractNamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Declared Type Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredTypeParameter}.
+	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Declared Type Parameters</em>' containment reference list isn't clear,
@@ -55,7 +53,7 @@ public interface DeclaredFunction extends AbstractNamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declared Type Parameters</em>' containment reference list.
-	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredFunction_DeclaredTypeParameters()
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredFunction_DeclaredTypeParameters()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -71,14 +69,14 @@ public interface DeclaredFunction extends AbstractNamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Return Type</em>' reference.
 	 * @see #setReturnType(DeclaredType)
-	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredFunction_ReturnType()
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredFunction_ReturnType()
 	 * @model
 	 * @generated
 	 */
 	DeclaredType getReturnType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction#getReturnType <em>Return Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Return Type</em>' reference.

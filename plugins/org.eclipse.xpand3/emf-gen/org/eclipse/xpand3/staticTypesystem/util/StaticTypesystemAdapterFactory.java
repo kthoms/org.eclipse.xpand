@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemAdapterFactory.java,v 1.1 2008/03/04 10:52:57 sefftinge Exp $
+ * $Id: StaticTypesystemAdapterFactory.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.util;
 
@@ -98,6 +98,34 @@ public class StaticTypesystemAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseFunctionType(FunctionType object) {
 				return createFunctionTypeAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredType(DeclaredType object) {
+				return createDeclaredTypeAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredOperation(DeclaredOperation object) {
+				return createDeclaredOperationAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredFunction(DeclaredFunction object) {
+				return createDeclaredFunctionAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredProperty(DeclaredProperty object) {
+				return createDeclaredPropertyAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredStaticProperty(DeclaredStaticProperty object) {
+				return createDeclaredStaticPropertyAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredTypeParameter(DeclaredTypeParameter object) {
+				return createDeclaredTypeParameterAdapter();
+			}
+			@Override
+			public Adapter caseDeclaredParameter(DeclaredParameter object) {
+				return createDeclaredParameterAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -214,6 +242,104 @@ public class StaticTypesystemAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFunctionTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType <em>Declared Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType
+	 * @generated
+	 */
+	public Adapter createDeclaredTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation <em>Declared Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredOperation
+	 * @generated
+	 */
+	public Adapter createDeclaredOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction <em>Declared Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredFunction
+	 * @generated
+	 */
+	public Adapter createDeclaredFunctionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredProperty <em>Declared Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredProperty
+	 * @generated
+	 */
+	public Adapter createDeclaredPropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty <em>Declared Static Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty
+	 * @generated
+	 */
+	public Adapter createDeclaredStaticPropertyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter <em>Declared Type Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter
+	 * @generated
+	 */
+	public Adapter createDeclaredTypeParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredParameter <em>Declared Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredParameter
+	 * @generated
+	 */
+	public Adapter createDeclaredParameterAdapter() {
 		return null;
 	}
 

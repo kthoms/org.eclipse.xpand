@@ -15,44 +15,164 @@
  */
 package org.eclipse.xand3.analyzation.typesystem.builtin;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
-import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xand3.analyzation.typesystem.TypeSystemFacade;
+import org.eclipse.xpand3.declaration.DeclarationFactory;
+import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
+import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
+import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
+import org.eclipse.xtend.backend.BackendFacade;
+import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.Property;
+import org.eclipse.xtend.backend.common.StaticProperty;
+import org.eclipse.xtend.backend.types.builtin.BooleanType;
+import org.eclipse.xtend.backend.types.builtin.CollectionType;
+import org.eclipse.xtend.backend.types.builtin.DoubleType;
+import org.eclipse.xtend.backend.types.builtin.FunctionType;
+import org.eclipse.xtend.backend.types.builtin.ListType;
+import org.eclipse.xtend.backend.types.builtin.LongType;
+import org.eclipse.xtend.backend.types.builtin.ObjectType;
+import org.eclipse.xtend.backend.types.builtin.PropertyType;
+import org.eclipse.xtend.backend.types.builtin.SetType;
+import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
+import org.eclipse.xtend.backend.types.builtin.StringType;
+import org.eclipse.xtend.backend.types.builtin.TypeType;
 
 /**
  * @author Sven Efftinge
- *
+ * 
  */
 public class BuiltinDeclarationsContributor implements DeclarationsContributor {
+
+	private Map<String, DeclaredType> types = new HashMap<String, DeclaredType>();
+	private Map<String, DeclaredFunction> functions = new HashMap<String, DeclaredFunction>();
+
+	private TypeSystemFacade facade = TypeSystemFacade.create();
+
 	
-	private BackendTypesystem backendTypesystem = null;
-	
-	/**
-	 * 
-	 */
-	public BuiltinDeclarationsContributor(BackendTypesystem backendTypesystem) {
-		this.backendTypesystem = backendTypesystem;
+	private DeclaredFunction createDeclaredFunction(NamedFunction backendFunction) {
+		if (functions.containsKey(backendFunction.getName())) {
+			return functions.get(backendFunction.getName());
+		}
+		DeclaredFunction df = StaticTypesystemFactory.eINSTANCE
+				.createDeclaredFunction();
+		functions.put(backendFunction.getName(), df);
+		df.setName(backendFunction.getName());
+		
+		return df;
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#functionsForName(java.lang.String)
+	/**
+	 * @param instance
+	 * @return
 	 */
-	public Set<DeclaredFunction> functionsForName(String name) {
-		// TODO Auto-generated method stub
+	private DeclaredType createDeclaredType(BackendType bt) {
+		if (types.containsKey(bt.getName())) {
+			return types.get(bt.getName());
+		}
+		DeclaredType dt = StaticTypesystemFactory.eINSTANCE
+				.createDeclaredType();
+		types.put(bt.getName(), dt);
+		dt.setName(bt.getName());
+		dt.setBackendType(bt);
+		Map<String, ? extends Property> properties = bt.getProperties();
+		for (Entry<String, ? extends Property> entry : properties.entrySet()) {
+			dt.getProperties().add(createDeclaredProperty(entry.getValue()));
+		}
+		// for (NamedFunction func: bt.getBuiltinOperations()) {
+		// dt.getProperties().add(createDeclaredOperation(func));
+		// }
+		for (StaticProperty sp : bt.getStaticProperties().values()) {
+			dt.getStaticProperties().add(createDeclaredStaticProperty(sp));
+		}
+		return dt;
+	}
+
+	/**
+	 * @param sp
+	 * @return
+	 */
+	private DeclaredStaticProperty createDeclaredStaticProperty(
+			StaticProperty sp) {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @param value
+	 * @return
+	 */
+	private DeclaredProperty createDeclaredProperty(Property value) {
+		DeclaredProperty dp = StaticTypesystemFactory.eINSTANCE
+				.createDeclaredProperty();
+		dp.setName(value.getName());
+		dp
+				.setType(facade.typeReference(typeForName(value.getType()
+						.getName())));
+		return dp;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#functionsForName(java.lang.String)
+	 */
+	public Set<DeclaredFunction> functionsForName(String name) {
+
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#typeForName(java.lang.String)
 	 */
 	public DeclaredType typeForName(String name) {
-		backendTypesystem.
+		if (name.equals(OBJECT)) {
+			createDeclaredType(ObjectType.INSTANCE);
+		} else if (name.equals(STRING)) {
+			createDeclaredType(StringType.INSTANCE);
+		} else if (name.equals(BOOLEAN)) {
+			createDeclaredType(BooleanType.INSTANCE);
+		} else if (name.equals(INTEGER)) {
+			createDeclaredType(LongType.INSTANCE);
+		} else if (name.equals(REAL)) {
+			createDeclaredType(DoubleType.INSTANCE);
+		} else if (name.equals(COLLECTION)) {
+			createDeclaredType(CollectionType.INSTANCE);
+		} else if (name.equals(LIST)) {
+			createDeclaredType(ListType.INSTANCE);
+		} else if (name.equals(SET)) {
+			createDeclaredType(SetType.INSTANCE);
+		} else if (name.equals(TYPE)) {
+			createDeclaredType(TypeType.INSTANCE);
+		} else if (name.equals(PROPERTY)) {
+			createDeclaredType(PropertyType.INSTANCE);
+		} else if (name.equals(OPERATION)) {
+			createDeclaredType(FunctionType.INSTANCE);
+		} else if (name.equals(STATIC_PROPERTY)) {
+			createDeclaredType(StaticPropertyType.INSTANCE);
+		} else if (name.equals(VOID)) {
+			createVoidType();
+		}
 		return null;
 	}
-	
+
+	/**
+	 * 
+	 */
+	private void createVoidType() {
+
+	}
+
 	public static final String OBJECT = "Object";
 
 	// Datatypes

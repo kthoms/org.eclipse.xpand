@@ -16,12 +16,12 @@
 package org.eclipse.xand3.analyzation.typesystem;
 
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.FunctionType;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
 import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xpand3.staticTypesystem.WildcardType;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
 
 /**
  * @author Sven Efftinge

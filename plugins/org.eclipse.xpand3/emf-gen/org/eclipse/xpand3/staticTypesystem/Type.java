@@ -2,13 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Type.java,v 1.1 2008/03/04 10:53:03 sefftinge Exp $
+ * $Id: Type.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
 
 /**
  * <!-- begin-user-doc -->

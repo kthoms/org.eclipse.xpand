@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractNamedElement.java,v 1.1 2008/03/04 10:53:03 sefftinge Exp $
+ * $Id: AbstractNamedElement.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 

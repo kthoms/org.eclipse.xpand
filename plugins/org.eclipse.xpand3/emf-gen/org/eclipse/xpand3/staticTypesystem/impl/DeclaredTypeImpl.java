@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeImpl.java,v 1.2 2008/03/04 11:00:31 sefftinge Exp $
+ * $Id: DeclaredTypeImpl.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
  */
-package org.eclipse.xpand3.staticTypesystem.declaration.impl;
+package org.eclipse.xpand3.staticTypesystem.impl;
 
 import java.util.Collection;
 
@@ -17,18 +17,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredProperty;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredStaticProperty;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredTypeParameter;
+import org.eclipse.xpand3.staticTypesystem.DeclaredOperation;
+import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
+import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
+import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
 
-import org.eclipse.xpand3.staticTypesystem.impl.AbstractNamedElementImpl;
 import org.eclipse.xtend.backend.common.BackendType;
 
 /**
@@ -38,11 +38,11 @@ import org.eclipse.xtend.backend.common.BackendType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getStaticProperties <em>Static Properties</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getOperations <em>Operations</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredTypeImpl#getBackendType <em>Backend Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getStaticProperties <em>Static Properties</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getBackendType <em>Backend Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -125,7 +125,7 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DeclarationPackage.Literals.DECLARED_TYPE;
+		return StaticTypesystemPackage.Literals.DECLARED_TYPE;
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 */
 	public EList<DeclaredStaticProperty> getStaticProperties() {
 		if (staticProperties == null) {
-			staticProperties = new EObjectContainmentEList<DeclaredStaticProperty>(DeclaredStaticProperty.class, this, DeclarationPackage.DECLARED_TYPE__STATIC_PROPERTIES);
+			staticProperties = new EObjectContainmentEList<DeclaredStaticProperty>(DeclaredStaticProperty.class, this, StaticTypesystemPackage.DECLARED_TYPE__STATIC_PROPERTIES);
 		}
 		return staticProperties;
 	}
@@ -147,7 +147,7 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 */
 	public EList<DeclaredProperty> getProperties() {
 		if (properties == null) {
-			properties = new EObjectContainmentEList<DeclaredProperty>(DeclaredProperty.class, this, DeclarationPackage.DECLARED_TYPE__PROPERTIES);
+			properties = new EObjectContainmentEList<DeclaredProperty>(DeclaredProperty.class, this, StaticTypesystemPackage.DECLARED_TYPE__PROPERTIES);
 		}
 		return properties;
 	}
@@ -159,7 +159,7 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 */
 	public EList<DeclaredOperation> getOperations() {
 		if (operations == null) {
-			operations = new EObjectContainmentWithInverseEList<DeclaredOperation>(DeclaredOperation.class, this, DeclarationPackage.DECLARED_TYPE__OPERATIONS, DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE);
+			operations = new EObjectContainmentWithInverseEList<DeclaredOperation>(DeclaredOperation.class, this, StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS, StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE);
 		}
 		return operations;
 	}
@@ -171,7 +171,7 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 */
 	public EList<DeclaredTypeParameter> getDeclaredTypeParameters() {
 		if (declaredTypeParameters == null) {
-			declaredTypeParameters = new EObjectContainmentEList<DeclaredTypeParameter>(DeclaredTypeParameter.class, this, DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS);
+			declaredTypeParameters = new EObjectContainmentEList<DeclaredTypeParameter>(DeclaredTypeParameter.class, this, StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS);
 		}
 		return declaredTypeParameters;
 	}
@@ -194,7 +194,7 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 		BackendType oldBackendType = backendType;
 		backendType = newBackendType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE, oldBackendType, backendType));
+			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE, oldBackendType, backendType));
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_TYPE__OPERATIONS:
+			case StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperations()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -220,13 +220,13 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_TYPE__STATIC_PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__STATIC_PROPERTIES:
 				return ((InternalEList<?>)getStaticProperties()).basicRemove(otherEnd, msgs);
-			case DeclarationPackage.DECLARED_TYPE__PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
-			case DeclarationPackage.DECLARED_TYPE__OPERATIONS:
+			case StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS:
 				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
-			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return ((InternalEList<?>)getDeclaredTypeParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -240,15 +240,15 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_TYPE__STATIC_PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__STATIC_PROPERTIES:
 				return getStaticProperties();
-			case DeclarationPackage.DECLARED_TYPE__PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__PROPERTIES:
 				return getProperties();
-			case DeclarationPackage.DECLARED_TYPE__OPERATIONS:
+			case StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS:
 				return getOperations();
-			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return getDeclaredTypeParameters();
-			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
 				return getBackendType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -263,23 +263,23 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_TYPE__STATIC_PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__STATIC_PROPERTIES:
 				getStaticProperties().clear();
 				getStaticProperties().addAll((Collection<? extends DeclaredStaticProperty>)newValue);
 				return;
-			case DeclarationPackage.DECLARED_TYPE__PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__PROPERTIES:
 				getProperties().clear();
 				getProperties().addAll((Collection<? extends DeclaredProperty>)newValue);
 				return;
-			case DeclarationPackage.DECLARED_TYPE__OPERATIONS:
+			case StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS:
 				getOperations().clear();
 				getOperations().addAll((Collection<? extends DeclaredOperation>)newValue);
 				return;
-			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				getDeclaredTypeParameters().clear();
 				getDeclaredTypeParameters().addAll((Collection<? extends DeclaredTypeParameter>)newValue);
 				return;
-			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
 				setBackendType((BackendType)newValue);
 				return;
 		}
@@ -294,19 +294,19 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_TYPE__STATIC_PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__STATIC_PROPERTIES:
 				getStaticProperties().clear();
 				return;
-			case DeclarationPackage.DECLARED_TYPE__PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__PROPERTIES:
 				getProperties().clear();
 				return;
-			case DeclarationPackage.DECLARED_TYPE__OPERATIONS:
+			case StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS:
 				getOperations().clear();
 				return;
-			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				getDeclaredTypeParameters().clear();
 				return;
-			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
 				setBackendType(BACKEND_TYPE_EDEFAULT);
 				return;
 		}
@@ -321,15 +321,15 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_TYPE__STATIC_PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__STATIC_PROPERTIES:
 				return staticProperties != null && !staticProperties.isEmpty();
-			case DeclarationPackage.DECLARED_TYPE__PROPERTIES:
+			case StaticTypesystemPackage.DECLARED_TYPE__PROPERTIES:
 				return properties != null && !properties.isEmpty();
-			case DeclarationPackage.DECLARED_TYPE__OPERATIONS:
+			case StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS:
 				return operations != null && !operations.isEmpty();
-			case DeclarationPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return declaredTypeParameters != null && !declaredTypeParameters.isEmpty();
-			case DeclarationPackage.DECLARED_TYPE__BACKEND_TYPE:
+			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
 				return BACKEND_TYPE_EDEFAULT == null ? backendType != null : !BACKEND_TYPE_EDEFAULT.equals(backendType);
 		}
 		return super.eIsSet(featureID);

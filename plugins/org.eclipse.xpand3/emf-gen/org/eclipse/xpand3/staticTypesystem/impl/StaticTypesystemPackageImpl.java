@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackageImpl.java,v 1.2 2008/03/04 11:00:31 sefftinge Exp $
+ * $Id: StaticTypesystemPackageImpl.java,v 1.3 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -16,6 +16,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.xpand3.staticTypesystem.AbstractNamedElement;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
+import org.eclipse.xpand3.staticTypesystem.DeclaredOperation;
+import org.eclipse.xpand3.staticTypesystem.DeclaredParameter;
+import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
+import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
 import org.eclipse.xpand3.staticTypesystem.FunctionType;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
@@ -24,9 +31,6 @@ import org.eclipse.xpand3.staticTypesystem.TypeVariable;
 import org.eclipse.xpand3.staticTypesystem.VoidType;
 import org.eclipse.xpand3.staticTypesystem.WildcardType;
 
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage;
-
-import org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclarationPackageImpl;
 import org.eclipse.xtend.backend.common.BackendType;
 
 /**
@@ -84,6 +88,55 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * @generated
 	 */
 	private EClass functionTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredFunctionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredPropertyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredStaticPropertyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredTypeParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declaredParameterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,16 +201,11 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		isInited = true;
 
-		// Obtain or create and register interdependencies
-		DeclarationPackageImpl theDeclarationPackage = (DeclarationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DeclarationPackage.eNS_URI) instanceof DeclarationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DeclarationPackage.eNS_URI) : DeclarationPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theStaticTypesystemPackage.createPackageContents();
-		theDeclarationPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStaticTypesystemPackage.initializePackageContents();
-		theDeclarationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theStaticTypesystemPackage.freeze();
@@ -305,6 +353,204 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDeclaredType() {
+		return declaredTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredType_StaticProperties() {
+		return (EReference)declaredTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredType_Properties() {
+		return (EReference)declaredTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredType_Operations() {
+		return (EReference)declaredTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredType_DeclaredTypeParameters() {
+		return (EReference)declaredTypeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeclaredType_BackendType() {
+		return (EAttribute)declaredTypeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaredOperation() {
+		return declaredOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredOperation_DeclaredParameters() {
+		return (EReference)declaredOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredOperation_DeclaringType() {
+		return (EReference)declaredOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredOperation_ReturnType() {
+		return (EReference)declaredOperationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaredFunction() {
+		return declaredFunctionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredFunction_DeclaredParameters() {
+		return (EReference)declaredFunctionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredFunction_DeclaredTypeParameters() {
+		return (EReference)declaredFunctionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredFunction_ReturnType() {
+		return (EReference)declaredFunctionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaredProperty() {
+		return declaredPropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredProperty_Type() {
+		return (EReference)declaredPropertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaredStaticProperty() {
+		return declaredStaticPropertyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredStaticProperty_Type() {
+		return (EReference)declaredStaticPropertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaredTypeParameter() {
+		return declaredTypeParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredTypeParameter_UpperBounds() {
+		return (EReference)declaredTypeParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaredParameter() {
+		return declaredParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaredParameter_Type() {
+		return (EReference)declaredParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getBackendType() {
 		return backendTypeEDataType;
 	}
@@ -359,6 +605,35 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		createEReference(functionTypeEClass, FUNCTION_TYPE__DECLARED_FUNCTION);
 		createEReference(functionTypeEClass, FUNCTION_TYPE__ACTUAL_TYPE_ARGUMENTS);
 
+		declaredTypeEClass = createEClass(DECLARED_TYPE);
+		createEReference(declaredTypeEClass, DECLARED_TYPE__STATIC_PROPERTIES);
+		createEReference(declaredTypeEClass, DECLARED_TYPE__PROPERTIES);
+		createEReference(declaredTypeEClass, DECLARED_TYPE__OPERATIONS);
+		createEReference(declaredTypeEClass, DECLARED_TYPE__DECLARED_TYPE_PARAMETERS);
+		createEAttribute(declaredTypeEClass, DECLARED_TYPE__BACKEND_TYPE);
+
+		declaredOperationEClass = createEClass(DECLARED_OPERATION);
+		createEReference(declaredOperationEClass, DECLARED_OPERATION__DECLARED_PARAMETERS);
+		createEReference(declaredOperationEClass, DECLARED_OPERATION__DECLARING_TYPE);
+		createEReference(declaredOperationEClass, DECLARED_OPERATION__RETURN_TYPE);
+
+		declaredFunctionEClass = createEClass(DECLARED_FUNCTION);
+		createEReference(declaredFunctionEClass, DECLARED_FUNCTION__DECLARED_PARAMETERS);
+		createEReference(declaredFunctionEClass, DECLARED_FUNCTION__DECLARED_TYPE_PARAMETERS);
+		createEReference(declaredFunctionEClass, DECLARED_FUNCTION__RETURN_TYPE);
+
+		declaredPropertyEClass = createEClass(DECLARED_PROPERTY);
+		createEReference(declaredPropertyEClass, DECLARED_PROPERTY__TYPE);
+
+		declaredStaticPropertyEClass = createEClass(DECLARED_STATIC_PROPERTY);
+		createEReference(declaredStaticPropertyEClass, DECLARED_STATIC_PROPERTY__TYPE);
+
+		declaredTypeParameterEClass = createEClass(DECLARED_TYPE_PARAMETER);
+		createEReference(declaredTypeParameterEClass, DECLARED_TYPE_PARAMETER__UPPER_BOUNDS);
+
+		declaredParameterEClass = createEClass(DECLARED_PARAMETER);
+		createEReference(declaredParameterEClass, DECLARED_PARAMETER__TYPE);
+
 		// Create data types
 		backendTypeEDataType = createEDataType(BACKEND_TYPE);
 	}
@@ -386,12 +661,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		DeclarationPackage theDeclarationPackage = (DeclarationPackage)EPackage.Registry.INSTANCE.getEPackage(DeclarationPackage.eNS_URI);
-
-		// Add subpackages
-		getESubpackages().add(theDeclarationPackage);
-
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -402,6 +671,13 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		voidTypeEClass.getESuperTypes().add(this.getAbstractTypeReference());
 		wildcardTypeEClass.getESuperTypes().add(this.getAbstractTypeReference());
 		functionTypeEClass.getESuperTypes().add(this.getAbstractTypeReference());
+		declaredTypeEClass.getESuperTypes().add(this.getAbstractNamedElement());
+		declaredOperationEClass.getESuperTypes().add(this.getAbstractNamedElement());
+		declaredFunctionEClass.getESuperTypes().add(this.getAbstractNamedElement());
+		declaredPropertyEClass.getESuperTypes().add(this.getAbstractNamedElement());
+		declaredStaticPropertyEClass.getESuperTypes().add(this.getAbstractNamedElement());
+		declaredTypeParameterEClass.getESuperTypes().add(this.getAbstractNamedElement());
+		declaredParameterEClass.getESuperTypes().add(this.getAbstractNamedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractNamedElementEClass, AbstractNamedElement.class, "AbstractNamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -410,11 +686,11 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		initEClass(abstractTypeReferenceEClass, AbstractTypeReference.class, "AbstractTypeReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getType_DeclaredType(), theDeclarationPackage.getDeclaredType(), null, "declaredType", null, 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getType_DeclaredType(), this.getDeclaredType(), null, "declaredType", null, 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getType_ActualTypeArguments(), this.getAbstractTypeReference(), null, "actualTypeArguments", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeVariableEClass, TypeVariable.class, "TypeVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypeVariable_DeclaredTypeParameter(), theDeclarationPackage.getDeclaredTypeParameter(), null, "declaredTypeParameter", null, 1, 1, TypeVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeVariable_DeclaredTypeParameter(), this.getDeclaredTypeParameter(), null, "declaredTypeParameter", null, 1, 1, TypeVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -423,8 +699,37 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		initEReference(getWildcardType_UpperBounds(), this.getAbstractTypeReference(), null, "upperBounds", null, 0, -1, WildcardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionTypeEClass, FunctionType.class, "FunctionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionType_DeclaredFunction(), theDeclarationPackage.getDeclaredFunction(), null, "declaredFunction", null, 1, 1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionType_DeclaredFunction(), this.getDeclaredFunction(), null, "declaredFunction", null, 1, 1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionType_ActualTypeArguments(), this.getAbstractTypeReference(), null, "actualTypeArguments", null, 0, -1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredTypeEClass, DeclaredType.class, "DeclaredType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredType_StaticProperties(), this.getDeclaredStaticProperty(), null, "staticProperties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredType_Properties(), this.getDeclaredProperty(), null, "properties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredType_Operations(), this.getDeclaredOperation(), this.getDeclaredOperation_DeclaringType(), "operations", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredType_DeclaredTypeParameters(), this.getDeclaredTypeParameter(), null, "declaredTypeParameters", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeclaredType_BackendType(), this.getBackendType(), "backendType", null, 1, 1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredOperationEClass, DeclaredOperation.class, "DeclaredOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredOperation_DeclaredParameters(), this.getDeclaredParameter(), null, "declaredParameters", null, 0, -1, DeclaredOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredOperation_DeclaringType(), this.getDeclaredType(), this.getDeclaredType_Operations(), "declaringType", null, 1, 1, DeclaredOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredOperation_ReturnType(), this.getAbstractTypeReference(), null, "returnType", null, 1, 1, DeclaredOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredFunctionEClass, DeclaredFunction.class, "DeclaredFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredFunction_DeclaredParameters(), this.getDeclaredParameter(), null, "declaredParameters", null, 0, -1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredFunction_DeclaredTypeParameters(), this.getDeclaredTypeParameter(), null, "declaredTypeParameters", null, 0, -1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredFunction_ReturnType(), this.getDeclaredType(), null, "returnType", null, 0, 1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredPropertyEClass, DeclaredProperty.class, "DeclaredProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredProperty_Type(), this.getAbstractTypeReference(), null, "type", null, 1, 1, DeclaredProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredStaticPropertyEClass, DeclaredStaticProperty.class, "DeclaredStaticProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredStaticProperty_Type(), this.getType(), null, "type", null, 1, 1, DeclaredStaticProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredTypeParameterEClass, DeclaredTypeParameter.class, "DeclaredTypeParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredTypeParameter_UpperBounds(), this.getAbstractTypeReference(), null, "upperBounds", null, 0, -1, DeclaredTypeParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaredParameterEClass, DeclaredParameter.class, "DeclaredParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaredParameter_Type(), this.getAbstractTypeReference(), null, "type", null, 1, 1, DeclaredParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(backendTypeEDataType, BackendType.class, "BackendType", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

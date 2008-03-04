@@ -9,13 +9,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="AbstractTypeReference" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//AbstractTypeReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredType" lowerBound="1"
-        eType="#//declaration/DeclaredType"/>
+        eType="#//DeclaredType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actualTypeArguments" upperBound="-1"
         eType="#//AbstractTypeReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeVariable" eSuperTypes="#//AbstractTypeReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameter"
-        lowerBound="1" eType="#//declaration/DeclaredTypeParameter"/>
+        lowerBound="1" eType="#//DeclaredTypeParameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VoidType" eSuperTypes="#//AbstractTypeReference"/>
   <eClassifiers xsi:type="ecore:EClass" name="WildcardType" eSuperTypes="#//AbstractTypeReference">
@@ -26,42 +26,49 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionType" eSuperTypes="#//AbstractTypeReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredFunction" lowerBound="1"
-        eType="#//declaration/DeclaredFunction"/>
+        eType="#//DeclaredFunction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actualTypeArguments" upperBound="-1"
         eType="#//AbstractTypeReference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredType" eSuperTypes="#//AbstractNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staticProperties" upperBound="-1"
+        eType="#//DeclaredStaticProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//DeclaredProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
+        eType="#//DeclaredOperation" containment="true" eOpposite="#//DeclaredOperation/declaringType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
+        upperBound="-1" eType="#//DeclaredTypeParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backendType" lowerBound="1"
+        eType="#//BackendType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredOperation" eSuperTypes="#//AbstractNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
+        eType="#//DeclaredParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaringType" lowerBound="1"
+        eType="#//DeclaredType" eOpposite="#//DeclaredType/operations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" lowerBound="1"
+        eType="#//AbstractTypeReference"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredFunction" eSuperTypes="#//AbstractNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
+        eType="#//DeclaredParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
+        upperBound="-1" eType="#//DeclaredTypeParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//DeclaredType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredProperty" eSuperTypes="#//AbstractNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//AbstractTypeReference"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredStaticProperty" eSuperTypes="#//AbstractNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredTypeParameter" eSuperTypes="#//AbstractNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBounds" upperBound="-1"
+        eType="#//AbstractTypeReference"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaredParameter" eSuperTypes="#//AbstractNamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//AbstractTypeReference"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="BackendType" instanceClassName="org.eclipse.xtend.backend.common.BackendType"/>
-  <eSubpackages name="declaration" nsURI="http://www.eclipse.org/m2t/xpand3/staticTypesystem/declaration"
-      nsPrefix="declaration">
-    <eClassifiers xsi:type="ecore:EClass" name="DeclaredType" eSuperTypes="#//AbstractNamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="staticProperties" upperBound="-1"
-          eType="#//declaration/DeclaredStaticProperty" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-          eType="#//declaration/DeclaredProperty" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
-          eType="#//declaration/DeclaredOperation" containment="true" eOpposite="#//declaration/DeclaredOperation/declaringType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
-          upperBound="-1" eType="#//declaration/DeclaredTypeParameter" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="backendType" lowerBound="1"
-          eType="#//BackendType"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DeclaredOperation" eSuperTypes="#//AbstractNamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
-          eType="#//declaration/DeclaredParameter" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="declaringType" lowerBound="1"
-          eType="#//declaration/DeclaredType" eOpposite="#//declaration/DeclaredType/operations"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//declaration/DeclaredType"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DeclaredFunction" eSuperTypes="#//AbstractNamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
-          eType="#//declaration/DeclaredParameter" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
-          upperBound="-1" eType="#//declaration/DeclaredTypeParameter" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="returnType" eType="#//declaration/DeclaredType"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DeclaredProperty" eSuperTypes="#//AbstractNamedElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DeclaredStaticProperty" eSuperTypes="#//AbstractNamedElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DeclaredTypeParameter" eSuperTypes="#//AbstractNamedElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DeclaredParameter" eSuperTypes="#//AbstractNamedElement"/>
-  </eSubpackages>
 </ecore:EPackage>

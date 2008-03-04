@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FunctionTypeImpl.java,v 1.1 2008/03/04 10:53:02 sefftinge Exp $
+ * $Id: FunctionTypeImpl.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -20,10 +20,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.FunctionType;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
-
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction;
 
 /**
  * <!-- begin-user-doc -->

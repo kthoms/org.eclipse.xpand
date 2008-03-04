@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactoryImpl.java,v 1.2 2008/03/04 11:00:31 sefftinge Exp $
+ * $Id: StaticTypesystemFactoryImpl.java,v 1.3 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.xpand3.staticTypesystem.*;
+
 import org.eclipse.xtend.backend.common.BackendType;
 
 /**
@@ -67,6 +68,13 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 			case StaticTypesystemPackage.VOID_TYPE: return createVoidType();
 			case StaticTypesystemPackage.WILDCARD_TYPE: return createWildcardType();
 			case StaticTypesystemPackage.FUNCTION_TYPE: return createFunctionType();
+			case StaticTypesystemPackage.DECLARED_TYPE: return createDeclaredType();
+			case StaticTypesystemPackage.DECLARED_OPERATION: return createDeclaredOperation();
+			case StaticTypesystemPackage.DECLARED_FUNCTION: return createDeclaredFunction();
+			case StaticTypesystemPackage.DECLARED_PROPERTY: return createDeclaredProperty();
+			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY: return createDeclaredStaticProperty();
+			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER: return createDeclaredTypeParameter();
+			case StaticTypesystemPackage.DECLARED_PARAMETER: return createDeclaredParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -150,6 +158,76 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 	public FunctionType createFunctionType() {
 		FunctionTypeImpl functionType = new FunctionTypeImpl();
 		return functionType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredType createDeclaredType() {
+		DeclaredTypeImpl declaredType = new DeclaredTypeImpl();
+		return declaredType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredOperation createDeclaredOperation() {
+		DeclaredOperationImpl declaredOperation = new DeclaredOperationImpl();
+		return declaredOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredFunction createDeclaredFunction() {
+		DeclaredFunctionImpl declaredFunction = new DeclaredFunctionImpl();
+		return declaredFunction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredProperty createDeclaredProperty() {
+		DeclaredPropertyImpl declaredProperty = new DeclaredPropertyImpl();
+		return declaredProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredStaticProperty createDeclaredStaticProperty() {
+		DeclaredStaticPropertyImpl declaredStaticProperty = new DeclaredStaticPropertyImpl();
+		return declaredStaticProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredTypeParameter createDeclaredTypeParameter() {
+		DeclaredTypeParameterImpl declaredTypeParameter = new DeclaredTypeParameterImpl();
+		return declaredTypeParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeclaredParameter createDeclaredParameter() {
+		DeclaredParameterImpl declaredParameter = new DeclaredParameterImpl();
+		return declaredParameter;
 	}
 
 	/**

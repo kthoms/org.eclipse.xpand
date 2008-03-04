@@ -17,8 +17,8 @@ package org.eclipse.xand3.analyzation.typesystem;
 
 import java.util.Set;
 
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredFunction;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 
 /**
  * @author Sven Efftinge

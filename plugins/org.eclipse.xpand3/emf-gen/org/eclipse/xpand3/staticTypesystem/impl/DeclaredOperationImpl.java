@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredOperationImpl.java,v 1.1 2008/03/04 10:53:02 sefftinge Exp $
+ * $Id: DeclaredOperationImpl.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
  */
-package org.eclipse.xpand3.staticTypesystem.declaration.impl;
+package org.eclipse.xpand3.staticTypesystem.impl;
 
 import java.util.Collection;
 
@@ -22,12 +22,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredParameter;
-import org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType;
-
-import org.eclipse.xpand3.staticTypesystem.impl.AbstractNamedElementImpl;
+import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.DeclaredOperation;
+import org.eclipse.xpand3.staticTypesystem.DeclaredParameter;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,9 +35,9 @@ import org.eclipse.xpand3.staticTypesystem.impl.AbstractNamedElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredOperationImpl#getDeclaredParameters <em>Declared Parameters</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredOperationImpl#getDeclaringType <em>Declaring Type</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.impl.DeclaredOperationImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredOperationImpl#getDeclaredParameters <em>Declared Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredOperationImpl#getDeclaringType <em>Declaring Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredOperationImpl#getReturnType <em>Return Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,7 +62,7 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 * @generated
 	 * @ordered
 	 */
-	protected DeclaredType returnType;
+	protected AbstractTypeReference returnType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,7 +80,7 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DeclarationPackage.Literals.DECLARED_OPERATION;
+		return StaticTypesystemPackage.Literals.DECLARED_OPERATION;
 	}
 
 	/**
@@ -91,7 +90,7 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 */
 	public EList<DeclaredParameter> getDeclaredParameters() {
 		if (declaredParameters == null) {
-			declaredParameters = new EObjectContainmentEList<DeclaredParameter>(DeclaredParameter.class, this, DeclarationPackage.DECLARED_OPERATION__DECLARED_PARAMETERS);
+			declaredParameters = new EObjectContainmentEList<DeclaredParameter>(DeclaredParameter.class, this, StaticTypesystemPackage.DECLARED_OPERATION__DECLARED_PARAMETERS);
 		}
 		return declaredParameters;
 	}
@@ -102,7 +101,7 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 * @generated
 	 */
 	public DeclaredType getDeclaringType() {
-		if (eContainerFeatureID != DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE) return null;
+		if (eContainerFeatureID != StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE) return null;
 		return (DeclaredType)eContainer();
 	}
 
@@ -112,7 +111,7 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 * @generated
 	 */
 	public NotificationChain basicSetDeclaringType(DeclaredType newDeclaringType, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDeclaringType, DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newDeclaringType, StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE, msgs);
 		return msgs;
 	}
 
@@ -122,19 +121,19 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 * @generated
 	 */
 	public void setDeclaringType(DeclaredType newDeclaringType) {
-		if (newDeclaringType != eInternalContainer() || (eContainerFeatureID != DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE && newDeclaringType != null)) {
+		if (newDeclaringType != eInternalContainer() || (eContainerFeatureID != StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE && newDeclaringType != null)) {
 			if (EcoreUtil.isAncestor(this, newDeclaringType))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDeclaringType != null)
-				msgs = ((InternalEObject)newDeclaringType).eInverseAdd(this, DeclarationPackage.DECLARED_TYPE__OPERATIONS, DeclaredType.class, msgs);
+				msgs = ((InternalEObject)newDeclaringType).eInverseAdd(this, StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS, DeclaredType.class, msgs);
 			msgs = basicSetDeclaringType(newDeclaringType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE, newDeclaringType, newDeclaringType));
+			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE, newDeclaringType, newDeclaringType));
 	}
 
 	/**
@@ -142,13 +141,13 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeclaredType getReturnType() {
+	public AbstractTypeReference getReturnType() {
 		if (returnType != null && returnType.eIsProxy()) {
 			InternalEObject oldReturnType = (InternalEObject)returnType;
-			returnType = (DeclaredType)eResolveProxy(oldReturnType);
+			returnType = (AbstractTypeReference)eResolveProxy(oldReturnType);
 			if (returnType != oldReturnType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DeclarationPackage.DECLARED_OPERATION__RETURN_TYPE, oldReturnType, returnType));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StaticTypesystemPackage.DECLARED_OPERATION__RETURN_TYPE, oldReturnType, returnType));
 			}
 		}
 		return returnType;
@@ -159,7 +158,7 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeclaredType basicGetReturnType() {
+	public AbstractTypeReference basicGetReturnType() {
 		return returnType;
 	}
 
@@ -168,11 +167,11 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReturnType(DeclaredType newReturnType) {
-		DeclaredType oldReturnType = returnType;
+	public void setReturnType(AbstractTypeReference newReturnType) {
+		AbstractTypeReference oldReturnType = returnType;
 		returnType = newReturnType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DeclarationPackage.DECLARED_OPERATION__RETURN_TYPE, oldReturnType, returnType));
+			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_OPERATION__RETURN_TYPE, oldReturnType, returnType));
 	}
 
 	/**
@@ -183,7 +182,7 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetDeclaringType((DeclaredType)otherEnd, msgs);
@@ -199,9 +198,9 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
 				return ((InternalEList<?>)getDeclaredParameters()).basicRemove(otherEnd, msgs);
-			case DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE:
 				return basicSetDeclaringType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -215,8 +214,8 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID) {
-			case DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE:
-				return eInternalContainer().eInverseRemove(this, DeclarationPackage.DECLARED_TYPE__OPERATIONS, DeclaredType.class, msgs);
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE:
+				return eInternalContainer().eInverseRemove(this, StaticTypesystemPackage.DECLARED_TYPE__OPERATIONS, DeclaredType.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -229,11 +228,11 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
 				return getDeclaredParameters();
-			case DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE:
 				return getDeclaringType();
-			case DeclarationPackage.DECLARED_OPERATION__RETURN_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__RETURN_TYPE:
 				if (resolve) return getReturnType();
 				return basicGetReturnType();
 		}
@@ -249,15 +248,15 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
 				getDeclaredParameters().clear();
 				getDeclaredParameters().addAll((Collection<? extends DeclaredParameter>)newValue);
 				return;
-			case DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE:
 				setDeclaringType((DeclaredType)newValue);
 				return;
-			case DeclarationPackage.DECLARED_OPERATION__RETURN_TYPE:
-				setReturnType((DeclaredType)newValue);
+			case StaticTypesystemPackage.DECLARED_OPERATION__RETURN_TYPE:
+				setReturnType((AbstractTypeReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -271,14 +270,14 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
 				getDeclaredParameters().clear();
 				return;
-			case DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE:
 				setDeclaringType((DeclaredType)null);
 				return;
-			case DeclarationPackage.DECLARED_OPERATION__RETURN_TYPE:
-				setReturnType((DeclaredType)null);
+			case StaticTypesystemPackage.DECLARED_OPERATION__RETURN_TYPE:
+				setReturnType((AbstractTypeReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -292,11 +291,11 @@ public class DeclaredOperationImpl extends AbstractNamedElementImpl implements D
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DeclarationPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARED_PARAMETERS:
 				return declaredParameters != null && !declaredParameters.isEmpty();
-			case DeclarationPackage.DECLARED_OPERATION__DECLARING_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__DECLARING_TYPE:
 				return getDeclaringType() != null;
-			case DeclarationPackage.DECLARED_OPERATION__RETURN_TYPE:
+			case StaticTypesystemPackage.DECLARED_OPERATION__RETURN_TYPE:
 				return returnType != null;
 		}
 		return super.eIsSet(featureID);

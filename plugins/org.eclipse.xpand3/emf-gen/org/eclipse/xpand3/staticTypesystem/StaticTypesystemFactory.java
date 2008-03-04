@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactory.java,v 1.1 2008/03/04 10:53:03 sefftinge Exp $
+ * $Id: StaticTypesystemFactory.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -69,6 +69,69 @@ public interface StaticTypesystemFactory extends EFactory {
 	 * @generated
 	 */
 	FunctionType createFunctionType();
+
+	/**
+	 * Returns a new object of class '<em>Declared Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Type</em>'.
+	 * @generated
+	 */
+	DeclaredType createDeclaredType();
+
+	/**
+	 * Returns a new object of class '<em>Declared Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Operation</em>'.
+	 * @generated
+	 */
+	DeclaredOperation createDeclaredOperation();
+
+	/**
+	 * Returns a new object of class '<em>Declared Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Function</em>'.
+	 * @generated
+	 */
+	DeclaredFunction createDeclaredFunction();
+
+	/**
+	 * Returns a new object of class '<em>Declared Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Property</em>'.
+	 * @generated
+	 */
+	DeclaredProperty createDeclaredProperty();
+
+	/**
+	 * Returns a new object of class '<em>Declared Static Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Static Property</em>'.
+	 * @generated
+	 */
+	DeclaredStaticProperty createDeclaredStaticProperty();
+
+	/**
+	 * Returns a new object of class '<em>Declared Type Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Type Parameter</em>'.
+	 * @generated
+	 */
+	DeclaredTypeParameter createDeclaredTypeParameter();
+
+	/**
+	 * Returns a new object of class '<em>Declared Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declared Parameter</em>'.
+	 * @generated
+	 */
+	DeclaredParameter createDeclaredParameter();
 
 	/**
 	 * Returns the package supported by this factory.

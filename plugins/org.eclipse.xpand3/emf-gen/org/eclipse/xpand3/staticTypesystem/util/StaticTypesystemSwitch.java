@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemSwitch.java,v 1.1 2008/03/04 10:52:57 sefftinge Exp $
+ * $Id: StaticTypesystemSwitch.java,v 1.2 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.util;
 
@@ -134,6 +134,55 @@ public class StaticTypesystemSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StaticTypesystemPackage.DECLARED_TYPE: {
+				DeclaredType declaredType = (DeclaredType)theEObject;
+				T result = caseDeclaredType(declaredType);
+				if (result == null) result = caseAbstractNamedElement(declaredType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StaticTypesystemPackage.DECLARED_OPERATION: {
+				DeclaredOperation declaredOperation = (DeclaredOperation)theEObject;
+				T result = caseDeclaredOperation(declaredOperation);
+				if (result == null) result = caseAbstractNamedElement(declaredOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StaticTypesystemPackage.DECLARED_FUNCTION: {
+				DeclaredFunction declaredFunction = (DeclaredFunction)theEObject;
+				T result = caseDeclaredFunction(declaredFunction);
+				if (result == null) result = caseAbstractNamedElement(declaredFunction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StaticTypesystemPackage.DECLARED_PROPERTY: {
+				DeclaredProperty declaredProperty = (DeclaredProperty)theEObject;
+				T result = caseDeclaredProperty(declaredProperty);
+				if (result == null) result = caseAbstractNamedElement(declaredProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY: {
+				DeclaredStaticProperty declaredStaticProperty = (DeclaredStaticProperty)theEObject;
+				T result = caseDeclaredStaticProperty(declaredStaticProperty);
+				if (result == null) result = caseAbstractNamedElement(declaredStaticProperty);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER: {
+				DeclaredTypeParameter declaredTypeParameter = (DeclaredTypeParameter)theEObject;
+				T result = caseDeclaredTypeParameter(declaredTypeParameter);
+				if (result == null) result = caseAbstractNamedElement(declaredTypeParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StaticTypesystemPackage.DECLARED_PARAMETER: {
+				DeclaredParameter declaredParameter = (DeclaredParameter)theEObject;
+				T result = caseDeclaredParameter(declaredParameter);
+				if (result == null) result = caseAbstractNamedElement(declaredParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -240,6 +289,111 @@ public class StaticTypesystemSwitch<T> {
 	 * @generated
 	 */
 	public T caseFunctionType(FunctionType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredType(DeclaredType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredOperation(DeclaredOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Function</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Function</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredFunction(DeclaredFunction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredProperty(DeclaredProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Static Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Static Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredStaticProperty(DeclaredStaticProperty object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Type Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Type Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredTypeParameter(DeclaredTypeParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declared Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declared Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaredParameter(DeclaredParameter object) {
 		return null;
 	}
 

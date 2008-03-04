@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackage.java,v 1.2 2008/03/04 11:00:30 sefftinge Exp $
+ * $Id: StaticTypesystemPackage.java,v 1.3 2008/03/04 14:03:38 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -228,7 +228,6 @@ public interface StaticTypesystemPackage extends EPackage {
 	 */
 	int WILDCARD_TYPE_FEATURE_COUNT = ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 2;
 
-
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.FunctionTypeImpl <em>Function Type</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -266,6 +265,336 @@ public interface StaticTypesystemPackage extends EPackage {
 	 */
 	int FUNCTION_TYPE_FEATURE_COUNT = ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 2;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl <em>Declared Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredType()
+	 * @generated
+	 */
+	int DECLARED_TYPE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Static Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__STATIC_PROPERTIES = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__PROPERTIES = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__OPERATIONS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Declared Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Backend Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__BACKEND_TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Declared Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredOperationImpl <em>Declared Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredOperationImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredOperation()
+	 * @generated
+	 */
+	int DECLARED_OPERATION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_OPERATION__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Declared Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_OPERATION__DECLARED_PARAMETERS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Declaring Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_OPERATION__DECLARING_TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_OPERATION__RETURN_TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Declared Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_OPERATION_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredFunction()
+	 * @generated
+	 */
+	int DECLARED_FUNCTION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_FUNCTION__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Declared Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_FUNCTION__DECLARED_PARAMETERS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Declared Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_FUNCTION__DECLARED_TYPE_PARAMETERS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_FUNCTION__RETURN_TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Declared Function</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_FUNCTION_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredPropertyImpl <em>Declared Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredPropertyImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredProperty()
+	 * @generated
+	 */
+	int DECLARED_PROPERTY = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY__TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Declared Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl <em>Declared Static Property</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredStaticProperty()
+	 * @generated
+	 */
+	int DECLARED_STATIC_PROPERTY = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_STATIC_PROPERTY__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_STATIC_PROPERTY__TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Declared Static Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_STATIC_PROPERTY_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeParameterImpl <em>Declared Type Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeParameterImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredTypeParameter()
+	 * @generated
+	 */
+	int DECLARED_TYPE_PARAMETER = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE_PARAMETER__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bounds</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE_PARAMETER__UPPER_BOUNDS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Declared Type Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE_PARAMETER_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredParameterImpl <em>Declared Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredParameterImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredParameter()
+	 * @generated
+	 */
+	int DECLARED_PARAMETER = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PARAMETER__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PARAMETER__TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Declared Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PARAMETER_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '<em>Backend Type</em>' data type.
@@ -275,7 +604,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getBackendType()
 	 * @generated
 	 */
-	int BACKEND_TYPE = 7;
+	int BACKEND_TYPE = 14;
 
 
 	/**
@@ -435,6 +764,241 @@ public interface StaticTypesystemPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFunctionType_ActualTypeArguments();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType <em>Declared Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declared Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType
+	 * @generated
+	 */
+	EClass getDeclaredType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getStaticProperties <em>Static Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Static Properties</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getStaticProperties()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EReference getDeclaredType_StaticProperties();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Properties</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getProperties()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EReference getDeclaredType_Properties();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getOperations <em>Operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Operations</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getOperations()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EReference getDeclaredType_Operations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getDeclaredTypeParameters <em>Declared Type Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declared Type Parameters</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getDeclaredTypeParameters()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EReference getDeclaredType_DeclaredTypeParameters();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getBackendType <em>Backend Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Backend Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getBackendType()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EAttribute getDeclaredType_BackendType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation <em>Declared Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declared Operation</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredOperation
+	 * @generated
+	 */
+	EClass getDeclaredOperation();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaredParameters <em>Declared Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declared Parameters</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaredParameters()
+	 * @see #getDeclaredOperation()
+	 * @generated
+	 */
+	EReference getDeclaredOperation_DeclaredParameters();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaringType <em>Declaring Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Declaring Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaringType()
+	 * @see #getDeclaredOperation()
+	 * @generated
+	 */
+	EReference getDeclaredOperation_DeclaringType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getReturnType <em>Return Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Return Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getReturnType()
+	 * @see #getDeclaredOperation()
+	 * @generated
+	 */
+	EReference getDeclaredOperation_ReturnType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction <em>Declared Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declared Function</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredFunction
+	 * @generated
+	 */
+	EClass getDeclaredFunction();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getDeclaredParameters <em>Declared Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declared Parameters</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getDeclaredParameters()
+	 * @see #getDeclaredFunction()
+	 * @generated
+	 */
+	EReference getDeclaredFunction_DeclaredParameters();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getDeclaredTypeParameters <em>Declared Type Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declared Type Parameters</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getDeclaredTypeParameters()
+	 * @see #getDeclaredFunction()
+	 * @generated
+	 */
+	EReference getDeclaredFunction_DeclaredTypeParameters();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Return Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType()
+	 * @see #getDeclaredFunction()
+	 * @generated
+	 */
+	EReference getDeclaredFunction_ReturnType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredProperty <em>Declared Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declared Property</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredProperty
+	 * @generated
+	 */
+	EClass getDeclaredProperty();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredProperty#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredProperty#getType()
+	 * @see #getDeclaredProperty()
+	 * @generated
+	 */
+	EReference getDeclaredProperty_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty <em>Declared Static Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declared Static Property</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty
+	 * @generated
+	 */
+	EClass getDeclaredStaticProperty();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#getType()
+	 * @see #getDeclaredStaticProperty()
+	 * @generated
+	 */
+	EReference getDeclaredStaticProperty_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter <em>Declared Type Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declared Type Parameter</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter
+	 * @generated
+	 */
+	EClass getDeclaredTypeParameter();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter#getUpperBounds <em>Upper Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Upper Bounds</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter#getUpperBounds()
+	 * @see #getDeclaredTypeParameter()
+	 * @generated
+	 */
+	EReference getDeclaredTypeParameter_UpperBounds();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredParameter <em>Declared Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declared Parameter</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredParameter
+	 * @generated
+	 */
+	EClass getDeclaredParameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredParameter#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredParameter#getType()
+	 * @see #getDeclaredParameter()
+	 * @generated
+	 */
+	EReference getDeclaredParameter_Type();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.xtend.backend.common.BackendType <em>Backend Type</em>}'.
@@ -602,6 +1166,196 @@ public interface StaticTypesystemPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCTION_TYPE__ACTUAL_TYPE_ARGUMENTS = eINSTANCE.getFunctionType_ActualTypeArguments();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl <em>Declared Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredType()
+		 * @generated
+		 */
+		EClass DECLARED_TYPE = eINSTANCE.getDeclaredType();
+
+		/**
+		 * The meta object literal for the '<em><b>Static Properties</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_TYPE__STATIC_PROPERTIES = eINSTANCE.getDeclaredType_StaticProperties();
+
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_TYPE__PROPERTIES = eINSTANCE.getDeclaredType_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_TYPE__OPERATIONS = eINSTANCE.getDeclaredType_Operations();
+
+		/**
+		 * The meta object literal for the '<em><b>Declared Type Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = eINSTANCE.getDeclaredType_DeclaredTypeParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Backend Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECLARED_TYPE__BACKEND_TYPE = eINSTANCE.getDeclaredType_BackendType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredOperationImpl <em>Declared Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredOperationImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredOperation()
+		 * @generated
+		 */
+		EClass DECLARED_OPERATION = eINSTANCE.getDeclaredOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Declared Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_OPERATION__DECLARED_PARAMETERS = eINSTANCE.getDeclaredOperation_DeclaredParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Declaring Type</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_OPERATION__DECLARING_TYPE = eINSTANCE.getDeclaredOperation_DeclaringType();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_OPERATION__RETURN_TYPE = eINSTANCE.getDeclaredOperation_ReturnType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredFunction()
+		 * @generated
+		 */
+		EClass DECLARED_FUNCTION = eINSTANCE.getDeclaredFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Declared Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_FUNCTION__DECLARED_PARAMETERS = eINSTANCE.getDeclaredFunction_DeclaredParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Declared Type Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_FUNCTION__DECLARED_TYPE_PARAMETERS = eINSTANCE.getDeclaredFunction_DeclaredTypeParameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_FUNCTION__RETURN_TYPE = eINSTANCE.getDeclaredFunction_ReturnType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredPropertyImpl <em>Declared Property</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredPropertyImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredProperty()
+		 * @generated
+		 */
+		EClass DECLARED_PROPERTY = eINSTANCE.getDeclaredProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_PROPERTY__TYPE = eINSTANCE.getDeclaredProperty_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl <em>Declared Static Property</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredStaticProperty()
+		 * @generated
+		 */
+		EClass DECLARED_STATIC_PROPERTY = eINSTANCE.getDeclaredStaticProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_STATIC_PROPERTY__TYPE = eINSTANCE.getDeclaredStaticProperty_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeParameterImpl <em>Declared Type Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeParameterImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredTypeParameter()
+		 * @generated
+		 */
+		EClass DECLARED_TYPE_PARAMETER = eINSTANCE.getDeclaredTypeParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Upper Bounds</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_TYPE_PARAMETER__UPPER_BOUNDS = eINSTANCE.getDeclaredTypeParameter_UpperBounds();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredParameterImpl <em>Declared Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.DeclaredParameterImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getDeclaredParameter()
+		 * @generated
+		 */
+		EClass DECLARED_PARAMETER = eINSTANCE.getDeclaredParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_PARAMETER__TYPE = eINSTANCE.getDeclaredParameter_Type();
 
 		/**
 		 * The meta object literal for the '<em>Backend Type</em>' data type.

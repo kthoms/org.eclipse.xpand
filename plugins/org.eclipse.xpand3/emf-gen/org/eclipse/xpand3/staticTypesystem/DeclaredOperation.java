@@ -2,13 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredOperation.java,v 1.1 2008/03/04 10:52:59 sefftinge Exp $
+ * $Id: DeclaredOperation.java,v 1.1 2008/03/04 14:03:38 sefftinge Exp $
  */
-package org.eclipse.xpand3.staticTypesystem.declaration;
+package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.xpand3.staticTypesystem.AbstractNamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,20 +16,20 @@ import org.eclipse.xpand3.staticTypesystem.AbstractNamedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation#getDeclaredParameters <em>Declared Parameters</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation#getDeclaringType <em>Declaring Type</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaredParameters <em>Declared Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaringType <em>Declaring Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getReturnType <em>Return Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredOperation()
+ * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredOperation()
  * @model
  * @generated
  */
 public interface DeclaredOperation extends AbstractNamedElement {
 	/**
 	 * Returns the value of the '<em><b>Declared Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredParameter}.
+	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.DeclaredParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Declared Parameters</em>' containment reference list isn't clear,
@@ -39,7 +37,7 @@ public interface DeclaredOperation extends AbstractNamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declared Parameters</em>' containment reference list.
-	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredOperation_DeclaredParameters()
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredOperation_DeclaredParameters()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -47,7 +45,7 @@ public interface DeclaredOperation extends AbstractNamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Declaring Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getOperations <em>Operations</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getOperations <em>Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Declaring Type</em>' container reference isn't clear,
@@ -56,15 +54,15 @@ public interface DeclaredOperation extends AbstractNamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declaring Type</em>' container reference.
 	 * @see #setDeclaringType(DeclaredType)
-	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredOperation_DeclaringType()
-	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclaredType#getOperations
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredOperation_DeclaringType()
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getOperations
 	 * @model opposite="operations" required="true" transient="false"
 	 * @generated
 	 */
 	DeclaredType getDeclaringType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation#getDeclaringType <em>Declaring Type</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getDeclaringType <em>Declaring Type</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Declaring Type</em>' container reference.
@@ -82,21 +80,21 @@ public interface DeclaredOperation extends AbstractNamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Return Type</em>' reference.
-	 * @see #setReturnType(DeclaredType)
-	 * @see org.eclipse.xpand3.staticTypesystem.declaration.DeclarationPackage#getDeclaredOperation_ReturnType()
-	 * @model
+	 * @see #setReturnType(AbstractTypeReference)
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredOperation_ReturnType()
+	 * @model required="true"
 	 * @generated
 	 */
-	DeclaredType getReturnType();
+	AbstractTypeReference getReturnType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.declaration.DeclaredOperation#getReturnType <em>Return Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredOperation#getReturnType <em>Return Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Return Type</em>' reference.
 	 * @see #getReturnType()
 	 * @generated
 	 */
-	void setReturnType(DeclaredType value);
+	void setReturnType(AbstractTypeReference value);
 
 } // DeclaredOperation

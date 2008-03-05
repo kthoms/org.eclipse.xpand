@@ -13,10 +13,11 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation;
 
 import java.util.HashSet;
 import java.util.Set;
+
 
 
 /**

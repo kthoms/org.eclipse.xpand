@@ -13,7 +13,8 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xand3.analyzation;
+
 
 /**
  * @author Sven Efftinge

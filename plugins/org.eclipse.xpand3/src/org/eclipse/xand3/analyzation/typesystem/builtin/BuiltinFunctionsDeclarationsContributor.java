@@ -18,8 +18,8 @@ package org.eclipse.xand3.analyzation.typesystem.builtin;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.xand3.analyzation.DeclarationsContributor;
 import org.eclipse.xand3.analyzation.TypeSystem;
-import org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;

@@ -15,6 +15,8 @@
  */
 package org.eclipse.xand3.analyzation;
 
+import java.util.HashMap;
+
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 
 /**
@@ -28,8 +30,51 @@ public interface AnalyzeContext {
 	boolean hasThis();
 	Var getThis();
 	Var getVariable(String varName);
-
 	AnalyzeContext cloneWith(Var var);
+	
+	public final static AnalyzeContext EMPTY_CTX = new AnalyzeContextImpl(); 
+	
+	class AnalyzeContextImpl implements AnalyzeContext {
+		private HashMap<String, Var> scope = new HashMap<String, Var>();
+		public AnalyzeContextImpl() {
+		}
+		/**
+		 * 
+		 */
+		public AnalyzeContextImpl(AnalyzeContextImpl old) {
+			scope.putAll(old.scope);
+		}
+		/* (non-Javadoc)
+		 * @see org.eclipse.xand3.analyzation.AnalyzeContext#cloneWith(org.eclipse.xand3.analyzation.AnalyzeContext.Var)
+		 */
+		public AnalyzeContext cloneWith(Var var) {
+			AnalyzeContextImpl newOne = new AnalyzeContextImpl(this);
+			newOne.scope.put(var.name, var);
+			return newOne;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.xand3.analyzation.AnalyzeContext#getThis()
+		 */
+		public Var getThis() {
+			return scope.get(IMPLICIT_VARIABLE);
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.xand3.analyzation.AnalyzeContext#getVariable(java.lang.String)
+		 */
+		public Var getVariable(String varName) {
+			return scope.get(varName);
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.xand3.analyzation.AnalyzeContext#hasThis()
+		 */
+		public boolean hasThis() {
+			return scope.containsKey(IMPLICIT_VARIABLE);
+		}
+		
+	}
 
 
 	public class Var {

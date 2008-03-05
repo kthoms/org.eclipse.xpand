@@ -15,13 +15,28 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * @author Sven Efftinge
  *
  */
 public class DeclarationsContributorFactory {
+	
+	private final static Set<LanguageSpecificDeclarationContributorFactory> factories = new HashSet<LanguageSpecificDeclarationContributorFactory>();
+	
+	public static void registerLanguageSpecificFactory(LanguageSpecificDeclarationContributorFactory factory) {
+		factories.add(factory);
+	}
+	
 	public static DeclarationsContributor createDeclarationContributor(String namespace) {
+		for (LanguageSpecificDeclarationContributorFactory factory : factories) {
+			if (factory.canHandle(namespace)) {
+				return factory.createDeclarationContributor(namespace);
+			}
+		}
 		return null;
 	}
 }

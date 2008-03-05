@@ -13,16 +13,14 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation;
+package org.eclipse.xand3.analyzation.typesystem.java;
 
-import org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 
 /**
  * @author Sven Efftinge
  *
  */
-public class DeclarationsContributorFactory {
-	public static DeclarationsContributor createDeclarationContributor(String namespace) {
-		return null;
-	}
+public class Java2TypesystemConverter {
+	
 }

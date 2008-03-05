@@ -15,15 +15,7 @@
  */
 package org.eclipse.xand3.analyzation;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.xpand3.Identifier;
-import org.eclipse.xpand3.declaration.AbstractDeclaration;
-import org.eclipse.xpand3.declaration.Extension;
-import org.eclipse.xpand3.expression.AbstractExpression;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
-import org.eclipse.xpand3.staticTypesystem.FunctionType;
 
 /**
  * @author Sven Efftinge
@@ -31,28 +23,40 @@ import org.eclipse.xpand3.staticTypesystem.FunctionType;
  */
 public interface AnalyzeContext {
 
-	String IMPLICIT_VARIABLE = null;
-
-	Map<String, ? extends AbstractTypeReference> getLocalVars();
+	public final static String IMPLICIT_VARIABLE = "this";
 
 	boolean hasThis();
+	Var getThis();
+	Var getVariable(String varName);
 
-	Object getThis();
+	AnalyzeContext cloneWith(Var var);
 
-	AnalyzeContext cloneWithVariable(Identifier eleName,
-			AbstractTypeReference object);
 
-	AbstractTypeReference getVariable(String varName);
+	public class Var {
+		public Var(AbstractTypeReference value) {
+			this(IMPLICIT_VARIABLE, value);
+		}
 
-	AbstractExpression getExtensionForTypes(String functionName,
-			AbstractTypeReference[] paramTypes);
+		public Var(String name, AbstractTypeReference value) {
+			this.name = name;
+			this.value = value;
+		}
 
-	FunctionType getOperationFor(AbstractTypeReference target,
-			String functionName, AbstractTypeReference[] withoutFirst);
+		private final String name;
+		private final AbstractTypeReference value;
 
-	AbstractExpression getTypeForName(Identifier typeLiteral);
+		/**
+		 * @return the name
+		 */
+		public String getName() {
+			return name;
+		}
 
-	Extension findExtension(String expression,
-			EList<AbstractDeclaration> declarations);
-
+		/**
+		 * @return the value
+		 */
+		public AbstractTypeReference getValue() {
+			return value;
+		}
+	}
 }

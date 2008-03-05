@@ -15,8 +15,8 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
-import java.util.Set;
-
+import org.eclipse.xand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 
@@ -25,6 +25,32 @@ import org.eclipse.xpand3.staticTypesystem.DeclaredType;
  * 
  */
 public interface DeclarationsContributor {
+	/**
+	 * used to construct the type system scoped by the imports
+	 * @return
+	 */
+	String[] getReferencedContributors(); //TODO aliasing
+	
+	/**
+	 * this method is invoked during setup of this contributor.
+	 * @param the type system to be used for resolving type and function references.
+	 */
+	void setTypeSystem(TypeSystem ts);
+	
+	
+	/**
+	 * if this contributor has a type with the declared name, the respective DeclareTpye should be returned.
+	 * This method is only invoked once per name, so caching is done by the framework
+	 * @param name
+	 * @return the declared type with the given name or null if there is no such type declared in this Resource.
+	 */
 	DeclaredType typeForName(String name);
-	Set<DeclaredFunction> functionsForName(String name);
+	
+	/**
+	 * if this contributor has a type with the declared name, the respective DeclareTpye should be returned.
+	 * This method is only invoked once per name.
+	 * @param name
+	 * @return
+	 */
+	DeclaredFunction functionForName(String name, AbstractTypeReference...parameterTypes);
 }

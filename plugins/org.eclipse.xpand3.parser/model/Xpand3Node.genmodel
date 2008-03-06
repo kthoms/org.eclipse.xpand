@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xpand3.parser/emf-gen"
+    modelPluginID="org.eclipse.xpand3.parser" modelName="Xpand3Node" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.genmodel#//node">
+  <foreignModel>Xpand3Node.ecore</foreignModel>
+  <genPackages prefix="Xpand3node" basePackage="org.eclipse.xpand3.internal.parser"
+      disposableProviderFactory="true" ecorePackage="Xpand3Node.ecore#/">
+    <genClasses ecoreClass="Xpand3Node.ecore#//FileNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xpand3Node.ecore#//FileNode/decl"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xpand3Node.ecore#//FileNode/imp"/>
+    </genClasses>
+    <genClasses ecoreClass="Xpand3Node.ecore#//NsImportNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xpand3Node.ecore#//NsImportNode/ns"/>
+    </genClasses>
+    <genClasses ecoreClass="Xpand3Node.ecore#//DefinitionNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xpand3Node.ecore#//DefinitionNode/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Xpand3Node.ecore#//DefinitionAroundNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//SequenceNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//TextSequenceNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//TextNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ErrorStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ExpandStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ExpressionStmtNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//FileStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ForeachStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//IfStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ElseIfStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ElseStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//LetStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ProtectStatementNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//CheckNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//AroundNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//PointcutNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ExtensionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//JavaTypeNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//Test_expressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//LetExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//CastedExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ChainExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//IfExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//SwitchExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//CasePartNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//OrExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//AndExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ImpliesExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//RelationalExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//AdditiveExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//MultiplicativeExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//UnaryExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//InfixExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//StringLiteralNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ParanthesizedExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//GlobalVarExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//FeatureCallNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ListLiteralNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ConstructorCallNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//BooleanLiteralNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//NullLiteralNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//NumberLiteralNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//CollectionExpressionNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//DeclaredParameterListNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//DeclaredParameterNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//ParameterListNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//CollectionTypeNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//SimpleTypeNode"/>
+    <genClasses ecoreClass="Xpand3Node.ecore#//IdentifierNode"/>
+  </genPackages>
+</genmodel:GenModel>

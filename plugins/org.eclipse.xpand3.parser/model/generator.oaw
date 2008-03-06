@@ -1,0 +1,11 @@
+<workflow>
+
+  <bean class="org.eclipse.mwe.emf.StandaloneSetup">
+    <platformUri value=".."/>
+  </bean>
+
+  <property file="generator.properties"/>
+
+  <component file="../org.eclipse.tmf.common.generator/src/org/eclipse/tmf/common/generator.oaw"
+  inheritAll="true"/>
+</workflow>

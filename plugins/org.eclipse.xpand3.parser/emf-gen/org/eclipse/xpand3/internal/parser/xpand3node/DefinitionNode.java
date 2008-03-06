@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionNode.java,v 1.1 2008/03/06 08:55:14 jkohnlein Exp $
+ * $Id: DefinitionNode.java,v 1.2 2008/03/06 15:25:15 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -25,6 +25,7 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface DefinitionNode extends CompositeNode {
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' reference.
 	 * <!-- begin-user-doc -->

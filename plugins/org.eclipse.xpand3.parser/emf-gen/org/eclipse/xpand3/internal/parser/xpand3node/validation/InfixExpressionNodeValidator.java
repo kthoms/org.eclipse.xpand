@@ -2,9 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InfixExpressionNodeValidator.java,v 1.1 2008/03/06 08:55:13 jkohnlein Exp $
+ * $Id: InfixExpressionNodeValidator.java,v 1.2 2008/03/06 15:25:08 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.tmf.common.node.CompositeNode;
 
 
 /**
@@ -15,5 +18,13 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
  */
 public interface InfixExpressionNodeValidator {
 	boolean validate();
+
+	boolean validateCalls(EList<CompositeNode> value);
+
+	boolean validateTarget(CompositeNode value);
+
+	boolean validateCall(CompositeNode value);
+
+	boolean validatePrimary(CompositeNode value);
 
 }

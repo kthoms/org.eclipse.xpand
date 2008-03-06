@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeAdapterFactory.java,v 1.1 2008/03/06 08:55:16 jkohnlein Exp $
+ * $Id: Xpand3nodeAdapterFactory.java,v 1.2 2008/03/06 15:25:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.util;
 
@@ -209,6 +209,10 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseRelationalExpressionNode(RelationalExpressionNode object) {
 				return createRelationalExpressionNodeAdapter();
+			}
+			@Override
+			public Adapter caseBooleanOperatorNode(BooleanOperatorNode object) {
+				return createBooleanOperatorNodeAdapter();
 			}
 			@Override
 			public Adapter caseAdditiveExpressionNode(AdditiveExpressionNode object) {
@@ -791,6 +795,20 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRelationalExpressionNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.BooleanOperatorNode <em>Boolean Operator Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.BooleanOperatorNode
+	 * @generated
+	 */
+	public Adapter createBooleanOperatorNodeAdapter() {
 		return null;
 	}
 

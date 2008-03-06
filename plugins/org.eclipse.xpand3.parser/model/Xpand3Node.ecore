@@ -74,6 +74,33 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtensionNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="create">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//LeafNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="private">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//LeafNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paramList">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendBody">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cached">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//LeafNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="javaReturnType">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="javaName">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnType">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JavaTypeNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
@@ -113,6 +140,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RelationalExpressionNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftOperand">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operator">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightOperand">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanOperatorNode">
+    <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpressionNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
@@ -125,6 +164,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InfixExpressionNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="calls" upperBound="-1">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringLiteralNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
@@ -137,6 +182,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paramList">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListLiteralNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
@@ -158,18 +209,33 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredParameterListNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredParameterNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ptype">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterListNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleTypeNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="names" upperBound="-1">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IdentifierNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>

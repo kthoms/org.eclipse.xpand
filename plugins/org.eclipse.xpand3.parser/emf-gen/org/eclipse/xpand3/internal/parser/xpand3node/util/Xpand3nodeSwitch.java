@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeSwitch.java,v 1.1 2008/03/06 08:55:16 jkohnlein Exp $
+ * $Id: Xpand3nodeSwitch.java,v 1.2 2008/03/06 15:25:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.util;
 
@@ -359,6 +359,14 @@ public class Xpand3nodeSwitch<T> {
 				T result = caseRelationalExpressionNode(relationalExpressionNode);
 				if (result == null) result = caseCompositeNode(relationalExpressionNode);
 				if (result == null) result = caseNode(relationalExpressionNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xpand3nodePackage.BOOLEAN_OPERATOR_NODE: {
+				BooleanOperatorNode booleanOperatorNode = (BooleanOperatorNode)theEObject;
+				T result = caseBooleanOperatorNode(booleanOperatorNode);
+				if (result == null) result = caseCompositeNode(booleanOperatorNode);
+				if (result == null) result = caseNode(booleanOperatorNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1033,6 +1041,21 @@ public class Xpand3nodeSwitch<T> {
 	 * @generated
 	 */
 	public T caseRelationalExpressionNode(RelationalExpressionNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Boolean Operator Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Boolean Operator Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBooleanOperatorNode(BooleanOperatorNode object) {
 		return null;
 	}
 

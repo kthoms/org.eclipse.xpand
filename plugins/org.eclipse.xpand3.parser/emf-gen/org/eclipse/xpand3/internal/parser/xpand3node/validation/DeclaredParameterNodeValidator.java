@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredParameterNodeValidator.java,v 1.1 2008/03/06 08:55:11 jkohnlein Exp $
+ * $Id: DeclaredParameterNodeValidator.java,v 1.2 2008/03/06 15:25:08 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
+
+import org.eclipse.tmf.common.node.CompositeNode;
 
 
 /**
@@ -15,5 +17,11 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
  */
 public interface DeclaredParameterNodeValidator {
 	boolean validate();
+
+	boolean validateName(CompositeNode value);
+
+	boolean validatePtype(CompositeNode value);
+
+	boolean validateType(CompositeNode value);
 
 }

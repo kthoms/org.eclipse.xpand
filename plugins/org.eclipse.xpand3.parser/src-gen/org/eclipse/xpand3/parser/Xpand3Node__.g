@@ -94,67 +94,67 @@ T109 : '|' ;
 T110 : '[' ;
 T111 : ']' ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 343
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 402
 IntLiteral : 
 	 ('0' | '1'..'9' '0'..'9'*) 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 347
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 406
 StringLiteral : 
 	 '\"' ( EscapeSequence | ~('\\'|'\"') )* '\"'
     |  '\'' ( EscapeSequence | ~('\''|'\\') )* '\'' 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 352
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 411
 fragment EscapeSequence : 
 	 '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
     |   UnicodeEscape
     |   OctalEscape 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 358
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 417
 fragment OctalEscape : 
 	 '\\' ('0'..'3') ('0'..'7') ('0'..'7')
     |   '\\' ('0'..'7') ('0'..'7')
     |   '\\' ('0'..'7') 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 364
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 423
 fragment UnicodeEscape : 
 	 '\\' 'u' HexDigit HexDigit HexDigit HexDigit 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 368
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 427
 fragment HexDigit : 
 	 ('0'..'9'|'a'..'f'|'A'..'F') 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 372
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 431
 DEFINE : 
 	 {xpandMode=true;}	 'DEFINE' 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 376
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 435
 ENDDEFINE : 
 	 'ENDDEFINE' {xpandMode=false;} 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 380
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 439
 AROUND : 
 	 {xpandMode=true;}'AROUND' 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 384
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 443
 ENDAROUND : 
 	 'ENDAROUND'{xpandMode=false;} 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 388
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 447
 Identifier : 
 	 ('^')? Letter (Letter|JavaIDDigit)* 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 392
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 451
 fragment Letter : 
 	 '\u0024' |
        '\u0041'..'\u005a' |
@@ -171,7 +171,7 @@ fragment Letter :
        '\uf900'..'\ufaff' 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 408
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 467
 fragment JavaIDDigit : 
 	
        '\u0030'..'\u0039' |
@@ -192,42 +192,42 @@ fragment JavaIDDigit :
        
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 428
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 487
 WS : 
 	 (' '|'\r'|'\t'|'\u000C'|'\n') {$channel=HIDDEN;} 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 432
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 491
 COMMENT : 
 	 '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;} 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 436
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 495
 LINE_COMMENT : 
 	 '//' ~('\n'|'\r')* ('\r'? '\n'|EOF) {$channel=HIDDEN;} 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 440
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 499
 REM_COMMENT_OUT : 
 	 {!xpandMode}?=> LG 'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' RG {$channel=HIDDEN;} 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 444
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 503
 REM_COMMENT : 
 	 {xpandMode}?=> 'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM' {$channel=HIDDEN;} 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 448
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 507
 TEXT : 
 	 {xpandMode}?=> RG ~(LG)* (LG)? 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 452
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 511
 LG : 
 	 '\u00AB' 
 ;
 
-// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 456
+// $ANTLR src "./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g" 515
 RG : 
 	 '\u00BB' 
 ;

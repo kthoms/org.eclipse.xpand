@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FeatureCallNodeValidator.java,v 1.1 2008/03/06 08:55:12 jkohnlein Exp $
+ * $Id: FeatureCallNodeValidator.java,v 1.2 2008/03/06 15:25:09 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
+
+import org.eclipse.tmf.common.node.CompositeNode;
 
 
 /**
@@ -15,5 +17,9 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
  */
 public interface FeatureCallNodeValidator {
 	boolean validate();
+
+	boolean validateName(CompositeNode value);
+
+	boolean validateParamList(CompositeNode value);
 
 }

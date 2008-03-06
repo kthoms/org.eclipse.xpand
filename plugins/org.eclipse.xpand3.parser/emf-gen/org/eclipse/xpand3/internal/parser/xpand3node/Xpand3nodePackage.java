@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodePackage.java,v 1.1 2008/03/06 08:55:15 jkohnlein Exp $
+ * $Id: Xpand3nodePackage.java,v 1.2 2008/03/06 15:25:15 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -1243,13 +1243,94 @@ public interface Xpand3nodePackage extends EPackage {
 	int EXTENSION_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Create</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__CREATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__PRIVATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Param List</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Extend Body</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__EXTEND_BODY = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Cached</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__CACHED = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Java Return Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__JAVA_RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Java Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__JAVA_NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 8;
+
+	/**
 	 * The number of structural features of the '<em>Extension Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int EXTENSION_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.JavaTypeNodeImpl <em>Java Type Node</em>}' class.
@@ -1958,13 +2039,95 @@ public interface Xpand3nodePackage extends EPackage {
 	int RELATIONAL_EXPRESSION_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Left Operand</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_EXPRESSION_NODE__OPERATOR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Right Operand</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Relational Expression Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_EXPRESSION_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int RELATIONAL_EXPRESSION_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.BooleanOperatorNodeImpl <em>Boolean Operator Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.BooleanOperatorNodeImpl
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getBooleanOperatorNode()
+	 * @generated
+	 */
+	int BOOLEAN_OPERATOR_NODE = 34;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_OPERATOR_NODE__ALIAS = NodePackage.COMPOSITE_NODE__ALIAS;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_OPERATOR_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Rule</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_OPERATOR_NODE__RULE = NodePackage.COMPOSITE_NODE__RULE;
+
+	/**
+	 * The feature id for the '<em><b>Rule ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_OPERATOR_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
+
+	/**
+	 * The number of structural features of the '<em>Boolean Operator Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_OPERATOR_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl <em>Additive Expression Node</em>}' class.
@@ -1974,7 +2137,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getAdditiveExpressionNode()
 	 * @generated
 	 */
-	int ADDITIVE_EXPRESSION_NODE = 34;
+	int ADDITIVE_EXPRESSION_NODE = 35;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2029,7 +2192,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getMultiplicativeExpressionNode()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXPRESSION_NODE = 35;
+	int MULTIPLICATIVE_EXPRESSION_NODE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2084,7 +2247,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getUnaryExpressionNode()
 	 * @generated
 	 */
-	int UNARY_EXPRESSION_NODE = 36;
+	int UNARY_EXPRESSION_NODE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2139,7 +2302,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getInfixExpressionNode()
 	 * @generated
 	 */
-	int INFIX_EXPRESSION_NODE = 37;
+	int INFIX_EXPRESSION_NODE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2178,13 +2341,31 @@ public interface Xpand3nodePackage extends EPackage {
 	int INFIX_EXPRESSION_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Calls</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXPRESSION_NODE__CALLS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXPRESSION_NODE__TARGET = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Infix Expression Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXPRESSION_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int INFIX_EXPRESSION_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.StringLiteralNodeImpl <em>String Literal Node</em>}' class.
@@ -2194,7 +2375,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getStringLiteralNode()
 	 * @generated
 	 */
-	int STRING_LITERAL_NODE = 38;
+	int STRING_LITERAL_NODE = 39;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2249,7 +2430,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getParanthesizedExpressionNode()
 	 * @generated
 	 */
-	int PARANTHESIZED_EXPRESSION_NODE = 39;
+	int PARANTHESIZED_EXPRESSION_NODE = 40;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2304,7 +2485,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getGlobalVarExpressionNode()
 	 * @generated
 	 */
-	int GLOBAL_VAR_EXPRESSION_NODE = 40;
+	int GLOBAL_VAR_EXPRESSION_NODE = 41;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2359,7 +2540,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getFeatureCallNode()
 	 * @generated
 	 */
-	int FEATURE_CALL_NODE = 41;
+	int FEATURE_CALL_NODE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2398,13 +2579,31 @@ public interface Xpand3nodePackage extends EPackage {
 	int FEATURE_CALL_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Param List</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Feature Call Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CALL_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int FEATURE_CALL_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ListLiteralNodeImpl <em>List Literal Node</em>}' class.
@@ -2414,7 +2613,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getListLiteralNode()
 	 * @generated
 	 */
-	int LIST_LITERAL_NODE = 42;
+	int LIST_LITERAL_NODE = 43;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2469,7 +2668,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getConstructorCallNode()
 	 * @generated
 	 */
-	int CONSTRUCTOR_CALL_NODE = 43;
+	int CONSTRUCTOR_CALL_NODE = 44;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2524,7 +2723,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getBooleanLiteralNode()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_NODE = 44;
+	int BOOLEAN_LITERAL_NODE = 45;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2579,7 +2778,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getNullLiteralNode()
 	 * @generated
 	 */
-	int NULL_LITERAL_NODE = 45;
+	int NULL_LITERAL_NODE = 46;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2634,7 +2833,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getNumberLiteralNode()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_NODE = 46;
+	int NUMBER_LITERAL_NODE = 47;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2689,7 +2888,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getCollectionExpressionNode()
 	 * @generated
 	 */
-	int COLLECTION_EXPRESSION_NODE = 47;
+	int COLLECTION_EXPRESSION_NODE = 48;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2744,7 +2943,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getDeclaredParameterListNode()
 	 * @generated
 	 */
-	int DECLARED_PARAMETER_LIST_NODE = 48;
+	int DECLARED_PARAMETER_LIST_NODE = 49;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2783,13 +2982,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int DECLARED_PARAMETER_LIST_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Params</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PARAMETER_LIST_NODE__PARAMS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Declared Parameter List Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_PARAMETER_LIST_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int DECLARED_PARAMETER_LIST_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DeclaredParameterNodeImpl <em>Declared Parameter Node</em>}' class.
@@ -2799,7 +3007,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getDeclaredParameterNode()
 	 * @generated
 	 */
-	int DECLARED_PARAMETER_NODE = 49;
+	int DECLARED_PARAMETER_NODE = 50;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2838,13 +3046,31 @@ public interface Xpand3nodePackage extends EPackage {
 	int DECLARED_PARAMETER_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PARAMETER_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ptype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PARAMETER_NODE__PTYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Declared Parameter Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_PARAMETER_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int DECLARED_PARAMETER_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ParameterListNodeImpl <em>Parameter List Node</em>}' class.
@@ -2854,7 +3080,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getParameterListNode()
 	 * @generated
 	 */
-	int PARAMETER_LIST_NODE = 50;
+	int PARAMETER_LIST_NODE = 51;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2893,13 +3119,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int PARAMETER_LIST_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Params</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_LIST_NODE__PARAMS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Parameter List Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_LIST_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int PARAMETER_LIST_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CollectionTypeNodeImpl <em>Collection Type Node</em>}' class.
@@ -2909,7 +3144,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getCollectionTypeNode()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_NODE = 51;
+	int COLLECTION_TYPE_NODE = 52;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2964,7 +3199,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getSimpleTypeNode()
 	 * @generated
 	 */
-	int SIMPLE_TYPE_NODE = 52;
+	int SIMPLE_TYPE_NODE = 53;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -3003,13 +3238,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int SIMPLE_TYPE_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
+	 * The feature id for the '<em><b>Names</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TYPE_NODE__NAMES = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Simple Type Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_TYPE_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int SIMPLE_TYPE_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IdentifierNodeImpl <em>Identifier Node</em>}' class.
@@ -3019,7 +3263,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getIdentifierNode()
 	 * @generated
 	 */
-	int IDENTIFIER_NODE = 53;
+	int IDENTIFIER_NODE = 54;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -3322,6 +3566,105 @@ public interface Xpand3nodePackage extends EPackage {
 	EClass getExtensionNode();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCreate <em>Create</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Create</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCreate()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_Create();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getPrivate <em>Private</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Private</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getPrivate()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_Private();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getParamList <em>Param List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Param List</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getParamList()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_ParamList();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getExtendBody <em>Extend Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Extend Body</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getExtendBody()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_ExtendBody();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCached <em>Cached</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Cached</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCached()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_Cached();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaReturnType <em>Java Return Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Java Return Type</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaReturnType()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_JavaReturnType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaName <em>Java Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Java Name</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaName()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_JavaName();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getReturnType <em>Return Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Return Type</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getReturnType()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_ReturnType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Name</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getName()
+	 * @see #getExtensionNode()
+	 * @generated
+	 */
+	EReference getExtensionNode_Name();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.JavaTypeNode <em>Java Type Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3452,6 +3795,49 @@ public interface Xpand3nodePackage extends EPackage {
 	EClass getRelationalExpressionNode();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand <em>Right Operand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Right Operand</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand()
+	 * @see #getRelationalExpressionNode()
+	 * @generated
+	 */
+	EReference getRelationalExpressionNode_RightOperand();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.BooleanOperatorNode <em>Boolean Operator Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Boolean Operator Node</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.BooleanOperatorNode
+	 * @generated
+	 */
+	EClass getBooleanOperatorNode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Operator</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getOperator()
+	 * @see #getRelationalExpressionNode()
+	 * @generated
+	 */
+	EReference getRelationalExpressionNode_Operator();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getLeftOperand <em>Left Operand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Left Operand</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getLeftOperand()
+	 * @see #getRelationalExpressionNode()
+	 * @generated
+	 */
+	EReference getRelationalExpressionNode_LeftOperand();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode <em>Additive Expression Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3492,6 +3878,28 @@ public interface Xpand3nodePackage extends EPackage {
 	EClass getInfixExpressionNode();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode#getCalls <em>Calls</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Calls</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode#getCalls()
+	 * @see #getInfixExpressionNode()
+	 * @generated
+	 */
+	EReference getInfixExpressionNode_Calls();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode#getTarget()
+	 * @see #getInfixExpressionNode()
+	 * @generated
+	 */
+	EReference getInfixExpressionNode_Target();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.StringLiteralNode <em>String Literal Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3530,6 +3938,28 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFeatureCallNode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Name</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getName()
+	 * @see #getFeatureCallNode()
+	 * @generated
+	 */
+	EReference getFeatureCallNode_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getParamList <em>Param List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Param List</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getParamList()
+	 * @see #getFeatureCallNode()
+	 * @generated
+	 */
+	EReference getFeatureCallNode_ParamList();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.ListLiteralNode <em>List Literal Node</em>}'.
@@ -3602,6 +4032,17 @@ public interface Xpand3nodePackage extends EPackage {
 	EClass getDeclaredParameterListNode();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterListNode#getParams <em>Params</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Params</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterListNode#getParams()
+	 * @see #getDeclaredParameterListNode()
+	 * @generated
+	 */
+	EReference getDeclaredParameterListNode_Params();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode <em>Declared Parameter Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3612,6 +4053,28 @@ public interface Xpand3nodePackage extends EPackage {
 	EClass getDeclaredParameterNode();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Name</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode#getName()
+	 * @see #getDeclaredParameterNode()
+	 * @generated
+	 */
+	EReference getDeclaredParameterNode_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode#getPtype <em>Ptype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ptype</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode#getPtype()
+	 * @see #getDeclaredParameterNode()
+	 * @generated
+	 */
+	EReference getDeclaredParameterNode_Ptype();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.ParameterListNode <em>Parameter List Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3620,6 +4083,17 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getParameterListNode();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.internal.parser.xpand3node.ParameterListNode#getParams <em>Params</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Params</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ParameterListNode#getParams()
+	 * @see #getParameterListNode()
+	 * @generated
+	 */
+	EReference getParameterListNode_Params();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.CollectionTypeNode <em>Collection Type Node</em>}'.
@@ -3640,6 +4114,17 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSimpleTypeNode();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.internal.parser.xpand3node.SimpleTypeNode#getNames <em>Names</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Names</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.SimpleTypeNode#getNames()
+	 * @see #getSimpleTypeNode()
+	 * @generated
+	 */
+	EReference getSimpleTypeNode_Names();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.IdentifierNode <em>Identifier Node</em>}'.
@@ -3916,6 +4401,78 @@ public interface Xpand3nodePackage extends EPackage {
 		EClass EXTENSION_NODE = eINSTANCE.getExtensionNode();
 
 		/**
+		 * The meta object literal for the '<em><b>Create</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__CREATE = eINSTANCE.getExtensionNode_Create();
+
+		/**
+		 * The meta object literal for the '<em><b>Private</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__PRIVATE = eINSTANCE.getExtensionNode_Private();
+
+		/**
+		 * The meta object literal for the '<em><b>Param List</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__PARAM_LIST = eINSTANCE.getExtensionNode_ParamList();
+
+		/**
+		 * The meta object literal for the '<em><b>Extend Body</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__EXTEND_BODY = eINSTANCE.getExtensionNode_ExtendBody();
+
+		/**
+		 * The meta object literal for the '<em><b>Cached</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__CACHED = eINSTANCE.getExtensionNode_Cached();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Return Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__JAVA_RETURN_TYPE = eINSTANCE.getExtensionNode_JavaReturnType();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Name</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__JAVA_NAME = eINSTANCE.getExtensionNode_JavaName();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__RETURN_TYPE = eINSTANCE.getExtensionNode_ReturnType();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION_NODE__NAME = eINSTANCE.getExtensionNode_Name();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.JavaTypeNodeImpl <em>Java Type Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4046,6 +4603,40 @@ public interface Xpand3nodePackage extends EPackage {
 		EClass RELATIONAL_EXPRESSION_NODE = eINSTANCE.getRelationalExpressionNode();
 
 		/**
+		 * The meta object literal for the '<em><b>Right Operand</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND = eINSTANCE.getRelationalExpressionNode_RightOperand();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.BooleanOperatorNodeImpl <em>Boolean Operator Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.BooleanOperatorNodeImpl
+		 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getBooleanOperatorNode()
+		 * @generated
+		 */
+		EClass BOOLEAN_OPERATOR_NODE = eINSTANCE.getBooleanOperatorNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATIONAL_EXPRESSION_NODE__OPERATOR = eINSTANCE.getRelationalExpressionNode_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Left Operand</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND = eINSTANCE.getRelationalExpressionNode_LeftOperand();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl <em>Additive Expression Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4086,6 +4677,22 @@ public interface Xpand3nodePackage extends EPackage {
 		EClass INFIX_EXPRESSION_NODE = eINSTANCE.getInfixExpressionNode();
 
 		/**
+		 * The meta object literal for the '<em><b>Calls</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INFIX_EXPRESSION_NODE__CALLS = eINSTANCE.getInfixExpressionNode_Calls();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INFIX_EXPRESSION_NODE__TARGET = eINSTANCE.getInfixExpressionNode_Target();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.StringLiteralNodeImpl <em>String Literal Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4124,6 +4731,22 @@ public interface Xpand3nodePackage extends EPackage {
 		 * @generated
 		 */
 		EClass FEATURE_CALL_NODE = eINSTANCE.getFeatureCallNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_CALL_NODE__NAME = eINSTANCE.getFeatureCallNode_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Param List</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_CALL_NODE__PARAM_LIST = eINSTANCE.getFeatureCallNode_ParamList();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ListLiteralNodeImpl <em>List Literal Node</em>}' class.
@@ -4196,6 +4819,14 @@ public interface Xpand3nodePackage extends EPackage {
 		EClass DECLARED_PARAMETER_LIST_NODE = eINSTANCE.getDeclaredParameterListNode();
 
 		/**
+		 * The meta object literal for the '<em><b>Params</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_PARAMETER_LIST_NODE__PARAMS = eINSTANCE.getDeclaredParameterListNode_Params();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DeclaredParameterNodeImpl <em>Declared Parameter Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4206,6 +4837,22 @@ public interface Xpand3nodePackage extends EPackage {
 		EClass DECLARED_PARAMETER_NODE = eINSTANCE.getDeclaredParameterNode();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_PARAMETER_NODE__NAME = eINSTANCE.getDeclaredParameterNode_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Ptype</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_PARAMETER_NODE__PTYPE = eINSTANCE.getDeclaredParameterNode_Ptype();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ParameterListNodeImpl <em>Parameter List Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4214,6 +4861,14 @@ public interface Xpand3nodePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PARAMETER_LIST_NODE = eINSTANCE.getParameterListNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Params</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER_LIST_NODE__PARAMS = eINSTANCE.getParameterListNode_Params();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CollectionTypeNodeImpl <em>Collection Type Node</em>}' class.
@@ -4234,6 +4889,14 @@ public interface Xpand3nodePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SIMPLE_TYPE_NODE = eINSTANCE.getSimpleTypeNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Names</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIMPLE_TYPE_NODE__NAMES = eINSTANCE.getSimpleTypeNode_Names();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IdentifierNodeImpl <em>Identifier Node</em>}' class.

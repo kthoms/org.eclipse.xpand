@@ -142,10 +142,10 @@ pointcut  :
 	   |'::' )*
 ;
 
-extension  :
-	('private'|'cached'|'create')* type? identifier identifier? '(' declaredParameterList? ')' ':'
-		('JAVA' javaType '.' identifier '('(javaType (',' javaType )*)? ')'|	
-			expression )';'
+extension  : // TODO create <identifier> <name< (...)
+	(private='private'|cached='cached'|create='create')* returnType=type? name=identifier '(' paramList=declaredParameterList? ')' ':'
+		('JAVA' javaReturnType=javaType '.' javaName=identifier '('(javaType (',' javaType )*)? ')'|	
+			extendBody=expression )';'
 ;
 
 javaType  :
@@ -210,10 +210,18 @@ normalizable impliesExpression :
 ;
 	
 normalizable relationalExpression :
-	additiveExpression 
-	(('==' | '!=' | '>=' | '<=' | '>' | '<') additiveExpression )*
+	leftOperand=additiveExpression 
+	(operator=booleanOperator rightOperand=additiveExpression )*
 ;
 
+booleanOperator :
+		'==' 
+	| '!=' 
+	| '>=' 
+	| '<=' 
+	| '>' 
+	| '<';
+	
 normalizable additiveExpression :
 	multiplicativeExpression 
    (('+'| '-') multiplicativeExpression )*
@@ -232,7 +240,7 @@ normalizable unaryExpression :
 ;
 
 normalizable infixExpression :
-	primaryExpression  ( '.' featureCall )*
+	target=primaryExpression  ( '.' calls+=featureCall )*
 ;
 	
 abstract normalizable primaryExpression 	 :
@@ -259,7 +267,7 @@ globalVarExpression  :
     'GLOBALVAR' identifier ;
 
 normalizable featureCall  :
-    identifier '(' (parameterList)? ')' 
+    name=identifier '(' (paramList=parameterList)? ')' 
 |   type 	
 |   collectionExpression 
 ;
@@ -304,15 +312,15 @@ collectionExpression  :
 // helper
 
 declaredParameterList  : 
-	declaredParameter (',' declaredParameter )*
+	params+=declaredParameter (',' params+=declaredParameter )*
 ;
 
 declaredParameter :
-	type identifier 
+	ptype=type name=identifier 
 ;
 
 parameterList  :
-    expression  (',' expression )* 
+    params+=expression  (',' params+=expression )* 
 ;
 
 // type
@@ -328,8 +336,8 @@ collectionType  :
 ;
 
 simpleType :
-	identifier 
-	('::' identifier  )*
+	names+=identifier 
+	('::' names+=identifier  )*
 ;
 
 identifier :

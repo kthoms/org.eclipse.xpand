@@ -99,75 +99,78 @@ pointcut  :
 extension  :
 	((('private')
 	| ('cached')
-	| ('create')))* (unnamed52=type)? (unnamed53=identifier) (unnamed54=identifier)? ('(') (unnamed55=declaredParameterList)? (')') (':') ((('JAVA') (unnamed56=javaType) ('.') (unnamed57=identifier) ('(') (((unnamed58=javaType) (((',') (unnamed59=javaType)))*))? (')')
-	| (unnamed60=expression))) (';')
+	| ('create')))* (returnType=type)? (name=identifier) ('(') (paramList=declaredParameterList)? (')') (':') ((('JAVA') (javaReturnType=javaType) ('.') (javaName=identifier) ('(') (((unnamed52=javaType) (((',') (unnamed53=javaType)))*))? (')')
+	| (extendBody=expression))) (';')
 ;
 javaType  :
-	(unnamed61=identifier) ((('.') (((unnamed62=identifier)
+	(unnamed54=identifier) ((('.') (((unnamed55=identifier)
 	| ('Collection')
 	| ('List')
 	| ('Set')))))*
 ;
 test_expression  :
-	(unnamed63=expression) (EOF)
+	(unnamed56=expression) (EOF)
 ;
 expression  :
-	(unnamed64=letExpression)
+	(unnamed57=letExpression)
 ;
 letExpression  :
-	('let') (unnamed65=identifier) ('=') (unnamed66=castedExpression) (':') (unnamed67=expression)
-	| (unnamed68=castedExpression)
+	('let') (unnamed58=identifier) ('=') (unnamed59=castedExpression) (':') (unnamed60=expression)
+	| (unnamed61=castedExpression)
 ;
 castedExpression  :
-	('(' type ')' chainExpression)=>(('(') (unnamed69=type) (')') (unnamed70=chainExpression))
-	| (unnamed71=chainExpression)
+	('(' type ')' chainExpression)=>(('(') (unnamed62=type) (')') (unnamed63=chainExpression))
+	| (unnamed64=chainExpression)
 ;
 chainExpression  :
-	(unnamed72=ifExpression) ((('->') (unnamed73=ifExpression)))*
+	(unnamed65=ifExpression) ((('->') (unnamed66=ifExpression)))*
 ;
 ifExpression  :
-	(unnamed74=switchExpression) ((('?') (unnamed75=expression) (':') (unnamed76=switchExpression)))?
-	| ('if') (unnamed77=expression) ('then') (unnamed78=switchExpression) ((('else') (unnamed79=switchExpression)))?
+	(unnamed67=switchExpression) ((('?') (unnamed68=expression) (':') (unnamed69=switchExpression)))?
+	| ('if') (unnamed70=expression) ('then') (unnamed71=switchExpression) ((('else') (unnamed72=switchExpression)))?
 ;
 switchExpression  :
-	('switch') ((('(') (unnamed80=orExpression) (')')))? ('{') (unnamed81=casePart)* ('default') (':') (unnamed82=orExpression) ('}')
-	| (unnamed83=orExpression)
+	('switch') ((('(') (unnamed73=orExpression) (')')))? ('{') (unnamed74=casePart)* ('default') (':') (unnamed75=orExpression) ('}')
+	| (unnamed76=orExpression)
 ;
 casePart  :
-	('case') (unnamed84=expression) (':') (unnamed85=expression)
+	('case') (unnamed77=expression) (':') (unnamed78=expression)
 ;
 orExpression  :
-	(unnamed86=andExpression) ((('||') (unnamed87=andExpression)))*
+	(unnamed79=andExpression) ((('||') (unnamed80=andExpression)))*
 ;
 andExpression  :
-	(unnamed88=impliesExpression) ((('&&') (unnamed89=impliesExpression)))*
+	(unnamed81=impliesExpression) ((('&&') (unnamed82=impliesExpression)))*
 ;
 impliesExpression  :
-	(unnamed90=relationalExpression) ((('implies') (unnamed91=relationalExpression)))*
+	(unnamed83=relationalExpression) ((('implies') (unnamed84=relationalExpression)))*
 ;
 relationalExpression  :
-	(unnamed92=additiveExpression) ((((('==')
+	(leftOperand=additiveExpression) (((operator=booleanOperator) (rightOperand=additiveExpression)))*
+;
+booleanOperator  :
+	('==')
 	| ('!=')
 	| ('>=')
 	| ('<=')
 	| ('>')
-	| ('<'))) (unnamed93=additiveExpression)))*
+	| ('<')
 ;
 additiveExpression  :
-	(unnamed94=multiplicativeExpression) ((((('+')
-	| ('-'))) (unnamed95=multiplicativeExpression)))*
+	(unnamed85=multiplicativeExpression) ((((('+')
+	| ('-'))) (unnamed86=multiplicativeExpression)))*
 ;
 multiplicativeExpression  :
-	(unnamed96=unaryExpression) ((((('*')
-	| ('/'))) (unnamed97=unaryExpression)))*
+	(unnamed87=unaryExpression) ((((('*')
+	| ('/'))) (unnamed88=unaryExpression)))*
 ;
 unaryExpression  :
-	(unnamed98=infixExpression)
-	| ('!') (unnamed99=infixExpression)
-	| ('-') (unnamed100=infixExpression)
+	(unnamed89=infixExpression)
+	| ('!') (unnamed90=infixExpression)
+	| ('-') (unnamed91=infixExpression)
 ;
 infixExpression  :
-	(unnamed101=primaryExpression) ((('.') (unnamed102=featureCall)))*
+	(target=primaryExpression) ((('.') (calls=featureCall)))*
 ;
 primaryExpression  :
 	(stringLiteral)
@@ -184,21 +187,21 @@ stringLiteral  :
 	(StringLiteral)
 ;
 paranthesizedExpression  :
-	('(') (unnamed103=expression) (')')
+	('(') (unnamed92=expression) (')')
 ;
 globalVarExpression  :
-	('GLOBALVAR') (unnamed104=identifier)
+	('GLOBALVAR') (unnamed93=identifier)
 ;
 featureCall  :
-	(unnamed105=identifier) ('(') (((unnamed106=parameterList)))? (')')
-	| (unnamed107=type)
-	| (unnamed108=collectionExpression)
+	(name=identifier) ('(') (((paramList=parameterList)))? (')')
+	| (unnamed94=type)
+	| (unnamed95=collectionExpression)
 ;
 listLiteral  :
-	('{') (((unnamed109=expression) (((',') (unnamed110=expression)))*))? ('}')
+	('{') (((unnamed96=expression) (((',') (unnamed97=expression)))*))? ('}')
 ;
 constructorCall  :
-	('new') (unnamed111=simpleType)
+	('new') (unnamed98=simpleType)
 ;
 booleanLiteral  :
 	('false')
@@ -212,7 +215,7 @@ numberLiteral  :
 	| (IntLiteral) ('.') (IntLiteral)
 ;
 collectionExpression  :
-	('typeSelect') ('(') (unnamed112=type) (')')
+	('typeSelect') ('(') (unnamed99=type) (')')
 	| ((('collect')
 	| ('select')
 	| ('selectFirst')
@@ -220,16 +223,16 @@ collectionExpression  :
 	| ('exists')
 	| ('notExists')
 	| ('sortBy')
-	| ('forAll'))) ('(') (((unnamed113=identifier) ('|')))? (unnamed114=expression) (')')
+	| ('forAll'))) ('(') (((unnamed100=identifier) ('|')))? (unnamed101=expression) (')')
 ;
 declaredParameterList  :
-	(unnamed115=declaredParameter) (((',') (unnamed116=declaredParameter)))*
+	(params=declaredParameter) (((',') (params=declaredParameter)))*
 ;
 declaredParameter  :
-	(unnamed117=type) (unnamed118=identifier)
+	(ptype=type) (name=identifier)
 ;
 parameterList  :
-	(unnamed119=expression) (((',') (unnamed120=expression)))*
+	(params=expression) (((',') (params=expression)))*
 ;
 type  :
 	(collectionType)
@@ -238,10 +241,10 @@ type  :
 collectionType  :
 	((('Collection')
 	| ('List')
-	| ('Set'))) ((('[') (unnamed121=simpleType) (']')))?
+	| ('Set'))) ((('[') (unnamed102=simpleType) (']')))?
 ;
 simpleType  :
-	(unnamed122=identifier) ((('::') (unnamed123=identifier)))*
+	(names=identifier) ((('::') (names=identifier)))*
 ;
 identifier  :
 	(Identifier)

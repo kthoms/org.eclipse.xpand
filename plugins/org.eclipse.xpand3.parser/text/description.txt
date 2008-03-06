@@ -52,6 +52,15 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class PointcutNode -> CompositeNode
 
   Class ExtensionNode -> CompositeNode
+    Reference create : LeafNode
+    Reference private : LeafNode
+    Reference paramList : CompositeNode
+    Reference extendBody : CompositeNode
+    Reference cached : LeafNode
+    Reference javaReturnType : CompositeNode
+    Reference javaName : CompositeNode
+    Reference returnType : CompositeNode
+    Reference name : CompositeNode
 
   Class JavaTypeNode -> CompositeNode
 
@@ -78,6 +87,11 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class ImpliesExpressionNode -> CompositeNode
 
   Class RelationalExpressionNode -> CompositeNode
+    Reference leftOperand : CompositeNode
+    Reference operator : CompositeNode
+    Reference rightOperand : CompositeNode
+
+  Class BooleanOperatorNode -> CompositeNode
 
   Class AdditiveExpressionNode -> CompositeNode
 
@@ -86,6 +100,8 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class UnaryExpressionNode -> CompositeNode
 
   Class InfixExpressionNode -> CompositeNode
+    Reference calls : CompositeNode<<0..*>>
+    Reference target : CompositeNode
 
   Class StringLiteralNode -> CompositeNode
 
@@ -94,6 +110,8 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class GlobalVarExpressionNode -> CompositeNode
 
   Class FeatureCallNode -> CompositeNode
+    Reference name : CompositeNode
+    Reference paramList : CompositeNode
 
   Class ListLiteralNode -> CompositeNode
 
@@ -108,13 +126,18 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class CollectionExpressionNode -> CompositeNode
 
   Class DeclaredParameterListNode -> CompositeNode
+    Reference params : CompositeNode<<0..*>>
 
   Class DeclaredParameterNode -> CompositeNode
+    Reference name : CompositeNode
+    Reference ptype : CompositeNode
 
   Class ParameterListNode -> CompositeNode
+    Reference params : CompositeNode<<0..*>>
 
   Class CollectionTypeNode -> CompositeNode
 
   Class SimpleTypeNode -> CompositeNode
+    Reference names : CompositeNode<<0..*>>
 
   Class IdentifierNode -> CompositeNode

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackageImpl.java,v 1.1 2008/02/27 13:21:08 sefftinge Exp $
+ * $Id: DeclarationPackageImpl.java,v 1.2 2008/03/06 15:35:15 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.impl;
 
@@ -315,6 +315,15 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getExtension_Body() {
+		return (EReference)extensionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAbstractAspect() {
 		return abstractAspectEClass;
 	}
@@ -525,6 +534,7 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 
 		extensionEClass = createEClass(EXTENSION);
 		createEAttribute(extensionEClass, EXTENSION__CACHED);
+		createEReference(extensionEClass, EXTENSION__BODY);
 
 		abstractAspectEClass = createEClass(ABSTRACT_ASPECT);
 		createEReference(abstractAspectEClass, ABSTRACT_ASPECT__POINTCUT);
@@ -614,6 +624,7 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 
 		initEClass(extensionEClass, Extension.class, "Extension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExtension_Cached(), ecorePackage.getEBoolean(), "cached", null, 0, 1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtension_Body(), theExpressionPackage.getAbstractExpression(), null, "body", null, 1, 1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractAspectEClass, AbstractAspect.class, "AbstractAspect", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractAspect_Pointcut(), theXpand3Package.getIdentifier(), null, "pointcut", null, 0, 1, AbstractAspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

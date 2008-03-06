@@ -20,10 +20,13 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//SyntaxElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//Identifier"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Identifier" abstract="true" eSuperTypes="#//SyntaxElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleIdentifier" eSuperTypes="#//Identifier">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComposedIdentifier" eSuperTypes="#//Identifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" lowerBound="1"
+        upperBound="-1" eType="#//Identifier" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredParameter" eSuperTypes="#//SyntaxElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Identifier"
@@ -222,6 +225,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="Advice" eSuperTypes="#//declaration/AbstractNamedDeclaration"/>
     <eClassifiers xsi:type="ecore:EClass" name="Extension" eSuperTypes="#//declaration/AbstractNamedDeclaration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cached" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1"
+          eType="#//expression/AbstractExpression" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractAspect" abstract="true" eSuperTypes="#//SyntaxElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pointcut" eType="#//Identifier"

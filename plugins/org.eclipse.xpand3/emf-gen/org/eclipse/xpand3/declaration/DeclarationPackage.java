@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackage.java,v 1.1 2008/02/27 13:21:09 sefftinge Exp $
+ * $Id: DeclarationPackage.java,v 1.2 2008/03/06 15:35:15 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
 
@@ -562,13 +562,22 @@ public interface DeclarationPackage extends EPackage {
 	int EXTENSION__CACHED = ABSTRACT_NAMED_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION__BODY = ABSTRACT_NAMED_DECLARATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Extension</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_FEATURE_COUNT = ABSTRACT_NAMED_DECLARATION_FEATURE_COUNT + 1;
+	int EXTENSION_FEATURE_COUNT = ABSTRACT_NAMED_DECLARATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.declaration.impl.AbstractAspectImpl <em>Abstract Aspect</em>}' class.
@@ -1062,6 +1071,15 @@ public interface DeclarationPackage extends EPackage {
 	int CREATE_EXTENSION_STATEMENT__CACHED = EXTENSION__CACHED;
 
 	/**
+	 * The feature id for the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CREATE_EXTENSION_STATEMENT__BODY = EXTENSION__BODY;
+
+	/**
 	 * The feature id for the '<em><b>To Be Created</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1333,6 +1351,17 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtension_Cached();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.declaration.Extension#getBody <em>Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Body</em>'.
+	 * @see org.eclipse.xpand3.declaration.Extension#getBody()
+	 * @see #getExtension()
+	 * @generated
+	 */
+	EReference getExtension_Body();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.declaration.AbstractAspect <em>Abstract Aspect</em>}'.
@@ -1664,6 +1693,14 @@ public interface DeclarationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENSION__CACHED = eINSTANCE.getExtension_Cached();
+
+		/**
+		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENSION__BODY = eINSTANCE.getExtension_Body();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.declaration.impl.AbstractAspectImpl <em>Abstract Aspect</em>}' class.

@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Extension.java,v 1.1 2008/02/27 13:21:10 sefftinge Exp $
+ * $Id: Extension.java,v 1.2 2008/03/06 15:35:15 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
+
+import org.eclipse.xpand3.expression.AbstractExpression;
 
 
 /**
@@ -16,6 +18,7 @@ package org.eclipse.xpand3.declaration;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.declaration.Extension#isCached <em>Cached</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.declaration.Extension#getBody <em>Body</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +52,31 @@ public interface Extension extends AbstractNamedDeclaration {
 	 * @generated
 	 */
 	void setCached(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Body</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Body</em>' containment reference.
+	 * @see #setBody(AbstractExpression)
+	 * @see org.eclipse.xpand3.declaration.DeclarationPackage#getExtension_Body()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	AbstractExpression getBody();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.declaration.Extension#getBody <em>Body</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Body</em>' containment reference.
+	 * @see #getBody()
+	 * @generated
+	 */
+	void setBody(AbstractExpression value);
 
 } // Extension

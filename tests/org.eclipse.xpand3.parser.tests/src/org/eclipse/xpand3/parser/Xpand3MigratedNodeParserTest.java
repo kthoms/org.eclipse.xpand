@@ -12,7 +12,7 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		CompositeNode parse = parse("true == null");
 		CompositeNode cn = checkIsRule(parse, "relationalExpression", 3);
 		checkChildIsTrueLiteral(cn, 0);
-		checkChildIsToken(cn, 1, "==");
+		checkChildIsRelationalOperator(cn, 1, "==");
 		CompositeNode nl = checkChildIsRule(cn, 2, "nullLiteral", 1);
 		checkChildIsToken(nl, 0, "null");
 	}
@@ -50,7 +50,7 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		checkChildIsSimpleType(ie0, 0, "client");
 		checkChildIsToken(ie0, 1, ".");
 		checkChildIsSimpleType(ie0, 2, "sIdent1");
-		checkChildIsToken(re, 1, "!=");
+		checkChildIsRelationalOperator(re, 1, "!=");
 		CompositeNode nl = checkChildIsRule(re, 2, "nullLiteral", 1);
 		checkChildIsToken(nl, 0, "null");
 		checkChildIsToken(pe, 2, ")");

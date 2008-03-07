@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactory.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: Xpand3nodeFactory.java,v 1.4 2008/03/07 11:11:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -24,6 +24,15 @@ public interface Xpand3nodeFactory extends EFactory {
 	 * @generated
 	 */
 	Xpand3nodeFactory eINSTANCE = org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodeFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>XNode</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>XNode</em>'.
+	 * @generated
+	 */
+	XNode createXNode();
 
 	/**
 	 * Returns a new object of class '<em>File Node</em>'.
@@ -330,6 +339,15 @@ public interface Xpand3nodeFactory extends EFactory {
 	 * @generated
 	 */
 	RelationalExpressionNode createRelationalExpressionNode();
+
+	/**
+	 * Returns a new object of class '<em>Relational Operator Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Relational Operator Node</em>'.
+	 * @generated
+	 */
+	RelationalOperatorNode createRelationalOperatorNode();
 
 	/**
 	 * Returns a new object of class '<em>Additive Expression Node</em>'.

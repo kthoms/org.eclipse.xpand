@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3PackageImpl.java,v 1.4 2008/03/07 08:28:22 sefftinge Exp $
+ * $Id: Xpand3PackageImpl.java,v 1.5 2008/03/07 11:10:58 jkohnlein Exp $
  */
 package org.eclipse.xpand3.impl;
 
@@ -13,12 +13,10 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.xpand3.ComposedIdentifier;
 import org.eclipse.xpand3.DeclaredParameter;
 import org.eclipse.xpand3.File;
 import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.ImportStatement;
-import org.eclipse.xpand3.SimpleIdentifier;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.Xpand3Factory;
 import org.eclipse.xpand3.Xpand3Package;

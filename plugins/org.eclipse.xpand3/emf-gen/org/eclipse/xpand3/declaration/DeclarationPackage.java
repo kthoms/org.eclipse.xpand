@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackage.java,v 1.3 2008/03/07 08:28:25 sefftinge Exp $
+ * $Id: DeclarationPackage.java,v 1.4 2008/03/07 11:10:54 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
 

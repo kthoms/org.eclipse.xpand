@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeAdapterFactory.java,v 1.3 2008/03/07 09:39:42 jkohnlein Exp $
+ * $Id: Xpand3nodeAdapterFactory.java,v 1.4 2008/03/07 11:11:11 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.util;
 
@@ -74,6 +74,10 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected Xpand3nodeSwitch<Adapter> modelSwitch =
 		new Xpand3nodeSwitch<Adapter>() {
+			@Override
+			public Adapter caseXNode(XNode object) {
+				return createXNodeAdapter();
+			}
 			@Override
 			public Adapter caseFileNode(FileNode object) {
 				return createFileNodeAdapter();
@@ -211,6 +215,10 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 				return createRelationalExpressionNodeAdapter();
 			}
 			@Override
+			public Adapter caseRelationalOperatorNode(RelationalOperatorNode object) {
+				return createRelationalOperatorNodeAdapter();
+			}
+			@Override
 			public Adapter caseAdditiveExpressionNode(AdditiveExpressionNode object) {
 				return createAdditiveExpressionNodeAdapter();
 			}
@@ -317,6 +325,20 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.XNode <em>XNode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.XNode
+	 * @generated
+	 */
+	public Adapter createXNodeAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode <em>File Node</em>}'.
@@ -791,6 +813,20 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRelationalExpressionNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalOperatorNode <em>Relational Operator Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.RelationalOperatorNode
+	 * @generated
+	 */
+	public Adapter createRelationalOperatorNodeAdapter() {
 		return null;
 	}
 

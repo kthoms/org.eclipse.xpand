@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactoryImpl.java,v 1.5 2008/03/07 08:28:22 sefftinge Exp $
+ * $Id: StaticTypesystemFactoryImpl.java,v 1.6 2008/03/07 11:10:57 jkohnlein Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -16,8 +15,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.xpand3.staticTypesystem.*;
-
-import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->

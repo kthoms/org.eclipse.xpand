@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredParameter.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
+ * $Id: DeclaredParameter.java,v 1.3 2008/03/07 11:10:32 jkohnlein Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Identifier.java,v 1.4 2008/03/07 08:28:21 sefftinge Exp $
+ * $Id: Identifier.java,v 1.5 2008/03/07 11:10:43 jkohnlein Exp $
  */
 package org.eclipse.xpand3;
 
@@ -24,7 +24,6 @@ package org.eclipse.xpand3;
  * @generated
  */
 public interface Identifier extends SyntaxElement {
-
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,4 +49,5 @@ public interface Identifier extends SyntaxElement {
 	 * @generated
 	 */
 	void setValue(String value);
+
 } // Identifier

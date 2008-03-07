@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemAdapterFactory.java,v 1.3 2008/03/04 14:28:06 sefftinge Exp $
+ * $Id: StaticTypesystemAdapterFactory.java,v 1.4 2008/03/07 11:10:59 jkohnlein Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.util;
 

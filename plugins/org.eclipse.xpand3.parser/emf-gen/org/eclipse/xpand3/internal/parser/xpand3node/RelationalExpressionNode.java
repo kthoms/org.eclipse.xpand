@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RelationalExpressionNode.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: RelationalExpressionNode.java,v 1.4 2008/03/07 11:11:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -17,8 +17,8 @@ import org.eclipse.tmf.common.node.LeafNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand <em>Right Operand</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand <em>Right Operand</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getLeftOperand <em>Left Operand</em>}</li>
  * </ul>
  * </p>
@@ -37,12 +37,12 @@ public interface RelationalExpressionNode extends CompositeNode {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operator</em>' reference.
-	 * @see #setOperator(LeafNode)
+	 * @see #setOperator(CompositeNode)
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getRelationalExpressionNode_Operator()
 	 * @model
 	 * @generated
 	 */
-	LeafNode getOperator();
+	CompositeNode getOperator();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getOperator <em>Operator</em>}' reference.
@@ -52,7 +52,7 @@ public interface RelationalExpressionNode extends CompositeNode {
 	 * @see #getOperator()
 	 * @generated
 	 */
-	void setOperator(LeafNode value);
+	void setOperator(CompositeNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Right Operand</b></em>' reference.

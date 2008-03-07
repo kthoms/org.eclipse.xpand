@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileImpl.java,v 1.1 2008/02/27 13:21:07 sefftinge Exp $
+ * $Id: FileImpl.java,v 1.2 2008/03/07 11:10:59 jkohnlein Exp $
  */
 package org.eclipse.xpand3.impl;
 

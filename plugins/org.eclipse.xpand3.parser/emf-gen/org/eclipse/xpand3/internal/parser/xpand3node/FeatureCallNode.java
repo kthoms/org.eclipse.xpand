@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FeatureCallNode.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: FeatureCallNode.java,v 1.4 2008/03/07 11:11:12 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,8 +16,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getParamList <em>Param List</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getParamList <em>Param List</em>}</li>
  * </ul>
  * </p>
  *

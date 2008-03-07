@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionAspect.java,v 1.1 2008/02/27 13:21:10 sefftinge Exp $
+ * $Id: DefinitionAspect.java,v 1.2 2008/03/07 11:10:54 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
 

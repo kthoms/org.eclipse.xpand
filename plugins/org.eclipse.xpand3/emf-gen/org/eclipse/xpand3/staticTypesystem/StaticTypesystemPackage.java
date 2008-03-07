@@ -2,13 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackage.java,v 1.5 2008/03/07 08:28:21 sefftinge Exp $
+ * $Id: StaticTypesystemPackage.java,v 1.6 2008/03/07 11:10:33 jkohnlein Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -522,6 +521,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	 * @ordered
 	 */
 	int DECLARED_PARAMETER_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.AbstractNamedElement <em>Abstract Named Element</em>}'.

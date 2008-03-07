@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredProperty.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
+ * $Id: DeclaredProperty.java,v 1.3 2008/03/07 11:10:33 jkohnlein Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 

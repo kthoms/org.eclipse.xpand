@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeSwitch.java,v 1.3 2008/03/07 09:39:42 jkohnlein Exp $
+ * $Id: Xpand3nodeSwitch.java,v 1.4 2008/03/07 11:11:11 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.util;
 
@@ -90,6 +90,14 @@ public class Xpand3nodeSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case Xpand3nodePackage.XNODE: {
+				XNode xNode = (XNode)theEObject;
+				T result = caseXNode(xNode);
+				if (result == null) result = caseCompositeNode(xNode);
+				if (result == null) result = caseNode(xNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case Xpand3nodePackage.FILE_NODE: {
 				FileNode fileNode = (FileNode)theEObject;
 				T result = caseFileNode(fileNode);
@@ -362,6 +370,14 @@ public class Xpand3nodeSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Xpand3nodePackage.RELATIONAL_OPERATOR_NODE: {
+				RelationalOperatorNode relationalOperatorNode = (RelationalOperatorNode)theEObject;
+				T result = caseRelationalOperatorNode(relationalOperatorNode);
+				if (result == null) result = caseCompositeNode(relationalOperatorNode);
+				if (result == null) result = caseNode(relationalOperatorNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE: {
 				AdditiveExpressionNode additiveExpressionNode = (AdditiveExpressionNode)theEObject;
 				T result = caseAdditiveExpressionNode(additiveExpressionNode);
@@ -524,6 +540,21 @@ public class Xpand3nodeSwitch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>XNode</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>XNode</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseXNode(XNode object) {
+		return null;
 	}
 
 	/**
@@ -1033,6 +1064,21 @@ public class Xpand3nodeSwitch<T> {
 	 * @generated
 	 */
 	public T caseRelationalExpressionNode(RelationalExpressionNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relational Operator Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relational Operator Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelationalOperatorNode(RelationalOperatorNode object) {
 		return null;
 	}
 

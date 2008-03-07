@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3Package.java,v 1.4 2008/03/07 08:28:21 sefftinge Exp $
+ * $Id: Xpand3Package.java,v 1.5 2008/03/07 11:10:39 jkohnlein Exp $
  */
 package org.eclipse.xpand3;
 

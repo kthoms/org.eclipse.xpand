@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionFactoryImpl.java,v 1.1 2008/02/27 13:21:08 sefftinge Exp $
+ * $Id: ExpressionFactoryImpl.java,v 1.2 2008/03/07 11:10:36 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression.impl;
 

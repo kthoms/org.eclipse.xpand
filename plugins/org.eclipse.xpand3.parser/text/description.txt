@@ -7,6 +7,9 @@ This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator
 
 Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
 
+  Class XNode -> CompositeNode
+    Reference l : LeafNode
+
   Class FileNode -> CompositeNode
     Reference imp : CompositeNode<<0..*>>
     Reference decl : CompositeNode<<0..*>>
@@ -52,14 +55,14 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class PointcutNode -> CompositeNode
 
   Class ExtensionNode -> CompositeNode
-    Reference returnType : CompositeNode
     Reference cached : LeafNode
-    Reference javaName : CompositeNode
+    Reference paramList : CompositeNode
+    Reference create : LeafNode
     Reference private : LeafNode
     Reference name : CompositeNode
     Reference extendBody : CompositeNode
-    Reference create : LeafNode
-    Reference paramList : CompositeNode
+    Reference returnType : CompositeNode
+    Reference javaName : CompositeNode
     Reference javaReturnType : CompositeNode
 
   Class JavaTypeNode -> CompositeNode
@@ -87,9 +90,11 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class ImpliesExpressionNode -> CompositeNode
 
   Class RelationalExpressionNode -> CompositeNode
+    Reference operator : CompositeNode
     Reference rightOperand : CompositeNode
-    Reference operator : LeafNode
     Reference leftOperand : CompositeNode
+
+  Class RelationalOperatorNode -> CompositeNode
 
   Class AdditiveExpressionNode -> CompositeNode
 
@@ -98,8 +103,8 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class UnaryExpressionNode -> CompositeNode
 
   Class InfixExpressionNode -> CompositeNode
-    Reference calls : CompositeNode<<0..*>>
     Reference target : CompositeNode
+    Reference calls : CompositeNode<<0..*>>
 
   Class StringLiteralNode -> CompositeNode
 
@@ -108,8 +113,8 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class GlobalVarExpressionNode -> CompositeNode
 
   Class FeatureCallNode -> CompositeNode
-    Reference paramList : CompositeNode
     Reference name : CompositeNode
+    Reference paramList : CompositeNode
 
   Class ListLiteralNode -> CompositeNode
 
@@ -127,8 +132,8 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
     Reference params : CompositeNode<<0..*>>
 
   Class DeclaredParameterNode -> CompositeNode
-    Reference ptype : CompositeNode
     Reference name : CompositeNode
+    Reference ptype : CompositeNode
 
   Class ParameterListNode -> CompositeNode
     Reference params : CompositeNode<<0..*>>

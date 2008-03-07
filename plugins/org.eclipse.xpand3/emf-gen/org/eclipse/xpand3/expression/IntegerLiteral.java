@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntegerLiteral.java,v 1.1 2008/02/27 13:21:06 sefftinge Exp $
+ * $Id: IntegerLiteral.java,v 1.2 2008/03/07 11:10:31 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression;
 

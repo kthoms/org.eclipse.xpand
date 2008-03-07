@@ -4,10 +4,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.tmf.common.node.CompositeNode;
 import org.eclipse.tmf.common.node.LeafNode;
 import org.eclipse.tmf.common.node.Node;
-import org.eclipse.xpand3.ComposedIdentifier;
 import org.eclipse.xpand3.DeclaredParameter;
 import org.eclipse.xpand3.Identifier;
-import org.eclipse.xpand3.SimpleIdentifier;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.Xpand3Factory;
 import org.eclipse.xpand3.declaration.DeclarationFactory;
@@ -177,7 +175,8 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 			RelationalExpressionNode ren) {
 		BooleanOperation bo = expressionFactory.createBooleanOperation();
 		bo.setLeft((AbstractExpression) doSwitch(ren.getLeftOperand()));
-		bo.setOperator(createIdentifier(ren.getOperator()));
+		bo.setOperator(createIdentifier((LeafNode) ren.getOperator()
+				.getChildren().get(0)));
 		bo.setRight((AbstractExpression) doSwitch(ren.getRightOperand()));
 		return bo;
 	}

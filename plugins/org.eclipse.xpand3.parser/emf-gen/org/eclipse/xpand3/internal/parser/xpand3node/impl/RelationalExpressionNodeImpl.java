@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RelationalExpressionNodeImpl.java,v 1.3 2008/03/07 09:39:42 jkohnlein Exp $
+ * $Id: RelationalExpressionNodeImpl.java,v 1.4 2008/03/07 11:11:16 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -28,8 +28,8 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getRightOperand <em>Right Operand</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getRightOperand <em>Right Operand</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getLeftOperand <em>Left Operand</em>}</li>
  * </ul>
  * </p>
@@ -37,6 +37,16 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * @generated
  */
 public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements RelationalExpressionNode {
+	/**
+	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode operator;
+
 	/**
 	 * The cached value of the '{@link #getRightOperand() <em>Right Operand</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -46,16 +56,6 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * @ordered
 	 */
 	protected CompositeNode rightOperand;
-
-	/**
-	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperator()
-	 * @generated
-	 * @ordered
-	 */
-	protected LeafNode operator;
 
 	/**
 	 * The cached value of the '{@link #getLeftOperand() <em>Left Operand</em>}' reference.
@@ -91,10 +91,10 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LeafNode getOperator() {
+	public CompositeNode getOperator() {
 		if (operator != null && operator.eIsProxy()) {
 			InternalEObject oldOperator = (InternalEObject)operator;
-			operator = (LeafNode)eResolveProxy(oldOperator);
+			operator = (CompositeNode)eResolveProxy(oldOperator);
 			if (operator != oldOperator) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR, oldOperator, operator));
@@ -108,7 +108,7 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LeafNode basicGetOperator() {
+	public CompositeNode basicGetOperator() {
 		return operator;
 	}
 
@@ -117,8 +117,8 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(LeafNode newOperator) {
-		LeafNode oldOperator = operator;
+	public void setOperator(CompositeNode newOperator) {
+		CompositeNode oldOperator = operator;
 		operator = newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR, oldOperator, operator));
@@ -208,12 +208,12 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
-				if (resolve) return getRightOperand();
-				return basicGetRightOperand();
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
 				if (resolve) return getOperator();
 				return basicGetOperator();
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
+				if (resolve) return getRightOperand();
+				return basicGetRightOperand();
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
 				if (resolve) return getLeftOperand();
 				return basicGetLeftOperand();
@@ -229,11 +229,11 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
+				setOperator((CompositeNode)newValue);
+				return;
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
 				setRightOperand((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
-				setOperator((LeafNode)newValue);
 				return;
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
 				setLeftOperand((CompositeNode)newValue);
@@ -250,11 +250,11 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
+				setOperator((CompositeNode)null);
+				return;
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
 				setRightOperand((CompositeNode)null);
-				return;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
-				setOperator((LeafNode)null);
 				return;
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
 				setLeftOperand((CompositeNode)null);
@@ -271,10 +271,10 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
-				return rightOperand != null;
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
 				return operator != null;
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
+				return rightOperand != null;
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
 				return leftOperand != null;
 		}

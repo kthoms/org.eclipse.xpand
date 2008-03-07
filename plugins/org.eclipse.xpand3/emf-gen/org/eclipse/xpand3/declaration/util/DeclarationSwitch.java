@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationSwitch.java,v 1.1 2008/02/27 13:21:09 sefftinge Exp $
+ * $Id: DeclarationSwitch.java,v 1.2 2008/03/07 11:10:55 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.util;
 

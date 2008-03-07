@@ -2,13 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackageImpl.java,v 1.5 2008/03/07 08:28:22 sefftinge Exp $
+ * $Id: StaticTypesystemPackageImpl.java,v 1.6 2008/03/07 11:10:57 jkohnlein Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -29,8 +28,6 @@ import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xpand3.staticTypesystem.TypeVariable;
 import org.eclipse.xpand3.staticTypesystem.VoidType;
 import org.eclipse.xpand3.staticTypesystem.WildcardType;
-
-import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->

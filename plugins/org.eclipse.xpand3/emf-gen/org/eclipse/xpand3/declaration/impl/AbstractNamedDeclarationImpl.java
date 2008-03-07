@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractNamedDeclarationImpl.java,v 1.1 2008/02/27 13:21:08 sefftinge Exp $
+ * $Id: AbstractNamedDeclarationImpl.java,v 1.2 2008/03/07 11:10:53 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.impl;
 

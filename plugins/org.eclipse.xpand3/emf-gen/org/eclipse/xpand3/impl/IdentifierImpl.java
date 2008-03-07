@@ -2,16 +2,16 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IdentifierImpl.java,v 1.4 2008/03/07 08:28:22 sefftinge Exp $
+ * $Id: IdentifierImpl.java,v 1.5 2008/03/07 11:10:58 jkohnlein Exp $
  */
 package org.eclipse.xpand3.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.Xpand3Package;
 
@@ -38,6 +38,7 @@ public class IdentifierImpl extends SyntaxElementImpl implements Identifier {
 	 * @ordered
 	 */
 	protected static final String VALUE_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

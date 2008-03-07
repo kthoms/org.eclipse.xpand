@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredParameterNodeImpl.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: DeclaredParameterNodeImpl.java,v 1.4 2008/03/07 11:11:15 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,24 +27,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DeclaredParameterNodeImpl#getPtype <em>Ptype</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DeclaredParameterNodeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DeclaredParameterNodeImpl#getPtype <em>Ptype</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class DeclaredParameterNodeImpl extends CompositeNodeImpl implements DeclaredParameterNode {
-	/**
-	 * The cached value of the '{@link #getPtype() <em>Ptype</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPtype()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode ptype;
-
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,6 +44,16 @@ public class DeclaredParameterNodeImpl extends CompositeNodeImpl implements Decl
 	 * @ordered
 	 */
 	protected CompositeNode name;
+
+	/**
+	 * The cached value of the '{@link #getPtype() <em>Ptype</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPtype()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode ptype;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,12 +158,12 @@ public class DeclaredParameterNodeImpl extends CompositeNodeImpl implements Decl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
-				if (resolve) return getPtype();
-				return basicGetPtype();
 			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__NAME:
 				if (resolve) return getName();
 				return basicGetName();
+			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
+				if (resolve) return getPtype();
+				return basicGetPtype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,11 +176,11 @@ public class DeclaredParameterNodeImpl extends CompositeNodeImpl implements Decl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
-				setPtype((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__NAME:
 				setName((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
+				setPtype((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,11 +194,11 @@ public class DeclaredParameterNodeImpl extends CompositeNodeImpl implements Decl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
-				setPtype((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__NAME:
 				setName((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
+				setPtype((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,10 +212,10 @@ public class DeclaredParameterNodeImpl extends CompositeNodeImpl implements Decl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
-				return ptype != null;
 			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__NAME:
 				return name != null;
+			case Xpand3nodePackage.DECLARED_PARAMETER_NODE__PTYPE:
+				return ptype != null;
 		}
 		return super.eIsSet(featureID);
 	}

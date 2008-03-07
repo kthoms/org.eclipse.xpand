@@ -2,20 +2,21 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExtensionImpl.java,v 1.3 2008/03/07 08:28:24 sefftinge Exp $
+ * $Id: ExtensionImpl.java,v 1.4 2008/03/07 11:10:52 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.xpand3.declaration.DeclarationPackage;
 import org.eclipse.xpand3.declaration.Extension;
+
 import org.eclipse.xpand3.expression.AbstractExpression;
 
 /**

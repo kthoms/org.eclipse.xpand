@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactoryImpl.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: Xpand3nodeFactoryImpl.java,v 1.4 2008/03/07 11:11:16 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -60,6 +60,7 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case Xpand3nodePackage.XNODE: return createXNode();
 			case Xpand3nodePackage.FILE_NODE: return createFileNode();
 			case Xpand3nodePackage.NS_IMPORT_NODE: return createNsImportNode();
 			case Xpand3nodePackage.DEFINITION_NODE: return createDefinitionNode();
@@ -94,6 +95,7 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 			case Xpand3nodePackage.AND_EXPRESSION_NODE: return createAndExpressionNode();
 			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE: return createImpliesExpressionNode();
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE: return createRelationalExpressionNode();
+			case Xpand3nodePackage.RELATIONAL_OPERATOR_NODE: return createRelationalOperatorNode();
 			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE: return createAdditiveExpressionNode();
 			case Xpand3nodePackage.MULTIPLICATIVE_EXPRESSION_NODE: return createMultiplicativeExpressionNode();
 			case Xpand3nodePackage.UNARY_EXPRESSION_NODE: return createUnaryExpressionNode();
@@ -117,6 +119,16 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XNode createXNode() {
+		XNodeImpl xNode = new XNodeImpl();
+		return xNode;
 	}
 
 	/**
@@ -457,6 +469,16 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	public RelationalExpressionNode createRelationalExpressionNode() {
 		RelationalExpressionNodeImpl relationalExpressionNode = new RelationalExpressionNodeImpl();
 		return relationalExpressionNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RelationalOperatorNode createRelationalOperatorNode() {
+		RelationalOperatorNodeImpl relationalOperatorNode = new RelationalOperatorNodeImpl();
+		return relationalOperatorNode;
 	}
 
 	/**

@@ -128,6 +128,14 @@ public abstract class AbstractXpand3NodeParserTest extends TestCase {
 		return booleanLiteral;
 	}
 
+	protected CompositeNode checkChildIsRelationalOperator(Node parent,
+			int index, String operator) {
+		CompositeNode booleanLiteral = checkChildIsRule(parent, index,
+				"relationalOperator", 1);
+		checkChildIsToken(booleanLiteral, 0, operator);
+		return booleanLiteral;
+	}
+
 	protected LeafNode checkChildIsToken(Node parent, int index,
 			String tokenText) {
 		return checkIsToken(getChild(parent, index), tokenText);

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3Switch.java,v 1.4 2008/03/07 08:28:22 sefftinge Exp $
+ * $Id: Xpand3Switch.java,v 1.5 2008/03/07 11:10:46 jkohnlein Exp $
  */
 package org.eclipse.xpand3.util;
 

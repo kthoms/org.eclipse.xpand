@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3FactoryImpl.java,v 1.4 2008/03/07 08:28:22 sefftinge Exp $
+ * $Id: Xpand3FactoryImpl.java,v 1.5 2008/03/07 11:10:58 jkohnlein Exp $
  */
 package org.eclipse.xpand3.impl;
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileStatementImpl.java,v 1.1 2008/02/27 13:21:07 sefftinge Exp $
+ * $Id: FileStatementImpl.java,v 1.2 2008/03/07 11:10:34 jkohnlein Exp $
  */
 package org.eclipse.xpand3.statement.impl;
 

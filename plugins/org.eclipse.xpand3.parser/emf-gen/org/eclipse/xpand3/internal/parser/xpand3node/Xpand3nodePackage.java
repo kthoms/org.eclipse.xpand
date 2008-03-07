@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodePackage.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: Xpand3nodePackage.java,v 1.4 2008/03/07 11:11:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -61,6 +61,70 @@ public interface Xpand3nodePackage extends EPackage {
 	Xpand3nodePackage eINSTANCE = org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.XNodeImpl <em>XNode</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.XNodeImpl
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getXNode()
+	 * @generated
+	 */
+	int XNODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XNODE__ALIAS = NodePackage.COMPOSITE_NODE__ALIAS;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XNODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Rule</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XNODE__RULE = NodePackage.COMPOSITE_NODE__RULE;
+
+	/**
+	 * The feature id for the '<em><b>Rule ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XNODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
+
+	/**
+	 * The feature id for the '<em><b>L</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XNODE__L = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>XNode</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XNODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FileNodeImpl <em>File Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +132,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getFileNode()
 	 * @generated
 	 */
-	int FILE_NODE = 0;
+	int FILE_NODE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -141,7 +205,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getNsImportNode()
 	 * @generated
 	 */
-	int NS_IMPORT_NODE = 1;
+	int NS_IMPORT_NODE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -205,7 +269,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getDefinitionNode()
 	 * @generated
 	 */
-	int DEFINITION_NODE = 2;
+	int DEFINITION_NODE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -269,7 +333,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getDefinitionAroundNode()
 	 * @generated
 	 */
-	int DEFINITION_AROUND_NODE = 3;
+	int DEFINITION_AROUND_NODE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -324,7 +388,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getSequenceNode()
 	 * @generated
 	 */
-	int SEQUENCE_NODE = 4;
+	int SEQUENCE_NODE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -379,7 +443,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getTextSequenceNode()
 	 * @generated
 	 */
-	int TEXT_SEQUENCE_NODE = 5;
+	int TEXT_SEQUENCE_NODE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -434,7 +498,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getTextNode()
 	 * @generated
 	 */
-	int TEXT_NODE = 6;
+	int TEXT_NODE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -489,7 +553,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getErrorStatementNode()
 	 * @generated
 	 */
-	int ERROR_STATEMENT_NODE = 7;
+	int ERROR_STATEMENT_NODE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -544,7 +608,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getExpandStatementNode()
 	 * @generated
 	 */
-	int EXPAND_STATEMENT_NODE = 8;
+	int EXPAND_STATEMENT_NODE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -599,7 +663,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getExpressionStmtNode()
 	 * @generated
 	 */
-	int EXPRESSION_STMT_NODE = 9;
+	int EXPRESSION_STMT_NODE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -654,7 +718,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getFileStatementNode()
 	 * @generated
 	 */
-	int FILE_STATEMENT_NODE = 10;
+	int FILE_STATEMENT_NODE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -709,7 +773,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getForeachStatementNode()
 	 * @generated
 	 */
-	int FOREACH_STATEMENT_NODE = 11;
+	int FOREACH_STATEMENT_NODE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -764,7 +828,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getIfStatementNode()
 	 * @generated
 	 */
-	int IF_STATEMENT_NODE = 12;
+	int IF_STATEMENT_NODE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -819,7 +883,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getElseIfStatementNode()
 	 * @generated
 	 */
-	int ELSE_IF_STATEMENT_NODE = 13;
+	int ELSE_IF_STATEMENT_NODE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -874,7 +938,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getElseStatementNode()
 	 * @generated
 	 */
-	int ELSE_STATEMENT_NODE = 14;
+	int ELSE_STATEMENT_NODE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -929,7 +993,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getLetStatementNode()
 	 * @generated
 	 */
-	int LET_STATEMENT_NODE = 15;
+	int LET_STATEMENT_NODE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -984,7 +1048,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getProtectStatementNode()
 	 * @generated
 	 */
-	int PROTECT_STATEMENT_NODE = 16;
+	int PROTECT_STATEMENT_NODE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1039,7 +1103,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getCheckNode()
 	 * @generated
 	 */
-	int CHECK_NODE = 17;
+	int CHECK_NODE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1094,7 +1158,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getAroundNode()
 	 * @generated
 	 */
-	int AROUND_NODE = 18;
+	int AROUND_NODE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1149,7 +1213,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getPointcutNode()
 	 * @generated
 	 */
-	int POINTCUT_NODE = 19;
+	int POINTCUT_NODE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1204,7 +1268,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getExtensionNode()
 	 * @generated
 	 */
-	int EXTENSION_NODE = 20;
+	int EXTENSION_NODE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1243,31 +1307,31 @@ public interface Xpand3nodePackage extends EPackage {
 	int EXTENSION_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Return Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENSION_NODE__RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Cached</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE__CACHED = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int EXTENSION_NODE__CACHED = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Java Name</b></em>' reference.
+	 * The feature id for the '<em><b>Param List</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE__JAVA_NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int EXTENSION_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Create</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__CREATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Private</b></em>' reference.
@@ -1297,22 +1361,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int EXTENSION_NODE__EXTEND_BODY = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Create</b></em>' reference.
+	 * The feature id for the '<em><b>Return Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE__CREATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 6;
+	int EXTENSION_NODE__RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Param List</b></em>' reference.
+	 * The feature id for the '<em><b>Java Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 7;
+	int EXTENSION_NODE__JAVA_NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Java Return Type</b></em>' reference.
@@ -1340,7 +1404,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getJavaTypeNode()
 	 * @generated
 	 */
-	int JAVA_TYPE_NODE = 21;
+	int JAVA_TYPE_NODE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1395,7 +1459,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getTest_expressionNode()
 	 * @generated
 	 */
-	int TEST_EXPRESSION_NODE = 22;
+	int TEST_EXPRESSION_NODE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1450,7 +1514,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getExpressionNode()
 	 * @generated
 	 */
-	int EXPRESSION_NODE = 23;
+	int EXPRESSION_NODE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1505,7 +1569,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getLetExpressionNode()
 	 * @generated
 	 */
-	int LET_EXPRESSION_NODE = 24;
+	int LET_EXPRESSION_NODE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1560,7 +1624,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getCastedExpressionNode()
 	 * @generated
 	 */
-	int CASTED_EXPRESSION_NODE = 25;
+	int CASTED_EXPRESSION_NODE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1615,7 +1679,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getChainExpressionNode()
 	 * @generated
 	 */
-	int CHAIN_EXPRESSION_NODE = 26;
+	int CHAIN_EXPRESSION_NODE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1670,7 +1734,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getIfExpressionNode()
 	 * @generated
 	 */
-	int IF_EXPRESSION_NODE = 27;
+	int IF_EXPRESSION_NODE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1725,7 +1789,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getSwitchExpressionNode()
 	 * @generated
 	 */
-	int SWITCH_EXPRESSION_NODE = 28;
+	int SWITCH_EXPRESSION_NODE = 29;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1780,7 +1844,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getCasePartNode()
 	 * @generated
 	 */
-	int CASE_PART_NODE = 29;
+	int CASE_PART_NODE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1835,7 +1899,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getOrExpressionNode()
 	 * @generated
 	 */
-	int OR_EXPRESSION_NODE = 30;
+	int OR_EXPRESSION_NODE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1890,7 +1954,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getAndExpressionNode()
 	 * @generated
 	 */
-	int AND_EXPRESSION_NODE = 31;
+	int AND_EXPRESSION_NODE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1945,7 +2009,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getImpliesExpressionNode()
 	 * @generated
 	 */
-	int IMPLIES_EXPRESSION_NODE = 32;
+	int IMPLIES_EXPRESSION_NODE = 33;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2000,7 +2064,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getRelationalExpressionNode()
 	 * @generated
 	 */
-	int RELATIONAL_EXPRESSION_NODE = 33;
+	int RELATIONAL_EXPRESSION_NODE = 34;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2039,22 +2103,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int RELATIONAL_EXPRESSION_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Right Operand</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Operator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_EXPRESSION_NODE__OPERATOR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int RELATIONAL_EXPRESSION_NODE__OPERATOR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right Operand</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' reference.
@@ -2075,6 +2139,61 @@ public interface Xpand3nodePackage extends EPackage {
 	int RELATIONAL_EXPRESSION_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalOperatorNodeImpl <em>Relational Operator Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalOperatorNodeImpl
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getRelationalOperatorNode()
+	 * @generated
+	 */
+	int RELATIONAL_OPERATOR_NODE = 35;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OPERATOR_NODE__ALIAS = NodePackage.COMPOSITE_NODE__ALIAS;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OPERATOR_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Rule</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OPERATOR_NODE__RULE = NodePackage.COMPOSITE_NODE__RULE;
+
+	/**
+	 * The feature id for the '<em><b>Rule ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OPERATOR_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
+
+	/**
+	 * The number of structural features of the '<em>Relational Operator Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OPERATOR_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl <em>Additive Expression Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2082,7 +2201,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getAdditiveExpressionNode()
 	 * @generated
 	 */
-	int ADDITIVE_EXPRESSION_NODE = 34;
+	int ADDITIVE_EXPRESSION_NODE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2137,7 +2256,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getMultiplicativeExpressionNode()
 	 * @generated
 	 */
-	int MULTIPLICATIVE_EXPRESSION_NODE = 35;
+	int MULTIPLICATIVE_EXPRESSION_NODE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2192,7 +2311,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getUnaryExpressionNode()
 	 * @generated
 	 */
-	int UNARY_EXPRESSION_NODE = 36;
+	int UNARY_EXPRESSION_NODE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2247,7 +2366,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getInfixExpressionNode()
 	 * @generated
 	 */
-	int INFIX_EXPRESSION_NODE = 37;
+	int INFIX_EXPRESSION_NODE = 39;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2286,22 +2405,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int INFIX_EXPRESSION_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Calls</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXPRESSION_NODE__CALLS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXPRESSION_NODE__TARGET = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int INFIX_EXPRESSION_NODE__TARGET = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Calls</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXPRESSION_NODE__CALLS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Infix Expression Node</em>' class.
@@ -2320,7 +2439,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getStringLiteralNode()
 	 * @generated
 	 */
-	int STRING_LITERAL_NODE = 38;
+	int STRING_LITERAL_NODE = 40;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2375,7 +2494,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getParanthesizedExpressionNode()
 	 * @generated
 	 */
-	int PARANTHESIZED_EXPRESSION_NODE = 39;
+	int PARANTHESIZED_EXPRESSION_NODE = 41;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2430,7 +2549,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getGlobalVarExpressionNode()
 	 * @generated
 	 */
-	int GLOBAL_VAR_EXPRESSION_NODE = 40;
+	int GLOBAL_VAR_EXPRESSION_NODE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2485,7 +2604,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getFeatureCallNode()
 	 * @generated
 	 */
-	int FEATURE_CALL_NODE = 41;
+	int FEATURE_CALL_NODE = 43;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2524,22 +2643,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int FEATURE_CALL_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Param List</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CALL_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int FEATURE_CALL_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Param List</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Feature Call Node</em>' class.
@@ -2558,7 +2677,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getListLiteralNode()
 	 * @generated
 	 */
-	int LIST_LITERAL_NODE = 42;
+	int LIST_LITERAL_NODE = 44;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2613,7 +2732,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getConstructorCallNode()
 	 * @generated
 	 */
-	int CONSTRUCTOR_CALL_NODE = 43;
+	int CONSTRUCTOR_CALL_NODE = 45;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2668,7 +2787,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getBooleanLiteralNode()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_NODE = 44;
+	int BOOLEAN_LITERAL_NODE = 46;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2723,7 +2842,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getNullLiteralNode()
 	 * @generated
 	 */
-	int NULL_LITERAL_NODE = 45;
+	int NULL_LITERAL_NODE = 47;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2778,7 +2897,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getNumberLiteralNode()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_NODE = 46;
+	int NUMBER_LITERAL_NODE = 48;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2833,7 +2952,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getCollectionExpressionNode()
 	 * @generated
 	 */
-	int COLLECTION_EXPRESSION_NODE = 47;
+	int COLLECTION_EXPRESSION_NODE = 49;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2888,7 +3007,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getDeclaredParameterListNode()
 	 * @generated
 	 */
-	int DECLARED_PARAMETER_LIST_NODE = 48;
+	int DECLARED_PARAMETER_LIST_NODE = 50;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2952,7 +3071,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getDeclaredParameterNode()
 	 * @generated
 	 */
-	int DECLARED_PARAMETER_NODE = 49;
+	int DECLARED_PARAMETER_NODE = 51;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2991,22 +3110,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int DECLARED_PARAMETER_NODE__RULE_ID = NodePackage.COMPOSITE_NODE__RULE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Ptype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECLARED_PARAMETER_NODE__PTYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_PARAMETER_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int DECLARED_PARAMETER_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ptype</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PARAMETER_NODE__PTYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Declared Parameter Node</em>' class.
@@ -3025,7 +3144,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getParameterListNode()
 	 * @generated
 	 */
-	int PARAMETER_LIST_NODE = 50;
+	int PARAMETER_LIST_NODE = 52;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -3089,7 +3208,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getCollectionTypeNode()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_NODE = 51;
+	int COLLECTION_TYPE_NODE = 53;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -3144,7 +3263,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getSimpleTypeNode()
 	 * @generated
 	 */
-	int SIMPLE_TYPE_NODE = 52;
+	int SIMPLE_TYPE_NODE = 54;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -3208,7 +3327,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getIdentifierNode()
 	 * @generated
 	 */
-	int IDENTIFIER_NODE = 53;
+	int IDENTIFIER_NODE = 55;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -3255,6 +3374,27 @@ public interface Xpand3nodePackage extends EPackage {
 	 */
 	int IDENTIFIER_NODE_FEATURE_COUNT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.XNode <em>XNode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>XNode</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.XNode
+	 * @generated
+	 */
+	EClass getXNode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.internal.parser.xpand3node.XNode#getL <em>L</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>L</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.XNode#getL()
+	 * @see #getXNode()
+	 * @generated
+	 */
+	EReference getXNode_L();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode <em>File Node</em>}'.
@@ -3773,6 +3913,16 @@ public interface Xpand3nodePackage extends EPackage {
 	EReference getRelationalExpressionNode_LeftOperand();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalOperatorNode <em>Relational Operator Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Relational Operator Node</em>'.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.RelationalOperatorNode
+	 * @generated
+	 */
+	EClass getRelationalOperatorNode();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode <em>Additive Expression Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4093,6 +4243,24 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.XNodeImpl <em>XNode</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.XNodeImpl
+		 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getXNode()
+		 * @generated
+		 */
+		EClass XNODE = eINSTANCE.getXNode();
+
+		/**
+		 * The meta object literal for the '<em><b>L</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XNODE__L = eINSTANCE.getXNode_L();
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FileNodeImpl <em>File Node</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -4560,6 +4728,16 @@ public interface Xpand3nodePackage extends EPackage {
 		 * @generated
 		 */
 		EReference RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND = eINSTANCE.getRelationalExpressionNode_LeftOperand();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalOperatorNodeImpl <em>Relational Operator Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalOperatorNodeImpl
+		 * @see org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodePackageImpl#getRelationalOperatorNode()
+		 * @generated
+		 */
+		EClass RELATIONAL_OPERATOR_NODE = eINSTANCE.getRelationalOperatorNode();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl <em>Additive Expression Node</em>}' class.

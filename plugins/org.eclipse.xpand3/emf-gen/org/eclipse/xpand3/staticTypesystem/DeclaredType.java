@@ -2,13 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredType.java,v 1.3 2008/03/07 08:28:21 sefftinge Exp $
+ * $Id: DeclaredType.java,v 1.4 2008/03/07 11:10:32 jkohnlein Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->

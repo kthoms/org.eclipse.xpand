@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RealLiteral.java,v 1.1 2008/02/27 13:21:07 sefftinge Exp $
+ * $Id: RealLiteral.java,v 1.2 2008/03/07 11:10:31 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression;
 

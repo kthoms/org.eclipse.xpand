@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Extension.java,v 1.3 2008/03/07 08:28:25 sefftinge Exp $
+ * $Id: Extension.java,v 1.4 2008/03/07 11:10:55 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
 
 import org.eclipse.xpand3.expression.AbstractExpression;
-
 
 /**
  * <!-- begin-user-doc -->

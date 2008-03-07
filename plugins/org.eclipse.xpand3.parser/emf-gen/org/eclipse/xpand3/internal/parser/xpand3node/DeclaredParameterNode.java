@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredParameterNode.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: DeclaredParameterNode.java,v 1.4 2008/03/07 11:11:14 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,8 +16,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode#getPtype <em>Ptype</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode#getPtype <em>Ptype</em>}</li>
  * </ul>
  * </p>
  *

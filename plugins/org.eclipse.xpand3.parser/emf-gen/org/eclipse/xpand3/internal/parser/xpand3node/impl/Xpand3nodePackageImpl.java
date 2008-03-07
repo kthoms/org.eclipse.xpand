@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodePackageImpl.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: Xpand3nodePackageImpl.java,v 1.4 2008/03/07 11:11:15 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -60,6 +60,7 @@ import org.eclipse.xpand3.internal.parser.xpand3node.ParanthesizedExpressionNode
 import org.eclipse.xpand3.internal.parser.xpand3node.PointcutNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ProtectStatementNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode;
+import org.eclipse.xpand3.internal.parser.xpand3node.RelationalOperatorNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.SequenceNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.SimpleTypeNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.StringLiteralNode;
@@ -68,6 +69,7 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Test_expressionNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.TextNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.TextSequenceNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.UnaryExpressionNode;
+import org.eclipse.xpand3.internal.parser.xpand3node.XNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodeFactory;
 import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
 
@@ -78,6 +80,13 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * @generated
  */
 public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass xNodeEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -321,6 +330,13 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass relationalOperatorNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass additiveExpressionNodeEClass = null;
 
 	/**
@@ -525,6 +541,24 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		theXpand3nodePackage.freeze();
 
 		return theXpand3nodePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getXNode() {
+		return xNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getXNode_L() {
+		return (EReference)xNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -758,7 +792,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getExtensionNode_Create() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(6);
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -776,7 +810,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getExtensionNode_ParamList() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(7);
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -794,7 +828,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getExtensionNode_Cached() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(1);
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -812,7 +846,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getExtensionNode_JavaName() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(2);
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -821,7 +855,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getExtensionNode_ReturnType() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(0);
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -956,7 +990,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getRelationalExpressionNode_Operator() {
-		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(1);
+		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -965,7 +999,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getRelationalExpressionNode_RightOperand() {
-		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(0);
+		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -975,6 +1009,15 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 */
 	public EReference getRelationalExpressionNode_LeftOperand() {
 		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRelationalOperatorNode() {
+		return relationalOperatorNodeEClass;
 	}
 
 	/**
@@ -1019,7 +1062,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getInfixExpressionNode_Calls() {
-		return (EReference)infixExpressionNodeEClass.getEStructuralFeatures().get(0);
+		return (EReference)infixExpressionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1028,7 +1071,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getInfixExpressionNode_Target() {
-		return (EReference)infixExpressionNodeEClass.getEStructuralFeatures().get(1);
+		return (EReference)infixExpressionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1073,7 +1116,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getFeatureCallNode_Name() {
-		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(1);
+		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1082,7 +1125,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getFeatureCallNode_ParamList() {
-		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(0);
+		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1172,7 +1215,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getDeclaredParameterNode_Name() {
-		return (EReference)declaredParameterNodeEClass.getEStructuralFeatures().get(1);
+		return (EReference)declaredParameterNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1181,7 +1224,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	public EReference getDeclaredParameterNode_Ptype() {
-		return (EReference)declaredParameterNodeEClass.getEStructuralFeatures().get(0);
+		return (EReference)declaredParameterNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1266,6 +1309,9 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		isCreated = true;
 
 		// Create classes and their features
+		xNodeEClass = createEClass(XNODE);
+		createEReference(xNodeEClass, XNODE__L);
+
 		fileNodeEClass = createEClass(FILE_NODE);
 		createEReference(fileNodeEClass, FILE_NODE__IMP);
 		createEReference(fileNodeEClass, FILE_NODE__DECL);
@@ -1311,14 +1357,14 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		pointcutNodeEClass = createEClass(POINTCUT_NODE);
 
 		extensionNodeEClass = createEClass(EXTENSION_NODE);
-		createEReference(extensionNodeEClass, EXTENSION_NODE__RETURN_TYPE);
 		createEReference(extensionNodeEClass, EXTENSION_NODE__CACHED);
-		createEReference(extensionNodeEClass, EXTENSION_NODE__JAVA_NAME);
+		createEReference(extensionNodeEClass, EXTENSION_NODE__PARAM_LIST);
+		createEReference(extensionNodeEClass, EXTENSION_NODE__CREATE);
 		createEReference(extensionNodeEClass, EXTENSION_NODE__PRIVATE);
 		createEReference(extensionNodeEClass, EXTENSION_NODE__NAME);
 		createEReference(extensionNodeEClass, EXTENSION_NODE__EXTEND_BODY);
-		createEReference(extensionNodeEClass, EXTENSION_NODE__CREATE);
-		createEReference(extensionNodeEClass, EXTENSION_NODE__PARAM_LIST);
+		createEReference(extensionNodeEClass, EXTENSION_NODE__RETURN_TYPE);
+		createEReference(extensionNodeEClass, EXTENSION_NODE__JAVA_NAME);
 		createEReference(extensionNodeEClass, EXTENSION_NODE__JAVA_RETURN_TYPE);
 
 		javaTypeNodeEClass = createEClass(JAVA_TYPE_NODE);
@@ -1346,9 +1392,11 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		impliesExpressionNodeEClass = createEClass(IMPLIES_EXPRESSION_NODE);
 
 		relationalExpressionNodeEClass = createEClass(RELATIONAL_EXPRESSION_NODE);
-		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND);
 		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__OPERATOR);
+		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND);
 		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND);
+
+		relationalOperatorNodeEClass = createEClass(RELATIONAL_OPERATOR_NODE);
 
 		additiveExpressionNodeEClass = createEClass(ADDITIVE_EXPRESSION_NODE);
 
@@ -1357,8 +1405,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		unaryExpressionNodeEClass = createEClass(UNARY_EXPRESSION_NODE);
 
 		infixExpressionNodeEClass = createEClass(INFIX_EXPRESSION_NODE);
-		createEReference(infixExpressionNodeEClass, INFIX_EXPRESSION_NODE__CALLS);
 		createEReference(infixExpressionNodeEClass, INFIX_EXPRESSION_NODE__TARGET);
+		createEReference(infixExpressionNodeEClass, INFIX_EXPRESSION_NODE__CALLS);
 
 		stringLiteralNodeEClass = createEClass(STRING_LITERAL_NODE);
 
@@ -1367,8 +1415,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		globalVarExpressionNodeEClass = createEClass(GLOBAL_VAR_EXPRESSION_NODE);
 
 		featureCallNodeEClass = createEClass(FEATURE_CALL_NODE);
-		createEReference(featureCallNodeEClass, FEATURE_CALL_NODE__PARAM_LIST);
 		createEReference(featureCallNodeEClass, FEATURE_CALL_NODE__NAME);
+		createEReference(featureCallNodeEClass, FEATURE_CALL_NODE__PARAM_LIST);
 
 		listLiteralNodeEClass = createEClass(LIST_LITERAL_NODE);
 
@@ -1386,8 +1434,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		createEReference(declaredParameterListNodeEClass, DECLARED_PARAMETER_LIST_NODE__PARAMS);
 
 		declaredParameterNodeEClass = createEClass(DECLARED_PARAMETER_NODE);
-		createEReference(declaredParameterNodeEClass, DECLARED_PARAMETER_NODE__PTYPE);
 		createEReference(declaredParameterNodeEClass, DECLARED_PARAMETER_NODE__NAME);
+		createEReference(declaredParameterNodeEClass, DECLARED_PARAMETER_NODE__PTYPE);
 
 		parameterListNodeEClass = createEClass(PARAMETER_LIST_NODE);
 		createEReference(parameterListNodeEClass, PARAMETER_LIST_NODE__PARAMS);
@@ -1431,6 +1479,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		xNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		fileNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		nsImportNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		definitionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
@@ -1465,6 +1514,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		andExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		impliesExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		relationalExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
+		relationalOperatorNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		additiveExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		multiplicativeExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		unaryExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
@@ -1487,6 +1537,9 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		identifierNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(xNodeEClass, XNode.class, "XNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getXNode_L(), theNodePackage.getLeafNode(), null, "l", null, 0, 1, XNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(fileNodeEClass, FileNode.class, "FileNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFileNode_Imp(), theNodePackage.getCompositeNode(), null, "imp", null, 0, -1, FileNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFileNode_Decl(), theNodePackage.getCompositeNode(), null, "decl", null, 0, -1, FileNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1532,14 +1585,14 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEClass(pointcutNodeEClass, PointcutNode.class, "PointcutNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(extensionNodeEClass, ExtensionNode.class, "ExtensionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExtensionNode_ReturnType(), theNodePackage.getCompositeNode(), null, "returnType", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtensionNode_Cached(), theNodePackage.getLeafNode(), null, "cached", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtensionNode_JavaName(), theNodePackage.getCompositeNode(), null, "javaName", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtensionNode_ParamList(), theNodePackage.getCompositeNode(), null, "paramList", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtensionNode_Create(), theNodePackage.getLeafNode(), null, "create", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtensionNode_Private(), theNodePackage.getLeafNode(), null, "private", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtensionNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtensionNode_ExtendBody(), theNodePackage.getCompositeNode(), null, "extendBody", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtensionNode_Create(), theNodePackage.getLeafNode(), null, "create", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExtensionNode_ParamList(), theNodePackage.getCompositeNode(), null, "paramList", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtensionNode_ReturnType(), theNodePackage.getCompositeNode(), null, "returnType", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtensionNode_JavaName(), theNodePackage.getCompositeNode(), null, "javaName", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExtensionNode_JavaReturnType(), theNodePackage.getCompositeNode(), null, "javaReturnType", null, 0, 1, ExtensionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(javaTypeNodeEClass, JavaTypeNode.class, "JavaTypeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1567,9 +1620,11 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEClass(impliesExpressionNodeEClass, ImpliesExpressionNode.class, "ImpliesExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(relationalExpressionNodeEClass, RelationalExpressionNode.class, "RelationalExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRelationalExpressionNode_Operator(), theNodePackage.getCompositeNode(), null, "operator", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRelationalExpressionNode_RightOperand(), theNodePackage.getCompositeNode(), null, "rightOperand", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRelationalExpressionNode_Operator(), theNodePackage.getLeafNode(), null, "operator", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRelationalExpressionNode_LeftOperand(), theNodePackage.getCompositeNode(), null, "leftOperand", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(relationalOperatorNodeEClass, RelationalOperatorNode.class, "RelationalOperatorNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(additiveExpressionNodeEClass, AdditiveExpressionNode.class, "AdditiveExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1578,8 +1633,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEClass(unaryExpressionNodeEClass, UnaryExpressionNode.class, "UnaryExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(infixExpressionNodeEClass, InfixExpressionNode.class, "InfixExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInfixExpressionNode_Calls(), theNodePackage.getCompositeNode(), null, "calls", null, 0, -1, InfixExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInfixExpressionNode_Target(), theNodePackage.getCompositeNode(), null, "target", null, 0, 1, InfixExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfixExpressionNode_Calls(), theNodePackage.getCompositeNode(), null, "calls", null, 0, -1, InfixExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stringLiteralNodeEClass, StringLiteralNode.class, "StringLiteralNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1588,8 +1643,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEClass(globalVarExpressionNodeEClass, GlobalVarExpressionNode.class, "GlobalVarExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(featureCallNodeEClass, FeatureCallNode.class, "FeatureCallNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureCallNode_ParamList(), theNodePackage.getCompositeNode(), null, "paramList", null, 0, 1, FeatureCallNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureCallNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, FeatureCallNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeatureCallNode_ParamList(), theNodePackage.getCompositeNode(), null, "paramList", null, 0, 1, FeatureCallNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(listLiteralNodeEClass, ListLiteralNode.class, "ListLiteralNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1607,8 +1662,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEReference(getDeclaredParameterListNode_Params(), theNodePackage.getCompositeNode(), null, "params", null, 0, -1, DeclaredParameterListNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredParameterNodeEClass, DeclaredParameterNode.class, "DeclaredParameterNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclaredParameterNode_Ptype(), theNodePackage.getCompositeNode(), null, "ptype", null, 0, 1, DeclaredParameterNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredParameterNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, DeclaredParameterNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredParameterNode_Ptype(), theNodePackage.getCompositeNode(), null, "ptype", null, 0, 1, DeclaredParameterNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterListNodeEClass, ParameterListNode.class, "ParameterListNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParameterListNode_Params(), theNodePackage.getCompositeNode(), null, "params", null, 0, -1, ParameterListNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

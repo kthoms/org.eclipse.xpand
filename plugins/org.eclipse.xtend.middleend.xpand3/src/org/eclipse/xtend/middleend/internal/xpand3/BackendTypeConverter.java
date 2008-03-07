@@ -38,11 +38,7 @@ public class BackendTypeConverter {
 	}
 
 	public static String qualify(Identifier name) {
-		String value = name.getValue();
-		if (name.getNext() != null) {
-			value += SyntaxConstants.NS_DELIM + qualify(name.getNext());
-		}
-		return value;
+		return name.getValue();
 	}
 
 }

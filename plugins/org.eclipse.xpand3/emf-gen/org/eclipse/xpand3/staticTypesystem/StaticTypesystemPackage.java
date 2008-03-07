@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackage.java,v 1.4 2008/03/04 14:28:06 sefftinge Exp $
+ * $Id: StaticTypesystemPackage.java,v 1.5 2008/03/07 08:28:21 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -312,22 +312,13 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Backend Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECLARED_TYPE__BACKEND_TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Declared Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_TYPE_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DECLARED_TYPE_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
@@ -533,17 +524,6 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_PARAMETER_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '<em>Backend Type</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.xtend.backend.common.BackendType
-	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getBackendType()
-	 * @generated
-	 */
-	int BACKEND_TYPE = 13;
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.AbstractNamedElement <em>Abstract Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -745,17 +725,6 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getDeclaredType_DeclaredTypeParameters();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getBackendType <em>Backend Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Backend Type</em>'.
-	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getBackendType()
-	 * @see #getDeclaredType()
-	 * @generated
-	 */
-	EAttribute getDeclaredType_BackendType();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction <em>Declared Function</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -881,17 +850,6 @@ public interface StaticTypesystemPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDeclaredParameter_Type();
-
-	/**
-	 * Returns the meta object for data type '{@link org.eclipse.xtend.backend.common.BackendType <em>Backend Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Backend Type</em>'.
-	 * @see org.eclipse.xtend.backend.common.BackendType
-	 * @model instanceClass="org.eclipse.xtend.backend.common.BackendType"
-	 * @generated
-	 */
-	EDataType getBackendType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1084,14 +1042,6 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = eINSTANCE.getDeclaredType_DeclaredTypeParameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Backend Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DECLARED_TYPE__BACKEND_TYPE = eINSTANCE.getDeclaredType_BackendType();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1196,16 +1146,6 @@ public interface StaticTypesystemPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DECLARED_PARAMETER__TYPE = eINSTANCE.getDeclaredParameter_Type();
-
-		/**
-		 * The meta object literal for the '<em>Backend Type</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.xtend.backend.common.BackendType
-		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getBackendType()
-		 * @generated
-		 */
-		EDataType BACKEND_TYPE = eINSTANCE.getBackendType();
 
 	}
 

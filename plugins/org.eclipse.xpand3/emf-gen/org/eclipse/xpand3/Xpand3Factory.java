@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3Factory.java,v 1.3 2008/03/06 15:37:18 jkohnlein Exp $
+ * $Id: Xpand3Factory.java,v 1.4 2008/03/07 08:28:21 sefftinge Exp $
  */
 package org.eclipse.xpand3;
 
@@ -44,22 +44,13 @@ public interface Xpand3Factory extends EFactory {
 	ImportStatement createImportStatement();
 
 	/**
-	 * Returns a new object of class '<em>Simple Identifier</em>'.
+	 * Returns a new object of class '<em>Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Identifier</em>'.
+	 * @return a new object of class '<em>Identifier</em>'.
 	 * @generated
 	 */
-	SimpleIdentifier createSimpleIdentifier();
-
-	/**
-	 * Returns a new object of class '<em>Composed Identifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Composed Identifier</em>'.
-	 * @generated
-	 */
-	ComposedIdentifier createComposedIdentifier();
+	Identifier createIdentifier();
 
 	/**
 	 * Returns a new object of class '<em>Declared Parameter</em>'.

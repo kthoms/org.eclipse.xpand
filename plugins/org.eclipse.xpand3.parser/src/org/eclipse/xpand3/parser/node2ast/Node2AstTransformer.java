@@ -4,10 +4,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.tmf.common.node.CompositeNode;
 import org.eclipse.tmf.common.node.LeafNode;
 import org.eclipse.tmf.common.node.Node;
-import org.eclipse.xpand3.ComposedIdentifier;
 import org.eclipse.xpand3.DeclaredParameter;
 import org.eclipse.xpand3.Identifier;
-import org.eclipse.xpand3.SimpleIdentifier;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.Xpand3Factory;
 import org.eclipse.xpand3.declaration.DeclarationFactory;
@@ -67,7 +65,7 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 	}
 
 	public Identifier createIdentifier(LeafNode leaf) {
-		SimpleIdentifier si = xpandFactory.createSimpleIdentifier();
+		Identifier si = xpandFactory.createIdentifier();
 		setPosition(si, leaf);
 		si.setValue(getTextFromLeafNode(leaf));
 		return si;
@@ -198,14 +196,12 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 					stn);
 		}
 		if (names.size() > 1) {
-			ComposedIdentifier ci = xpandFactory.createComposedIdentifier();
-			setPosition(ci, stn);
-			for (Node name : names) {
-				SimpleIdentifier si = (SimpleIdentifier) caseIdentifierNode((IdentifierNode) name);
-				ci.getIdentifiers().add(si);
-			}
+			Identifier ci = xpandFactory.createIdentifier();
+			ci.setValue(stn.text());
 			return ci;
 		}
 		return caseIdentifierNode((IdentifierNode) names.get(0));
 	}
+
+	
 }

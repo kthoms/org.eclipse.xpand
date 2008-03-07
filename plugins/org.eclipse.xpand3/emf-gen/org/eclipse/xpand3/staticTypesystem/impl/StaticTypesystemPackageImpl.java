@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackageImpl.java,v 1.4 2008/03/04 14:28:06 sefftinge Exp $
+ * $Id: StaticTypesystemPackageImpl.java,v 1.5 2008/03/07 08:28:22 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -129,13 +129,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * @generated
 	 */
 	private EClass declaredParameterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType backendTypeEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -381,15 +374,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDeclaredType_BackendType() {
-		return (EAttribute)declaredTypeEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDeclaredFunction() {
 		return declaredFunctionEClass;
 	}
@@ -498,15 +482,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getBackendType() {
-		return backendTypeEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public StaticTypesystemFactory getStaticTypesystemFactory() {
 		return (StaticTypesystemFactory)getEFactoryInstance();
 	}
@@ -556,7 +531,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		createEReference(declaredTypeEClass, DECLARED_TYPE__STATIC_PROPERTIES);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__PROPERTIES);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__DECLARED_TYPE_PARAMETERS);
-		createEAttribute(declaredTypeEClass, DECLARED_TYPE__BACKEND_TYPE);
 
 		declaredFunctionEClass = createEClass(DECLARED_FUNCTION);
 		createEReference(declaredFunctionEClass, DECLARED_FUNCTION__DECLARED_PARAMETERS);
@@ -574,9 +548,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		declaredParameterEClass = createEClass(DECLARED_PARAMETER);
 		createEReference(declaredParameterEClass, DECLARED_PARAMETER__TYPE);
-
-		// Create data types
-		backendTypeEDataType = createEDataType(BACKEND_TYPE);
 	}
 
 	/**
@@ -646,7 +617,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		initEReference(getDeclaredType_StaticProperties(), this.getDeclaredStaticProperty(), null, "staticProperties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_Properties(), this.getDeclaredProperty(), null, "properties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_DeclaredTypeParameters(), this.getDeclaredTypeParameter(), null, "declaredTypeParameters", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDeclaredType_BackendType(), this.getBackendType(), "backendType", null, 1, 1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredFunctionEClass, DeclaredFunction.class, "DeclaredFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredFunction_DeclaredParameters(), this.getDeclaredParameter(), null, "declaredParameters", null, 0, -1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -664,9 +634,6 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		initEClass(declaredParameterEClass, DeclaredParameter.class, "DeclaredParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredParameter_Type(), this.getAbstractTypeReference(), null, "type", null, 1, 1, DeclaredParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize data types
-		initEDataType(backendTypeEDataType, BackendType.class, "BackendType", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

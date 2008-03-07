@@ -15,6 +15,8 @@
  */
 package org.eclipse.xand3.analyzation.typesystem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.xand3.analyzation.TypeSystem;
@@ -43,12 +45,16 @@ public class CompositeTypeSystemImpl extends AbstractTypeSystemImpl implements T
 	public FunctionType functionForName(String name,
 			List<AbstractTypeReference> parameterTypes,
 			AbstractTypeReference... typeArguments) {
+		List<FunctionType> possibilities = new ArrayList<FunctionType>();
 		for (TypeSystem ts : delegates) {
 			FunctionType functionType = ts.functionForName(name, parameterTypes, typeArguments);
 			if (functionType!=null)
-				return functionType;
+				possibilities.add(functionType);
 		}
-		return null;
+		if (possibilities.isEmpty())
+			return null;
+		//TODO sort by specialization
+		return possibilities.get(0);
 	}
 
 	/*
@@ -59,12 +65,7 @@ public class CompositeTypeSystemImpl extends AbstractTypeSystemImpl implements T
 	 */
 	public FunctionType functionForNameAndParameterTypes(String name,
 			AbstractTypeReference... parameterTypes) {
-		for (TypeSystem ts : delegates) {
-			FunctionType functionType = ts.functionForNameAndParameterTypes(name, parameterTypes);
-			if (functionType!=null)
-				return functionType;
-		}
-		return null;
+		return functionForName(name, Arrays.asList(parameterTypes));
 	}
 
 	/*

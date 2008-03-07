@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactoryImpl.java,v 1.4 2008/03/04 14:28:06 sefftinge Exp $
+ * $Id: StaticTypesystemFactoryImpl.java,v 1.5 2008/03/07 08:28:22 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -76,36 +76,6 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 			case StaticTypesystemPackage.DECLARED_PARAMETER: return createDeclaredParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case StaticTypesystemPackage.BACKEND_TYPE:
-				return createBackendTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case StaticTypesystemPackage.BACKEND_TYPE:
-				return convertBackendTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -217,24 +187,6 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 	public DeclaredParameter createDeclaredParameter() {
 		DeclaredParameterImpl declaredParameter = new DeclaredParameterImpl();
 		return declaredParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BackendType createBackendTypeFromString(EDataType eDataType, String initialValue) {
-		return (BackendType)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertBackendTypeToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

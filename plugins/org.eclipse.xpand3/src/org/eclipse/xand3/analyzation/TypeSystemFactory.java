@@ -24,7 +24,7 @@ import java.util.Set;
  * @author Sven Efftinge
  *
  */
-public class DeclarationsContributorFactory {
+public class TypeSystemFactory {
 	
 	private final static Set<LanguageSpecificDeclarationContributorFactory> factories = new HashSet<LanguageSpecificDeclarationContributorFactory>();
 	
@@ -40,4 +40,6 @@ public class DeclarationsContributorFactory {
 		}
 		return null;
 	}
+	
+	
 }

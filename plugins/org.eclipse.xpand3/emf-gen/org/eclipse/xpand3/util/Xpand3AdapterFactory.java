@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3AdapterFactory.java,v 1.3 2008/03/06 15:37:17 jkohnlein Exp $
+ * $Id: Xpand3AdapterFactory.java,v 1.4 2008/03/07 08:28:22 sefftinge Exp $
  */
 package org.eclipse.xpand3.util;
 
@@ -88,14 +88,6 @@ public class Xpand3AdapterFactory extends AdapterFactoryImpl {
 				return createIdentifierAdapter();
 			}
 			@Override
-			public Adapter caseSimpleIdentifier(SimpleIdentifier object) {
-				return createSimpleIdentifierAdapter();
-			}
-			@Override
-			public Adapter caseComposedIdentifier(ComposedIdentifier object) {
-				return createComposedIdentifierAdapter();
-			}
-			@Override
 			public Adapter caseDeclaredParameter(DeclaredParameter object) {
 				return createDeclaredParameterAdapter();
 			}
@@ -172,34 +164,6 @@ public class Xpand3AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIdentifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.SimpleIdentifier <em>Simple Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xpand3.SimpleIdentifier
-	 * @generated
-	 */
-	public Adapter createSimpleIdentifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.ComposedIdentifier <em>Composed Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xpand3.ComposedIdentifier
-	 * @generated
-	 */
-	public Adapter createComposedIdentifierAdapter() {
 		return null;
 	}
 

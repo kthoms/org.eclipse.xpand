@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.tmf.common;resolution:=optional;visibility:=reexport,
  org.eclipse.tmf.common.generator;bundle-version="1.0.0";resolution:=optional,
- org.eclipse.xpand3;bundle-version="0.9.0";visibility:=reexport
+ org.eclipse.xpand3;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.tmf.common.runtime;bundle-version="1.0.0"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.xpand3.internal.parser.xpand3node,
  org.eclipse.xpand3.internal.parser.xpand3node.impl,

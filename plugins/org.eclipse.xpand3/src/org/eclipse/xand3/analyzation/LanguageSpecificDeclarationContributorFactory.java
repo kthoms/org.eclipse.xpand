@@ -28,6 +28,10 @@ public interface LanguageSpecificDeclarationContributorFactory {
      */
     boolean canHandle (String resourceName);
     
-    
+    /**
+     * 
+     * @param resourceName
+     * @return
+     */
     DeclarationsContributor createDeclarationContributor(String resourceName);
 }	

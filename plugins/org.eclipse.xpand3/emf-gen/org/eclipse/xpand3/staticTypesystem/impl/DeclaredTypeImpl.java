@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeImpl.java,v 1.2 2008/03/04 14:28:06 sefftinge Exp $
+ * $Id: DeclaredTypeImpl.java,v 1.3 2008/03/07 08:28:22 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -39,7 +39,6 @@ import org.eclipse.xtend.backend.common.BackendType;
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getStaticProperties <em>Static Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getBackendType <em>Backend Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,26 +74,6 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * @ordered
 	 */
 	protected EList<DeclaredTypeParameter> declaredTypeParameters;
-
-	/**
-	 * The default value of the '{@link #getBackendType() <em>Backend Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBackendType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final BackendType BACKEND_TYPE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getBackendType() <em>Backend Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBackendType()
-	 * @generated
-	 * @ordered
-	 */
-	protected BackendType backendType = BACKEND_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,27 +135,6 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BackendType getBackendType() {
-		return backendType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBackendType(BackendType newBackendType) {
-		BackendType oldBackendType = backendType;
-		backendType = newBackendType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE, oldBackendType, backendType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -204,8 +162,6 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return getProperties();
 			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return getDeclaredTypeParameters();
-			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
-				return getBackendType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,9 +187,6 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				getDeclaredTypeParameters().clear();
 				getDeclaredTypeParameters().addAll((Collection<? extends DeclaredTypeParameter>)newValue);
 				return;
-			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
-				setBackendType((BackendType)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -255,9 +208,6 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				getDeclaredTypeParameters().clear();
 				return;
-			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
-				setBackendType(BACKEND_TYPE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -276,26 +226,8 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return properties != null && !properties.isEmpty();
 			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return declaredTypeParameters != null && !declaredTypeParameters.isEmpty();
-			case StaticTypesystemPackage.DECLARED_TYPE__BACKEND_TYPE:
-				return BACKEND_TYPE_EDEFAULT == null ? backendType != null : !BACKEND_TYPE_EDEFAULT.equals(backendType);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (backendType: ");
-		result.append(backendType);
-		result.append(')');
-		return result.toString();
 	}
 
 } //DeclaredTypeImpl

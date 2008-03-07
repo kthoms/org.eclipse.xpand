@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3Package.java,v 1.3 2008/03/06 15:37:18 jkohnlein Exp $
+ * $Id: Xpand3Package.java,v 1.4 2008/03/07 08:28:21 sefftinge Exp $
  */
 package org.eclipse.xpand3;
 
@@ -307,141 +307,22 @@ public interface Xpand3Package extends EPackage {
 	int IDENTIFIER__FILE_NAME = SYNTAX_ELEMENT__FILE_NAME;
 
 	/**
-	 * The number of structural features of the '<em>Identifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIER_FEATURE_COUNT = SYNTAX_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.xpand3.impl.SimpleIdentifierImpl <em>Simple Identifier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.xpand3.impl.SimpleIdentifierImpl
-	 * @see org.eclipse.xpand3.impl.Xpand3PackageImpl#getSimpleIdentifier()
-	 * @generated
-	 */
-	int SIMPLE_IDENTIFIER = 4;
-
-	/**
-	 * The feature id for the '<em><b>Line</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_IDENTIFIER__LINE = IDENTIFIER__LINE;
-
-	/**
-	 * The feature id for the '<em><b>Start</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_IDENTIFIER__START = IDENTIFIER__START;
-
-	/**
-	 * The feature id for the '<em><b>End</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_IDENTIFIER__END = IDENTIFIER__END;
-
-	/**
-	 * The feature id for the '<em><b>File Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_IDENTIFIER__FILE_NAME = IDENTIFIER__FILE_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_IDENTIFIER__VALUE = IDENTIFIER_FEATURE_COUNT + 0;
+	int IDENTIFIER__VALUE = SYNTAX_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Simple Identifier</em>' class.
+	 * The number of structural features of the '<em>Identifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_IDENTIFIER_FEATURE_COUNT = IDENTIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.xpand3.impl.ComposedIdentifierImpl <em>Composed Identifier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.xpand3.impl.ComposedIdentifierImpl
-	 * @see org.eclipse.xpand3.impl.Xpand3PackageImpl#getComposedIdentifier()
-	 * @generated
-	 */
-	int COMPOSED_IDENTIFIER = 5;
-
-	/**
-	 * The feature id for the '<em><b>Line</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_IDENTIFIER__LINE = IDENTIFIER__LINE;
-
-	/**
-	 * The feature id for the '<em><b>Start</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_IDENTIFIER__START = IDENTIFIER__START;
-
-	/**
-	 * The feature id for the '<em><b>End</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_IDENTIFIER__END = IDENTIFIER__END;
-
-	/**
-	 * The feature id for the '<em><b>File Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_IDENTIFIER__FILE_NAME = IDENTIFIER__FILE_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Identifiers</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_IDENTIFIER__IDENTIFIERS = IDENTIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Composed Identifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSED_IDENTIFIER_FEATURE_COUNT = IDENTIFIER_FEATURE_COUNT + 1;
+	int IDENTIFIER_FEATURE_COUNT = SYNTAX_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.impl.DeclaredParameterImpl <em>Declared Parameter</em>}' class.
@@ -451,7 +332,7 @@ public interface Xpand3Package extends EPackage {
 	 * @see org.eclipse.xpand3.impl.Xpand3PackageImpl#getDeclaredParameter()
 	 * @generated
 	 */
-	int DECLARED_PARAMETER = 6;
+	int DECLARED_PARAMETER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Line</b></em>' attribute.
@@ -646,46 +527,15 @@ public interface Xpand3Package extends EPackage {
 	EClass getIdentifier();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.xpand3.SimpleIdentifier <em>Simple Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simple Identifier</em>'.
-	 * @see org.eclipse.xpand3.SimpleIdentifier
-	 * @generated
-	 */
-	EClass getSimpleIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.SimpleIdentifier#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.Identifier#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipse.xpand3.SimpleIdentifier#getValue()
-	 * @see #getSimpleIdentifier()
+	 * @see org.eclipse.xpand3.Identifier#getValue()
+	 * @see #getIdentifier()
 	 * @generated
 	 */
-	EAttribute getSimpleIdentifier_Value();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.xpand3.ComposedIdentifier <em>Composed Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composed Identifier</em>'.
-	 * @see org.eclipse.xpand3.ComposedIdentifier
-	 * @generated
-	 */
-	EClass getComposedIdentifier();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.ComposedIdentifier#getIdentifiers <em>Identifiers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Identifiers</em>'.
-	 * @see org.eclipse.xpand3.ComposedIdentifier#getIdentifiers()
-	 * @see #getComposedIdentifier()
-	 * @generated
-	 */
-	EReference getComposedIdentifier_Identifiers();
+	EAttribute getIdentifier_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.DeclaredParameter <em>Declared Parameter</em>}'.
@@ -846,40 +696,12 @@ public interface Xpand3Package extends EPackage {
 		EClass IDENTIFIER = eINSTANCE.getIdentifier();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.xpand3.impl.SimpleIdentifierImpl <em>Simple Identifier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.xpand3.impl.SimpleIdentifierImpl
-		 * @see org.eclipse.xpand3.impl.Xpand3PackageImpl#getSimpleIdentifier()
-		 * @generated
-		 */
-		EClass SIMPLE_IDENTIFIER = eINSTANCE.getSimpleIdentifier();
-
-		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SIMPLE_IDENTIFIER__VALUE = eINSTANCE.getSimpleIdentifier_Value();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.xpand3.impl.ComposedIdentifierImpl <em>Composed Identifier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.xpand3.impl.ComposedIdentifierImpl
-		 * @see org.eclipse.xpand3.impl.Xpand3PackageImpl#getComposedIdentifier()
-		 * @generated
-		 */
-		EClass COMPOSED_IDENTIFIER = eINSTANCE.getComposedIdentifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Identifiers</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSED_IDENTIFIER__IDENTIFIERS = eINSTANCE.getComposedIdentifier_Identifiers();
+		EAttribute IDENTIFIER__VALUE = eINSTANCE.getIdentifier_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.impl.DeclaredParameterImpl <em>Declared Parameter</em>}' class.

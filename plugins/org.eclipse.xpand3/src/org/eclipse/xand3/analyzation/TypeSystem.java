@@ -21,6 +21,7 @@ import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.FunctionType;
 import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xpand3.staticTypesystem.WildcardType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 
 /**
  * @author Sven Efftinge
@@ -55,4 +56,5 @@ public interface TypeSystem {
 	
 	FunctionType functionForNameAndParameterTypes(String name, AbstractTypeReference...parameterTypes);
 	FunctionType functionForName(String name, List<AbstractTypeReference> parameterTypes, AbstractTypeReference...typeArguments);
+	
 }

@@ -49,7 +49,7 @@ import static org.eclipse.xand3.analyzation.TypeSystem.*;
  * @author Sven Efftinge
  * 
  */
-public class BuiltinTypesDeclarationsContributor implements DeclarationsContributor {
+public class BuiltinDeclarationsContributor implements DeclarationsContributor {
 
 	private Map<String, DeclaredType> types = new HashMap<String, DeclaredType>();
 
@@ -81,7 +81,6 @@ public class BuiltinTypesDeclarationsContributor implements DeclarationsContribu
 				.createDeclaredType();
 		types.put(bt.getName(), dt);
 		dt.setName(bt.getName());
-		dt.setBackendType(bt);
 		Map<String, ? extends Property> properties = bt.getProperties();
 		for (Entry<String, ? extends Property> entry : properties.entrySet()) {
 			dt.getProperties().add(createDeclaredProperty(entry.getValue()));
@@ -155,6 +154,7 @@ public class BuiltinTypesDeclarationsContributor implements DeclarationsContribu
 	 */
 	public DeclaredFunction functionForName(String name,
 			AbstractTypeReference... parameterTypes) {
+		//TODO
 		return null;
 	}
 

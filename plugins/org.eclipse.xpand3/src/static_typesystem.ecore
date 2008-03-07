@@ -37,8 +37,6 @@
         eType="#//DeclaredProperty" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredTypeParameters"
         upperBound="-1" eType="#//DeclaredTypeParameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backendType" lowerBound="1"
-        eType="#//BackendType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredFunction" eSuperTypes="#//AbstractNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
@@ -60,5 +58,4 @@
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredParameter" eSuperTypes="#//AbstractNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//AbstractTypeReference"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="BackendType" instanceClassName="org.eclipse.xtend.backend.common.BackendType"/>
 </ecore:EPackage>

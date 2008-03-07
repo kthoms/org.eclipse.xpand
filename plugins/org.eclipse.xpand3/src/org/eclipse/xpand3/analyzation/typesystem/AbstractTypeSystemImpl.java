@@ -13,9 +13,9 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xpand3.analyzation.typesystem;
 
-import org.eclipse.xand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
 import org.eclipse.xpand3.staticTypesystem.WildcardType;

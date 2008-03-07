@@ -13,22 +13,12 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.ast;
-
-import org.eclipse.xpand3.Identifier;
+package org.eclipse.xpand3.analyzation;
 
 /**
  * @author Sven Efftinge
  *
  */
-public class AstUtil {
-
-	/**
-	 * @param importedId
-	 * @return
-	 */
-	public static String toString(Identifier id) {
-		return id.getValue();
-	}
+public class CompositeXpand3TypeSystem {
 
 }

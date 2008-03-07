@@ -13,14 +13,14 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem.builtin;
+package org.eclipse.xpand3.analyzation.typesystem.builtin;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.xand3.analyzation.DeclarationsContributor;
-import org.eclipse.xand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.analyzation.DeclarationsContributor;
+import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
@@ -43,7 +43,7 @@ import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.builtin.TypeType;
 
-import static org.eclipse.xand3.analyzation.TypeSystem.*;
+import static org.eclipse.xpand3.analyzation.TypeSystem.*;
 
 /**
  * @author Sven Efftinge

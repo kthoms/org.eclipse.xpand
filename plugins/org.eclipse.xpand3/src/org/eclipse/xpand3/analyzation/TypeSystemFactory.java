@@ -13,7 +13,7 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation;
+package org.eclipse.xpand3.analyzation;
 
 import java.util.HashSet;
 import java.util.Set;

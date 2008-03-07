@@ -13,7 +13,7 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation;
+package org.eclipse.xpand3.analyzation;
 
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;

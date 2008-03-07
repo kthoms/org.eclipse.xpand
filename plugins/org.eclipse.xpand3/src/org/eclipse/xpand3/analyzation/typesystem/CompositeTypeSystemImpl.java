@@ -13,13 +13,13 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem;
+package org.eclipse.xpand3.analyzation.typesystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.xand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.FunctionType;
 import org.eclipse.xpand3.staticTypesystem.Type;

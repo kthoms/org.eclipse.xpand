@@ -13,24 +13,25 @@
  * </copyright>
  *
  */
-package org.eclipse.xand3.analyzation.typesystem.xpand3;
+package org.eclipse.xpand3.analyzation.typesystem.xpand3;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.xand3.analyzation.DeclarationsContributor;
-import org.eclipse.xand3.analyzation.TypeSystem;
-import org.eclipse.xand3.ast.AstUtil;
 import org.eclipse.xpand3.DeclaredParameter;
 import org.eclipse.xpand3.File;
 import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.ImportStatement;
+import org.eclipse.xpand3.analyzation.DeclarationsContributor;
+import org.eclipse.xpand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.ast.AstUtil;
 import org.eclipse.xpand3.declaration.AbstractDeclaration;
 import org.eclipse.xpand3.declaration.Definition;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
-import static org.eclipse.xand3.ast.AstUtil.*;
+
+import static org.eclipse.xpand3.ast.AstUtil.*;
 /**
  * @author Sven Efftinge
  *

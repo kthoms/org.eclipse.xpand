@@ -163,8 +163,8 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 		}
 	}
 
-	private OperationCall createFeatureCall(SimpleTypeNode stn) {
-		OperationCall oc = expressionFactory.createOperationCall();
+	private FeatureCall createFeatureCall(SimpleTypeNode stn) {
+		FeatureCall oc = expressionFactory.createFeatureCall();
 		setPosition(oc, stn);
 		oc.setName((Identifier) caseSimpleTypeNode(stn));
 		return oc;

@@ -5,10 +5,6 @@ grammar debugMeWithAntLR;
    private boolean xpandMode = false;
 }
 
-r_x  :
-	('y')
-;
-
 r_file  :
 	(((imp=r_nsImport)))* (((decl=r_abstractDeclaration)))* (EOF)
 ;

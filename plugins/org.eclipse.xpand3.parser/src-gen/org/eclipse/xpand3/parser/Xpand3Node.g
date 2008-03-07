@@ -26,12 +26,6 @@ package org.eclipse.xpand3.parser;
    private boolean xpandMode = false;
 }
 
-r_x returns [CompositeNode cn]
-	@init{ cn = factory.createXNode();
-	    }  :
-	('y' { addLeafNodeForToken($cn, "l"); })
-;
-
 r_file returns [CompositeNode cn]
 	@init{ cn = factory.createFileNode();
 	    }

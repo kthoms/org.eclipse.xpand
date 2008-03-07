@@ -1,0 +1,32 @@
+import staticTypesystem;
+
+label(Type this) :
+	declaredType.name+(if !actualTypeArguments.isEmpty then '<'+actualTypeArguments.label().toString(",")+'>' else '');
+	
+label(WildcardType this) :
+	'?'+ (if upperBounds.isEmpty then '' else ' extends '+upperBounds.label().toString(','));
+	
+label(TypeVariable this) :
+	declaredTypeParameter.name;
+
+label(AbstractNamedElement this) :
+	name;
+	
+label(DeclaredTypeParameter this) :
+	'<'+internalLabel()+'>';
+
+internalLabel(DeclaredTypeParameter this) :
+	name+(upperBounds.isEmpty?'':' extends '+upperBounds.label().toString(','));
+
+label(DeclaredType this) :
+	name+
+		(declaredTypeParameters.isEmpty?'':'<'+declaredTypeParameters.internalLabel().toString(',')+'>')+
+		(superTypes.isEmpty?'':' extends '+superTypes.label().toString(','));
+
+label(DeclaredProperty this) :
+	type.label()+" "+name;
+	
+label(Model this) : '--';
+	
+label(emf::EObject this) :
+	"unnamed";

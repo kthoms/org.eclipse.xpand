@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredFunction.java,v 1.3 2008/03/07 11:10:33 jkohnlein Exp $
+ * $Id: DeclaredFunction.java,v 1.4 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -60,26 +60,26 @@ public interface DeclaredFunction extends AbstractNamedElement {
 	EList<DeclaredTypeParameter> getDeclaredTypeParameters();
 
 	/**
-	 * Returns the value of the '<em><b>Return Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Return Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Return Type</em>' reference.
+	 * @return the value of the '<em>Return Type</em>' containment reference.
 	 * @see #setReturnType(AbstractTypeReference)
 	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredFunction_ReturnType()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	AbstractTypeReference getReturnType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Return Type</em>' reference.
+	 * @param value the new value of the '<em>Return Type</em>' containment reference.
 	 * @see #getReturnType()
 	 * @generated
 	 */

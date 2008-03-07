@@ -25,13 +25,10 @@ import org.eclipse.xpand3.ImportStatement;
 import org.eclipse.xpand3.analyzation.DeclarationsContributor;
 import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.ast.AstUtil;
-import org.eclipse.xpand3.declaration.AbstractDeclaration;
 import org.eclipse.xpand3.declaration.Definition;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
-
-import static org.eclipse.xpand3.ast.AstUtil.*;
 /**
  * @author Sven Efftinge
  *

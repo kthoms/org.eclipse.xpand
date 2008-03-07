@@ -17,37 +17,39 @@ package org.eclipse.xpand3.analyzation;
 
 import java.util.List;
 
+import org.eclipse.xpand3.analyzation.typesystem.builtin.BuiltinTypeSystem;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.FunctionType;
 import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xpand3.staticTypesystem.WildcardType;
-import org.eclipse.xtend.backend.common.BackendTypesystem;
 
 /**
  * @author Sven Efftinge
  * 
  */
 public interface TypeSystem {
-	String OBJECT = "Object";
-	String VOID = "Void";
+	final String OBJECT = "Object";
+	final String VOID = "Void";
 	
 	// Collection types
-	String COLLECTION = "Collection";
-	String SET = "Set";
-	String LIST = "List";
+	final String COLLECTION = "Collection";
+	final String SET = "Set";
+	final String LIST = "List";
 	
 	// Datatypes
-	String BOOLEAN = "Boolean";
-	String INTEGER = "Integer";
-	String REAL = "Real";
-	String STRING = "String";
+	final String BOOLEAN = "Boolean";
+	final String INTEGER = "Integer";
+	final String REAL = "Real";
+	final String STRING = "String";
 	
 	// reflection layer types
-	String FEATURE = "Feature";
-	String TYPE = "Type";
-	String OPERATION = "Operation";
-	String PROPERTY = "Property";
-	String STATIC_PROPERTY = "StaticProperty";
+	final String FEATURE = "Feature";
+	final String TYPE = "Type";
+	final String OPERATION = "Operation";
+	final String PROPERTY = "Property";
+	final String STATIC_PROPERTY = "StaticProperty";
+	
+	final TypeSystem BUILTIN_TYPESYSTEM = new BuiltinTypeSystem(null);
 	
 	WildcardType wildCard(AbstractTypeReference...upperBounds);
 	WildcardType wildCardWithLower(AbstractTypeReference...lowerBounds);

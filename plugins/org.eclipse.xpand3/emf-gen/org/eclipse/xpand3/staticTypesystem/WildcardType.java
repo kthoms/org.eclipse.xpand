@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WildcardType.java,v 1.4 2008/03/07 11:10:33 jkohnlein Exp $
+ * $Id: WildcardType.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface WildcardType extends AbstractTypeReference {
 	/**
-	 * Returns the value of the '<em><b>Lower Bounds</b></em>' reference list.
+	 * Returns the value of the '<em><b>Lower Bounds</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.AbstractTypeReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -35,15 +35,15 @@ public interface WildcardType extends AbstractTypeReference {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower Bounds</em>' reference list.
+	 * @return the value of the '<em>Lower Bounds</em>' containment reference list.
 	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getWildcardType_LowerBounds()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<AbstractTypeReference> getLowerBounds();
 
 	/**
-	 * Returns the value of the '<em><b>Upper Bounds</b></em>' reference list.
+	 * Returns the value of the '<em><b>Upper Bounds</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.AbstractTypeReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -51,9 +51,9 @@ public interface WildcardType extends AbstractTypeReference {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Bounds</em>' reference list.
+	 * @return the value of the '<em>Upper Bounds</em>' containment reference list.
 	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getWildcardType_UpperBounds()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<AbstractTypeReference> getUpperBounds();

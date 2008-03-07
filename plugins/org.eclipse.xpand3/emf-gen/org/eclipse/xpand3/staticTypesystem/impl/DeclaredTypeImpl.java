@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeImpl.java,v 1.4 2008/03/07 11:10:57 jkohnlein Exp $
+ * $Id: DeclaredTypeImpl.java,v 1.5 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -15,14 +16,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
+
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +40,7 @@ import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getStaticProperties <em>Static Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getSuperTypes <em>Super Types</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,6 +76,16 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * @ordered
 	 */
 	protected EList<DeclaredTypeParameter> declaredTypeParameters;
+
+	/**
+	 * The cached value of the '{@link #getSuperTypes() <em>Super Types</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuperTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractTypeReference> superTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,6 +147,18 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<AbstractTypeReference> getSuperTypes() {
+		if (superTypes == null) {
+			superTypes = new EObjectContainmentEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES);
+		}
+		return superTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -139,6 +168,8 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return ((InternalEList<?>)getDeclaredTypeParameters()).basicRemove(otherEnd, msgs);
+			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
+				return ((InternalEList<?>)getSuperTypes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -157,6 +188,8 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return getProperties();
 			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return getDeclaredTypeParameters();
+			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
+				return getSuperTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,6 +215,10 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				getDeclaredTypeParameters().clear();
 				getDeclaredTypeParameters().addAll((Collection<? extends DeclaredTypeParameter>)newValue);
 				return;
+			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
+				getSuperTypes().clear();
+				getSuperTypes().addAll((Collection<? extends AbstractTypeReference>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -203,6 +240,9 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				getDeclaredTypeParameters().clear();
 				return;
+			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
+				getSuperTypes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -221,6 +261,8 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return properties != null && !properties.isEmpty();
 			case StaticTypesystemPackage.DECLARED_TYPE__DECLARED_TYPE_PARAMETERS:
 				return declaredTypeParameters != null && !declaredTypeParameters.isEmpty();
+			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
+				return superTypes != null && !superTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

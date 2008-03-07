@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FunctionType.java,v 1.4 2008/03/07 11:10:32 jkohnlein Exp $
+ * $Id: FunctionType.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -53,7 +53,7 @@ public interface FunctionType extends AbstractTypeReference {
 	void setDeclaredFunction(DeclaredFunction value);
 
 	/**
-	 * Returns the value of the '<em><b>Actual Type Arguments</b></em>' reference list.
+	 * Returns the value of the '<em><b>Actual Type Arguments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.AbstractTypeReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -61,9 +61,9 @@ public interface FunctionType extends AbstractTypeReference {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actual Type Arguments</em>' reference list.
+	 * @return the value of the '<em>Actual Type Arguments</em>' containment reference list.
 	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getFunctionType_ActualTypeArguments()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<AbstractTypeReference> getActualTypeArguments();

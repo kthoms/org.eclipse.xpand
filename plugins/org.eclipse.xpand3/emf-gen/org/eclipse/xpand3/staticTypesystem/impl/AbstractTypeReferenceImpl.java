@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractTypeReferenceImpl.java,v 1.4 2008/03/07 11:10:57 jkohnlein Exp $
+ * $Id: AbstractTypeReferenceImpl.java,v 1.5 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 

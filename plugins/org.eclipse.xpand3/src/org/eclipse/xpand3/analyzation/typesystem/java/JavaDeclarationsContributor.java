@@ -13,7 +13,20 @@
  * </copyright>
  *
  */
-package org.eclipse.xpand3.analyzation.typesystem.builtin;
+package org.eclipse.xpand3.analyzation.typesystem.java;
+
+import static org.eclipse.xpand3.analyzation.TypeSystem.BOOLEAN;
+import static org.eclipse.xpand3.analyzation.TypeSystem.COLLECTION;
+import static org.eclipse.xpand3.analyzation.TypeSystem.INTEGER;
+import static org.eclipse.xpand3.analyzation.TypeSystem.LIST;
+import static org.eclipse.xpand3.analyzation.TypeSystem.OBJECT;
+import static org.eclipse.xpand3.analyzation.TypeSystem.OPERATION;
+import static org.eclipse.xpand3.analyzation.TypeSystem.PROPERTY;
+import static org.eclipse.xpand3.analyzation.TypeSystem.REAL;
+import static org.eclipse.xpand3.analyzation.TypeSystem.SET;
+import static org.eclipse.xpand3.analyzation.TypeSystem.STATIC_PROPERTY;
+import static org.eclipse.xpand3.analyzation.TypeSystem.STRING;
+import static org.eclipse.xpand3.analyzation.TypeSystem.TYPE;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +40,7 @@ import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
+import org.eclipse.xpand3.util.LoaderFactory;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.StaticProperty;
@@ -43,17 +57,27 @@ import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.builtin.TypeType;
 
-import static org.eclipse.xpand3.analyzation.TypeSystem.*;
-
 /**
  * @author Sven Efftinge
  * 
  */
-public class BuiltinDeclarationsContributor implements DeclarationsContributor {
+public class JavaDeclarationsContributor implements DeclarationsContributor {
 
 	private Map<String, DeclaredType> types = new HashMap<String, DeclaredType>();
 
 	private TypeSystem typeSystem = null;
+	
+	private Class<?> cls;
+	
+	/**
+	 * 
+	 */
+	public JavaDeclarationsContributor(String importedNamespace) {
+		this.cls = LoaderFactory.getClassLoader(this).loadClass(importedNamespace);
+		if (cls==null) {
+			throw new IllegalArgumentException("Couldn't find Java Class '"+importedNamespace+"'");
+		}
+	}
 	
 	/*
 	 * (non-Javadoc)

@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackage.java,v 1.6 2008/03/07 11:10:33 jkohnlein Exp $
+ * $Id: StaticTypesystemPackage.java,v 1.7 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -126,7 +127,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int TYPE__DECLARED_TYPE = ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Actual Type Arguments</b></em>' reference list.
+	 * The feature id for the '<em><b>Actual Type Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -201,7 +202,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int WILDCARD_TYPE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Lower Bounds</b></em>' reference list.
+	 * The feature id for the '<em><b>Lower Bounds</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -210,7 +211,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int WILDCARD_TYPE__LOWER_BOUNDS = ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Upper Bounds</b></em>' reference list.
+	 * The feature id for the '<em><b>Upper Bounds</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -247,7 +248,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int FUNCTION_TYPE__DECLARED_FUNCTION = ABSTRACT_TYPE_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Actual Type Arguments</b></em>' reference list.
+	 * The feature id for the '<em><b>Actual Type Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -311,13 +312,22 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__SUPER_TYPES = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Declared Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_TYPE_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int DECLARED_TYPE_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
@@ -357,7 +367,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_FUNCTION__DECLARED_TYPE_PARAMETERS = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Return Type</b></em>' reference.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -394,7 +404,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_PROPERTY__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -403,13 +413,22 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_PROPERTY__TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY__READ_ONLY = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Declared Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_PROPERTY_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int DECLARED_PROPERTY_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl <em>Declared Static Property</em>}' class.
@@ -431,7 +450,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_STATIC_PROPERTY__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -468,7 +487,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_TYPE_PARAMETER__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Upper Bounds</b></em>' reference list.
+	 * The feature id for the '<em><b>Upper Bounds</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -505,7 +524,7 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_PARAMETER__NAME = ABSTRACT_NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -522,6 +541,33 @@ public interface StaticTypesystemPackage extends EPackage {
 	 */
 	int DECLARED_PARAMETER_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.ModelImpl <em>Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.ModelImpl
+	 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getModel()
+	 * @generated
+	 */
+	int MODEL = 13;
+
+	/**
+	 * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__DECLARATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_FEATURE_COUNT = 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.AbstractNamedElement <em>Abstract Named Element</em>}'.
@@ -576,10 +622,10 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getType_DeclaredType();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.staticTypesystem.Type#getActualTypeArguments <em>Actual Type Arguments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.Type#getActualTypeArguments <em>Actual Type Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Actual Type Arguments</em>'.
+	 * @return the meta object for the containment reference list '<em>Actual Type Arguments</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.Type#getActualTypeArguments()
 	 * @see #getType()
 	 * @generated
@@ -628,10 +674,10 @@ public interface StaticTypesystemPackage extends EPackage {
 	EClass getWildcardType();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.staticTypesystem.WildcardType#getLowerBounds <em>Lower Bounds</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.WildcardType#getLowerBounds <em>Lower Bounds</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Lower Bounds</em>'.
+	 * @return the meta object for the containment reference list '<em>Lower Bounds</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.WildcardType#getLowerBounds()
 	 * @see #getWildcardType()
 	 * @generated
@@ -639,10 +685,10 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getWildcardType_LowerBounds();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.staticTypesystem.WildcardType#getUpperBounds <em>Upper Bounds</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.WildcardType#getUpperBounds <em>Upper Bounds</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Upper Bounds</em>'.
+	 * @return the meta object for the containment reference list '<em>Upper Bounds</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.WildcardType#getUpperBounds()
 	 * @see #getWildcardType()
 	 * @generated
@@ -671,10 +717,10 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getFunctionType_DeclaredFunction();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.staticTypesystem.FunctionType#getActualTypeArguments <em>Actual Type Arguments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.FunctionType#getActualTypeArguments <em>Actual Type Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Actual Type Arguments</em>'.
+	 * @return the meta object for the containment reference list '<em>Actual Type Arguments</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.FunctionType#getActualTypeArguments()
 	 * @see #getFunctionType()
 	 * @generated
@@ -725,6 +771,17 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getDeclaredType_DeclaredTypeParameters();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getSuperTypes <em>Super Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Super Types</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getSuperTypes()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EReference getDeclaredType_SuperTypes();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction <em>Declared Function</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -757,10 +814,10 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getDeclaredFunction_DeclaredTypeParameters();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType <em>Return Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Return Type</em>'.
+	 * @return the meta object for the containment reference '<em>Return Type</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredFunction#getReturnType()
 	 * @see #getDeclaredFunction()
 	 * @generated
@@ -778,15 +835,26 @@ public interface StaticTypesystemPackage extends EPackage {
 	EClass getDeclaredProperty();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredProperty#getType <em>Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredProperty#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @return the meta object for the containment reference '<em>Type</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredProperty#getType()
 	 * @see #getDeclaredProperty()
 	 * @generated
 	 */
 	EReference getDeclaredProperty_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.staticTypesystem.DeclaredProperty#isReadOnly <em>Read Only</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Read Only</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredProperty#isReadOnly()
+	 * @see #getDeclaredProperty()
+	 * @generated
+	 */
+	EAttribute getDeclaredProperty_ReadOnly();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty <em>Declared Static Property</em>}'.
@@ -799,10 +867,10 @@ public interface StaticTypesystemPackage extends EPackage {
 	EClass getDeclaredStaticProperty();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#getType <em>Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @return the meta object for the containment reference '<em>Type</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#getType()
 	 * @see #getDeclaredStaticProperty()
 	 * @generated
@@ -820,10 +888,10 @@ public interface StaticTypesystemPackage extends EPackage {
 	EClass getDeclaredTypeParameter();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter#getUpperBounds <em>Upper Bounds</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter#getUpperBounds <em>Upper Bounds</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Upper Bounds</em>'.
+	 * @return the meta object for the containment reference list '<em>Upper Bounds</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter#getUpperBounds()
 	 * @see #getDeclaredTypeParameter()
 	 * @generated
@@ -841,15 +909,36 @@ public interface StaticTypesystemPackage extends EPackage {
 	EClass getDeclaredParameter();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredParameter#getType <em>Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.staticTypesystem.DeclaredParameter#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @return the meta object for the containment reference '<em>Type</em>'.
 	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredParameter#getType()
 	 * @see #getDeclaredParameter()
 	 * @generated
 	 */
 	EReference getDeclaredParameter_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.Model
+	 * @generated
+	 */
+	EClass getModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.Model#getDeclarations <em>Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declarations</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.Model#getDeclarations()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_Declarations();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -920,7 +1009,7 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference TYPE__DECLARED_TYPE = eINSTANCE.getType_DeclaredType();
 
 		/**
-		 * The meta object literal for the '<em><b>Actual Type Arguments</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Actual Type Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -966,7 +1055,7 @@ public interface StaticTypesystemPackage extends EPackage {
 		EClass WILDCARD_TYPE = eINSTANCE.getWildcardType();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower Bounds</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Lower Bounds</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -974,7 +1063,7 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference WILDCARD_TYPE__LOWER_BOUNDS = eINSTANCE.getWildcardType_LowerBounds();
 
 		/**
-		 * The meta object literal for the '<em><b>Upper Bounds</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Upper Bounds</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1000,7 +1089,7 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference FUNCTION_TYPE__DECLARED_FUNCTION = eINSTANCE.getFunctionType_DeclaredFunction();
 
 		/**
-		 * The meta object literal for the '<em><b>Actual Type Arguments</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Actual Type Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1042,6 +1131,14 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference DECLARED_TYPE__DECLARED_TYPE_PARAMETERS = eINSTANCE.getDeclaredType_DeclaredTypeParameters();
 
 		/**
+		 * The meta object literal for the '<em><b>Super Types</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARED_TYPE__SUPER_TYPES = eINSTANCE.getDeclaredType_SuperTypes();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1068,7 +1165,7 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference DECLARED_FUNCTION__DECLARED_TYPE_PARAMETERS = eINSTANCE.getDeclaredFunction_DeclaredTypeParameters();
 
 		/**
-		 * The meta object literal for the '<em><b>Return Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Return Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1086,12 +1183,20 @@ public interface StaticTypesystemPackage extends EPackage {
 		EClass DECLARED_PROPERTY = eINSTANCE.getDeclaredProperty();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DECLARED_PROPERTY__TYPE = eINSTANCE.getDeclaredProperty_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Read Only</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECLARED_PROPERTY__READ_ONLY = eINSTANCE.getDeclaredProperty_ReadOnly();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl <em>Declared Static Property</em>}' class.
@@ -1104,7 +1209,7 @@ public interface StaticTypesystemPackage extends EPackage {
 		EClass DECLARED_STATIC_PROPERTY = eINSTANCE.getDeclaredStaticProperty();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1122,7 +1227,7 @@ public interface StaticTypesystemPackage extends EPackage {
 		EClass DECLARED_TYPE_PARAMETER = eINSTANCE.getDeclaredTypeParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Upper Bounds</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Upper Bounds</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1140,12 +1245,30 @@ public interface StaticTypesystemPackage extends EPackage {
 		EClass DECLARED_PARAMETER = eINSTANCE.getDeclaredParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DECLARED_PARAMETER__TYPE = eINSTANCE.getDeclaredParameter_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.ModelImpl <em>Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.ModelImpl
+		 * @see org.eclipse.xpand3.staticTypesystem.impl.StaticTypesystemPackageImpl#getModel()
+		 * @generated
+		 */
+		EClass MODEL = eINSTANCE.getModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Declarations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__DECLARATIONS = eINSTANCE.getModel_Declarations();
 
 	}
 

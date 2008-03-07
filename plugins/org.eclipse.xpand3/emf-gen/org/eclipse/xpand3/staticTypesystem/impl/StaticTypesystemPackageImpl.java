@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackageImpl.java,v 1.6 2008/03/07 11:10:57 jkohnlein Exp $
+ * $Id: StaticTypesystemPackageImpl.java,v 1.7 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -22,12 +23,15 @@ import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
 import org.eclipse.xpand3.staticTypesystem.FunctionType;
+import org.eclipse.xpand3.staticTypesystem.Model;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
 import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xpand3.staticTypesystem.TypeVariable;
 import org.eclipse.xpand3.staticTypesystem.VoidType;
 import org.eclipse.xpand3.staticTypesystem.WildcardType;
+
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -126,6 +130,13 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * @generated
 	 */
 	private EClass declaredParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -371,6 +382,15 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDeclaredType_SuperTypes() {
+		return (EReference)declaredTypeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDeclaredFunction() {
 		return declaredFunctionEClass;
 	}
@@ -418,6 +438,15 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 */
 	public EReference getDeclaredProperty_Type() {
 		return (EReference)declaredPropertyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeclaredProperty_ReadOnly() {
+		return (EAttribute)declaredPropertyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -479,6 +508,24 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getModel() {
+		return modelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModel_Declarations() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StaticTypesystemFactory getStaticTypesystemFactory() {
 		return (StaticTypesystemFactory)getEFactoryInstance();
 	}
@@ -528,6 +575,7 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		createEReference(declaredTypeEClass, DECLARED_TYPE__STATIC_PROPERTIES);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__PROPERTIES);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__DECLARED_TYPE_PARAMETERS);
+		createEReference(declaredTypeEClass, DECLARED_TYPE__SUPER_TYPES);
 
 		declaredFunctionEClass = createEClass(DECLARED_FUNCTION);
 		createEReference(declaredFunctionEClass, DECLARED_FUNCTION__DECLARED_PARAMETERS);
@@ -536,6 +584,7 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		declaredPropertyEClass = createEClass(DECLARED_PROPERTY);
 		createEReference(declaredPropertyEClass, DECLARED_PROPERTY__TYPE);
+		createEAttribute(declaredPropertyEClass, DECLARED_PROPERTY__READ_ONLY);
 
 		declaredStaticPropertyEClass = createEClass(DECLARED_STATIC_PROPERTY);
 		createEReference(declaredStaticPropertyEClass, DECLARED_STATIC_PROPERTY__TYPE);
@@ -545,6 +594,9 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		declaredParameterEClass = createEClass(DECLARED_PARAMETER);
 		createEReference(declaredParameterEClass, DECLARED_PARAMETER__TYPE);
+
+		modelEClass = createEClass(MODEL);
+		createEReference(modelEClass, MODEL__DECLARATIONS);
 	}
 
 	/**
@@ -595,7 +647,7 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getType_DeclaredType(), this.getDeclaredType(), null, "declaredType", null, 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getType_ActualTypeArguments(), this.getAbstractTypeReference(), null, "actualTypeArguments", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getType_ActualTypeArguments(), this.getAbstractTypeReference(), null, "actualTypeArguments", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeVariableEClass, TypeVariable.class, "TypeVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeVariable_DeclaredTypeParameter(), this.getDeclaredTypeParameter(), null, "declaredTypeParameter", null, 1, 1, TypeVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -603,34 +655,39 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		initEClass(voidTypeEClass, VoidType.class, "VoidType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(wildcardTypeEClass, WildcardType.class, "WildcardType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWildcardType_LowerBounds(), this.getAbstractTypeReference(), null, "lowerBounds", null, 0, -1, WildcardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWildcardType_UpperBounds(), this.getAbstractTypeReference(), null, "upperBounds", null, 0, -1, WildcardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWildcardType_LowerBounds(), this.getAbstractTypeReference(), null, "lowerBounds", null, 0, -1, WildcardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWildcardType_UpperBounds(), this.getAbstractTypeReference(), null, "upperBounds", null, 0, -1, WildcardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionTypeEClass, FunctionType.class, "FunctionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionType_DeclaredFunction(), this.getDeclaredFunction(), null, "declaredFunction", null, 1, 1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionType_ActualTypeArguments(), this.getAbstractTypeReference(), null, "actualTypeArguments", null, 0, -1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionType_ActualTypeArguments(), this.getAbstractTypeReference(), null, "actualTypeArguments", null, 0, -1, FunctionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredTypeEClass, DeclaredType.class, "DeclaredType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredType_StaticProperties(), this.getDeclaredStaticProperty(), null, "staticProperties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_Properties(), this.getDeclaredProperty(), null, "properties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_DeclaredTypeParameters(), this.getDeclaredTypeParameter(), null, "declaredTypeParameters", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredType_SuperTypes(), this.getAbstractTypeReference(), null, "superTypes", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredFunctionEClass, DeclaredFunction.class, "DeclaredFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredFunction_DeclaredParameters(), this.getDeclaredParameter(), null, "declaredParameters", null, 0, -1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredFunction_DeclaredTypeParameters(), this.getDeclaredTypeParameter(), null, "declaredTypeParameters", null, 0, -1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDeclaredFunction_ReturnType(), this.getAbstractTypeReference(), null, "returnType", null, 0, 1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredFunction_ReturnType(), this.getAbstractTypeReference(), null, "returnType", null, 0, 1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredPropertyEClass, DeclaredProperty.class, "DeclaredProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclaredProperty_Type(), this.getAbstractTypeReference(), null, "type", null, 1, 1, DeclaredProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredProperty_Type(), this.getAbstractTypeReference(), null, "type", null, 1, 1, DeclaredProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeclaredProperty_ReadOnly(), ecorePackage.getEBoolean(), "readOnly", null, 0, 1, DeclaredProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredStaticPropertyEClass, DeclaredStaticProperty.class, "DeclaredStaticProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclaredStaticProperty_Type(), this.getType(), null, "type", null, 1, 1, DeclaredStaticProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredStaticProperty_Type(), this.getType(), null, "type", null, 1, 1, DeclaredStaticProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredTypeParameterEClass, DeclaredTypeParameter.class, "DeclaredTypeParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclaredTypeParameter_UpperBounds(), this.getAbstractTypeReference(), null, "upperBounds", null, 0, -1, DeclaredTypeParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredTypeParameter_UpperBounds(), this.getAbstractTypeReference(), null, "upperBounds", null, 0, -1, DeclaredTypeParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredParameterEClass, DeclaredParameter.class, "DeclaredParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclaredParameter_Type(), this.getAbstractTypeReference(), null, "type", null, 1, 1, DeclaredParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredParameter_Type(), this.getAbstractTypeReference(), null, "type", null, 1, 1, DeclaredParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModel_Declarations(), this.getDeclaredType(), null, "declarations", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

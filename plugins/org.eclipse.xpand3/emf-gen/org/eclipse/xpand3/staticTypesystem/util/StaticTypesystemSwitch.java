@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemSwitch.java,v 1.4 2008/03/07 11:10:59 jkohnlein Exp $
+ * $Id: StaticTypesystemSwitch.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.util;
 
@@ -173,6 +173,12 @@ public class StaticTypesystemSwitch<T> {
 				DeclaredParameter declaredParameter = (DeclaredParameter)theEObject;
 				T result = caseDeclaredParameter(declaredParameter);
 				if (result == null) result = caseAbstractNamedElement(declaredParameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StaticTypesystemPackage.MODEL: {
+				Model model = (Model)theEObject;
+				T result = caseModel(model);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -372,6 +378,21 @@ public class StaticTypesystemSwitch<T> {
 	 * @generated
 	 */
 	public T caseDeclaredParameter(DeclaredParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModel(Model object) {
 		return null;
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactory.java,v 1.4 2008/03/07 11:10:33 jkohnlein Exp $
+ * $Id: StaticTypesystemFactory.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -123,6 +123,15 @@ public interface StaticTypesystemFactory extends EFactory {
 	 * @generated
 	 */
 	DeclaredParameter createDeclaredParameter();
+
+	/**
+	 * Returns a new object of class '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model</em>'.
+	 * @generated
+	 */
+	Model createModel();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -13,12 +13,28 @@
  * </copyright>
  *
  */
-package org.eclipse.xpand3.analyzation;
+package org.eclipse.xpand3.util;
+
 
 /**
  * @author Sven Efftinge
- *
+ * 
  */
-public class CompositeXpand3TypeSystem {
+public class LoaderFactory {
+	public interface LookupStrategy {
+		Loader getClassLoader(Object ctx);
+	}
 
+	public static LookupStrategy strategy = new LookupStrategy() {
+
+		public Loader getClassLoader(Object ctx) {
+			return new ClassLoaderLoaderImpl(Thread.currentThread()
+					.getContextClassLoader());
+		}
+
+	};
+
+	public static Loader getClassLoader(Object ctx) {
+		return strategy.getClassLoader(ctx);
+	}
 }

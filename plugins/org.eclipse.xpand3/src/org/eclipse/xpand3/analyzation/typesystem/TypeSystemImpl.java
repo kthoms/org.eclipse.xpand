@@ -52,7 +52,7 @@ public class TypeSystemImpl extends AbstractTypeSystemImpl implements TypeSystem
 	 */
 	public Type typeForName(String name, AbstractTypeReference... typeArguments) {
 		DeclaredType dt = contr.typeForName(name);
-		if (dt == null) {
+		if (dt != null) {
 			//TODO CACHING
 			Type t = FACTORY.createType();
 			t.setDeclaredType(dt);

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeParameter.java,v 1.3 2008/03/07 11:10:32 jkohnlein Exp $
+ * $Id: DeclaredTypeParameter.java,v 1.4 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface DeclaredTypeParameter extends AbstractNamedElement {
 	/**
-	 * Returns the value of the '<em><b>Upper Bounds</b></em>' reference list.
+	 * Returns the value of the '<em><b>Upper Bounds</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.AbstractTypeReference}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -34,9 +34,9 @@ public interface DeclaredTypeParameter extends AbstractNamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Bounds</em>' reference list.
+	 * @return the value of the '<em>Upper Bounds</em>' containment reference list.
 	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredTypeParameter_UpperBounds()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<AbstractTypeReference> getUpperBounds();

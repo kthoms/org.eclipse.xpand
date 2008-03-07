@@ -2,56 +2,58 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeParameterImpl.java,v 1.4 2008/03/07 14:21:07 sefftinge Exp $
+ * $Id: ModelImpl.java,v 1.1 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
-import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.Model;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Declared Type Parameter</b></em>'.
+ * An implementation of the model object '<em><b>Model</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeParameterImpl#getUpperBounds <em>Upper Bounds</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.ModelImpl#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implements DeclaredTypeParameter {
+public class ModelImpl extends EObjectImpl implements Model {
 	/**
-	 * The cached value of the '{@link #getUpperBounds() <em>Upper Bounds</em>}' containment reference list.
+	 * The cached value of the '{@link #getDeclarations() <em>Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUpperBounds()
+	 * @see #getDeclarations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractTypeReference> upperBounds;
+	protected EList<DeclaredType> declarations;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DeclaredTypeParameterImpl() {
+	protected ModelImpl() {
 		super();
 	}
 
@@ -62,7 +64,7 @@ public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StaticTypesystemPackage.Literals.DECLARED_TYPE_PARAMETER;
+		return StaticTypesystemPackage.Literals.MODEL;
 	}
 
 	/**
@@ -70,11 +72,11 @@ public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AbstractTypeReference> getUpperBounds() {
-		if (upperBounds == null) {
-			upperBounds = new EObjectContainmentEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.DECLARED_TYPE_PARAMETER__UPPER_BOUNDS);
+	public EList<DeclaredType> getDeclarations() {
+		if (declarations == null) {
+			declarations = new EObjectContainmentEList<DeclaredType>(DeclaredType.class, this, StaticTypesystemPackage.MODEL__DECLARATIONS);
 		}
-		return upperBounds;
+		return declarations;
 	}
 
 	/**
@@ -85,8 +87,8 @@ public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER__UPPER_BOUNDS:
-				return ((InternalEList<?>)getUpperBounds()).basicRemove(otherEnd, msgs);
+			case StaticTypesystemPackage.MODEL__DECLARATIONS:
+				return ((InternalEList<?>)getDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -99,8 +101,8 @@ public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER__UPPER_BOUNDS:
-				return getUpperBounds();
+			case StaticTypesystemPackage.MODEL__DECLARATIONS:
+				return getDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,9 +116,9 @@ public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER__UPPER_BOUNDS:
-				getUpperBounds().clear();
-				getUpperBounds().addAll((Collection<? extends AbstractTypeReference>)newValue);
+			case StaticTypesystemPackage.MODEL__DECLARATIONS:
+				getDeclarations().clear();
+				getDeclarations().addAll((Collection<? extends DeclaredType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -130,8 +132,8 @@ public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER__UPPER_BOUNDS:
-				getUpperBounds().clear();
+			case StaticTypesystemPackage.MODEL__DECLARATIONS:
+				getDeclarations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -145,10 +147,10 @@ public class DeclaredTypeParameterImpl extends AbstractNamedElementImpl implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER__UPPER_BOUNDS:
-				return upperBounds != null && !upperBounds.isEmpty();
+			case StaticTypesystemPackage.MODEL__DECLARATIONS:
+				return declarations != null && !declarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //DeclaredTypeParameterImpl
+} //ModelImpl

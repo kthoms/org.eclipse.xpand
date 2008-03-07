@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredFunctionImpl.java,v 1.3 2008/03/07 11:10:58 jkohnlein Exp $
+ * $Id: DeclaredFunctionImpl.java,v 1.4 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -64,7 +64,7 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	protected EList<DeclaredTypeParameter> declaredTypeParameters;
 
 	/**
-	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' reference.
+	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReturnType()
@@ -122,14 +122,6 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	 * @generated
 	 */
 	public AbstractTypeReference getReturnType() {
-		if (returnType != null && returnType.eIsProxy()) {
-			InternalEObject oldReturnType = (InternalEObject)returnType;
-			returnType = (AbstractTypeReference)eResolveProxy(oldReturnType);
-			if (returnType != oldReturnType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, oldReturnType, returnType));
-			}
-		}
 		return returnType;
 	}
 
@@ -138,8 +130,14 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractTypeReference basicGetReturnType() {
-		return returnType;
+	public NotificationChain basicSetReturnType(AbstractTypeReference newReturnType, NotificationChain msgs) {
+		AbstractTypeReference oldReturnType = returnType;
+		returnType = newReturnType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, oldReturnType, newReturnType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -148,10 +146,17 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 	 * @generated
 	 */
 	public void setReturnType(AbstractTypeReference newReturnType) {
-		AbstractTypeReference oldReturnType = returnType;
-		returnType = newReturnType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, oldReturnType, returnType));
+		if (newReturnType != returnType) {
+			NotificationChain msgs = null;
+			if (returnType != null)
+				msgs = ((InternalEObject)returnType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, null, msgs);
+			if (newReturnType != null)
+				msgs = ((InternalEObject)newReturnType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, null, msgs);
+			msgs = basicSetReturnType(newReturnType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE, newReturnType, newReturnType));
 	}
 
 	/**
@@ -166,6 +171,8 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 				return ((InternalEList<?>)getDeclaredParameters()).basicRemove(otherEnd, msgs);
 			case StaticTypesystemPackage.DECLARED_FUNCTION__DECLARED_TYPE_PARAMETERS:
 				return ((InternalEList<?>)getDeclaredTypeParameters()).basicRemove(otherEnd, msgs);
+			case StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE:
+				return basicSetReturnType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -183,8 +190,7 @@ public class DeclaredFunctionImpl extends AbstractNamedElementImpl implements De
 			case StaticTypesystemPackage.DECLARED_FUNCTION__DECLARED_TYPE_PARAMETERS:
 				return getDeclaredTypeParameters();
 			case StaticTypesystemPackage.DECLARED_FUNCTION__RETURN_TYPE:
-				if (resolve) return getReturnType();
-				return basicGetReturnType();
+				return getReturnType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

@@ -2,16 +2,20 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WildcardTypeImpl.java,v 1.4 2008/03/07 11:10:57 jkohnlein Exp $
+ * $Id: WildcardTypeImpl.java,v 1.5 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
@@ -34,7 +38,7 @@ import org.eclipse.xpand3.staticTypesystem.WildcardType;
  */
 public class WildcardTypeImpl extends AbstractTypeReferenceImpl implements WildcardType {
 	/**
-	 * The cached value of the '{@link #getLowerBounds() <em>Lower Bounds</em>}' reference list.
+	 * The cached value of the '{@link #getLowerBounds() <em>Lower Bounds</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLowerBounds()
@@ -44,7 +48,7 @@ public class WildcardTypeImpl extends AbstractTypeReferenceImpl implements Wildc
 	protected EList<AbstractTypeReference> lowerBounds;
 
 	/**
-	 * The cached value of the '{@link #getUpperBounds() <em>Upper Bounds</em>}' reference list.
+	 * The cached value of the '{@link #getUpperBounds() <em>Upper Bounds</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUpperBounds()
@@ -79,7 +83,7 @@ public class WildcardTypeImpl extends AbstractTypeReferenceImpl implements Wildc
 	 */
 	public EList<AbstractTypeReference> getLowerBounds() {
 		if (lowerBounds == null) {
-			lowerBounds = new EObjectResolvingEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.WILDCARD_TYPE__LOWER_BOUNDS);
+			lowerBounds = new EObjectContainmentEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.WILDCARD_TYPE__LOWER_BOUNDS);
 		}
 		return lowerBounds;
 	}
@@ -91,9 +95,25 @@ public class WildcardTypeImpl extends AbstractTypeReferenceImpl implements Wildc
 	 */
 	public EList<AbstractTypeReference> getUpperBounds() {
 		if (upperBounds == null) {
-			upperBounds = new EObjectResolvingEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.WILDCARD_TYPE__UPPER_BOUNDS);
+			upperBounds = new EObjectContainmentEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.WILDCARD_TYPE__UPPER_BOUNDS);
 		}
 		return upperBounds;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StaticTypesystemPackage.WILDCARD_TYPE__LOWER_BOUNDS:
+				return ((InternalEList<?>)getLowerBounds()).basicRemove(otherEnd, msgs);
+			case StaticTypesystemPackage.WILDCARD_TYPE__UPPER_BOUNDS:
+				return ((InternalEList<?>)getUpperBounds()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

@@ -1,0 +1,45 @@
+Example:
+// java klasse EntityUtil.java
+
+public class EntityUtil {
+   
+    EObject fooBar(EObject x) {
+        //do stuff
+        return x;
+    }
+    
+    String someHelper(String x, String y) {
+        return "foo"+x+y+"bar";
+    }
+}
+
+/* 
+From within Xtend one can import this file via
+ import "my.package.EntityUtil.java"
+
+which has the same effect as referring the following empty mapping file:
+ import "my.package.EntityUtil.javamapping"
+
+// my.package.EntityUtil.javamapping
+map EntityUtil{}
+
+But then the Type EObject would be resolved to by the Java type org.eclipse.emf.ecore.EObject instead of e.g. myMetamodel::Entity.
+So we can use the mapping file to provide additional needed information like so:
+
+// Mapping-DSL Example 1 - maps EntityUtil.somehelper and EntityUtil.foobar
+import "classpath:/my/pack/metamodel.ecore";
+
+map EntityUtil {
+	Entity fooBar(Entity)
+}
+
+// Mapping-DSL Example 2 - maps foobar only
+import "classpath:/my/pack/metamodel.ecore";
+
+map EntityUtil {
+	Entity fooBar(Entity) // explicit mappings are always contained
+	without(*(...)) // uses pointcut syntax so without(someHelper) or without(someHelper(String,String)) would do the trick as well
+	// include(... ) works the other way around
+}
+
+ 

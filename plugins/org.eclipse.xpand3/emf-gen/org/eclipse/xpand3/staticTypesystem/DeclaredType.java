@@ -2,11 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredType.java,v 1.4 2008/03/07 11:10:32 jkohnlein Exp $
+ * $Id: DeclaredType.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
 import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getStaticProperties <em>Static Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getSuperTypes <em>Super Types</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,5 +77,21 @@ public interface DeclaredType extends AbstractNamedElement {
 	 * @generated
 	 */
 	EList<DeclaredTypeParameter> getDeclaredTypeParameters();
+
+	/**
+	 * Returns the value of the '<em><b>Super Types</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.xpand3.staticTypesystem.AbstractTypeReference}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Super Types</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Super Types</em>' containment reference list.
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredType_SuperTypes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AbstractTypeReference> getSuperTypes();
 
 } // DeclaredType

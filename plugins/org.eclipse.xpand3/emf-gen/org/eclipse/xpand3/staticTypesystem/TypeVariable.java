@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TypeVariable.java,v 1.4 2008/03/07 11:10:32 jkohnlein Exp $
+ * $Id: TypeVariable.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 

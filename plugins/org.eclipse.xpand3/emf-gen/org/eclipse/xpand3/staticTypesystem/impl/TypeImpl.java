@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TypeImpl.java,v 1.4 2008/03/07 11:10:57 jkohnlein Exp $
+ * $Id: TypeImpl.java,v 1.5 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -17,6 +18,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
@@ -50,7 +53,7 @@ public class TypeImpl extends AbstractTypeReferenceImpl implements Type {
 	protected DeclaredType declaredType;
 
 	/**
-	 * The cached value of the '{@link #getActualTypeArguments() <em>Actual Type Arguments</em>}' reference list.
+	 * The cached value of the '{@link #getActualTypeArguments() <em>Actual Type Arguments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getActualTypeArguments()
@@ -123,9 +126,23 @@ public class TypeImpl extends AbstractTypeReferenceImpl implements Type {
 	 */
 	public EList<AbstractTypeReference> getActualTypeArguments() {
 		if (actualTypeArguments == null) {
-			actualTypeArguments = new EObjectResolvingEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.TYPE__ACTUAL_TYPE_ARGUMENTS);
+			actualTypeArguments = new EObjectContainmentEList<AbstractTypeReference>(AbstractTypeReference.class, this, StaticTypesystemPackage.TYPE__ACTUAL_TYPE_ARGUMENTS);
 		}
 		return actualTypeArguments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StaticTypesystemPackage.TYPE__ACTUAL_TYPE_ARGUMENTS:
+				return ((InternalEList<?>)getActualTypeArguments()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

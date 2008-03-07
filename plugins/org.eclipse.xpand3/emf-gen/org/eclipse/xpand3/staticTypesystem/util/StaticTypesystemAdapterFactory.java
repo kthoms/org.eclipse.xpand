@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemAdapterFactory.java,v 1.4 2008/03/07 11:10:59 jkohnlein Exp $
+ * $Id: StaticTypesystemAdapterFactory.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.util;
 
@@ -122,6 +122,10 @@ public class StaticTypesystemAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDeclaredParameter(DeclaredParameter object) {
 				return createDeclaredParameterAdapter();
+			}
+			@Override
+			public Adapter caseModel(Model object) {
+				return createModelAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -322,6 +326,20 @@ public class StaticTypesystemAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeclaredParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.staticTypesystem.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.staticTypesystem.Model
+	 * @generated
+	 */
+	public Adapter createModelAdapter() {
 		return null;
 	}
 

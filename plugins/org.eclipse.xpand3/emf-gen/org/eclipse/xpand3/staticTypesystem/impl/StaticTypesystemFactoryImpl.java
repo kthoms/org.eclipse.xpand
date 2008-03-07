@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemFactoryImpl.java,v 1.6 2008/03/07 11:10:57 jkohnlein Exp $
+ * $Id: StaticTypesystemFactoryImpl.java,v 1.7 2008/03/07 14:21:07 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -15,6 +16,8 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.xpand3.staticTypesystem.*;
+
+import org.eclipse.xtend.backend.common.BackendType;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,6 +74,7 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY: return createDeclaredStaticProperty();
 			case StaticTypesystemPackage.DECLARED_TYPE_PARAMETER: return createDeclaredTypeParameter();
 			case StaticTypesystemPackage.DECLARED_PARAMETER: return createDeclaredParameter();
+			case StaticTypesystemPackage.MODEL: return createModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -184,6 +188,16 @@ public class StaticTypesystemFactoryImpl extends EFactoryImpl implements StaticT
 	public DeclaredParameter createDeclaredParameter() {
 		DeclaredParameterImpl declaredParameter = new DeclaredParameterImpl();
 		return declaredParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model createModel() {
+		ModelImpl model = new ModelImpl();
+		return model;
 	}
 
 	/**

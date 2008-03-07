@@ -211,16 +211,13 @@ normalizable impliesExpression :
 	
 normalizable relationalExpression :
 	leftOperand=additiveExpression 
-	(operator=booleanOperator rightOperand=additiveExpression )*
+	((operator='==' 
+	| operator='!=' 
+	| operator='>=' 
+	| operator='<=' 
+	| operator='>' 
+	| operator='<')  rightOperand=additiveExpression )*
 ;
-
-booleanOperator :
-		'==' 
-	| '!=' 
-	| '>=' 
-	| '<=' 
-	| '>' 
-	| '<';
 	
 normalizable additiveExpression :
 	multiplicativeExpression 

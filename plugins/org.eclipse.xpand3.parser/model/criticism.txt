@@ -1,0 +1,13 @@
+TMF common critics:
+
+- default label
+- no labels for keywords (template l:105)
+- label for parenthesized expr
+	rule: visibility=('public' | 'private' );
+	Check: parenthesized element with feature must only contain groups with keywords
+
+TODO
+
+DONE
+- generate prefix for rulenames
+  

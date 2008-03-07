@@ -140,18 +140,15 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RelationalExpressionNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="leftOperand">
-      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operator">
-      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//LeafNode"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightOperand">
       <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanOperatorNode">
-    <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftOperand">
+      <eType xsi:type="ecore:EClass" href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpressionNode">
     <eSuperTypes href="platform:/resource/org.eclipse.tmf.common/src/org/eclipse/tmf/common/node/node.ecore#//CompositeNode"/>

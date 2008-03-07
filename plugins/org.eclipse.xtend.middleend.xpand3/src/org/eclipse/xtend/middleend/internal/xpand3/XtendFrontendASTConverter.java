@@ -19,11 +19,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.xand3.analyzation.AnalyzeContext;
-import org.eclipse.xand3.analyzation.TypeSystem;
-import org.eclipse.xand3.analyzation.AnalyzeContext.Var;
 import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.SyntaxElement;
+import org.eclipse.xpand3.analyzation.AnalyzeContext;
+import org.eclipse.xpand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.analyzation.AnalyzeContext.Var;
 import org.eclipse.xpand3.expression.AbstractExpression;
 import org.eclipse.xpand3.expression.BooleanLiteral;
 import org.eclipse.xpand3.expression.Case;
@@ -67,7 +67,6 @@ import org.eclipse.xtend.backend.expr.SequenceExpression;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
-import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.Pair;
 
 /**

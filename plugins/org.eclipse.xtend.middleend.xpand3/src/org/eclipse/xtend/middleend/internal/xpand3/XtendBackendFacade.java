@@ -21,8 +21,8 @@ import java.util.Map;
 
 import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipose.xtend.middleend.MiddleEndFactory;
-import org.eclipse.xand3.analyzation.AnalyzeContext;
 import org.eclipse.xpand3.File;
+import org.eclipse.xpand3.analyzation.AnalyzeContext;
 import org.eclipse.xpand3.declaration.Extension;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExpressionBase;

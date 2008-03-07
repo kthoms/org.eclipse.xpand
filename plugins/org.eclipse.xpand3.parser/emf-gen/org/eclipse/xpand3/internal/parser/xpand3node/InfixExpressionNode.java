@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InfixExpressionNode.java,v 1.2 2008/03/06 15:25:15 jkohnlein Exp $
+ * $Id: InfixExpressionNode.java,v 1.3 2008/03/07 09:39:40 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
 
 /**
@@ -27,7 +28,6 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface InfixExpressionNode extends CompositeNode {
-
 	/**
 	 * Returns the value of the '<em><b>Calls</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
@@ -69,4 +69,5 @@ public interface InfixExpressionNode extends CompositeNode {
 	 * @generated
 	 */
 	void setTarget(CompositeNode value);
+
 } // InfixExpressionNode

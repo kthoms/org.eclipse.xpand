@@ -2,20 +2,20 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExtensionNodeImpl.java,v 1.2 2008/03/06 15:25:17 jkohnlein Exp $
+ * $Id: ExtensionNodeImpl.java,v 1.3 2008/03/07 09:39:42 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
 import org.eclipse.tmf.common.node.LeafNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode;
@@ -28,84 +28,21 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getCreate <em>Create</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getPrivate <em>Private</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getParamList <em>Param List</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getExtendBody <em>Extend Body</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getCached <em>Cached</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getJavaReturnType <em>Java Return Type</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getJavaName <em>Java Name</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getCached <em>Cached</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getJavaName <em>Java Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getPrivate <em>Private</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getExtendBody <em>Extend Body</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getCreate <em>Create</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getParamList <em>Param List</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExtensionNodeImpl#getJavaReturnType <em>Java Return Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNode {
-	/**
-	 * The cached value of the '{@link #getCreate() <em>Create</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCreate()
-	 * @generated
-	 * @ordered
-	 */
-	protected LeafNode create;
-	/**
-	 * The cached value of the '{@link #getPrivate() <em>Private</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrivate()
-	 * @generated
-	 * @ordered
-	 */
-	protected LeafNode private_;
-	/**
-	 * The cached value of the '{@link #getParamList() <em>Param List</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParamList()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode paramList;
-	/**
-	 * The cached value of the '{@link #getExtendBody() <em>Extend Body</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtendBody()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode extendBody;
-	/**
-	 * The cached value of the '{@link #getCached() <em>Cached</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCached()
-	 * @generated
-	 * @ordered
-	 */
-	protected LeafNode cached;
-	/**
-	 * The cached value of the '{@link #getJavaReturnType() <em>Java Return Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getJavaReturnType()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode javaReturnType;
-	/**
-	 * The cached value of the '{@link #getJavaName() <em>Java Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getJavaName()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode javaName;
 	/**
 	 * The cached value of the '{@link #getReturnType() <em>Return Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -115,6 +52,37 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * @ordered
 	 */
 	protected CompositeNode returnType;
+
+	/**
+	 * The cached value of the '{@link #getCached() <em>Cached</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCached()
+	 * @generated
+	 * @ordered
+	 */
+	protected LeafNode cached;
+
+	/**
+	 * The cached value of the '{@link #getJavaName() <em>Java Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJavaName()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode javaName;
+
+	/**
+	 * The cached value of the '{@link #getPrivate() <em>Private</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrivate()
+	 * @generated
+	 * @ordered
+	 */
+	protected LeafNode private_;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -124,6 +92,46 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * @ordered
 	 */
 	protected CompositeNode name;
+
+	/**
+	 * The cached value of the '{@link #getExtendBody() <em>Extend Body</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtendBody()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode extendBody;
+
+	/**
+	 * The cached value of the '{@link #getCreate() <em>Create</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreate()
+	 * @generated
+	 * @ordered
+	 */
+	protected LeafNode create;
+
+	/**
+	 * The cached value of the '{@link #getParamList() <em>Param List</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParamList()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode paramList;
+
+	/**
+	 * The cached value of the '{@link #getJavaReturnType() <em>Java Return Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJavaReturnType()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode javaReturnType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -494,33 +502,33 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
-				if (resolve) return getCreate();
-				return basicGetCreate();
-			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
-				if (resolve) return getPrivate();
-				return basicGetPrivate();
-			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
-				if (resolve) return getParamList();
-				return basicGetParamList();
-			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
-				if (resolve) return getExtendBody();
-				return basicGetExtendBody();
-			case Xpand3nodePackage.EXTENSION_NODE__CACHED:
-				if (resolve) return getCached();
-				return basicGetCached();
-			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
-				if (resolve) return getJavaReturnType();
-				return basicGetJavaReturnType();
-			case Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME:
-				if (resolve) return getJavaName();
-				return basicGetJavaName();
 			case Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE:
 				if (resolve) return getReturnType();
 				return basicGetReturnType();
+			case Xpand3nodePackage.EXTENSION_NODE__CACHED:
+				if (resolve) return getCached();
+				return basicGetCached();
+			case Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME:
+				if (resolve) return getJavaName();
+				return basicGetJavaName();
+			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
+				if (resolve) return getPrivate();
+				return basicGetPrivate();
 			case Xpand3nodePackage.EXTENSION_NODE__NAME:
 				if (resolve) return getName();
 				return basicGetName();
+			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
+				if (resolve) return getExtendBody();
+				return basicGetExtendBody();
+			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
+				if (resolve) return getCreate();
+				return basicGetCreate();
+			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
+				if (resolve) return getParamList();
+				return basicGetParamList();
+			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
+				if (resolve) return getJavaReturnType();
+				return basicGetJavaReturnType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -530,36 +538,35 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
-				setCreate((LeafNode)newValue);
-				return;
-			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
-				setPrivate((LeafNode)newValue);
-				return;
-			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
-				setParamList((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
-				setExtendBody((CompositeNode)newValue);
+			case Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE:
+				setReturnType((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.EXTENSION_NODE__CACHED:
 				setCached((LeafNode)newValue);
 				return;
-			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
-				setJavaReturnType((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME:
 				setJavaName((CompositeNode)newValue);
 				return;
-			case Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE:
-				setReturnType((CompositeNode)newValue);
+			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
+				setPrivate((LeafNode)newValue);
 				return;
 			case Xpand3nodePackage.EXTENSION_NODE__NAME:
 				setName((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
+				setExtendBody((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
+				setCreate((LeafNode)newValue);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
+				setParamList((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
+				setJavaReturnType((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -573,32 +580,32 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
-				setCreate((LeafNode)null);
-				return;
-			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
-				setPrivate((LeafNode)null);
-				return;
-			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
-				setParamList((CompositeNode)null);
-				return;
-			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
-				setExtendBody((CompositeNode)null);
+			case Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE:
+				setReturnType((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.EXTENSION_NODE__CACHED:
 				setCached((LeafNode)null);
 				return;
-			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
-				setJavaReturnType((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME:
 				setJavaName((CompositeNode)null);
 				return;
-			case Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE:
-				setReturnType((CompositeNode)null);
+			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
+				setPrivate((LeafNode)null);
 				return;
 			case Xpand3nodePackage.EXTENSION_NODE__NAME:
 				setName((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
+				setExtendBody((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
+				setCreate((LeafNode)null);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
+				setParamList((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
+				setJavaReturnType((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -612,24 +619,24 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
-				return create != null;
-			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
-				return private_ != null;
-			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
-				return paramList != null;
-			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
-				return extendBody != null;
-			case Xpand3nodePackage.EXTENSION_NODE__CACHED:
-				return cached != null;
-			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
-				return javaReturnType != null;
-			case Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME:
-				return javaName != null;
 			case Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE:
 				return returnType != null;
+			case Xpand3nodePackage.EXTENSION_NODE__CACHED:
+				return cached != null;
+			case Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME:
+				return javaName != null;
+			case Xpand3nodePackage.EXTENSION_NODE__PRIVATE:
+				return private_ != null;
 			case Xpand3nodePackage.EXTENSION_NODE__NAME:
 				return name != null;
+			case Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY:
+				return extendBody != null;
+			case Xpand3nodePackage.EXTENSION_NODE__CREATE:
+				return create != null;
+			case Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST:
+				return paramList != null;
+			case Xpand3nodePackage.EXTENSION_NODE__JAVA_RETURN_TYPE:
+				return javaReturnType != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionNodeValidator.java,v 1.1 2008/03/06 08:55:12 jkohnlein Exp $
+ * $Id: ExpressionNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 

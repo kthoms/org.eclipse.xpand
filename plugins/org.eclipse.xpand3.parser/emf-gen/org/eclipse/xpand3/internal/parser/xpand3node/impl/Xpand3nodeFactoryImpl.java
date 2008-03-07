@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactoryImpl.java,v 1.2 2008/03/06 15:25:17 jkohnlein Exp $
+ * $Id: Xpand3nodeFactoryImpl.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -94,7 +94,6 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 			case Xpand3nodePackage.AND_EXPRESSION_NODE: return createAndExpressionNode();
 			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE: return createImpliesExpressionNode();
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE: return createRelationalExpressionNode();
-			case Xpand3nodePackage.BOOLEAN_OPERATOR_NODE: return createBooleanOperatorNode();
 			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE: return createAdditiveExpressionNode();
 			case Xpand3nodePackage.MULTIPLICATIVE_EXPRESSION_NODE: return createMultiplicativeExpressionNode();
 			case Xpand3nodePackage.UNARY_EXPRESSION_NODE: return createUnaryExpressionNode();
@@ -458,16 +457,6 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	public RelationalExpressionNode createRelationalExpressionNode() {
 		RelationalExpressionNodeImpl relationalExpressionNode = new RelationalExpressionNodeImpl();
 		return relationalExpressionNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BooleanOperatorNode createBooleanOperatorNode() {
-		BooleanOperatorNodeImpl booleanOperatorNode = new BooleanOperatorNodeImpl();
-		return booleanOperatorNode;
 	}
 
 	/**

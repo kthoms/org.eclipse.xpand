@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ErrorStatementNodeImpl.java,v 1.1 2008/03/06 08:55:16 jkohnlein Exp $
+ * $Id: ErrorStatementNodeImpl.java,v 1.2 2008/03/07 09:39:42 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 

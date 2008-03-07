@@ -2,16 +2,20 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredParameterListNodeImpl.java,v 1.2 2008/03/06 15:25:17 jkohnlein Exp $
+ * $Id: DeclaredParameterListNodeImpl.java,v 1.3 2008/03/07 09:39:42 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterListNode;

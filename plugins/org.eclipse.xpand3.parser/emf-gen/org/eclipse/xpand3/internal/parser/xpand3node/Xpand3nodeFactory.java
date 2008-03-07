@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactory.java,v 1.2 2008/03/06 15:25:17 jkohnlein Exp $
+ * $Id: Xpand3nodeFactory.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -330,15 +330,6 @@ public interface Xpand3nodeFactory extends EFactory {
 	 * @generated
 	 */
 	RelationalExpressionNode createRelationalExpressionNode();
-
-	/**
-	 * Returns a new object of class '<em>Boolean Operator Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Boolean Operator Node</em>'.
-	 * @generated
-	 */
-	BooleanOperatorNode createBooleanOperatorNode();
 
 	/**
 	 * Returns a new object of class '<em>Additive Expression Node</em>'.

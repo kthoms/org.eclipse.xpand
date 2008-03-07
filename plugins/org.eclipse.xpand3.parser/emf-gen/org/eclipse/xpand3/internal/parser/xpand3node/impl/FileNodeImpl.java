@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileNodeImpl.java,v 1.1 2008/03/06 08:55:16 jkohnlein Exp $
+ * $Id: FileNodeImpl.java,v 1.2 2008/03/07 09:39:41 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -28,24 +28,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FileNodeImpl#getDecl <em>Decl</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FileNodeImpl#getImp <em>Imp</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FileNodeImpl#getDecl <em>Decl</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class FileNodeImpl extends CompositeNodeImpl implements FileNode {
-	/**
-	 * The cached value of the '{@link #getDecl() <em>Decl</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDecl()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<CompositeNode> decl;
-
 	/**
 	 * The cached value of the '{@link #getImp() <em>Imp</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -55,6 +45,16 @@ public class FileNodeImpl extends CompositeNodeImpl implements FileNode {
 	 * @ordered
 	 */
 	protected EList<CompositeNode> imp;
+
+	/**
+	 * The cached value of the '{@link #getDecl() <em>Decl</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDecl()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompositeNode> decl;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,10 +107,10 @@ public class FileNodeImpl extends CompositeNodeImpl implements FileNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.FILE_NODE__DECL:
-				return getDecl();
 			case Xpand3nodePackage.FILE_NODE__IMP:
 				return getImp();
+			case Xpand3nodePackage.FILE_NODE__DECL:
+				return getDecl();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,13 +124,13 @@ public class FileNodeImpl extends CompositeNodeImpl implements FileNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.FILE_NODE__DECL:
-				getDecl().clear();
-				getDecl().addAll((Collection<? extends CompositeNode>)newValue);
-				return;
 			case Xpand3nodePackage.FILE_NODE__IMP:
 				getImp().clear();
 				getImp().addAll((Collection<? extends CompositeNode>)newValue);
+				return;
+			case Xpand3nodePackage.FILE_NODE__DECL:
+				getDecl().clear();
+				getDecl().addAll((Collection<? extends CompositeNode>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,11 +144,11 @@ public class FileNodeImpl extends CompositeNodeImpl implements FileNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.FILE_NODE__DECL:
-				getDecl().clear();
-				return;
 			case Xpand3nodePackage.FILE_NODE__IMP:
 				getImp().clear();
+				return;
+			case Xpand3nodePackage.FILE_NODE__DECL:
+				getDecl().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -162,10 +162,10 @@ public class FileNodeImpl extends CompositeNodeImpl implements FileNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.FILE_NODE__DECL:
-				return decl != null && !decl.isEmpty();
 			case Xpand3nodePackage.FILE_NODE__IMP:
 				return imp != null && !imp.isEmpty();
+			case Xpand3nodePackage.FILE_NODE__DECL:
+				return decl != null && !decl.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

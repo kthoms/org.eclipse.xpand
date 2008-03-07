@@ -4,8 +4,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.tmf.common.node.CompositeNode;
 import org.eclipse.tmf.common.node.LeafNode;
 import org.eclipse.tmf.common.node.Node;
+import org.eclipse.xpand3.ComposedIdentifier;
 import org.eclipse.xpand3.DeclaredParameter;
 import org.eclipse.xpand3.Identifier;
+import org.eclipse.xpand3.SimpleIdentifier;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.Xpand3Factory;
 import org.eclipse.xpand3.declaration.DeclarationFactory;
@@ -15,7 +17,6 @@ import org.eclipse.xpand3.expression.BooleanOperation;
 import org.eclipse.xpand3.expression.ExpressionFactory;
 import org.eclipse.xpand3.expression.FeatureCall;
 import org.eclipse.xpand3.expression.OperationCall;
-import org.eclipse.xpand3.internal.parser.xpand3node.BooleanOperatorNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.CollectionTypeNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterListNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.DeclaredParameterNode;
@@ -72,11 +73,6 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 	}
 
 	// Overridden switch methods
-
-	@Override
-	public SyntaxElement caseBooleanOperatorNode(BooleanOperatorNode bon) {
-		return createIdentifier((LeafNode) bon.getChildren().get(0));
-	}
 
 	@Override
 	public SyntaxElement caseDeclaredParameterNode(DeclaredParameterNode dpn) {
@@ -181,9 +177,7 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 			RelationalExpressionNode ren) {
 		BooleanOperation bo = expressionFactory.createBooleanOperation();
 		bo.setLeft((AbstractExpression) doSwitch(ren.getLeftOperand()));
-		bo
-				.setOperator((Identifier) caseBooleanOperatorNode((BooleanOperatorNode) ren
-						.getOperator()));
+		bo.setOperator(createIdentifier(ren.getOperator()));
 		bo.setRight((AbstractExpression) doSwitch(ren.getRightOperand()));
 		return bo;
 	}
@@ -202,6 +196,4 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 		}
 		return caseIdentifierNode((IdentifierNode) names.get(0));
 	}
-
-	
 }

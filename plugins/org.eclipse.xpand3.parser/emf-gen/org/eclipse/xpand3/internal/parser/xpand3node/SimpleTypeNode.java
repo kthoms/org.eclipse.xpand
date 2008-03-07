@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleTypeNode.java,v 1.2 2008/03/06 15:25:15 jkohnlein Exp $
+ * $Id: SimpleTypeNode.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
 
 /**
@@ -26,7 +27,6 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface SimpleTypeNode extends CompositeNode {
-
 	/**
 	 * Returns the value of the '<em><b>Names</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
@@ -42,4 +42,5 @@ public interface SimpleTypeNode extends CompositeNode {
 	 * @generated
 	 */
 	EList<CompositeNode> getNames();
+
 } // SimpleTypeNode

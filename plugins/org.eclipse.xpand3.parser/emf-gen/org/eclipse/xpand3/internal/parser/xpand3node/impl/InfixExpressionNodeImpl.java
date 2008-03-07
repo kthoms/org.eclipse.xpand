@@ -2,19 +2,25 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InfixExpressionNodeImpl.java,v 1.2 2008/03/06 15:25:17 jkohnlein Exp $
+ * $Id: InfixExpressionNodeImpl.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode;
@@ -44,6 +50,7 @@ public class InfixExpressionNodeImpl extends CompositeNodeImpl implements InfixE
 	 * @ordered
 	 */
 	protected EList<CompositeNode> calls;
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -53,6 +60,7 @@ public class InfixExpressionNodeImpl extends CompositeNodeImpl implements InfixE
 	 * @ordered
 	 */
 	protected CompositeNode target;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

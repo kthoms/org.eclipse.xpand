@@ -42,7 +42,7 @@ public class ParseStuff {
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		Xpand3NodeParser xpand3NodeParser = new Xpand3NodeParser(tokenStream);
 
-		Node rootNode = xpand3NodeParser.file();
+		Node rootNode = xpand3NodeParser.r_file();
 		// if (rootNode == null) {
 		// System.out.println("Nothing parsed.");
 		// } else {

@@ -192,7 +192,7 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		Xpand3NodeLexer lexer = new Xpand3NodeLexer(stream);
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		Xpand3NodeParser xpand3NodeParser = new Xpand3NodeParser(tokenStream);
-		Node rootNode = xpand3NodeParser.test_expression();
+		Node rootNode = xpand3NodeParser.r_test_expression();
 		System.out.println(NodeUtil.toString(rootNode));
 		return (CompositeNode) rootNode;
 	}

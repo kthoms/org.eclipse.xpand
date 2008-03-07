@@ -7,6 +7,7 @@ import org.antlr.runtime.CommonTokenStream;
 import org.eclipse.tmf.common.node.Node;
 import org.eclipse.tmf.common.node.NodeUtil;
 import org.eclipse.xpand3.SyntaxElement;
+import org.eclipse.xpand3.declaration.Extension;
 import org.eclipse.xpand3.parser.Xpand3NodeLexer;
 import org.eclipse.xpand3.parser.Xpand3NodeParser;
 
@@ -19,7 +20,7 @@ public class Node2AstTest extends TestCase {
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		Xpand3NodeParser xpand3NodeParser = new Xpand3NodeParser(tokenStream);
 
-		Node rootNode = xpand3NodeParser.file();
+		Node rootNode = xpand3NodeParser.r_file();
 		if (rootNode == null) {
 			System.out.println("Nothing parsed.");
 		} else {
@@ -32,5 +33,6 @@ public class Node2AstTest extends TestCase {
 	public void testExpression() throws Exception {
 		String expr = "foo(Object this, Object that):\n\tthis.toString()==that.toString();";
 		SyntaxElement ast = parseAndTransform(expr);
+		assertTrue(ast instanceof Extension);
 	}
 }

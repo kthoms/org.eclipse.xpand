@@ -13,7 +13,7 @@ public class Xpand3NodeParserTest extends TestCase {
 
 	private Node parse(String s) throws Exception {
 		Xpand3NodeParser parser = createParser(s);
-		Node rootNode = parser.file();
+		Node rootNode = parser.r_file();
 		return rootNode;
 	}
 
@@ -48,7 +48,7 @@ public class Xpand3NodeParserTest extends TestCase {
 		}
 		Xpand3NodeParser parser = createParser(s);
 		long n = System.currentTimeMillis();
-		parser.expression();
+		parser.r_expression();
 		long after = System.currentTimeMillis();
 		System.out.println("Time : " + (after - n) / 1000.
 				+ " Expressionlength was : " + s.length());

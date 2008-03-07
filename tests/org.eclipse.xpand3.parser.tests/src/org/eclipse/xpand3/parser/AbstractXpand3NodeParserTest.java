@@ -25,10 +25,17 @@ public abstract class AbstractXpand3NodeParserTest extends TestCase {
 		super(name);
 	}
 
+	protected String getNodeClassName(String ruleName) {
+		return ruleName.substring(0, 1).toUpperCase() + ruleName.substring(1)
+				+ "NodeImpl";
+	}
+
 	protected CompositeNode checkIsRule(Node node, String ruleName,
 			int numChildren) {
 		assertTrue(node instanceof CompositeNode);
-		assertEquals(ruleName, ((CompositeNode) node).getRule());
+		String className = node.getClass().getName();
+		assertEquals(getNodeClassName(ruleName), className.substring(className
+				.lastIndexOf('.') + 1));
 		assertEquals(numChildren, ((CompositeNode) node).getChildren().size());
 		return (CompositeNode) node;
 	}

@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.functions.java.internal.ParameterConverter;
@@ -36,20 +36,18 @@ import org.eclipse.xtend.backend.util.StringHelper;
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class JavaOperation implements Function {
+public final class JavaOperation extends AbstractFunction {
     private final Log _log = LogFactory.getLog(getClass());
     
     private final Method _mtd;
-    private final List<BackendType> _parameterTypes;
-    private final ExpressionBase _guard;
 
     private final List<ParameterConverter> _parameterConverters = new ArrayList<ParameterConverter>();
     private final JavaBuiltinConverter _returnValueConverter;
     
     public JavaOperation (Method mtd, List<BackendType> parameterTypes, ExpressionBase guard) {
+        super (guard, parameterTypes, false);
+        
         _mtd = mtd;
-        _parameterTypes = parameterTypes;
-        _guard = guard;
         
         for (int i=0; i<mtd.getParameterTypes().length; i++) {
             final ParameterConverter pc = JavaBuiltinConverterFactory.getParameterConverter (mtd.getParameterTypes()[i], i+1);
@@ -58,14 +56,6 @@ public final class JavaOperation implements Function {
         }
         
         _returnValueConverter = JavaBuiltinConverterFactory.getConverter (mtd.getReturnType());
-    }
-
-    public boolean isCached () {
-        return false;
-    }
-    
-    public List<BackendType> getParameterTypes() {
-        return _parameterTypes;
     }
 
     public Object invoke (ExecutionContext ctx, Object[] params) {
@@ -94,10 +84,6 @@ public final class JavaOperation implements Function {
             ErrorHandler.handle (e);
             return null; // just for the compiler - this is never executed
         }
-    }
-    
-    public ExpressionBase getGuard () {
-    	return _guard;
     }
 }
 

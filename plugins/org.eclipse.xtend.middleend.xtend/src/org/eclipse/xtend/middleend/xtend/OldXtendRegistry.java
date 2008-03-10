@@ -10,28 +10,18 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xtend;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.eclipose.xtend.middleend.MiddleEnd;
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
-import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
-import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.plugins.ImportedResource;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
+import org.eclipse.xtend.middleend.plugins.ParsedResource;
 import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtend.CheckConverter;
@@ -52,32 +42,6 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
     
     private BackendTypesystem _ts;
 
-    private final Cache<String, FunctionDefContextInternal> _functionDefContexts = new Cache<String, FunctionDefContextInternal> () {
-        @Override
-        protected FunctionDefContextInternal create (String compilationUnit) {
-            return _middleEnd.createEmptyFdc();
-        }
-    };
-
-    
-    /**
-     * all functions actually defined in a given compilation unit
-     */
-    private final Map<String, List<NamedFunction>> _definedFunctionsByResource = new HashMap <String, List<NamedFunction>>();
-    
-    /**
-     * all functions exported by a compilation unit, i.e. those functions visible to others that import it
-     */
-    private final Map<String, List<NamedFunction>> _exportedFunctionsByResource = new HashMap <String, List<NamedFunction>>();
-
-    /**
-     * all locally defined functions that are exported by a compilation unit. This is an artifact to cleanly handle
-     * reexports.
-     */
-    private final Map<String, List<NamedFunction>> _locallyExportedFunctionsByResource = new HashMap <String, List<NamedFunction>>();
-
-    private final Map<String, List<AroundAdvice>> _advice = new HashMap<String, List<AroundAdvice>> ();
-
     
     /**
      * the specificData field contains an ExecutionContext initialized with the MetaModels and the file encoding
@@ -95,19 +59,26 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
     }
     
     
-    private FunctionDefContextInternal getFunctionDefContext (String xtendName) {
-        return _functionDefContexts.get (OldHelper.normalizeXtendResourceName (xtendName));
+    public boolean canHandle (String resourceName) {
+        resourceName = OldHelper.normalizeXtendResourceName (resourceName);
+        
+        try {
+            final ExtensionFile extensionFile = (ExtensionFile) _ctx.getResourceManager().loadResource (resourceName, XtendFile.FILE_EXTENSION);
+            return extensionFile != null;
+        }
+        catch (Exception exc) {
+            return false;
+        }
+    }
+
+    public String getName () {
+        return "Xtend";
     }
     
-    
-    /**
-     * parses and converts an Xtend file and all other files it depends on.
-     */
-    public void registerExtensionFile (String xtendFile) {
-        xtendFile = OldHelper.normalizeXtendResourceName (xtendFile);
+    public ParsedResource parseResource (String xtendFile) {
+        final ParsedResource result = new ParsedResource ();
         
-        if (_definedFunctionsByResource.containsKey (xtendFile))
-            return;
+        xtendFile = OldHelper.normalizeXtendResourceName (xtendFile);
         
         final ExtensionFile extensionFile = (ExtensionFile) _ctx.getResourceManager().loadResource (xtendFile, XtendFile.FILE_EXTENSION);
         if (extensionFile == null)
@@ -121,104 +92,26 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
         for (Extension ext: extensionFile.getExtensions())
             ext.init (ctx);
         
-        final List<NamedFunction> defined = new ArrayList<NamedFunction>();
-        final List<NamedFunction> exported = new ArrayList<NamedFunction>();
-        
-        final FunctionDefContextInternal fdc = getFunctionDefContext (xtendFile);
-
         // register the XtendLib. Do this first so the extension can override functions
-        for (NamedFunction f: new XtendLibContributor (_middleEnd).getContributedFunctions())
-            fdc.register (f, false);
+        result.getPrivateFunctions().addAll (new XtendLibContributor (_middleEnd).getContributedFunctions());
         
-        fdc.register (new CheckConverter (ctx, typeConverter).createCheckFunction(_ts, fdc, extensionFile), false);
+        result.getPrivateFunctions().add (new CheckConverter (ctx, typeConverter).createCheckFunction(_ts, extensionFile));
         
         for (Extension ext: extensionFile.getExtensions()) {
-            final NamedFunction f = extensionFactory.create (ext, fdc);
-
-            defined.add(f);
-            
-            if (!ext.isPrivate())
-                exported.add (f);
+            final NamedFunction f = extensionFactory.createUnregistered (ext);
+            if (ext.isPrivate())
+                result.getPrivateFunctions().add (f);
+            else
+                result.getPublicFunctions().add (f);
         }
         
-        _definedFunctionsByResource.put (xtendFile, defined);
-        _exportedFunctionsByResource.put (xtendFile, exported);
-        _locallyExportedFunctionsByResource.put (xtendFile, new ArrayList<NamedFunction> (exported));
-        
-        // make sure all imported resources are registered as well
-        for (String imported: extensionFile.getImportedExtensions())
-            registerExtensionFile (imported);
+        for (ImportStatement imp: extensionFile.getExtImports())
+            result.getImports().add (new ImportedResource (OldHelper.normalizeXtendResourceName (imp.getImportedId().getValue()), imp.isExported()));
 
-        // make all imported extensions visible for the scope of this compilation unit
-        for (String importedResource: extensionFile.getImportedExtensions()) {
-            for (NamedFunction f: _locallyExportedFunctionsByResource.get (OldHelper.normalizeXtendResourceName (importedResource)))
-                fdc.register (f, false);
-        }
-
-        final Set<String> visitedForReexport = new HashSet<String>();
-        visitedForReexport.add (xtendFile);
-        final List<NamedFunction> reexported = new ArrayList<NamedFunction>();
-        getReexported (xtendFile, reexported, visitedForReexport, new HashSet<String>());
-        
-        for (NamedFunction f: reexported) {
-            exported.add (f);
-            fdc.register (f, true);
-        }
-
-        final List<AroundAdvice> advice = new ArrayList<AroundAdvice> ();
-        _advice.put (xtendFile, advice);
         for (Around a: extensionFile.getArounds())
-            advice.add (extensionFactory.create (a, fdc));
-    }
-    
-    private void getReexported (String xtendFile, Collection<NamedFunction> result, Set<String> harvestedCompilationUnits, Set<String> processedCompilationUnits) {
-        xtendFile = OldHelper.normalizeXtendResourceName (xtendFile);
+            result.getAdvice().add(extensionFactory.create (a));
         
-        if (processedCompilationUnits.contains (xtendFile))
-            return;
-        processedCompilationUnits.add (xtendFile);
-        
-        if (! harvestedCompilationUnits.contains (xtendFile)) {
-            for (NamedFunction f: _locallyExportedFunctionsByResource.get(xtendFile))
-                result.add (f);
-            
-            harvestedCompilationUnits.add (xtendFile);
-        }
-        
-        final ExtensionFile file = (ExtensionFile) _ctx.getResourceManager().loadResource (xtendFile, XtendFile.FILE_EXTENSION);
-        for (ImportStatement imp: file.getExtImports()) {
-            if (imp.isExported())
-                getReexported (imp.getImportedId().getValue(), result, harvestedCompilationUnits, processedCompilationUnits);
-        }
-    }
-    
-    public boolean canHandle (String resourceName) {
-        resourceName = OldHelper.normalizeXtendResourceName (resourceName);
-        
-        if (_definedFunctionsByResource.containsKey (resourceName))
-            return true;
-        
-        try {
-            final ExtensionFile extensionFile = (ExtensionFile) _ctx.getResourceManager().loadResource (resourceName, XtendFile.FILE_EXTENSION);
-            return extensionFile != null;
-        }
-        catch (Exception exc) {
-            return false;
-        }
-    }
-
-    public FunctionDefContext getContributedFunctions (String xtendFile) {
-        registerExtensionFile (xtendFile);
-        return getFunctionDefContext(xtendFile);
-    }
-    
-    public List<AroundAdvice> getContributedAdvice (String resourceName) {
-        registerExtensionFile (resourceName);
-        return _advice.get (OldHelper.normalizeXtendResourceName (resourceName));
-    }
-
-    public String getName () {
-        return "Xtend";
+        return result;
     }
 }
 

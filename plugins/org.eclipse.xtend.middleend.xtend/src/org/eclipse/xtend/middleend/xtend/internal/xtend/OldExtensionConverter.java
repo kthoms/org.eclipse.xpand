@@ -25,13 +25,11 @@ import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.expr.CreateCachedExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
-import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -56,30 +54,21 @@ public final class OldExtensionConverter {
         _typeConverter = typeConverter;
     }
     
-    public AroundAdvice create (Around around, FunctionDefContext fdc) {
+    public AroundAdvice create (Around around) {
         final OldExpressionConverter exprConv = new OldExpressionConverter (_ctx, _typeConverter, "<around>");
         final ExpressionBase body = convertExpression (around.getExpression(), exprConv.getAdviceLocalVarNames(), exprConv.getAdviceLocalVarTypes(_ctx), "<around>");
-        return exprConv.convertAdvice (body, around.getPointCut().getValue(), around.getParams(), around.isWildparams(), fdc);
+        return exprConv.convertAdvice (body, around.getPointCut().getValue(), around.getParams(), around.isWildparams());
     }    
     
-    /**
-     * converts an extension to a function, taking care of mutual registration with its fdc
-     */
-    public NamedFunction create (Extension extension, FunctionDefContextInternal fdc) {
-        final NamedFunction result = new NamedFunction (extension.getName(), createUnregistered (extension, fdc));
-        fdc.register (result, !extension.isPrivate());
-        return result;
-    }
-
-    private Function createUnregistered (Extension extension, FunctionDefContextInternal fdc) {
+    public NamedFunction createUnregistered (Extension extension) {
         if (extension instanceof JavaExtensionStatement)
-            return createJavaExtension ((JavaExtensionStatement) extension);
+            return new NamedFunction (extension.getName(), createJavaExtension ((JavaExtensionStatement) extension));
         
         if (extension instanceof ExpressionExtensionStatement)
-            return createExpressionExtension ((ExpressionExtensionStatement) extension, fdc);
+            return new NamedFunction (extension.getName(), createExpressionExtension ((ExpressionExtensionStatement) extension));
         
         if (extension instanceof CreateExtensionStatement)
-            return createCreateExtension ((CreateExtensionStatement) extension, fdc);
+            return new NamedFunction (extension.getName(), createCreateExtension ((CreateExtensionStatement) extension));
         
         throw new IllegalArgumentException ("unsupported extension type " + extension.getClass().getName());
     }
@@ -104,12 +93,12 @@ public final class OldExtensionConverter {
         return exprConverter.convert (expr);
     }
     
-    private Function createExpressionExtension (ExpressionExtensionStatement extension, FunctionDefContext fdc) {
+    private Function createExpressionExtension (ExpressionExtensionStatement extension) {
         return new SourceDefinedFunction (extension.getName(), extension.getParameterNames(), getParameterTypes (extension), // 
-                fdc, convertExpression (extension.getExpression(), extension.getParameterNames(), extension.getParameterTypes(), extension.getName ()), extension.isCached(), null);
+                convertExpression (extension.getExpression(), extension.getParameterNames(), extension.getParameterTypes(), extension.getName ()), extension.isCached(), null);
     }
     
-    private Function createCreateExtension (CreateExtensionStatement extension, FunctionDefContext fdc) {
+    private Function createCreateExtension (CreateExtensionStatement extension) {
         final Type createdType = _ctx.getTypeForName (extension.getReturnTypeIdentifier().getValue());
         final List<ExpressionBase> paramExprs = new ArrayList<ExpressionBase> ();
         for (String varName: extension.getParameterNames())
@@ -119,7 +108,7 @@ public final class OldExtensionConverter {
         final ExpressionBase createExpr = new CreateCachedExpression (_typeConverter.convertToBackendType(createdType), paramExprs, OldExpressionConverter.getSourcePos (extension, extension.getName()));
         final ExpressionBase createWrapper = new NewLocalVarDefExpression (SyntaxConstants.THIS, createExpr, body, OldExpressionConverter.getSourcePos (extension, extension.getName ()));
         
-        return new SourceDefinedFunction (extension.getName(), extension.getParameterNames(), getParameterTypes(extension), fdc, createWrapper, true, null);
+        return new SourceDefinedFunction (extension.getName(), extension.getParameterNames(), getParameterTypes(extension), createWrapper, true, null);
     }
     
     private Function createJavaExtension (JavaExtensionStatement extension) {

@@ -15,47 +15,34 @@ import java.util.List;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.LocalVarContext;
+import org.eclipse.xtend.backend.functions.AbstractFunction;
 
 
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class Closure implements Function {
+public final class Closure extends AbstractFunction {
     private final LocalVarContext _lvcAtDefinitionTime;
     private final FunctionDefContext _fdcAtDefinitionTime;
 
     private final List<String> _paramNames;
-    private final List<? extends BackendType> _paramTypes;
     private final ExpressionBase _def;
     
     public Closure (LocalVarContext lvcAtDefinitionTime, FunctionDefContext fdcAtDefinitionTime, List<String> paramNames, List<? extends BackendType> paramTypes, ExpressionBase def) {
+        super (null, paramTypes, false);
+        
         //freeze local variables at definition time so they will be available in a different context at evaluation time
         _lvcAtDefinitionTime = new LocalVarContext();
         _lvcAtDefinitionTime.getLocalVars().putAll (lvcAtDefinitionTime.getLocalVars());
 
         _fdcAtDefinitionTime = fdcAtDefinitionTime;
         _paramNames = paramNames;
-        _paramTypes = paramTypes;
         _def = def;
     }
-
-    public String getName () {
-        return "<Closure>";
-    }
     
-    
-    public boolean isCached () {
-        return false;
-    }
-    
-    public List<? extends BackendType> getParameterTypes() {
-        return _paramTypes;
-    }
-
     public Object invoke (ExecutionContext ctx, Object[] params) {
         if (_fdcAtDefinitionTime == ctx.getFunctionDefContext())
             return invokeWithExistingFdc (ctx, params);
@@ -87,8 +74,14 @@ public final class Closure implements Function {
             ctx.setLocalVarContext(oldLvc);
         }
     }
-
-	public ExpressionBase getGuard() {
-		return null;
-	}
+    
+    @Override
+    public void setFunctionDefContext (FunctionDefContext fdc) {
+        throw new UnsupportedOperationException ();
+    }
+    
+    @Override
+    public FunctionDefContext getFunctionDefContext () {
+        return _fdcAtDefinitionTime;
+    }
 }

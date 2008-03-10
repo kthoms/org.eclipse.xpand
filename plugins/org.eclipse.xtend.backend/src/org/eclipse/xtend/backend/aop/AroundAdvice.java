@@ -23,7 +23,7 @@ import org.eclipse.xtend.backend.common.SyntaxConstants;
 public final class AroundAdvice {
     private final ExpressionBase _body;
     private final Pointcut _pointcut;
-    private final FunctionDefContext _fdc;
+    private FunctionDefContext _fdc;
     
     private final boolean _isCacheable;
     
@@ -35,11 +35,10 @@ public final class AroundAdvice {
      *         will be cached iff all advice wrapped by it, and the originally wrapped function, 
      *         are cacheable or cached, respectively.
      */
-    public AroundAdvice (ExpressionBase body, Pointcut pointcut, boolean isCacheable, FunctionDefContext fdc) {
+    public AroundAdvice (ExpressionBase body, Pointcut pointcut, boolean isCacheable) {
         _body = body;
         _pointcut = pointcut;
         _isCacheable = isCacheable;
-        _fdc = fdc;
     }
 
     /**
@@ -65,6 +64,10 @@ public final class AroundAdvice {
         }
     }
 
+    public void setFunctionDefContext (FunctionDefContext fdc) {
+        _fdc = fdc;
+    }
+    
     public Pointcut getPointcut () {
         return _pointcut;
     }

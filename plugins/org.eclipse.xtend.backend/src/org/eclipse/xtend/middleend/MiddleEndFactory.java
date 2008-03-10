@@ -8,14 +8,15 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipose.xtend.middleend;
+package org.eclipse.xtend.middleend;
 
 import java.util.List;
 import java.util.Map;
 
-import org.eclipose.xtend.middleend.internal.Activator;
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.middleend.internal.Activator;
+import org.eclipse.xtend.middleend.internal.MiddleEndImpl;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 
 
 /**
@@ -31,7 +32,7 @@ public final class MiddleEndFactory {
      *  OSGi.
      */
     public static MiddleEnd create (BackendTypesystem ts, List<LanguageSpecificMiddleEnd> languageHandlers) {
-        return new MiddleEnd (ts, languageHandlers);
+        return new MiddleEndImpl (ts, languageHandlers);
     }
     
     /**
@@ -42,7 +43,7 @@ public final class MiddleEndFactory {
      *  The key must be the class implementing the LanguageSpecificMiddleEnd interface
      *  and contributed via the extension point.
      */
-    public static MiddleEnd create (BackendTypesystem ts, Map<Class<?>, Object> specificParams) {
-        return new MiddleEnd (ts, Activator.getInstance().getFreshMiddleEnds (specificParams));
+    public static MiddleEnd createFromExtensions (BackendTypesystem ts, Map<Class<?>, Object> specificParams) {
+        return new MiddleEndImpl (ts, Activator.getInstance().getFreshMiddleEnds (specificParams));
     }
 }

@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipose.xtend.middleend.internal;
+package org.eclipse.xtend.middleend.internal;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,10 +18,10 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEndFactory;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.RegistryFactory;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEndFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 

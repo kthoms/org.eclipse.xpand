@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipose.xtend.middleend.plugins;
+package org.eclipse.xtend.middleend.plugins;
 
 
 /**

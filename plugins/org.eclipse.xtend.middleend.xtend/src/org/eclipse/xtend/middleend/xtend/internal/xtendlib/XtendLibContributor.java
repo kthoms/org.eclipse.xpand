@@ -14,9 +14,9 @@ import static org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContr
 
 import java.util.Collection;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.DuplicateAwareNamedFunctionCollection;
+import org.eclipse.xtend.middleend.MiddleEnd;
 
 
 /**

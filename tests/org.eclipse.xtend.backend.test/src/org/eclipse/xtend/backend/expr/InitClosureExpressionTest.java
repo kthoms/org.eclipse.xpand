@@ -24,6 +24,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.StringType;
@@ -77,22 +78,9 @@ public class InitClosureExpressionTest {
         final BackendTypesystem ts = new CompositeTypesystem ();
         
         final FunctionDefContextInternal fdc = createEmptyFdc (ts);
-        fdc.register (new NamedFunction ("myFunction", new Function () {
-
-            public ExpressionBase getGuard () {
-                return null;
-            }
-
-            public List<? extends BackendType> getParameterTypes () {
-                return new ArrayList<BackendType>();
-            }
-
+        fdc.register (new NamedFunction ("myFunction", new AbstractFunction (null, new ArrayList<BackendType> (), false) {
             public Object invoke (ExecutionContext ctx, Object[] params) {
                 return "myResult";
-            }
-
-            public boolean isCached () {
-                return false;
             }
         }), true);
         

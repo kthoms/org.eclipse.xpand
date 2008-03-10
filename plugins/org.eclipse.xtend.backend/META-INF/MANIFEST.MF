@@ -3,10 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Backend Plug-in (Incubation)
 Bundle-SymbolicName: org.eclipse.xtend.backend;singleton:=true
 Bundle-Version: 0.7.0
-Export-Package: org.eclipose.xtend.middleend,
- org.eclipose.xtend.middleend.internal;x-internal:=true,
- org.eclipose.xtend.middleend.plugins,
- org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
+Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.aop,
  org.eclipse.xtend.backend.aop.internal;x-internal:=true,
  org.eclipse.xtend.backend.common,
@@ -22,11 +19,14 @@ Export-Package: org.eclipose.xtend.middleend,
  org.eclipse.xtend.backend.types.emf.internal;x-internal:=true,
  org.eclipse.xtend.backend.types.java.internal;x-internal:=true,
  org.eclipse.xtend.backend.util,
- org.eclipse.xtend.middleend.javaannotations
+ org.eclipse.xtend.middleend,
+ org.eclipse.xtend.middleend.internal;x-internal:=true,
+ org.eclipse.xtend.middleend.javaannotations,
+ org.eclipse.xtend.middleend.plugins
 Require-Bundle: org.apache.commons.logging,
  org.eclipse.emf.ecore,
  org.eclipse.osgi,
  org.eclipse.equinox.registry,
  org.eclipse.emf.mwe.core
 Eclipse-LazyStart: true
-Bundle-Activator: org.eclipose.xtend.middleend.internal.Activator
+Bundle-Activator: org.eclipse.xtend.middleend.internal.Activator

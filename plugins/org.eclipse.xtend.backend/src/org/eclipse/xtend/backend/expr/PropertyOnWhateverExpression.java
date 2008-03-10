@@ -20,6 +20,9 @@ import org.eclipse.xtend.backend.syslib.CollectionOperations;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
 
 
+//TODO refactor: middle ends only use this, and a subsequent step differentiates / optimizes to the other two
+
+
 /**
  * This class deals with the case where the middle end can not decide statically whether
  *  a property is to be resolved on a single object or on a collection

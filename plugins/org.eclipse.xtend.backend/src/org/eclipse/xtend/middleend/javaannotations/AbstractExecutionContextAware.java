@@ -25,6 +25,8 @@ public abstract class AbstractExecutionContextAware implements ExecutionContextA
         _ctx = ctx;
     }
     
+    //TODO add "invoke" method - and rename this to AbstractJavaDefinedFunctions, with implementations for the import methods as well
+    
     protected ExecutionContext getExecutionContext () {
         return _ctx;
     }

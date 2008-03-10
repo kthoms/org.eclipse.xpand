@@ -17,6 +17,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
 
 
 /**
@@ -70,5 +71,13 @@ final class CurriedFunction implements Function {
 
     public boolean isCached () {
         return false;
+    }
+
+    public FunctionDefContext getFunctionDefContext () {
+        return _inner.getFunctionDefContext();
+    }
+
+    public void setFunctionDefContext (FunctionDefContext fdc) {
+        throw new UnsupportedOperationException ();
     }
 }

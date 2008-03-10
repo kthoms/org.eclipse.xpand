@@ -23,6 +23,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.StaticProperty;
@@ -175,6 +176,14 @@ public abstract class AbstractType implements BackendType {
         public boolean isCached () {
             return false;
         }
+
+        public FunctionDefContext getFunctionDefContext () {
+            return null;
+        }
+
+        public void setFunctionDefContext (FunctionDefContext fdc) {
+            throw new UnsupportedOperationException ();
+        }
     }
     
     private class GetterOperation implements Function {
@@ -200,6 +209,14 @@ public abstract class AbstractType implements BackendType {
         
         public boolean isCached () {
             return false;
+        }
+        
+        public FunctionDefContext getFunctionDefContext () {
+            return null;
+        }
+
+        public void setFunctionDefContext (FunctionDefContext fdc) {
+            throw new UnsupportedOperationException ();
         }
     }
 }

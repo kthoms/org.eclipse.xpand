@@ -114,7 +114,6 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     	}
     	
     	return ctx.getAdviceContext().getAdvice (functionName, f).evaluate(ctx, params);
-//    	return ctx.getFunctionInvoker().invoke (ctx, f, params);
     }
 
     /**

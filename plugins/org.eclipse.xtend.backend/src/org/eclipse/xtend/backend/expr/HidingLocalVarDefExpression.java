@@ -16,6 +16,9 @@ import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.StacktraceEntry;
 
 
+//TODO refactor: middle ends only use this, and a subsequent step differentiates / optimizes to NewLocalVarExpression
+
+
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)

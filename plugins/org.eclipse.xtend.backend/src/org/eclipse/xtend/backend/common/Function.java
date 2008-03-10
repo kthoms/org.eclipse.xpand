@@ -14,7 +14,6 @@ import java.util.List;
 
 
 /**
- * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public interface Function {
@@ -28,4 +27,7 @@ public interface Function {
     
     /** returns the expression that guards this function - or null, if there is no guard.*/
     ExpressionBase getGuard();
+    
+    FunctionDefContext getFunctionDefContext ();
+    void setFunctionDefContext (FunctionDefContext fdc);
 }

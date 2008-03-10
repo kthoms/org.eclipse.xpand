@@ -24,7 +24,7 @@ import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.Helpers;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
-import org.eclipse.xtend.middleend.javaannotations.M2tHidden;
+import org.eclipse.xtend.middleend.javaannotations.M2tNoFunction;
 
 
 /**
@@ -350,7 +350,7 @@ public final class CollectionOperations extends AbstractExecutionContextAware {
     // helpers
     ///////////////////////////////////
     
-    @M2tHidden
+    @M2tNoFunction
     public static void addFlattened (Collection<Object> coll, Object newEl) {
         if (newEl instanceof Collection)
             coll.addAll ((Collection<?>) newEl);
@@ -358,7 +358,7 @@ public final class CollectionOperations extends AbstractExecutionContextAware {
             coll.add (newEl);
     }
     
-    @M2tHidden
+    @M2tNoFunction
     public static Collection<Object> createMatchingCollection (Collection<?> coll) {
         if (coll instanceof List)
             return new ArrayList<Object>();

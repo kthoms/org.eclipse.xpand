@@ -40,7 +40,6 @@ import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
@@ -53,7 +52,6 @@ import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
 import org.eclipse.xtend.backend.expr.SequenceExpression;
-import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
@@ -92,7 +90,7 @@ public final class OldDefinitionConverter {
     }
     
     
-    public AroundAdvice create (Advice a, Set<XpandDefinitionName> referencedDefinitions, FunctionDefContext fdc) {
+    public AroundAdvice create (Advice a, Set<XpandDefinitionName> referencedDefinitions) {
         final XpandExecutionContext oldCtx = _ctx;
         
         try {
@@ -106,33 +104,24 @@ public final class OldDefinitionConverter {
                 _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (localVarNames.get(i), localVarTypes.get(i)));
         
             final ExpressionBase body = convertStatementSequence (a.getBody(), a, referencedDefinitions);
-            return exprConv.convertAdvice (body, a.getName(), Arrays.asList (a.getParams()), a.isWildcardParams(), fdc);
+            return exprConv.convertAdvice (body, a.getName(), Arrays.asList (a.getParams()), a.isWildcardParams());
         }
         finally {
             _ctx = oldCtx;
         }
     }
     
-    /**
-     * converts an extension to a function, taking care of mutual registration with its fdc
-     */
-    public NamedFunction create (XpandDefinition def, FunctionDefContextInternal fdc, Set<XpandDefinitionName> referencedDefinitions) {
-        final NamedFunction result = createUnregistered (def, fdc, referencedDefinitions);
-        fdc.register (result, true);
-        return result;
-    }
-
-    private NamedFunction createUnregistered (XpandDefinition def, FunctionDefContextInternal fdc, Set<XpandDefinitionName> referencedDefinitions) {
+    public NamedFunction createUnregistered (XpandDefinition def, Set<XpandDefinitionName> referencedDefinitions) {
         if (def instanceof Definition) {
             final String canonicalName = new XpandDefinitionName (def).getCanonicalDefinitionName();
-            return new NamedFunction (canonicalName, createNormalDefinition ((Definition) def, fdc, referencedDefinitions));
+            return new NamedFunction (canonicalName, createNormalDefinition ((Definition) def, referencedDefinitions));
         }
         
         throw new IllegalArgumentException ("unsupported definition type " + def.getClass().getName());
     }
 
     
-    private Function createNormalDefinition (Definition def, FunctionDefContext fdc, Set<XpandDefinitionName> referencedDefinitions) {
+    private Function createNormalDefinition (Definition def, Set<XpandDefinitionName> referencedDefinitions) {
         final XpandExecutionContext oldCtx = _ctx;
         
         try {
@@ -151,7 +140,7 @@ public final class OldDefinitionConverter {
                 paramTypes.add (_typeConverter.convertToBackendType (pt));
             }
 
-            return new SourceDefinedFunction (def.getName(), paramNames, paramTypes, fdc, convertStatementSequence (def.getBody(), def, referencedDefinitions), false, null);
+            return new SourceDefinedFunction (def.getName(), paramNames, paramTypes, convertStatementSequence (def.getBody(), def, referencedDefinitions), false, null);
         }
         finally {
             _ctx = oldCtx;

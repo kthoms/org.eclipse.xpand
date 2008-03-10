@@ -15,8 +15,7 @@ import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
-import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
 
@@ -24,27 +23,16 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-final class JavaExtensionFunction implements Function {
+final class JavaExtensionFunction extends AbstractFunction {
     private final Method _mtd;
-    private final boolean _cached;
-    private final List<? extends BackendType> _paramTypes;
 
     public JavaExtensionFunction (Method mtd, boolean cached, List<? extends BackendType> paramTypes) {
+        super (null, paramTypes, cached);
         _mtd = mtd;
-        _cached = cached;
-        _paramTypes = paramTypes;
     }
     
-    public ExpressionBase getGuard () {
-        return null;
-    }
-
     public String getName () {
         return _mtd.getName();
-    }
-
-    public List<? extends BackendType> getParameterTypes () {
-        return _paramTypes;
     }
 
     public Object invoke (ExecutionContext ctx, Object[] params) {
@@ -54,9 +42,5 @@ final class JavaExtensionFunction implements Function {
             ErrorHandler.handle(e);
             return null; // to make the compiler happy - this is never executed
         }
-    }
-
-    public boolean isCached () {
-        return _cached;
     }
 }

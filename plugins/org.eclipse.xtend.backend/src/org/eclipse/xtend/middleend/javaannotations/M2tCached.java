@@ -17,11 +17,11 @@ import java.lang.annotation.Target;
 
 
 /**
- * Methods marked with this annotation will not be registered as extensions if their class is registered
+ * Methods marked with this annotation will be cached
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 @Retention (RetentionPolicy.RUNTIME)
 @Target (ElementType.METHOD)
-public @interface M2tHidden {
+public @interface M2tCached {
 }

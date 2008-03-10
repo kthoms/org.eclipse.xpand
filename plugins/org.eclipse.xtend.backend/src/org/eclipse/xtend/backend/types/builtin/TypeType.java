@@ -18,6 +18,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ReflectionHelper;
@@ -70,6 +71,14 @@ public final class TypeType extends AbstractType {
 
             public boolean isCached () {
                 return false;
+            }
+
+            public FunctionDefContext getFunctionDefContext () {
+                return null;
+            }
+
+            public void setFunctionDefContext (FunctionDefContext fdc) {
+                throw new UnsupportedOperationException ();
             }
         });
     }

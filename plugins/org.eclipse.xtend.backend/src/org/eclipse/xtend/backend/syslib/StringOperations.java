@@ -17,7 +17,7 @@ import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Helpers;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
-import org.eclipse.xtend.middleend.javaannotations.M2tHidden;
+import org.eclipse.xtend.middleend.javaannotations.M2tNoFunction;
 
 
 /**
@@ -220,7 +220,7 @@ public final class StringOperations extends AbstractExecutionContextAware {
      * This method is however not itself intended to be published as an extension. It is a helper function, intended to
      *  be used by other extensions.
      */
-    @M2tHidden
+    @M2tNoFunction
     public static CharSequence overridableToString (ExecutionContext ctx, Object o) {
         return Helpers.overridableToString (ctx, o);
     }

@@ -10,8 +10,8 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xtend.plugin;
 
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEndFactory;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEndFactory;
 import org.eclipse.xtend.middleend.xtend.OldXtendRegistry;
 
 

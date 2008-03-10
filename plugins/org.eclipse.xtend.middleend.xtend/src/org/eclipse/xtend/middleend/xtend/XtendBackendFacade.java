@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
-import org.eclipose.xtend.middleend.MiddleEndFactory;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
 import org.eclipse.xtend.backend.BackendFacade;
@@ -29,6 +27,8 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.xtend.internal.OldExpressionConverter;
 import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
@@ -100,8 +100,7 @@ public final class XtendBackendFacade {
         final TypeToBackendType typeConverter = new TypeToBackendType (_middleEnd.getTypesystem(), ctx);
         final ExpressionBase newAst = new OldExpressionConverter (ctx, typeConverter, "<no file>").convert (oldAst);
 
-        final FunctionDefContext fdc = createFdc ();
-        _middleEnd.getExecutionContext().setFunctionDefContext (fdc);
+        _middleEnd.getExecutionContext().setFunctionDefContext (createFdc ());
         //TODO configure isLogStacktrace
         _middleEnd.getExecutionContext().getLocalVarContext().getLocalVars().putAll (localVars);
         _middleEnd.getExecutionContext().getContributionStateContext().storeState (XtendGlobalVarOperations.GLOBAL_VAR_VALUES_KEY, globalVars);
@@ -112,7 +111,7 @@ public final class XtendBackendFacade {
     
     private FunctionDefContext createFdc () {
         if (_xtendFile != null) 
-            return getFunctionDefContext();
+            return _middleEnd.getFunctions (_xtendFile);
 
         final FunctionDefContextInternal result = _middleEnd.createEmptyFdc();
         
@@ -131,7 +130,7 @@ public final class XtendBackendFacade {
     }
         
     public Object invokeXtendFunction (String functionName, Object... parameters) {
-        final FunctionDefContext fdc = getFunctionDefContext();
+        final FunctionDefContext fdc = _middleEnd.getFunctions (_xtendFile);
         final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, _middleEnd.getTypesystem(), true); //TODO configure isLogStacktrace
         return fdc.invoke (ctx, functionName, Arrays.asList (parameters));
     }
@@ -161,13 +160,10 @@ public final class XtendBackendFacade {
         
         _xtendFile = OldHelper.normalizeXtendResourceName (xtendFileName);
         _mms = mms;
-        _middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
+        _middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
     }
-    
-    public FunctionDefContext getFunctionDefContext () {
-        if (_xtendFile == null)
-            return _middleEnd.createEmptyFdc();
 
+    public FunctionDefContext getFunctionDefContext () {
         return _middleEnd.getFunctions (_xtendFile);
     }
 }

@@ -20,7 +20,6 @@ import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
@@ -64,7 +63,7 @@ public final class CheckConverter {
     }
 
     
-    public NamedFunction createCheckFunction (BackendTypesystem ts, FunctionDefContext fdc, ExtensionFile extensionFile) {
+    public NamedFunction createCheckFunction (BackendTypesystem ts, ExtensionFile extensionFile) {
         final OldExpressionConverter exprConv = new OldExpressionConverter (_emptyExecutionContext.cloneWithResource (extensionFile), _typeConverter, OldHelper.normalizeXtendResourceName (extensionFile.getFullyQualifiedName()));
         final List<String> paramNames = Arrays.asList (ISSUES_PARAM_NAME, ALL_OBJECTS_PARAM_NAME);
         final List<BackendType> paramTypes = Arrays.asList (ts.findType (Issues.class), CollectionType.INSTANCE);
@@ -75,7 +74,7 @@ public final class CheckConverter {
         
         final ExpressionBase body = new SequenceExpression (allChecks, exprConv.getSourcePos (extensionFile));
         
-        return new NamedFunction (ALL_CHECKS_FUNCTION_NAME, new SourceDefinedFunction (ALL_CHECKS_FUNCTION_NAME, paramNames, paramTypes, fdc, body, false, null));
+        return new NamedFunction (ALL_CHECKS_FUNCTION_NAME, new SourceDefinedFunction (ALL_CHECKS_FUNCTION_NAME, paramNames, paramTypes, body, false, null));
     }
     
     

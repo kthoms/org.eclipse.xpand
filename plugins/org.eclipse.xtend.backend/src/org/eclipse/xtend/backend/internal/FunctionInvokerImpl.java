@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.FunctionInvoker;
 import org.eclipse.xtend.backend.util.DoubleKeyCache;
 
@@ -27,7 +28,7 @@ public final class FunctionInvokerImpl implements FunctionInvoker {
 	private final DoubleKeyCache <Function, List<?>, Object> _cache = new DoubleKeyCache<Function, List<?>, Object> () {
 		@Override
 		protected Object create (Function f, List<?> params) {
-			final Object result = f.invoke (_ctx, params.toArray());
+			final Object result = invoke (f, _ctx, params);
 			
 			if (result instanceof EfficientLazyString)
 			    ((EfficientLazyString) result).makeImmutable();
@@ -37,14 +38,27 @@ public final class FunctionInvokerImpl implements FunctionInvoker {
 	};
 
 	private ExecutionContext _ctx;
+
+	private Object invoke (Function f, ExecutionContext ctx, List<?> params) {
+	    //TODO optimize for the case when the fdc is == the existing fdc
+	    
+	    final FunctionDefContext oldFdc = ctx.getFunctionDefContext();
+	    ctx.setFunctionDefContext (f.getFunctionDefContext());
+	    try {
+	        return f.invoke(ctx, params.toArray());
+	    }
+	    finally {
+	        ctx.setFunctionDefContext (oldFdc);
+	    }
+	}
 	
 	public Object invoke (ExecutionContext ctx, Function f, List<?> params) {
 		if (f.isCached()) {
 			_ctx = ctx;
-			return _cache.get(f, params);
+			return _cache.get (f, params);
 		}
 		else {
-			return f.invoke(ctx, params.toArray());
+			return invoke (f, ctx, params);
 		}
 	}
 }

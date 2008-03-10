@@ -8,14 +8,17 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipose.xtend.middleend;
+package org.eclipse.xtend.middleend.internal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
@@ -25,7 +28,11 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.internal.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.syslib.SyslibContributor;
+import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor;
+import org.eclipse.xtend.middleend.plugins.ImportedResource;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
+import org.eclipse.xtend.middleend.plugins.ParsedResource;
 
 
 /**
@@ -39,8 +46,11 @@ import org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class MiddleEnd {
-    private static final Log _log = LogFactory.getLog (MiddleEnd.class);
+public final class MiddleEndImpl implements MiddleEnd {
+    private static final Log _log = LogFactory.getLog (MiddleEndImpl.class);
+    
+    private final Map<String, ParsedResource> _parsedResources = new HashMap<String, ParsedResource> ();
+    private final Map<String, FunctionDefContext> _fdcs = new HashMap<String, FunctionDefContext> ();
     
     private final List<LanguageSpecificMiddleEnd> _languageHandlers;
     private final ExecutionContext _ctx;
@@ -58,7 +68,7 @@ public final class MiddleEnd {
      *  The key must be the class implementing the LanguageSpecificMiddleEnd interface
      *  and contributed via the extension point.
      */
-    public MiddleEnd (BackendTypesystem ts, List<LanguageSpecificMiddleEnd> languageHandlers) {
+    public MiddleEndImpl (BackendTypesystem ts, List<LanguageSpecificMiddleEnd> languageHandlers) {
         if (languageHandlers == null)
             languageHandlers = new ArrayList<LanguageSpecificMiddleEnd> ();
         
@@ -88,17 +98,90 @@ public final class MiddleEnd {
         throw new IllegalArgumentException ("no middle end for resource " + resourceName);
     }
     
+    private ParsedResource parseResource (String resourceName) {
+        if (_parsedResources.containsKey (resourceName))
+            return _parsedResources.get (resourceName);
+        
+        final ParsedResource result = findHandler (resourceName).parseResource (resourceName);
+        _parsedResources.put (resourceName, result);
+        
+        final FunctionDefContext fdc = getFdc (resourceName);
+        for (NamedFunction f: result.getPrivateFunctions())
+            f.getFunction().setFunctionDefContext (fdc);
+        for (NamedFunction f: result.getPublicFunctions())
+            f.getFunction().setFunctionDefContext (fdc);
+        for (AroundAdvice advice: result.getAdvice())
+            advice.setFunctionDefContext (fdc);
+        
+        return result;
+    }
+
+    private FunctionDefContext getFdc (String resourceName) {
+        if (_fdcs.containsKey (resourceName))
+            return _fdcs.get (resourceName);
+        
+        final FunctionDefContextInternal result = createEmptyFdc();
+        _fdcs.put (resourceName, result);
+        
+        System.out.println ("*****" + resourceName);
+        final Set<String> reexported = new HashSet<String> (); 
+        collectReexportedResources (reexported, new HashSet<String> (), resourceName);
+        System.out.println ("/////" + resourceName);
+        
+        for (String importedReexp: reexported)
+            for (NamedFunction f: parseResource (importedReexp).getPublicFunctions())
+                result.register (f, true);
+        
+        for (ImportedResource ir: parseResource (resourceName).getImports()) {
+            if (ir.isReexported())
+                continue;
+            
+            for (NamedFunction f: parseResource (ir.getResourceName ()).getPublicFunctions ())
+                result.register (f, false);
+        }
+        
+        for (NamedFunction f: parseResource (resourceName).getPrivateFunctions())
+            result.register(f, false);
+        for (NamedFunction f: parseResource (resourceName).getPublicFunctions())
+            result.register(f, true);
+        
+        _log.debug ("fdc for " + resourceName + ": ");
+        _log.debug ("    reexported: " + reexported);
+        _log.debug ("    public functions: " + result.getPublicFunctions());
+        
+        return result;
+    }
+    
     /**
      * tells this middle end instance to apply the advice in a given resource to all
      *  subsequent invocations. 
      */
     public void applyAdvice (String resourceName) {
-        for (AroundAdvice advice: findHandler(resourceName).getContributedAdvice(resourceName))
+        for (AroundAdvice advice: parseResource (resourceName).getAdvice())
             _ctx.setAdviceContext (_ctx.getAdviceContext().copyWithAdvice (advice));
     }
     
     public FunctionDefContext getFunctions (String resourceName) {
-        return findHandler (resourceName).getContributedFunctions (resourceName);
+        return getFdc (resourceName);
+    }
+
+    private void collectReexportedResources (Set<String> result, Set<String> visited, String curResource) {
+        if (visited.contains (curResource))
+            return;
+        visited.add (curResource);
+        
+        for (ImportedResource candidate: parseResource (curResource).getImports()) {
+            final String candidateName = candidate.getResourceName();
+            
+            if (! candidate.isReexported())
+                continue;
+            
+            if (visited.contains (candidateName))
+                continue;
+            
+            result.add (candidateName);
+            collectReexportedResources (result, visited, candidateName);
+        }
     }
     
     
@@ -117,6 +200,7 @@ public final class MiddleEnd {
         return _ts;
     }
     
+    //TODO make this private?
     public FunctionDefContextInternal createEmptyFdc () {
         final FunctionDefContextInternal result = new FunctionDefContextImpl ();
         

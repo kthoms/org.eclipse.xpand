@@ -69,8 +69,8 @@ public final class OldHelper {
         if (xpandName == null)
             return null;
 
-        if (! xpandName.endsWith("." + XpandUtil.TEMPLATE_EXTENSION))
-            xpandName += "." + XpandUtil.TEMPLATE_EXTENSION;
+        if (xpandName.endsWith("." + XpandUtil.TEMPLATE_EXTENSION))
+            xpandName = xpandName.substring (0, xpandName.length() - XpandUtil.TEMPLATE_EXTENSION.length() - 1);
 
         xpandName = xpandName.replace (SyntaxConstants.NS_DELIM, "/");
         if (xpandName.startsWith ("/"))

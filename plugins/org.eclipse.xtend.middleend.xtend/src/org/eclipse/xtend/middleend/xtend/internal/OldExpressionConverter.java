@@ -46,7 +46,6 @@ import org.eclipse.xtend.backend.aop.ExecutionPointcut;
 import org.eclipse.xtend.backend.aop.Pointcut;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.expr.AndExpression;
@@ -106,14 +105,14 @@ public final class OldExpressionConverter {
     
     private static final AdviceParamType _wildCardParamType = new AdviceParamType (ObjectType.INSTANCE, true);
 
-    public AroundAdvice convertAdvice (ExpressionBase body, String namePattern, List<DeclaredParameter> params, boolean hasVarArgs, FunctionDefContext fdc) {
+    public AroundAdvice convertAdvice (ExpressionBase body, String namePattern, List<DeclaredParameter> params, boolean hasVarArgs) {
         final List <Pair <String, AdviceParamType>> paramTypes = new ArrayList <Pair <String, AdviceParamType>> ();
         for (DeclaredParameter dp: params)
             paramTypes.add (new Pair <String, AdviceParamType> (dp.getName().getValue(), new AdviceParamType (_typeConverter.convertToBackendType (dp.getType()), true)));
 
         final Pointcut pointcut = new ExecutionPointcut (namePattern, paramTypes, hasVarArgs, _wildCardParamType);
 
-        return new AroundAdvice (body, pointcut, false, fdc);
+        return new AroundAdvice (body, pointcut, false);
     }
     
     public ExpressionBase convert (Expression expr) {

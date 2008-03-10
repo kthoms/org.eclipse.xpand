@@ -10,17 +10,16 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.javaannotations;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
-import org.eclipose.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
-import org.eclipse.xtend.backend.aop.AroundAdvice;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
+import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
+import org.eclipse.xtend.middleend.plugins.ParsedResource;
 
 
 /**
@@ -55,21 +54,54 @@ public final class JavaFunctionClassContributor implements LanguageSpecificMiddl
         }
     }
     
-    public List<AroundAdvice> getContributedAdvice (String resourceName) {
-        return new ArrayList<AroundAdvice> (); //TODO add support for advice
-    }
+    public ParsedResource parseResource (String resourceName) {
+        final ParsedResource result = new ParsedResource ();
+        
+        //TODO imports
+        //TODO advice
+        //TODO guards
 
-    public FunctionDefContext getContributedFunctions (String resourceName) {
-        final FunctionDefContextInternal result = _middleEnd.createEmptyFdc();
+        final Class<?> cls = getCls (resourceName);
         
-        //TODO add support for imported resources
-        
-        for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (getCls (resourceName), _middleEnd.getTypesystem()))
-            result.register (new NamedFunction (f.getName(), f), true); //TODO add support for non-public functions
+        for (Method mtd: cls.getDeclaredMethods()) {
+            // register only public methods
+            if (! isPublic (mtd))
+                continue;
+
+            if(isInfrastructureMethod (mtd, cls))
+                continue;
+            
+            if (mtd.getAnnotation (M2tNoFunction.class) != null)
+                continue;
+         
+            final boolean isPublicFunction = (mtd.getAnnotation (M2tPrivateFunction.class) == null);
+            final NamedFunction f = new NamedFunction (mtd.getName(), new JavaDefinedFunction (mtd, null, _middleEnd.getTypesystem()));
+            
+            if (isPublicFunction)
+                result.getPublicFunctions().add (f);
+            else
+                result.getPrivateFunctions().add (f);
+        }
         
         return result;
     }
 
+    private boolean isPublic (Method mtd) {
+        return (mtd.getModifiers() & Modifier.PUBLIC) != 0;
+    }
+    
+    private boolean isInfrastructureMethod (Method mtd, Class<?> cls) {
+        if (ExecutionContextAware.class.isAssignableFrom (cls)) {
+            try {
+                ExecutionContextAware.class.getMethod (mtd.getName(), mtd.getParameterTypes());
+                return true;
+            }
+            catch (NoSuchMethodException e) {
+            }
+        }
+        return false;
+    }
+    
     public String getName () {
         return MIDDLE_END_NAME;
     }

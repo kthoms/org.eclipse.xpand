@@ -8,7 +8,7 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.middleend.javaannotations;
+package org.eclipse.xtend.middleend.javaannotations.internal;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -20,11 +20,13 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
-import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.functions.java.internal.ParameterConverter;
 import org.eclipse.xtend.backend.util.ErrorHandler;
+import org.eclipse.xtend.middleend.javaannotations.ExecutionContextAware;
+import org.eclipse.xtend.middleend.javaannotations.M2tCached;
 
 
 /**
@@ -37,57 +39,19 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class JavaDefinedFunction implements Function {
+public final class JavaDefinedFunction extends AbstractFunction {
     private final Method _mtd;
-    private final List<BackendType> _parameterTypes;
-    private final ExpressionBase _guard;
     private final boolean _isStatic;
-
+    
     private final List<ParameterConverter> _parameterConverters = new ArrayList<ParameterConverter>();
     private final JavaBuiltinConverter _returnValueConverter;
     
-    
-    //TODO move this factory to JavaFunctionClassContributor
-    //TODO separate internal API
-    /**
-     * This is a convenience factory method that creates functions for all public methods for an entire class.
-     */
-    public static List<JavaDefinedFunction> createForEntireClass (Class<?> cls, BackendTypesystem ts) {
-        final List<JavaDefinedFunction> result = new ArrayList<JavaDefinedFunction>();
-        
-        for (Method mtd: cls.getDeclaredMethods()) {
-            // register only public methods
-            if (! isPublic (mtd))
-                continue;
-
-            // do not register infrastructure methods inherited from ExecutionContextAware
-            if (ExecutionContextAware.class.isAssignableFrom (cls)) {
-                try {
-                    ExecutionContextAware.class.getMethod (mtd.getName(), mtd.getParameterTypes());
-                    continue;
-                }
-                catch (NoSuchMethodException e) {
-                }
-            }
-            
-            if (mtd.getAnnotation (M2tHidden.class) != null)
-                continue;
-            
-            result.add (new JavaDefinedFunction (mtd, null, ts));
-        }
-        return result;
-    }
-
-    private static boolean isPublic (Method mtd) {
-        return (mtd.getModifiers() & Modifier.PUBLIC) != 0;
-    }
-
     
     /**
      *  shortcut constructor that attempts to derive the parameter types from the method's signature
      */
     public JavaDefinedFunction (Method mtd, ExpressionBase guard, BackendTypesystem ts) {
-        this (mtd, guessParameterTypes(mtd, ts), guard);
+        this (mtd, guessParameterTypes (mtd, ts), guard);
     }
     
     
@@ -95,9 +59,9 @@ public final class JavaDefinedFunction implements Function {
      * This constructor provides full control
      */
     public JavaDefinedFunction (Method mtd, List<BackendType> parameterTypes, ExpressionBase guard) {
+        super (guard, parameterTypes, mtd.getAnnotation (M2tCached.class) != null);
+        
         _mtd = mtd;
-        _parameterTypes = parameterTypes;
-        _guard = guard;
         
         for (int i=0; i<mtd.getParameterTypes().length; i++) {
             final ParameterConverter pc = JavaBuiltinConverterFactory.getParameterConverter (mtd.getParameterTypes()[i], i);
@@ -141,14 +105,6 @@ public final class JavaDefinedFunction implements Function {
     	return _mtd.getName();
     }
     
-    public boolean isCached () {
-        return false;
-    }
-    
-    public List<BackendType> getParameterTypes() {
-        return _parameterTypes;
-    }
-
     public Object invoke (ExecutionContext ctx, Object[] params) {
         for (ParameterConverter pc: _parameterConverters)
             pc.convert(params);
@@ -175,14 +131,10 @@ public final class JavaDefinedFunction implements Function {
             return null; // to make the compiler happy - this is never executed
         }
     }
-    
-    public ExpressionBase getGuard () {
-    	return _guard;
-    }
 	
 	@Override
 	public String toString () {
-	    return "JavaDefinedFunction '" + getName() + "' " + _parameterTypes;
+	    return "JavaDefinedFunction '" + getName() + "' " + getParameterTypes();
 	}
 }
 

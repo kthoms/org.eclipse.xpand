@@ -10,7 +10,6 @@ Contributors:
  */
 package org.eclipse.xtend.backend.testhelpers;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
@@ -19,6 +18,8 @@ import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.middleend.MiddleEndFactory;
+import org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor;
 
 
 /**
@@ -34,11 +35,15 @@ public class BackendTestHelper {
      */
     public static ExecutionContext createEmptyExecutionContext () {
         final BackendTypesystem ts = new CompositeTypesystem ();
-        return BackendFacade.createExecutionContext (new MiddleEnd (ts, null).createEmptyFdc(), ts, true);
+        return BackendFacade.createExecutionContext (createEmptyFdc (ts), ts, true);
     }
 
     public static FunctionDefContextInternal createEmptyFdc (BackendTypesystem ts) {
-        return new MiddleEnd (ts, null).createEmptyFdc();
+        return (FunctionDefContextInternal) MiddleEndFactory.create (ts, null).getFunctions ("java/lang/Object");
+    }
+    
+    public static FunctionDefContextInternal createFdc (BackendTypesystem ts, Class<?> contributingClass) {
+        return (FunctionDefContextInternal) MiddleEndFactory.create (ts, null).getFunctions (JavaFunctionClassContributor.classAsResource (contributingClass));
     }
     
     public static ExpressionBase createLiteral (Object literal) {

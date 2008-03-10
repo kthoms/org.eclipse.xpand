@@ -10,17 +10,17 @@ Contributors:
  */
 package org.eclipse.xtend.backend.functions;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyFdc;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createFdc;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
-import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.testhelpers.CounterFunction;
 import org.eclipse.xtend.backend.testhelpers.NamedFunctionFactory;
-import org.eclipse.xtend.middleend.javaannotations.JavaDefinedFunction;
 import org.junit.Test;
 
 
@@ -32,18 +32,15 @@ public class FunctionTest {
     @Test public void testCachedAndSingleInstance () {
         final ExecutionContext ctx = createEmptyExecutionContext ();
         
-        final FunctionDefContextInternal fdc = createEmptyFdc (ctx.getTypesystem());
+        final FunctionDefContextInternal fdc = createFdc (ctx.getTypesystem(), CounterFunction.class);
         ctx.setFunctionDefContext (fdc);
-
-        for (JavaDefinedFunction f: JavaDefinedFunction.createForEntireClass (CounterFunction.class, ctx.getTypesystem()))
-            fdc.register (new NamedFunction (f.getName(), f), true);
         
-        fdc.register (new NamedFunctionFactory ("myCached", true) {
+        fdc.register (new NamedFunctionFactory ("myCached", true, fdc) {
             public Object invoke (ExecutionContext innerCtx, Object[] params) {
                 return innerCtx.getFunctionDefContext().invoke (innerCtx, "nextCounterValue", new ArrayList<Object> ());
             }
         }.create(), true);
-        fdc.register (new NamedFunctionFactory ("myUncached", false) {
+        fdc.register (new NamedFunctionFactory ("myUncached", false, fdc) {
             public Object invoke (ExecutionContext innerCtx, Object[] params) {
                 return innerCtx.getFunctionDefContext().invoke (innerCtx, "nextCounterValue", new ArrayList<Object> ());
             }

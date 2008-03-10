@@ -20,6 +20,9 @@ import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.syslib.CollectionOperations;
 
 
+//TODO refactor: middle ends only use this, and a subsequent step differentiates / optimizes to the other two
+
+
 /**
  * This expression invokes a function on the first argument, deciding at runtime whether to do the "collection magic" of
  *  invoking the function on every member of the collection that is the first argument and returning the collection of

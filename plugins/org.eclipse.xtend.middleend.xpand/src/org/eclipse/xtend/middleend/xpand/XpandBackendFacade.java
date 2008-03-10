@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
-import org.eclipose.xtend.middleend.MiddleEndFactory;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.Template;
@@ -38,6 +36,8 @@ import org.eclipse.xtend.backend.syslib.InMemoryPostprocessor;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.syslib.UriBasedPostprocessor;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.xpand.internal.OldDefinitionConverter;
 import org.eclipse.xtend.middleend.xpand.internal.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
@@ -271,7 +271,7 @@ public final class XpandBackendFacade {
             outlets = new ArrayList<Outlet> ();
 
         _xpandFile = OldHelper.normalizeXpandResourceName (xpandFilename);
-        _middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
+        _middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
         
         _fileEncoding = fileEncoding;
         _mms = mms;
@@ -283,9 +283,6 @@ public final class XpandBackendFacade {
     }
     
     public FunctionDefContext getFunctionDefContext () {
-        if (_xpandFile == null)
-            return _middleEnd.createEmptyFdc();
-        
         return _middleEnd.getFunctions (_xpandFile);
     }
 }

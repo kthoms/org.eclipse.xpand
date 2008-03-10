@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionPackage.java,v 1.2 2008/03/07 11:10:31 jkohnlein Exp $
+ * $Id: ExpressionPackage.java,v 1.3 2008/03/10 08:25:35 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression;
 
@@ -116,6 +116,88 @@ public interface ExpressionPackage extends EPackage {
 	int ABSTRACT_EXPRESSION_FEATURE_COUNT = Xpand3Package.SYNTAX_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.expression.impl.BinaryOperationImpl <em>Binary Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.expression.impl.BinaryOperationImpl
+	 * @see org.eclipse.xpand3.expression.impl.ExpressionPackageImpl#getBinaryOperation()
+	 * @generated
+	 */
+	int BINARY_OPERATION = 21;
+
+	/**
+	 * The feature id for the '<em><b>Line</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION__LINE = ABSTRACT_EXPRESSION__LINE;
+
+	/**
+	 * The feature id for the '<em><b>Start</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION__START = ABSTRACT_EXPRESSION__START;
+
+	/**
+	 * The feature id for the '<em><b>End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION__END = ABSTRACT_EXPRESSION__END;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION__FILE_NAME = ABSTRACT_EXPRESSION__FILE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION__LEFT = ABSTRACT_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION__RIGHT = ABSTRACT_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION__OPERATOR = ABSTRACT_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Binary Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATION_FEATURE_COUNT = ABSTRACT_EXPRESSION_FEATURE_COUNT + 3;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.expression.impl.BooleanOperationImpl <em>Boolean Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,7 +214,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION__LINE = ABSTRACT_EXPRESSION__LINE;
+	int BOOLEAN_OPERATION__LINE = BINARY_OPERATION__LINE;
 
 	/**
 	 * The feature id for the '<em><b>Start</b></em>' attribute.
@@ -141,7 +223,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION__START = ABSTRACT_EXPRESSION__START;
+	int BOOLEAN_OPERATION__START = BINARY_OPERATION__START;
 
 	/**
 	 * The feature id for the '<em><b>End</b></em>' attribute.
@@ -150,7 +232,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION__END = ABSTRACT_EXPRESSION__END;
+	int BOOLEAN_OPERATION__END = BINARY_OPERATION__END;
 
 	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -159,7 +241,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION__FILE_NAME = ABSTRACT_EXPRESSION__FILE_NAME;
+	int BOOLEAN_OPERATION__FILE_NAME = BINARY_OPERATION__FILE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -168,7 +250,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION__LEFT = ABSTRACT_EXPRESSION_FEATURE_COUNT + 0;
+	int BOOLEAN_OPERATION__LEFT = BINARY_OPERATION__LEFT;
 
 	/**
 	 * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -177,7 +259,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION__RIGHT = ABSTRACT_EXPRESSION_FEATURE_COUNT + 1;
+	int BOOLEAN_OPERATION__RIGHT = BINARY_OPERATION__RIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' containment reference.
@@ -186,7 +268,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION__OPERATOR = ABSTRACT_EXPRESSION_FEATURE_COUNT + 2;
+	int BOOLEAN_OPERATION__OPERATOR = BINARY_OPERATION__OPERATOR;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Operation</em>' class.
@@ -195,7 +277,7 @@ public interface ExpressionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_OPERATION_FEATURE_COUNT = ABSTRACT_EXPRESSION_FEATURE_COUNT + 3;
+	int BOOLEAN_OPERATION_FEATURE_COUNT = BINARY_OPERATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.expression.impl.CastImpl <em>Cast</em>}' class.
@@ -1588,39 +1670,6 @@ public interface ExpressionPackage extends EPackage {
 	EClass getBooleanOperation();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.expression.BooleanOperation#getLeft <em>Left</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Left</em>'.
-	 * @see org.eclipse.xpand3.expression.BooleanOperation#getLeft()
-	 * @see #getBooleanOperation()
-	 * @generated
-	 */
-	EReference getBooleanOperation_Left();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.expression.BooleanOperation#getRight <em>Right</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Right</em>'.
-	 * @see org.eclipse.xpand3.expression.BooleanOperation#getRight()
-	 * @see #getBooleanOperation()
-	 * @generated
-	 */
-	EReference getBooleanOperation_Right();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.expression.BooleanOperation#getOperator <em>Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Operator</em>'.
-	 * @see org.eclipse.xpand3.expression.BooleanOperation#getOperator()
-	 * @see #getBooleanOperation()
-	 * @generated
-	 */
-	EReference getBooleanOperation_Operator();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.expression.Cast <em>Cast</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2086,6 +2135,49 @@ public interface ExpressionPackage extends EPackage {
 	EReference getCase_ThenPart();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.expression.BinaryOperation <em>Binary Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Binary Operation</em>'.
+	 * @see org.eclipse.xpand3.expression.BinaryOperation
+	 * @generated
+	 */
+	EClass getBinaryOperation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.expression.BinaryOperation#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see org.eclipse.xpand3.expression.BinaryOperation#getLeft()
+	 * @see #getBinaryOperation()
+	 * @generated
+	 */
+	EReference getBinaryOperation_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.expression.BinaryOperation#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see org.eclipse.xpand3.expression.BinaryOperation#getRight()
+	 * @see #getBinaryOperation()
+	 * @generated
+	 */
+	EReference getBinaryOperation_Right();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.expression.BinaryOperation#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operator</em>'.
+	 * @see org.eclipse.xpand3.expression.BinaryOperation#getOperator()
+	 * @see #getBinaryOperation()
+	 * @generated
+	 */
+	EReference getBinaryOperation_Operator();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2126,30 +2218,6 @@ public interface ExpressionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BOOLEAN_OPERATION = eINSTANCE.getBooleanOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOLEAN_OPERATION__LEFT = eINSTANCE.getBooleanOperation_Left();
-
-		/**
-		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOLEAN_OPERATION__RIGHT = eINSTANCE.getBooleanOperation_Right();
-
-		/**
-		 * The meta object literal for the '<em><b>Operator</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference BOOLEAN_OPERATION__OPERATOR = eINSTANCE.getBooleanOperation_Operator();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.expression.impl.CastImpl <em>Cast</em>}' class.
@@ -2540,6 +2608,40 @@ public interface ExpressionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CASE__THEN_PART = eINSTANCE.getCase_ThenPart();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.expression.impl.BinaryOperationImpl <em>Binary Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.expression.impl.BinaryOperationImpl
+		 * @see org.eclipse.xpand3.expression.impl.ExpressionPackageImpl#getBinaryOperation()
+		 * @generated
+		 */
+		EClass BINARY_OPERATION = eINSTANCE.getBinaryOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_OPERATION__LEFT = eINSTANCE.getBinaryOperation_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_OPERATION__RIGHT = eINSTANCE.getBinaryOperation_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINARY_OPERATION__OPERATOR = eINSTANCE.getBinaryOperation_Operator();
 
 	}
 

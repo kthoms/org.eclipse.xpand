@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionSwitch.java,v 1.2 2008/03/07 11:10:58 jkohnlein Exp $
+ * $Id: ExpressionSwitch.java,v 1.3 2008/03/10 08:25:35 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression.util;
 
@@ -99,6 +99,7 @@ public class ExpressionSwitch<T> {
 			case ExpressionPackage.BOOLEAN_OPERATION: {
 				BooleanOperation booleanOperation = (BooleanOperation)theEObject;
 				T result = caseBooleanOperation(booleanOperation);
+				if (result == null) result = caseBinaryOperation(booleanOperation);
 				if (result == null) result = caseAbstractExpression(booleanOperation);
 				if (result == null) result = caseSyntaxElement(booleanOperation);
 				if (result == null) result = defaultCase(theEObject);
@@ -260,6 +261,14 @@ public class ExpressionSwitch<T> {
 				Case case_ = (Case)theEObject;
 				T result = caseCase(case_);
 				if (result == null) result = caseSyntaxElement(case_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionPackage.BINARY_OPERATION: {
+				BinaryOperation binaryOperation = (BinaryOperation)theEObject;
+				T result = caseBinaryOperation(binaryOperation);
+				if (result == null) result = caseAbstractExpression(binaryOperation);
+				if (result == null) result = caseSyntaxElement(binaryOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -579,6 +588,21 @@ public class ExpressionSwitch<T> {
 	 * @generated
 	 */
 	public T caseCase(Case object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBinaryOperation(BinaryOperation object) {
 		return null;
 	}
 

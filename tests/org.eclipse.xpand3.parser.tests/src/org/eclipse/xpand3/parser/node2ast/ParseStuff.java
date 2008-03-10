@@ -18,13 +18,13 @@ public class ParseStuff {
 	 * @throws RecognitionException
 	 */
 	public static void main(String[] args) throws RecognitionException {
-		useNodeParser = false;
-		checkFor(1);
-		checkFor(10);
-		checkFor(100);
-		checkFor(1000);
-		checkFor(5000);
-		checkFor(50000);
+		// useNodeParser = false;
+		// checkFor(1);
+		// checkFor(10);
+		// checkFor(100);
+		// checkFor(1000);
+		// checkFor(5000);
+		// checkFor(50000);
 		useNodeParser = true;
 		checkFor(1);
 		checkFor(10);

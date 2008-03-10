@@ -11,7 +11,7 @@ import org.eclipse.xpand3.Xpand3Factory;
 import org.eclipse.xpand3.declaration.DeclarationFactory;
 import org.eclipse.xpand3.declaration.Extension;
 import org.eclipse.xpand3.expression.AbstractExpression;
-import org.eclipse.xpand3.expression.BooleanOperation;
+import org.eclipse.xpand3.expression.BinaryOperation;
 import org.eclipse.xpand3.expression.ExpressionFactory;
 import org.eclipse.xpand3.expression.FeatureCall;
 import org.eclipse.xpand3.expression.OperationCall;
@@ -173,7 +173,7 @@ public class Node2AstTransformer extends Xpand3nodeSwitch<SyntaxElement> {
 	@Override
 	public SyntaxElement caseRelationalExpressionNode(
 			RelationalExpressionNode ren) {
-		BooleanOperation bo = expressionFactory.createBooleanOperation();
+		BinaryOperation bo = expressionFactory.createBinaryOperation();
 		bo.setLeft((AbstractExpression) doSwitch(ren.getLeftOperand()));
 		bo.setOperator(createIdentifier((LeafNode) ren.getOperator()
 				.getChildren().get(0)));

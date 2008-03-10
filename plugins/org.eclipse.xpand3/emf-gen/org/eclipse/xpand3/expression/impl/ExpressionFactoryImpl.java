@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionFactoryImpl.java,v 1.2 2008/03/07 11:10:36 jkohnlein Exp $
+ * $Id: ExpressionFactoryImpl.java,v 1.3 2008/03/10 08:25:34 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression.impl;
 
@@ -79,6 +79,7 @@ public class ExpressionFactoryImpl extends EFactoryImpl implements ExpressionFac
 			case ExpressionPackage.STRING_LITERAL: return createStringLiteral();
 			case ExpressionPackage.SWITCH_EXPRESSION: return createSwitchExpression();
 			case ExpressionPackage.CASE: return createCase();
+			case ExpressionPackage.BINARY_OPERATION: return createBinaryOperation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -272,6 +273,16 @@ public class ExpressionFactoryImpl extends EFactoryImpl implements ExpressionFac
 	public Case createCase() {
 		CaseImpl case_ = new CaseImpl();
 		return case_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BinaryOperation createBinaryOperation() {
+		BinaryOperationImpl binaryOperation = new BinaryOperationImpl();
+		return binaryOperation;
 	}
 
 	/**

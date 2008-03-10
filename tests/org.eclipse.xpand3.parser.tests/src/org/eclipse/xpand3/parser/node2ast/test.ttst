@@ -15,7 +15,7 @@ expected
 				name=Identifier(value='that')
 				type=Identifier(value='Object')
 			}]
-		body=BooleanOperation{
+		body=BinaryOperation{
 			left=OperationCall {
 				name=Identifier(value="toString")
 				target=FeatureCall {

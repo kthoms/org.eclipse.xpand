@@ -43,7 +43,7 @@ public class TreetestInterpreterTest extends TestCase {
 	}
 
 	public void testTree() throws RecognitionException {
-		test("org/eclipse/xpand3/parser/node2ast/test.tree");
+		test("org/eclipse/xpand3/parser/node2ast/test.ttst");
 	}
 
 	private void test(String testFileName) throws RecognitionException {

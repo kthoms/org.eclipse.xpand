@@ -33,14 +33,7 @@
       nsPrefix="expression">
     <eClassifiers xsi:type="ecore:EClass" name="AbstractExpression" abstract="true"
         eSuperTypes="#//SyntaxElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="BooleanOperation" eSuperTypes="#//expression/AbstractExpression">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//expression/AbstractExpression"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//expression/AbstractExpression"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="operator" eType="#//Identifier"
-          containment="true"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanOperation" eSuperTypes="#//expression/BinaryOperation"/>
     <eClassifiers xsi:type="ecore:EClass" name="Cast" eSuperTypes="#//expression/AbstractExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Identifier"
           containment="true"/>
@@ -122,6 +115,14 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//expression/AbstractExpression"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="thenPart" eType="#//expression/AbstractExpression"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryOperation" eSuperTypes="#//expression/AbstractExpression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//expression/AbstractExpression"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//expression/AbstractExpression"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operator" eType="#//Identifier"
           containment="true"/>
     </eClassifiers>
   </eSubpackages>

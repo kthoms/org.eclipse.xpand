@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionPackageImpl.java,v 1.2 2008/03/07 11:10:35 jkohnlein Exp $
+ * $Id: ExpressionPackageImpl.java,v 1.3 2008/03/10 08:25:34 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression.impl;
 
@@ -19,6 +19,7 @@ import org.eclipse.xpand3.declaration.DeclarationPackage;
 import org.eclipse.xpand3.declaration.impl.DeclarationPackageImpl;
 
 import org.eclipse.xpand3.expression.AbstractExpression;
+import org.eclipse.xpand3.expression.BinaryOperation;
 import org.eclipse.xpand3.expression.BooleanLiteral;
 import org.eclipse.xpand3.expression.BooleanOperation;
 import org.eclipse.xpand3.expression.Case;
@@ -203,6 +204,13 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 	private EClass caseEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass binaryOperationEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -297,33 +305,6 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 	 */
 	public EClass getBooleanOperation() {
 		return booleanOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBooleanOperation_Left() {
-		return (EReference)booleanOperationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBooleanOperation_Right() {
-		return (EReference)booleanOperationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getBooleanOperation_Operator() {
-		return (EReference)booleanOperationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -727,6 +708,42 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBinaryOperation() {
+		return binaryOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinaryOperation_Left() {
+		return (EReference)binaryOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinaryOperation_Right() {
+		return (EReference)binaryOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinaryOperation_Operator() {
+		return (EReference)binaryOperationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExpressionFactory getExpressionFactory() {
 		return (ExpressionFactory)getEFactoryInstance();
 	}
@@ -753,9 +770,6 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 		abstractExpressionEClass = createEClass(ABSTRACT_EXPRESSION);
 
 		booleanOperationEClass = createEClass(BOOLEAN_OPERATION);
-		createEReference(booleanOperationEClass, BOOLEAN_OPERATION__LEFT);
-		createEReference(booleanOperationEClass, BOOLEAN_OPERATION__RIGHT);
-		createEReference(booleanOperationEClass, BOOLEAN_OPERATION__OPERATOR);
 
 		castEClass = createEClass(CAST);
 		createEReference(castEClass, CAST__TYPE);
@@ -819,6 +833,11 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 		caseEClass = createEClass(CASE);
 		createEReference(caseEClass, CASE__CONDITION);
 		createEReference(caseEClass, CASE__THEN_PART);
+
+		binaryOperationEClass = createEClass(BINARY_OPERATION);
+		createEReference(binaryOperationEClass, BINARY_OPERATION__LEFT);
+		createEReference(binaryOperationEClass, BINARY_OPERATION__RIGHT);
+		createEReference(binaryOperationEClass, BINARY_OPERATION__OPERATOR);
 	}
 
 	/**
@@ -853,7 +872,7 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 
 		// Add supertypes to classes
 		abstractExpressionEClass.getESuperTypes().add(theXpand3Package.getSyntaxElement());
-		booleanOperationEClass.getESuperTypes().add(this.getAbstractExpression());
+		booleanOperationEClass.getESuperTypes().add(this.getBinaryOperation());
 		castEClass.getESuperTypes().add(this.getAbstractExpression());
 		chainExpressionEClass.getESuperTypes().add(this.getAbstractExpression());
 		constructorCallExpressionEClass.getESuperTypes().add(this.getAbstractExpression());
@@ -873,14 +892,12 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 		stringLiteralEClass.getESuperTypes().add(this.getLiteral());
 		switchExpressionEClass.getESuperTypes().add(this.getAbstractExpression());
 		caseEClass.getESuperTypes().add(theXpand3Package.getSyntaxElement());
+		binaryOperationEClass.getESuperTypes().add(this.getAbstractExpression());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractExpressionEClass, AbstractExpression.class, "AbstractExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(booleanOperationEClass, BooleanOperation.class, "BooleanOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBooleanOperation_Left(), this.getAbstractExpression(), null, "left", null, 0, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanOperation_Right(), this.getAbstractExpression(), null, "right", null, 0, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanOperation_Operator(), theXpand3Package.getIdentifier(), null, "operator", null, 0, 1, BooleanOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(castEClass, Cast.class, "Cast", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCast_Type(), theXpand3Package.getIdentifier(), null, "type", null, 0, 1, Cast.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -944,6 +961,11 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 		initEClass(caseEClass, Case.class, "Case", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCase_Condition(), this.getAbstractExpression(), null, "condition", null, 0, 1, Case.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCase_ThenPart(), this.getAbstractExpression(), null, "thenPart", null, 0, 1, Case.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(binaryOperationEClass, BinaryOperation.class, "BinaryOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBinaryOperation_Left(), this.getAbstractExpression(), null, "left", null, 0, 1, BinaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryOperation_Right(), this.getAbstractExpression(), null, "right", null, 0, 1, BinaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinaryOperation_Operator(), theXpand3Package.getIdentifier(), null, "operator", null, 0, 1, BinaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //ExpressionPackageImpl

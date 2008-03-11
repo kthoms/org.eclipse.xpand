@@ -15,7 +15,6 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.eclipse.tmf.common.node.CompositeNode;
 import org.eclipse.tmf.common.node.Node;
-import org.eclipse.tmf.common.node.NodeUtil;
 
 /**
  * @author Jan Kšhnlein
@@ -32,7 +31,7 @@ public class StatementParserTest extends AbstractXpand3NodeParserTest {
 		if (rootNode == null) {
 			System.out.println("Nothing parsed.");
 		} else {
-			System.out.println(NodeUtil.toString(rootNode));
+			System.out.println(rootNode.toDebugString());
 		}
 		return (CompositeNode) rootNode;
 	}

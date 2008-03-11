@@ -15,20 +15,21 @@
  */
 package org.eclipse.xpand3.analyzation.typesystem.xpand3;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.xpand3.DeclaredParameter;
 import org.eclipse.xpand3.File;
 import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.ImportStatement;
 import org.eclipse.xpand3.analyzation.DeclarationsContributor;
 import org.eclipse.xpand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.analyzation.TypeSystemFactory;
+import org.eclipse.xpand3.analyzation.typesystem.CompositeTypeSystemImpl;
+import org.eclipse.xpand3.analyzation.typesystem.util.TypeList;
 import org.eclipse.xpand3.ast.AstUtil;
 import org.eclipse.xpand3.declaration.Definition;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xtend.backend.util.Cache;
 /**
  * @author Sven Efftinge
  *
@@ -37,7 +38,7 @@ public class Xpand3ResourceDeclarationsContributor implements
 		DeclarationsContributor {
 	
 	private File file = null;
-	private TypeSystem typeSystem;
+	private TypeSystemFactory typeSystemFactory;
 	
 	/**
 	 * @param file
@@ -46,15 +47,21 @@ public class Xpand3ResourceDeclarationsContributor implements
 		super();
 		this.file = file;
 	}
+	
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.xand3.analyzation.DeclarationsContributor#functionForName(java.lang.String, org.eclipse.xpand3.staticTypesystem.AbstractTypeReference[])
 	 */
 	public DeclaredFunction functionForName(String name,
 			AbstractTypeReference... parameterTypes) {
+		
 		return null;
 	}
 
+	class FunctionSign {
+		String name;
+		TypeList listOfTypes;
+	}
 	/**
 	 * @param def
 	 * @return
@@ -74,25 +81,37 @@ public class Xpand3ResourceDeclarationsContributor implements
 	 */
 	private AbstractTypeReference getTypeRef(Identifier type) {
 		//TODO type Args
-		return typeSystem.typeForName(AstUtil.toString(type));
+		return getTypeSystem().typeForName(AstUtil.toString(type));
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.xand3.analyzation.DeclarationsContributor#getReferencedContributors()
+	private CompositeTypeSystemImpl ts = null;
+	/**
+	 * @return
 	 */
-	public String[] getReferencedContributors() {
-		List<String> imports = new ArrayList<String>();
-		for (ImportStatement is : file.getImports()) {
-			imports.add(AstUtil.toString(is.getImportedId()));
+	private TypeSystem getTypeSystem() {
+		if (ts==null) {
+			ts = new CompositeTypeSystemImpl();
+			ts.addTypeSystem(typeSystemFactory.getTypeSystem(getResourceName()));
+			for (ImportStatement is : file.getImports()) {
+				ts.addTypeSystem(typeSystemFactory.getTypeSystem(is.getImportedId().getValue()));
+			}
+			ts.addTypeSystem(typeSystemFactory.getBuiltInTypeSystem());
 		}
-		return imports.toArray(new String[imports.size()]);
+		return ts;
+	}
+
+	/**
+	 * @return
+	 */
+	private String getResourceName() {
+		return file.getFileName();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.xand3.analyzation.DeclarationsContributor#setTypeSystem(org.eclipse.xand3.analyzation.TypeSystem)
 	 */
-	public void setTypeSystem(TypeSystem ts) {
-		this.typeSystem = ts;
+	public void setTypeSystemFactory(TypeSystemFactory ts) {
+		this.typeSystemFactory = ts;
 	}
 
 	/* (non-Javadoc)

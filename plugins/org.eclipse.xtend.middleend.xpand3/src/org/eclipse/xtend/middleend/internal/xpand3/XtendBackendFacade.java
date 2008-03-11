@@ -16,16 +16,13 @@
 package org.eclipse.xtend.middleend.internal.xpand3;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.eclipose.xtend.middleend.MiddleEnd;
-import org.eclipose.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xpand3.File;
 import org.eclipse.xpand3.analyzation.AnalyzeContext;
-import org.eclipse.xpand3.declaration.Extension;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
-import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.MiddleEndFactory;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 
 /**
  * @author Bernd Kolb
@@ -40,7 +37,7 @@ public class XtendBackendFacade {
 
 	public XtendBackendFacade(String extensionFile) {
 		this.extensionFile = extensionFile;
-		middleEnd = MiddleEndFactory.create(findBackendTypeSystem(), Collections.EMPTY_MAP);
+		middleEnd = MiddleEndFactory.create(findBackendTypeSystem(), Collections.<LanguageSpecificMiddleEnd>emptyList());
 
 		// TODO: To be impl
 		typeConverter = null;

@@ -29,10 +29,13 @@ import org.eclipse.xpand3.staticTypesystem.Type;
  * 
  */
 public class CompositeTypeSystemImpl extends AbstractTypeSystemImpl implements TypeSystem {
-	private List<? extends TypeSystem> delegates = null;
+	private List<TypeSystem> delegates = null;
 	
-	public CompositeTypeSystemImpl(List<? extends TypeSystem> delegates) {
-		this.delegates = delegates;
+	public CompositeTypeSystemImpl() {
+	}
+	
+	public void addTypeSystem(TypeSystem ts) {
+		this.delegates.add(ts);
 	}
 	
 	/*

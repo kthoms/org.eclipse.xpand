@@ -4,7 +4,6 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.eclipse.tmf.common.node.CompositeNode;
 import org.eclipse.tmf.common.node.Node;
-import org.eclipse.tmf.common.node.NodeUtil;
 
 public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 
@@ -193,7 +192,7 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		Xpand3NodeParser xpand3NodeParser = new Xpand3NodeParser(tokenStream);
 		Node rootNode = xpand3NodeParser.r_test_expression();
-		System.out.println(NodeUtil.toString(rootNode));
+		System.out.println(rootNode.toDebugString());
 		return (CompositeNode) rootNode;
 	}
 }

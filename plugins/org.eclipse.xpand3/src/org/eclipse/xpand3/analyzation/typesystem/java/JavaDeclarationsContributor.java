@@ -15,47 +15,16 @@
  */
 package org.eclipse.xpand3.analyzation.typesystem.java;
 
-import static org.eclipse.xpand3.analyzation.TypeSystem.BOOLEAN;
-import static org.eclipse.xpand3.analyzation.TypeSystem.COLLECTION;
-import static org.eclipse.xpand3.analyzation.TypeSystem.INTEGER;
-import static org.eclipse.xpand3.analyzation.TypeSystem.LIST;
-import static org.eclipse.xpand3.analyzation.TypeSystem.OBJECT;
-import static org.eclipse.xpand3.analyzation.TypeSystem.OPERATION;
-import static org.eclipse.xpand3.analyzation.TypeSystem.PROPERTY;
-import static org.eclipse.xpand3.analyzation.TypeSystem.REAL;
-import static org.eclipse.xpand3.analyzation.TypeSystem.SET;
-import static org.eclipse.xpand3.analyzation.TypeSystem.STATIC_PROPERTY;
-import static org.eclipse.xpand3.analyzation.TypeSystem.STRING;
-import static org.eclipse.xpand3.analyzation.TypeSystem.TYPE;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.xpand3.analyzation.DeclarationsContributor;
 import org.eclipse.xpand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.analyzation.TypeSystemFactory;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
-import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
-import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
-import org.eclipse.xpand3.staticTypesystem.StaticTypesystemFactory;
 import org.eclipse.xpand3.util.LoaderFactory;
-import org.eclipse.xtend.backend.common.BackendType;
-import org.eclipse.xtend.backend.common.Property;
-import org.eclipse.xtend.backend.common.StaticProperty;
-import org.eclipse.xtend.backend.types.builtin.BooleanType;
-import org.eclipse.xtend.backend.types.builtin.CollectionType;
-import org.eclipse.xtend.backend.types.builtin.DoubleType;
-import org.eclipse.xtend.backend.types.builtin.FunctionType;
-import org.eclipse.xtend.backend.types.builtin.ListType;
-import org.eclipse.xtend.backend.types.builtin.LongType;
-import org.eclipse.xtend.backend.types.builtin.ObjectType;
-import org.eclipse.xtend.backend.types.builtin.PropertyType;
-import org.eclipse.xtend.backend.types.builtin.SetType;
-import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
-import org.eclipse.xtend.backend.types.builtin.StringType;
-import org.eclipse.xtend.backend.types.builtin.TypeType;
 
 /**
  * @author Sven Efftinge
@@ -65,7 +34,7 @@ public class JavaDeclarationsContributor implements DeclarationsContributor {
 
 	private Map<String, DeclaredType> types = new HashMap<String, DeclaredType>();
 
-	private TypeSystem typeSystem = null;
+	private TypeSystemFactory typeSystemFactory = null;
 	
 	private Class<?> cls;
 	
@@ -83,8 +52,8 @@ public class JavaDeclarationsContributor implements DeclarationsContributor {
 	 * (non-Javadoc)
 	 * @see org.eclipse.xand3.analyzation.typesystem.Xpand3DeclarationsResource#setTypeSystem(org.eclipse.xand3.analyzation.TypeSystem)
 	 */
-	public void setTypeSystem(TypeSystem ts) {
-		this.typeSystem = ts;
+	public void setTypeSystemFactory(TypeSystemFactory tsf) {
+		this.typeSystemFactory = tsf;
 	}
 	
 	/* (non-Javadoc)
@@ -93,51 +62,6 @@ public class JavaDeclarationsContributor implements DeclarationsContributor {
 	public String[] getReferencedContributors() {
 		return null;
 	}
-	/**
-	 * @param instance
-	 * @return
-	 */
-	private DeclaredType createDeclaredType(BackendType bt) {
-		if (types.containsKey(bt.getName())) {
-			return types.get(bt.getName());
-		}
-		DeclaredType dt = StaticTypesystemFactory.eINSTANCE
-				.createDeclaredType();
-		types.put(bt.getName(), dt);
-		dt.setName(bt.getName());
-		Map<String, ? extends Property> properties = bt.getProperties();
-		for (Entry<String, ? extends Property> entry : properties.entrySet()) {
-			dt.getProperties().add(createDeclaredProperty(entry.getValue()));
-		}
-		for (StaticProperty sp : bt.getStaticProperties().values()) {
-			dt.getStaticProperties().add(createDeclaredStaticProperty(sp));
-		}
-		return dt;
-	}
-
-	/**
-	 * @param sp
-	 * @return
-	 */
-	private DeclaredStaticProperty createDeclaredStaticProperty(
-			StaticProperty sp) {
-		DeclaredStaticProperty dsp = StaticTypesystemFactory.eINSTANCE.createDeclaredStaticProperty();
-		dsp.setName(sp.getName());
-		dsp.setType(typeSystem.typeForName(sp.getType().getName()));
-		return dsp;
-	}
-
-	/**
-	 * @param value
-	 * @return
-	 */
-	private DeclaredProperty createDeclaredProperty(Property value) {
-		DeclaredProperty dp = StaticTypesystemFactory.eINSTANCE
-				.createDeclaredProperty();
-		dp.setName(value.getName());
-		dp.setType(typeSystem.typeForName(value.getType().getName()));
-		return dp;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -145,31 +69,6 @@ public class JavaDeclarationsContributor implements DeclarationsContributor {
 	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#typeForName(java.lang.String)
 	 */
 	public DeclaredType typeForName(String name) {
-		if (name.equals(OBJECT)) {
-			createDeclaredType(ObjectType.INSTANCE);
-		} else if (name.equals(STRING)) {
-			createDeclaredType(StringType.INSTANCE);
-		} else if (name.equals(BOOLEAN)) {
-			createDeclaredType(BooleanType.INSTANCE);
-		} else if (name.equals(INTEGER)) {
-			createDeclaredType(LongType.INSTANCE);
-		} else if (name.equals(REAL)) {
-			createDeclaredType(DoubleType.INSTANCE);
-		} else if (name.equals(COLLECTION)) {
-			createDeclaredType(CollectionType.INSTANCE);
-		} else if (name.equals(LIST)) {
-			createDeclaredType(ListType.INSTANCE);
-		} else if (name.equals(SET)) {
-			createDeclaredType(SetType.INSTANCE);
-		} else if (name.equals(TYPE)) {
-			createDeclaredType(TypeType.INSTANCE);
-		} else if (name.equals(PROPERTY)) {
-			createDeclaredType(PropertyType.INSTANCE);
-		} else if (name.equals(OPERATION)) {
-			createDeclaredType(FunctionType.INSTANCE);
-		} else if (name.equals(STATIC_PROPERTY)) {
-			createDeclaredType(StaticPropertyType.INSTANCE);
-		}
 		return null;
 	}
 
@@ -178,7 +77,6 @@ public class JavaDeclarationsContributor implements DeclarationsContributor {
 	 */
 	public DeclaredFunction functionForName(String name,
 			AbstractTypeReference... parameterTypes) {
-		//TODO
 		return null;
 	}
 

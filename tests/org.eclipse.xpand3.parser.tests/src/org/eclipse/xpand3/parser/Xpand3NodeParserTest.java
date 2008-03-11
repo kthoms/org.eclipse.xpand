@@ -7,7 +7,6 @@ import junit.framework.TestCase;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.eclipse.tmf.common.node.Node;
-import org.eclipse.tmf.common.node.NodeUtil;
 
 public class Xpand3NodeParserTest extends TestCase {
 
@@ -22,13 +21,13 @@ public class Xpand3NodeParserTest extends TestCase {
 				+ "import foo; myFunction(String this) : doStuff('holla');"
 				+ LG + "DEFINE foo FOR Entity" + RG + "bla" + LG + "ENDDEFINE"
 				+ RG);
-		System.out.println(NodeUtil.toString(x));
+		System.out.println(x.toDebugString());
 	}
 
 	public void testFoo() throws Exception {
 		Node node = parse("import foo; myFunction(String this) : doStuff('holla');");
-		System.out.println(NodeUtil.toString(node));
-		System.out.println(NodeUtil.serialize(node));
+		System.out.println(node.toDebugString());
+		System.out.println(node.serialize());
 	}
 
 	public void testXpandXtendCheckMixedUp1() throws Exception {
@@ -36,8 +35,8 @@ public class Xpand3NodeParserTest extends TestCase {
 				+ "import foo; myFunction(String this) : doStuff('holla');"
 				+ LG + "DEFINE foo FOR Entity" + RG + "bla" + LG + "ENDDEFINE"
 				+ RG);
-		System.out.println(NodeUtil.toString(node));
-		System.out.println(NodeUtil.serialize(node));
+		System.out.println(node.toDebugString());
+		System.out.println(node.serialize());
 	}
 
 	//	

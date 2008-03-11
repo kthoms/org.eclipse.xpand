@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.tmf.common.node.Node;
-import org.eclipse.tmf.common.node.NodeUtil;
 import org.eclipse.tmf.common.treetest.TreetestPackage;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.parser.Xpand3NodeLexer;
@@ -35,7 +34,7 @@ public class Node2AstTest extends TestCase {
 		if (rootNode == null) {
 			System.out.println("Nothing parsed.");
 		} else {
-			System.out.println(NodeUtil.toString(rootNode));
+			System.out.println(rootNode.toDebugString());
 		}
 		Node2AstTransformer node2AstTransformer = new Node2AstTransformer();
 		return node2AstTransformer.doSwitch(rootNode);

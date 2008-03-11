@@ -24,18 +24,12 @@ import org.eclipse.xpand3.staticTypesystem.DeclaredType;
  * 
  */
 public interface DeclarationsContributor {
-	/**
-	 * used to construct the type system scoped by the imports
-	 * @return
-	 */
-	String[] getReferencedContributors(); //TODO aliasing
 	
 	/**
 	 * this method is invoked during setup of this contributor.
 	 * @param the type system to be used for resolving type and function references.
 	 */
-	void setTypeSystem(TypeSystem ts);
-	
+	void setTypeSystemFactory(TypeSystemFactory tsf);
 	
 	/**
 	 * if this contributor has a type with the declared name, the respective DeclareTpye should be returned.

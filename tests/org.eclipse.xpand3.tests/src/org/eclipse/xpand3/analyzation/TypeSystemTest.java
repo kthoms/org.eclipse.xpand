@@ -15,18 +15,28 @@
  */
 package org.eclipse.xpand3.analyzation;
 
-import org.eclipse.xpand3.staticTypesystem.Type;
-
 import junit.framework.TestCase;
+
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.Type;
+import org.eclipse.xpand3.staticTypesystem.WildcardType;
 
 /**
  * @author Sven Efftinge
  *
  */
 public class TypeSystemTest extends TestCase {
+	
 	public void testSimple() throws Exception {
 		TypeSystem ts = TypeSystem.BUILTIN_TYPESYSTEM;
-		Type typeForName = ts.typeForName("Map", ts.typeForName("String"), ts.typeForName("Object"));
-		assertNotNull(typeForName);
+		DeclaredType map = ts.typeForName("Map");
+		DeclaredType string = ts.typeForName("String");
+		DeclaredType object = ts.typeForName("Object");
+		Type typeRef = GenericsUtil.typeRef(map,GenericsUtil.wildCard(GenericsUtil.typeRef(string)), GenericsUtil.typeRef(object));
+		assertNotNull(typeRef);
+		WildcardType wct = (WildcardType) typeRef.getActualTypeArguments().get(0);
+		assertTrue(string == ((Type)wct.getUpperBounds().get(0)).getDeclaredType());
 	}
+	
+	
 }

@@ -20,7 +20,7 @@ package org.eclipse.xpand3.analyzation;
  * @author Sven Efftinge
  *
  */
-public interface LanguageSpecificDeclarationContributorFactory {
+public interface LanguageSpecificTypeSystemFactory {
 	/**
      * gives the middle end a way to declare if it can and wants to handle a given
      *  source file / resource. If and only if it returns true, it will be asked for
@@ -33,5 +33,5 @@ public interface LanguageSpecificDeclarationContributorFactory {
      * @param resourceName
      * @return
      */
-    DeclarationsContributor createDeclarationContributor(String resourceName);
+    TypeSystem createTypeSystem(String resourceName);
 }	

@@ -24,12 +24,15 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xpand3.analyzation.GenericsUtil;
 import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.analyzation.TypeSystemFactory;
+import org.eclipse.xpand3.analyzation.typesystem.util.PolymorphicResolver;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
@@ -49,7 +52,6 @@ import org.eclipse.xtend.middleend.javaannotations.M2tNoFunction;
 public class JavaTypeSystem implements TypeSystem {
 
 	private CreateCache<String, DeclaredType> types = new CreateCache<String, DeclaredType>() {
-
 		@Override
 		protected DeclaredType create(String key) {
 			if (key.equals(cls.getSimpleName())) {
@@ -62,7 +64,6 @@ public class JavaTypeSystem implements TypeSystem {
 		protected void initialize(String key, DeclaredType value) {
 			initializeDeclaredType(value, key);
 		}
-
 	};
 
 	private TypeSystemFactory typeSystemFactory = null;
@@ -112,7 +113,8 @@ public class JavaTypeSystem implements TypeSystem {
 		}
 
 		// supertypes
-		if (cls.getGenericSuperclass() != null && !cls.getSuperclass().equals(Object.class))
+		if (cls.getGenericSuperclass() != null
+				&& !cls.getSuperclass().equals(Object.class))
 			dt.getSuperTypes().add(toTypeRef(cls.getGenericSuperclass()));
 		dt.getSuperTypes().addAll(toTypeRefs(cls.getGenericInterfaces()));
 		if (dt.getSuperTypes().isEmpty()) {
@@ -227,6 +229,19 @@ public class JavaTypeSystem implements TypeSystem {
 						return newTv;
 					}
 				}
+			} else if (genericDeclaration instanceof Method) {
+				Method m = (Method) genericDeclaration;
+				DeclaredFunction f = functions.get(m);
+				EList<DeclaredTypeParameter> parameters = f
+						.getDeclaredTypeParameters();
+				for (DeclaredTypeParameter declaredTypeParameter : parameters) {
+					if (declaredTypeParameter.getName().equals(tv.getName())) {
+						org.eclipse.xpand3.staticTypesystem.TypeVariable newTv = StaticTypesystemFactory.eINSTANCE
+								.createTypeVariable();
+						newTv.setDeclaredTypeParameter(declaredTypeParameter);
+						return newTv;
+					}
+				}
 			}
 			throw new IllegalStateException(
 					"Couldn't find declaration for type variable "
@@ -264,32 +279,113 @@ public class JavaTypeSystem implements TypeSystem {
 				c.getSimpleName());
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * this implementation maps Java methods to functions. Example : interface
+	 * Foo<T extends Bar> { T foo(T x); }
 	 * 
-	 * @see org.eclipse.xand3.analyzation.typesystem.DeclarationsContributor#functionForName(java.lang.String,
-	 *      org.eclipse.xpand3.staticTypesystem.AbstractTypeReference[])
+	 * will be mapped to a function with the following signature:
+	 * 
+	 * <T extends Bar> T foo(Foo<T> this, T x)
+	 * 
 	 */
 	public DeclaredFunction functionForName(String name,
 			AbstractTypeReference... parameterTypes) {
+		if (functions.isEmpty()) {
+			initialize();
+		}
+		Collection<DeclaredFunction> values = functions.getMap().values();
+		return PolymorphicResolver.findFunction(values, name, parameterTypes,
+				null);
+	}
+
+	/**
+	 * 
+	 */
+	private void initialize() {
 		Method[] methods = cls.getDeclaredMethods();
 		for (Method method : methods) {
 			if (method.getAnnotation(M2tNoFunction.class) == null) {
-				DeclaredFunction f = StaticTypesystemFactory.eINSTANCE
-						.createDeclaredFunction();
-				f.setName(method.getName());
-				// parameters
-				if (!Modifier.isStatic(method.getModifiers())) {
-					org.eclipse.xpand3.staticTypesystem.DeclaredParameter dp = StaticTypesystemFactory.eINSTANCE
-							.createDeclaredParameter();
-					dp.setName("this");
-					dp.setType(toTypeRef(method.getDeclaringClass()));
-					f.getDeclaredParameters().add(dp);
-				}
-				f.setReturnType(toTypeRef(method.getGenericReturnType()));
+				functions.get(method);
 			}
 		}
-		return null;
+	}
+
+	private final CreateCache<Method, DeclaredFunction> functions = new CreateCache<Method, DeclaredFunction>() {
+
+		@Override
+		protected DeclaredFunction create(Method key) {
+			return StaticTypesystemFactory.eINSTANCE.createDeclaredFunction();
+		}
+
+		@Override
+		protected void initialize(Method method, DeclaredFunction f) {
+			f.setName(method.getName());
+			// parameters
+
+			// if not static add all type parameters from declaring type
+			if (!Modifier.isStatic(method.getModifiers())) {
+				org.eclipse.xpand3.staticTypesystem.DeclaredParameter dp = StaticTypesystemFactory.eINSTANCE
+						.createDeclaredParameter();
+				dp.setName("this");
+				Class<?> declaringClass = method.getDeclaringClass();
+				DeclaredType dt = getDeclaredTypeForJClass(declaringClass);
+				Type typeRef = StaticTypesystemFactory.eINSTANCE.createType();
+				typeRef.setDeclaredType(dt);
+				for (DeclaredTypeParameter dtp : dt.getDeclaredTypeParameters()) {
+					// clone the declared type parameters
+					DeclaredTypeParameter copy = StaticTypesystemFactory.eINSTANCE
+							.createDeclaredTypeParameter();
+					copy.setName(dtp.getName());
+					copy.getUpperBounds()
+							.addAll(cloneAll(dtp.getUpperBounds()));
+					f.getDeclaredTypeParameters().add(copy);
+					// and create a type var for the first argument of the
+					// function
+					org.eclipse.xpand3.staticTypesystem.TypeVariable var = StaticTypesystemFactory.eINSTANCE
+							.createTypeVariable();
+					var.setDeclaredTypeParameter(copy);
+					typeRef.getActualTypeArguments().add(var);
+				}
+				dp.setType(typeRef);
+				f.getDeclaredParameters().add(dp);
+			}
+			// add type parameters declared for the method
+			TypeVariable<Method>[] typeParameters = method.getTypeParameters();
+			for (TypeVariable<Method> tv : typeParameters) {
+				// clone the declared type parameters
+				DeclaredTypeParameter copy = StaticTypesystemFactory.eINSTANCE
+						.createDeclaredTypeParameter();
+				copy.setName(tv.getName());
+				copy.getUpperBounds().addAll(toTypeRefs(tv.getBounds()));
+				f.getDeclaredTypeParameters().add(copy);
+			}
+			// now add the return type
+			java.lang.reflect.Type returnType = method.getGenericReturnType();
+			f.setReturnType(toTypeRef(returnType));
+
+			// now the other parameters
+			java.lang.reflect.Type[] pts = method.getGenericParameterTypes();
+			int i = 1;
+			for (java.lang.reflect.Type pt : pts) {
+				org.eclipse.xpand3.staticTypesystem.DeclaredParameter dp1 = StaticTypesystemFactory.eINSTANCE
+						.createDeclaredParameter();
+				f.getDeclaredParameters().add(dp1);
+				dp1.setName("arg" + (i++));
+				dp1.setType(toTypeRef(pt));
+			}
+			f.setReturnType(toTypeRef(method.getGenericReturnType()));
+
+		}
+
+	};
+
+	/**
+	 * @param upperBounds
+	 * @return
+	 */
+	private Collection<? extends AbstractTypeReference> cloneAll(
+			EList<AbstractTypeReference> upperBounds) {
+		return new EcoreUtil.Copier().copyAll(upperBounds);
 	}
 
 }

@@ -82,7 +82,7 @@ public class BuiltinTypeSystem implements TypeSystem {
         if (cls == Boolean.class || cls == Boolean.TYPE)
         	return types.get(BOOLEAN);
         
-        if (cls == Long.class || cls == Long.TYPE)
+        if (cls == Long.class || cls == Long.TYPE || cls == Integer.TYPE || cls == Integer.class)
         	return types.get(INTEGER);
         if (cls == Double.class || cls == Double.TYPE)
         	return types.get(REAL);

@@ -43,4 +43,11 @@ public abstract class CreateCache<K, V> {
 	public Map<K, V> getMap() {
 		return _cache;
 	}
+
+	/**
+	 * @return
+	 */
+	public boolean isEmpty() {
+		return _cache.isEmpty();
+	}
 }

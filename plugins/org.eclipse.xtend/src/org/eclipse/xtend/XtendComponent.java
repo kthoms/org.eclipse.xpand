@@ -33,86 +33,103 @@ import org.eclipse.xtend.expression.Variable;
 
 public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 
+    String extensionFile = null;
+
     private final Log log = LogFactory.getLog(getClass());
 
-    String extensionFile = null;
-    
-    private List<String> extensionAdvices = new ArrayList<String>();
+    private final List<String> extensionAdvices = new ArrayList<String>();
 
-    @Override
-    public void addExtensionAdvice(String extensionAdvices) {
-		if ( !this.extensionAdvices.contains(extensionAdvices) ) 
-			this.extensionAdvices.add( extensionAdvices );
-	}
-
-    /** Stores the value of the 'invoke' property. Needed for error analysis. */ 
+    /** Stores the value of the 'invoke' property. Needed for error analysis. */
     private String invokeExpression;
+
     private String expression = null;
 
     private String collectProfileSummary = null;
-    private String verboseProfileFilename = null;
-    
-    public void setCollectProfileSummary (String c) {
-        collectProfileSummary = c;
-    }
-    
-    public void setVerboseProfileFilename (String f) {
-        verboseProfileFilename = f;
-    }
 
-    
-    @Override
-    public String getLogMessage() {
-    	return "executing '"+extensionFile+"'";
-    }
-    
-    public void setInvoke(final String invoke) {
-    	invokeExpression = invoke;
-        final int i = invoke.lastIndexOf("::");
-        if (i != -1) {
-            extensionFile = invoke.substring(0, i);
-            expression = invoke.substring(i + 2);
-        } else {
-            expression = invoke;
-        }
-    }
+    private String verboseProfileFilename = null;
 
     private String outputSlot = WorkflowContext.DEFAULT_SLOT;
 
-    public void setOutputSlot(final String outputSlot) {
-        this.outputSlot = outputSlot;
+    @Override
+    public void addExtensionAdvice(final String extensionAdvices) {
+        if (!this.extensionAdvices.contains(extensionAdvices))
+            this.extensionAdvices.add(extensionAdvices);
     }
 
-    
-    
     @Override
-    public void invokeInternal2(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
-        
-        final InputStream in = getExtFileIS();
-        if (in == null) {
-            issues.addError("Cannot find extension file: "+extensionFile);
+    public void checkConfiguration(final Issues issues) {
+        super.checkConfiguration(issues);
+
+        // Try to create detailed error message (see Bug#172567)
+        final String compPrefix = getId() != null ? getId() + ": " : "";
+
+        if (invokeExpression == null || invokeExpression.trim().length() == 0) {
+            issues.addError(compPrefix + "Property 'invoke' not specified.");
             return;
         }
-        
+        if (extensionFile == null) {
+            issues
+                    .addError(compPrefix
+                            + "Error parsing property 'invoke': Could not extract name of the extension file.");
+            return;
+        }
+        if (expression == null) {
+            issues
+                    .addError(compPrefix
+                            + "Property 'invoke' not specified properly. AbstractExtension file '"
+                            + extensionFile + "' not found.");
+            return;
+        }
+        if (expression == null) {
+            issues
+                    .addError(compPrefix
+                            + "Error parsing property 'invoke': Could not extract the expression to invoke in extension file '"
+                            + extensionFile + "'.");
+            return;
+        }
+
+    }
+
+    @Override
+    public String getLogMessage() {
+        return "executing '" + extensionFile + "'";
+    }
+
+    @Override
+    public void invokeInternal2(final WorkflowContext ctx,
+            final ProgressMonitor monitor, final Issues issues) {
+
+        final InputStream in = getExtFileIS();
+        if (in == null) {
+            issues.addError("Cannot find extension file: " + extensionFile);
+            return;
+        }
+
+        try {
+            in.close();
+        } catch (final IOException e) {
+            log.error("could not close extension file", e);
+        }
+
         OutputStream verboseProfileOutputStream = null;
 
         if (verboseProfileFilename != null) {
             try {
-                verboseProfileOutputStream = new BufferedOutputStream (new FileOutputStream (verboseProfileFilename));
-                ProfileCollector.getInstance().setDetailedLoggingWriter(verboseProfileOutputStream);
-            }
-            catch (IOException exc) {
+                verboseProfileOutputStream =
+                        new BufferedOutputStream(new FileOutputStream(
+                                verboseProfileFilename));
+                ProfileCollector.getInstance().setDetailedLoggingWriter(
+                        verboseProfileOutputStream);
+            } catch (final IOException exc) {
                 log.warn("could not open profiling log file", exc);
             }
         }
 
-        
         ExecutionContextImpl ec = getExecutionContext(ctx);
-        
-        for (String advice : extensionAdvices) {
+
+        for (final String advice : extensionAdvices) {
             final String[] allAdvices = advice.split(",");
-            for (int i = 0; i < allAdvices.length; i++) {
-                final String string = allAdvices[i];
+            for (final String string : allAdvices) {
                 ec.registerExtensionAdvices(string.trim());
             }
         }
@@ -124,76 +141,76 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
                 return name;
             }
 
-            public void setFullyQualifiedName(final String fqn) {
-                name = fqn;
+            public String[] getImportedExtensions() {
+                return new String[] { extensionFile };
             }
 
             public String[] getImportedNamespaces() {
                 return new String[0];
             }
 
-            public String[] getImportedExtensions() {
-                return new String[] { extensionFile };
+            public void setFullyQualifiedName(final String fqn) {
+                name = fqn;
             }
         });
         final String[] slots = ctx.getSlotNames();
-        for (int i = 0; i < slots.length; i++) {
-            ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(slots[i], ctx.get(slots[i])));
+        for (final String element : slots) {
+            ec =
+                    (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
+                            element, ctx.get(element)));
         }
 
-        if (monitor!=null) {
-        	ec.setMonitor(monitor);
+        if (monitor != null) {
+            ec.setMonitor(monitor);
         }
-        
+
         final Object result = new ExpressionFacade(ec).evaluate(expression);
         ctx.set(outputSlot, result);
 
         ProfileCollector.getInstance().finish();
-        if ("true".equalsIgnoreCase(this.collectProfileSummary)) {
-            log.info ("profiling info: \n" + ProfileCollector.getInstance().toString());
+        if ("true".equalsIgnoreCase(collectProfileSummary)) {
+            log.info("profiling info: \n"
+                    + ProfileCollector.getInstance().toString());
         }
-        
+
         if (verboseProfileOutputStream != null) {
             try {
-                verboseProfileOutputStream.close ();
-            }
-            catch (IOException exc) {
+                verboseProfileOutputStream.close();
+            } catch (final IOException exc) {
                 log.warn("problem closing profile log file", exc);
             }
         }
     }
 
+    public void setCollectProfileSummary(final String c) {
+        collectProfileSummary = c;
+    }
+
+    public void setInvoke(final String invoke) {
+        invokeExpression = invoke;
+        final int i = invoke.lastIndexOf("::");
+        if (i != -1) {
+            extensionFile = invoke.substring(0, i);
+            expression = invoke.substring(i + 2);
+        } else {
+            expression = invoke;
+        }
+    }
+
+    public void setOutputSlot(final String outputSlot) {
+        this.outputSlot = outputSlot;
+    }
+
+    public void setVerboseProfileFilename(final String f) {
+        verboseProfileFilename = f;
+    }
+
     private InputStream getExtFileIS() {
-        final InputStream in = ResourceLoaderFactory.createResourceLoader().getResourceAsStream(
-                extensionFile.replace("::", "/")+".ext");
+        final InputStream in =
+                ResourceLoaderFactory.createResourceLoader()
+                        .getResourceAsStream(
+                                extensionFile.replace("::", "/") + ".ext");
         return in;
     }
 
-    @Override
-    public void checkConfiguration(final Issues issues) {
-        super.checkConfiguration(issues);
-        
-        // Try to create detailed error message (see Bug#172567)
-        String compPrefix = getId()!=null ? getId()+": " : "";
-        
-        if (invokeExpression==null || invokeExpression.trim().length()==0) {
-            issues.addError(compPrefix+"Property 'invoke' not specified.");
-            return;
-        }
-        if (extensionFile==null) {
-            issues.addError(compPrefix+"Error parsing property 'invoke': Could not extract name of the extension file.");
-            return;
-        }
-        if (getExtFileIS()==null || expression == null) {
-            issues.addError(compPrefix+"Property 'invoke' not specified properly. AbstractExtension file '"+extensionFile+"' not found.");
-            return;
-        }
-        if (expression==null) {
-            issues.addError(compPrefix+"Error parsing property 'invoke': Could not extract the expression to invoke in extension file '"+extensionFile+"'.");
-            return;
-        }
-        
-    }
-
-    
 }

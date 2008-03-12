@@ -6,14 +6,22 @@ grammar debugMeWithAntLR;
 }
 
 r_file  :
-	(((imp=r_nsImport)))* (((decl=r_abstractDeclaration)))* (EOF)
+	(((f_imports=r_nsImport)))* (((f_declarations=r_abstractDeclaration)))* (EOF)
 ;
 
 r_nsImport  :
-	(LG) ('IMPORT') (ns=r_simpleType) (RG)
-	| (LG) ('EXTENSION') (ns=r_simpleType) (RG)
-	| ('import') (unnamed0=r_type) (';')
-	| ('extension') (unnamed1=r_type) ((('reexport')))? (';')
+	(r_import)
+	| (r_extensionImport)
+;
+
+r_import  :
+	(((LG) ('IMPORT') (f_namespace=r_simpleType) (RG)))
+	| ('import') (f_type=r_type) (';')
+;
+
+r_extensionImport  :
+	(((LG) ('EXTENSION') (f_namespace=r_simpleType) (RG)))
+	| ('extension') (f_type=r_type) ('reexport')? (';')
 ;
 
 r_abstractDeclaration  :
@@ -25,17 +33,17 @@ r_abstractDeclaration  :
 ;
 
 r_definition  :
-	(LG) (DEFINE) (name=r_identifier) ((('(') (((unnamed2=r_declaredParameterList) (((',')? ('*')))?
-	| ('*')))? (')')))? ('FOR') (unnamed3=r_type) (unnamed4=r_sequence) (ENDDEFINE) (RG)
+	(LG) (DEFINE) (f_name=r_identifier) ((('(') (((f_paramList=r_declaredParameterList) (((',')? ('*')))?
+	| ('*')))? (')')))? ('FOR') (f_type=r_type) (f_sequence=r_sequence) (ENDDEFINE) (RG)
 ;
 
 r_definitionAround  :
-	(LG) (AROUND) (unnamed5=r_pointcut) ((('(') (((unnamed6=r_declaredParameterList) (((',')? ('*')))?
-	| ('*')))? (')')))? ('FOR') (unnamed7=r_type) (unnamed8=r_sequence) (ENDAROUND) (RG)
+	(LG) (AROUND) (f_pointcut=r_pointcut) ((('(') (((f_paramList=r_declaredParameterList) (((',')? ('*')))?
+	| ('*')))? (')')))? ('FOR') (f_type=r_type) (f_sequence=r_sequence) (ENDAROUND) (RG)
 ;
 
 r_sequence  :
-	(unnamed9=r_textSequence) (((unnamed10=r_statement) (unnamed11=r_textSequence)))*
+	(f_textSequences=r_textSequence) (((f_statements=r_statement) (f_textSequences=r_textSequence)))*
 ;
 
 r_statement  :
@@ -48,7 +56,7 @@ r_statement  :
 ;
 
 r_textSequence  :
-	(unnamed12=r_text) (((unnamed13=r_text)))*
+	(f_text=r_text) (((f_text=r_text)))*
 ;
 
 r_text  :
@@ -62,127 +70,127 @@ r_simpleStatement  :
 ;
 
 r_errorStatement  :
-	('ERROR') (unnamed14=r_expression)
+	('ERROR') (f_expression=r_expression)
 ;
 
 r_expandStatement  :
-	('EXPAND') (unnamed15=r_simpleType) ((('(') (unnamed16=r_parameterList) (')')))? ((((('FOR') (unnamed17=r_expression)))
-	| ((('FOREACH') (unnamed18=r_expression) ((('SEPARATOR') (unnamed19=r_expression)))?))))?
+	('EXPAND') (f_name=r_simpleType) ((('(') (f_paramList=r_parameterList) (')')))? ((((('FOR') (f_forExpression=r_expression)))
+	| ((('FOREACH') (f_forExpression=r_expression) ((('SEPARATOR') (f_separator=r_expression)))?))))?
 ;
 
 r_expressionStmt  :
-	(unnamed20=r_expression)
+	(f_expression=r_expression)
 ;
 
 r_fileStatement  :
-	('FILE') (unnamed21=r_expression) (((unnamed22=r_identifier)))? (unnamed23=r_sequence) ('ENDFILE')
+	('FILE') (f_nameExpression=r_expression) ((('ONCE')))? (((f_identifier=r_identifier)))? (f_sequence=r_sequence) ('ENDFILE')
 ;
 
 r_foreachStatement  :
-	('FOREACH') (unnamed24=r_expression) ('AS') (unnamed25=r_identifier) ((('ITERATOR') (unnamed26=r_identifier)))? ((('SEPARATOR') (unnamed27=r_expression)))? (unnamed28=r_sequence) ('ENDFOREACH')
+	('FOREACH') (f_forExpression=r_expression) ('AS') (f_identifier=r_identifier) ((('ITERATOR') (f_iterator=r_identifier)))? ((('SEPARATOR') (f_separatorExpression=r_expression)))? (f_sequence=r_sequence) ('ENDFOREACH')
 ;
 
 r_ifStatement  :
-	('IF') (unnamed29=r_expression) (unnamed30=r_sequence) (unnamed31=r_elseIfStatement)* (unnamed32=r_elseStatement)? ('ENDIF')
+	('IF') (f_expression=r_expression) (f_sequence=r_sequence) (f_elseIf=r_elseIfStatement)* (f_else=r_elseStatement)? ('ENDIF')
 ;
 
 r_elseIfStatement  :
-	('ELSEIF') (unnamed33=r_expression) (unnamed34=r_sequence)
+	('ELSEIF') (f_expression=r_expression) (f_sequence=r_sequence)
 ;
 
 r_elseStatement  :
-	('ELSE') (unnamed35=r_sequence)
+	('ELSE') (f_sequence=r_sequence)
 ;
 
 r_letStatement  :
-	('LET') (unnamed36=r_expression) ('AS') (unnamed37=r_identifier) (unnamed38=r_sequence) ('ENDLET')
+	('LET') (f_expression=r_expression) ('AS') (f_name=r_identifier) (f_sequence=r_sequence) ('ENDLET')
 ;
 
 r_protectStatement  :
-	('PROTECT') ('CSTART') (unnamed39=r_expression) ('CEND') (unnamed40=r_expression) ('ID') (unnamed41=r_expression) ('DISABLE')? (unnamed42=r_sequence) ('ENDPROTECT')
+	('PROTECT') ('CSTART') (f_cstart=r_expression) ('CEND') (f_cend=r_expression) ('ID') (f_id=r_expression) ('DISABLE')? (f_sequence=r_sequence) ('ENDPROTECT')
 ;
 
 r_check  :
-	('context') (unnamed43=r_type) ((('if') (unnamed44=r_expression)))? ((('ERROR')
-	| ('WARNING'))) (unnamed45=r_expression) (':') (unnamed46=r_expression) (';')
+	('context') (f_unnamed0=r_type) ((('if') (f_unnamed1=r_expression)))? ((('ERROR')
+	| ('WARNING'))) (f_unnamed2=r_expression) (':') (f_unnamed3=r_expression) (';')
 ;
 
 r_around  :
-	('around') (unnamed47=r_pointcut) ('(') (((unnamed48=r_declaredParameterList) (((',')? ('*')))?
-	| ('*')))? (')') (':') (unnamed49=r_expression) (';')
+	('around') (f_unnamed4=r_pointcut) ('(') (((f_unnamed5=r_declaredParameterList) (((',')? ('*')))?
+	| ('*')))? (')') (':') (f_unnamed6=r_expression) (';')
 ;
 
 r_pointcut  :
 	((('*')
-	| (unnamed50=r_identifier))) ((('*')
-	| (unnamed51=r_identifier)
+	| (f_unnamed7=r_identifier))) ((('*')
+	| (f_unnamed8=r_identifier)
 	| ('::')))*
 ;
 
 r_extension  :
 	((('private')
 	| ('cached')
-	| ('create')))* (returnType=r_type)? (name=r_identifier) ('(') (paramList=r_declaredParameterList)? (')') (':') ((('JAVA') (javaReturnType=r_javaType) ('.') (javaName=r_identifier) ('(') (((unnamed52=r_javaType) (((',') (unnamed53=r_javaType)))*))? (')')
-	| (extendBody=r_expression))) (';')
+	| ('create')))* (f_returnType=r_type)? (f_name=r_identifier) ('(') (f_paramList=r_declaredParameterList)? (')') (':') ((('JAVA') (f_javaReturnType=r_javaType) ('.') (f_javaName=r_identifier) ('(') (((f_unnamed9=r_javaType) (((',') (f_unnamed10=r_javaType)))*))? (')')
+	| (f_extendBody=r_expression))) (';')
 ;
 
 r_javaType  :
-	(unnamed54=r_identifier) ((('.') (((unnamed55=r_identifier)
+	(f_unnamed11=r_identifier) ((('.') (((f_unnamed12=r_identifier)
 	| ('Collection')
 	| ('List')
 	| ('Set')))))*
 ;
 
 r_test_expression  :
-	(unnamed56=r_expression) (EOF)
+	(f_unnamed13=r_expression) (EOF)
 ;
 
 r_expression  :
-	(unnamed57=r_letExpression)
+	(f_unnamed14=r_letExpression)
 ;
 
 r_letExpression  :
-	('let') (unnamed58=r_identifier) ('=') (unnamed59=r_castedExpression) (':') (unnamed60=r_expression)
-	| (unnamed61=r_castedExpression)
+	('let') (f_unnamed15=r_identifier) ('=') (f_unnamed16=r_castedExpression) (':') (f_unnamed17=r_expression)
+	| (f_unnamed18=r_castedExpression)
 ;
 
 r_castedExpression  :
-	('(' r_type ')' r_chainExpression)=>(('(') (unnamed62=r_type) (')') (unnamed63=r_chainExpression))
-	| (unnamed64=r_chainExpression)
+	('(' r_type ')' r_chainExpression)=>(('(') (f_unnamed19=r_type) (')') (f_unnamed20=r_chainExpression))
+	| (f_unnamed21=r_chainExpression)
 ;
 
 r_chainExpression  :
-	(unnamed65=r_ifExpression) ((('->') (unnamed66=r_ifExpression)))*
+	(f_unnamed22=r_ifExpression) ((('->') (f_unnamed23=r_ifExpression)))*
 ;
 
 r_ifExpression  :
-	(unnamed67=r_switchExpression) ((('?') (unnamed68=r_expression) (':') (unnamed69=r_switchExpression)))?
-	| ('if') (unnamed70=r_expression) ('then') (unnamed71=r_switchExpression) ((('else') (unnamed72=r_switchExpression)))?
+	(f_unnamed24=r_switchExpression) ((('?') (f_unnamed25=r_expression) (':') (f_unnamed26=r_switchExpression)))?
+	| ('if') (f_unnamed27=r_expression) ('then') (f_unnamed28=r_switchExpression) ((('else') (f_unnamed29=r_switchExpression)))?
 ;
 
 r_switchExpression  :
-	('switch') ((('(') (unnamed73=r_orExpression) (')')))? ('{') (unnamed74=r_casePart)* ('default') (':') (unnamed75=r_orExpression) ('}')
-	| (unnamed76=r_orExpression)
+	('switch') ((('(') (f_unnamed30=r_orExpression) (')')))? ('{') (f_unnamed31=r_casePart)* ('default') (':') (f_unnamed32=r_orExpression) ('}')
+	| (f_unnamed33=r_orExpression)
 ;
 
 r_casePart  :
-	('case') (unnamed77=r_expression) (':') (unnamed78=r_expression)
+	('case') (f_unnamed34=r_expression) (':') (f_unnamed35=r_expression)
 ;
 
 r_orExpression  :
-	(unnamed79=r_andExpression) ((('||') (unnamed80=r_andExpression)))*
+	(f_unnamed36=r_andExpression) ((('||') (f_unnamed37=r_andExpression)))*
 ;
 
 r_andExpression  :
-	(unnamed81=r_impliesExpression) ((('&&') (unnamed82=r_impliesExpression)))*
+	(f_unnamed38=r_impliesExpression) ((('&&') (f_unnamed39=r_impliesExpression)))*
 ;
 
 r_impliesExpression  :
-	(unnamed83=r_relationalExpression) ((('implies') (unnamed84=r_relationalExpression)))*
+	(f_unnamed40=r_relationalExpression) ((('implies') (f_unnamed41=r_relationalExpression)))*
 ;
 
 r_relationalExpression  :
-	(leftOperand=r_additiveExpression) (((operator=r_relationalOperator) (rightOperand=r_additiveExpression)))*
+	(f_leftOperand=r_additiveExpression) (((f_operator=r_relationalOperator) (f_rightOperand=r_additiveExpression)))*
 ;
 
 r_relationalOperator  :
@@ -195,23 +203,23 @@ r_relationalOperator  :
 ;
 
 r_additiveExpression  :
-	(unnamed85=r_multiplicativeExpression) ((((('+')
-	| ('-'))) (unnamed86=r_multiplicativeExpression)))*
+	(f_left=r_multiplicativeExpression) ((((('+')
+	| ('-'))) (f_right=r_multiplicativeExpression)))*
 ;
 
 r_multiplicativeExpression  :
-	(unnamed87=r_unaryExpression) ((((('*')
-	| ('/'))) (unnamed88=r_unaryExpression)))*
+	(f_left=r_unaryExpression) ((((('*')
+	| ('/'))) (f_right=r_unaryExpression)))*
 ;
 
 r_unaryExpression  :
-	(unnamed89=r_infixExpression)
-	| ('!') (unnamed90=r_infixExpression)
-	| ('-') (unnamed91=r_infixExpression)
+	(f_unnamed42=r_infixExpression)
+	| ('!') (f_operand=r_infixExpression)
+	| ('-') (f_operand=r_infixExpression)
 ;
 
 r_infixExpression  :
-	(target=r_primaryExpression) ((('.') (calls=r_featureCall)))*
+	(f_target=r_primaryExpression) ((('.') (f_calls=r_featureCall)))*
 ;
 
 r_primaryExpression  :
@@ -231,25 +239,25 @@ r_stringLiteral  :
 ;
 
 r_paranthesizedExpression  :
-	('(') (unnamed92=r_expression) (')')
+	('(') (f_unnamed43=r_expression) (')')
 ;
 
 r_globalVarExpression  :
-	('GLOBALVAR') (unnamed93=r_identifier)
+	('GLOBALVAR') (f_unnamed44=r_identifier)
 ;
 
 r_featureCall  :
-	(name=r_identifier) ('(') (((paramList=r_parameterList)))? (')')
-	| (unnamed94=r_type)
-	| (unnamed95=r_collectionExpression)
+	(f_name=r_identifier) ('(') (((f_paramList=r_parameterList)))? (')')
+	| (f_type=r_type)
+	| (f_unnamed45=r_collectionExpression)
 ;
 
 r_listLiteral  :
-	('{') (((unnamed96=r_expression) (((',') (unnamed97=r_expression)))*))? ('}')
+	('{') (((f_unnamed46=r_expression) (((',') (f_unnamed47=r_expression)))*))? ('}')
 ;
 
 r_constructorCall  :
-	('new') (unnamed98=r_simpleType)
+	('new') (f_unnamed48=r_simpleType)
 ;
 
 r_booleanLiteral  :
@@ -267,7 +275,7 @@ r_numberLiteral  :
 ;
 
 r_collectionExpression  :
-	('typeSelect') ('(') (unnamed99=r_type) (')')
+	('typeSelect') ('(') (f_unnamed49=r_type) (')')
 	| ((('collect')
 	| ('select')
 	| ('selectFirst')
@@ -275,19 +283,19 @@ r_collectionExpression  :
 	| ('exists')
 	| ('notExists')
 	| ('sortBy')
-	| ('forAll'))) ('(') (((unnamed100=r_identifier) ('|')))? (unnamed101=r_expression) (')')
+	| ('forAll'))) ('(') (((f_unnamed50=r_identifier) ('|')))? (f_unnamed51=r_expression) (')')
 ;
 
 r_declaredParameterList  :
-	(params=r_declaredParameter) (((',') (params=r_declaredParameter)))*
+	(f_params=r_declaredParameter) (((',') (f_params=r_declaredParameter)))*
 ;
 
 r_declaredParameter  :
-	(ptype=r_type) (name=r_identifier)
+	(f_ptype=r_type) (f_name=r_identifier)
 ;
 
 r_parameterList  :
-	(params=r_expression) (((',') (params=r_expression)))*
+	(f_params=r_expression) (((',') (f_params=r_expression)))*
 ;
 
 r_type  :
@@ -298,11 +306,11 @@ r_type  :
 r_collectionType  :
 	((('Collection')
 	| ('List')
-	| ('Set'))) ((('[') (unnamed102=r_simpleType) (']')))?
+	| ('Set'))) ((('[') (f_unnamed52=r_simpleType) (']')))?
 ;
 
 r_simpleType  :
-	(names=r_identifier) ((('::') (names=r_identifier)))*
+	(f_names=r_identifier) ((('::') (f_names=r_identifier)))*
 ;
 
 r_identifier  :

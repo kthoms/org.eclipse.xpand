@@ -2,9 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IfStatementNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: IfStatementNodeValidator.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.tmf.common.node.CompositeNode;
 
 
 /**
@@ -15,5 +18,15 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
  */
 public interface IfStatementNodeValidator {
 	boolean validate();
+
+	boolean validateElseIf(EList<CompositeNode> value);
+
+	boolean validateElse(CompositeNode value);
+
+	boolean validateExpression(CompositeNode value);
+
+	boolean validateElseIf(CompositeNode value);
+
+	boolean validateSequence(CompositeNode value);
 
 }

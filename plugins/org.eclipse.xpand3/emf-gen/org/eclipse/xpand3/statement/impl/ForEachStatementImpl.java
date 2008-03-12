@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForEachStatementImpl.java,v 1.2 2008/03/07 11:10:34 jkohnlein Exp $
+ * $Id: ForEachStatementImpl.java,v 1.3 2008/03/12 09:54:30 jkohnlein Exp $
  */
 package org.eclipse.xpand3.statement.impl;
 
@@ -29,7 +29,7 @@ import org.eclipse.xpand3.statement.StatementPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.statement.impl.ForEachStatementImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.xpand3.statement.impl.ForEachStatementImpl#getSeperator <em>Seperator</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.statement.impl.ForEachStatementImpl#getSeparator <em>Separator</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.impl.ForEachStatementImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.impl.ForEachStatementImpl#getIteratorName <em>Iterator Name</em>}</li>
  * </ul>
@@ -49,14 +49,14 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 	protected AbstractExpression target;
 
 	/**
-	 * The cached value of the '{@link #getSeperator() <em>Seperator</em>}' containment reference.
+	 * The cached value of the '{@link #getSeparator() <em>Separator</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSeperator()
+	 * @see #getSeparator()
 	 * @generated
 	 * @ordered
 	 */
-	protected AbstractExpression seperator;
+	protected AbstractExpression separator;
 
 	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -145,8 +145,8 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AbstractExpression getSeperator() {
-		return seperator;
+	public AbstractExpression getSeparator() {
+		return separator;
 	}
 
 	/**
@@ -154,11 +154,11 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSeperator(AbstractExpression newSeperator, NotificationChain msgs) {
-		AbstractExpression oldSeperator = seperator;
-		seperator = newSeperator;
+	public NotificationChain basicSetSeparator(AbstractExpression newSeparator, NotificationChain msgs) {
+		AbstractExpression oldSeparator = separator;
+		separator = newSeparator;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StatementPackage.FOR_EACH_STATEMENT__SEPERATOR, oldSeperator, newSeperator);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StatementPackage.FOR_EACH_STATEMENT__SEPARATOR, oldSeparator, newSeparator);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -169,18 +169,18 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSeperator(AbstractExpression newSeperator) {
-		if (newSeperator != seperator) {
+	public void setSeparator(AbstractExpression newSeparator) {
+		if (newSeparator != separator) {
 			NotificationChain msgs = null;
-			if (seperator != null)
-				msgs = ((InternalEObject)seperator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StatementPackage.FOR_EACH_STATEMENT__SEPERATOR, null, msgs);
-			if (newSeperator != null)
-				msgs = ((InternalEObject)newSeperator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StatementPackage.FOR_EACH_STATEMENT__SEPERATOR, null, msgs);
-			msgs = basicSetSeperator(newSeperator, msgs);
+			if (separator != null)
+				msgs = ((InternalEObject)separator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StatementPackage.FOR_EACH_STATEMENT__SEPARATOR, null, msgs);
+			if (newSeparator != null)
+				msgs = ((InternalEObject)newSeparator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StatementPackage.FOR_EACH_STATEMENT__SEPARATOR, null, msgs);
+			msgs = basicSetSeparator(newSeparator, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StatementPackage.FOR_EACH_STATEMENT__SEPERATOR, newSeperator, newSeperator));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatementPackage.FOR_EACH_STATEMENT__SEPARATOR, newSeparator, newSeparator));
 	}
 
 	/**
@@ -279,8 +279,8 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 		switch (featureID) {
 			case StatementPackage.FOR_EACH_STATEMENT__TARGET:
 				return basicSetTarget(null, msgs);
-			case StatementPackage.FOR_EACH_STATEMENT__SEPERATOR:
-				return basicSetSeperator(null, msgs);
+			case StatementPackage.FOR_EACH_STATEMENT__SEPARATOR:
+				return basicSetSeparator(null, msgs);
 			case StatementPackage.FOR_EACH_STATEMENT__VARIABLE:
 				return basicSetVariable(null, msgs);
 			case StatementPackage.FOR_EACH_STATEMENT__ITERATOR_NAME:
@@ -299,8 +299,8 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 		switch (featureID) {
 			case StatementPackage.FOR_EACH_STATEMENT__TARGET:
 				return getTarget();
-			case StatementPackage.FOR_EACH_STATEMENT__SEPERATOR:
-				return getSeperator();
+			case StatementPackage.FOR_EACH_STATEMENT__SEPARATOR:
+				return getSeparator();
 			case StatementPackage.FOR_EACH_STATEMENT__VARIABLE:
 				return getVariable();
 			case StatementPackage.FOR_EACH_STATEMENT__ITERATOR_NAME:
@@ -320,8 +320,8 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 			case StatementPackage.FOR_EACH_STATEMENT__TARGET:
 				setTarget((AbstractExpression)newValue);
 				return;
-			case StatementPackage.FOR_EACH_STATEMENT__SEPERATOR:
-				setSeperator((AbstractExpression)newValue);
+			case StatementPackage.FOR_EACH_STATEMENT__SEPARATOR:
+				setSeparator((AbstractExpression)newValue);
 				return;
 			case StatementPackage.FOR_EACH_STATEMENT__VARIABLE:
 				setVariable((Identifier)newValue);
@@ -344,8 +344,8 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 			case StatementPackage.FOR_EACH_STATEMENT__TARGET:
 				setTarget((AbstractExpression)null);
 				return;
-			case StatementPackage.FOR_EACH_STATEMENT__SEPERATOR:
-				setSeperator((AbstractExpression)null);
+			case StatementPackage.FOR_EACH_STATEMENT__SEPARATOR:
+				setSeparator((AbstractExpression)null);
 				return;
 			case StatementPackage.FOR_EACH_STATEMENT__VARIABLE:
 				setVariable((Identifier)null);
@@ -367,8 +367,8 @@ public class ForEachStatementImpl extends AbstractStatementWithBodyImpl implemen
 		switch (featureID) {
 			case StatementPackage.FOR_EACH_STATEMENT__TARGET:
 				return target != null;
-			case StatementPackage.FOR_EACH_STATEMENT__SEPERATOR:
-				return seperator != null;
+			case StatementPackage.FOR_EACH_STATEMENT__SEPARATOR:
+				return separator != null;
 			case StatementPackage.FOR_EACH_STATEMENT__VARIABLE:
 				return variable != null;
 			case StatementPackage.FOR_EACH_STATEMENT__ITERATOR_NAME:

@@ -30,16 +30,26 @@ r_file returns [CompositeNode cn]
 	@init{ cn = factory.createFileNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(((imp=r_nsImport { addToChildren(cn, imp); ((FileNode) cn).getImp().add(imp); })))* (((decl=r_abstractDeclaration { addToChildren(cn, decl); ((FileNode) cn).getDecl().add(decl); })))* (EOF)
+	(((f_imports=r_nsImport { addToChildren(cn, f_imports); ((FileNode) cn).getImports().add(f_imports); })))* (((f_declarations=r_abstractDeclaration { addToChildren(cn, f_declarations); ((FileNode) cn).getDeclarations().add(f_declarations); })))* (EOF)
 ;
 
-r_nsImport returns [CompositeNode cn]
-	@init{ cn = factory.createNsImportNode();
+r_nsImport returns [CompositeNode cn]  :
+	(r_import { $cn = $r_import.cn; })
+	| (r_extensionImport { $cn = $r_extensionImport.cn; })
+;
+
+r_import returns [CompositeNode cn]
+	@init{ cn = factory.createImportNode();
 	    }  :
-	(LG { addLeafNodeForToken($cn, null); }) ('IMPORT' { addLeafNodeForToken($cn, null); }) (ns=r_simpleType { addToChildren(cn, ns); ((NsImportNode) cn).setNs(ns); }) (RG { addLeafNodeForToken($cn, null); })
-	| (LG { addLeafNodeForToken($cn, null); }) ('EXTENSION' { addLeafNodeForToken($cn, null); }) (ns=r_simpleType { addToChildren(cn, ns); ((NsImportNode) cn).setNs(ns); }) (RG { addLeafNodeForToken($cn, null); })
-	| ('import' { addLeafNodeForToken($cn, null); }) (unnamed0=r_type { addToChildren(cn, unnamed0); }) (';' { addLeafNodeForToken($cn, null); })
-	| ('extension' { addLeafNodeForToken($cn, null); }) (unnamed1=r_type { addToChildren(cn, unnamed1); }) ((('reexport' { addLeafNodeForToken($cn, null); })))? (';' { addLeafNodeForToken($cn, null); })
+	(((LG { addLeafNodeForToken($cn, null); }) ('IMPORT' { addLeafNodeForToken($cn, null); }) (f_namespace=r_simpleType { addToChildren(cn, f_namespace); ((ImportNode) cn).setNamespace(f_namespace); }) (RG { addLeafNodeForToken($cn, null); })))
+	| ('import' { addLeafNodeForToken($cn, null); }) (f_type=r_type { addToChildren(cn, f_type); ((ImportNode) cn).setType(f_type); }) (';' { addLeafNodeForToken($cn, null); })
+;
+
+r_extensionImport returns [CompositeNode cn]
+	@init{ cn = factory.createExtensionImportNode();
+	    }  :
+	(((LG { addLeafNodeForToken($cn, null); }) ('EXTENSION' { addLeafNodeForToken($cn, null); }) (f_namespace=r_simpleType { addToChildren(cn, f_namespace); ((ExtensionImportNode) cn).setNamespace(f_namespace); }) (RG { addLeafNodeForToken($cn, null); })))
+	| ('extension' { addLeafNodeForToken($cn, null); }) (f_type=r_type { addToChildren(cn, f_type); ((ExtensionImportNode) cn).setType(f_type); }) ('reexport' { addLeafNodeForToken($cn, null); })? (';' { addLeafNodeForToken($cn, null); })
 ;
 
 r_abstractDeclaration returns [CompositeNode cn]  :
@@ -53,21 +63,21 @@ r_abstractDeclaration returns [CompositeNode cn]  :
 r_definition returns [CompositeNode cn]
 	@init{ cn = factory.createDefinitionNode();
 	    }  :
-	(LG { addLeafNodeForToken($cn, null); }) (DEFINE { addLeafNodeForToken($cn, null); }) (name=r_identifier { addToChildren(cn, name); ((DefinitionNode) cn).setName(name); }) ((('(' { addLeafNodeForToken($cn, null); }) (((unnamed2=r_declaredParameterList { addToChildren(cn, unnamed2); }) (((',' { addLeafNodeForToken($cn, null); })? ('*' { addLeafNodeForToken($cn, null); })))?
-	| ('*' { addLeafNodeForToken($cn, null); })))? (')' { addLeafNodeForToken($cn, null); })))? ('FOR' { addLeafNodeForToken($cn, null); }) (unnamed3=r_type { addToChildren(cn, unnamed3); }) (unnamed4=r_sequence { addToChildren(cn, unnamed4); }) (ENDDEFINE { addLeafNodeForToken($cn, null); }) (RG { addLeafNodeForToken($cn, null); })
+	(LG { addLeafNodeForToken($cn, null); }) (DEFINE { addLeafNodeForToken($cn, null); }) (f_name=r_identifier { addToChildren(cn, f_name); ((DefinitionNode) cn).setName(f_name); }) ((('(' { addLeafNodeForToken($cn, null); }) (((f_paramList=r_declaredParameterList { addToChildren(cn, f_paramList); ((DefinitionNode) cn).setParamList(f_paramList); }) (((',' { addLeafNodeForToken($cn, null); })? ('*' { addLeafNodeForToken($cn, null); })))?
+	| ('*' { addLeafNodeForToken($cn, null); })))? (')' { addLeafNodeForToken($cn, null); })))? ('FOR' { addLeafNodeForToken($cn, null); }) (f_type=r_type { addToChildren(cn, f_type); ((DefinitionNode) cn).setType(f_type); }) (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((DefinitionNode) cn).setSequence(f_sequence); }) (ENDDEFINE { addLeafNodeForToken($cn, null); }) (RG { addLeafNodeForToken($cn, null); })
 ;
 
 r_definitionAround returns [CompositeNode cn]
 	@init{ cn = factory.createDefinitionAroundNode();
 	    }  :
-	(LG { addLeafNodeForToken($cn, null); }) (AROUND { addLeafNodeForToken($cn, null); }) (unnamed5=r_pointcut { addToChildren(cn, unnamed5); }) ((('(' { addLeafNodeForToken($cn, null); }) (((unnamed6=r_declaredParameterList { addToChildren(cn, unnamed6); }) (((',' { addLeafNodeForToken($cn, null); })? ('*' { addLeafNodeForToken($cn, null); })))?
-	| ('*' { addLeafNodeForToken($cn, null); })))? (')' { addLeafNodeForToken($cn, null); })))? ('FOR' { addLeafNodeForToken($cn, null); }) (unnamed7=r_type { addToChildren(cn, unnamed7); }) (unnamed8=r_sequence { addToChildren(cn, unnamed8); }) (ENDAROUND { addLeafNodeForToken($cn, null); }) (RG { addLeafNodeForToken($cn, null); })
+	(LG { addLeafNodeForToken($cn, null); }) (AROUND { addLeafNodeForToken($cn, null); }) (f_pointcut=r_pointcut { addToChildren(cn, f_pointcut); ((DefinitionAroundNode) cn).setPointcut(f_pointcut); }) ((('(' { addLeafNodeForToken($cn, null); }) (((f_paramList=r_declaredParameterList { addToChildren(cn, f_paramList); ((DefinitionAroundNode) cn).setParamList(f_paramList); }) (((',' { addLeafNodeForToken($cn, null); })? ('*' { addLeafNodeForToken($cn, null); })))?
+	| ('*' { addLeafNodeForToken($cn, null); })))? (')' { addLeafNodeForToken($cn, null); })))? ('FOR' { addLeafNodeForToken($cn, null); }) (f_type=r_type { addToChildren(cn, f_type); ((DefinitionAroundNode) cn).setType(f_type); }) (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((DefinitionAroundNode) cn).setSequence(f_sequence); }) (ENDAROUND { addLeafNodeForToken($cn, null); }) (RG { addLeafNodeForToken($cn, null); })
 ;
 
 r_sequence returns [CompositeNode cn]
 	@init{ cn = factory.createSequenceNode();
 	    }  :
-	(unnamed9=r_textSequence { addToChildren(cn, unnamed9); }) (((unnamed10=r_statement { addToChildren(cn, unnamed10); }) (unnamed11=r_textSequence { addToChildren(cn, unnamed11); })))*
+	(f_textSequences=r_textSequence { addToChildren(cn, f_textSequences); ((SequenceNode) cn).getTextSequences().add(f_textSequences); }) (((f_statements=r_statement { addToChildren(cn, f_statements); ((SequenceNode) cn).getStatements().add(f_statements); }) (f_textSequences=r_textSequence { addToChildren(cn, f_textSequences); ((SequenceNode) cn).getTextSequences().add(f_textSequences); })))*
 ;
 
 r_statement returns [CompositeNode cn]  :
@@ -83,7 +93,7 @@ r_textSequence returns [CompositeNode cn]
 	@init{ cn = factory.createTextSequenceNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed12=r_text { addToChildren(cn, unnamed12); }) (((unnamed13=r_text { addToChildren(cn, unnamed13); })))*
+	(f_text=r_text { addToChildren(cn, f_text); ((TextSequenceNode) cn).getText().add(f_text); }) (((f_text=r_text { addToChildren(cn, f_text); ((TextSequenceNode) cn).getText().add(f_text); })))*
 ;
 
 r_text returns [CompositeNode cn]
@@ -101,84 +111,84 @@ r_simpleStatement returns [CompositeNode cn]  :
 r_errorStatement returns [CompositeNode cn]
 	@init{ cn = factory.createErrorStatementNode();
 	    }  :
-	('ERROR' { addLeafNodeForToken($cn, null); }) (unnamed14=r_expression { addToChildren(cn, unnamed14); })
+	('ERROR' { addLeafNodeForToken($cn, null); }) (f_expression=r_expression { addToChildren(cn, f_expression); ((ErrorStatementNode) cn).setExpression(f_expression); })
 ;
 
 r_expandStatement returns [CompositeNode cn]
 	@init{ cn = factory.createExpandStatementNode();
 	    }  :
-	('EXPAND' { addLeafNodeForToken($cn, null); }) (unnamed15=r_simpleType { addToChildren(cn, unnamed15); }) ((('(' { addLeafNodeForToken($cn, null); }) (unnamed16=r_parameterList { addToChildren(cn, unnamed16); }) (')' { addLeafNodeForToken($cn, null); })))? ((((('FOR' { addLeafNodeForToken($cn, null); }) (unnamed17=r_expression { addToChildren(cn, unnamed17); })))
-	| ((('FOREACH' { addLeafNodeForToken($cn, null); }) (unnamed18=r_expression { addToChildren(cn, unnamed18); }) ((('SEPARATOR' { addLeafNodeForToken($cn, null); }) (unnamed19=r_expression { addToChildren(cn, unnamed19); })))?))))?
+	('EXPAND' { addLeafNodeForToken($cn, null); }) (f_name=r_simpleType { addToChildren(cn, f_name); ((ExpandStatementNode) cn).setName(f_name); }) ((('(' { addLeafNodeForToken($cn, null); }) (f_paramList=r_parameterList { addToChildren(cn, f_paramList); ((ExpandStatementNode) cn).setParamList(f_paramList); }) (')' { addLeafNodeForToken($cn, null); })))? ((((('FOR' { addLeafNodeForToken($cn, null); }) (f_forExpression=r_expression { addToChildren(cn, f_forExpression); ((ExpandStatementNode) cn).setForExpression(f_forExpression); })))
+	| ((('FOREACH' { addLeafNodeForToken($cn, null); }) (f_forExpression=r_expression { addToChildren(cn, f_forExpression); ((ExpandStatementNode) cn).setForExpression(f_forExpression); }) ((('SEPARATOR' { addLeafNodeForToken($cn, null); }) (f_separator=r_expression { addToChildren(cn, f_separator); ((ExpandStatementNode) cn).setSeparator(f_separator); })))?))))?
 ;
 
 r_expressionStmt returns [CompositeNode cn]
 	@init{ cn = factory.createExpressionStmtNode();
 	    }  :
-	(unnamed20=r_expression { addToChildren(cn, unnamed20); })
+	(f_expression=r_expression { addToChildren(cn, f_expression); ((ExpressionStmtNode) cn).setExpression(f_expression); })
 ;
 
 r_fileStatement returns [CompositeNode cn]
 	@init{ cn = factory.createFileStatementNode();
 	    }  :
-	('FILE' { addLeafNodeForToken($cn, null); }) (unnamed21=r_expression { addToChildren(cn, unnamed21); }) (((unnamed22=r_identifier { addToChildren(cn, unnamed22); })))? (unnamed23=r_sequence { addToChildren(cn, unnamed23); }) ('ENDFILE' { addLeafNodeForToken($cn, null); })
+	('FILE' { addLeafNodeForToken($cn, null); }) (f_nameExpression=r_expression { addToChildren(cn, f_nameExpression); ((FileStatementNode) cn).setNameExpression(f_nameExpression); }) ((('ONCE' { addLeafNodeForToken($cn, null); })))? (((f_identifier=r_identifier { addToChildren(cn, f_identifier); ((FileStatementNode) cn).setIdentifier(f_identifier); })))? (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((FileStatementNode) cn).setSequence(f_sequence); }) ('ENDFILE' { addLeafNodeForToken($cn, null); })
 ;
 
 r_foreachStatement returns [CompositeNode cn]
 	@init{ cn = factory.createForeachStatementNode();
 	    }  :
-	('FOREACH' { addLeafNodeForToken($cn, null); }) (unnamed24=r_expression { addToChildren(cn, unnamed24); }) ('AS' { addLeafNodeForToken($cn, null); }) (unnamed25=r_identifier { addToChildren(cn, unnamed25); }) ((('ITERATOR' { addLeafNodeForToken($cn, null); }) (unnamed26=r_identifier { addToChildren(cn, unnamed26); })))? ((('SEPARATOR' { addLeafNodeForToken($cn, null); }) (unnamed27=r_expression { addToChildren(cn, unnamed27); })))? (unnamed28=r_sequence { addToChildren(cn, unnamed28); }) ('ENDFOREACH' { addLeafNodeForToken($cn, null); })
+	('FOREACH' { addLeafNodeForToken($cn, null); }) (f_forExpression=r_expression { addToChildren(cn, f_forExpression); ((ForeachStatementNode) cn).setForExpression(f_forExpression); }) ('AS' { addLeafNodeForToken($cn, null); }) (f_identifier=r_identifier { addToChildren(cn, f_identifier); ((ForeachStatementNode) cn).setIdentifier(f_identifier); }) ((('ITERATOR' { addLeafNodeForToken($cn, null); }) (f_iterator=r_identifier { addToChildren(cn, f_iterator); ((ForeachStatementNode) cn).setIterator(f_iterator); })))? ((('SEPARATOR' { addLeafNodeForToken($cn, null); }) (f_separatorExpression=r_expression { addToChildren(cn, f_separatorExpression); ((ForeachStatementNode) cn).setSeparatorExpression(f_separatorExpression); })))? (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((ForeachStatementNode) cn).setSequence(f_sequence); }) ('ENDFOREACH' { addLeafNodeForToken($cn, null); })
 ;
 
 r_ifStatement returns [CompositeNode cn]
 	@init{ cn = factory.createIfStatementNode();
 	    }  :
-	('IF' { addLeafNodeForToken($cn, null); }) (unnamed29=r_expression { addToChildren(cn, unnamed29); }) (unnamed30=r_sequence { addToChildren(cn, unnamed30); }) (unnamed31=r_elseIfStatement { addToChildren(cn, unnamed31); })* (unnamed32=r_elseStatement { addToChildren(cn, unnamed32); })? ('ENDIF' { addLeafNodeForToken($cn, null); })
+	('IF' { addLeafNodeForToken($cn, null); }) (f_expression=r_expression { addToChildren(cn, f_expression); ((IfStatementNode) cn).setExpression(f_expression); }) (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((IfStatementNode) cn).setSequence(f_sequence); }) (f_elseIf=r_elseIfStatement { addToChildren(cn, f_elseIf); ((IfStatementNode) cn).getElseIf().add(f_elseIf); })* (f_else=r_elseStatement { addToChildren(cn, f_else); ((IfStatementNode) cn).setElse(f_else); })? ('ENDIF' { addLeafNodeForToken($cn, null); })
 ;
 
 r_elseIfStatement returns [CompositeNode cn]
 	@init{ cn = factory.createElseIfStatementNode();
 	    }  :
-	('ELSEIF' { addLeafNodeForToken($cn, null); }) (unnamed33=r_expression { addToChildren(cn, unnamed33); }) (unnamed34=r_sequence { addToChildren(cn, unnamed34); })
+	('ELSEIF' { addLeafNodeForToken($cn, null); }) (f_expression=r_expression { addToChildren(cn, f_expression); ((ElseIfStatementNode) cn).setExpression(f_expression); }) (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((ElseIfStatementNode) cn).setSequence(f_sequence); })
 ;
 
 r_elseStatement returns [CompositeNode cn]
 	@init{ cn = factory.createElseStatementNode();
 	    }  :
-	('ELSE' { addLeafNodeForToken($cn, null); }) (unnamed35=r_sequence { addToChildren(cn, unnamed35); })
+	('ELSE' { addLeafNodeForToken($cn, null); }) (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((ElseStatementNode) cn).setSequence(f_sequence); })
 ;
 
 r_letStatement returns [CompositeNode cn]
 	@init{ cn = factory.createLetStatementNode();
 	    }  :
-	('LET' { addLeafNodeForToken($cn, null); }) (unnamed36=r_expression { addToChildren(cn, unnamed36); }) ('AS' { addLeafNodeForToken($cn, null); }) (unnamed37=r_identifier { addToChildren(cn, unnamed37); }) (unnamed38=r_sequence { addToChildren(cn, unnamed38); }) ('ENDLET' { addLeafNodeForToken($cn, null); })
+	('LET' { addLeafNodeForToken($cn, null); }) (f_expression=r_expression { addToChildren(cn, f_expression); ((LetStatementNode) cn).setExpression(f_expression); }) ('AS' { addLeafNodeForToken($cn, null); }) (f_name=r_identifier { addToChildren(cn, f_name); ((LetStatementNode) cn).setName(f_name); }) (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((LetStatementNode) cn).setSequence(f_sequence); }) ('ENDLET' { addLeafNodeForToken($cn, null); })
 ;
 
 r_protectStatement returns [CompositeNode cn]
 	@init{ cn = factory.createProtectStatementNode();
 	    }  :
-	('PROTECT' { addLeafNodeForToken($cn, null); }) ('CSTART' { addLeafNodeForToken($cn, null); }) (unnamed39=r_expression { addToChildren(cn, unnamed39); }) ('CEND' { addLeafNodeForToken($cn, null); }) (unnamed40=r_expression { addToChildren(cn, unnamed40); }) ('ID' { addLeafNodeForToken($cn, null); }) (unnamed41=r_expression { addToChildren(cn, unnamed41); }) ('DISABLE' { addLeafNodeForToken($cn, null); })? (unnamed42=r_sequence { addToChildren(cn, unnamed42); }) ('ENDPROTECT' { addLeafNodeForToken($cn, null); })
+	('PROTECT' { addLeafNodeForToken($cn, null); }) ('CSTART' { addLeafNodeForToken($cn, null); }) (f_cstart=r_expression { addToChildren(cn, f_cstart); ((ProtectStatementNode) cn).setCstart(f_cstart); }) ('CEND' { addLeafNodeForToken($cn, null); }) (f_cend=r_expression { addToChildren(cn, f_cend); ((ProtectStatementNode) cn).setCend(f_cend); }) ('ID' { addLeafNodeForToken($cn, null); }) (f_id=r_expression { addToChildren(cn, f_id); ((ProtectStatementNode) cn).setId(f_id); }) ('DISABLE' { addLeafNodeForToken($cn, null); })? (f_sequence=r_sequence { addToChildren(cn, f_sequence); ((ProtectStatementNode) cn).setSequence(f_sequence); }) ('ENDPROTECT' { addLeafNodeForToken($cn, null); })
 ;
 
 r_check returns [CompositeNode cn]
 	@init{ cn = factory.createCheckNode();
 	    }  :
-	('context' { addLeafNodeForToken($cn, null); }) (unnamed43=r_type { addToChildren(cn, unnamed43); }) ((('if' { addLeafNodeForToken($cn, null); }) (unnamed44=r_expression { addToChildren(cn, unnamed44); })))? ((('ERROR' { addLeafNodeForToken($cn, null); })
-	| ('WARNING' { addLeafNodeForToken($cn, null); }))) (unnamed45=r_expression { addToChildren(cn, unnamed45); }) (':' { addLeafNodeForToken($cn, null); }) (unnamed46=r_expression { addToChildren(cn, unnamed46); }) (';' { addLeafNodeForToken($cn, null); })
+	('context' { addLeafNodeForToken($cn, null); }) (f_unnamed0=r_type { addToChildren(cn, f_unnamed0); }) ((('if' { addLeafNodeForToken($cn, null); }) (f_unnamed1=r_expression { addToChildren(cn, f_unnamed1); })))? ((('ERROR' { addLeafNodeForToken($cn, null); })
+	| ('WARNING' { addLeafNodeForToken($cn, null); }))) (f_unnamed2=r_expression { addToChildren(cn, f_unnamed2); }) (':' { addLeafNodeForToken($cn, null); }) (f_unnamed3=r_expression { addToChildren(cn, f_unnamed3); }) (';' { addLeafNodeForToken($cn, null); })
 ;
 
 r_around returns [CompositeNode cn]
 	@init{ cn = factory.createAroundNode();
 	    }  :
-	('around' { addLeafNodeForToken($cn, null); }) (unnamed47=r_pointcut { addToChildren(cn, unnamed47); }) ('(' { addLeafNodeForToken($cn, null); }) (((unnamed48=r_declaredParameterList { addToChildren(cn, unnamed48); }) (((',' { addLeafNodeForToken($cn, null); })? ('*' { addLeafNodeForToken($cn, null); })))?
-	| ('*' { addLeafNodeForToken($cn, null); })))? (')' { addLeafNodeForToken($cn, null); }) (':' { addLeafNodeForToken($cn, null); }) (unnamed49=r_expression { addToChildren(cn, unnamed49); }) (';' { addLeafNodeForToken($cn, null); })
+	('around' { addLeafNodeForToken($cn, null); }) (f_unnamed4=r_pointcut { addToChildren(cn, f_unnamed4); }) ('(' { addLeafNodeForToken($cn, null); }) (((f_unnamed5=r_declaredParameterList { addToChildren(cn, f_unnamed5); }) (((',' { addLeafNodeForToken($cn, null); })? ('*' { addLeafNodeForToken($cn, null); })))?
+	| ('*' { addLeafNodeForToken($cn, null); })))? (')' { addLeafNodeForToken($cn, null); }) (':' { addLeafNodeForToken($cn, null); }) (f_unnamed6=r_expression { addToChildren(cn, f_unnamed6); }) (';' { addLeafNodeForToken($cn, null); })
 ;
 
 r_pointcut returns [CompositeNode cn]
 	@init{ cn = factory.createPointcutNode();
 	    }  :
 	((('*' { addLeafNodeForToken($cn, null); })
-	| (unnamed50=r_identifier { addToChildren(cn, unnamed50); }))) ((('*' { addLeafNodeForToken($cn, null); })
-	| (unnamed51=r_identifier { addToChildren(cn, unnamed51); })
+	| (f_unnamed7=r_identifier { addToChildren(cn, f_unnamed7); }))) ((('*' { addLeafNodeForToken($cn, null); })
+	| (f_unnamed8=r_identifier { addToChildren(cn, f_unnamed8); })
 	| ('::' { addLeafNodeForToken($cn, null); })))*
 ;
 
@@ -187,14 +197,14 @@ r_extension returns [CompositeNode cn]
 	    }  :
 	((('private' { addLeafNodeForToken($cn, "private"); })
 	| ('cached' { addLeafNodeForToken($cn, "cached"); })
-	| ('create' { addLeafNodeForToken($cn, "create"); })))* (returnType=r_type { addToChildren(cn, returnType); ((ExtensionNode) cn).setReturnType(returnType); })? (name=r_identifier { addToChildren(cn, name); ((ExtensionNode) cn).setName(name); }) ('(' { addLeafNodeForToken($cn, null); }) (paramList=r_declaredParameterList { addToChildren(cn, paramList); ((ExtensionNode) cn).setParamList(paramList); })? (')' { addLeafNodeForToken($cn, null); }) (':' { addLeafNodeForToken($cn, null); }) ((('JAVA' { addLeafNodeForToken($cn, null); }) (javaReturnType=r_javaType { addToChildren(cn, javaReturnType); ((ExtensionNode) cn).setJavaReturnType(javaReturnType); }) ('.' { addLeafNodeForToken($cn, null); }) (javaName=r_identifier { addToChildren(cn, javaName); ((ExtensionNode) cn).setJavaName(javaName); }) ('(' { addLeafNodeForToken($cn, null); }) (((unnamed52=r_javaType { addToChildren(cn, unnamed52); }) (((',' { addLeafNodeForToken($cn, null); }) (unnamed53=r_javaType { addToChildren(cn, unnamed53); })))*))? (')' { addLeafNodeForToken($cn, null); })
-	| (extendBody=r_expression { addToChildren(cn, extendBody); ((ExtensionNode) cn).setExtendBody(extendBody); }))) (';' { addLeafNodeForToken($cn, null); })
+	| ('create' { addLeafNodeForToken($cn, "create"); })))* (f_returnType=r_type { addToChildren(cn, f_returnType); ((ExtensionNode) cn).setReturnType(f_returnType); })? (f_name=r_identifier { addToChildren(cn, f_name); ((ExtensionNode) cn).setName(f_name); }) ('(' { addLeafNodeForToken($cn, null); }) (f_paramList=r_declaredParameterList { addToChildren(cn, f_paramList); ((ExtensionNode) cn).setParamList(f_paramList); })? (')' { addLeafNodeForToken($cn, null); }) (':' { addLeafNodeForToken($cn, null); }) ((('JAVA' { addLeafNodeForToken($cn, null); }) (f_javaReturnType=r_javaType { addToChildren(cn, f_javaReturnType); ((ExtensionNode) cn).setJavaReturnType(f_javaReturnType); }) ('.' { addLeafNodeForToken($cn, null); }) (f_javaName=r_identifier { addToChildren(cn, f_javaName); ((ExtensionNode) cn).setJavaName(f_javaName); }) ('(' { addLeafNodeForToken($cn, null); }) (((f_unnamed9=r_javaType { addToChildren(cn, f_unnamed9); }) (((',' { addLeafNodeForToken($cn, null); }) (f_unnamed10=r_javaType { addToChildren(cn, f_unnamed10); })))*))? (')' { addLeafNodeForToken($cn, null); })
+	| (f_extendBody=r_expression { addToChildren(cn, f_extendBody); ((ExtensionNode) cn).setExtendBody(f_extendBody); }))) (';' { addLeafNodeForToken($cn, null); })
 ;
 
 r_javaType returns [CompositeNode cn]
 	@init{ cn = factory.createJavaTypeNode();
 	    }  :
-	(unnamed54=r_identifier { addToChildren(cn, unnamed54); }) ((('.' { addLeafNodeForToken($cn, null); }) (((unnamed55=r_identifier { addToChildren(cn, unnamed55); })
+	(f_unnamed11=r_identifier { addToChildren(cn, f_unnamed11); }) ((('.' { addLeafNodeForToken($cn, null); }) (((f_unnamed12=r_identifier { addToChildren(cn, f_unnamed12); })
 	| ('Collection' { addLeafNodeForToken($cn, null); })
 	| ('List' { addLeafNodeForToken($cn, null); })
 	| ('Set' { addLeafNodeForToken($cn, null); })))))*
@@ -204,87 +214,87 @@ r_test_expression returns [CompositeNode cn]
 	@init{ cn = factory.createTest_expressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed56=r_expression { addToChildren(cn, unnamed56); }) (EOF)
+	(f_unnamed13=r_expression { addToChildren(cn, f_unnamed13); }) (EOF)
 ;
 
 r_expression returns [CompositeNode cn]
 	@init{ cn = factory.createExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed57=r_letExpression { addToChildren(cn, unnamed57); })
+	(f_unnamed14=r_letExpression { addToChildren(cn, f_unnamed14); })
 ;
 
 r_letExpression returns [CompositeNode cn]
 	@init{ cn = factory.createLetExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	('let' { addLeafNodeForToken($cn, null); }) (unnamed58=r_identifier { addToChildren(cn, unnamed58); }) ('=' { addLeafNodeForToken($cn, null); }) (unnamed59=r_castedExpression { addToChildren(cn, unnamed59); }) (':' { addLeafNodeForToken($cn, null); }) (unnamed60=r_expression { addToChildren(cn, unnamed60); })
-	| (unnamed61=r_castedExpression { addToChildren(cn, unnamed61); })
+	('let' { addLeafNodeForToken($cn, null); }) (f_unnamed15=r_identifier { addToChildren(cn, f_unnamed15); }) ('=' { addLeafNodeForToken($cn, null); }) (f_unnamed16=r_castedExpression { addToChildren(cn, f_unnamed16); }) (':' { addLeafNodeForToken($cn, null); }) (f_unnamed17=r_expression { addToChildren(cn, f_unnamed17); })
+	| (f_unnamed18=r_castedExpression { addToChildren(cn, f_unnamed18); })
 ;
 
 r_castedExpression returns [CompositeNode cn]
 	@init{ cn = factory.createCastedExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	('(' r_type ')' r_chainExpression)=>(('(' { addLeafNodeForToken($cn, null); }) (unnamed62=r_type { addToChildren(cn, unnamed62); }) (')' { addLeafNodeForToken($cn, null); }) (unnamed63=r_chainExpression { addToChildren(cn, unnamed63); }))
-	| (unnamed64=r_chainExpression { addToChildren(cn, unnamed64); })
+	('(' r_type ')' r_chainExpression)=>(('(' { addLeafNodeForToken($cn, null); }) (f_unnamed19=r_type { addToChildren(cn, f_unnamed19); }) (')' { addLeafNodeForToken($cn, null); }) (f_unnamed20=r_chainExpression { addToChildren(cn, f_unnamed20); }))
+	| (f_unnamed21=r_chainExpression { addToChildren(cn, f_unnamed21); })
 ;
 
 r_chainExpression returns [CompositeNode cn]
 	@init{ cn = factory.createChainExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed65=r_ifExpression { addToChildren(cn, unnamed65); }) ((('->' { addLeafNodeForToken($cn, null); }) (unnamed66=r_ifExpression { addToChildren(cn, unnamed66); })))*
+	(f_unnamed22=r_ifExpression { addToChildren(cn, f_unnamed22); }) ((('->' { addLeafNodeForToken($cn, null); }) (f_unnamed23=r_ifExpression { addToChildren(cn, f_unnamed23); })))*
 ;
 
 r_ifExpression returns [CompositeNode cn]
 	@init{ cn = factory.createIfExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed67=r_switchExpression { addToChildren(cn, unnamed67); }) ((('?' { addLeafNodeForToken($cn, null); }) (unnamed68=r_expression { addToChildren(cn, unnamed68); }) (':' { addLeafNodeForToken($cn, null); }) (unnamed69=r_switchExpression { addToChildren(cn, unnamed69); })))?
-	| ('if' { addLeafNodeForToken($cn, null); }) (unnamed70=r_expression { addToChildren(cn, unnamed70); }) ('then' { addLeafNodeForToken($cn, null); }) (unnamed71=r_switchExpression { addToChildren(cn, unnamed71); }) ((('else' { addLeafNodeForToken($cn, null); }) (unnamed72=r_switchExpression { addToChildren(cn, unnamed72); })))?
+	(f_unnamed24=r_switchExpression { addToChildren(cn, f_unnamed24); }) ((('?' { addLeafNodeForToken($cn, null); }) (f_unnamed25=r_expression { addToChildren(cn, f_unnamed25); }) (':' { addLeafNodeForToken($cn, null); }) (f_unnamed26=r_switchExpression { addToChildren(cn, f_unnamed26); })))?
+	| ('if' { addLeafNodeForToken($cn, null); }) (f_unnamed27=r_expression { addToChildren(cn, f_unnamed27); }) ('then' { addLeafNodeForToken($cn, null); }) (f_unnamed28=r_switchExpression { addToChildren(cn, f_unnamed28); }) ((('else' { addLeafNodeForToken($cn, null); }) (f_unnamed29=r_switchExpression { addToChildren(cn, f_unnamed29); })))?
 ;
 
 r_switchExpression returns [CompositeNode cn]
 	@init{ cn = factory.createSwitchExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	('switch' { addLeafNodeForToken($cn, null); }) ((('(' { addLeafNodeForToken($cn, null); }) (unnamed73=r_orExpression { addToChildren(cn, unnamed73); }) (')' { addLeafNodeForToken($cn, null); })))? ('{' { addLeafNodeForToken($cn, null); }) (unnamed74=r_casePart { addToChildren(cn, unnamed74); })* ('default' { addLeafNodeForToken($cn, null); }) (':' { addLeafNodeForToken($cn, null); }) (unnamed75=r_orExpression { addToChildren(cn, unnamed75); }) ('}' { addLeafNodeForToken($cn, null); })
-	| (unnamed76=r_orExpression { addToChildren(cn, unnamed76); })
+	('switch' { addLeafNodeForToken($cn, null); }) ((('(' { addLeafNodeForToken($cn, null); }) (f_unnamed30=r_orExpression { addToChildren(cn, f_unnamed30); }) (')' { addLeafNodeForToken($cn, null); })))? ('{' { addLeafNodeForToken($cn, null); }) (f_unnamed31=r_casePart { addToChildren(cn, f_unnamed31); })* ('default' { addLeafNodeForToken($cn, null); }) (':' { addLeafNodeForToken($cn, null); }) (f_unnamed32=r_orExpression { addToChildren(cn, f_unnamed32); }) ('}' { addLeafNodeForToken($cn, null); })
+	| (f_unnamed33=r_orExpression { addToChildren(cn, f_unnamed33); })
 ;
 
 r_casePart returns [CompositeNode cn]
 	@init{ cn = factory.createCasePartNode();
 	    }  :
-	('case' { addLeafNodeForToken($cn, null); }) (unnamed77=r_expression { addToChildren(cn, unnamed77); }) (':' { addLeafNodeForToken($cn, null); }) (unnamed78=r_expression { addToChildren(cn, unnamed78); })
+	('case' { addLeafNodeForToken($cn, null); }) (f_unnamed34=r_expression { addToChildren(cn, f_unnamed34); }) (':' { addLeafNodeForToken($cn, null); }) (f_unnamed35=r_expression { addToChildren(cn, f_unnamed35); })
 ;
 
 r_orExpression returns [CompositeNode cn]
 	@init{ cn = factory.createOrExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed79=r_andExpression { addToChildren(cn, unnamed79); }) ((('||' { addLeafNodeForToken($cn, null); }) (unnamed80=r_andExpression { addToChildren(cn, unnamed80); })))*
+	(f_unnamed36=r_andExpression { addToChildren(cn, f_unnamed36); }) ((('||' { addLeafNodeForToken($cn, null); }) (f_unnamed37=r_andExpression { addToChildren(cn, f_unnamed37); })))*
 ;
 
 r_andExpression returns [CompositeNode cn]
 	@init{ cn = factory.createAndExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed81=r_impliesExpression { addToChildren(cn, unnamed81); }) ((('&&' { addLeafNodeForToken($cn, null); }) (unnamed82=r_impliesExpression { addToChildren(cn, unnamed82); })))*
+	(f_unnamed38=r_impliesExpression { addToChildren(cn, f_unnamed38); }) ((('&&' { addLeafNodeForToken($cn, null); }) (f_unnamed39=r_impliesExpression { addToChildren(cn, f_unnamed39); })))*
 ;
 
 r_impliesExpression returns [CompositeNode cn]
 	@init{ cn = factory.createImpliesExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed83=r_relationalExpression { addToChildren(cn, unnamed83); }) ((('implies' { addLeafNodeForToken($cn, null); }) (unnamed84=r_relationalExpression { addToChildren(cn, unnamed84); })))*
+	(f_unnamed40=r_relationalExpression { addToChildren(cn, f_unnamed40); }) ((('implies' { addLeafNodeForToken($cn, null); }) (f_unnamed41=r_relationalExpression { addToChildren(cn, f_unnamed41); })))*
 ;
 
 r_relationalExpression returns [CompositeNode cn]
 	@init{ cn = factory.createRelationalExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(leftOperand=r_additiveExpression { addToChildren(cn, leftOperand); ((RelationalExpressionNode) cn).setLeftOperand(leftOperand); }) (((operator=r_relationalOperator { addToChildren(cn, operator); ((RelationalExpressionNode) cn).setOperator(operator); }) (rightOperand=r_additiveExpression { addToChildren(cn, rightOperand); ((RelationalExpressionNode) cn).setRightOperand(rightOperand); })))*
+	(f_leftOperand=r_additiveExpression { addToChildren(cn, f_leftOperand); ((RelationalExpressionNode) cn).setLeftOperand(f_leftOperand); }) (((f_operator=r_relationalOperator { addToChildren(cn, f_operator); ((RelationalExpressionNode) cn).setOperator(f_operator); }) (f_rightOperand=r_additiveExpression { addToChildren(cn, f_rightOperand); ((RelationalExpressionNode) cn).setRightOperand(f_rightOperand); })))*
 ;
 
 r_relationalOperator returns [CompositeNode cn]
@@ -302,32 +312,32 @@ r_additiveExpression returns [CompositeNode cn]
 	@init{ cn = factory.createAdditiveExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed85=r_multiplicativeExpression { addToChildren(cn, unnamed85); }) ((((('+' { addLeafNodeForToken($cn, null); })
-	| ('-' { addLeafNodeForToken($cn, null); }))) (unnamed86=r_multiplicativeExpression { addToChildren(cn, unnamed86); })))*
+	(f_left=r_multiplicativeExpression { addToChildren(cn, f_left); ((AdditiveExpressionNode) cn).setLeft(f_left); }) ((((('+' { addLeafNodeForToken($cn, null); })
+	| ('-' { addLeafNodeForToken($cn, null); }))) (f_right=r_multiplicativeExpression { addToChildren(cn, f_right); ((AdditiveExpressionNode) cn).setRight(f_right); })))*
 ;
 
 r_multiplicativeExpression returns [CompositeNode cn]
 	@init{ cn = factory.createMultiplicativeExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed87=r_unaryExpression { addToChildren(cn, unnamed87); }) ((((('*' { addLeafNodeForToken($cn, null); })
-	| ('/' { addLeafNodeForToken($cn, null); }))) (unnamed88=r_unaryExpression { addToChildren(cn, unnamed88); })))*
+	(f_left=r_unaryExpression { addToChildren(cn, f_left); ((MultiplicativeExpressionNode) cn).setLeft(f_left); }) ((((('*' { addLeafNodeForToken($cn, null); })
+	| ('/' { addLeafNodeForToken($cn, null); }))) (f_right=r_unaryExpression { addToChildren(cn, f_right); ((MultiplicativeExpressionNode) cn).setRight(f_right); })))*
 ;
 
 r_unaryExpression returns [CompositeNode cn]
 	@init{ cn = factory.createUnaryExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(unnamed89=r_infixExpression { addToChildren(cn, unnamed89); })
-	| ('!' { addLeafNodeForToken($cn, null); }) (unnamed90=r_infixExpression { addToChildren(cn, unnamed90); })
-	| ('-' { addLeafNodeForToken($cn, null); }) (unnamed91=r_infixExpression { addToChildren(cn, unnamed91); })
+	(f_unnamed42=r_infixExpression { addToChildren(cn, f_unnamed42); })
+	| ('!' { addLeafNodeForToken($cn, null); }) (f_operand=r_infixExpression { addToChildren(cn, f_operand); ((UnaryExpressionNode) cn).setOperand(f_operand); })
+	| ('-' { addLeafNodeForToken($cn, null); }) (f_operand=r_infixExpression { addToChildren(cn, f_operand); ((UnaryExpressionNode) cn).setOperand(f_operand); })
 ;
 
 r_infixExpression returns [CompositeNode cn]
 	@init{ cn = factory.createInfixExpressionNode();
 	    }
 	@after{ cn = normalize(cn); }  :
-	(target=r_primaryExpression { addToChildren(cn, target); ((InfixExpressionNode) cn).setTarget(target); }) ((('.' { addLeafNodeForToken($cn, null); }) (calls=r_featureCall { addToChildren(cn, calls); ((InfixExpressionNode) cn).getCalls().add(calls); })))*
+	(f_target=r_primaryExpression { addToChildren(cn, f_target); ((InfixExpressionNode) cn).setTarget(f_target); }) ((('.' { addLeafNodeForToken($cn, null); }) (f_calls=r_featureCall { addToChildren(cn, f_calls); ((InfixExpressionNode) cn).getCalls().add(f_calls); })))*
 ;
 
 r_primaryExpression returns [CompositeNode cn]  :
@@ -351,34 +361,33 @@ r_stringLiteral returns [CompositeNode cn]
 r_paranthesizedExpression returns [CompositeNode cn]
 	@init{ cn = factory.createParanthesizedExpressionNode();
 	    }  :
-	('(' { addLeafNodeForToken($cn, null); }) (unnamed92=r_expression { addToChildren(cn, unnamed92); }) (')' { addLeafNodeForToken($cn, null); })
+	('(' { addLeafNodeForToken($cn, null); }) (f_unnamed43=r_expression { addToChildren(cn, f_unnamed43); }) (')' { addLeafNodeForToken($cn, null); })
 ;
 
 r_globalVarExpression returns [CompositeNode cn]
 	@init{ cn = factory.createGlobalVarExpressionNode();
 	    }  :
-	('GLOBALVAR' { addLeafNodeForToken($cn, null); }) (unnamed93=r_identifier { addToChildren(cn, unnamed93); })
+	('GLOBALVAR' { addLeafNodeForToken($cn, null); }) (f_unnamed44=r_identifier { addToChildren(cn, f_unnamed44); })
 ;
 
 r_featureCall returns [CompositeNode cn]
 	@init{ cn = factory.createFeatureCallNode();
-	    }
-	@after{ cn = normalize(cn); }  :
-	(name=r_identifier { addToChildren(cn, name); ((FeatureCallNode) cn).setName(name); }) ('(' { addLeafNodeForToken($cn, null); }) (((paramList=r_parameterList { addToChildren(cn, paramList); ((FeatureCallNode) cn).setParamList(paramList); })))? (')' { addLeafNodeForToken($cn, null); })
-	| (unnamed94=r_type { addToChildren(cn, unnamed94); })
-	| (unnamed95=r_collectionExpression { addToChildren(cn, unnamed95); })
+	    }  :
+	(f_name=r_identifier { addToChildren(cn, f_name); ((FeatureCallNode) cn).setName(f_name); }) ('(' { addLeafNodeForToken($cn, null); }) (((f_paramList=r_parameterList { addToChildren(cn, f_paramList); ((FeatureCallNode) cn).setParamList(f_paramList); })))? (')' { addLeafNodeForToken($cn, null); })
+	| (f_type=r_type { addToChildren(cn, f_type); ((FeatureCallNode) cn).setType(f_type); })
+	| (f_unnamed45=r_collectionExpression { addToChildren(cn, f_unnamed45); })
 ;
 
 r_listLiteral returns [CompositeNode cn]
 	@init{ cn = factory.createListLiteralNode();
 	    }  :
-	('{' { addLeafNodeForToken($cn, null); }) (((unnamed96=r_expression { addToChildren(cn, unnamed96); }) (((',' { addLeafNodeForToken($cn, null); }) (unnamed97=r_expression { addToChildren(cn, unnamed97); })))*))? ('}' { addLeafNodeForToken($cn, null); })
+	('{' { addLeafNodeForToken($cn, null); }) (((f_unnamed46=r_expression { addToChildren(cn, f_unnamed46); }) (((',' { addLeafNodeForToken($cn, null); }) (f_unnamed47=r_expression { addToChildren(cn, f_unnamed47); })))*))? ('}' { addLeafNodeForToken($cn, null); })
 ;
 
 r_constructorCall returns [CompositeNode cn]
 	@init{ cn = factory.createConstructorCallNode();
 	    }  :
-	('new' { addLeafNodeForToken($cn, null); }) (unnamed98=r_simpleType { addToChildren(cn, unnamed98); })
+	('new' { addLeafNodeForToken($cn, null); }) (f_unnamed48=r_simpleType { addToChildren(cn, f_unnamed48); })
 ;
 
 r_booleanLiteral returns [CompositeNode cn]
@@ -404,7 +413,7 @@ r_numberLiteral returns [CompositeNode cn]
 r_collectionExpression returns [CompositeNode cn]
 	@init{ cn = factory.createCollectionExpressionNode();
 	    }  :
-	('typeSelect' { addLeafNodeForToken($cn, null); }) ('(' { addLeafNodeForToken($cn, null); }) (unnamed99=r_type { addToChildren(cn, unnamed99); }) (')' { addLeafNodeForToken($cn, null); })
+	('typeSelect' { addLeafNodeForToken($cn, null); }) ('(' { addLeafNodeForToken($cn, null); }) (f_unnamed49=r_type { addToChildren(cn, f_unnamed49); }) (')' { addLeafNodeForToken($cn, null); })
 	| ((('collect' { addLeafNodeForToken($cn, null); })
 	| ('select' { addLeafNodeForToken($cn, null); })
 	| ('selectFirst' { addLeafNodeForToken($cn, null); })
@@ -412,25 +421,25 @@ r_collectionExpression returns [CompositeNode cn]
 	| ('exists' { addLeafNodeForToken($cn, null); })
 	| ('notExists' { addLeafNodeForToken($cn, null); })
 	| ('sortBy' { addLeafNodeForToken($cn, null); })
-	| ('forAll' { addLeafNodeForToken($cn, null); }))) ('(' { addLeafNodeForToken($cn, null); }) (((unnamed100=r_identifier { addToChildren(cn, unnamed100); }) ('|' { addLeafNodeForToken($cn, null); })))? (unnamed101=r_expression { addToChildren(cn, unnamed101); }) (')' { addLeafNodeForToken($cn, null); })
+	| ('forAll' { addLeafNodeForToken($cn, null); }))) ('(' { addLeafNodeForToken($cn, null); }) (((f_unnamed50=r_identifier { addToChildren(cn, f_unnamed50); }) ('|' { addLeafNodeForToken($cn, null); })))? (f_unnamed51=r_expression { addToChildren(cn, f_unnamed51); }) (')' { addLeafNodeForToken($cn, null); })
 ;
 
 r_declaredParameterList returns [CompositeNode cn]
 	@init{ cn = factory.createDeclaredParameterListNode();
 	    }  :
-	(params=r_declaredParameter { addToChildren(cn, params); ((DeclaredParameterListNode) cn).getParams().add(params); }) (((',' { addLeafNodeForToken($cn, null); }) (params=r_declaredParameter { addToChildren(cn, params); ((DeclaredParameterListNode) cn).getParams().add(params); })))*
+	(f_params=r_declaredParameter { addToChildren(cn, f_params); ((DeclaredParameterListNode) cn).getParams().add(f_params); }) (((',' { addLeafNodeForToken($cn, null); }) (f_params=r_declaredParameter { addToChildren(cn, f_params); ((DeclaredParameterListNode) cn).getParams().add(f_params); })))*
 ;
 
 r_declaredParameter returns [CompositeNode cn]
 	@init{ cn = factory.createDeclaredParameterNode();
 	    }  :
-	(ptype=r_type { addToChildren(cn, ptype); ((DeclaredParameterNode) cn).setPtype(ptype); }) (name=r_identifier { addToChildren(cn, name); ((DeclaredParameterNode) cn).setName(name); })
+	(f_ptype=r_type { addToChildren(cn, f_ptype); ((DeclaredParameterNode) cn).setPtype(f_ptype); }) (f_name=r_identifier { addToChildren(cn, f_name); ((DeclaredParameterNode) cn).setName(f_name); })
 ;
 
 r_parameterList returns [CompositeNode cn]
 	@init{ cn = factory.createParameterListNode();
 	    }  :
-	(params=r_expression { addToChildren(cn, params); ((ParameterListNode) cn).getParams().add(params); }) (((',' { addLeafNodeForToken($cn, null); }) (params=r_expression { addToChildren(cn, params); ((ParameterListNode) cn).getParams().add(params); })))*
+	(f_params=r_expression { addToChildren(cn, f_params); ((ParameterListNode) cn).getParams().add(f_params); }) (((',' { addLeafNodeForToken($cn, null); }) (f_params=r_expression { addToChildren(cn, f_params); ((ParameterListNode) cn).getParams().add(f_params); })))*
 ;
 
 r_type returns [CompositeNode cn]  :
@@ -443,13 +452,13 @@ r_collectionType returns [CompositeNode cn]
 	    }  :
 	((('Collection' { addLeafNodeForToken($cn, null); })
 	| ('List' { addLeafNodeForToken($cn, null); })
-	| ('Set' { addLeafNodeForToken($cn, null); }))) ((('[' { addLeafNodeForToken($cn, null); }) (unnamed102=r_simpleType { addToChildren(cn, unnamed102); }) (']' { addLeafNodeForToken($cn, null); })))?
+	| ('Set' { addLeafNodeForToken($cn, null); }))) ((('[' { addLeafNodeForToken($cn, null); }) (f_unnamed52=r_simpleType { addToChildren(cn, f_unnamed52); }) (']' { addLeafNodeForToken($cn, null); })))?
 ;
 
 r_simpleType returns [CompositeNode cn]
 	@init{ cn = factory.createSimpleTypeNode();
 	    }  :
-	(names=r_identifier { addToChildren(cn, names); ((SimpleTypeNode) cn).getNames().add(names); }) ((('::' { addLeafNodeForToken($cn, null); }) (names=r_identifier { addToChildren(cn, names); ((SimpleTypeNode) cn).getNames().add(names); })))*
+	(f_names=r_identifier { addToChildren(cn, f_names); ((SimpleTypeNode) cn).getNames().add(f_names); }) ((('::' { addLeafNodeForToken($cn, null); }) (f_names=r_identifier { addToChildren(cn, f_names); ((SimpleTypeNode) cn).getNames().add(f_names); })))*
 ;
 
 r_identifier returns [CompositeNode cn]

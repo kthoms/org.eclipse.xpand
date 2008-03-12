@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileNode.java,v 1.2 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: FileNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -18,8 +18,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode#getImp <em>Imp</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode#getDecl <em>Decl</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode#getDeclarations <em>Declarations</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode#getImports <em>Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,35 +29,35 @@ import org.eclipse.tmf.common.node.CompositeNode;
  */
 public interface FileNode extends CompositeNode {
 	/**
-	 * Returns the value of the '<em><b>Decl</b></em>' reference list.
+	 * Returns the value of the '<em><b>Declarations</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Decl</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Declarations</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Decl</em>' reference list.
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileNode_Decl()
+	 * @return the value of the '<em>Declarations</em>' reference list.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileNode_Declarations()
 	 * @model
 	 * @generated
 	 */
-	EList<CompositeNode> getDecl();
+	EList<CompositeNode> getDeclarations();
 
 	/**
-	 * Returns the value of the '<em><b>Imp</b></em>' reference list.
+	 * Returns the value of the '<em><b>Imports</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Imp</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Imports</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imp</em>' reference list.
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileNode_Imp()
+	 * @return the value of the '<em>Imports</em>' reference list.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileNode_Imports()
 	 * @model
 	 * @generated
 	 */
-	EList<CompositeNode> getImp();
+	EList<CompositeNode> getImports();
 
 } // FileNode

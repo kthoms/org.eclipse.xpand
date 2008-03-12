@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileStatementImpl.java,v 1.2 2008/03/07 11:10:34 jkohnlein Exp $
+ * $Id: FileStatementImpl.java,v 1.3 2008/03/12 09:54:30 jkohnlein Exp $
  */
 package org.eclipse.xpand3.statement.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.xpand3.statement.StatementPackage;
  * <ul>
  *   <li>{@link org.eclipse.xpand3.statement.impl.FileStatementImpl#getFileNameExpression <em>File Name Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.impl.FileStatementImpl#getOutletNameIdentifier <em>Outlet Name Identifier</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.statement.impl.FileStatementImpl#isOnce <em>Once</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +56,26 @@ public class FileStatementImpl extends AbstractStatementWithBodyImpl implements 
 	 * @ordered
 	 */
 	protected Identifier outletNameIdentifier;
+
+	/**
+	 * The default value of the '{@link #isOnce() <em>Once</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnce()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ONCE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOnce() <em>Once</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnce()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean once = ONCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +187,27 @@ public class FileStatementImpl extends AbstractStatementWithBodyImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isOnce() {
+		return once;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOnce(boolean newOnce) {
+		boolean oldOnce = once;
+		once = newOnce;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StatementPackage.FILE_STATEMENT__ONCE, oldOnce, once));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -189,6 +231,8 @@ public class FileStatementImpl extends AbstractStatementWithBodyImpl implements 
 				return getFileNameExpression();
 			case StatementPackage.FILE_STATEMENT__OUTLET_NAME_IDENTIFIER:
 				return getOutletNameIdentifier();
+			case StatementPackage.FILE_STATEMENT__ONCE:
+				return isOnce() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,6 +250,9 @@ public class FileStatementImpl extends AbstractStatementWithBodyImpl implements 
 				return;
 			case StatementPackage.FILE_STATEMENT__OUTLET_NAME_IDENTIFIER:
 				setOutletNameIdentifier((Identifier)newValue);
+				return;
+			case StatementPackage.FILE_STATEMENT__ONCE:
+				setOnce(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,6 +272,9 @@ public class FileStatementImpl extends AbstractStatementWithBodyImpl implements 
 			case StatementPackage.FILE_STATEMENT__OUTLET_NAME_IDENTIFIER:
 				setOutletNameIdentifier((Identifier)null);
 				return;
+			case StatementPackage.FILE_STATEMENT__ONCE:
+				setOnce(ONCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -241,8 +291,26 @@ public class FileStatementImpl extends AbstractStatementWithBodyImpl implements 
 				return fileNameExpression != null;
 			case StatementPackage.FILE_STATEMENT__OUTLET_NAME_IDENTIFIER:
 				return outletNameIdentifier != null;
+			case StatementPackage.FILE_STATEMENT__ONCE:
+				return once != ONCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (once: ");
+		result.append(once);
+		result.append(')');
+		return result.toString();
 	}
 
 } //FileStatementImpl

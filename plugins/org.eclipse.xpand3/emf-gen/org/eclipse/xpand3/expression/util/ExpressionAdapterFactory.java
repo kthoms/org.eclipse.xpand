@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionAdapterFactory.java,v 1.3 2008/03/10 08:25:35 jkohnlein Exp $
+ * $Id: ExpressionAdapterFactory.java,v 1.4 2008/03/12 09:54:30 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression.util;
 
@@ -160,6 +160,10 @@ public class ExpressionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBinaryOperation(BinaryOperation object) {
 				return createBinaryOperationAdapter();
+			}
+			@Override
+			public Adapter caseUnaryOperation(UnaryOperation object) {
+				return createUnaryOperationAdapter();
 			}
 			@Override
 			public Adapter caseSyntaxElement(SyntaxElement object) {
@@ -490,6 +494,20 @@ public class ExpressionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBinaryOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.expression.UnaryOperation <em>Unary Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.expression.UnaryOperation
+	 * @generated
+	 */
+	public Adapter createUnaryOperationAdapter() {
 		return null;
 	}
 

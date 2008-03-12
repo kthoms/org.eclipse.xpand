@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactoryImpl.java,v 1.4 2008/03/07 11:11:16 jkohnlein Exp $
+ * $Id: Xpand3nodeFactoryImpl.java,v 1.5 2008/03/12 09:54:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -60,9 +60,9 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case Xpand3nodePackage.XNODE: return createXNode();
 			case Xpand3nodePackage.FILE_NODE: return createFileNode();
-			case Xpand3nodePackage.NS_IMPORT_NODE: return createNsImportNode();
+			case Xpand3nodePackage.IMPORT_NODE: return createImportNode();
+			case Xpand3nodePackage.EXTENSION_IMPORT_NODE: return createExtensionImportNode();
 			case Xpand3nodePackage.DEFINITION_NODE: return createDefinitionNode();
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE: return createDefinitionAroundNode();
 			case Xpand3nodePackage.SEQUENCE_NODE: return createSequenceNode();
@@ -126,16 +126,6 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XNode createXNode() {
-		XNodeImpl xNode = new XNodeImpl();
-		return xNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public FileNode createFileNode() {
 		FileNodeImpl fileNode = new FileNodeImpl();
 		return fileNode;
@@ -146,9 +136,19 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NsImportNode createNsImportNode() {
-		NsImportNodeImpl nsImportNode = new NsImportNodeImpl();
-		return nsImportNode;
+	public ImportNode createImportNode() {
+		ImportNodeImpl importNode = new ImportNodeImpl();
+		return importNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtensionImportNode createExtensionImportNode() {
+		ExtensionImportNodeImpl extensionImportNode = new ExtensionImportNodeImpl();
+		return extensionImportNode;
 	}
 
 	/**

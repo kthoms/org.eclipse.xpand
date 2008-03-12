@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeSwitch.java,v 1.4 2008/03/07 11:11:11 jkohnlein Exp $
+ * $Id: Xpand3nodeSwitch.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.util;
 
@@ -90,14 +90,6 @@ public class Xpand3nodeSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case Xpand3nodePackage.XNODE: {
-				XNode xNode = (XNode)theEObject;
-				T result = caseXNode(xNode);
-				if (result == null) result = caseCompositeNode(xNode);
-				if (result == null) result = caseNode(xNode);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case Xpand3nodePackage.FILE_NODE: {
 				FileNode fileNode = (FileNode)theEObject;
 				T result = caseFileNode(fileNode);
@@ -106,11 +98,19 @@ public class Xpand3nodeSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Xpand3nodePackage.NS_IMPORT_NODE: {
-				NsImportNode nsImportNode = (NsImportNode)theEObject;
-				T result = caseNsImportNode(nsImportNode);
-				if (result == null) result = caseCompositeNode(nsImportNode);
-				if (result == null) result = caseNode(nsImportNode);
+			case Xpand3nodePackage.IMPORT_NODE: {
+				ImportNode importNode = (ImportNode)theEObject;
+				T result = caseImportNode(importNode);
+				if (result == null) result = caseCompositeNode(importNode);
+				if (result == null) result = caseNode(importNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Xpand3nodePackage.EXTENSION_IMPORT_NODE: {
+				ExtensionImportNode extensionImportNode = (ExtensionImportNode)theEObject;
+				T result = caseExtensionImportNode(extensionImportNode);
+				if (result == null) result = caseCompositeNode(extensionImportNode);
+				if (result == null) result = caseNode(extensionImportNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -543,21 +543,6 @@ public class Xpand3nodeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>XNode</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>XNode</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseXNode(XNode object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>File Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -573,17 +558,32 @@ public class Xpand3nodeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ns Import Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Import Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ns Import Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Import Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNsImportNode(NsImportNode object) {
+	public T caseImportNode(ImportNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extension Import Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extension Import Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtensionImportNode(ExtensionImportNode object) {
 		return null;
 	}
 

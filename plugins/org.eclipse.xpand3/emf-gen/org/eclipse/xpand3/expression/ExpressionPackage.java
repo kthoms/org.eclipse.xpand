@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionPackage.java,v 1.3 2008/03/10 08:25:35 jkohnlein Exp $
+ * $Id: ExpressionPackage.java,v 1.4 2008/03/12 09:54:30 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression;
 
@@ -1650,6 +1650,80 @@ public interface ExpressionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.xpand3.expression.impl.UnaryOperationImpl <em>Unary Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xpand3.expression.impl.UnaryOperationImpl
+	 * @see org.eclipse.xpand3.expression.impl.ExpressionPackageImpl#getUnaryOperation()
+	 * @generated
+	 */
+	int UNARY_OPERATION = 22;
+
+	/**
+	 * The feature id for the '<em><b>Line</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATION__LINE = ABSTRACT_EXPRESSION__LINE;
+
+	/**
+	 * The feature id for the '<em><b>Start</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATION__START = ABSTRACT_EXPRESSION__START;
+
+	/**
+	 * The feature id for the '<em><b>End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATION__END = ABSTRACT_EXPRESSION__END;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATION__FILE_NAME = ABSTRACT_EXPRESSION__FILE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATION__OPERATOR = ABSTRACT_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operand</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATION__OPERAND = ABSTRACT_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Unary Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATION_FEATURE_COUNT = ABSTRACT_EXPRESSION_FEATURE_COUNT + 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.expression.AbstractExpression <em>Abstract Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2178,6 +2252,38 @@ public interface ExpressionPackage extends EPackage {
 	EReference getBinaryOperation_Operator();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.xpand3.expression.UnaryOperation <em>Unary Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Unary Operation</em>'.
+	 * @see org.eclipse.xpand3.expression.UnaryOperation
+	 * @generated
+	 */
+	EClass getUnaryOperation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.expression.UnaryOperation#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operator</em>'.
+	 * @see org.eclipse.xpand3.expression.UnaryOperation#getOperator()
+	 * @see #getUnaryOperation()
+	 * @generated
+	 */
+	EReference getUnaryOperation_Operator();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.expression.UnaryOperation#getOperand <em>Operand</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Operand</em>'.
+	 * @see org.eclipse.xpand3.expression.UnaryOperation#getOperand()
+	 * @see #getUnaryOperation()
+	 * @generated
+	 */
+	EReference getUnaryOperation_Operand();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2642,6 +2748,32 @@ public interface ExpressionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BINARY_OPERATION__OPERATOR = eINSTANCE.getBinaryOperation_Operator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xpand3.expression.impl.UnaryOperationImpl <em>Unary Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xpand3.expression.impl.UnaryOperationImpl
+		 * @see org.eclipse.xpand3.expression.impl.ExpressionPackageImpl#getUnaryOperation()
+		 * @generated
+		 */
+		EClass UNARY_OPERATION = eINSTANCE.getUnaryOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNARY_OPERATION__OPERATOR = eINSTANCE.getUnaryOperation_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Operand</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNARY_OPERATION__OPERAND = eINSTANCE.getUnaryOperation_Operand();
 
 	}
 

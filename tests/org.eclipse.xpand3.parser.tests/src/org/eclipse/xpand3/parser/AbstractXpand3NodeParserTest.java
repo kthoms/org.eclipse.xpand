@@ -159,4 +159,25 @@ public abstract class AbstractXpand3NodeParserTest extends TestCase {
 		return sequence;
 	}
 
+	protected CompositeNode checkChildIsFeatureCall(CompositeNode parent,
+			int index, String identifier) {
+		CompositeNode fc = checkChildIsRule(parent, index, "featureCall", 1);
+		checkChildIsSimpleType(fc, 0, identifier);
+		return fc;
+	}
+
+	protected CompositeNode checkChildIsFeatureCallWithCollectionType(
+			CompositeNode parent, int index, String identifier) {
+		CompositeNode fc = checkChildIsRule(parent, index, "featureCall", 1);
+		checkChildIsCollectionType(fc, 0, identifier);
+		return fc;
+	}
+
+	protected CompositeNode checkChildIsFeatureCallWithScopedType(
+			CompositeNode parent, int index, String... identifier) {
+		CompositeNode fc = checkChildIsRule(parent, index, "featureCall", 1);
+		checkChildIsScopedType(fc, 0, identifier);
+		return fc;
+	}
+
 }

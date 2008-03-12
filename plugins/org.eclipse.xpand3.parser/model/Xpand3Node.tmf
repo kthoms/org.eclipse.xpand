@@ -1,16 +1,23 @@
 grammar Xpand3Node;
 
 normalizable file  :
-	(imp+=nsImport)*
-	(decl+=abstractDeclaration )*
+	(imports+=nsImport)*
+	(declarations+=abstractDeclaration )*
 	 EOF
 ;
 
-nsImport:
-	LG 'IMPORT' ns=simpleType RG |
-	LG 'EXTENSION' ns=simpleType RG |
-	'import' type  ';' | 
-	'extension' type ('reexport')? ';' 
+abstract normalizable nsImport:
+	import | extensionImport 
+;
+
+import:
+	(LG 'IMPORT' namespace=simpleType RG) |
+	'import' type=type  ';' 
+; 
+	
+extensionImport:
+	(LG 'EXTENSION' namespace=simpleType RG) |
+	'extension' type=type 'reexport'? ';' 
 ;
 
 abstract normalizable abstractDeclaration :
@@ -24,21 +31,21 @@ abstract normalizable abstractDeclaration :
 // XPAND start
 
 definition :
-	LG DEFINE name=identifier ('(' (declaredParameterList (','? '*')? | '*')? ')')? 'FOR' type
-	sequence
+	LG DEFINE name=identifier ('(' (paramList=declaredParameterList (','? '*')? | '*')? ')')? 'FOR' type=type
+	sequence=sequence
 	ENDDEFINE RG
 ;
 	
 definitionAround :	
-	LG AROUND pointcut ('(' (declaredParameterList (','? '*')? | '*')? ')')? 'FOR' type
-	sequence
+	LG AROUND pointcut=pointcut ('(' (paramList=declaredParameterList (','? '*')? | '*')? ')')? 'FOR' type=type
+	sequence=sequence
 	ENDAROUND RG
 ;	
 
 sequence :
-	 textSequence 
-	 (statement 
-	  textSequence)*		
+	 textSequences+=textSequence 
+	 (statements+=statement 
+	  textSequences+=textSequence)*		
 ;
 
 abstract normalizable statement :
@@ -51,7 +58,7 @@ abstract normalizable statement :
 ;
 	
 normalizable textSequence :
-	text (text)*
+	text+=text (text+=text)*
 ;
 
 text :
@@ -65,60 +72,60 @@ abstract normalizable simpleStatement :
 ;
 
 errorStatement :
-  'ERROR' expression
+  'ERROR' expression=expression
 ;
 
 expandStatement :
-  'EXPAND' simpleType ('(' parameterList ')')? (('FOR' expression)
-  | ('FOREACH'expression ('SEPARATOR' expression)?))?
+  'EXPAND' name=simpleType ('(' paramList=parameterList ')')? (('FOR' forExpression=expression)
+  | ('FOREACH' forExpression=expression ('SEPARATOR' separator=expression)?))?
 ;
 
 expressionStmt  :
-	expression
+	expression=expression
 ;
 
 fileStatement :
-	'FILE' expression (identifier)?
-		sequence 
+	'FILE' nameExpression=expression ('ONCE')? (identifier=identifier)? 
+		sequence=sequence 
 	'ENDFILE'
 ;
 	
 foreachStatement :
-	 'FOREACH' expression 'AS' identifier ('ITERATOR' identifier)? ('SEPARATOR' expression)?
-  		sequence 
+	 'FOREACH' forExpression=expression 'AS' identifier=identifier ('ITERATOR' iterator=identifier)? ('SEPARATOR' separatorExpression=expression)?
+  		sequence=sequence 
 	 'ENDFOREACH'
 ;
 
 ifStatement : 
-     'IF' expression
-		sequence 
-	 elseIfStatement*
-	 elseStatement?
+     'IF' expression=expression
+		sequence=sequence 
+	 elseIf+=elseIfStatement*
+	 else=elseStatement?
 	 'ENDIF'
 ;
 
 elseIfStatement :
-	'ELSEIF' expression
-		sequence 
+	'ELSEIF' expression=expression
+		sequence=sequence 
 ;
 	
 elseStatement :
 	'ELSE'
-		sequence
+		sequence=sequence
 ;
 	
 letStatement :
-	 'LET' expression 'AS' identifier
-  		sequence 
+	 'LET' expression=expression 'AS' name=identifier
+  		sequence=sequence 
 	 'ENDLET'
 ;
 	
 protectStatement :
 	'PROTECT' 
-		'CSTART' expression 
-		'CEND' expression 
-         	'ID' expression 'DISABLE'?
- 		sequence 
+		'CSTART' cstart=expression 
+		'CEND' cend=expression 
+         	'ID' id=expression 'DISABLE'?
+ 		sequence=sequence 
 	'ENDPROTECT'
 ;
 
@@ -224,20 +231,20 @@ relationalOperator:
 ;
 
 normalizable additiveExpression :
-	multiplicativeExpression 
-   (('+'| '-') multiplicativeExpression )*
+	left=multiplicativeExpression 
+   (('+'| '-') right=multiplicativeExpression )*
 ;
 
 normalizable multiplicativeExpression :
-	unaryExpression 
-	(('*' | '/') unaryExpression )*
+	left=unaryExpression 
+	(('*' | '/') right=unaryExpression )*
 ;
 
 
 normalizable unaryExpression :
 	infixExpression 
-|	'!' infixExpression	
-|	'-' infixExpression	
+|	'!' operand=infixExpression	
+|	'-' operand=infixExpression	
 ;
 
 normalizable infixExpression :
@@ -257,7 +264,7 @@ abstract normalizable primaryExpression 	 :
 ;
 
 stringLiteral :
-   StringLiteral
+  	StringLiteral
 ;
 
 paranthesizedExpression :
@@ -267,9 +274,9 @@ paranthesizedExpression :
 globalVarExpression  :
     'GLOBALVAR' identifier ;
 
-normalizable featureCall  :
+featureCall  :
     name=identifier '(' (paramList=parameterList)? ')' 
-|   type 	
+|   type=type 	
 |   collectionExpression 
 ;
 

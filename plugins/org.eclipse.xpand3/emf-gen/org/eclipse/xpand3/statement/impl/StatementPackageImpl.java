@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StatementPackageImpl.java,v 1.2 2008/03/07 11:10:34 jkohnlein Exp $
+ * $Id: StatementPackageImpl.java,v 1.3 2008/03/12 09:54:30 jkohnlein Exp $
  */
 package org.eclipse.xpand3.statement.impl;
 
@@ -351,6 +351,15 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFileStatement_Once() {
+		return (EAttribute)fileStatementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getForEachStatement() {
 		return forEachStatementEClass;
 	}
@@ -369,7 +378,7 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForEachStatement_Seperator() {
+	public EReference getForEachStatement_Separator() {
 		return (EReference)forEachStatementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -414,17 +423,8 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfStatement_UpperIf() {
-		return (EReference)ifStatementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIfStatement_ElseIf() {
-		return (EReference)ifStatementEClass.getEStructuralFeatures().get(2);
+		return (EReference)ifStatementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -575,16 +575,16 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		fileStatementEClass = createEClass(FILE_STATEMENT);
 		createEReference(fileStatementEClass, FILE_STATEMENT__FILE_NAME_EXPRESSION);
 		createEReference(fileStatementEClass, FILE_STATEMENT__OUTLET_NAME_IDENTIFIER);
+		createEAttribute(fileStatementEClass, FILE_STATEMENT__ONCE);
 
 		forEachStatementEClass = createEClass(FOR_EACH_STATEMENT);
 		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__TARGET);
-		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__SEPERATOR);
+		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__SEPARATOR);
 		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__VARIABLE);
 		createEReference(forEachStatementEClass, FOR_EACH_STATEMENT__ITERATOR_NAME);
 
 		ifStatementEClass = createEClass(IF_STATEMENT);
 		createEReference(ifStatementEClass, IF_STATEMENT__CONDITION);
-		createEReference(ifStatementEClass, IF_STATEMENT__UPPER_IF);
 		createEReference(ifStatementEClass, IF_STATEMENT__ELSE_IF);
 
 		letStatementEClass = createEClass(LET_STATEMENT);
@@ -668,16 +668,16 @@ public class StatementPackageImpl extends EPackageImpl implements StatementPacka
 		initEClass(fileStatementEClass, FileStatement.class, "FileStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFileStatement_FileNameExpression(), theExpressionPackage.getAbstractExpression(), null, "fileNameExpression", null, 0, 1, FileStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFileStatement_OutletNameIdentifier(), theXpand3Package.getIdentifier(), null, "outletNameIdentifier", null, 0, 1, FileStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileStatement_Once(), ecorePackage.getEBoolean(), "once", null, 0, 1, FileStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(forEachStatementEClass, ForEachStatement.class, "ForEachStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForEachStatement_Target(), theExpressionPackage.getAbstractExpression(), null, "target", null, 0, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForEachStatement_Seperator(), theExpressionPackage.getAbstractExpression(), null, "seperator", null, 0, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForEachStatement_Separator(), theExpressionPackage.getAbstractExpression(), null, "separator", null, 0, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForEachStatement_Variable(), theXpand3Package.getIdentifier(), null, "variable", null, 0, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForEachStatement_IteratorName(), theXpand3Package.getIdentifier(), null, "iteratorName", null, 0, 1, ForEachStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ifStatementEClass, IfStatement.class, "IfStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIfStatement_Condition(), theExpressionPackage.getAbstractExpression(), null, "condition", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIfStatement_UpperIf(), this.getIfStatement(), null, "upperIf", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIfStatement_ElseIf(), this.getIfStatement(), null, "elseIf", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(letStatementEClass, LetStatement.class, "LetStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

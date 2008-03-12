@@ -1,0 +1,225 @@
+testCase AstTests
+test firstTest
+expr <#
+foo(Object this, Object that):
+	this.toString()==that.toString(); #>
+expected 
+	Extension {			
+		name=Identifier(value='foo')
+		params=[
+			DeclaredParameter {
+				name=Identifier(value='this')
+				type=Identifier(value='Object')
+			},
+			DeclaredParameter {
+				name=Identifier(value='that')
+				type=Identifier(value='Object')
+			}]
+		body=BinaryOperation{
+			left=OperationCall {
+				name=Identifier(value="toString")
+				target=FeatureCall {
+					name=Identifier(value="this")
+					target=null
+				}
+			}
+			operator=Identifier(value="==")
+			right=OperationCall {
+				name=Identifier(value="toString")
+				target=FeatureCall {
+					name=Identifier(value="that")
+					target=null
+				}
+			}
+		}	
+	}
+	
+
+test testEmptyTemplate
+expr <#
+#>
+expected
+	null
+		
+test testSimpleDefine
+expr <#
+«DEFINE test FOR ecore::EClass»«ENDDEFINE»
+#>
+expected
+	Definition {
+		name=Identifier(value="test")
+		params=[
+			DeclaredParameter {
+				name=Identifier(value="this")
+				type=Identifier(value="ecore::EClass")
+			}
+		]
+	} 
+
+test testDoubleDefine
+expr <#
+«DEFINE test FOR ecore::EClass»«ENDDEFINE»«DEFINE test2(String txt) FOR ecore::EClass»«ENDDEFINE»
+#>
+expected
+	File {
+		declarations=[
+			Definition {
+				name=Identifier(value="test")
+				params=[
+					DeclaredParameter {
+						name=Identifier(value="this")
+						type=Identifier(value="ecore::EClass")
+					}
+				]
+			},
+			Definition {
+				name=Identifier(value="test2")
+				params=[
+					DeclaredParameter {
+						name=Identifier(value="this")
+						type=Identifier(value="ecore::EClass")
+					},
+					DeclaredParameter {
+						name=Identifier(value="txt")
+						type=Identifier(value="String")
+					}
+				]
+			}
+		]		 
+	}
+
+
+test testMoreComplexDefine
+expr <#
+«DEFINE test(ecore::EPackage a,String b) FOR ecore::EClass»«FILE name+".txt"»Text und so «name»«FOREACH eAllAttributes AS attr»Attribute : «attr.name»«ENDFOREACH»«ENDFILE»«ENDDEFINE»
+#>
+expected
+	Definition {
+		name=Identifier(value="test")
+		params=[
+			DeclaredParameter {
+				name=Identifier(value="this")
+				type=Identifier(value="ecore::EClass")
+			},
+			DeclaredParameter {
+				name=Identifier(value="a")
+				type=Identifier(value="ecore::EPackage")
+			},
+			DeclaredParameter {
+				name=Identifier(value="b")
+				type=Identifier(value="String")
+			}
+		]
+		body=[
+			TextStatement(deleteLine="false", value="»«"),
+			FileStatement {
+				fileNameExpression=BinaryOperation {
+					left=FeatureCall {
+						name=Identifier(value="name")
+					}
+					right=StringLiteral {
+						literalValue=Identifier(value='".txt"')
+					}
+				}
+				body=[
+					TextStatement(deleteLine="false", value="»Text und so «"),
+					ExpressionStatement {
+						expression=FeatureCall {
+							name=Identifier(value="name")
+						}
+					},
+					TextStatement(deleteLine="false", value="»«"),
+					ForEachStatement {
+						target=FeatureCall {
+							name=Identifier(value="eAllAttributes")
+						}
+						variable=Identifier(value="attr")
+						separator=null
+						iterator=null
+						body=[
+							TextStatement(deleteLine="false", value="»Attribute : «"),
+							ExpressionStatement {
+								expression=FeatureCall {
+									name=Identifier(value="name")
+									target=FeatureCall {
+										name=Identifier(value="attr")
+									}
+								}
+							},
+							TextStatement(deleteLine="false", value="»«")
+						] 
+					}
+				]
+			},
+			TextStatement(deleteLine="false", value="»«")
+		]
+	}
+
+	
+test testImportDeclaration
+expr <#
+«IMPORT org::eclipse::xtend»«IMPORT org::eclipse::xtend::xpand»«DEFINE test FOR ecore::EClass»«ENDDEFINE»
+#>
+expected
+	File {
+		imports=[
+			ImportStatement {
+				importedId=Identifier(value="org::eclipse::xtend")
+			},
+			ImportStatement {
+				importedId=Identifier(value="org::eclipse::xtend::xpand")
+			}
+		]
+	}
+
+test testFileStatement
+expr <#
+«DEFINE test FOR ecore::EClass»«FILE "test.txt" ONCE»«ENDFILE»«ENDDEFINE»
+#>
+expected
+	Definition {
+		body=[
+			TextStatement(value="»«"),
+			FileStatement(once="true") {
+				fileNameExpression=StringLiteral {
+					literalValue=Identifier(value='"test.txt"')
+				}
+			}
+		]
+	}
+
+test testIfStatement
+expr <#
+«DEFINE test FOR ecore::EClass»«IF !true»«ELSEIF false»«ELSE»«ENDIF»«ENDDEFINE»
+#>
+expected
+	Definition {
+		body=[
+			TextStatement,
+			IfStatement {
+				condition=UnaryOperation {
+					
+				}
+				body=[
+					TextStatement(value="»«")
+				]
+				elseIf=IfStatement {
+					condition=BooleanLiteral {
+						literalValue=Identifier(value="false")
+					}
+					body=[
+						TextStatement(value="»«")
+					]
+					elseIf=IfStatement {
+						condition=null
+						body=[
+							TextStatement(value="»«")
+						]
+						elseIf=null
+					}
+				}
+			},
+			TextStatement
+		]
+	} 
+ 

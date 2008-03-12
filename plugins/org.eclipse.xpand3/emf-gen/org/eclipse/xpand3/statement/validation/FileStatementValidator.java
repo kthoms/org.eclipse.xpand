@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileStatementValidator.java,v 1.3 2008/03/07 11:10:47 jkohnlein Exp $
+ * $Id: FileStatementValidator.java,v 1.4 2008/03/12 09:54:30 jkohnlein Exp $
  */
 package org.eclipse.xpand3.statement.validation;
 
@@ -21,4 +21,6 @@ public interface FileStatementValidator {
 
 	boolean validateFileNameExpression(AbstractExpression value);
 	boolean validateOutletNameIdentifier(Identifier value);
+
+	boolean validateOnce(boolean value);
 }

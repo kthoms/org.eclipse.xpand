@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionFactory.java,v 1.3 2008/03/10 08:25:34 jkohnlein Exp $
+ * $Id: ExpressionFactory.java,v 1.4 2008/03/12 09:54:29 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression;
 
@@ -204,6 +204,15 @@ public interface ExpressionFactory extends EFactory {
 	 * @generated
 	 */
 	BinaryOperation createBinaryOperation();
+
+	/**
+	 * Returns a new object of class '<em>Unary Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unary Operation</em>'.
+	 * @generated
+	 */
+	UnaryOperation createUnaryOperation();
 
 	/**
 	 * Returns the package supported by this factory.

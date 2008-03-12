@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RelationalExpressionNode.java,v 1.4 2008/03/07 11:11:13 jkohnlein Exp $
+ * $Id: RelationalExpressionNode.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -18,8 +18,8 @@ import org.eclipse.tmf.common.node.LeafNode;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand <em>Right Operand</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getLeftOperand <em>Left Operand</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand <em>Right Operand</em>}</li>
  * </ul>
  * </p>
  *

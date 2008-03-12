@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileStatementNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: FileStatementNodeValidator.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
+
+import org.eclipse.tmf.common.node.CompositeNode;
 
 
 /**
@@ -15,5 +17,11 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
  */
 public interface FileStatementNodeValidator {
 	boolean validate();
+
+	boolean validateNameExpression(CompositeNode value);
+
+	boolean validateIdentifier(CompositeNode value);
+
+	boolean validateSequence(CompositeNode value);
 
 }

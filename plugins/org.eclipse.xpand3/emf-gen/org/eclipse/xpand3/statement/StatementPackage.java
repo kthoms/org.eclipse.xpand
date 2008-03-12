@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StatementPackage.java,v 1.2 2008/03/07 11:10:52 jkohnlein Exp $
+ * $Id: StatementPackage.java,v 1.3 2008/03/12 09:54:29 jkohnlein Exp $
  */
 package org.eclipse.xpand3.statement;
 
@@ -482,13 +482,22 @@ public interface StatementPackage extends EPackage {
 	int FILE_STATEMENT__OUTLET_NAME_IDENTIFIER = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Once</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_STATEMENT__ONCE = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>File Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 2;
+	int FILE_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.statement.impl.ForEachStatementImpl <em>For Each Statement</em>}' class.
@@ -555,13 +564,13 @@ public interface StatementPackage extends EPackage {
 	int FOR_EACH_STATEMENT__TARGET = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Seperator</b></em>' containment reference.
+	 * The feature id for the '<em><b>Separator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_EACH_STATEMENT__SEPERATOR = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 1;
+	int FOR_EACH_STATEMENT__SEPARATOR = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -655,22 +664,13 @@ public interface StatementPackage extends EPackage {
 	int IF_STATEMENT__CONDITION = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Upper If</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_STATEMENT__UPPER_IF = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Else If</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_STATEMENT__ELSE_IF = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 2;
+	int IF_STATEMENT__ELSE_IF = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>If Statement</em>' class.
@@ -679,7 +679,7 @@ public interface StatementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IF_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 3;
+	int IF_STATEMENT_FEATURE_COUNT = ABSTRACT_STATEMENT_WITH_BODY_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.statement.impl.LetStatementImpl <em>Let Statement</em>}' class.
@@ -1108,6 +1108,17 @@ public interface StatementPackage extends EPackage {
 	EReference getFileStatement_OutletNameIdentifier();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.statement.FileStatement#isOnce <em>Once</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Once</em>'.
+	 * @see org.eclipse.xpand3.statement.FileStatement#isOnce()
+	 * @see #getFileStatement()
+	 * @generated
+	 */
+	EAttribute getFileStatement_Once();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.statement.ForEachStatement <em>For Each Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1129,15 +1140,15 @@ public interface StatementPackage extends EPackage {
 	EReference getForEachStatement_Target();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.statement.ForEachStatement#getSeperator <em>Seperator</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.statement.ForEachStatement#getSeparator <em>Separator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Seperator</em>'.
-	 * @see org.eclipse.xpand3.statement.ForEachStatement#getSeperator()
+	 * @return the meta object for the containment reference '<em>Separator</em>'.
+	 * @see org.eclipse.xpand3.statement.ForEachStatement#getSeparator()
 	 * @see #getForEachStatement()
 	 * @generated
 	 */
-	EReference getForEachStatement_Seperator();
+	EReference getForEachStatement_Separator();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.statement.ForEachStatement#getVariable <em>Variable</em>}'.
@@ -1181,17 +1192,6 @@ public interface StatementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIfStatement_Condition();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.xpand3.statement.IfStatement#getUpperIf <em>Upper If</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Upper If</em>'.
-	 * @see org.eclipse.xpand3.statement.IfStatement#getUpperIf()
-	 * @see #getIfStatement()
-	 * @generated
-	 */
-	EReference getIfStatement_UpperIf();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.xpand3.statement.IfStatement#getElseIf <em>Else If</em>}'.
@@ -1485,6 +1485,14 @@ public interface StatementPackage extends EPackage {
 		EReference FILE_STATEMENT__OUTLET_NAME_IDENTIFIER = eINSTANCE.getFileStatement_OutletNameIdentifier();
 
 		/**
+		 * The meta object literal for the '<em><b>Once</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE_STATEMENT__ONCE = eINSTANCE.getFileStatement_Once();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.statement.impl.ForEachStatementImpl <em>For Each Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1503,12 +1511,12 @@ public interface StatementPackage extends EPackage {
 		EReference FOR_EACH_STATEMENT__TARGET = eINSTANCE.getForEachStatement_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Seperator</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Separator</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FOR_EACH_STATEMENT__SEPERATOR = eINSTANCE.getForEachStatement_Seperator();
+		EReference FOR_EACH_STATEMENT__SEPARATOR = eINSTANCE.getForEachStatement_Separator();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
@@ -1543,14 +1551,6 @@ public interface StatementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference IF_STATEMENT__CONDITION = eINSTANCE.getIfStatement_Condition();
-
-		/**
-		 * The meta object literal for the '<em><b>Upper If</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IF_STATEMENT__UPPER_IF = eINSTANCE.getIfStatement_UpperIf();
 
 		/**
 		 * The meta object literal for the '<em><b>Else If</b></em>' containment reference feature.

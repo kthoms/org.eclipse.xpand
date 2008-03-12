@@ -20,9 +20,9 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		CompositeNode ie = checkIsRule(
 				parse("String.feature.test(true,{\"test\",\"hallo\"})"),
 				"infixExpression", 5);
-		checkChildIsSimpleType(ie, 0, "String");
+		checkChildIsFeatureCall(ie, 0, "String");
 		checkChildIsToken(ie, 1, ".");
-		checkChildIsSimpleType(ie, 2, "feature");
+		checkChildIsFeatureCall(ie, 2, "feature");
 		checkChildIsToken(ie, 3, ".");
 		CompositeNode fc = checkChildIsRule(ie, 4, "featureCall", 4);
 		checkChildIsIdentifier(fc, 0, "test");
@@ -46,18 +46,18 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		checkChildIsToken(pe, 0, "(");
 		CompositeNode re = checkChildIsRule(pe, 1, "relationalExpression", 3);
 		CompositeNode ie0 = checkChildIsRule(re, 0, "infixExpression", 3);
-		checkChildIsSimpleType(ie0, 0, "client");
+		checkChildIsFeatureCall(ie0, 0, "client");
 		checkChildIsToken(ie0, 1, ".");
-		checkChildIsSimpleType(ie0, 2, "sIdent1");
+		checkChildIsFeatureCall(ie0, 2, "sIdent1");
 		checkChildIsRelationalOperator(re, 1, "!=");
 		CompositeNode nl = checkChildIsRule(re, 2, "nullLiteral", 1);
 		checkChildIsToken(nl, 0, "null");
 		checkChildIsToken(pe, 2, ")");
 		checkChildIsToken(ie, 1, "?");
 		CompositeNode ie1 = checkChildIsRule(ie, 2, "infixExpression", 3);
-		checkChildIsSimpleType(ie1, 0, "client");
+		checkChildIsFeatureCall(ie1, 0, "client");
 		checkChildIsToken(ie1, 1, ".");
-		checkChildIsSimpleType(ie1, 2, "sIdent1");
+		checkChildIsFeatureCall(ie1, 2, "sIdent1");
 		checkChildIsToken(ie, 3, ":");
 		checkChildIsStringLiteral(ie, 4, "\"XXXXXXXX\"");
 	}
@@ -86,7 +86,7 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 	}
 
 	public final void testCast() throws Exception {
-		Node expr = parse("(List[InnerType] ) anExpr");
+		CompositeNode expr = parse("(List[InnerType] ) anExpr");
 		checkIsRule(expr, "castedExpression", 4);
 		checkChildIsToken(expr, 0, "(");
 		CompositeNode ct = checkChildIsRule(expr, 1, "collectionType", 4);
@@ -95,16 +95,17 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		checkChildIsSimpleType(ct, 2, "InnerType");
 		checkChildIsToken(ct, 3, "]");
 		checkChildIsToken(expr, 2, ")");
-		checkChildIsSimpleType(expr, 3, "anExpr");
+		checkChildIsFeatureCall(expr, 3, "anExpr");
 	}
 
 	public final void testGenericType() throws Exception {
-		Node expr = parse("List[x]");
-		checkIsRule(expr, "collectionType", 4);
-		checkChildIsToken(expr, 0, "List");
-		checkChildIsToken(expr, 1, "[");
-		checkChildIsSimpleType(expr, 2, "x");
-		checkChildIsToken(expr, 3, "]");
+		CompositeNode expr = parse("List[x]");
+		checkIsRule(expr, "featureCall", 1);
+		CompositeNode ct = checkChildIsRule(expr, 0, "collectionType", 4);
+		checkChildIsToken(ct, 0, "List");
+		checkChildIsToken(ct, 1, "[");
+		checkChildIsSimpleType(ct, 2, "x");
+		checkChildIsToken(ct, 3, "]");
 	}
 
 	public final void testSwitch() throws Exception {
@@ -163,26 +164,26 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 	}
 
 	public final void testTypeLiterals() throws Exception {
-		Node expr = parse("{" + " Object,\n" + " String,\n" + "Collection,\n"
-				+ " Set,\n" + " List,\n" + " oaw::Type,\n" + " oaw::Feature,\n"
-				+ " oaw::Property\n}");
+		CompositeNode expr = parse("{" + " Object,\n" + " String,\n"
+				+ "Collection,\n" + " Set,\n" + " List,\n" + " oaw::Type,\n"
+				+ " oaw::Feature,\n" + " oaw::Property\n}");
 		checkIsRule(expr, "listLiteral", 17);
 		checkChildIsToken(expr, 0, "{");
-		checkChildIsSimpleType(expr, 1, "Object");
+		checkChildIsFeatureCall(expr, 1, "Object");
 		checkChildIsToken(expr, 2, ",");
-		checkChildIsSimpleType(expr, 3, "String");
+		checkChildIsFeatureCall(expr, 3, "String");
 		checkChildIsToken(expr, 4, ",");
-		checkChildIsCollectionType(expr, 5, "Collection");
+		checkChildIsFeatureCallWithCollectionType(expr, 5, "Collection");
 		checkChildIsToken(expr, 6, ",");
-		checkChildIsCollectionType(expr, 7, "Set");
+		checkChildIsFeatureCallWithCollectionType(expr, 7, "Set");
 		checkChildIsToken(expr, 8, ",");
-		checkChildIsCollectionType(expr, 9, "List");
+		checkChildIsFeatureCallWithCollectionType(expr, 9, "List");
 		checkChildIsToken(expr, 10, ",");
-		checkChildIsScopedType(expr, 11, "oaw", "Type");
+		checkChildIsFeatureCallWithScopedType(expr, 11, "oaw", "Type");
 		checkChildIsToken(expr, 12, ",");
-		checkChildIsScopedType(expr, 13, "oaw", "Feature");
+		checkChildIsFeatureCallWithScopedType(expr, 13, "oaw", "Feature");
 		checkChildIsToken(expr, 14, ",");
-		checkChildIsScopedType(expr, 15, "oaw", "Property");
+		checkChildIsFeatureCallWithScopedType(expr, 15, "oaw", "Property");
 		checkChildIsToken(expr, 16, "}");
 	}
 

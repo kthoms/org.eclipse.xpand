@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactory.java,v 1.4 2008/03/07 11:11:13 jkohnlein Exp $
+ * $Id: Xpand3nodeFactory.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -26,15 +26,6 @@ public interface Xpand3nodeFactory extends EFactory {
 	Xpand3nodeFactory eINSTANCE = org.eclipse.xpand3.internal.parser.xpand3node.impl.Xpand3nodeFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>XNode</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>XNode</em>'.
-	 * @generated
-	 */
-	XNode createXNode();
-
-	/**
 	 * Returns a new object of class '<em>File Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44,13 +35,22 @@ public interface Xpand3nodeFactory extends EFactory {
 	FileNode createFileNode();
 
 	/**
-	 * Returns a new object of class '<em>Ns Import Node</em>'.
+	 * Returns a new object of class '<em>Import Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ns Import Node</em>'.
+	 * @return a new object of class '<em>Import Node</em>'.
 	 * @generated
 	 */
-	NsImportNode createNsImportNode();
+	ImportNode createImportNode();
+
+	/**
+	 * Returns a new object of class '<em>Extension Import Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extension Import Node</em>'.
+	 * @generated
+	 */
+	ExtensionImportNode createExtensionImportNode();
 
 	/**
 	 * Returns a new object of class '<em>Definition Node</em>'.

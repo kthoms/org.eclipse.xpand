@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionPackageImpl.java,v 1.3 2008/03/10 08:25:34 jkohnlein Exp $
+ * $Id: ExpressionPackageImpl.java,v 1.4 2008/03/12 09:54:29 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression.impl;
 
@@ -43,6 +43,7 @@ import org.eclipse.xpand3.expression.StringLiteral;
 import org.eclipse.xpand3.expression.SwitchExpression;
 import org.eclipse.xpand3.expression.TypeSelectExpression;
 
+import org.eclipse.xpand3.expression.UnaryOperation;
 import org.eclipse.xpand3.impl.Xpand3PackageImpl;
 
 import org.eclipse.xpand3.statement.StatementPackage;
@@ -209,6 +210,13 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 	 * @generated
 	 */
 	private EClass binaryOperationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unaryOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -744,6 +752,33 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUnaryOperation() {
+		return unaryOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnaryOperation_Operator() {
+		return (EReference)unaryOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUnaryOperation_Operand() {
+		return (EReference)unaryOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExpressionFactory getExpressionFactory() {
 		return (ExpressionFactory)getEFactoryInstance();
 	}
@@ -838,6 +873,10 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 		createEReference(binaryOperationEClass, BINARY_OPERATION__LEFT);
 		createEReference(binaryOperationEClass, BINARY_OPERATION__RIGHT);
 		createEReference(binaryOperationEClass, BINARY_OPERATION__OPERATOR);
+
+		unaryOperationEClass = createEClass(UNARY_OPERATION);
+		createEReference(unaryOperationEClass, UNARY_OPERATION__OPERATOR);
+		createEReference(unaryOperationEClass, UNARY_OPERATION__OPERAND);
 	}
 
 	/**
@@ -893,6 +932,7 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 		switchExpressionEClass.getESuperTypes().add(this.getAbstractExpression());
 		caseEClass.getESuperTypes().add(theXpand3Package.getSyntaxElement());
 		binaryOperationEClass.getESuperTypes().add(this.getAbstractExpression());
+		unaryOperationEClass.getESuperTypes().add(this.getAbstractExpression());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractExpressionEClass, AbstractExpression.class, "AbstractExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -966,6 +1006,10 @@ public class ExpressionPackageImpl extends EPackageImpl implements ExpressionPac
 		initEReference(getBinaryOperation_Left(), this.getAbstractExpression(), null, "left", null, 0, 1, BinaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinaryOperation_Right(), this.getAbstractExpression(), null, "right", null, 0, 1, BinaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinaryOperation_Operator(), theXpand3Package.getIdentifier(), null, "operator", null, 0, 1, BinaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(unaryOperationEClass, UnaryOperation.class, "UnaryOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUnaryOperation_Operator(), theXpand3Package.getIdentifier(), null, "operator", null, 0, 1, UnaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnaryOperation_Operand(), this.getAbstractExpression(), null, "operand", null, 0, 1, UnaryOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //ExpressionPackageImpl

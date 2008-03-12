@@ -125,6 +125,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="operator" eType="#//Identifier"
           containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UnaryOperation" eSuperTypes="#//expression/AbstractExpression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operator" eType="#//Identifier"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//expression/AbstractExpression"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="statement" nsURI="http://www.eclipse.org/m2t/xpand/xpand3/statement"
       nsPrefix="statement">
@@ -159,11 +164,12 @@
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="outletNameIdentifier"
           eType="#//Identifier" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="once" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ForEachStatement" eSuperTypes="#//statement/AbstractStatementWithBody">
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//expression/AbstractExpression"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="seperator" eType="#//expression/AbstractExpression"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="separator" eType="#//expression/AbstractExpression"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Identifier"
           containment="true"/>
@@ -173,7 +179,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfStatement" eSuperTypes="#//statement/AbstractStatementWithBody">
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//expression/AbstractExpression"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="upperIf" eType="#//statement/IfStatement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="elseIf" eType="#//statement/IfStatement"
           containment="true"/>
     </eClassifiers>

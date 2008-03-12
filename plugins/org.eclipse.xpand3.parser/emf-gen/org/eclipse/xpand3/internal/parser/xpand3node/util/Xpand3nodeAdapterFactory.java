@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeAdapterFactory.java,v 1.4 2008/03/07 11:11:11 jkohnlein Exp $
+ * $Id: Xpand3nodeAdapterFactory.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.util;
 
@@ -75,16 +75,16 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 	protected Xpand3nodeSwitch<Adapter> modelSwitch =
 		new Xpand3nodeSwitch<Adapter>() {
 			@Override
-			public Adapter caseXNode(XNode object) {
-				return createXNodeAdapter();
-			}
-			@Override
 			public Adapter caseFileNode(FileNode object) {
 				return createFileNodeAdapter();
 			}
 			@Override
-			public Adapter caseNsImportNode(NsImportNode object) {
-				return createNsImportNodeAdapter();
+			public Adapter caseImportNode(ImportNode object) {
+				return createImportNodeAdapter();
+			}
+			@Override
+			public Adapter caseExtensionImportNode(ExtensionImportNode object) {
+				return createExtensionImportNodeAdapter();
 			}
 			@Override
 			public Adapter caseDefinitionNode(DefinitionNode object) {
@@ -327,20 +327,6 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.XNode <em>XNode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.XNode
-	 * @generated
-	 */
-	public Adapter createXNodeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode <em>File Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -355,16 +341,30 @@ public class Xpand3nodeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.NsImportNode <em>Ns Import Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.ImportNode <em>Import Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.NsImportNode
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ImportNode
 	 * @generated
 	 */
-	public Adapter createNsImportNodeAdapter() {
+	public Adapter createImportNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionImportNode <em>Extension Import Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.ExtensionImportNode
+	 * @generated
+	 */
+	public Adapter createExtensionImportNodeAdapter() {
 		return null;
 	}
 

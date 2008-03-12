@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForEachStatementValidator.java,v 1.3 2008/03/07 11:10:46 jkohnlein Exp $
+ * $Id: ForEachStatementValidator.java,v 1.4 2008/03/12 09:54:30 jkohnlein Exp $
  */
 package org.eclipse.xpand3.statement.validation;
 
@@ -20,6 +20,8 @@ public interface ForEachStatementValidator {
 	boolean validate();
 
 	boolean validateTarget(AbstractExpression value);
+	boolean validateSeparator(AbstractExpression value);
+
 	boolean validateSeperator(AbstractExpression value);
 	boolean validateVariable(Identifier value);
 	boolean validateIteratorName(Identifier value);

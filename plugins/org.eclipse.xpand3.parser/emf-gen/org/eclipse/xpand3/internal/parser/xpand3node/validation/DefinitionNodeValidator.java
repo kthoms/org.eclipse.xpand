@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: DefinitionNodeValidator.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
@@ -17,5 +17,11 @@ import org.eclipse.tmf.common.node.CompositeNode;
 public interface DefinitionNodeValidator {
 	boolean validate();
 
+	boolean validateType(CompositeNode value);
+
+	boolean validateSequence(CompositeNode value);
+
 	boolean validateName(CompositeNode value);
+
+	boolean validateParamList(CompositeNode value);
 }

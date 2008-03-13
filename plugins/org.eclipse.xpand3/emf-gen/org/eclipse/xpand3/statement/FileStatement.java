@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileStatement.java,v 1.3 2008/03/12 09:54:29 jkohnlein Exp $
+ * $Id: FileStatement.java,v 1.4 2008/03/13 11:41:50 sefftinge Exp $
  */
 package org.eclipse.xpand3.statement;
 
@@ -20,7 +20,6 @@ import org.eclipse.xpand3.expression.AbstractExpression;
  * <ul>
  *   <li>{@link org.eclipse.xpand3.statement.FileStatement#getFileNameExpression <em>File Name Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.FileStatement#getOutletNameIdentifier <em>Outlet Name Identifier</em>}</li>
- *   <li>{@link org.eclipse.xpand3.statement.FileStatement#isOnce <em>Once</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,31 +79,5 @@ public interface FileStatement extends AbstractStatementWithBody {
 	 * @generated
 	 */
 	void setOutletNameIdentifier(Identifier value);
-
-	/**
-	 * Returns the value of the '<em><b>Once</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Once</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Once</em>' attribute.
-	 * @see #setOnce(boolean)
-	 * @see org.eclipse.xpand3.statement.StatementPackage#getFileStatement_Once()
-	 * @model
-	 * @generated
-	 */
-	boolean isOnce();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.statement.FileStatement#isOnce <em>Once</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Once</em>' attribute.
-	 * @see #isOnce()
-	 * @generated
-	 */
-	void setOnce(boolean value);
 
 } // FileStatement

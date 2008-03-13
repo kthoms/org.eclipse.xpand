@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IfStatement.java,v 1.3 2008/03/12 09:54:29 jkohnlein Exp $
+ * $Id: IfStatement.java,v 1.4 2008/03/13 11:41:50 sefftinge Exp $
  */
 package org.eclipse.xpand3.statement;
 
@@ -17,6 +17,7 @@ import org.eclipse.xpand3.expression.AbstractExpression;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.statement.IfStatement#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.statement.IfStatement#getUpperIf <em>Upper If</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.IfStatement#getElseIf <em>Else If</em>}</li>
  * </ul>
  * </p>
@@ -51,6 +52,32 @@ public interface IfStatement extends AbstractStatementWithBody {
 	 * @generated
 	 */
 	void setCondition(AbstractExpression value);
+
+	/**
+	 * Returns the value of the '<em><b>Upper If</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Upper If</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Upper If</em>' reference.
+	 * @see #setUpperIf(IfStatement)
+	 * @see org.eclipse.xpand3.statement.StatementPackage#getIfStatement_UpperIf()
+	 * @model
+	 * @generated
+	 */
+	IfStatement getUpperIf();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.statement.IfStatement#getUpperIf <em>Upper If</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Upper If</em>' reference.
+	 * @see #getUpperIf()
+	 * @generated
+	 */
+	void setUpperIf(IfStatement value);
 
 	/**
 	 * Returns the value of the '<em><b>Else If</b></em>' containment reference.

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForEachStatement.java,v 1.3 2008/03/12 09:54:29 jkohnlein Exp $
+ * $Id: ForEachStatement.java,v 1.4 2008/03/13 11:41:50 sefftinge Exp $
  */
 package org.eclipse.xpand3.statement;
 
@@ -19,7 +19,7 @@ import org.eclipse.xpand3.expression.AbstractExpression;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.statement.ForEachStatement#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.xpand3.statement.ForEachStatement#getSeparator <em>Separator</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.statement.ForEachStatement#getSeperator <em>Seperator</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.ForEachStatement#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.ForEachStatement#getIteratorName <em>Iterator Name</em>}</li>
  * </ul>
@@ -57,30 +57,30 @@ public interface ForEachStatement extends AbstractStatementWithBody {
 	void setTarget(AbstractExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Separator</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Seperator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Separator</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Seperator</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Separator</em>' containment reference.
-	 * @see #setSeparator(AbstractExpression)
-	 * @see org.eclipse.xpand3.statement.StatementPackage#getForEachStatement_Separator()
+	 * @return the value of the '<em>Seperator</em>' containment reference.
+	 * @see #setSeperator(AbstractExpression)
+	 * @see org.eclipse.xpand3.statement.StatementPackage#getForEachStatement_Seperator()
 	 * @model containment="true"
 	 * @generated
 	 */
-	AbstractExpression getSeparator();
+	AbstractExpression getSeperator();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.statement.ForEachStatement#getSeparator <em>Separator</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.statement.ForEachStatement#getSeperator <em>Seperator</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Separator</em>' containment reference.
-	 * @see #getSeparator()
+	 * @param value the new value of the '<em>Seperator</em>' containment reference.
+	 * @see #getSeperator()
 	 * @generated
 	 */
-	void setSeparator(AbstractExpression value);
+	void setSeperator(AbstractExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference.

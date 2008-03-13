@@ -39,6 +39,8 @@
         upperBound="-1" eType="#//DeclaredTypeParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
         eType="#//AbstractTypeReference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredFunction" eSuperTypes="#//AbstractNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaredParameters" upperBound="-1"
@@ -56,6 +58,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredStaticProperty" eSuperTypes="#//AbstractNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Type"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="readOnly" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaredTypeParameter" eSuperTypes="#//AbstractNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="upperBounds" upperBound="-1"

@@ -18,12 +18,15 @@ package org.eclipse.xpand3.analyzation.typesystem.java;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xpand3.analyzation.GenericsUtil;
 import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.analyzation.TypeSystemFactory;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter;
 import org.eclipse.xpand3.staticTypesystem.Type;
 
 /**
@@ -65,7 +68,7 @@ public class JavaTypeSystemTest extends TestCase {
 		assertEquals(declaredType, staticProperty.getType().getDeclaredType());
 	}
 	
-	public void testGenerics() throws Exception {
+	public void testGenericTypes() throws Exception {
 		TypeSystem typeSystem = factory.getTypeSystem(GenericsBean.class
 				.getName());
 		DeclaredType declaredType = typeSystem.typeForName(GenericsBean.class
@@ -73,5 +76,24 @@ public class JavaTypeSystemTest extends TestCase {
 		assertNotNull(declaredType);
 		EList<AbstractTypeReference> superTypes = declaredType.getSuperTypes();
 		assertEquals(1,superTypes.size());
+	}
+	
+	public void testGenericMethods() throws Exception {
+		TypeSystem typeSystem = factory.getTypeSystem(GenericsBean.class
+				.getName());
+		DeclaredType typeForName = typeSystem.typeForName("String");
+		Type typeRef = GenericsUtil.typeRef(typeForName);
+		DeclaredFunction declaredFunction = typeSystem.functionForName("compareTo", typeRef, typeRef);
+		assertNotNull(declaredFunction);
+		
+		declaredFunction = typeSystem.functionForName("doStuff", typeRef, typeRef);
+		assertNotNull(declaredFunction);
+		EList<DeclaredTypeParameter> declaredTypeParameters = declaredFunction.getDeclaredTypeParameters();
+		assertEquals(1,declaredTypeParameters.size());
+		DeclaredTypeParameter typeParameter = declaredTypeParameters.get(0);
+		assertEquals("X",typeParameter.getName());
+		assertEquals(1,typeParameter.getUpperBounds().size());
+		Type t = (Type) typeParameter.getUpperBounds().get(0);
+		assertEquals(typeSystem.typeForName(GenericsBean.class.getSimpleName()), t.getDeclaredType());
 	}
 }

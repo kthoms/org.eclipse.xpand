@@ -28,5 +28,9 @@ public class GenericsBean<T, L extends Comparable<T>> implements Comparable<L>{
 	public static <X extends GenericsBean<String, String>> X doStuff(String a, X b) {
 		return null;
 	}
+	
+	{
+		GenericsBean<String, String> doStuff = doStuff("", new GenericsBean<String, String>());
+	}
 
 }

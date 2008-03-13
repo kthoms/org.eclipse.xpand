@@ -16,25 +16,35 @@
 package org.eclipse.xpand3.analyzation.typesystem.java;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 
-import org.eclipse.xpand3.analyzation.TypeSystem;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 
 /**
  * @author Sven Efftinge
- * 
+ *
  */
-public class JavaTypeSystem extends AbstractJavaTypeSystem implements TypeSystem {
-
+public class JavaFunctionsTypeSystem extends AbstractJavaTypeSystem {
 
 	/**
-	 * 
+	 * @param javaClass
 	 */
-	public JavaTypeSystem(Class<?> javaClass) {
+	public JavaFunctionsTypeSystem(Class<?> javaClass) {
 		super(javaClass);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.xpand3.analyzation.typesystem.java.AbstractJavaTypeSystem#typeForName(java.lang.String)
+	 */
+	@Override
+	public DeclaredType typeForName(String name) {
+		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.xpand3.analyzation.typesystem.java.AbstractJavaTypeSystem#mapDeclaringTypeAsFirstArgument(java.lang.reflect.Method)
+	 */
+	@Override
 	protected boolean mapDeclaringTypeAsFirstArgument(Method method) {
-		return !Modifier.isStatic(method.getModifiers());
+		return false;
 	}
 }

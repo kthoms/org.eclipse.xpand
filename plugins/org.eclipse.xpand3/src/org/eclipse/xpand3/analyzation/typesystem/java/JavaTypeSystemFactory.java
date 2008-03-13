@@ -26,13 +26,21 @@ import org.eclipse.xtend.backend.util.Cache;
  */
 public class JavaTypeSystemFactory implements LanguageSpecificTypeSystemFactory {
 	
+	protected static final String FUNCTIONS_PROTOKOLL = "jf:";
 	private Object ctx;
-	private Cache<String,JavaTypeSystem> typeSystems = new Cache<String, JavaTypeSystem>(){
+	private Cache<String,AbstractJavaTypeSystem> typeSystems = new Cache<String, AbstractJavaTypeSystem>(){
 
 		@Override
-		protected JavaTypeSystem create(String key) {
+		protected AbstractJavaTypeSystem create(String key) {
+			boolean functionMapping = false;
+			if (key.startsWith(FUNCTIONS_PROTOKOLL)) {
+				key = key.substring(FUNCTIONS_PROTOKOLL.length()-1);
+			}
 			Class<?> class1 = LoaderFactory.getClassLoader(ctx).loadClass(key);
 			if (class1!=null) {
+				if (functionMapping) {
+					return new JavaFunctionsTypeSystem(class1);
+				}
 				return new JavaTypeSystem(class1);
 			}
 			return null;

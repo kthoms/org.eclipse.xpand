@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredStaticProperty.java,v 1.4 2008/03/07 14:21:08 sefftinge Exp $
+ * $Id: DeclaredStaticProperty.java,v 1.5 2008/03/13 11:37:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -16,6 +16,7 @@ package org.eclipse.xpand3.staticTypesystem;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#isReadOnly <em>Read Only</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +50,31 @@ public interface DeclaredStaticProperty extends AbstractNamedElement {
 	 * @generated
 	 */
 	void setType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Read Only</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Read Only</em>' attribute.
+	 * @see #setReadOnly(boolean)
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredStaticProperty_ReadOnly()
+	 * @model
+	 * @generated
+	 */
+	boolean isReadOnly();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#isReadOnly <em>Read Only</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Read Only</em>' attribute.
+	 * @see #isReadOnly()
+	 * @generated
+	 */
+	void setReadOnly(boolean value);
 
 } // DeclaredStaticProperty

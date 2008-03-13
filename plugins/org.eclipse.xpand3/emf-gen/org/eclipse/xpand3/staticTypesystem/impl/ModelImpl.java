@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModelImpl.java,v 1.1 2008/03/07 14:21:07 sefftinge Exp $
+ * $Id: ModelImpl.java,v 1.2 2008/03/13 11:37:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.Model;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
@@ -32,6 +33,7 @@ import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.ModelImpl#getDeclarations <em>Declarations</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.ModelImpl#getFunctionDeclarations <em>Function Declarations</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,6 +49,16 @@ public class ModelImpl extends EObjectImpl implements Model {
 	 * @ordered
 	 */
 	protected EList<DeclaredType> declarations;
+
+	/**
+	 * The cached value of the '{@link #getFunctionDeclarations() <em>Function Declarations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFunctionDeclarations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DeclaredFunction> functionDeclarations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,11 +96,25 @@ public class ModelImpl extends EObjectImpl implements Model {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<DeclaredFunction> getFunctionDeclarations() {
+		if (functionDeclarations == null) {
+			functionDeclarations = new EObjectContainmentEList<DeclaredFunction>(DeclaredFunction.class, this, StaticTypesystemPackage.MODEL__FUNCTION_DECLARATIONS);
+		}
+		return functionDeclarations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StaticTypesystemPackage.MODEL__DECLARATIONS:
 				return ((InternalEList<?>)getDeclarations()).basicRemove(otherEnd, msgs);
+			case StaticTypesystemPackage.MODEL__FUNCTION_DECLARATIONS:
+				return ((InternalEList<?>)getFunctionDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -103,6 +129,8 @@ public class ModelImpl extends EObjectImpl implements Model {
 		switch (featureID) {
 			case StaticTypesystemPackage.MODEL__DECLARATIONS:
 				return getDeclarations();
+			case StaticTypesystemPackage.MODEL__FUNCTION_DECLARATIONS:
+				return getFunctionDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,6 +148,10 @@ public class ModelImpl extends EObjectImpl implements Model {
 				getDeclarations().clear();
 				getDeclarations().addAll((Collection<? extends DeclaredType>)newValue);
 				return;
+			case StaticTypesystemPackage.MODEL__FUNCTION_DECLARATIONS:
+				getFunctionDeclarations().clear();
+				getFunctionDeclarations().addAll((Collection<? extends DeclaredFunction>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -135,6 +167,9 @@ public class ModelImpl extends EObjectImpl implements Model {
 			case StaticTypesystemPackage.MODEL__DECLARATIONS:
 				getDeclarations().clear();
 				return;
+			case StaticTypesystemPackage.MODEL__FUNCTION_DECLARATIONS:
+				getFunctionDeclarations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -149,6 +184,8 @@ public class ModelImpl extends EObjectImpl implements Model {
 		switch (featureID) {
 			case StaticTypesystemPackage.MODEL__DECLARATIONS:
 				return declarations != null && !declarations.isEmpty();
+			case StaticTypesystemPackage.MODEL__FUNCTION_DECLARATIONS:
+				return functionDeclarations != null && !functionDeclarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

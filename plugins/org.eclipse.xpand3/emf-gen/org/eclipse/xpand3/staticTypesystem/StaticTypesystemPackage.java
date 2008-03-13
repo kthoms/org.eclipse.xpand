@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackage.java,v 1.7 2008/03/07 14:21:08 sefftinge Exp $
+ * $Id: StaticTypesystemPackage.java,v 1.8 2008/03/13 11:37:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -321,13 +321,31 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_TYPE__SUPER_TYPES = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Unique ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__UNIQUE_ID = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_TYPE__IS_ABSTRACT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Declared Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_TYPE_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DECLARED_TYPE_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
@@ -459,13 +477,22 @@ public interface StaticTypesystemPackage extends EPackage {
 	int DECLARED_STATIC_PROPERTY__TYPE = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_STATIC_PROPERTY__READ_ONLY = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Declared Static Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_STATIC_PROPERTY_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int DECLARED_STATIC_PROPERTY_FEATURE_COUNT = ABSTRACT_NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeParameterImpl <em>Declared Type Parameter</em>}' class.
@@ -561,13 +588,22 @@ public interface StaticTypesystemPackage extends EPackage {
 	int MODEL__DECLARATIONS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Function Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__FUNCTION_DECLARATIONS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = 1;
+	int MODEL_FEATURE_COUNT = 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.AbstractNamedElement <em>Abstract Named Element</em>}'.
@@ -782,6 +818,28 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getDeclaredType_SuperTypes();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getUniqueID <em>Unique ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unique ID</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#getUniqueID()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EAttribute getDeclaredType_UniqueID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#isIsAbstract <em>Is Abstract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Abstract</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredType#isIsAbstract()
+	 * @see #getDeclaredType()
+	 * @generated
+	 */
+	EAttribute getDeclaredType_IsAbstract();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredFunction <em>Declared Function</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -878,6 +936,17 @@ public interface StaticTypesystemPackage extends EPackage {
 	EReference getDeclaredStaticProperty_Type();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#isReadOnly <em>Read Only</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Read Only</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.DeclaredStaticProperty#isReadOnly()
+	 * @see #getDeclaredStaticProperty()
+	 * @generated
+	 */
+	EAttribute getDeclaredStaticProperty_ReadOnly();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xpand3.staticTypesystem.DeclaredTypeParameter <em>Declared Type Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -939,6 +1008,17 @@ public interface StaticTypesystemPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModel_Declarations();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.staticTypesystem.Model#getFunctionDeclarations <em>Function Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Function Declarations</em>'.
+	 * @see org.eclipse.xpand3.staticTypesystem.Model#getFunctionDeclarations()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_FunctionDeclarations();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1139,6 +1219,22 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference DECLARED_TYPE__SUPER_TYPES = eINSTANCE.getDeclaredType_SuperTypes();
 
 		/**
+		 * The meta object literal for the '<em><b>Unique ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECLARED_TYPE__UNIQUE_ID = eINSTANCE.getDeclaredType_UniqueID();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Abstract</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECLARED_TYPE__IS_ABSTRACT = eINSTANCE.getDeclaredType_IsAbstract();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredFunctionImpl <em>Declared Function</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1217,6 +1313,14 @@ public interface StaticTypesystemPackage extends EPackage {
 		EReference DECLARED_STATIC_PROPERTY__TYPE = eINSTANCE.getDeclaredStaticProperty_Type();
 
 		/**
+		 * The meta object literal for the '<em><b>Read Only</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECLARED_STATIC_PROPERTY__READ_ONLY = eINSTANCE.getDeclaredStaticProperty_ReadOnly();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeParameterImpl <em>Declared Type Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1269,6 +1373,14 @@ public interface StaticTypesystemPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL__DECLARATIONS = eINSTANCE.getModel_Declarations();
+
+		/**
+		 * The meta object literal for the '<em><b>Function Declarations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__FUNCTION_DECLARATIONS = eINSTANCE.getModel_FunctionDeclarations();
 
 	}
 

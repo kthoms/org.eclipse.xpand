@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredTypeImpl.java,v 1.5 2008/03/07 14:21:07 sefftinge Exp $
+ * $Id: DeclaredTypeImpl.java,v 1.6 2008/03/13 11:37:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -41,6 +41,8 @@ import org.eclipse.xtend.backend.common.BackendType;
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getSuperTypes <em>Super Types</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#getUniqueID <em>Unique ID</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredTypeImpl#isIsAbstract <em>Is Abstract</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,6 +88,46 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * @ordered
 	 */
 	protected EList<AbstractTypeReference> superTypes;
+
+	/**
+	 * The default value of the '{@link #getUniqueID() <em>Unique ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueID() <em>Unique ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueID()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueID = UNIQUE_ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -159,6 +201,48 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getUniqueID() {
+		return uniqueID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueID(String newUniqueID) {
+		String oldUniqueID = uniqueID;
+		uniqueID = newUniqueID;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_TYPE__UNIQUE_ID, oldUniqueID, uniqueID));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsAbstract() {
+		return isAbstract;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsAbstract(boolean newIsAbstract) {
+		boolean oldIsAbstract = isAbstract;
+		isAbstract = newIsAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_TYPE__IS_ABSTRACT, oldIsAbstract, isAbstract));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -190,6 +274,10 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return getDeclaredTypeParameters();
 			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
 				return getSuperTypes();
+			case StaticTypesystemPackage.DECLARED_TYPE__UNIQUE_ID:
+				return getUniqueID();
+			case StaticTypesystemPackage.DECLARED_TYPE__IS_ABSTRACT:
+				return isIsAbstract() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,6 +307,12 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				getSuperTypes().clear();
 				getSuperTypes().addAll((Collection<? extends AbstractTypeReference>)newValue);
 				return;
+			case StaticTypesystemPackage.DECLARED_TYPE__UNIQUE_ID:
+				setUniqueID((String)newValue);
+				return;
+			case StaticTypesystemPackage.DECLARED_TYPE__IS_ABSTRACT:
+				setIsAbstract(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -243,6 +337,12 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
 				getSuperTypes().clear();
 				return;
+			case StaticTypesystemPackage.DECLARED_TYPE__UNIQUE_ID:
+				setUniqueID(UNIQUE_ID_EDEFAULT);
+				return;
+			case StaticTypesystemPackage.DECLARED_TYPE__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -263,8 +363,30 @@ public class DeclaredTypeImpl extends AbstractNamedElementImpl implements Declar
 				return declaredTypeParameters != null && !declaredTypeParameters.isEmpty();
 			case StaticTypesystemPackage.DECLARED_TYPE__SUPER_TYPES:
 				return superTypes != null && !superTypes.isEmpty();
+			case StaticTypesystemPackage.DECLARED_TYPE__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueID != null : !UNIQUE_ID_EDEFAULT.equals(uniqueID);
+			case StaticTypesystemPackage.DECLARED_TYPE__IS_ABSTRACT:
+				return isAbstract != IS_ABSTRACT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (uniqueID: ");
+		result.append(uniqueID);
+		result.append(", isAbstract: ");
+		result.append(isAbstract);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DeclaredTypeImpl

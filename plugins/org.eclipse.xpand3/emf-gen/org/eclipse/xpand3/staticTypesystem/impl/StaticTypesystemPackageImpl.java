@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StaticTypesystemPackageImpl.java,v 1.7 2008/03/07 14:21:07 sefftinge Exp $
+ * $Id: StaticTypesystemPackageImpl.java,v 1.8 2008/03/13 11:37:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -391,6 +391,24 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDeclaredType_UniqueID() {
+		return (EAttribute)declaredTypeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeclaredType_IsAbstract() {
+		return (EAttribute)declaredTypeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDeclaredFunction() {
 		return declaredFunctionEClass;
 	}
@@ -472,6 +490,15 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDeclaredStaticProperty_ReadOnly() {
+		return (EAttribute)declaredStaticPropertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDeclaredTypeParameter() {
 		return declaredTypeParameterEClass;
 	}
@@ -519,6 +546,15 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 	 */
 	public EReference getModel_Declarations() {
 		return (EReference)modelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModel_FunctionDeclarations() {
+		return (EReference)modelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -576,6 +612,8 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		createEReference(declaredTypeEClass, DECLARED_TYPE__PROPERTIES);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__DECLARED_TYPE_PARAMETERS);
 		createEReference(declaredTypeEClass, DECLARED_TYPE__SUPER_TYPES);
+		createEAttribute(declaredTypeEClass, DECLARED_TYPE__UNIQUE_ID);
+		createEAttribute(declaredTypeEClass, DECLARED_TYPE__IS_ABSTRACT);
 
 		declaredFunctionEClass = createEClass(DECLARED_FUNCTION);
 		createEReference(declaredFunctionEClass, DECLARED_FUNCTION__DECLARED_PARAMETERS);
@@ -588,6 +626,7 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		declaredStaticPropertyEClass = createEClass(DECLARED_STATIC_PROPERTY);
 		createEReference(declaredStaticPropertyEClass, DECLARED_STATIC_PROPERTY__TYPE);
+		createEAttribute(declaredStaticPropertyEClass, DECLARED_STATIC_PROPERTY__READ_ONLY);
 
 		declaredTypeParameterEClass = createEClass(DECLARED_TYPE_PARAMETER);
 		createEReference(declaredTypeParameterEClass, DECLARED_TYPE_PARAMETER__UPPER_BOUNDS);
@@ -597,6 +636,7 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		modelEClass = createEClass(MODEL);
 		createEReference(modelEClass, MODEL__DECLARATIONS);
+		createEReference(modelEClass, MODEL__FUNCTION_DECLARATIONS);
 	}
 
 	/**
@@ -667,6 +707,8 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 		initEReference(getDeclaredType_Properties(), this.getDeclaredProperty(), null, "properties", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_DeclaredTypeParameters(), this.getDeclaredTypeParameter(), null, "declaredTypeParameters", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredType_SuperTypes(), this.getAbstractTypeReference(), null, "superTypes", null, 0, -1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeclaredType_UniqueID(), ecorePackage.getEString(), "uniqueID", null, 0, 1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeclaredType_IsAbstract(), ecorePackage.getEBoolean(), "isAbstract", null, 0, 1, DeclaredType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredFunctionEClass, DeclaredFunction.class, "DeclaredFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredFunction_DeclaredParameters(), this.getDeclaredParameter(), null, "declaredParameters", null, 0, -1, DeclaredFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -679,6 +721,7 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		initEClass(declaredStaticPropertyEClass, DeclaredStaticProperty.class, "DeclaredStaticProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredStaticProperty_Type(), this.getType(), null, "type", null, 1, 1, DeclaredStaticProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeclaredStaticProperty_ReadOnly(), ecorePackage.getEBoolean(), "readOnly", null, 0, 1, DeclaredStaticProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredTypeParameterEClass, DeclaredTypeParameter.class, "DeclaredTypeParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredTypeParameter_UpperBounds(), this.getAbstractTypeReference(), null, "upperBounds", null, 0, -1, DeclaredTypeParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -688,6 +731,7 @@ public class StaticTypesystemPackageImpl extends EPackageImpl implements StaticT
 
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModel_Declarations(), this.getDeclaredType(), null, "declarations", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModel_FunctionDeclarations(), this.getDeclaredFunction(), null, "functionDeclarations", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

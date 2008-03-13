@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredStaticPropertyImpl.java,v 1.4 2008/03/07 14:21:07 sefftinge Exp $
+ * $Id: DeclaredStaticPropertyImpl.java,v 1.5 2008/03/13 11:37:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.xpand3.staticTypesystem.Type;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.impl.DeclaredStaticPropertyImpl#isReadOnly <em>Read Only</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +42,25 @@ public class DeclaredStaticPropertyImpl extends AbstractNamedElementImpl impleme
 	 * @ordered
 	 */
 	protected Type type;
+
+	/**
+	 * The default value of the '{@link #isReadOnly() <em>Read Only</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReadOnly()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean READ_ONLY_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isReadOnly() <em>Read Only</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReadOnly()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean readOnly = READ_ONLY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,6 +129,27 @@ public class DeclaredStaticPropertyImpl extends AbstractNamedElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReadOnly(boolean newReadOnly) {
+		boolean oldReadOnly = readOnly;
+		readOnly = newReadOnly;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__READ_ONLY, oldReadOnly, readOnly));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -128,6 +169,8 @@ public class DeclaredStaticPropertyImpl extends AbstractNamedElementImpl impleme
 		switch (featureID) {
 			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__TYPE:
 				return getType();
+			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__READ_ONLY:
+				return isReadOnly() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,6 +185,9 @@ public class DeclaredStaticPropertyImpl extends AbstractNamedElementImpl impleme
 		switch (featureID) {
 			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__TYPE:
 				setType((Type)newValue);
+				return;
+			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__READ_ONLY:
+				setReadOnly(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,6 +204,9 @@ public class DeclaredStaticPropertyImpl extends AbstractNamedElementImpl impleme
 			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__TYPE:
 				setType((Type)null);
 				return;
+			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__READ_ONLY:
+				setReadOnly(READ_ONLY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -172,8 +221,26 @@ public class DeclaredStaticPropertyImpl extends AbstractNamedElementImpl impleme
 		switch (featureID) {
 			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__TYPE:
 				return type != null;
+			case StaticTypesystemPackage.DECLARED_STATIC_PROPERTY__READ_ONLY:
+				return readOnly != READ_ONLY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (readOnly: ");
+		result.append(readOnly);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DeclaredStaticPropertyImpl

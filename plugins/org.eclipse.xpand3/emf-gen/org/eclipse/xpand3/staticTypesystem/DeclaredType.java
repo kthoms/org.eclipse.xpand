@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclaredType.java,v 1.5 2008/03/07 14:21:08 sefftinge Exp $
+ * $Id: DeclaredType.java,v 1.6 2008/03/13 11:37:06 sefftinge Exp $
  */
 package org.eclipse.xpand3.staticTypesystem;
 
@@ -22,6 +22,8 @@ import org.eclipse.xtend.backend.common.BackendType;
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getDeclaredTypeParameters <em>Declared Type Parameters</em>}</li>
  *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getSuperTypes <em>Super Types</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getUniqueID <em>Unique ID</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#isIsAbstract <em>Is Abstract</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,5 +95,57 @@ public interface DeclaredType extends AbstractNamedElement {
 	 * @generated
 	 */
 	EList<AbstractTypeReference> getSuperTypes();
+
+	/**
+	 * Returns the value of the '<em><b>Unique ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unique ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unique ID</em>' attribute.
+	 * @see #setUniqueID(String)
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredType_UniqueID()
+	 * @model
+	 * @generated
+	 */
+	String getUniqueID();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#getUniqueID <em>Unique ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unique ID</em>' attribute.
+	 * @see #getUniqueID()
+	 * @generated
+	 */
+	void setUniqueID(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Abstract</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Abstract</em>' attribute.
+	 * @see #setIsAbstract(boolean)
+	 * @see org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage#getDeclaredType_IsAbstract()
+	 * @model
+	 * @generated
+	 */
+	boolean isIsAbstract();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.staticTypesystem.DeclaredType#isIsAbstract <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Abstract</em>' attribute.
+	 * @see #isIsAbstract()
+	 * @generated
+	 */
+	void setIsAbstract(boolean value);
 
 } // DeclaredType

@@ -16,6 +16,9 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.CommonTokenStream;
 
+/**
+ * @author Jan Köhnlein
+ */
 public class XpandLexerTest extends AbstractXpand3NodeParserTest {
 
 	public void testComments() throws Exception {

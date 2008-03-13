@@ -1,3 +1,16 @@
+/*******************************************************************************
+ * <copyright>
+ * Copyright (c) 2008 itemis AG and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ * committers of openArchitectureWare - initial API and implementation
+ * </copyright>
+ *******************************************************************************/
+
 package org.eclipse.xpand3.parser.node2ast;
 
 import org.eclipse.emf.common.util.EList;
@@ -93,6 +106,9 @@ import org.eclipse.xpand3.statement.IfStatement;
 import org.eclipse.xpand3.statement.StatementFactory;
 import org.eclipse.xpand3.statement.TextStatement;
 
+/**
+ * @author Jan Köhnlein
+ */
 public class Node2AstTransformer extends
 		AbstractXpand3NodeSwitch<SyntaxElement, TransformationException> {
 
@@ -248,6 +264,8 @@ public class Node2AstTransformer extends
 				.setConstraint((AbstractExpression) doSwitch(node
 						.getConstraint()));
 		check.setMsg((AbstractExpression) doSwitch(node.getMessage()));
+		createAndAddImplicitlyDeclaredThisParameter(node.getType(), check
+				.getParams());
 		return check;
 	}
 

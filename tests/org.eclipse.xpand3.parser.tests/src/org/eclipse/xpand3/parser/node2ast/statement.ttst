@@ -303,4 +303,11 @@ expected
 		guard=BinaryOperation
 		msg=BinaryOperation
 		constraint=BinaryOperation
+		guard=BinaryOperation
+		params=[
+			DeclaredParameter {
+				name=Identifier(value="this")
+				type=Identifier(value="EObject")
+			}
+		]
 	}			

@@ -196,4 +196,8 @@ public final class UmlTypesystem implements BackendTypesystem {
         _emfTypesystem.setRootTypesystem (ts);
         _rootTs = ts;
     }
+
+    public BackendType findType (String uniqueRepresentation) {
+        throw new UnsupportedOperationException ("TODO"); //TODO implement findByUniqueRepresentation
+    }
 }

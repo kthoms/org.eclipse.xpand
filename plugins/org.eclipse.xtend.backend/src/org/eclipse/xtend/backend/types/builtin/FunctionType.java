@@ -29,7 +29,7 @@ public final class FunctionType extends AbstractType {
     public static final FunctionType INSTANCE = new FunctionType ();
     
     private FunctionType () {
-        super ("Function"); 
+        super ("Function", "{builtin}Function"); 
 
         register ("invoke", new Function () {
             public List<BackendType> getParameterTypes() {

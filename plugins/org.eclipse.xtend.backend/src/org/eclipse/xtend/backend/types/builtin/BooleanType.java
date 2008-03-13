@@ -21,7 +21,7 @@ import org.eclipse.xtend.backend.types.AbstractType;
 public final class BooleanType extends AbstractType {
     public static final BooleanType INSTANCE = new BooleanType ();
     
-    private BooleanType () {super ("boolean");}
+    private BooleanType () {super ("boolean", "{builtin}Boolean");}
 
     @Override
     public boolean isAssignableFrom (BackendType other) {

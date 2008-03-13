@@ -3,5 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Test Plug-in
 Bundle-SymbolicName: org.eclipse.xtend.backend.test
 Bundle-Version: 1.0.0
+Fragment-Host: org.eclipse.xtend.backend;bundle-version="0.7.0"
 Require-Bundle: org.eclipse.xtend.backend,
  org.junit4

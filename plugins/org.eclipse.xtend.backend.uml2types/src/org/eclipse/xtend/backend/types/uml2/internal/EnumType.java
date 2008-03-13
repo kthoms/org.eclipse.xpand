@@ -19,6 +19,7 @@ import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
+import org.eclipse.xtend.backend.types.emf.EObjectType;
 
 
 /**
@@ -30,7 +31,7 @@ public final class EnumType extends AbstractType {
     private final Enumeration _enumeration;
 
     public EnumType (String name, Enumeration en) {
-        super (name);
+        super (name, name, EObjectType.INSTANCE); //TODO uniqueRepresentation
         _enumeration = en;
         
         for (final EnumerationLiteral el: en.getOwnedLiterals())

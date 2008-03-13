@@ -27,7 +27,7 @@ public final class MultipleStereotypeType extends AbstractType {
     private final List<BackendType> _stereotypeTypes;
     
     public MultipleStereotypeType (List<BackendType> stereoTypeTypes) {
-        super (computeName (stereoTypeTypes), stereoTypeTypes.toArray (new BackendType[0]));
+        super (computeName (stereoTypeTypes), computeName(stereoTypeTypes), stereoTypeTypes.toArray (new BackendType[0])); //TODO uniqueRepresentation
         
         _stereotypeTypes = stereoTypeTypes;
     }

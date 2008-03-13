@@ -1,4 +1,4 @@
-package org.eclipse.xtend.middleend.old.first;
+package org.eclipse.xtend.middleend.old;
 
 
 public class Person {

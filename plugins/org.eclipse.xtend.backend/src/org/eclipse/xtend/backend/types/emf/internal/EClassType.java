@@ -29,6 +29,7 @@ import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.ErrorHandler;
@@ -42,7 +43,7 @@ public final class EClassType extends AbstractType {
     private final EClass _cls;
     
     public EClassType (EClass cls, EmfTypesystem ts) {
-        super (EmfTypesystem.getFullyQualifiedName(cls), superTypes(cls, ts));
+        super (EmfTypesystem.getFullyQualifiedName(cls), EmfTypesystem.getUniqueIdentifier(cls), superTypes(cls, ts));
         _cls = cls;
     }
 

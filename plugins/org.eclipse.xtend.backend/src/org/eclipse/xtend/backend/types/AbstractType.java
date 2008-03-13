@@ -38,6 +38,7 @@ import org.eclipse.xtend.backend.util.StringHelper;
  */
 public abstract class AbstractType implements BackendType {
     private final String _name;
+    private final String _uniqueRepresentation;
     private final List<BackendType> _superTypes;
     
     private final Map<String, Property> _properties = new HashMap<String, Property> ();
@@ -45,8 +46,9 @@ public abstract class AbstractType implements BackendType {
     
     private final Collection<NamedFunction> _builtinOperations = new HashSet<NamedFunction> ();
     
-    public AbstractType(String name, BackendType... superTypes) {
+    public AbstractType(String name, String uniqueRepresentation, BackendType... superTypes) {
         _name = name;
+        _uniqueRepresentation = uniqueRepresentation;
         
         if (superTypes.length == 0) 
             _superTypes = Collections.singletonList((BackendType) ObjectType.INSTANCE);
@@ -60,8 +62,9 @@ public abstract class AbstractType implements BackendType {
         }
     }
 
-    public AbstractType(String name, Collection<? extends BackendType> superTypes) {
+    public AbstractType(String name, String uniqueRepresentation, Collection<? extends BackendType> superTypes) {
         _name = name;
+        _uniqueRepresentation = uniqueRepresentation;
         _superTypes = new ArrayList<BackendType> (superTypes);
     }
 
@@ -130,6 +133,10 @@ public abstract class AbstractType implements BackendType {
         return _staticProperties;
     }
 
+    public String getUniqueRepresentation () {
+        return _uniqueRepresentation;
+    }
+    
     public boolean isAssignableFrom (BackendType other) {
         if (other == VoidType.INSTANCE)
             return true;

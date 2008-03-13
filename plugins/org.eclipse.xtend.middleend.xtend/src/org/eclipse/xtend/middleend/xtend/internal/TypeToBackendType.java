@@ -112,7 +112,7 @@ public final class TypeToBackendType {
         if (t instanceof EEnumType)
             return convertEEnumType (t);
         if (t instanceof EObjectType)
-            return org.eclipse.xtend.backend.types.emf.internal.EObjectType.INSTANCE;
+            return org.eclipse.xtend.backend.types.emf.EObjectType.INSTANCE;
         
         if (t instanceof JavaTypeImpl)
             return convertJavaType (t);

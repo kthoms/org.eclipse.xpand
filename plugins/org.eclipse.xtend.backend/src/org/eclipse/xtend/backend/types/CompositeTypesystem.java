@@ -12,6 +12,7 @@ package org.eclipse.xtend.backend.types;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -49,6 +50,25 @@ import org.eclipse.xtend.backend.util.IdentityCache;
 public final class CompositeTypesystem implements BackendTypesystem {
     private BackendTypesystem _rootTypesystem = this;
     private final List<BackendTypesystem> _inner = new ArrayList<BackendTypesystem>();
+    
+    private static final Map<String, BackendType> _typeByUniqueRepresentation = new HashMap<String, BackendType> ();
+    
+    static {
+        _typeByUniqueRepresentation.put ("{builtin}Boolean", BooleanType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Collection", CollectionType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Double", DoubleType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Function", FunctionType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}List", ListType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Long", LongType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Map", MapType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Object", ObjectType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Property", PropertyType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Set", SetType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}StaticProperty", StaticPropertyType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}String", StringType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Type", TypeType.INSTANCE);
+        _typeByUniqueRepresentation.put ("{builtin}Void", VoidType.INSTANCE);
+    }
     
     private final BackendTypesystem _javaBeansTypesystem = new  GlobalJavaBeansTypesystem ();
     {
@@ -130,6 +150,20 @@ public final class CompositeTypesystem implements BackendTypesystem {
         return _typeByClassCache.get (cls);
     }
 
+    public BackendType findType (String uniqueRepresentation) {
+        final BackendType asBuiltin = _typeByUniqueRepresentation.get (uniqueRepresentation);
+        if (asBuiltin != null)
+            return asBuiltin;
+        
+        for (BackendTypesystem ts: _inner) {
+            final BackendType t = ts.findType (uniqueRepresentation);
+            if (t != null)
+                return t;
+        }
+        
+        return _javaBeansTypesystem.findType (uniqueRepresentation);
+    }
+    
     public BackendTypesystem getRootTypesystem () {
         return _rootTypesystem;
     }

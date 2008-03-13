@@ -33,7 +33,7 @@ public final class TypeType extends AbstractType {
     public static final TypeType INSTANCE = new TypeType ();
     
     private TypeType () {
-        super ("Type");
+        super ("Type", "{builtin}Type");
         
         register (new BuiltinProperty (this, StringType.INSTANCE, "name", ReflectionHelper.getKnownMethod (BackendType.class, "getName"), null));
         register (new BuiltinProperty (this, ListType.INSTANCE, "superTypes", ReflectionHelper.getKnownMethod (BackendType.class, "getSuperTypes"), null));

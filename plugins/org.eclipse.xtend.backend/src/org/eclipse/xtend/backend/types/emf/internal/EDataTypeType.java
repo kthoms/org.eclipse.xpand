@@ -12,6 +12,7 @@ package org.eclipse.xtend.backend.types.emf.internal;
 
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 
 
@@ -23,7 +24,7 @@ public final class EDataTypeType extends AbstractType {
     private final EDataType _dt;
     
     public EDataTypeType (EDataType dt) {
-        super (EmfTypesystem.getFullyQualifiedName(dt));
+        super (EmfTypesystem.getFullyQualifiedName(dt), EmfTypesystem.getUniqueIdentifier(dt), EObjectType.INSTANCE);
         _dt = dt;
     }
 

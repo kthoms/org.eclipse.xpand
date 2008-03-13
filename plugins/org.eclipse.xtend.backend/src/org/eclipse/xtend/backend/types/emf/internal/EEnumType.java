@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 
 
@@ -26,7 +27,7 @@ public final class EEnumType extends AbstractType {
     private final EEnum _enum;
     
     public EEnumType (EEnum e) {
-        super (EmfTypesystem.getFullyQualifiedName(e), EObjectType.INSTANCE);
+        super (EmfTypesystem.getFullyQualifiedName(e), EmfTypesystem.getUniqueIdentifier(e), EObjectType.INSTANCE);
         
         _enum = e;
         

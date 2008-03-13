@@ -1,0 +1,5 @@
+
+extension org::eclipse::xtend::middleend::old::imported reexport;
+extension org::eclipse::xtend::middleend::old::first reexport;
+
+reexp(Integer i): 3*i+4; 

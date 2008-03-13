@@ -45,6 +45,10 @@ public final class ObjectType implements BackendType {
     public String getName () {
         return "Object";
     }
+    
+    public String getUniqueRepresentation () {
+        return "{builtin}Object";
+    }
 
     public Map<String, ? extends Property> getProperties () {
         return Collections.emptyMap();

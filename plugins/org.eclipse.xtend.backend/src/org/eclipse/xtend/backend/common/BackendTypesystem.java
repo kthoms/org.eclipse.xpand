@@ -26,6 +26,11 @@ public interface BackendTypesystem {
      */
     BackendType findType (Class<?> cls);
     
+    /**
+     * returns the type corresponding with the unique representation. It is up to typesystem implementations to
+     *  provide - and document - their respective naming schemes
+     */
+    BackendType findType (String uniqueRepresentation);
     
     void setRootTypesystem (BackendTypesystem ts);
     BackendTypesystem getRootTypesystem ();

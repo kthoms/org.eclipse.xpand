@@ -20,7 +20,7 @@ import org.eclipse.xtend.backend.types.AbstractType;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class ListType extends AbstractType {
-    private ListType () {super ("List", CollectionType.INSTANCE); }
+    private ListType () {super ("List", "{builtin}List", CollectionType.INSTANCE); }
     
     public static final ListType INSTANCE = new ListType ();
     

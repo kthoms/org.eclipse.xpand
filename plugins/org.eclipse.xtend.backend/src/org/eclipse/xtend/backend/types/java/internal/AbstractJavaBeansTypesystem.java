@@ -28,6 +28,9 @@ public abstract class AbstractJavaBeansTypesystem implements BackendTypesystem {
     private BackendTypesystem _rootTypesystem = null;
     private Map<Class<?>, JavaBeansType> _cache = new HashMap<Class<?>, JavaBeansType>(); // this is necessary to avoid endless recursion!
     
+    public static final String UNIQUE_REPRESENTATION_PREFIX = "{javabean}";
+    
+
     public BackendType findType (Class<?> cls) {
         if (cls == Object.class)
             return null;
@@ -61,6 +64,18 @@ public abstract class AbstractJavaBeansTypesystem implements BackendTypesystem {
         return findType (o.getClass());
     }
 
+    public BackendType findType (String uniqueRepresentation) {
+        if (! uniqueRepresentation.startsWith(UNIQUE_REPRESENTATION_PREFIX))
+            return null;
+        
+        try {
+            return findType (Class.forName (uniqueRepresentation.substring (UNIQUE_REPRESENTATION_PREFIX.length())));
+        } catch (ClassNotFoundException e) {
+            ErrorHandler.handle (e);
+            return null; //just to make the compiler happy
+        }
+    }
+    
     /**
      * This operation allows support for type system instances that are selective, e.g. by package, as
      *  to which classes they feel responsible for. 

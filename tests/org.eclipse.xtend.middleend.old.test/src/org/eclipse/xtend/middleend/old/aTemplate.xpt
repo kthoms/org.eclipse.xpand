@@ -1,4 +1,4 @@
-«EXTENSION org::eclipse::xtend::middleend::old::first::first»
+«EXTENSION org::eclipse::xtend::middleend::old::first»
 
 «DEFINE greeting FOR String»
 Hello, «this»: «test(this)»
@@ -7,7 +7,7 @@ Hello, «this»: «test(this)»
 «EXPAND otherTemplate::ot FOR this»
 «EXPAND sub::templateInOtherPackage::other FOR this»
 «EXPAND sub::templateInOtherPackage::other»
-«EXPAND org::eclipse::xtend::middleend::old::first::sub::templateInOtherPackage::other»
+«EXPAND org::eclipse::xtend::middleend::old::sub::templateInOtherPackage::other»
 
 «ENDDEFINE»
 

@@ -23,7 +23,7 @@ import org.eclipse.xtend.backend.types.AbstractType;
 public final class VoidType extends AbstractType {
     public static final VoidType INSTANCE = new VoidType();
 
-    private VoidType () {super ("Void"); }
+    private VoidType () {super ("Void", "{builtin}Void"); }
 
     @Override
     public boolean isAssignableFrom (BackendType other) {

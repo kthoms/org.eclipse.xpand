@@ -8,13 +8,14 @@ http://www.eclipse.org/legal/epl-v10.html
 Contributors:
     Arno Haase - initial API and implementation
  */
-package org.eclipse.xtend.backend.types.emf.internal;
+package org.eclipse.xtend.backend.types.emf;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
@@ -33,7 +34,7 @@ public final class EObjectType extends AbstractType {
     public static final EObjectType INSTANCE = new EObjectType ();
 
     private EObjectType () {
-        super ("emf::EObject");
+        super ("emf::EObject", EmfTypesystem.getUniqueIdentifier (EcorePackage.eINSTANCE.getEObject()));
 
         register (new AbstractProperty (INSTANCE, INSTANCE, EObject.class, "eContainer", false) {
             @Override

@@ -45,7 +45,7 @@ public final class StereotypeType extends AbstractType {
     private final Stereotype _stereoType;
     
     public StereotypeType (String name, Stereotype stereoType, UmlTypesystem umlTs) {
-        super (name, superTypes (umlTs, stereoType).toArray (new BackendType[0]));
+        super (name, name, superTypes (umlTs, stereoType).toArray (new BackendType[0])); //TODO uniqueRepresentation
         _stereoType = stereoType;
         
         for (StereotypeProperty stp: getProperties(this, stereoType, umlTs))

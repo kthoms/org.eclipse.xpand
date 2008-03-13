@@ -33,4 +33,6 @@ public interface BackendType {
     Collection<? extends BackendType> getSuperTypes ();
     Map<String, ? extends Property> getProperties ();
     Map<String, ? extends StaticProperty> getStaticProperties ();
+    
+    String getUniqueRepresentation ();
 }

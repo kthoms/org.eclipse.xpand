@@ -1,6 +1,6 @@
-import org::eclipse::xtend::middleend::old::first;
+import org::eclipse::xtend::middleend::old;
 
-extension org::eclipse::xtend::middleend::old::first::imported reexport;
+extension org::eclipse::xtend::middleend::old::imported reexport;
 
 test (Object s): test2 (s);
 test2 (Object s): "Hallo, " + s + ": " + 3*(4+5) + " - " + other (99);

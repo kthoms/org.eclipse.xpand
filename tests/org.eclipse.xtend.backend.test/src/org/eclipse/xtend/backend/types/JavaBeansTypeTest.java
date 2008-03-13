@@ -11,10 +11,12 @@ Contributors:
 package org.eclipse.xtend.backend.types;
 
 import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
+import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.testhelpers.BeanWithSizeProperty;
 import org.junit.Test;
@@ -28,5 +30,15 @@ public class JavaBeansTypeTest {
         final ExecutionContext ctx = createEmptyExecutionContext();
         
         assertEquals ("asdfabc7 - 2", ctx.getFunctionDefContext().invoke (ctx, "myFunction", Arrays.asList(new BeanWithSizeProperty(7), "abc", 5L)));
+    }
+    
+    @Test public void testUniqueIdentifier () {
+        final BackendTypesystem ts = new CompositeTypesystem ();
+        
+        final BackendType byClass = ts.findType (BeanWithSizeProperty.class);
+        final BackendType byIdentifier = ts.findType ("{javabean}" + BeanWithSizeProperty.class.getName());
+        assertSame (byClass, byIdentifier);
+        
+        assertEquals ("{javabean}" + BeanWithSizeProperty.class.getName(), byClass.getUniqueRepresentation());
     }
 }

@@ -151,6 +151,10 @@ public final class JavaBeansType implements BackendType {
         return _javaClass.getCanonicalName().replace(".", "::");
     }
 
+    public String getUniqueRepresentation () {
+        return AbstractJavaBeansTypesystem.UNIQUE_REPRESENTATION_PREFIX + _javaClass.getName();
+    }
+
     public Map<String, ? extends Property> getProperties () {
         return _properties;
     }

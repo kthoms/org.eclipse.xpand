@@ -13,6 +13,7 @@ package org.eclipse.xtend.backend.types.emf;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.xtend.backend.common.BackendType;
@@ -34,7 +36,6 @@ import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.emf.internal.EClassType;
 import org.eclipse.xtend.backend.types.emf.internal.EDataTypeType;
 import org.eclipse.xtend.backend.types.emf.internal.EEnumType;
-import org.eclipse.xtend.backend.types.emf.internal.EObjectType;
 
 
 /**
@@ -43,6 +44,9 @@ import org.eclipse.xtend.backend.types.emf.internal.EObjectType;
  */
 public final class EmfTypesystem implements BackendTypesystem {
     private BackendTypesystem _rootTypesystem;
+    
+    public static final String UNIQUE_REPRESENTATION_PREFIX = "{emf}";
+
 
     private final Map<EClassifier, BackendType> _cache = new HashMap<EClassifier, BackendType>();
 
@@ -75,6 +79,36 @@ public final class EmfTypesystem implements BackendTypesystem {
         _ecorePrimitives.put (EcorePackage.eINSTANCE.getEJavaObject(), ObjectType.INSTANCE);
     }
 
+    
+    public static String getUniqueIdentifier (EClassifier cls) {
+        return UNIQUE_REPRESENTATION_PREFIX + "{" + cls.getEPackage().getNsURI() + "}" + cls.getName();
+    }
+    
+    public BackendType findType (String uniqueRepresentation) {
+        if (! uniqueRepresentation.startsWith (UNIQUE_REPRESENTATION_PREFIX))
+            return null;
+        
+        uniqueRepresentation = uniqueRepresentation.substring (UNIQUE_REPRESENTATION_PREFIX.length());
+
+        final String nsUri = uniqueRepresentation.substring (1, uniqueRepresentation.indexOf('}'));
+        final String name = uniqueRepresentation.substring (uniqueRepresentation.indexOf('}') + 1);
+        
+        final EPackage pkg = EPackage.Registry.INSTANCE.getEPackage (nsUri);
+        
+        for (final TreeIterator<EObject> iter =  pkg.eAllContents(); iter.hasNext(); ) {
+            final EObject eo = iter.next();
+            if (! (eo instanceof EClassifier))
+                continue;
+            
+            final EClassifier cls = (EClassifier) eo;
+            if (name.equals(cls.getName()))
+                return getTypeForEClassifier (cls);
+        }
+        
+        return null;
+    }
+    
+    
     /**
      * This method serves as the single point of access to the internal cache of types; all other methods that
      *  look up a type should go through this method.

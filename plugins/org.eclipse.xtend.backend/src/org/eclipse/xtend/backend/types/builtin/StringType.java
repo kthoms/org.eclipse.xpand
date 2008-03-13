@@ -29,7 +29,7 @@ public final class StringType extends AbstractType {
     public static final StringType INSTANCE = new StringType();
     
     private StringType () {
-        super ("String");
+        super ("String", "{builtin}String");
         
         register (new BuiltinProperty (this, this, "length", ReflectionHelper.getKnownMethod (CharSequence.class, "length"), null));
     }

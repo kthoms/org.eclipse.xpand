@@ -23,7 +23,7 @@ import org.eclipse.xtend.backend.util.ReflectionHelper;
  */
 public final class MapType extends AbstractType {
     private MapType () {
-        super ("Map"); 
+        super ("Map", "{builtin}Map"); 
         
         register (new BuiltinProperty (CollectionType.INSTANCE, LongType.INSTANCE, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null));
         register (new BuiltinProperty (CollectionType.INSTANCE, BooleanType.INSTANCE, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null));

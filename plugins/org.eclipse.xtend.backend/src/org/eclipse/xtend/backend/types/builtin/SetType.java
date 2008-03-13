@@ -21,7 +21,7 @@ import org.eclipse.xtend.backend.types.AbstractType;
  */
 public final class SetType extends AbstractType {
     private SetType () {
-        super ("Set", CollectionType.INSTANCE);
+        super ("Set", "{builtin}Set", CollectionType.INSTANCE);
     }
     
     public static final SetType INSTANCE = new SetType ();

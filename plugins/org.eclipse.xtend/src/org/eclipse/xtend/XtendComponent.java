@@ -66,21 +66,19 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
         if (invokeExpression == null || invokeExpression.trim().length() == 0) {
             issues.addError(compPrefix + "Property 'invoke' not specified.");
             return;
-        }
-        if (extensionFile == null) {
+        } else if (extensionFile == null) {
             issues
                     .addError(compPrefix
                             + "Error parsing property 'invoke': Could not extract name of the extension file.");
             return;
         }
-        if (expression == null) {
+        if (getExtFileIS() == null && expression == null) {
             issues
                     .addError(compPrefix
                             + "Property 'invoke' not specified properly. AbstractExtension file '"
                             + extensionFile + "' not found.");
             return;
-        }
-        if (expression == null) {
+        } else if (expression == null) {
             issues
                     .addError(compPrefix
                             + "Error parsing property 'invoke': Could not extract the expression to invoke in extension file '"

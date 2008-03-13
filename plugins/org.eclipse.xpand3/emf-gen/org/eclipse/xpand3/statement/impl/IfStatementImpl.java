@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IfStatementImpl.java,v 1.4 2008/03/13 11:41:50 sefftinge Exp $
+ * $Id: IfStatementImpl.java,v 1.5 2008/03/13 11:42:32 sefftinge Exp $
  */
 package org.eclipse.xpand3.statement.impl;
 
@@ -27,7 +27,6 @@ import org.eclipse.xpand3.statement.StatementPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.statement.impl.IfStatementImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.eclipse.xpand3.statement.impl.IfStatementImpl#getUpperIf <em>Upper If</em>}</li>
  *   <li>{@link org.eclipse.xpand3.statement.impl.IfStatementImpl#getElseIf <em>Else If</em>}</li>
  * </ul>
  * </p>
@@ -44,16 +43,6 @@ public class IfStatementImpl extends AbstractStatementWithBodyImpl implements If
 	 * @ordered
 	 */
 	protected AbstractExpression condition;
-
-	/**
-	 * The cached value of the '{@link #getUpperIf() <em>Upper If</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpperIf()
-	 * @generated
-	 * @ordered
-	 */
-	protected IfStatement upperIf;
 
 	/**
 	 * The cached value of the '{@link #getElseIf() <em>Else If</em>}' containment reference.
@@ -132,44 +121,6 @@ public class IfStatementImpl extends AbstractStatementWithBodyImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfStatement getUpperIf() {
-		if (upperIf != null && upperIf.eIsProxy()) {
-			InternalEObject oldUpperIf = (InternalEObject)upperIf;
-			upperIf = (IfStatement)eResolveProxy(oldUpperIf);
-			if (upperIf != oldUpperIf) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatementPackage.IF_STATEMENT__UPPER_IF, oldUpperIf, upperIf));
-			}
-		}
-		return upperIf;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfStatement basicGetUpperIf() {
-		return upperIf;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUpperIf(IfStatement newUpperIf) {
-		IfStatement oldUpperIf = upperIf;
-		upperIf = newUpperIf;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StatementPackage.IF_STATEMENT__UPPER_IF, oldUpperIf, upperIf));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfStatement getElseIf() {
 		return elseIf;
 	}
@@ -234,9 +185,6 @@ public class IfStatementImpl extends AbstractStatementWithBodyImpl implements If
 		switch (featureID) {
 			case StatementPackage.IF_STATEMENT__CONDITION:
 				return getCondition();
-			case StatementPackage.IF_STATEMENT__UPPER_IF:
-				if (resolve) return getUpperIf();
-				return basicGetUpperIf();
 			case StatementPackage.IF_STATEMENT__ELSE_IF:
 				return getElseIf();
 		}
@@ -253,9 +201,6 @@ public class IfStatementImpl extends AbstractStatementWithBodyImpl implements If
 		switch (featureID) {
 			case StatementPackage.IF_STATEMENT__CONDITION:
 				setCondition((AbstractExpression)newValue);
-				return;
-			case StatementPackage.IF_STATEMENT__UPPER_IF:
-				setUpperIf((IfStatement)newValue);
 				return;
 			case StatementPackage.IF_STATEMENT__ELSE_IF:
 				setElseIf((IfStatement)newValue);
@@ -275,9 +220,6 @@ public class IfStatementImpl extends AbstractStatementWithBodyImpl implements If
 			case StatementPackage.IF_STATEMENT__CONDITION:
 				setCondition((AbstractExpression)null);
 				return;
-			case StatementPackage.IF_STATEMENT__UPPER_IF:
-				setUpperIf((IfStatement)null);
-				return;
 			case StatementPackage.IF_STATEMENT__ELSE_IF:
 				setElseIf((IfStatement)null);
 				return;
@@ -295,8 +237,6 @@ public class IfStatementImpl extends AbstractStatementWithBodyImpl implements If
 		switch (featureID) {
 			case StatementPackage.IF_STATEMENT__CONDITION:
 				return condition != null;
-			case StatementPackage.IF_STATEMENT__UPPER_IF:
-				return upperIf != null;
 			case StatementPackage.IF_STATEMENT__ELSE_IF:
 				return elseIf != null;
 		}

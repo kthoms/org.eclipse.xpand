@@ -15,13 +15,10 @@
  */
 package org.eclipse.xpand3.analyzation;
 
-import java.util.List;
-
 import org.eclipse.xpand3.analyzation.typesystem.builtin.BuiltinTypeSystem;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
-import org.eclipse.xpand3.staticTypesystem.FunctionType;
-import org.eclipse.xpand3.staticTypesystem.Type;
-import org.eclipse.xpand3.staticTypesystem.WildcardType;
+import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
+import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 
 /**
  * @author Sven Efftinge
@@ -35,6 +32,7 @@ public interface TypeSystem {
 	final String COLLECTION = "Collection";
 	final String SET = "Set";
 	final String LIST = "List";
+	final String MAP = "Map";
 	
 	// Datatypes
 	final String BOOLEAN = "Boolean";
@@ -45,18 +43,32 @@ public interface TypeSystem {
 	// reflection layer types
 	final String FEATURE = "Feature";
 	final String TYPE = "Type";
-	final String OPERATION = "Operation";
+	final String FUNCTION = "Function";
 	final String PROPERTY = "Property";
 	final String STATIC_PROPERTY = "StaticProperty";
 	
-	final TypeSystem BUILTIN_TYPESYSTEM = new BuiltinTypeSystem(null);
+	final BuiltinTypeSystem BUILTIN_TYPESYSTEM = new BuiltinTypeSystem();
 	
-	WildcardType wildCard(AbstractTypeReference...upperBounds);
-	WildcardType wildCardWithLower(AbstractTypeReference...lowerBounds);
+	/**
+	 * if this contributor has a type with the declared name, the respective DeclareTpye should be returned.
+	 * This method is only invoked once per name, so caching is done by the framework
+	 * @param name
+	 * @return the declared type with the given name or null if there is no such type declared in this Resource.
+	 */
+	DeclaredType typeForName(String name);
 	
-	Type typeForName(String name, AbstractTypeReference...typeArguments);
+	/**
+	 * if this contributor has a type with the declared name, the respective DeclareTpye should be returned.
+	 * This method is only invoked once per name.
+	 * @param name
+	 * @return
+	 */
+	DeclaredFunction functionForName(String name, AbstractTypeReference...parameterTypes);
 	
-	FunctionType functionForNameAndParameterTypes(String name, AbstractTypeReference...parameterTypes);
-	FunctionType functionForName(String name, List<AbstractTypeReference> parameterTypes, AbstractTypeReference...typeArguments);
+	/**
+	 * this method is invoked during setup of this contributor.
+	 * @param the type system to be used for resolving type and function references.
+	 */
+	void setTypeSystemFactory(TypeSystemFactory tsf);
 	
 }

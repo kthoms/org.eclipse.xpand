@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionSwitch.java,v 1.5 2008/03/13 11:41:50 sefftinge Exp $
+ * $Id: ExpressionSwitch.java,v 1.6 2008/03/13 11:42:32 sefftinge Exp $
  */
 package org.eclipse.xpand3.expression.util;
 
@@ -269,6 +269,14 @@ public class ExpressionSwitch<T> {
 				T result = caseBinaryOperation(binaryOperation);
 				if (result == null) result = caseAbstractExpression(binaryOperation);
 				if (result == null) result = caseSyntaxElement(binaryOperation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExpressionPackage.UNARY_OPERATION: {
+				UnaryOperation unaryOperation = (UnaryOperation)theEObject;
+				T result = caseUnaryOperation(unaryOperation);
+				if (result == null) result = caseAbstractExpression(unaryOperation);
+				if (result == null) result = caseSyntaxElement(unaryOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -603,6 +611,21 @@ public class ExpressionSwitch<T> {
 	 * @generated
 	 */
 	public T caseBinaryOperation(BinaryOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unary Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unary Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnaryOperation(UnaryOperation object) {
 		return null;
 	}
 

@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParanthesizedExpressionNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: ParanthesizedExpressionNodeValidator.java,v 1.3 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
+import org.eclipse.tmf.common.node.CompositeNode;
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.ParanthesizedExpressionNode}.
@@ -16,4 +17,5 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 public interface ParanthesizedExpressionNodeValidator {
 	boolean validate();
 
+	boolean validateExpression(CompositeNode value);
 }

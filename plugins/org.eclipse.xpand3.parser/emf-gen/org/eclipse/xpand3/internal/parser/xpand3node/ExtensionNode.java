@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExtensionNode.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: ExtensionNode.java,v 1.6 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -35,30 +35,30 @@ import org.eclipse.tmf.common.node.LeafNode;
  */
 public interface ExtensionNode extends CompositeNode {
 	/**
-	 * Returns the value of the '<em><b>Create</b></em>' reference.
+	 * Returns the value of the '<em><b>Param List</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Create</em>' reference isn't clear,
+	 * If the meaning of the '<em>Param List</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Create</em>' reference.
-	 * @see #setCreate(LeafNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_Create()
+	 * @return the value of the '<em>Param List</em>' reference.
+	 * @see #setParamList(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_ParamList()
 	 * @model
 	 * @generated
 	 */
-	LeafNode getCreate();
+	CompositeNode getParamList();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCreate <em>Create</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getParamList <em>Param List</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Create</em>' reference.
-	 * @see #getCreate()
+	 * @param value the new value of the '<em>Param List</em>' reference.
+	 * @see #getParamList()
 	 * @generated
 	 */
-	void setCreate(LeafNode value);
+	void setParamList(CompositeNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Private</b></em>' reference.
@@ -87,82 +87,30 @@ public interface ExtensionNode extends CompositeNode {
 	void setPrivate(LeafNode value);
 
 	/**
-	 * Returns the value of the '<em><b>Param List</b></em>' reference.
+	 * Returns the value of the '<em><b>Return Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Param List</em>' reference isn't clear,
+	 * If the meaning of the '<em>Return Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Param List</em>' reference.
-	 * @see #setParamList(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_ParamList()
+	 * @return the value of the '<em>Return Type</em>' reference.
+	 * @see #setReturnType(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_ReturnType()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getParamList();
+	CompositeNode getReturnType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getParamList <em>Param List</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getReturnType <em>Return Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Param List</em>' reference.
-	 * @see #getParamList()
+	 * @param value the new value of the '<em>Return Type</em>' reference.
+	 * @see #getReturnType()
 	 * @generated
 	 */
-	void setParamList(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Extend Body</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extend Body</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extend Body</em>' reference.
-	 * @see #setExtendBody(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_ExtendBody()
-	 * @model
-	 * @generated
-	 */
-	CompositeNode getExtendBody();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getExtendBody <em>Extend Body</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extend Body</em>' reference.
-	 * @see #getExtendBody()
-	 * @generated
-	 */
-	void setExtendBody(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Cached</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Cached</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cached</em>' reference.
-	 * @see #setCached(LeafNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_Cached()
-	 * @model
-	 * @generated
-	 */
-	LeafNode getCached();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCached <em>Cached</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cached</em>' reference.
-	 * @see #getCached()
-	 * @generated
-	 */
-	void setCached(LeafNode value);
+	void setReturnType(CompositeNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Java Return Type</b></em>' reference.
@@ -191,56 +139,30 @@ public interface ExtensionNode extends CompositeNode {
 	void setJavaReturnType(CompositeNode value);
 
 	/**
-	 * Returns the value of the '<em><b>Java Name</b></em>' reference.
+	 * Returns the value of the '<em><b>Create</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Java Name</em>' reference isn't clear,
+	 * If the meaning of the '<em>Create</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Java Name</em>' reference.
-	 * @see #setJavaName(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_JavaName()
+	 * @return the value of the '<em>Create</em>' reference.
+	 * @see #setCreate(LeafNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_Create()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getJavaName();
+	LeafNode getCreate();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaName <em>Java Name</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCreate <em>Create</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Java Name</em>' reference.
-	 * @see #getJavaName()
+	 * @param value the new value of the '<em>Create</em>' reference.
+	 * @see #getCreate()
 	 * @generated
 	 */
-	void setJavaName(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Return Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Return Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Return Type</em>' reference.
-	 * @see #setReturnType(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_ReturnType()
-	 * @model
-	 * @generated
-	 */
-	CompositeNode getReturnType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getReturnType <em>Return Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Return Type</em>' reference.
-	 * @see #getReturnType()
-	 * @generated
-	 */
-	void setReturnType(CompositeNode value);
+	void setCreate(LeafNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' reference.
@@ -267,5 +189,83 @@ public interface ExtensionNode extends CompositeNode {
 	 * @generated
 	 */
 	void setName(CompositeNode value);
+
+	/**
+	 * Returns the value of the '<em><b>Java Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Java Name</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Java Name</em>' reference.
+	 * @see #setJavaName(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_JavaName()
+	 * @model
+	 * @generated
+	 */
+	CompositeNode getJavaName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaName <em>Java Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Java Name</em>' reference.
+	 * @see #getJavaName()
+	 * @generated
+	 */
+	void setJavaName(CompositeNode value);
+
+	/**
+	 * Returns the value of the '<em><b>Cached</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cached</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cached</em>' reference.
+	 * @see #setCached(LeafNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_Cached()
+	 * @model
+	 * @generated
+	 */
+	LeafNode getCached();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCached <em>Cached</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cached</em>' reference.
+	 * @see #getCached()
+	 * @generated
+	 */
+	void setCached(LeafNode value);
+
+	/**
+	 * Returns the value of the '<em><b>Extend Body</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extend Body</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extend Body</em>' reference.
+	 * @see #setExtendBody(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExtensionNode_ExtendBody()
+	 * @model
+	 * @generated
+	 */
+	CompositeNode getExtendBody();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getExtendBody <em>Extend Body</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Extend Body</em>' reference.
+	 * @see #getExtendBody()
+	 * @generated
+	 */
+	void setExtendBody(CompositeNode value);
 
 } // ExtensionNode

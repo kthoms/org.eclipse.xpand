@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TextSequenceNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: TextSequenceNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
 
 /**
@@ -17,7 +18,7 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.TextSequenceNode#getText <em>Text</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.TextSequenceNode#getTexts <em>Texts</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,20 +27,20 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface TextSequenceNode extends CompositeNode {
-
 	/**
-	 * Returns the value of the '<em><b>Text</b></em>' reference list.
+	 * Returns the value of the '<em><b>Texts</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Text</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Texts</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Text</em>' reference list.
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getTextSequenceNode_Text()
+	 * @return the value of the '<em>Texts</em>' reference list.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getTextSequenceNode_Texts()
 	 * @model
 	 * @generated
 	 */
-	EList<CompositeNode> getText();
+	EList<CompositeNode> getTexts();
+
 } // TextSequenceNode

@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RelationalExpressionNodeValidator.java,v 1.4 2008/03/07 11:11:14 jkohnlein Exp $
+ * $Id: RelationalExpressionNodeValidator.java,v 1.5 2008/03/13 08:39:59 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
-import org.eclipse.tmf.common.node.LeafNode;
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode}.
@@ -18,9 +19,6 @@ import org.eclipse.tmf.common.node.LeafNode;
 public interface RelationalExpressionNodeValidator {
 	boolean validate();
 
-	boolean validateOperator(CompositeNode value);
-
-	boolean validateOperator(LeafNode value);
-	boolean validateRightOperand(CompositeNode value);
-	boolean validateLeftOperand(CompositeNode value);
+	boolean validateNexts(EList<CompositeNode> value);
+	boolean validateFirst(CompositeNode value);
 }

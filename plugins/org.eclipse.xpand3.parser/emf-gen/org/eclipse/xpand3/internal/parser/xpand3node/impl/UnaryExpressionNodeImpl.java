@@ -2,16 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UnaryExpressionNodeImpl.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: UnaryExpressionNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.UnaryExpressionNode;

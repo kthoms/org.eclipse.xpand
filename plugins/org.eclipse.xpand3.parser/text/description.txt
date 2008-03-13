@@ -36,7 +36,7 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
     Reference statements : CompositeNode<<0..*>>
 
   Class TextSequenceNode -> CompositeNode
-    Reference text : CompositeNode<<0..*>>
+    Reference texts : CompositeNode<<0..*>>
 
   Class TextNode -> CompositeNode
 
@@ -46,6 +46,7 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class ExpandStatementNode -> CompositeNode
     Reference separator : CompositeNode
     Reference paramList : CompositeNode
+    Reference forEachExpression : CompositeNode
     Reference forExpression : CompositeNode
     Reference name : CompositeNode
 
@@ -65,7 +66,7 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
     Reference separatorExpression : CompositeNode
 
   Class IfStatementNode -> CompositeNode
-    Reference elseIf : CompositeNode<<0..*>>
+    Reference elseIfs : CompositeNode<<0..*>>
     Reference expression : CompositeNode
     Reference else : CompositeNode
     Reference sequence : CompositeNode
@@ -89,6 +90,12 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
     Reference cstart : CompositeNode
 
   Class CheckNode -> CompositeNode
+    Reference type : CompositeNode
+    Reference error : LeafNode
+    Reference message : CompositeNode
+    Reference ifExpression : CompositeNode
+    Reference warning : LeafNode
+    Reference constraint : CompositeNode
 
   Class AroundNode -> CompositeNode
 
@@ -109,40 +116,54 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
 
   Class Test_expressionNode -> CompositeNode
 
-  Class ExpressionNode -> CompositeNode
-
   Class LetExpressionNode -> CompositeNode
 
   Class CastedExpressionNode -> CompositeNode
+    Reference target : CompositeNode
+    Reference type : CompositeNode
 
   Class ChainExpressionNode -> CompositeNode
+    Reference nexts : CompositeNode<<0..*>>
+    Reference first : CompositeNode
 
   Class IfExpressionNode -> CompositeNode
+    Reference then : CompositeNode
+    Reference else : CompositeNode
+    Reference condition0 : CompositeNode
+    Reference condition1 : CompositeNode
 
   Class SwitchExpressionNode -> CompositeNode
+    Reference default : CompositeNode
+    Reference expression : CompositeNode
+    Reference cases : CompositeNode<<0..*>>
 
   Class CasePartNode -> CompositeNode
+    Reference condition : CompositeNode
+    Reference expression : CompositeNode
 
   Class OrExpressionNode -> CompositeNode
+    Reference nexts : CompositeNode<<0..*>>
+    Reference first : CompositeNode
 
   Class AndExpressionNode -> CompositeNode
+    Reference first : CompositeNode
+    Reference nexts : CompositeNode<<0..*>>
 
   Class ImpliesExpressionNode -> CompositeNode
+    Reference nexts : CompositeNode<<0..*>>
+    Reference first : CompositeNode
 
   Class RelationalExpressionNode -> CompositeNode
-    Reference operator : CompositeNode
-    Reference leftOperand : CompositeNode
-    Reference rightOperand : CompositeNode
-
-  Class RelationalOperatorNode -> CompositeNode
+    Reference nexts : CompositeNode<<0..*>>
+    Reference first : CompositeNode
 
   Class AdditiveExpressionNode -> CompositeNode
-    Reference left : CompositeNode
-    Reference right : CompositeNode
+    Reference nexts : CompositeNode<<0..*>>
+    Reference first : CompositeNode
 
   Class MultiplicativeExpressionNode -> CompositeNode
-    Reference left : CompositeNode
-    Reference right : CompositeNode
+    Reference nexts : CompositeNode<<0..*>>
+    Reference first : CompositeNode
 
   Class UnaryExpressionNode -> CompositeNode
     Reference operand : CompositeNode
@@ -154,15 +175,17 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class StringLiteralNode -> CompositeNode
 
   Class ParanthesizedExpressionNode -> CompositeNode
+    Reference expression : CompositeNode
 
   Class GlobalVarExpressionNode -> CompositeNode
 
   Class FeatureCallNode -> CompositeNode
+    Reference name : CompositeNode
     Reference type : CompositeNode
     Reference paramList : CompositeNode
-    Reference name : CompositeNode
 
   Class ListLiteralNode -> CompositeNode
+    Reference elements : CompositeNode<<0..*>>
 
   Class ConstructorCallNode -> CompositeNode
 
@@ -173,18 +196,23 @@ Package xpand3node <http://www.eclipse.org/tmf/common/Xpand3Node>
   Class NumberLiteralNode -> CompositeNode
 
   Class CollectionExpressionNode -> CompositeNode
+    Reference variable : CompositeNode
+    Reference expression : CompositeNode
+    Reference type : CompositeNode
 
   Class DeclaredParameterListNode -> CompositeNode
     Reference params : CompositeNode<<0..*>>
 
   Class DeclaredParameterNode -> CompositeNode
-    Reference name : CompositeNode
     Reference ptype : CompositeNode
+    Reference name : CompositeNode
 
   Class ParameterListNode -> CompositeNode
     Reference params : CompositeNode<<0..*>>
 
   Class CollectionTypeNode -> CompositeNode
+    Reference collectionType : LeafNode
+    Reference elementType : CompositeNode
 
   Class SimpleTypeNode -> CompositeNode
     Reference names : CompositeNode<<0..*>>

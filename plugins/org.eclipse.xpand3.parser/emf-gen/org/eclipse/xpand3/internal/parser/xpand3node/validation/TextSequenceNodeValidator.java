@@ -2,13 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TextSequenceNodeValidator.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: TextSequenceNodeValidator.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.tmf.common.node.CompositeNode;
 
+import org.eclipse.tmf.common.node.CompositeNode;
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.TextSequenceNode}.
@@ -19,6 +19,5 @@ import org.eclipse.tmf.common.node.CompositeNode;
 public interface TextSequenceNodeValidator {
 	boolean validate();
 
-	boolean validateText(EList<CompositeNode> value);
-
+	boolean validateTexts(EList<CompositeNode> value);
 }

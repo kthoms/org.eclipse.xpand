@@ -2,16 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpandStatementNodeImpl.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: ExpandStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode;
@@ -26,6 +29,7 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExpandStatementNodeImpl#getSeparator <em>Separator</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExpandStatementNodeImpl#getParamList <em>Param List</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExpandStatementNodeImpl#getForEachExpression <em>For Each Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExpandStatementNodeImpl#getForExpression <em>For Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ExpandStatementNodeImpl#getName <em>Name</em>}</li>
  * </ul>
@@ -43,6 +47,7 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 	 * @ordered
 	 */
 	protected CompositeNode separator;
+
 	/**
 	 * The cached value of the '{@link #getParamList() <em>Param List</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -52,6 +57,17 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 	 * @ordered
 	 */
 	protected CompositeNode paramList;
+
+	/**
+	 * The cached value of the '{@link #getForEachExpression() <em>For Each Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForEachExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode forEachExpression;
+
 	/**
 	 * The cached value of the '{@link #getForExpression() <em>For Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -61,6 +77,7 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 	 * @ordered
 	 */
 	protected CompositeNode forExpression;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -171,6 +188,44 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CompositeNode getForEachExpression() {
+		if (forEachExpression != null && forEachExpression.eIsProxy()) {
+			InternalEObject oldForEachExpression = (InternalEObject)forEachExpression;
+			forEachExpression = (CompositeNode)eResolveProxy(oldForEachExpression);
+			if (forEachExpression != oldForEachExpression) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION, oldForEachExpression, forEachExpression));
+			}
+		}
+		return forEachExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode basicGetForEachExpression() {
+		return forEachExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setForEachExpression(CompositeNode newForEachExpression) {
+		CompositeNode oldForEachExpression = forEachExpression;
+		forEachExpression = newForEachExpression;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION, oldForEachExpression, forEachExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CompositeNode getForExpression() {
 		if (forExpression != null && forExpression.eIsProxy()) {
 			InternalEObject oldForExpression = (InternalEObject)forExpression;
@@ -256,6 +311,9 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__PARAM_LIST:
 				if (resolve) return getParamList();
 				return basicGetParamList();
+			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION:
+				if (resolve) return getForEachExpression();
+				return basicGetForEachExpression();
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EXPRESSION:
 				if (resolve) return getForExpression();
 				return basicGetForExpression();
@@ -279,6 +337,9 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 				return;
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__PARAM_LIST:
 				setParamList((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION:
+				setForEachExpression((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EXPRESSION:
 				setForExpression((CompositeNode)newValue);
@@ -304,6 +365,9 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__PARAM_LIST:
 				setParamList((CompositeNode)null);
 				return;
+			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION:
+				setForEachExpression((CompositeNode)null);
+				return;
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EXPRESSION:
 				setForExpression((CompositeNode)null);
 				return;
@@ -326,6 +390,8 @@ public class ExpandStatementNodeImpl extends CompositeNodeImpl implements Expand
 				return separator != null;
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__PARAM_LIST:
 				return paramList != null;
+			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION:
+				return forEachExpression != null;
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__FOR_EXPRESSION:
 				return forExpression != null;
 			case Xpand3nodePackage.EXPAND_STATEMENT_NODE__NAME:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ElseIfStatementNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: ElseIfStatementNode.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -26,7 +26,6 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface ElseIfStatementNode extends CompositeNode {
-
 	/**
 	 * Returns the value of the '<em><b>Sequence</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -78,4 +77,5 @@ public interface ElseIfStatementNode extends CompositeNode {
 	 * @generated
 	 */
 	void setExpression(CompositeNode value);
+
 } // ElseIfStatementNode

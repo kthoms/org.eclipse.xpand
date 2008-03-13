@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ImportNodeImpl.java,v 1.1 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: ImportNodeImpl.java,v 1.2 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 

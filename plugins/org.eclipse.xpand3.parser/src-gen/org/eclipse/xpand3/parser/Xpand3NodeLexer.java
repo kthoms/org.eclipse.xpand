@@ -1,4 +1,4 @@
-// $ANTLR 3.0 ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g 2008-03-12 10:28:25
+// $ANTLR 3.0 ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g 2008-03-13 07:58:07
  	
 package org.eclipse.xpand3.parser; 
 
@@ -1785,10 +1785,10 @@ public class Xpand3NodeLexer extends Lexer {
     public void mIntLiteral() throws RecognitionException {
         try {
             int _type = IntLiteral;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:472:3: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:472:3: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:463:3: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:463:3: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:472:3: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:463:3: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1800,23 +1800,23 @@ public class Xpand3NodeLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("472:3: ( '0' | '1' .. '9' ( '0' .. '9' )* )", 2, 0, input);
+                    new NoViableAltException("463:3: ( '0' | '1' .. '9' ( '0' .. '9' )* )", 2, 0, input);
 
                 throw nvae;
             }
             switch (alt2) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:472:4: '0'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:463:4: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:472:10: '1' .. '9' ( '0' .. '9' )*
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:463:10: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:472:19: ( '0' .. '9' )*
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:463:19: ( '0' .. '9' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -1829,7 +1829,7 @@ public class Xpand3NodeLexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:472:19: '0' .. '9'
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:463:19: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1861,7 +1861,7 @@ public class Xpand3NodeLexer extends Lexer {
     public void mStringLiteral() throws RecognitionException {
         try {
             int _type = StringLiteral;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:477:3: ( '\\\"' ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:468:3: ( '\\\"' ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1873,16 +1873,16 @@ public class Xpand3NodeLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("476:1: StringLiteral : ( '\\\"' ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' );", 5, 0, input);
+                    new NoViableAltException("467:1: StringLiteral : ( '\\\"' ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )* '\\\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' );", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:477:3: '\\\"' ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )* '\\\"'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:468:3: '\\\"' ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )* '\\\"'
                     {
                     match('\"'); 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:477:8: ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )*
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:468:8: ( EscapeSequence | ~ ( '\\\\' | '\\\"' ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -1898,14 +1898,14 @@ public class Xpand3NodeLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:477:10: EscapeSequence
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:468:10: EscapeSequence
                     	    {
                     	    mEscapeSequence(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:477:27: ~ ( '\\\\' | '\\\"' )
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:468:27: ~ ( '\\\\' | '\\\"' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1931,10 +1931,10 @@ public class Xpand3NodeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:478:8: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\''
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:469:8: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\''
                     {
                     match('\''); 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:478:13: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )*
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:469:13: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1950,14 +1950,14 @@ public class Xpand3NodeLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:478:15: EscapeSequence
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:469:15: EscapeSequence
                     	    {
                     	    mEscapeSequence(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:478:32: ~ ( '\\'' | '\\\\' )
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:469:32: ~ ( '\\'' | '\\\\' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1994,7 +1994,7 @@ public class Xpand3NodeLexer extends Lexer {
     // $ANTLR start EscapeSequence
     public void mEscapeSequence() throws RecognitionException {
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:483:3: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:474:3: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
             int alt6=3;
             int LA6_0 = input.LA(1);
 
@@ -2031,7 +2031,7 @@ public class Xpand3NodeLexer extends Lexer {
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("482:10: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 1, input);
+                        new NoViableAltException("473:10: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 1, input);
 
                     throw nvae;
                 }
@@ -2039,13 +2039,13 @@ public class Xpand3NodeLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("482:10: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 0, input);
+                    new NoViableAltException("473:10: fragment EscapeSequence : ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape );", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:483:3: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:474:3: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2062,14 +2062,14 @@ public class Xpand3NodeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:484:9: UnicodeEscape
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:475:9: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:485:9: OctalEscape
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:476:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -2086,7 +2086,7 @@ public class Xpand3NodeLexer extends Lexer {
     // $ANTLR start OctalEscape
     public void mOctalEscape() throws RecognitionException {
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:3: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:3: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt7=3;
             int LA7_0 = input.LA(1);
 
@@ -2119,38 +2119,38 @@ public class Xpand3NodeLexer extends Lexer {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("489:10: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 1, input);
+                        new NoViableAltException("480:10: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("489:10: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 0, input);
+                    new NoViableAltException("480:10: fragment OctalEscape : ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) );", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:3: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:3: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:8: ( '0' .. '3' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:9: '0' .. '3'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:8: ( '0' .. '3' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:9: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:19: ( '0' .. '7' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:20: '0' .. '7'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:19: ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:20: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:30: ( '0' .. '7' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:490:31: '0' .. '7'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:30: ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:481:31: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2160,18 +2160,18 @@ public class Xpand3NodeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:491:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:482:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:491:14: ( '0' .. '7' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:491:15: '0' .. '7'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:482:14: ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:482:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:491:25: ( '0' .. '7' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:491:26: '0' .. '7'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:482:25: ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:482:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2181,11 +2181,11 @@ public class Xpand3NodeLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:492:9: '\\\\' ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:483:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:492:14: ( '0' .. '7' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:492:15: '0' .. '7'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:483:14: ( '0' .. '7' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:483:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2205,8 +2205,8 @@ public class Xpand3NodeLexer extends Lexer {
     // $ANTLR start UnicodeEscape
     public void mUnicodeEscape() throws RecognitionException {
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:497:3: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:497:3: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:488:3: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:488:3: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
             match('u'); 
@@ -2226,8 +2226,8 @@ public class Xpand3NodeLexer extends Lexer {
     // $ANTLR start HexDigit
     public void mHexDigit() throws RecognitionException {
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:502:3: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:502:3: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:493:3: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:493:3: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -2252,8 +2252,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mDEFINE() throws RecognitionException {
         try {
             int _type = DEFINE;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:507:3: ( 'DEFINE' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:507:3: 'DEFINE'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:498:3: ( 'DEFINE' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:498:3: 'DEFINE'
             {
             xpandMode=true;
             match("DEFINE"); 
@@ -2272,8 +2272,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mENDDEFINE() throws RecognitionException {
         try {
             int _type = ENDDEFINE;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:512:3: ( 'ENDDEFINE' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:512:3: 'ENDDEFINE'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:503:3: ( 'ENDDEFINE' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:503:3: 'ENDDEFINE'
             {
             match("ENDDEFINE"); 
 
@@ -2292,8 +2292,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mAROUND() throws RecognitionException {
         try {
             int _type = AROUND;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:517:3: ( 'AROUND' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:517:3: 'AROUND'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:508:3: ( 'AROUND' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:508:3: 'AROUND'
             {
             xpandMode=true;
             match("AROUND"); 
@@ -2312,8 +2312,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mENDAROUND() throws RecognitionException {
         try {
             int _type = ENDAROUND;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:522:3: ( 'ENDAROUND' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:522:3: 'ENDAROUND'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:513:3: ( 'ENDAROUND' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:513:3: 'ENDAROUND'
             {
             match("ENDAROUND"); 
 
@@ -2332,10 +2332,10 @@ public class Xpand3NodeLexer extends Lexer {
     public void mIdentifier() throws RecognitionException {
         try {
             int _type = Identifier;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:527:3: ( ( '^' )? Letter ( Letter | JavaIDDigit )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:527:3: ( '^' )? Letter ( Letter | JavaIDDigit )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:518:3: ( ( '^' )? Letter ( Letter | JavaIDDigit )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:518:3: ( '^' )? Letter ( Letter | JavaIDDigit )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:527:3: ( '^' )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:518:3: ( '^' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -2344,7 +2344,7 @@ public class Xpand3NodeLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:527:4: '^'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:518:4: '^'
                     {
                     match('^'); 
 
@@ -2354,7 +2354,7 @@ public class Xpand3NodeLexer extends Lexer {
             }
 
             mLetter(); 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:527:17: ( Letter | JavaIDDigit )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:518:17: ( Letter | JavaIDDigit )*
             loop9:
             do {
                 int alt9=2;
@@ -2401,7 +2401,7 @@ public class Xpand3NodeLexer extends Lexer {
     // $ANTLR start Letter
     public void mLetter() throws RecognitionException {
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:532:3: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:523:3: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
             // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:
             {
             if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
@@ -2426,7 +2426,7 @@ public class Xpand3NodeLexer extends Lexer {
     // $ANTLR start JavaIDDigit
     public void mJavaIDDigit() throws RecognitionException {
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:550:8: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:541:8: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
             // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='\u0660' && input.LA(1)<='\u0669')||(input.LA(1)>='\u06F0' && input.LA(1)<='\u06F9')||(input.LA(1)>='\u0966' && input.LA(1)<='\u096F')||(input.LA(1)>='\u09E6' && input.LA(1)<='\u09EF')||(input.LA(1)>='\u0A66' && input.LA(1)<='\u0A6F')||(input.LA(1)>='\u0AE6' && input.LA(1)<='\u0AEF')||(input.LA(1)>='\u0B66' && input.LA(1)<='\u0B6F')||(input.LA(1)>='\u0BE7' && input.LA(1)<='\u0BEF')||(input.LA(1)>='\u0C66' && input.LA(1)<='\u0C6F')||(input.LA(1)>='\u0CE6' && input.LA(1)<='\u0CEF')||(input.LA(1)>='\u0D66' && input.LA(1)<='\u0D6F')||(input.LA(1)>='\u0E50' && input.LA(1)<='\u0E59')||(input.LA(1)>='\u0ED0' && input.LA(1)<='\u0ED9')||(input.LA(1)>='\u1040' && input.LA(1)<='\u1049') ) {
@@ -2452,8 +2452,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:570:3: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:570:3: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:561:3: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:561:3: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -2480,12 +2480,12 @@ public class Xpand3NodeLexer extends Lexer {
     public void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:575:3: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:575:3: '/*' ( options {greedy=false; } : . )* '*/'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:566:3: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:566:3: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:575:8: ( options {greedy=false; } : . )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:566:8: ( options {greedy=false; } : . )*
             loop10:
             do {
                 int alt10=2;
@@ -2510,7 +2510,7 @@ public class Xpand3NodeLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:575:36: .
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:566:36: .
             	    {
             	    matchAny(); 
 
@@ -2539,12 +2539,12 @@ public class Xpand3NodeLexer extends Lexer {
     public void mLINE_COMMENT() throws RecognitionException {
         try {
             int _type = LINE_COMMENT;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:3: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:3: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:3: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:3: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF )
             {
             match("//"); 
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:8: (~ ( '\\n' | '\\r' ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:8: (~ ( '\\n' | '\\r' ) )*
             loop11:
             do {
                 int alt11=2;
@@ -2557,7 +2557,7 @@ public class Xpand3NodeLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:8: ~ ( '\\n' | '\\r' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:8: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2578,7 +2578,7 @@ public class Xpand3NodeLexer extends Lexer {
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:22: ( ( '\\r' )? '\\n' | EOF )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:22: ( ( '\\r' )? '\\n' | EOF )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2589,9 +2589,9 @@ public class Xpand3NodeLexer extends Lexer {
                 alt13=2;}
             switch (alt13) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:23: ( '\\r' )? '\\n'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:23: ( '\\r' )? '\\n'
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:23: ( '\\r' )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:23: ( '\\r' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -2600,7 +2600,7 @@ public class Xpand3NodeLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:23: '\\r'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:23: '\\r'
                             {
                             match('\r'); 
 
@@ -2614,7 +2614,7 @@ public class Xpand3NodeLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:580:34: EOF
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:571:34: EOF
                     {
                     match(EOF); 
 
@@ -2638,8 +2638,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mREM_COMMENT_OUT() throws RecognitionException {
         try {
             int _type = REM_COMMENT_OUT;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:585:3: ({...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:585:3: {...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:576:3: ({...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:576:3: {...}? => LG 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' RG
             {
             if ( !(!xpandMode) ) {
                 throw new FailedPredicateException(input, "REM_COMMENT_OUT", "!xpandMode");
@@ -2648,7 +2648,7 @@ public class Xpand3NodeLexer extends Lexer {
             match("REM"); 
 
             mRG(); 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:585:31: ( options {greedy=false; } : . )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:576:31: ( options {greedy=false; } : . )*
             loop14:
             do {
                 int alt14=2;
@@ -2727,7 +2727,7 @@ public class Xpand3NodeLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:585:59: .
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:576:59: .
             	    {
             	    matchAny(); 
 
@@ -2757,8 +2757,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mREM_COMMENT() throws RecognitionException {
         try {
             int _type = REM_COMMENT;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:590:3: ({...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:590:3: {...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:581:3: ({...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:581:3: {...}? => 'REM' RG ( options {greedy=false; } : . )* '\\u00ABENDREM'
             {
             if ( !(xpandMode) ) {
                 throw new FailedPredicateException(input, "REM_COMMENT", "xpandMode");
@@ -2766,7 +2766,7 @@ public class Xpand3NodeLexer extends Lexer {
             match("REM"); 
 
             mRG(); 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:590:27: ( options {greedy=false; } : . )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:581:27: ( options {greedy=false; } : . )*
             loop15:
             do {
                 int alt15=2;
@@ -2836,7 +2836,7 @@ public class Xpand3NodeLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:590:55: .
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:581:55: .
             	    {
             	    matchAny(); 
 
@@ -2865,14 +2865,14 @@ public class Xpand3NodeLexer extends Lexer {
     public void mTEXT() throws RecognitionException {
         try {
             int _type = TEXT;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:595:3: ({...}? => RG (~ ( LG ) )* ( LG )? )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:595:3: {...}? => RG (~ ( LG ) )* ( LG )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:586:3: ({...}? => RG (~ ( LG ) )* ( LG )? )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:586:3: {...}? => RG (~ ( LG ) )* ( LG )?
             {
             if ( !(xpandMode) ) {
                 throw new FailedPredicateException(input, "TEXT", "xpandMode");
             }
             mRG(); 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:595:21: (~ ( LG ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:586:21: (~ ( LG ) )*
             loop16:
             do {
                 int alt16=2;
@@ -2885,7 +2885,7 @@ public class Xpand3NodeLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:595:21: ~ ( LG )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:586:21: ~ ( LG )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\u00AA')||(input.LA(1)>='\u00AC' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2906,7 +2906,7 @@ public class Xpand3NodeLexer extends Lexer {
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:595:28: ( LG )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:586:28: ( LG )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2915,7 +2915,7 @@ public class Xpand3NodeLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:595:29: LG
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:586:29: LG
                     {
                     mLG(); 
 
@@ -2938,8 +2938,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mLG() throws RecognitionException {
         try {
             int _type = LG;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:600:3: ( '\\u00AB' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:600:3: '\\u00AB'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:591:3: ( '\\u00AB' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:591:3: '\\u00AB'
             {
             match('\u00AB'); 
 
@@ -2956,8 +2956,8 @@ public class Xpand3NodeLexer extends Lexer {
     public void mRG() throws RecognitionException {
         try {
             int _type = RG;
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:605:3: ( '\\u00BB' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:605:3: '\\u00BB'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:596:3: ( '\\u00BB' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:596:3: '\\u00BB'
             {
             match('\u00BB'); 
 

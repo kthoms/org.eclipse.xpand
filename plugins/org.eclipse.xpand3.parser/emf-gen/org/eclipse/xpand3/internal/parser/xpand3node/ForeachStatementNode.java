@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeachStatementNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: ForeachStatementNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -29,7 +29,6 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface ForeachStatementNode extends CompositeNode {
-
 	/**
 	 * Returns the value of the '<em><b>Iterator</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -55,32 +54,6 @@ public interface ForeachStatementNode extends CompositeNode {
 	 * @generated
 	 */
 	void setIterator(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Separator Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Separator Expression</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Separator Expression</em>' reference.
-	 * @see #setSeparatorExpression(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getForeachStatementNode_SeparatorExpression()
-	 * @model
-	 * @generated
-	 */
-	CompositeNode getSeparatorExpression();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getSeparatorExpression <em>Separator Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Separator Expression</em>' reference.
-	 * @see #getSeparatorExpression()
-	 * @generated
-	 */
-	void setSeparatorExpression(CompositeNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' reference.
@@ -109,6 +82,32 @@ public interface ForeachStatementNode extends CompositeNode {
 	void setIdentifier(CompositeNode value);
 
 	/**
+	 * Returns the value of the '<em><b>Sequence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sequence</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sequence</em>' reference.
+	 * @see #setSequence(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getForeachStatementNode_Sequence()
+	 * @model
+	 * @generated
+	 */
+	CompositeNode getSequence();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getSequence <em>Sequence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sequence</em>' reference.
+	 * @see #getSequence()
+	 * @generated
+	 */
+	void setSequence(CompositeNode value);
+
+	/**
 	 * Returns the value of the '<em><b>For Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -135,28 +134,29 @@ public interface ForeachStatementNode extends CompositeNode {
 	void setForExpression(CompositeNode value);
 
 	/**
-	 * Returns the value of the '<em><b>Sequence</b></em>' reference.
+	 * Returns the value of the '<em><b>Separator Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sequence</em>' reference isn't clear,
+	 * If the meaning of the '<em>Separator Expression</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sequence</em>' reference.
-	 * @see #setSequence(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getForeachStatementNode_Sequence()
+	 * @return the value of the '<em>Separator Expression</em>' reference.
+	 * @see #setSeparatorExpression(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getForeachStatementNode_SeparatorExpression()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getSequence();
+	CompositeNode getSeparatorExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getSequence <em>Sequence</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getSeparatorExpression <em>Separator Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sequence</em>' reference.
-	 * @see #getSequence()
+	 * @param value the new value of the '<em>Separator Expression</em>' reference.
+	 * @see #getSeparatorExpression()
 	 * @generated
 	 */
-	void setSequence(CompositeNode value);
+	void setSeparatorExpression(CompositeNode value);
+
 } // ForeachStatementNode

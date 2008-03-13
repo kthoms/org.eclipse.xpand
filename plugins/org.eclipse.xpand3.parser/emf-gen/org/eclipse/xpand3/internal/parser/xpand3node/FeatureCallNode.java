@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FeatureCallNode.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: FeatureCallNode.java,v 1.6 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,9 +16,9 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getParamList <em>Param List</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,30 +28,30 @@ import org.eclipse.tmf.common.node.CompositeNode;
  */
 public interface FeatureCallNode extends CompositeNode {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Param List</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear,
+	 * If the meaning of the '<em>Param List</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFeatureCallNode_Type()
+	 * @return the value of the '<em>Param List</em>' reference.
+	 * @see #setParamList(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFeatureCallNode_ParamList()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getType();
+	CompositeNode getParamList();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getParamList <em>Param List</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Param List</em>' reference.
+	 * @see #getParamList()
 	 * @generated
 	 */
-	void setType(CompositeNode value);
+	void setParamList(CompositeNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' reference.
@@ -80,29 +80,29 @@ public interface FeatureCallNode extends CompositeNode {
 	void setName(CompositeNode value);
 
 	/**
-	 * Returns the value of the '<em><b>Param List</b></em>' reference.
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Param List</em>' reference isn't clear,
+	 * If the meaning of the '<em>Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Param List</em>' reference.
-	 * @see #setParamList(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFeatureCallNode_ParamList()
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFeatureCallNode_Type()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getParamList();
+	CompositeNode getType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getParamList <em>Param List</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FeatureCallNode#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Param List</em>' reference.
-	 * @see #getParamList()
+	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @see #getType()
 	 * @generated
 	 */
-	void setParamList(CompositeNode value);
+	void setType(CompositeNode value);
 
 } // FeatureCallNode

@@ -2,19 +2,24 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RelationalExpressionNodeImpl.java,v 1.5 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: RelationalExpressionNodeImpl.java,v 1.6 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
-import org.eclipse.tmf.common.node.LeafNode;
 
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
@@ -28,9 +33,8 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getLeftOperand <em>Left Operand</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getRightOperand <em>Right Operand</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getNexts <em>Nexts</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.RelationalExpressionNodeImpl#getFirst <em>First</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,34 +42,24 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  */
 public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements RelationalExpressionNode {
 	/**
-	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' reference.
+	 * The cached value of the '{@link #getNexts() <em>Nexts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOperator()
+	 * @see #getNexts()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode operator;
+	protected EList<CompositeNode> nexts;
 
 	/**
-	 * The cached value of the '{@link #getLeftOperand() <em>Left Operand</em>}' reference.
+	 * The cached value of the '{@link #getFirst() <em>First</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeftOperand()
+	 * @see #getFirst()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode leftOperand;
-
-	/**
-	 * The cached value of the '{@link #getRightOperand() <em>Right Operand</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRightOperand()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode rightOperand;
+	protected CompositeNode first;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,16 +85,28 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getOperator() {
-		if (operator != null && operator.eIsProxy()) {
-			InternalEObject oldOperator = (InternalEObject)operator;
-			operator = (CompositeNode)eResolveProxy(oldOperator);
-			if (operator != oldOperator) {
+	public EList<CompositeNode> getNexts() {
+		if (nexts == null) {
+			nexts = new EObjectResolvingEList<CompositeNode>(CompositeNode.class, this, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__NEXTS);
+		}
+		return nexts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode getFirst() {
+		if (first != null && first.eIsProxy()) {
+			InternalEObject oldFirst = (InternalEObject)first;
+			first = (CompositeNode)eResolveProxy(oldFirst);
+			if (first != oldFirst) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR, oldOperator, operator));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__FIRST, oldFirst, first));
 			}
 		}
-		return operator;
+		return first;
 	}
 
 	/**
@@ -108,8 +114,8 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetOperator() {
-		return operator;
+	public CompositeNode basicGetFirst() {
+		return first;
 	}
 
 	/**
@@ -117,87 +123,11 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperator(CompositeNode newOperator) {
-		CompositeNode oldOperator = operator;
-		operator = newOperator;
+	public void setFirst(CompositeNode newFirst) {
+		CompositeNode oldFirst = first;
+		first = newFirst;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR, oldOperator, operator));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode getRightOperand() {
-		if (rightOperand != null && rightOperand.eIsProxy()) {
-			InternalEObject oldRightOperand = (InternalEObject)rightOperand;
-			rightOperand = (CompositeNode)eResolveProxy(oldRightOperand);
-			if (rightOperand != oldRightOperand) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND, oldRightOperand, rightOperand));
-			}
-		}
-		return rightOperand;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode basicGetRightOperand() {
-		return rightOperand;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRightOperand(CompositeNode newRightOperand) {
-		CompositeNode oldRightOperand = rightOperand;
-		rightOperand = newRightOperand;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND, oldRightOperand, rightOperand));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode getLeftOperand() {
-		if (leftOperand != null && leftOperand.eIsProxy()) {
-			InternalEObject oldLeftOperand = (InternalEObject)leftOperand;
-			leftOperand = (CompositeNode)eResolveProxy(oldLeftOperand);
-			if (leftOperand != oldLeftOperand) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND, oldLeftOperand, leftOperand));
-			}
-		}
-		return leftOperand;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode basicGetLeftOperand() {
-		return leftOperand;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLeftOperand(CompositeNode newLeftOperand) {
-		CompositeNode oldLeftOperand = leftOperand;
-		leftOperand = newLeftOperand;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND, oldLeftOperand, leftOperand));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__FIRST, oldFirst, first));
 	}
 
 	/**
@@ -208,15 +138,11 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
-				if (resolve) return getOperator();
-				return basicGetOperator();
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
-				if (resolve) return getLeftOperand();
-				return basicGetLeftOperand();
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
-				if (resolve) return getRightOperand();
-				return basicGetRightOperand();
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__NEXTS:
+				return getNexts();
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__FIRST:
+				if (resolve) return getFirst();
+				return basicGetFirst();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -226,17 +152,16 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
-				setOperator((CompositeNode)newValue);
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__NEXTS:
+				getNexts().clear();
+				getNexts().addAll((Collection<? extends CompositeNode>)newValue);
 				return;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
-				setLeftOperand((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
-				setRightOperand((CompositeNode)newValue);
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__FIRST:
+				setFirst((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -250,14 +175,11 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
-				setOperator((CompositeNode)null);
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__NEXTS:
+				getNexts().clear();
 				return;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
-				setLeftOperand((CompositeNode)null);
-				return;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
-				setRightOperand((CompositeNode)null);
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__FIRST:
+				setFirst((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -271,12 +193,10 @@ public class RelationalExpressionNodeImpl extends CompositeNodeImpl implements R
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__OPERATOR:
-				return operator != null;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND:
-				return leftOperand != null;
-			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND:
-				return rightOperand != null;
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__NEXTS:
+				return nexts != null && !nexts.isEmpty();
+			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE__FIRST:
+				return first != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,16 +2,20 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TextSequenceNodeImpl.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: TextSequenceNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.TextSequenceNode;
@@ -24,7 +28,7 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.TextSequenceNodeImpl#getText <em>Text</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.TextSequenceNodeImpl#getTexts <em>Texts</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,14 +36,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  */
 public class TextSequenceNodeImpl extends CompositeNodeImpl implements TextSequenceNode {
 	/**
-	 * The cached value of the '{@link #getText() <em>Text</em>}' reference list.
+	 * The cached value of the '{@link #getTexts() <em>Texts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getText()
+	 * @see #getTexts()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompositeNode> text;
+	protected EList<CompositeNode> texts;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,11 +69,11 @@ public class TextSequenceNodeImpl extends CompositeNodeImpl implements TextSeque
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CompositeNode> getText() {
-		if (text == null) {
-			text = new EObjectResolvingEList<CompositeNode>(CompositeNode.class, this, Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXT);
+	public EList<CompositeNode> getTexts() {
+		if (texts == null) {
+			texts = new EObjectResolvingEList<CompositeNode>(CompositeNode.class, this, Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXTS);
 		}
-		return text;
+		return texts;
 	}
 
 	/**
@@ -80,8 +84,8 @@ public class TextSequenceNodeImpl extends CompositeNodeImpl implements TextSeque
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXT:
-				return getText();
+			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXTS:
+				return getTexts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -95,9 +99,9 @@ public class TextSequenceNodeImpl extends CompositeNodeImpl implements TextSeque
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXT:
-				getText().clear();
-				getText().addAll((Collection<? extends CompositeNode>)newValue);
+			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXTS:
+				getTexts().clear();
+				getTexts().addAll((Collection<? extends CompositeNode>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -111,8 +115,8 @@ public class TextSequenceNodeImpl extends CompositeNodeImpl implements TextSeque
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXT:
-				getText().clear();
+			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXTS:
+				getTexts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -126,8 +130,8 @@ public class TextSequenceNodeImpl extends CompositeNodeImpl implements TextSeque
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXT:
-				return text != null && !text.isEmpty();
+			case Xpand3nodePackage.TEXT_SEQUENCE_NODE__TEXTS:
+				return texts != null && !texts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

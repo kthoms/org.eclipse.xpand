@@ -19,20 +19,23 @@ import org.eclipse.xpand3.DeclaredParameter;
 import org.eclipse.xpand3.File;
 import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.ImportStatement;
+import org.eclipse.xpand3.analyzation.DeclarationsContributor;
 import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.analyzation.TypeSystemFactory;
+import org.eclipse.xpand3.analyzation.typesystem.CompositeTypeSystemImpl;
 import org.eclipse.xpand3.analyzation.typesystem.util.TypeList;
 import org.eclipse.xpand3.ast.AstUtil;
 import org.eclipse.xpand3.declaration.Definition;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
+import org.eclipse.xtend.backend.util.Cache;
 /**
  * @author Sven Efftinge
  *
  */
 public class Xpand3ResourceDeclarationsContributor implements
-		TypeSystem {
+		DeclarationsContributor {
 	
 	private File file = null;
 	private TypeSystemFactory typeSystemFactory;
@@ -67,10 +70,35 @@ public class Xpand3ResourceDeclarationsContributor implements
 		AbstractTypeReference[] types = new AbstractTypeReference[def.getParams().size()];
 		for (int i=0;i<types.length;i++) {
 			DeclaredParameter declaredParameter = def.getParams().get(i);
+			types[i] = getTypeRef(declaredParameter.getType());
 		}
 		return types;
 	}
 
+	/**
+	 * @param type
+	 * @return
+	 */
+	private AbstractTypeReference getTypeRef(Identifier type) {
+		//TODO type Args
+		return getTypeSystem().typeForName(AstUtil.toString(type));
+	}
+
+	private CompositeTypeSystemImpl ts = null;
+	/**
+	 * @return
+	 */
+	private TypeSystem getTypeSystem() {
+		if (ts==null) {
+			ts = new CompositeTypeSystemImpl();
+			ts.addTypeSystem(typeSystemFactory.getTypeSystem(getResourceName()));
+			for (ImportStatement is : file.getImports()) {
+				ts.addTypeSystem(typeSystemFactory.getTypeSystem(is.getImportedId().getValue()));
+			}
+			ts.addTypeSystem(typeSystemFactory.getBuiltInTypeSystem());
+		}
+		return ts;
+	}
 
 	/**
 	 * @return

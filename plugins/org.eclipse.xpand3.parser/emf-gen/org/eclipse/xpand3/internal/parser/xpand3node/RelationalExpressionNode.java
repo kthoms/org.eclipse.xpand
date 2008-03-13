@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RelationalExpressionNode.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: RelationalExpressionNode.java,v 1.6 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
-import org.eclipse.tmf.common.node.LeafNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,9 +18,8 @@ import org.eclipse.tmf.common.node.LeafNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getLeftOperand <em>Left Operand</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand <em>Right Operand</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getNexts <em>Nexts</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getFirst <em>First</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,81 +29,45 @@ import org.eclipse.tmf.common.node.LeafNode;
  */
 public interface RelationalExpressionNode extends CompositeNode {
 	/**
-	 * Returns the value of the '<em><b>Operator</b></em>' reference.
+	 * Returns the value of the '<em><b>Nexts</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Operator</em>' reference isn't clear,
+	 * If the meaning of the '<em>Nexts</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operator</em>' reference.
-	 * @see #setOperator(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getRelationalExpressionNode_Operator()
+	 * @return the value of the '<em>Nexts</em>' reference list.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getRelationalExpressionNode_Nexts()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getOperator();
+	EList<CompositeNode> getNexts();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getOperator <em>Operator</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operator</em>' reference.
-	 * @see #getOperator()
-	 * @generated
-	 */
-	void setOperator(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Right Operand</b></em>' reference.
+	 * Returns the value of the '<em><b>First</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Right Operand</em>' reference isn't clear,
+	 * If the meaning of the '<em>First</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right Operand</em>' reference.
-	 * @see #setRightOperand(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getRelationalExpressionNode_RightOperand()
+	 * @return the value of the '<em>First</em>' reference.
+	 * @see #setFirst(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getRelationalExpressionNode_First()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getRightOperand();
+	CompositeNode getFirst();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getRightOperand <em>Right Operand</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getFirst <em>First</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right Operand</em>' reference.
-	 * @see #getRightOperand()
+	 * @param value the new value of the '<em>First</em>' reference.
+	 * @see #getFirst()
 	 * @generated
 	 */
-	void setRightOperand(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Left Operand</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Left Operand</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Left Operand</em>' reference.
-	 * @see #setLeftOperand(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getRelationalExpressionNode_LeftOperand()
-	 * @model
-	 * @generated
-	 */
-	CompositeNode getLeftOperand();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode#getLeftOperand <em>Left Operand</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Left Operand</em>' reference.
-	 * @see #getLeftOperand()
-	 * @generated
-	 */
-	void setLeftOperand(CompositeNode value);
+	void setFirst(CompositeNode value);
 
 } // RelationalExpressionNode

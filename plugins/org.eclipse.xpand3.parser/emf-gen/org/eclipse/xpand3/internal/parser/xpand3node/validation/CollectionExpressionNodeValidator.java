@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CollectionExpressionNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: CollectionExpressionNodeValidator.java,v 1.3 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
+
+import org.eclipse.tmf.common.node.CompositeNode;
 
 
 /**
@@ -15,5 +17,11 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
  */
 public interface CollectionExpressionNodeValidator {
 	boolean validate();
+
+	boolean validateVariable(CompositeNode value);
+
+	boolean validateExpression(CompositeNode value);
+
+	boolean validateType(CompositeNode value);
 
 }

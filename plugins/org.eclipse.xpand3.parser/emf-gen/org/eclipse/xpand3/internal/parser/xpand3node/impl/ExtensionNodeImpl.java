@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExtensionNodeImpl.java,v 1.5 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: ExtensionNodeImpl.java,v 1.6 2008/03/13 08:40:02 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -157,16 +157,16 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LeafNode getCreate() {
-		if (create != null && create.eIsProxy()) {
-			InternalEObject oldCreate = (InternalEObject)create;
-			create = (LeafNode)eResolveProxy(oldCreate);
-			if (create != oldCreate) {
+	public CompositeNode getParamList() {
+		if (paramList != null && paramList.eIsProxy()) {
+			InternalEObject oldParamList = (InternalEObject)paramList;
+			paramList = (CompositeNode)eResolveProxy(oldParamList);
+			if (paramList != oldParamList) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__CREATE, oldCreate, create));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST, oldParamList, paramList));
 			}
 		}
-		return create;
+		return paramList;
 	}
 
 	/**
@@ -174,8 +174,8 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LeafNode basicGetCreate() {
-		return create;
+	public CompositeNode basicGetParamList() {
+		return paramList;
 	}
 
 	/**
@@ -183,11 +183,11 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreate(LeafNode newCreate) {
-		LeafNode oldCreate = create;
-		create = newCreate;
+	public void setParamList(CompositeNode newParamList) {
+		CompositeNode oldParamList = paramList;
+		paramList = newParamList;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__CREATE, oldCreate, create));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST, oldParamList, paramList));
 	}
 
 	/**
@@ -233,16 +233,16 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getParamList() {
-		if (paramList != null && paramList.eIsProxy()) {
-			InternalEObject oldParamList = (InternalEObject)paramList;
-			paramList = (CompositeNode)eResolveProxy(oldParamList);
-			if (paramList != oldParamList) {
+	public CompositeNode getReturnType() {
+		if (returnType != null && returnType.eIsProxy()) {
+			InternalEObject oldReturnType = (InternalEObject)returnType;
+			returnType = (CompositeNode)eResolveProxy(oldReturnType);
+			if (returnType != oldReturnType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST, oldParamList, paramList));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE, oldReturnType, returnType));
 			}
 		}
-		return paramList;
+		return returnType;
 	}
 
 	/**
@@ -250,8 +250,8 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetParamList() {
-		return paramList;
+	public CompositeNode basicGetReturnType() {
+		return returnType;
 	}
 
 	/**
@@ -259,87 +259,11 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setParamList(CompositeNode newParamList) {
-		CompositeNode oldParamList = paramList;
-		paramList = newParamList;
+	public void setReturnType(CompositeNode newReturnType) {
+		CompositeNode oldReturnType = returnType;
+		returnType = newReturnType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__PARAM_LIST, oldParamList, paramList));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode getExtendBody() {
-		if (extendBody != null && extendBody.eIsProxy()) {
-			InternalEObject oldExtendBody = (InternalEObject)extendBody;
-			extendBody = (CompositeNode)eResolveProxy(oldExtendBody);
-			if (extendBody != oldExtendBody) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY, oldExtendBody, extendBody));
-			}
-		}
-		return extendBody;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode basicGetExtendBody() {
-		return extendBody;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setExtendBody(CompositeNode newExtendBody) {
-		CompositeNode oldExtendBody = extendBody;
-		extendBody = newExtendBody;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY, oldExtendBody, extendBody));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LeafNode getCached() {
-		if (cached != null && cached.eIsProxy()) {
-			InternalEObject oldCached = (InternalEObject)cached;
-			cached = (LeafNode)eResolveProxy(oldCached);
-			if (cached != oldCached) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__CACHED, oldCached, cached));
-			}
-		}
-		return cached;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LeafNode basicGetCached() {
-		return cached;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCached(LeafNode newCached) {
-		LeafNode oldCached = cached;
-		cached = newCached;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__CACHED, oldCached, cached));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE, oldReturnType, returnType));
 	}
 
 	/**
@@ -385,16 +309,16 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getJavaName() {
-		if (javaName != null && javaName.eIsProxy()) {
-			InternalEObject oldJavaName = (InternalEObject)javaName;
-			javaName = (CompositeNode)eResolveProxy(oldJavaName);
-			if (javaName != oldJavaName) {
+	public LeafNode getCreate() {
+		if (create != null && create.eIsProxy()) {
+			InternalEObject oldCreate = (InternalEObject)create;
+			create = (LeafNode)eResolveProxy(oldCreate);
+			if (create != oldCreate) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME, oldJavaName, javaName));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__CREATE, oldCreate, create));
 			}
 		}
-		return javaName;
+		return create;
 	}
 
 	/**
@@ -402,8 +326,8 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetJavaName() {
-		return javaName;
+	public LeafNode basicGetCreate() {
+		return create;
 	}
 
 	/**
@@ -411,49 +335,11 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setJavaName(CompositeNode newJavaName) {
-		CompositeNode oldJavaName = javaName;
-		javaName = newJavaName;
+	public void setCreate(LeafNode newCreate) {
+		LeafNode oldCreate = create;
+		create = newCreate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME, oldJavaName, javaName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode getReturnType() {
-		if (returnType != null && returnType.eIsProxy()) {
-			InternalEObject oldReturnType = (InternalEObject)returnType;
-			returnType = (CompositeNode)eResolveProxy(oldReturnType);
-			if (returnType != oldReturnType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE, oldReturnType, returnType));
-			}
-		}
-		return returnType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode basicGetReturnType() {
-		return returnType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReturnType(CompositeNode newReturnType) {
-		CompositeNode oldReturnType = returnType;
-		returnType = newReturnType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__RETURN_TYPE, oldReturnType, returnType));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__CREATE, oldCreate, create));
 	}
 
 	/**
@@ -492,6 +378,120 @@ public class ExtensionNodeImpl extends CompositeNodeImpl implements ExtensionNod
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode getJavaName() {
+		if (javaName != null && javaName.eIsProxy()) {
+			InternalEObject oldJavaName = (InternalEObject)javaName;
+			javaName = (CompositeNode)eResolveProxy(oldJavaName);
+			if (javaName != oldJavaName) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME, oldJavaName, javaName));
+			}
+		}
+		return javaName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode basicGetJavaName() {
+		return javaName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setJavaName(CompositeNode newJavaName) {
+		CompositeNode oldJavaName = javaName;
+		javaName = newJavaName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__JAVA_NAME, oldJavaName, javaName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LeafNode getCached() {
+		if (cached != null && cached.eIsProxy()) {
+			InternalEObject oldCached = (InternalEObject)cached;
+			cached = (LeafNode)eResolveProxy(oldCached);
+			if (cached != oldCached) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__CACHED, oldCached, cached));
+			}
+		}
+		return cached;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LeafNode basicGetCached() {
+		return cached;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCached(LeafNode newCached) {
+		LeafNode oldCached = cached;
+		cached = newCached;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__CACHED, oldCached, cached));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode getExtendBody() {
+		if (extendBody != null && extendBody.eIsProxy()) {
+			InternalEObject oldExtendBody = (InternalEObject)extendBody;
+			extendBody = (CompositeNode)eResolveProxy(oldExtendBody);
+			if (extendBody != oldExtendBody) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY, oldExtendBody, extendBody));
+			}
+		}
+		return extendBody;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode basicGetExtendBody() {
+		return extendBody;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtendBody(CompositeNode newExtendBody) {
+		CompositeNode oldExtendBody = extendBody;
+		extendBody = newExtendBody;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.EXTENSION_NODE__EXTEND_BODY, oldExtendBody, extendBody));
 	}
 
 	/**

@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ElseIfStatementNodeValidator.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: ElseIfStatementNodeValidator.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
 import org.eclipse.tmf.common.node.CompositeNode;
-
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.ElseIfStatementNode}.
@@ -19,7 +18,5 @@ public interface ElseIfStatementNodeValidator {
 	boolean validate();
 
 	boolean validateSequence(CompositeNode value);
-
 	boolean validateExpression(CompositeNode value);
-
 }

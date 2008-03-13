@@ -2,16 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeachStatementNodeImpl.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: ForeachStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode;
@@ -44,6 +47,7 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * @ordered
 	 */
 	protected CompositeNode iterator;
+
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -53,6 +57,7 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * @ordered
 	 */
 	protected CompositeNode identifier;
+
 	/**
 	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -62,6 +67,7 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * @ordered
 	 */
 	protected CompositeNode sequence;
+
 	/**
 	 * The cached value of the '{@link #getForExpression() <em>For Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -71,6 +77,7 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * @ordered
 	 */
 	protected CompositeNode forExpression;
+
 	/**
 	 * The cached value of the '{@link #getSeparatorExpression() <em>Separator Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -143,44 +150,6 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getSeparatorExpression() {
-		if (separatorExpression != null && separatorExpression.eIsProxy()) {
-			InternalEObject oldSeparatorExpression = (InternalEObject)separatorExpression;
-			separatorExpression = (CompositeNode)eResolveProxy(oldSeparatorExpression);
-			if (separatorExpression != oldSeparatorExpression) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION, oldSeparatorExpression, separatorExpression));
-			}
-		}
-		return separatorExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode basicGetSeparatorExpression() {
-		return separatorExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSeparatorExpression(CompositeNode newSeparatorExpression) {
-		CompositeNode oldSeparatorExpression = separatorExpression;
-		separatorExpression = newSeparatorExpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION, oldSeparatorExpression, separatorExpression));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public CompositeNode getIdentifier() {
 		if (identifier != null && identifier.eIsProxy()) {
 			InternalEObject oldIdentifier = (InternalEObject)identifier;
@@ -212,6 +181,44 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 		identifier = newIdentifier;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER, oldIdentifier, identifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode getSequence() {
+		if (sequence != null && sequence.eIsProxy()) {
+			InternalEObject oldSequence = (InternalEObject)sequence;
+			sequence = (CompositeNode)eResolveProxy(oldSequence);
+			if (sequence != oldSequence) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
+			}
+		}
+		return sequence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode basicGetSequence() {
+		return sequence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSequence(CompositeNode newSequence) {
+		CompositeNode oldSequence = sequence;
+		sequence = newSequence;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
 	}
 
 	/**
@@ -257,16 +264,16 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getSequence() {
-		if (sequence != null && sequence.eIsProxy()) {
-			InternalEObject oldSequence = (InternalEObject)sequence;
-			sequence = (CompositeNode)eResolveProxy(oldSequence);
-			if (sequence != oldSequence) {
+	public CompositeNode getSeparatorExpression() {
+		if (separatorExpression != null && separatorExpression.eIsProxy()) {
+			InternalEObject oldSeparatorExpression = (InternalEObject)separatorExpression;
+			separatorExpression = (CompositeNode)eResolveProxy(oldSeparatorExpression);
+			if (separatorExpression != oldSeparatorExpression) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION, oldSeparatorExpression, separatorExpression));
 			}
 		}
-		return sequence;
+		return separatorExpression;
 	}
 
 	/**
@@ -274,8 +281,8 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetSequence() {
-		return sequence;
+	public CompositeNode basicGetSeparatorExpression() {
+		return separatorExpression;
 	}
 
 	/**
@@ -283,11 +290,11 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSequence(CompositeNode newSequence) {
-		CompositeNode oldSequence = sequence;
-		sequence = newSequence;
+	public void setSeparatorExpression(CompositeNode newSeparatorExpression) {
+		CompositeNode oldSeparatorExpression = separatorExpression;
+		separatorExpression = newSeparatorExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION, oldSeparatorExpression, separatorExpression));
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionNodeImpl.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: DefinitionNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -46,6 +46,7 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	 * @ordered
 	 */
 	protected CompositeNode name;
+
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -55,6 +56,7 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	 * @ordered
 	 */
 	protected CompositeNode type;
+
 	/**
 	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -92,6 +94,44 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	@Override
 	protected EClass eStaticClass() {
 		return Xpand3nodePackage.Literals.DEFINITION_NODE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode getName() {
+		if (name != null && name.eIsProxy()) {
+			InternalEObject oldName = (InternalEObject)name;
+			name = (CompositeNode)eResolveProxy(oldName);
+			if (name != oldName) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.DEFINITION_NODE__NAME, oldName, name));
+			}
+		}
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode basicGetName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(CompositeNode newName) {
+		CompositeNode oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.DEFINITION_NODE__NAME, oldName, name));
 	}
 
 	/**
@@ -168,44 +208,6 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 		sequence = newSequence;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.DEFINITION_NODE__SEQUENCE, oldSequence, sequence));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode getName() {
-		if (name != null && name.eIsProxy()) {
-			InternalEObject oldName = (InternalEObject)name;
-			name = (CompositeNode)eResolveProxy(oldName);
-			if (name != oldName) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.DEFINITION_NODE__NAME, oldName, name));
-			}
-		}
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode basicGetName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(CompositeNode newName) {
-		CompositeNode oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.DEFINITION_NODE__NAME, oldName, name));
 	}
 
 	/**

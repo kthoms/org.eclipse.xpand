@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdditiveExpressionNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: AdditiveExpressionNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.tmf.common.node.CompositeNode;
 
@@ -16,8 +18,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode#getLeft <em>Left</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode#getRight <em>Right</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode#getNexts <em>Nexts</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode#getFirst <em>First</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,56 +28,46 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface AdditiveExpressionNode extends CompositeNode {
-
 	/**
-	 * Returns the value of the '<em><b>Right</b></em>' reference.
+	 * Returns the value of the '<em><b>Nexts</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Right</em>' reference isn't clear,
+	 * If the meaning of the '<em>Nexts</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right</em>' reference.
-	 * @see #setRight(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getAdditiveExpressionNode_Right()
+	 * @return the value of the '<em>Nexts</em>' reference list.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getAdditiveExpressionNode_Nexts()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getRight();
+	EList<CompositeNode> getNexts();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode#getRight <em>Right</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right</em>' reference.
-	 * @see #getRight()
-	 * @generated
-	 */
-	void setRight(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Left</b></em>' reference.
+	 * Returns the value of the '<em><b>First</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Left</em>' reference isn't clear,
+	 * If the meaning of the '<em>First</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Left</em>' reference.
-	 * @see #setLeft(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getAdditiveExpressionNode_Left()
+	 * @return the value of the '<em>First</em>' reference.
+	 * @see #setFirst(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getAdditiveExpressionNode_First()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getLeft();
+	CompositeNode getFirst();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode#getLeft <em>Left</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode#getFirst <em>First</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Left</em>' reference.
-	 * @see #getLeft()
+	 * @param value the new value of the '<em>First</em>' reference.
+	 * @see #getFirst()
 	 * @generated
 	 */
-	void setLeft(CompositeNode value);
+	void setFirst(CompositeNode value);
+
 } // AdditiveExpressionNode

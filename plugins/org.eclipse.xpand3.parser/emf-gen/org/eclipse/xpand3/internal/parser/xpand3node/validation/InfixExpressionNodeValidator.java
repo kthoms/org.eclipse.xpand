@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InfixExpressionNodeValidator.java,v 1.3 2008/03/07 09:39:40 jkohnlein Exp $
+ * $Id: InfixExpressionNodeValidator.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 

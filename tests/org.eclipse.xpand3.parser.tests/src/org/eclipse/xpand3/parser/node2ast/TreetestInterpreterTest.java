@@ -13,8 +13,16 @@ import org.eclipse.xpand3.parser.Xpand3NodeParser;
 
 public class TreetestInterpreterTest extends AbstractEcoreTreeTestInterpreter {
 
+	private boolean parseExpression;
+
 	public void testStatement() throws Throwable {
+		parseExpression = false;
 		test("org/eclipse/xpand3/parser/node2ast/statement.ttst");
+	}
+
+	public void testExpression() throws Throwable {
+		parseExpression = true;
+		test("org/eclipse/xpand3/parser/node2ast/expression.ttst");
 	}
 
 	protected EObject parseAndTransform(String testExpressionBody)
@@ -25,7 +33,8 @@ public class TreetestInterpreterTest extends AbstractEcoreTreeTestInterpreter {
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		Xpand3NodeParser xpand3NodeParser = new Xpand3NodeParser(tokenStream);
 
-		Node rootNode = xpand3NodeParser.r_file();
+		Node rootNode = (parseExpression) ? xpand3NodeParser.r_expression()
+				: xpand3NodeParser.r_file();
 		if (rootNode == null) {
 			System.out.println("Nothing parsed.");
 			return null;

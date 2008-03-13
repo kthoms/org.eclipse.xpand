@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProtectStatementNodeValidator.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: ProtectStatementNodeValidator.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
 import org.eclipse.tmf.common.node.CompositeNode;
-
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.ProtectStatementNode}.
@@ -18,12 +17,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
 public interface ProtectStatementNodeValidator {
 	boolean validate();
 
-	boolean validateCstart(CompositeNode value);
-
-	boolean validateCend(CompositeNode value);
-
-	boolean validateId(CompositeNode value);
-
 	boolean validateSequence(CompositeNode value);
-
+	boolean validateCend(CompositeNode value);
+	boolean validateId(CompositeNode value);
+	boolean validateCstart(CompositeNode value);
 }

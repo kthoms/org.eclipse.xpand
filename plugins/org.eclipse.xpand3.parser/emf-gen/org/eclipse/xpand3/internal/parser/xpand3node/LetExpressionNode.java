@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LetExpressionNode.java,v 1.2 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: LetExpressionNode.java,v 1.3 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 

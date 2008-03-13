@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactory.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: Xpand3nodeFactory.java,v 1.6 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -242,15 +242,6 @@ public interface Xpand3nodeFactory extends EFactory {
 	Test_expressionNode createTest_expressionNode();
 
 	/**
-	 * Returns a new object of class '<em>Expression Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression Node</em>'.
-	 * @generated
-	 */
-	ExpressionNode createExpressionNode();
-
-	/**
 	 * Returns a new object of class '<em>Let Expression Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -339,15 +330,6 @@ public interface Xpand3nodeFactory extends EFactory {
 	 * @generated
 	 */
 	RelationalExpressionNode createRelationalExpressionNode();
-
-	/**
-	 * Returns a new object of class '<em>Relational Operator Node</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Relational Operator Node</em>'.
-	 * @generated
-	 */
-	RelationalOperatorNode createRelationalOperatorNode();
 
 	/**
 	 * Returns a new object of class '<em>Additive Expression Node</em>'.

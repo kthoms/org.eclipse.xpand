@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleTypeNodeImpl.java,v 1.3 2008/03/07 09:39:41 jkohnlein Exp $
+ * $Id: SimpleTypeNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 

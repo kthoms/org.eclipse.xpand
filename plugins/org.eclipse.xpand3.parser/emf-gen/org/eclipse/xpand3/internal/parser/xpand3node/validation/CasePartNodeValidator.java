@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CasePartNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: CasePartNodeValidator.java,v 1.3 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
+import org.eclipse.tmf.common.node.CompositeNode;
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.CasePartNode}.
@@ -16,4 +17,6 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 public interface CasePartNodeValidator {
 	boolean validate();
 
+	boolean validateCondition(CompositeNode value);
+	boolean validateExpression(CompositeNode value);
 }

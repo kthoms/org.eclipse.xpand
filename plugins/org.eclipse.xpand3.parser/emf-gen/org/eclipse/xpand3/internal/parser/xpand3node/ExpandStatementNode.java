@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpandStatementNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: ExpandStatementNode.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -18,6 +18,7 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getSeparator <em>Separator</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getParamList <em>Param List</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getForEachExpression <em>For Each Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getForExpression <em>For Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getName <em>Name</em>}</li>
  * </ul>
@@ -28,7 +29,6 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface ExpandStatementNode extends CompositeNode {
-
 	/**
 	 * Returns the value of the '<em><b>Separator</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -82,6 +82,32 @@ public interface ExpandStatementNode extends CompositeNode {
 	void setParamList(CompositeNode value);
 
 	/**
+	 * Returns the value of the '<em><b>For Each Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>For Each Expression</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>For Each Expression</em>' reference.
+	 * @see #setForEachExpression(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getExpandStatementNode_ForEachExpression()
+	 * @model
+	 * @generated
+	 */
+	CompositeNode getForEachExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getForEachExpression <em>For Each Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>For Each Expression</em>' reference.
+	 * @see #getForEachExpression()
+	 * @generated
+	 */
+	void setForEachExpression(CompositeNode value);
+
+	/**
 	 * Returns the value of the '<em><b>For Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -132,4 +158,5 @@ public interface ExpandStatementNode extends CompositeNode {
 	 * @generated
 	 */
 	void setName(CompositeNode value);
+
 } // ExpandStatementNode

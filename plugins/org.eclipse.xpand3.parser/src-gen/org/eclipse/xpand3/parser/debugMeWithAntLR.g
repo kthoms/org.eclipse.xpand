@@ -56,7 +56,7 @@ r_statement  :
 ;
 
 r_textSequence  :
-	(f_text=r_text) (((f_text=r_text)))*
+	(f_texts=r_text) (((f_texts=r_text)))*
 ;
 
 r_text  :
@@ -75,7 +75,7 @@ r_errorStatement  :
 
 r_expandStatement  :
 	('EXPAND') (f_name=r_simpleType) ((('(') (f_paramList=r_parameterList) (')')))? ((((('FOR') (f_forExpression=r_expression)))
-	| ((('FOREACH') (f_forExpression=r_expression) ((('SEPARATOR') (f_separator=r_expression)))?))))?
+	| ((('FOREACH') (f_forEachExpression=r_expression) ((('SEPARATOR') (f_separator=r_expression)))?))))?
 ;
 
 r_expressionStmt  :
@@ -91,7 +91,7 @@ r_foreachStatement  :
 ;
 
 r_ifStatement  :
-	('IF') (f_expression=r_expression) (f_sequence=r_sequence) (f_elseIf=r_elseIfStatement)* (f_else=r_elseStatement)? ('ENDIF')
+	('IF') (f_expression=r_expression) (f_sequence=r_sequence) (f_elseIfs=r_elseIfStatement)* (f_else=r_elseStatement)? ('ENDIF')
 ;
 
 r_elseIfStatement  :
@@ -111,109 +111,105 @@ r_protectStatement  :
 ;
 
 r_check  :
-	('context') (f_unnamed0=r_type) ((('if') (f_unnamed1=r_expression)))? ((('ERROR')
-	| ('WARNING'))) (f_unnamed2=r_expression) (':') (f_unnamed3=r_expression) (';')
+	('context') (f_type=r_type) ((('if') (f_ifExpression=r_expression)))? ((('ERROR')
+	| ('WARNING'))) (f_message=r_expression) (':') (f_constraint=r_expression) (';')
 ;
 
 r_around  :
-	('around') (f_unnamed4=r_pointcut) ('(') (((f_unnamed5=r_declaredParameterList) (((',')? ('*')))?
-	| ('*')))? (')') (':') (f_unnamed6=r_expression) (';')
+	('around') (f_unnamed0=r_pointcut) ('(') (((f_unnamed1=r_declaredParameterList) (((',')? ('*')))?
+	| ('*')))? (')') (':') (f_unnamed2=r_expression) (';')
 ;
 
 r_pointcut  :
 	((('*')
-	| (f_unnamed7=r_identifier))) ((('*')
-	| (f_unnamed8=r_identifier)
+	| (f_unnamed3=r_identifier))) ((('*')
+	| (f_unnamed4=r_identifier)
 	| ('::')))*
 ;
 
 r_extension  :
 	((('private')
 	| ('cached')
-	| ('create')))* (f_returnType=r_type)? (f_name=r_identifier) ('(') (f_paramList=r_declaredParameterList)? (')') (':') ((('JAVA') (f_javaReturnType=r_javaType) ('.') (f_javaName=r_identifier) ('(') (((f_unnamed9=r_javaType) (((',') (f_unnamed10=r_javaType)))*))? (')')
+	| ('create')))* (f_returnType=r_type)? (f_name=r_identifier) ('(') (f_paramList=r_declaredParameterList)? (')') (':') ((('JAVA') (f_javaReturnType=r_javaType) ('.') (f_javaName=r_identifier) ('(') (((f_unnamed5=r_javaType) (((',') (f_unnamed6=r_javaType)))*))? (')')
 	| (f_extendBody=r_expression))) (';')
 ;
 
 r_javaType  :
-	(f_unnamed11=r_identifier) ((('.') (((f_unnamed12=r_identifier)
+	(f_unnamed7=r_identifier) ((('.') (((f_unnamed8=r_identifier)
 	| ('Collection')
 	| ('List')
 	| ('Set')))))*
 ;
 
 r_test_expression  :
-	(f_unnamed13=r_expression) (EOF)
+	(f_unnamed9=r_expression) (EOF)
 ;
 
 r_expression  :
-	(f_unnamed14=r_letExpression)
+	(r_letExpression)
 ;
 
 r_letExpression  :
-	('let') (f_unnamed15=r_identifier) ('=') (f_unnamed16=r_castedExpression) (':') (f_unnamed17=r_expression)
-	| (f_unnamed18=r_castedExpression)
+	('let') (f_unnamed10=r_identifier) ('=') (f_unnamed11=r_castedExpression) (':') (f_unnamed12=r_expression)
+	| (f_unnamed13=r_castedExpression)
 ;
 
 r_castedExpression  :
-	('(' r_type ')' r_chainExpression)=>(('(') (f_unnamed19=r_type) (')') (f_unnamed20=r_chainExpression))
-	| (f_unnamed21=r_chainExpression)
+	('(' r_type ')' r_chainExpression)=>(('(') (f_type=r_type) (')') (f_target=r_chainExpression))
+	| (f_unnamed14=r_chainExpression)
 ;
 
 r_chainExpression  :
-	(f_unnamed22=r_ifExpression) ((('->') (f_unnamed23=r_ifExpression)))*
+	(f_first=r_ifExpression) ((('->') (f_nexts=r_ifExpression)))*
 ;
 
 r_ifExpression  :
-	(f_unnamed24=r_switchExpression) ((('?') (f_unnamed25=r_expression) (':') (f_unnamed26=r_switchExpression)))?
-	| ('if') (f_unnamed27=r_expression) ('then') (f_unnamed28=r_switchExpression) ((('else') (f_unnamed29=r_switchExpression)))?
+	(f_condition0=r_switchExpression) ((('?') (f_then=r_expression) (':') (f_else=r_switchExpression)))?
+	| ('if') (f_condition1=r_expression) ('then') (f_then=r_switchExpression) ((('else') (f_else=r_switchExpression)))?
 ;
 
 r_switchExpression  :
-	('switch') ((('(') (f_unnamed30=r_orExpression) (')')))? ('{') (f_unnamed31=r_casePart)* ('default') (':') (f_unnamed32=r_orExpression) ('}')
-	| (f_unnamed33=r_orExpression)
+	('switch') ((('(') (f_expression=r_orExpression) (')')))? ('{') (f_cases=r_casePart)* ('default') (':') (f_default=r_orExpression) ('}')
+	| (f_unnamed15=r_orExpression)
 ;
 
 r_casePart  :
-	('case') (f_unnamed34=r_expression) (':') (f_unnamed35=r_expression)
+	('case') (f_condition=r_expression) (':') (f_expression=r_expression)
 ;
 
 r_orExpression  :
-	(f_unnamed36=r_andExpression) ((('||') (f_unnamed37=r_andExpression)))*
+	(f_first=r_andExpression) ((('||') (f_nexts=r_andExpression)))*
 ;
 
 r_andExpression  :
-	(f_unnamed38=r_impliesExpression) ((('&&') (f_unnamed39=r_impliesExpression)))*
+	(f_first=r_impliesExpression) ((('&&') (f_nexts=r_impliesExpression)))*
 ;
 
 r_impliesExpression  :
-	(f_unnamed40=r_relationalExpression) ((('implies') (f_unnamed41=r_relationalExpression)))*
+	(f_first=r_relationalExpression) ((('implies') (f_nexts=r_relationalExpression)))*
 ;
 
 r_relationalExpression  :
-	(f_leftOperand=r_additiveExpression) (((f_operator=r_relationalOperator) (f_rightOperand=r_additiveExpression)))*
-;
-
-r_relationalOperator  :
-	('==')
+	(f_first=r_additiveExpression) ((((('==')
 	| ('!=')
 	| ('>=')
 	| ('<=')
 	| ('>')
-	| ('<')
+	| ('<'))) (f_nexts=r_additiveExpression)))*
 ;
 
 r_additiveExpression  :
-	(f_left=r_multiplicativeExpression) ((((('+')
-	| ('-'))) (f_right=r_multiplicativeExpression)))*
+	(f_first=r_multiplicativeExpression) ((((('+')
+	| ('-'))) (f_nexts=r_multiplicativeExpression)))*
 ;
 
 r_multiplicativeExpression  :
-	(f_left=r_unaryExpression) ((((('*')
-	| ('/'))) (f_right=r_unaryExpression)))*
+	(f_first=r_unaryExpression) ((((('*')
+	| ('/'))) (f_nexts=r_unaryExpression)))*
 ;
 
 r_unaryExpression  :
-	(f_unnamed42=r_infixExpression)
+	(f_unnamed16=r_infixExpression)
 	| ('!') (f_operand=r_infixExpression)
 	| ('-') (f_operand=r_infixExpression)
 ;
@@ -239,25 +235,25 @@ r_stringLiteral  :
 ;
 
 r_paranthesizedExpression  :
-	('(') (f_unnamed43=r_expression) (')')
+	('(') (f_expression=r_expression) (')')
 ;
 
 r_globalVarExpression  :
-	('GLOBALVAR') (f_unnamed44=r_identifier)
+	('GLOBALVAR') (f_unnamed17=r_identifier)
 ;
 
 r_featureCall  :
-	(f_name=r_identifier) ('(') (((f_paramList=r_parameterList)))? (')')
+	(f_unnamed18=r_collectionExpression)
+	| (f_name=r_identifier) ('(') (((f_paramList=r_parameterList)))? (')')
 	| (f_type=r_type)
-	| (f_unnamed45=r_collectionExpression)
 ;
 
 r_listLiteral  :
-	('{') (((f_unnamed46=r_expression) (((',') (f_unnamed47=r_expression)))*))? ('}')
+	('{') (((f_elements=r_expression) (((',') (f_elements=r_expression)))*))? ('}')
 ;
 
 r_constructorCall  :
-	('new') (f_unnamed48=r_simpleType)
+	('new') (f_unnamed19=r_simpleType)
 ;
 
 r_booleanLiteral  :
@@ -275,7 +271,7 @@ r_numberLiteral  :
 ;
 
 r_collectionExpression  :
-	('typeSelect') ('(') (f_unnamed49=r_type) (')')
+	('typeSelect') ('(') (f_type=r_type) (')')
 	| ((('collect')
 	| ('select')
 	| ('selectFirst')
@@ -283,7 +279,7 @@ r_collectionExpression  :
 	| ('exists')
 	| ('notExists')
 	| ('sortBy')
-	| ('forAll'))) ('(') (((f_unnamed50=r_identifier) ('|')))? (f_unnamed51=r_expression) (')')
+	| ('forAll'))) ('(') (((f_variable=r_identifier) ('|')))? (f_expression=r_expression) (')')
 ;
 
 r_declaredParameterList  :
@@ -306,7 +302,7 @@ r_type  :
 r_collectionType  :
 	((('Collection')
 	| ('List')
-	| ('Set'))) ((('[') (f_unnamed52=r_simpleType) (']')))?
+	| ('Set'))) ((('[') (f_elementType=r_simpleType) (']')))?
 ;
 
 r_simpleType  :

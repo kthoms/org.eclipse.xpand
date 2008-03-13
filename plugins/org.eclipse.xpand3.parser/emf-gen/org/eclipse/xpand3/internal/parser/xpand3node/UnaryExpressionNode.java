@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UnaryExpressionNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: UnaryExpressionNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -25,7 +25,6 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface UnaryExpressionNode extends CompositeNode {
-
 	/**
 	 * Returns the value of the '<em><b>Operand</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -51,4 +50,5 @@ public interface UnaryExpressionNode extends CompositeNode {
 	 * @generated
 	 */
 	void setOperand(CompositeNode value);
+
 } // UnaryExpressionNode

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileStatementNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: FileStatementNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -27,32 +27,31 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface FileStatementNode extends CompositeNode {
-
 	/**
-	 * Returns the value of the '<em><b>Name Expression</b></em>' reference.
+	 * Returns the value of the '<em><b>Sequence</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name Expression</em>' reference isn't clear,
+	 * If the meaning of the '<em>Sequence</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name Expression</em>' reference.
-	 * @see #setNameExpression(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileStatementNode_NameExpression()
+	 * @return the value of the '<em>Sequence</em>' reference.
+	 * @see #setSequence(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileStatementNode_Sequence()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getNameExpression();
+	CompositeNode getSequence();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FileStatementNode#getNameExpression <em>Name Expression</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FileStatementNode#getSequence <em>Sequence</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name Expression</em>' reference.
-	 * @see #getNameExpression()
+	 * @param value the new value of the '<em>Sequence</em>' reference.
+	 * @see #getSequence()
 	 * @generated
 	 */
-	void setNameExpression(CompositeNode value);
+	void setSequence(CompositeNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Identifier</b></em>' reference.
@@ -81,28 +80,29 @@ public interface FileStatementNode extends CompositeNode {
 	void setIdentifier(CompositeNode value);
 
 	/**
-	 * Returns the value of the '<em><b>Sequence</b></em>' reference.
+	 * Returns the value of the '<em><b>Name Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sequence</em>' reference isn't clear,
+	 * If the meaning of the '<em>Name Expression</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sequence</em>' reference.
-	 * @see #setSequence(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileStatementNode_Sequence()
+	 * @return the value of the '<em>Name Expression</em>' reference.
+	 * @see #setNameExpression(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getFileStatementNode_NameExpression()
 	 * @model
 	 * @generated
 	 */
-	CompositeNode getSequence();
+	CompositeNode getNameExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FileStatementNode#getSequence <em>Sequence</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.FileStatementNode#getNameExpression <em>Name Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sequence</em>' reference.
-	 * @see #getSequence()
+	 * @param value the new value of the '<em>Name Expression</em>' reference.
+	 * @see #getNameExpression()
 	 * @generated
 	 */
-	void setSequence(CompositeNode value);
+	void setNameExpression(CompositeNode value);
+
 } // FileStatementNode

@@ -18,6 +18,7 @@ package org.eclipse.xpand3.analyzation;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.xpand3.analyzation.typesystem.TypeSystemImpl;
 import org.eclipse.xpand3.analyzation.typesystem.builtin.BuiltinTypeSystem;
 import org.eclipse.xtend.backend.util.Cache;
 
@@ -29,31 +30,36 @@ import org.eclipse.xtend.backend.util.Cache;
  */
 public class TypeSystemFactory {
 	
-	private static Set<LanguageSpecificTypeSystemFactory> factories = new HashSet<LanguageSpecificTypeSystemFactory>();
-	
-	public void registerLanguageSpecificFactory(LanguageSpecificTypeSystemFactory factory) {
+	private final static Set<LanguageSpecificDeclarationContributorFactory> factories = new HashSet<LanguageSpecificDeclarationContributorFactory>();
+	public static void registerLanguageSpecificFactory(LanguageSpecificDeclarationContributorFactory factory) {
 		factories.add(factory);
 	}
 	
 	private final Cache<String, TypeSystem> cache = new Cache<String, TypeSystem>() {
 		@Override
-		protected TypeSystem create(String namespace) {
-			for (LanguageSpecificTypeSystemFactory factory : factories) {
-				if (factory.canHandle(namespace)) {
-					TypeSystem typeSystem = factory.createTypeSystem(namespace);
-					typeSystem.setTypeSystemFactory(TypeSystemFactory.this);
-					return typeSystem;
-				}
-			}
-			return null;
+		protected TypeSystem create(String key) {
+			DeclarationsContributor decl = createDeclarationContributor(key);
+			decl.setTypeSystemFactory(TypeSystemFactory.this);
+			TypeSystem ts = new TypeSystemImpl(decl);
+			return ts;
 		}};
 	
 	public TypeSystem getTypeSystem(String resourceName) {
 		return cache.get(resourceName);
 	}
 	
-	public BuiltinTypeSystem getBuiltInTypeSystem() {
+	public TypeSystem getBuiltInTypeSystem() {
 		return BuiltinTypeSystem.BUILTIN_TYPESYSTEM;
 	}
+	
+	public DeclarationsContributor createDeclarationContributor(String namespace) {
+		for (LanguageSpecificDeclarationContributorFactory factory : factories) {
+			if (factory.canHandle(namespace)) {
+				return factory.createDeclarationContributor(namespace);
+			}
+		}
+		return null;
+	}
+	
 	
 }

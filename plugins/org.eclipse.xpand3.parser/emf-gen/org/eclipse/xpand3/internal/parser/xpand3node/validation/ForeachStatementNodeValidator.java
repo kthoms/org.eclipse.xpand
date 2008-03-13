@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeachStatementNodeValidator.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: ForeachStatementNodeValidator.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
 import org.eclipse.tmf.common.node.CompositeNode;
-
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode}.
@@ -19,13 +18,8 @@ public interface ForeachStatementNodeValidator {
 	boolean validate();
 
 	boolean validateIterator(CompositeNode value);
-
-	boolean validateSeparatorExpression(CompositeNode value);
-
 	boolean validateIdentifier(CompositeNode value);
-
-	boolean validateForExpression(CompositeNode value);
-
 	boolean validateSequence(CompositeNode value);
-
+	boolean validateForExpression(CompositeNode value);
+	boolean validateSeparatorExpression(CompositeNode value);
 }

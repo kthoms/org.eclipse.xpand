@@ -2,16 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProtectStatementNodeImpl.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: ProtectStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.ProtectStatementNode;
@@ -43,6 +46,7 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * @ordered
 	 */
 	protected CompositeNode sequence;
+
 	/**
 	 * The cached value of the '{@link #getCend() <em>Cend</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -52,6 +56,7 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * @ordered
 	 */
 	protected CompositeNode cend;
+
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -61,6 +66,7 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * @ordered
 	 */
 	protected CompositeNode id;
+
 	/**
 	 * The cached value of the '{@link #getCstart() <em>Cstart</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -95,16 +101,16 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getCstart() {
-		if (cstart != null && cstart.eIsProxy()) {
-			InternalEObject oldCstart = (InternalEObject)cstart;
-			cstart = (CompositeNode)eResolveProxy(oldCstart);
-			if (cstart != oldCstart) {
+	public CompositeNode getSequence() {
+		if (sequence != null && sequence.eIsProxy()) {
+			InternalEObject oldSequence = (InternalEObject)sequence;
+			sequence = (CompositeNode)eResolveProxy(oldSequence);
+			if (sequence != oldSequence) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART, oldCstart, cstart));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
 			}
 		}
-		return cstart;
+		return sequence;
 	}
 
 	/**
@@ -112,8 +118,8 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetCstart() {
-		return cstart;
+	public CompositeNode basicGetSequence() {
+		return sequence;
 	}
 
 	/**
@@ -121,11 +127,11 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCstart(CompositeNode newCstart) {
-		CompositeNode oldCstart = cstart;
-		cstart = newCstart;
+	public void setSequence(CompositeNode newSequence) {
+		CompositeNode oldSequence = sequence;
+		sequence = newSequence;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART, oldCstart, cstart));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
 	}
 
 	/**
@@ -209,16 +215,16 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getSequence() {
-		if (sequence != null && sequence.eIsProxy()) {
-			InternalEObject oldSequence = (InternalEObject)sequence;
-			sequence = (CompositeNode)eResolveProxy(oldSequence);
-			if (sequence != oldSequence) {
+	public CompositeNode getCstart() {
+		if (cstart != null && cstart.eIsProxy()) {
+			InternalEObject oldCstart = (InternalEObject)cstart;
+			cstart = (CompositeNode)eResolveProxy(oldCstart);
+			if (cstart != oldCstart) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART, oldCstart, cstart));
 			}
 		}
-		return sequence;
+		return cstart;
 	}
 
 	/**
@@ -226,8 +232,8 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetSequence() {
-		return sequence;
+	public CompositeNode basicGetCstart() {
+		return cstart;
 	}
 
 	/**
@@ -235,11 +241,11 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSequence(CompositeNode newSequence) {
-		CompositeNode oldSequence = sequence;
-		sequence = newSequence;
+	public void setCstart(CompositeNode newCstart) {
+		CompositeNode oldCstart = cstart;
+		cstart = newCstart;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART, oldCstart, cstart));
 	}
 
 	/**

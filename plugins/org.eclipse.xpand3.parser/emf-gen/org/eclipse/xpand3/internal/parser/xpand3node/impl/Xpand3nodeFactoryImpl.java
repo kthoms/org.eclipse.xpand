@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodeFactoryImpl.java,v 1.5 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: Xpand3nodeFactoryImpl.java,v 1.6 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -84,7 +84,6 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 			case Xpand3nodePackage.EXTENSION_NODE: return createExtensionNode();
 			case Xpand3nodePackage.JAVA_TYPE_NODE: return createJavaTypeNode();
 			case Xpand3nodePackage.TEST_EXPRESSION_NODE: return createTest_expressionNode();
-			case Xpand3nodePackage.EXPRESSION_NODE: return createExpressionNode();
 			case Xpand3nodePackage.LET_EXPRESSION_NODE: return createLetExpressionNode();
 			case Xpand3nodePackage.CASTED_EXPRESSION_NODE: return createCastedExpressionNode();
 			case Xpand3nodePackage.CHAIN_EXPRESSION_NODE: return createChainExpressionNode();
@@ -95,7 +94,6 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 			case Xpand3nodePackage.AND_EXPRESSION_NODE: return createAndExpressionNode();
 			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE: return createImpliesExpressionNode();
 			case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE: return createRelationalExpressionNode();
-			case Xpand3nodePackage.RELATIONAL_OPERATOR_NODE: return createRelationalOperatorNode();
 			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE: return createAdditiveExpressionNode();
 			case Xpand3nodePackage.MULTIPLICATIVE_EXPRESSION_NODE: return createMultiplicativeExpressionNode();
 			case Xpand3nodePackage.UNARY_EXPRESSION_NODE: return createUnaryExpressionNode();
@@ -366,16 +364,6 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpressionNode createExpressionNode() {
-		ExpressionNodeImpl expressionNode = new ExpressionNodeImpl();
-		return expressionNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public LetExpressionNode createLetExpressionNode() {
 		LetExpressionNodeImpl letExpressionNode = new LetExpressionNodeImpl();
 		return letExpressionNode;
@@ -469,16 +457,6 @@ public class Xpand3nodeFactoryImpl extends EFactoryImpl implements Xpand3nodeFac
 	public RelationalExpressionNode createRelationalExpressionNode() {
 		RelationalExpressionNodeImpl relationalExpressionNode = new RelationalExpressionNodeImpl();
 		return relationalExpressionNode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RelationalOperatorNode createRelationalOperatorNode() {
-		RelationalOperatorNodeImpl relationalOperatorNode = new RelationalOperatorNodeImpl();
-		return relationalOperatorNode;
 	}
 
 	/**

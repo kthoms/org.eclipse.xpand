@@ -17,35 +17,30 @@ package org.eclipse.xpand3.analyzation.typesystem.builtin;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.xpand3.analyzation.DeclarationsContributor;
 import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.analyzation.TypeSystemFactory;
+import org.eclipse.xpand3.analyzation.typesystem.TypeSystemImpl;
 import org.eclipse.xpand3.staticTypesystem.AbstractTypeReference;
 import org.eclipse.xpand3.staticTypesystem.DeclaredFunction;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.Model;
 import org.eclipse.xpand3.staticTypesystem.StaticTypesystemPackage;
 import org.eclipse.xpand3.util.LoaderFactory;
-import org.eclipse.xtend.backend.common.BackendType;
-import org.eclipse.xtend.backend.common.Function;
-import org.eclipse.xtend.backend.common.Property;
-import org.eclipse.xtend.backend.common.StaticProperty;
 
 /**
  * @author Sven Efftinge
  *
  */
-public class BuiltinTypeSystem implements TypeSystem {
+public class BuiltinTypeSystem extends TypeSystemImpl implements TypeSystem {
 	private static Map<String, DeclaredType> types = new HashMap<String, DeclaredType>();
 	static {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
@@ -64,62 +59,25 @@ public class BuiltinTypeSystem implements TypeSystem {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public DeclaredType getBuiltinTypeForJavaClass(Class<?> cls) {
-		if (List.class.isAssignableFrom (cls))
-            return types.get(LIST);
-        if (Set.class.isAssignableFrom(cls))
-        	return types.get(SET);
-        if (Collection.class.isAssignableFrom(cls))
-        	return types.get(COLLECTION);
-        
-        if (Map.class.isAssignableFrom(cls))
-        	return types.get(MAP);
-        
-        if (CharSequence.class.isAssignableFrom(cls))
-        	return types.get(STRING);
-        
-        if (cls == Boolean.class || cls == Boolean.TYPE)
-        	return types.get(BOOLEAN);
-        
-        if (cls == Long.class || cls == Long.TYPE || cls == Integer.TYPE || cls == Integer.class)
-        	return types.get(INTEGER);
-        if (cls == Double.class || cls == Double.TYPE)
-        	return types.get(REAL);
-
-        if (Function.class.isAssignableFrom(cls))
-        	return types.get(FUNCTION);
-        
-        if (BackendType.class.isAssignableFrom(cls))
-            return types.get(TYPE);
-        if (Property.class.isAssignableFrom(cls))
-        	return types.get(PROPERTY);
-        if (StaticProperty.class.isAssignableFrom(cls))
-        	return types.get(STATIC_PROPERTY);
-        if (Object.class.equals(cls))
-        	return types.get(OBJECT);
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.xpand3.analyzation.TypeSystem#functionForName(java.lang.String, org.eclipse.xpand3.staticTypesystem.AbstractTypeReference[])
+	/**
+	 * @param contributor
 	 */
-	public DeclaredFunction functionForName(String name,
-			AbstractTypeReference... parameterTypes) {
-		return null;
-	}
+	public BuiltinTypeSystem(DeclarationsContributor contributor) {
+		super(new DeclarationsContributor() {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.xpand3.analyzation.TypeSystem#setTypeSystemFactory(org.eclipse.xpand3.analyzation.TypeSystemFactory)
-	 */
-	public void setTypeSystemFactory(TypeSystemFactory tsf) {
-	}
+			public DeclaredFunction functionForName(String name,
+					AbstractTypeReference... parameterTypes) {
+				return null;
+			}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.xpand3.analyzation.TypeSystem#typeForName(java.lang.String)
-	 */
-	public DeclaredType typeForName(String name) {
-		return types.get(name);
+			public void setTypeSystemFactory(TypeSystemFactory ts) {
+			}
+
+			public DeclaredType typeForName(String name) {
+				return types.get(name);
+			}
+			
+		});
 	}
 
 }	

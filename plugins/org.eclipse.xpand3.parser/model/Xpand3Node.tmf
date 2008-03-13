@@ -2,7 +2,7 @@ grammar Xpand3Node;
 
 normalizable file  :
 	(imports+=nsImport)*
-	(declarations+=abstractDeclaration )*
+	(declarations+=abstractDeclaration)*
 	 EOF
 ;
 
@@ -58,7 +58,7 @@ abstract normalizable statement :
 ;
 	
 normalizable textSequence :
-	text+=text (text+=text)*
+	texts+=text (texts+=text)*
 ;
 
 text :
@@ -77,7 +77,7 @@ errorStatement :
 
 expandStatement :
   'EXPAND' name=simpleType ('(' paramList=parameterList ')')? (('FOR' forExpression=expression)
-  | ('FOREACH' forExpression=expression ('SEPARATOR' separator=expression)?))?
+  | ('FOREACH' forEachExpression=expression ('SEPARATOR' separator=expression)?))?
 ;
 
 expressionStmt  :
@@ -99,7 +99,7 @@ foreachStatement :
 ifStatement : 
      'IF' expression=expression
 		sequence=sequence 
-	 elseIf+=elseIfStatement*
+	 elseIfs+=elseIfStatement*
 	 else=elseStatement?
 	 'ENDIF'
 ;
@@ -132,8 +132,8 @@ protectStatement :
 // Xtend start
 
 check :
-	'context' type ('if' expression)? ('ERROR'|'WARNING') expression ':'
-		expression ';'	
+	'context' type=type ('if' ifExpression=expression)? ('ERROR'|'WARNING') message=expression ':'
+		constraint=expression ';'	
 ;
 
 around  :
@@ -150,7 +150,8 @@ pointcut  :
 ;
 
 extension  : // TODO create <identifier> <name< (...)
-	(private='private'|cached='cached'|create='create')* returnType=type? name=identifier '(' paramList=declaredParameterList? ')' ':'
+	(private='private'|cached='cached'|create='create')* 
+	returnType=type? name=identifier '(' paramList=declaredParameterList? ')' ':'
 		('JAVA' javaReturnType=javaType '.' javaName=identifier '('(javaType (',' javaType )*)? ')'|	
 			extendBody=expression )';'
 ;
@@ -169,7 +170,7 @@ normalizable test_expression:
  	expression EOF
 ;
 
-normalizable expression :
+abstract normalizable expression :
 	letExpression
 ;
 
@@ -180,64 +181,55 @@ normalizable letExpression  :
 
 normalizable castedExpression :
     =>('(' type ')' chainExpression)
-	'(' type ')' chainExpression 
+	'(' type=type ')' target=chainExpression 
 	| chainExpression 
 ;
 
 normalizable chainExpression  :
-	ifExpression  ( '->' ifExpression )*
+	first=ifExpression  ( '->' nexts+=ifExpression )*
 ;
 
 normalizable ifExpression  :
-	switchExpression ('?' expression ':' switchExpression )?
-|	'if' expression 'then' switchExpression ('else' switchExpression)? 
+	condition0=switchExpression ('?' then=expression ':' else=switchExpression )?
+|	'if' condition1=expression 'then' then=switchExpression ('else' else=switchExpression)? 
 ;
 
 normalizable switchExpression  :
-   'switch' ('(' orExpression ')')? '{'
-	casePart*
-   'default' ':' orExpression
+   'switch' ('(' expression=orExpression ')')? '{'
+	cases+=casePart*
+   'default' ':' default=orExpression
    '}'
 |  orExpression 
 ;
 
 casePart :
-	'case' expression ':' expression;	
+	'case' condition=expression ':' expression=expression;	
 
 normalizable orExpression :
-  	andExpression  ('||' andExpression )*	
+  	first=andExpression ('||' nexts+=andExpression )*	
 ;
 
 normalizable andExpression 	:
-	impliesExpression  ('&&' impliesExpression 	)*	
+	first=impliesExpression  ('&&' nexts+=impliesExpression)*	
 ;
 
 normalizable impliesExpression :
-	relationalExpression  ('implies' relationalExpression 	)*	
+	first=relationalExpression  ('implies' nexts+=relationalExpression)*	
 ;
 	
 normalizable relationalExpression :
-	leftOperand=additiveExpression 
-	( operator=relationalOperator rightOperand=additiveExpression )*
-;
-
-relationalOperator:	
-	'==' 
-	| '!=' 
-	| '>=' 
-	| '<=' 
-	| '>' 
-	| '<'
+	first=additiveExpression 
+	( ('==' | '!=' | '>=' | '<=' | '>' | '<' ) nexts+=additiveExpression )*
 ;
 
 normalizable additiveExpression :
-	left=multiplicativeExpression 
-   (('+'| '-') right=multiplicativeExpression )*
+	first=multiplicativeExpression 
+   (('+'| '-') nexts+=multiplicativeExpression )*
 ;
 
 normalizable multiplicativeExpression :
-	left=unaryExpression 
-	(('*' | '/') right=unaryExpression )*
+	first=unaryExpression 
+	(('*' | '/') nexts+=unaryExpression )*
 ;
 
 
@@ -268,20 +260,21 @@ stringLiteral :
 ;
 
 paranthesizedExpression :
-    '(' expression ')' 
+    '(' expression=expression ')' 
 ;
 
 globalVarExpression  :
     'GLOBALVAR' identifier ;
 
 featureCall  :
-    name=identifier '(' (paramList=parameterList)? ')' 
+	collectionExpression
+|   name=identifier '(' (paramList=parameterList)? ')' 
 |   type=type 	
-|   collectionExpression 
+   
 ;
 
 listLiteral  :
-	'{'(expression (',' expression)*)?'}'
+	'{'(elements+=expression (',' elements+=expression)*)?'}'
 ;
 
 constructorCall  :
@@ -303,9 +296,7 @@ numberLiteral  :
 ;
 
 collectionExpression  :
-  'typeSelect'
-  '(' type ')' 
-  
+  'typeSelect' '(' type=type ')' 
   |('collect'
   | 'select' 
   | 'selectFirst' 
@@ -313,8 +304,7 @@ collectionExpression  :
   | 'exists'
   | 'notExists'
   | 'sortBy' 
-  | 'forAll') '(' (identifier '|')? expression ')' 
- 
+  | 'forAll') '(' (variable=identifier '|')? expression=expression ')' 
 ;
 
 // helper
@@ -339,8 +329,8 @@ abstract normalizable type :
 ;
 	
 collectionType  : 
-  ( 'Collection' | 'List' | 'Set' ) 
-  ('[' simpleType ']' )?
+  ( collectionType='Collection' | collectionType='List' | collectionType='Set' ) 
+  ('[' elementType=simpleType ']' )?
 ;
 
 simpleType :

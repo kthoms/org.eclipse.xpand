@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionNode.java,v 1.4 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: DefinitionNode.java,v 1.5 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -28,6 +28,32 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface DefinitionNode extends CompositeNode {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' reference.
+	 * @see #setName(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getDefinitionNode_Name()
+	 * @model
+	 * @generated
+	 */
+	CompositeNode getName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionNode#getName <em>Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' reference.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(CompositeNode value);
+
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -79,32 +105,6 @@ public interface DefinitionNode extends CompositeNode {
 	 * @generated
 	 */
 	void setSequence(CompositeNode value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' reference.
-	 * @see #setName(CompositeNode)
-	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getDefinitionNode_Name()
-	 * @model
-	 * @generated
-	 */
-	CompositeNode getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionNode#getName <em>Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' reference.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(CompositeNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Param List</b></em>' reference.

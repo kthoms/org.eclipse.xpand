@@ -2,10 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CheckNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: CheckNodeValidator.java,v 1.3 2008/03/13 08:39:59 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 
+import org.eclipse.tmf.common.node.CompositeNode;
+import org.eclipse.tmf.common.node.LeafNode;
 
 /**
  * A sample validator interface for {@link org.eclipse.xpand3.internal.parser.xpand3node.CheckNode}.
@@ -16,4 +18,16 @@ package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 public interface CheckNodeValidator {
 	boolean validate();
 
+	boolean validateType(CompositeNode value);
+
+	boolean validateError(LeafNode value);
+	boolean validateMessage(CompositeNode value);
+
+	boolean validateIfExpression(CompositeNode value);
+
+	boolean validateWarning(LeafNode value);
+
+	boolean validateConstraint(CompositeNode value);
+
+	boolean validateCheckExpression(CompositeNode value);
 }

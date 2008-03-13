@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrExpressionNode.java,v 1.2 2008/03/07 09:39:40 jkohnlein Exp $
+ * $Id: OrExpressionNode.java,v 1.3 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.tmf.common.node.CompositeNode;
 
@@ -13,10 +15,59 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * A representation of the model object '<em><b>Or Expression Node</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.OrExpressionNode#getNexts <em>Nexts</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.OrExpressionNode#getFirst <em>First</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getOrExpressionNode()
  * @model
  * @generated
  */
 public interface OrExpressionNode extends CompositeNode {
+	/**
+	 * Returns the value of the '<em><b>Nexts</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nexts</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nexts</em>' reference list.
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getOrExpressionNode_Nexts()
+	 * @model
+	 * @generated
+	 */
+	EList<CompositeNode> getNexts();
+
+	/**
+	 * Returns the value of the '<em><b>First</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>First</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>First</em>' reference.
+	 * @see #setFirst(CompositeNode)
+	 * @see org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage#getOrExpressionNode_First()
+	 * @model
+	 * @generated
+	 */
+	CompositeNode getFirst();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xpand3.internal.parser.xpand3node.OrExpressionNode#getFirst <em>First</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>First</em>' reference.
+	 * @see #getFirst()
+	 * @generated
+	 */
+	void setFirst(CompositeNode value);
+
 } // OrExpressionNode

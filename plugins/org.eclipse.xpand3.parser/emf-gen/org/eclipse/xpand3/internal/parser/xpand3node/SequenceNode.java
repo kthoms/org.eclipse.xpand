@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceNode.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: SequenceNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
 
 /**
@@ -27,7 +28,6 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * @generated
  */
 public interface SequenceNode extends CompositeNode {
-
 	/**
 	 * Returns the value of the '<em><b>Text Sequences</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.tmf.common.node.CompositeNode}.
@@ -59,4 +59,5 @@ public interface SequenceNode extends CompositeNode {
 	 * @generated
 	 */
 	EList<CompositeNode> getStatements();
+
 } // SequenceNode

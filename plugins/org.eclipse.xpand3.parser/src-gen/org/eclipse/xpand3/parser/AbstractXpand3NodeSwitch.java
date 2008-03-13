@@ -57,8 +57,6 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 			return caseJavaTypeNode(node);
 		case Xpand3nodePackage.TEST_EXPRESSION_NODE:
 			return caseTest_expressionNode(node);
-		case Xpand3nodePackage.EXPRESSION_NODE:
-			return caseExpressionNode(node);
 		case Xpand3nodePackage.LET_EXPRESSION_NODE:
 			return caseLetExpressionNode(node);
 		case Xpand3nodePackage.CASTED_EXPRESSION_NODE:
@@ -79,8 +77,6 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 			return caseImpliesExpressionNode(node);
 		case Xpand3nodePackage.RELATIONAL_EXPRESSION_NODE:
 			return caseRelationalExpressionNode(node);
-		case Xpand3nodePackage.RELATIONAL_OPERATOR_NODE:
-			return caseRelationalOperatorNode(node);
 		case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE:
 			return caseAdditiveExpressionNode(node);
 		case Xpand3nodePackage.MULTIPLICATIVE_EXPRESSION_NODE:
@@ -126,7 +122,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseFileNode(Node node) throws E {
+	public final T caseFileNode(Node node) throws E {
 		if(!(node instanceof FileNode)) {
 			classCastError(node, "FileNode");
 		} 
@@ -138,7 +134,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseImportNode(Node node) throws E {
+	public final T caseImportNode(Node node) throws E {
 		if(!(node instanceof ImportNode)) {
 			classCastError(node, "ImportNode");
 		} 
@@ -150,7 +146,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseExtensionImportNode(Node node) throws E {
+	public final T caseExtensionImportNode(Node node) throws E {
 		if(!(node instanceof ExtensionImportNode)) {
 			classCastError(node, "ExtensionImportNode");
 		} 
@@ -162,7 +158,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseDefinitionNode(Node node) throws E {
+	public final T caseDefinitionNode(Node node) throws E {
 		if(!(node instanceof DefinitionNode)) {
 			classCastError(node, "DefinitionNode");
 		} 
@@ -174,7 +170,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseDefinitionAroundNode(Node node) throws E {
+	public final T caseDefinitionAroundNode(Node node) throws E {
 		if(!(node instanceof DefinitionAroundNode)) {
 			classCastError(node, "DefinitionAroundNode");
 		} 
@@ -186,7 +182,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseSequenceNode(Node node) throws E {
+	public final T caseSequenceNode(Node node) throws E {
 		if(!(node instanceof SequenceNode)) {
 			classCastError(node, "SequenceNode");
 		} 
@@ -198,7 +194,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseTextSequenceNode(Node node) throws E {
+	public final T caseTextSequenceNode(Node node) throws E {
 		if(!(node instanceof TextSequenceNode)) {
 			classCastError(node, "TextSequenceNode");
 		} 
@@ -210,7 +206,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseTextNode(Node node) throws E {
+	public final T caseTextNode(Node node) throws E {
 		if(!(node instanceof TextNode)) {
 			classCastError(node, "TextNode");
 		} 
@@ -222,7 +218,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseErrorStatementNode(Node node) throws E {
+	public final T caseErrorStatementNode(Node node) throws E {
 		if(!(node instanceof ErrorStatementNode)) {
 			classCastError(node, "ErrorStatementNode");
 		} 
@@ -234,7 +230,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseExpandStatementNode(Node node) throws E {
+	public final T caseExpandStatementNode(Node node) throws E {
 		if(!(node instanceof ExpandStatementNode)) {
 			classCastError(node, "ExpandStatementNode");
 		} 
@@ -246,7 +242,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseExpressionStmtNode(Node node) throws E {
+	public final T caseExpressionStmtNode(Node node) throws E {
 		if(!(node instanceof ExpressionStmtNode)) {
 			classCastError(node, "ExpressionStmtNode");
 		} 
@@ -258,7 +254,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseFileStatementNode(Node node) throws E {
+	public final T caseFileStatementNode(Node node) throws E {
 		if(!(node instanceof FileStatementNode)) {
 			classCastError(node, "FileStatementNode");
 		} 
@@ -270,7 +266,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseForeachStatementNode(Node node) throws E {
+	public final T caseForeachStatementNode(Node node) throws E {
 		if(!(node instanceof ForeachStatementNode)) {
 			classCastError(node, "ForeachStatementNode");
 		} 
@@ -282,7 +278,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseIfStatementNode(Node node) throws E {
+	public final T caseIfStatementNode(Node node) throws E {
 		if(!(node instanceof IfStatementNode)) {
 			classCastError(node, "IfStatementNode");
 		} 
@@ -294,7 +290,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseElseIfStatementNode(Node node) throws E {
+	public final T caseElseIfStatementNode(Node node) throws E {
 		if(!(node instanceof ElseIfStatementNode)) {
 			classCastError(node, "ElseIfStatementNode");
 		} 
@@ -306,7 +302,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseElseStatementNode(Node node) throws E {
+	public final T caseElseStatementNode(Node node) throws E {
 		if(!(node instanceof ElseStatementNode)) {
 			classCastError(node, "ElseStatementNode");
 		} 
@@ -318,7 +314,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseLetStatementNode(Node node) throws E {
+	public final T caseLetStatementNode(Node node) throws E {
 		if(!(node instanceof LetStatementNode)) {
 			classCastError(node, "LetStatementNode");
 		} 
@@ -330,7 +326,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseProtectStatementNode(Node node) throws E {
+	public final T caseProtectStatementNode(Node node) throws E {
 		if(!(node instanceof ProtectStatementNode)) {
 			classCastError(node, "ProtectStatementNode");
 		} 
@@ -342,7 +338,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseCheckNode(Node node) throws E {
+	public final T caseCheckNode(Node node) throws E {
 		if(!(node instanceof CheckNode)) {
 			classCastError(node, "CheckNode");
 		} 
@@ -354,7 +350,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseAroundNode(Node node) throws E {
+	public final T caseAroundNode(Node node) throws E {
 		if(!(node instanceof AroundNode)) {
 			classCastError(node, "AroundNode");
 		} 
@@ -366,7 +362,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T casePointcutNode(Node node) throws E {
+	public final T casePointcutNode(Node node) throws E {
 		if(!(node instanceof PointcutNode)) {
 			classCastError(node, "PointcutNode");
 		} 
@@ -378,7 +374,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseExtensionNode(Node node) throws E {
+	public final T caseExtensionNode(Node node) throws E {
 		if(!(node instanceof ExtensionNode)) {
 			classCastError(node, "ExtensionNode");
 		} 
@@ -390,7 +386,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseJavaTypeNode(Node node) throws E {
+	public final T caseJavaTypeNode(Node node) throws E {
 		if(!(node instanceof JavaTypeNode)) {
 			classCastError(node, "JavaTypeNode");
 		} 
@@ -402,7 +398,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseTest_expressionNode(Node node) throws E {
+	public final T caseTest_expressionNode(Node node) throws E {
 		if(!(node instanceof Test_expressionNode)) {
 			classCastError(node, "Test_expressionNode");
 		} 
@@ -414,19 +410,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseExpressionNode(Node node) throws E {
-		if(!(node instanceof ExpressionNode)) {
-			classCastError(node, "ExpressionNode");
-		} 
-		return caseExpressionNode((ExpressionNode) node);
-	}
-
-	public T caseExpressionNode(ExpressionNode node) throws E {
-		error("Not implemented yet", node);
-		return null;
-	}
-	
-	public T caseLetExpressionNode(Node node) throws E {
+	public final T caseLetExpressionNode(Node node) throws E {
 		if(!(node instanceof LetExpressionNode)) {
 			classCastError(node, "LetExpressionNode");
 		} 
@@ -438,7 +422,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseCastedExpressionNode(Node node) throws E {
+	public final T caseCastedExpressionNode(Node node) throws E {
 		if(!(node instanceof CastedExpressionNode)) {
 			classCastError(node, "CastedExpressionNode");
 		} 
@@ -450,7 +434,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseChainExpressionNode(Node node) throws E {
+	public final T caseChainExpressionNode(Node node) throws E {
 		if(!(node instanceof ChainExpressionNode)) {
 			classCastError(node, "ChainExpressionNode");
 		} 
@@ -462,7 +446,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseIfExpressionNode(Node node) throws E {
+	public final T caseIfExpressionNode(Node node) throws E {
 		if(!(node instanceof IfExpressionNode)) {
 			classCastError(node, "IfExpressionNode");
 		} 
@@ -474,7 +458,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseSwitchExpressionNode(Node node) throws E {
+	public final T caseSwitchExpressionNode(Node node) throws E {
 		if(!(node instanceof SwitchExpressionNode)) {
 			classCastError(node, "SwitchExpressionNode");
 		} 
@@ -486,7 +470,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseCasePartNode(Node node) throws E {
+	public final T caseCasePartNode(Node node) throws E {
 		if(!(node instanceof CasePartNode)) {
 			classCastError(node, "CasePartNode");
 		} 
@@ -498,7 +482,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseOrExpressionNode(Node node) throws E {
+	public final T caseOrExpressionNode(Node node) throws E {
 		if(!(node instanceof OrExpressionNode)) {
 			classCastError(node, "OrExpressionNode");
 		} 
@@ -510,7 +494,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseAndExpressionNode(Node node) throws E {
+	public final T caseAndExpressionNode(Node node) throws E {
 		if(!(node instanceof AndExpressionNode)) {
 			classCastError(node, "AndExpressionNode");
 		} 
@@ -522,7 +506,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseImpliesExpressionNode(Node node) throws E {
+	public final T caseImpliesExpressionNode(Node node) throws E {
 		if(!(node instanceof ImpliesExpressionNode)) {
 			classCastError(node, "ImpliesExpressionNode");
 		} 
@@ -534,7 +518,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseRelationalExpressionNode(Node node) throws E {
+	public final T caseRelationalExpressionNode(Node node) throws E {
 		if(!(node instanceof RelationalExpressionNode)) {
 			classCastError(node, "RelationalExpressionNode");
 		} 
@@ -546,19 +530,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseRelationalOperatorNode(Node node) throws E {
-		if(!(node instanceof RelationalOperatorNode)) {
-			classCastError(node, "RelationalOperatorNode");
-		} 
-		return caseRelationalOperatorNode((RelationalOperatorNode) node);
-	}
-
-	public T caseRelationalOperatorNode(RelationalOperatorNode node) throws E {
-		error("Not implemented yet", node);
-		return null;
-	}
-	
-	public T caseAdditiveExpressionNode(Node node) throws E {
+	public final T caseAdditiveExpressionNode(Node node) throws E {
 		if(!(node instanceof AdditiveExpressionNode)) {
 			classCastError(node, "AdditiveExpressionNode");
 		} 
@@ -570,7 +542,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseMultiplicativeExpressionNode(Node node) throws E {
+	public final T caseMultiplicativeExpressionNode(Node node) throws E {
 		if(!(node instanceof MultiplicativeExpressionNode)) {
 			classCastError(node, "MultiplicativeExpressionNode");
 		} 
@@ -582,7 +554,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseUnaryExpressionNode(Node node) throws E {
+	public final T caseUnaryExpressionNode(Node node) throws E {
 		if(!(node instanceof UnaryExpressionNode)) {
 			classCastError(node, "UnaryExpressionNode");
 		} 
@@ -594,7 +566,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseInfixExpressionNode(Node node) throws E {
+	public final T caseInfixExpressionNode(Node node) throws E {
 		if(!(node instanceof InfixExpressionNode)) {
 			classCastError(node, "InfixExpressionNode");
 		} 
@@ -606,7 +578,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseStringLiteralNode(Node node) throws E {
+	public final T caseStringLiteralNode(Node node) throws E {
 		if(!(node instanceof StringLiteralNode)) {
 			classCastError(node, "StringLiteralNode");
 		} 
@@ -618,7 +590,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseParanthesizedExpressionNode(Node node) throws E {
+	public final T caseParanthesizedExpressionNode(Node node) throws E {
 		if(!(node instanceof ParanthesizedExpressionNode)) {
 			classCastError(node, "ParanthesizedExpressionNode");
 		} 
@@ -630,7 +602,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseGlobalVarExpressionNode(Node node) throws E {
+	public final T caseGlobalVarExpressionNode(Node node) throws E {
 		if(!(node instanceof GlobalVarExpressionNode)) {
 			classCastError(node, "GlobalVarExpressionNode");
 		} 
@@ -642,7 +614,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseFeatureCallNode(Node node) throws E {
+	public final T caseFeatureCallNode(Node node) throws E {
 		if(!(node instanceof FeatureCallNode)) {
 			classCastError(node, "FeatureCallNode");
 		} 
@@ -654,7 +626,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseListLiteralNode(Node node) throws E {
+	public final T caseListLiteralNode(Node node) throws E {
 		if(!(node instanceof ListLiteralNode)) {
 			classCastError(node, "ListLiteralNode");
 		} 
@@ -666,7 +638,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseConstructorCallNode(Node node) throws E {
+	public final T caseConstructorCallNode(Node node) throws E {
 		if(!(node instanceof ConstructorCallNode)) {
 			classCastError(node, "ConstructorCallNode");
 		} 
@@ -678,7 +650,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseBooleanLiteralNode(Node node) throws E {
+	public final T caseBooleanLiteralNode(Node node) throws E {
 		if(!(node instanceof BooleanLiteralNode)) {
 			classCastError(node, "BooleanLiteralNode");
 		} 
@@ -690,7 +662,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseNullLiteralNode(Node node) throws E {
+	public final T caseNullLiteralNode(Node node) throws E {
 		if(!(node instanceof NullLiteralNode)) {
 			classCastError(node, "NullLiteralNode");
 		} 
@@ -702,7 +674,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseNumberLiteralNode(Node node) throws E {
+	public final T caseNumberLiteralNode(Node node) throws E {
 		if(!(node instanceof NumberLiteralNode)) {
 			classCastError(node, "NumberLiteralNode");
 		} 
@@ -714,7 +686,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseCollectionExpressionNode(Node node) throws E {
+	public final T caseCollectionExpressionNode(Node node) throws E {
 		if(!(node instanceof CollectionExpressionNode)) {
 			classCastError(node, "CollectionExpressionNode");
 		} 
@@ -726,7 +698,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseDeclaredParameterListNode(Node node) throws E {
+	public final T caseDeclaredParameterListNode(Node node) throws E {
 		if(!(node instanceof DeclaredParameterListNode)) {
 			classCastError(node, "DeclaredParameterListNode");
 		} 
@@ -738,7 +710,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseDeclaredParameterNode(Node node) throws E {
+	public final T caseDeclaredParameterNode(Node node) throws E {
 		if(!(node instanceof DeclaredParameterNode)) {
 			classCastError(node, "DeclaredParameterNode");
 		} 
@@ -750,7 +722,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseParameterListNode(Node node) throws E {
+	public final T caseParameterListNode(Node node) throws E {
 		if(!(node instanceof ParameterListNode)) {
 			classCastError(node, "ParameterListNode");
 		} 
@@ -762,7 +734,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseCollectionTypeNode(Node node) throws E {
+	public final T caseCollectionTypeNode(Node node) throws E {
 		if(!(node instanceof CollectionTypeNode)) {
 			classCastError(node, "CollectionTypeNode");
 		} 
@@ -774,7 +746,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseSimpleTypeNode(Node node) throws E {
+	public final T caseSimpleTypeNode(Node node) throws E {
 		if(!(node instanceof SimpleTypeNode)) {
 			classCastError(node, "SimpleTypeNode");
 		} 
@@ -786,7 +758,7 @@ public abstract class AbstractXpand3NodeSwitch<T,E extends Exception> {
 		return null;
 	}
 	
-	public T caseIdentifierNode(Node node) throws E {
+	public final T caseIdentifierNode(Node node) throws E {
 		if(!(node instanceof IdentifierNode)) {
 			classCastError(node, "IdentifierNode");
 		} 

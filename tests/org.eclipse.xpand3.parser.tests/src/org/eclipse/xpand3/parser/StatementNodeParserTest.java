@@ -19,7 +19,7 @@ import org.eclipse.tmf.common.node.Node;
 /**
  * @author Jan Kšhnlein
  */
-public class StatementParserTest extends AbstractXpand3NodeParserTest {
+public class StatementNodeParserTest extends AbstractXpand3NodeParserTest {
 	private CompositeNode parse(String s) throws Exception {
 		System.out.println(s);
 		ANTLRStringStream stream = new ANTLRStringStream(s);
@@ -194,7 +194,7 @@ public class StatementParserTest extends AbstractXpand3NodeParserTest {
 		CompositeNode fs = checkChildIsRule(s, 1, "fileStatement", 5);
 		checkChildIsToken(fs, 0, "FILE");
 		checkChildIsStringLiteral(fs, 1, "\"test.txt\"");
-		checkChildIsIdentifier(fs, 2, "ONCE");
+		checkChildIsToken(fs, 2, "ONCE");
 		checkChildIsSequenceText(fs, 3, "", 1);
 		checkChildIsToken(fs, 4, "ENDFILE");
 		checkChildIsText(s, 2, "");

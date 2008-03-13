@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InfixExpressionNode.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: InfixExpressionNode.java,v 1.6 2008/03/13 08:40:00 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 

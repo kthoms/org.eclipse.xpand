@@ -2,16 +2,20 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceNodeImpl.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: SequenceNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.SequenceNode;
@@ -41,6 +45,7 @@ public class SequenceNodeImpl extends CompositeNodeImpl implements SequenceNode 
 	 * @ordered
 	 */
 	protected EList<CompositeNode> textSequences;
+
 	/**
 	 * The cached value of the '{@link #getStatements() <em>Statements</em>}' reference list.
 	 * <!-- begin-user-doc -->

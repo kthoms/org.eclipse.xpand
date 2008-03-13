@@ -194,6 +194,7 @@ expr <#
 #>
 expected
 	Definition {
+		name=Identifier(value="test")
 		body=[
 			TextStatement,
 			IfStatement {
@@ -223,3 +224,83 @@ expected
 		]
 	} 
  
+ 
+ test testAroundStatement
+ expr <# «AROUND test::* FOR ecore::EClass»«ERROR name + "x"»«ENDAROUND» #>
+ expected 
+ 	DefinitionAspect {
+ 		pointcut=Identifier(value="test::*")
+ 		params=[
+ 			DeclaredParameter {
+				name=Identifier(value='this')
+				type=Identifier(value='ecore::EClass')
+			}
+		]
+		body=[
+			TextStatement(value="»«"),
+			ErrorStatement {
+				message=BinaryOperation {
+					left=FeatureCall
+					right=StringLiteral
+				}
+			},
+			TextStatement(value="»«")
+		]
+	}
+	
+test testExpand
+expr <# 
+«DEFINE name FOR x»
+ «EXPAND name0»«EXPAND name1 FOR a»«EXPAND name2(param) FOREACH x SEPARATOR "y"»
+«ENDDEFINE» 
+#>
+expected
+	Definition {
+		body=[
+			TextStatement,
+			ExpandStatement(foreach="false") {
+				definition=Identifier(value="name0")
+				parameters=null
+				target=FeatureCall {
+					name=Identifier(value="this")
+				}
+			},
+			TextStatement,
+			ExpandStatement(foreach="false") {
+				definition=Identifier(value="name1")
+				parameters=null
+				target=FeatureCall {
+					name=Identifier(value="a")
+				}
+			},
+			TextStatement,
+			ExpandStatement(foreach="true") {
+				definition=Identifier(value="name2")
+				parameters=[
+					FeatureCall {
+						name=Identifier(value="param")
+					}
+				]
+				target=FeatureCall {
+					name=Identifier(value="x")
+				}
+				separator=StringLiteral {
+					literalValue=Identifier(value='"y"')
+				}
+			},
+			TextStatement
+		]
+	}
+
+
+test textCheck
+expr <#
+	context EObject if name=="jan" ERROR "XXX" + name:
+		x!=17;
+#>
+expected
+	Check(errorSeverity="true") {
+		guard=BinaryOperation
+		msg=BinaryOperation
+		constraint=BinaryOperation
+	}			

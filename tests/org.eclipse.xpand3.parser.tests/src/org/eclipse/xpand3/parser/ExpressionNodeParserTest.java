@@ -5,13 +5,13 @@ import org.antlr.runtime.CommonTokenStream;
 import org.eclipse.tmf.common.node.CompositeNode;
 import org.eclipse.tmf.common.node.Node;
 
-public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
+public class ExpressionNodeParserTest extends AbstractXpand3NodeParserTest {
 
 	public final void testSimple() throws Exception {
 		CompositeNode parse = parse("true == null");
 		CompositeNode cn = checkIsRule(parse, "relationalExpression", 3);
 		checkChildIsTrueLiteral(cn, 0);
-		checkChildIsRelationalOperator(cn, 1, "==");
+		checkChildIsToken(cn, 1, "==");
 		CompositeNode nl = checkChildIsRule(cn, 2, "nullLiteral", 1);
 		checkChildIsToken(nl, 0, "null");
 	}
@@ -49,7 +49,7 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 		checkChildIsFeatureCall(ie0, 0, "client");
 		checkChildIsToken(ie0, 1, ".");
 		checkChildIsFeatureCall(ie0, 2, "sIdent1");
-		checkChildIsRelationalOperator(re, 1, "!=");
+		checkChildIsToken(re, 1, "!=");
 		CompositeNode nl = checkChildIsRule(re, 2, "nullLiteral", 1);
 		checkChildIsToken(nl, 0, "null");
 		checkChildIsToken(pe, 2, ")");
@@ -188,12 +188,13 @@ public class Xpand3MigratedNodeParserTest extends AbstractXpand3NodeParserTest {
 	}
 
 	private CompositeNode parse(String s) throws Exception {
+		System.out.println(s);
 		ANTLRStringStream stream = new ANTLRStringStream(s);
 		Xpand3NodeLexer lexer = new Xpand3NodeLexer(stream);
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		Xpand3NodeParser xpand3NodeParser = new Xpand3NodeParser(tokenStream);
 		Node rootNode = xpand3NodeParser.r_test_expression();
-		System.out.println(rootNode.toDebugString());
+		// System.out.println(rootNode.toDebugString());
 		return (CompositeNode) rootNode;
 	}
 }

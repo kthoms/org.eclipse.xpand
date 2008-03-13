@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AroundNodeValidator.java,v 1.2 2008/03/07 09:39:39 jkohnlein Exp $
+ * $Id: AroundNodeValidator.java,v 1.3 2008/03/13 08:39:59 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.validation;
 

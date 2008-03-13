@@ -2,16 +2,25 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdditiveExpressionNodeImpl.java,v 1.3 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: AdditiveExpressionNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
+import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.AdditiveExpressionNode;
@@ -24,8 +33,8 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl#getNexts <em>Nexts</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.AdditiveExpressionNodeImpl#getFirst <em>First</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,23 +42,24 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  */
 public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements AdditiveExpressionNode {
 	/**
-	 * The cached value of the '{@link #getLeft() <em>Left</em>}' reference.
+	 * The cached value of the '{@link #getNexts() <em>Nexts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeft()
+	 * @see #getNexts()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode left;
+	protected EList<CompositeNode> nexts;
+
 	/**
-	 * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
+	 * The cached value of the '{@link #getFirst() <em>First</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRight()
+	 * @see #getFirst()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode right;
+	protected CompositeNode first;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,16 +85,28 @@ public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements Add
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getRight() {
-		if (right != null && right.eIsProxy()) {
-			InternalEObject oldRight = (InternalEObject)right;
-			right = (CompositeNode)eResolveProxy(oldRight);
-			if (right != oldRight) {
+	public EList<CompositeNode> getNexts() {
+		if (nexts == null) {
+			nexts = new EObjectResolvingEList<CompositeNode>(CompositeNode.class, this, Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__NEXTS);
+		}
+		return nexts;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompositeNode getFirst() {
+		if (first != null && first.eIsProxy()) {
+			InternalEObject oldFirst = (InternalEObject)first;
+			first = (CompositeNode)eResolveProxy(oldFirst);
+			if (first != oldFirst) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__RIGHT, oldRight, right));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__FIRST, oldFirst, first));
 			}
 		}
-		return right;
+		return first;
 	}
 
 	/**
@@ -92,8 +114,8 @@ public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements Add
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetRight() {
-		return right;
+	public CompositeNode basicGetFirst() {
+		return first;
 	}
 
 	/**
@@ -101,49 +123,11 @@ public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements Add
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight(CompositeNode newRight) {
-		CompositeNode oldRight = right;
-		right = newRight;
+	public void setFirst(CompositeNode newFirst) {
+		CompositeNode oldFirst = first;
+		first = newFirst;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__RIGHT, oldRight, right));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode getLeft() {
-		if (left != null && left.eIsProxy()) {
-			InternalEObject oldLeft = (InternalEObject)left;
-			left = (CompositeNode)eResolveProxy(oldLeft);
-			if (left != oldLeft) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__LEFT, oldLeft, left));
-			}
-		}
-		return left;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompositeNode basicGetLeft() {
-		return left;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLeft(CompositeNode newLeft) {
-		CompositeNode oldLeft = left;
-		left = newLeft;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__LEFT, oldLeft, left));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__FIRST, oldFirst, first));
 	}
 
 	/**
@@ -154,12 +138,11 @@ public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements Add
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__LEFT:
-				if (resolve) return getLeft();
-				return basicGetLeft();
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__RIGHT:
-				if (resolve) return getRight();
-				return basicGetRight();
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__NEXTS:
+				return getNexts();
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__FIRST:
+				if (resolve) return getFirst();
+				return basicGetFirst();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,14 +152,16 @@ public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements Add
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__LEFT:
-				setLeft((CompositeNode)newValue);
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__NEXTS:
+				getNexts().clear();
+				getNexts().addAll((Collection<? extends CompositeNode>)newValue);
 				return;
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__RIGHT:
-				setRight((CompositeNode)newValue);
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__FIRST:
+				setFirst((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -190,11 +175,11 @@ public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements Add
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__LEFT:
-				setLeft((CompositeNode)null);
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__NEXTS:
+				getNexts().clear();
 				return;
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__RIGHT:
-				setRight((CompositeNode)null);
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__FIRST:
+				setFirst((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -208,10 +193,10 @@ public class AdditiveExpressionNodeImpl extends CompositeNodeImpl implements Add
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__LEFT:
-				return left != null;
-			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__RIGHT:
-				return right != null;
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__NEXTS:
+				return nexts != null && !nexts.isEmpty();
+			case Xpand3nodePackage.ADDITIVE_EXPRESSION_NODE__FIRST:
+				return first != null;
 		}
 		return super.eIsSet(featureID);
 	}

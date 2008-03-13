@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodePackageImpl.java,v 1.5 2008/03/12 09:54:12 jkohnlein Exp $
+ * $Id: Xpand3nodePackageImpl.java,v 1.6 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -33,7 +33,6 @@ import org.eclipse.xpand3.internal.parser.xpand3node.ElseIfStatementNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ElseStatementNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ErrorStatementNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode;
-import org.eclipse.xpand3.internal.parser.xpand3node.ExpressionNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ExpressionStmtNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ExtensionImportNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode;
@@ -53,7 +52,6 @@ import org.eclipse.xpand3.internal.parser.xpand3node.LetExpressionNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.LetStatementNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ListLiteralNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.MultiplicativeExpressionNode;
-import org.eclipse.xpand3.internal.parser.xpand3node.NsImportNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.NullLiteralNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.NumberLiteralNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.OrExpressionNode;
@@ -62,7 +60,6 @@ import org.eclipse.xpand3.internal.parser.xpand3node.ParanthesizedExpressionNode
 import org.eclipse.xpand3.internal.parser.xpand3node.PointcutNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.ProtectStatementNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.RelationalExpressionNode;
-import org.eclipse.xpand3.internal.parser.xpand3node.RelationalOperatorNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.SequenceNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.SimpleTypeNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.StringLiteralNode;
@@ -71,7 +68,6 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Test_expressionNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.TextNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.TextSequenceNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.UnaryExpressionNode;
-import org.eclipse.xpand3.internal.parser.xpand3node.XNode;
 import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodeFactory;
 import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
 
@@ -255,13 +251,6 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass expressionNodeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass letExpressionNodeEClass = null;
 
 	/**
@@ -326,13 +315,6 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * @generated
 	 */
 	private EClass relationalExpressionNodeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass relationalOperatorNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -640,6 +622,15 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getDefinitionNode_Name() {
+		return (EReference)definitionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getDefinitionNode_Type() {
 		return (EReference)definitionNodeEClass.getEStructuralFeatures().get(1);
 	}
@@ -651,15 +642,6 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 */
 	public EReference getDefinitionNode_Sequence() {
 		return (EReference)definitionNodeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDefinitionNode_Name() {
-		return (EReference)definitionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -757,7 +739,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTextSequenceNode_Text() {
+	public EReference getTextSequenceNode_Texts() {
 		return (EReference)textSequenceNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -820,7 +802,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpandStatementNode_ForExpression() {
+	public EReference getExpandStatementNode_ForEachExpression() {
 		return (EReference)expandStatementNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -829,8 +811,17 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpandStatementNode_Name() {
+	public EReference getExpandStatementNode_ForExpression() {
 		return (EReference)expandStatementNodeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpandStatementNode_Name() {
+		return (EReference)expandStatementNodeEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -865,8 +856,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFileStatementNode_NameExpression() {
-		return (EReference)fileStatementNodeEClass.getEStructuralFeatures().get(2);
+	public EReference getFileStatementNode_Sequence() {
+		return (EReference)fileStatementNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -883,8 +874,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFileStatementNode_Sequence() {
-		return (EReference)fileStatementNodeEClass.getEStructuralFeatures().get(0);
+	public EReference getFileStatementNode_NameExpression() {
+		return (EReference)fileStatementNodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -910,26 +901,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForeachStatementNode_SeparatorExpression() {
-		return (EReference)foreachStatementNodeEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getForeachStatementNode_Identifier() {
 		return (EReference)foreachStatementNodeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getForeachStatementNode_ForExpression() {
-		return (EReference)foreachStatementNodeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -946,6 +919,24 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getForeachStatementNode_ForExpression() {
+		return (EReference)foreachStatementNodeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getForeachStatementNode_SeparatorExpression() {
+		return (EReference)foreachStatementNodeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfStatementNode() {
 		return ifStatementNodeEClass;
 	}
@@ -955,8 +946,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfStatementNode_Else() {
-		return (EReference)ifStatementNodeEClass.getEStructuralFeatures().get(2);
+	public EReference getIfStatementNode_ElseIfs() {
+		return (EReference)ifStatementNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -973,8 +964,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfStatementNode_ElseIf() {
-		return (EReference)ifStatementNodeEClass.getEStructuralFeatures().get(0);
+	public EReference getIfStatementNode_Else() {
+		return (EReference)ifStatementNodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1081,8 +1072,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtectStatementNode_Cstart() {
-		return (EReference)protectStatementNodeEClass.getEStructuralFeatures().get(3);
+	public EReference getProtectStatementNode_Sequence() {
+		return (EReference)protectStatementNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1108,8 +1099,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProtectStatementNode_Sequence() {
-		return (EReference)protectStatementNodeEClass.getEStructuralFeatures().get(0);
+	public EReference getProtectStatementNode_Cstart() {
+		return (EReference)protectStatementNodeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1119,6 +1110,60 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 */
 	public EClass getCheckNode() {
 		return checkNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckNode_Type() {
+		return (EReference)checkNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckNode_Error() {
+		return (EReference)checkNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckNode_Message() {
+		return (EReference)checkNodeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckNode_IfExpression() {
+		return (EReference)checkNodeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckNode_Warning() {
+		return (EReference)checkNodeEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCheckNode_Constraint() {
+		return (EReference)checkNodeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1153,8 +1198,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtensionNode_Create() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(4);
+	public EReference getExtensionNode_ParamList() {
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1171,26 +1216,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtensionNode_ParamList() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExtensionNode_ExtendBody() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExtensionNode_Cached() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(7);
+	public EReference getExtensionNode_ReturnType() {
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1207,17 +1234,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExtensionNode_JavaName() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExtensionNode_ReturnType() {
-		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(2);
+	public EReference getExtensionNode_Create() {
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1227,6 +1245,33 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 */
 	public EReference getExtensionNode_Name() {
 		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtensionNode_JavaName() {
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtensionNode_Cached() {
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtensionNode_ExtendBody() {
+		return (EReference)extensionNodeEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1252,15 +1297,6 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpressionNode() {
-		return expressionNodeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getLetExpressionNode() {
 		return letExpressionNodeEClass;
 	}
@@ -1279,8 +1315,44 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCastedExpressionNode_Target() {
+		return (EReference)castedExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCastedExpressionNode_Type() {
+		return (EReference)castedExpressionNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getChainExpressionNode() {
 		return chainExpressionNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getChainExpressionNode_Nexts() {
+		return (EReference)chainExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getChainExpressionNode_First() {
+		return (EReference)chainExpressionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1297,8 +1369,71 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfExpressionNode_Then() {
+		return (EReference)ifExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfExpressionNode_Else() {
+		return (EReference)ifExpressionNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfExpressionNode_Condition0() {
+		return (EReference)ifExpressionNodeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIfExpressionNode_Condition1() {
+		return (EReference)ifExpressionNodeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSwitchExpressionNode() {
 		return switchExpressionNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSwitchExpressionNode_Default() {
+		return (EReference)switchExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSwitchExpressionNode_Expression() {
+		return (EReference)switchExpressionNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSwitchExpressionNode_Cases() {
+		return (EReference)switchExpressionNodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1315,8 +1450,44 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCasePartNode_Condition() {
+		return (EReference)casePartNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCasePartNode_Expression() {
+		return (EReference)casePartNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOrExpressionNode() {
 		return orExpressionNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrExpressionNode_Nexts() {
+		return (EReference)orExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrExpressionNode_First() {
+		return (EReference)orExpressionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1333,8 +1504,44 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAndExpressionNode_First() {
+		return (EReference)andExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAndExpressionNode_Nexts() {
+		return (EReference)andExpressionNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getImpliesExpressionNode() {
 		return impliesExpressionNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImpliesExpressionNode_Nexts() {
+		return (EReference)impliesExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImpliesExpressionNode_First() {
+		return (EReference)impliesExpressionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1351,7 +1558,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelationalExpressionNode_Operator() {
+	public EReference getRelationalExpressionNode_Nexts() {
 		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1360,26 +1567,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRelationalExpressionNode_RightOperand() {
-		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRelationalExpressionNode_LeftOperand() {
+	public EReference getRelationalExpressionNode_First() {
 		return (EReference)relationalExpressionNodeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRelationalOperatorNode() {
-		return relationalOperatorNodeEClass;
 	}
 
 	/**
@@ -1396,8 +1585,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAdditiveExpressionNode_Right() {
-		return (EReference)additiveExpressionNodeEClass.getEStructuralFeatures().get(1);
+	public EReference getAdditiveExpressionNode_Nexts() {
+		return (EReference)additiveExpressionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1405,8 +1594,8 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAdditiveExpressionNode_Left() {
-		return (EReference)additiveExpressionNodeEClass.getEStructuralFeatures().get(0);
+	public EReference getAdditiveExpressionNode_First() {
+		return (EReference)additiveExpressionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1423,7 +1612,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiplicativeExpressionNode_Left() {
+	public EReference getMultiplicativeExpressionNode_Nexts() {
 		return (EReference)multiplicativeExpressionNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1432,7 +1621,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMultiplicativeExpressionNode_Right() {
+	public EReference getMultiplicativeExpressionNode_First() {
 		return (EReference)multiplicativeExpressionNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1504,6 +1693,15 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getParanthesizedExpressionNode_Expression() {
+		return (EReference)paranthesizedExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGlobalVarExpressionNode() {
 		return globalVarExpressionNodeEClass;
 	}
@@ -1522,16 +1720,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureCallNode_Type() {
-		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFeatureCallNode_Name() {
+	public EReference getFeatureCallNode_ParamList() {
 		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1540,7 +1729,16 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFeatureCallNode_ParamList() {
+	public EReference getFeatureCallNode_Name() {
+		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeatureCallNode_Type() {
 		return (EReference)featureCallNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1551,6 +1749,15 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 */
 	public EClass getListLiteralNode() {
 		return listLiteralNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListLiteralNode_Elements() {
+		return (EReference)listLiteralNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1603,6 +1810,33 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCollectionExpressionNode_Variable() {
+		return (EReference)collectionExpressionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCollectionExpressionNode_Expression() {
+		return (EReference)collectionExpressionNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCollectionExpressionNode_Type() {
+		return (EReference)collectionExpressionNodeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDeclaredParameterListNode() {
 		return declaredParameterListNodeEClass;
 	}
@@ -1630,7 +1864,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeclaredParameterNode_Name() {
+	public EReference getDeclaredParameterNode_Ptype() {
 		return (EReference)declaredParameterNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1639,7 +1873,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeclaredParameterNode_Ptype() {
+	public EReference getDeclaredParameterNode_Name() {
 		return (EReference)declaredParameterNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1668,6 +1902,24 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 	 */
 	public EClass getCollectionTypeNode() {
 		return collectionTypeNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCollectionTypeNode_CollectionType() {
+		return (EReference)collectionTypeNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCollectionTypeNode_ElementType() {
+		return (EReference)collectionTypeNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1754,7 +2006,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		createEReference(sequenceNodeEClass, SEQUENCE_NODE__STATEMENTS);
 
 		textSequenceNodeEClass = createEClass(TEXT_SEQUENCE_NODE);
-		createEReference(textSequenceNodeEClass, TEXT_SEQUENCE_NODE__TEXT);
+		createEReference(textSequenceNodeEClass, TEXT_SEQUENCE_NODE__TEXTS);
 
 		textNodeEClass = createEClass(TEXT_NODE);
 
@@ -1764,6 +2016,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		expandStatementNodeEClass = createEClass(EXPAND_STATEMENT_NODE);
 		createEReference(expandStatementNodeEClass, EXPAND_STATEMENT_NODE__SEPARATOR);
 		createEReference(expandStatementNodeEClass, EXPAND_STATEMENT_NODE__PARAM_LIST);
+		createEReference(expandStatementNodeEClass, EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION);
 		createEReference(expandStatementNodeEClass, EXPAND_STATEMENT_NODE__FOR_EXPRESSION);
 		createEReference(expandStatementNodeEClass, EXPAND_STATEMENT_NODE__NAME);
 
@@ -1783,7 +2036,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		createEReference(foreachStatementNodeEClass, FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION);
 
 		ifStatementNodeEClass = createEClass(IF_STATEMENT_NODE);
-		createEReference(ifStatementNodeEClass, IF_STATEMENT_NODE__ELSE_IF);
+		createEReference(ifStatementNodeEClass, IF_STATEMENT_NODE__ELSE_IFS);
 		createEReference(ifStatementNodeEClass, IF_STATEMENT_NODE__EXPRESSION);
 		createEReference(ifStatementNodeEClass, IF_STATEMENT_NODE__ELSE);
 		createEReference(ifStatementNodeEClass, IF_STATEMENT_NODE__SEQUENCE);
@@ -1807,6 +2060,12 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		createEReference(protectStatementNodeEClass, PROTECT_STATEMENT_NODE__CSTART);
 
 		checkNodeEClass = createEClass(CHECK_NODE);
+		createEReference(checkNodeEClass, CHECK_NODE__TYPE);
+		createEReference(checkNodeEClass, CHECK_NODE__ERROR);
+		createEReference(checkNodeEClass, CHECK_NODE__MESSAGE);
+		createEReference(checkNodeEClass, CHECK_NODE__IF_EXPRESSION);
+		createEReference(checkNodeEClass, CHECK_NODE__WARNING);
+		createEReference(checkNodeEClass, CHECK_NODE__CONSTRAINT);
 
 		aroundNodeEClass = createEClass(AROUND_NODE);
 
@@ -1827,40 +2086,54 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 
 		test_expressionNodeEClass = createEClass(TEST_EXPRESSION_NODE);
 
-		expressionNodeEClass = createEClass(EXPRESSION_NODE);
-
 		letExpressionNodeEClass = createEClass(LET_EXPRESSION_NODE);
 
 		castedExpressionNodeEClass = createEClass(CASTED_EXPRESSION_NODE);
+		createEReference(castedExpressionNodeEClass, CASTED_EXPRESSION_NODE__TARGET);
+		createEReference(castedExpressionNodeEClass, CASTED_EXPRESSION_NODE__TYPE);
 
 		chainExpressionNodeEClass = createEClass(CHAIN_EXPRESSION_NODE);
+		createEReference(chainExpressionNodeEClass, CHAIN_EXPRESSION_NODE__NEXTS);
+		createEReference(chainExpressionNodeEClass, CHAIN_EXPRESSION_NODE__FIRST);
 
 		ifExpressionNodeEClass = createEClass(IF_EXPRESSION_NODE);
+		createEReference(ifExpressionNodeEClass, IF_EXPRESSION_NODE__THEN);
+		createEReference(ifExpressionNodeEClass, IF_EXPRESSION_NODE__ELSE);
+		createEReference(ifExpressionNodeEClass, IF_EXPRESSION_NODE__CONDITION0);
+		createEReference(ifExpressionNodeEClass, IF_EXPRESSION_NODE__CONDITION1);
 
 		switchExpressionNodeEClass = createEClass(SWITCH_EXPRESSION_NODE);
+		createEReference(switchExpressionNodeEClass, SWITCH_EXPRESSION_NODE__DEFAULT);
+		createEReference(switchExpressionNodeEClass, SWITCH_EXPRESSION_NODE__EXPRESSION);
+		createEReference(switchExpressionNodeEClass, SWITCH_EXPRESSION_NODE__CASES);
 
 		casePartNodeEClass = createEClass(CASE_PART_NODE);
+		createEReference(casePartNodeEClass, CASE_PART_NODE__CONDITION);
+		createEReference(casePartNodeEClass, CASE_PART_NODE__EXPRESSION);
 
 		orExpressionNodeEClass = createEClass(OR_EXPRESSION_NODE);
+		createEReference(orExpressionNodeEClass, OR_EXPRESSION_NODE__NEXTS);
+		createEReference(orExpressionNodeEClass, OR_EXPRESSION_NODE__FIRST);
 
 		andExpressionNodeEClass = createEClass(AND_EXPRESSION_NODE);
+		createEReference(andExpressionNodeEClass, AND_EXPRESSION_NODE__FIRST);
+		createEReference(andExpressionNodeEClass, AND_EXPRESSION_NODE__NEXTS);
 
 		impliesExpressionNodeEClass = createEClass(IMPLIES_EXPRESSION_NODE);
+		createEReference(impliesExpressionNodeEClass, IMPLIES_EXPRESSION_NODE__NEXTS);
+		createEReference(impliesExpressionNodeEClass, IMPLIES_EXPRESSION_NODE__FIRST);
 
 		relationalExpressionNodeEClass = createEClass(RELATIONAL_EXPRESSION_NODE);
-		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__OPERATOR);
-		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__LEFT_OPERAND);
-		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__RIGHT_OPERAND);
-
-		relationalOperatorNodeEClass = createEClass(RELATIONAL_OPERATOR_NODE);
+		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__NEXTS);
+		createEReference(relationalExpressionNodeEClass, RELATIONAL_EXPRESSION_NODE__FIRST);
 
 		additiveExpressionNodeEClass = createEClass(ADDITIVE_EXPRESSION_NODE);
-		createEReference(additiveExpressionNodeEClass, ADDITIVE_EXPRESSION_NODE__LEFT);
-		createEReference(additiveExpressionNodeEClass, ADDITIVE_EXPRESSION_NODE__RIGHT);
+		createEReference(additiveExpressionNodeEClass, ADDITIVE_EXPRESSION_NODE__NEXTS);
+		createEReference(additiveExpressionNodeEClass, ADDITIVE_EXPRESSION_NODE__FIRST);
 
 		multiplicativeExpressionNodeEClass = createEClass(MULTIPLICATIVE_EXPRESSION_NODE);
-		createEReference(multiplicativeExpressionNodeEClass, MULTIPLICATIVE_EXPRESSION_NODE__LEFT);
-		createEReference(multiplicativeExpressionNodeEClass, MULTIPLICATIVE_EXPRESSION_NODE__RIGHT);
+		createEReference(multiplicativeExpressionNodeEClass, MULTIPLICATIVE_EXPRESSION_NODE__NEXTS);
+		createEReference(multiplicativeExpressionNodeEClass, MULTIPLICATIVE_EXPRESSION_NODE__FIRST);
 
 		unaryExpressionNodeEClass = createEClass(UNARY_EXPRESSION_NODE);
 		createEReference(unaryExpressionNodeEClass, UNARY_EXPRESSION_NODE__OPERAND);
@@ -1872,15 +2145,17 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		stringLiteralNodeEClass = createEClass(STRING_LITERAL_NODE);
 
 		paranthesizedExpressionNodeEClass = createEClass(PARANTHESIZED_EXPRESSION_NODE);
+		createEReference(paranthesizedExpressionNodeEClass, PARANTHESIZED_EXPRESSION_NODE__EXPRESSION);
 
 		globalVarExpressionNodeEClass = createEClass(GLOBAL_VAR_EXPRESSION_NODE);
 
 		featureCallNodeEClass = createEClass(FEATURE_CALL_NODE);
+		createEReference(featureCallNodeEClass, FEATURE_CALL_NODE__NAME);
 		createEReference(featureCallNodeEClass, FEATURE_CALL_NODE__TYPE);
 		createEReference(featureCallNodeEClass, FEATURE_CALL_NODE__PARAM_LIST);
-		createEReference(featureCallNodeEClass, FEATURE_CALL_NODE__NAME);
 
 		listLiteralNodeEClass = createEClass(LIST_LITERAL_NODE);
+		createEReference(listLiteralNodeEClass, LIST_LITERAL_NODE__ELEMENTS);
 
 		constructorCallNodeEClass = createEClass(CONSTRUCTOR_CALL_NODE);
 
@@ -1891,18 +2166,23 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		numberLiteralNodeEClass = createEClass(NUMBER_LITERAL_NODE);
 
 		collectionExpressionNodeEClass = createEClass(COLLECTION_EXPRESSION_NODE);
+		createEReference(collectionExpressionNodeEClass, COLLECTION_EXPRESSION_NODE__VARIABLE);
+		createEReference(collectionExpressionNodeEClass, COLLECTION_EXPRESSION_NODE__EXPRESSION);
+		createEReference(collectionExpressionNodeEClass, COLLECTION_EXPRESSION_NODE__TYPE);
 
 		declaredParameterListNodeEClass = createEClass(DECLARED_PARAMETER_LIST_NODE);
 		createEReference(declaredParameterListNodeEClass, DECLARED_PARAMETER_LIST_NODE__PARAMS);
 
 		declaredParameterNodeEClass = createEClass(DECLARED_PARAMETER_NODE);
-		createEReference(declaredParameterNodeEClass, DECLARED_PARAMETER_NODE__NAME);
 		createEReference(declaredParameterNodeEClass, DECLARED_PARAMETER_NODE__PTYPE);
+		createEReference(declaredParameterNodeEClass, DECLARED_PARAMETER_NODE__NAME);
 
 		parameterListNodeEClass = createEClass(PARAMETER_LIST_NODE);
 		createEReference(parameterListNodeEClass, PARAMETER_LIST_NODE__PARAMS);
 
 		collectionTypeNodeEClass = createEClass(COLLECTION_TYPE_NODE);
+		createEReference(collectionTypeNodeEClass, COLLECTION_TYPE_NODE__COLLECTION_TYPE);
+		createEReference(collectionTypeNodeEClass, COLLECTION_TYPE_NODE__ELEMENT_TYPE);
 
 		simpleTypeNodeEClass = createEClass(SIMPLE_TYPE_NODE);
 		createEReference(simpleTypeNodeEClass, SIMPLE_TYPE_NODE__NAMES);
@@ -1965,7 +2245,6 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		extensionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		javaTypeNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		test_expressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
-		expressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		letExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		castedExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		chainExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
@@ -1976,7 +2255,6 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		andExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		impliesExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		relationalExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
-		relationalOperatorNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		additiveExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		multiplicativeExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
 		unaryExpressionNodeEClass.getESuperTypes().add(theNodePackage.getCompositeNode());
@@ -2028,7 +2306,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEReference(getSequenceNode_Statements(), theNodePackage.getCompositeNode(), null, "statements", null, 0, -1, SequenceNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textSequenceNodeEClass, TextSequenceNode.class, "TextSequenceNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTextSequenceNode_Text(), theNodePackage.getCompositeNode(), null, "text", null, 0, -1, TextSequenceNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTextSequenceNode_Texts(), theNodePackage.getCompositeNode(), null, "texts", null, 0, -1, TextSequenceNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textNodeEClass, TextNode.class, "TextNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2038,6 +2316,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEClass(expandStatementNodeEClass, ExpandStatementNode.class, "ExpandStatementNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExpandStatementNode_Separator(), theNodePackage.getCompositeNode(), null, "separator", null, 0, 1, ExpandStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpandStatementNode_ParamList(), theNodePackage.getCompositeNode(), null, "paramList", null, 0, 1, ExpandStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpandStatementNode_ForEachExpression(), theNodePackage.getCompositeNode(), null, "forEachExpression", null, 0, 1, ExpandStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpandStatementNode_ForExpression(), theNodePackage.getCompositeNode(), null, "forExpression", null, 0, 1, ExpandStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpandStatementNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, ExpandStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2057,7 +2336,7 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEReference(getForeachStatementNode_SeparatorExpression(), theNodePackage.getCompositeNode(), null, "separatorExpression", null, 0, 1, ForeachStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ifStatementNodeEClass, IfStatementNode.class, "IfStatementNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIfStatementNode_ElseIf(), theNodePackage.getCompositeNode(), null, "elseIf", null, 0, -1, IfStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfStatementNode_ElseIfs(), theNodePackage.getCompositeNode(), null, "elseIfs", null, 0, -1, IfStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIfStatementNode_Expression(), theNodePackage.getCompositeNode(), null, "expression", null, 0, 1, IfStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIfStatementNode_Else(), theNodePackage.getCompositeNode(), null, "else", null, 0, 1, IfStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIfStatementNode_Sequence(), theNodePackage.getCompositeNode(), null, "sequence", null, 0, 1, IfStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2081,6 +2360,12 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEReference(getProtectStatementNode_Cstart(), theNodePackage.getCompositeNode(), null, "cstart", null, 0, 1, ProtectStatementNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(checkNodeEClass, CheckNode.class, "CheckNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCheckNode_Type(), theNodePackage.getCompositeNode(), null, "type", null, 0, 1, CheckNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckNode_Error(), theNodePackage.getLeafNode(), null, "error", null, 0, 1, CheckNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckNode_Message(), theNodePackage.getCompositeNode(), null, "message", null, 0, 1, CheckNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckNode_IfExpression(), theNodePackage.getCompositeNode(), null, "ifExpression", null, 0, 1, CheckNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckNode_Warning(), theNodePackage.getLeafNode(), null, "warning", null, 0, 1, CheckNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheckNode_Constraint(), theNodePackage.getCompositeNode(), null, "constraint", null, 0, 1, CheckNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(aroundNodeEClass, AroundNode.class, "AroundNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2101,40 +2386,54 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 
 		initEClass(test_expressionNodeEClass, Test_expressionNode.class, "Test_expressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(expressionNodeEClass, ExpressionNode.class, "ExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(letExpressionNodeEClass, LetExpressionNode.class, "LetExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(castedExpressionNodeEClass, CastedExpressionNode.class, "CastedExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCastedExpressionNode_Target(), theNodePackage.getCompositeNode(), null, "target", null, 0, 1, CastedExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCastedExpressionNode_Type(), theNodePackage.getCompositeNode(), null, "type", null, 0, 1, CastedExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(chainExpressionNodeEClass, ChainExpressionNode.class, "ChainExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getChainExpressionNode_Nexts(), theNodePackage.getCompositeNode(), null, "nexts", null, 0, -1, ChainExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getChainExpressionNode_First(), theNodePackage.getCompositeNode(), null, "first", null, 0, 1, ChainExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ifExpressionNodeEClass, IfExpressionNode.class, "IfExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIfExpressionNode_Then(), theNodePackage.getCompositeNode(), null, "then", null, 0, 1, IfExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfExpressionNode_Else(), theNodePackage.getCompositeNode(), null, "else", null, 0, 1, IfExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfExpressionNode_Condition0(), theNodePackage.getCompositeNode(), null, "condition0", null, 0, 1, IfExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIfExpressionNode_Condition1(), theNodePackage.getCompositeNode(), null, "condition1", null, 0, 1, IfExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(switchExpressionNodeEClass, SwitchExpressionNode.class, "SwitchExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSwitchExpressionNode_Default(), theNodePackage.getCompositeNode(), null, "default", null, 0, 1, SwitchExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSwitchExpressionNode_Expression(), theNodePackage.getCompositeNode(), null, "expression", null, 0, 1, SwitchExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSwitchExpressionNode_Cases(), theNodePackage.getCompositeNode(), null, "cases", null, 0, -1, SwitchExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(casePartNodeEClass, CasePartNode.class, "CasePartNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCasePartNode_Condition(), theNodePackage.getCompositeNode(), null, "condition", null, 0, 1, CasePartNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCasePartNode_Expression(), theNodePackage.getCompositeNode(), null, "expression", null, 0, 1, CasePartNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(orExpressionNodeEClass, OrExpressionNode.class, "OrExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOrExpressionNode_Nexts(), theNodePackage.getCompositeNode(), null, "nexts", null, 0, -1, OrExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOrExpressionNode_First(), theNodePackage.getCompositeNode(), null, "first", null, 0, 1, OrExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(andExpressionNodeEClass, AndExpressionNode.class, "AndExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAndExpressionNode_First(), theNodePackage.getCompositeNode(), null, "first", null, 0, 1, AndExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAndExpressionNode_Nexts(), theNodePackage.getCompositeNode(), null, "nexts", null, 0, -1, AndExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(impliesExpressionNodeEClass, ImpliesExpressionNode.class, "ImpliesExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImpliesExpressionNode_Nexts(), theNodePackage.getCompositeNode(), null, "nexts", null, 0, -1, ImpliesExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImpliesExpressionNode_First(), theNodePackage.getCompositeNode(), null, "first", null, 0, 1, ImpliesExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(relationalExpressionNodeEClass, RelationalExpressionNode.class, "RelationalExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRelationalExpressionNode_Operator(), theNodePackage.getCompositeNode(), null, "operator", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRelationalExpressionNode_LeftOperand(), theNodePackage.getCompositeNode(), null, "leftOperand", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRelationalExpressionNode_RightOperand(), theNodePackage.getCompositeNode(), null, "rightOperand", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(relationalOperatorNodeEClass, RelationalOperatorNode.class, "RelationalOperatorNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRelationalExpressionNode_Nexts(), theNodePackage.getCompositeNode(), null, "nexts", null, 0, -1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRelationalExpressionNode_First(), theNodePackage.getCompositeNode(), null, "first", null, 0, 1, RelationalExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additiveExpressionNodeEClass, AdditiveExpressionNode.class, "AdditiveExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAdditiveExpressionNode_Left(), theNodePackage.getCompositeNode(), null, "left", null, 0, 1, AdditiveExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAdditiveExpressionNode_Right(), theNodePackage.getCompositeNode(), null, "right", null, 0, 1, AdditiveExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdditiveExpressionNode_Nexts(), theNodePackage.getCompositeNode(), null, "nexts", null, 0, -1, AdditiveExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdditiveExpressionNode_First(), theNodePackage.getCompositeNode(), null, "first", null, 0, 1, AdditiveExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiplicativeExpressionNodeEClass, MultiplicativeExpressionNode.class, "MultiplicativeExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiplicativeExpressionNode_Left(), theNodePackage.getCompositeNode(), null, "left", null, 0, 1, MultiplicativeExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiplicativeExpressionNode_Right(), theNodePackage.getCompositeNode(), null, "right", null, 0, 1, MultiplicativeExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiplicativeExpressionNode_Nexts(), theNodePackage.getCompositeNode(), null, "nexts", null, 0, -1, MultiplicativeExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiplicativeExpressionNode_First(), theNodePackage.getCompositeNode(), null, "first", null, 0, 1, MultiplicativeExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(unaryExpressionNodeEClass, UnaryExpressionNode.class, "UnaryExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnaryExpressionNode_Operand(), theNodePackage.getCompositeNode(), null, "operand", null, 0, 1, UnaryExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2146,15 +2445,17 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEClass(stringLiteralNodeEClass, StringLiteralNode.class, "StringLiteralNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(paranthesizedExpressionNodeEClass, ParanthesizedExpressionNode.class, "ParanthesizedExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getParanthesizedExpressionNode_Expression(), theNodePackage.getCompositeNode(), null, "expression", null, 0, 1, ParanthesizedExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(globalVarExpressionNodeEClass, GlobalVarExpressionNode.class, "GlobalVarExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(featureCallNodeEClass, FeatureCallNode.class, "FeatureCallNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureCallNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, FeatureCallNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureCallNode_Type(), theNodePackage.getCompositeNode(), null, "type", null, 0, 1, FeatureCallNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureCallNode_ParamList(), theNodePackage.getCompositeNode(), null, "paramList", null, 0, 1, FeatureCallNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeatureCallNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, FeatureCallNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(listLiteralNodeEClass, ListLiteralNode.class, "ListLiteralNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getListLiteralNode_Elements(), theNodePackage.getCompositeNode(), null, "elements", null, 0, -1, ListLiteralNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constructorCallNodeEClass, ConstructorCallNode.class, "ConstructorCallNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2165,18 +2466,23 @@ public class Xpand3nodePackageImpl extends EPackageImpl implements Xpand3nodePac
 		initEClass(numberLiteralNodeEClass, NumberLiteralNode.class, "NumberLiteralNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(collectionExpressionNodeEClass, CollectionExpressionNode.class, "CollectionExpressionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCollectionExpressionNode_Variable(), theNodePackage.getCompositeNode(), null, "variable", null, 0, 1, CollectionExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCollectionExpressionNode_Expression(), theNodePackage.getCompositeNode(), null, "expression", null, 0, 1, CollectionExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCollectionExpressionNode_Type(), theNodePackage.getCompositeNode(), null, "type", null, 0, 1, CollectionExpressionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredParameterListNodeEClass, DeclaredParameterListNode.class, "DeclaredParameterListNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeclaredParameterListNode_Params(), theNodePackage.getCompositeNode(), null, "params", null, 0, -1, DeclaredParameterListNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaredParameterNodeEClass, DeclaredParameterNode.class, "DeclaredParameterNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeclaredParameterNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, DeclaredParameterNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaredParameterNode_Ptype(), theNodePackage.getCompositeNode(), null, "ptype", null, 0, 1, DeclaredParameterNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaredParameterNode_Name(), theNodePackage.getCompositeNode(), null, "name", null, 0, 1, DeclaredParameterNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterListNodeEClass, ParameterListNode.class, "ParameterListNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParameterListNode_Params(), theNodePackage.getCompositeNode(), null, "params", null, 0, -1, ParameterListNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(collectionTypeNodeEClass, CollectionTypeNode.class, "CollectionTypeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCollectionTypeNode_CollectionType(), theNodePackage.getLeafNode(), null, "collectionType", null, 0, 1, CollectionTypeNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCollectionTypeNode_ElementType(), theNodePackage.getCompositeNode(), null, "elementType", null, 0, 1, CollectionTypeNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleTypeNodeEClass, SimpleTypeNode.class, "SimpleTypeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSimpleTypeNode_Names(), theNodePackage.getCompositeNode(), null, "names", null, 0, -1, SimpleTypeNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

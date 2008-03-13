@@ -2,16 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileStatementNodeImpl.java,v 1.3 2008/03/12 09:54:13 jkohnlein Exp $
+ * $Id: FileStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.tmf.common.node.CompositeNode;
+
 import org.eclipse.tmf.common.node.impl.CompositeNodeImpl;
 
 import org.eclipse.xpand3.internal.parser.xpand3node.FileStatementNode;
@@ -42,6 +45,7 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * @ordered
 	 */
 	protected CompositeNode sequence;
+
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -51,6 +55,7 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * @ordered
 	 */
 	protected CompositeNode identifier;
+
 	/**
 	 * The cached value of the '{@link #getNameExpression() <em>Name Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -85,16 +90,16 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getNameExpression() {
-		if (nameExpression != null && nameExpression.eIsProxy()) {
-			InternalEObject oldNameExpression = (InternalEObject)nameExpression;
-			nameExpression = (CompositeNode)eResolveProxy(oldNameExpression);
-			if (nameExpression != oldNameExpression) {
+	public CompositeNode getSequence() {
+		if (sequence != null && sequence.eIsProxy()) {
+			InternalEObject oldSequence = (InternalEObject)sequence;
+			sequence = (CompositeNode)eResolveProxy(oldSequence);
+			if (sequence != oldSequence) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FILE_STATEMENT_NODE__NAME_EXPRESSION, oldNameExpression, nameExpression));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FILE_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
 			}
 		}
-		return nameExpression;
+		return sequence;
 	}
 
 	/**
@@ -102,8 +107,8 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetNameExpression() {
-		return nameExpression;
+	public CompositeNode basicGetSequence() {
+		return sequence;
 	}
 
 	/**
@@ -111,11 +116,11 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNameExpression(CompositeNode newNameExpression) {
-		CompositeNode oldNameExpression = nameExpression;
-		nameExpression = newNameExpression;
+	public void setSequence(CompositeNode newSequence) {
+		CompositeNode oldSequence = sequence;
+		sequence = newSequence;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FILE_STATEMENT_NODE__NAME_EXPRESSION, oldNameExpression, nameExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FILE_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
 	}
 
 	/**
@@ -161,16 +166,16 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode getSequence() {
-		if (sequence != null && sequence.eIsProxy()) {
-			InternalEObject oldSequence = (InternalEObject)sequence;
-			sequence = (CompositeNode)eResolveProxy(oldSequence);
-			if (sequence != oldSequence) {
+	public CompositeNode getNameExpression() {
+		if (nameExpression != null && nameExpression.eIsProxy()) {
+			InternalEObject oldNameExpression = (InternalEObject)nameExpression;
+			nameExpression = (CompositeNode)eResolveProxy(oldNameExpression);
+			if (nameExpression != oldNameExpression) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FILE_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Xpand3nodePackage.FILE_STATEMENT_NODE__NAME_EXPRESSION, oldNameExpression, nameExpression));
 			}
 		}
-		return sequence;
+		return nameExpression;
 	}
 
 	/**
@@ -178,8 +183,8 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompositeNode basicGetSequence() {
-		return sequence;
+	public CompositeNode basicGetNameExpression() {
+		return nameExpression;
 	}
 
 	/**
@@ -187,11 +192,11 @@ public class FileStatementNodeImpl extends CompositeNodeImpl implements FileStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSequence(CompositeNode newSequence) {
-		CompositeNode oldSequence = sequence;
-		sequence = newSequence;
+	public void setNameExpression(CompositeNode newNameExpression) {
+		CompositeNode oldNameExpression = nameExpression;
+		nameExpression = newNameExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FILE_STATEMENT_NODE__SEQUENCE, oldSequence, sequence));
+			eNotify(new ENotificationImpl(this, Notification.SET, Xpand3nodePackage.FILE_STATEMENT_NODE__NAME_EXPRESSION, oldNameExpression, nameExpression));
 	}
 
 	/**

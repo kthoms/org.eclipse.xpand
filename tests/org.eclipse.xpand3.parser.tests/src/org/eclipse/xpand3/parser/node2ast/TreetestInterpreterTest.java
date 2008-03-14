@@ -31,10 +31,6 @@ public class TreetestInterpreterTest extends AbstractEcoreTreeTestInterpreter {
 
 	private boolean parseExpression;
 
-	public TreetestInterpreterTest() {
-		super("MM");
-	}
-
 	public void testStatement() throws Throwable {
 		parseExpression = false;
 		test("org/eclipse/xpand3/parser/node2ast/statement.ttst");

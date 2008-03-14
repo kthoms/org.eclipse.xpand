@@ -2,38 +2,38 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ImportStatement.java,v 1.2 2008/03/07 11:10:39 jkohnlein Exp $
+ * $Id: ImportStatement.java,v 1.3 2008/03/14 10:18:41 jkohnlein Exp $
  */
 package org.eclipse.xpand3;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Import Statement</b></em>'.
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Import Statement</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.ImportStatement#getImportedId <em>Imported Id</em>}</li>
- *   <li>{@link org.eclipse.xpand3.ImportStatement#isExported <em>Exported</em>}</li>
+ * <li>{@link org.eclipse.xpand3.ImportStatement#getImportedId <em>Imported Id</em>}</li>
+ * <li>{@link org.eclipse.xpand3.ImportStatement#isExported <em>Exported</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.xpand3.Xpand3Package#getImportStatement()
  * @model
  * @generated
  */
 public interface ImportStatement extends SyntaxElement {
 	/**
-	 * Returns the value of the '<em><b>Imported Id</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Imported Id</b></em>' containment
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Imported Id</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Imported Id</em>' containment reference
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Imported Id</em>' containment reference.
+	 * 
+	 * @return the value of the '<em>Imported Id</em>' containment
+	 *         reference.
 	 * @see #setImportedId(Identifier)
 	 * @see org.eclipse.xpand3.Xpand3Package#getImportStatement_ImportedId()
 	 * @model containment="true"
@@ -42,23 +42,26 @@ public interface ImportStatement extends SyntaxElement {
 	Identifier getImportedId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.ImportStatement#getImportedId <em>Imported Id</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Imported Id</em>' containment reference.
+	 * Sets the value of the '{@link org.eclipse.xpand3.ImportStatement#getImportedId <em>Imported Id</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Imported Id</em>' containment
+	 *            reference.
 	 * @see #getImportedId()
 	 * @generated
 	 */
 	void setImportedId(Identifier value);
 
 	/**
-	 * Returns the value of the '<em><b>Exported</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Exported</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exported</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Exported</em>' attribute.
 	 * @see #setExported(boolean)
 	 * @see org.eclipse.xpand3.Xpand3Package#getImportStatement_Exported()
@@ -68,10 +71,11 @@ public interface ImportStatement extends SyntaxElement {
 	boolean isExported();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.xpand3.ImportStatement#isExported <em>Exported</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Exported</em>' attribute.
+	 * Sets the value of the '{@link org.eclipse.xpand3.ImportStatement#isExported <em>Exported</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Exported</em>' attribute.
 	 * @see #isExported()
 	 * @generated
 	 */

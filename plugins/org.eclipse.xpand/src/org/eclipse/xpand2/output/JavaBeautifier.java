@@ -13,9 +13,11 @@ package org.eclipse.xpand2.output;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -99,7 +101,7 @@ public class JavaBeautifier implements PostProcessor {
 				options = new Properties();
 				options.put("org.eclipse.jdt.core.compiler.compliance","1.5");
 				options.put("org.eclipse.jdt.core.compiler.codegen.targetPlatform","1.5");
-				options.put("org.eclipse.jdt.core.compiler.source","1.5");				
+				options.put("org.eclipse.jdt.core.compiler.source","1.5");              
 				log.debug("no config file specified; using the default config file supplied with Xpand: org.eclipse.jdt.core.formatterprefs");
 			} else {
 				options = readConfig(configFile);
@@ -118,26 +120,32 @@ public class JavaBeautifier implements PostProcessor {
 	 */
 	private Properties readConfig(String filename) {
 		BufferedInputStream stream = null;
-        BufferedReader reader = null;
-        
+		BufferedReader reader = null;
+		
 		try {
-           InputStream is = openStream(filename);
-           final Properties formatterOptions = new Properties();
-            if ( filename.endsWith(".xml")) {
-               Pattern pattern = Pattern.compile("<setting id=\"([^\"]*)\" value=\"([^\"]*)\"\\/>");
-               reader = new BufferedReader(new InputStreamReader(is));
-               for (String line = reader.readLine(); line != null; line = reader.readLine()) {
-                  Matcher matcher = pattern.matcher(line);
-                  if ( matcher.matches() ) {
-                     formatterOptions.put(matcher.group(1), matcher.group(2));
-                  }
-               }
-            }
-            else {
-               stream = new BufferedInputStream(is);
-               formatterOptions.load(stream);
-            }			
-            return formatterOptions;
+		   File file = loadFile(filename); // new File(filename);
+		   final Properties formatterOptions = new Properties();
+			if ( filename.endsWith(".xml")) {
+			   Pattern pattern = Pattern.compile("<setting id=\"([^\"]*)\" value=\"([^\"]*)\"\\/>");
+			   reader = new BufferedReader(new FileReader(file));
+			   for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+				  Matcher matcher = pattern.matcher(line);
+				  if ( matcher.matches() ) {
+					 formatterOptions.put(matcher.group(1), matcher.group(2));
+				  }
+			   }
+			}
+			else {
+			   stream = new BufferedInputStream(new FileInputStream(file));
+			   formatterOptions.load(stream);
+			}           
+		   if( formatterOptions.get("org.eclipse.jdt.core.compiler.compliance") == null )
+			   formatterOptions.put("org.eclipse.jdt.core.compiler.compliance", "1.5");
+		   if( formatterOptions.get("org.eclipse.jdt.core.compiler.codegen.targetPlatform") == null )
+			   formatterOptions.put("org.eclipse.jdt.core.compiler.codegen.targetPlatform", "1.5");
+		   if( formatterOptions.get("org.eclipse.jdt.core.compiler.source") == null )
+			   formatterOptions.put("org.eclipse.jdt.core.compiler.source", "1.5");             
+			return formatterOptions;
 		} catch (IOException e) {
 			log.warn("Problem reading code formatter config file (" + e.getMessage() + ").");
 		} finally {
@@ -148,34 +156,29 @@ public class JavaBeautifier implements PostProcessor {
 					/* ignore */
 				}
 			}
-            if ( reader != null ) {
-               try {
-                  reader.close();
-               } catch (IOException e) {
-                    /* ignore */
-               }
-            }
+			if ( reader != null ) {
+			   try {
+				  reader.close();
+			   } catch (IOException e) {
+					/* ignore */
+			   }
+			}
 		}
 		return null;
 	}
 
-	 /**
-	  * Searches for the given filename as a resource and returns a stream on it. Throws an IOException, if the file
-	  * cannot be found.
-	  * 
-	  * @param filename
-	  *				   The name of the file to be searched in the ressources.
-	  * @return InputStream for subsequent reading
-	  * @throws IOException
-	  */
-	 protected InputStream openStream(String filename) throws IOException {
-		 InputStream is = ResourceLoaderFactory.createResourceLoader().getResourceAsStream(filename);
-		 if (is == null) {
-			 throw new IOException("Config file [" + filename + "] does not exist.");
-		 }
-		 return is;
-	 }
-	
+	protected File loadFile(String filename) throws IOException {
+		final URL url = ResourceLoaderFactory.createResourceLoader().getResource(filename);
+		if (url == null || url.getFile() == null) {
+			throw new IOException("Could not find config file [" + filename + "]");
+		}
+		final File file = new File(url.getFile());
+		if (!file.exists()) {
+			throw new IOException("Config file [" + filename + "] does not exist.");
+		}
+		return file;
+	}
+
 	/**
 	 * @return the configuration file for the formatter
 	 */
@@ -199,3 +202,4 @@ public class JavaBeautifier implements PostProcessor {
 	}
 
 }
+

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CollectionExpressionNodeImpl.java,v 1.3 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: CollectionExpressionNodeImpl.java,v 1.4 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -25,8 +25,8 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CollectionExpressionNodeImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CollectionExpressionNodeImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CollectionExpressionNodeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CollectionExpressionNodeImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,15 +43,6 @@ public class CollectionExpressionNodeImpl extends CompositeNodeImpl implements C
 	 */
 	protected CompositeNode variable;
 	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode expression;
-	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,6 +51,15 @@ public class CollectionExpressionNodeImpl extends CompositeNodeImpl implements C
 	 * @ordered
 	 */
 	protected CompositeNode type;
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode expression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,12 +205,12 @@ public class CollectionExpressionNodeImpl extends CompositeNodeImpl implements C
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__VARIABLE:
 				if (resolve) return getVariable();
 				return basicGetVariable();
-			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
-				if (resolve) return getExpression();
-				return basicGetExpression();
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
+				if (resolve) return getExpression();
+				return basicGetExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -226,11 +226,11 @@ public class CollectionExpressionNodeImpl extends CompositeNodeImpl implements C
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__VARIABLE:
 				setVariable((CompositeNode)newValue);
 				return;
-			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
-				setExpression((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__TYPE:
 				setType((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
+				setExpression((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -247,11 +247,11 @@ public class CollectionExpressionNodeImpl extends CompositeNodeImpl implements C
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__VARIABLE:
 				setVariable((CompositeNode)null);
 				return;
-			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
-				setExpression((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__TYPE:
 				setType((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
+				setExpression((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -267,10 +267,10 @@ public class CollectionExpressionNodeImpl extends CompositeNodeImpl implements C
 		switch (featureID) {
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__VARIABLE:
 				return variable != null;
-			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
-				return expression != null;
 			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__TYPE:
 				return type != null;
+			case Xpand3nodePackage.COLLECTION_EXPRESSION_NODE__EXPRESSION:
+				return expression != null;
 		}
 		return super.eIsSet(featureID);
 	}

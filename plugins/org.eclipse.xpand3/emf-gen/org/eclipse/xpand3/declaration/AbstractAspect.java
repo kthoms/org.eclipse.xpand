@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractAspect.java,v 1.2 2008/03/07 11:10:54 jkohnlein Exp $
+ * $Id: AbstractAspect.java,v 1.3 2008/03/17 10:55:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
 
@@ -21,7 +21,6 @@ import org.eclipse.xpand3.SyntaxElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.declaration.AbstractAspect#getPointcut <em>Pointcut</em>}</li>
- *   <li>{@link org.eclipse.xpand3.declaration.AbstractAspect#getParams <em>Params</em>}</li>
  *   <li>{@link org.eclipse.xpand3.declaration.AbstractAspect#isWildparams <em>Wildparams</em>}</li>
  * </ul>
  * </p>
@@ -30,7 +29,7 @@ import org.eclipse.xpand3.SyntaxElement;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractAspect extends SyntaxElement {
+public interface AbstractAspect extends AbstractDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Pointcut</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -56,22 +55,6 @@ public interface AbstractAspect extends SyntaxElement {
 	 * @generated
 	 */
 	void setPointcut(Identifier value);
-
-	/**
-	 * Returns the value of the '<em><b>Params</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.xpand3.DeclaredParameter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Params</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Params</em>' containment reference list.
-	 * @see org.eclipse.xpand3.declaration.DeclarationPackage#getAbstractAspect_Params()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<DeclaredParameter> getParams();
 
 	/**
 	 * Returns the value of the '<em><b>Wildparams</b></em>' attribute.

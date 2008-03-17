@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationSwitch.java,v 1.2 2008/03/07 11:10:55 jkohnlein Exp $
+ * $Id: DeclarationSwitch.java,v 1.3 2008/03/17 10:55:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.util;
 
@@ -134,6 +134,7 @@ public class DeclarationSwitch<T> {
 			case DeclarationPackage.ABSTRACT_ASPECT: {
 				AbstractAspect abstractAspect = (AbstractAspect)theEObject;
 				T result = caseAbstractAspect(abstractAspect);
+				if (result == null) result = caseAbstractDeclaration(abstractAspect);
 				if (result == null) result = caseSyntaxElement(abstractAspect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -142,6 +143,7 @@ public class DeclarationSwitch<T> {
 				ExtensionAspect extensionAspect = (ExtensionAspect)theEObject;
 				T result = caseExtensionAspect(extensionAspect);
 				if (result == null) result = caseAbstractAspect(extensionAspect);
+				if (result == null) result = caseAbstractDeclaration(extensionAspect);
 				if (result == null) result = caseSyntaxElement(extensionAspect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -150,6 +152,7 @@ public class DeclarationSwitch<T> {
 				DefinitionAspect definitionAspect = (DefinitionAspect)theEObject;
 				T result = caseDefinitionAspect(definitionAspect);
 				if (result == null) result = caseAbstractAspect(definitionAspect);
+				if (result == null) result = caseAbstractDeclaration(definitionAspect);
 				if (result == null) result = caseSyntaxElement(definitionAspect);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

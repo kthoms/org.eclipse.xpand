@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeachStatementNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: ForeachStatementNode.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,11 +16,11 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getIterator <em>Iterator</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getSequence <em>Sequence</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getForExpression <em>For Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getSeparatorExpression <em>Separator Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getSequence <em>Sequence</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getIterator <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getForExpression <em>For Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ForeachStatementNode#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *

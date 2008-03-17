@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Xpand3nodePackage.java,v 1.6 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: Xpand3nodePackage.java,v 1.7 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -89,22 +89,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int FILE_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Declarations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_NODE__DECLARATIONS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Imports</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_NODE__IMPORTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int FILE_NODE__IMPORTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Declarations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_NODE__DECLARATIONS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>File Node</em>' class.
@@ -144,22 +144,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int IMPORT_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT_NODE__NAMESPACE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int IMPORT_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPORT_NODE__NAMESPACE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Import Node</em>' class.
@@ -254,13 +254,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int DEFINITION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' reference.
+	 * The feature id for the '<em><b>Sequence</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int DEFINITION_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -272,13 +272,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int DEFINITION_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Sequence</b></em>' reference.
+	 * The feature id for the '<em><b>Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int DEFINITION_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Param List</b></em>' reference.
@@ -336,13 +336,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int DEFINITION_AROUND_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Pointcut</b></em>' reference.
+	 * The feature id for the '<em><b>Sequence</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION_AROUND_NODE__POINTCUT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int DEFINITION_AROUND_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Param List</b></em>' reference.
@@ -354,13 +354,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int DEFINITION_AROUND_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Sequence</b></em>' reference.
+	 * The feature id for the '<em><b>Pointcut</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION_AROUND_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+	int DEFINITION_AROUND_NODE__POINTCUT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Definition Around Node</em>' class.
@@ -400,22 +400,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int SEQUENCE_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Text Sequences</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_NODE__TEXT_SEQUENCES = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Statements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_NODE__STATEMENTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int SEQUENCE_NODE__STATEMENTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Text Sequences</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_NODE__TEXT_SEQUENCES = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Sequence Node</em>' class.
@@ -593,22 +593,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int EXPAND_STATEMENT_NODE__SEPARATOR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Param List</b></em>' reference.
+	 * The feature id for the '<em><b>Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPAND_STATEMENT_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>For Each Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int EXPAND_STATEMENT_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>For Expression</b></em>' reference.
@@ -617,16 +608,25 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPAND_STATEMENT_NODE__FOR_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+	int EXPAND_STATEMENT_NODE__FOR_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' reference.
+	 * The feature id for the '<em><b>Param List</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPAND_STATEMENT_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
+	int EXPAND_STATEMENT_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>For Each Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPAND_STATEMENT_NODE__FOR_EACH_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Expand Statement Node</em>' class.
@@ -776,22 +776,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int FOREACH_STATEMENT_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Iterator</b></em>' reference.
+	 * The feature id for the '<em><b>Separator Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREACH_STATEMENT_NODE__ITERATOR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREACH_STATEMENT_NODE__IDENTIFIER = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
@@ -800,7 +791,16 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOREACH_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int FOREACH_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Iterator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREACH_STATEMENT_NODE__ITERATOR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>For Expression</b></em>' reference.
@@ -812,13 +812,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int FOREACH_STATEMENT_NODE__FOR_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Separator Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Identifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
+	int FOREACH_STATEMENT_NODE__IDENTIFIER = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Foreach Statement Node</em>' class.
@@ -858,31 +858,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int IF_STATEMENT_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Else Ifs</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_STATEMENT_NODE__ELSE_IFS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_STATEMENT_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Else</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_STATEMENT_NODE__ELSE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int IF_STATEMENT_NODE__ELSE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
@@ -891,7 +873,25 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IF_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+	int IF_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Else Ifs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_STATEMENT_NODE__ELSE_IFS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_STATEMENT_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>If Statement Node</em>' class.
@@ -931,22 +931,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int ELSE_IF_STATEMENT_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Sequence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELSE_IF_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELSE_IF_STATEMENT_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int ELSE_IF_STATEMENT_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Sequence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELSE_IF_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Else If Statement Node</em>' class.
@@ -1032,22 +1032,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int LET_STATEMENT_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_STATEMENT_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_STATEMENT_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int LET_STATEMENT_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_STATEMENT_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
@@ -1096,13 +1096,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int PROTECT_STATEMENT_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
+	 * The feature id for the '<em><b>Cstart</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROTECT_STATEMENT_NODE__CSTART = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Sequence</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROTECT_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int PROTECT_STATEMENT_NODE__SEQUENCE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Cend</b></em>' reference.
@@ -1111,7 +1120,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROTECT_STATEMENT_NODE__CEND = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int PROTECT_STATEMENT_NODE__CEND = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' reference.
@@ -1120,16 +1129,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROTECT_STATEMENT_NODE__ID = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Cstart</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROTECT_STATEMENT_NODE__CSTART = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+	int PROTECT_STATEMENT_NODE__ID = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Protect Statement Node</em>' class.
@@ -1169,40 +1169,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int CHECK_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHECK_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Error</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHECK_NODE__ERROR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Message</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHECK_NODE__MESSAGE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>If Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHECK_NODE__IF_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+	int CHECK_NODE__ERROR = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Warning</b></em>' reference.
@@ -1211,7 +1184,16 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECK_NODE__WARNING = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
+	int CHECK_NODE__WARNING = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' reference.
@@ -1220,7 +1202,25 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECK_NODE__CONSTRAINT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 5;
+	int CHECK_NODE__CONSTRAINT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>If Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_NODE__IF_EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_NODE__MESSAGE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Check Node</em>' class.
@@ -1334,58 +1334,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int EXTENSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Param List</b></em>' reference.
+	 * The feature id for the '<em><b>Extend Body</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Private</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENSION_NODE__PRIVATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Return Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENSION_NODE__RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Java Return Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENSION_NODE__JAVA_RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Create</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENSION_NODE__CREATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENSION_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 5;
+	int EXTENSION_NODE__EXTEND_BODY = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Java Name</b></em>' reference.
@@ -1394,7 +1349,61 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE__JAVA_NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 6;
+	int EXTENSION_NODE__JAVA_NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Param List</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Create</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__CREATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Private</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__PRIVATE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Java Return Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_NODE__JAVA_RETURN_TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Cached</b></em>' reference.
@@ -1403,16 +1412,7 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_NODE__CACHED = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Extend Body</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENSION_NODE__EXTEND_BODY = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 8;
+	int EXTENSION_NODE__CACHED = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Extension Node</em>' class.
@@ -1563,22 +1563,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int CASTED_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASTED_EXPRESSION_NODE__TARGET = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASTED_EXPRESSION_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int CASTED_EXPRESSION_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASTED_EXPRESSION_NODE__TARGET = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Casted Expression Node</em>' class.
@@ -1618,22 +1618,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int CHAIN_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Nexts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHAIN_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>First</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHAIN_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int CHAIN_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Nexts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHAIN_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Chain Expression Node</em>' class.
@@ -1673,13 +1673,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int IF_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Then</b></em>' reference.
+	 * The feature id for the '<em><b>Condition1</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXPRESSION_NODE__THEN = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int IF_EXPRESSION_NODE__CONDITION1 = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Else</b></em>' reference.
@@ -1691,22 +1691,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int IF_EXPRESSION_NODE__ELSE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Then</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXPRESSION_NODE__THEN = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Condition0</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXPRESSION_NODE__CONDITION0 = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Condition1</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXPRESSION_NODE__CONDITION1 = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
+	int IF_EXPRESSION_NODE__CONDITION0 = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>If Expression Node</em>' class.
@@ -1746,13 +1746,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int SWITCH_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Default</b></em>' reference.
+	 * The feature id for the '<em><b>Cases</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_EXPRESSION_NODE__DEFAULT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+	int SWITCH_EXPRESSION_NODE__CASES = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' reference.
@@ -1764,13 +1764,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int SWITCH_EXPRESSION_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Cases</b></em>' reference list.
+	 * The feature id for the '<em><b>Default</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SWITCH_EXPRESSION_NODE__CASES = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int SWITCH_EXPRESSION_NODE__DEFAULT = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Switch Expression Node</em>' class.
@@ -1920,22 +1920,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int AND_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>First</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AND_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Nexts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int AND_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>First</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>And Expression Node</em>' class.
@@ -1975,22 +1975,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int IMPLIES_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Nexts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPLIES_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>First</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPLIES_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int IMPLIES_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Nexts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLIES_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Implies Expression Node</em>' class.
@@ -2140,22 +2140,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int MULTIPLICATIVE_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Nexts</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICATIVE_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>First</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICATIVE_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int MULTIPLICATIVE_EXPRESSION_NODE__FIRST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Nexts</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICATIVE_EXPRESSION_NODE__NEXTS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicative Expression Node</em>' class.
@@ -2241,22 +2241,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int INFIX_EXPRESSION_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Calls</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXPRESSION_NODE__CALLS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXPRESSION_NODE__TARGET = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int INFIX_EXPRESSION_NODE__TARGET = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Calls</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFIX_EXPRESSION_NODE__CALLS = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Infix Expression Node</em>' class.
@@ -2416,22 +2416,13 @@ public interface Xpand3nodePackage extends EPackage {
 	int FEATURE_CALL_NODE__CHILDREN = NodePackage.COMPOSITE_NODE__CHILDREN;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CALL_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+	int FEATURE_CALL_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Param List</b></em>' reference.
@@ -2440,7 +2431,16 @@ public interface Xpand3nodePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CALL_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int FEATURE_CALL_NODE__PARAM_LIST = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_NODE__NAME = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature Call Node</em>' class.
@@ -2683,22 +2683,22 @@ public interface Xpand3nodePackage extends EPackage {
 	int COLLECTION_EXPRESSION_NODE__VARIABLE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_EXPRESSION_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_EXPRESSION_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
+	int COLLECTION_EXPRESSION_NODE__TYPE = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_NODE__EXPRESSION = NodePackage.COMPOSITE_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Collection Expression Node</em>' class.

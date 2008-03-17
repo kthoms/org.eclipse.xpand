@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IfExpressionNodeImpl.java,v 1.3 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: IfExpressionNodeImpl.java,v 1.4 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,10 +27,10 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfExpressionNodeImpl#getThen <em>Then</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfExpressionNodeImpl#getElse <em>Else</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfExpressionNodeImpl#getCondition0 <em>Condition0</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfExpressionNodeImpl#getCondition1 <em>Condition1</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfExpressionNodeImpl#getElse <em>Else</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfExpressionNodeImpl#getThen <em>Then</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfExpressionNodeImpl#getCondition0 <em>Condition0</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,14 +38,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  */
 public class IfExpressionNodeImpl extends CompositeNodeImpl implements IfExpressionNode {
 	/**
-	 * The cached value of the '{@link #getThen() <em>Then</em>}' reference.
+	 * The cached value of the '{@link #getCondition1() <em>Condition1</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getThen()
+	 * @see #getCondition1()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode then;
+	protected CompositeNode condition1;
 
 	/**
 	 * The cached value of the '{@link #getElse() <em>Else</em>}' reference.
@@ -58,6 +58,16 @@ public class IfExpressionNodeImpl extends CompositeNodeImpl implements IfExpress
 	protected CompositeNode else_;
 
 	/**
+	 * The cached value of the '{@link #getThen() <em>Then</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThen()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode then;
+
+	/**
 	 * The cached value of the '{@link #getCondition0() <em>Condition0</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,16 +76,6 @@ public class IfExpressionNodeImpl extends CompositeNodeImpl implements IfExpress
 	 * @ordered
 	 */
 	protected CompositeNode condition0;
-
-	/**
-	 * The cached value of the '{@link #getCondition1() <em>Condition1</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCondition1()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode condition1;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,18 +256,18 @@ public class IfExpressionNodeImpl extends CompositeNodeImpl implements IfExpress
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
-				if (resolve) return getThen();
-				return basicGetThen();
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__ELSE:
-				if (resolve) return getElse();
-				return basicGetElse();
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION0:
-				if (resolve) return getCondition0();
-				return basicGetCondition0();
 			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION1:
 				if (resolve) return getCondition1();
 				return basicGetCondition1();
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__ELSE:
+				if (resolve) return getElse();
+				return basicGetElse();
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
+				if (resolve) return getThen();
+				return basicGetThen();
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION0:
+				if (resolve) return getCondition0();
+				return basicGetCondition0();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,17 +280,17 @@ public class IfExpressionNodeImpl extends CompositeNodeImpl implements IfExpress
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
-				setThen((CompositeNode)newValue);
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION1:
+				setCondition1((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.IF_EXPRESSION_NODE__ELSE:
 				setElse((CompositeNode)newValue);
 				return;
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
+				setThen((CompositeNode)newValue);
+				return;
 			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION0:
 				setCondition0((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION1:
-				setCondition1((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -304,17 +304,17 @@ public class IfExpressionNodeImpl extends CompositeNodeImpl implements IfExpress
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
-				setThen((CompositeNode)null);
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION1:
+				setCondition1((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.IF_EXPRESSION_NODE__ELSE:
 				setElse((CompositeNode)null);
 				return;
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
+				setThen((CompositeNode)null);
+				return;
 			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION0:
 				setCondition0((CompositeNode)null);
-				return;
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION1:
-				setCondition1((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -328,14 +328,14 @@ public class IfExpressionNodeImpl extends CompositeNodeImpl implements IfExpress
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
-				return then != null;
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__ELSE:
-				return else_ != null;
-			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION0:
-				return condition0 != null;
 			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION1:
 				return condition1 != null;
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__ELSE:
+				return else_ != null;
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__THEN:
+				return then != null;
+			case Xpand3nodePackage.IF_EXPRESSION_NODE__CONDITION0:
+				return condition0 != null;
 		}
 		return super.eIsSet(featureID);
 	}

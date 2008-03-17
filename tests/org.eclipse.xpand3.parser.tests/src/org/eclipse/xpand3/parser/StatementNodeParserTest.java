@@ -29,9 +29,13 @@ public class StatementNodeParserTest extends AbstractXpand3NodeParserTest {
 		CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 		Xpand3NodeParser xpand3NodeParser = new Xpand3NodeParser(tokenStream);
 
-		Node rootNode = xpand3NodeParser.r_file();
-		if (rootNode == null) {
+		CompositeNode rootNode = xpand3NodeParser.r_file();
+		if (rootNode.getChildren().size() == 1) {
+			rootNode = (CompositeNode) rootNode.getChildren().get(0);
+		}
+		if (rootNode.getChildren().size() == 0) {
 			System.out.println("Nothing parsed.");
+			return null;
 		} else {
 			System.out.println(rootNode.toDebugString());
 		}

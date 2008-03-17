@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LetStatementNodeImpl.java,v 1.4 2008/03/13 08:40:02 jkohnlein Exp $
+ * $Id: LetStatementNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,8 +27,8 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.LetStatementNodeImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.LetStatementNodeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.LetStatementNodeImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.LetStatementNodeImpl#getSequence <em>Sequence</em>}</li>
  * </ul>
  * </p>
@@ -36,16 +36,6 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * @generated
  */
 public class LetStatementNodeImpl extends CompositeNodeImpl implements LetStatementNode {
-	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode expression;
-
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -55,6 +45,16 @@ public class LetStatementNodeImpl extends CompositeNodeImpl implements LetStatem
 	 * @ordered
 	 */
 	protected CompositeNode name;
+
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode expression;
 
 	/**
 	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
@@ -207,12 +207,12 @@ public class LetStatementNodeImpl extends CompositeNodeImpl implements LetStatem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
-				if (resolve) return getExpression();
-				return basicGetExpression();
 			case Xpand3nodePackage.LET_STATEMENT_NODE__NAME:
 				if (resolve) return getName();
 				return basicGetName();
+			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
+				if (resolve) return getExpression();
+				return basicGetExpression();
 			case Xpand3nodePackage.LET_STATEMENT_NODE__SEQUENCE:
 				if (resolve) return getSequence();
 				return basicGetSequence();
@@ -228,11 +228,11 @@ public class LetStatementNodeImpl extends CompositeNodeImpl implements LetStatem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
-				setExpression((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.LET_STATEMENT_NODE__NAME:
 				setName((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
+				setExpression((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.LET_STATEMENT_NODE__SEQUENCE:
 				setSequence((CompositeNode)newValue);
@@ -249,11 +249,11 @@ public class LetStatementNodeImpl extends CompositeNodeImpl implements LetStatem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
-				setExpression((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.LET_STATEMENT_NODE__NAME:
 				setName((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
+				setExpression((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.LET_STATEMENT_NODE__SEQUENCE:
 				setSequence((CompositeNode)null);
@@ -270,10 +270,10 @@ public class LetStatementNodeImpl extends CompositeNodeImpl implements LetStatem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
-				return expression != null;
 			case Xpand3nodePackage.LET_STATEMENT_NODE__NAME:
 				return name != null;
+			case Xpand3nodePackage.LET_STATEMENT_NODE__EXPRESSION:
+				return expression != null;
 			case Xpand3nodePackage.LET_STATEMENT_NODE__SEQUENCE:
 				return sequence != null;
 		}

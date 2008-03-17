@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ElseIfStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: ElseIfStatementNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,24 +27,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ElseIfStatementNodeImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ElseIfStatementNodeImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ElseIfStatementNodeImpl#getSequence <em>Sequence</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ElseIfStatementNodeImpl extends CompositeNodeImpl implements ElseIfStatementNode {
-	/**
-	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSequence()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode sequence;
-
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,6 +44,16 @@ public class ElseIfStatementNodeImpl extends CompositeNodeImpl implements ElseIf
 	 * @ordered
 	 */
 	protected CompositeNode expression;
+
+	/**
+	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSequence()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode sequence;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,12 +158,12 @@ public class ElseIfStatementNodeImpl extends CompositeNodeImpl implements ElseIf
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
-				if (resolve) return getSequence();
-				return basicGetSequence();
 			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__EXPRESSION:
 				if (resolve) return getExpression();
 				return basicGetExpression();
+			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
+				if (resolve) return getSequence();
+				return basicGetSequence();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,11 +176,11 @@ public class ElseIfStatementNodeImpl extends CompositeNodeImpl implements ElseIf
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
-				setSequence((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__EXPRESSION:
 				setExpression((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
+				setSequence((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,11 +194,11 @@ public class ElseIfStatementNodeImpl extends CompositeNodeImpl implements ElseIf
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
-				setSequence((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__EXPRESSION:
 				setExpression((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
+				setSequence((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,10 +212,10 @@ public class ElseIfStatementNodeImpl extends CompositeNodeImpl implements ElseIf
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
-				return sequence != null;
 			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__EXPRESSION:
 				return expression != null;
+			case Xpand3nodePackage.ELSE_IF_STATEMENT_NODE__SEQUENCE:
+				return sequence != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProtectStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: ProtectStatementNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,16 +27,26 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ProtectStatementNodeImpl#getCstart <em>Cstart</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ProtectStatementNodeImpl#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ProtectStatementNodeImpl#getCend <em>Cend</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ProtectStatementNodeImpl#getId <em>Id</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ProtectStatementNodeImpl#getCstart <em>Cstart</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ProtectStatementNodeImpl extends CompositeNodeImpl implements ProtectStatementNode {
+	/**
+	 * The cached value of the '{@link #getCstart() <em>Cstart</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCstart()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode cstart;
+
 	/**
 	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -66,16 +76,6 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	 * @ordered
 	 */
 	protected CompositeNode id;
-
-	/**
-	 * The cached value of the '{@link #getCstart() <em>Cstart</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCstart()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode cstart;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -256,6 +256,9 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
+				if (resolve) return getCstart();
+				return basicGetCstart();
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE:
 				if (resolve) return getSequence();
 				return basicGetSequence();
@@ -265,9 +268,6 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__ID:
 				if (resolve) return getId();
 				return basicGetId();
-			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
-				if (resolve) return getCstart();
-				return basicGetCstart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,6 +280,9 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
+				setCstart((CompositeNode)newValue);
+				return;
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE:
 				setSequence((CompositeNode)newValue);
 				return;
@@ -288,9 +291,6 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 				return;
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__ID:
 				setId((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
-				setCstart((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -304,6 +304,9 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
+				setCstart((CompositeNode)null);
+				return;
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE:
 				setSequence((CompositeNode)null);
 				return;
@@ -312,9 +315,6 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 				return;
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__ID:
 				setId((CompositeNode)null);
-				return;
-			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
-				setCstart((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -328,14 +328,14 @@ public class ProtectStatementNodeImpl extends CompositeNodeImpl implements Prote
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
+				return cstart != null;
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__SEQUENCE:
 				return sequence != null;
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CEND:
 				return cend != null;
 			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__ID:
 				return id != null;
-			case Xpand3nodePackage.PROTECT_STATEMENT_NODE__CSTART:
-				return cstart != null;
 		}
 		return super.eIsSet(featureID);
 	}

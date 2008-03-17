@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExtensionNode.java,v 1.6 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: ExtensionNode.java,v 1.7 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -17,15 +17,15 @@ import org.eclipse.tmf.common.node.LeafNode;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getExtendBody <em>Extend Body</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaName <em>Java Name</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getParamList <em>Param List</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getPrivate <em>Private</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaReturnType <em>Java Return Type</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCreate <em>Create</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaName <em>Java Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getReturnType <em>Return Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getPrivate <em>Private</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getJavaReturnType <em>Java Return Type</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getCached <em>Cached</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExtensionNode#getExtendBody <em>Extend Body</em>}</li>
  * </ul>
  * </p>
  *

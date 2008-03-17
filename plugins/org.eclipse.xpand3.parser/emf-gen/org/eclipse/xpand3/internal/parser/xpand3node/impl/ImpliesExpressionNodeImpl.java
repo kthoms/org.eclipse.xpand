@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ImpliesExpressionNodeImpl.java,v 1.3 2008/03/13 08:40:02 jkohnlein Exp $
+ * $Id: ImpliesExpressionNodeImpl.java,v 1.4 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -33,24 +33,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ImpliesExpressionNodeImpl#getNexts <em>Nexts</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ImpliesExpressionNodeImpl#getFirst <em>First</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ImpliesExpressionNodeImpl#getNexts <em>Nexts</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ImpliesExpressionNodeImpl extends CompositeNodeImpl implements ImpliesExpressionNode {
-	/**
-	 * The cached value of the '{@link #getNexts() <em>Nexts</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNexts()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<CompositeNode> nexts;
-
 	/**
 	 * The cached value of the '{@link #getFirst() <em>First</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -60,6 +50,16 @@ public class ImpliesExpressionNodeImpl extends CompositeNodeImpl implements Impl
 	 * @ordered
 	 */
 	protected CompositeNode first;
+
+	/**
+	 * The cached value of the '{@link #getNexts() <em>Nexts</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNexts()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompositeNode> nexts;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,11 +138,11 @@ public class ImpliesExpressionNodeImpl extends CompositeNodeImpl implements Impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__NEXTS:
-				return getNexts();
 			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__FIRST:
 				if (resolve) return getFirst();
 				return basicGetFirst();
+			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__NEXTS:
+				return getNexts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,12 +156,12 @@ public class ImpliesExpressionNodeImpl extends CompositeNodeImpl implements Impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__FIRST:
+				setFirst((CompositeNode)newValue);
+				return;
 			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__NEXTS:
 				getNexts().clear();
 				getNexts().addAll((Collection<? extends CompositeNode>)newValue);
-				return;
-			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__FIRST:
-				setFirst((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,11 +175,11 @@ public class ImpliesExpressionNodeImpl extends CompositeNodeImpl implements Impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__NEXTS:
-				getNexts().clear();
-				return;
 			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__FIRST:
 				setFirst((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__NEXTS:
+				getNexts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -193,10 +193,10 @@ public class ImpliesExpressionNodeImpl extends CompositeNodeImpl implements Impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__NEXTS:
-				return nexts != null && !nexts.isEmpty();
 			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__FIRST:
 				return first != null;
+			case Xpand3nodePackage.IMPLIES_EXPRESSION_NODE__NEXTS:
+				return nexts != null && !nexts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

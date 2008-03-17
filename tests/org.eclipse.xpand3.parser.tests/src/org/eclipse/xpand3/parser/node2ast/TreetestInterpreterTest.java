@@ -41,6 +41,11 @@ public class TreetestInterpreterTest extends AbstractEcoreTreeTestInterpreter {
 		test("org/eclipse/xpand3/parser/node2ast/expression.ttst");
 	}
 
+	public void testDeclaration() throws Throwable {
+		parseExpression = false;
+		test("org/eclipse/xpand3/parser/node2ast/declaration.ttst");
+	}
+
 	protected EObject parseAndTransform(String testExpressionBody)
 			throws RecognitionException, UnsupportedEncodingException {
 		System.out.println("Expression:" + testExpressionBody);

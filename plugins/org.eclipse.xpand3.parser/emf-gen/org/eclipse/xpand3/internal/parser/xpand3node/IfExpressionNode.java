@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IfExpressionNode.java,v 1.3 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: IfExpressionNode.java,v 1.4 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,10 +16,10 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.IfExpressionNode#getThen <em>Then</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.IfExpressionNode#getElse <em>Else</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.IfExpressionNode#getCondition0 <em>Condition0</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.IfExpressionNode#getCondition1 <em>Condition1</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.IfExpressionNode#getElse <em>Else</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.IfExpressionNode#getThen <em>Then</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.IfExpressionNode#getCondition0 <em>Condition0</em>}</li>
  * </ul>
  * </p>
  *

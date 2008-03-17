@@ -1,4 +1,4 @@
-// $ANTLR 3.0 ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g 2008-03-13 07:58:06
+// $ANTLR 3.0 ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g 2008-03-17 09:48:31
  	
 package org.eclipse.xpand3.parser; 
 
@@ -67,10 +67,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createFileNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:2: ( ( ( (f_imports= r_nsImport ) ) )* ( ( (f_declarations= r_abstractDeclaration ) ) )* ( EOF ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:2: ( ( (f_imports= r_nsImport ) ) )* ( ( (f_declarations= r_abstractDeclaration ) ) )* ( EOF )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:2: ( ( ( (f_imports= r_nsImport ) ) )* ( ( (f_declarations= r_abstractDeclaration ) ) )* ( EOF ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:2: ( ( (f_imports= r_nsImport ) ) )* ( ( (f_declarations= r_abstractDeclaration ) ) )* ( EOF )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:2: ( ( (f_imports= r_nsImport ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:2: ( ( (f_imports= r_nsImport ) ) )*
             loop1:
             do {
                 int alt1=2;
@@ -92,15 +92,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:3: ( (f_imports= r_nsImport ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:3: ( (f_imports= r_nsImport ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:3: ( (f_imports= r_nsImport ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:4: (f_imports= r_nsImport )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:3: ( (f_imports= r_nsImport ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:4: (f_imports= r_nsImport )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:4: (f_imports= r_nsImport )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:5: f_imports= r_nsImport
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:4: (f_imports= r_nsImport )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:5: f_imports= r_nsImport
             	    {
-            	    pushFollow(FOLLOW_r_nsImport_in_r_file80);
+            	    pushFollow(FOLLOW_r_nsImport_in_r_file75);
             	    f_imports=r_nsImport();
             	    _fsp--;
             	    if (failed) return cn;
@@ -122,7 +122,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:109: ( ( (f_declarations= r_abstractDeclaration ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:109: ( ( (f_declarations= r_abstractDeclaration ) ) )*
             loop2:
             do {
                 int alt2=2;
@@ -135,15 +135,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt2) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:110: ( (f_declarations= r_abstractDeclaration ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:110: ( (f_declarations= r_abstractDeclaration ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:110: ( (f_declarations= r_abstractDeclaration ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:111: (f_declarations= r_abstractDeclaration )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:110: ( (f_declarations= r_abstractDeclaration ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:111: (f_declarations= r_abstractDeclaration )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:111: (f_declarations= r_abstractDeclaration )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:112: f_declarations= r_abstractDeclaration
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:111: (f_declarations= r_abstractDeclaration )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:112: f_declarations= r_abstractDeclaration
             	    {
-            	    pushFollow(FOLLOW_r_abstractDeclaration_in_r_file93);
+            	    pushFollow(FOLLOW_r_abstractDeclaration_in_r_file88);
             	    f_declarations=r_abstractDeclaration();
             	    _fsp--;
             	    if (failed) return cn;
@@ -165,19 +165,16 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:247: ( EOF )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:33:248: EOF
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:247: ( EOF )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:32:248: EOF
             {
-            match(input,EOF,FOLLOW_EOF_in_r_file102); if (failed) return cn;
+            match(input,EOF,FOLLOW_EOF_in_r_file97); if (failed) return cn;
 
             }
 
 
             }
 
-            if ( backtracking==0 ) {
-               cn = normalize(cn); 
-            }
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -191,7 +188,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_nsImport
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:36:1: r_nsImport returns [CompositeNode cn] : ( ( r_import ) | ( r_extensionImport ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:35:1: r_nsImport returns [CompositeNode cn] : ( ( r_import ) | ( r_extensionImport ) );
     public CompositeNode r_nsImport() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -201,7 +198,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:37:2: ( ( r_import ) | ( r_extensionImport ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:36:2: ( ( r_import ) | ( r_extensionImport ) )
             int alt3=2;
             switch ( input.LA(1) ) {
             case LG:
@@ -217,7 +214,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 else {
                     if (backtracking>0) {failed=true; return cn;}
                     NoViableAltException nvae =
-                        new NoViableAltException("36:1: r_nsImport returns [CompositeNode cn] : ( ( r_import ) | ( r_extensionImport ) );", 3, 1, input);
+                        new NoViableAltException("35:1: r_nsImport returns [CompositeNode cn] : ( ( r_import ) | ( r_extensionImport ) );", 3, 1, input);
 
                     throw nvae;
                 }
@@ -236,19 +233,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("36:1: r_nsImport returns [CompositeNode cn] : ( ( r_import ) | ( r_extensionImport ) );", 3, 0, input);
+                    new NoViableAltException("35:1: r_nsImport returns [CompositeNode cn] : ( ( r_import ) | ( r_extensionImport ) );", 3, 0, input);
 
                 throw nvae;
             }
 
             switch (alt3) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:37:2: ( r_import )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:36:2: ( r_import )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:37:2: ( r_import )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:37:3: r_import
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:36:2: ( r_import )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:36:3: r_import
                     {
-                    pushFollow(FOLLOW_r_import_in_r_nsImport119);
+                    pushFollow(FOLLOW_r_import_in_r_nsImport114);
                     r_import1=r_import();
                     _fsp--;
                     if (failed) return cn;
@@ -262,12 +259,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:38:4: ( r_extensionImport )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:37:4: ( r_extensionImport )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:38:4: ( r_extensionImport )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:38:5: r_extensionImport
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:37:4: ( r_extensionImport )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:37:5: r_extensionImport
                     {
-                    pushFollow(FOLLOW_r_extensionImport_in_r_nsImport128);
+                    pushFollow(FOLLOW_r_extensionImport_in_r_nsImport123);
                     r_extensionImport2=r_extensionImport();
                     _fsp--;
                     if (failed) return cn;
@@ -295,7 +292,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_import
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:41:1: r_import returns [CompositeNode cn] : ( ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'import' ) (f_type= r_type ) ( ';' ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:40:1: r_import returns [CompositeNode cn] : ( ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'import' ) (f_type= r_type ) ( ';' ) );
     public CompositeNode r_import() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -307,7 +304,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createImportNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:2: ( ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'import' ) (f_type= r_type ) ( ';' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:2: ( ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'import' ) (f_type= r_type ) ( ';' ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -320,44 +317,44 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("41:1: r_import returns [CompositeNode cn] : ( ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'import' ) (f_type= r_type ) ( ';' ) );", 4, 0, input);
+                    new NoViableAltException("40:1: r_import returns [CompositeNode cn] : ( ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'import' ) (f_type= r_type ) ( ';' ) );", 4, 0, input);
 
                 throw nvae;
             }
             switch (alt4) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:2: ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:2: ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:2: ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:3: ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:2: ( ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:3: ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:3: ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:4: ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:3: ( ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:4: ( LG ) ( 'IMPORT' ) (f_namespace= r_simpleType ) ( RG )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:4: ( LG )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:5: LG
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:4: ( LG )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:5: LG
                     {
-                    match(input,LG,FOLLOW_LG_in_r_import154); if (failed) return cn;
+                    match(input,LG,FOLLOW_LG_in_r_import149); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:45: ( 'IMPORT' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:46: 'IMPORT'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:45: ( 'IMPORT' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:46: 'IMPORT'
                     {
-                    match(input,25,FOLLOW_25_in_r_import160); if (failed) return cn;
+                    match(input,25,FOLLOW_25_in_r_import155); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:92: (f_namespace= r_simpleType )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:93: f_namespace= r_simpleType
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:92: (f_namespace= r_simpleType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:93: f_namespace= r_simpleType
                     {
-                    pushFollow(FOLLOW_r_simpleType_in_r_import168);
+                    pushFollow(FOLLOW_r_simpleType_in_r_import163);
                     f_namespace=r_simpleType();
                     _fsp--;
                     if (failed) return cn;
@@ -367,10 +364,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:200: ( RG )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:201: RG
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:200: ( RG )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:43:201: RG
                     {
-                    match(input,RG,FOLLOW_RG_in_r_import174); if (failed) return cn;
+                    match(input,RG,FOLLOW_RG_in_r_import169); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -387,22 +384,22 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:45:4: ( 'import' ) (f_type= r_type ) ( ';' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:4: ( 'import' ) (f_type= r_type ) ( ';' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:45:4: ( 'import' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:45:5: 'import'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:4: ( 'import' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:5: 'import'
                     {
-                    match(input,26,FOLLOW_26_in_r_import185); if (failed) return cn;
+                    match(input,26,FOLLOW_26_in_r_import180); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:45:51: (f_type= r_type )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:45:52: f_type= r_type
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:51: (f_type= r_type )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:52: f_type= r_type
                     {
-                    pushFollow(FOLLOW_r_type_in_r_import193);
+                    pushFollow(FOLLOW_r_type_in_r_import188);
                     f_type=r_type();
                     _fsp--;
                     if (failed) return cn;
@@ -412,10 +409,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:45:133: ( ';' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:45:134: ';'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:133: ( ';' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:44:134: ';'
                     {
-                    match(input,27,FOLLOW_27_in_r_import199); if (failed) return cn;
+                    match(input,27,FOLLOW_27_in_r_import194); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -440,7 +437,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_extensionImport
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:48:1: r_extensionImport returns [CompositeNode cn] : ( ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:47:1: r_extensionImport returns [CompositeNode cn] : ( ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' ) );
     public CompositeNode r_extensionImport() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -452,7 +449,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createExtensionImportNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:2: ( ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:2: ( ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -465,44 +462,44 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("48:1: r_extensionImport returns [CompositeNode cn] : ( ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' ) );", 6, 0, input);
+                    new NoViableAltException("47:1: r_extensionImport returns [CompositeNode cn] : ( ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) ) | ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' ) );", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:2: ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:2: ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:2: ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:3: ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:2: ( ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:3: ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:3: ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:4: ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:3: ( ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:4: ( LG ) ( 'EXTENSION' ) (f_namespace= r_simpleType ) ( RG )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:4: ( LG )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:5: LG
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:4: ( LG )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:5: LG
                     {
-                    match(input,LG,FOLLOW_LG_in_r_extensionImport225); if (failed) return cn;
+                    match(input,LG,FOLLOW_LG_in_r_extensionImport220); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:45: ( 'EXTENSION' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:46: 'EXTENSION'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:45: ( 'EXTENSION' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:46: 'EXTENSION'
                     {
-                    match(input,28,FOLLOW_28_in_r_extensionImport231); if (failed) return cn;
+                    match(input,28,FOLLOW_28_in_r_extensionImport226); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:95: (f_namespace= r_simpleType )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:96: f_namespace= r_simpleType
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:95: (f_namespace= r_simpleType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:96: f_namespace= r_simpleType
                     {
-                    pushFollow(FOLLOW_r_simpleType_in_r_extensionImport239);
+                    pushFollow(FOLLOW_r_simpleType_in_r_extensionImport234);
                     f_namespace=r_simpleType();
                     _fsp--;
                     if (failed) return cn;
@@ -512,10 +509,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:212: ( RG )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:213: RG
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:212: ( RG )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:50:213: RG
                     {
-                    match(input,RG,FOLLOW_RG_in_r_extensionImport245); if (failed) return cn;
+                    match(input,RG,FOLLOW_RG_in_r_extensionImport240); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -532,22 +529,22 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:4: ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:4: ( 'extension' ) (f_type= r_type ) ( 'reexport' )? ( ';' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:4: ( 'extension' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:5: 'extension'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:4: ( 'extension' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:5: 'extension'
                     {
-                    match(input,29,FOLLOW_29_in_r_extensionImport256); if (failed) return cn;
+                    match(input,29,FOLLOW_29_in_r_extensionImport251); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:54: (f_type= r_type )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:55: f_type= r_type
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:54: (f_type= r_type )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:55: f_type= r_type
                     {
-                    pushFollow(FOLLOW_r_type_in_r_extensionImport264);
+                    pushFollow(FOLLOW_r_type_in_r_extensionImport259);
                     f_type=r_type();
                     _fsp--;
                     if (failed) return cn;
@@ -557,7 +554,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:145: ( 'reexport' )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:145: ( 'reexport' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -566,9 +563,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt5) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:146: 'reexport'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:146: 'reexport'
                             {
-                            match(input,30,FOLLOW_30_in_r_extensionImport270); if (failed) return cn;
+                            match(input,30,FOLLOW_30_in_r_extensionImport265); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -578,10 +575,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:195: ( ';' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:52:196: ';'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:195: ( ';' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:51:196: ';'
                     {
-                    match(input,27,FOLLOW_27_in_r_extensionImport277); if (failed) return cn;
+                    match(input,27,FOLLOW_27_in_r_extensionImport272); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -606,7 +603,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_abstractDeclaration
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:55:1: r_abstractDeclaration returns [CompositeNode cn] : ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:54:1: r_abstractDeclaration returns [CompositeNode cn] : ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) );
     public CompositeNode r_abstractDeclaration() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -622,7 +619,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:56:2: ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:55:2: ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) )
             int alt7=5;
             switch ( input.LA(1) ) {
             case 59:
@@ -659,7 +656,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 else {
                     if (backtracking>0) {failed=true; return cn;}
                     NoViableAltException nvae =
-                        new NoViableAltException("55:1: r_abstractDeclaration returns [CompositeNode cn] : ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) );", 7, 4, input);
+                        new NoViableAltException("54:1: r_abstractDeclaration returns [CompositeNode cn] : ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) );", 7, 4, input);
 
                     throw nvae;
                 }
@@ -668,19 +665,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("55:1: r_abstractDeclaration returns [CompositeNode cn] : ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) );", 7, 0, input);
+                    new NoViableAltException("54:1: r_abstractDeclaration returns [CompositeNode cn] : ( ( r_check ) | ( r_around ) | ( r_extension ) | ( r_definition ) | ( r_definitionAround ) );", 7, 0, input);
 
                 throw nvae;
             }
 
             switch (alt7) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:56:2: ( r_check )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:55:2: ( r_check )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:56:2: ( r_check )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:56:3: r_check
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:55:2: ( r_check )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:55:3: r_check
                     {
-                    pushFollow(FOLLOW_r_check_in_r_abstractDeclaration296);
+                    pushFollow(FOLLOW_r_check_in_r_abstractDeclaration291);
                     r_check3=r_check();
                     _fsp--;
                     if (failed) return cn;
@@ -694,12 +691,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:57:4: ( r_around )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:56:4: ( r_around )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:57:4: ( r_around )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:57:5: r_around
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:56:4: ( r_around )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:56:5: r_around
                     {
-                    pushFollow(FOLLOW_r_around_in_r_abstractDeclaration305);
+                    pushFollow(FOLLOW_r_around_in_r_abstractDeclaration300);
                     r_around4=r_around();
                     _fsp--;
                     if (failed) return cn;
@@ -713,12 +710,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:58:4: ( r_extension )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:57:4: ( r_extension )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:58:4: ( r_extension )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:58:5: r_extension
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:57:4: ( r_extension )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:57:5: r_extension
                     {
-                    pushFollow(FOLLOW_r_extension_in_r_abstractDeclaration314);
+                    pushFollow(FOLLOW_r_extension_in_r_abstractDeclaration309);
                     r_extension5=r_extension();
                     _fsp--;
                     if (failed) return cn;
@@ -732,12 +729,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 4 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:59:4: ( r_definition )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:58:4: ( r_definition )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:59:4: ( r_definition )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:59:5: r_definition
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:58:4: ( r_definition )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:58:5: r_definition
                     {
-                    pushFollow(FOLLOW_r_definition_in_r_abstractDeclaration323);
+                    pushFollow(FOLLOW_r_definition_in_r_abstractDeclaration318);
                     r_definition6=r_definition();
                     _fsp--;
                     if (failed) return cn;
@@ -751,12 +748,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 5 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:60:4: ( r_definitionAround )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:59:4: ( r_definitionAround )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:60:4: ( r_definitionAround )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:60:5: r_definitionAround
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:59:4: ( r_definitionAround )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:59:5: r_definitionAround
                     {
-                    pushFollow(FOLLOW_r_definitionAround_in_r_abstractDeclaration332);
+                    pushFollow(FOLLOW_r_definitionAround_in_r_abstractDeclaration327);
                     r_definitionAround7=r_definitionAround();
                     _fsp--;
                     if (failed) return cn;
@@ -784,7 +781,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_definition
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:63:1: r_definition returns [CompositeNode cn] : ( LG ) ( DEFINE ) (f_name= r_identifier ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDDEFINE ) ( RG ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:62:1: r_definition returns [CompositeNode cn] : ( LG ) ( DEFINE ) (f_name= r_identifier ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDDEFINE ) ( RG ) ;
     public CompositeNode r_definition() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -800,33 +797,33 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createDefinitionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:2: ( ( LG ) ( DEFINE ) (f_name= r_identifier ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDDEFINE ) ( RG ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:2: ( LG ) ( DEFINE ) (f_name= r_identifier ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDDEFINE ) ( RG )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:2: ( ( LG ) ( DEFINE ) (f_name= r_identifier ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDDEFINE ) ( RG ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:2: ( LG ) ( DEFINE ) (f_name= r_identifier ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDDEFINE ) ( RG )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:2: ( LG )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:3: LG
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:2: ( LG )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:3: LG
             {
-            match(input,LG,FOLLOW_LG_in_r_definition356); if (failed) return cn;
+            match(input,LG,FOLLOW_LG_in_r_definition351); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:43: ( DEFINE )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:44: DEFINE
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:43: ( DEFINE )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:44: DEFINE
             {
-            match(input,DEFINE,FOLLOW_DEFINE_in_r_definition362); if (failed) return cn;
+            match(input,DEFINE,FOLLOW_DEFINE_in_r_definition357); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:88: (f_name= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:89: f_name= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:88: (f_name= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:89: f_name= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_definition370);
+            pushFollow(FOLLOW_r_identifier_in_r_definition365);
             f_name=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -836,7 +833,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:180: ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:180: ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -845,22 +842,22 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt12) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:181: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:181: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:181: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:182: ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:181: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:182: ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:182: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:183: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:182: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:183: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_definition378); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_definition373); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:224: ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:224: ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -869,9 +866,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt11) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:225: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:225: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:225: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:225: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
                             int alt10=2;
                             int LA10_0 = input.LA(1);
 
@@ -884,18 +881,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             else {
                                 if (backtracking>0) {failed=true; return cn;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("66:225: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )", 10, 0, input);
+                                    new NoViableAltException("65:225: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )", 10, 0, input);
 
                                 throw nvae;
                             }
                             switch (alt10) {
                                 case 1 :
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:226: (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )?
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:226: (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )?
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:226: (f_paramList= r_declaredParameterList )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:227: f_paramList= r_declaredParameterList
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:226: (f_paramList= r_declaredParameterList )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:227: f_paramList= r_declaredParameterList
                                     {
-                                    pushFollow(FOLLOW_r_declaredParameterList_in_r_definition388);
+                                    pushFollow(FOLLOW_r_declaredParameterList_in_r_definition383);
                                     f_paramList=r_declaredParameterList();
                                     _fsp--;
                                     if (failed) return cn;
@@ -905,7 +902,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                                     }
 
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:349: ( ( ( ',' )? ( '*' ) ) )?
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:349: ( ( ( ',' )? ( '*' ) ) )?
                                     int alt9=2;
                                     int LA9_0 = input.LA(1);
 
@@ -914,12 +911,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                                     }
                                     switch (alt9) {
                                         case 1 :
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:350: ( ( ',' )? ( '*' ) )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:350: ( ( ',' )? ( '*' ) )
                                             {
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:350: ( ( ',' )? ( '*' ) )
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:351: ( ',' )? ( '*' )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:350: ( ( ',' )? ( '*' ) )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:351: ( ',' )? ( '*' )
                                             {
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:351: ( ',' )?
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:351: ( ',' )?
                                             int alt8=2;
                                             int LA8_0 = input.LA(1);
 
@@ -928,9 +925,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                                             }
                                             switch (alt8) {
                                                 case 1 :
-                                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:352: ','
+                                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:352: ','
                                                     {
-                                                    match(input,32,FOLLOW_32_in_r_definition396); if (failed) return cn;
+                                                    match(input,32,FOLLOW_32_in_r_definition391); if (failed) return cn;
                                                     if ( backtracking==0 ) {
                                                        addLeafNodeForToken(cn, null); 
                                                     }
@@ -940,10 +937,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                                             }
 
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:394: ( '*' )
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:395: '*'
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:394: ( '*' )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:65:395: '*'
                                             {
-                                            match(input,33,FOLLOW_33_in_r_definition403); if (failed) return cn;
+                                            match(input,33,FOLLOW_33_in_r_definition398); if (failed) return cn;
                                             if ( backtracking==0 ) {
                                                addLeafNodeForToken(cn, null); 
                                             }
@@ -963,12 +960,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                                     }
                                     break;
                                 case 2 :
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:4: ( '*' )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:4: ( '*' )
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:4: ( '*' )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:5: '*'
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:4: ( '*' )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:5: '*'
                                     {
-                                    match(input,33,FOLLOW_33_in_r_definition415); if (failed) return cn;
+                                    match(input,33,FOLLOW_33_in_r_definition410); if (failed) return cn;
                                     if ( backtracking==0 ) {
                                        addLeafNodeForToken(cn, null); 
                                     }
@@ -987,10 +984,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:49: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:50: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:49: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:50: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_definition424); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_definition419); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -1006,20 +1003,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:94: ( 'FOR' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:95: 'FOR'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:94: ( 'FOR' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:95: 'FOR'
             {
-            match(input,35,FOLLOW_35_in_r_definition433); if (failed) return cn;
+            match(input,35,FOLLOW_35_in_r_definition428); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:138: (f_type= r_type )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:139: f_type= r_type
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:138: (f_type= r_type )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:139: f_type= r_type
             {
-            pushFollow(FOLLOW_r_type_in_r_definition441);
+            pushFollow(FOLLOW_r_type_in_r_definition436);
             f_type=r_type();
             _fsp--;
             if (failed) return cn;
@@ -1029,10 +1026,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:224: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:225: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:224: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:225: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_definition449);
+            pushFollow(FOLLOW_r_sequence_in_r_definition444);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -1042,20 +1039,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:330: ( ENDDEFINE )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:331: ENDDEFINE
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:330: ( ENDDEFINE )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:331: ENDDEFINE
             {
-            match(input,ENDDEFINE,FOLLOW_ENDDEFINE_in_r_definition455); if (failed) return cn;
+            match(input,ENDDEFINE,FOLLOW_ENDDEFINE_in_r_definition450); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:378: ( RG )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:67:379: RG
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:378: ( RG )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:66:379: RG
             {
-            match(input,RG,FOLLOW_RG_in_r_definition461); if (failed) return cn;
+            match(input,RG,FOLLOW_RG_in_r_definition456); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -1078,7 +1075,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_definitionAround
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:70:1: r_definitionAround returns [CompositeNode cn] : ( LG ) ( AROUND ) (f_pointcut= r_pointcut ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDAROUND ) ( RG ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:69:1: r_definitionAround returns [CompositeNode cn] : ( LG ) ( AROUND ) (f_pointcut= r_pointcut ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDAROUND ) ( RG ) ;
     public CompositeNode r_definitionAround() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -1094,33 +1091,33 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createDefinitionAroundNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:2: ( ( LG ) ( AROUND ) (f_pointcut= r_pointcut ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDAROUND ) ( RG ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:2: ( LG ) ( AROUND ) (f_pointcut= r_pointcut ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDAROUND ) ( RG )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:2: ( ( LG ) ( AROUND ) (f_pointcut= r_pointcut ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDAROUND ) ( RG ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:2: ( LG ) ( AROUND ) (f_pointcut= r_pointcut ) ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )? ( 'FOR' ) (f_type= r_type ) (f_sequence= r_sequence ) ( ENDAROUND ) ( RG )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:2: ( LG )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:3: LG
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:2: ( LG )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:3: LG
             {
-            match(input,LG,FOLLOW_LG_in_r_definitionAround485); if (failed) return cn;
+            match(input,LG,FOLLOW_LG_in_r_definitionAround480); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:43: ( AROUND )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:44: AROUND
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:43: ( AROUND )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:44: AROUND
             {
-            match(input,AROUND,FOLLOW_AROUND_in_r_definitionAround491); if (failed) return cn;
+            match(input,AROUND,FOLLOW_AROUND_in_r_definitionAround486); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:88: (f_pointcut= r_pointcut )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:89: f_pointcut= r_pointcut
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:88: (f_pointcut= r_pointcut )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:89: f_pointcut= r_pointcut
             {
-            pushFollow(FOLLOW_r_pointcut_in_r_definitionAround499);
+            pushFollow(FOLLOW_r_pointcut_in_r_definitionAround494);
             f_pointcut=r_pointcut();
             _fsp--;
             if (failed) return cn;
@@ -1130,7 +1127,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:200: ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:200: ( ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ) )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1139,22 +1136,22 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt17) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:201: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:201: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:201: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:202: ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:201: ( ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:202: ( '(' ) ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:202: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:203: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:202: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:203: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_definitionAround507); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_definitionAround502); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:244: ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:244: ( ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1163,9 +1160,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt16) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:245: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:245: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:245: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:245: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
                             int alt15=2;
                             int LA15_0 = input.LA(1);
 
@@ -1178,18 +1175,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             else {
                                 if (backtracking>0) {failed=true; return cn;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("73:245: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )", 15, 0, input);
+                                    new NoViableAltException("72:245: ( (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )", 15, 0, input);
 
                                 throw nvae;
                             }
                             switch (alt15) {
                                 case 1 :
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:246: (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )?
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:246: (f_paramList= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )?
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:246: (f_paramList= r_declaredParameterList )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:247: f_paramList= r_declaredParameterList
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:246: (f_paramList= r_declaredParameterList )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:247: f_paramList= r_declaredParameterList
                                     {
-                                    pushFollow(FOLLOW_r_declaredParameterList_in_r_definitionAround517);
+                                    pushFollow(FOLLOW_r_declaredParameterList_in_r_definitionAround512);
                                     f_paramList=r_declaredParameterList();
                                     _fsp--;
                                     if (failed) return cn;
@@ -1199,7 +1196,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                                     }
 
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:375: ( ( ( ',' )? ( '*' ) ) )?
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:375: ( ( ( ',' )? ( '*' ) ) )?
                                     int alt14=2;
                                     int LA14_0 = input.LA(1);
 
@@ -1208,12 +1205,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                                     }
                                     switch (alt14) {
                                         case 1 :
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:376: ( ( ',' )? ( '*' ) )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:376: ( ( ',' )? ( '*' ) )
                                             {
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:376: ( ( ',' )? ( '*' ) )
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:377: ( ',' )? ( '*' )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:376: ( ( ',' )? ( '*' ) )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:377: ( ',' )? ( '*' )
                                             {
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:377: ( ',' )?
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:377: ( ',' )?
                                             int alt13=2;
                                             int LA13_0 = input.LA(1);
 
@@ -1222,9 +1219,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                                             }
                                             switch (alt13) {
                                                 case 1 :
-                                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:378: ','
+                                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:378: ','
                                                     {
-                                                    match(input,32,FOLLOW_32_in_r_definitionAround525); if (failed) return cn;
+                                                    match(input,32,FOLLOW_32_in_r_definitionAround520); if (failed) return cn;
                                                     if ( backtracking==0 ) {
                                                        addLeafNodeForToken(cn, null); 
                                                     }
@@ -1234,10 +1231,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                                             }
 
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:420: ( '*' )
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:421: '*'
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:420: ( '*' )
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:72:421: '*'
                                             {
-                                            match(input,33,FOLLOW_33_in_r_definitionAround532); if (failed) return cn;
+                                            match(input,33,FOLLOW_33_in_r_definitionAround527); if (failed) return cn;
                                             if ( backtracking==0 ) {
                                                addLeafNodeForToken(cn, null); 
                                             }
@@ -1257,12 +1254,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                                     }
                                     break;
                                 case 2 :
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:4: ( '*' )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:4: ( '*' )
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:4: ( '*' )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:5: '*'
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:4: ( '*' )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:5: '*'
                                     {
-                                    match(input,33,FOLLOW_33_in_r_definitionAround544); if (failed) return cn;
+                                    match(input,33,FOLLOW_33_in_r_definitionAround539); if (failed) return cn;
                                     if ( backtracking==0 ) {
                                        addLeafNodeForToken(cn, null); 
                                     }
@@ -1281,10 +1278,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:49: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:50: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:49: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:50: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_definitionAround553); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_definitionAround548); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -1300,20 +1297,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:94: ( 'FOR' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:95: 'FOR'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:94: ( 'FOR' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:95: 'FOR'
             {
-            match(input,35,FOLLOW_35_in_r_definitionAround562); if (failed) return cn;
+            match(input,35,FOLLOW_35_in_r_definitionAround557); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:138: (f_type= r_type )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:139: f_type= r_type
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:138: (f_type= r_type )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:139: f_type= r_type
             {
-            pushFollow(FOLLOW_r_type_in_r_definitionAround570);
+            pushFollow(FOLLOW_r_type_in_r_definitionAround565);
             f_type=r_type();
             _fsp--;
             if (failed) return cn;
@@ -1323,10 +1320,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:230: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:231: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:230: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:231: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_definitionAround578);
+            pushFollow(FOLLOW_r_sequence_in_r_definitionAround573);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -1336,20 +1333,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:342: ( ENDAROUND )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:343: ENDAROUND
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:342: ( ENDAROUND )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:343: ENDAROUND
             {
-            match(input,ENDAROUND,FOLLOW_ENDAROUND_in_r_definitionAround584); if (failed) return cn;
+            match(input,ENDAROUND,FOLLOW_ENDAROUND_in_r_definitionAround579); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:390: ( RG )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:74:391: RG
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:390: ( RG )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:73:391: RG
             {
-            match(input,RG,FOLLOW_RG_in_r_definitionAround590); if (failed) return cn;
+            match(input,RG,FOLLOW_RG_in_r_definitionAround585); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -1372,7 +1369,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_sequence
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:77:1: r_sequence returns [CompositeNode cn] : (f_textSequences= r_textSequence ) ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:76:1: r_sequence returns [CompositeNode cn] : (f_textSequences= r_textSequence ) ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )* ;
     public CompositeNode r_sequence() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -1384,13 +1381,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createSequenceNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:2: ( (f_textSequences= r_textSequence ) ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:2: (f_textSequences= r_textSequence ) ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:2: ( (f_textSequences= r_textSequence ) ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:2: (f_textSequences= r_textSequence ) ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:2: (f_textSequences= r_textSequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:3: f_textSequences= r_textSequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:2: (f_textSequences= r_textSequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:3: f_textSequences= r_textSequence
             {
-            pushFollow(FOLLOW_r_textSequence_in_r_sequence616);
+            pushFollow(FOLLOW_r_textSequence_in_r_sequence611);
             f_textSequences=r_textSequence();
             _fsp--;
             if (failed) return cn;
@@ -1400,7 +1397,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:136: ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:136: ( ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) ) )*
             loop18:
             do {
                 int alt18=2;
@@ -1413,15 +1410,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt18) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:137: ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:137: ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:137: ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:138: (f_statements= r_statement ) (f_textSequences= r_textSequence )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:137: ( (f_statements= r_statement ) (f_textSequences= r_textSequence ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:138: (f_statements= r_statement ) (f_textSequences= r_textSequence )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:138: (f_statements= r_statement )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:139: f_statements= r_statement
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:138: (f_statements= r_statement )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:139: f_statements= r_statement
             	    {
-            	    pushFollow(FOLLOW_r_statement_in_r_sequence626);
+            	    pushFollow(FOLLOW_r_statement_in_r_sequence621);
             	    f_statements=r_statement();
             	    _fsp--;
             	    if (failed) return cn;
@@ -1431,10 +1428,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:257: (f_textSequences= r_textSequence )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:80:258: f_textSequences= r_textSequence
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:257: (f_textSequences= r_textSequence )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:79:258: f_textSequences= r_textSequence
             	    {
-            	    pushFollow(FOLLOW_r_textSequence_in_r_sequence634);
+            	    pushFollow(FOLLOW_r_textSequence_in_r_sequence629);
             	    f_textSequences=r_textSequence();
             	    _fsp--;
             	    if (failed) return cn;
@@ -1472,7 +1469,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_statement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:83:1: r_statement returns [CompositeNode cn] : ( ( r_simpleStatement ) | ( r_fileStatement ) | ( r_foreachStatement ) | ( r_ifStatement ) | ( r_letStatement ) | ( r_protectStatement ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:82:1: r_statement returns [CompositeNode cn] : ( ( r_simpleStatement ) | ( r_fileStatement ) | ( r_foreachStatement ) | ( r_ifStatement ) | ( r_letStatement ) | ( r_protectStatement ) );
     public CompositeNode r_statement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -1490,7 +1487,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:84:2: ( ( r_simpleStatement ) | ( r_fileStatement ) | ( r_foreachStatement ) | ( r_ifStatement ) | ( r_letStatement ) | ( r_protectStatement ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:83:2: ( ( r_simpleStatement ) | ( r_fileStatement ) | ( r_foreachStatement ) | ( r_ifStatement ) | ( r_letStatement ) | ( r_protectStatement ) )
             int alt19=6;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -1554,19 +1551,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("83:1: r_statement returns [CompositeNode cn] : ( ( r_simpleStatement ) | ( r_fileStatement ) | ( r_foreachStatement ) | ( r_ifStatement ) | ( r_letStatement ) | ( r_protectStatement ) );", 19, 0, input);
+                    new NoViableAltException("82:1: r_statement returns [CompositeNode cn] : ( ( r_simpleStatement ) | ( r_fileStatement ) | ( r_foreachStatement ) | ( r_ifStatement ) | ( r_letStatement ) | ( r_protectStatement ) );", 19, 0, input);
 
                 throw nvae;
             }
 
             switch (alt19) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:84:2: ( r_simpleStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:83:2: ( r_simpleStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:84:2: ( r_simpleStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:84:3: r_simpleStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:83:2: ( r_simpleStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:83:3: r_simpleStatement
                     {
-                    pushFollow(FOLLOW_r_simpleStatement_in_r_statement656);
+                    pushFollow(FOLLOW_r_simpleStatement_in_r_statement651);
                     r_simpleStatement8=r_simpleStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1580,12 +1577,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:85:4: ( r_fileStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:84:4: ( r_fileStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:85:4: ( r_fileStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:85:5: r_fileStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:84:4: ( r_fileStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:84:5: r_fileStatement
                     {
-                    pushFollow(FOLLOW_r_fileStatement_in_r_statement665);
+                    pushFollow(FOLLOW_r_fileStatement_in_r_statement660);
                     r_fileStatement9=r_fileStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1599,12 +1596,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:86:4: ( r_foreachStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:85:4: ( r_foreachStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:86:4: ( r_foreachStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:86:5: r_foreachStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:85:4: ( r_foreachStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:85:5: r_foreachStatement
                     {
-                    pushFollow(FOLLOW_r_foreachStatement_in_r_statement674);
+                    pushFollow(FOLLOW_r_foreachStatement_in_r_statement669);
                     r_foreachStatement10=r_foreachStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1618,12 +1615,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 4 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:87:4: ( r_ifStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:86:4: ( r_ifStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:87:4: ( r_ifStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:87:5: r_ifStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:86:4: ( r_ifStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:86:5: r_ifStatement
                     {
-                    pushFollow(FOLLOW_r_ifStatement_in_r_statement683);
+                    pushFollow(FOLLOW_r_ifStatement_in_r_statement678);
                     r_ifStatement11=r_ifStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1637,12 +1634,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 5 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:88:4: ( r_letStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:87:4: ( r_letStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:88:4: ( r_letStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:88:5: r_letStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:87:4: ( r_letStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:87:5: r_letStatement
                     {
-                    pushFollow(FOLLOW_r_letStatement_in_r_statement692);
+                    pushFollow(FOLLOW_r_letStatement_in_r_statement687);
                     r_letStatement12=r_letStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1656,12 +1653,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 6 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:89:4: ( r_protectStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:88:4: ( r_protectStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:89:4: ( r_protectStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:89:5: r_protectStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:88:4: ( r_protectStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:88:5: r_protectStatement
                     {
-                    pushFollow(FOLLOW_r_protectStatement_in_r_statement701);
+                    pushFollow(FOLLOW_r_protectStatement_in_r_statement696);
                     r_protectStatement13=r_protectStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1689,7 +1686,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_textSequence
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:92:1: r_textSequence returns [CompositeNode cn] : (f_texts= r_text ) ( ( (f_texts= r_text ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:91:1: r_textSequence returns [CompositeNode cn] : (f_texts= r_text ) ( ( (f_texts= r_text ) ) )* ;
     public CompositeNode r_textSequence() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -1699,13 +1696,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createTextSequenceNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:2: ( (f_texts= r_text ) ( ( (f_texts= r_text ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:2: (f_texts= r_text ) ( ( (f_texts= r_text ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:2: ( (f_texts= r_text ) ( ( (f_texts= r_text ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:2: (f_texts= r_text ) ( ( (f_texts= r_text ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:2: (f_texts= r_text )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:3: f_texts= r_text
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:2: (f_texts= r_text )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:3: f_texts= r_text
             {
-            pushFollow(FOLLOW_r_text_in_r_textSequence732);
+            pushFollow(FOLLOW_r_text_in_r_textSequence727);
             f_texts=r_text();
             _fsp--;
             if (failed) return cn;
@@ -1715,7 +1712,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:100: ( ( (f_texts= r_text ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:100: ( ( (f_texts= r_text ) ) )*
             loop20:
             do {
                 int alt20=2;
@@ -1737,15 +1734,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt20) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:101: ( (f_texts= r_text ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:101: ( (f_texts= r_text ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:101: ( (f_texts= r_text ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:102: (f_texts= r_text )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:101: ( (f_texts= r_text ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:102: (f_texts= r_text )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:102: (f_texts= r_text )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:96:103: f_texts= r_text
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:102: (f_texts= r_text )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:95:103: f_texts= r_text
             	    {
-            	    pushFollow(FOLLOW_r_text_in_r_textSequence742);
+            	    pushFollow(FOLLOW_r_text_in_r_textSequence737);
             	    f_texts=r_text();
             	    _fsp--;
             	    if (failed) return cn;
@@ -1786,17 +1783,17 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_text
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:99:1: r_text returns [CompositeNode cn] : ( '-' )? ( TEXT ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:98:1: r_text returns [CompositeNode cn] : ( '-' )? ( TEXT ) ;
     public CompositeNode r_text() throws RecognitionException {
         CompositeNode cn = null;
 
          cn = factory.createTextNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:102:2: ( ( '-' )? ( TEXT ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:102:2: ( '-' )? ( TEXT )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:101:2: ( ( '-' )? ( TEXT ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:101:2: ( '-' )? ( TEXT )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:102:2: ( '-' )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:101:2: ( '-' )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1805,9 +1802,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt21) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:102:3: '-'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:101:3: '-'
                     {
-                    match(input,36,FOLLOW_36_in_r_text769); if (failed) return cn;
+                    match(input,36,FOLLOW_36_in_r_text764); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -1817,10 +1814,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:102:45: ( TEXT )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:102:46: TEXT
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:101:45: ( TEXT )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:101:46: TEXT
             {
-            match(input,TEXT,FOLLOW_TEXT_in_r_text776); if (failed) return cn;
+            match(input,TEXT,FOLLOW_TEXT_in_r_text771); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -1843,7 +1840,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_simpleStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:105:1: r_simpleStatement returns [CompositeNode cn] : ( ( r_errorStatement ) | ( r_expandStatement ) | ( r_expressionStmt ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:104:1: r_simpleStatement returns [CompositeNode cn] : ( ( r_errorStatement ) | ( r_expandStatement ) | ( r_expressionStmt ) );
     public CompositeNode r_simpleStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -1855,7 +1852,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:106:2: ( ( r_errorStatement ) | ( r_expandStatement ) | ( r_expressionStmt ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:105:2: ( ( r_errorStatement ) | ( r_expandStatement ) | ( r_expressionStmt ) )
             int alt22=3;
             switch ( input.LA(1) ) {
             case 37:
@@ -1902,19 +1899,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("105:1: r_simpleStatement returns [CompositeNode cn] : ( ( r_errorStatement ) | ( r_expandStatement ) | ( r_expressionStmt ) );", 22, 0, input);
+                    new NoViableAltException("104:1: r_simpleStatement returns [CompositeNode cn] : ( ( r_errorStatement ) | ( r_expandStatement ) | ( r_expressionStmt ) );", 22, 0, input);
 
                 throw nvae;
             }
 
             switch (alt22) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:106:2: ( r_errorStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:105:2: ( r_errorStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:106:2: ( r_errorStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:106:3: r_errorStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:105:2: ( r_errorStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:105:3: r_errorStatement
                     {
-                    pushFollow(FOLLOW_r_errorStatement_in_r_simpleStatement795);
+                    pushFollow(FOLLOW_r_errorStatement_in_r_simpleStatement790);
                     r_errorStatement14=r_errorStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1928,12 +1925,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:107:4: ( r_expandStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:106:4: ( r_expandStatement )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:107:4: ( r_expandStatement )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:107:5: r_expandStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:106:4: ( r_expandStatement )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:106:5: r_expandStatement
                     {
-                    pushFollow(FOLLOW_r_expandStatement_in_r_simpleStatement804);
+                    pushFollow(FOLLOW_r_expandStatement_in_r_simpleStatement799);
                     r_expandStatement15=r_expandStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -1947,12 +1944,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:108:4: ( r_expressionStmt )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:107:4: ( r_expressionStmt )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:108:4: ( r_expressionStmt )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:108:5: r_expressionStmt
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:107:4: ( r_expressionStmt )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:107:5: r_expressionStmt
                     {
-                    pushFollow(FOLLOW_r_expressionStmt_in_r_simpleStatement813);
+                    pushFollow(FOLLOW_r_expressionStmt_in_r_simpleStatement808);
                     r_expressionStmt16=r_expressionStmt();
                     _fsp--;
                     if (failed) return cn;
@@ -1980,7 +1977,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_errorStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:111:1: r_errorStatement returns [CompositeNode cn] : ( 'ERROR' ) (f_expression= r_expression ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:110:1: r_errorStatement returns [CompositeNode cn] : ( 'ERROR' ) (f_expression= r_expression ) ;
     public CompositeNode r_errorStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -1990,23 +1987,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createErrorStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:114:2: ( ( 'ERROR' ) (f_expression= r_expression ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:114:2: ( 'ERROR' ) (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:113:2: ( ( 'ERROR' ) (f_expression= r_expression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:113:2: ( 'ERROR' ) (f_expression= r_expression )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:114:2: ( 'ERROR' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:114:3: 'ERROR'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:113:2: ( 'ERROR' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:113:3: 'ERROR'
             {
-            match(input,37,FOLLOW_37_in_r_errorStatement837); if (failed) return cn;
+            match(input,37,FOLLOW_37_in_r_errorStatement832); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:114:48: (f_expression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:114:49: f_expression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:113:48: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:113:49: f_expression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_errorStatement845);
+            pushFollow(FOLLOW_r_expression_in_r_errorStatement840);
             f_expression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -2032,7 +2029,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_expandStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:117:1: r_expandStatement returns [CompositeNode cn] : ( 'EXPAND' ) (f_name= r_simpleType ) ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )? ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )? ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:116:1: r_expandStatement returns [CompositeNode cn] : ( 'EXPAND' ) (f_name= r_simpleType ) ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )? ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )? ;
     public CompositeNode r_expandStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2050,23 +2047,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createExpandStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:2: ( ( 'EXPAND' ) (f_name= r_simpleType ) ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )? ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )? )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:2: ( 'EXPAND' ) (f_name= r_simpleType ) ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )? ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:2: ( ( 'EXPAND' ) (f_name= r_simpleType ) ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )? ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )? )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:2: ( 'EXPAND' ) (f_name= r_simpleType ) ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )? ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )?
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:2: ( 'EXPAND' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:3: 'EXPAND'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:2: ( 'EXPAND' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:3: 'EXPAND'
             {
-            match(input,38,FOLLOW_38_in_r_expandStatement869); if (failed) return cn;
+            match(input,38,FOLLOW_38_in_r_expandStatement864); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:49: (f_name= r_simpleType )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:50: f_name= r_simpleType
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:49: (f_name= r_simpleType )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:50: f_name= r_simpleType
             {
-            pushFollow(FOLLOW_r_simpleType_in_r_expandStatement877);
+            pushFollow(FOLLOW_r_simpleType_in_r_expandStatement872);
             f_name=r_simpleType();
             _fsp--;
             if (failed) return cn;
@@ -2076,7 +2073,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:146: ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:146: ( ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) ) )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -2085,25 +2082,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt23) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:147: ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:147: ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:147: ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:148: ( '(' ) (f_paramList= r_parameterList ) ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:147: ( ( '(' ) (f_paramList= r_parameterList ) ( ')' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:148: ( '(' ) (f_paramList= r_parameterList ) ( ')' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:148: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:149: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:148: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:149: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_expandStatement885); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_expandStatement880); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:190: (f_paramList= r_parameterList )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:191: f_paramList= r_parameterList
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:190: (f_paramList= r_parameterList )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:191: f_paramList= r_parameterList
                     {
-                    pushFollow(FOLLOW_r_parameterList_in_r_expandStatement893);
+                    pushFollow(FOLLOW_r_parameterList_in_r_expandStatement888);
                     f_paramList=r_parameterList();
                     _fsp--;
                     if (failed) return cn;
@@ -2113,10 +2110,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:310: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:311: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:310: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:311: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_expandStatement899); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_expandStatement894); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -2132,7 +2129,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:355: ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:355: ( ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) ) )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -2141,9 +2138,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt26) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:356: ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:356: ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:356: ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:356: ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) )
                     int alt25=2;
                     int LA25_0 = input.LA(1);
 
@@ -2156,34 +2153,34 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     else {
                         if (backtracking>0) {failed=true; return cn;}
                         NoViableAltException nvae =
-                            new NoViableAltException("120:356: ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) )", 25, 0, input);
+                            new NoViableAltException("119:356: ( ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) ) | ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) ) )", 25, 0, input);
 
                         throw nvae;
                     }
                     switch (alt25) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:357: ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:357: ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:357: ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:358: ( ( 'FOR' ) (f_forExpression= r_expression ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:357: ( ( ( 'FOR' ) (f_forExpression= r_expression ) ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:358: ( ( 'FOR' ) (f_forExpression= r_expression ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:358: ( ( 'FOR' ) (f_forExpression= r_expression ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:359: ( 'FOR' ) (f_forExpression= r_expression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:358: ( ( 'FOR' ) (f_forExpression= r_expression ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:359: ( 'FOR' ) (f_forExpression= r_expression )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:359: ( 'FOR' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:360: 'FOR'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:359: ( 'FOR' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:360: 'FOR'
                             {
-                            match(input,35,FOLLOW_35_in_r_expandStatement912); if (failed) return cn;
+                            match(input,35,FOLLOW_35_in_r_expandStatement907); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:403: (f_forExpression= r_expression )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:404: f_forExpression= r_expression
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:403: (f_forExpression= r_expression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:119:404: f_forExpression= r_expression
                             {
-                            pushFollow(FOLLOW_r_expression_in_r_expandStatement920);
+                            pushFollow(FOLLOW_r_expression_in_r_expandStatement915);
                             f_forExpression=r_expression();
                             _fsp--;
                             if (failed) return cn;
@@ -2203,28 +2200,28 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 2 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:4: ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:4: ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:4: ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:5: ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:4: ( ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:5: ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:5: ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:6: ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )?
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:5: ( ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )? )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:6: ( 'FOREACH' ) (f_forEachExpression= r_expression ) ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )?
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:6: ( 'FOREACH' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:7: 'FOREACH'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:6: ( 'FOREACH' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:7: 'FOREACH'
                             {
-                            match(input,39,FOLLOW_39_in_r_expandStatement933); if (failed) return cn;
+                            match(input,39,FOLLOW_39_in_r_expandStatement928); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:54: (f_forEachExpression= r_expression )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:55: f_forEachExpression= r_expression
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:54: (f_forEachExpression= r_expression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:55: f_forEachExpression= r_expression
                             {
-                            pushFollow(FOLLOW_r_expression_in_r_expandStatement941);
+                            pushFollow(FOLLOW_r_expression_in_r_expandStatement936);
                             f_forEachExpression=r_expression();
                             _fsp--;
                             if (failed) return cn;
@@ -2234,7 +2231,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:203: ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )?
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:203: ( ( ( 'SEPARATOR' ) (f_separator= r_expression ) ) )?
                             int alt24=2;
                             int LA24_0 = input.LA(1);
 
@@ -2243,25 +2240,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             switch (alt24) {
                                 case 1 :
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:204: ( ( 'SEPARATOR' ) (f_separator= r_expression ) )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:204: ( ( 'SEPARATOR' ) (f_separator= r_expression ) )
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:204: ( ( 'SEPARATOR' ) (f_separator= r_expression ) )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:205: ( 'SEPARATOR' ) (f_separator= r_expression )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:204: ( ( 'SEPARATOR' ) (f_separator= r_expression ) )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:205: ( 'SEPARATOR' ) (f_separator= r_expression )
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:205: ( 'SEPARATOR' )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:206: 'SEPARATOR'
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:205: ( 'SEPARATOR' )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:206: 'SEPARATOR'
                                     {
-                                    match(input,40,FOLLOW_40_in_r_expandStatement949); if (failed) return cn;
+                                    match(input,40,FOLLOW_40_in_r_expandStatement944); if (failed) return cn;
                                     if ( backtracking==0 ) {
                                        addLeafNodeForToken(cn, null); 
                                     }
 
                                     }
 
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:255: (f_separator= r_expression )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:121:256: f_separator= r_expression
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:255: (f_separator= r_expression )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:120:256: f_separator= r_expression
                                     {
-                                    pushFollow(FOLLOW_r_expression_in_r_expandStatement957);
+                                    pushFollow(FOLLOW_r_expression_in_r_expandStatement952);
                                     f_separator=r_expression();
                                     _fsp--;
                                     if (failed) return cn;
@@ -2314,7 +2311,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_expressionStmt
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:124:1: r_expressionStmt returns [CompositeNode cn] : (f_expression= r_expression ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:123:1: r_expressionStmt returns [CompositeNode cn] : (f_expression= r_expression ) ;
     public CompositeNode r_expressionStmt() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2324,13 +2321,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createExpressionStmtNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:127:2: ( (f_expression= r_expression ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:127:2: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:126:2: ( (f_expression= r_expression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:126:2: (f_expression= r_expression )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:127:2: (f_expression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:127:3: f_expression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:126:2: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:126:3: f_expression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_expressionStmt991);
+            pushFollow(FOLLOW_r_expression_in_r_expressionStmt986);
             f_expression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -2356,7 +2353,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_fileStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:130:1: r_fileStatement returns [CompositeNode cn] : ( 'FILE' ) (f_nameExpression= r_expression ) ( ( ( 'ONCE' ) ) )? ( ( (f_identifier= r_identifier ) ) )? (f_sequence= r_sequence ) ( 'ENDFILE' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:129:1: r_fileStatement returns [CompositeNode cn] : ( 'FILE' ) (f_nameExpression= r_expression ) ( ( ( 'ONCE' ) ) )? ( ( (f_identifier= r_identifier ) ) )? (f_sequence= r_sequence ) ( 'ENDFILE' ) ;
     public CompositeNode r_fileStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2370,23 +2367,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createFileStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:2: ( ( 'FILE' ) (f_nameExpression= r_expression ) ( ( ( 'ONCE' ) ) )? ( ( (f_identifier= r_identifier ) ) )? (f_sequence= r_sequence ) ( 'ENDFILE' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:2: ( 'FILE' ) (f_nameExpression= r_expression ) ( ( ( 'ONCE' ) ) )? ( ( (f_identifier= r_identifier ) ) )? (f_sequence= r_sequence ) ( 'ENDFILE' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:2: ( ( 'FILE' ) (f_nameExpression= r_expression ) ( ( ( 'ONCE' ) ) )? ( ( (f_identifier= r_identifier ) ) )? (f_sequence= r_sequence ) ( 'ENDFILE' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:2: ( 'FILE' ) (f_nameExpression= r_expression ) ( ( ( 'ONCE' ) ) )? ( ( (f_identifier= r_identifier ) ) )? (f_sequence= r_sequence ) ( 'ENDFILE' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:2: ( 'FILE' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:3: 'FILE'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:2: ( 'FILE' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:3: 'FILE'
             {
-            match(input,41,FOLLOW_41_in_r_fileStatement1015); if (failed) return cn;
+            match(input,41,FOLLOW_41_in_r_fileStatement1010); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:47: (f_nameExpression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:48: f_nameExpression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:47: (f_nameExpression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:48: f_nameExpression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_fileStatement1023);
+            pushFollow(FOLLOW_r_expression_in_r_fileStatement1018);
             f_nameExpression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -2396,7 +2393,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:182: ( ( ( 'ONCE' ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:182: ( ( ( 'ONCE' ) ) )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -2405,15 +2402,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt27) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:183: ( ( 'ONCE' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:183: ( ( 'ONCE' ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:183: ( ( 'ONCE' ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:184: ( 'ONCE' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:183: ( ( 'ONCE' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:184: ( 'ONCE' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:184: ( 'ONCE' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:185: 'ONCE'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:184: ( 'ONCE' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:185: 'ONCE'
                     {
-                    match(input,42,FOLLOW_42_in_r_fileStatement1031); if (failed) return cn;
+                    match(input,42,FOLLOW_42_in_r_fileStatement1026); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -2429,7 +2426,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:232: ( ( (f_identifier= r_identifier ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:232: ( ( (f_identifier= r_identifier ) ) )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2438,15 +2435,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt28) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:233: ( (f_identifier= r_identifier ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:233: ( (f_identifier= r_identifier ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:233: ( (f_identifier= r_identifier ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:234: (f_identifier= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:233: ( (f_identifier= r_identifier ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:234: (f_identifier= r_identifier )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:234: (f_identifier= r_identifier )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:235: f_identifier= r_identifier
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:234: (f_identifier= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:235: f_identifier= r_identifier
                     {
-                    pushFollow(FOLLOW_r_identifier_in_r_fileStatement1044);
+                    pushFollow(FOLLOW_r_identifier_in_r_fileStatement1039);
                     f_identifier=r_identifier();
                     _fsp--;
                     if (failed) return cn;
@@ -2465,10 +2462,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:356: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:357: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:356: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:357: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_fileStatement1055);
+            pushFollow(FOLLOW_r_sequence_in_r_fileStatement1050);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -2478,10 +2475,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:465: ( 'ENDFILE' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:133:466: 'ENDFILE'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:465: ( 'ENDFILE' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:132:466: 'ENDFILE'
             {
-            match(input,43,FOLLOW_43_in_r_fileStatement1061); if (failed) return cn;
+            match(input,43,FOLLOW_43_in_r_fileStatement1056); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -2504,7 +2501,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_foreachStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:136:1: r_foreachStatement returns [CompositeNode cn] : ( 'FOREACH' ) (f_forExpression= r_expression ) ( 'AS' ) (f_identifier= r_identifier ) ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )? ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )? (f_sequence= r_sequence ) ( 'ENDFOREACH' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:135:1: r_foreachStatement returns [CompositeNode cn] : ( 'FOREACH' ) (f_forExpression= r_expression ) ( 'AS' ) (f_identifier= r_identifier ) ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )? ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )? (f_sequence= r_sequence ) ( 'ENDFOREACH' ) ;
     public CompositeNode r_foreachStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2522,23 +2519,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createForeachStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:2: ( ( 'FOREACH' ) (f_forExpression= r_expression ) ( 'AS' ) (f_identifier= r_identifier ) ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )? ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )? (f_sequence= r_sequence ) ( 'ENDFOREACH' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:2: ( 'FOREACH' ) (f_forExpression= r_expression ) ( 'AS' ) (f_identifier= r_identifier ) ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )? ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )? (f_sequence= r_sequence ) ( 'ENDFOREACH' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:2: ( ( 'FOREACH' ) (f_forExpression= r_expression ) ( 'AS' ) (f_identifier= r_identifier ) ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )? ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )? (f_sequence= r_sequence ) ( 'ENDFOREACH' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:2: ( 'FOREACH' ) (f_forExpression= r_expression ) ( 'AS' ) (f_identifier= r_identifier ) ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )? ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )? (f_sequence= r_sequence ) ( 'ENDFOREACH' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:2: ( 'FOREACH' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:3: 'FOREACH'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:2: ( 'FOREACH' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:3: 'FOREACH'
             {
-            match(input,39,FOLLOW_39_in_r_foreachStatement1085); if (failed) return cn;
+            match(input,39,FOLLOW_39_in_r_foreachStatement1080); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:50: (f_forExpression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:51: f_forExpression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:50: (f_forExpression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:51: f_forExpression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_foreachStatement1093);
+            pushFollow(FOLLOW_r_expression_in_r_foreachStatement1088);
             f_forExpression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -2548,20 +2545,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:184: ( 'AS' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:185: 'AS'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:184: ( 'AS' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:185: 'AS'
             {
-            match(input,44,FOLLOW_44_in_r_foreachStatement1099); if (failed) return cn;
+            match(input,44,FOLLOW_44_in_r_foreachStatement1094); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:227: (f_identifier= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:228: f_identifier= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:227: (f_identifier= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:228: f_identifier= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_foreachStatement1107);
+            pushFollow(FOLLOW_r_identifier_in_r_foreachStatement1102);
             f_identifier=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -2571,7 +2568,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:349: ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:349: ( ( ( 'ITERATOR' ) (f_iterator= r_identifier ) ) )?
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -2580,25 +2577,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt29) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:350: ( ( 'ITERATOR' ) (f_iterator= r_identifier ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:350: ( ( 'ITERATOR' ) (f_iterator= r_identifier ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:350: ( ( 'ITERATOR' ) (f_iterator= r_identifier ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:351: ( 'ITERATOR' ) (f_iterator= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:350: ( ( 'ITERATOR' ) (f_iterator= r_identifier ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:351: ( 'ITERATOR' ) (f_iterator= r_identifier )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:351: ( 'ITERATOR' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:352: 'ITERATOR'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:351: ( 'ITERATOR' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:352: 'ITERATOR'
                     {
-                    match(input,45,FOLLOW_45_in_r_foreachStatement1115); if (failed) return cn;
+                    match(input,45,FOLLOW_45_in_r_foreachStatement1110); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:400: (f_iterator= r_identifier )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:401: f_iterator= r_identifier
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:400: (f_iterator= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:401: f_iterator= r_identifier
                     {
-                    pushFollow(FOLLOW_r_identifier_in_r_foreachStatement1123);
+                    pushFollow(FOLLOW_r_identifier_in_r_foreachStatement1118);
                     f_iterator=r_identifier();
                     _fsp--;
                     if (failed) return cn;
@@ -2617,7 +2614,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:517: ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:517: ( ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) ) )?
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -2626,25 +2623,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt30) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:518: ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:518: ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:518: ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:519: ( 'SEPARATOR' ) (f_separatorExpression= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:518: ( ( 'SEPARATOR' ) (f_separatorExpression= r_expression ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:519: ( 'SEPARATOR' ) (f_separatorExpression= r_expression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:519: ( 'SEPARATOR' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:520: 'SEPARATOR'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:519: ( 'SEPARATOR' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:520: 'SEPARATOR'
                     {
-                    match(input,40,FOLLOW_40_in_r_foreachStatement1134); if (failed) return cn;
+                    match(input,40,FOLLOW_40_in_r_foreachStatement1129); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:569: (f_separatorExpression= r_expression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:570: f_separatorExpression= r_expression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:569: (f_separatorExpression= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:570: f_separatorExpression= r_expression
                     {
-                    pushFollow(FOLLOW_r_expression_in_r_foreachStatement1142);
+                    pushFollow(FOLLOW_r_expression_in_r_foreachStatement1137);
                     f_separatorExpression=r_expression();
                     _fsp--;
                     if (failed) return cn;
@@ -2663,10 +2660,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:730: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:731: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:730: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:731: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_foreachStatement1153);
+            pushFollow(FOLLOW_r_sequence_in_r_foreachStatement1148);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -2676,10 +2673,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:842: ( 'ENDFOREACH' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:139:843: 'ENDFOREACH'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:842: ( 'ENDFOREACH' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:138:843: 'ENDFOREACH'
             {
-            match(input,46,FOLLOW_46_in_r_foreachStatement1159); if (failed) return cn;
+            match(input,46,FOLLOW_46_in_r_foreachStatement1154); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -2702,7 +2699,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_ifStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:142:1: r_ifStatement returns [CompositeNode cn] : ( 'IF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) (f_elseIfs= r_elseIfStatement )* (f_else= r_elseStatement )? ( 'ENDIF' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:141:1: r_ifStatement returns [CompositeNode cn] : ( 'IF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) (f_elseIfs= r_elseIfStatement )* (f_else= r_elseStatement )? ( 'ENDIF' ) ;
     public CompositeNode r_ifStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2718,23 +2715,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createIfStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:2: ( ( 'IF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) (f_elseIfs= r_elseIfStatement )* (f_else= r_elseStatement )? ( 'ENDIF' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:2: ( 'IF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) (f_elseIfs= r_elseIfStatement )* (f_else= r_elseStatement )? ( 'ENDIF' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:2: ( ( 'IF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) (f_elseIfs= r_elseIfStatement )* (f_else= r_elseStatement )? ( 'ENDIF' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:2: ( 'IF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) (f_elseIfs= r_elseIfStatement )* (f_else= r_elseStatement )? ( 'ENDIF' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:2: ( 'IF' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:3: 'IF'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:2: ( 'IF' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:3: 'IF'
             {
-            match(input,47,FOLLOW_47_in_r_ifStatement1183); if (failed) return cn;
+            match(input,47,FOLLOW_47_in_r_ifStatement1178); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:45: (f_expression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:46: f_expression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:45: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:46: f_expression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_ifStatement1191);
+            pushFollow(FOLLOW_r_expression_in_r_ifStatement1186);
             f_expression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -2744,10 +2741,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:162: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:163: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:162: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:163: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_ifStatement1199);
+            pushFollow(FOLLOW_r_sequence_in_r_ifStatement1194);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -2757,7 +2754,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:269: (f_elseIfs= r_elseIfStatement )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:269: (f_elseIfs= r_elseIfStatement )*
             loop31:
             do {
                 int alt31=2;
@@ -2770,9 +2767,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt31) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:270: f_elseIfs= r_elseIfStatement
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:270: f_elseIfs= r_elseIfStatement
             	    {
-            	    pushFollow(FOLLOW_r_elseIfStatement_in_r_ifStatement1207);
+            	    pushFollow(FOLLOW_r_elseIfStatement_in_r_ifStatement1202);
             	    f_elseIfs=r_elseIfStatement();
             	    _fsp--;
             	    if (failed) return cn;
@@ -2788,7 +2785,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:386: (f_else= r_elseStatement )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:386: (f_else= r_elseStatement )?
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -2797,9 +2794,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt32) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:387: f_else= r_elseStatement
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:387: f_else= r_elseStatement
                     {
-                    pushFollow(FOLLOW_r_elseStatement_in_r_ifStatement1216);
+                    pushFollow(FOLLOW_r_elseStatement_in_r_ifStatement1211);
                     f_else=r_elseStatement();
                     _fsp--;
                     if (failed) return cn;
@@ -2812,10 +2809,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:483: ( 'ENDIF' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:145:484: 'ENDIF'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:483: ( 'ENDIF' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:144:484: 'ENDIF'
             {
-            match(input,48,FOLLOW_48_in_r_ifStatement1223); if (failed) return cn;
+            match(input,48,FOLLOW_48_in_r_ifStatement1218); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -2838,7 +2835,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_elseIfStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:148:1: r_elseIfStatement returns [CompositeNode cn] : ( 'ELSEIF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:147:1: r_elseIfStatement returns [CompositeNode cn] : ( 'ELSEIF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) ;
     public CompositeNode r_elseIfStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2850,23 +2847,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createElseIfStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:2: ( ( 'ELSEIF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:2: ( 'ELSEIF' ) (f_expression= r_expression ) (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:2: ( ( 'ELSEIF' ) (f_expression= r_expression ) (f_sequence= r_sequence ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:2: ( 'ELSEIF' ) (f_expression= r_expression ) (f_sequence= r_sequence )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:2: ( 'ELSEIF' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:3: 'ELSEIF'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:2: ( 'ELSEIF' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:3: 'ELSEIF'
             {
-            match(input,49,FOLLOW_49_in_r_elseIfStatement1247); if (failed) return cn;
+            match(input,49,FOLLOW_49_in_r_elseIfStatement1242); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:49: (f_expression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:50: f_expression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:49: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:50: f_expression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_elseIfStatement1255);
+            pushFollow(FOLLOW_r_expression_in_r_elseIfStatement1250);
             f_expression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -2876,10 +2873,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:170: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:151:171: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:170: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:150:171: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_elseIfStatement1263);
+            pushFollow(FOLLOW_r_sequence_in_r_elseIfStatement1258);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -2905,7 +2902,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_elseStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:154:1: r_elseStatement returns [CompositeNode cn] : ( 'ELSE' ) (f_sequence= r_sequence ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:153:1: r_elseStatement returns [CompositeNode cn] : ( 'ELSE' ) (f_sequence= r_sequence ) ;
     public CompositeNode r_elseStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2915,23 +2912,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createElseStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:157:2: ( ( 'ELSE' ) (f_sequence= r_sequence ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:157:2: ( 'ELSE' ) (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:156:2: ( ( 'ELSE' ) (f_sequence= r_sequence ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:156:2: ( 'ELSE' ) (f_sequence= r_sequence )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:157:2: ( 'ELSE' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:157:3: 'ELSE'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:156:2: ( 'ELSE' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:156:3: 'ELSE'
             {
-            match(input,50,FOLLOW_50_in_r_elseStatement1287); if (failed) return cn;
+            match(input,50,FOLLOW_50_in_r_elseStatement1282); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:157:47: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:157:48: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:156:47: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:156:48: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_elseStatement1295);
+            pushFollow(FOLLOW_r_sequence_in_r_elseStatement1290);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -2957,7 +2954,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_letStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:160:1: r_letStatement returns [CompositeNode cn] : ( 'LET' ) (f_expression= r_expression ) ( 'AS' ) (f_name= r_identifier ) (f_sequence= r_sequence ) ( 'ENDLET' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:159:1: r_letStatement returns [CompositeNode cn] : ( 'LET' ) (f_expression= r_expression ) ( 'AS' ) (f_name= r_identifier ) (f_sequence= r_sequence ) ( 'ENDLET' ) ;
     public CompositeNode r_letStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -2971,23 +2968,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createLetStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:2: ( ( 'LET' ) (f_expression= r_expression ) ( 'AS' ) (f_name= r_identifier ) (f_sequence= r_sequence ) ( 'ENDLET' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:2: ( 'LET' ) (f_expression= r_expression ) ( 'AS' ) (f_name= r_identifier ) (f_sequence= r_sequence ) ( 'ENDLET' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:2: ( ( 'LET' ) (f_expression= r_expression ) ( 'AS' ) (f_name= r_identifier ) (f_sequence= r_sequence ) ( 'ENDLET' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:2: ( 'LET' ) (f_expression= r_expression ) ( 'AS' ) (f_name= r_identifier ) (f_sequence= r_sequence ) ( 'ENDLET' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:2: ( 'LET' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:3: 'LET'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:2: ( 'LET' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:3: 'LET'
             {
-            match(input,51,FOLLOW_51_in_r_letStatement1319); if (failed) return cn;
+            match(input,51,FOLLOW_51_in_r_letStatement1314); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:46: (f_expression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:47: f_expression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:46: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:47: f_expression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_letStatement1327);
+            pushFollow(FOLLOW_r_expression_in_r_letStatement1322);
             f_expression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -2997,20 +2994,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:164: ( 'AS' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:165: 'AS'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:164: ( 'AS' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:165: 'AS'
             {
-            match(input,44,FOLLOW_44_in_r_letStatement1333); if (failed) return cn;
+            match(input,44,FOLLOW_44_in_r_letStatement1328); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:207: (f_name= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:208: f_name= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:207: (f_name= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:208: f_name= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_letStatement1341);
+            pushFollow(FOLLOW_r_identifier_in_r_letStatement1336);
             f_name=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -3020,10 +3017,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:301: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:302: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:301: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:302: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_letStatement1349);
+            pushFollow(FOLLOW_r_sequence_in_r_letStatement1344);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -3033,10 +3030,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:409: ( 'ENDLET' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:163:410: 'ENDLET'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:409: ( 'ENDLET' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:162:410: 'ENDLET'
             {
-            match(input,52,FOLLOW_52_in_r_letStatement1355); if (failed) return cn;
+            match(input,52,FOLLOW_52_in_r_letStatement1350); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -3059,7 +3056,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_protectStatement
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:166:1: r_protectStatement returns [CompositeNode cn] : ( 'PROTECT' ) ( 'CSTART' ) (f_cstart= r_expression ) ( 'CEND' ) (f_cend= r_expression ) ( 'ID' ) (f_id= r_expression ) ( 'DISABLE' )? (f_sequence= r_sequence ) ( 'ENDPROTECT' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:165:1: r_protectStatement returns [CompositeNode cn] : ( 'PROTECT' ) ( 'CSTART' ) (f_cstart= r_expression ) ( 'CEND' ) (f_cend= r_expression ) ( 'ID' ) (f_id= r_expression ) ( 'DISABLE' )? (f_sequence= r_sequence ) ( 'ENDPROTECT' ) ;
     public CompositeNode r_protectStatement() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -3075,33 +3072,33 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createProtectStatementNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:2: ( ( 'PROTECT' ) ( 'CSTART' ) (f_cstart= r_expression ) ( 'CEND' ) (f_cend= r_expression ) ( 'ID' ) (f_id= r_expression ) ( 'DISABLE' )? (f_sequence= r_sequence ) ( 'ENDPROTECT' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:2: ( 'PROTECT' ) ( 'CSTART' ) (f_cstart= r_expression ) ( 'CEND' ) (f_cend= r_expression ) ( 'ID' ) (f_id= r_expression ) ( 'DISABLE' )? (f_sequence= r_sequence ) ( 'ENDPROTECT' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:2: ( ( 'PROTECT' ) ( 'CSTART' ) (f_cstart= r_expression ) ( 'CEND' ) (f_cend= r_expression ) ( 'ID' ) (f_id= r_expression ) ( 'DISABLE' )? (f_sequence= r_sequence ) ( 'ENDPROTECT' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:2: ( 'PROTECT' ) ( 'CSTART' ) (f_cstart= r_expression ) ( 'CEND' ) (f_cend= r_expression ) ( 'ID' ) (f_id= r_expression ) ( 'DISABLE' )? (f_sequence= r_sequence ) ( 'ENDPROTECT' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:2: ( 'PROTECT' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:3: 'PROTECT'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:2: ( 'PROTECT' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:3: 'PROTECT'
             {
-            match(input,53,FOLLOW_53_in_r_protectStatement1379); if (failed) return cn;
+            match(input,53,FOLLOW_53_in_r_protectStatement1374); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:50: ( 'CSTART' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:51: 'CSTART'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:50: ( 'CSTART' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:51: 'CSTART'
             {
-            match(input,54,FOLLOW_54_in_r_protectStatement1385); if (failed) return cn;
+            match(input,54,FOLLOW_54_in_r_protectStatement1380); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:97: (f_cstart= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:98: f_cstart= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:97: (f_cstart= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:98: f_cstart= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_protectStatement1393);
+            pushFollow(FOLLOW_r_expression_in_r_protectStatement1388);
             f_cstart=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -3111,20 +3108,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:203: ( 'CEND' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:204: 'CEND'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:203: ( 'CEND' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:204: 'CEND'
             {
-            match(input,55,FOLLOW_55_in_r_protectStatement1399); if (failed) return cn;
+            match(input,55,FOLLOW_55_in_r_protectStatement1394); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:248: (f_cend= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:249: f_cend= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:248: (f_cend= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:249: f_cend= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_protectStatement1407);
+            pushFollow(FOLLOW_r_expression_in_r_protectStatement1402);
             f_cend=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -3134,20 +3131,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:346: ( 'ID' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:347: 'ID'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:346: ( 'ID' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:347: 'ID'
             {
-            match(input,56,FOLLOW_56_in_r_protectStatement1413); if (failed) return cn;
+            match(input,56,FOLLOW_56_in_r_protectStatement1408); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:389: (f_id= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:390: f_id= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:389: (f_id= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:390: f_id= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_protectStatement1421);
+            pushFollow(FOLLOW_r_expression_in_r_protectStatement1416);
             f_id=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -3157,7 +3154,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:479: ( 'DISABLE' )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:479: ( 'DISABLE' )?
             int alt33=2;
             int LA33_0 = input.LA(1);
 
@@ -3166,9 +3163,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt33) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:480: 'DISABLE'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:480: 'DISABLE'
                     {
-                    match(input,57,FOLLOW_57_in_r_protectStatement1427); if (failed) return cn;
+                    match(input,57,FOLLOW_57_in_r_protectStatement1422); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -3178,10 +3175,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:528: (f_sequence= r_sequence )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:529: f_sequence= r_sequence
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:528: (f_sequence= r_sequence )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:529: f_sequence= r_sequence
             {
-            pushFollow(FOLLOW_r_sequence_in_r_protectStatement1436);
+            pushFollow(FOLLOW_r_sequence_in_r_protectStatement1431);
             f_sequence=r_sequence();
             _fsp--;
             if (failed) return cn;
@@ -3191,10 +3188,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:640: ( 'ENDPROTECT' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:169:641: 'ENDPROTECT'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:640: ( 'ENDPROTECT' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:168:641: 'ENDPROTECT'
             {
-            match(input,58,FOLLOW_58_in_r_protectStatement1442); if (failed) return cn;
+            match(input,58,FOLLOW_58_in_r_protectStatement1437); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -3217,7 +3214,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_check
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:172:1: r_check returns [CompositeNode cn] : ( 'context' ) (f_type= r_type ) ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )? ( ( ( 'ERROR' ) | ( 'WARNING' ) ) ) (f_message= r_expression ) ( ':' ) (f_constraint= r_expression ) ( ';' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:171:1: r_check returns [CompositeNode cn] : ( 'context' ) (f_type= r_type ) ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )? ( ( ( 'ERROR' ) | ( 'WARNING' ) ) ) (f_message= r_expression ) ( ':' ) (f_constraint= r_expression ) ( ';' ) ;
     public CompositeNode r_check() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -3233,23 +3230,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createCheckNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:2: ( ( 'context' ) (f_type= r_type ) ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )? ( ( ( 'ERROR' ) | ( 'WARNING' ) ) ) (f_message= r_expression ) ( ':' ) (f_constraint= r_expression ) ( ';' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:2: ( 'context' ) (f_type= r_type ) ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )? ( ( ( 'ERROR' ) | ( 'WARNING' ) ) ) (f_message= r_expression ) ( ':' ) (f_constraint= r_expression ) ( ';' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:2: ( ( 'context' ) (f_type= r_type ) ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )? ( ( ( 'ERROR' ) | ( 'WARNING' ) ) ) (f_message= r_expression ) ( ':' ) (f_constraint= r_expression ) ( ';' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:2: ( 'context' ) (f_type= r_type ) ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )? ( ( ( 'ERROR' ) | ( 'WARNING' ) ) ) (f_message= r_expression ) ( ':' ) (f_constraint= r_expression ) ( ';' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:2: ( 'context' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:3: 'context'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:2: ( 'context' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:3: 'context'
             {
-            match(input,59,FOLLOW_59_in_r_check1466); if (failed) return cn;
+            match(input,59,FOLLOW_59_in_r_check1461); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:50: (f_type= r_type )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:51: f_type= r_type
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:50: (f_type= r_type )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:51: f_type= r_type
             {
-            pushFollow(FOLLOW_r_type_in_r_check1474);
+            pushFollow(FOLLOW_r_type_in_r_check1469);
             f_type=r_type();
             _fsp--;
             if (failed) return cn;
@@ -3259,7 +3256,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:131: ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:131: ( ( ( 'if' ) (f_ifExpression= r_expression ) ) )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -3268,25 +3265,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt34) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:132: ( ( 'if' ) (f_ifExpression= r_expression ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:132: ( ( 'if' ) (f_ifExpression= r_expression ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:132: ( ( 'if' ) (f_ifExpression= r_expression ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:133: ( 'if' ) (f_ifExpression= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:132: ( ( 'if' ) (f_ifExpression= r_expression ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:133: ( 'if' ) (f_ifExpression= r_expression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:133: ( 'if' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:134: 'if'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:133: ( 'if' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:134: 'if'
                     {
-                    match(input,60,FOLLOW_60_in_r_check1482); if (failed) return cn;
+                    match(input,60,FOLLOW_60_in_r_check1477); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:176: (f_ifExpression= r_expression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:177: f_ifExpression= r_expression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:176: (f_ifExpression= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:177: f_ifExpression= r_expression
                     {
-                    pushFollow(FOLLOW_r_expression_in_r_check1490);
+                    pushFollow(FOLLOW_r_expression_in_r_check1485);
                     f_ifExpression=r_expression();
                     _fsp--;
                     if (failed) return cn;
@@ -3305,10 +3302,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:298: ( ( ( 'ERROR' ) | ( 'WARNING' ) ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:299: ( ( 'ERROR' ) | ( 'WARNING' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:298: ( ( ( 'ERROR' ) | ( 'WARNING' ) ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:299: ( ( 'ERROR' ) | ( 'WARNING' ) )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:299: ( ( 'ERROR' ) | ( 'WARNING' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:299: ( ( 'ERROR' ) | ( 'WARNING' ) )
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -3321,18 +3318,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("175:299: ( ( 'ERROR' ) | ( 'WARNING' ) )", 35, 0, input);
+                    new NoViableAltException("174:299: ( ( 'ERROR' ) | ( 'WARNING' ) )", 35, 0, input);
 
                 throw nvae;
             }
             switch (alt35) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:300: ( 'ERROR' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:300: ( 'ERROR' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:300: ( 'ERROR' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:301: 'ERROR'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:300: ( 'ERROR' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:174:301: 'ERROR'
                     {
-                    match(input,37,FOLLOW_37_in_r_check1501); if (failed) return cn;
+                    match(input,37,FOLLOW_37_in_r_check1496); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, "error"); 
                     }
@@ -3343,12 +3340,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:4: ( 'WARNING' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:4: ( 'WARNING' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:4: ( 'WARNING' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:5: 'WARNING'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:4: ( 'WARNING' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:5: 'WARNING'
                     {
-                    match(input,61,FOLLOW_61_in_r_check1510); if (failed) return cn;
+                    match(input,61,FOLLOW_61_in_r_check1505); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, "warning"); 
                     }
@@ -3364,10 +3361,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:59: (f_message= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:60: f_message= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:59: (f_message= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:60: f_message= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_check1520);
+            pushFollow(FOLLOW_r_expression_in_r_check1515);
             f_message=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -3377,20 +3374,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:158: ( ':' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:159: ':'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:158: ( ':' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:159: ':'
             {
-            match(input,62,FOLLOW_62_in_r_check1526); if (failed) return cn;
+            match(input,62,FOLLOW_62_in_r_check1521); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:200: (f_constraint= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:201: f_constraint= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:200: (f_constraint= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:201: f_constraint= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_check1534);
+            pushFollow(FOLLOW_r_expression_in_r_check1529);
             f_constraint=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -3400,10 +3397,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:311: ( ';' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:176:312: ';'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:311: ( ';' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:175:312: ';'
             {
-            match(input,27,FOLLOW_27_in_r_check1540); if (failed) return cn;
+            match(input,27,FOLLOW_27_in_r_check1535); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -3426,7 +3423,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_around
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:179:1: r_around returns [CompositeNode cn] : ( 'around' ) (f_unnamed0= r_pointcut ) ( '(' ) ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ( ':' ) (f_unnamed2= r_expression ) ( ';' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:178:1: r_around returns [CompositeNode cn] : ( 'around' ) (f_unnamed0= r_pointcut ) ( '(' ) ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ( ':' ) (f_unnamed2= r_expression ) ( ';' ) ;
     public CompositeNode r_around() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -3440,23 +3437,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createAroundNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:2: ( ( 'around' ) (f_unnamed0= r_pointcut ) ( '(' ) ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ( ':' ) (f_unnamed2= r_expression ) ( ';' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:2: ( 'around' ) (f_unnamed0= r_pointcut ) ( '(' ) ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ( ':' ) (f_unnamed2= r_expression ) ( ';' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:2: ( ( 'around' ) (f_unnamed0= r_pointcut ) ( '(' ) ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ( ':' ) (f_unnamed2= r_expression ) ( ';' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:2: ( 'around' ) (f_unnamed0= r_pointcut ) ( '(' ) ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )? ( ')' ) ( ':' ) (f_unnamed2= r_expression ) ( ';' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:2: ( 'around' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:3: 'around'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:2: ( 'around' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:3: 'around'
             {
-            match(input,63,FOLLOW_63_in_r_around1564); if (failed) return cn;
+            match(input,63,FOLLOW_63_in_r_around1559); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:49: (f_unnamed0= r_pointcut )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:50: f_unnamed0= r_pointcut
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:49: (f_unnamed0= r_pointcut )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:50: f_unnamed0= r_pointcut
             {
-            pushFollow(FOLLOW_r_pointcut_in_r_around1572);
+            pushFollow(FOLLOW_r_pointcut_in_r_around1567);
             f_unnamed0=r_pointcut();
             _fsp--;
             if (failed) return cn;
@@ -3466,17 +3463,17 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:108: ( '(' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:109: '('
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:108: ( '(' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:109: '('
             {
-            match(input,31,FOLLOW_31_in_r_around1578); if (failed) return cn;
+            match(input,31,FOLLOW_31_in_r_around1573); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:150: ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:150: ( ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) ) )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -3485,9 +3482,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt39) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:151: ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:151: ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:151: ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:151: ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )
                     int alt38=2;
                     int LA38_0 = input.LA(1);
 
@@ -3500,18 +3497,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     else {
                         if (backtracking>0) {failed=true; return cn;}
                         NoViableAltException nvae =
-                            new NoViableAltException("182:151: ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )", 38, 0, input);
+                            new NoViableAltException("181:151: ( (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )? | ( '*' ) )", 38, 0, input);
 
                         throw nvae;
                     }
                     switch (alt38) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:152: (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )?
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:152: (f_unnamed1= r_declaredParameterList ) ( ( ( ',' )? ( '*' ) ) )?
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:152: (f_unnamed1= r_declaredParameterList )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:153: f_unnamed1= r_declaredParameterList
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:152: (f_unnamed1= r_declaredParameterList )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:153: f_unnamed1= r_declaredParameterList
                             {
-                            pushFollow(FOLLOW_r_declaredParameterList_in_r_around1588);
+                            pushFollow(FOLLOW_r_declaredParameterList_in_r_around1583);
                             f_unnamed1=r_declaredParameterList();
                             _fsp--;
                             if (failed) return cn;
@@ -3521,7 +3518,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:224: ( ( ( ',' )? ( '*' ) ) )?
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:224: ( ( ( ',' )? ( '*' ) ) )?
                             int alt37=2;
                             int LA37_0 = input.LA(1);
 
@@ -3530,12 +3527,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             switch (alt37) {
                                 case 1 :
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:225: ( ( ',' )? ( '*' ) )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:225: ( ( ',' )? ( '*' ) )
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:225: ( ( ',' )? ( '*' ) )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:226: ( ',' )? ( '*' )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:225: ( ( ',' )? ( '*' ) )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:226: ( ',' )? ( '*' )
                                     {
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:226: ( ',' )?
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:226: ( ',' )?
                                     int alt36=2;
                                     int LA36_0 = input.LA(1);
 
@@ -3544,9 +3541,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                                     }
                                     switch (alt36) {
                                         case 1 :
-                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:227: ','
+                                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:227: ','
                                             {
-                                            match(input,32,FOLLOW_32_in_r_around1596); if (failed) return cn;
+                                            match(input,32,FOLLOW_32_in_r_around1591); if (failed) return cn;
                                             if ( backtracking==0 ) {
                                                addLeafNodeForToken(cn, null); 
                                             }
@@ -3556,10 +3553,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                                     }
 
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:269: ( '*' )
-                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:270: '*'
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:269: ( '*' )
+                                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:181:270: '*'
                                     {
-                                    match(input,33,FOLLOW_33_in_r_around1603); if (failed) return cn;
+                                    match(input,33,FOLLOW_33_in_r_around1598); if (failed) return cn;
                                     if ( backtracking==0 ) {
                                        addLeafNodeForToken(cn, null); 
                                     }
@@ -3579,12 +3576,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 2 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:4: ( '*' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:4: ( '*' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:4: ( '*' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:5: '*'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:4: ( '*' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:5: '*'
                             {
-                            match(input,33,FOLLOW_33_in_r_around1615); if (failed) return cn;
+                            match(input,33,FOLLOW_33_in_r_around1610); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -3603,30 +3600,30 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:49: ( ')' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:50: ')'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:49: ( ')' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:50: ')'
             {
-            match(input,34,FOLLOW_34_in_r_around1624); if (failed) return cn;
+            match(input,34,FOLLOW_34_in_r_around1619); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:91: ( ':' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:92: ':'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:91: ( ':' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:92: ':'
             {
-            match(input,62,FOLLOW_62_in_r_around1630); if (failed) return cn;
+            match(input,62,FOLLOW_62_in_r_around1625); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:133: (f_unnamed2= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:134: f_unnamed2= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:133: (f_unnamed2= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:134: f_unnamed2= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_around1638);
+            pushFollow(FOLLOW_r_expression_in_r_around1633);
             f_unnamed2=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -3636,10 +3633,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:194: ( ';' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:183:195: ';'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:194: ( ';' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:182:195: ';'
             {
-            match(input,27,FOLLOW_27_in_r_around1644); if (failed) return cn;
+            match(input,27,FOLLOW_27_in_r_around1639); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -3662,7 +3659,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_pointcut
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:186:1: r_pointcut returns [CompositeNode cn] : ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) ) ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:185:1: r_pointcut returns [CompositeNode cn] : ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) ) ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )* ;
     public CompositeNode r_pointcut() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -3674,13 +3671,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createPointcutNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:2: ( ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) ) ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:2: ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) ) ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:2: ( ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) ) ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:2: ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) ) ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:2: ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:3: ( ( '*' ) | (f_unnamed3= r_identifier ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:2: ( ( ( '*' ) | (f_unnamed3= r_identifier ) ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:3: ( ( '*' ) | (f_unnamed3= r_identifier ) )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:3: ( ( '*' ) | (f_unnamed3= r_identifier ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:3: ( ( '*' ) | (f_unnamed3= r_identifier ) )
             int alt40=2;
             int LA40_0 = input.LA(1);
 
@@ -3693,18 +3690,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("189:3: ( ( '*' ) | (f_unnamed3= r_identifier ) )", 40, 0, input);
+                    new NoViableAltException("188:3: ( ( '*' ) | (f_unnamed3= r_identifier ) )", 40, 0, input);
 
                 throw nvae;
             }
             switch (alt40) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:4: ( '*' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:4: ( '*' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:4: ( '*' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:5: '*'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:4: ( '*' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:188:5: '*'
                     {
-                    match(input,33,FOLLOW_33_in_r_pointcut1670); if (failed) return cn;
+                    match(input,33,FOLLOW_33_in_r_pointcut1665); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -3715,12 +3712,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:4: (f_unnamed3= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:4: (f_unnamed3= r_identifier )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:4: (f_unnamed3= r_identifier )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:5: f_unnamed3= r_identifier
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:4: (f_unnamed3= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:5: f_unnamed3= r_identifier
                     {
-                    pushFollow(FOLLOW_r_identifier_in_r_pointcut1681);
+                    pushFollow(FOLLOW_r_identifier_in_r_pointcut1676);
                     f_unnamed3=r_identifier();
                     _fsp--;
                     if (failed) return cn;
@@ -3739,7 +3736,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:67: ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:67: ( ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) ) )*
             loop42:
             do {
                 int alt42=2;
@@ -3752,9 +3749,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt42) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:68: ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:68: ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:68: ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:68: ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) )
             	    int alt41=3;
             	    switch ( input.LA(1) ) {
             	    case 33:
@@ -3775,19 +3772,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	    default:
             	        if (backtracking>0) {failed=true; return cn;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("190:68: ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) )", 41, 0, input);
+            	            new NoViableAltException("189:68: ( ( '*' ) | (f_unnamed4= r_identifier ) | ( '::' ) )", 41, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt41) {
             	        case 1 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:69: ( '*' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:69: ( '*' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:69: ( '*' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:70: '*'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:69: ( '*' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:189:70: '*'
             	            {
-            	            match(input,33,FOLLOW_33_in_r_pointcut1691); if (failed) return cn;
+            	            match(input,33,FOLLOW_33_in_r_pointcut1686); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -3798,12 +3795,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 2 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:191:4: (f_unnamed4= r_identifier )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:4: (f_unnamed4= r_identifier )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:191:4: (f_unnamed4= r_identifier )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:191:5: f_unnamed4= r_identifier
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:4: (f_unnamed4= r_identifier )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:190:5: f_unnamed4= r_identifier
             	            {
-            	            pushFollow(FOLLOW_r_identifier_in_r_pointcut1702);
+            	            pushFollow(FOLLOW_r_identifier_in_r_pointcut1697);
             	            f_unnamed4=r_identifier();
             	            _fsp--;
             	            if (failed) return cn;
@@ -3817,12 +3814,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 3 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:192:4: ( '::' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:191:4: ( '::' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:192:4: ( '::' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:192:5: '::'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:191:4: ( '::' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:191:5: '::'
             	            {
-            	            match(input,64,FOLLOW_64_in_r_pointcut1711); if (failed) return cn;
+            	            match(input,64,FOLLOW_64_in_r_pointcut1706); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -3860,7 +3857,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_extension
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:195:1: r_extension returns [CompositeNode cn] : ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )* (f_returnType= r_type )? (f_name= r_identifier ) ( '(' ) (f_paramList= r_declaredParameterList )? ( ')' ) ( ':' ) ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) ) ( ';' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:194:1: r_extension returns [CompositeNode cn] : ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )* (f_returnType= r_type )? (f_name= r_identifier ) ( '(' ) (f_paramList= r_declaredParameterList )? ( ')' ) ( ':' ) ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) ) ( ';' ) ;
     public CompositeNode r_extension() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -3884,10 +3881,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createExtensionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:2: ( ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )* (f_returnType= r_type )? (f_name= r_identifier ) ( '(' ) (f_paramList= r_declaredParameterList )? ( ')' ) ( ':' ) ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) ) ( ';' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:2: ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )* (f_returnType= r_type )? (f_name= r_identifier ) ( '(' ) (f_paramList= r_declaredParameterList )? ( ')' ) ( ':' ) ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) ) ( ';' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:2: ( ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )* (f_returnType= r_type )? (f_name= r_identifier ) ( '(' ) (f_paramList= r_declaredParameterList )? ( ')' ) ( ':' ) ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) ) ( ';' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:2: ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )* (f_returnType= r_type )? (f_name= r_identifier ) ( '(' ) (f_paramList= r_declaredParameterList )? ( ')' ) ( ':' ) ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) ) ( ';' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:2: ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:2: ( ( ( 'private' ) | ( 'cached' ) | ( 'create' ) ) )*
             loop44:
             do {
                 int alt44=2;
@@ -3900,9 +3897,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt44) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:3: ( ( 'private' ) | ( 'cached' ) | ( 'create' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:3: ( ( 'private' ) | ( 'cached' ) | ( 'create' ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:3: ( ( 'private' ) | ( 'cached' ) | ( 'create' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:3: ( ( 'private' ) | ( 'cached' ) | ( 'create' ) )
             	    int alt43=3;
             	    switch ( input.LA(1) ) {
             	    case 65:
@@ -3923,19 +3920,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	    default:
             	        if (backtracking>0) {failed=true; return cn;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("198:3: ( ( 'private' ) | ( 'cached' ) | ( 'create' ) )", 43, 0, input);
+            	            new NoViableAltException("197:3: ( ( 'private' ) | ( 'cached' ) | ( 'create' ) )", 43, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt43) {
             	        case 1 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:4: ( 'private' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:4: ( 'private' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:4: ( 'private' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:5: 'private'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:4: ( 'private' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:197:5: 'private'
             	            {
-            	            match(input,65,FOLLOW_65_in_r_extension1740); if (failed) return cn;
+            	            match(input,65,FOLLOW_65_in_r_extension1735); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, "private"); 
             	            }
@@ -3946,12 +3943,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 2 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:4: ( 'cached' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:4: ( 'cached' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:4: ( 'cached' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:5: 'cached'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:4: ( 'cached' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:198:5: 'cached'
             	            {
-            	            match(input,66,FOLLOW_66_in_r_extension1749); if (failed) return cn;
+            	            match(input,66,FOLLOW_66_in_r_extension1744); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, "cached"); 
             	            }
@@ -3962,12 +3959,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 3 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:4: ( 'create' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:4: ( 'create' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:4: ( 'create' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:5: 'create'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:4: ( 'create' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:5: 'create'
             	            {
-            	            match(input,67,FOLLOW_67_in_r_extension1758); if (failed) return cn;
+            	            match(input,67,FOLLOW_67_in_r_extension1753); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, "create"); 
             	            }
@@ -3989,7 +3986,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:58: (f_returnType= r_type )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:58: (f_returnType= r_type )?
             int alt45=2;
             int LA45_0 = input.LA(1);
 
@@ -4005,9 +4002,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt45) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:59: f_returnType= r_type
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:59: f_returnType= r_type
                     {
-                    pushFollow(FOLLOW_r_type_in_r_extension1769);
+                    pushFollow(FOLLOW_r_type_in_r_extension1764);
                     f_returnType=r_type();
                     _fsp--;
                     if (failed) return cn;
@@ -4020,10 +4017,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:168: (f_name= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:169: f_name= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:168: (f_name= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:169: f_name= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_extension1778);
+            pushFollow(FOLLOW_r_identifier_in_r_extension1773);
             f_name=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -4033,17 +4030,17 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:259: ( '(' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:260: '('
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:259: ( '(' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:260: '('
             {
-            match(input,31,FOLLOW_31_in_r_extension1784); if (failed) return cn;
+            match(input,31,FOLLOW_31_in_r_extension1779); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:301: (f_paramList= r_declaredParameterList )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:301: (f_paramList= r_declaredParameterList )?
             int alt46=2;
             int LA46_0 = input.LA(1);
 
@@ -4052,9 +4049,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt46) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:302: f_paramList= r_declaredParameterList
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:302: f_paramList= r_declaredParameterList
                     {
-                    pushFollow(FOLLOW_r_declaredParameterList_in_r_extension1792);
+                    pushFollow(FOLLOW_r_declaredParameterList_in_r_extension1787);
                     f_paramList=r_declaredParameterList();
                     _fsp--;
                     if (failed) return cn;
@@ -4067,30 +4064,30 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:424: ( ')' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:425: ')'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:424: ( ')' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:425: ')'
             {
-            match(input,34,FOLLOW_34_in_r_extension1799); if (failed) return cn;
+            match(input,34,FOLLOW_34_in_r_extension1794); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:466: ( ':' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:467: ':'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:466: ( ':' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:467: ':'
             {
-            match(input,62,FOLLOW_62_in_r_extension1805); if (failed) return cn;
+            match(input,62,FOLLOW_62_in_r_extension1800); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:508: ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:509: ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:508: ( ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:509: ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:509: ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:509: ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) )
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -4103,28 +4100,28 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("200:509: ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) )", 49, 0, input);
+                    new NoViableAltException("199:509: ( ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' ) | (f_extendBody= r_expression ) )", 49, 0, input);
 
                 throw nvae;
             }
             switch (alt49) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:510: ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:510: ( 'JAVA' ) (f_javaReturnType= r_javaType ) ( '.' ) (f_javaName= r_identifier ) ( '(' ) ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )? ( ')' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:510: ( 'JAVA' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:511: 'JAVA'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:510: ( 'JAVA' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:511: 'JAVA'
                     {
-                    match(input,68,FOLLOW_68_in_r_extension1813); if (failed) return cn;
+                    match(input,68,FOLLOW_68_in_r_extension1808); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:555: (f_javaReturnType= r_javaType )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:556: f_javaReturnType= r_javaType
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:555: (f_javaReturnType= r_javaType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:556: f_javaReturnType= r_javaType
                     {
-                    pushFollow(FOLLOW_r_javaType_in_r_extension1821);
+                    pushFollow(FOLLOW_r_javaType_in_r_extension1816);
                     f_javaReturnType=r_javaType();
                     _fsp--;
                     if (failed) return cn;
@@ -4134,20 +4131,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:684: ( '.' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:685: '.'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:684: ( '.' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:685: '.'
                     {
-                    match(input,69,FOLLOW_69_in_r_extension1827); if (failed) return cn;
+                    match(input,69,FOLLOW_69_in_r_extension1822); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:726: (f_javaName= r_identifier )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:727: f_javaName= r_identifier
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:726: (f_javaName= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:727: f_javaName= r_identifier
                     {
-                    pushFollow(FOLLOW_r_identifier_in_r_extension1835);
+                    pushFollow(FOLLOW_r_identifier_in_r_extension1830);
                     f_javaName=r_identifier();
                     _fsp--;
                     if (failed) return cn;
@@ -4157,17 +4154,17 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:833: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:834: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:833: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:834: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_extension1841); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_extension1836); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:875: ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:875: ( ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* ) )?
                     int alt48=2;
                     int LA48_0 = input.LA(1);
 
@@ -4176,15 +4173,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt48) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:876: ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:876: ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:876: ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:877: (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )*
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:876: ( (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )* )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:877: (f_unnamed5= r_javaType ) ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )*
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:877: (f_unnamed5= r_javaType )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:878: f_unnamed5= r_javaType
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:877: (f_unnamed5= r_javaType )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:878: f_unnamed5= r_javaType
                             {
-                            pushFollow(FOLLOW_r_javaType_in_r_extension1851);
+                            pushFollow(FOLLOW_r_javaType_in_r_extension1846);
                             f_unnamed5=r_javaType();
                             _fsp--;
                             if (failed) return cn;
@@ -4194,7 +4191,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:936: ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )*
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:936: ( ( ( ',' ) (f_unnamed6= r_javaType ) ) )*
                             loop47:
                             do {
                                 int alt47=2;
@@ -4207,25 +4204,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                                 switch (alt47) {
                             	case 1 :
-                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:937: ( ( ',' ) (f_unnamed6= r_javaType ) )
+                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:937: ( ( ',' ) (f_unnamed6= r_javaType ) )
                             	    {
-                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:937: ( ( ',' ) (f_unnamed6= r_javaType ) )
-                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:938: ( ',' ) (f_unnamed6= r_javaType )
+                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:937: ( ( ',' ) (f_unnamed6= r_javaType ) )
+                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:938: ( ',' ) (f_unnamed6= r_javaType )
                             	    {
-                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:938: ( ',' )
-                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:939: ','
+                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:938: ( ',' )
+                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:939: ','
                             	    {
-                            	    match(input,32,FOLLOW_32_in_r_extension1859); if (failed) return cn;
+                            	    match(input,32,FOLLOW_32_in_r_extension1854); if (failed) return cn;
                             	    if ( backtracking==0 ) {
                             	       addLeafNodeForToken(cn, null); 
                             	    }
 
                             	    }
 
-                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:980: (f_unnamed6= r_javaType )
-                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:981: f_unnamed6= r_javaType
+                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:980: (f_unnamed6= r_javaType )
+                            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:981: f_unnamed6= r_javaType
                             	    {
-                            	    pushFollow(FOLLOW_r_javaType_in_r_extension1867);
+                            	    pushFollow(FOLLOW_r_javaType_in_r_extension1862);
                             	    f_unnamed6=r_javaType();
                             	    _fsp--;
                             	    if (failed) return cn;
@@ -4256,10 +4253,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:1045: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:1046: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:1045: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:199:1046: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_extension1879); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_extension1874); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -4270,12 +4267,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:201:4: (f_extendBody= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:4: (f_extendBody= r_expression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:201:4: (f_extendBody= r_expression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:201:5: f_extendBody= r_expression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:4: (f_extendBody= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:5: f_extendBody= r_expression
                     {
-                    pushFollow(FOLLOW_r_expression_in_r_extension1890);
+                    pushFollow(FOLLOW_r_expression_in_r_extension1885);
                     f_extendBody=r_expression();
                     _fsp--;
                     if (failed) return cn;
@@ -4294,10 +4291,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:201:121: ( ';' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:201:122: ';'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:121: ( ';' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:200:122: ';'
             {
-            match(input,27,FOLLOW_27_in_r_extension1898); if (failed) return cn;
+            match(input,27,FOLLOW_27_in_r_extension1893); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -4320,7 +4317,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_javaType
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:204:1: r_javaType returns [CompositeNode cn] : (f_unnamed7= r_identifier ) ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:203:1: r_javaType returns [CompositeNode cn] : (f_unnamed7= r_identifier ) ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )* ;
     public CompositeNode r_javaType() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -4332,13 +4329,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createJavaTypeNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:2: ( (f_unnamed7= r_identifier ) ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:2: (f_unnamed7= r_identifier ) ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:2: ( (f_unnamed7= r_identifier ) ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:2: (f_unnamed7= r_identifier ) ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:2: (f_unnamed7= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:3: f_unnamed7= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:2: (f_unnamed7= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:3: f_unnamed7= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_javaType1924);
+            pushFollow(FOLLOW_r_identifier_in_r_javaType1919);
             f_unnamed7=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -4348,7 +4345,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:63: ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:63: ( ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ) )*
             loop51:
             do {
                 int alt51=2;
@@ -4376,25 +4373,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt51) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:64: ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:64: ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:64: ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:65: ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:64: ( ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:65: ( '.' ) ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:65: ( '.' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:66: '.'
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:65: ( '.' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:66: '.'
             	    {
-            	    match(input,69,FOLLOW_69_in_r_javaType1932); if (failed) return cn;
+            	    match(input,69,FOLLOW_69_in_r_javaType1927); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:107: ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:108: ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:107: ( ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:108: ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:108: ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:108: ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
             	    int alt50=4;
             	    switch ( input.LA(1) ) {
             	    case Identifier:
@@ -4420,19 +4417,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	    default:
             	        if (backtracking>0) {failed=true; return cn;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("207:108: ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )", 50, 0, input);
+            	            new NoViableAltException("206:108: ( (f_unnamed8= r_identifier ) | ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )", 50, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt50) {
             	        case 1 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:109: (f_unnamed8= r_identifier )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:109: (f_unnamed8= r_identifier )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:109: (f_unnamed8= r_identifier )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:110: f_unnamed8= r_identifier
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:109: (f_unnamed8= r_identifier )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:206:110: f_unnamed8= r_identifier
             	            {
-            	            pushFollow(FOLLOW_r_identifier_in_r_javaType1942);
+            	            pushFollow(FOLLOW_r_identifier_in_r_javaType1937);
             	            f_unnamed8=r_identifier();
             	            _fsp--;
             	            if (failed) return cn;
@@ -4446,12 +4443,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 2 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:208:4: ( 'Collection' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:4: ( 'Collection' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:208:4: ( 'Collection' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:208:5: 'Collection'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:4: ( 'Collection' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:207:5: 'Collection'
             	            {
-            	            match(input,70,FOLLOW_70_in_r_javaType1951); if (failed) return cn;
+            	            match(input,70,FOLLOW_70_in_r_javaType1946); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -4462,12 +4459,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 3 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:209:4: ( 'List' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:208:4: ( 'List' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:209:4: ( 'List' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:209:5: 'List'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:208:4: ( 'List' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:208:5: 'List'
             	            {
-            	            match(input,71,FOLLOW_71_in_r_javaType1960); if (failed) return cn;
+            	            match(input,71,FOLLOW_71_in_r_javaType1955); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -4478,12 +4475,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 4 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:210:4: ( 'Set' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:209:4: ( 'Set' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:210:4: ( 'Set' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:210:5: 'Set'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:209:4: ( 'Set' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:209:5: 'Set'
             	            {
-            	            match(input,72,FOLLOW_72_in_r_javaType1969); if (failed) return cn;
+            	            match(input,72,FOLLOW_72_in_r_javaType1964); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -4527,7 +4524,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_test_expression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:213:1: r_test_expression returns [CompositeNode cn] : (f_unnamed9= r_expression ) ( EOF ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:212:1: r_test_expression returns [CompositeNode cn] : (f_unnamed9= r_expression ) ( EOF ) ;
     public CompositeNode r_test_expression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -4537,13 +4534,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createTest_expressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:217:2: ( (f_unnamed9= r_expression ) ( EOF ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:217:2: (f_unnamed9= r_expression ) ( EOF )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:216:2: ( (f_unnamed9= r_expression ) ( EOF ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:216:2: (f_unnamed9= r_expression ) ( EOF )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:217:2: (f_unnamed9= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:217:3: f_unnamed9= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:216:2: (f_unnamed9= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:216:3: f_unnamed9= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_test_expression2005);
+            pushFollow(FOLLOW_r_expression_in_r_test_expression2000);
             f_unnamed9=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -4553,10 +4550,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:217:63: ( EOF )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:217:64: EOF
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:216:63: ( EOF )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:216:64: EOF
             {
-            match(input,EOF,FOLLOW_EOF_in_r_test_expression2011); if (failed) return cn;
+            match(input,EOF,FOLLOW_EOF_in_r_test_expression2006); if (failed) return cn;
 
             }
 
@@ -4579,7 +4576,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_expression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:220:1: r_expression returns [CompositeNode cn] : ( r_letExpression ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:219:1: r_expression returns [CompositeNode cn] : ( r_letExpression ) ;
     public CompositeNode r_expression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -4587,13 +4584,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:221:2: ( ( r_letExpression ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:221:2: ( r_letExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:220:2: ( ( r_letExpression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:220:2: ( r_letExpression )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:221:2: ( r_letExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:221:3: r_letExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:220:2: ( r_letExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:220:3: r_letExpression
             {
-            pushFollow(FOLLOW_r_letExpression_in_r_expression2028);
+            pushFollow(FOLLOW_r_letExpression_in_r_expression2023);
             r_letExpression17=r_letExpression();
             _fsp--;
             if (failed) return cn;
@@ -4619,7 +4616,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_letExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:224:1: r_letExpression returns [CompositeNode cn] : ( ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression ) | (f_unnamed13= r_castedExpression ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:223:1: r_letExpression returns [CompositeNode cn] : ( ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression ) | (f_unnamed13= r_castedExpression ) );
     public CompositeNode r_letExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -4635,7 +4632,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createLetExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:2: ( ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression ) | (f_unnamed13= r_castedExpression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:2: ( ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression ) | (f_unnamed13= r_castedExpression ) )
             int alt52=2;
             int LA52_0 = input.LA(1);
 
@@ -4648,28 +4645,28 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("224:1: r_letExpression returns [CompositeNode cn] : ( ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression ) | (f_unnamed13= r_castedExpression ) );", 52, 0, input);
+                    new NoViableAltException("223:1: r_letExpression returns [CompositeNode cn] : ( ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression ) | (f_unnamed13= r_castedExpression ) );", 52, 0, input);
 
                 throw nvae;
             }
             switch (alt52) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:2: ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:2: ( 'let' ) (f_unnamed10= r_identifier ) ( '=' ) (f_unnamed11= r_castedExpression ) ( ':' ) (f_unnamed12= r_expression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:2: ( 'let' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:3: 'let'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:2: ( 'let' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:3: 'let'
                     {
-                    match(input,73,FOLLOW_73_in_r_letExpression2057); if (failed) return cn;
+                    match(input,73,FOLLOW_73_in_r_letExpression2052); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:46: (f_unnamed10= r_identifier )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:47: f_unnamed10= r_identifier
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:46: (f_unnamed10= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:47: f_unnamed10= r_identifier
                     {
-                    pushFollow(FOLLOW_r_identifier_in_r_letExpression2065);
+                    pushFollow(FOLLOW_r_identifier_in_r_letExpression2060);
                     f_unnamed10=r_identifier();
                     _fsp--;
                     if (failed) return cn;
@@ -4679,20 +4676,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:109: ( '=' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:110: '='
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:109: ( '=' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:110: '='
                     {
-                    match(input,74,FOLLOW_74_in_r_letExpression2071); if (failed) return cn;
+                    match(input,74,FOLLOW_74_in_r_letExpression2066); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:151: (f_unnamed11= r_castedExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:152: f_unnamed11= r_castedExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:151: (f_unnamed11= r_castedExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:152: f_unnamed11= r_castedExpression
                     {
-                    pushFollow(FOLLOW_r_castedExpression_in_r_letExpression2079);
+                    pushFollow(FOLLOW_r_castedExpression_in_r_letExpression2074);
                     f_unnamed11=r_castedExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -4702,20 +4699,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:220: ( ':' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:221: ':'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:220: ( ':' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:221: ':'
                     {
-                    match(input,62,FOLLOW_62_in_r_letExpression2085); if (failed) return cn;
+                    match(input,62,FOLLOW_62_in_r_letExpression2080); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:262: (f_unnamed12= r_expression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:263: f_unnamed12= r_expression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:262: (f_unnamed12= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:227:263: f_unnamed12= r_expression
                     {
-                    pushFollow(FOLLOW_r_expression_in_r_letExpression2093);
+                    pushFollow(FOLLOW_r_expression_in_r_letExpression2088);
                     f_unnamed12=r_expression();
                     _fsp--;
                     if (failed) return cn;
@@ -4729,12 +4726,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:229:4: (f_unnamed13= r_castedExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:4: (f_unnamed13= r_castedExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:229:4: (f_unnamed13= r_castedExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:229:5: f_unnamed13= r_castedExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:4: (f_unnamed13= r_castedExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:228:5: f_unnamed13= r_castedExpression
                     {
-                    pushFollow(FOLLOW_r_castedExpression_in_r_letExpression2104);
+                    pushFollow(FOLLOW_r_castedExpression_in_r_letExpression2099);
                     f_unnamed13=r_castedExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -4765,7 +4762,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_castedExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:232:1: r_castedExpression returns [CompositeNode cn] : ( ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) ) | (f_unnamed14= r_chainExpression ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:231:1: r_castedExpression returns [CompositeNode cn] : ( ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) ) | (f_unnamed14= r_chainExpression ) );
     public CompositeNode r_castedExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -4779,30 +4776,30 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createCastedExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:2: ( ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) ) | (f_unnamed14= r_chainExpression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:2: ( ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) ) | (f_unnamed14= r_chainExpression ) )
             int alt53=2;
             alt53 = dfa53.predict(input);
             switch (alt53) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:2: ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:2: ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:38: ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:39: ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:38: ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:39: ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:39: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:40: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:39: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:40: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_castedExpression2144); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_castedExpression2139); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:81: (f_type= r_type )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:82: f_type= r_type
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:81: (f_type= r_type )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:82: f_type= r_type
                     {
-                    pushFollow(FOLLOW_r_type_in_r_castedExpression2152);
+                    pushFollow(FOLLOW_r_type_in_r_castedExpression2147);
                     f_type=r_type();
                     _fsp--;
                     if (failed) return cn;
@@ -4812,20 +4809,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:173: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:174: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:173: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:174: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_castedExpression2158); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_castedExpression2153); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:215: (f_target= r_chainExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:216: f_target= r_chainExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:215: (f_target= r_chainExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:216: f_target= r_chainExpression
                     {
-                    pushFollow(FOLLOW_r_chainExpression_in_r_castedExpression2166);
+                    pushFollow(FOLLOW_r_chainExpression_in_r_castedExpression2161);
                     f_target=r_chainExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -4842,12 +4839,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:237:4: (f_unnamed14= r_chainExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:4: (f_unnamed14= r_chainExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:237:4: (f_unnamed14= r_chainExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:237:5: f_unnamed14= r_chainExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:4: (f_unnamed14= r_chainExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:5: f_unnamed14= r_chainExpression
                     {
-                    pushFollow(FOLLOW_r_chainExpression_in_r_castedExpression2178);
+                    pushFollow(FOLLOW_r_chainExpression_in_r_castedExpression2173);
                     f_unnamed14=r_chainExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -4878,7 +4875,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_chainExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:240:1: r_chainExpression returns [CompositeNode cn] : (f_first= r_ifExpression ) ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:239:1: r_chainExpression returns [CompositeNode cn] : (f_first= r_ifExpression ) ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )* ;
     public CompositeNode r_chainExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -4890,13 +4887,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createChainExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:2: ( (f_first= r_ifExpression ) ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:2: (f_first= r_ifExpression ) ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:2: ( (f_first= r_ifExpression ) ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:2: (f_first= r_ifExpression ) ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:2: (f_first= r_ifExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:3: f_first= r_ifExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:2: (f_first= r_ifExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:3: f_first= r_ifExpression
             {
-            pushFollow(FOLLOW_r_ifExpression_in_r_chainExpression2209);
+            pushFollow(FOLLOW_r_ifExpression_in_r_chainExpression2204);
             f_first=r_ifExpression();
             _fsp--;
             if (failed) return cn;
@@ -4906,7 +4903,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:105: ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:105: ( ( ( '->' ) (f_nexts= r_ifExpression ) ) )*
             loop54:
             do {
                 int alt54=2;
@@ -4919,25 +4916,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt54) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:106: ( ( '->' ) (f_nexts= r_ifExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:106: ( ( '->' ) (f_nexts= r_ifExpression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:106: ( ( '->' ) (f_nexts= r_ifExpression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:107: ( '->' ) (f_nexts= r_ifExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:106: ( ( '->' ) (f_nexts= r_ifExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:107: ( '->' ) (f_nexts= r_ifExpression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:107: ( '->' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:108: '->'
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:107: ( '->' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:108: '->'
             	    {
-            	    match(input,75,FOLLOW_75_in_r_chainExpression2217); if (failed) return cn;
+            	    match(input,75,FOLLOW_75_in_r_chainExpression2212); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:150: (f_nexts= r_ifExpression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:244:151: f_nexts= r_ifExpression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:150: (f_nexts= r_ifExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:243:151: f_nexts= r_ifExpression
             	    {
-            	    pushFollow(FOLLOW_r_ifExpression_in_r_chainExpression2225);
+            	    pushFollow(FOLLOW_r_ifExpression_in_r_chainExpression2220);
             	    f_nexts=r_ifExpression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -4978,7 +4975,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_ifExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:247:1: r_ifExpression returns [CompositeNode cn] : ( (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )? | ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )? );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:246:1: r_ifExpression returns [CompositeNode cn] : ( (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )? | ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )? );
     public CompositeNode r_ifExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -4994,7 +4991,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createIfExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:2: ( (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )? | ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )? )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:2: ( (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )? | ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )? )
             int alt57=2;
             int LA57_0 = input.LA(1);
 
@@ -5007,18 +5004,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("247:1: r_ifExpression returns [CompositeNode cn] : ( (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )? | ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )? );", 57, 0, input);
+                    new NoViableAltException("246:1: r_ifExpression returns [CompositeNode cn] : ( (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )? | ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )? );", 57, 0, input);
 
                 throw nvae;
             }
             switch (alt57) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:2: (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:2: (f_condition0= r_switchExpression ) ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )?
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:2: (f_condition0= r_switchExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:3: f_condition0= r_switchExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:2: (f_condition0= r_switchExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:3: f_condition0= r_switchExpression
                     {
-                    pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2259);
+                    pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2254);
                     f_condition0=r_switchExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -5028,7 +5025,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:126: ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:126: ( ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) ) )?
                     int alt55=2;
                     int LA55_0 = input.LA(1);
 
@@ -5037,25 +5034,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt55) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:127: ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:127: ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:127: ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:128: ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:127: ( ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:128: ( '?' ) (f_then= r_expression ) ( ':' ) (f_else= r_switchExpression )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:128: ( '?' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:129: '?'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:128: ( '?' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:129: '?'
                             {
-                            match(input,76,FOLLOW_76_in_r_ifExpression2267); if (failed) return cn;
+                            match(input,76,FOLLOW_76_in_r_ifExpression2262); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:170: (f_then= r_expression )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:171: f_then= r_expression
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:170: (f_then= r_expression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:171: f_then= r_expression
                             {
-                            pushFollow(FOLLOW_r_expression_in_r_ifExpression2275);
+                            pushFollow(FOLLOW_r_expression_in_r_ifExpression2270);
                             f_then=r_expression();
                             _fsp--;
                             if (failed) return cn;
@@ -5065,20 +5062,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:264: ( ':' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:265: ':'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:264: ( ':' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:265: ':'
                             {
-                            match(input,62,FOLLOW_62_in_r_ifExpression2281); if (failed) return cn;
+                            match(input,62,FOLLOW_62_in_r_ifExpression2276); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:306: (f_else= r_switchExpression )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:307: f_else= r_switchExpression
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:306: (f_else= r_switchExpression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:250:307: f_else= r_switchExpression
                             {
-                            pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2289);
+                            pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2284);
                             f_else=r_switchExpression();
                             _fsp--;
                             if (failed) return cn;
@@ -5101,22 +5098,22 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:4: ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:4: ( 'if' ) (f_condition1= r_expression ) ( 'then' ) (f_then= r_switchExpression ) ( ( ( 'else' ) (f_else= r_switchExpression ) ) )?
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:4: ( 'if' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:5: 'if'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:4: ( 'if' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:5: 'if'
                     {
-                    match(input,60,FOLLOW_60_in_r_ifExpression2301); if (failed) return cn;
+                    match(input,60,FOLLOW_60_in_r_ifExpression2296); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:47: (f_condition1= r_expression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:48: f_condition1= r_expression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:47: (f_condition1= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:48: f_condition1= r_expression
                     {
-                    pushFollow(FOLLOW_r_expression_in_r_ifExpression2309);
+                    pushFollow(FOLLOW_r_expression_in_r_ifExpression2304);
                     f_condition1=r_expression();
                     _fsp--;
                     if (failed) return cn;
@@ -5126,20 +5123,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:165: ( 'then' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:166: 'then'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:165: ( 'then' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:166: 'then'
                     {
-                    match(input,77,FOLLOW_77_in_r_ifExpression2315); if (failed) return cn;
+                    match(input,77,FOLLOW_77_in_r_ifExpression2310); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:210: (f_then= r_switchExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:211: f_then= r_switchExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:210: (f_then= r_switchExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:211: f_then= r_switchExpression
                     {
-                    pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2323);
+                    pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2318);
                     f_then=r_switchExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -5149,7 +5146,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:310: ( ( ( 'else' ) (f_else= r_switchExpression ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:310: ( ( ( 'else' ) (f_else= r_switchExpression ) ) )?
                     int alt56=2;
                     int LA56_0 = input.LA(1);
 
@@ -5158,25 +5155,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt56) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:311: ( ( 'else' ) (f_else= r_switchExpression ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:311: ( ( 'else' ) (f_else= r_switchExpression ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:311: ( ( 'else' ) (f_else= r_switchExpression ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:312: ( 'else' ) (f_else= r_switchExpression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:311: ( ( 'else' ) (f_else= r_switchExpression ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:312: ( 'else' ) (f_else= r_switchExpression )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:312: ( 'else' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:313: 'else'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:312: ( 'else' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:313: 'else'
                             {
-                            match(input,78,FOLLOW_78_in_r_ifExpression2331); if (failed) return cn;
+                            match(input,78,FOLLOW_78_in_r_ifExpression2326); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:357: (f_else= r_switchExpression )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:252:358: f_else= r_switchExpression
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:357: (f_else= r_switchExpression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:251:358: f_else= r_switchExpression
                             {
-                            pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2339);
+                            pushFollow(FOLLOW_r_switchExpression_in_r_ifExpression2334);
                             f_else=r_switchExpression();
                             _fsp--;
                             if (failed) return cn;
@@ -5216,7 +5213,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_switchExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:255:1: r_switchExpression returns [CompositeNode cn] : ( ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' ) | (f_unnamed15= r_orExpression ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:254:1: r_switchExpression returns [CompositeNode cn] : ( ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' ) | (f_unnamed15= r_orExpression ) );
     public CompositeNode r_switchExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -5232,7 +5229,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createSwitchExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:2: ( ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' ) | (f_unnamed15= r_orExpression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:2: ( ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' ) | (f_unnamed15= r_orExpression ) )
             int alt60=2;
             int LA60_0 = input.LA(1);
 
@@ -5245,25 +5242,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("255:1: r_switchExpression returns [CompositeNode cn] : ( ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' ) | (f_unnamed15= r_orExpression ) );", 60, 0, input);
+                    new NoViableAltException("254:1: r_switchExpression returns [CompositeNode cn] : ( ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' ) | (f_unnamed15= r_orExpression ) );", 60, 0, input);
 
                 throw nvae;
             }
             switch (alt60) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:2: ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:2: ( 'switch' ) ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )? ( '{' ) (f_cases= r_casePart )* ( 'default' ) ( ':' ) (f_default= r_orExpression ) ( '}' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:2: ( 'switch' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:3: 'switch'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:2: ( 'switch' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:3: 'switch'
                     {
-                    match(input,79,FOLLOW_79_in_r_switchExpression2371); if (failed) return cn;
+                    match(input,79,FOLLOW_79_in_r_switchExpression2366); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:49: ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:49: ( ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) ) )?
                     int alt58=2;
                     int LA58_0 = input.LA(1);
 
@@ -5272,25 +5269,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt58) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:50: ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:50: ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:50: ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:51: ( '(' ) (f_expression= r_orExpression ) ( ')' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:50: ( ( '(' ) (f_expression= r_orExpression ) ( ')' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:51: ( '(' ) (f_expression= r_orExpression ) ( ')' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:51: ( '(' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:52: '('
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:51: ( '(' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:52: '('
                             {
-                            match(input,31,FOLLOW_31_in_r_switchExpression2379); if (failed) return cn;
+                            match(input,31,FOLLOW_31_in_r_switchExpression2374); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:93: (f_expression= r_orExpression )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:94: f_expression= r_orExpression
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:93: (f_expression= r_orExpression )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:94: f_expression= r_orExpression
                             {
-                            pushFollow(FOLLOW_r_orExpression_in_r_switchExpression2387);
+                            pushFollow(FOLLOW_r_orExpression_in_r_switchExpression2382);
                             f_expression=r_orExpression();
                             _fsp--;
                             if (failed) return cn;
@@ -5300,10 +5297,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:217: ( ')' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:218: ')'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:217: ( ')' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:218: ')'
                             {
-                            match(input,34,FOLLOW_34_in_r_switchExpression2393); if (failed) return cn;
+                            match(input,34,FOLLOW_34_in_r_switchExpression2388); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -5319,17 +5316,17 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:262: ( '{' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:263: '{'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:262: ( '{' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:263: '{'
                     {
-                    match(input,80,FOLLOW_80_in_r_switchExpression2402); if (failed) return cn;
+                    match(input,80,FOLLOW_80_in_r_switchExpression2397); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:304: (f_cases= r_casePart )*
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:304: (f_cases= r_casePart )*
                     loop59:
                     do {
                         int alt59=2;
@@ -5342,9 +5339,9 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                         switch (alt59) {
                     	case 1 :
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:305: f_cases= r_casePart
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:305: f_cases= r_casePart
                     	    {
-                    	    pushFollow(FOLLOW_r_casePart_in_r_switchExpression2410);
+                    	    pushFollow(FOLLOW_r_casePart_in_r_switchExpression2405);
                     	    f_cases=r_casePart();
                     	    _fsp--;
                     	    if (failed) return cn;
@@ -5360,30 +5357,30 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                         }
                     } while (true);
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:411: ( 'default' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:412: 'default'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:411: ( 'default' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:412: 'default'
                     {
-                    match(input,81,FOLLOW_81_in_r_switchExpression2417); if (failed) return cn;
+                    match(input,81,FOLLOW_81_in_r_switchExpression2412); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:459: ( ':' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:460: ':'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:459: ( ':' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:460: ':'
                     {
-                    match(input,62,FOLLOW_62_in_r_switchExpression2423); if (failed) return cn;
+                    match(input,62,FOLLOW_62_in_r_switchExpression2418); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:501: (f_default= r_orExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:502: f_default= r_orExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:501: (f_default= r_orExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:502: f_default= r_orExpression
                     {
-                    pushFollow(FOLLOW_r_orExpression_in_r_switchExpression2431);
+                    pushFollow(FOLLOW_r_orExpression_in_r_switchExpression2426);
                     f_default=r_orExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -5393,10 +5390,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:613: ( '}' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:614: '}'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:613: ( '}' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:258:614: '}'
                     {
-                    match(input,82,FOLLOW_82_in_r_switchExpression2437); if (failed) return cn;
+                    match(input,82,FOLLOW_82_in_r_switchExpression2432); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -5407,12 +5404,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:260:4: (f_unnamed15= r_orExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:4: (f_unnamed15= r_orExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:260:4: (f_unnamed15= r_orExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:260:5: f_unnamed15= r_orExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:4: (f_unnamed15= r_orExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:259:5: f_unnamed15= r_orExpression
                     {
-                    pushFollow(FOLLOW_r_orExpression_in_r_switchExpression2448);
+                    pushFollow(FOLLOW_r_orExpression_in_r_switchExpression2443);
                     f_unnamed15=r_orExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -5443,7 +5440,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_casePart
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:263:1: r_casePart returns [CompositeNode cn] : ( 'case' ) (f_condition= r_expression ) ( ':' ) (f_expression= r_expression ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:262:1: r_casePart returns [CompositeNode cn] : ( 'case' ) (f_condition= r_expression ) ( ':' ) (f_expression= r_expression ) ;
     public CompositeNode r_casePart() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -5455,23 +5452,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createCasePartNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:2: ( ( 'case' ) (f_condition= r_expression ) ( ':' ) (f_expression= r_expression ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:2: ( 'case' ) (f_condition= r_expression ) ( ':' ) (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:2: ( ( 'case' ) (f_condition= r_expression ) ( ':' ) (f_expression= r_expression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:2: ( 'case' ) (f_condition= r_expression ) ( ':' ) (f_expression= r_expression )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:2: ( 'case' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:3: 'case'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:2: ( 'case' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:3: 'case'
             {
-            match(input,83,FOLLOW_83_in_r_casePart2472); if (failed) return cn;
+            match(input,83,FOLLOW_83_in_r_casePart2467); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:47: (f_condition= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:48: f_condition= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:47: (f_condition= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:48: f_condition= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_casePart2480);
+            pushFollow(FOLLOW_r_expression_in_r_casePart2475);
             f_condition=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -5481,20 +5478,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:157: ( ':' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:158: ':'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:157: ( ':' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:158: ':'
             {
-            match(input,62,FOLLOW_62_in_r_casePart2486); if (failed) return cn;
+            match(input,62,FOLLOW_62_in_r_casePart2481); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:199: (f_expression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:266:200: f_expression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:199: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:265:200: f_expression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_casePart2494);
+            pushFollow(FOLLOW_r_expression_in_r_casePart2489);
             f_expression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -5520,7 +5517,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_orExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:269:1: r_orExpression returns [CompositeNode cn] : (f_first= r_andExpression ) ( ( ( '||' ) (f_nexts= r_andExpression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:268:1: r_orExpression returns [CompositeNode cn] : (f_first= r_andExpression ) ( ( ( '||' ) (f_nexts= r_andExpression ) ) )* ;
     public CompositeNode r_orExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -5532,13 +5529,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createOrExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:2: ( (f_first= r_andExpression ) ( ( ( '||' ) (f_nexts= r_andExpression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:2: (f_first= r_andExpression ) ( ( ( '||' ) (f_nexts= r_andExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:2: ( (f_first= r_andExpression ) ( ( ( '||' ) (f_nexts= r_andExpression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:2: (f_first= r_andExpression ) ( ( ( '||' ) (f_nexts= r_andExpression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:2: (f_first= r_andExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:3: f_first= r_andExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:2: (f_first= r_andExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:3: f_first= r_andExpression
             {
-            pushFollow(FOLLOW_r_andExpression_in_r_orExpression2525);
+            pushFollow(FOLLOW_r_andExpression_in_r_orExpression2520);
             f_first=r_andExpression();
             _fsp--;
             if (failed) return cn;
@@ -5548,7 +5545,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:103: ( ( ( '||' ) (f_nexts= r_andExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:103: ( ( ( '||' ) (f_nexts= r_andExpression ) ) )*
             loop61:
             do {
                 int alt61=2;
@@ -5561,25 +5558,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt61) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:104: ( ( '||' ) (f_nexts= r_andExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:104: ( ( '||' ) (f_nexts= r_andExpression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:104: ( ( '||' ) (f_nexts= r_andExpression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:105: ( '||' ) (f_nexts= r_andExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:104: ( ( '||' ) (f_nexts= r_andExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:105: ( '||' ) (f_nexts= r_andExpression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:105: ( '||' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:106: '||'
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:105: ( '||' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:106: '||'
             	    {
-            	    match(input,84,FOLLOW_84_in_r_orExpression2533); if (failed) return cn;
+            	    match(input,84,FOLLOW_84_in_r_orExpression2528); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:148: (f_nexts= r_andExpression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:273:149: f_nexts= r_andExpression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:148: (f_nexts= r_andExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:272:149: f_nexts= r_andExpression
             	    {
-            	    pushFollow(FOLLOW_r_andExpression_in_r_orExpression2541);
+            	    pushFollow(FOLLOW_r_andExpression_in_r_orExpression2536);
             	    f_nexts=r_andExpression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -5620,7 +5617,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_andExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:276:1: r_andExpression returns [CompositeNode cn] : (f_first= r_impliesExpression ) ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:275:1: r_andExpression returns [CompositeNode cn] : (f_first= r_impliesExpression ) ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )* ;
     public CompositeNode r_andExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -5632,13 +5629,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createAndExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:2: ( (f_first= r_impliesExpression ) ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:2: (f_first= r_impliesExpression ) ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:2: ( (f_first= r_impliesExpression ) ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:2: (f_first= r_impliesExpression ) ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:2: (f_first= r_impliesExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:3: f_first= r_impliesExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:2: (f_first= r_impliesExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:3: f_first= r_impliesExpression
             {
-            pushFollow(FOLLOW_r_impliesExpression_in_r_andExpression2575);
+            pushFollow(FOLLOW_r_impliesExpression_in_r_andExpression2570);
             f_first=r_impliesExpression();
             _fsp--;
             if (failed) return cn;
@@ -5648,7 +5645,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:108: ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:108: ( ( ( '&&' ) (f_nexts= r_impliesExpression ) ) )*
             loop62:
             do {
                 int alt62=2;
@@ -5661,25 +5658,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt62) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:109: ( ( '&&' ) (f_nexts= r_impliesExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:109: ( ( '&&' ) (f_nexts= r_impliesExpression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:109: ( ( '&&' ) (f_nexts= r_impliesExpression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:110: ( '&&' ) (f_nexts= r_impliesExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:109: ( ( '&&' ) (f_nexts= r_impliesExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:110: ( '&&' ) (f_nexts= r_impliesExpression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:110: ( '&&' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:111: '&&'
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:110: ( '&&' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:111: '&&'
             	    {
-            	    match(input,85,FOLLOW_85_in_r_andExpression2583); if (failed) return cn;
+            	    match(input,85,FOLLOW_85_in_r_andExpression2578); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:153: (f_nexts= r_impliesExpression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:280:154: f_nexts= r_impliesExpression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:153: (f_nexts= r_impliesExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:279:154: f_nexts= r_impliesExpression
             	    {
-            	    pushFollow(FOLLOW_r_impliesExpression_in_r_andExpression2591);
+            	    pushFollow(FOLLOW_r_impliesExpression_in_r_andExpression2586);
             	    f_nexts=r_impliesExpression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -5720,7 +5717,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_impliesExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:283:1: r_impliesExpression returns [CompositeNode cn] : (f_first= r_relationalExpression ) ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:282:1: r_impliesExpression returns [CompositeNode cn] : (f_first= r_relationalExpression ) ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )* ;
     public CompositeNode r_impliesExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -5732,13 +5729,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createImpliesExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:2: ( (f_first= r_relationalExpression ) ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:2: (f_first= r_relationalExpression ) ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:2: ( (f_first= r_relationalExpression ) ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:2: (f_first= r_relationalExpression ) ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:2: (f_first= r_relationalExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:3: f_first= r_relationalExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:2: (f_first= r_relationalExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:3: f_first= r_relationalExpression
             {
-            pushFollow(FOLLOW_r_relationalExpression_in_r_impliesExpression2625);
+            pushFollow(FOLLOW_r_relationalExpression_in_r_impliesExpression2620);
             f_first=r_relationalExpression();
             _fsp--;
             if (failed) return cn;
@@ -5748,7 +5745,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:115: ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:115: ( ( ( 'implies' ) (f_nexts= r_relationalExpression ) ) )*
             loop63:
             do {
                 int alt63=2;
@@ -5761,25 +5758,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt63) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:116: ( ( 'implies' ) (f_nexts= r_relationalExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:116: ( ( 'implies' ) (f_nexts= r_relationalExpression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:116: ( ( 'implies' ) (f_nexts= r_relationalExpression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:117: ( 'implies' ) (f_nexts= r_relationalExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:116: ( ( 'implies' ) (f_nexts= r_relationalExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:117: ( 'implies' ) (f_nexts= r_relationalExpression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:117: ( 'implies' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:118: 'implies'
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:117: ( 'implies' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:118: 'implies'
             	    {
-            	    match(input,86,FOLLOW_86_in_r_impliesExpression2633); if (failed) return cn;
+            	    match(input,86,FOLLOW_86_in_r_impliesExpression2628); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:165: (f_nexts= r_relationalExpression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:287:166: f_nexts= r_relationalExpression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:165: (f_nexts= r_relationalExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:286:166: f_nexts= r_relationalExpression
             	    {
-            	    pushFollow(FOLLOW_r_relationalExpression_in_r_impliesExpression2641);
+            	    pushFollow(FOLLOW_r_relationalExpression_in_r_impliesExpression2636);
             	    f_nexts=r_relationalExpression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -5820,7 +5817,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_relationalExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:290:1: r_relationalExpression returns [CompositeNode cn] : (f_first= r_additiveExpression ) ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:289:1: r_relationalExpression returns [CompositeNode cn] : (f_first= r_additiveExpression ) ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )* ;
     public CompositeNode r_relationalExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -5832,13 +5829,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createRelationalExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:2: ( (f_first= r_additiveExpression ) ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:2: (f_first= r_additiveExpression ) ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:2: ( (f_first= r_additiveExpression ) ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:2: (f_first= r_additiveExpression ) ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:2: (f_first= r_additiveExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:3: f_first= r_additiveExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:2: (f_first= r_additiveExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:3: f_first= r_additiveExpression
             {
-            pushFollow(FOLLOW_r_additiveExpression_in_r_relationalExpression2675);
+            pushFollow(FOLLOW_r_additiveExpression_in_r_relationalExpression2670);
             f_first=r_additiveExpression();
             _fsp--;
             if (failed) return cn;
@@ -5848,7 +5845,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:116: ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:116: ( ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) ) )*
             loop65:
             do {
                 int alt65=2;
@@ -5861,15 +5858,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt65) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:117: ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:117: ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:117: ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:118: ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:117: ( ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:118: ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) ) (f_nexts= r_additiveExpression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:118: ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:119: ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:118: ( ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:119: ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:119: ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:119: ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) )
             	    int alt64=6;
             	    switch ( input.LA(1) ) {
             	    case 87:
@@ -5905,19 +5902,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	    default:
             	        if (backtracking>0) {failed=true; return cn;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("294:119: ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) )", 64, 0, input);
+            	            new NoViableAltException("293:119: ( ( '==' ) | ( '!=' ) | ( '>=' ) | ( '<=' ) | ( '>' ) | ( '<' ) )", 64, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt64) {
             	        case 1 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:120: ( '==' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:120: ( '==' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:120: ( '==' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:121: '=='
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:120: ( '==' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:293:121: '=='
             	            {
-            	            match(input,87,FOLLOW_87_in_r_relationalExpression2685); if (failed) return cn;
+            	            match(input,87,FOLLOW_87_in_r_relationalExpression2680); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -5928,12 +5925,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 2 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:295:4: ( '!=' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:4: ( '!=' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:295:4: ( '!=' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:295:5: '!='
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:4: ( '!=' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:294:5: '!='
             	            {
-            	            match(input,88,FOLLOW_88_in_r_relationalExpression2694); if (failed) return cn;
+            	            match(input,88,FOLLOW_88_in_r_relationalExpression2689); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -5944,12 +5941,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 3 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:296:4: ( '>=' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:295:4: ( '>=' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:296:4: ( '>=' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:296:5: '>='
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:295:4: ( '>=' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:295:5: '>='
             	            {
-            	            match(input,89,FOLLOW_89_in_r_relationalExpression2703); if (failed) return cn;
+            	            match(input,89,FOLLOW_89_in_r_relationalExpression2698); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -5960,12 +5957,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 4 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:297:4: ( '<=' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:296:4: ( '<=' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:297:4: ( '<=' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:297:5: '<='
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:296:4: ( '<=' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:296:5: '<='
             	            {
-            	            match(input,90,FOLLOW_90_in_r_relationalExpression2712); if (failed) return cn;
+            	            match(input,90,FOLLOW_90_in_r_relationalExpression2707); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -5976,12 +5973,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 5 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:4: ( '>' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:297:4: ( '>' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:4: ( '>' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:5: '>'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:297:4: ( '>' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:297:5: '>'
             	            {
-            	            match(input,91,FOLLOW_91_in_r_relationalExpression2721); if (failed) return cn;
+            	            match(input,91,FOLLOW_91_in_r_relationalExpression2716); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -5992,12 +5989,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 6 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:299:4: ( '<' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:4: ( '<' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:299:4: ( '<' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:299:5: '<'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:4: ( '<' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:5: '<'
             	            {
-            	            match(input,92,FOLLOW_92_in_r_relationalExpression2730); if (failed) return cn;
+            	            match(input,92,FOLLOW_92_in_r_relationalExpression2725); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -6013,10 +6010,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:299:48: (f_nexts= r_additiveExpression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:299:49: f_nexts= r_additiveExpression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:48: (f_nexts= r_additiveExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:298:49: f_nexts= r_additiveExpression
             	    {
-            	    pushFollow(FOLLOW_r_additiveExpression_in_r_relationalExpression2740);
+            	    pushFollow(FOLLOW_r_additiveExpression_in_r_relationalExpression2735);
             	    f_nexts=r_additiveExpression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -6057,7 +6054,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_additiveExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:302:1: r_additiveExpression returns [CompositeNode cn] : (f_first= r_multiplicativeExpression ) ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:301:1: r_additiveExpression returns [CompositeNode cn] : (f_first= r_multiplicativeExpression ) ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )* ;
     public CompositeNode r_additiveExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -6069,13 +6066,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createAdditiveExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:2: ( (f_first= r_multiplicativeExpression ) ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:2: (f_first= r_multiplicativeExpression ) ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:2: ( (f_first= r_multiplicativeExpression ) ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:2: (f_first= r_multiplicativeExpression ) ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:2: (f_first= r_multiplicativeExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:3: f_first= r_multiplicativeExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:2: (f_first= r_multiplicativeExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:3: f_first= r_multiplicativeExpression
             {
-            pushFollow(FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2774);
+            pushFollow(FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2769);
             f_first=r_multiplicativeExpression();
             _fsp--;
             if (failed) return cn;
@@ -6085,7 +6082,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:120: ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:120: ( ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) ) )*
             loop67:
             do {
                 int alt67=2;
@@ -6107,15 +6104,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt67) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:121: ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:121: ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:121: ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:122: ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:121: ( ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:122: ( ( ( '+' ) | ( '-' ) ) ) (f_nexts= r_multiplicativeExpression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:122: ( ( ( '+' ) | ( '-' ) ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:123: ( ( '+' ) | ( '-' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:122: ( ( ( '+' ) | ( '-' ) ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:123: ( ( '+' ) | ( '-' ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:123: ( ( '+' ) | ( '-' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:123: ( ( '+' ) | ( '-' ) )
             	    int alt66=2;
             	    int LA66_0 = input.LA(1);
 
@@ -6128,18 +6125,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	    else {
             	        if (backtracking>0) {failed=true; return cn;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("306:123: ( ( '+' ) | ( '-' ) )", 66, 0, input);
+            	            new NoViableAltException("305:123: ( ( '+' ) | ( '-' ) )", 66, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt66) {
             	        case 1 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:124: ( '+' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:124: ( '+' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:124: ( '+' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:125: '+'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:124: ( '+' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:305:125: '+'
             	            {
-            	            match(input,93,FOLLOW_93_in_r_additiveExpression2784); if (failed) return cn;
+            	            match(input,93,FOLLOW_93_in_r_additiveExpression2779); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -6150,12 +6147,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 2 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:307:4: ( '-' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:4: ( '-' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:307:4: ( '-' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:307:5: '-'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:4: ( '-' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:5: '-'
             	            {
-            	            match(input,36,FOLLOW_36_in_r_additiveExpression2793); if (failed) return cn;
+            	            match(input,36,FOLLOW_36_in_r_additiveExpression2788); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -6171,10 +6168,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:307:48: (f_nexts= r_multiplicativeExpression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:307:49: f_nexts= r_multiplicativeExpression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:48: (f_nexts= r_multiplicativeExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:306:49: f_nexts= r_multiplicativeExpression
             	    {
-            	    pushFollow(FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2803);
+            	    pushFollow(FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2798);
             	    f_nexts=r_multiplicativeExpression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -6215,7 +6212,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_multiplicativeExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:310:1: r_multiplicativeExpression returns [CompositeNode cn] : (f_first= r_unaryExpression ) ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:309:1: r_multiplicativeExpression returns [CompositeNode cn] : (f_first= r_unaryExpression ) ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )* ;
     public CompositeNode r_multiplicativeExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -6227,13 +6224,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createMultiplicativeExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:2: ( (f_first= r_unaryExpression ) ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:2: (f_first= r_unaryExpression ) ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:2: ( (f_first= r_unaryExpression ) ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:2: (f_first= r_unaryExpression ) ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:2: (f_first= r_unaryExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:3: f_first= r_unaryExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:2: (f_first= r_unaryExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:3: f_first= r_unaryExpression
             {
-            pushFollow(FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2837);
+            pushFollow(FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2832);
             f_first=r_unaryExpression();
             _fsp--;
             if (failed) return cn;
@@ -6243,7 +6240,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:117: ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:117: ( ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) ) )*
             loop69:
             do {
                 int alt69=2;
@@ -6256,15 +6253,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt69) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:118: ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:118: ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:118: ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:119: ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:118: ( ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:119: ( ( ( '*' ) | ( '/' ) ) ) (f_nexts= r_unaryExpression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:119: ( ( ( '*' ) | ( '/' ) ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:120: ( ( '*' ) | ( '/' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:119: ( ( ( '*' ) | ( '/' ) ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:120: ( ( '*' ) | ( '/' ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:120: ( ( '*' ) | ( '/' ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:120: ( ( '*' ) | ( '/' ) )
             	    int alt68=2;
             	    int LA68_0 = input.LA(1);
 
@@ -6277,18 +6274,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	    else {
             	        if (backtracking>0) {failed=true; return cn;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("314:120: ( ( '*' ) | ( '/' ) )", 68, 0, input);
+            	            new NoViableAltException("313:120: ( ( '*' ) | ( '/' ) )", 68, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt68) {
             	        case 1 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:121: ( '*' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:121: ( '*' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:121: ( '*' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:122: '*'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:121: ( '*' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:313:122: '*'
             	            {
-            	            match(input,33,FOLLOW_33_in_r_multiplicativeExpression2847); if (failed) return cn;
+            	            match(input,33,FOLLOW_33_in_r_multiplicativeExpression2842); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -6299,12 +6296,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             	            }
             	            break;
             	        case 2 :
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:315:4: ( '/' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:4: ( '/' )
             	            {
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:315:4: ( '/' )
-            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:315:5: '/'
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:4: ( '/' )
+            	            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:5: '/'
             	            {
-            	            match(input,94,FOLLOW_94_in_r_multiplicativeExpression2856); if (failed) return cn;
+            	            match(input,94,FOLLOW_94_in_r_multiplicativeExpression2851); if (failed) return cn;
             	            if ( backtracking==0 ) {
             	               addLeafNodeForToken(cn, null); 
             	            }
@@ -6320,10 +6317,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:315:48: (f_nexts= r_unaryExpression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:315:49: f_nexts= r_unaryExpression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:48: (f_nexts= r_unaryExpression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:314:49: f_nexts= r_unaryExpression
             	    {
-            	    pushFollow(FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2866);
+            	    pushFollow(FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2861);
             	    f_nexts=r_unaryExpression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -6364,7 +6361,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_unaryExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:318:1: r_unaryExpression returns [CompositeNode cn] : ( (f_unnamed16= r_infixExpression ) | ( '!' ) (f_operand= r_infixExpression ) | ( '-' ) (f_operand= r_infixExpression ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:317:1: r_unaryExpression returns [CompositeNode cn] : ( (f_unnamed16= r_infixExpression ) | ( '!' ) (f_operand= r_infixExpression ) | ( '-' ) (f_operand= r_infixExpression ) );
     public CompositeNode r_unaryExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -6376,7 +6373,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createUnaryExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:2: ( (f_unnamed16= r_infixExpression ) | ( '!' ) (f_operand= r_infixExpression ) | ( '-' ) (f_operand= r_infixExpression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:321:2: ( (f_unnamed16= r_infixExpression ) | ( '!' ) (f_operand= r_infixExpression ) | ( '-' ) (f_operand= r_infixExpression ) )
             int alt70=3;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -6418,19 +6415,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("318:1: r_unaryExpression returns [CompositeNode cn] : ( (f_unnamed16= r_infixExpression ) | ( '!' ) (f_operand= r_infixExpression ) | ( '-' ) (f_operand= r_infixExpression ) );", 70, 0, input);
+                    new NoViableAltException("317:1: r_unaryExpression returns [CompositeNode cn] : ( (f_unnamed16= r_infixExpression ) | ( '!' ) (f_operand= r_infixExpression ) | ( '-' ) (f_operand= r_infixExpression ) );", 70, 0, input);
 
                 throw nvae;
             }
 
             switch (alt70) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:2: (f_unnamed16= r_infixExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:321:2: (f_unnamed16= r_infixExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:2: (f_unnamed16= r_infixExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:3: f_unnamed16= r_infixExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:321:2: (f_unnamed16= r_infixExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:321:3: f_unnamed16= r_infixExpression
                     {
-                    pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression2900);
+                    pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression2895);
                     f_unnamed16=r_infixExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -6444,22 +6441,22 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:4: ( '!' ) (f_operand= r_infixExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:4: ( '!' ) (f_operand= r_infixExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:4: ( '!' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:5: '!'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:4: ( '!' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:5: '!'
                     {
-                    match(input,95,FOLLOW_95_in_r_unaryExpression2909); if (failed) return cn;
+                    match(input,95,FOLLOW_95_in_r_unaryExpression2904); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:46: (f_operand= r_infixExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:47: f_operand= r_infixExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:46: (f_operand= r_infixExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:322:47: f_operand= r_infixExpression
                     {
-                    pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression2917);
+                    pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression2912);
                     f_operand=r_infixExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -6473,22 +6470,22 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:324:4: ( '-' ) (f_operand= r_infixExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:4: ( '-' ) (f_operand= r_infixExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:324:4: ( '-' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:324:5: '-'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:4: ( '-' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:5: '-'
                     {
-                    match(input,36,FOLLOW_36_in_r_unaryExpression2926); if (failed) return cn;
+                    match(input,36,FOLLOW_36_in_r_unaryExpression2921); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:324:46: (f_operand= r_infixExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:324:47: f_operand= r_infixExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:46: (f_operand= r_infixExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:323:47: f_operand= r_infixExpression
                     {
-                    pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression2934);
+                    pushFollow(FOLLOW_r_infixExpression_in_r_unaryExpression2929);
                     f_operand=r_infixExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -6519,7 +6516,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_infixExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:327:1: r_infixExpression returns [CompositeNode cn] : (f_target= r_primaryExpression ) ( ( ( '.' ) (f_calls= r_featureCall ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:326:1: r_infixExpression returns [CompositeNode cn] : (f_target= r_primaryExpression ) ( ( ( '.' ) (f_calls= r_featureCall ) ) )* ;
     public CompositeNode r_infixExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -6531,13 +6528,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createInfixExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:2: ( (f_target= r_primaryExpression ) ( ( ( '.' ) (f_calls= r_featureCall ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:2: (f_target= r_primaryExpression ) ( ( ( '.' ) (f_calls= r_featureCall ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:2: ( (f_target= r_primaryExpression ) ( ( ( '.' ) (f_calls= r_featureCall ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:2: (f_target= r_primaryExpression ) ( ( ( '.' ) (f_calls= r_featureCall ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:2: (f_target= r_primaryExpression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:3: f_target= r_primaryExpression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:2: (f_target= r_primaryExpression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:3: f_target= r_primaryExpression
             {
-            pushFollow(FOLLOW_r_primaryExpression_in_r_infixExpression2965);
+            pushFollow(FOLLOW_r_primaryExpression_in_r_infixExpression2960);
             f_target=r_primaryExpression();
             _fsp--;
             if (failed) return cn;
@@ -6547,7 +6544,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:114: ( ( ( '.' ) (f_calls= r_featureCall ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:114: ( ( ( '.' ) (f_calls= r_featureCall ) ) )*
             loop71:
             do {
                 int alt71=2;
@@ -6560,25 +6557,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt71) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:115: ( ( '.' ) (f_calls= r_featureCall ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:115: ( ( '.' ) (f_calls= r_featureCall ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:115: ( ( '.' ) (f_calls= r_featureCall ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:116: ( '.' ) (f_calls= r_featureCall )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:115: ( ( '.' ) (f_calls= r_featureCall ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:116: ( '.' ) (f_calls= r_featureCall )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:116: ( '.' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:117: '.'
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:116: ( '.' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:117: '.'
             	    {
-            	    match(input,69,FOLLOW_69_in_r_infixExpression2973); if (failed) return cn;
+            	    match(input,69,FOLLOW_69_in_r_infixExpression2968); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:158: (f_calls= r_featureCall )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:331:159: f_calls= r_featureCall
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:158: (f_calls= r_featureCall )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:330:159: f_calls= r_featureCall
             	    {
-            	    pushFollow(FOLLOW_r_featureCall_in_r_infixExpression2981);
+            	    pushFollow(FOLLOW_r_featureCall_in_r_infixExpression2976);
             	    f_calls=r_featureCall();
             	    _fsp--;
             	    if (failed) return cn;
@@ -6619,7 +6616,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_primaryExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:334:1: r_primaryExpression returns [CompositeNode cn] : ( ( r_stringLiteral ) | ( r_featureCall ) | ( r_booleanLiteral ) | ( r_numberLiteral ) | ( r_nullLiteral ) | ( r_listLiteral ) | ( r_constructorCall ) | ( r_globalVarExpression ) | ( r_paranthesizedExpression ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:333:1: r_primaryExpression returns [CompositeNode cn] : ( ( r_stringLiteral ) | ( r_featureCall ) | ( r_booleanLiteral ) | ( r_numberLiteral ) | ( r_nullLiteral ) | ( r_listLiteral ) | ( r_constructorCall ) | ( r_globalVarExpression ) | ( r_paranthesizedExpression ) );
     public CompositeNode r_primaryExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -6643,7 +6640,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:335:2: ( ( r_stringLiteral ) | ( r_featureCall ) | ( r_booleanLiteral ) | ( r_numberLiteral ) | ( r_nullLiteral ) | ( r_listLiteral ) | ( r_constructorCall ) | ( r_globalVarExpression ) | ( r_paranthesizedExpression ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:334:2: ( ( r_stringLiteral ) | ( r_featureCall ) | ( r_booleanLiteral ) | ( r_numberLiteral ) | ( r_nullLiteral ) | ( r_listLiteral ) | ( r_constructorCall ) | ( r_globalVarExpression ) | ( r_paranthesizedExpression ) )
             int alt72=9;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -6707,19 +6704,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("334:1: r_primaryExpression returns [CompositeNode cn] : ( ( r_stringLiteral ) | ( r_featureCall ) | ( r_booleanLiteral ) | ( r_numberLiteral ) | ( r_nullLiteral ) | ( r_listLiteral ) | ( r_constructorCall ) | ( r_globalVarExpression ) | ( r_paranthesizedExpression ) );", 72, 0, input);
+                    new NoViableAltException("333:1: r_primaryExpression returns [CompositeNode cn] : ( ( r_stringLiteral ) | ( r_featureCall ) | ( r_booleanLiteral ) | ( r_numberLiteral ) | ( r_nullLiteral ) | ( r_listLiteral ) | ( r_constructorCall ) | ( r_globalVarExpression ) | ( r_paranthesizedExpression ) );", 72, 0, input);
 
                 throw nvae;
             }
 
             switch (alt72) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:335:2: ( r_stringLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:334:2: ( r_stringLiteral )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:335:2: ( r_stringLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:335:3: r_stringLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:334:2: ( r_stringLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:334:3: r_stringLiteral
                     {
-                    pushFollow(FOLLOW_r_stringLiteral_in_r_primaryExpression3003);
+                    pushFollow(FOLLOW_r_stringLiteral_in_r_primaryExpression2998);
                     r_stringLiteral18=r_stringLiteral();
                     _fsp--;
                     if (failed) return cn;
@@ -6733,12 +6730,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:336:4: ( r_featureCall )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:335:4: ( r_featureCall )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:336:4: ( r_featureCall )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:336:5: r_featureCall
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:335:4: ( r_featureCall )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:335:5: r_featureCall
                     {
-                    pushFollow(FOLLOW_r_featureCall_in_r_primaryExpression3012);
+                    pushFollow(FOLLOW_r_featureCall_in_r_primaryExpression3007);
                     r_featureCall19=r_featureCall();
                     _fsp--;
                     if (failed) return cn;
@@ -6752,12 +6749,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:337:4: ( r_booleanLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:336:4: ( r_booleanLiteral )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:337:4: ( r_booleanLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:337:5: r_booleanLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:336:4: ( r_booleanLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:336:5: r_booleanLiteral
                     {
-                    pushFollow(FOLLOW_r_booleanLiteral_in_r_primaryExpression3021);
+                    pushFollow(FOLLOW_r_booleanLiteral_in_r_primaryExpression3016);
                     r_booleanLiteral20=r_booleanLiteral();
                     _fsp--;
                     if (failed) return cn;
@@ -6771,12 +6768,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 4 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:338:4: ( r_numberLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:337:4: ( r_numberLiteral )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:338:4: ( r_numberLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:338:5: r_numberLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:337:4: ( r_numberLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:337:5: r_numberLiteral
                     {
-                    pushFollow(FOLLOW_r_numberLiteral_in_r_primaryExpression3030);
+                    pushFollow(FOLLOW_r_numberLiteral_in_r_primaryExpression3025);
                     r_numberLiteral21=r_numberLiteral();
                     _fsp--;
                     if (failed) return cn;
@@ -6790,12 +6787,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 5 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:339:4: ( r_nullLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:338:4: ( r_nullLiteral )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:339:4: ( r_nullLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:339:5: r_nullLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:338:4: ( r_nullLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:338:5: r_nullLiteral
                     {
-                    pushFollow(FOLLOW_r_nullLiteral_in_r_primaryExpression3039);
+                    pushFollow(FOLLOW_r_nullLiteral_in_r_primaryExpression3034);
                     r_nullLiteral22=r_nullLiteral();
                     _fsp--;
                     if (failed) return cn;
@@ -6809,12 +6806,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 6 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:340:4: ( r_listLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:339:4: ( r_listLiteral )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:340:4: ( r_listLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:340:5: r_listLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:339:4: ( r_listLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:339:5: r_listLiteral
                     {
-                    pushFollow(FOLLOW_r_listLiteral_in_r_primaryExpression3048);
+                    pushFollow(FOLLOW_r_listLiteral_in_r_primaryExpression3043);
                     r_listLiteral23=r_listLiteral();
                     _fsp--;
                     if (failed) return cn;
@@ -6828,12 +6825,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 7 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:341:4: ( r_constructorCall )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:340:4: ( r_constructorCall )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:341:4: ( r_constructorCall )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:341:5: r_constructorCall
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:340:4: ( r_constructorCall )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:340:5: r_constructorCall
                     {
-                    pushFollow(FOLLOW_r_constructorCall_in_r_primaryExpression3057);
+                    pushFollow(FOLLOW_r_constructorCall_in_r_primaryExpression3052);
                     r_constructorCall24=r_constructorCall();
                     _fsp--;
                     if (failed) return cn;
@@ -6847,12 +6844,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 8 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:342:4: ( r_globalVarExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:341:4: ( r_globalVarExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:342:4: ( r_globalVarExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:342:5: r_globalVarExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:341:4: ( r_globalVarExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:341:5: r_globalVarExpression
                     {
-                    pushFollow(FOLLOW_r_globalVarExpression_in_r_primaryExpression3066);
+                    pushFollow(FOLLOW_r_globalVarExpression_in_r_primaryExpression3061);
                     r_globalVarExpression25=r_globalVarExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -6866,12 +6863,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 9 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:343:4: ( r_paranthesizedExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:342:4: ( r_paranthesizedExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:343:4: ( r_paranthesizedExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:343:5: r_paranthesizedExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:342:4: ( r_paranthesizedExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:342:5: r_paranthesizedExpression
                     {
-                    pushFollow(FOLLOW_r_paranthesizedExpression_in_r_primaryExpression3075);
+                    pushFollow(FOLLOW_r_paranthesizedExpression_in_r_primaryExpression3070);
                     r_paranthesizedExpression26=r_paranthesizedExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -6899,20 +6896,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_stringLiteral
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:346:1: r_stringLiteral returns [CompositeNode cn] : ( StringLiteral ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:345:1: r_stringLiteral returns [CompositeNode cn] : ( StringLiteral ) ;
     public CompositeNode r_stringLiteral() throws RecognitionException {
         CompositeNode cn = null;
 
          cn = factory.createStringLiteralNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:349:2: ( ( StringLiteral ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:349:2: ( StringLiteral )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:348:2: ( ( StringLiteral ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:348:2: ( StringLiteral )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:349:2: ( StringLiteral )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:349:3: StringLiteral
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:348:2: ( StringLiteral )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:348:3: StringLiteral
             {
-            match(input,StringLiteral,FOLLOW_StringLiteral_in_r_stringLiteral3099); if (failed) return cn;
+            match(input,StringLiteral,FOLLOW_StringLiteral_in_r_stringLiteral3094); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -6935,7 +6932,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_paranthesizedExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:352:1: r_paranthesizedExpression returns [CompositeNode cn] : ( '(' ) (f_expression= r_expression ) ( ')' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:351:1: r_paranthesizedExpression returns [CompositeNode cn] : ( '(' ) (f_expression= r_expression ) ( ')' ) ;
     public CompositeNode r_paranthesizedExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -6945,23 +6942,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createParanthesizedExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:2: ( ( '(' ) (f_expression= r_expression ) ( ')' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:2: ( '(' ) (f_expression= r_expression ) ( ')' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:2: ( ( '(' ) (f_expression= r_expression ) ( ')' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:2: ( '(' ) (f_expression= r_expression ) ( ')' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:2: ( '(' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:3: '('
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:2: ( '(' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:3: '('
             {
-            match(input,31,FOLLOW_31_in_r_paranthesizedExpression3123); if (failed) return cn;
+            match(input,31,FOLLOW_31_in_r_paranthesizedExpression3118); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:44: (f_expression= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:45: f_expression= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:44: (f_expression= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:45: f_expression= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_paranthesizedExpression3131);
+            pushFollow(FOLLOW_r_expression_in_r_paranthesizedExpression3126);
             f_expression=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -6971,10 +6968,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:173: ( ')' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:355:174: ')'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:173: ( ')' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:354:174: ')'
             {
-            match(input,34,FOLLOW_34_in_r_paranthesizedExpression3137); if (failed) return cn;
+            match(input,34,FOLLOW_34_in_r_paranthesizedExpression3132); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -6997,7 +6994,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_globalVarExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:358:1: r_globalVarExpression returns [CompositeNode cn] : ( 'GLOBALVAR' ) (f_unnamed17= r_identifier ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:357:1: r_globalVarExpression returns [CompositeNode cn] : ( 'GLOBALVAR' ) (f_unnamed17= r_identifier ) ;
     public CompositeNode r_globalVarExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -7007,23 +7004,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createGlobalVarExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:361:2: ( ( 'GLOBALVAR' ) (f_unnamed17= r_identifier ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:361:2: ( 'GLOBALVAR' ) (f_unnamed17= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:360:2: ( ( 'GLOBALVAR' ) (f_unnamed17= r_identifier ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:360:2: ( 'GLOBALVAR' ) (f_unnamed17= r_identifier )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:361:2: ( 'GLOBALVAR' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:361:3: 'GLOBALVAR'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:360:2: ( 'GLOBALVAR' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:360:3: 'GLOBALVAR'
             {
-            match(input,96,FOLLOW_96_in_r_globalVarExpression3161); if (failed) return cn;
+            match(input,96,FOLLOW_96_in_r_globalVarExpression3156); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:361:52: (f_unnamed17= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:361:53: f_unnamed17= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:360:52: (f_unnamed17= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:360:53: f_unnamed17= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_globalVarExpression3169);
+            pushFollow(FOLLOW_r_identifier_in_r_globalVarExpression3164);
             f_unnamed17=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -7049,7 +7046,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_featureCall
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:364:1: r_featureCall returns [CompositeNode cn] : ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:363:1: r_featureCall returns [CompositeNode cn] : ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) );
     public CompositeNode r_featureCall() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -7065,7 +7062,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createFeatureCallNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:2: ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:366:2: ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) )
             int alt74=3;
             switch ( input.LA(1) ) {
             case 101:
@@ -7094,7 +7091,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 else {
                     if (backtracking>0) {failed=true; return cn;}
                     NoViableAltException nvae =
-                        new NoViableAltException("364:1: r_featureCall returns [CompositeNode cn] : ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) );", 74, 2, input);
+                        new NoViableAltException("363:1: r_featureCall returns [CompositeNode cn] : ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) );", 74, 2, input);
 
                     throw nvae;
                 }
@@ -7110,19 +7107,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("364:1: r_featureCall returns [CompositeNode cn] : ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) );", 74, 0, input);
+                    new NoViableAltException("363:1: r_featureCall returns [CompositeNode cn] : ( (f_unnamed18= r_collectionExpression ) | (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' ) | (f_type= r_type ) );", 74, 0, input);
 
                 throw nvae;
             }
 
             switch (alt74) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:2: (f_unnamed18= r_collectionExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:366:2: (f_unnamed18= r_collectionExpression )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:2: (f_unnamed18= r_collectionExpression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:3: f_unnamed18= r_collectionExpression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:366:2: (f_unnamed18= r_collectionExpression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:366:3: f_unnamed18= r_collectionExpression
                     {
-                    pushFollow(FOLLOW_r_collectionExpression_in_r_featureCall3195);
+                    pushFollow(FOLLOW_r_collectionExpression_in_r_featureCall3190);
                     f_unnamed18=r_collectionExpression();
                     _fsp--;
                     if (failed) return cn;
@@ -7136,12 +7133,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:4: (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:4: (f_name= r_identifier ) ( '(' ) ( ( (f_paramList= r_parameterList ) ) )? ( ')' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:4: (f_name= r_identifier )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:5: f_name= r_identifier
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:4: (f_name= r_identifier )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:5: f_name= r_identifier
                     {
-                    pushFollow(FOLLOW_r_identifier_in_r_featureCall3206);
+                    pushFollow(FOLLOW_r_identifier_in_r_featureCall3201);
                     f_name=r_identifier();
                     _fsp--;
                     if (failed) return cn;
@@ -7151,17 +7148,17 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:97: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:98: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:97: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:98: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_featureCall3212); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_featureCall3207); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:139: ( ( (f_paramList= r_parameterList ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:139: ( ( (f_paramList= r_parameterList ) ) )?
                     int alt73=2;
                     int LA73_0 = input.LA(1);
 
@@ -7170,15 +7167,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt73) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:140: ( (f_paramList= r_parameterList ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:140: ( (f_paramList= r_parameterList ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:140: ( (f_paramList= r_parameterList ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:141: (f_paramList= r_parameterList )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:140: ( (f_paramList= r_parameterList ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:141: (f_paramList= r_parameterList )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:141: (f_paramList= r_parameterList )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:142: f_paramList= r_parameterList
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:141: (f_paramList= r_parameterList )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:142: f_paramList= r_parameterList
                             {
-                            pushFollow(FOLLOW_r_parameterList_in_r_featureCall3222);
+                            pushFollow(FOLLOW_r_parameterList_in_r_featureCall3217);
                             f_paramList=r_parameterList();
                             _fsp--;
                             if (failed) return cn;
@@ -7197,10 +7194,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:260: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:261: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:260: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:367:261: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_featureCall3231); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_featureCall3226); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -7211,12 +7208,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:369:4: (f_type= r_type )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:4: (f_type= r_type )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:369:4: (f_type= r_type )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:369:5: f_type= r_type
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:4: (f_type= r_type )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:368:5: f_type= r_type
                     {
-                    pushFollow(FOLLOW_r_type_in_r_featureCall3242);
+                    pushFollow(FOLLOW_r_type_in_r_featureCall3237);
                     f_type=r_type();
                     _fsp--;
                     if (failed) return cn;
@@ -7244,7 +7241,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_listLiteral
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:372:1: r_listLiteral returns [CompositeNode cn] : ( '{' ) ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )? ( '}' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:371:1: r_listLiteral returns [CompositeNode cn] : ( '{' ) ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )? ( '}' ) ;
     public CompositeNode r_listLiteral() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -7254,20 +7251,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createListLiteralNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:2: ( ( '{' ) ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )? ( '}' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:2: ( '{' ) ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )? ( '}' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:2: ( ( '{' ) ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )? ( '}' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:2: ( '{' ) ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )? ( '}' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:2: ( '{' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:3: '{'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:2: ( '{' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:3: '{'
             {
-            match(input,80,FOLLOW_80_in_r_listLiteral3266); if (failed) return cn;
+            match(input,80,FOLLOW_80_in_r_listLiteral3261); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:44: ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:44: ( ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* ) )?
             int alt76=2;
             int LA76_0 = input.LA(1);
 
@@ -7276,15 +7273,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt76) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:45: ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:45: ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:45: ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:46: (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )*
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:45: ( (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )* )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:46: (f_elements= r_expression ) ( ( ( ',' ) (f_elements= r_expression ) ) )*
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:46: (f_elements= r_expression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:47: f_elements= r_expression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:46: (f_elements= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:47: f_elements= r_expression
                     {
-                    pushFollow(FOLLOW_r_expression_in_r_listLiteral3276);
+                    pushFollow(FOLLOW_r_expression_in_r_listLiteral3271);
                     f_elements=r_expression();
                     _fsp--;
                     if (failed) return cn;
@@ -7294,7 +7291,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:161: ( ( ( ',' ) (f_elements= r_expression ) ) )*
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:161: ( ( ( ',' ) (f_elements= r_expression ) ) )*
                     loop75:
                     do {
                         int alt75=2;
@@ -7307,25 +7304,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                         switch (alt75) {
                     	case 1 :
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:162: ( ( ',' ) (f_elements= r_expression ) )
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:162: ( ( ',' ) (f_elements= r_expression ) )
                     	    {
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:162: ( ( ',' ) (f_elements= r_expression ) )
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:163: ( ',' ) (f_elements= r_expression )
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:162: ( ( ',' ) (f_elements= r_expression ) )
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:163: ( ',' ) (f_elements= r_expression )
                     	    {
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:163: ( ',' )
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:164: ','
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:163: ( ',' )
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:164: ','
                     	    {
-                    	    match(input,32,FOLLOW_32_in_r_listLiteral3284); if (failed) return cn;
+                    	    match(input,32,FOLLOW_32_in_r_listLiteral3279); if (failed) return cn;
                     	    if ( backtracking==0 ) {
                     	       addLeafNodeForToken(cn, null); 
                     	    }
 
                     	    }
 
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:205: (f_elements= r_expression )
-                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:206: f_elements= r_expression
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:205: (f_elements= r_expression )
+                    	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:206: f_elements= r_expression
                     	    {
-                    	    pushFollow(FOLLOW_r_expression_in_r_listLiteral3292);
+                    	    pushFollow(FOLLOW_r_expression_in_r_listLiteral3287);
                     	    f_elements=r_expression();
                     	    _fsp--;
                     	    if (failed) return cn;
@@ -7356,10 +7353,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:326: ( '}' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:375:327: '}'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:326: ( '}' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:374:327: '}'
             {
-            match(input,82,FOLLOW_82_in_r_listLiteral3304); if (failed) return cn;
+            match(input,82,FOLLOW_82_in_r_listLiteral3299); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -7382,7 +7379,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_constructorCall
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:378:1: r_constructorCall returns [CompositeNode cn] : ( 'new' ) (f_unnamed19= r_simpleType ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:377:1: r_constructorCall returns [CompositeNode cn] : ( 'new' ) (f_unnamed19= r_simpleType ) ;
     public CompositeNode r_constructorCall() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -7392,23 +7389,23 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createConstructorCallNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:381:2: ( ( 'new' ) (f_unnamed19= r_simpleType ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:381:2: ( 'new' ) (f_unnamed19= r_simpleType )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:380:2: ( ( 'new' ) (f_unnamed19= r_simpleType ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:380:2: ( 'new' ) (f_unnamed19= r_simpleType )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:381:2: ( 'new' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:381:3: 'new'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:380:2: ( 'new' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:380:3: 'new'
             {
-            match(input,97,FOLLOW_97_in_r_constructorCall3328); if (failed) return cn;
+            match(input,97,FOLLOW_97_in_r_constructorCall3323); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:381:46: (f_unnamed19= r_simpleType )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:381:47: f_unnamed19= r_simpleType
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:380:46: (f_unnamed19= r_simpleType )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:380:47: f_unnamed19= r_simpleType
             {
-            pushFollow(FOLLOW_r_simpleType_in_r_constructorCall3336);
+            pushFollow(FOLLOW_r_simpleType_in_r_constructorCall3331);
             f_unnamed19=r_simpleType();
             _fsp--;
             if (failed) return cn;
@@ -7434,14 +7431,14 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_booleanLiteral
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:384:1: r_booleanLiteral returns [CompositeNode cn] : ( ( 'false' ) | ( 'true' ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:383:1: r_booleanLiteral returns [CompositeNode cn] : ( ( 'false' ) | ( 'true' ) );
     public CompositeNode r_booleanLiteral() throws RecognitionException {
         CompositeNode cn = null;
 
          cn = factory.createBooleanLiteralNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:387:2: ( ( 'false' ) | ( 'true' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:386:2: ( ( 'false' ) | ( 'true' ) )
             int alt77=2;
             int LA77_0 = input.LA(1);
 
@@ -7454,18 +7451,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("384:1: r_booleanLiteral returns [CompositeNode cn] : ( ( 'false' ) | ( 'true' ) );", 77, 0, input);
+                    new NoViableAltException("383:1: r_booleanLiteral returns [CompositeNode cn] : ( ( 'false' ) | ( 'true' ) );", 77, 0, input);
 
                 throw nvae;
             }
             switch (alt77) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:387:2: ( 'false' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:386:2: ( 'false' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:387:2: ( 'false' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:387:3: 'false'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:386:2: ( 'false' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:386:3: 'false'
                     {
-                    match(input,98,FOLLOW_98_in_r_booleanLiteral3360); if (failed) return cn;
+                    match(input,98,FOLLOW_98_in_r_booleanLiteral3355); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -7476,12 +7473,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:388:4: ( 'true' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:387:4: ( 'true' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:388:4: ( 'true' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:388:5: 'true'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:387:4: ( 'true' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:387:5: 'true'
                     {
-                    match(input,99,FOLLOW_99_in_r_booleanLiteral3369); if (failed) return cn;
+                    match(input,99,FOLLOW_99_in_r_booleanLiteral3364); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -7506,20 +7503,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_nullLiteral
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:391:1: r_nullLiteral returns [CompositeNode cn] : ( 'null' ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:390:1: r_nullLiteral returns [CompositeNode cn] : ( 'null' ) ;
     public CompositeNode r_nullLiteral() throws RecognitionException {
         CompositeNode cn = null;
 
          cn = factory.createNullLiteralNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:394:2: ( ( 'null' ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:394:2: ( 'null' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:393:2: ( ( 'null' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:393:2: ( 'null' )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:394:2: ( 'null' )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:394:3: 'null'
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:393:2: ( 'null' )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:393:3: 'null'
             {
-            match(input,100,FOLLOW_100_in_r_nullLiteral3393); if (failed) return cn;
+            match(input,100,FOLLOW_100_in_r_nullLiteral3388); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -7542,14 +7539,14 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_numberLiteral
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:397:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:396:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );
     public CompositeNode r_numberLiteral() throws RecognitionException {
         CompositeNode cn = null;
 
          cn = factory.createNumberLiteralNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:2: ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:399:2: ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) )
             int alt78=2;
             int LA78_0 = input.LA(1);
 
@@ -7568,7 +7565,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     else {
                         if (backtracking>0) {failed=true; return cn;}
                         NoViableAltException nvae =
-                            new NoViableAltException("397:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );", 78, 2, input);
+                            new NoViableAltException("396:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );", 78, 2, input);
 
                         throw nvae;
                     }
@@ -7579,7 +7576,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                 else {
                     if (backtracking>0) {failed=true; return cn;}
                     NoViableAltException nvae =
-                        new NoViableAltException("397:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );", 78, 1, input);
+                        new NoViableAltException("396:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );", 78, 1, input);
 
                     throw nvae;
                 }
@@ -7587,18 +7584,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("397:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );", 78, 0, input);
+                    new NoViableAltException("396:1: r_numberLiteral returns [CompositeNode cn] : ( ( IntLiteral ) | ( IntLiteral ) ( '.' ) ( IntLiteral ) );", 78, 0, input);
 
                 throw nvae;
             }
             switch (alt78) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:2: ( IntLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:399:2: ( IntLiteral )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:2: ( IntLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:3: IntLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:399:2: ( IntLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:399:3: IntLiteral
                     {
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral3417); if (failed) return cn;
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral3412); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -7609,32 +7606,32 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:401:4: ( IntLiteral ) ( '.' ) ( IntLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:4: ( IntLiteral ) ( '.' ) ( IntLiteral )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:401:4: ( IntLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:401:5: IntLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:4: ( IntLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:5: IntLiteral
                     {
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral3426); if (failed) return cn;
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral3421); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:401:53: ( '.' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:401:54: '.'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:53: ( '.' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:54: '.'
                     {
-                    match(input,69,FOLLOW_69_in_r_numberLiteral3432); if (failed) return cn;
+                    match(input,69,FOLLOW_69_in_r_numberLiteral3427); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:401:95: ( IntLiteral )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:401:96: IntLiteral
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:95: ( IntLiteral )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:400:96: IntLiteral
                     {
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral3438); if (failed) return cn;
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_r_numberLiteral3433); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -7659,7 +7656,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_collectionExpression
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:404:1: r_collectionExpression returns [CompositeNode cn] : ( ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' ) | ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:403:1: r_collectionExpression returns [CompositeNode cn] : ( ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' ) | ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' ) );
     public CompositeNode r_collectionExpression() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -7673,7 +7670,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createCollectionExpressionNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:2: ( ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' ) | ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:2: ( ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' ) | ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' ) )
             int alt81=2;
             int LA81_0 = input.LA(1);
 
@@ -7686,38 +7683,38 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("404:1: r_collectionExpression returns [CompositeNode cn] : ( ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' ) | ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' ) );", 81, 0, input);
+                    new NoViableAltException("403:1: r_collectionExpression returns [CompositeNode cn] : ( ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' ) | ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' ) );", 81, 0, input);
 
                 throw nvae;
             }
             switch (alt81) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:2: ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:2: ( 'typeSelect' ) ( '(' ) (f_type= r_type ) ( ')' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:2: ( 'typeSelect' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:3: 'typeSelect'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:2: ( 'typeSelect' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:3: 'typeSelect'
                     {
-                    match(input,101,FOLLOW_101_in_r_collectionExpression3462); if (failed) return cn;
+                    match(input,101,FOLLOW_101_in_r_collectionExpression3457); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:53: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:54: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:53: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:54: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_collectionExpression3468); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_collectionExpression3463); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:95: (f_type= r_type )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:96: f_type= r_type
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:95: (f_type= r_type )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:96: f_type= r_type
                     {
-                    pushFollow(FOLLOW_r_type_in_r_collectionExpression3476);
+                    pushFollow(FOLLOW_r_type_in_r_collectionExpression3471);
                     f_type=r_type();
                     _fsp--;
                     if (failed) return cn;
@@ -7727,10 +7724,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:191: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:192: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:191: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:406:192: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_collectionExpression3482); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_collectionExpression3477); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -7741,12 +7738,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:4: ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:4: ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) ) ( '(' ) ( ( (f_variable= r_identifier ) ( '|' ) ) )? (f_expression= r_expression ) ( ')' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:4: ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:5: ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:4: ( ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:5: ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:5: ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:5: ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) )
                     int alt79=8;
                     switch ( input.LA(1) ) {
                     case 102:
@@ -7792,19 +7789,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     default:
                         if (backtracking>0) {failed=true; return cn;}
                         NoViableAltException nvae =
-                            new NoViableAltException("408:5: ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) )", 79, 0, input);
+                            new NoViableAltException("407:5: ( ( 'collect' ) | ( 'select' ) | ( 'selectFirst' ) | ( 'reject' ) | ( 'exists' ) | ( 'notExists' ) | ( 'sortBy' ) | ( 'forAll' ) )", 79, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt79) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:6: ( 'collect' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:6: ( 'collect' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:6: ( 'collect' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:7: 'collect'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:6: ( 'collect' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:407:7: 'collect'
                             {
-                            match(input,102,FOLLOW_102_in_r_collectionExpression3493); if (failed) return cn;
+                            match(input,102,FOLLOW_102_in_r_collectionExpression3488); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7815,12 +7812,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 2 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:409:4: ( 'select' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:4: ( 'select' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:409:4: ( 'select' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:409:5: 'select'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:4: ( 'select' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:408:5: 'select'
                             {
-                            match(input,103,FOLLOW_103_in_r_collectionExpression3502); if (failed) return cn;
+                            match(input,103,FOLLOW_103_in_r_collectionExpression3497); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7831,12 +7828,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 3 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:410:4: ( 'selectFirst' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:409:4: ( 'selectFirst' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:410:4: ( 'selectFirst' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:410:5: 'selectFirst'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:409:4: ( 'selectFirst' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:409:5: 'selectFirst'
                             {
-                            match(input,104,FOLLOW_104_in_r_collectionExpression3511); if (failed) return cn;
+                            match(input,104,FOLLOW_104_in_r_collectionExpression3506); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7847,12 +7844,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 4 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:411:4: ( 'reject' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:410:4: ( 'reject' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:411:4: ( 'reject' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:411:5: 'reject'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:410:4: ( 'reject' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:410:5: 'reject'
                             {
-                            match(input,105,FOLLOW_105_in_r_collectionExpression3520); if (failed) return cn;
+                            match(input,105,FOLLOW_105_in_r_collectionExpression3515); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7863,12 +7860,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 5 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:412:4: ( 'exists' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:411:4: ( 'exists' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:412:4: ( 'exists' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:412:5: 'exists'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:411:4: ( 'exists' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:411:5: 'exists'
                             {
-                            match(input,106,FOLLOW_106_in_r_collectionExpression3529); if (failed) return cn;
+                            match(input,106,FOLLOW_106_in_r_collectionExpression3524); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7879,12 +7876,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 6 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:413:4: ( 'notExists' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:412:4: ( 'notExists' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:413:4: ( 'notExists' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:413:5: 'notExists'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:412:4: ( 'notExists' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:412:5: 'notExists'
                             {
-                            match(input,107,FOLLOW_107_in_r_collectionExpression3538); if (failed) return cn;
+                            match(input,107,FOLLOW_107_in_r_collectionExpression3533); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7895,12 +7892,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 7 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:4: ( 'sortBy' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:413:4: ( 'sortBy' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:4: ( 'sortBy' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:5: 'sortBy'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:413:4: ( 'sortBy' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:413:5: 'sortBy'
                             {
-                            match(input,108,FOLLOW_108_in_r_collectionExpression3547); if (failed) return cn;
+                            match(input,108,FOLLOW_108_in_r_collectionExpression3542); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7911,12 +7908,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                             }
                             break;
                         case 8 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:4: ( 'forAll' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:4: ( 'forAll' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:4: ( 'forAll' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:5: 'forAll'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:4: ( 'forAll' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:5: 'forAll'
                             {
-                            match(input,109,FOLLOW_109_in_r_collectionExpression3556); if (failed) return cn;
+                            match(input,109,FOLLOW_109_in_r_collectionExpression3551); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7932,17 +7929,17 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:53: ( '(' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:54: '('
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:53: ( '(' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:54: '('
                     {
-                    match(input,31,FOLLOW_31_in_r_collectionExpression3564); if (failed) return cn;
+                    match(input,31,FOLLOW_31_in_r_collectionExpression3559); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:95: ( ( (f_variable= r_identifier ) ( '|' ) ) )?
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:95: ( ( (f_variable= r_identifier ) ( '|' ) ) )?
                     int alt80=2;
                     int LA80_0 = input.LA(1);
 
@@ -7955,15 +7952,15 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     switch (alt80) {
                         case 1 :
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:96: ( (f_variable= r_identifier ) ( '|' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:96: ( (f_variable= r_identifier ) ( '|' ) )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:96: ( (f_variable= r_identifier ) ( '|' ) )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:97: (f_variable= r_identifier ) ( '|' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:96: ( (f_variable= r_identifier ) ( '|' ) )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:97: (f_variable= r_identifier ) ( '|' )
                             {
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:97: (f_variable= r_identifier )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:98: f_variable= r_identifier
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:97: (f_variable= r_identifier )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:98: f_variable= r_identifier
                             {
-                            pushFollow(FOLLOW_r_identifier_in_r_collectionExpression3574);
+                            pushFollow(FOLLOW_r_identifier_in_r_collectionExpression3569);
                             f_variable=r_identifier();
                             _fsp--;
                             if (failed) return cn;
@@ -7973,10 +7970,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                             }
 
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:215: ( '|' )
-                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:216: '|'
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:215: ( '|' )
+                            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:216: '|'
                             {
-                            match(input,110,FOLLOW_110_in_r_collectionExpression3580); if (failed) return cn;
+                            match(input,110,FOLLOW_110_in_r_collectionExpression3575); if (failed) return cn;
                             if ( backtracking==0 ) {
                                addLeafNodeForToken(cn, null); 
                             }
@@ -7992,10 +7989,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:260: (f_expression= r_expression )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:261: f_expression= r_expression
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:260: (f_expression= r_expression )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:261: f_expression= r_expression
                     {
-                    pushFollow(FOLLOW_r_expression_in_r_collectionExpression3591);
+                    pushFollow(FOLLOW_r_expression_in_r_collectionExpression3586);
                     f_expression=r_expression();
                     _fsp--;
                     if (failed) return cn;
@@ -8005,10 +8002,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:386: ( ')' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:415:387: ')'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:386: ( ')' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:414:387: ')'
                     {
-                    match(input,34,FOLLOW_34_in_r_collectionExpression3597); if (failed) return cn;
+                    match(input,34,FOLLOW_34_in_r_collectionExpression3592); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -8033,7 +8030,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_declaredParameterList
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:418:1: r_declaredParameterList returns [CompositeNode cn] : (f_params= r_declaredParameter ) ( ( ( ',' ) (f_params= r_declaredParameter ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:417:1: r_declaredParameterList returns [CompositeNode cn] : (f_params= r_declaredParameter ) ( ( ( ',' ) (f_params= r_declaredParameter ) ) )* ;
     public CompositeNode r_declaredParameterList() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -8043,13 +8040,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createDeclaredParameterListNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:2: ( (f_params= r_declaredParameter ) ( ( ( ',' ) (f_params= r_declaredParameter ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:2: (f_params= r_declaredParameter ) ( ( ( ',' ) (f_params= r_declaredParameter ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:2: ( (f_params= r_declaredParameter ) ( ( ( ',' ) (f_params= r_declaredParameter ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:2: (f_params= r_declaredParameter ) ( ( ( ',' ) (f_params= r_declaredParameter ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:2: (f_params= r_declaredParameter )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:3: f_params= r_declaredParameter
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:2: (f_params= r_declaredParameter )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:3: f_params= r_declaredParameter
             {
-            pushFollow(FOLLOW_r_declaredParameter_in_r_declaredParameterList3623);
+            pushFollow(FOLLOW_r_declaredParameter_in_r_declaredParameterList3618);
             f_params=r_declaredParameter();
             _fsp--;
             if (failed) return cn;
@@ -8059,7 +8056,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:126: ( ( ( ',' ) (f_params= r_declaredParameter ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:126: ( ( ( ',' ) (f_params= r_declaredParameter ) ) )*
             loop82:
             do {
                 int alt82=2;
@@ -8078,25 +8075,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt82) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:127: ( ( ',' ) (f_params= r_declaredParameter ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:127: ( ( ',' ) (f_params= r_declaredParameter ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:127: ( ( ',' ) (f_params= r_declaredParameter ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:128: ( ',' ) (f_params= r_declaredParameter )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:127: ( ( ',' ) (f_params= r_declaredParameter ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:128: ( ',' ) (f_params= r_declaredParameter )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:128: ( ',' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:129: ','
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:128: ( ',' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:129: ','
             	    {
-            	    match(input,32,FOLLOW_32_in_r_declaredParameterList3631); if (failed) return cn;
+            	    match(input,32,FOLLOW_32_in_r_declaredParameterList3626); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:170: (f_params= r_declaredParameter )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:421:171: f_params= r_declaredParameter
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:170: (f_params= r_declaredParameter )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:420:171: f_params= r_declaredParameter
             	    {
-            	    pushFollow(FOLLOW_r_declaredParameter_in_r_declaredParameterList3639);
+            	    pushFollow(FOLLOW_r_declaredParameter_in_r_declaredParameterList3634);
             	    f_params=r_declaredParameter();
             	    _fsp--;
             	    if (failed) return cn;
@@ -8134,7 +8131,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_declaredParameter
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:424:1: r_declaredParameter returns [CompositeNode cn] : (f_ptype= r_type ) (f_name= r_identifier ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:423:1: r_declaredParameter returns [CompositeNode cn] : (f_ptype= r_type ) (f_name= r_identifier ) ;
     public CompositeNode r_declaredParameter() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -8146,13 +8143,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createDeclaredParameterNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:427:2: ( (f_ptype= r_type ) (f_name= r_identifier ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:427:2: (f_ptype= r_type ) (f_name= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:426:2: ( (f_ptype= r_type ) (f_name= r_identifier ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:426:2: (f_ptype= r_type ) (f_name= r_identifier )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:427:2: (f_ptype= r_type )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:427:3: f_ptype= r_type
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:426:2: (f_ptype= r_type )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:426:3: f_ptype= r_type
             {
-            pushFollow(FOLLOW_r_type_in_r_declaredParameter3668);
+            pushFollow(FOLLOW_r_type_in_r_declaredParameter3663);
             f_ptype=r_type();
             _fsp--;
             if (failed) return cn;
@@ -8162,10 +8159,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:427:99: (f_name= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:427:100: f_name= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:426:99: (f_name= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:426:100: f_name= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_declaredParameter3676);
+            pushFollow(FOLLOW_r_identifier_in_r_declaredParameter3671);
             f_name=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -8191,7 +8188,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_parameterList
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:430:1: r_parameterList returns [CompositeNode cn] : (f_params= r_expression ) ( ( ( ',' ) (f_params= r_expression ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:429:1: r_parameterList returns [CompositeNode cn] : (f_params= r_expression ) ( ( ( ',' ) (f_params= r_expression ) ) )* ;
     public CompositeNode r_parameterList() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -8201,13 +8198,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createParameterListNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:2: ( (f_params= r_expression ) ( ( ( ',' ) (f_params= r_expression ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:2: (f_params= r_expression ) ( ( ( ',' ) (f_params= r_expression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:2: ( (f_params= r_expression ) ( ( ( ',' ) (f_params= r_expression ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:2: (f_params= r_expression ) ( ( ( ',' ) (f_params= r_expression ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:2: (f_params= r_expression )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:3: f_params= r_expression
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:2: (f_params= r_expression )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:3: f_params= r_expression
             {
-            pushFollow(FOLLOW_r_expression_in_r_parameterList3702);
+            pushFollow(FOLLOW_r_expression_in_r_parameterList3697);
             f_params=r_expression();
             _fsp--;
             if (failed) return cn;
@@ -8217,7 +8214,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:111: ( ( ( ',' ) (f_params= r_expression ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:111: ( ( ( ',' ) (f_params= r_expression ) ) )*
             loop83:
             do {
                 int alt83=2;
@@ -8230,25 +8227,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt83) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:112: ( ( ',' ) (f_params= r_expression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:112: ( ( ',' ) (f_params= r_expression ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:112: ( ( ',' ) (f_params= r_expression ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:113: ( ',' ) (f_params= r_expression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:112: ( ( ',' ) (f_params= r_expression ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:113: ( ',' ) (f_params= r_expression )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:113: ( ',' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:114: ','
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:113: ( ',' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:114: ','
             	    {
-            	    match(input,32,FOLLOW_32_in_r_parameterList3710); if (failed) return cn;
+            	    match(input,32,FOLLOW_32_in_r_parameterList3705); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:155: (f_params= r_expression )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:433:156: f_params= r_expression
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:155: (f_params= r_expression )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:432:156: f_params= r_expression
             	    {
-            	    pushFollow(FOLLOW_r_expression_in_r_parameterList3718);
+            	    pushFollow(FOLLOW_r_expression_in_r_parameterList3713);
             	    f_params=r_expression();
             	    _fsp--;
             	    if (failed) return cn;
@@ -8286,7 +8283,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_type
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:436:1: r_type returns [CompositeNode cn] : ( ( r_collectionType ) | ( r_simpleType ) );
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:435:1: r_type returns [CompositeNode cn] : ( ( r_collectionType ) | ( r_simpleType ) );
     public CompositeNode r_type() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -8296,7 +8293,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:437:2: ( ( r_collectionType ) | ( r_simpleType ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:436:2: ( ( r_collectionType ) | ( r_simpleType ) )
             int alt84=2;
             int LA84_0 = input.LA(1);
 
@@ -8309,18 +8306,18 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             else {
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("436:1: r_type returns [CompositeNode cn] : ( ( r_collectionType ) | ( r_simpleType ) );", 84, 0, input);
+                    new NoViableAltException("435:1: r_type returns [CompositeNode cn] : ( ( r_collectionType ) | ( r_simpleType ) );", 84, 0, input);
 
                 throw nvae;
             }
             switch (alt84) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:437:2: ( r_collectionType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:436:2: ( r_collectionType )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:437:2: ( r_collectionType )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:437:3: r_collectionType
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:436:2: ( r_collectionType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:436:3: r_collectionType
                     {
-                    pushFollow(FOLLOW_r_collectionType_in_r_type3740);
+                    pushFollow(FOLLOW_r_collectionType_in_r_type3735);
                     r_collectionType27=r_collectionType();
                     _fsp--;
                     if (failed) return cn;
@@ -8334,12 +8331,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:438:4: ( r_simpleType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:437:4: ( r_simpleType )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:438:4: ( r_simpleType )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:438:5: r_simpleType
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:437:4: ( r_simpleType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:437:5: r_simpleType
                     {
-                    pushFollow(FOLLOW_r_simpleType_in_r_type3749);
+                    pushFollow(FOLLOW_r_simpleType_in_r_type3744);
                     r_simpleType28=r_simpleType();
                     _fsp--;
                     if (failed) return cn;
@@ -8367,7 +8364,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_collectionType
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:441:1: r_collectionType returns [CompositeNode cn] : ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )? ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:440:1: r_collectionType returns [CompositeNode cn] : ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )? ;
     public CompositeNode r_collectionType() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -8377,13 +8374,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createCollectionTypeNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:2: ( ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )? )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:2: ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:2: ( ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )? )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:2: ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) ) ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )?
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:2: ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:3: ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:2: ( ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:3: ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:3: ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:3: ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )
             int alt85=3;
             switch ( input.LA(1) ) {
             case 70:
@@ -8404,19 +8401,19 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             default:
                 if (backtracking>0) {failed=true; return cn;}
                 NoViableAltException nvae =
-                    new NoViableAltException("444:3: ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )", 85, 0, input);
+                    new NoViableAltException("443:3: ( ( 'Collection' ) | ( 'List' ) | ( 'Set' ) )", 85, 0, input);
 
                 throw nvae;
             }
 
             switch (alt85) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:4: ( 'Collection' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:4: ( 'Collection' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:4: ( 'Collection' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:5: 'Collection'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:4: ( 'Collection' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:443:5: 'Collection'
                     {
-                    match(input,70,FOLLOW_70_in_r_collectionType3775); if (failed) return cn;
+                    match(input,70,FOLLOW_70_in_r_collectionType3770); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, "collectionType"); 
                     }
@@ -8427,12 +8424,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:4: ( 'List' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:4: ( 'List' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:4: ( 'List' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:5: 'List'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:4: ( 'List' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:444:5: 'List'
                     {
-                    match(input,71,FOLLOW_71_in_r_collectionType3784); if (failed) return cn;
+                    match(input,71,FOLLOW_71_in_r_collectionType3779); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, "collectionType"); 
                     }
@@ -8443,12 +8440,12 @@ public class Xpand3NodeParser extends AbstractNodeParser {
                     }
                     break;
                 case 3 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:4: ( 'Set' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:4: ( 'Set' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:4: ( 'Set' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:5: 'Set'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:4: ( 'Set' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:5: 'Set'
                     {
-                    match(input,72,FOLLOW_72_in_r_collectionType3793); if (failed) return cn;
+                    match(input,72,FOLLOW_72_in_r_collectionType3788); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, "collectionType"); 
                     }
@@ -8464,7 +8461,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:62: ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )?
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:62: ( ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) ) )?
             int alt86=2;
             int LA86_0 = input.LA(1);
 
@@ -8473,25 +8470,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             }
             switch (alt86) {
                 case 1 :
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:63: ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:63: ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:63: ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:64: ( '[' ) (f_elementType= r_simpleType ) ( ']' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:63: ( ( '[' ) (f_elementType= r_simpleType ) ( ']' ) )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:64: ( '[' ) (f_elementType= r_simpleType ) ( ']' )
                     {
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:64: ( '[' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:65: '['
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:64: ( '[' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:65: '['
                     {
-                    match(input,111,FOLLOW_111_in_r_collectionType3803); if (failed) return cn;
+                    match(input,111,FOLLOW_111_in_r_collectionType3798); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:106: (f_elementType= r_simpleType )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:107: f_elementType= r_simpleType
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:106: (f_elementType= r_simpleType )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:107: f_elementType= r_simpleType
                     {
-                    pushFollow(FOLLOW_r_simpleType_in_r_collectionType3811);
+                    pushFollow(FOLLOW_r_simpleType_in_r_collectionType3806);
                     f_elementType=r_simpleType();
                     _fsp--;
                     if (failed) return cn;
@@ -8501,10 +8498,10 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                     }
 
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:230: ( ']' )
-                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:446:231: ']'
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:230: ( ']' )
+                    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:445:231: ']'
                     {
-                    match(input,112,FOLLOW_112_in_r_collectionType3817); if (failed) return cn;
+                    match(input,112,FOLLOW_112_in_r_collectionType3812); if (failed) return cn;
                     if ( backtracking==0 ) {
                        addLeafNodeForToken(cn, null); 
                     }
@@ -8536,7 +8533,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_simpleType
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:449:1: r_simpleType returns [CompositeNode cn] : (f_names= r_identifier ) ( ( ( '::' ) (f_names= r_identifier ) ) )* ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:448:1: r_simpleType returns [CompositeNode cn] : (f_names= r_identifier ) ( ( ( '::' ) (f_names= r_identifier ) ) )* ;
     public CompositeNode r_simpleType() throws RecognitionException {
         CompositeNode cn = null;
 
@@ -8546,13 +8543,13 @@ public class Xpand3NodeParser extends AbstractNodeParser {
          cn = factory.createSimpleTypeNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:2: ( (f_names= r_identifier ) ( ( ( '::' ) (f_names= r_identifier ) ) )* )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:2: (f_names= r_identifier ) ( ( ( '::' ) (f_names= r_identifier ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:2: ( (f_names= r_identifier ) ( ( ( '::' ) (f_names= r_identifier ) ) )* )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:2: (f_names= r_identifier ) ( ( ( '::' ) (f_names= r_identifier ) ) )*
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:2: (f_names= r_identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:3: f_names= r_identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:2: (f_names= r_identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:3: f_names= r_identifier
             {
-            pushFollow(FOLLOW_r_identifier_in_r_simpleType3846);
+            pushFollow(FOLLOW_r_identifier_in_r_simpleType3841);
             f_names=r_identifier();
             _fsp--;
             if (failed) return cn;
@@ -8562,7 +8559,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
             }
 
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:104: ( ( ( '::' ) (f_names= r_identifier ) ) )*
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:104: ( ( ( '::' ) (f_names= r_identifier ) ) )*
             loop87:
             do {
                 int alt87=2;
@@ -8575,25 +8572,25 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
                 switch (alt87) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:105: ( ( '::' ) (f_names= r_identifier ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:105: ( ( '::' ) (f_names= r_identifier ) )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:105: ( ( '::' ) (f_names= r_identifier ) )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:106: ( '::' ) (f_names= r_identifier )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:105: ( ( '::' ) (f_names= r_identifier ) )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:106: ( '::' ) (f_names= r_identifier )
             	    {
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:106: ( '::' )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:107: '::'
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:106: ( '::' )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:107: '::'
             	    {
-            	    match(input,64,FOLLOW_64_in_r_simpleType3854); if (failed) return cn;
+            	    match(input,64,FOLLOW_64_in_r_simpleType3849); if (failed) return cn;
             	    if ( backtracking==0 ) {
             	       addLeafNodeForToken(cn, null); 
             	    }
 
             	    }
 
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:149: (f_names= r_identifier )
-            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:452:150: f_names= r_identifier
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:149: (f_names= r_identifier )
+            	    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:451:150: f_names= r_identifier
             	    {
-            	    pushFollow(FOLLOW_r_identifier_in_r_simpleType3862);
+            	    pushFollow(FOLLOW_r_identifier_in_r_simpleType3857);
             	    f_names=r_identifier();
             	    _fsp--;
             	    if (failed) return cn;
@@ -8631,20 +8628,20 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
 
     // $ANTLR start r_identifier
-    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:455:1: r_identifier returns [CompositeNode cn] : ( Identifier ) ;
+    // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:454:1: r_identifier returns [CompositeNode cn] : ( Identifier ) ;
     public CompositeNode r_identifier() throws RecognitionException {
         CompositeNode cn = null;
 
          cn = factory.createIdentifierNode();
         	    
         try {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:458:2: ( ( Identifier ) )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:458:2: ( Identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:457:2: ( ( Identifier ) )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:457:2: ( Identifier )
             {
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:458:2: ( Identifier )
-            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:458:3: Identifier
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:457:2: ( Identifier )
+            // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:457:3: Identifier
             {
-            match(input,Identifier,FOLLOW_Identifier_in_r_identifier3889); if (failed) return cn;
+            match(input,Identifier,FOLLOW_Identifier_in_r_identifier3884); if (failed) return cn;
             if ( backtracking==0 ) {
                addLeafNodeForToken(cn, null); 
             }
@@ -8667,16 +8664,16 @@ public class Xpand3NodeParser extends AbstractNodeParser {
 
     // $ANTLR start synpred1
     public void synpred1_fragment() throws RecognitionException {   
-        // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:2: ( '(' r_type ')' r_chainExpression )
-        // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:236:3: '(' r_type ')' r_chainExpression
+        // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:2: ( '(' r_type ')' r_chainExpression )
+        // ./src-gen/org/eclipse/xpand3/parser/Xpand3Node.g:235:3: '(' r_type ')' r_chainExpression
         {
-        match(input,31,FOLLOW_31_in_synpred12133); if (failed) return ;
-        pushFollow(FOLLOW_r_type_in_synpred12135);
+        match(input,31,FOLLOW_31_in_synpred12128); if (failed) return ;
+        pushFollow(FOLLOW_r_type_in_synpred12130);
         r_type();
         _fsp--;
         if (failed) return ;
-        match(input,34,FOLLOW_34_in_synpred12137); if (failed) return ;
-        pushFollow(FOLLOW_r_chainExpression_in_synpred12139);
+        match(input,34,FOLLOW_34_in_synpred12132); if (failed) return ;
+        pushFollow(FOLLOW_r_chainExpression_in_synpred12134);
         r_chainExpression();
         _fsp--;
         if (failed) return ;
@@ -8827,7 +8824,7 @@ public class Xpand3NodeParser extends AbstractNodeParser {
             this.transition = DFA53_transition;
         }
         public String getDescription() {
-            return "232:1: r_castedExpression returns [CompositeNode cn] : ( ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) ) | (f_unnamed14= r_chainExpression ) );";
+            return "231:1: r_castedExpression returns [CompositeNode cn] : ( ( '(' r_type ')' r_chainExpression )=> ( ( '(' ) (f_type= r_type ) ( ')' ) (f_target= r_chainExpression ) ) | (f_unnamed14= r_chainExpression ) );";
         }
         public int specialStateTransition(int s, IntStream input) throws NoViableAltException {
         	int _s = s;
@@ -8937,336 +8934,336 @@ public class Xpand3NodeParser extends AbstractNodeParser {
     }
  
 
-    public static final BitSet FOLLOW_r_nsImport_in_r_file80 = new BitSet(new long[]{0x8800000024002010L,0x00000000000001CEL});
-    public static final BitSet FOLLOW_r_abstractDeclaration_in_r_file93 = new BitSet(new long[]{0x8800000000002010L,0x00000000000001CEL});
-    public static final BitSet FOLLOW_EOF_in_r_file102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_import_in_r_nsImport119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_extensionImport_in_r_nsImport128 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LG_in_r_import154 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_r_import160 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_import168 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RG_in_r_import174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_r_import185 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_r_import193 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_import199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LG_in_r_extensionImport225 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_r_extensionImport231 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_extensionImport239 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RG_in_r_extensionImport245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_r_extensionImport256 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_r_extensionImport264 = new BitSet(new long[]{0x0000000048000000L});
-    public static final BitSet FOLLOW_30_in_r_extensionImport270 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_extensionImport277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_check_in_r_abstractDeclaration296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_around_in_r_abstractDeclaration305 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_extension_in_r_abstractDeclaration314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_definition_in_r_abstractDeclaration323 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_definitionAround_in_r_abstractDeclaration332 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LG_in_r_definition356 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_DEFINE_in_r_definition362 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_definition370 = new BitSet(new long[]{0x0000000880000000L});
-    public static final BitSet FOLLOW_31_in_r_definition378 = new BitSet(new long[]{0x0000000600002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definition388 = new BitSet(new long[]{0x0000000700000000L});
-    public static final BitSet FOLLOW_32_in_r_definition396 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_definition403 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_33_in_r_definition415 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_definition424 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_r_definition433 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_r_definition441 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_definition449 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_ENDDEFINE_in_r_definition455 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RG_in_r_definition461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LG_in_r_definitionAround485 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_AROUND_in_r_definitionAround491 = new BitSet(new long[]{0x0000000200002000L});
-    public static final BitSet FOLLOW_r_pointcut_in_r_definitionAround499 = new BitSet(new long[]{0x0000000880000000L});
-    public static final BitSet FOLLOW_31_in_r_definitionAround507 = new BitSet(new long[]{0x0000000600002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definitionAround517 = new BitSet(new long[]{0x0000000700000000L});
-    public static final BitSet FOLLOW_32_in_r_definitionAround525 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_definitionAround532 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_33_in_r_definitionAround544 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_definitionAround553 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_r_definitionAround562 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_r_definitionAround570 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_definitionAround578 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ENDAROUND_in_r_definitionAround584 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RG_in_r_definitionAround590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_textSequence_in_r_sequence616 = new BitSet(new long[]{0x102882F080003802L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_statement_in_r_sequence626 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_textSequence_in_r_sequence634 = new BitSet(new long[]{0x102882F080003802L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_simpleStatement_in_r_statement656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_fileStatement_in_r_statement665 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_foreachStatement_in_r_statement674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_ifStatement_in_r_statement683 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_letStatement_in_r_statement692 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_protectStatement_in_r_statement701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_text_in_r_textSequence732 = new BitSet(new long[]{0x0000001000000402L});
-    public static final BitSet FOLLOW_r_text_in_r_textSequence742 = new BitSet(new long[]{0x0000001000000402L});
-    public static final BitSet FOLLOW_36_in_r_text769 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_TEXT_in_r_text776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_errorStatement_in_r_simpleStatement795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_expandStatement_in_r_simpleStatement804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_expressionStmt_in_r_simpleStatement813 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_r_errorStatement837 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_errorStatement845 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_r_expandStatement869 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_expandStatement877 = new BitSet(new long[]{0x0000008880000002L});
-    public static final BitSet FOLLOW_31_in_r_expandStatement885 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_parameterList_in_r_expandStatement893 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_expandStatement899 = new BitSet(new long[]{0x0000008800000002L});
-    public static final BitSet FOLLOW_35_in_r_expandStatement912 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_expandStatement920 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_r_expandStatement933 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_expandStatement941 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_40_in_r_expandStatement949 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_expandStatement957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_expression_in_r_expressionStmt991 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_r_fileStatement1015 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_fileStatement1023 = new BitSet(new long[]{0x0000041000002400L});
-    public static final BitSet FOLLOW_42_in_r_fileStatement1031 = new BitSet(new long[]{0x0000001000002400L});
-    public static final BitSet FOLLOW_r_identifier_in_r_fileStatement1044 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_fileStatement1055 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_r_fileStatement1061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_r_foreachStatement1085 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement1093 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_44_in_r_foreachStatement1099 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement1107 = new BitSet(new long[]{0x0000211000000400L});
-    public static final BitSet FOLLOW_45_in_r_foreachStatement1115 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement1123 = new BitSet(new long[]{0x0000011000000400L});
-    public static final BitSet FOLLOW_40_in_r_foreachStatement1134 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement1142 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_foreachStatement1153 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_r_foreachStatement1159 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_r_ifStatement1183 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_ifStatement1191 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_ifStatement1199 = new BitSet(new long[]{0x0007000000000000L});
-    public static final BitSet FOLLOW_r_elseIfStatement_in_r_ifStatement1207 = new BitSet(new long[]{0x0007000000000000L});
-    public static final BitSet FOLLOW_r_elseStatement_in_r_ifStatement1216 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_r_ifStatement1223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_r_elseIfStatement1247 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_elseIfStatement1255 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_elseIfStatement1263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_r_elseStatement1287 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_elseStatement1295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_r_letStatement1319 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_letStatement1327 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_44_in_r_letStatement1333 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_letStatement1341 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_letStatement1349 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_r_letStatement1355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_r_protectStatement1379 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_r_protectStatement1385 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_protectStatement1393 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_55_in_r_protectStatement1399 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_protectStatement1407 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_r_protectStatement1413 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_protectStatement1421 = new BitSet(new long[]{0x0200001000000400L});
-    public static final BitSet FOLLOW_57_in_r_protectStatement1427 = new BitSet(new long[]{0x0000001000000400L});
-    public static final BitSet FOLLOW_r_sequence_in_r_protectStatement1436 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_r_protectStatement1442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_r_check1466 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_r_check1474 = new BitSet(new long[]{0x3000002000000000L});
-    public static final BitSet FOLLOW_60_in_r_check1482 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_check1490 = new BitSet(new long[]{0x2000002000000000L});
-    public static final BitSet FOLLOW_37_in_r_check1501 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_61_in_r_check1510 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_check1520 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_r_check1526 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_check1534 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_check1540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_r_around1564 = new BitSet(new long[]{0x0000000200002000L});
-    public static final BitSet FOLLOW_r_pointcut_in_r_around1572 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_r_around1578 = new BitSet(new long[]{0x0000000600002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_around1588 = new BitSet(new long[]{0x0000000700000000L});
-    public static final BitSet FOLLOW_32_in_r_around1596 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_r_around1603 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_33_in_r_around1615 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_around1624 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_r_around1630 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_around1638 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_around1644 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_r_pointcut1670 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_r_identifier_in_r_pointcut1681 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_33_in_r_pointcut1691 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_r_identifier_in_r_pointcut1702 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_r_pointcut1711 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_65_in_r_extension1740 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001CEL});
-    public static final BitSet FOLLOW_66_in_r_extension1749 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001CEL});
-    public static final BitSet FOLLOW_67_in_r_extension1758 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001CEL});
-    public static final BitSet FOLLOW_r_type_in_r_extension1769 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_extension1778 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_r_extension1784 = new BitSet(new long[]{0x0000000400002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_declaredParameterList_in_r_extension1792 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_extension1799 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_r_extension1805 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183D0L});
-    public static final BitSet FOLLOW_68_in_r_extension1813 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_javaType_in_r_extension1821 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_r_extension1827 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_extension1835 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_r_extension1841 = new BitSet(new long[]{0x0000000400002000L});
-    public static final BitSet FOLLOW_r_javaType_in_r_extension1851 = new BitSet(new long[]{0x0000000500000000L});
-    public static final BitSet FOLLOW_32_in_r_extension1859 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_javaType_in_r_extension1867 = new BitSet(new long[]{0x0000000500000000L});
-    public static final BitSet FOLLOW_34_in_r_extension1879 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_r_expression_in_r_extension1890 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_r_extension1898 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_javaType1924 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_r_javaType1932 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_identifier_in_r_javaType1942 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_70_in_r_javaType1951 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_71_in_r_javaType1960 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_72_in_r_javaType1969 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_r_expression_in_r_test_expression2005 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_r_test_expression2011 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_letExpression_in_r_expression2028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_r_letExpression2057 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_letExpression2065 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_r_letExpression2071 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
-    public static final BitSet FOLLOW_r_castedExpression_in_r_letExpression2079 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_r_letExpression2085 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_letExpression2093 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_castedExpression_in_r_letExpression2104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_r_castedExpression2144 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_r_castedExpression2152 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_castedExpression2158 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
-    public static final BitSet FOLLOW_r_chainExpression_in_r_castedExpression2166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_chainExpression_in_r_castedExpression2178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression2209 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_r_chainExpression2217 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
-    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression2225 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
-    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2259 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
-    public static final BitSet FOLLOW_76_in_r_ifExpression2267 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_ifExpression2275 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_r_ifExpression2281 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800181C0L});
-    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_r_ifExpression2301 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_ifExpression2309 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_r_ifExpression2315 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800181C0L});
-    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2323 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_78_in_r_ifExpression2331 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800181C0L});
-    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2339 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_r_switchExpression2371 = new BitSet(new long[]{0x0000000080000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_31_in_r_switchExpression2379 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression2387 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_switchExpression2393 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_r_switchExpression2402 = new BitSet(new long[]{0x0000000000000000L,0x00000000000A0000L});
-    public static final BitSet FOLLOW_r_casePart_in_r_switchExpression2410 = new BitSet(new long[]{0x0000000000000000L,0x00000000000A0000L});
-    public static final BitSet FOLLOW_81_in_r_switchExpression2417 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_r_switchExpression2423 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression2431 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_r_switchExpression2437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression2448 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_83_in_r_casePart2472 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_casePart2480 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_r_casePart2486 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_casePart2494 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression2525 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_r_orExpression2533 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression2541 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
-    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression2575 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-    public static final BitSet FOLLOW_85_in_r_andExpression2583 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression2591 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression2625 = new BitSet(new long[]{0x0000000000000002L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_r_impliesExpression2633 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression2641 = new BitSet(new long[]{0x0000000000000002L,0x0000000000400000L});
-    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression2675 = new BitSet(new long[]{0x0000000000000002L,0x000000001F800000L});
-    public static final BitSet FOLLOW_87_in_r_relationalExpression2685 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_88_in_r_relationalExpression2694 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_89_in_r_relationalExpression2703 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_90_in_r_relationalExpression2712 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_91_in_r_relationalExpression2721 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_92_in_r_relationalExpression2730 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression2740 = new BitSet(new long[]{0x0000000000000002L,0x000000001F800000L});
-    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2774 = new BitSet(new long[]{0x0000001000000002L,0x0000000020000000L});
-    public static final BitSet FOLLOW_93_in_r_additiveExpression2784 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_36_in_r_additiveExpression2793 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2803 = new BitSet(new long[]{0x0000001000000002L,0x0000000020000000L});
-    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2837 = new BitSet(new long[]{0x0000000200000002L,0x0000000040000000L});
-    public static final BitSet FOLLOW_33_in_r_multiplicativeExpression2847 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_94_in_r_multiplicativeExpression2856 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
-    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2866 = new BitSet(new long[]{0x0000000200000002L,0x0000000040000000L});
-    public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression2900 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_r_unaryExpression2909 = new BitSet(new long[]{0x0000000080003800L,0x00003FFF000101C0L});
-    public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression2917 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_r_unaryExpression2926 = new BitSet(new long[]{0x0000000080003800L,0x00003FFF000101C0L});
-    public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression2934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_primaryExpression_in_r_infixExpression2965 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_r_infixExpression2973 = new BitSet(new long[]{0x0000000000002000L,0x00003FE0000001C0L});
-    public static final BitSet FOLLOW_r_featureCall_in_r_infixExpression2981 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_r_stringLiteral_in_r_primaryExpression3003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_featureCall_in_r_primaryExpression3012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_booleanLiteral_in_r_primaryExpression3021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_numberLiteral_in_r_primaryExpression3030 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_nullLiteral_in_r_primaryExpression3039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_listLiteral_in_r_primaryExpression3048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_constructorCall_in_r_primaryExpression3057 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_globalVarExpression_in_r_primaryExpression3066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_paranthesizedExpression_in_r_primaryExpression3075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_StringLiteral_in_r_stringLiteral3099 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_r_paranthesizedExpression3123 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_paranthesizedExpression3131 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_paranthesizedExpression3137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_r_globalVarExpression3161 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_globalVarExpression3169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_collectionExpression_in_r_featureCall3195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_featureCall3206 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_r_featureCall3212 = new BitSet(new long[]{0x1000001480003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_parameterList_in_r_featureCall3222 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_featureCall3231 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_type_in_r_featureCall3242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_r_listLiteral3266 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800583C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_listLiteral3276 = new BitSet(new long[]{0x0000000100000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_32_in_r_listLiteral3284 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_listLiteral3292 = new BitSet(new long[]{0x0000000100000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_r_listLiteral3304 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_r_constructorCall3328 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_constructorCall3336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_r_booleanLiteral3360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_r_booleanLiteral3369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_r_nullLiteral3393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral3417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral3426 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_r_numberLiteral3432 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral3438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_r_collectionExpression3462 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_r_collectionExpression3468 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_r_collectionExpression3476 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_collectionExpression3482 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_102_in_r_collectionExpression3493 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_103_in_r_collectionExpression3502 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_104_in_r_collectionExpression3511 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_105_in_r_collectionExpression3520 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_106_in_r_collectionExpression3529 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_107_in_r_collectionExpression3538 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_108_in_r_collectionExpression3547 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_109_in_r_collectionExpression3556 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_r_collectionExpression3564 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_identifier_in_r_collectionExpression3574 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_110_in_r_collectionExpression3580 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_collectionExpression3591 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_r_collectionExpression3597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList3623 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_32_in_r_declaredParameterList3631 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList3639 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_r_type_in_r_declaredParameter3668 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_declaredParameter3676 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_expression_in_r_parameterList3702 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_32_in_r_parameterList3710 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
-    public static final BitSet FOLLOW_r_expression_in_r_parameterList3718 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_r_collectionType_in_r_type3740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_type3749 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_r_collectionType3775 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
-    public static final BitSet FOLLOW_71_in_r_collectionType3784 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
-    public static final BitSet FOLLOW_72_in_r_collectionType3793 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
-    public static final BitSet FOLLOW_111_in_r_collectionType3803 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_simpleType_in_r_collectionType3811 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_r_collectionType3817 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_r_identifier_in_r_simpleType3846 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_r_simpleType3854 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_r_identifier_in_r_simpleType3862 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_Identifier_in_r_identifier3889 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_synpred12133 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
-    public static final BitSet FOLLOW_r_type_in_synpred12135 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_synpred12137 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
-    public static final BitSet FOLLOW_r_chainExpression_in_synpred12139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_nsImport_in_r_file75 = new BitSet(new long[]{0x8800000024002010L,0x00000000000001CEL});
+    public static final BitSet FOLLOW_r_abstractDeclaration_in_r_file88 = new BitSet(new long[]{0x8800000000002010L,0x00000000000001CEL});
+    public static final BitSet FOLLOW_EOF_in_r_file97 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_import_in_r_nsImport114 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_extensionImport_in_r_nsImport123 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LG_in_r_import149 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_r_import155 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_import163 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RG_in_r_import169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_r_import180 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_r_import188 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_r_import194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LG_in_r_extensionImport220 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_r_extensionImport226 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_extensionImport234 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RG_in_r_extensionImport240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_r_extensionImport251 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_r_extensionImport259 = new BitSet(new long[]{0x0000000048000000L});
+    public static final BitSet FOLLOW_30_in_r_extensionImport265 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_r_extensionImport272 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_check_in_r_abstractDeclaration291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_around_in_r_abstractDeclaration300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_extension_in_r_abstractDeclaration309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_definition_in_r_abstractDeclaration318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_definitionAround_in_r_abstractDeclaration327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LG_in_r_definition351 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_DEFINE_in_r_definition357 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_definition365 = new BitSet(new long[]{0x0000000880000000L});
+    public static final BitSet FOLLOW_31_in_r_definition373 = new BitSet(new long[]{0x0000000600002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definition383 = new BitSet(new long[]{0x0000000700000000L});
+    public static final BitSet FOLLOW_32_in_r_definition391 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_r_definition398 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_33_in_r_definition410 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_definition419 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_r_definition428 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_r_definition436 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_definition444 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_ENDDEFINE_in_r_definition450 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RG_in_r_definition456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LG_in_r_definitionAround480 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_AROUND_in_r_definitionAround486 = new BitSet(new long[]{0x0000000200002000L});
+    public static final BitSet FOLLOW_r_pointcut_in_r_definitionAround494 = new BitSet(new long[]{0x0000000880000000L});
+    public static final BitSet FOLLOW_31_in_r_definitionAround502 = new BitSet(new long[]{0x0000000600002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_definitionAround512 = new BitSet(new long[]{0x0000000700000000L});
+    public static final BitSet FOLLOW_32_in_r_definitionAround520 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_r_definitionAround527 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_33_in_r_definitionAround539 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_definitionAround548 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_r_definitionAround557 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_r_definitionAround565 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_definitionAround573 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ENDAROUND_in_r_definitionAround579 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RG_in_r_definitionAround585 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_textSequence_in_r_sequence611 = new BitSet(new long[]{0x102882F080003802L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_statement_in_r_sequence621 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_textSequence_in_r_sequence629 = new BitSet(new long[]{0x102882F080003802L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_simpleStatement_in_r_statement651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_fileStatement_in_r_statement660 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_foreachStatement_in_r_statement669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_ifStatement_in_r_statement678 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_letStatement_in_r_statement687 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_protectStatement_in_r_statement696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_text_in_r_textSequence727 = new BitSet(new long[]{0x0000001000000402L});
+    public static final BitSet FOLLOW_r_text_in_r_textSequence737 = new BitSet(new long[]{0x0000001000000402L});
+    public static final BitSet FOLLOW_36_in_r_text764 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_TEXT_in_r_text771 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_errorStatement_in_r_simpleStatement790 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_expandStatement_in_r_simpleStatement799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_expressionStmt_in_r_simpleStatement808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_r_errorStatement832 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_errorStatement840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_r_expandStatement864 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_expandStatement872 = new BitSet(new long[]{0x0000008880000002L});
+    public static final BitSet FOLLOW_31_in_r_expandStatement880 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_parameterList_in_r_expandStatement888 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_expandStatement894 = new BitSet(new long[]{0x0000008800000002L});
+    public static final BitSet FOLLOW_35_in_r_expandStatement907 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_expandStatement915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_r_expandStatement928 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_expandStatement936 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_40_in_r_expandStatement944 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_expandStatement952 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_expression_in_r_expressionStmt986 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_r_fileStatement1010 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_fileStatement1018 = new BitSet(new long[]{0x0000041000002400L});
+    public static final BitSet FOLLOW_42_in_r_fileStatement1026 = new BitSet(new long[]{0x0000001000002400L});
+    public static final BitSet FOLLOW_r_identifier_in_r_fileStatement1039 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_fileStatement1050 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_r_fileStatement1056 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_r_foreachStatement1080 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement1088 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_44_in_r_foreachStatement1094 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement1102 = new BitSet(new long[]{0x0000211000000400L});
+    public static final BitSet FOLLOW_45_in_r_foreachStatement1110 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_foreachStatement1118 = new BitSet(new long[]{0x0000011000000400L});
+    public static final BitSet FOLLOW_40_in_r_foreachStatement1129 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_foreachStatement1137 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_foreachStatement1148 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_46_in_r_foreachStatement1154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_r_ifStatement1178 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_ifStatement1186 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_ifStatement1194 = new BitSet(new long[]{0x0007000000000000L});
+    public static final BitSet FOLLOW_r_elseIfStatement_in_r_ifStatement1202 = new BitSet(new long[]{0x0007000000000000L});
+    public static final BitSet FOLLOW_r_elseStatement_in_r_ifStatement1211 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_r_ifStatement1218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_r_elseIfStatement1242 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_elseIfStatement1250 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_elseIfStatement1258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_r_elseStatement1282 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_elseStatement1290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_r_letStatement1314 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_letStatement1322 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_44_in_r_letStatement1328 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_letStatement1336 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_letStatement1344 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_r_letStatement1350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_r_protectStatement1374 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_r_protectStatement1380 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_protectStatement1388 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_55_in_r_protectStatement1394 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_protectStatement1402 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_r_protectStatement1408 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_protectStatement1416 = new BitSet(new long[]{0x0200001000000400L});
+    public static final BitSet FOLLOW_57_in_r_protectStatement1422 = new BitSet(new long[]{0x0000001000000400L});
+    public static final BitSet FOLLOW_r_sequence_in_r_protectStatement1431 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_r_protectStatement1437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_r_check1461 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_r_check1469 = new BitSet(new long[]{0x3000002000000000L});
+    public static final BitSet FOLLOW_60_in_r_check1477 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_check1485 = new BitSet(new long[]{0x2000002000000000L});
+    public static final BitSet FOLLOW_37_in_r_check1496 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_61_in_r_check1505 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_check1515 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_r_check1521 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_check1529 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_r_check1535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_r_around1559 = new BitSet(new long[]{0x0000000200002000L});
+    public static final BitSet FOLLOW_r_pointcut_in_r_around1567 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_around1573 = new BitSet(new long[]{0x0000000600002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_around1583 = new BitSet(new long[]{0x0000000700000000L});
+    public static final BitSet FOLLOW_32_in_r_around1591 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_r_around1598 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_33_in_r_around1610 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_around1619 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_r_around1625 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_around1633 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_r_around1639 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_r_pointcut1665 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_r_identifier_in_r_pointcut1676 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_33_in_r_pointcut1686 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_r_identifier_in_r_pointcut1697 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_r_pointcut1706 = new BitSet(new long[]{0x0000000200002002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_65_in_r_extension1735 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001CEL});
+    public static final BitSet FOLLOW_66_in_r_extension1744 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001CEL});
+    public static final BitSet FOLLOW_67_in_r_extension1753 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001CEL});
+    public static final BitSet FOLLOW_r_type_in_r_extension1764 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_extension1773 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_extension1779 = new BitSet(new long[]{0x0000000400002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_declaredParameterList_in_r_extension1787 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_extension1794 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_r_extension1800 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183D0L});
+    public static final BitSet FOLLOW_68_in_r_extension1808 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_javaType_in_r_extension1816 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_r_extension1822 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_extension1830 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_extension1836 = new BitSet(new long[]{0x0000000400002000L});
+    public static final BitSet FOLLOW_r_javaType_in_r_extension1846 = new BitSet(new long[]{0x0000000500000000L});
+    public static final BitSet FOLLOW_32_in_r_extension1854 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_javaType_in_r_extension1862 = new BitSet(new long[]{0x0000000500000000L});
+    public static final BitSet FOLLOW_34_in_r_extension1874 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_r_expression_in_r_extension1885 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_r_extension1893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_javaType1919 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_r_javaType1927 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_identifier_in_r_javaType1937 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_70_in_r_javaType1946 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_71_in_r_javaType1955 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_72_in_r_javaType1964 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_r_expression_in_r_test_expression2000 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_r_test_expression2006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_letExpression_in_r_expression2023 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_r_letExpression2052 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_letExpression2060 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_r_letExpression2066 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
+    public static final BitSet FOLLOW_r_castedExpression_in_r_letExpression2074 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_r_letExpression2080 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_letExpression2088 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_castedExpression_in_r_letExpression2099 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_r_castedExpression2139 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_r_castedExpression2147 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_castedExpression2153 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
+    public static final BitSet FOLLOW_r_chainExpression_in_r_castedExpression2161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_chainExpression_in_r_castedExpression2173 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression2204 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_r_chainExpression2212 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
+    public static final BitSet FOLLOW_r_ifExpression_in_r_chainExpression2220 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000800L});
+    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2254 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
+    public static final BitSet FOLLOW_76_in_r_ifExpression2262 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_ifExpression2270 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_r_ifExpression2276 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800181C0L});
+    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_r_ifExpression2296 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_ifExpression2304 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_r_ifExpression2310 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800181C0L});
+    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2318 = new BitSet(new long[]{0x0000000000000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_r_ifExpression2326 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800181C0L});
+    public static final BitSet FOLLOW_r_switchExpression_in_r_ifExpression2334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_r_switchExpression2366 = new BitSet(new long[]{0x0000000080000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_31_in_r_switchExpression2374 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression2382 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_switchExpression2388 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_r_switchExpression2397 = new BitSet(new long[]{0x0000000000000000L,0x00000000000A0000L});
+    public static final BitSet FOLLOW_r_casePart_in_r_switchExpression2405 = new BitSet(new long[]{0x0000000000000000L,0x00000000000A0000L});
+    public static final BitSet FOLLOW_81_in_r_switchExpression2412 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_r_switchExpression2418 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression2426 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_r_switchExpression2432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_orExpression_in_r_switchExpression2443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_83_in_r_casePart2467 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_casePart2475 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_r_casePart2481 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_casePart2489 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression2520 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_r_orExpression2528 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_andExpression_in_r_orExpression2536 = new BitSet(new long[]{0x0000000000000002L,0x0000000000100000L});
+    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression2570 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+    public static final BitSet FOLLOW_85_in_r_andExpression2578 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_impliesExpression_in_r_andExpression2586 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression2620 = new BitSet(new long[]{0x0000000000000002L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_r_impliesExpression2628 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_relationalExpression_in_r_impliesExpression2636 = new BitSet(new long[]{0x0000000000000002L,0x0000000000400000L});
+    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression2670 = new BitSet(new long[]{0x0000000000000002L,0x000000001F800000L});
+    public static final BitSet FOLLOW_87_in_r_relationalExpression2680 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_88_in_r_relationalExpression2689 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_89_in_r_relationalExpression2698 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_90_in_r_relationalExpression2707 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_91_in_r_relationalExpression2716 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_92_in_r_relationalExpression2725 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_additiveExpression_in_r_relationalExpression2735 = new BitSet(new long[]{0x0000000000000002L,0x000000001F800000L});
+    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2769 = new BitSet(new long[]{0x0000001000000002L,0x0000000020000000L});
+    public static final BitSet FOLLOW_93_in_r_additiveExpression2779 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_36_in_r_additiveExpression2788 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_multiplicativeExpression_in_r_additiveExpression2798 = new BitSet(new long[]{0x0000001000000002L,0x0000000020000000L});
+    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2832 = new BitSet(new long[]{0x0000000200000002L,0x0000000040000000L});
+    public static final BitSet FOLLOW_33_in_r_multiplicativeExpression2842 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_94_in_r_multiplicativeExpression2851 = new BitSet(new long[]{0x0000001080003800L,0x00003FFF800101C0L});
+    public static final BitSet FOLLOW_r_unaryExpression_in_r_multiplicativeExpression2861 = new BitSet(new long[]{0x0000000200000002L,0x0000000040000000L});
+    public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression2895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_r_unaryExpression2904 = new BitSet(new long[]{0x0000000080003800L,0x00003FFF000101C0L});
+    public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression2912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_r_unaryExpression2921 = new BitSet(new long[]{0x0000000080003800L,0x00003FFF000101C0L});
+    public static final BitSet FOLLOW_r_infixExpression_in_r_unaryExpression2929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_primaryExpression_in_r_infixExpression2960 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_r_infixExpression2968 = new BitSet(new long[]{0x0000000000002000L,0x00003FE0000001C0L});
+    public static final BitSet FOLLOW_r_featureCall_in_r_infixExpression2976 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_r_stringLiteral_in_r_primaryExpression2998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_featureCall_in_r_primaryExpression3007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_booleanLiteral_in_r_primaryExpression3016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_numberLiteral_in_r_primaryExpression3025 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_nullLiteral_in_r_primaryExpression3034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_listLiteral_in_r_primaryExpression3043 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_constructorCall_in_r_primaryExpression3052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_globalVarExpression_in_r_primaryExpression3061 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_paranthesizedExpression_in_r_primaryExpression3070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_StringLiteral_in_r_stringLiteral3094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_r_paranthesizedExpression3118 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_paranthesizedExpression3126 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_paranthesizedExpression3132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_r_globalVarExpression3156 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_globalVarExpression3164 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_collectionExpression_in_r_featureCall3190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_featureCall3201 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_featureCall3207 = new BitSet(new long[]{0x1000001480003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_parameterList_in_r_featureCall3217 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_featureCall3226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_type_in_r_featureCall3237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_r_listLiteral3261 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800583C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_listLiteral3271 = new BitSet(new long[]{0x0000000100000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_32_in_r_listLiteral3279 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_listLiteral3287 = new BitSet(new long[]{0x0000000100000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_r_listLiteral3299 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_r_constructorCall3323 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_constructorCall3331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_r_booleanLiteral3355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_r_booleanLiteral3364 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_r_nullLiteral3388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral3412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral3421 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_r_numberLiteral3427 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_IntLiteral_in_r_numberLiteral3433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_101_in_r_collectionExpression3457 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_collectionExpression3463 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_r_collectionExpression3471 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_collectionExpression3477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_102_in_r_collectionExpression3488 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_103_in_r_collectionExpression3497 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_104_in_r_collectionExpression3506 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_105_in_r_collectionExpression3515 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_106_in_r_collectionExpression3524 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_107_in_r_collectionExpression3533 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_108_in_r_collectionExpression3542 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_109_in_r_collectionExpression3551 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_r_collectionExpression3559 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_identifier_in_r_collectionExpression3569 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_110_in_r_collectionExpression3575 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_collectionExpression3586 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_r_collectionExpression3592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList3618 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_r_declaredParameterList3626 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_declaredParameter_in_r_declaredParameterList3634 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_r_type_in_r_declaredParameter3663 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_declaredParameter3671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_expression_in_r_parameterList3697 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_r_parameterList3705 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800183C0L});
+    public static final BitSet FOLLOW_r_expression_in_r_parameterList3713 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_r_collectionType_in_r_type3735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_type3744 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_r_collectionType3770 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
+    public static final BitSet FOLLOW_71_in_r_collectionType3779 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
+    public static final BitSet FOLLOW_72_in_r_collectionType3788 = new BitSet(new long[]{0x0000000000000002L,0x0000800000000000L});
+    public static final BitSet FOLLOW_111_in_r_collectionType3798 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_simpleType_in_r_collectionType3806 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_r_collectionType3812 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_r_identifier_in_r_simpleType3841 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_r_simpleType3849 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_r_identifier_in_r_simpleType3857 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_Identifier_in_r_identifier3884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_synpred12128 = new BitSet(new long[]{0x0000000000002000L,0x00000000000001C0L});
+    public static final BitSet FOLLOW_r_type_in_synpred12130 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_synpred12132 = new BitSet(new long[]{0x1000001080003800L,0x00003FFF800181C0L});
+    public static final BitSet FOLLOW_r_chainExpression_in_synpred12134 = new BitSet(new long[]{0x0000000000000002L});
 
 }

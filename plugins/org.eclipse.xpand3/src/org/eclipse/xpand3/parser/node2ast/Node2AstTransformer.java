@@ -433,6 +433,9 @@ public class Node2AstTransformer extends
 		Extension extension;
 		if (node.getCreate() != null) {
 			extension = declarationFactory.createCreateExtensionStatement();
+			createAndAddImplicitlyDeclaredThisParameter(node.getReturnType(),
+					extension.getParams());
+			// TODO alternative identifier
 		} else {
 			extension = declarationFactory.createExtension();
 		}

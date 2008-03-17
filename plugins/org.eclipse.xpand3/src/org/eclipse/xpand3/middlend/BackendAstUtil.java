@@ -20,7 +20,7 @@ import org.eclipse.xtend.backend.common.SourcePos;
 
 /**
  * @author Sven Efftinge
- *
+ * 
  */
 public class BackendAstUtil {
 	/**
@@ -30,4 +30,5 @@ public class BackendAstUtil {
 	public static SourcePos getSourcePos(SyntaxElement se) {
 		return new SourcePos(se.getFileName(), se.getFileName(), se.getLine());
 	}
+
 }

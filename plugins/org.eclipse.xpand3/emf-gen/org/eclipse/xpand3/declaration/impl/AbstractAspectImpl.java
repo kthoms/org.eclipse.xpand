@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractAspectImpl.java,v 1.2 2008/03/07 11:10:53 jkohnlein Exp $
+ * $Id: AbstractAspectImpl.java,v 1.3 2008/03/17 10:55:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.impl;
 
@@ -37,14 +37,13 @@ import org.eclipse.xpand3.impl.SyntaxElementImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.declaration.impl.AbstractAspectImpl#getPointcut <em>Pointcut</em>}</li>
- *   <li>{@link org.eclipse.xpand3.declaration.impl.AbstractAspectImpl#getParams <em>Params</em>}</li>
  *   <li>{@link org.eclipse.xpand3.declaration.impl.AbstractAspectImpl#isWildparams <em>Wildparams</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class AbstractAspectImpl extends SyntaxElementImpl implements AbstractAspect {
+public abstract class AbstractAspectImpl extends AbstractDeclarationImpl implements AbstractAspect {
 	/**
 	 * The cached value of the '{@link #getPointcut() <em>Pointcut</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -54,16 +53,6 @@ public abstract class AbstractAspectImpl extends SyntaxElementImpl implements Ab
 	 * @ordered
 	 */
 	protected Identifier pointcut;
-
-	/**
-	 * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParams()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DeclaredParameter> params;
 
 	/**
 	 * The default value of the '{@link #isWildparams() <em>Wildparams</em>}' attribute.
@@ -152,18 +141,6 @@ public abstract class AbstractAspectImpl extends SyntaxElementImpl implements Ab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DeclaredParameter> getParams() {
-		if (params == null) {
-			params = new EObjectContainmentEList<DeclaredParameter>(DeclaredParameter.class, this, DeclarationPackage.ABSTRACT_ASPECT__PARAMS);
-		}
-		return params;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isWildparams() {
 		return wildparams;
 	}
@@ -190,8 +167,6 @@ public abstract class AbstractAspectImpl extends SyntaxElementImpl implements Ab
 		switch (featureID) {
 			case DeclarationPackage.ABSTRACT_ASPECT__POINTCUT:
 				return basicSetPointcut(null, msgs);
-			case DeclarationPackage.ABSTRACT_ASPECT__PARAMS:
-				return ((InternalEList<?>)getParams()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -206,8 +181,6 @@ public abstract class AbstractAspectImpl extends SyntaxElementImpl implements Ab
 		switch (featureID) {
 			case DeclarationPackage.ABSTRACT_ASPECT__POINTCUT:
 				return getPointcut();
-			case DeclarationPackage.ABSTRACT_ASPECT__PARAMS:
-				return getParams();
 			case DeclarationPackage.ABSTRACT_ASPECT__WILDPARAMS:
 				return isWildparams() ? Boolean.TRUE : Boolean.FALSE;
 		}
@@ -225,10 +198,6 @@ public abstract class AbstractAspectImpl extends SyntaxElementImpl implements Ab
 		switch (featureID) {
 			case DeclarationPackage.ABSTRACT_ASPECT__POINTCUT:
 				setPointcut((Identifier)newValue);
-				return;
-			case DeclarationPackage.ABSTRACT_ASPECT__PARAMS:
-				getParams().clear();
-				getParams().addAll((Collection<? extends DeclaredParameter>)newValue);
 				return;
 			case DeclarationPackage.ABSTRACT_ASPECT__WILDPARAMS:
 				setWildparams(((Boolean)newValue).booleanValue());
@@ -248,9 +217,6 @@ public abstract class AbstractAspectImpl extends SyntaxElementImpl implements Ab
 			case DeclarationPackage.ABSTRACT_ASPECT__POINTCUT:
 				setPointcut((Identifier)null);
 				return;
-			case DeclarationPackage.ABSTRACT_ASPECT__PARAMS:
-				getParams().clear();
-				return;
 			case DeclarationPackage.ABSTRACT_ASPECT__WILDPARAMS:
 				setWildparams(WILDPARAMS_EDEFAULT);
 				return;
@@ -268,8 +234,6 @@ public abstract class AbstractAspectImpl extends SyntaxElementImpl implements Ab
 		switch (featureID) {
 			case DeclarationPackage.ABSTRACT_ASPECT__POINTCUT:
 				return pointcut != null;
-			case DeclarationPackage.ABSTRACT_ASPECT__PARAMS:
-				return params != null && !params.isEmpty();
 			case DeclarationPackage.ABSTRACT_ASPECT__WILDPARAMS:
 				return wildparams != WILDPARAMS_EDEFAULT;
 		}

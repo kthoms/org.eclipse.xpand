@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FeatureCallNodeImpl.java,v 1.6 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: FeatureCallNodeImpl.java,v 1.7 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,25 +27,15 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FeatureCallNodeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FeatureCallNodeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FeatureCallNodeImpl#getParamList <em>Param List</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.FeatureCallNodeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class FeatureCallNodeImpl extends CompositeNodeImpl implements FeatureCallNode {
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode name;
-
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -65,6 +55,16 @@ public class FeatureCallNodeImpl extends CompositeNodeImpl implements FeatureCal
 	 * @ordered
 	 */
 	protected CompositeNode paramList;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode name;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,15 +207,15 @@ public class FeatureCallNodeImpl extends CompositeNodeImpl implements FeatureCal
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
-				if (resolve) return getName();
-				return basicGetName();
 			case Xpand3nodePackage.FEATURE_CALL_NODE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case Xpand3nodePackage.FEATURE_CALL_NODE__PARAM_LIST:
 				if (resolve) return getParamList();
 				return basicGetParamList();
+			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
+				if (resolve) return getName();
+				return basicGetName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,14 +228,14 @@ public class FeatureCallNodeImpl extends CompositeNodeImpl implements FeatureCal
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
-				setName((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.FEATURE_CALL_NODE__TYPE:
 				setType((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.FEATURE_CALL_NODE__PARAM_LIST:
 				setParamList((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
+				setName((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -249,14 +249,14 @@ public class FeatureCallNodeImpl extends CompositeNodeImpl implements FeatureCal
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
-				setName((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.FEATURE_CALL_NODE__TYPE:
 				setType((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.FEATURE_CALL_NODE__PARAM_LIST:
 				setParamList((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
+				setName((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -270,12 +270,12 @@ public class FeatureCallNodeImpl extends CompositeNodeImpl implements FeatureCal
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
-				return name != null;
 			case Xpand3nodePackage.FEATURE_CALL_NODE__TYPE:
 				return type != null;
 			case Xpand3nodePackage.FEATURE_CALL_NODE__PARAM_LIST:
 				return paramList != null;
+			case Xpand3nodePackage.FEATURE_CALL_NODE__NAME:
+				return name != null;
 		}
 		return super.eIsSet(featureID);
 	}

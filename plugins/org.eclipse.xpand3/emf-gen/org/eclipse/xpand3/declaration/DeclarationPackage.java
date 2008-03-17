@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackage.java,v 1.4 2008/03/07 11:10:54 jkohnlein Exp $
+ * $Id: DeclarationPackage.java,v 1.5 2008/03/17 10:55:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
 
@@ -596,7 +596,7 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT__LINE = Xpand3Package.SYNTAX_ELEMENT__LINE;
+	int ABSTRACT_ASPECT__LINE = ABSTRACT_DECLARATION__LINE;
 
 	/**
 	 * The feature id for the '<em><b>Start</b></em>' attribute.
@@ -605,7 +605,7 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT__START = Xpand3Package.SYNTAX_ELEMENT__START;
+	int ABSTRACT_ASPECT__START = ABSTRACT_DECLARATION__START;
 
 	/**
 	 * The feature id for the '<em><b>End</b></em>' attribute.
@@ -614,7 +614,7 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT__END = Xpand3Package.SYNTAX_ELEMENT__END;
+	int ABSTRACT_ASPECT__END = ABSTRACT_DECLARATION__END;
 
 	/**
 	 * The feature id for the '<em><b>File Name</b></em>' attribute.
@@ -623,16 +623,16 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT__FILE_NAME = Xpand3Package.SYNTAX_ELEMENT__FILE_NAME;
+	int ABSTRACT_ASPECT__FILE_NAME = ABSTRACT_DECLARATION__FILE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Pointcut</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owner</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT__POINTCUT = Xpand3Package.SYNTAX_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_ASPECT__OWNER = ABSTRACT_DECLARATION__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -641,7 +641,34 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT__PARAMS = Xpand3Package.SYNTAX_ELEMENT_FEATURE_COUNT + 1;
+	int ABSTRACT_ASPECT__PARAMS = ABSTRACT_DECLARATION__PARAMS;
+
+	/**
+	 * The feature id for the '<em><b>Is Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ASPECT__IS_PRIVATE = ABSTRACT_DECLARATION__IS_PRIVATE;
+
+	/**
+	 * The feature id for the '<em><b>Guard</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ASPECT__GUARD = ABSTRACT_DECLARATION__GUARD;
+
+	/**
+	 * The feature id for the '<em><b>Pointcut</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ASPECT__POINTCUT = ABSTRACT_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Wildparams</b></em>' attribute.
@@ -650,7 +677,7 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT__WILDPARAMS = Xpand3Package.SYNTAX_ELEMENT_FEATURE_COUNT + 2;
+	int ABSTRACT_ASPECT__WILDPARAMS = ABSTRACT_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Aspect</em>' class.
@@ -659,7 +686,7 @@ public interface DeclarationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ASPECT_FEATURE_COUNT = Xpand3Package.SYNTAX_ELEMENT_FEATURE_COUNT + 3;
+	int ABSTRACT_ASPECT_FEATURE_COUNT = ABSTRACT_DECLARATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xpand3.declaration.impl.ExtensionAspectImpl <em>Extension Aspect</em>}' class.
@@ -708,13 +735,13 @@ public interface DeclarationPackage extends EPackage {
 	int EXTENSION_ASPECT__FILE_NAME = ABSTRACT_ASPECT__FILE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Pointcut</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owner</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_ASPECT__POINTCUT = ABSTRACT_ASPECT__POINTCUT;
+	int EXTENSION_ASPECT__OWNER = ABSTRACT_ASPECT__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -724,6 +751,33 @@ public interface DeclarationPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENSION_ASPECT__PARAMS = ABSTRACT_ASPECT__PARAMS;
+
+	/**
+	 * The feature id for the '<em><b>Is Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_ASPECT__IS_PRIVATE = ABSTRACT_ASPECT__IS_PRIVATE;
+
+	/**
+	 * The feature id for the '<em><b>Guard</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_ASPECT__GUARD = ABSTRACT_ASPECT__GUARD;
+
+	/**
+	 * The feature id for the '<em><b>Pointcut</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION_ASPECT__POINTCUT = ABSTRACT_ASPECT__POINTCUT;
 
 	/**
 	 * The feature id for the '<em><b>Wildparams</b></em>' attribute.
@@ -799,13 +853,13 @@ public interface DeclarationPackage extends EPackage {
 	int DEFINITION_ASPECT__FILE_NAME = ABSTRACT_ASPECT__FILE_NAME;
 
 	/**
-	 * The feature id for the '<em><b>Pointcut</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owner</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION_ASPECT__POINTCUT = ABSTRACT_ASPECT__POINTCUT;
+	int DEFINITION_ASPECT__OWNER = ABSTRACT_ASPECT__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Params</b></em>' containment reference list.
@@ -815,6 +869,33 @@ public interface DeclarationPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFINITION_ASPECT__PARAMS = ABSTRACT_ASPECT__PARAMS;
+
+	/**
+	 * The feature id for the '<em><b>Is Private</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFINITION_ASPECT__IS_PRIVATE = ABSTRACT_ASPECT__IS_PRIVATE;
+
+	/**
+	 * The feature id for the '<em><b>Guard</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFINITION_ASPECT__GUARD = ABSTRACT_ASPECT__GUARD;
+
+	/**
+	 * The feature id for the '<em><b>Pointcut</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFINITION_ASPECT__POINTCUT = ABSTRACT_ASPECT__POINTCUT;
 
 	/**
 	 * The feature id for the '<em><b>Wildparams</b></em>' attribute.
@@ -1385,17 +1466,6 @@ public interface DeclarationPackage extends EPackage {
 	EReference getAbstractAspect_Pointcut();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.xpand3.declaration.AbstractAspect#getParams <em>Params</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Params</em>'.
-	 * @see org.eclipse.xpand3.declaration.AbstractAspect#getParams()
-	 * @see #getAbstractAspect()
-	 * @generated
-	 */
-	EReference getAbstractAspect_Params();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.xpand3.declaration.AbstractAspect#isWildparams <em>Wildparams</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1719,14 +1789,6 @@ public interface DeclarationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ABSTRACT_ASPECT__POINTCUT = eINSTANCE.getAbstractAspect_Pointcut();
-
-		/**
-		 * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_ASPECT__PARAMS = eINSTANCE.getAbstractAspect_Params();
 
 		/**
 		 * The meta object literal for the '<em><b>Wildparams</b></em>' attribute feature.

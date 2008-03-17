@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeachStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: ForeachStatementNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,11 +27,11 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getIterator <em>Iterator</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getSequence <em>Sequence</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getForExpression <em>For Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getSeparatorExpression <em>Separator Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getSequence <em>Sequence</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getIterator <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getForExpression <em>For Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ForeachStatementNodeImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,24 +39,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  */
 public class ForeachStatementNodeImpl extends CompositeNodeImpl implements ForeachStatementNode {
 	/**
-	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' reference.
+	 * The cached value of the '{@link #getSeparatorExpression() <em>Separator Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIterator()
+	 * @see #getSeparatorExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode iterator;
-
-	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode identifier;
+	protected CompositeNode separatorExpression;
 
 	/**
 	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
@@ -69,6 +59,16 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	protected CompositeNode sequence;
 
 	/**
+	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIterator()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode iterator;
+
+	/**
 	 * The cached value of the '{@link #getForExpression() <em>For Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,14 +79,14 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	protected CompositeNode forExpression;
 
 	/**
-	 * The cached value of the '{@link #getSeparatorExpression() <em>Separator Expression</em>}' reference.
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSeparatorExpression()
+	 * @see #getIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode separatorExpression;
+	protected CompositeNode identifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -305,21 +305,21 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
-				if (resolve) return getIterator();
-				return basicGetIterator();
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
-				if (resolve) return getIdentifier();
-				return basicGetIdentifier();
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE:
-				if (resolve) return getSequence();
-				return basicGetSequence();
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__FOR_EXPRESSION:
-				if (resolve) return getForExpression();
-				return basicGetForExpression();
 			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION:
 				if (resolve) return getSeparatorExpression();
 				return basicGetSeparatorExpression();
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE:
+				if (resolve) return getSequence();
+				return basicGetSequence();
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
+				if (resolve) return getIterator();
+				return basicGetIterator();
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__FOR_EXPRESSION:
+				if (resolve) return getForExpression();
+				return basicGetForExpression();
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
+				if (resolve) return getIdentifier();
+				return basicGetIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -332,20 +332,20 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
-				setIterator((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
-				setIdentifier((CompositeNode)newValue);
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION:
+				setSeparatorExpression((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE:
 				setSequence((CompositeNode)newValue);
 				return;
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
+				setIterator((CompositeNode)newValue);
+				return;
 			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__FOR_EXPRESSION:
 				setForExpression((CompositeNode)newValue);
 				return;
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION:
-				setSeparatorExpression((CompositeNode)newValue);
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
+				setIdentifier((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -359,20 +359,20 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
-				setIterator((CompositeNode)null);
-				return;
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
-				setIdentifier((CompositeNode)null);
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION:
+				setSeparatorExpression((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE:
 				setSequence((CompositeNode)null);
 				return;
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
+				setIterator((CompositeNode)null);
+				return;
 			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__FOR_EXPRESSION:
 				setForExpression((CompositeNode)null);
 				return;
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION:
-				setSeparatorExpression((CompositeNode)null);
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
+				setIdentifier((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -386,16 +386,16 @@ public class ForeachStatementNodeImpl extends CompositeNodeImpl implements Forea
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
-				return iterator != null;
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
-				return identifier != null;
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE:
-				return sequence != null;
-			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__FOR_EXPRESSION:
-				return forExpression != null;
 			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEPARATOR_EXPRESSION:
 				return separatorExpression != null;
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__SEQUENCE:
+				return sequence != null;
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__ITERATOR:
+				return iterator != null;
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__FOR_EXPRESSION:
+				return forExpression != null;
+			case Xpand3nodePackage.FOREACH_STATEMENT_NODE__IDENTIFIER:
+				return identifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

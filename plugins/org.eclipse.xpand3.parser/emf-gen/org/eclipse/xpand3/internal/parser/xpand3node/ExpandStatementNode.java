@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpandStatementNode.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: ExpandStatementNode.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -17,10 +17,10 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getSeparator <em>Separator</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getForExpression <em>For Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getParamList <em>Param List</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getForEachExpression <em>For Each Expression</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getForExpression <em>For Expression</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ExpandStatementNode#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *

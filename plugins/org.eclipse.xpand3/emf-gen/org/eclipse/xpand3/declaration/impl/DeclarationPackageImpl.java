@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackageImpl.java,v 1.4 2008/03/07 11:10:52 jkohnlein Exp $
+ * $Id: DeclarationPackageImpl.java,v 1.5 2008/03/17 10:55:13 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.impl;
 
@@ -342,17 +342,8 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAbstractAspect_Params() {
-		return (EReference)abstractAspectEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getAbstractAspect_Wildparams() {
-		return (EAttribute)abstractAspectEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)abstractAspectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -538,7 +529,6 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 
 		abstractAspectEClass = createEClass(ABSTRACT_ASPECT);
 		createEReference(abstractAspectEClass, ABSTRACT_ASPECT__POINTCUT);
-		createEReference(abstractAspectEClass, ABSTRACT_ASPECT__PARAMS);
 		createEAttribute(abstractAspectEClass, ABSTRACT_ASPECT__WILDPARAMS);
 
 		extensionAspectEClass = createEClass(EXTENSION_ASPECT);
@@ -600,7 +590,7 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 		definitionEClass.getESuperTypes().add(this.getAbstractNamedDeclaration());
 		adviceEClass.getESuperTypes().add(this.getAbstractNamedDeclaration());
 		extensionEClass.getESuperTypes().add(this.getAbstractNamedDeclaration());
-		abstractAspectEClass.getESuperTypes().add(theXpand3Package.getSyntaxElement());
+		abstractAspectEClass.getESuperTypes().add(this.getAbstractDeclaration());
 		extensionAspectEClass.getESuperTypes().add(this.getAbstractAspect());
 		definitionAspectEClass.getESuperTypes().add(this.getAbstractAspect());
 		checkEClass.getESuperTypes().add(this.getAbstractDeclaration());
@@ -628,7 +618,6 @@ public class DeclarationPackageImpl extends EPackageImpl implements DeclarationP
 
 		initEClass(abstractAspectEClass, AbstractAspect.class, "AbstractAspect", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractAspect_Pointcut(), theXpand3Package.getIdentifier(), null, "pointcut", null, 0, 1, AbstractAspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractAspect_Params(), theXpand3Package.getDeclaredParameter(), null, "params", null, 0, -1, AbstractAspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractAspect_Wildparams(), ecorePackage.getEBoolean(), "wildparams", null, 0, 1, AbstractAspect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(extensionAspectEClass, ExtensionAspect.class, "ExtensionAspect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

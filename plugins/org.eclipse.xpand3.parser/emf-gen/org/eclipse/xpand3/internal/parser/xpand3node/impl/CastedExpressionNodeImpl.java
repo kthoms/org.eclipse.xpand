@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CastedExpressionNodeImpl.java,v 1.3 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: CastedExpressionNodeImpl.java,v 1.4 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,24 +27,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CastedExpressionNodeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CastedExpressionNodeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CastedExpressionNodeImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class CastedExpressionNodeImpl extends CompositeNodeImpl implements CastedExpressionNode {
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode target;
-
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,6 +44,16 @@ public class CastedExpressionNodeImpl extends CompositeNodeImpl implements Caste
 	 * @ordered
 	 */
 	protected CompositeNode type;
+
+	/**
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,12 +158,12 @@ public class CastedExpressionNodeImpl extends CompositeNodeImpl implements Caste
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
 			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,11 +176,11 @@ public class CastedExpressionNodeImpl extends CompositeNodeImpl implements Caste
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
-				setTarget((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TYPE:
 				setType((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
+				setTarget((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,11 +194,11 @@ public class CastedExpressionNodeImpl extends CompositeNodeImpl implements Caste
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
-				setTarget((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TYPE:
 				setType((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
+				setTarget((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,10 +212,10 @@ public class CastedExpressionNodeImpl extends CompositeNodeImpl implements Caste
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
-				return target != null;
 			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TYPE:
 				return type != null;
+			case Xpand3nodePackage.CASTED_EXPRESSION_NODE__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,51 +1,17 @@
-testCase AstTests
-test firstTest
-expr <#
-foo(Object this, Object that):
-	this.toString()==that.toString(); #>
-expected 
-	Extension {			
-		name=Identifier(value='foo')
-		params=[
-			DeclaredParameter {
-				name=Identifier(value='this')
-				type=Identifier(value='Object')
-			},
-			DeclaredParameter {
-				name=Identifier(value='that')
-				type=Identifier(value='Object')
-			}]
-		body=BinaryOperation{
-			left=OperationCall {
-				name=Identifier(value="toString")
-				target=FeatureCall {
-					name=Identifier(value="this")
-					target=null
-				}
-			}
-			operator=Identifier(value="==")
-			right=OperationCall {
-				name=Identifier(value="toString")
-				target=FeatureCall {
-					name=Identifier(value="that")
-					target=null
-				}
-			}
-		}	
-	}
-	
-
+testCase StatementTests
 test testEmptyTemplate
 expr <#
 #>
 expected
-	null
+File {
+}
 		
 test testSimpleDefine
 expr <#
 «DEFINE test FOR ecore::EClass»«ENDDEFINE»
 #>
 expected
+File {
 	Definition {
 		name=Identifier(value="test")
 		params=[
@@ -55,6 +21,7 @@ expected
 			}
 		]
 	} 
+}
 
 test testDoubleDefine
 expr <#
@@ -94,6 +61,7 @@ expr <#
 «DEFINE test(ecore::EPackage a,String b) FOR ecore::EClass»«FILE name+".txt"»Text und so «name»«FOREACH eAllAttributes AS attr»Attribute : «attr.name»«ENDFOREACH»«ENDFILE»«ENDDEFINE»
 #>
 expected
+File {
 	Definition {
 		name=Identifier(value="test")
 		params=[
@@ -154,6 +122,7 @@ expected
 			TextStatement(deleteLine="false", value="»«")
 		]
 	}
+}
 
 	
 test testImportDeclaration
@@ -177,6 +146,7 @@ expr <#
 «DEFINE test FOR ecore::EClass»«FILE "test.txt" ONCE»«ENDFILE»«ENDDEFINE»
 #>
 expected
+File {
 	Definition {
 		body=[
 			TextStatement(value="»«"),
@@ -187,12 +157,14 @@ expected
 			}
 		]
 	}
+}
 
 test testIfStatement
 expr <#
 «DEFINE test FOR ecore::EClass»«IF !true»«ELSEIF false»«ELSE»«ENDIF»«ENDDEFINE»
 #>
 expected
+File {
 	Definition {
 		name=Identifier(value="test")
 		body=[
@@ -223,11 +195,13 @@ expected
 			TextStatement
 		]
 	} 
- 
- 
+} 
+
+
  test testAroundStatement
  expr <# «AROUND test::* FOR ecore::EClass»«ERROR name + "x"»«ENDAROUND» #>
  expected 
+ File {
  	DefinitionAspect {
  		pointcut=Identifier(value="test::*")
  		params=[
@@ -247,6 +221,8 @@ expected
 			TextStatement(value="»«")
 		]
 	}
+}
+
 	
 test testExpand
 expr <# 
@@ -255,6 +231,7 @@ expr <#
 «ENDDEFINE» 
 #>
 expected
+File {
 	Definition {
 		body=[
 			TextStatement,
@@ -291,23 +268,4 @@ expected
 			TextStatement
 		]
 	}
-
-
-test textCheck
-expr <#
-	context EObject if name=="jan" ERROR "XXX" + name:
-		x!=17;
-#>
-expected
-	Check(errorSeverity="true") {
-		guard=BinaryOperation
-		msg=BinaryOperation
-		constraint=BinaryOperation
-		guard=BinaryOperation
-		params=[
-			DeclaredParameter {
-				name=Identifier(value="this")
-				type=Identifier(value="EObject")
-			}
-		]
-	}			
+}

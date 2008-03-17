@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LetStatementNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: LetStatementNode.java,v 1.5 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,8 +16,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.LetStatementNode#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.LetStatementNode#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.LetStatementNode#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.LetStatementNode#getSequence <em>Sequence</em>}</li>
  * </ul>
  * </p>

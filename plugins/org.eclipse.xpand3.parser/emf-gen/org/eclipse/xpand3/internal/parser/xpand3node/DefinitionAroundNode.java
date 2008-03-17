@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionAroundNode.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: DefinitionAroundNode.java,v 1.5 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -17,9 +17,9 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionAroundNode#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionAroundNode#getPointcut <em>Pointcut</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionAroundNode#getParamList <em>Param List</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionAroundNode#getSequence <em>Sequence</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionAroundNode#getParamList <em>Param List</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.DefinitionAroundNode#getPointcut <em>Pointcut</em>}</li>
  * </ul>
  * </p>
  *

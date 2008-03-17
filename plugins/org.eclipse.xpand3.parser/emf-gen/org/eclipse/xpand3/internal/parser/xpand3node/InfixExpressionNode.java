@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InfixExpressionNode.java,v 1.6 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: InfixExpressionNode.java,v 1.7 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -18,8 +18,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode#getCalls <em>Calls</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.InfixExpressionNode#getCalls <em>Calls</em>}</li>
  * </ul>
  * </p>
  *

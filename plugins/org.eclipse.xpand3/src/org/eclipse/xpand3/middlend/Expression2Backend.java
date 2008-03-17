@@ -20,9 +20,6 @@ import static org.eclipse.xpand3.middlend.BackendAstUtil.getSourcePos;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.analyzation.AnalyzeContext;
 import org.eclipse.xpand3.analyzation.GenericsUtil;
@@ -40,11 +37,8 @@ import org.eclipse.xpand3.expression.NullLiteral;
 import org.eclipse.xpand3.expression.RealLiteral;
 import org.eclipse.xpand3.expression.StringLiteral;
 import org.eclipse.xpand3.expression.util.ExpressionSwitch;
-import org.eclipse.xpand3.staticTypesystem.DeclaredType;
 import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xpand3.util.SyntaxConstants;
-import org.eclipse.xtend.backend.common.BackendType;
-import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.expr.CreateUncachedExpression;
@@ -63,9 +57,21 @@ import org.eclipse.xtend.backend.types.builtin.CollectionType;
  */
 public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 
-	private BackendTypesystem backendTypes = null;
 	private TypeSystem frontendTypes = null;
 	private AnalyzeContext ctx = null;
+	private Xpand3MiddleEnd xpand3MiddleEnd;
+
+	public Expression2Backend(Xpand3MiddleEnd xpand3MiddleEnd) {
+		this.xpand3MiddleEnd = xpand3MiddleEnd;
+	}
+
+	private Statement2Backend getStatement2Backend() {
+		return xpand3MiddleEnd.getStatement2Backend();
+	}
+
+	private Declaration2Backend getDeclaration2Backend() {
+		return xpand3MiddleEnd.getDeclaration2Backend();
+	}
 
 	@Override
 	public ExpressionBase caseBinaryOperation(BinaryOperation object) {
@@ -134,15 +140,15 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 
 	public ExpressionBase caseConstructorCallExpression(
 			ConstructorCallExpression expr) {
-		return new CreateUncachedExpression(backendTypeForName(expr.getType()), getSourcePos(expr));
+		return new CreateUncachedExpression(xpand3MiddleEnd
+				.backendTypeForName(expr.getType()), getSourcePos(expr));
 	}
 
 	/**
 	 * @param string
 	 * @param expr
 	 */
-	protected void handleTransformationError(String string,
-			SyntaxElement expr) {
+	protected void handleTransformationError(String string, SyntaxElement expr) {
 		throw new RuntimeException(string);
 	}
 
@@ -151,11 +157,11 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 		if (expr.getTarget() == null) {
 			// 1. check for a static property
 			if (expr.getName().getValue().lastIndexOf(SyntaxConstants.NS_DELIM) != -1) {
-//				stat
-//				final StaticProperty staticProp = typeConverter
-//						.getEnumLiteral(expr.getName());
-//				if (staticProp != null)
-//					return new LiteralExpression(staticProp.get(), sourcePos);
+				// stat
+				// final StaticProperty staticProp = typeConverter
+				// .getEnumLiteral(expr.getName());
+				// if (staticProp != null)
+				// return new LiteralExpression(staticProp.get(), sourcePos);
 				throw new UnsupportedOperationException("StaticProperties");
 			}
 			// 2. check for a local variable
@@ -164,8 +170,9 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 						sourcePos);
 			// 3. check for a type literal
 			try {
-				//TODO
-				return new LiteralExpression(backendTypeForName(expr.getName()), sourcePos);
+				// TODO
+				return new LiteralExpression(xpand3MiddleEnd
+						.backendTypeForName(expr.getName()), sourcePos);
 			} catch (IllegalArgumentException exc) {
 			} // do nothing - this means
 			// it is not a type literal
@@ -175,8 +182,8 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 				final ExpressionBase thisExpr = new LocalVarEvalExpression(
 						org.eclipse.xtend.backend.common.SyntaxConstants.THIS,
 						sourcePos);
-				return createPropertyExpression(thisExpr, (Type) ctx.getThis().getValue(), expr
-						.getName().getValue(), sourcePos);
+				return createPropertyExpression(thisExpr, (Type) ctx.getThis()
+						.getValue(), expr.getName().getValue(), sourcePos);
 			}
 
 			throw new IllegalArgumentException("feature call "
@@ -189,23 +196,27 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 					sourcePos);
 		}
 	}
-	
+
 	/**
 	 * @param target
 	 * @return
 	 */
 	private Type analyze(AbstractExpression target) {
-		//TODO proper analyzation
-		return GenericsUtil.typeRef(frontendTypes.typeForName(TypeSystem.OBJECT));
+		// TODO proper analyzation
+		return GenericsUtil.typeRef(frontendTypes
+				.typeForName(TypeSystem.OBJECT));
 	}
 
-	private ExpressionBase createPropertyExpression(ExpressionBase target, Type type, String varName,
-			SourcePos sourcePos) {
+	private ExpressionBase createPropertyExpression(ExpressionBase target,
+			Type type, String varName, SourcePos sourcePos) {
 		if (isCollectionType(type)) {
-			if (CollectionType.INSTANCE.getProperties().keySet().contains(varName))
-				return new PropertyOnObjectExpression(target, varName, sourcePos);
+			if (CollectionType.INSTANCE.getProperties().keySet().contains(
+					varName))
+				return new PropertyOnObjectExpression(target, varName,
+						sourcePos);
 			else
-				return new PropertyOnCollectionExpression(target, varName, sourcePos);
+				return new PropertyOnCollectionExpression(target, varName,
+						sourcePos);
 		}
 
 		if (type.getDeclaredType().getName().equals(TypeSystem.OBJECT))
@@ -220,25 +231,7 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 	 */
 	private boolean isCollectionType(Type type) {
 		String name = type.getDeclaredType().getName();
-		return name.equals(TypeSystem.COLLECTION) || name.equals(TypeSystem.SET) || name.equals(TypeSystem.LIST);
+		return name.equals(TypeSystem.COLLECTION)
+				|| name.equals(TypeSystem.SET) || name.equals(TypeSystem.LIST);
 	}
-
-	/**
-	 * @param name
-	 * @return
-	 */
-	private BackendType backendTypeForName(Identifier name) {
-		DeclaredType dt = frontendTypes.typeForName(name.getValue());
-		if (dt == null) {
-			handleTransformationError("Couldn't resolve type for name '"
-					+ name.getValue() + "'", name);
-		}
-		BackendType backendType = backendTypes.findTypeForID(dt.getUniqueID());
-		if (backendType == null) {
-			handleTransformationError("No backend type found for ID '"
-					+ dt.getUniqueID() + "'", name);
-		}
-		return null;
-	}
-
 }

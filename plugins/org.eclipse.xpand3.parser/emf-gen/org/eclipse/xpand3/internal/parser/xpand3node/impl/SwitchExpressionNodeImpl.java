@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SwitchExpressionNodeImpl.java,v 1.3 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: SwitchExpressionNodeImpl.java,v 1.4 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -33,9 +33,9 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SwitchExpressionNodeImpl#getDefault <em>Default</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SwitchExpressionNodeImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SwitchExpressionNodeImpl#getCases <em>Cases</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SwitchExpressionNodeImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SwitchExpressionNodeImpl#getDefault <em>Default</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,14 +43,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  */
 public class SwitchExpressionNodeImpl extends CompositeNodeImpl implements SwitchExpressionNode {
 	/**
-	 * The cached value of the '{@link #getDefault() <em>Default</em>}' reference.
+	 * The cached value of the '{@link #getCases() <em>Cases</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefault()
+	 * @see #getCases()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode default_;
+	protected EList<CompositeNode> cases;
 
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
@@ -63,14 +63,14 @@ public class SwitchExpressionNodeImpl extends CompositeNodeImpl implements Switc
 	protected CompositeNode expression;
 
 	/**
-	 * The cached value of the '{@link #getCases() <em>Cases</em>}' reference list.
+	 * The cached value of the '{@link #getDefault() <em>Default</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCases()
+	 * @see #getDefault()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompositeNode> cases;
+	protected CompositeNode default_;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,14 +187,14 @@ public class SwitchExpressionNodeImpl extends CompositeNodeImpl implements Switc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
-				if (resolve) return getDefault();
-				return basicGetDefault();
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__CASES:
+				return getCases();
 			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__EXPRESSION:
 				if (resolve) return getExpression();
 				return basicGetExpression();
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__CASES:
-				return getCases();
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
+				if (resolve) return getDefault();
+				return basicGetDefault();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -208,15 +208,15 @@ public class SwitchExpressionNodeImpl extends CompositeNodeImpl implements Switc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
-				setDefault((CompositeNode)newValue);
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__CASES:
+				getCases().clear();
+				getCases().addAll((Collection<? extends CompositeNode>)newValue);
 				return;
 			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__EXPRESSION:
 				setExpression((CompositeNode)newValue);
 				return;
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__CASES:
-				getCases().clear();
-				getCases().addAll((Collection<? extends CompositeNode>)newValue);
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
+				setDefault((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -230,14 +230,14 @@ public class SwitchExpressionNodeImpl extends CompositeNodeImpl implements Switc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
-				setDefault((CompositeNode)null);
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__CASES:
+				getCases().clear();
 				return;
 			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__EXPRESSION:
 				setExpression((CompositeNode)null);
 				return;
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__CASES:
-				getCases().clear();
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
+				setDefault((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -251,12 +251,12 @@ public class SwitchExpressionNodeImpl extends CompositeNodeImpl implements Switc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
-				return default_ != null;
-			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__EXPRESSION:
-				return expression != null;
 			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__CASES:
 				return cases != null && !cases.isEmpty();
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__EXPRESSION:
+				return expression != null;
+			case Xpand3nodePackage.SWITCH_EXPRESSION_NODE__DEFAULT:
+				return default_ != null;
 		}
 		return super.eIsSet(featureID);
 	}

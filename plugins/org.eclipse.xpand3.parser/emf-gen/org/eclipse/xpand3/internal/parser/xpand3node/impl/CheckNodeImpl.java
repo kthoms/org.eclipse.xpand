@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CheckNodeImpl.java,v 1.3 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: CheckNodeImpl.java,v 1.4 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -28,28 +28,18 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getError <em>Error</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getMessage <em>Message</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getIfExpression <em>If Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getWarning <em>Warning</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getIfExpression <em>If Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.CheckNodeImpl#getMessage <em>Message</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode type;
-
 	/**
 	 * The cached value of the '{@link #getError() <em>Error</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -59,26 +49,6 @@ public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
 	 * @ordered
 	 */
 	protected LeafNode error;
-
-	/**
-	 * The cached value of the '{@link #getMessage() <em>Message</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMessage()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode message;
-
-	/**
-	 * The cached value of the '{@link #getIfExpression() <em>If Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIfExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode ifExpression;
 
 	/**
 	 * The cached value of the '{@link #getWarning() <em>Warning</em>}' reference.
@@ -91,6 +61,16 @@ public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
 	protected LeafNode warning;
 
 	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode type;
+
+	/**
 	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,6 +79,26 @@ public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
 	 * @ordered
 	 */
 	protected CompositeNode constraint;
+
+	/**
+	 * The cached value of the '{@link #getIfExpression() <em>If Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIfExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode ifExpression;
+
+	/**
+	 * The cached value of the '{@link #getMessage() <em>Message</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMessage()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode message;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -355,24 +355,24 @@ public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.CHECK_NODE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 			case Xpand3nodePackage.CHECK_NODE__ERROR:
 				if (resolve) return getError();
 				return basicGetError();
-			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
-				if (resolve) return getMessage();
-				return basicGetMessage();
-			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
-				if (resolve) return getIfExpression();
-				return basicGetIfExpression();
 			case Xpand3nodePackage.CHECK_NODE__WARNING:
 				if (resolve) return getWarning();
 				return basicGetWarning();
+			case Xpand3nodePackage.CHECK_NODE__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 			case Xpand3nodePackage.CHECK_NODE__CONSTRAINT:
 				if (resolve) return getConstraint();
 				return basicGetConstraint();
+			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
+				if (resolve) return getIfExpression();
+				return basicGetIfExpression();
+			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
+				if (resolve) return getMessage();
+				return basicGetMessage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -385,23 +385,23 @@ public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.CHECK_NODE__TYPE:
-				setType((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.CHECK_NODE__ERROR:
 				setError((LeafNode)newValue);
-				return;
-			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
-				setMessage((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
-				setIfExpression((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.CHECK_NODE__WARNING:
 				setWarning((LeafNode)newValue);
 				return;
+			case Xpand3nodePackage.CHECK_NODE__TYPE:
+				setType((CompositeNode)newValue);
+				return;
 			case Xpand3nodePackage.CHECK_NODE__CONSTRAINT:
 				setConstraint((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
+				setIfExpression((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
+				setMessage((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -415,23 +415,23 @@ public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.CHECK_NODE__TYPE:
-				setType((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.CHECK_NODE__ERROR:
 				setError((LeafNode)null);
-				return;
-			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
-				setMessage((CompositeNode)null);
-				return;
-			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
-				setIfExpression((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.CHECK_NODE__WARNING:
 				setWarning((LeafNode)null);
 				return;
+			case Xpand3nodePackage.CHECK_NODE__TYPE:
+				setType((CompositeNode)null);
+				return;
 			case Xpand3nodePackage.CHECK_NODE__CONSTRAINT:
 				setConstraint((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
+				setIfExpression((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
+				setMessage((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -445,18 +445,18 @@ public class CheckNodeImpl extends CompositeNodeImpl implements CheckNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.CHECK_NODE__TYPE:
-				return type != null;
 			case Xpand3nodePackage.CHECK_NODE__ERROR:
 				return error != null;
-			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
-				return message != null;
-			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
-				return ifExpression != null;
 			case Xpand3nodePackage.CHECK_NODE__WARNING:
 				return warning != null;
+			case Xpand3nodePackage.CHECK_NODE__TYPE:
+				return type != null;
 			case Xpand3nodePackage.CHECK_NODE__CONSTRAINT:
 				return constraint != null;
+			case Xpand3nodePackage.CHECK_NODE__IF_EXPRESSION:
+				return ifExpression != null;
+			case Xpand3nodePackage.CHECK_NODE__MESSAGE:
+				return message != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CastedExpressionNode.java,v 1.3 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: CastedExpressionNode.java,v 1.4 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,8 +16,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.CastedExpressionNode#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.CastedExpressionNode#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.CastedExpressionNode#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *

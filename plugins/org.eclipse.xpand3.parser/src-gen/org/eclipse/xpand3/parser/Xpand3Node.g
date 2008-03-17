@@ -28,8 +28,7 @@ package org.eclipse.xpand3.parser;
 
 r_file returns [CompositeNode cn]
 	@init{ cn = factory.createFileNode();
-	    }
-	@after{ cn = normalize(cn); }  :
+	    }  :
 	(((f_imports=r_nsImport { addToChildren(cn, f_imports); ((FileNode) cn).getImports().add(f_imports); })))* (((f_declarations=r_abstractDeclaration { addToChildren(cn, f_declarations); ((FileNode) cn).getDeclarations().add(f_declarations); })))* (EOF)
 ;
 

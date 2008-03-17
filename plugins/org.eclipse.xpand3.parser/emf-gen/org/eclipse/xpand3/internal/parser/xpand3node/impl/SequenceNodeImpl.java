@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: SequenceNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -28,24 +28,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SequenceNodeImpl#getTextSequences <em>Text Sequences</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SequenceNodeImpl#getStatements <em>Statements</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.SequenceNodeImpl#getTextSequences <em>Text Sequences</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class SequenceNodeImpl extends CompositeNodeImpl implements SequenceNode {
-	/**
-	 * The cached value of the '{@link #getTextSequences() <em>Text Sequences</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTextSequences()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<CompositeNode> textSequences;
-
 	/**
 	 * The cached value of the '{@link #getStatements() <em>Statements</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -55,6 +45,16 @@ public class SequenceNodeImpl extends CompositeNodeImpl implements SequenceNode 
 	 * @ordered
 	 */
 	protected EList<CompositeNode> statements;
+
+	/**
+	 * The cached value of the '{@link #getTextSequences() <em>Text Sequences</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTextSequences()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompositeNode> textSequences;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,10 +107,10 @@ public class SequenceNodeImpl extends CompositeNodeImpl implements SequenceNode 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
-				return getTextSequences();
 			case Xpand3nodePackage.SEQUENCE_NODE__STATEMENTS:
 				return getStatements();
+			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
+				return getTextSequences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,13 +124,13 @@ public class SequenceNodeImpl extends CompositeNodeImpl implements SequenceNode 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
-				getTextSequences().clear();
-				getTextSequences().addAll((Collection<? extends CompositeNode>)newValue);
-				return;
 			case Xpand3nodePackage.SEQUENCE_NODE__STATEMENTS:
 				getStatements().clear();
 				getStatements().addAll((Collection<? extends CompositeNode>)newValue);
+				return;
+			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
+				getTextSequences().clear();
+				getTextSequences().addAll((Collection<? extends CompositeNode>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,11 +144,11 @@ public class SequenceNodeImpl extends CompositeNodeImpl implements SequenceNode 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
-				getTextSequences().clear();
-				return;
 			case Xpand3nodePackage.SEQUENCE_NODE__STATEMENTS:
 				getStatements().clear();
+				return;
+			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
+				getTextSequences().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -162,10 +162,10 @@ public class SequenceNodeImpl extends CompositeNodeImpl implements SequenceNode 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
-				return textSequences != null && !textSequences.isEmpty();
 			case Xpand3nodePackage.SEQUENCE_NODE__STATEMENTS:
 				return statements != null && !statements.isEmpty();
+			case Xpand3nodePackage.SEQUENCE_NODE__TEXT_SEQUENCES:
+				return textSequences != null && !textSequences.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

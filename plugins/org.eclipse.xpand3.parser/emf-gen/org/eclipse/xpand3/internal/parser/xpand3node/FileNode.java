@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileNode.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: FileNode.java,v 1.5 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -18,8 +18,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode#getDeclarations <em>Declarations</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode#getImports <em>Imports</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.FileNode#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *

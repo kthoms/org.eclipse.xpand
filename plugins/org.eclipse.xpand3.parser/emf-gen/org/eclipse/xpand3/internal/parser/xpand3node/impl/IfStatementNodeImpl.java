@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IfStatementNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: IfStatementNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -33,36 +33,16 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfStatementNodeImpl#getElseIfs <em>Else Ifs</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfStatementNodeImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfStatementNodeImpl#getElse <em>Else</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfStatementNodeImpl#getSequence <em>Sequence</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfStatementNodeImpl#getElseIfs <em>Else Ifs</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.IfStatementNodeImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class IfStatementNodeImpl extends CompositeNodeImpl implements IfStatementNode {
-	/**
-	 * The cached value of the '{@link #getElseIfs() <em>Else Ifs</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElseIfs()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<CompositeNode> elseIfs;
-
-	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode expression;
-
 	/**
 	 * The cached value of the '{@link #getElse() <em>Else</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -82,6 +62,26 @@ public class IfStatementNodeImpl extends CompositeNodeImpl implements IfStatemen
 	 * @ordered
 	 */
 	protected CompositeNode sequence;
+
+	/**
+	 * The cached value of the '{@link #getElseIfs() <em>Else Ifs</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElseIfs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompositeNode> elseIfs;
+
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode expression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,17 +236,17 @@ public class IfStatementNodeImpl extends CompositeNodeImpl implements IfStatemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE_IFS:
-				return getElseIfs();
-			case Xpand3nodePackage.IF_STATEMENT_NODE__EXPRESSION:
-				if (resolve) return getExpression();
-				return basicGetExpression();
 			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE:
 				if (resolve) return getElse();
 				return basicGetElse();
 			case Xpand3nodePackage.IF_STATEMENT_NODE__SEQUENCE:
 				if (resolve) return getSequence();
 				return basicGetSequence();
+			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE_IFS:
+				return getElseIfs();
+			case Xpand3nodePackage.IF_STATEMENT_NODE__EXPRESSION:
+				if (resolve) return getExpression();
+				return basicGetExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -260,18 +260,18 @@ public class IfStatementNodeImpl extends CompositeNodeImpl implements IfStatemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE:
+				setElse((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.IF_STATEMENT_NODE__SEQUENCE:
+				setSequence((CompositeNode)newValue);
+				return;
 			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE_IFS:
 				getElseIfs().clear();
 				getElseIfs().addAll((Collection<? extends CompositeNode>)newValue);
 				return;
 			case Xpand3nodePackage.IF_STATEMENT_NODE__EXPRESSION:
 				setExpression((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE:
-				setElse((CompositeNode)newValue);
-				return;
-			case Xpand3nodePackage.IF_STATEMENT_NODE__SEQUENCE:
-				setSequence((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -285,17 +285,17 @@ public class IfStatementNodeImpl extends CompositeNodeImpl implements IfStatemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE_IFS:
-				getElseIfs().clear();
-				return;
-			case Xpand3nodePackage.IF_STATEMENT_NODE__EXPRESSION:
-				setExpression((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE:
 				setElse((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.IF_STATEMENT_NODE__SEQUENCE:
 				setSequence((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE_IFS:
+				getElseIfs().clear();
+				return;
+			case Xpand3nodePackage.IF_STATEMENT_NODE__EXPRESSION:
+				setExpression((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -309,14 +309,14 @@ public class IfStatementNodeImpl extends CompositeNodeImpl implements IfStatemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE_IFS:
-				return elseIfs != null && !elseIfs.isEmpty();
-			case Xpand3nodePackage.IF_STATEMENT_NODE__EXPRESSION:
-				return expression != null;
 			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE:
 				return else_ != null;
 			case Xpand3nodePackage.IF_STATEMENT_NODE__SEQUENCE:
 				return sequence != null;
+			case Xpand3nodePackage.IF_STATEMENT_NODE__ELSE_IFS:
+				return elseIfs != null && !elseIfs.isEmpty();
+			case Xpand3nodePackage.IF_STATEMENT_NODE__EXPRESSION:
+				return expression != null;
 		}
 		return super.eIsSet(featureID);
 	}

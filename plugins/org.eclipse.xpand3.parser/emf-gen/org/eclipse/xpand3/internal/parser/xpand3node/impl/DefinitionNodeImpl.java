@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: DefinitionNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,9 +27,9 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionNodeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionNodeImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionNodeImpl#getSequence <em>Sequence</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionNodeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionNodeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionNodeImpl#getParamList <em>Param List</em>}</li>
  * </ul>
  * </p>
@@ -38,14 +38,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  */
 public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionNode {
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
+	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getSequence()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode name;
+	protected CompositeNode sequence;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -58,14 +58,14 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	protected CompositeNode type;
 
 	/**
-	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSequence()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode sequence;
+	protected CompositeNode name;
 
 	/**
 	 * The cached value of the '{@link #getParamList() <em>Param List</em>}' reference.
@@ -256,15 +256,15 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.DEFINITION_NODE__NAME:
-				if (resolve) return getName();
-				return basicGetName();
-			case Xpand3nodePackage.DEFINITION_NODE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
 			case Xpand3nodePackage.DEFINITION_NODE__SEQUENCE:
 				if (resolve) return getSequence();
 				return basicGetSequence();
+			case Xpand3nodePackage.DEFINITION_NODE__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+			case Xpand3nodePackage.DEFINITION_NODE__NAME:
+				if (resolve) return getName();
+				return basicGetName();
 			case Xpand3nodePackage.DEFINITION_NODE__PARAM_LIST:
 				if (resolve) return getParamList();
 				return basicGetParamList();
@@ -280,14 +280,14 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.DEFINITION_NODE__NAME:
-				setName((CompositeNode)newValue);
+			case Xpand3nodePackage.DEFINITION_NODE__SEQUENCE:
+				setSequence((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.DEFINITION_NODE__TYPE:
 				setType((CompositeNode)newValue);
 				return;
-			case Xpand3nodePackage.DEFINITION_NODE__SEQUENCE:
-				setSequence((CompositeNode)newValue);
+			case Xpand3nodePackage.DEFINITION_NODE__NAME:
+				setName((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.DEFINITION_NODE__PARAM_LIST:
 				setParamList((CompositeNode)newValue);
@@ -304,14 +304,14 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.DEFINITION_NODE__NAME:
-				setName((CompositeNode)null);
+			case Xpand3nodePackage.DEFINITION_NODE__SEQUENCE:
+				setSequence((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.DEFINITION_NODE__TYPE:
 				setType((CompositeNode)null);
 				return;
-			case Xpand3nodePackage.DEFINITION_NODE__SEQUENCE:
-				setSequence((CompositeNode)null);
+			case Xpand3nodePackage.DEFINITION_NODE__NAME:
+				setName((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.DEFINITION_NODE__PARAM_LIST:
 				setParamList((CompositeNode)null);
@@ -328,12 +328,12 @@ public class DefinitionNodeImpl extends CompositeNodeImpl implements DefinitionN
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.DEFINITION_NODE__NAME:
-				return name != null;
-			case Xpand3nodePackage.DEFINITION_NODE__TYPE:
-				return type != null;
 			case Xpand3nodePackage.DEFINITION_NODE__SEQUENCE:
 				return sequence != null;
+			case Xpand3nodePackage.DEFINITION_NODE__TYPE:
+				return type != null;
+			case Xpand3nodePackage.DEFINITION_NODE__NAME:
+				return name != null;
 			case Xpand3nodePackage.DEFINITION_NODE__PARAM_LIST:
 				return paramList != null;
 		}

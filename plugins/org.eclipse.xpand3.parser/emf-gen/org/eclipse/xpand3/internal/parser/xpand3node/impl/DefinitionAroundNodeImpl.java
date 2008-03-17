@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DefinitionAroundNodeImpl.java,v 1.4 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: DefinitionAroundNodeImpl.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -28,9 +28,9 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionAroundNodeImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionAroundNodeImpl#getPointcut <em>Pointcut</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionAroundNodeImpl#getParamList <em>Param List</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionAroundNodeImpl#getSequence <em>Sequence</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionAroundNodeImpl#getParamList <em>Param List</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.DefinitionAroundNodeImpl#getPointcut <em>Pointcut</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,14 +48,14 @@ public class DefinitionAroundNodeImpl extends CompositeNodeImpl implements Defin
 	protected CompositeNode type;
 
 	/**
-	 * The cached value of the '{@link #getPointcut() <em>Pointcut</em>}' reference.
+	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPointcut()
+	 * @see #getSequence()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode pointcut;
+	protected CompositeNode sequence;
 
 	/**
 	 * The cached value of the '{@link #getParamList() <em>Param List</em>}' reference.
@@ -68,14 +68,14 @@ public class DefinitionAroundNodeImpl extends CompositeNodeImpl implements Defin
 	protected CompositeNode paramList;
 
 	/**
-	 * The cached value of the '{@link #getSequence() <em>Sequence</em>}' reference.
+	 * The cached value of the '{@link #getPointcut() <em>Pointcut</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSequence()
+	 * @see #getPointcut()
 	 * @generated
 	 * @ordered
 	 */
-	protected CompositeNode sequence;
+	protected CompositeNode pointcut;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -259,15 +259,15 @@ public class DefinitionAroundNodeImpl extends CompositeNodeImpl implements Defin
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
-				if (resolve) return getPointcut();
-				return basicGetPointcut();
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__PARAM_LIST:
-				if (resolve) return getParamList();
-				return basicGetParamList();
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__SEQUENCE:
 				if (resolve) return getSequence();
 				return basicGetSequence();
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__PARAM_LIST:
+				if (resolve) return getParamList();
+				return basicGetParamList();
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
+				if (resolve) return getPointcut();
+				return basicGetPointcut();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -283,14 +283,14 @@ public class DefinitionAroundNodeImpl extends CompositeNodeImpl implements Defin
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__TYPE:
 				setType((CompositeNode)newValue);
 				return;
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
-				setPointcut((CompositeNode)newValue);
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__SEQUENCE:
+				setSequence((CompositeNode)newValue);
 				return;
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__PARAM_LIST:
 				setParamList((CompositeNode)newValue);
 				return;
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__SEQUENCE:
-				setSequence((CompositeNode)newValue);
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
+				setPointcut((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -307,14 +307,14 @@ public class DefinitionAroundNodeImpl extends CompositeNodeImpl implements Defin
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__TYPE:
 				setType((CompositeNode)null);
 				return;
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
-				setPointcut((CompositeNode)null);
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__SEQUENCE:
+				setSequence((CompositeNode)null);
 				return;
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__PARAM_LIST:
 				setParamList((CompositeNode)null);
 				return;
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__SEQUENCE:
-				setSequence((CompositeNode)null);
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
+				setPointcut((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -330,12 +330,12 @@ public class DefinitionAroundNodeImpl extends CompositeNodeImpl implements Defin
 		switch (featureID) {
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__TYPE:
 				return type != null;
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
-				return pointcut != null;
-			case Xpand3nodePackage.DEFINITION_AROUND_NODE__PARAM_LIST:
-				return paramList != null;
 			case Xpand3nodePackage.DEFINITION_AROUND_NODE__SEQUENCE:
 				return sequence != null;
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__PARAM_LIST:
+				return paramList != null;
+			case Xpand3nodePackage.DEFINITION_AROUND_NODE__POINTCUT:
+				return pointcut != null;
 		}
 		return super.eIsSet(featureID);
 	}

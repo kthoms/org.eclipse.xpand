@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CollectionExpressionNode.java,v 1.3 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: CollectionExpressionNode.java,v 1.4 2008/03/17 10:55:26 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -17,8 +17,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.CollectionExpressionNode#getVariable <em>Variable</em>}</li>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.CollectionExpressionNode#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.CollectionExpressionNode#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.CollectionExpressionNode#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ImportNodeImpl.java,v 1.2 2008/03/13 08:40:01 jkohnlein Exp $
+ * $Id: ImportNodeImpl.java,v 1.3 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node.impl;
 
@@ -27,24 +27,14 @@ import org.eclipse.xpand3.internal.parser.xpand3node.Xpand3nodePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ImportNodeImpl#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ImportNodeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.impl.ImportNodeImpl#getNamespace <em>Namespace</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ImportNodeImpl extends CompositeNodeImpl implements ImportNode {
-	/**
-	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNamespace()
-	 * @generated
-	 * @ordered
-	 */
-	protected CompositeNode namespace;
-
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -54,6 +44,16 @@ public class ImportNodeImpl extends CompositeNodeImpl implements ImportNode {
 	 * @ordered
 	 */
 	protected CompositeNode type;
+
+	/**
+	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected CompositeNode namespace;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,12 +158,12 @@ public class ImportNodeImpl extends CompositeNodeImpl implements ImportNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
-				if (resolve) return getNamespace();
-				return basicGetNamespace();
 			case Xpand3nodePackage.IMPORT_NODE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
+			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
+				if (resolve) return getNamespace();
+				return basicGetNamespace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,11 +176,11 @@ public class ImportNodeImpl extends CompositeNodeImpl implements ImportNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
-				setNamespace((CompositeNode)newValue);
-				return;
 			case Xpand3nodePackage.IMPORT_NODE__TYPE:
 				setType((CompositeNode)newValue);
+				return;
+			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
+				setNamespace((CompositeNode)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,11 +194,11 @@ public class ImportNodeImpl extends CompositeNodeImpl implements ImportNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
-				setNamespace((CompositeNode)null);
-				return;
 			case Xpand3nodePackage.IMPORT_NODE__TYPE:
 				setType((CompositeNode)null);
+				return;
+			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
+				setNamespace((CompositeNode)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,10 +212,10 @@ public class ImportNodeImpl extends CompositeNodeImpl implements ImportNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
-				return namespace != null;
 			case Xpand3nodePackage.IMPORT_NODE__TYPE:
 				return type != null;
+			case Xpand3nodePackage.IMPORT_NODE__NAMESPACE:
+				return namespace != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,6 +1,6 @@
 grammar Xpand3Node;
 
-normalizable file  :
+file  :
 	(imports+=nsImport)*
 	(declarations+=abstractDeclaration)*
 	 EOF
@@ -132,7 +132,7 @@ protectStatement :
 // Xtend start
 
 check :
-	'context' type=type ('if' ifExpression=expression)? ('ERROR'|'WARNING') message=expression ':'
+	'context' type=type ('if' ifExpression=expression)? (error='ERROR'|warning='WARNING') message=expression ':'
 		constraint=expression ';'	
 ;
 

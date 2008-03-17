@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ElseIfStatementNode.java,v 1.4 2008/03/13 08:40:00 jkohnlein Exp $
+ * $Id: ElseIfStatementNode.java,v 1.5 2008/03/17 10:55:27 jkohnlein Exp $
  */
 package org.eclipse.xpand3.internal.parser.xpand3node;
 
@@ -16,8 +16,8 @@ import org.eclipse.tmf.common.node.CompositeNode;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ElseIfStatementNode#getSequence <em>Sequence</em>}</li>
  *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ElseIfStatementNode#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.xpand3.internal.parser.xpand3node.ElseIfStatementNode#getSequence <em>Sequence</em>}</li>
  * </ul>
  * </p>
  *

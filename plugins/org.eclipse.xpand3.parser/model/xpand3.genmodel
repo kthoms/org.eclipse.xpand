@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xpand3.frontend/emf-gen"
+    modelPluginID="org.eclipse.xpand3.frontend" modelName="Xpand3" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>xpand3.ecore</foreignModel>
+  <genPackages prefix="Xpand3" basePackage="org.eclipse" disposableProviderFactory="true"
+      ecorePackage="xpand3.ecore#/">
+    <genClasses image="false" ecoreClass="xpand3.ecore#//SyntaxElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//SyntaxElement/line"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//SyntaxElement/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//SyntaxElement/end"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//SyntaxElement/fileName"/>
+    </genClasses>
+    <genClasses ecoreClass="xpand3.ecore#//File">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//File/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//File/declarations"/>
+    </genClasses>
+    <genClasses ecoreClass="xpand3.ecore#//ImportStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//ImportStatement/importedId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//ImportStatement/exported"/>
+    </genClasses>
+    <genClasses ecoreClass="xpand3.ecore#//Identifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//Identifier/value"/>
+    </genClasses>
+    <genClasses ecoreClass="xpand3.ecore#//DeclaredParameter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//DeclaredParameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//DeclaredParameter/type"/>
+    </genClasses>
+    <nestedGenPackages prefix="Expression" disposableProviderFactory="true" ecorePackage="xpand3.ecore#//expression">
+      <genClasses image="false" ecoreClass="xpand3.ecore#//expression/AbstractExpression"/>
+      <genClasses ecoreClass="xpand3.ecore#//expression/BooleanOperation"/>
+      <genClasses ecoreClass="xpand3.ecore#//expression/Cast">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/Cast/type"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/Cast/target"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/ChainExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/ChainExpression/first"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/ChainExpression/next"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/ConstructorCallExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/ConstructorCallExpression/type"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/FeatureCall">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/FeatureCall/target"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/FeatureCall/name"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/CollectionExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/CollectionExpression/closure"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/CollectionExpression/eleName"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/OperationCall">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/OperationCall/params"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/TypeSelectExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/TypeSelectExpression/typeLiteral"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/GlobalVarExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/GlobalVarExpression/globalVarName"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/IfExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/IfExpression/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/IfExpression/thenPart"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/IfExpression/elsePart"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/LetExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/LetExpression/varExpression"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/LetExpression/targetExpression"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/LetExpression/varName"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/ListLiteral">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/ListLiteral/elements"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="xpand3.ecore#//expression/Literal">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/Literal/literalValue"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/BooleanLiteral"/>
+      <genClasses ecoreClass="xpand3.ecore#//expression/IntegerLiteral"/>
+      <genClasses ecoreClass="xpand3.ecore#//expression/NullLiteral"/>
+      <genClasses ecoreClass="xpand3.ecore#//expression/RealLiteral"/>
+      <genClasses ecoreClass="xpand3.ecore#//expression/StringLiteral"/>
+      <genClasses ecoreClass="xpand3.ecore#//expression/SwitchExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/SwitchExpression/switchExpr"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/SwitchExpression/defaultExpr"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/SwitchExpression/cases"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/Case">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/Case/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/Case/thenPart"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/BinaryOperation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/BinaryOperation/left"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/BinaryOperation/right"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/BinaryOperation/operator"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//expression/UnaryOperation">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//expression/UnaryOperation/operator"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference xpand3.ecore#//expression/UnaryOperation/operand"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Statement" disposableProviderFactory="true" ecorePackage="xpand3.ecore#//statement">
+      <genClasses image="false" ecoreClass="xpand3.ecore#//statement/AbstractStatement"/>
+      <genClasses ecoreClass="xpand3.ecore#//statement/ExpandStatement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//statement/ExpandStatement/foreach"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ExpandStatement/parameters"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ExpandStatement/separator"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ExpandStatement/target"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ExpandStatement/definition"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/ExpressionStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ExpressionStatement/expression"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/ErrorStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ErrorStatement/message"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="xpand3.ecore#//statement/AbstractStatementWithBody">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/AbstractStatementWithBody/body"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/FileStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/FileStatement/fileNameExpression"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/FileStatement/outletNameIdentifier"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//statement/FileStatement/once"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/ForEachStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ForEachStatement/target"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ForEachStatement/separator"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ForEachStatement/variable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ForEachStatement/iteratorName"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/IfStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/IfStatement/condition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/IfStatement/elseIf"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/LetStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/LetStatement/varName"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/LetStatement/varValue"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/ProtectStatement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ProtectStatement/commentStart"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ProtectStatement/commentEnd"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//statement/ProtectStatement/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//statement/ProtectStatement/disable"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//statement/TextStatement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//statement/TextStatement/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//statement/TextStatement/deleteLine"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Declaration" disposableProviderFactory="true" ecorePackage="xpand3.ecore#//declaration">
+      <genClasses image="false" ecoreClass="xpand3.ecore#//declaration/AbstractDeclaration">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/AbstractDeclaration/owner"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/AbstractDeclaration/params"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//declaration/AbstractDeclaration/isPrivate"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/AbstractDeclaration/guard"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="xpand3.ecore#//declaration/AbstractNamedDeclaration">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/AbstractNamedDeclaration/name"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//declaration/Definition">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/Definition/body"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//declaration/Extension">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//declaration/Extension/cached"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/Extension/body"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/Extension/returnType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="xpand3.ecore#//declaration/AbstractAspect">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/AbstractAspect/pointcut"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//declaration/AbstractAspect/wildparams"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//declaration/ExtensionAspect">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/ExtensionAspect/expression"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//declaration/DefinitionAspect">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/DefinitionAspect/body"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//declaration/Check">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//declaration/Check/errorSeverity"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/Check/msg"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/Check/constraint"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xpand3.ecore#//declaration/Check/feature"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//declaration/CreateExtension">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference xpand3.ecore#//declaration/CreateExtension/toBeCreated"/>
+      </genClasses>
+      <genClasses ecoreClass="xpand3.ecore#//declaration/JavaExtension">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/JavaExtension/javaType"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/JavaExtension/javaMethod"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xpand3.ecore#//declaration/JavaExtension/javaParamTypes"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

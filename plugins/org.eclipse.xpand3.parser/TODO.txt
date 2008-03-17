@@ -1,0 +1,10 @@
+TODO
+- Remaining cases in Node2AstTransformer
+- Whitespace handling
+- node size
+- incremental parsing
+- profiling and optimization
+- Java mapping
+
+DONE
+- "create" identifier

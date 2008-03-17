@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xpand3.parser/emf-gen"
-    modelPluginID="org.eclipse.xpand3.parser" modelName="Xpand3Node" importerID="org.eclipse.emf.importer.ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xpand3.frontend/emf-gen"
+    modelPluginID="org.eclipse.xpand3.frontend" modelName="Xpand3Node" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.tmf.common.runtime/src/org/eclipse/tmf/common/node/node.genmodel#//node">
   <foreignModel>Xpand3Node.ecore</foreignModel>
-  <genPackages prefix="Xpand3node" basePackage="org.eclipse.xpand3.internal.parser"
+  <genPackages prefix="Xpand3node" basePackage="org.eclipse.xpand3.internal.frontend.parser"
       disposableProviderFactory="true" ecorePackage="Xpand3Node.ecore#/">
     <genClasses ecoreClass="Xpand3Node.ecore#//FileNode">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xpand3Node.ecore#//FileNode/decl"/>

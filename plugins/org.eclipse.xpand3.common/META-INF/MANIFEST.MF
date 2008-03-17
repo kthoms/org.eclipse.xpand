@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.xpand3.common; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.xpand3.staticTypesystem,
+ org.eclipse.xpand3.staticTypesystem.impl,
+ org.eclipse.xpand3.staticTypesystem.util,
+ org.eclipse.xpand3.staticTypesystem.validation,
+ org.eclipse.xpand3.util,
+ staticTypesystem
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Eclipse-LazyStart: true

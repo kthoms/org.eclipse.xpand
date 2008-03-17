@@ -149,12 +149,17 @@ pointcut  :
 	   |'::' )*
 ;
 
-extension  : // TODO create <identifier> <name< (...)
+extension  : 
 	(private='private'|cached='cached'|create='create')* 
-	returnType=type? name=identifier '(' paramList=declaredParameterList? ')' ':'
-		('JAVA' javaReturnType=javaType '.' javaName=identifier '('(javaType (',' javaType )*)? ')'|	
-			extendBody=expression )';'
+	(=>(type identifier identifier) returnType=type createdName=identifier name=identifier |
+	=>(type identifier) returnType=type name=identifier  |
+	name=identifier)
+	'(' paramList=declaredParameterList? ')' ':'
+			(javaCall=javaCall | extendBody=expression) ';'
 ;
+
+javaCall :
+		'JAVA' javaReturnType=javaType '.' javaName=identifier '('(javaType (',' javaType )*)? ')'; 
 
 javaType  :
 	identifier  

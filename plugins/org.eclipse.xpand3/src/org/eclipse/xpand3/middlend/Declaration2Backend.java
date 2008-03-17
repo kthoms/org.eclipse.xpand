@@ -26,14 +26,13 @@ import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xpand3.declaration.AbstractAspect;
 import org.eclipse.xpand3.declaration.AbstractDeclaration;
 import org.eclipse.xpand3.declaration.AbstractNamedDeclaration;
-import org.eclipse.xpand3.declaration.Advice;
 import org.eclipse.xpand3.declaration.Check;
-import org.eclipse.xpand3.declaration.CreateExtensionStatement;
+import org.eclipse.xpand3.declaration.CreateExtension;
 import org.eclipse.xpand3.declaration.Definition;
 import org.eclipse.xpand3.declaration.DefinitionAspect;
 import org.eclipse.xpand3.declaration.Extension;
 import org.eclipse.xpand3.declaration.ExtensionAspect;
-import org.eclipse.xpand3.declaration.JavaExtensionStatement;
+import org.eclipse.xpand3.declaration.JavaExtension;
 import org.eclipse.xpand3.declaration.util.DeclarationSwitch;
 import org.eclipse.xpand3.statement.AbstractStatement;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
@@ -116,8 +115,7 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 	}
 
 	@Override
-	public Object caseCreateExtensionStatement(
-			CreateExtensionStatement createExtension) {
+	public Object caseCreateExtension(CreateExtension createExtension) {
 		ExpressionBase body = getExpression2Backend().doSwitch(
 				createExtension.getBody());
 		// TODO: return type (currently not in frontend AST model)
@@ -159,7 +157,7 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 	}
 
 	@Override
-	public Object caseJavaExtensionStatement(JavaExtensionStatement object) {
+	public Object caseJavaExtension(JavaExtension object) {
 		throw new RuntimeException("Not implemented yet");
 		// TODO
 	}
@@ -185,13 +183,6 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 
 	@Override
 	public Object caseAbstractNamedDeclaration(AbstractNamedDeclaration object) {
-		xpand3MiddleEnd.handleTransformationError(
-				"Method should never be called", null);
-		return null;
-	}
-
-	@Override
-	public Object caseAdvice(Advice object) {
 		xpand3MiddleEnd.handleTransformationError(
 				"Method should never be called", null);
 		return null;

@@ -26,9 +26,8 @@ public class ParseFacade {
 			return null;
 		}
 		Node2AstTransformer node2AstTransformer = new Node2AstTransformer();
-		node2AstTransformer.doSwitch(rootNode);
-		File file = (File) rootNode;
-		file.setFileName(fileName);
-		return file;
+		File astFile = (File) node2AstTransformer.doSwitch(rootNode);
+		astFile.setFileName(fileName);
+		return astFile;
 	}
 }

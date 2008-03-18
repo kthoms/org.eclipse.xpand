@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="ASCII"?>
 <staticTypesystem:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:staticTypesystem="http://www.eclipse.org/m2t/xpand3/staticTypesystem" xsi:schemaLocation="http://www.eclipse.org/m2t/xpand3/staticTypesystem static_typesystem.ecore">
-  <declarations name="Object"/>
-  <declarations name="Boolean">
+  <declarations name="Object" uniqueID="{builtin}Object"/>
+  <declarations name="Boolean" uniqueID="{builtin}Boolean">
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="Integer">
+  <declarations name="Integer" uniqueID="{builtin}Integer">
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="Real">
+  <declarations name="Real" uniqueID="{builtin}Real">
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="String">
+  <declarations name="String" uniqueID="{builtin}String">
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="Collection">
+  <declarations name="Collection" uniqueID="{builtin}Collection">
     <properties name="size">
       <type xsi:type="staticTypesystem:Type" declaredType="//@declarations.2"/>
     </properties>
@@ -23,19 +23,19 @@
     <declaredTypeParameters name="T"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="List">
+  <declarations name="List" uniqueID="{builtin}List">
     <declaredTypeParameters name="T"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.5">
       <actualTypeArguments xsi:type="staticTypesystem:TypeVariable" declaredTypeParameter="//@declarations.6/@declaredTypeParameters.0"/>
     </superTypes>
   </declarations>
-  <declarations name="Set">
+  <declarations name="Set" uniqueID="{builtin}Set">
     <declaredTypeParameters name="T"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.5">
       <actualTypeArguments xsi:type="staticTypesystem:TypeVariable" declaredTypeParameter="//@declarations.7/@declaredTypeParameters.0"/>
     </superTypes>
   </declarations>
-  <declarations name="Map">
+  <declarations name="Map" uniqueID="{builtin}Map">
     <properties name="size">
       <type xsi:type="staticTypesystem:Type" declaredType="//@declarations.2"/>
     </properties>
@@ -46,7 +46,7 @@
     <declaredTypeParameters name="M"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="Type">
+  <declarations name="Type" uniqueID="{builtin}Type">
     <properties name="name">
       <type xsi:type="staticTypesystem:Type" declaredType="//@declarations.4"/>
     </properties>
@@ -60,15 +60,15 @@
     <declaredTypeParameters name="T"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="Property">
+  <declarations name="Property" uniqueID="{builtin}Property">
     <declaredTypeParameters name="T"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="StaticProperty">
+  <declarations name="StaticProperty" uniqueID="{builtin}StaticProperty">
     <declaredTypeParameters name="T"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>
-  <declarations name="Function">
+  <declarations name="Function" uniqueID="{builtin}Function">
     <declaredTypeParameters name="T"/>
     <superTypes xsi:type="staticTypesystem:Type" declaredType="//@declarations.0"/>
   </declarations>

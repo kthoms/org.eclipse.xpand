@@ -3,8 +3,8 @@ TODO
 - Whitespace handling
 - node size
 - incremental parsing
-- profiling and optimization
 - Java mapping
 
 DONE
 - "create" identifier
+- profiling and optimization

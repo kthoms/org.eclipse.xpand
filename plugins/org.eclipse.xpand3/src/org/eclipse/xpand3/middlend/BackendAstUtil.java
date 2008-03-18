@@ -15,6 +15,7 @@
  */
 package org.eclipse.xpand3.middlend;
 
+import org.eclipse.xpand3.Identifier;
 import org.eclipse.xpand3.SyntaxElement;
 import org.eclipse.xtend.backend.common.SourcePos;
 
@@ -31,4 +32,35 @@ public class BackendAstUtil {
 		return new SourcePos(se.getFileName(), se.getFileName(), se.getLine());
 	}
 
+	public static String operationName(Identifier operatorIdentifier) {
+		String operator = operatorIdentifier.getValue();
+		if ("+".equals(operator)) {
+			return "operatorPlus";
+		} else if ("-".equals(operator)) {
+			return "operatorMinus";
+		} else if ("*".equals(operator)) {
+			return "operatorMult";
+		} else if ("/".equals(operator)) {
+			return "operatorDiv";
+		} else if ("%".equals(operator)) {
+			return "operatorMod";
+		} else if ("==".equals(operator)) {
+			return "operatorEquals";
+		} else if ("!=".equals(operator)) {
+			return "operatorNotEquals";
+		} else if ("<".equals(operator)) {
+			return "operatorLess";
+		} else if ("<=".equals(operator)) {
+			return "operatorLessOrEquals";
+		} else if (">".equals(operator)) {
+			return "operatorGreater";
+		} else if (">=".equals(operator)) {
+			return "operatorGreaterOrEquals";
+		} else if ("implies".equals(operator)) {
+			return "operatorImplies";
+		} else if ("!".equals(operator)) {
+			return "operatorNot";
+		}
+		return null;
+	}
 }

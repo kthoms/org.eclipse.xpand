@@ -9,13 +9,13 @@ import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.declaration.AbstractDeclaration;
 import org.eclipse.xpand3.parser.ParseFacade;
 import org.eclipse.xpand3.staticTypesystem.DeclaredType;
-import org.eclipse.xpand3.util.LoaderFactory;
-import org.eclipse.xpand3.util.Xpand3Util;
+import org.eclipse.xpand3.util.Xpand3FileUtil;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.plugins.ImportedResource;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
@@ -39,9 +39,10 @@ public class Xpand3MiddleEnd implements LanguageSpecificMiddleEnd {
 	public Xpand3MiddleEnd() {
 	}
 
-	public boolean canHandle(String resourceName) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean canHandle(String xpandFileName) {
+		InputStream xpand3FileAsStream = Xpand3FileUtil.getXpand3FileAsStream(
+				xpandFileName, executionContext);
+		return xpand3FileAsStream != null;
 	}
 
 	public String getName() {
@@ -49,26 +50,24 @@ public class Xpand3MiddleEnd implements LanguageSpecificMiddleEnd {
 		return null;
 	}
 
-	public ParsedResource parseResource(String xpandResourceName) {
+	public ParsedResource parseResource(String xpandFileName) {
 		try {
-			String normalizedXpandResourceName = Xpand3Util
-					.normalizeXpandResourceName(xpandResourceName);
-			InputStream resourceAsStream = LoaderFactory.getClassLoader(
-					executionContext).getResourceAsStream(
-					normalizedXpandResourceName);
-			File xpandFile = ParseFacade.parseFile(normalizedXpandResourceName,
+			InputStream resourceAsStream = Xpand3FileUtil
+					.getXpand3FileAsStream(xpandFileName, executionContext);
+			File xpandFile = ParseFacade.parseFile(xpandFileName,
 					resourceAsStream);
 			ParsedResource parsedResource = new ParsedResource();
 			for (AbstractDeclaration declaration : xpandFile.getDeclarations()) {
 				Object beDeclaration = declaration2Backend
 						.doSwitch(declaration);
-				if (beDeclaration instanceof NamedFunction) {
+				if (beDeclaration instanceof SourceDefinedFunction) {
+					SourceDefinedFunction beFunction = (SourceDefinedFunction) beDeclaration;
+					NamedFunction namedFunction = new NamedFunction(beFunction
+							.getName(), beFunction);
 					if (declaration.isIsPrivate()) {
-						parsedResource.getPrivateFunctions().add(
-								(NamedFunction) beDeclaration);
+						parsedResource.getPrivateFunctions().add(namedFunction);
 					} else {
-						parsedResource.getPublicFunctions().add(
-								(NamedFunction) beDeclaration);
+						parsedResource.getPublicFunctions().add(namedFunction);
 					}
 				} else if (beDeclaration instanceof AroundAdvice) {
 					parsedResource.getAdvice()
@@ -99,6 +98,8 @@ public class Xpand3MiddleEnd implements LanguageSpecificMiddleEnd {
 		expression2Backend = new Expression2Backend(this);
 		declaration2Backend = new Declaration2Backend(this);
 		statement2Backend = new Statement2Backend(this);
+		// TODO: which frontendTypeSystem?
+		frontendTypeSystem = TypeSystem.BUILTIN_TYPESYSTEM;
 	}
 
 	public BackendType backendTypeForName(Identifier name) {
@@ -107,14 +108,12 @@ public class Xpand3MiddleEnd implements LanguageSpecificMiddleEnd {
 			handleTransformationError("Couldn't resolve type for name '"
 					+ name.getValue() + "'", name);
 		}
-		BackendType backendType = null;
-		// TODO perform mapping
-		// backendTypeSystem.findTypeForID(dt.getUniqueID());
+		BackendType backendType = backendTypeSystem.findType(dt.getUniqueID());
 		if (backendType == null) {
 			handleTransformationError("No backend type found for ID '"
 					+ dt.getUniqueID() + "'", name);
 		}
-		return null;
+		return backendType;
 	}
 
 	public void handleTransformationError(String message, Identifier name) {

@@ -35,7 +35,10 @@ import org.eclipse.xpand3.declaration.ExtensionAspect;
 import org.eclipse.xpand3.declaration.JavaExtension;
 import org.eclipse.xpand3.declaration.util.DeclarationSwitch;
 import org.eclipse.xpand3.statement.AbstractStatement;
+import org.eclipse.xtend.backend.aop.AdviceParamType;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
+import org.eclipse.xtend.backend.aop.ExecutionPointcut;
+import org.eclipse.xtend.backend.aop.Pointcut;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
@@ -63,7 +66,28 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 		return xpand3MiddleEnd.getStatement2Backend();
 	}
 
-	private Function createSourceDefinedFunctionFromAbstractDeclaration(
+	private Pointcut createPointcutFromAspect(AbstractAspect aspect) {
+		String functionNamePattern = aspect.getPointcut().getValue();
+		EList<DeclaredParameter> declaredParams = aspect.getParams();
+		int numDeclaredParams = declaredParams.size();
+		List<Pair<String, AdviceParamType>> params = new ArrayList<Pair<String, AdviceParamType>>(
+				numDeclaredParams);
+		for (DeclaredParameter declaredParam : declaredParams) {
+			String paramName = declaredParam.getName().getValue();
+			BackendType backendType = xpand3MiddleEnd
+					.backendTypeForName(declaredParam.getType());
+			AdviceParamType adviceParamType = new AdviceParamType(backendType,
+					true);
+			// TODO: including subtypes
+			params.add(new Pair<String, AdviceParamType>(paramName,
+					adviceParamType));
+		}
+		Pointcut pointcut = new ExecutionPointcut(functionNamePattern, params,
+				false, null);
+		return pointcut;
+	}
+
+	private Function createFunctionFromDeclaration(
 			AbstractDeclaration declaration, String name, ExpressionBase body,
 			boolean isCached, Pair<String, BackendType>... additionalParameters) {
 		EList<DeclaredParameter> declaredParams = declaration.getParams();
@@ -82,22 +106,24 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 			paramBackendTypes.add(xpand3MiddleEnd
 					.backendTypeForName(declaredParam.getType()));
 		}
-		ExpressionBase guard = getExpression2Backend().doSwitch(
-				declaration.getGuard());
+		ExpressionBase guard = null;
+		if (declaration.getGuard() != null) {
+			guard = getExpression2Backend().doSwitch(declaration.getGuard());
+		}
 		return new SourceDefinedFunction(name, paramNames, paramBackendTypes,
 				body, isCached, guard);
 	}
 
-	private SequenceExpression createSequenceExpressionFromStatementBody(
-			Definition object) {
-		List<ExpressionBase> bodyExpressions = new ArrayList<ExpressionBase>(
-				object.getBody().size());
-		for (AbstractStatement bodyStatement : object.getBody()) {
-			bodyExpressions.add(getStatement2Backend().doSwitch(bodyStatement));
+	private SequenceExpression createSequenceExpressionFromStatements(
+			SyntaxElement object, List<AbstractStatement> statements) {
+		List<ExpressionBase> expressions = new ArrayList<ExpressionBase>(
+				statements.size());
+		for (AbstractStatement bodyStatement : statements) {
+			expressions.add(getStatement2Backend().doSwitch(bodyStatement));
 		}
 		// TODO: what exactly is source position?
 		SequenceExpression sequenceExpression = new SequenceExpression(
-				bodyExpressions, getSourcePos(object));
+				expressions, getSourcePos(object));
 		return sequenceExpression;
 	}
 
@@ -110,8 +136,7 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 		ExpressionBase body = getExpression2Backend().doSwitch(
 				check.getConstraint());
 		// TODO: how to handle errorSeverity, message and feature
-		return createSourceDefinedFunctionFromAbstractDeclaration(check, "",
-				body, false);
+		return createFunctionFromDeclaration(check, "", body, false);
 	}
 
 	@Override
@@ -119,22 +144,25 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 		ExpressionBase body = getExpression2Backend().doSwitch(
 				createExtension.getBody());
 		// TODO: return type (currently not in frontend AST model)
-		return createSourceDefinedFunctionFromAbstractDeclaration(
-				createExtension, createExtension.getName().getValue(), body,
-				true);
+		return createFunctionFromDeclaration(createExtension, createExtension
+				.getName().getValue(), body, true);
 	}
 
 	@Override
 	public Object caseDefinition(Definition definition) {
-		SequenceExpression sequenceExpression = createSequenceExpressionFromStatementBody(definition);
-		return createSourceDefinedFunctionFromAbstractDeclaration(definition,
-				definition.getName().getValue(), sequenceExpression, false);
+		SequenceExpression sequenceExpression = createSequenceExpressionFromStatements(
+				definition, definition.getBody());
+		return createFunctionFromDeclaration(definition, definition.getName()
+				.getValue(), sequenceExpression, false);
 	}
 
 	@Override
-	public AroundAdvice caseDefinitionAspect(DefinitionAspect object) {
-		throw new RuntimeException("Not implemented yet");
-		// TODO
+	public AroundAdvice caseDefinitionAspect(DefinitionAspect definitionAspect) {
+		Pointcut pointcut = createPointcutFromAspect(definitionAspect);
+		// TODO isCached, varargs
+		SequenceExpression body = createSequenceExpressionFromStatements(
+				definitionAspect, definitionAspect.getBody());
+		return new AroundAdvice(body, pointcut, false);
 	}
 
 	@Override
@@ -143,17 +171,17 @@ public class Declaration2Backend extends DeclarationSwitch<Object> {
 				extension.getBody());
 		boolean isCached = extension.isCached();
 		// TODO: return type (currently not in frontend AST model)
-		return createSourceDefinedFunctionFromAbstractDeclaration(extension,
-				extension.getName().getValue(), body, isCached);
+		return createFunctionFromDeclaration(extension, extension.getName()
+				.getValue(), body, isCached);
 	}
 
 	@Override
-	public AroundAdvice caseExtensionAspect(ExtensionAspect object) {
-		throw new RuntimeException("Not implemented yet");
-		// TODO
-		// ExpressionBase body =
-		// getExpression2Backend().doSwitch(object.getExpression());
-		// return new AroundAdvice(body);
+	public AroundAdvice caseExtensionAspect(ExtensionAspect extensionAspect) {
+		ExpressionBase body = getExpression2Backend().doSwitch(
+				extensionAspect.getExpression());
+		Pointcut pointcut = createPointcutFromAspect(extensionAspect);
+		// TODO isCached, varargs
+		return new AroundAdvice(body, pointcut, false);
 	}
 
 	@Override

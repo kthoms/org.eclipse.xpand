@@ -27,21 +27,33 @@ import org.eclipse.xpand3.analyzation.TypeSystem;
 import org.eclipse.xpand3.expression.AbstractExpression;
 import org.eclipse.xpand3.expression.BinaryOperation;
 import org.eclipse.xpand3.expression.BooleanLiteral;
+import org.eclipse.xpand3.expression.BooleanOperation;
+import org.eclipse.xpand3.expression.Case;
 import org.eclipse.xpand3.expression.Cast;
 import org.eclipse.xpand3.expression.ChainExpression;
+import org.eclipse.xpand3.expression.CollectionExpression;
 import org.eclipse.xpand3.expression.ConstructorCallExpression;
 import org.eclipse.xpand3.expression.FeatureCall;
+import org.eclipse.xpand3.expression.GlobalVarExpression;
+import org.eclipse.xpand3.expression.IfExpression;
 import org.eclipse.xpand3.expression.IntegerLiteral;
+import org.eclipse.xpand3.expression.LetExpression;
 import org.eclipse.xpand3.expression.ListLiteral;
+import org.eclipse.xpand3.expression.Literal;
 import org.eclipse.xpand3.expression.NullLiteral;
+import org.eclipse.xpand3.expression.OperationCall;
 import org.eclipse.xpand3.expression.RealLiteral;
 import org.eclipse.xpand3.expression.StringLiteral;
+import org.eclipse.xpand3.expression.SwitchExpression;
+import org.eclipse.xpand3.expression.TypeSelectExpression;
+import org.eclipse.xpand3.expression.UnaryOperation;
 import org.eclipse.xpand3.expression.util.ExpressionSwitch;
 import org.eclipse.xpand3.staticTypesystem.Type;
 import org.eclipse.xpand3.util.SyntaxConstants;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.expr.CreateUncachedExpression;
+import org.eclipse.xtend.backend.expr.InvocationOnWhateverExpression;
 import org.eclipse.xtend.backend.expr.ListLiteralExpression;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
@@ -58,7 +70,13 @@ import org.eclipse.xtend.backend.types.builtin.CollectionType;
 public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 
 	private TypeSystem frontendTypes = null;
-	private AnalyzeContext ctx = null;
+	private AnalyzeContext ctx = new AnalyzeContext.AnalyzeContextImpl() {
+		// TODO: understand how to handle analyze contexts
+		@Override
+		public Var getVariable(String varName) {
+			return new Var(null);
+		}
+	};
 	private Xpand3MiddleEnd xpand3MiddleEnd;
 
 	public Expression2Backend(Xpand3MiddleEnd xpand3MiddleEnd) {
@@ -74,8 +92,15 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 	}
 
 	@Override
-	public ExpressionBase caseBinaryOperation(BinaryOperation object) {
-		return super.caseBinaryOperation(object);
+	public ExpressionBase caseBinaryOperation(BinaryOperation binaryOperation) {
+		String operationName = BackendAstUtil.operationName(binaryOperation
+				.getOperator());
+		List<ExpressionBase> params = new ArrayList<ExpressionBase>(2);
+		params.add(doSwitch(binaryOperation.getLeft()));
+		params.add(doSwitch(binaryOperation.getRight()));
+		InvocationOnWhateverExpression invocationExpression = new InvocationOnWhateverExpression(
+				operationName, params, true, getSourcePos(binaryOperation));
+		return invocationExpression;
 	}
 
 	@Override
@@ -85,41 +110,8 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 	}
 
 	@Override
-	public ExpressionBase caseIntegerLiteral(IntegerLiteral lit) {
-		return new LiteralExpression(
-				new Long(lit.getLiteralValue().getValue()), getSourcePos(lit));
-	}
-
-	@Override
-	public ExpressionBase caseRealLiteral(RealLiteral lit) {
-		return new LiteralExpression(new Double(lit.getLiteralValue()
-				.getValue()), getSourcePos(lit));
-	}
-
-	@Override
-	public ExpressionBase caseNullLiteral(NullLiteral lit) {
-		return new LiteralExpression(null, getSourcePos(lit));
-	}
-
-	@Override
 	public ExpressionBase caseCast(Cast object) {
 		return doSwitch(object.getTarget());
-	}
-
-	@Override
-	public ExpressionBase caseListLiteral(ListLiteral lit) {
-		final List<ExpressionBase> inner = new ArrayList<ExpressionBase>();
-
-		for (AbstractExpression e : lit.getElements())
-			inner.add(doSwitch(e));
-
-		return new ListLiteralExpression(inner, getSourcePos(lit));
-	}
-
-	@Override
-	public ExpressionBase caseStringLiteral(StringLiteral lit) {
-		return new LiteralExpression(lit.getLiteralValue().getValue(),
-				getSourcePos(lit));
 	}
 
 	@Override
@@ -142,6 +134,146 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 			ConstructorCallExpression expr) {
 		return new CreateUncachedExpression(xpand3MiddleEnd
 				.backendTypeForName(expr.getType()), getSourcePos(expr));
+	}
+
+	@Override
+	public ExpressionBase caseFeatureCall(FeatureCall object) {
+		return convert(object);
+	}
+
+	@Override
+	public ExpressionBase caseIntegerLiteral(IntegerLiteral lit) {
+		return new LiteralExpression(
+				new Long(lit.getLiteralValue().getValue()), getSourcePos(lit));
+	}
+
+	@Override
+	public ExpressionBase caseListLiteral(ListLiteral lit) {
+		final List<ExpressionBase> inner = new ArrayList<ExpressionBase>();
+
+		for (AbstractExpression e : lit.getElements())
+			inner.add(doSwitch(e));
+
+		return new ListLiteralExpression(inner, getSourcePos(lit));
+	}
+
+	@Override
+	public ExpressionBase caseNullLiteral(NullLiteral lit) {
+		return new LiteralExpression(null, getSourcePos(lit));
+	}
+
+	@Override
+	public ExpressionBase caseOperationCall(OperationCall object) {
+		ExpressionBase targetExpression = doSwitch(object.getTarget());
+		List<ExpressionBase> beParams = new ArrayList<ExpressionBase>(object
+				.getParams().size());
+		// TODO: Find out the difference between InvocationOnWhatever and
+		// InvocationOnObject
+		beParams.add(targetExpression);
+		for (AbstractExpression param : object.getParams()) {
+			beParams.add(doSwitch(param));
+		}
+		if (targetExpression instanceof LocalVarEvalExpression) {
+			// return new InvocationOnObjectExpression(
+			// object.getName().getValue(), beParams, false,
+			// getSourcePos(object));
+			return new InvocationOnWhateverExpression(object.getName()
+					.getValue(), beParams, true, getSourcePos(object));
+		} else {
+			return new InvocationOnWhateverExpression(object.getName()
+					.getValue(), beParams, true, getSourcePos(object));
+		}
+	}
+
+	@Override
+	public ExpressionBase caseRealLiteral(RealLiteral lit) {
+		return new LiteralExpression(new Double(lit.getLiteralValue()
+				.getValue()), getSourcePos(lit));
+	}
+
+	@Override
+	public ExpressionBase caseStringLiteral(StringLiteral lit) {
+		return new LiteralExpression(lit.getLiteralValue().getValue(),
+				getSourcePos(lit));
+	}
+
+	/*
+	 * not yet implemented
+	 */
+	@Override
+	public ExpressionBase caseBooleanOperation(BooleanOperation object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseCase(Case object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseCollectionExpression(CollectionExpression object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseGlobalVarExpression(GlobalVarExpression object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseIfExpression(IfExpression object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseLetExpression(LetExpression object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseLiteral(Literal object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseSwitchExpression(SwitchExpression object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseSyntaxElement(SyntaxElement object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseTypeSelectExpression(TypeSelectExpression object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	@Override
+	public ExpressionBase caseUnaryOperation(UnaryOperation object) {
+		throw new RuntimeException("Not implemented yet");
+		// TODO
+	}
+
+	/*
+	 * abstract casess
+	 */
+	@Override
+	public ExpressionBase caseAbstractExpression(AbstractExpression object) {
+		xpand3MiddleEnd.handleTransformationError(
+				"Method should never be called", null);
+		return null;
 	}
 
 	/**

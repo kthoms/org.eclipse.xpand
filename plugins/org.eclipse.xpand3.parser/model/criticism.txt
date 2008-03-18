@@ -1,6 +1,6 @@
 TMF common critics:
 
-- default label
+- default label for rules
 - no labels for keywords (template l:105)
 - label for parenthesized expr
 	rule: visibility=('public' | 'private' );

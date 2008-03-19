@@ -25,6 +25,6 @@ package org.eclipse.xtend.backend.common;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public interface ExecutionListener {
-    void preExecute (ExecutionContext ctx);
-    void postExecute (Object result, ExecutionContext ctx);
+    void preExecute (ExecutionContext ctx, ExpressionBase originator) throws EvaluationVetoException;
+    void postExecute (Object result, ExecutionContext ctx, ExpressionBase originator);
 }

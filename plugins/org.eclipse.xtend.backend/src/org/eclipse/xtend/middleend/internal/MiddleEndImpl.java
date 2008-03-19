@@ -123,10 +123,8 @@ public final class MiddleEndImpl implements MiddleEnd {
         final FunctionDefContextInternal result = createEmptyFdc();
         _fdcs.put (resourceName, result);
         
-        System.out.println ("*****" + resourceName);
         final Set<String> reexported = new HashSet<String> (); 
         collectReexportedResources (reexported, new HashSet<String> (), resourceName);
-        System.out.println ("/////" + resourceName);
         
         for (String importedReexp: reexported)
             for (NamedFunction f: parseResource (importedReexp).getPublicFunctions())

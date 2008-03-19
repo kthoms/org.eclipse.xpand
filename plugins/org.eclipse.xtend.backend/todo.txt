@@ -1,7 +1,5 @@
 todo
 ----
-merge emftypes into backend?
-
 "compiled" LangueSpecificMiddleEnd
 move to m2t.common
 

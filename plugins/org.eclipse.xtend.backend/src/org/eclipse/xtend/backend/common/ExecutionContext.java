@@ -43,4 +43,13 @@ public interface ExecutionContext {
     List<StacktraceEntry> getStacktrace ();
     
     ContributionStateContext getContributionStateContext ();
+    
+    /**
+     * This list of "global" ExecutionListeners allows the registration of listeners that
+     *  are notified of the evaluation of any expression. This is in addition to the list
+     *  of listeners registered per expression node.<br>
+     *  
+     * Listeners registered per node are notified *before* (pre) these global listeners.
+     */
+    List<ExecutionListener> getGlobalExecutionListeners ();
 }

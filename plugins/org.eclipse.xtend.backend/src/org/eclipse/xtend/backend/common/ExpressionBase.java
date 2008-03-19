@@ -39,14 +39,20 @@ public abstract class ExpressionBase {
         _listeners.add (l);
     }
     
-    private void firePreEvent (ExecutionContext ctx) {
+    private void firePreEvent (ExecutionContext ctx) throws EvaluationVetoException {
+        for (ExecutionListener l: ctx.getGlobalExecutionListeners())
+            l.preExecute (ctx, this);
+        
         for (ExecutionListener l: _listeners)
-            l.preExecute (ctx);
+            l.preExecute (ctx, this);
     }
 
     private void firePostEvent (Object result, ExecutionContext ctx) {
         for (int i=_listeners.size()-1; i >= 0; i--)
-            _listeners.get(i).postExecute (result, ctx);
+            _listeners.get(i).postExecute (result, ctx, this);
+
+        for (int i=ctx.getGlobalExecutionListeners().size()-1; i >= 0; i--)
+            ctx.getGlobalExecutionListeners().get(i).postExecute (result, ctx, this);
     }
     
     public final Object evaluate (ExecutionContext ctx) {
@@ -55,6 +61,9 @@ public abstract class ExpressionBase {
             final Object result = evaluateInternal (ctx);
             firePostEvent (result, ctx);
             return result;
+        }
+        catch (EvaluationVetoException exc) {
+            return exc.getSubstitutedExpressionResult();
         }
         catch (ExecutionException exc) {
             exc.addStackTraceElement (new StacktraceEntry (_sourcePos, ctx)); 

@@ -21,6 +21,7 @@ import org.eclipse.xtend.backend.common.Constants;
 import org.eclipse.xtend.backend.common.ContributionStateContext;
 import org.eclipse.xtend.backend.common.CreationCache;
 import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.common.ExecutionListener;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.FunctionInvoker;
 import org.eclipse.xtend.backend.common.LocalVarContext;
@@ -44,6 +45,8 @@ public final class ExecutionContextImpl implements ExecutionContext {
 	private AdviceContext _adviceContext = new AdviceContextImpl ();
 	
 	private final ContributionStateContext _contributionStateContext = new ContributionStateContext ();
+
+	private final List<ExecutionListener> _globalExecutionListeners = new ArrayList<ExecutionListener> ();
 	
 	public ExecutionContextImpl (FunctionDefContext initialFunctionDefContext, BackendTypesystem typesystem, boolean logStacktrace) {
 		_functionDefContext = initialFunctionDefContext;
@@ -105,5 +108,9 @@ public final class ExecutionContextImpl implements ExecutionContext {
 
     public void setAdviceContext (AdviceContext ctx) {
         _adviceContext = ctx;
+    }
+
+    public List<ExecutionListener> getGlobalExecutionListeners () {
+        return _globalExecutionListeners;
     }
 }

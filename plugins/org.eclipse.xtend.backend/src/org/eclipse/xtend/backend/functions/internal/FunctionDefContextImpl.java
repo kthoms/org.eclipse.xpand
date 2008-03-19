@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
@@ -103,7 +104,7 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     }
     
     public Object invoke (ExecutionContext ctx, String functionName, List<? extends Object> params) {
-    	final Collection<Function> candidates = findFunctionCandidates (ctx, functionName, params);
+    	final Collection<Function> candidates = findFunctionCandidates (functionName, typesForParameters (ctx.getTypesystem(), params));
     	
     	Function f = null;
     	try {
@@ -119,11 +120,18 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     /**
      * is public only for testing purposes
      */
-    public Collection<Function> findFunctionCandidates (ExecutionContext ctx, String functionName, List<? extends Object> params) {
+    public List<BackendType> typesForParameters (BackendTypesystem ts, List<?> params) {
         final List<BackendType> paramTypes = new ArrayList<BackendType>();
         for (Object o: params)
-            paramTypes.add (ctx.getTypesystem().findType(o));
-
+            paramTypes.add (ts.findType(o));
+        
+        return paramTypes;
+    }
+    
+    /**
+     * is public only for testing purposes
+     */
+    public Collection<Function> findFunctionCandidates (String functionName, List<BackendType> paramTypes) {
         try {
             return _byParamTypes.get (functionName, paramTypes);
         } catch (RuntimeException e) {
@@ -142,7 +150,7 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     }
 
     public Function getMatch (ExecutionContext ctx, String name, List<BackendType> params) {
-        final Collection<Function> candidates = findFunctionCandidates (ctx, name, params);
+        final Collection<Function> candidates = findFunctionCandidates (name, params);
         if (candidates.isEmpty())
             return null;
         if (candidates.size() > 1)
@@ -152,7 +160,7 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     }
     
     public boolean hasMatch (ExecutionContext ctx, String functionName, List<? extends Object> params) {
-        return findFunctionCandidates (ctx, functionName, params).size() > 0;
+        return findFunctionCandidates (functionName, typesForParameters (ctx.getTypesystem(), params)).size() > 0;
     }
     
     @Override

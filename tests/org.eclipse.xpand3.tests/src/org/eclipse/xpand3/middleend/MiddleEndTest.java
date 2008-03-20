@@ -2,6 +2,7 @@ package org.eclipse.xpand3.middleend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -34,15 +35,23 @@ public class MiddleEndTest extends TestCase {
 		assertNotNull(backendTypeObject);
 
 		FunctionDefContext functionDefContext = middleEnd
-				.getFunctions("org/eclipse/xpand3/middleend/test.ext");
+				.getFunctions("org/eclipse/xpand3/middleend/test");
+
 		ExecutionContext executionContext = middleEnd.getExecutionContext();
-		Function fooFunction = functionDefContext.getMatch(executionContext,
-				"foo", Arrays.asList(new BackendType[] { backendTypeObject,
-						backendTypeObject }));
-		assertNotNull(fooFunction);
-		Object result = fooFunction.invoke(executionContext, new Object[] {
-				"x", "y" });
+		List<Object> params = Arrays.asList(new Object[] { "x", "y" });
+		Object result = functionDefContext.invoke(executionContext, "foo",
+				params);
 		assertNotNull(result);
 		assertFalse(((Boolean) result).booleanValue());
+
+		Function function = functionDefContext.getMatch(executionContext,
+				"foo", Arrays.asList(new BackendType[] { backendTypeObject,
+						backendTypeObject }));
+		assertNotNull(function);
+		
+		Object result2 = executionContext.getFunctionInvoker().invoke(
+				executionContext, function, params);
+		assertEquals(result, result2);
+
 	}
 }

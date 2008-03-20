@@ -1,4 +1,4 @@
-// $ANTLR 3.0 ./src-gen/org/eclipse/xpand3/internal/frontend/parser/Xpand3Node.g 2008-03-18 09:15:11
+// $ANTLR 3.0 ./src-gen/org/eclipse/xpand3/internal/frontend/parser/Xpand3Node.g 2008-03-20 08:52:56
  	
 package org.eclipse.xpand3.internal.frontend.parser; 
 

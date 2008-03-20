@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionFactoryImpl.java,v 1.1 2008/03/17 14:39:10 jkohnlein Exp $
+ * $Id: ExpressionFactoryImpl.java,v 1.2 2008/03/20 10:15:42 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression.impl;
 
@@ -31,7 +31,7 @@ public class ExpressionFactoryImpl extends EFactoryImpl implements ExpressionFac
 	 */
 	public static ExpressionFactory init() {
 		try {
-			ExpressionFactory theExpressionFactory = (ExpressionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/m2t/xpand/xpand3/expession"); 
+			ExpressionFactory theExpressionFactory = (ExpressionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/m2t/xpand/xpand3/expression"); 
 			if (theExpressionFactory != null) {
 				return theExpressionFactory;
 			}

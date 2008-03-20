@@ -29,7 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Identifier"
         containment="true"/>
   </eClassifiers>
-  <eSubpackages name="expression" nsURI="http://www.eclipse.org/m2t/xpand/xpand3/expession"
+  <eSubpackages name="expression" nsURI="http://www.eclipse.org/m2t/xpand/xpand3/expression"
       nsPrefix="expression">
     <eClassifiers xsi:type="ecore:EClass" name="AbstractExpression" abstract="true"
         eSuperTypes="#//SyntaxElement"/>
@@ -202,7 +202,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="deleteLine" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="declaration" nsURI="http://www.eclipse.org/m2t/xpand/xpand3/declararation"
+  <eSubpackages name="declaration" nsURI="http://www.eclipse.org/m2t/xpand/xpand3/declaration"
       nsPrefix="declaration">
     <eClassifiers xsi:type="ecore:EClass" name="AbstractDeclaration" abstract="true"
         eSuperTypes="#//SyntaxElement">

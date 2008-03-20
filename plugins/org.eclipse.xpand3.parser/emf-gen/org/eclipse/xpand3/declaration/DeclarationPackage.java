@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationPackage.java,v 1.1 2008/03/17 14:39:12 jkohnlein Exp $
+ * $Id: DeclarationPackage.java,v 1.2 2008/03/20 10:15:42 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration;
 
@@ -43,7 +43,7 @@ public interface DeclarationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/m2t/xpand/xpand3/declararation";
+	String eNS_URI = "http://www.eclipse.org/m2t/xpand/xpand3/declaration";
 
 	/**
 	 * The package namespace name.

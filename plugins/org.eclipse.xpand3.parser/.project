@@ -20,9 +20,15 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>de.itemis.emf.ecore.registry.ePackageRegistryBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>de.itemis.emf.ecore.registry.ePackageRegistryNature</nature>
 	</natures>
 </projectDescription>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeclarationFactoryImpl.java,v 1.1 2008/03/17 14:39:13 jkohnlein Exp $
+ * $Id: DeclarationFactoryImpl.java,v 1.2 2008/03/20 10:15:42 jkohnlein Exp $
  */
 package org.eclipse.xpand3.declaration.impl;
 
@@ -31,7 +31,7 @@ public class DeclarationFactoryImpl extends EFactoryImpl implements DeclarationF
 	 */
 	public static DeclarationFactory init() {
 		try {
-			DeclarationFactory theDeclarationFactory = (DeclarationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/m2t/xpand/xpand3/declararation"); 
+			DeclarationFactory theDeclarationFactory = (DeclarationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/m2t/xpand/xpand3/declaration"); 
 			if (theDeclarationFactory != null) {
 				return theDeclarationFactory;
 			}

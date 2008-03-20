@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExpressionPackage.java,v 1.1 2008/03/17 14:39:06 jkohnlein Exp $
+ * $Id: ExpressionPackage.java,v 1.2 2008/03/20 10:15:42 jkohnlein Exp $
  */
 package org.eclipse.xpand3.expression;
 
@@ -42,7 +42,7 @@ public interface ExpressionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/m2t/xpand/xpand3/expession";
+	String eNS_URI = "http://www.eclipse.org/m2t/xpand/xpand3/expression";
 
 	/**
 	 * The package namespace name.

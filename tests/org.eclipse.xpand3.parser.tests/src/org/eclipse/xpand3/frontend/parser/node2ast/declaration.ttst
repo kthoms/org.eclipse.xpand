@@ -1,4 +1,9 @@
 testCase DeclarationTests
+import "http://www.eclipse.org/m2t/xpand/xpand3"
+import "http://www.eclipse.org/m2t/xpand/xpand3/declaration"
+import "http://www.eclipse.org/m2t/xpand/xpand3/expression"
+import "http://www.eclipse.org/m2t/xpand/xpand3/statement"
+
 test firstTest
 expr <#
 foo(Object this, Object that):

@@ -53,6 +53,7 @@ import org.eclipse.xpand3.util.SyntaxConstants;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.expr.CreateUncachedExpression;
+import org.eclipse.xtend.backend.expr.InvocationOnObjectExpression;
 import org.eclipse.xtend.backend.expr.InvocationOnWhateverExpression;
 import org.eclipse.xtend.backend.expr.ListLiteralExpression;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
@@ -167,18 +168,14 @@ public class Expression2Backend extends ExpressionSwitch<ExpressionBase> {
 		ExpressionBase targetExpression = doSwitch(object.getTarget());
 		List<ExpressionBase> beParams = new ArrayList<ExpressionBase>(object
 				.getParams().size());
-		// TODO: Find out the difference between InvocationOnWhatever and
-		// InvocationOnObject
 		beParams.add(targetExpression);
 		for (AbstractExpression param : object.getParams()) {
 			beParams.add(doSwitch(param));
 		}
 		if (targetExpression instanceof LocalVarEvalExpression) {
-			// return new InvocationOnObjectExpression(
-			// object.getName().getValue(), beParams, false,
-			// getSourcePos(object));
-			return new InvocationOnWhateverExpression(object.getName()
-					.getValue(), beParams, true, getSourcePos(object));
+			return new InvocationOnObjectExpression(
+					object.getName().getValue(), beParams, false,
+					getSourcePos(object));
 		} else {
 			return new InvocationOnWhateverExpression(object.getName()
 					.getValue(), beParams, true, getSourcePos(object));

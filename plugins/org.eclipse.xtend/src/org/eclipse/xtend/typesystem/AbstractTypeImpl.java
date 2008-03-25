@@ -172,6 +172,9 @@ public abstract class AbstractTypeImpl implements Type {
     }
 
     public Object convert(final Object src, final Class<?> targetType) {
+        if (src == null)
+            return null;
+        
         if (targetType.isInstance(src))
             return src;
         else

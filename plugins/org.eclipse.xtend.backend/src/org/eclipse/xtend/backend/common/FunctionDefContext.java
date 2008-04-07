@@ -25,7 +25,7 @@ public interface FunctionDefContext {
     Object invoke (ExecutionContext ctx, String functionName, List<? extends Object> params);
     
     /**
-     * for reflection. This method returns separately registered functions, not those "built into" the
+     * for reflection. This method returns all functions, both those separately registered and those "built into" the
      *  type.
      */
     Collection<NamedFunction> getByFirstParameterType (BackendType firstParameterType); 

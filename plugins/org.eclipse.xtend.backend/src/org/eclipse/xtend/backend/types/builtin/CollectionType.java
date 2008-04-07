@@ -26,8 +26,8 @@ public final class CollectionType extends AbstractType {
     private CollectionType() {
         super ("Collection", "{builtin}Collection"); 
     
-        register (new BuiltinProperty (this, LongType.INSTANCE, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null));
-        register (new BuiltinProperty (this, BooleanType.INSTANCE, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null));
+        register (new BuiltinProperty (this, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null));
+        register (new BuiltinProperty (this, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null));
     }
 }
 

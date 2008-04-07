@@ -44,7 +44,7 @@ public final class ReflectionOperations extends AbstractExecutionContextAware {
     }
 
     public Property getProperty (BackendType t, String name) {
-        return t.getProperties().get (name);
+        return t.getProperties(_ctx).get (name);
     }
     
     public StaticProperty getStaticProperty (BackendType t, String name) {

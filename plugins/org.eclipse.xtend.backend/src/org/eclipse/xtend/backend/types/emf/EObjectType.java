@@ -21,8 +21,6 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
-import org.eclipse.xtend.backend.types.builtin.ListType;
-import org.eclipse.xtend.backend.types.builtin.SetType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
 
 
@@ -36,25 +34,25 @@ public final class EObjectType extends AbstractType {
     private EObjectType () {
         super ("emf::EObject", EmfTypesystem.getUniqueIdentifier (EcorePackage.eINSTANCE.getEObject()));
 
-        register (new AbstractProperty (INSTANCE, INSTANCE, EObject.class, "eContainer", false) {
+        register (new AbstractProperty (INSTANCE, EObject.class, "eContainer", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContainer();
             }
         });
-        register (new AbstractProperty (INSTANCE, ListType.INSTANCE, java.util.List.class, "eContents", false) {
+        register (new AbstractProperty (INSTANCE, java.util.List.class, "eContents", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContents();
             }
         });
-        register (new AbstractProperty (INSTANCE, INSTANCE, EObject.class, "eRootContainer", false) {
+        register (new AbstractProperty (INSTANCE, EObject.class, "eRootContainer", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return EcoreUtil.getRootContainer((EObject) o);
             }
         });
-        register (new AbstractProperty (INSTANCE, SetType.INSTANCE, java.util.Set.class, "eAllContents", false) {
+        register (new AbstractProperty (INSTANCE, java.util.Set.class, "eAllContents", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 final Set<Object> result = new HashSet<Object>();

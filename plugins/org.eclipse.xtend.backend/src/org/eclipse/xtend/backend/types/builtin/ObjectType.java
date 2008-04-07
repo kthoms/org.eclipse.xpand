@@ -50,7 +50,7 @@ public final class ObjectType implements BackendType {
         return "{builtin}Object";
     }
 
-    public Map<String, ? extends Property> getProperties () {
+    public Map<String, ? extends Property> getProperties (ExecutionContext ctx) {
         return Collections.emptyMap();
     }
 

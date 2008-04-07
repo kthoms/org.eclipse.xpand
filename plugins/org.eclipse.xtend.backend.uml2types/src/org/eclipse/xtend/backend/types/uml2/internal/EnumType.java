@@ -18,7 +18,6 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
-import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.emf.EObjectType;
 
 
@@ -53,7 +52,7 @@ public final class EnumType extends AbstractType {
                 }
             });
         
-        register (new AbstractProperty (this, StringType.INSTANCE, String.class, "literal", false) {
+        register (new AbstractProperty (this, String.class, "literal", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 if (o == null)

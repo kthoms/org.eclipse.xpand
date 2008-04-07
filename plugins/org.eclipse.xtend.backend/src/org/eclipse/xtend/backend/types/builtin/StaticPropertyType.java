@@ -26,9 +26,8 @@ public final class StaticPropertyType extends AbstractType {
     private StaticPropertyType () {
         super ("StaticProperty", "{builtin}StaticProperty");
 
-        register (new BuiltinProperty (this, StringType.INSTANCE, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null));
-        register (new BuiltinProperty (this, TypeType.INSTANCE, "returnType", ReflectionHelper.getKnownMethod(Property.class, "getType"), null));
-        register (new BuiltinProperty (this, TypeType.INSTANCE, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null));
+        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null));
+        register (new BuiltinProperty (this, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null));
     }
 
     @Override

@@ -144,8 +144,8 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
         if (firstParameterType.getBuiltinOperations().isEmpty())
             return _byFirstParameterType.get (firstParameterType);
         
-        final List<NamedFunction> result = new ArrayList<NamedFunction> (_byFirstParameterType.get (firstParameterType));
-        result.addAll (firstParameterType.getBuiltinOperations());
+        final List<NamedFunction> result = new ArrayList<NamedFunction> (firstParameterType.getBuiltinOperations());
+        result.addAll (_byFirstParameterType.get (firstParameterType));
         return result;
     }
 

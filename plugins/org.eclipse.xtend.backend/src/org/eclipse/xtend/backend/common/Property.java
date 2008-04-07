@@ -19,10 +19,9 @@ public interface Property {
     String getName ();
     BackendType getOwner ();
 
-    BackendType getType ();
-    
     Object get (ExecutionContext ctx, Object o);
     void set (ExecutionContext ctx, Object o, Object newValue);
     
+    boolean isReadable ();
     boolean isWritable ();
 }

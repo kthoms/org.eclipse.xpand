@@ -75,7 +75,7 @@ public final class JavaBeansType implements BackendType {
             if (getDeclaringClass (pd) == Object.class)
                 continue;
             
-            _properties.put (pd.getName(), new JavaBeansProperty (pd, this, ts.getRootTypesystem().findType (pd.getPropertyType()))); //TODO apply primitive type conversion!
+            _properties.put (pd.getName(), new JavaBeansProperty (pd, this)); //TODO apply primitive type conversion!
         }
         
         // static properties
@@ -155,7 +155,7 @@ public final class JavaBeansType implements BackendType {
         return AbstractJavaBeansTypesystem.UNIQUE_REPRESENTATION_PREFIX + _javaClass.getName();
     }
 
-    public Map<String, ? extends Property> getProperties () {
+    public Map<String, ? extends Property> getProperties (ExecutionContext ctx) {
         return _properties;
     }
 

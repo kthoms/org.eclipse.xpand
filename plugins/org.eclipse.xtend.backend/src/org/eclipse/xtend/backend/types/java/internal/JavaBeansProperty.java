@@ -26,8 +26,8 @@ public final class JavaBeansProperty extends AbstractProperty {
     private final PropertyDescriptor _pd;
     
 
-    public JavaBeansProperty (PropertyDescriptor pd, BackendType owner, BackendType type) {
-        super (owner, type, pd.getPropertyType(), pd.getName(), pd.getWriteMethod() != null);
+    public JavaBeansProperty (PropertyDescriptor pd, BackendType owner) {
+        super (owner, pd.getPropertyType(), pd.getName(), pd.getReadMethod() != null, pd.getWriteMethod() != null);
         
         _pd = pd;
     }

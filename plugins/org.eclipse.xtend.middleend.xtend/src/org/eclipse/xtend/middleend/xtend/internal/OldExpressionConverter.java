@@ -60,12 +60,9 @@ import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
 import org.eclipse.xtend.backend.expr.OrExpression;
-import org.eclipse.xtend.backend.expr.PropertyOnCollectionExpression;
-import org.eclipse.xtend.backend.expr.PropertyOnObjectExpression;
 import org.eclipse.xtend.backend.expr.PropertyOnWhateverExpression;
 import org.eclipse.xtend.backend.expr.SequenceExpression;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
-import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.Pair;
@@ -366,17 +363,17 @@ public final class OldExpressionConverter {
     }
     
     private ExpressionBase createPropertyExpression (ExpressionBase target, Type type, String varName, SourcePos sourcePos) {
-        if (isCollectionType (type)) {
-            if (CollectionType.INSTANCE.getProperties().keySet().contains (varName))
-                return new PropertyOnObjectExpression (target, varName, sourcePos);
-            else
-                return new PropertyOnCollectionExpression (target, varName, sourcePos);
-        }
-        
-        if (isObjectType (type))
+//        if (isCollectionType (type)) {
+//            if (CollectionType.INSTANCE.getProperties().keySet().contains (varName))
+//                return new PropertyOnObjectExpression (target, varName, sourcePos);
+//            else
+//                return new PropertyOnCollectionExpression (target, varName, sourcePos);
+//        }
+//        
+//        if (isObjectType (type))
             return new PropertyOnWhateverExpression (target, varName, sourcePos);
         
-        return new PropertyOnObjectExpression (target, varName, sourcePos);
+//        return new PropertyOnObjectExpression (target, varName, sourcePos);
     }
     
     private ExpressionBase convertConstructorCallExpression (ConstructorCallExpression expr) {

@@ -26,8 +26,8 @@ public final class BuiltinProperty extends AbstractProperty {
     private final Method _getter;
     private final Method _setter;
     
-    public BuiltinProperty (BackendType owner, BackendType type, String name, Method getter, Method setter) {
-        super (owner, type, getJavaClassForProperty(getter, setter), name, setter != null);
+    public BuiltinProperty (BackendType owner, String name, Method getter, Method setter) {
+        super (owner, getJavaClassForProperty(getter, setter), name, getter != null, setter != null);
         
         _getter = getter;
         _setter = setter;

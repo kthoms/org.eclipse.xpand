@@ -25,8 +25,8 @@ public final class MapType extends AbstractType {
     private MapType () {
         super ("Map", "{builtin}Map"); 
         
-        register (new BuiltinProperty (CollectionType.INSTANCE, LongType.INSTANCE, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null));
-        register (new BuiltinProperty (CollectionType.INSTANCE, BooleanType.INSTANCE, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null));
+        register (new BuiltinProperty (CollectionType.INSTANCE, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null));
+        register (new BuiltinProperty (CollectionType.INSTANCE, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null));
     }
     
     public static final MapType INSTANCE = new MapType ();

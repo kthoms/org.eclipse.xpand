@@ -31,7 +31,7 @@ public interface BackendType {
     // stuff required for reflection / meta programming
     String getName ();
     Collection<? extends BackendType> getSuperTypes ();
-    Map<String, ? extends Property> getProperties ();
+    Map<String, ? extends Property> getProperties (ExecutionContext ctx);
     Map<String, ? extends StaticProperty> getStaticProperties ();
     
     String getUniqueRepresentation ();

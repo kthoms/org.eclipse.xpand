@@ -51,7 +51,7 @@ public final class PropertyOnWhateverExpression extends ExpressionBase {
         final BackendType t = ctx.getTypesystem().findType (o);
         
         if (CollectionType.INSTANCE.isAssignableFrom(t)) {
-            if (isProperty (t, _propertyName))
+            if (isProperty (ctx, t, _propertyName))
                 return t.getProperty (ctx, o, _propertyName);
             
             final Collection<Object> result = CollectionOperations.createMatchingCollection ((Collection<?>) o);
@@ -65,7 +65,7 @@ public final class PropertyOnWhateverExpression extends ExpressionBase {
             return t.getProperty (ctx, o, _propertyName);
     }
 
-    private boolean isProperty (BackendType t, String propName) {
-        return t.getProperties().containsKey (propName);
+    private boolean isProperty (ExecutionContext ctx, BackendType t, String propName) {
+        return t.getProperties(ctx).containsKey (propName);
     }
 }

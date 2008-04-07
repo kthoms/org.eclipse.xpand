@@ -26,9 +26,8 @@ public final class PropertyType extends AbstractType {
     private PropertyType () {
         super ("Property", "{builtin}Property");
         
-        register (new BuiltinProperty (this, StringType.INSTANCE, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null));
-        register (new BuiltinProperty (this, TypeType.INSTANCE, "returnType", ReflectionHelper.getKnownMethod(Property.class, "getType"), null));
-        register (new BuiltinProperty (this, TypeType.INSTANCE, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null));
+        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null));
+        register (new BuiltinProperty (this, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null));
     }
 
     @Override

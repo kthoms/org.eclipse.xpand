@@ -35,12 +35,19 @@ public final class TypeType extends AbstractType {
     private TypeType () {
         super ("Type", "{builtin}Type");
         
-        register (new BuiltinProperty (this, StringType.INSTANCE, "name", ReflectionHelper.getKnownMethod (BackendType.class, "getName"), null));
-        register (new BuiltinProperty (this, ListType.INSTANCE, "superTypes", ReflectionHelper.getKnownMethod (BackendType.class, "getSuperTypes"), null));
-        register (new BuiltinProperty (this, ListType.INSTANCE, "allProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getProperties"), null));
-        register (new BuiltinProperty (this, ListType.INSTANCE, "allStaticProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getStaticProperties"), null));
+        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod (BackendType.class, "getName"), null));
+        register (new BuiltinProperty (this, "superTypes", ReflectionHelper.getKnownMethod (BackendType.class, "getSuperTypes"), null));
+        register (new BuiltinProperty (this, "allStaticProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getStaticProperties"), null));
         
-        register (new AbstractProperty (this, ListType.INSTANCE, java.util.List.class, "allOperations", false) {
+        register (new AbstractProperty (this, java.util.Map.class, "allProperties", true, false) {
+
+            @Override
+            protected Object getRaw (ExecutionContext ctx, Object o) {
+                return ((BackendType) o).getProperties (ctx);
+            }
+        });
+        
+        register (new AbstractProperty (this, java.util.List.class, "allOperations", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 final BackendType t = (BackendType) o;
@@ -66,7 +73,7 @@ public final class TypeType extends AbstractType {
                 final BackendType t = (BackendType) params[0];
                 final String propname = (String) params[1];
                 
-                return t.getProperties().get(propname);
+                return t.getProperties(ctx).get(propname);
             }
 
             public boolean isCached () {

@@ -23,20 +23,18 @@ import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFac
  */
 public abstract class AbstractProperty implements Property {
     protected final BackendType _owner;
-    protected final BackendType _type;
     protected final String _name;
+    protected final boolean _isReadable;
     protected final boolean _isWritable;
-    protected final JavaBuiltinConverter _converter;
+    protected final JavaBuiltinConverter _converter; //TODO remove this
 
-    public AbstractProperty (BackendType owner, BackendType type, Class<?> javaType, String name, boolean isWritable) {
+    public AbstractProperty (BackendType owner, Class<?> javaType, String name, boolean isReadable, boolean isWritable) {
         if (owner == null)
-            throw new IllegalArgumentException ();
-        if (type == null)
             throw new IllegalArgumentException ();
         
         _owner = owner;
-        _type = type;
         _name = name;
+        _isReadable = isReadable;
         _isWritable = isWritable;
         
         _converter = JavaBuiltinConverterFactory.getConverter (javaType);
@@ -48,10 +46,6 @@ public abstract class AbstractProperty implements Property {
     
     public BackendType getOwner () {
         return _owner;
-    }
-    
-    public BackendType getType () {
-        return _type;
     }
     
     public final Object get (ExecutionContext ctx, Object o) {
@@ -68,6 +62,10 @@ public abstract class AbstractProperty implements Property {
     @SuppressWarnings("unused")
     public void setRaw (ExecutionContext ctx,  Object o, Object newValue) {
         throw new IllegalStateException ("property " + _name + " of type " + _owner.getName() + " can not be set");
+    }
+
+    public boolean isReadable () {
+        return _isReadable;
     }
     
     public boolean isWritable () {

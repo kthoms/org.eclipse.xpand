@@ -52,16 +52,16 @@ public final class EClassType extends AbstractType {
      *  operations that reference itself 
      */
     public void init (EmfTypesystem ts) {
-        initProperties (ts);
+        initProperties ();
         initOperations (ts);
     }
     
-    private void initProperties (EmfTypesystem ts) {
+    private void initProperties () {
         for (final EStructuralFeature feature: _cls.getEStructuralFeatures()) {
-            final BackendType t = ts.getTypeForETypedElement(feature);
+//            final BackendType t = ts.getTypeForETypedElement(feature);
             
             if (feature.isChangeable() && !feature.isUnsettable() && !feature.isDerived()) {
-                register (new AbstractProperty (this, t, feature.getEType().getInstanceClass(), feature.getName(), true) {
+                register (new AbstractProperty (this, feature.getEType().getInstanceClass(), feature.getName(), true, true) {
                     @Override
                     public Object getRaw (ExecutionContext ctx, Object o) {
                         return ((EObject) o).eGet(feature);
@@ -74,7 +74,7 @@ public final class EClassType extends AbstractType {
                 });
             }
             else {
-                register (new AbstractProperty (this, t, feature.getEType().getInstanceClass(), feature.getName(), false) {
+                register (new AbstractProperty (this, feature.getEType().getInstanceClass(), feature.getName(), true, false) {
                     @Override
                     public Object getRaw (ExecutionContext ctx, Object o) {
                         return ((EObject) o).eGet(feature);

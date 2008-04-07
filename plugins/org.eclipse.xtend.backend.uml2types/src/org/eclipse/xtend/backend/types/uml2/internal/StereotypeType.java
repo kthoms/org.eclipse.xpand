@@ -33,7 +33,6 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
-import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.uml2.UmlTypesystem;
 
 
@@ -48,12 +47,12 @@ public final class StereotypeType extends AbstractType {
         super (name, name, superTypes (umlTs, stereoType).toArray (new BackendType[0])); //TODO uniqueRepresentation
         _stereoType = stereoType;
         
-        for (StereotypeProperty stp: getProperties(this, stereoType, umlTs))
+        for (StereotypeProperty stp: getProperties(this, stereoType))
             register (stp);
     }
 
     
-    private Collection<StereotypeProperty> getProperties (BackendType owningType, Stereotype stereoType, UmlTypesystem umlTs) {
+    private Collection<StereotypeProperty> getProperties (BackendType owningType, Stereotype stereoType) {
         final Collection<StereotypeProperty> result = new HashSet<StereotypeProperty> ();
         
         for (Property attrib: stereoType.getAttributes()) {
@@ -68,8 +67,8 @@ public final class StereotypeType extends AbstractType {
                 continue;
             }
             
-            final BackendType backendType = (attrib.isMultivalued()) ? CollectionType.INSTANCE : umlTs.findType (umlType);
-            result.add (new StereotypeProperty (backendType, attrib.getName ()));
+//            final BackendType backendType = (attrib.isMultivalued()) ? CollectionType.INSTANCE : umlTs.findType (umlType);
+            result.add (new StereotypeProperty (attrib.getName ()));
         }
         
         return result;
@@ -133,8 +132,8 @@ public final class StereotypeType extends AbstractType {
     
     
     private final class StereotypeProperty extends AbstractProperty {
-        public StereotypeProperty (BackendType type, String name) {
-            super (StereotypeType.this, type, Object.class, name, false);
+        public StereotypeProperty (String name) {
+            super (StereotypeType.this, Object.class, name, true, false);
         }
         
         @Override

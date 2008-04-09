@@ -96,10 +96,11 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
             _publicFunctions.register (f);
         
         final NamedFunction old = _functions.get (f.getName(), f.getFunction().getParameterTypes().size()).register (f);
+        
         if (old != null && old.getFunction().getParameterTypes().size() > 0)
             _byFirstParameterType.get (old.getFunction().getParameterTypes().get (0)).remove (old);
-        
-        if (f.getFunction().getParameterTypes().size() > 0)
+
+        if (f.getFunction().getParameterTypes().size() > 0) 
             _byFirstParameterType.get (f.getFunction().getParameterTypes().get(0)).add (f);
     }
     

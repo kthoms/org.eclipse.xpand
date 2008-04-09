@@ -33,6 +33,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.uml2.UmlTypesystem;
 
 
@@ -47,12 +48,12 @@ public final class StereotypeType extends AbstractType {
         super (name, name, superTypes (umlTs, stereoType).toArray (new BackendType[0])); //TODO uniqueRepresentation
         _stereoType = stereoType;
         
-        for (StereotypeProperty stp: getProperties(this, stereoType))
-            register (stp);
+        for (StereotypeProperty stp: getProperties (this, stereoType, umlTs))
+            register (stp, stp.getType());
     }
 
     
-    private Collection<StereotypeProperty> getProperties (BackendType owningType, Stereotype stereoType) {
+    private Collection<StereotypeProperty> getProperties (BackendType owningType, Stereotype stereoType, UmlTypesystem umlTs) {
         final Collection<StereotypeProperty> result = new HashSet<StereotypeProperty> ();
         
         for (Property attrib: stereoType.getAttributes()) {
@@ -67,8 +68,8 @@ public final class StereotypeType extends AbstractType {
                 continue;
             }
             
-//            final BackendType backendType = (attrib.isMultivalued()) ? CollectionType.INSTANCE : umlTs.findType (umlType);
-            result.add (new StereotypeProperty (attrib.getName ()));
+            final BackendType backendType = (attrib.isMultivalued()) ? CollectionType.INSTANCE : umlTs.findType (umlType);
+            result.add (new StereotypeProperty (attrib.getName (), backendType));
         }
         
         return result;
@@ -132,8 +133,11 @@ public final class StereotypeType extends AbstractType {
     
     
     private final class StereotypeProperty extends AbstractProperty {
-        public StereotypeProperty (String name) {
+        private final BackendType _type;
+        
+        public StereotypeProperty (String name, BackendType type) {
             super (StereotypeType.this, Object.class, name, true, false);
+            _type = type;
         }
         
         @Override
@@ -169,6 +173,10 @@ public final class StereotypeType extends AbstractType {
                 }
             }
             throw new IllegalArgumentException("uml2 Element expected but was " + target.getClass().getName());
+        }
+        
+        private BackendType getType () {
+            return _type;
         }
         
         private Object getDynamicValue(final Object value) {

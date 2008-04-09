@@ -10,7 +10,6 @@ Contributors:
  */
 package org.eclipse.xtend.backend.types.java.internal;
 
-import java.beans.IntrospectionException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,22 +44,18 @@ public abstract class AbstractJavaBeansTypesystem implements BackendTypesystem {
         JavaBeansType result = _cache.get (cls);
         if (result != null)
             return result;
-        
-        result = new JavaBeansType (cls);
+
+        result = new JavaBeansType (cls, this);
         _cache.put (cls, result);
         
-        try {
-            result.init (this);
-        } catch (IntrospectionException e) {
-            ErrorHandler.handle(e);
-        }
+        result.init (this);
         return result;
     }
     
     public BackendType findType (Object o) {
         if (o == null)
             return null;
-        
+
         return findType (o.getClass());
     }
 

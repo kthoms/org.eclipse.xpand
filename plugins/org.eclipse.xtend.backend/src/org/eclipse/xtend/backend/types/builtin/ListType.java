@@ -28,4 +28,9 @@ public final class ListType extends AbstractType {
     public Object create() {
         return new ArrayList<Object>();
     }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
+    }
 }

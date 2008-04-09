@@ -52,7 +52,6 @@ public final class SyntheticPropertyExtracter {
             if (propAcc == null)
                 continue;
             
-            
             final AccessorPair ap = _accessorPairs.get (refinePropertyName (propAcc.getSecond()));
             
             final boolean isSetter = propAcc.getFirst();

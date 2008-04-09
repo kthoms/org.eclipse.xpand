@@ -21,6 +21,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
 
 
@@ -39,19 +40,19 @@ public final class EObjectType extends AbstractType {
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContainer();
             }
-        });
+        }, this);
         register (new AbstractProperty (INSTANCE, java.util.List.class, "eContents", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContents();
             }
-        });
+        }, CollectionType.INSTANCE);
         register (new AbstractProperty (INSTANCE, EObject.class, "eRootContainer", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return EcoreUtil.getRootContainer((EObject) o);
             }
-        });
+        }, this);
         register (new AbstractProperty (INSTANCE, java.util.Set.class, "eAllContents", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
@@ -62,12 +63,17 @@ public final class EObjectType extends AbstractType {
 
                 return result;
             }
-        });
+        }, CollectionType.INSTANCE);
     }
     
     @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
+    }
+    
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
     }
 }
 

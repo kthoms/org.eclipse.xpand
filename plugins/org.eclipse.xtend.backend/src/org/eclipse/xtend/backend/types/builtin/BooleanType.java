@@ -27,4 +27,9 @@ public final class BooleanType extends AbstractType {
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
     }
+    
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
+    }
 }

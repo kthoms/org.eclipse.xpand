@@ -35,9 +35,9 @@ public final class TypeType extends AbstractType {
     private TypeType () {
         super ("Type", "{builtin}Type");
         
-        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod (BackendType.class, "getName"), null));
-        register (new BuiltinProperty (this, "superTypes", ReflectionHelper.getKnownMethod (BackendType.class, "getSuperTypes"), null));
-        register (new BuiltinProperty (this, "allStaticProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getStaticProperties"), null));
+        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod (BackendType.class, "getName"), null), StringType.INSTANCE);
+        register (new BuiltinProperty (this, "superTypes", ReflectionHelper.getKnownMethod (BackendType.class, "getSuperTypes"), null), CollectionType.INSTANCE);
+        register (new BuiltinProperty (this, "allStaticProperties", ReflectionHelper.getKnownMethod (BackendType.class, "getStaticProperties"), null), CollectionType.INSTANCE);
         
         register (new AbstractProperty (this, java.util.Map.class, "allProperties", true, false) {
 
@@ -45,7 +45,7 @@ public final class TypeType extends AbstractType {
             protected Object getRaw (ExecutionContext ctx, Object o) {
                 return ((BackendType) o).getProperties (ctx);
             }
-        });
+        }, CollectionType.INSTANCE);
         
         register (new AbstractProperty (this, java.util.List.class, "allOperations", true, false) {
             @Override
@@ -56,7 +56,7 @@ public final class TypeType extends AbstractType {
                 result.addAll (t.getBuiltinOperations());
                 return result;
             } 
-        });
+        }, CollectionType.INSTANCE);
         
         register ("getProperty", new Function () {
             final List<? extends BackendType> _paramTypes = Arrays.asList (TypeType.this, StringType.INSTANCE);
@@ -88,6 +88,11 @@ public final class TypeType extends AbstractType {
                 throw new UnsupportedOperationException ();
             }
         });
+    }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
     }
 }
 

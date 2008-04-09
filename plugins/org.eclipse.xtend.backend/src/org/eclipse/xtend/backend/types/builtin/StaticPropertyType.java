@@ -26,13 +26,18 @@ public final class StaticPropertyType extends AbstractType {
     private StaticPropertyType () {
         super ("StaticProperty", "{builtin}StaticProperty");
 
-        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null));
-        register (new BuiltinProperty (this, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null));
+        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null), StringType.INSTANCE);
+        register (new BuiltinProperty (this, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null), TypeType.INSTANCE);
     }
 
     @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
+    }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
     }
 }
 

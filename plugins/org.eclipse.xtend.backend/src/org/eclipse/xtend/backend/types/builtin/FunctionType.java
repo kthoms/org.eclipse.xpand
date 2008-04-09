@@ -62,4 +62,9 @@ public final class FunctionType extends AbstractType {
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
     }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
+    }
 }

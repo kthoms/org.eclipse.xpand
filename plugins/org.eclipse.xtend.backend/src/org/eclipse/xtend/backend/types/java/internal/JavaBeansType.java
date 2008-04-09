@@ -10,27 +10,17 @@ Contributors:
  */
 package org.eclipse.xtend.backend.types.java.internal;
 
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
-import org.eclipse.xtend.backend.common.ExecutionContext;
-import org.eclipse.xtend.backend.common.NamedFunction;
-import org.eclipse.xtend.backend.common.Property;
-import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
-import org.eclipse.xtend.backend.types.builtin.VoidType;
+import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
 
@@ -38,52 +28,54 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class JavaBeansType implements BackendType {
+public final class JavaBeansType extends AbstractType {
     private final Class<?> _javaClass;
-    private final List<NamedFunction> _operations = new ArrayList<NamedFunction>();
-    private final Map<String, JavaBeansProperty> _properties = new HashMap<String, JavaBeansProperty> ();
-    private final Map<String, StaticProperty> _staticProperties = new HashMap<String, StaticProperty> ();
-    
-    private Collection<BackendType> _superTypes;
-    
-    public JavaBeansType (Class<?> cls) {
-        _javaClass = cls;
-    }
 
+    public JavaBeansType (Class<?> javaCls, BackendTypesystem ts) {
+        super (javaCls.getName().replace(".", "::"), AbstractJavaBeansTypesystem.UNIQUE_REPRESENTATION_PREFIX + javaCls.getName(), superTypes(javaCls, ts));
+        
+        _javaClass = javaCls;
+    }
+    
+    private static BackendType[] superTypes (Class<?> javaCls, BackendTypesystem ts) {
+        final List<Class<?>> resultRaw = new ArrayList<Class<?>> (Arrays.asList (javaCls.getInterfaces()));
+        
+        Class<?> superClass = javaCls.getSuperclass();
+        if (superClass != null)
+            resultRaw.add (superClass);
+
+        final List<BackendType> result = new ArrayList<BackendType> ();
+        for (Class<?> cls: resultRaw)
+            result.add(ts.getRootTypesystem ().findType (cls));
+        
+        return result.toArray (new BackendType[result.size()]);
+    }
+    
     /** 
      * the actual initialization is separated to deal with circular dependencies of operations and/or 
      *  properties referring to this very same type.
      */
-    void init (BackendTypesystem ts) throws IntrospectionException {
-        _superTypes = Collections.singleton (ts.getRootTypesystem().findType (_javaClass.getSuperclass()));
-
+    void init (BackendTypesystem ts) {
         for (Method mtd: _javaClass.getMethods()) {
             if (mtd.getDeclaringClass() == Object.class) // toString is added as a syslib function
                 continue;
-            
+
             final List<BackendType> paramTypes = new ArrayList<BackendType> ();
-            
+
             paramTypes.add (this); // first parameter is the object on which the method is called
             for (Class<?> cls: mtd.getParameterTypes()) {
                 paramTypes.add (ts.getRootTypesystem().findType(cls));
             }
-            
-            _operations.add (new NamedFunction (mtd.getName(), new JavaOperation (mtd, paramTypes, null)));
+
+            register (mtd.getName(), new JavaOperation (mtd, paramTypes, null));
         }
-        
-        for (PropertyDescriptor pd: Introspector.getBeanInfo(_javaClass).getPropertyDescriptors()) {
-            if (getDeclaringClass (pd) == Object.class)
-                continue;
-            
-            _properties.put (pd.getName(), new JavaBeansProperty (pd, this)); //TODO apply primitive type conversion!
-        }
-        
+
         // static properties
         for (Field field: _javaClass.getFields()) {
             final int mod = field.getModifiers();
             if (Modifier.isPublic(mod) && Modifier.isStatic(mod) && Modifier.isFinal(mod)) {
                 try {
-                    _staticProperties.put (field.getName(), new JavaBeansStaticProperty (field, this, ts.getRootTypesystem().findType (field.getType()), JavaBuiltinConverterFactory.getConverter (field.getType())));
+                    register (new JavaBeansStaticProperty (field, this, ts.getRootTypesystem().findType (field.getType()), JavaBuiltinConverterFactory.getConverter (field.getType())));
                 } catch (Exception e) {
                     ErrorHandler.handle (e);
                 }
@@ -95,18 +87,12 @@ public final class JavaBeansType implements BackendType {
         if (enumValues != null) {
             for (Object o : enumValues) {
                 final Enum<?> curEnum = (Enum<?>) o;
-                _staticProperties.put (curEnum.name(), new JavaBeansStaticProperty (this, ts.getRootTypesystem().findType(curEnum), curEnum.name(), curEnum));
+                register (new JavaBeansStaticProperty (this, ts.getRootTypesystem().findType(curEnum), curEnum.name(), curEnum));
             }
         }
     }
     
-    private Class<?> getDeclaringClass (PropertyDescriptor pd) {
-        if (pd.getReadMethod() != null)
-            return pd.getReadMethod().getDeclaringClass();
-        
-        return pd.getWriteMethod().getDeclaringClass();
-    }
-    
+    @Override
     public Object create () {
         try {
             return _javaClass.newInstance();
@@ -115,61 +101,18 @@ public final class JavaBeansType implements BackendType {
             return null; // to make the compiler happy - this is never executed
         }
     }
-
-    public List<NamedFunction> getBuiltinOperations () {
-        return _operations;
-    }
-
-    public Object getProperty (ExecutionContext ctx, Object o, String name) {
-        return findProperty(name).get (ctx, o);
-    }
-
-    private Property findProperty (String name) {
-        final Property result = _properties.get (name);
-        if (result == null)
-            throw new IllegalArgumentException (" no property " + name + " for type " + getName());
-        
-        return result;
-    }
-    
-    public void setProperty (ExecutionContext ctx, Object o, String name, Object value) {
-        findProperty(name).set (ctx, o, value);
-    }
-
-    public boolean isAssignableFrom (BackendType other) {
-        if (other == VoidType.INSTANCE)
-            return true;
-        
-        if (! (other instanceof JavaBeansType))
-            return false;
-        
-        final JavaBeansType jbt = (JavaBeansType) other;
-        return _javaClass.isAssignableFrom(jbt._javaClass);
-    }
-
-    public String getName () {
-        return _javaClass.getCanonicalName().replace(".", "::");
-    }
-
-    public String getUniqueRepresentation () {
-        return AbstractJavaBeansTypesystem.UNIQUE_REPRESENTATION_PREFIX + _javaClass.getName();
-    }
-
-    public Map<String, ? extends Property> getProperties (ExecutionContext ctx) {
-        return _properties;
-    }
-
-    public Map<String, ? extends StaticProperty> getStaticProperties () {
-        return _staticProperties;
-    }
-
-    public Collection<BackendType> getSuperTypes () {
-        return _superTypes;
-    }
     
     @Override
     public String toString () {
         return "JavaBeansType[" + _javaClass.getName()  + "]";
+    }
+    
+    @Override
+    public boolean equals (Object other) {
+        if (other == null || ! (other instanceof JavaBeansType))
+            return false;
+        
+        return ((JavaBeansType) other)._javaClass.equals (_javaClass);
     }
 }
 

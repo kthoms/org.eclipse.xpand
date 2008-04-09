@@ -18,6 +18,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.emf.EObjectType;
 
 
@@ -61,7 +62,7 @@ public final class EnumType extends AbstractType {
                 final EObject obj = (EObject) o;
                 return obj.eGet (obj.eClass ().getEStructuralFeature ("name"));
             }
-        });
+        }, StringType.INSTANCE);
     }
 
     @Override

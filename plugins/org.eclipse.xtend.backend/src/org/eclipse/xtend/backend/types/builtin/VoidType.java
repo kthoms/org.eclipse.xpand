@@ -29,4 +29,9 @@ public final class VoidType extends AbstractType {
     public boolean isAssignableFrom (BackendType other) {
         return other == this;
     }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
+    }
 }

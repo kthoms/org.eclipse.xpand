@@ -30,4 +30,9 @@ public final class SetType extends AbstractType {
     public Object create() {
         return new HashSet<Object>();
     }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
+    }
 }

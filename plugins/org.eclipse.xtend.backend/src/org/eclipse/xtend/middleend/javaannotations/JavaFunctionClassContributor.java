@@ -57,6 +57,9 @@ public final class JavaFunctionClassContributor implements LanguageSpecificMiddl
     public ParsedResource parseResource (String resourceName) {
         final ParsedResource result = new ParsedResource ();
         
+        if (classAsResource (Object.class).equals (resourceName))
+            return result;
+        
         //TODO imports
         //TODO advice
         //TODO guards

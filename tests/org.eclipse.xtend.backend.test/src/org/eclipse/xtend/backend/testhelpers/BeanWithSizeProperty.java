@@ -21,6 +21,7 @@ import java.util.List;
  */
 public class BeanWithSizeProperty {
     private long _size;
+    private String _writeOnly = "";
     
     public BeanWithSizeProperty (long size) {
         _size = size;
@@ -47,8 +48,31 @@ public class BeanWithSizeProperty {
         return "asdf" + s + getSize() + " - " + (getSize() - i);
     }
     
+    public String getReadonlyProp () {
+        return "r/o";
+    }
+    
+    public void setWriteOnlyProp (String s) {
+        _writeOnly = s;
+    }
+    
+    public String getABCdef () {
+        return "ABC";
+    }
+    
+    public boolean isXYZabc () {
+        return true;
+    }
+    
+    public boolean hasRS () {
+        return false;
+    }
+    
+    public void setR (String s) {
+    }
+    
     @Override
     public String toString () {
-        return "BeanWithSize [" + _size + "]";
+        return "BeanWithSize [" + _size + ": " + _writeOnly + "]";
     }
 }

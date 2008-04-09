@@ -26,12 +26,17 @@ public final class PropertyType extends AbstractType {
     private PropertyType () {
         super ("Property", "{builtin}Property");
         
-        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null));
-        register (new BuiltinProperty (this, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null));
+        register (new BuiltinProperty (this, "name", ReflectionHelper.getKnownMethod(Property.class, "getName"), null), StringType.INSTANCE);
+        register (new BuiltinProperty (this, "owner", ReflectionHelper.getKnownMethod(Property.class, "getOwner"), null), TypeType.INSTANCE);
     }
 
     @Override
     public boolean isAssignableFrom (BackendType other) {
         return other == this || other == VoidType.INSTANCE;
+    }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
     }
 }

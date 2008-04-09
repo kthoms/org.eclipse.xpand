@@ -55,11 +55,11 @@ public final class ObjectType implements BackendType {
     }
 
     public Object getProperty (ExecutionContext ctx, Object o, String name) {
-        throw new IllegalArgumentException ("ObjectType has no properties");
+        return Collections.emptyList();
     }
 
     public Map<String, ? extends StaticProperty> getStaticProperties () {
-        throw new IllegalArgumentException ("ObjectType has no static properties");
+        return Collections.emptyMap();
     }
 
     public Collection<? extends BackendType> getSuperTypes () {

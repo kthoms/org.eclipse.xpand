@@ -21,13 +21,16 @@ import java.util.Map;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
 import org.eclipse.xtend.backend.types.internal.SyntheticPropertyExtracter;
+import org.eclipse.xtend.backend.util.StringHelper;
 
 
 /**
@@ -65,12 +68,12 @@ public abstract class AbstractType implements BackendType {
         _superTypes = new ArrayList<BackendType> (superTypes);
     }
 
-    protected void register (Property p) {
+    protected void register (Property p, BackendType type) {
         _properties.put (p.getName(), p);
         
-//        register ("get" + StringHelper.firstUpper (p.getName()), new GetterOperation (p));
-//        if (p.isWritable())
-//            register ("set" + StringHelper.firstUpper (p.getName()), new SetterOperation (p));
+        register ("get" + StringHelper.firstUpper (p.getName()), new GetterOperation (p));
+        if (p.isWritable())
+            register ("set" + StringHelper.firstUpper (p.getName()), new SetterOperation (p, type));
     }
     
     protected void register (StaticProperty p) {
@@ -118,7 +121,7 @@ public abstract class AbstractType implements BackendType {
         //this could be statically initialized in the constructor, but is intentionally done dynamically to prepare for 
         //  "dynamic properties" that are attached at runtime
         final Map<String, Property> result = new HashMap<String, Property> ();
-        
+
         for (BackendType t: _superTypes)
             result.putAll (t.getProperties (ctx));
 
@@ -160,76 +163,83 @@ public abstract class AbstractType implements BackendType {
     
     //TODO synthetic setter operation --> middle end (requires knowledge of the property type!)
     
-//    private class SetterOperation implements Function {
-//        private final List<BackendType> _paramTypes = new ArrayList<BackendType> ();
-//        private final Property _property;
-//
-//        public SetterOperation (Property property) {
-//            _property = property;
-//
-//            _paramTypes.add (AbstractType.this);
-//            _paramTypes.add (property.getType ());
-//        }
-//        
-//        public ExpressionBase getGuard () {
-//            return null;
-//        }
-//
-//        public List<? extends BackendType> getParameterTypes () {
-//            return _paramTypes;
-//        }
-//
-//        public Object invoke (ExecutionContext ctx, Object[] params) {
-//            _property.set (ctx, params[0], params[1]);
-//            return null;
-//        }
-//
-//        public boolean isCached () {
-//            return false;
-//        }
-//
-//        public FunctionDefContext getFunctionDefContext () {
-//            return null;
-//        }
-//
-//        public void setFunctionDefContext (FunctionDefContext fdc) {
-//            throw new UnsupportedOperationException ();
-//        }
-//    }
-//    
-//    private class GetterOperation implements Function {
-//        private final List<BackendType> _paramTypes = new ArrayList<BackendType> ();
-//        private final Property _property;
-//        
-//        public GetterOperation (Property property) {
-//            _property = property;
-//            _paramTypes.add (AbstractType.this);
-//        }
-//        
-//        public ExpressionBase getGuard () {
-//            return null;
-//        }
-//        
-//        public List<? extends BackendType> getParameterTypes () {
-//            return _paramTypes;
-//        }
-//        
-//        public Object invoke (ExecutionContext ctx, Object[] params) {
-//            return _property.get (ctx, params[0]);
-//        }
-//        
-//        public boolean isCached () {
-//            return false;
-//        }
-//        
-//        public FunctionDefContext getFunctionDefContext () {
-//            return null;
-//        }
-//
-//        public void setFunctionDefContext (FunctionDefContext fdc) {
-//            throw new UnsupportedOperationException ();
-//        }
-//    }
+    private class SetterOperation implements Function {
+        private final List<BackendType> _paramTypes = new ArrayList<BackendType> ();
+        private final Property _property;
+
+        public SetterOperation (Property property, BackendType type) {
+            _property = property;
+
+            _paramTypes.add (AbstractType.this);
+            _paramTypes.add (type);
+        }
+        
+        public ExpressionBase getGuard () {
+            return null;
+        }
+
+        public List<? extends BackendType> getParameterTypes () {
+            return _paramTypes;
+        }
+
+        public Object invoke (ExecutionContext ctx, Object[] params) {
+            _property.set (ctx, params[0], params[1]);
+            return null;
+        }
+
+        public boolean isCached () {
+            return false;
+        }
+
+        public FunctionDefContext getFunctionDefContext () {
+            return null;
+        }
+
+        public void setFunctionDefContext (FunctionDefContext fdc) {
+            throw new UnsupportedOperationException ();
+        }
+    }
+    
+    private class GetterOperation implements Function {
+        private final List<BackendType> _paramTypes = new ArrayList<BackendType> ();
+        private final Property _property;
+        
+        public GetterOperation (Property property) {
+            _property = property;
+            _paramTypes.add (AbstractType.this);
+        }
+        
+        public ExpressionBase getGuard () {
+            return null;
+        }
+        
+        public List<? extends BackendType> getParameterTypes () {
+            return _paramTypes;
+        }
+        
+        public Object invoke (ExecutionContext ctx, Object[] params) {
+            return _property.get (ctx, params[0]);
+        }
+        
+        public boolean isCached () {
+            return false;
+        }
+        
+        public FunctionDefContext getFunctionDefContext () {
+            return null;
+        }
+
+        public void setFunctionDefContext (FunctionDefContext fdc) {
+            throw new UnsupportedOperationException ();
+        }
+    }
+    
+    
+    /**
+     * every type *must* implement a valid equals method, otherwise the backend will break!
+     */
+    @Override
+    public abstract boolean equals (Object other);
 }
 
 

@@ -25,8 +25,8 @@ public final class MapType extends AbstractType {
     private MapType () {
         super ("Map", "{builtin}Map"); 
         
-        register (new BuiltinProperty (CollectionType.INSTANCE, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null));
-        register (new BuiltinProperty (CollectionType.INSTANCE, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null));
+        register (new BuiltinProperty (CollectionType.INSTANCE, "size", ReflectionHelper.getKnownMethod(Collection.class, "size"), null), LongType.INSTANCE);
+        register (new BuiltinProperty (CollectionType.INSTANCE, "isEmpty", ReflectionHelper.getKnownMethod(Collection.class, "isEmpty"), null), BooleanType.INSTANCE);
     }
     
     public static final MapType INSTANCE = new MapType ();
@@ -34,5 +34,10 @@ public final class MapType extends AbstractType {
     @Override
     public Object create() {
         return new HashMap <Object,Object> ();
+    }
+
+    @Override
+    public boolean equals (Object other) {
+        return other == this;
     }
 }

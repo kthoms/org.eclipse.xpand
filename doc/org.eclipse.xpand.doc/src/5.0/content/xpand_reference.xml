@@ -1658,7 +1658,7 @@
         
         &lt;invoke value="my::example::Trafo::transform(inputSlot)"/&gt;
         &lt;outputSlot value="transformedModel"/&gt;
-        &lt;value="my::Advices,my::Advices2"/&gt;
+        &lt;advices value="my::Advices,my::Advices2"/&gt;
         &lt;/component&gt; </programlisting>
       </section>
       

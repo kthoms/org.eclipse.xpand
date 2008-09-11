@@ -3,9 +3,14 @@ package org.eclipse.xtend;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-public class AllAllTests extends TestSuite{
+public class AllAllTests extends TestSuite {
+	public static Test suite() {
+		AllAllTests suite = new AllAllTests();
+		return suite;
+	}
 
 	public AllAllTests() {
+		super("All Test for org.eclipse.xtend");
 		addTest(AllTests.suite());
 		addTest(org.eclipse.xtend.check.AllTests.suite());
 		addTest(org.eclipse.xtend.codeassist.AllTests.suite());
@@ -18,8 +23,7 @@ public class AllAllTests extends TestSuite{
 		addTest(org.eclipse.xtend.typesystem.baseimpl.types.AllTests.suite());
 		addTest(org.eclipse.xtend.typesystem.impl.javabeans.AllTests.suite());
 		addTest(org.eclipse.xtend.typesystem.impl.oawclassic.AllTests.suite());
-		addTest(org.eclipse.xtend.typesystem.javabeansimpl.AllTests.suite());
 		addTest(org.eclipse.xtend.typesystem.javabeansimpl.test.AllTests.suite());
 	}
-	
+
 }

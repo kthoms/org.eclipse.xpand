@@ -64,7 +64,7 @@ import org.eclipse.ui.progress.IWorkbenchSiteProgressService;
 
 public class RecipeBrowserView extends ViewPart implements IResourceChangeListener, ISelectionChangedListener {
 
-	public static final String ID = "org.openarchitectureware.eclipse.recipeBrowser.RecipeBrowserView"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.m2t.common.recipe.recipeBrowser.RecipeBrowserView"; //$NON-NLS-1$
 
 	private Table parameterTable;
 

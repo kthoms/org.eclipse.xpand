@@ -14,7 +14,6 @@ package org.eclipse.xtend.typesystem.emf;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -48,16 +47,13 @@ public class EmfRegistryMetaModel implements MetaModel {
 		return eobjectType;
 	}
 
-	private final Cache cache = new Cache() {
-
-		
+	private final Cache<EClassifier, Type> cache = new Cache<EClassifier, Type>() {
 
 		@Override
-		protected Object createNew(Object arg0) {
-			if (arg0 == null) {
+		protected Type createNew(EClassifier ele) {
+			if (ele == null) {
 				return null;
 			}
-			EClassifier ele = (EClassifier) arg0;
 			if (ele.getName() == null) {
 				return null;
 			}
@@ -98,7 +94,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 	private final HashSet<EClassifier> realTypes;
 
 	private final HashSet<EClassifier> booleanTypes;
-	
+
 	private final HashSet<EClassifier> objectTypes;
 
 	public void setUseSingleGlobalResourceSet(boolean b) {
@@ -146,14 +142,14 @@ public class EmfRegistryMetaModel implements MetaModel {
 		objectTypes.add(EcorePackage.eINSTANCE.getEJavaObject());
 	}
 
-	private final Cache typeForNameCache = new Cache() {
+	private final Cache<String, Type> typeForNameCache = new Cache<String, Type>() {
 		@Override
-		protected Object createNew(Object typeName) {
+		protected Type createNew(String typeName) {
+
 			if (typeName.equals(eobjectType.getName())) {
 				return eobjectType;
 			}
-			Set<ENamedElement> ele = getNamedElementRec(allPackages(),
-					(String) typeName);
+			Set<ENamedElement> ele = getNamedElementRec(allPackages(), typeName);
 			if (ele.size() > 1) {
 				boolean classifiers = true;
 				for (ENamedElement element : ele) {
@@ -167,9 +163,9 @@ public class EmfRegistryMetaModel implements MetaModel {
 			if (ele.isEmpty()) {
 				return null;
 			}
-			Object type = ele.iterator().next();
+			ENamedElement type = ele.iterator().next();
 			if (type instanceof EClassifier) {
-				return cache.get(type);
+				return cache.get((EClassifier) type);
 			}
 			return null;
 		}
@@ -261,7 +257,8 @@ public class EmfRegistryMetaModel implements MetaModel {
 		final Set<Type> result = new HashSet<Type>();
 		result.add(eobjectType);
 		for (EPackage pack : allPackages()) {
-			for (final Iterator iter = pack.eAllContents(); iter.hasNext();) {
+			for (final Iterator<EObject> iter = pack.eAllContents(); iter
+					.hasNext();) {
 				final Object obj = iter.next();
 				if (obj instanceof EClassifier) {
 					try {
@@ -334,8 +331,8 @@ public class EmfRegistryMetaModel implements MetaModel {
 		String namespace = sb.toString();
 		namespaces.add(namespace);
 
-		EList subpackages = thePackage.getESubpackages();
-		for (EPackage subPackage : (List<EPackage>) subpackages) {
+		EList<EPackage> subpackages = thePackage.getESubpackages();
+		for (EPackage subPackage : subpackages) {
 			traversePackage(namespace, namespaces, subPackage);
 		}
 	}

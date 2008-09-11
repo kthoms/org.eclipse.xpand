@@ -34,7 +34,7 @@ import org.osgi.framework.BundleContext;
 public class RecipePlugin extends AbstractUIPlugin implements ITraceLog {
     
     
-    private static final String PLUGIN_ID = "ID: org.openarchitectureware.recipe";
+    private static final String PLUGIN_ID = "ID: org.eclipse.m2t.common.recipe";
 	/**
 	 * The shared instance
 	 */

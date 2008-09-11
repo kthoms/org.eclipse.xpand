@@ -12,8 +12,9 @@ package org.eclipse.xtend.shared.ui.core.properties;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
@@ -58,8 +59,10 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
  * scope.
  * 
  * @author Peter Friese
+ * @author Dennis Huebner
  */
-public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndPreferencePage {
+public class MetamodelContributorsPropertyAndPreferencePage extends
+		PropertyAndPreferencePage {
 
 	private Button downButton;
 	private Button upButton;
@@ -67,7 +70,8 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 	/**
 	 * Renders a human readable representation of the meta model contributors.
 	 */
-	class TableLabelProvider extends LabelProvider implements ITableLabelProvider {
+	class TableLabelProvider extends LabelProvider implements
+			ITableLabelProvider {
 		public String getColumnText(Object element, int columnIndex) {
 			if (element instanceof Contributor) {
 				Contributor contributor = (Contributor) element;
@@ -85,58 +89,39 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 
 	private IPreferenceStore prefStore;
 
-	private LinkedList<Contributor> availableMetamodelContributors;
+	private List<Contributor> availableMetamodelContributors;
 	private Table table;
 
-	private Collection<Contributor> getEnabledMetamodelContributors() {
+	private List<Contributor> getMetamodelContributors(boolean includeDisabled) {
 		Map<String, Contributor> availableMetamodelContributors = MetamodelContributorRegistry
 				.getRegisteredMetamodelContributors();
 
 		// retrieve all configured metamodels
 		prefStore = getPreferenceStore();
 		fixMetamodelContributorPreferences(prefStore);
-		String rawString = prefStore.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
+		String rawString = prefStore
+				.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
 
-		LinkedList<Contributor> result = new LinkedList<Contributor>();
-
-		// first, get all enabled contributors
-		if (isNotEmpty(rawString)) {
-			String[] selected = rawString.split(",");
-
-			for (String metaModelContributorClassName : selected) {
-				Contributor contributor = availableMetamodelContributors.get(metaModelContributorClassName);
-				result.add(contributor);
-			}
-		}
-
-		return result;
-	}
-	
-	private LinkedList<Contributor> getMetamodelContributors() {
-		Map<String, Contributor> availableMetamodelContributors = MetamodelContributorRegistry
-				.getRegisteredMetamodelContributors();
-
-		// retrieve all configured metamodels
-		prefStore = getPreferenceStore();
-		fixMetamodelContributorPreferences(prefStore);
-		String rawString = prefStore.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
-
-		LinkedList<Contributor> result = new LinkedList<Contributor>();
+		List<Contributor> result = new ArrayList<Contributor>();
 
 		// first, get all enabled contributors
 		if (isNotEmpty(rawString)) {
 			String[] selected = rawString.split(",");
 
 			for (String metaModelContributorClassName : selected) {
-				Contributor contributor = availableMetamodelContributors.get(metaModelContributorClassName);
-				result.add(contributor);
+				Contributor contributor = availableMetamodelContributors
+						.get(metaModelContributorClassName);
+				if (contributor != null)
+					result.add(contributor);
 			}
 		}
-
-		// now, get disabled contributors
-		for (Contributor contributor : availableMetamodelContributors.values()) {
-			if (!result.contains(contributor)) {
-				result.add(contributor);
+		if (includeDisabled) {
+			// now, get disabled contributors
+			for (Contributor contributor : availableMetamodelContributors
+					.values()) {
+				if (!result.contains(contributor)) {
+					result.add(contributor);
+				}
 			}
 		}
 
@@ -144,14 +129,19 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 	}
 
 	/**
-	 * fix: package name from UML2MetamodelContributor was wrong. For compatibility
-	 * reasons we fix this name here on the fly. Later we could offer a migration path.
+	 * fix: package name from UML2MetamodelContributor was wrong. For
+	 * compatibility reasons we fix this name here on the fly. Later we could
+	 * offer a migration path.
 	 */
-	private static void fixMetamodelContributorPreferences(IPreferenceStore prefStore) {
-		String metamodelContr = prefStore.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
-		if (metamodelContr.indexOf("openarchitecturware")>0) {
-			metamodelContr = metamodelContr.replace("openarchitecturware", "openarchitectureware");
-			prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS, metamodelContr);
+	private static void fixMetamodelContributorPreferences(
+			IPreferenceStore prefStore) {
+		String metamodelContr = prefStore
+				.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
+		if (metamodelContr.indexOf("openarchitecturware") > 0) {
+			metamodelContr = metamodelContr.replace("openarchitecturware",
+					"openarchitectureware");
+			prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS,
+					metamodelContr);
 		}
 	}
 
@@ -165,25 +155,25 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		if (isProjectPreferencePage()) {
 			// get java project
 			IProject project = getProject();
-			store = new ScopedPreferenceStore(new ProjectScope(project), Activator.getId());
+			store = new ScopedPreferenceStore(new ProjectScope(project),
+					Activator.getId());
 		} else {
-			store = new ScopedPreferenceStore(new InstanceScope(), Activator.getId());
+			store = new ScopedPreferenceStore(new InstanceScope(), Activator
+					.getId());
 		}
 		return store;
 	}
-	
+
 	private void updateButtonStates() {
 		int index = table.getSelectionIndex();
 		if (index == 0) {
 			upButton.setEnabled(false);
-		}
-		else {
+		} else {
 			upButton.setEnabled(true);
 		}
 		if (index >= checkboxTableViewer.getTable().getItemCount() - 1) {
 			downButton.setEnabled(false);
-		}
-		else {
+		} else {
 			downButton.setEnabled(true);
 		}
 	}
@@ -198,11 +188,14 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		gridLayout.marginWidth = 0;
 		container.setLayout(gridLayout);
 
-		final Label activatedMetamodelContributorsLabel = new Label(container, SWT.NONE);
-		activatedMetamodelContributorsLabel.setText("&Activated metamodel contributors:");
+		final Label activatedMetamodelContributorsLabel = new Label(container,
+				SWT.NONE);
+		activatedMetamodelContributorsLabel
+				.setText("&Activated metamodel contributors:");
 		new Label(container, SWT.NONE);
 
-		checkboxTableViewer = CheckboxTableViewer.newCheckList(container, SWT.BORDER);
+		checkboxTableViewer = CheckboxTableViewer.newCheckList(container,
+				SWT.BORDER);
 		checkboxTableViewer.setLabelProvider(new TableLabelProvider());
 		checkboxTableViewer.setContentProvider(new ArrayContentProvider());
 		table = checkboxTableViewer.getTable();
@@ -215,7 +208,8 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		final Composite composite = new Composite(container, SWT.NONE);
-		composite.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false));
+		composite
+				.setLayoutData(new GridData(SWT.CENTER, SWT.TOP, false, false));
 		final GridLayout gridLayout_1 = new GridLayout();
 		composite.setLayout(gridLayout_1);
 
@@ -228,16 +222,19 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 					Object firstElement = structuredSelection.getFirstElement();
 					if (firstElement instanceof Contributor) {
 						Contributor contributor = (Contributor) firstElement;
-						int index = availableMetamodelContributors.indexOf(contributor);
+						int index = availableMetamodelContributors
+								.indexOf(contributor);
 						availableMetamodelContributors.remove(contributor);
-						availableMetamodelContributors.add(index - 1, contributor);
+						availableMetamodelContributors.add(index - 1,
+								contributor);
 						checkboxTableViewer.refresh();
 					}
 				}
 				updateButtonStates();
 			}
 		});
-		final GridData gridData_1 = new GridData(SWT.FILL, SWT.CENTER, false, false);
+		final GridData gridData_1 = new GridData(SWT.FILL, SWT.CENTER, false,
+				false);
 		gridData_1.widthHint = 75;
 		upButton.setLayoutData(gridData_1);
 		upButton.setText("&Up");
@@ -251,16 +248,19 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 					Object firstElement = structuredSelection.getFirstElement();
 					if (firstElement instanceof Contributor) {
 						Contributor contributor = (Contributor) firstElement;
-						int index = availableMetamodelContributors.indexOf(contributor);
+						int index = availableMetamodelContributors
+								.indexOf(contributor);
 						availableMetamodelContributors.remove(contributor);
-						availableMetamodelContributors.add(index + 1, contributor);
+						availableMetamodelContributors.add(index + 1,
+								contributor);
 						checkboxTableViewer.refresh();
 					}
 				}
 				updateButtonStates();
 			}
 		});
-		final GridData gridData = new GridData(SWT.FILL, SWT.CENTER, false, false);
+		final GridData gridData = new GridData(SWT.FILL, SWT.CENTER, false,
+				false);
 		gridData.widthHint = 75;
 		downButton.setLayoutData(gridData);
 		downButton.setText("&Down");
@@ -274,11 +274,12 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 	 * and visually checks the ones that are enabled.
 	 */
 	private void setupData() {
-		availableMetamodelContributors = getMetamodelContributors();
+		availableMetamodelContributors = getMetamodelContributors(true);
 		checkboxTableViewer.setInput(availableMetamodelContributors);
 
-		Collection<Contributor> enabledMetamodelContributors = getEnabledMetamodelContributors();
-		checkboxTableViewer.setCheckedElements(enabledMetamodelContributors.toArray());
+		Collection<Contributor> enabledMetamodelContributors = getMetamodelContributors(false);
+		checkboxTableViewer.setCheckedElements(enabledMetamodelContributors
+				.toArray());
 	}
 
 	@Override
@@ -294,15 +295,18 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 	@Override
 	protected boolean hasProjectSpecificOptions(IProject project) {
 		IPreferenceStore preferenceStore = getPreferenceStore();
-		return preferenceStore.getBoolean(PreferenceConstants.PROJECT_SPECIFIC_METAMODEL);
+		return preferenceStore
+				.getBoolean(PreferenceConstants.PROJECT_SPECIFIC_METAMODEL);
 	}
 
 	@Override
 	public boolean performOk() {
 		if (isProjectPreferencePage()) {
-			prefStore.setValue(PreferenceConstants.PROJECT_SPECIFIC_METAMODEL, useProjectSettings());
+			prefStore.setValue(PreferenceConstants.PROJECT_SPECIFIC_METAMODEL,
+					useProjectSettings());
 		}
-		prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS, createStoreString());
+		prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS,
+				createStoreString());
 		try {
 			((ScopedPreferenceStore) prefStore).save();
 		} catch (IOException e1) {
@@ -317,11 +321,16 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 					try {
 						new WorkspaceModifyOperation() {
 							@Override
-							protected void execute(IProgressMonitor monitor) throws CoreException,
-									java.lang.reflect.InvocationTargetException, InterruptedException {
-								IXtendXpandProject p = Activator.getExtXptModelManager().findProject(project);
+							protected void execute(IProgressMonitor monitor)
+									throws CoreException,
+									java.lang.reflect.InvocationTargetException,
+									InterruptedException {
+								IXtendXpandProject p = Activator
+										.getExtXptModelManager().findProject(
+												project);
 								if (p != null) {
-									monitor.beginTask("...", p.getRegisteredResources().length);
+									monitor.beginTask("...", p
+											.getRegisteredResources().length);
 									p.analyze(monitor);
 									monitor.done();
 								}

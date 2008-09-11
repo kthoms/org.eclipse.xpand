@@ -15,7 +15,7 @@
             icon="icons/recipeView.gif"
             category="recipes"
             class="org.eclipse.m2t.common.recipe.ui.recipeBrowser.RecipeBrowserView"
-            id="org.openarchitectureware.eclipse.recipeBrowser.RecipeBrowserView">
+            id="org.eclipse.m2t.common.recipe.recipeBrowser.RecipeBrowserView">
       </view>
 	</extension>
 	
@@ -24,7 +24,7 @@
         	id="org.eclipse.m2t.common.recipe.ui.open"
 	        objectClass="org.eclipse.core.resources.IFile"
 		    nameFilter="*.recipes">
-		    	<action id="org.openarchitectureware.recipe.open.action"
+		    	<action id="org.eclipse.m2t.common.recipe.open.action"
 		   		        label="Open Recipes"
 						icon="icons/recipeView.gif"
 						menubarPath="additions"

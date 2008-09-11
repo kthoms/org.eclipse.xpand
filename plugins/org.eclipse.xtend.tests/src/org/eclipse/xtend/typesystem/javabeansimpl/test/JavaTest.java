@@ -9,7 +9,7 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.xtend.typesystem.javabeansimpl;
+package org.eclipse.xtend.typesystem.javabeansimpl.test;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,11 +25,6 @@ import org.eclipse.xtend.expression.TypeNameUtil;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
-import org.eclipse.xtend.typesystem.javabeansimpl.test.Mib;
-import org.eclipse.xtend.typesystem.javabeansimpl.test.OAWTypeD;
-import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeA;
-import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeB;
-import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeC;
 
 /**
  * @author Sven Efftinge

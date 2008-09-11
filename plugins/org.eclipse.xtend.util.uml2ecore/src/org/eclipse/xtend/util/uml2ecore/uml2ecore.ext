@@ -15,9 +15,9 @@ import uml;
      
 // and we also load the io extensions, for the purpose of
 // debugging, in case we need it   
-extension org::openarchitectureware::util::stdlib::io;   
-extension org::openarchitectureware::util::stdlib::issues;   
-extension org::openarchitectureware::util::stdlib::counter;   
+extension org::eclipse::xtend::util::stdlib::io;   
+extension org::eclipse::xtend::util::stdlib::issues;   
+extension org::eclipse::xtend::util::stdlib::counter;   
  
 Object top( Model m ):
 	resourcePerToplevelPackage(m) == "true" ? transformToSeveralFiles(m) : transformToplevelPackage(m);
@@ -209,7 +209,7 @@ private create EStringToStringMapEntry createAnnDetail( Operation o ):
 	setKey( "body" ) -> setValue( createBody( o.class.name, o.name, o.ownedParameter.select(p|p.direction.toString().toLowerCase()!="return").name ) );
 
 private String createBody( String className, String opName, List params ): 
-	JAVA org.openarchitectureware.util.uml2ecore.AnnotationBodyCreator.createBody( java.lang.String, java.lang.String, java.util.List );
+	JAVA org.eclipse.xtend.util.uml2ecore.AnnotationBodyCreator.createBody( java.lang.String, java.lang.String, java.util.List );
 
 create EParameter this mapParameter( Parameter p ):
 	setName( p.name ) ->
@@ -237,7 +237,7 @@ private cached handleType( uml::Type t ):
 // actual type mapping to a Java method; take a look at the respective
 // method to see how it works	  
 ecore::EClassifier mapTypeName(String t):
-	JAVA org.openarchitectureware.util.uml2ecore.TypeMapper.mapType( java.lang.String );
+	JAVA org.eclipse.xtend.util.uml2ecore.TypeMapper.mapType( java.lang.String );
 	
 	
 boolean isAnonymous( Class c ):

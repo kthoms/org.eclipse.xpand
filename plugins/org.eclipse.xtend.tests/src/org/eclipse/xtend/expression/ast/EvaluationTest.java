@@ -25,13 +25,11 @@ import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
-import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Type1;
 import org.eclipse.xtend.expression.Variable;
-import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.eclipse.xtend.typesystem.Property;
 
 /**
@@ -50,9 +48,9 @@ public class EvaluationTest extends TestCase {
 
 	private Object eval (String expression) {
 	    final Object oldResult = evalOld (expression);
-	    final Object newResult = evalNew (expression);
+	    //final Object newResult = evalNew (expression);
 
-	    checkEquals (oldResult, newResult);
+	  //  checkEquals (oldResult, newResult);
 	    
 	    setUp (); // re-init ec
 	    
@@ -64,17 +62,17 @@ public class EvaluationTest extends TestCase {
         return expr.evaluate (ec);
 	}
 	
-	private Object evalNew (String expression) {
-        final Map<String, Object> newLocalVars = new HashMap<String, Object> ();
-        for (String vn: ec.getVisibleVariables().keySet())
-            newLocalVars.put (vn, ec.getVisibleVariables().get(vn).getValue());
-        
-        final Map<String, Object> newGlobalVars = new HashMap<String, Object> ();
-        for (String vn: ec.getGlobalVariables().keySet())
-            newGlobalVars.put (vn, ec.getGlobalVariables().get(vn).getValue());
-        
-        return XtendBackendFacade.evaluateExpression (expression, ec.getMetaModels(), newLocalVars, newGlobalVars);
-	}
+//	private Object evalNew (String expression) {
+//        final Map<String, Object> newLocalVars = new HashMap<String, Object> ();
+//        for (String vn: ec.getVisibleVariables().keySet())
+//            newLocalVars.put (vn, ec.getVisibleVariables().get(vn).getValue());
+//        
+//        final Map<String, Object> newGlobalVars = new HashMap<String, Object> ();
+//        for (String vn: ec.getGlobalVariables().keySet())
+//            newGlobalVars.put (vn, ec.getGlobalVariables().get(vn).getValue());
+//        
+//        return XtendBackendFacade.evaluateExpression (expression, ec.getMetaModels(), newLocalVars, newGlobalVars);
+//	}
 	
 	// be lenient about type equality - the new backend is more consistent at converting types than the old runtime is...
     private void checkEquals (Object o1, Object o2) {
@@ -177,15 +175,15 @@ public class EvaluationTest extends TestCase {
 		assertNull(eval ("this.unknownMember", "this", null));
 	}
 
-	public final void testTypeLiteral1() {
-		assertEquals (ec.getStringType(), evalOld ("String"));
-		assertEquals (StringType.INSTANCE, evalNew ("String"));
-
-		assertTrue (evalOld ("String.getProperty('length')") instanceof Property);
-		assertTrue (evalNew ("String.getProperty('length')") instanceof org.eclipse.xtend.backend.common.Property);
-
-		assertEquals (AType.TEST, eval (getATypeName() + "::TEST"));
-	}
+//	public final void testTypeLiteral1() {
+//		assertEquals (ec.getStringType(), evalOld ("String"));
+//		assertEquals (StringType.INSTANCE, evalNew ("String"));
+//
+//		assertTrue (evalOld ("String.getProperty('length')") instanceof Property);
+//		assertTrue (evalNew ("String.getProperty('length')") instanceof org.eclipse.xtend.backend.common.Property);
+//
+//		assertEquals (AType.TEST, eval (getATypeName() + "::TEST"));
+//	}
 
 	private String getATypeName() {
 		return AType.class.getName().replaceAll("\\.", SyntaxConstants.NS_DELIM);
@@ -287,7 +285,7 @@ public class EvaluationTest extends TestCase {
 		checkEquals ("12", evalOld ("x.asString() + x.asString()"));
 
 		ec = (ExecutionContextImpl) ec.cloneWithVariable (new Variable ("x", new Cls()));
-		checkEquals ("12", evalNew ("x.asString() + x.asString()"));
+	//	checkEquals ("12", evalNew ("x.asString() + x.asString()"));
 	}
 	
 	public static class Cls {

@@ -35,14 +35,13 @@ import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.Type;
-import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
 public class EmfMetaModelTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		new StandaloneSetup().setPlatformUri("..");
 	}
-	
+
 	public final void testEClassType() {
 		final ExecutionContextImpl ctx = new ExecutionContextImpl();
 		final EmfRegistryMetaModel mm = new EmfRegistryMetaModel();
@@ -140,7 +139,7 @@ public class EmfMetaModelTest extends TestCase {
 		registerEPackagesOfModel("org.eclipse.xtend.typesystem.emf.tests/metamodels/subdir/model.xmi");
 		EmfRegistryMetaModel mm = new EmfRegistryMetaModel();
 		ctx.registerMetaModel(mm);
-//		assertNotNull(ctx.getTypeForName("base::BaseType"));
+		// assertNotNull(ctx.getTypeForName("base::BaseType"));
 		assertNotNull(ctx.getTypeForName("referee::SubAndReferring"));
 		assertNotNull(ctx.getTypeForName("ecore::EClass"));
 		assertNotNull(ctx.getTypeForName("nested::SubA"));
@@ -149,10 +148,11 @@ public class EmfMetaModelTest extends TestCase {
 
 	private void registerEPackagesOfModel(String string) throws IOException {
 		ResourceSet rs = new ResourceSetImpl();
-		Resource r = rs.createResource(URI.createURI("platform:/plugin/"+string));
+		Resource r = rs.createResource(URI
+				.createPlatformPluginURI(string, true));
 		r.load(Collections.EMPTY_MAP);
 		EcoreUtil.resolveAll(rs);
 		EPackage.Registry.INSTANCE.putAll(rs.getPackageRegistry());
 	}
-	
+
 }

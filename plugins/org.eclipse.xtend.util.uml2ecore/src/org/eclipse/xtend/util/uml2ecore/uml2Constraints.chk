@@ -5,10 +5,10 @@
 import uml;
  
 // load the debug extension in case we need to debug stuff
-extension org::openarchitectureware::util::stdlib::io;   
+extension org::eclipse::xtend::util::stdlib::io;   
 // this is the transformation file; we call one helper function
 // from that file (the mapTypeName()), that's why we import it
-extension org::openarchitectureware::util::uml2ecore::uml2ecore;   
+extension org::eclipse::xtend::util::uml2ecore::uml2ecore;   
  
 // and this verifies that we can map the used primitive types 
 // to Ecore. This mapping is implemented by the mapTypeName() 

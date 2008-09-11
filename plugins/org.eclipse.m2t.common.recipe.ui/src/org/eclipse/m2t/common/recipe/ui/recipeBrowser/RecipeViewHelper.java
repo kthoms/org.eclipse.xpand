@@ -63,7 +63,7 @@ public class RecipeViewHelper extends EditorPart {
 			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(pei.getPath());
 			new OpenRecipesAction(file).run(null);
 			try {
-				getSite().getPage().showView("org.openarchitectureware.eclipse.recipeBrowser.RecipeBrowserView");
+				getSite().getPage().showView("org.eclipse.m2t.common.recipe.recipeBrowser.RecipeBrowserView");
 			} catch (PartInitException e) {
 				RecipePlugin.log(e.getStatus());
 			}

@@ -1,5 +1,5 @@
 «IMPORT ecore»
-«EXTENSION org::openarchitectureware::util::uml2ecore::templates::utils»
+«EXTENSION org::eclipse::xtend::util::uml2ecore::templates::utils»
 
 «DEFINE root FOR List»
 	«EXPAND root FOREACH (Collection[EPackage])this»
@@ -14,7 +14,7 @@
 	«FILE name+"Constraints.chk"-»
 import «nsPrefix»;
 
-extension org::openarchitectureware::util::stdlib::naming;
+extension org::eclipse::xtend::util::stdlib::naming;
 
 context «eClassifiers.get(0).name» ERROR "dummy - will hopefully be removed sometime :-)": true;
 

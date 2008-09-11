@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.xtend
 Bundle-Version: 0.7.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.emf.mwe.core,
+Require-Bundle: org.eclipse.emf.mwe.core;visibility:=reexport,
  org.apache.commons.logging,
  org.antlr.runtime,
  org.eclipse.emf.common

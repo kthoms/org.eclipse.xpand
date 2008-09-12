@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 - 2007 committers of openArchitectureWare and others. All
+ * Copyright (c) 2005 - 2008 committers of openArchitectureWare and others. All
  * rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
  * accompanies this distribution, and is available at
@@ -64,7 +64,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 
 	@Override
 	protected void editorContextMenuAboutToShow(IMenuManager menu) {
-		menu.add(new Separator("oaw"));
+		menu.add(new Separator("mwe"));
 		super.editorContextMenuAboutToShow(menu);
 
 		ActionContext context = new ActionContext(getSelectionProvider().getSelection());
@@ -75,6 +75,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		bpActionGroup.fillContextMenu(menu);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object getAdapter(final Class aRequired) {
 		if (IContentOutlinePage.class.equals(aRequired)) {
@@ -96,6 +97,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		super.createActions();
 		final ResourceBundle rb = new ResourceBundle() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public Enumeration getKeys() {
 				return new Vector().elements();

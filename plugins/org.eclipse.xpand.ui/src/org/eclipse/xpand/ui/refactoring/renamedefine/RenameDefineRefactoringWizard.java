@@ -13,7 +13,7 @@ package org.eclipse.xpand.ui.refactoring.renamedefine;
 import org.eclipse.ltk.ui.refactoring.RefactoringWizard;
 
 /**
- * ExtractDefineRefactoringWizard TODO insert class purpose here!
+ * RenameDefineRefactoringWizard guides the user through the process of renaming an Xpand definition.
  * 
  * @author Peter Friese
  */

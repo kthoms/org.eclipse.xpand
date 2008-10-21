@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName (Incubation)
-Bundle-SymbolicName: org.eclipse.xtend.typesystem.emf
+Bundle-SymbolicName: org.eclipse.xtend.typesystem.emf;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
@@ -9,6 +9,10 @@ Require-Bundle: org.eclipse.xtend,
  org.eclipse.emf.ecore.xmi,
  org.apache.commons.logging,
  org.eclipse.emf.mwe.core,
- org.eclipse.emf.mwe.utils
-Export-Package: org.eclipse.xtend.typesystem.emf
+ org.eclipse.emf.mwe.utils,
+ org.eclipse.core.runtime;bundle-version="3.4.0";resolution:=optional
+Export-Package: org.eclipse.xtend.typesystem.emf,
+ org.eclipse.xtend.typesystem.emf.check
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.xtend.typesystem.internal.emf.XtendTypesytemEmfPlugin

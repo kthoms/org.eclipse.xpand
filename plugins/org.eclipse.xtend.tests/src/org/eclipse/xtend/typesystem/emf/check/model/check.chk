@@ -1,0 +1,16 @@
+import test;
+import subpackage;
+
+extension org::eclipse::xtend::typesystem::emf::check::model::MyExtension;
+
+context MyMetaClass ERROR "Name must be set" :	
+	name != null;
+
+context MyMetaClass WARNING "Name should not be empty" :
+	name != "" && name != doSomething(); 
+	
+context MyMetaClass WARNING "Subpackage should not be set!" :
+	subPackageRef == null;
+	
+context subpackage::SubpackageMetaClass WARNING "Subpackage name must be set" :
+	name != null && name != "";

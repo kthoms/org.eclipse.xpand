@@ -1,0 +1,7 @@
+import test;
+
+extension org::openarchitectureware::adapter::emf::check::cache::Cached;
+
+context MyMetaClass ERROR "Name not set":
+	nameIsSet();
+

@@ -29,6 +29,7 @@ import org.eclipse.internal.xtend.util.internal.icu.CharsetDetector;
 import org.eclipse.internal.xtend.util.internal.icu.CharsetMatch;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.XtendResourceParser;
+import org.eclipse.xtend.check.CheckUtils;
 
 public class ResourceManagerDefaultImpl implements ResourceManager {
 
@@ -41,6 +42,7 @@ public class ResourceManagerDefaultImpl implements ResourceManager {
 	public ResourceManagerDefaultImpl() {
 		registeredParsers.put(XtendFile.FILE_EXTENSION,
 				new XtendResourceParser());
+		registeredParsers.put(CheckUtils.FILE_EXTENSION, new XtendResourceParser());
 	}
 
 	public Resource loadResource(final String fullyQualifiedName,

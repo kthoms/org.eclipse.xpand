@@ -1,0 +1,4 @@
+import test;
+
+cached boolean nameIsSet(MyMetaClass this) :
+	name!=null;

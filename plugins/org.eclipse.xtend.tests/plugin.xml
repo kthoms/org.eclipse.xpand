@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin>
+
+  <extension
+         point="org.eclipse.xtend.typesystem.emf.checks">
+      <metaModel
+            nsURI="http://www.itemis.de/emf.oaw.check.test"
+            override="true">
+         <checkFile
+               path="org/eclipse/xtend/typesystem/emf/check/model/check.chk">
+               <referencedMetaModel nsURI="http://oaw.org/test/subpackage">
+               </referencedMetaModel>
+         </checkFile>
+      </metaModel>
+   </extension>
+   
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.itemis.de/emf.oaw.check.test" 
+       class = "org.eclipse.xtend.typesystem.emf.check.model.test.TestPackage"
+       genModel = "src/org/eclipse/xtend/typesystem/emf/check/model/test.genmodel" /> 
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://oaw.org/test/subpackage" 
+       class = "org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.SubpackagePackage"
+       genModel = "src/org/eclipse/xtend/typesystem/emf/check/model/test.genmodel" /> 
+  </extension>
+
+</plugin>

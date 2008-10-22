@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.xtend.typesystem.internal.emf.XtendTypesytemEmfPlugin;
+import org.eclipse.xtend.typesystem.emf.XtendTypesytemEmfPlugin;
 
 /**
  * Reads checks extensions, instantiates validators and registers them.

@@ -2,5 +2,10 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension-point id="checks" name="Checks" schema="schema/checks.exsd"/>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.xtend.typesystem.emf.XtendTypesytemEmfPlugin"></startup>
+   </extension>
 
 </plugin>

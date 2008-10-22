@@ -1,10 +1,11 @@
-package org.eclipse.xtend.typesystem.internal.emf;
+package org.eclipse.xtend.typesystem.emf;
 
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.ui.IStartup;
 import org.eclipse.xtend.typesystem.emf.check.CheckRegistry;
 import org.osgi.framework.BundleContext;
 
-public class XtendTypesytemEmfPlugin extends Plugin {
+public class XtendTypesytemEmfPlugin extends Plugin implements IStartup {
 
 	// the shared instance
 	private static XtendTypesytemEmfPlugin plugin;
@@ -43,6 +44,13 @@ public class XtendTypesytemEmfPlugin extends Plugin {
 	 */
 	public static XtendTypesytemEmfPlugin getDefault() {
 		return plugin;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.ui.IStartup#earlyStartup()
+	 */
+	public void earlyStartup() {
+		// do nothing but instantiate this
 	}
 
 

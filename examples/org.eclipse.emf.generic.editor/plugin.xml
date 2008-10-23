@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.emf.editor.EEditor"
+            contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
+            icon="icons/synch_toc_nav.gif"
+            id="org.eclipse.emf.genericEditor"
+            name="Generic EMF Form Editor">
+         <contentTypeBinding
+               contentTypeId="org.eclipse.emf.generic.editor.contentTypeBinding1">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            file-extensions="xmi,dsl"
+            id="org.eclipse.emf.generic.editor.emf-instance"
+            name="Dynamic Ecore Instance"
+            priority="high">
+      </content-type>
+   </extension>
+
+</plugin>

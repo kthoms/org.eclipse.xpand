@@ -10,18 +10,30 @@
             id="org.eclipse.emf.genericEditor"
             name="Generic EMF Form Editor">
          <contentTypeBinding
-               contentTypeId="org.eclipse.emf.generic.editor.contentTypeBinding1">
+               contentTypeId="org.eclipse.emf.ecore.xmi">
+         </contentTypeBinding>
+         <contentTypeBinding
+               contentTypeId="org.eclipse.emf.emof">
+         </contentTypeBinding>
+         <contentTypeBinding
+               contentTypeId="org.eclipse.emf.generic.xmi">
          </contentTypeBinding>
       </editor>
    </extension>
-   <extension
-         point="org.eclipse.core.contenttype.contentTypes">
-      <content-type
-            file-extensions="xmi,dsl"
-            id="org.eclipse.emf.generic.editor.emf-instance"
-            name="Dynamic Ecore Instance"
-            priority="high">
-      </content-type>
-   </extension>
-
+<extension
+        point="org.eclipse.core.contenttype.contentTypes">
+     <content-type
+           base-type="org.eclipse.core.runtime.xml"
+           id="org.eclipse.emf.generic.xmi"
+           name="Ecore Instance"
+           priority="high">
+        <describer
+              class="org.eclipse.emf.ecore.xmi.impl.XMLContentHandlerImpl$XMI$Describer">
+           <parameter
+                 name="org.eclipse.emf.generic.editor.parameter1"
+                 value="org.eclipse.emf.generic.editor.parameter1">
+           </parameter>
+        </describer>
+     </content-type>
+  </extension>
 </plugin>

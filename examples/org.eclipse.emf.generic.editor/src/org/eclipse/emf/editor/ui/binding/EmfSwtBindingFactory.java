@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.editor.EEPlugin;
-import org.eclipse.emf.editor.oaw.OawFacade;
+import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 import org.eclipse.emf.editor.ui.ProposalCreator;
 import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.jface.bindings.keys.ParseException;
@@ -46,6 +46,7 @@ import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.fieldassist.SimpleContentProposalProvider;
 import org.eclipse.jface.fieldassist.TextContentAdapter;
+import org.eclipse.jface.internal.databinding.viewers.SelectionProviderMultipleSelectionObservableList;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.swt.SWT;
@@ -61,6 +62,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * @author Dennis Huebner
  * 
  */
+@SuppressWarnings("restriction")
 public class EmfSwtBindingFactory {
 	private Composite parent = null;
 	private FormToolkit toolkit = null;
@@ -69,14 +71,11 @@ public class EmfSwtBindingFactory {
 	private final EMFDataBindingContext edbc;
 	private final AdapterFactory adapterFactory;
 	private final ProposalCreator proposalcreator;
-	public static final String EOBJECT_KEY = EcorePackage.Literals.EOBJECT
-			.getName();
-	public static final String ESTRUCTURALFEATURE_KEY = EcorePackage.Literals.ESTRUCTURAL_FEATURE
-			.getName();
+	public static final String EOBJECT_KEY = EcorePackage.Literals.EOBJECT.getName();
+	public static final String ESTRUCTURALFEATURE_KEY = EcorePackage.Literals.ESTRUCTURAL_FEATURE.getName();
 
-	public EmfSwtBindingFactory(AdapterFactory adapterFactory,
-			EditingDomain domain, EObject owner, Composite parent,
-			FormToolkit toolkit, OawFacade facade) {
+	public EmfSwtBindingFactory(AdapterFactory adapterFactory, EditingDomain domain, EObject owner, Composite parent,
+			FormToolkit toolkit, ExtXptFacade facade) {
 		this.adapterFactory = adapterFactory;
 		this.edbc = new EMFDataBindingContext();
 		this.domain = domain;
@@ -98,7 +97,8 @@ public class EmfSwtBindingFactory {
 		Control retVal = null;
 		if (feature.isMany()) {
 			retVal = bindList(feature);
-		} else {
+		}
+		else {
 			retVal = bindValue(feature);
 		}
 		setupControl(feature, retVal);
@@ -106,17 +106,14 @@ public class EmfSwtBindingFactory {
 	}
 
 	private Control bindList(EStructuralFeature feature) {
-		IObservableList source = EMFEditObservables.observeList(domain, owner,
-				feature);
+		IObservableList source = EMFEditObservables.observeList(domain, owner, feature);
 
 		List<?> choice = proposalcreator.proposals(owner, feature);
-		MultipleFeatureControl mfc = new MultipleFeatureControl(parent,
-				toolkit, new AdapterFactoryLabelProvider(adapterFactory),
-				owner, feature, choice);
+		MultipleFeatureControl mfc = new MultipleFeatureControl(parent, toolkit, new AdapterFactoryLabelProvider(
+				adapterFactory), owner, feature, choice);
 
-		IObservableList target = new SelectionProviderMultipleSelectionObservableList(
-				SWTObservables.getRealm(Display.getDefault()), mfc
-						.getInternalSelectionProvider(), Object.class);
+		IObservableList target = new SelectionProviderMultipleSelectionObservableList(SWTObservables.getRealm(Display
+				.getDefault()), mfc.getInternalSelectionProvider(), Object.class);
 		Binding binding = edbc.bindList(target, source, null, null);
 		binding.updateModelToTarget();
 		return mfc;
@@ -124,58 +121,52 @@ public class EmfSwtBindingFactory {
 
 	private Control bindValue(EStructuralFeature feature) {
 		Control retVal = null;
-		IObservableValue source = EMFEditObservables.observeValue(domain,
-				owner, feature);
+		IObservableValue source = EMFEditObservables.observeValue(domain, owner, feature);
 		IObservableValue target = null;
 		if (feature.getEType().equals(EcorePackage.Literals.EBOOLEAN)
-				|| feature.getEType().equals(
-						EcorePackage.Literals.EBOOLEAN_OBJECT)
-				|| (feature.getEType() instanceof EDataType && (feature
-						.getEType().getInstanceClass() == Boolean.class || feature
+				|| feature.getEType().equals(EcorePackage.Literals.EBOOLEAN_OBJECT)
+				|| (feature.getEType() instanceof EDataType && (feature.getEType().getInstanceClass() == Boolean.class || feature
 						.getEType().getInstanceClass() == Boolean.TYPE))) {
 			Button b = toolkit.createButton(parent, "", SWT.CHECK);
 			target = SWTObservables.observeSelection(b);
 			retVal = b;
-		} else if (feature instanceof EReference
-				|| feature.getEType() instanceof EEnumImpl) {
+		}
+		else if (feature instanceof EReference || feature.getEType() instanceof EEnumImpl) {
 			ComboViewer combo = new ComboViewer(parent, SWT.READ_ONLY);
 			toolkit.adapt(combo.getCombo());
 			combo.setContentProvider(new ArrayContentProvider());
-			combo.setLabelProvider(new AdapterFactoryLabelProvider(
-					adapterFactory));
+			combo.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 			combo.setInput(proposalcreator.proposals(owner, feature));
 			target = ViewersObservables.observeSingleSelection(combo);
 			retVal = combo.getCombo();
-		} else {
+		}
+		else {
 			Text t = toolkit.createText(parent, new String());
 			t.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TREE_BORDER);
 			List<?> proposals = proposalcreator.proposals(owner, feature);
 			if (proposals != null && !proposals.isEmpty()) {
-				// TODO prevert adding null to a list, for example a Collection
+				// TODO prevent adding null to a list, for example a Collection
 				// Type
 				while (proposals.remove(null)) {
 					// clear null entries
 				}
 				ControlDecoration field = new ControlDecoration(t, SWT.BORDER);
-				FieldDecoration requiredFieldIndicator = FieldDecorationRegistry
-						.getDefault().getFieldDecoration(
-								FieldDecorationRegistry.DEC_CONTENT_PROPOSAL);
+				FieldDecoration requiredFieldIndicator = FieldDecorationRegistry.getDefault().getFieldDecoration(
+						FieldDecorationRegistry.DEC_CONTENT_PROPOSAL);
 				field.setImage(requiredFieldIndicator.getImage());
-				field.setDescriptionText(requiredFieldIndicator
-						.getDescription());
+				field.setDescriptionText(requiredFieldIndicator.getDescription());
 				KeyStroke keyStroke = null;
 				String string = new String();
 				try {
 					string = "Ctrl+Space";
 					keyStroke = KeyStroke.getInstance(string);
-				} catch (ParseException e) {
-					EEPlugin.getDefault().getLog().log(
-							new Status(IStatus.ERROR, EEPlugin.PLUGIN_ID,
-									"Error while parse: " + string, e));
 				}
-				new ContentProposalAdapter(t, new TextContentAdapter(),
-						new SimpleContentProposalProvider(proposals
-								.toArray(new String[] {})), keyStroke, null);
+				catch (ParseException e) {
+					EEPlugin.getDefault().getLog().log(
+							new Status(IStatus.ERROR, EEPlugin.PLUGIN_ID, "Error while parse: " + string, e));
+				}
+				new ContentProposalAdapter(t, new TextContentAdapter(), new SimpleContentProposalProvider(proposals
+						.toArray(new String[] {})), keyStroke, null);
 			}
 			target = SWTObservables.observeText(t, SWT.Modify);
 			retVal = t;
@@ -188,8 +179,7 @@ public class EmfSwtBindingFactory {
 	private void setupControl(EStructuralFeature f, Control c) {
 		// disable unchangeable and unserializable
 		c.setEnabled(f.isChangeable()
-				&& (!(f.getEType() instanceof EDataType && !((EDataType) f
-						.getEType()).isSerializable())));
+				&& (!(f.getEType() instanceof EDataType && !((EDataType) f.getEType()).isSerializable())));
 		c.setData(EmfSwtBindingFactory.ESTRUCTURALFEATURE_KEY, f);
 		c.setData(EmfSwtBindingFactory.EOBJECT_KEY, owner);
 		c.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));

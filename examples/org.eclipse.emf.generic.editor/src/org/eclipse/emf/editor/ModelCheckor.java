@@ -24,10 +24,15 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
+import org.eclipse.emf.editor.extxpt.ExtXptFacade;
+import org.eclipse.emf.editor.extxpt.ExtXptHelper;
+import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.emf.mwe.core.issues.MWEDiagnostic;
 import org.eclipse.jface.dialogs.IMessageProvider;
 
 /**
@@ -38,6 +43,12 @@ public class ModelCheckor {
 
 	private EclipseResourcesUtil eclipseResourcesUtil = EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil()
 			: null;
+	private final ExtXptFacade facade;
+
+	public ModelCheckor(ExtXptFacade facade) {
+		super();
+		this.facade = facade;
+	}
 
 	public List<MessageData> check(ResourceSet toCheck) {
 		List<MessageData> messages = new ArrayList<MessageData>();
@@ -53,7 +64,15 @@ public class ModelCheckor {
 						continue;
 
 					EObject rootObject = allContents.next();
-					messages.addAll(ecoreValidation(rootObject));
+					Issues issues = facade.check(rootObject);
+					for (MWEDiagnostic issue : issues.getErrors()) {
+						messages.add(createMessageFromIssue(issue, IMessageProvider.ERROR));
+					}
+					for (MWEDiagnostic issue : issues.getWarnings()) {
+						messages.add(createMessageFromIssue(issue, IMessageProvider.WARNING));
+					}
+					List<MessageData> ecoreValidation = ecoreValidation(rootObject);
+					messages.addAll(ecoreValidation);
 				}
 			}
 		}
@@ -72,7 +91,7 @@ public class ModelCheckor {
 		int status = IMessageProvider.INFORMATION;
 		// Clear Marker
 		if (eclipseResourcesUtil != null) {
-			eclipseResourcesUtil.deleteMarkers(rootObject);
+			//eclipseResourcesUtil.deleteMarkers(rootObject);
 		}
 
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(rootObject);
@@ -108,5 +127,26 @@ public class ModelCheckor {
 			mds.add(md);
 		}
 		return mds;
+	}
+
+	/**
+	 * @param issue
+	 * @return
+	 */
+	private MessageData createMessageFromIssue(MWEDiagnostic issue, int type) {
+		String message = issue.getMessage();
+		Object element = issue.getElement();
+		MessageData md = new MessageData(element, message, null, type);
+		List<Object> data = new ArrayList<Object>();
+		if (element instanceof EObject) {
+			EObject eObject = (EObject) element;
+			data.add(0, element);
+			EStructuralFeature feature = ExtXptHelper.extractFeatureFromMessage(eObject, md);
+			if (feature != null) {
+				data.add(1, feature);
+			}
+		}
+		md.setData(data);
+		return md;
 	}
 }

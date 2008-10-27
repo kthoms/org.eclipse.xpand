@@ -13,7 +13,7 @@
  * </copyright>
  *
  */
-package org.eclipse.emf.editor.oaw;
+package org.eclipse.emf.editor.extxpt;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -24,7 +24,7 @@ import org.eclipse.emf.editor.MessageData;
  * @author Dennis Huebner
  * 
  */
-public class OawHelper {
+public class ExtXptHelper {
 	static public EStructuralFeature extractFeatureFromMessage(EObject eObject,
 			MessageData md) {
 		String message = md.getMessage();

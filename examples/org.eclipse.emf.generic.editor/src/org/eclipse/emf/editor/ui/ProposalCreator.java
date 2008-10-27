@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.editor.oaw.OawFacade;
+import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 
 /**
  * @author Dennis Hübner
@@ -39,9 +39,9 @@ import org.eclipse.emf.editor.oaw.OawFacade;
  */
 public class ProposalCreator {
 	private EditingDomain domain;
-	private final OawFacade facade;
+	private final ExtXptFacade facade;
 
-	public ProposalCreator(EditingDomain domain, OawFacade facade) {
+	public ProposalCreator(EditingDomain domain, ExtXptFacade facade) {
 		super();
 		this.domain = domain;
 		this.facade = facade;

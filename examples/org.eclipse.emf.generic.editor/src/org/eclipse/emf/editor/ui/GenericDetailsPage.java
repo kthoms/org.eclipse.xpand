@@ -157,7 +157,7 @@ public class GenericDetailsPage extends AbstractFormPart implements
 
 			factory = new EmfSwtBindingFactory(editor.getAdapterFactory(),
 					editor.getEditingDomain(), input, main, getManagedForm()
-							.getToolkit(), editor.getOawFacade());
+							.getToolkit(), editor.getExtXptFacade());
 			final IActionBars actionBars = editor.getActionBars();
 
 			final IAction ecoreCopy = actionBars

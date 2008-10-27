@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.editor.EEPlugin;
-import org.eclipse.emf.editor.oaw.OawFacade;
+import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 import org.eclipse.emf.editor.ui.ImageRegistry;
 
 /**
@@ -42,10 +42,10 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 	private static final String ICONS_FOLDER = "icons";
 	private static final String ICON_EXTENSION_NAME = "icon";
 	private static final String LABEL_EXTENSION_NAME = "label";
-	private final OawFacade facade;
+	private final ExtXptFacade facade;
 	private IItemLabelProvider registryItemLabelProvider;
 
-	public ExtendedLabelProvider(OawFacade facade) {
+	public ExtendedLabelProvider(ExtXptFacade facade) {
 		this.facade = facade;
 		this.registryItemLabelProvider = new RegistryItemLabelProvider();
 	}

@@ -62,6 +62,7 @@ import org.osgi.framework.Bundle;
  * 
  * @author koehnlein
  */
+@SuppressWarnings("restriction")
 public class ClasspathUriResolver {
 
 	public static final String CLASSPATH_SCHEME = "classpath";
@@ -132,7 +133,6 @@ public class ClasspathUriResolver {
 		return fileUri;
 	}
 
-	@SuppressWarnings("restriction")
 	private URI findResourceInBundle(Bundle bundle, URI classpathUri) throws MalformedURLException, IOException {
 		Path fullPath = new Path(classpathUri.path());
 		if (bundle != null) {
@@ -153,7 +153,6 @@ public class ClasspathUriResolver {
 		return classpathUri;
 	}
 
-	@SuppressWarnings("restriction")
 	private URI findResourceInWorkspace(IJavaProject javaProject, URI classpathUri) throws JavaModelException,
 			CoreException {
 		Path fullPath = new Path(classpathUri.path());

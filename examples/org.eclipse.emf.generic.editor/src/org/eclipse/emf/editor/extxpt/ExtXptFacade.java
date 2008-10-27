@@ -13,7 +13,7 @@
  * </copyright>
  *
  */
-package org.eclipse.emf.editor.oaw;
+package org.eclipse.emf.editor.extxpt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +32,15 @@ import org.eclipse.xtend.XtendFacade;
 import org.eclipse.xtend.check.CheckUtils;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
+import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
 
 /**
- * @author Dennis Huebner
+ * @author Dennis Hübner - Initial contribution and API
  * 
  */
-public class OawFacade {
+public class ExtXptFacade {
 
 	private IProject project;
 	private final ExecutionContext context;
@@ -45,13 +48,13 @@ public class OawFacade {
 	public static final String STYLE_EXT = "ItemLabelProvider";
 	public static final String PROPOSAL_EXT = "Proposals";
 
-	public OawFacade(IProject project, ExecutionContext context) {
+	public ExtXptFacade(IProject project, ExecutionContext context) {
 		this.project = project;
 		this.context = context;
 	}
 
 	public Object style(String extension, EObject object) {
-		String extendFile = path(object) + OawFacade.STYLE_EXT;
+		String extendFile = path(object) + ExtXptFacade.STYLE_EXT;
 		Object retVal = evaluate(extendFile, extension, object);
 		return retVal;
 	}
@@ -86,7 +89,7 @@ public class OawFacade {
 
 	// TODO split method
 	public List<?> proposals(EStructuralFeature feature, EObject ctx, List<?> fromList) {
-		String extFile = path(ctx) + OawFacade.PROPOSAL_EXT;
+		String extFile = path(ctx) + ExtXptFacade.PROPOSAL_EXT;
 		List<?> retVal = new ArrayList<Object>();
 		Object eval;
 		if (fromList != null) {
@@ -108,37 +111,33 @@ public class OawFacade {
 	}
 
 	public Issues check(EObject rootObject) {
-		String checkFile = path(rootObject) + OawFacade.CHECK_EXT;
+		String checkFile = path(rootObject) + ExtXptFacade.CHECK_EXT;
 		List<EObject> all = new ArrayList<EObject>();
 		all.add(rootObject);
 		EObject rootContainer = EcoreUtil.getRootContainer(rootObject);
 		TreeIterator<EObject> iter = rootContainer.eAllContents();
 		while (iter.hasNext())
 			all.add(iter.next());
-
 		IssuesImpl issuesImpl = new IssuesImpl();
-		// FIXME IOawProject oAWProject =
-		// OawPlugin.getOawModelManager().findProject(project);
-		// if (oAWProject != null) {
-		// IOawResource oawResource = oAWProject.findOawResource(checkFile,
-		// CheckUtils.FILE_EXTENSION);
-		// if (oawResource != null) {
-		// ExtensionFile file = (ExtensionFile) oawResource.getOawResource();
-		// try {
-		// file.check(context, all, issuesImpl, false);
-		// }
-		// catch (IllegalArgumentException e) {
-		// // no extension specified
-		// }
-		// catch (Exception e) {
-		// EEPlugin.logError("Exception during check evaluation", e);
-		// }
-		// }
-		// }
-		// else {
-		// EEPlugin.logWarning("Enable oAW-Nature for '" + project.getName() +
-		// "' to check models.");
-		// }
+		IXtendXpandProject extxptProject = Activator.getExtXptModelManager().findProject(project);
+		if (extxptProject != null) {
+			IXtendXpandResource extxptResource = extxptProject.findExtXptResource(checkFile, CheckUtils.FILE_EXTENSION);
+			if (extxptResource != null) {
+				ExtensionFile file = (ExtensionFile) extxptResource.getExtXptResource();
+				try {
+					file.check(context, all, issuesImpl, false);
+				}
+				catch (IllegalArgumentException e) {
+					// no extension specified
+				}
+				catch (Exception e) {
+					EEPlugin.logError("Exception during check evaluation", e);
+				}
+			}
+		}
+		else {
+			EEPlugin.logWarning("Enable Xtend/Xpand-Nature for '" + project.getName() + "' to check models.");
+		}
 		return issuesImpl;
 	}
 

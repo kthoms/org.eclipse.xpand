@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 import org.eclipse.emf.editor.extxpt.ExtXptHelper;
@@ -40,6 +43,7 @@ import org.eclipse.jface.dialogs.IMessageProvider;
  * 
  */
 public class ModelCheckor {
+	private MarkerHandler markerHandler = new MarkerHandler();
 
 	private EclipseResourcesUtil eclipseResourcesUtil = EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil()
 			: null;
@@ -50,29 +54,32 @@ public class ModelCheckor {
 		this.facade = facade;
 	}
 
-	public List<MessageData> check(ResourceSet toCheck) {
+	public List<MessageData> check(EditingDomain ed, IFile file) {
+		ResourceSet toCheck = ed.getResourceSet();
 		List<MessageData> messages = new ArrayList<MessageData>();
+		markerHandler.deleteMarkers(file, new NullProgressMonitor());
 
 		try {
 			// get copy
 			EList<Resource> resources = toCheck.getResources();
 			if (resources != null) {
-
 				for (Resource res : resources) {
+					// Clear Marker
+					if (eclipseResourcesUtil != null) {
+						eclipseResourcesUtil.deleteMarkers(res);
+					}
 					TreeIterator<EObject> allContents = res.getAllContents();
 					if (!allContents.hasNext())
 						continue;
-
 					EObject rootObject = allContents.next();
-					Issues issues = facade.check(rootObject);
-					for (MWEDiagnostic issue : issues.getErrors()) {
-						messages.add(createMessageFromIssue(issue, IMessageProvider.ERROR));
+					// xtend checks
+					List<MessageData> checkValidation = checkValidation(rootObject);
+					for (MessageData md : checkValidation) {
+						markerHandler.addMarker(file, md.getMessage(), md.getStatus());
 					}
-					for (MWEDiagnostic issue : issues.getWarnings()) {
-						messages.add(createMessageFromIssue(issue, IMessageProvider.WARNING));
-					}
-					List<MessageData> ecoreValidation = ecoreValidation(rootObject);
-					messages.addAll(ecoreValidation);
+					// ecore
+					messages.addAll(checkValidation);
+					messages.addAll(ecoreValidation(rootObject));
 				}
 			}
 		}
@@ -87,13 +94,20 @@ public class ModelCheckor {
 		return messages;
 	}
 
+	private List<MessageData> checkValidation(EObject root) {
+		List<MessageData> messages = new ArrayList<MessageData>();
+		Issues issues = facade.check(root);
+		for (MWEDiagnostic issue : issues.getErrors()) {
+			messages.add(createMessageFromIssue(issue, IMessageProvider.ERROR));
+		}
+		for (MWEDiagnostic issue : issues.getWarnings()) {
+			messages.add(createMessageFromIssue(issue, IMessageProvider.WARNING));
+		}
+		return messages;
+	}
+
 	private List<MessageData> ecoreValidation(EObject rootObject) {
 		int status = IMessageProvider.INFORMATION;
-		// Clear Marker
-		if (eclipseResourcesUtil != null) {
-			//eclipseResourcesUtil.deleteMarkers(rootObject);
-		}
-
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(rootObject);
 
 		switch (diagnostic.getSeverity()) {
@@ -147,6 +161,8 @@ public class ModelCheckor {
 			}
 		}
 		md.setData(data);
+
 		return md;
 	}
+
 }

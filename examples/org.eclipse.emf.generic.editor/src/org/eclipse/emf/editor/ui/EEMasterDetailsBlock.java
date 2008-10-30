@@ -56,21 +56,20 @@ public class EEMasterDetailsBlock extends MasterDetailsBlock {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.ui.forms.MasterDetailsBlock#createMasterPart(org.eclipse.ui.forms.IManagedForm,
-	 *      org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.ui.forms.MasterDetailsBlock#createMasterPart(org.eclipse.
+	 * ui.forms.IManagedForm, org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected void createMasterPart(IManagedForm managedForm, Composite parent) {
 		Composite container = managedForm.getToolkit().createComposite(parent);
 		container.setLayout(new GridLayout());
 		// container.setLayoutData(new GridData(GridData.FILL_VERTICAL));
-		Section section = managedForm.getToolkit().createSection(container,
-				ExpandableComposite.TITLE_BAR);
+		Section section = managedForm.getToolkit().createSection(container, ExpandableComposite.TITLE_BAR);
 		section.setLayout(new FillLayout());
 		section.setLayoutData(new GridData(GridData.FILL_BOTH));
 		section.setText("Model");
-		Composite mastersClientArea = managedForm.getToolkit().createComposite(
-				section);
+		Composite mastersClientArea = managedForm.getToolkit().createComposite(section);
 		section.setClient(mastersClientArea);
 		masterSectionPart = new SectionPart(section);
 		managedForm.addPart(masterSectionPart);
@@ -79,7 +78,9 @@ public class EEMasterDetailsBlock extends MasterDetailsBlock {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.ui.forms.MasterDetailsBlock#createToolBarActions(org.eclipse.ui.forms.IManagedForm)
+	 * @see
+	 * org.eclipse.ui.forms.MasterDetailsBlock#createToolBarActions(org.eclipse
+	 * .ui.forms.IManagedForm)
 	 */
 	@Override
 	protected void createToolBarActions(IManagedForm managedForm) {
@@ -96,8 +97,7 @@ public class EEMasterDetailsBlock extends MasterDetailsBlock {
 		haction.setChecked(sashForm.getOrientation() == SWT.VERTICAL);
 
 		haction.setToolTipText("Horizontal orientation");
-		haction.setImageDescriptor(EEPlugin
-				.getImageDescriptor("/icons/det_pane_under.gif"));
+		haction.setImageDescriptor(EEPlugin.getDefault().getImageDescriptor("/icons/det_pane_under.gif"));
 		Action vaction = new Action("ver", IAction.AS_RADIO_BUTTON) {
 			@Override
 			public void run() {
@@ -108,8 +108,7 @@ public class EEMasterDetailsBlock extends MasterDetailsBlock {
 		vaction.setChecked(sashForm.getOrientation() == SWT.HORIZONTAL);
 
 		vaction.setToolTipText("Vertical orientation");
-		vaction.setImageDescriptor(EEPlugin
-				.getImageDescriptor("/icons/det_pane_right.gif"));
+		vaction.setImageDescriptor(EEPlugin.getDefault().getImageDescriptor("/icons/det_pane_right.gif"));
 		form.getToolBarManager().add(haction);
 		form.getToolBarManager().add(vaction);
 		createMoreToolBarActions(form.getToolBarManager());
@@ -125,7 +124,9 @@ public class EEMasterDetailsBlock extends MasterDetailsBlock {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.ui.forms.MasterDetailsBlock#registerPages(org.eclipse.ui.forms.DetailsPart)
+	 * @see
+	 * org.eclipse.ui.forms.MasterDetailsBlock#registerPages(org.eclipse.ui.
+	 * forms.DetailsPart)
 	 */
 	@Override
 	protected void registerPages(DetailsPart detailsPart) {
@@ -135,8 +136,7 @@ public class EEMasterDetailsBlock extends MasterDetailsBlock {
 
 	public Control findControl(String key, Object data) {
 		if (detailsPart.getCurrentPage() instanceof GenericDetailsPage) {
-			return ((GenericDetailsPage) detailsPart.getCurrentPage())
-					.locateControl(key, data);
+			return ((GenericDetailsPage) detailsPart.getCurrentPage()).locateControl(key, data);
 		}
 		return null;
 	}

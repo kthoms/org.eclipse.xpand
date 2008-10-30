@@ -15,20 +15,16 @@
  */
 package org.eclipse.emf.editor;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -41,6 +37,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 import org.eclipse.emf.editor.extxpt.WorkspaceResourceManager;
+import org.eclipse.emf.editor.provider.DecoratingItemLabelProvider;
 import org.eclipse.emf.editor.provider.ExtendedLabelProvider;
 import org.eclipse.emf.editor.provider.ExtendedReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.editor.provider.ExtendedReflectiveItemProviderAdapterFactory.ExtendedReflectiveItemProvider;
@@ -49,9 +46,9 @@ import org.eclipse.emf.editor.ui.EEMasterDetailsBlock;
 import org.eclipse.emf.editor.ui.ImageRegistry;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -61,7 +58,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.forms.IMessage;
 import org.eclipse.ui.forms.IMessageManager;
@@ -83,7 +80,6 @@ import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 public class EEditor extends EcoreEditor implements ChangeListener {
 
 	private static final String ESTRUCTURALFEATURE_KEY = EcorePackage.Literals.ESTRUCTURAL_FEATURE.getName();
-	protected static final String MARKER_ID = Activator.getId() + ".problem";
 	private ManagedForm managedForm;
 	private EEMasterDetailsBlock mdBlock;
 
@@ -110,13 +106,15 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	 * 
 	 */
 	private void rejectFactory(ComposedAdapterFactory caf) {
-		// REMOVE reflective factory
+		// REMOVE reflective factory for EObjects
 		caf.removeAdapterFactory(caf.getFactoryForType(EcorePackage.eINSTANCE.getEFactoryInstance().create(
 				EcorePackage.Literals.EOBJECT)));
 		// ADD extended factory
 		ExtendedLabelProvider customProvider = new ExtendedLabelProvider(facade);
+		ILabelDecorator decorator = PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator();
+
 		ExtendedReflectiveItemProviderAdapterFactory extendedReflectiveItemProviderAdapterFactory = new ExtendedReflectiveItemProviderAdapterFactory(
-				customProvider);
+				new DecoratingItemLabelProvider(customProvider, decorator),facade);
 		caf.addAdapterFactory(extendedReflectiveItemProviderAdapterFactory);
 
 		// register item provider for details view
@@ -160,18 +158,19 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 
 						getSite().getShell().getDisplay().syncExec(new Runnable() {
 							public void run() {
-								Object object = null;
 								Control c = null;
 								for (IMessage message : messages) {
-									object = ((List<?>) message.getData()).get(0);
-									if (object != null) {
-										getViewer().setSelection(new StructuredSelection(object), true);
-									}
-									if (message.getData() instanceof Map) {
-										EStructuralFeature f = (EStructuralFeature) ((List<?>) message.getData())
-												.get(1);
-										if (f != null) {
-											c = mdBlock.findControl(ESTRUCTURALFEATURE_KEY, f);
+									if (message.getData() instanceof Collection<?>) {
+										List<?> data = (List<?>) message.getData();
+										Object object = data.get(0);
+										if (object != null) {
+											getViewer().setSelection(new StructuredSelection(object), true);
+										}
+										if (data.size() > 1) {
+											EStructuralFeature f = (EStructuralFeature) data.get(1);
+											if (f != null) {
+												c = mdBlock.findControl(ESTRUCTURALFEATURE_KEY, f);
+											}
 										}
 									}
 									break;
@@ -198,7 +197,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 						checkModel();
 					}
 				};
-				action.setImageDescriptor(EEPlugin.getImageDescriptor("icons/complete_task.gif"));
+				action.setImageDescriptor(EEPlugin.getDefault().getImageDescriptor("icons/complete_task.gif"));
 				toolBarManager.add(action);
 			}
 		};
@@ -234,6 +233,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	private void initInternal() {
 		project = getFile().getProject();
 		facade = createExtXptFacade();
+
 		if (editingDomain.getAdapterFactory() instanceof ComposedAdapterFactory) {
 			ComposedAdapterFactory caf = (ComposedAdapterFactory) editingDomain.getAdapterFactory();
 			rejectFactory(caf);
@@ -264,59 +264,21 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 		}
 	}
 
-	/**
-	 * 
-	 */
 	public void checkModel() {
-		final List<MessageData> messages = new ModelCheckor(facade).check(getEditingDomain().getResourceSet());
+		final List<MessageData> messages = new ModelCheckor(facade).check(getEditingDomain(), getFile());
 		getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
 			public void run() {
 				IMessageManager messageManager = managedForm.getMessageManager();
 				messageManager.removeMessages();
 				messageManager.setAutoUpdate(false);
 				for (MessageData md : messages) {
 					messageManager.addMessage(md.getKey(), md.getMessage(), md.getData(), md.getStatus());
-					if (getFile() != null)
-						addMarker(getFile(), md.getMessage(), md.getStatus());
 				}
 				messageManager.update();
 				messageManager.setAutoUpdate(true);
 			}
 		});
-	}
-
-	private void addMarker(final IFile file, final String message, final int severity) {
-		try {
-			new WorkspaceModifyOperation() {
-
-				@Override
-				protected void execute(final IProgressMonitor monitor) throws CoreException, InvocationTargetException,
-						InterruptedException {
-
-					try {
-						// FIXME own MarkerType
-						IMarker marker = file.createMarker(MARKER_ID);
-						marker.setAttribute(IMarker.MESSAGE, message);
-						int status = IMarker.SEVERITY_INFO;
-						switch (severity) {
-							case IMessageProvider.ERROR:
-								status = IMarker.SEVERITY_ERROR;
-								break;
-							case IMessageProvider.WARNING:
-								status = IMarker.SEVERITY_WARNING;
-								break;
-						}
-						marker.setAttribute(IMarker.SEVERITY, status);
-					}
-					catch (CoreException e) {
-						e.printStackTrace();
-					}
-				}
-			}.run(new NullProgressMonitor());
-		}
-		catch (final Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private ExtXptFacade createExtXptFacade() {
@@ -356,11 +318,20 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 		return (IFile) getEditorInput().getAdapter(IFile.class);
 	}
 
+	/**
+	 * @return
+	 */
 	public ExtendedReflectiveItemProvider getExtendedReflectiveItemProvider() {
-
 		return extendedReflectiveItemProvider;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent
+	 * )
+	 */
 	public void stateChanged(ChangeEvent e) {
 		Display.getDefault().asyncExec(new Runnable() {
 
@@ -370,6 +341,9 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 		});
 	}
 
+	/**
+	 * @return
+	 */
 	public ExtXptFacade getExtXptFacade() {
 		return facade;
 	}

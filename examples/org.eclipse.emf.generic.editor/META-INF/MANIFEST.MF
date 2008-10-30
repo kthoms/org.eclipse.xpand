@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xtend,
  org.eclipse.xtend.typesystem.emf,
  org.eclipse.jdt.core;bundle-version="3.4.2",
- org.eclipse.xtend.shared.ui
+ org.eclipse.xtend.shared.ui,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.4.1"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.editor,
  org.eclipse.emf.editor.extxpt,

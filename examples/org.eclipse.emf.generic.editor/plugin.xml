@@ -29,10 +29,6 @@
            priority="high">
         <describer
               class="org.eclipse.emf.ecore.xmi.impl.XMLContentHandlerImpl$XMI$Describer">
-           <parameter
-                 name="org.eclipse.emf.generic.editor.parameter1"
-                 value="org.eclipse.emf.generic.editor.parameter1">
-           </parameter>
         </describer>
      </content-type>
   </extension>

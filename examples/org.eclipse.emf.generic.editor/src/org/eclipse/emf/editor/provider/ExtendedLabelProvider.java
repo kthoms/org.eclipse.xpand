@@ -56,20 +56,22 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 			if (element instanceof EObject) {
 				EObject eObject = (EObject) element;
 				String iconName = evaluate(eObject, ICON_EXTENSION_NAME);
-				Resource eResource = eObject.eClass().eResource();
 				// TODO try instance scope
-				// retVal = locateImage(iconName, eObject.eResource(), eObject);
+				retVal = locateImage(iconName, eObject.eResource(), eObject);
 				// if not found try metamodel scope
+				Resource eResource = eObject.eClass().eResource();
 				if (retVal == null && iconName != null)
 					retVal = locateImage(iconName, eResource, eObject);
 			}
-		} catch (Throwable ex) {
+		}
+		catch (Throwable ex) {
 			EEPlugin.logError("ERROR", ex);
 		}
-		if (retVal != null)
-			return retVal;
-		// Fallback: Ask registry for image
-		return registryItemLabelProvider.getImage(element);
+		if (retVal == null) {
+			// Fallback: Ask registry for image
+			retVal = registryItemLabelProvider.getImage(element);
+		}
+		return retVal;
 
 	}
 
@@ -81,8 +83,8 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
-	private Object locateImage(String iconName, Resource eResource,
-			EObject eObject) throws MalformedURLException, IOException {
+	private Object locateImage(String iconName, Resource eResource, EObject eObject) throws MalformedURLException,
+			IOException {
 		// TODO understand the requirements :)
 		Object retVal = null;
 		if (eResource != null) {
@@ -93,36 +95,32 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 				// platform resource... good
 				String platformString = metaModelURI.toPlatformString(true);
 
-				IFile metaModelFile = ResourcesPlugin.getWorkspace().getRoot()
-						.getFile(new Path(platformString));
+				IFile metaModelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformString));
 				if (metaModelFile != null) {
 					// using IFile to allow resource change listening
-					IFile f = metaModelFile.getProject()
-							.getFile(iconURI.path());
+					IFile f = metaModelFile.getProject().getFile(iconURI.path());
 					if (f != null && f.exists()) {
 						// ask registry
 						retVal = ImageRegistry.getDefault().getImage(f);
 					}
 				}
-			} else if (metaModelURI.isArchive()) {// archived
+			}
+			else if (metaModelURI.isArchive()) {// archived
 				// handle archived resources
 				// return URI. Image will be stored in
 				// ExtendedImageRegistry
 				// which is not refreshable
 				if (checkAccessable(iconURI))
 					retVal = iconURI;
-			} else {
+			}
+			else {
 				// eResource not present physically... bad
-				URI classpathURI = URI
-						.createURI(ClasspathUriResolver.CLASSPATH_SCHEME + ":"
-								+ iconURI.path());
-				URI iconNormalizedURI = new ClasspathUriResolver().resolve(
-						facade.getProject(), classpathURI);
+				URI classpathURI = URI.createURI(ClasspathUriResolver.CLASSPATH_SCHEME + ":" + iconURI.path());
+				URI iconNormalizedURI = new ClasspathUriResolver().resolve(facade.getProject(), classpathURI);
 				// return URI. Image will be stored in
 				// ExtendedImageRegistry
 				// which is not refreshable
-				if (!ClasspathUriResolver.isClassapthUri(iconNormalizedURI)
-						&& checkAccessable(iconNormalizedURI))
+				if (!ClasspathUriResolver.isClassapthUri(iconNormalizedURI) && checkAccessable(iconNormalizedURI))
 					retVal = iconNormalizedURI;
 			}
 		}
@@ -136,7 +134,8 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 				InputStream in = url.openStream();// check readable
 				in.close();
 				return true;
-			} catch (FileNotFoundException e) {
+			}
+			catch (FileNotFoundException e) {
 				// ignore no feedback to user
 			}
 		}
@@ -151,15 +150,16 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 	 */
 	private URI createIconURI(EObject eObject, String iconName, URI metaModelURI) {
 		String packageName = packageName(eObject);
-		return metaModelURI.trimSegments(metaModelURI.segmentCount())
-				.appendSegment(ICONS_FOLDER).appendSegment(packageName)
-				.appendSegment(iconName);
+		return metaModelURI.trimSegments(metaModelURI.segmentCount()).appendSegment(ICONS_FOLDER).appendSegment(
+				packageName).appendSegment(iconName);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.edit.provider.IItemLabelProvider#getText(java.lang.Object)
+	 * @see
+	 * org.eclipse.emf.edit.provider.IItemLabelProvider#getText(java.lang.Object
+	 * )
 	 */
 	public String getText(Object element) {
 		String text = evaluate(element, LABEL_EXTENSION_NAME);

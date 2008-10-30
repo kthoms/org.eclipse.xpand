@@ -18,7 +18,6 @@ package org.eclipse.emf.editor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.editor.ui.ImageRegistry;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
@@ -30,7 +29,7 @@ import org.osgi.framework.BundleContext;
  */
 public class EEPlugin extends AbstractUIPlugin {
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.openarchitectureware.emf.generic.editor";
+	public static final String PLUGIN_ID = "org.eclipse.emf.generic.editor";
 
 	// The shared instance
 	private static EEPlugin plugin;
@@ -44,7 +43,9 @@ public class EEPlugin extends AbstractUIPlugin {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 * @see
+	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
+	 * )
 	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
@@ -52,16 +53,12 @@ public class EEPlugin extends AbstractUIPlugin {
 		plugin = this;
 	}
 
-	@Override
-	public IPreferenceStore getPreferenceStore() {
-		// TODO Auto-generated method stub
-		return super.getPreferenceStore();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 * @see
+	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
+	 * )
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
@@ -91,18 +88,16 @@ public class EEPlugin extends AbstractUIPlugin {
 	 *            the path
 	 * @return the image descriptor
 	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
+	public ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
 	public static void logError(String string, Throwable e) {
-		getDefault().getLog().log(
-				new Status(IStatus.ERROR, PLUGIN_ID, string, e));
+		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, string, e));
 	}
 
 	public static void logWarning(String string) {
-		getDefault().getLog().log(
-				new Status(IStatus.WARNING, EEPlugin.PLUGIN_ID, string));
+		getDefault().getLog().log(new Status(IStatus.WARNING, EEPlugin.PLUGIN_ID, string));
 	}
 
 	public static void logError(String string) {

@@ -30,6 +30,10 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.issues.MWEDiagnostic;
+import org.eclipse.emf.mwe.core.resources.ResourceLoader;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderDefaultImpl;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.xtend.check.CheckUtils;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -148,16 +152,24 @@ public class CheckEValidatorAdapter implements EValidator {
 
 	private boolean runOawCheck(DiagnosticChain diagnostics, List<?> allElements) {
 		boolean isValid = true;
-		for (CheckFileWithContext checkFile : _checkFiles) {
-			Issues issues = new IssuesImpl();
-			ResourceManager resourceManager = getResourceManager();
-			ExtensionFile parsedCheckFile = (ExtensionFile) resourceManager
-					.loadResource(checkFile.getFileName(),
-							CheckUtils.FILE_EXTENSION);
-			ExecutionContext executionContext = createExecutionContext(checkFile, resourceManager);
-			runOawCheck(parsedCheckFile, allElements, diagnostics,
-					executionContext);
-			isValid &= issues.hasErrors();
+		ResourceLoader current = ResourceLoaderFactory.getCurrentThreadResourceLoader();
+		try {
+			ResourceLoaderFactory.setCurrentThreadResourceLoader(new ResourceLoaderImpl(getClass().getClassLoader()));
+			for (CheckFileWithContext checkFile : _checkFiles) {
+				Issues issues = new IssuesImpl();
+				ResourceManager resourceManager = getResourceManager();
+				ExtensionFile parsedCheckFile = (ExtensionFile) resourceManager
+						.loadResource(checkFile.getFileName(),
+								CheckUtils.FILE_EXTENSION);
+				if (parsedCheckFile==null)
+					throw new IllegalArgumentException("Couldn't find file "+checkFile.getFileName()+"."+CheckUtils.FILE_EXTENSION+". Maybe it has been misspelled or it's not on the classpath?");
+				ExecutionContext executionContext = createExecutionContext(checkFile, resourceManager);
+				runOawCheck(parsedCheckFile, allElements, diagnostics,
+						executionContext);
+				isValid &= issues.hasErrors();
+			}
+		} finally {
+			ResourceLoaderFactory.setCurrentThreadResourceLoader(current);
 		}
 		return isValid;
 	}

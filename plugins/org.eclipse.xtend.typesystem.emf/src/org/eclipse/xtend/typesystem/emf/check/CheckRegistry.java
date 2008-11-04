@@ -103,6 +103,9 @@ public class CheckRegistry {
 
 	private EPackage findEPackage(String nsURI) {
 		Object registeredEPackageDescriptor = EPackage.Registry.INSTANCE.get(nsURI);
+		if (registeredEPackageDescriptor == null)
+			throw new IllegalArgumentException("EPackage with URI " + nsURI
+					+ " not found in EPackage.Registry.INSTANCE");
 		if (registeredEPackageDescriptor instanceof EPackage) {
 			return (EPackage) registeredEPackageDescriptor;
 		}

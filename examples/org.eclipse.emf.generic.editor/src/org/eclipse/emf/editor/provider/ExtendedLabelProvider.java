@@ -56,16 +56,18 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 			if (element instanceof EObject) {
 				EObject eObject = (EObject) element;
 				String iconName = evaluate(eObject, ICON_EXTENSION_NAME);
-				// TODO try instance scope
-				retVal = locateImage(iconName, eObject.eResource(), eObject);
-				// if not found try metamodel scope
-				Resource eResource = eObject.eClass().eResource();
-				if (retVal == null && iconName != null)
-					retVal = locateImage(iconName, eResource, eObject);
+				if (iconName != null) {
+					// TODO try instance scope
+					retVal = locateImage(iconName, eObject.eResource(), eObject);
+					// if not found try metamodel scope
+					Resource eResource = eObject.eClass().eResource();
+					if (retVal == null)
+						retVal = locateImage(iconName, eResource, eObject);
+				}
 			}
 		}
 		catch (Throwable ex) {
-			EEPlugin.logError("ERROR", ex);
+			EEPlugin.logError("ERROR fetching Icon", ex);
 		}
 		if (retVal == null) {
 			// Fallback: Ask registry for image

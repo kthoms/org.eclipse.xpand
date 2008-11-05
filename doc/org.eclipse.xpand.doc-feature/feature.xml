@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.xpand.doc"
-      label="%featureName (Incubation)" 
+      label="%featureName"
       version="0.7.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
@@ -23,8 +23,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%UpdateSiteName" url="_UPDATESITEURL_"/>
-      <discovery label="%UpdateSiteName" url="_UPDATESITEURL_"/>
+      <update label="%UpdateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/interim/"/>
+      <discovery label="%UpdateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/interim/"/>
    </url>
 
    <plugin
@@ -32,7 +32,5 @@ http://www.eclipse.org/legal/epl-v10.html
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
-	<!-- TODO: add other plugins that contribute doc, if any -->
 
 </feature>

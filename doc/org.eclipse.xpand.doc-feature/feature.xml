@@ -23,8 +23,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%UpdateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/interim/"/>
-      <discovery label="%UpdateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/interim/"/>
+      <update label="%UpdateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/"/>
+      <discovery label="%UpdateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/"/>
    </url>
 
    <plugin

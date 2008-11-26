@@ -100,7 +100,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	}
 
 	/**
-	 * To provide custom (oAW-Powered) labels and images
+	 * To provide custom (Xtend/Xpand-Powered) labels and images
 	 * 
 	 * @param caf
 	 * 
@@ -114,7 +114,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 		ILabelDecorator decorator = PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator();
 
 		ExtendedReflectiveItemProviderAdapterFactory extendedReflectiveItemProviderAdapterFactory = new ExtendedReflectiveItemProviderAdapterFactory(
-				new DecoratingItemLabelProvider(customProvider, decorator),facade);
+				new DecoratingItemLabelProvider(customProvider, decorator), facade);
 		caf.addAdapterFactory(extendedReflectiveItemProviderAdapterFactory);
 
 		// register item provider for details view
@@ -265,7 +265,8 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	}
 
 	public void checkModel() {
-		final List<MessageData> messages = new ModelCheckor(facade).check(getEditingDomain(), getFile());
+		final List<MessageData> messages = new ModelCheckor(facade).check(extendedReflectiveItemProvider,
+				getEditingDomain(), getFile());
 		getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
 			public void run() {

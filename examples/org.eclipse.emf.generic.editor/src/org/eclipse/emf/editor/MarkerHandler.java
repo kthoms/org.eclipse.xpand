@@ -49,7 +49,7 @@ public class MarkerHandler {
 		}
 	}
 
-	void addMarker(final IFile file, final String message, final int severity) {
+	void addMarker(final IFile file, final String message, final int severity, final String location) {
 		checkResource(file);
 		run(new WorkspaceModifyOperation() {
 
@@ -71,6 +71,8 @@ public class MarkerHandler {
 							break;
 					}
 					marker.setAttribute(IMarker.SEVERITY, status);
+					if (location != null)
+						marker.setAttribute(IMarker.LOCATION, location);
 				}
 				catch (CoreException e) {
 					e.printStackTrace();
@@ -78,5 +80,4 @@ public class MarkerHandler {
 			}
 		}, new NullProgressMonitor());
 	}
-
 }

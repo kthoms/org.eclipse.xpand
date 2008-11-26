@@ -118,7 +118,7 @@ public class ExtXptFacade {
 		TreeIterator<EObject> iter = rootContainer.eAllContents();
 		while (iter.hasNext())
 			all.add(iter.next());
-		IssuesImpl issuesImpl = new IssuesImpl();
+		Issues issuesImpl = new IssuesImpl();
 		IXtendXpandProject extxptProject = Activator.getExtXptModelManager().findProject(project);
 		if (extxptProject != null) {
 			IXtendXpandResource extxptResource = extxptProject.findExtXptResource(checkFile, CheckUtils.FILE_EXTENSION);

@@ -16,6 +16,7 @@
 package org.eclipse.emf.editor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,6 +35,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 import org.eclipse.emf.editor.extxpt.ExtXptHelper;
+import org.eclipse.emf.editor.provider.ExtendedReflectiveItemProviderAdapterFactory.ExtendedReflectiveItemProvider;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.MWEDiagnostic;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -54,7 +56,8 @@ public class ModelCheckor {
 		this.facade = facade;
 	}
 
-	public List<MessageData> check(EditingDomain ed, IFile file) {
+	public List<MessageData> check(ExtendedReflectiveItemProvider extendedReflectiveItemProvider, EditingDomain ed,
+			IFile file) {
 		ResourceSet toCheck = ed.getResourceSet();
 		List<MessageData> messages = new ArrayList<MessageData>();
 		markerHandler.deleteMarkers(file, new NullProgressMonitor());
@@ -75,7 +78,23 @@ public class ModelCheckor {
 					// xtend checks
 					List<MessageData> checkValidation = checkValidation(rootObject);
 					for (MessageData md : checkValidation) {
-						markerHandler.addMarker(file, md.getMessage(), md.getStatus());
+						List<?> data = md.getData();
+						String location = null;
+						Iterator<?> iterator = data.iterator();
+						Object o = iterator.next();// object index 0
+						if (o instanceof EObject) {
+							EObject eO = (EObject) o;
+							location = extendedReflectiveItemProvider.getText(eO);
+							Object obj = iterator.next();// feature index 1
+							// TODO get location using Element and Feature
+							// from
+							// md.getData()
+							if (obj instanceof EStructuralFeature) {
+								EStructuralFeature f = (EStructuralFeature) obj;
+								location += ("#" + f.getName());
+							}
+						}
+						markerHandler.addMarker(file, md.getMessage(), md.getStatus(), location);
 					}
 					// ecore
 					messages.addAll(checkValidation);
@@ -150,18 +169,26 @@ public class ModelCheckor {
 	private MessageData createMessageFromIssue(MWEDiagnostic issue, int type) {
 		String message = issue.getMessage();
 		Object element = issue.getElement();
-		MessageData md = new MessageData(element, message, null, type);
+		MessageData md = new MessageData(element, message, issue.getData(), type);
 		List<Object> data = new ArrayList<Object>();
 		if (element instanceof EObject) {
 			EObject eObject = (EObject) element;
 			data.add(0, element);
-			EStructuralFeature feature = ExtXptHelper.extractFeatureFromMessage(eObject, md);
+			EStructuralFeature feature = null;
+			// read fetureName stored in the data
+			if (issue.getData() != null && issue.getData().size() > 1
+					&& String.class.isInstance(issue.getData().get(1))) {
+				feature = eObject.eClass().getEStructuralFeature((String) issue.getData().get(1));
+			}
+			// if nothing found try old extract from message way
+			else {
+				feature = ExtXptHelper.extractFeatureFromMessage(eObject, md);
+			}
 			if (feature != null) {
 				data.add(1, feature);
 			}
 		}
-		md.setData(data);
-
+		md.setData(Collections.unmodifiableList(data));
 		return md;
 	}
 

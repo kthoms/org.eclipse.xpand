@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.xtend.expression.codeassist;
 
-import org.eclipse.internal.xtend.expression.codeassist.ExtensionImportProposalComputer;
-
 import junit.framework.TestCase;
+
+import org.eclipse.internal.xtend.expression.codeassist.ExtensionImportProposalComputer;
 
 public class ExtensionImportProposalComputerTest extends TestCase {
     private ExtensionImportProposalComputer tpc;

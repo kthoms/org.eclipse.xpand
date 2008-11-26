@@ -11,9 +11,9 @@
 
 package org.eclipse.xtend.expression.codeassist;
 
-import org.eclipse.internal.xtend.expression.codeassist.TypeProposalComputer;
-
 import junit.framework.TestCase;
+
+import org.eclipse.internal.xtend.expression.codeassist.TypeProposalComputer;
 
 public class TypeProposalComputerTest extends TestCase {
     private TypeProposalComputer tpc;

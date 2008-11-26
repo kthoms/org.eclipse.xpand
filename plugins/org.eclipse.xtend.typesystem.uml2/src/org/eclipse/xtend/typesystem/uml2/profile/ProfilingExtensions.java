@@ -20,6 +20,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.emf.mwe.core.ConfigurationException;
+import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -27,9 +30,6 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtend.typesystem.uml2.Setup;
-import org.eclipse.emf.mwe.core.ConfigurationException;
-import org.eclipse.emf.mwe.core.issues.Issues;
-import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 
 /**
  * Extensions for support of UML2 Profiles.

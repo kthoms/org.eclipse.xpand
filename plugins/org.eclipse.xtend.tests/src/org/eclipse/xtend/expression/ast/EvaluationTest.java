@@ -14,9 +14,7 @@ package org.eclipse.xtend.expression.ast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import junit.framework.TestCase;
 
@@ -30,7 +28,6 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Type1;
 import org.eclipse.xtend.expression.Variable;
-import org.eclipse.xtend.typesystem.Property;
 
 /**
  * @author Sven Efftinge (http://www.efftinge.de)

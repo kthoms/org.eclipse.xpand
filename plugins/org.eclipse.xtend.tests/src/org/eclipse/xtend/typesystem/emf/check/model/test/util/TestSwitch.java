@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TestSwitch.java,v 1.1 2008/10/21 07:32:51 jkohnlein Exp $
+ * $Id: TestSwitch.java,v 1.2 2008/11/26 12:46:25 dhubner Exp $
  */
 package org.eclipse.xtend.typesystem.emf.check.model.test.util;
 
@@ -11,7 +11,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtend.typesystem.emf.check.model.test.*;
+import org.eclipse.xtend.typesystem.emf.check.model.test.MyMetaClass;
+import org.eclipse.xtend.typesystem.emf.check.model.test.TestPackage;
 
 /**
  * <!-- begin-user-doc -->

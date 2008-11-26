@@ -32,8 +32,7 @@ public class CheckEvaluationTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		ec = new ExecutionContextImpl();
-		// ec.registerMetaModel(new JavaMetaModel("asdf", new
-		// JavaBeansStrategy()));
+//		((ExecutionContextImpl) ec).registerMetaModel(new JavaMetaModel("asdf", new JavaBeansStrategy()));
 	}
 
 	private ExtensionFile parse(final String expression) {
@@ -42,9 +41,7 @@ public class CheckEvaluationTest extends TestCase {
 
 	public final void testValidate() {
 		final ExtensionFile file = parse("context String ERROR this+' not allowed!' : !this.startsWith('test') ;\n"
-				+ "\n"
-				+ "context Integer ERROR ''+this+' not allowed!' : !(this > 5); \n"
-				+ "\n"
+				+ "\n" + "context Integer ERROR ''+this+' not allowed!' : !(this > 5); \n" + "\n"
 				+ "context Object WARNING 'Objects of type '+this.metaType+' not allowed!' : "
 				+ "String.isInstance(this) || Integer.isInstance(this); \n");
 
@@ -56,8 +53,7 @@ public class CheckEvaluationTest extends TestCase {
 		file.check(ec, toCheck, is, false);
 		assertEquals(2, is.getErrors().length);
 		assertEquals(1, is.getWarnings().length);
-		assertEquals("Objects of type Boolean not allowed!",
-				is.getWarnings()[0].getMessage());
+		assertEquals("Objects of type Boolean not allowed!", is.getWarnings()[0].getMessage());
 		assertEquals(Boolean.TRUE, is.getWarnings()[0].getElement());
 
 	}

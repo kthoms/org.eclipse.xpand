@@ -7,11 +7,12 @@ public class AllTests {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for org.eclipse.xtend.check");
-		//$JUnit-BEGIN$
+		// $JUnit-BEGIN$
 		suite.addTestSuite(CheckFastAnalyzerTest.class);
 		suite.addTestSuite(CheckAnalyzationTest.class);
 		suite.addTestSuite(CheckEvaluationTest.class);
-		//$JUnit-END$
+		suite.addTestSuite(FeaturedCheckTest.class);
+		// $JUnit-END$
 		return suite;
 	}
 

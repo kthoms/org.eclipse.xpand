@@ -31,7 +31,6 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.issues.MWEDiagnostic;
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
-import org.eclipse.emf.mwe.core.resources.ResourceLoaderDefaultImpl;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;

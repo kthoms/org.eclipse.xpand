@@ -14,7 +14,6 @@ import java.util.HashSet;
 
 import junit.framework.TestCase;
 
-import org.eclipse.xtend.XtendFacade;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.typesystem.Type;
 

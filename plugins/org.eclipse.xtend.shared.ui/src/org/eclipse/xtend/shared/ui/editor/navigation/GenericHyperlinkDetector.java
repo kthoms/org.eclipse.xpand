@@ -23,8 +23,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
-import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
 import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
+import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
 
 /**
  * GenericHyperlinkDetector is used to detect hyperlinkable words inside oAW

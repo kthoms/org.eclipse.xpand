@@ -98,4 +98,5 @@ public class CheckAnalyzationTest extends TestCase {
         assertEquals(2, issues.size());
 
     }
+ 
 }

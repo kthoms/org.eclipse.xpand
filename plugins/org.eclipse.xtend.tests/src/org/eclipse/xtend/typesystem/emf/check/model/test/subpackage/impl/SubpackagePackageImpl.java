@@ -2,14 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SubpackagePackageImpl.java,v 1.1 2008/10/21 07:32:51 jkohnlein Exp $
+ * $Id: SubpackagePackageImpl.java,v 1.2 2008/11/26 12:46:25 dhubner Exp $
  */
 package org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.xtend.typesystem.emf.check.model.test.TestPackage;
 import org.eclipse.xtend.typesystem.emf.check.model.test.impl.TestPackageImpl;

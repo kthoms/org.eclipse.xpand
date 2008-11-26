@@ -58,9 +58,9 @@ extImport  returns [ImportStatement r]:
 ;
 
 check returns [Check ext]:
-	'context' t=type ('if' guard=expression)? (sev1='ERROR'|'WARNING') msg=expression ':'
+	'context' t=type('#'f=identifier)? ('if' guard=expression)? (sev1='ERROR'|'WARNING') msg=expression ':'
 	expr=expression ';'
-	{ext = factory.createCheck(t, guard, sev1!=null, msg, expr);}
+	{ext = factory.createCheck(t, f, guard, sev1!=null, msg, expr);}
 ;
 
 around  returns [Around r] :

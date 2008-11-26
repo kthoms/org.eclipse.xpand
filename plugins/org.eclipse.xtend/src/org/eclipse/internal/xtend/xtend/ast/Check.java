@@ -12,6 +12,7 @@
 package org.eclipse.internal.xtend.xtend.ast;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -23,156 +24,197 @@ import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.Type;
 
 public class Check extends SyntaxElement {
 
-    private Identifier type;
+	private Identifier type;
 
-    private boolean errorSeverity = true;
+	private boolean errorSeverity = true;
 
-    private Expression msg;
+	private Expression msg;
 
-    private Expression constraint;
+	private Expression constraint;
 
-    private Expression guard;
+	private Expression guard;
 
-    public Check(final Identifier type, final Expression guard, final boolean errorSeverity,
-             final Expression msg, final Expression constraint) {
-        this.type = type;
-        this.guard = guard;
-        this.errorSeverity = errorSeverity;
-        this.msg = msg;
-        this.constraint = constraint;
-    }
+	private final Identifier feature;
 
-    public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-        final Type toCheck = ctx.getTypeForName(type.getValue());
-        if (toCheck == null) {
-            issues
-                    .add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: " + type.getValue(),
-                            this));
-            return;
-        }
-        ctx = ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, toCheck));
-        if (guard != null) {
-            Type guardType = null;
-            try {
-            	guardType = guard.analyze(ctx, issues);
-            } catch (RuntimeException ex) {
-            	ctx.handleRuntimeException(ex, this, null);
-            }
-            if (guardType == null)
-                return;
-            if (!guardType.equals(ctx.getBooleanType())) {
-                issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Boolean expected! (is "
-                        + guardType.getName() + ")", guard));
-            }
-        }
+	public Check(final Identifier type, final Identifier f, final Expression guard, final boolean errorSeverity,
+			final Expression msg, final Expression constraint) {
+		this.type = type;
+		this.feature = f;
+		this.guard = guard;
+		this.errorSeverity = errorSeverity;
+		this.msg = msg;
+		this.constraint = constraint;
+	}
 
-        Type constraintType = null;
-        try {
-        	constraintType = constraint.analyze(ctx, issues);
-        } catch (RuntimeException ex) {
-        	ctx.handleRuntimeException(ex, this, null);
-        }
-        if (constraintType == null)
-            return;
-        if (!constraintType.equals(ctx.getBooleanType())) {
-            issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Boolean expected! (is "
-                    + constraintType.getName() + ")", constraint));
-        }
-        
-        try {
-        	msg.analyze(ctx, issues);
-        } catch (RuntimeException ex) {
-        	ctx.handleRuntimeException(ex, this, null);
-        }
-    }
+	public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		final Type toCheck = ctx.getTypeForName(type.getValue());
+		if (toCheck == null) {
+			issues
+					.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: " + type.getValue(),
+							this));
+			return;
+		}
+		if (feature != null) {
+			Property property = toCheck.getProperty(feature.getValue());
+			if (property == null) {
+				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find property '"
+						+ feature.getValue() + "' for type '" + type.getValue() + "'", this));
+				return;
+			}
+		}
 
-    /**
-     * Executes the check. 
-     * @param ctx The current execution context
-     * @param colToCheck Collection of objects on which the check is evaluated
-     * @param issues Errors and warnings are reported to this instance
-     * @param warnIfNothingChecked <code>true</code>: If this check is not evaluated for any elements an warning will be added to <tt>issues</tt>
-     */
-    public void validate(ExecutionContext ctx, final Collection<?> colToCheck, final Issues issues, boolean warnIfNothingChecked) {
-        // get the type for which the check should be evaluated
-    	final Type typeToCheck = ctx.getTypeForName(type.getValue());
-    	// The type is unknown => exit with exception
-        if (typeToCheck == null)
-            throw new EvaluationException("Type not found : " + type.getValue(), this, ctx);
+		ctx = ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, toCheck));
+		if (guard != null) {
+			Type guardType = null;
+			try {
+				guardType = guard.analyze(ctx, issues);
+			}
+			catch (RuntimeException ex) {
+				ctx.handleRuntimeException(ex, this, null);
+			}
+			if (guardType == null)
+				return;
+			if (!guardType.equals(ctx.getBooleanType())) {
+				issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Boolean expected! (is "
+						+ guardType.getName() + ")", guard));
+			}
+		}
 
-        // will be set to true when check is evaluated for any object
-        boolean someObjectFound = false;
-        for (final Iterator<?> iter = colToCheck.iterator(); iter.hasNext();) {
-            final Object o = iter.next();
-            // Object matches the type the check is declared for
-            if (typeToCheck.isInstance(o)) {
-            	someObjectFound = true;
-                try {
-                	// create a new execution context for evaluation
-                    ctx = ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, o));
-                    // check the guard condition; do not evaluate if guard is evaluated to false
-                    if (process(ctx)) {
-                        final Object result = constraint.evaluate(ctx);
-                        
-                        // check result must be of Boolean type
-                        if (result != null && !(result instanceof Boolean))
-                            throw new EvaluationException("Boolean expected! ( was " + result.getClass().getName()+")", this, ctx);
-                        
-                        // add issue if result of the check is false
-                        final Boolean r = (Boolean) result;
-                        if (Boolean.FALSE.equals(r)) {
-                        	// get the error message
-                            final Object msgResult = msg.evaluate(ctx);
-                            String stringResult = "Message evaluation returned null";
-                            if (msgResult != null) {
-                                stringResult = msgResult.toString();
-                            }
-                            if (errorSeverity) {
-                                issues.addError(stringResult, o);
-                            } else {
-                                issues.addWarning(stringResult, o);
-                            }
-                        }
-                    }
-                } catch (final NullPointerException npe) {
-                    final Object msgResult = msg.evaluate(ctx);
-                    String stringResult = "Message evaluation returned null";
-                    if (msgResult != null) {
-                        stringResult = msgResult.toString();
-                    }
-                    if (errorSeverity) {
-                        issues.addError(stringResult + " (NPE in constraint evaluation)", o);
-                    } else {
-                        issues.addWarning(stringResult + " (NPE in constraint evaluation)", o);
-                    }
-                }
-            }
-        }
-        if ( warnIfNothingChecked && (!someObjectFound) ) {
-        	issues.addWarning( "The constraint did not match any model elements. Context: "+type.toString()+", message: "+msg );
-        }
-    }
+		Type constraintType = null;
+		try {
+			constraintType = constraint.analyze(ctx, issues);
+		}
+		catch (RuntimeException ex) {
+			ctx.handleRuntimeException(ex, this, null);
+		}
+		if (constraintType == null)
+			return;
+		if (!constraintType.equals(ctx.getBooleanType())) {
+			issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Boolean expected! (is "
+					+ constraintType.getName() + ")", constraint));
+		}
 
-    private boolean process(final ExecutionContext ctx) {
-        if (guard != null) {
-            final Object result = guard.evaluate(ctx);
-            return result instanceof Boolean && ((Boolean) result).booleanValue();
-        }
-        return true;
-    }
-    
-    @Override
-    public String toString() {
-        return type+" "+msg;
-    }
+		try {
+			msg.analyze(ctx, issues);
+		}
+		catch (RuntimeException ex) {
+			ctx.handleRuntimeException(ex, this, null);
+		}
+	}
 
-    public boolean isErrorCheck() {
-        return this.errorSeverity;
-    }
+	/**
+	 * Executes the check.
+	 * 
+	 * @param ctx
+	 *            The current execution context
+	 * @param colToCheck
+	 *            Collection of objects on which the check is evaluated
+	 * @param issues
+	 *            Errors and warnings are reported to this instance
+	 * @param warnIfNothingChecked
+	 *            <code>true</code>: If this check is not evaluated for any
+	 *            elements an warning will be added to <tt>issues</tt>
+	 */
+	public void validate(ExecutionContext ctx, final Collection<?> colToCheck, final Issues issues,
+			boolean warnIfNothingChecked) {
+		// get the type for which the check should be evaluated
+		final Type typeToCheck = ctx.getTypeForName(type.getValue());
+		// The type is unknown => exit with exception
+		if (typeToCheck == null)
+			throw new EvaluationException("Type not found : " + type.getValue(), this, ctx);
+		// will be set to true when check is evaluated for any object
+		boolean someObjectFound = false;
+		for (final Iterator<?> iter = colToCheck.iterator(); iter.hasNext();) {
+			final Object o = iter.next();
+			// Object matches the type the check is declared for
+			if (typeToCheck.isInstance(o)) {
+				someObjectFound = true;
+				try {
+					// create a new execution context for evaluation
+					ctx = ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, o));
+					// check the guard condition; do not evaluate if guard is
+					// evaluated to false
+					if (process(ctx)) {
+						final Object result = constraint.evaluate(ctx);
+
+						// check result must be of Boolean type
+						if (result != null && !(result instanceof Boolean))
+							throw new EvaluationException("Boolean expected! ( was " + result.getClass().getName()
+									+ ")", this, ctx);
+
+						// add issue if result of the check is false
+						final Boolean r = (Boolean) result;
+						if (Boolean.FALSE.equals(r)) {
+							// get the error message
+							final Object msgResult = msg.evaluate(ctx);
+							String stringResult = "Message evaluation returned null";
+							if (msgResult != null) {
+								stringResult = msgResult.toString();
+							}
+							// Involved property e.g. test::Bean#property
+							String propertyName = null;
+							if (feature != null) {
+								String featureValue = feature.getValue();
+								Property property = typeToCheck.getProperty(featureValue);
+								if (property == null) {
+									throw new EvaluationException("Property " + featureValue + " for Type "
+											+ typeToCheck + " not found!", this, ctx);
+								}
+								else {
+									propertyName = property.getName();
+								}
+							}
+							if (errorSeverity) {
+								issues.addError(null, stringResult, o, propertyName, null, Collections.emptyList());
+							}
+							else {
+								issues.addWarning(null, stringResult, o, propertyName, null, Collections.emptyList());
+							}
+						}
+					}
+				}
+				catch (final NullPointerException npe) {
+					final Object msgResult = msg.evaluate(ctx);
+					String stringResult = "Message evaluation returned null";
+					if (msgResult != null) {
+						stringResult = msgResult.toString();
+					}
+					if (errorSeverity) {
+						issues.addError(stringResult + " (NPE in constraint evaluation)", o);
+					}
+					else {
+						issues.addWarning(stringResult + " (NPE in constraint evaluation)", o);
+					}
+				}
+			}
+		}
+		if (warnIfNothingChecked && (!someObjectFound)) {
+			issues.addWarning("The constraint did not match any model elements. Context: " + type.toString()
+					+ ", message: " + msg);
+		}
+	}
+
+	private boolean process(final ExecutionContext ctx) {
+		if (guard != null) {
+			final Object result = guard.evaluate(ctx);
+			return result instanceof Boolean && ((Boolean) result).booleanValue();
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return type + " " + msg;
+	}
+
+	public boolean isErrorCheck() {
+		return this.errorSeverity;
+	}
 
 	public Expression getConstraint() {
 		return constraint;
@@ -189,6 +231,5 @@ public class Check extends SyntaxElement {
 	public Identifier getType() {
 		return type;
 	}
-    
-    
+
 }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TestPackageImpl.java,v 1.1 2008/10/21 07:32:52 jkohnlein Exp $
+ * $Id: TestPackageImpl.java,v 1.2 2008/11/26 12:46:25 dhubner Exp $
  */
 package org.eclipse.xtend.typesystem.emf.check.model.test.impl;
 
@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.xtend.typesystem.emf.check.model.test.MyEnum;
 import org.eclipse.xtend.typesystem.emf.check.model.test.MyMetaClass;

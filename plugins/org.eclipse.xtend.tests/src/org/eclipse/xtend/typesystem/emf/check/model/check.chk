@@ -3,10 +3,10 @@ import subpackage;
 
 extension org::eclipse::xtend::typesystem::emf::check::model::MyExtension;
 
-context MyMetaClass ERROR "Name must be set" :	
+context MyMetaClass#name ERROR "Name must be set" :	
 	name != null;
 
-context MyMetaClass WARNING "Name should not be empty" :
+context MyMetaClass#name WARNING "Name should not be empty" :
 	name != "" && name != doSomething(); 
 	
 context MyMetaClass WARNING "Subpackage should not be set!" :

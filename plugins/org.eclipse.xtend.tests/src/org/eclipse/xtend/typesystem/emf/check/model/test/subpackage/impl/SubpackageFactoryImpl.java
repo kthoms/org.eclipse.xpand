@@ -2,18 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SubpackageFactoryImpl.java,v 1.1 2008/10/21 07:32:51 jkohnlein Exp $
+ * $Id: SubpackageFactoryImpl.java,v 1.2 2008/11/26 12:46:25 dhubner Exp $
  */
 package org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.*;
+import org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.SubpackageFactory;
+import org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.SubpackageMetaClass;
+import org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.SubpackagePackage;
 
 
 /**

@@ -33,7 +33,7 @@ import org.eclipse.xtend.typesystem.Type;
 public class CheckFastAnalyzer {
 
     private final static Pattern VALIDATE_PATTERN = Pattern
-            .compile("context\\s+([\\[\\]:\\w\\]]+)\\s+[^;]*\\z");
+            .compile("context\\s+([\\[\\]:\\w\\]]+)(#|\\s+)[^;]*\\z");
 
     private final static Pattern TYPEDECL_PATTERN = Pattern.compile("context\\s+[\\[\\]:\\w\\]]*\\z");
 

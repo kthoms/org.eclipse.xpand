@@ -19,9 +19,9 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.internal.xpand2.ast.Template;
 import org.eclipse.internal.xtend.xtend.parser.ErrorHandler;
-import org.eclipse.internal.xtend.xtend.parser.XtendError;
 import org.eclipse.internal.xtend.xtend.parser.ParseException;
 import org.eclipse.internal.xtend.xtend.parser.SyntaxError;
+import org.eclipse.internal.xtend.xtend.parser.XtendError;
 
 public final class XpandParseFacade {
 	private XpandParseFacade() {

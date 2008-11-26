@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MyMetaClass.java,v 1.1 2008/10/21 07:32:51 jkohnlein Exp $
+ * $Id: MyMetaClass.java,v 1.2 2008/11/26 12:46:25 dhubner Exp $
  */
 package org.eclipse.xtend.typesystem.emf.check.model.test;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.SubpackageMetaClass;
 

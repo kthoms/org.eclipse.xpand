@@ -27,8 +27,8 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
-import org.eclipse.xtend.shared.ui.MetamodelContributor;
 import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.MetamodelContributor;
 import org.eclipse.xtend.shared.ui.core.preferences.PreferenceConstants;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 

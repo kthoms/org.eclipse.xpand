@@ -13,14 +13,14 @@ The com.ibm.icu library is published under Eclipse Public License V1.0.
 *******************************************************************************
 */
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 

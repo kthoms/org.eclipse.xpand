@@ -13,8 +13,8 @@ package org.eclipse.xtend.shared.ui.editor.search.query;
 import java.util.List;
 
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
-import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
 import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
+import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
 
 /**
  * <code>OawSearchReferencesQuery</code> performs a query for declarations of

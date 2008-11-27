@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.xtend.typesystem.emf.XtendTypesytemEmfPlugin;
 
 /**
  * Reads checks extensions, instantiates validators and registers them.
@@ -32,7 +31,7 @@ public class CheckRegistry {
 
 	private final Log log = LogFactory.getLog(getClass());
 
-	private static final String EXTENSION_POINT_ID = XtendTypesytemEmfPlugin.PLUGIN_ID + ".checks";
+	private static final String EXTENSION_POINT_ID = "org.eclipse.xtend.typesystem.emf.checks";
 	private static final String NS_URI_ATTR_ID = "nsURI";
 	private static final String CHECK_FILE_ATTR_ID = "checkFile";
 	private static final String CHECK_FILE_PATH_ATTR_ID = "path";
@@ -102,15 +101,15 @@ public class CheckRegistry {
 	}
 
 	private EPackage findEPackage(String nsURI) {
-		Object registeredEPackageDescriptor = EPackage.Registry.INSTANCE.get(nsURI);
-		if (registeredEPackageDescriptor == null)
+		Object registryEntry = EPackage.Registry.INSTANCE.get(nsURI);
+		if (registryEntry == null)
 			throw new IllegalArgumentException("EPackage with URI " + nsURI
 					+ " not found in EPackage.Registry.INSTANCE");
-		if (registeredEPackageDescriptor instanceof EPackage) {
-			return (EPackage) registeredEPackageDescriptor;
+		if (registryEntry instanceof EPackage) {
+			return (EPackage) registryEntry;
 		}
-		else if (registeredEPackageDescriptor instanceof EPackage.Descriptor) {
-			return ((EPackage.Descriptor) registeredEPackageDescriptor).getEPackage();
+		else if (registryEntry instanceof EPackage.Descriptor) {
+			return ((EPackage.Descriptor) registryEntry).getEPackage();
 		}
 		throw new IllegalArgumentException("Wrong type in Ecore.Registry");
 	}

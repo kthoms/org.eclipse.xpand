@@ -15,6 +15,4 @@ Require-Bundle: org.eclipse.xtend,
 Export-Package: org.eclipse.xtend.typesystem.emf,
  org.eclipse.xtend.typesystem.emf.check
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.eclipse.xtend.typesystem.emf.XtendTypesytemEmfPlugin
 Eclipse-BuddyPolicy: dependent

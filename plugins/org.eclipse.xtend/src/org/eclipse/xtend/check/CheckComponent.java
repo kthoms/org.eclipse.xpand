@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xtend.check;
@@ -29,100 +27,152 @@ import org.eclipse.xtend.expression.ExpressionFacade;
 
 public class CheckComponent extends AbstractExpressionsUsingWorkflowComponent {
 
-    private String expression = null;
+	private static final String COMPONENT_NAME = "Check component";
 
-    private List<String> checkFiles = new ArrayList<String>();
+	private String expression = null;
 
-    private boolean abortOnError = true;
+	private List<String> checkFiles = new ArrayList<String>();
 
-    private boolean warnIfNothingChecked = false;
+	private boolean abortOnError = true;
 
-    private String emfAllChildrenSlot;
+	private boolean warnIfNothingChecked = false;
 
-    public void setAbortOnError(final boolean abortOnError) {
-        this.abortOnError = abortOnError;
-    }
+	private String emfAllChildrenSlot;
 
-    public void addCheckFile(final String checkFile) {
-        this.checkFiles.add(checkFile);
-    }
+	/**
+	 * Sets if execution should be aborted on error.
+	 * 
+	 * @param abortOnError
+	 *            If <code>true</code>, the execution is aborted on error,
+	 *            otherwise, the execution is continued normally.
+	 */
+	public void setAbortOnError(final boolean abortOnError) {
+		this.abortOnError = abortOnError;
+	}
 
-    public void setExpression(final String expression) {
-        this.expression = expression;
-    }
+	/**
+	 * Adds a check file.
+	 * 
+	 * @param checkFile
+	 *            the check file
+	 */
+	public void addCheckFile(final String checkFile) {
+		this.checkFiles.add(checkFile);
+	}
 
-    public void setWarnIfNothingChecked(boolean b) {
-        warnIfNothingChecked = b;
-    }
+	/**
+	 * Sets the expression to check. This property only works for non-EMF based
+	 * models. For EMF based models, use
+	 * <code>setEmfAllChildrenSlot(String)</code>.
+	 * 
+	 * @param expression
+	 *            the expression to check
+	 */
+	public void setExpression(final String expression) {
+		this.expression = expression;
+	}
 
-    public void setEmfAllChildrenSlot(final String childExpression) {
-        emfAllChildrenSlot = childExpression;
-    }
-    
-    public String getLogMessage() {
-    	StringBuilder b = new StringBuilder();
-    	if ( emfAllChildrenSlot != null ) {
-    		b.append("slot "+emfAllChildrenSlot+" ");
-    	} else {
-    		b.append("expression "+expression+" ");
-    	}
-    	b.append( "check file(s): ");
-    	for (String f: checkFiles) {
-    		b.append( f+" ");
+	/**
+	 * Sets if a warning should be issued if nothing has been checked.
+	 * 
+	 * @param warn
+	 *            If <code>true</code>, a warning is issued in case nothing has
+	 *            been checked, otherwise no warning is issued.
+	 */
+	public void setWarnIfNothingChecked(boolean warn) {
+		warnIfNothingChecked = warn;
+	}
+
+	/**
+	 * Sets the expression for the <code>emfAllChildren</code> property. This
+	 * property only works for EMF based models. For all other kinds of models
+	 * use <code>setExpression(String)</code>.
+	 * 
+	 * @param childExpression
+	 *            the expression
+	 */
+	public void setEmfAllChildrenSlot(final String childExpression) {
+		emfAllChildrenSlot = childExpression;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 */
+	@Override
+	public String getLogMessage() {
+		StringBuilder b = new StringBuilder();
+		if (emfAllChildrenSlot != null) {
+			b.append("slot " + emfAllChildrenSlot + " ");
 		}
-    	return b.toString();
-    }    
+		else {
+			b.append("expression " + expression + " ");
+		}
+		b.append("check file(s): ");
+		for (String f : checkFiles) {
+			b.append(f + " ");
+		}
+		return b.toString();
+	}
 
-    
-    @Override
-    protected void invokeInternal2(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
-        final ExecutionContextImpl executionContext = getExecutionContext(ctx);
-        if (monitor!=null) {
-        	executionContext.setMonitor(monitor);
-        }
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getComponentName()
+	 */
+	@Override
+	public String getComponentName() {
+		return COMPONENT_NAME;
+	}
 
-        final Collection<?> model = getExpressionResult(executionContext, ctx, expression);
+	@Override
+	protected void invokeInternal2(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
+		final ExecutionContextImpl executionContext = getExecutionContext(ctx);
+		if (monitor != null) {
+			executionContext.setMonitor(monitor);
+		}
 
-        for (String checkFile : checkFiles) {
-            CheckFacade.checkAll(checkFile, model, executionContext, issues, warnIfNothingChecked);
-        }
+		final Collection<?> model = getExpressionResult(executionContext, ctx, expression);
 
-        if (abortOnError && issues.hasErrors())
-            throw new WorkflowInterruptedException("Errors during validation.");
-    }
+		for (String checkFile : checkFiles) {
+			CheckFacade.checkAll(checkFile, model, executionContext, issues, warnIfNothingChecked);
+		}
 
-   
+		if (abortOnError && issues.hasErrors())
+			throw new WorkflowInterruptedException("Errors during validation.");
+	}
 
-    public void checkConfiguration(final Issues issues) {
-        super.checkConfiguration(issues);
-        
-        if ((expression == null) && (emfAllChildrenSlot != null)) {
-            expression = emfAllChildrenSlot + ".eAllContents.union( {" + emfAllChildrenSlot + "} )";
-        } else if ((expression != null) && (emfAllChildrenSlot == null)) {
-            // ok - do nothing, expression already has a reasonable value
-        } else {
-            issues.addError(this, "You have to set one of the properties 'expression' and 'emfAllChildrenSlot'!");
-        }
-        if (checkFiles.isEmpty()) {
-            issues.addError(this, "Property 'checkFile' not set!");
-        }
-    }
+	@Override
+	protected void checkConfigurationInternal(final Issues issues) {
+		super.checkConfigurationInternal(issues);
 
-    private Collection<?> getExpressionResult(final ExecutionContext exeCtx, final WorkflowContext context, final String expression2) {
-        final ExpressionFacade f = new ExpressionFacade(exeCtx);
-        final Map<String, Object> ctx = new HashMap<String, Object>();
-        final String[] names = context.getSlotNames();
-        for (int i = 0; i < names.length; i++) {
-            final String name = names[i];
-            ctx.put(name, context.get(name));
-        }
-        final Object result = f.evaluate(expression2, ctx);
-        if (result instanceof Collection)
-            return (Collection<?>) result;
-        else if (result == null)
-            return Collections.EMPTY_SET;
-        else
-            return Collections.singleton(result);
+		if ((expression == null) && (emfAllChildrenSlot != null)) {
+			expression = emfAllChildrenSlot + ".eAllContents.union( {" + emfAllChildrenSlot + "} )";
+		}
+		else if ((expression != null) && (emfAllChildrenSlot == null)) {
+			// ok - do nothing, expression already has a reasonable value
+		}
+		else {
+			issues.addError(this, "You have to set one of the properties 'expression' and 'emfAllChildrenSlot'!");
+		}
+		if (checkFiles.isEmpty()) {
+			issues.addError(this, "Property 'checkFile' not set!");
+		}
+	}
 
-    }
+	private Collection<?> getExpressionResult(final ExecutionContext exeCtx, final WorkflowContext context,
+			final String expression2) {
+		final ExpressionFacade f = new ExpressionFacade(exeCtx);
+		final Map<String, Object> ctx = new HashMap<String, Object>();
+		final String[] names = context.getSlotNames();
+		for (int i = 0; i < names.length; i++) {
+			final String name = names[i];
+			ctx.put(name, context.get(name));
+		}
+		final Object result = f.evaluate(expression2, ctx);
+		if (result instanceof Collection)
+			return (Collection<?>) result;
+		else if (result == null)
+			return Collections.EMPTY_SET;
+		else
+			return Collections.singleton(result);
+
+	}
 }

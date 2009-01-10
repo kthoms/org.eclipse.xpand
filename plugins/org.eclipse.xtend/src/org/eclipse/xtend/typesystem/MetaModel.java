@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xtend.typesystem;
@@ -23,8 +21,19 @@ import org.eclipse.xtend.expression.TypeSystem;
  */
 public interface MetaModel {
 
+	/**
+	 * Returns the underlying typesystem.
+	 * 
+	 * @return the typesystem
+	 */
 	TypeSystem getTypeSystem();
 
+	/**
+	 * Sets the underlying typesystem.
+	 * 
+	 * @param typeSystem
+	 *            the typesystem
+	 */
 	void setTypeSystem(TypeSystem typeSystem);
 
 	/**
@@ -32,7 +41,8 @@ public interface MetaModel {
 	 * returns the corresponding type. Otherwise returns <code>null</code>
 	 * 
 	 * @param typeName
-	 * @return
+	 *            name of type
+	 * @return the corresponding type
 	 */
 	Type getTypeForName(String typeName);
 
@@ -42,14 +52,15 @@ public interface MetaModel {
 	 * <code>null</code>
 	 * 
 	 * @param obj
-	 * @return
+	 *            object for which a corresponding object is requested
+	 * @return the corresponding type
 	 */
 	Type getType(Object obj);
 
 	/**
 	 * returns all types this metamodel is responsible for
 	 * 
-	 * @return
+	 * @return set of known types
 	 */
 	Set<? extends Type> getKnownTypes();
 

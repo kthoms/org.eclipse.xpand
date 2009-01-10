@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005 - 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.internal.xpand2.debug;
 
@@ -28,6 +26,7 @@ import org.eclipse.internal.xtend.expression.debug.NoResourceSpecial;
  */
 public class XpandElementAdapter extends ExpressionElementAdapter {
 
+	@SuppressWarnings("hiding")
 	public static final String TYPE = "xpand";
 
 	// -------------------------------------------------------------------------
@@ -86,19 +85,18 @@ public class XpandElementAdapter extends ExpressionElementAdapter {
 
 	@Override
 	public List<NameValuePair> getVariables(Object element) {
-		
+
 		// Beispiel wie inspect implementiert werden kann (hat hier nichts zu
 		// suchen, nur als Gedankenstütze CK)
 		// ExpressionFacade ef = new ExpressionFacade(getCtx());
 		// Object evaluate = ef.evaluate("");
 		// getAllPropertiesFor(getCtx().getType(evaluate), evaluate);
-		
-		if (element instanceof Statement) {
+
+		if (element instanceof Statement)
 			return getAllVisibleVariables();
-		}
 		return super.getVariables(element);
 	}
-	
+
 	@Override
 	public Object findElement(SyntaxElement se, Object actual, int flag) {
 		if (actual == null)
@@ -109,7 +107,7 @@ public class XpandElementAdapter extends ExpressionElementAdapter {
 			if (se.resource.endsWith(pres.getStringRep(op.getFileName())) && se.start == start)
 				return actual;
 		}
-		return super.findElement(se,actual, flag);
+		return super.findElement(se, actual, flag);
 	}
 
 }

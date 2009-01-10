@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.type.baseimpl.types;
@@ -189,7 +187,7 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                     @Override
                     public String getDocumentation() {
                         return "returns a List of Integers starting with the value of the target expression, up to "
-                                + "the value of the specified Integer, incremented by one."
+                                + "the value of the specified Integer, incremented by one.<br/>"
                                 + "e.g. '1.upTo(5)' evaluates to {1,2,3,4,5}";
                     }
 
@@ -210,7 +208,7 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                     @Override
                     public String getDocumentation() {
                         return "returns a List of Integers starting with the value of the target expression, up to "
-                                + "the value of the first paramter, incremented by the second parameter."
+                                + "the value of the first paramter, incremented by the second parameter.<br/>"
                                 + "e.g. '1.upTo(10, 2)' evaluates to {1,3,5,7,9}";
                     }
 

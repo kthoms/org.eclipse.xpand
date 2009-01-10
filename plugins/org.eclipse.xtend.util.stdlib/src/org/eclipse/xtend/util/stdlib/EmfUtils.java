@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.xtend.util.stdlib;
 
@@ -19,9 +17,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 public class EmfUtils {
 	
+	/**
+	 * Retrieves objects that reference a given object
+	 * @param target The target object
+	 * @return A list of objects referencing the target
+	 */
 	public static final List<EObject> getReferencingObjects(EObject target) {
 		LinkedList<EObject> result = new LinkedList<EObject>(); 
 		Collection<EStructuralFeature.Setting> settings = CrossReferencer.find(target.eResource().getContents()).get(target);
@@ -33,4 +37,17 @@ public class EmfUtils {
         }
 		return result;
 	}
+	
+	/**
+	 * Retrieves an object's identifier. The object must be read from a
+	 * XMLResource.
+	 * 
+	 * @param obj An object
+	 * @return The object's id.
+	 * @since 4.3.1
+	 */
+	public static String getID(EObject obj) {
+		return (obj.eResource() != null && obj.eResource() instanceof XMLResource) ? ((XMLResource) obj.eResource()).getID(obj) : null;
+	}
+	
 }

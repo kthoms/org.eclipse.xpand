@@ -1,14 +1,11 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-// $ANTLR 3.0 ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g 2007-08-13 15:51:04
  	
 package org.eclipse.internal.xpand2.parser; 
 	
@@ -4565,7 +4562,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        input.LA(1);
+                        int LA30_48 = input.LA(1);
 
                          
                         int index30_48 = input.index();
@@ -4580,7 +4577,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        input.LA(1);
+                        int LA30_39 = input.LA(1);
 
                          
                         int index30_39 = input.index();
@@ -4595,7 +4592,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        input.LA(1);
+                        int LA30_42 = input.LA(1);
 
                          
                         int index30_42 = input.index();
@@ -4610,7 +4607,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        input.LA(1);
+                        int LA30_44 = input.LA(1);
 
                          
                         int index30_44 = input.index();
@@ -4625,7 +4622,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        input.LA(1);
+                        int LA30_35 = input.LA(1);
 
                          
                         int index30_35 = input.index();
@@ -4640,7 +4637,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        input.LA(1);
+                        int LA30_43 = input.LA(1);
 
                          
                         int index30_43 = input.index();
@@ -4655,7 +4652,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        input.LA(1);
+                        int LA30_11 = input.LA(1);
 
                          
                         int index30_11 = input.index();
@@ -4670,7 +4667,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        input.LA(1);
+                        int LA30_28 = input.LA(1);
 
                          
                         int index30_28 = input.index();
@@ -4685,7 +4682,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        input.LA(1);
+                        int LA30_29 = input.LA(1);
 
                          
                         int index30_29 = input.index();
@@ -4700,7 +4697,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        input.LA(1);
+                        int LA30_33 = input.LA(1);
 
                          
                         int index30_33 = input.index();
@@ -4715,7 +4712,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        input.LA(1);
+                        int LA30_30 = input.LA(1);
 
                          
                         int index30_30 = input.index();
@@ -4730,7 +4727,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        input.LA(1);
+                        int LA30_34 = input.LA(1);
 
                          
                         int index30_34 = input.index();
@@ -4745,7 +4742,7 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
-                        input.LA(1);
+                        int LA30_36 = input.LA(1);
 
                          
                         int index30_36 = input.index();

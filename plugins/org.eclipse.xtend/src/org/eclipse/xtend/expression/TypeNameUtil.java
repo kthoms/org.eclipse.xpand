@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xtend.expression;
@@ -41,10 +39,13 @@ import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
  * @since 4.0
  */
 public class TypeNameUtil {
+	private static final String QUALIFIEDNAME_STRING = "(?:[^\\s.:()\\[\\]{}+\\-*/&|%$!\\\"\'=?]+::)*[^\\s.:()\\[\\]{}+\\-*/&|%$!\"'=?]+";
 	/**
 	 * This pattern is used to find the type name within possible query strings
 	 */
-	private final static Pattern TYPE_PATTERN = Pattern.compile("\\A(?:(\\w+)\\[)?(?:(\\w+)!)?([\\w:]*\\w+)(?:\\])?\\z");
+    final static Pattern TYPE_PATTERN =
+        Pattern.compile("\\A(?:(\\w+)\\[)?(?:(\\w+)!)?("+QUALIFIEDNAME_STRING+")(?:\\])?\\z");
+    final static Pattern GENERICLIST_PATTERN = Pattern.compile("\\A\\[L("+QUALIFIEDNAME_STRING+");");
 
 	/**
 	 * Retrieves the collection type.
@@ -55,7 +56,13 @@ public class TypeNameUtil {
 	 *         otherwise <code>null</code>
 	 */
 	public static String getCollectionTypeName(final String name) {
-		return getGroup(name, 1);
+		String group = getGroup(name, TYPE_PATTERN, 1);
+		if (group == null) {
+			if (GENERICLIST_PATTERN.matcher(name).matches()) {
+				group = "List";
+	}
+		}
+		return group;
 	}
 
 	/**
@@ -66,15 +73,18 @@ public class TypeNameUtil {
 	 * @return The type's name
 	 */
 	public static String getTypeName(final String name) {
-		String group = getGroup(name, 3);
+		String group = getGroup(name, TYPE_PATTERN, 3);
+		if (group == null) {
+			group = getGroup(name, GENERICLIST_PATTERN, 1);
+		}
 		if (group == null) {
 			group = "";
 		}
 		return group;
 	}
 
-	private static String getGroup(final String input, final int group) {
-	    final Matcher m = TYPE_PATTERN.matcher(input);
+	private static String getGroup(final String input, final Pattern pattern, final int group) {
+	    final Matcher m = pattern.matcher(input);
 	    
 		if (m.matches() && m.groupCount() >= group) {
 			return m.group(group);
@@ -167,5 +177,19 @@ public class TypeNameUtil {
 			return insertString.substring(0, index);
 		}
 		return null;
+	}
+	
+	/**
+	 * Converts a Java qualified name (dot seperated) to oAW qualified name ('::' seperated)
+	 * @param javaTypeName A java qualifier 
+	 * @return All dots are replaced by '::'. Returns <code>null</code> if <tt>javaTypeName</tt> is null.
+	 * @since 4.3.1
+	 */
+	public static String convertJavaTypeName (String javaTypeName) {
+		if (javaTypeName == null) {
+			return null;
+		} else {
+			return javaTypeName.replaceAll("\\.", SyntaxConstants.NS_DELIM);
+		}
 	}
 }

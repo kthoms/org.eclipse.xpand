@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.xtend.expression;
 
@@ -18,10 +16,9 @@ import java.io.StringWriter;
 import junit.framework.TestCase;
 
 public class ResourceManagerDefaultImplTest extends TestCase {
-	private static final String LINE_WRAP = System
-			.getProperty("line.separator");
-	private final static String CONTENT = tag("IMPORT ecore") + LINE_WRAP
-			+ tag("AROUND Root FOR EPackage") + LINE_WRAP + tag("ENDAROUND");
+	private static final String LINE_WRAP = System.getProperty("line.separator");
+	private final static String CONTENT = tag("IMPORT ecore") + LINE_WRAP + tag("AROUND Root FOR EPackage") + LINE_WRAP
+			+ tag("ENDAROUND");
 
 	class TestResourcManager extends ResourceManagerDefaultImpl {
 		public Reader _createReader(InputStream in) {
@@ -51,16 +48,24 @@ public class ResourceManagerDefaultImplTest extends TestCase {
 		checkResourceLoading(null, "templatefile-macroman.xpt");
 	}
 
-	private void checkResourceLoading(String encoding, String testfile)
-			throws IOException {
+	private void checkResourceLoading(String encoding, String testfile) throws IOException {
 		resMgr.setFileEncoding(encoding);
 		InputStream is = getClass().getResourceAsStream(testfile);
 		assertNotNull(is);
 		Reader reader = resMgr._createReader(is);
 		String read = read(reader);
 		assertNotNull(read);
-		assertEquals(CONTENT, read);
+		assertEquals(unifyLineWrap(CONTENT), unifyLineWrap(read));
 
+	}
+
+	private String unifyLineWrap(String s) {
+		if (s == null)
+			return null;
+
+		String res = s.replaceAll("\\r\\n", "\n");
+		res = res.replaceAll("\\r", "\n");
+		return res;
 	}
 
 	private String read(Reader r) throws IOException {

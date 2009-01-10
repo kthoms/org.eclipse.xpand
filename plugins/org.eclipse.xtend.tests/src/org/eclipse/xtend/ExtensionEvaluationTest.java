@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xtend;
@@ -35,9 +33,7 @@ public class ExtensionEvaluationTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		ec = new ExecutionContextImpl();
-		ec
-				.registerMetaModel(new JavaMetaModel("asdf",
-						new JavaBeansStrategy()));
+		ec.registerMetaModel(new JavaMetaModel("asdf", new JavaBeansStrategy()));
 	}
 
 	private ExtensionFile parse(final String expression) {
@@ -50,11 +46,7 @@ public class ExtensionEvaluationTest extends TestCase {
 				+ "String privateHelper(String str) : JAVA org.eclipse.xtend.Helper.privateHelper(java.lang.String) ; \n"
 				+ "\n"
 				+ "String nonStaticHelper(String str) : JAVA org.eclipse.xtend.Helper.nonStaticHelper(java.lang.String) ; \n"
-				+ "\n"
-				+ "/* \n"
-				+ " * Meine Funktion \n"
-				+ " */ \n"
-				+ "myExtension(Object val) : {val} ; \n");
+				+ "\n" + "/* \n" + " * Meine Funktion \n" + " */ \n" + "myExtension(Object val) : {val} ; \n");
 
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		final Object[] params = new Object[] { "test" };
@@ -62,8 +54,7 @@ public class ExtensionEvaluationTest extends TestCase {
 		assertEquals("TEST", ext.evaluate(params, ec));
 
 		ext = ec.getExtension("myExtension", params);
-		assertEquals(Collections.singletonList("test"), ext
-				.evaluate(params, ec));
+		assertEquals(Collections.singletonList("test"), ext.evaluate(params, ec));
 	}
 
 	public final void testJavaExtension2() {
@@ -71,8 +62,7 @@ public class ExtensionEvaluationTest extends TestCase {
 				+ "org.eclipse.xtend.Helper.union(java.util.Collection,java.util.Collection) ; \n");
 
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
-		final Object[] params = new Object[] { Collections.singleton("1"),
-				Collections.singleton("2") };
+		final Object[] params = new Object[] { Collections.singleton("1"), Collections.singleton("2") };
 		final Extension ext = ec.getExtension("union", params);
 		final Collection result = (Collection) ext.evaluate(params, ec);
 		assertTrue(result.size() == 2);
@@ -81,26 +71,21 @@ public class ExtensionEvaluationTest extends TestCase {
 	}
 
 	public final void testPolymorphism() {
-		final ExtensionFile file = parse("ext(Object val) : 'Object' ; \n"
-				+ "ext(List[Object] val) : 'List' ; \n"
-				+ "ext(Collection[Object] val) : 'Collection' ; \n"
-				+ "ext(Integer val) : 'Integer' ; \n");
+		final ExtensionFile file = parse("ext(Object val) : 'Object' ; \n" + "ext(List[Object] val) : 'List' ; \n"
+				+ "ext(Collection[Object] val) : 'Collection' ; \n" + "ext(Integer val) : 'Integer' ; \n");
 
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		Extension ext = ec.getExtension("ext", new Object[] { "test" });
 		assertEquals("Object", ext.evaluate(new Object[] { "test" }, ec));
 
 		ext = ec.getExtension("ext", new Object[] { Collections.EMPTY_SET });
-		assertEquals("Collection", ext.evaluate(
-				new Object[] { Collections.EMPTY_SET }, ec));
+		assertEquals("Collection", ext.evaluate(new Object[] { Collections.EMPTY_SET }, ec));
 
 		ext = ec.getExtension("ext", new Object[] { Collections.EMPTY_LIST });
-		assertEquals("List", ext.evaluate(
-				new Object[] { Collections.EMPTY_LIST }, ec));
+		assertEquals("List", ext.evaluate(new Object[] { Collections.EMPTY_LIST }, ec));
 
 		ext = ec.getExtension("ext", new Object[] { new Integer(2) });
-		assertEquals("Integer", ext.evaluate(new Object[] { new Integer(2) },
-				ec));
+		assertEquals("Integer", ext.evaluate(new Object[] { new Integer(2) }, ec));
 
 	}
 
@@ -109,21 +94,18 @@ public class ExtensionEvaluationTest extends TestCase {
 
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 
-		final Extension ext = ec.getExtension("recExtension", new Object[] {
-				new Long(5), new Long(10) });
+		final Extension ext = ec.getExtension("recExtension", new Object[] { new Long(5), new Long(10) });
 		final List<Long> expected = new ArrayList<Long>();
 		for (int i = 5; i <= 10; i++) {
 			expected.add(new Long(i));
 		}
-		final Object evalResult = ext.evaluate(new Object[] { new Long(5),
-				new Long(10) }, ec);
+		final Object evalResult = ext.evaluate(new Object[] { new Long(5), new Long(10) }, ec);
 		assertEquals(expected, evalResult);
 
 	}
 
 	public final void testMemberPosition() {
-		final ExtensionFile file = parse("ext1(String txt) : 'test'+txt ;"
-				+ "ext2(String txt) : txt.ext1() ;");
+		final ExtensionFile file = parse("ext1(String txt) : 'test'+txt ;" + "ext2(String txt) : txt.ext1() ;");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 
 		final Extension ext = ec.getExtension("ext2", new Object[] { "fall" });
@@ -132,16 +114,16 @@ public class ExtensionEvaluationTest extends TestCase {
 
 	}
 
-	
 	public final void testCachedExtension() {
 		final ExtensionFile file = parse("cached String ext(String txt) : JAVA org.eclipse.xtend.ExtensionEvaluationTest.testMethod(java.lang.String);");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 
 		final Extension ext = ec.getExtension("ext", new Object[] { "test" });
-		assertEquals("test0", ext.evaluate(new Object[] { "test" }, ec));
-		assertEquals("test0", ext.evaluate(new Object[] { "test" }, ec));
-		assertEquals("test0", ext.evaluate(new Object[] { "test" }, ec));
-		assertEquals("test0", ext.evaluate(new Object[] { "test" }, ec));
+		String expected = "test" + String.valueOf(magic);
+		assertEquals(expected, ext.evaluate(new Object[] { "test" }, ec));
+		assertEquals(expected, ext.evaluate(new Object[] { "test" }, ec));
+		assertEquals(expected, ext.evaluate(new Object[] { "test" }, ec));
+		assertEquals(expected, ext.evaluate(new Object[] { "test" }, ec));
 	}
 
 	private static int magic = 0;
@@ -153,8 +135,7 @@ public class ExtensionEvaluationTest extends TestCase {
 	public final void testCreateExtension() {
 		final ExtensionFile file = parse("create List l test(String s) : l.add(s) ;");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
-		final List l = (List) ((Extension) file.getExtensions().get(0))
-				.evaluate(new String[] { "test" }, ec);
+		final List l = (List) (file.getExtensions().get(0)).evaluate(new String[] { "test" }, ec);
 
 		assertEquals(Collections.singletonList("test"), l);
 	}
@@ -162,31 +143,29 @@ public class ExtensionEvaluationTest extends TestCase {
 	public final void testCreateExtension1() {
 		final ExtensionFile file = parse("create List test(String s) : add(s) ;");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
-		final List l = (List) ((Extension) file.getExtensions().get(0))
-				.evaluate(new String[] { "test" }, ec);
+		final List l = (List) (file.getExtensions().get(0)).evaluate(new String[] { "test" }, ec);
 
 		assertEquals(Collections.singletonList("test"), l);
 	}
 
 	public final void testAmbigous() {
-		final ExtensionFile file = parse("import "
-				+ TypeA.class.getPackage().getName().replaceAll("\\.", "::")
-				+ ";" + "doStuff(TypeA this) : true; "
-				+ "doStuff(TypeC this) : false;");
+		final ExtensionFile file = parse("import " + TypeA.class.getPackage().getName().replaceAll("\\.", "::") + ";"
+				+ "doStuff(TypeA this) : true; " + "doStuff(TypeC this) : false;");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		assertNotNull(ec.getExtension("doStuff", new Object[] { new TypeA() }));
 		try {
 			ec.getExtension("doStuff", new Object[] { new TypeB() });
 			fail("Ambigous operation exception expected");
-		} catch (final RuntimeException re) {
+		}
+		catch (final RuntimeException re) {
 			// expected
 			System.out.println(re.getMessage());
 		}
 	}
 
 	public final void testBug134626() {
-		final ExtensionFile file = parse("String someExt(TestA someA) : JAVA "
-				+ getClass().getName() + "(java.lang.String) ; \n");
+		final ExtensionFile file = parse("String someExt(TestA someA) : JAVA " + getClass().getName()
+				+ "(java.lang.String) ; \n");
 
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 	}
@@ -196,8 +175,7 @@ public class ExtensionEvaluationTest extends TestCase {
 	}
 
 	public void testAdvices() throws Exception {
-		final ExtensionFile file = parse("doStuff() : '_THE_'; "
-				+ "doStuff(String s) : s;");
+		final ExtensionFile file = parse("doStuff() : '_THE_'; " + "doStuff(String s) : s;");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		ec.registerExtensionAdvices("org::eclipse::xtend::Advices");
 
@@ -206,8 +184,7 @@ public class ExtensionEvaluationTest extends TestCase {
 
 	}
 
-	private Object call(ExecutionContextImpl ctx, String string,
-			Object... params) {
+	private Object call(ExecutionContextImpl ctx, String string, Object... params) {
 		Extension ext = ctx.getExtension(string, params);
 		return ext.evaluate(params, ctx);
 	}

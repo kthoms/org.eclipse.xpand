@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.type.baseimpl;
@@ -21,20 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
-import org.eclipse.internal.xtend.type.baseimpl.types.BooleanTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.FeatureTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.IntegerTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.ListTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.OperationTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.PropertyTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.RealTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.SetTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.StaticPropertyTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.StringTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.TypeTypeImpl;
-import org.eclipse.internal.xtend.type.baseimpl.types.VoidType;
+import org.eclipse.internal.xtend.type.baseimpl.types.*;
 import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.MetaModel;
@@ -182,58 +167,128 @@ public final class BuiltinMetaModel implements MetaModel {
 		_knownTypes = new HashSet<Type>(_builtinTypes.values());
 	}
 
+	/**
+	 * Returns the name of the metamodel.
+	 * 
+	 * @return name of metamodel
+	 */
 	public String getName() {
 		return "built-in";
 	}
 
+	/**
+	 * Returns the type for objects.
+	 * 
+	 * @return type for objects
+	 */
 	public final Type getObjectType() {
 		return objectType;
 	}
 
+	/**
+	 * Returns the type for boolean objects.
+	 * 
+	 * @return type for boolean objects
+	 */
 	public final Type getBooleanType() {
 		return booleanType;
 	}
 
+	/**
+	 * Returns the type for integer objects.
+	 * 
+	 * @return type for integer objects
+	 */
 	public final Type getIntegerType() {
 		return integerType;
 	}
 
+	/**
+	 * Returns the type for real objects.
+	 * 
+	 * @return type for real objects
+	 */
 	public Type getRealType() {
 		return realType;
 	}
 
+	/**
+	 * Returns the type for string objects.
+	 * 
+	 * @return type for string objects
+	 */
 	public final Type getStringType() {
 		return stringType;
 	}
 
+	/**
+	 * Returns the type for type objects.
+	 * 
+	 * @return type for type objects
+	 */
 	public final Type getTypeType() {
 		return typeType;
 	}
 
+	/**
+	 * Returns the type for feature objects.
+	 * 
+	 * @return type for feature objects
+	 */
 	public final Type getFeatureType() {
 		return featureType;
 	}
 
+	/**
+	 * Returns the type for property objects.
+	 * 
+	 * @return type for property objects
+	 */
 	public final Type getPropertyType() {
 		return propertyType;
 	}
 
+	/**
+	 * Returns the type for operation objects.
+	 * 
+	 * @return type for operation objects
+	 */
 	public final Type getOperationType() {
 		return operationType;
 	}
 
+	/**
+	 * Returns the type for static property objects.
+	 * 
+	 * @return type for static property objects
+	 */
 	public Type getStaticPropertyType() {
 		return staticPropertyType;
 	}
 
+	/**
+	 * Returns the type for collection objects.
+	 * 
+	 * @return type for collection objects
+	 */
 	public final ParameterizedType getCollectionType(final Type innerType) {
 		return new CollectionTypeImpl(innerType, getTypeSystem(), BuiltinMetaModel.COLLECTION);
 	}
 
+	/**
+	 * Returns the type for list objects.
+	 * 
+	 * @return type for list objects
+	 */
 	public final ParameterizedType getListType(final Type innerType) {
 		return new ListTypeImpl(innerType, getTypeSystem(), BuiltinMetaModel.LIST);
 	}
 
+	/**
+	 * Returns the type for set objects.
+	 * 
+	 * @return type for set objects
+	 */
 	public final ParameterizedType getSetType(final Type innerType) {
 		return new SetTypeImpl(innerType, getTypeSystem(), BuiltinMetaModel.SET);
 	}
@@ -242,57 +297,55 @@ public final class BuiltinMetaModel implements MetaModel {
 
 		@Override
 		protected Type createNew(Object obj) {
-			if (obj == null) {
+			if (obj == null)
 				return getVoidType();
-			}
-			if (obj instanceof Set) {
+			if (obj instanceof Set)
 				return getSetType(getObjectType());
-			}
-			if (obj instanceof List) {
+			if (obj instanceof List)
 				return getListType(getObjectType());
-			}
-			if (obj instanceof Collection) {
+			if (obj instanceof Collection)
 				return getCollectionType(getObjectType());
-			}
 			// datatypes
-			if (stringType.isInstance(obj)) {
+			if (stringType.isInstance(obj))
 				return stringType;
-			}
-			if (integerType.isInstance(obj)) {
+			if (integerType.isInstance(obj))
 				return integerType;
-			}
-			if (booleanType.isInstance(obj)) {
+			if (booleanType.isInstance(obj))
 				return booleanType;
-			}
-			if (realType.isInstance(obj)) {
+			if (realType.isInstance(obj))
 				return realType;
-			}
-			if (typeType.isInstance(obj)) {
+			if (typeType.isInstance(obj))
 				return typeType;
-			}
-			if (propertyType.isInstance(obj)) {
+			if (propertyType.isInstance(obj))
 				return propertyType;
-			}
-			if (operationType.isInstance(obj)) {
+			if (operationType.isInstance(obj))
 				return operationType;
-			}
-			if (staticPropertyType.isInstance(obj)) {
+			if (staticPropertyType.isInstance(obj))
 				return staticPropertyType;
-			}
-			
+
 			return objectType;
 		}
 	};
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getType(java.lang.Object)
+	 */
 	public Type getType(final Object obj) {
 		return typeCache.get(obj);
 	}
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getTypeForName(java.lang.String)
+	 */
 	public Type getTypeForName(final String typeName) {
 		return _builtinTypes.get(typeName);
 	}
 
 	HashSet<Type> _knownTypes;
+
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getKnownTypes()
+	 */
 	public Set<Type> getKnownTypes() {
 		return _knownTypes;
 	}
@@ -303,23 +356,35 @@ public final class BuiltinMetaModel implements MetaModel {
 			final char c = javaclassname.charAt(i);
 			if (c == '.') {
 				sb.append(SyntaxConstants.NS_DELIM);
-			} else {
+			}
+			else {
 				sb.append(c);
 			}
 		}
 		return sb.toString();
 	}
 
+	/**
+	 * Returns the type for void objects.
+	 * 
+	 * @return type for void objects
+	 */
 	public Type getVoidType() {
 		return voidType;
 	}
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#setTypeSystem(org.eclipse.xtend.expression.TypeSystem)
+	 */
 	public void setTypeSystem(final TypeSystem typeSystem) {
 		if (typeSystem != null) {
 			this.typeSystem = typeSystem;
 		}
 	}
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getNamespaces()
+	 */
 	public Set<String> getNamespaces() {
 		// TODO: provide real implementation
 		return new HashSet<String>();

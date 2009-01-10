@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.type.impl.java.beans;
@@ -54,6 +52,7 @@ public class JavaBeansStrategy implements JavaTypeStrategy {
 	 * <li> Java5 enumeration literals for defined enum types
 	 * </ul>
 	 */
+	@SuppressWarnings("unchecked")
 	public Feature[] getFeatures(final TypeFinder typeFinder, final Class clazz, final Type t) {
 		final List<FeatureImpl> result = new ArrayList<FeatureImpl>();
 
@@ -80,45 +79,80 @@ public class JavaBeansStrategy implements JavaTypeStrategy {
 				if (pd.getReadMethod() != null) {
 					usedMethods.add(pd.getReadMethod());
 				}
-				result.add(new JavaPropertyImpl(t, propName, typeFinder.builtinAwareGetTypeForClass(pd.getPropertyType()), pd.getReadMethod(), pd
+				// Problem: pd.getPropertyType() does not allow to get information about generics. When having a generic collection as property type
+				// the property type is just of the collection interface, e.g. java.util.List
+				result.add(new JavaPropertyImpl(t, pd.getName(), typeFinder.builtinAwareGetTypeForClass(pd.getPropertyType()), pd.getReadMethod(), pd
 						.getWriteMethod()));
 			}
 		}
 
-		final Method[] meths = clazz.getDeclaredMethods();
+		Set<Class<?>> classSet = new HashSet<Class<?>>();
+		List<Method> methodList = new ArrayList<Method>();
+		
+		if (Modifier.isPublic(clazz.getModifiers())) {
+            classSet.add(clazz);
+        } else {
+            Set<Class<?>> superClasses = getSuperClasses(clazz);
+            if (superClasses != null) {
+                classSet = superClasses;
+            } else {
+                classSet.add(clazz.getEnclosingClass());
+            }
+        }
+		
+		// Methods
+		for (final Class<?> c : classSet) {
+       		final Method[] meths = c.getDeclaredMethods();
 		for (int i = 0; i < meths.length; i++) {
 			final Method method = meths[i];
-			if (Modifier.isPublic(method.getModifiers()) && !usedMethods.contains(method)) {
-				// leave the accessor methods in: they don't hurt, and this way
+                if (Modifier.isPublic(method.getModifiers())
+                        && !usedMethods.contains(method)) {
+                    // leave the accessor methods in: they don't hurt, and this
+                    // way
 				// we can e.g. call "set" methods
 				try {
 					// special handling for accessor method for boolean
 					// properties, whose return type is
 					// the wrapper type 'Boolean' (not 'boolean')
 					if (isNonStandardBooleanProperty(method)) {
-						handleNonStandardBooleanProperty(typeFinder, t, result, pdArr, method);
+                            handleNonStandardBooleanProperty(typeFinder, t,
+                                    result, pdArr, method);
 					} else {
-						Type returnType = typeFinder.builtinAwareGetTypeForClass(method.getReturnType());
-						result.add(new JavaOperationImpl(t, method.getName(), returnType, createTypes(method.getParameterTypes(), typeFinder), method));
+                            Type returnType = typeFinder
+                                    .builtinAwareGetTypeForClass(method
+                                            .getReturnType());
+                            result
+                                    .add(new JavaOperationImpl(t, method
+                                            .getName(), returnType,
+                                            createTypes(method
+                                                    .getParameterTypes(),
+                                                    typeFinder), method));
 					}
 				} catch (final RuntimeException e) {
 					// ignore
 				}
 			}
 		}
+		}
 
 		// staticProps
-		final Field[] fields = clazz.getFields();
+        for (final Class<?> c : classSet) {
+            final Field[] fields = c.getFields();
 		for (int i = 0; i < fields.length; i++) {
 			final Field field = fields[i];
 			final int mod = field.getModifiers();
-			if (Modifier.isPublic(mod) && Modifier.isStatic(mod) && Modifier.isFinal(mod)) {
-				result.add(new JavaStaticPropertyImpl(t, field.getName(), typeFinder.builtinAwareGetTypeForClass(field.getType()), field));
+                if (Modifier.isPublic(mod) && Modifier.isStatic(mod)
+                        && Modifier.isFinal(mod)) {
+                    result.add(new JavaStaticPropertyImpl(t, field.getName(),
+                            typeFinder.builtinAwareGetTypeForClass(field
+                                    .getType()), field));
+                }
 			}
 		}
 
 		// Java 5 enums
-		final Object[] enumValues = clazz.getEnumConstants();
+        for (final Class<?> c : classSet) {
+            final Object[] enumValues = c.getEnumConstants();
 		if (enumValues != null) {
 			for (Object o : enumValues) {
 				final Enum<?> curEnum = (Enum<?>) o;
@@ -129,7 +163,7 @@ public class JavaBeansStrategy implements JavaTypeStrategy {
 				});
 			}
 		}
-
+		}
 		return result.toArray(new Feature[result.size()]);
 	}
 
@@ -205,4 +239,19 @@ public class JavaBeansStrategy implements JavaTypeStrategy {
 		return result;
 	}
 
+    private Set<Class<?>> getSuperClasses(Class<?> clazz) {
+        final Set<Class<?>> superClasses = new HashSet<Class<?>>();
+        final Class<?> superClass = clazz.getSuperclass();
+        if (superClass != null) {
+            superClasses.add(superClass);
+        }
+        
+        final Class<?>[] superInterfaces = clazz.getInterfaces();
+        if (superInterfaces != null) {
+            for (Class<?> i: superInterfaces) {
+                superClasses.add(i);
+            }
+        }
+        return superClasses;
+    }
 }

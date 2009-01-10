@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xpand2;
@@ -35,6 +33,7 @@ import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.xpand2.output.Output;
+import org.eclipse.xtend.expression.Callback;
 import org.eclipse.xtend.expression.ExceptionHandler;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.NullEvaluationHandler;
@@ -54,67 +53,83 @@ import org.eclipse.xtend.typesystem.Type;
  */
 public class XpandExecutionContextImpl extends ExecutionContextImpl implements XpandExecutionContext {
 
-    private final Log log = LogFactory.getLog(getClass());
+	private final Log log = LogFactory.getLog(getClass());
 
-    protected final Output output;
-    
-    protected final ProtectedRegionResolver protectedRegionResolver;
-    
-    private List<XpandAdvice> registeredAdvices = new ArrayList<XpandAdvice>();
-    
-    public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs) {
-        this (output, prs, null, null, null);
-    }
-    
-    public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs, Map<String, Variable> globalVars, ExceptionHandler exceptionHandler, NullEvaluationHandler nullEvaluationHandler) {
-        this(new TypeSystemImpl(), output, prs, globalVars, exceptionHandler, nullEvaluationHandler);
-    }
+	protected final Output output;
 
-    protected XpandExecutionContextImpl(final TypeSystemImpl ts, Output output, ProtectedRegionResolver prs, Map<String, Variable> globalVars, ExceptionHandler exceptionHandler, NullEvaluationHandler nullEvaluationHandler) {
-    	super(ts, globalVars);
-        registerMetaModel(new XpandTypesMetaModel(this));
-        resourceManager.registerParser(XpandUtil.TEMPLATE_EXTENSION, new ResourceParser() {
+	protected final ProtectedRegionResolver protectedRegionResolver;
+
+	private List<XpandAdvice> registeredAdvices = new ArrayList<XpandAdvice>();
+
+	public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs) {
+		this(output, prs, null, null, null);
+	}
+
+	public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs, Map<String, Variable> globalVars,
+			ExceptionHandler exceptionHandler, NullEvaluationHandler nullEvaluationHandler) {
+		this(new TypeSystemImpl(), output, prs, globalVars, exceptionHandler, nullEvaluationHandler);
+	}
+
+	protected XpandExecutionContextImpl(final TypeSystemImpl ts, Output output, ProtectedRegionResolver prs,
+			Map<String, Variable> globalVars, ExceptionHandler exceptionHandler,
+			NullEvaluationHandler nullEvaluationHandler) {
+		super(ts, globalVars);
+		registerMetaModel(new XpandTypesMetaModel(this));
+		registerParser(resourceManager);
+		this.output = output;
+		this.protectedRegionResolver = prs;
+		this.exceptionHandler = exceptionHandler;
+		this.nullEvaluationHandler = nullEvaluationHandler;
+	}
+
+	private void registerParser(ResourceManager resourceManager) {
+		resourceManager.registerParser(XpandUtil.TEMPLATE_EXTENSION, new ResourceParser() {
 
 			public Resource parse(Reader in, String fileName) {
 				return XpandParseFacade.file(in, fileName);
-			}});
-        this.output = output;
-        this.protectedRegionResolver = prs;
-        this.exceptionHandler = exceptionHandler;
-        this.nullEvaluationHandler = nullEvaluationHandler;
-    }
+			}
+		});
+	}
 
-    
-    protected XpandExecutionContextImpl (ResourceManager resourceManager, Resource currentResource, TypeSystemImpl typeSystem, Map<String, Variable> vars, 
-            Map<String, Variable> globalVars, Output output, ProtectedRegionResolver protectedRegionResolver, ProgressMonitor monitor, ExceptionHandler exceptionHandler,List<Around> advices, NullEvaluationHandler nullEvaluationHandler, Map<Resource, Set<Extension>> allExtensionsPerResource) {
-        super (resourceManager, currentResource, typeSystem, vars, globalVars, monitor, exceptionHandler,advices, nullEvaluationHandler,allExtensionsPerResource);
-        registerMetaModel(new XpandTypesMetaModel(this));
-        this.output = output;
-        this.protectedRegionResolver = protectedRegionResolver;
-        this.exceptionHandler = exceptionHandler;
-    }
+	protected XpandExecutionContextImpl(ResourceManager resourceManager, Resource currentResource,
+			TypeSystemImpl typeSystem, Map<String, Variable> vars, Map<String, Variable> globalVars, Output output,
+			ProtectedRegionResolver protectedRegionResolver, ProgressMonitor monitor,
+			ExceptionHandler exceptionHandler, List<Around> advices, NullEvaluationHandler nullEvaluationHandler,
+			Map<Resource, Set<Extension>> allExtensionsPerResource, Callback callback) {
+		super(resourceManager, currentResource, typeSystem, vars, globalVars, monitor, exceptionHandler, advices,
+				nullEvaluationHandler, allExtensionsPerResource, callback);
+		registerMetaModel(new XpandTypesMetaModel(this));
+		this.output = output;
+		this.protectedRegionResolver = protectedRegionResolver;
+		this.exceptionHandler = exceptionHandler;
+	}
 
-    
+	@Override
+	public XpandExecutionContextImpl cloneContext() {
+		final XpandExecutionContextImpl result = new XpandExecutionContextImpl(resourceManager, currentResource(),
+				typeSystem, getVisibleVariables(), getGlobalVariables(), output, protectedRegionResolver, getMonitor(),
+				exceptionHandler, registeredExtensionAdvices, nullEvaluationHandler, allExtensionsPerResource, callback);
+		result.registeredAdvices.addAll(registeredAdvices); // todo: [aha]
+															// before I
+															// refactored, there
+															// was an assignment
+															// in this place. Is
+															// this modification
+															// correct?
+		return result;
+	}
 
-    @Override
-    public XpandExecutionContextImpl cloneContext() {
-        final XpandExecutionContextImpl result = new XpandExecutionContextImpl (resourceManager, currentResource(), typeSystem, getVisibleVariables(), getGlobalVariables(), output, 
-                protectedRegionResolver, getMonitor(), exceptionHandler,registeredExtensionAdvices, nullEvaluationHandler,allExtensionsPerResource);
-        result.registeredAdvices.addAll(registeredAdvices); //todo: [aha] before I refactored, there was an assignment in this place. Is this modification correct?
-        return result;
-    }
-    
-    public List<XpandDefinition> getAllDefinitions() {
-        XpandResource tpl = null;
-            tpl = (XpandResource) currentResource();
-        if (tpl == null)
-            return null;
-        
-        XpandDefinition[] localDefinitions = tpl.getDefinitions();
-        
-        List<XpandDefinition> advicedDefinitions = new ArrayList<XpandDefinition>(localDefinitions.length);
-        
-        for (int i = 0; i < localDefinitions.length; i++) {
+	public List<XpandDefinition> getAllDefinitions() {
+		XpandResource tpl = null;
+		tpl = (XpandResource) currentResource();
+		if (tpl == null)
+			return null;
+
+		XpandDefinition[] localDefinitions = tpl.getDefinitions();
+
+		List<XpandDefinition> advicedDefinitions = new ArrayList<XpandDefinition>(localDefinitions.length);
+
+		for (int i = 0; i < localDefinitions.length; i++) {
 			XpandDefinition xpandDefinition = localDefinitions[i];
 			for (int x = registeredAdvices.size() - 1; x >= 0; x--) {
 				final XpandAdvice adv = registeredAdvices.get(x);
@@ -124,164 +139,177 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
 			}
 			advicedDefinitions.add(xpandDefinition);
 		}
-        
-        return advicedDefinitions;
-    	
-    }
 
-    public XpandDefinition findDefinition(final String name, final Type target, final Type[] paramTypes) {
-        XpandResource tpl = null;
-        if (name.indexOf(SyntaxConstants.NS_DELIM) != -1) { // local call
-            tpl = findTemplate(XpandUtil.withoutLastSegment(name));
-        } else {
-            tpl = (XpandResource) currentResource();
-        }
-        if (tpl == null)
-            return null;
-        final XpandExecutionContext ctx = (XpandExecutionContext) cloneWithResource(tpl);
-        XpandDefinition def = findDefinition(tpl.getDefinitions(), name, target, paramTypes, ctx);
-        for (int x = registeredAdvices.size() - 1; x >= 0; x--) {
-            final XpandAdvice adv = registeredAdvices.get(x);
-            if (adv.matches(def, this)) {
-                def = new AdvicedDefinition(adv, def);
-            }
-        }
-        return def;
-    }
+		return advicedDefinitions;
 
-    public void registerAdvices(final String fullyQualifiedName) {
-        final XpandResource tpl = findTemplate(fullyQualifiedName);
-        if (tpl == null)
-            throw new NoSuchTemplateException(fullyQualifiedName);
-        final XpandAdvice[] as = tpl.getAdvices();
-        for (int i = 0; i < as.length; i++) {
-            final XpandAdvice advice = as[i];
-            if (registeredAdvices.contains(advice)) {
-                log.warn("advice " + advice.toString() + " already registered!");
-            } else {
-                registeredAdvices.add(advice);
-            }
-        }
-    }
+	}
 
-    public ProtectedRegionResolver getProtectedRegionResolver() {
-        return protectedRegionResolver;
-    }
+	public XpandDefinition findDefinition(final String name, final Type target, final Type[] paramTypes) {
+		XpandResource tpl = null;
+		if (name.indexOf(SyntaxConstants.NS_DELIM) != -1) { // local call
+			tpl = findTemplate(XpandUtil.withoutLastSegment(name));
+		}
+		else {
+			tpl = (XpandResource) currentResource();
+		}
+		if (tpl == null)
+			return null;
+		final XpandExecutionContext ctx = (XpandExecutionContext) cloneWithResource(tpl);
+		XpandDefinition def = findDefinition(tpl.getDefinitions(), name, target, paramTypes, ctx);
+		for (int x = registeredAdvices.size() - 1; x >= 0; x--) {
+			final XpandAdvice adv = registeredAdvices.get(x);
+			if (adv.matches(def, this)) {
+				def = new AdvicedDefinition(adv, def);
+			}
+		}
+		return def;
+	}
 
-    public Output getOutput() {
-        return output;
-    }
+	public void registerAdvices(final String fullyQualifiedName) {
+		final XpandResource tpl = findTemplate(fullyQualifiedName);
+		if (tpl == null)
+			throw new NoSuchTemplateException(fullyQualifiedName);
+		final XpandAdvice[] as = tpl.getAdvices();
+		for (int i = 0; i < as.length; i++) {
+			final XpandAdvice advice = as[i];
+			if (registeredAdvices.contains(advice)) {
+				log.warn("advice " + advice.toString() + " allready registered!");
+			}
+			else {
+				registeredAdvices.add(advice);
+			}
+		}
+	}
 
-    public XpandResource findTemplate(final String templateName) {
-        return findTemplate(templateName, getImportedNamespaces());
-    }
-        
-    public XpandResource findTemplate(final String templateName, String[] importedNs) {
-        final List<?> possibleNames = typeSystem.getPossibleNames(templateName, importedNs);
-        for (final Iterator<?> iter = possibleNames.iterator(); iter.hasNext();) {
-            final String element = (String) iter.next();
-            final XpandResource tpl = (XpandResource) resourceManager.loadResource(element,
-                    XpandUtil.TEMPLATE_EXTENSION);
-            if (tpl != null)
-                return tpl;
-        }
-        return null;
-    }
+	public ProtectedRegionResolver getProtectedRegionResolver() {
+		return protectedRegionResolver;
+	}
 
-    /**
-     * resolves the correct definition (using parametric polymorphism)
-     * 
-     * @param definitions
-     * @param target
-     * @param paramTypes
-     * @return
-     */
-    private XpandDefinition findDefinition(final XpandDefinition[] definitions, final String name, final Type target,
-            Type[] paramTypes, final XpandExecutionContext ctx) {
-        if (paramTypes == null) {
-            paramTypes = new Type[0];
-        }
-        final Set<Callable> features = new HashSet<Callable>();
-        for (int i = 0; i < definitions.length; i++) {
-            final XpandDefinition def = definitions[i];
-            if (def.getParams().length == paramTypes.length) {
-                final List<Type> defsParamTypes = new ArrayList<Type>();
-                Type t = null;
-                boolean complete = true;
-                for (int j = 0; j < paramTypes.length && complete; j++) {
-                    t = ctx.getTypeForName(def.getParams()[j].getType().getValue());
-                    if (t == null) {
-                        complete = false;
-                    }
-                    defsParamTypes.add(t);
-                }
-                t = ctx.getTypeForName(def.getTargetType());
-                if (t == null) {
-                    complete = false;
-                }
-                if (complete) {
-                    features.add(new DefinitionOperationAdapter(def, def.getName(), t, defsParamTypes));
-                }
-            }
-        }
-        final DefinitionOperationAdapter defAdapter = (DefinitionOperationAdapter) PolymorphicResolver.getOperation(
-                features, XpandUtil.getLastSegment(name), target, Arrays.asList(paramTypes));
-        if (defAdapter != null)
-            return defAdapter.def;
-        return null;
-    }
+	public Output getOutput() {
+		return output;
+	}
 
-    public class DefinitionOperationAdapter implements Operation {
+	public XpandResource findTemplate(final String templateName) {
+		return findTemplate(templateName, getImportedNamespaces());
+	}
 
-        private String name;
+	public XpandResource findTemplate(final String templateName, String[] importedNs) {
+		final List<?> possibleNames = typeSystem.getPossibleNames(templateName, importedNs);
+		for (final Iterator<?> iter = possibleNames.iterator(); iter.hasNext();) {
+			final String element = (String) iter.next();
+			final XpandResource tpl = (XpandResource) resourceManager.loadResource(element,
+					XpandUtil.TEMPLATE_EXTENSION);
+			if (tpl != null)
+				return tpl;
+		}
+		return null;
+	}
 
-        private Type owner;
+	/**
+	 * resolves the correct definition (using parametric polymorphism)
+	 * 
+	 * @param definitions
+	 * @param target
+	 * @param paramTypes
+	 * @return
+	 */
+	private XpandDefinition findDefinition(final XpandDefinition[] definitions, final String name, final Type target,
+			Type[] paramTypes, final XpandExecutionContext ctx) {
+		if (paramTypes == null) {
+			paramTypes = new Type[0];
+		}
+		final Set<Callable> features = new HashSet<Callable>();
+		for (int i = 0; i < definitions.length; i++) {
+			final XpandDefinition def = definitions[i];
+			if (def.getParams().length == paramTypes.length) {
+				final List<Type> defsParamTypes = new ArrayList<Type>();
+				Type t = null;
+				boolean complete = true;
+				for (int j = 0; j < paramTypes.length && complete; j++) {
+					t = ctx.getTypeForName(def.getParams()[j].getType().getValue());
+					if (t == null) {
+						complete = false;
+					}
+					defsParamTypes.add(t);
+				}
+				t = ctx.getTypeForName(def.getTargetType());
+				if (t == null) {
+					complete = false;
+				}
+				if (complete) {
+					features.add(new DefinitionOperationAdapter(def, def.getName(), t, defsParamTypes));
+				}
+			}
+		}
+		final DefinitionOperationAdapter defAdapter = (DefinitionOperationAdapter) PolymorphicResolver.getOperation(
+				features, XpandUtil.getLastSegment(name), target, Arrays.asList(paramTypes));
+		if (defAdapter != null)
+			return defAdapter.def;
+		return null;
+	}
 
-        private List<Type> paramTypes;
+	public class DefinitionOperationAdapter implements Operation {
 
-        public XpandDefinition def;
+		private String name;
 
-        public DefinitionOperationAdapter(final XpandDefinition def, final String name, final Type owner,
-                final List<Type> paramTypes) {
-            this.name = name;
-            this.owner = owner;
-            this.paramTypes = paramTypes;
-            this.def = def;
-        }
+		private Type owner;
 
-        public String getName() {
-            return name;
-        }
+		private List<Type> paramTypes;
 
-        public Type getReturnType() {
-            throw new UnsupportedOperationException();
-        }
+		public XpandDefinition def;
 
-        public Type getOwner() {
-            return owner;
-        }
+		public DefinitionOperationAdapter(final XpandDefinition def, final String name, final Type owner,
+				final List<Type> paramTypes) {
+			this.name = name;
+			this.owner = owner;
+			this.paramTypes = paramTypes;
+			this.def = def;
+		}
 
-        public List<Type> getParameterTypes() {
-            return paramTypes;
-        }
+		public String getName() {
+			return name;
+		}
 
-        public Object evaluate(final Object target, final Object[] params) {
-            throw new UnsupportedOperationException();
-        }
+		public Type getReturnType() {
+			throw new UnsupportedOperationException();
+		}
 
-        public String getDocumentation() {
-            return "Xpand definition " + getName() + " adapted in an Operation";
-        }
+		public Type getOwner() {
+			return owner;
+		}
 
-        public Type getReturnType(final Type targetType, final Type[] paramTpes) {
-            return getReturnType();
-        }
+		public List<Type> getParameterTypes() {
+			return paramTypes;
+		}
 
-    }
+		public Object evaluate(final Object target, final Object[] params) {
+			throw new UnsupportedOperationException();
+		}
 
-    @Override
-    public void setFileEncoding(final String fileEncoding) {
-        resourceManager.setFileEncoding(fileEncoding); //TODO: make this immutable - the entire context should be immutable!
-    }
+		public String getDocumentation() {
+			return "Xpand definition " + getName() + " adapted in an Operation";
+		}
 
+		public Type getReturnType(final Type targetType, final Type[] paramTpes) {
+			return getReturnType();
+		}
+
+	}
+
+	@Override
+	public void setFileEncoding(final String fileEncoding) {
+		resourceManager.setFileEncoding(fileEncoding); // TODO: make this
+														// immutable - the
+														// entire context should
+														// be immutable!
+	}
+
+	public void setResourceManager(ResourceManager resourceManager) {
+		registerParser(resourceManager);
+		this.resourceManager = resourceManager;
+	}
+
+	public void setCallBack(Callback callback) {
+		this.callback = callback;
+	}
 }

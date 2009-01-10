@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.xtend.typesystem.emf;
 
@@ -43,6 +41,7 @@ public class Setup {
 		EcoreUtil2.getEPackageByClassName(clazz);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void addUriMap(final Mapping uriMap) {
 		final URI baseUri = URI.createURI(uriMap.getFrom());
 		final URI mappedUri = EcoreUtil2.getURI(uriMap.getTo());
@@ -62,6 +61,7 @@ public class Setup {
 	 * <li> The inner factory class for the extension cannot be found
 	 * </ul>
 	 */
+	@SuppressWarnings("unchecked")
 	public void addExtensionMap(final Mapping m) throws ConfigurationException {
 		try {
 			// locate the factory class of the extension

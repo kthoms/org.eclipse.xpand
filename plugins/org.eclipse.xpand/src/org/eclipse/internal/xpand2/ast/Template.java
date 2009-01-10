@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xpand2.ast;
@@ -15,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -62,8 +62,8 @@ public class Template extends SyntaxElement implements XpandResource {
         this.fullyQualifiedName = fullyQualifiedName;
     }
 
-    public Template(final ImportDeclaration[] imports,
-            final ImportDeclaration[] extensions, final Definition[] definitions, final Advice[] advices) {
+	public Template(final ImportDeclaration[] imports, final ImportDeclaration[] extensions,
+			final Definition[] definitions, final Advice[] advices) {
         this.imports = imports;
         this.extensions = extensions;
         for (int i = 0; i < definitions.length; i++) {
@@ -93,7 +93,8 @@ public class Template extends SyntaxElement implements XpandResource {
 
             public int compare(SyntaxElement o1, SyntaxElement o2) {
                 return new Integer(o1.getStart()).compareTo(o2.getStart());
-            }});
+			}
+		});
         return l.toArray(new AbstractDefinition[l.size()]);
     }
 
@@ -110,16 +111,27 @@ public class Template extends SyntaxElement implements XpandResource {
     public void analyze(XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
     	try {
 	        ctx = (XpandExecutionContext) ctx.cloneWithResource(this);
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().pre(this, ctx);
+			}
+
+			checkDuplicateDefinitions(issues);
 	        for (int i = 0; i < definitions.length; i++) {
 	            definitions[i].analyze(ctx, issues);
 	        }
 	        for (int i = 0; i < advices.length; i++) {
 	            advices[i].analyze(ctx, issues);
 	        }
-    	} catch (RuntimeException ex) {
-    		ctx.handleRuntimeException(ex, this, null);
     	}
+		catch (RuntimeException ex) {
+			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, ex.getMessage(), this));
     }
+		finally {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().post(null);
+			}
+		}
+	}
 
     public XpandDefinition[] getDefinitionsByName(final String aName) {
         final List<Definition> defs = new ArrayList<Definition>();
@@ -137,12 +149,15 @@ public class Template extends SyntaxElement implements XpandResource {
             final List<String> l = new ArrayList<String>();
             final String thisNs = XpandUtil.withoutLastSegment(getFullyQualifiedName());
 
-            if (thisNs != null)
-                l.add(thisNs);
             for (int i = 0; i < getImports().length; i++) {
                 final ImportDeclaration anImport = getImports()[i];
                 l.add(anImport.getImportString().getValue());
             }
+
+			if (thisNs != null) {
+				l.add(thisNs);
+			}
+
             commonPrefixes = l.toArray(new String[l.size()]);
         }
         return commonPrefixes;
@@ -170,4 +185,26 @@ public class Template extends SyntaxElement implements XpandResource {
         return advices;
     }
 
+	private void checkDuplicateDefinitions(Set<AnalysationIssue> issues) {
+		Set<Definition> definitionSet = new HashSet<Definition>();
+		for (Definition def : definitions) {
+			if (!definitionSet.contains(def)) {
+				definitionSet.add(def);
+			}
+			else {
+				Definition origDef = null;
+				for (Iterator<Definition> it = definitionSet.iterator(); it.hasNext();) {
+					Definition d = it.next();
+					if (d.equals(def)) {
+						origDef = d;
+						break;
+					}
+				}
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate definition '"
+						+ def.getName() + "'", def));
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate definition '"
+						+ origDef.getName() + "'", origDef));
+			}
+		}
+	}
 }

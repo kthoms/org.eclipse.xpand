@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.expression.codeassist;
@@ -143,12 +141,12 @@ public class ExpressionProposalComputer implements ProposalComputer {
 
             // members and extensions on implicit variable (this)
             final Variable implicitVariable = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
-            if (implicitVariable != null) {
+			if (implicitVariable != null && implicitVariable.getValue()!=null) {
                 implicitVariableType = (Type) implicitVariable.getValue();
                 proposals.addAll(getAllMemberProposals(implicitVariableType, prefix, ctx, factory));
         		for (StaticProperty p : implicitVariableType.getAllStaticProperties()) {
         			if (p.getName().startsWith(prefix)) {
-        				proposals.add(factory.createStaticPropertyProposal((StaticProperty) p, prefix, false));
+						proposals.add(factory.createStaticPropertyProposal(p, prefix, false));
         			}
         		}
             }
@@ -160,17 +158,15 @@ public class ExpressionProposalComputer implements ProposalComputer {
                 	if (extension.getParameterTypes().size() >= 1) {
                 		Type firstParameterType = extension.getParameterTypes().get(0);
 
-                        if (implicitVariable != null) {
+						if (implicitVariable != null && implicitVariable.getValue()!=null) {
                             implicitVariableType = (Type) implicitVariable.getValue();
                             if (implicitVariableType.isAssignableFrom(firstParameterType)
 									|| firstParameterType.isAssignableFrom(implicitVariableType)) {
 								skip = true;
-								System.out.println("SKIP");
 							}
                         }
                 	}
                 	if (!skip) {
-                		System.out.println("NOSKIP");
 						proposals.add(factory.createExtensionProposal(extension, prefix));
 					}
                 }
@@ -184,12 +180,13 @@ public class ExpressionProposalComputer implements ProposalComputer {
             	if (implicitVariableType!=null) {
             		for (StaticProperty p : implicitVariableType.getAllStaticProperties()) {
             			if (p.getName().startsWith(prefix)) {
-            				proposals.add(factory.createStaticPropertyProposal((StaticProperty) p, prefix, false));
+							proposals.add(factory.createStaticPropertyProposal(p, prefix, false));
             			}
             		}
             	}
             }
-        } else {
+		}
+		else {
             // members and extensions on targetType
             proposals.addAll(getAllMemberProposals(implicitVariableType, prefix, ctx, factory));
         }
@@ -221,11 +218,14 @@ public class ExpressionProposalComputer implements ProposalComputer {
                 v.forEach = true;
                 v.expression = expressionString;
                 vars.push(v);
-            } else if (m.group(4) != null) {
+			}
+			else if (m.group(4) != null) {
                 vars.push(null);
-            } else if (m.group(5) != null) {
+			}
+			else if (m.group(5) != null) {
                 vars.pop();
-            } else
+			}
+			else
                 throw new IllegalStateException("Match:" + m.group());
         }
         for (final Iterator<LazyVar> iter = vars.iterator(); iter.hasNext();) {
@@ -240,12 +240,14 @@ public class ExpressionProposalComputer implements ProposalComputer {
                             targetType = ((ParameterizedType) var.getValue()).getInnerType();
                         }
                     }
-                } else {
+				}
+				else {
                     targetType = new ExpressionFacade(ctx).analyze(expressionString, new HashSet<AnalysationIssue>());
                     if (v.forEach) {
                         if (targetType instanceof ParameterizedType) {
                             targetType = ((ParameterizedType) targetType).getInnerType();
-                        } else {
+						}
+						else {
                             targetType = null;
                         }
                     }
@@ -262,41 +264,43 @@ public class ExpressionProposalComputer implements ProposalComputer {
     /**
      * Computes the list of proposals for a type. These proposals are:
      * <ol>
-     * <li>Owned features of the type: {@link Property}, {@link StaticProperty} or {@link Operation}.
+	 * <li>Owned features of the type: {@link Property}, {@link StaticProperty}
+	 *  or {@link Operation}.
      * <li>Extensions whose first parameter is of type <code>targetType</code>
      * <li>For parametrized types all features of the parameter type
      * </ol>
      *  
-     * @param targetType Type to search for proposals
-     * @param prefix A prefix the proposals must match
-     * @param ctx Current execution context
-     * @param factory Factory to use for proposal creation
-     * @return All proposals matching <code>prefix</code> for <code>targetType</code>
+	 * @param targetType
+	 *            Type to search for proposals
+	 * @param prefix
+	 *            A prefix the proposals must match
+	 * @param ctx
+	 *            Current execution context
+	 * @param factory
+	 *            Factory to use for proposal creation
+	 * @return All proposals matching <code>prefix</code> for
+	 *         <code>targetType</code>
      */
-    private final static List<Object> getAllMemberProposals(Type targetType, final String prefix, final ExecutionContext ctx,
-            final ProposalFactory factory) {
+	private final static List<Object> getAllMemberProposals(Type targetType, final String prefix,
+			final ExecutionContext ctx, final ProposalFactory factory) {
         final List<Object> result = new ArrayList<Object>();
+		final Set<String> nameCache = new HashSet<String>();
         if (targetType != null) {
-            Set<? extends Callable> s = targetType.getAllFeatures();
-            for (final Callable f : s) {
-                if (f.getName().toLowerCase().startsWith(prefix.toLowerCase())) {
-                    if (f instanceof Property) {
-                        result.add(factory.createPropertyProposal((Property) f, prefix, false));
-                    } else if (f instanceof Operation) {
-                        if (Character.isJavaIdentifierStart(f.getName().charAt(0))) {
-                            result.add(factory.createOperationProposal((Operation) f, prefix, false));
-                        }
-                    }
-                }
+			Set<? extends Callable> s;
+			result.addAll(addFeatureProposals(targetType, prefix, factory, nameCache));
+			Set<? extends Type> superTypes = targetType.getSuperTypes();
+			for (final Type t : superTypes) {
+				result.addAll(addFeatureProposals(targetType, prefix, factory, nameCache));
             }
             
-            // get all extensions whose first parameter is compatible with 'targetType'
+			// get all extensions whose first parameter is compatible with
+			// 'targetType'
             Set<? extends Extension> extensions = ctx.getAllExtensions();
             for (Extension extension : extensions) {
             	if (extension.getName().toLowerCase().startsWith(prefix.toLowerCase())) {
             		if (extension.getParameterTypes().size() >= 1) {
             			Type firstParameterType = extension.getParameterTypes().get(0);
-            			if (targetType.equals(firstParameterType)) {
+						if (firstParameterType.isAssignableFrom(targetType)) {
             				result.add(factory.createExtensionOnMemberPositionProposal(extension, prefix, false));
             			}
             		}
@@ -310,7 +314,8 @@ public class ExpressionProposalComputer implements ProposalComputer {
                     if (f.getName().toLowerCase().startsWith(prefix.toLowerCase())) {
                         if (f instanceof Property) {
                             result.add(factory.createPropertyProposal((Property) f, prefix, true));
-                        } else if (f instanceof Operation) {
+						}
+						else if (f instanceof Operation) {
                             if (Character.isJavaIdentifierStart(f.getName().charAt(0))) {
                                 result.add(factory.createOperationProposal((Operation) f, prefix, true));
                             }
@@ -329,45 +334,78 @@ public class ExpressionProposalComputer implements ProposalComputer {
         return result;
     }
 
+	private static List<Object> addFeatureProposals(Type targetType, final String prefix,
+			final ProposalFactory factory, Set<String> nameCache) {
+		List<Object> result = new ArrayList<Object>();
+		Set<? extends Callable> s = targetType.getAllFeatures();
+		for (final Callable f : s) {
+			Object proposal = null;
+			if (f.getName().toLowerCase().startsWith(prefix.toLowerCase())) {
+				if (f instanceof Property) {
+					proposal = factory.createPropertyProposal((Property) f, prefix, false);
+				}
+				else if (f instanceof Operation) {
+					if (Character.isJavaIdentifierStart(f.getName().charAt(0))) {
+						proposal = factory.createOperationProposal((Operation) f, prefix, false);
+					}
+				}
+			}
+			if (proposal != null && !factory.isDuplicate(nameCache, proposal)) {
+				factory.addToCache(nameCache, proposal);
+				result.add(proposal);
+			}
+		}
+		return result;
+	}
+
     private static List<Object> getAllCollectionOperations(final String prefix, final ProposalFactory f) {
         final List<Object> result = new ArrayList<Object>();
         final String marked = "expression-with-e";
 
         String s = "select(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "reject(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "selectFirst(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "collect(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "exists(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "notExists(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "forAll(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "sortBy(e|" + marked + ")";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
         	result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf(marked), marked.length()));
+		}
 
         s = "typeSelect(Type)";
-        if (s.startsWith(prefix))
+		if (s.startsWith(prefix)) {
             result.add(f.createCollectionSpecificOperationProposal(s, s, prefix, s.indexOf("Type"), "Type".length()));
+		}
 
         return result;
     }
@@ -401,17 +439,21 @@ public class ExpressionProposalComputer implements ProposalComputer {
                         if (isOperand(t)) {
                             if (lastWasOperator) {
                                 lastWasOperator = false;
-                            } else { // two operands in sequence -> stopper!
+							}
+							else { // two operands in sequence -> stopper!
                                 scanner.nextToken();
                                 stop = true;
                             }
-                        } else if (".".equals(t.getText())) {
+						}
+						else if (".".equals(t.getText())) {
                             if (!lastWasOperator) {
                                 lastWasOperator = true;
-                            } else
+							}
+							else
                                 // errorneous expression
                                 return new String[] { prefix, expr };
-                        } else if (isBlockCloser(t) && lastWasOperator) {
+						}
+						else if (isBlockCloser(t) && lastWasOperator) {
                             lastWasOperator = false;
                             final Stack<CommonToken> s = new Stack<CommonToken>();
                             s.push(t);
@@ -421,7 +463,8 @@ public class ExpressionProposalComputer implements ProposalComputer {
                                     return new String[] { prefix, expr };
                                 if (temp.getType() == t.getType()) {
                                     s.push(temp);
-                                } else if (isOpposite(temp, t)) {
+								}
+								else if (isOpposite(temp, t)) {
                                     s.pop();
                                 }
                             }
@@ -436,7 +479,8 @@ public class ExpressionProposalComputer implements ProposalComputer {
                                     scanner.nextToken();
                                 }
                             }
-                        } else {
+						}
+						else {
                             scanner.nextToken(); // go one forward
                             stop = true;
                         }
@@ -445,18 +489,18 @@ public class ExpressionProposalComputer implements ProposalComputer {
                 }
             }
             return new String[] { prefix, expr };
-        } catch (final Exception e) {
+		}
+		catch (final Exception e) {
             return new String[] { prefix, expr };
         }
     }
 
     private final static boolean isMethodName(final CommonToken token) {
-		if (token != null) {
+		if (token != null)
 			return token.getType() == XtendLexer.Identifier || methodNames.contains(token.getText());
-		} else {
+		else
 			return false;
 		}
-	}
 
     private final static boolean isOpposite(final CommonToken left, final CommonToken right) {
         final String temp = blockTokens.get(left.getText());
@@ -470,9 +514,8 @@ public class ExpressionProposalComputer implements ProposalComputer {
     }
 
     private final static boolean isOperand(final CommonToken t) {
-    	return t.getType() == XtendLexer.Identifier ||
-    			t.getType() == XtendLexer.IntLiteral ||
-    			t.getType() == XtendLexer.StringLiteral || operands.contains(t.getText());
+		return t.getType() == XtendLexer.Identifier || t.getType() == XtendLexer.IntLiteral
+				|| t.getType() == XtendLexer.StringLiteral || operands.contains(t.getText());
     }
 
 }

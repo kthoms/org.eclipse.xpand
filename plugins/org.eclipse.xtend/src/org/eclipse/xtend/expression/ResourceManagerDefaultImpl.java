@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xtend.expression;
@@ -40,9 +38,11 @@ public class ResourceManagerDefaultImpl implements ResourceManager {
 	private final Map<String, Resource> resources = new HashMap<String, Resource>();
 
 	public ResourceManagerDefaultImpl() {
+		XtendResourceParser xtendResourceParser = new XtendResourceParser();
 		registeredParsers.put(XtendFile.FILE_EXTENSION,
-				new XtendResourceParser());
-		registeredParsers.put(CheckUtils.FILE_EXTENSION, new XtendResourceParser());
+				xtendResourceParser);
+		registeredParsers.put(CheckUtils.FILE_EXTENSION,
+				xtendResourceParser);
 	}
 
 	public Resource loadResource(final String fullyQualifiedName,

@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005 - 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.internal.xpand2.debug;
 
@@ -32,7 +30,8 @@ import org.eclipse.internal.xtend.expression.debug.ExpressionModelPresentation;
 import org.eclipse.xtend.expression.ExecutionContext;
 
 /**
- * This class is responsible for all presentation topics for Xpand statements in the debugger views.
+ * This class is responsible for all presentation topics for Xpand statements in
+ * the debugger views.
  * 
  * @author Clemens Kadura (zAJKa)
  */
@@ -97,7 +96,8 @@ public class XpandModelPresentation extends ExpressionModelPresentation {
 		to.resource = getResource(se);
 		to.start = getEndStartPosition(se);
 		to.end = se.getEnd();
-		to.line = se.getLine();// TODO: Known issue: "last line" is not stored. How to calculate it?
+		to.line = se.getLine();// TODO: Known issue: "last line" is not stored.
+								// How to calculate it?
 		return to;
 	}
 
@@ -107,11 +107,17 @@ public class XpandModelPresentation extends ExpressionModelPresentation {
 	@Override
 	protected String getContainerName(ISyntaxElement se) {
 		XpandDefinition def;
-		if (se instanceof XpandDefinition)
+		if (se instanceof XpandDefinition) {
 			def = (XpandDefinition) se;
-		else
+		}
+		else {
 			def = ((Statement) se).getContainingDefinition();
+		}
+
+		if (def != null)
 		return getTemplateName(se) + "::" + getDefinitionName(def);
+
+		return "";
 	}
 
 	private String getDefinitionName(XpandDefinition def) {

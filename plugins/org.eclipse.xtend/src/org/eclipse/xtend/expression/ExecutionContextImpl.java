@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xtend.expression;
@@ -23,6 +21,7 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.internal.xtend.expression.ast.AbstractVisitor;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
@@ -46,7 +45,7 @@ import org.eclipse.xtend.typesystem.Type;
 public class ExecutionContextImpl implements ExecutionContext {
 	private final static Log log = LogFactory.getLog(ExecutionContextImpl.class);
 
-	protected final ResourceManager resourceManager;
+	protected ResourceManager resourceManager;
 
 	private final Map<String, Variable> variables = new HashMap<String, Variable>();
 
@@ -67,7 +66,9 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	protected ExceptionHandler exceptionHandler;
 
-	protected NullEvaluationHandler nullEvaluationHandler = null;
+	protected NullEvaluationHandler nullEvaluationHandler;
+
+	protected Callback callback;
 
 	public ExecutionContextImpl() {
 		this((Map<String, Variable>) null);
@@ -78,26 +79,29 @@ public class ExecutionContextImpl implements ExecutionContext {
 	}
 
 	public ExecutionContextImpl(Map<String, Variable> globalVars) {
-		this(new ResourceManagerDefaultImpl(), null, new TypeSystemImpl(), new HashMap<String, Variable>(), globalVars, null,
-				null, null, null, null);
+		this(new ResourceManagerDefaultImpl(), null, new TypeSystemImpl(), new HashMap<String, Variable>(), globalVars,
+				null, null, null, null, null, null);
 	}
 
 	public ExecutionContextImpl(TypeSystemImpl ts, Map<String, Variable> globalVars) {
-		this(new ResourceManagerDefaultImpl(), null, ts, new HashMap<String, Variable>(), globalVars, null, null, null, null,
-				null);
+		this(new ResourceManagerDefaultImpl(), null, ts, new HashMap<String, Variable>(), globalVars, null, null, null,
+				null, null, null);
 	}
 
-	public ExecutionContextImpl(ResourceManager resourceManager, TypeSystemImpl typeSystem, Map<String, Variable> globalVars) {
-		this(resourceManager, null, typeSystem, new HashMap<String, Variable>(), globalVars, null, null, null, null, null);
+	public ExecutionContextImpl(ResourceManager resourceManager, TypeSystemImpl typeSystem,
+			Map<String, Variable> globalVars) {
+		this(resourceManager, null, typeSystem, new HashMap<String, Variable>(), globalVars, null, null, null, null,
+				null, null);
 	}
 
 	public ExecutionContextImpl(ResourceManager resourceManager, Resource resource, TypeSystemImpl typeSystem,
 			Map<String, Variable> variables, Map<String, Variable> globalVars, ProgressMonitor monitor,
 			ExceptionHandler exceptionHandler, List<Around> advices, NullEvaluationHandler neh2,
-			Map<Resource, Set<Extension>> extensionPerResourceMap) {
+			Map<Resource, Set<Extension>> extensionPerResourceMap, Callback callback) {
 		if (extensionPerResourceMap != null) {
 			this.allExtensionsPerResource = extensionPerResourceMap;
-		} else {
+		}
+		else {
 			this.allExtensionsPerResource = new HashMap<Resource, Set<Extension>>();
 		}
 		this.resourceManager = resourceManager;
@@ -114,16 +118,17 @@ public class ExecutionContextImpl implements ExecutionContext {
 		}
 
 		this.nullEvaluationHandler = neh2;
+		this.callback = callback;
+	}
+
+	public Callback getCallback() {
+		return callback;
 	}
 
 	public void registerMetaModel(final MetaModel mm) {
 		typeSystem.registerMetaModel(mm);
 	}
 
-	public List<MetaModel> getMetaModels () {
-	    return typeSystem.getMetaModels();
-	}
-	
 	public Operation findOperation(final String name, final Object target, final Object[] params) {
 		return typeSystem.findOperation(name, target, params);
 	}
@@ -214,7 +219,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	public ExecutionContextImpl cloneContext() {
 		return new ExecutionContextImpl(resourceManager, currentResource, typeSystem, variables, globalVars, monitor,
-				exceptionHandler, registeredExtensionAdvices, nullEvaluationHandler, allExtensionsPerResource);
+				exceptionHandler, registeredExtensionAdvices, nullEvaluationHandler, allExtensionsPerResource, callback);
 	}
 
 	public void setFileEncoding(final String encoding) {
@@ -288,9 +293,8 @@ public class ExecutionContextImpl implements ExecutionContext {
 				for (final String extension : extensions) {
 					final Object o = resourceManager.loadResource(extension, XtendFile.FILE_EXTENSION);
 					final XtendFile extFile = (XtendFile) o;
-					if (extFile == null) {
+					if (extFile == null)
 						throw new RuntimeException("Unable to load extension file : " + extension);
-					}
 					final ExecutionContext ctx = cloneWithResource(extFile);
 					final List<Extension> extensionList = extFile.getPublicExtensions(resourceManager, ctx);
 					for (final Extension element : extensionList) {
@@ -325,23 +329,21 @@ public class ExecutionContextImpl implements ExecutionContext {
 	}
 
 	public void preTask(Object element) {
-		if (monitor == null) {
+		if (monitor == null)
 			return;
-		}
 		monitor.preTask(element, this);
 	}
 
 	public void postTask(Object element) {
-		if (monitor == null) {
+		if (monitor == null)
 			return;
-		}
 		monitor.postTask(element, this);
 	}
 
-	public void handleRuntimeException(RuntimeException ex, SyntaxElement element, Map<String, Object> additionalContextInfo) {
-		if (this.exceptionHandler == null) {
+	public void handleRuntimeException(RuntimeException ex, SyntaxElement element,
+			Map<String, Object> additionalContextInfo) {
+		if (this.exceptionHandler == null)
 			throw ex;
-		}
 		exceptionHandler.handleRuntimeException(ex, element, this, additionalContextInfo);
 	}
 
@@ -353,14 +355,14 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	public void registerExtensionAdvices(final String fullyQualifiedName) {
 		final XtendFile ext = (XtendFile) resourceManager.loadResource(fullyQualifiedName, XtendFile.FILE_EXTENSION);
-		if (ext == null) {
+		if (ext == null)
 			throw new IllegalArgumentException("Couldn't find extension file '" + fullyQualifiedName + "'");
-		}
 		final List<Around> as = ext.getArounds();
 		for (Around around : as) {
 			if (registeredExtensionAdvices.contains(around)) {
-				log.warn("advice " + around.toString() + " already registered!");
-			} else {
+				log.warn("advice " + around.toString() + " allready registered!");
+			}
+			else {
 				registeredExtensionAdvices.add(around);
 			}
 		}
@@ -410,9 +412,11 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 		public Object evaluate(Object[] parameters, ExecutionContext ctx) {
 
-			ctx = ctx.cloneWithVariable(new Variable(Around.CONTEXT_PARAM_NAME, new AdviceContext(delegate, ctx, parameters)));
+			ctx = ctx.cloneWithVariable(new Variable(Around.CONTEXT_PARAM_NAME, new AdviceContext(delegate, ctx,
+					parameters)));
 			for (int i = 0; i < advice.getParams().size(); i++) {
-				ctx = ctx.cloneWithVariable(new Variable(advice.getParams().get(i).getName().getValue(), parameters[i]));
+				ctx = ctx
+						.cloneWithVariable(new Variable(advice.getParams().get(i).getName().getValue(), parameters[i]));
 			}
 			ctx = ctx.cloneWithResource(advice.getParent());
 			return advice.getExpression().evaluate(ctx);
@@ -503,12 +507,14 @@ public class ExecutionContextImpl implements ExecutionContext {
 			return delegate.getQualifiedName();
 		}
 
+		public final Object accept(final AbstractVisitor visitor) {
+			return visitor.visit(this);
+		}
 	}
 
 	public Object handleNullEvaluation(SyntaxElement element) {
-		if (nullEvaluationHandler != null) {
+		if (nullEvaluationHandler != null)
 			return nullEvaluationHandler.handleNullEvaluation(element, this);
-		}
 		return null;
 	}
 

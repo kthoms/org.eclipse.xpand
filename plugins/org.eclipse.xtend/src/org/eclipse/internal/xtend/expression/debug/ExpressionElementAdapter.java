@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005 - 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.internal.xtend.expression.debug;
 
@@ -27,6 +25,7 @@ import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
 import org.eclipse.internal.xtend.expression.ast.ChainExpression;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
+import org.eclipse.internal.xtend.expression.ast.ISyntaxElement;
 import org.eclipse.internal.xtend.expression.ast.Literal;
 import org.eclipse.internal.xtend.expression.ast.OperationCall;
 import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
@@ -92,15 +91,17 @@ public class ExpressionElementAdapter implements ElementAdapter {
 
 	public boolean shallSuspend(Object element, int flag) {
 		boolean result = true;
-		for (BaseSpecialTreatment special : specials)
+		for (BaseSpecialTreatment special : specials) {
 			result &= !(special.shallNotSuspend(element, flag, context));
+		}
 		return result;
 	}
 
 	public SyntaxElement createElementTO(Object element) {
-		SyntaxElement to = pres.getStartPresentation((org.eclipse.internal.xtend.expression.ast.SyntaxElement) element, context);
-		for (BaseSpecialTreatment special : specials)
+		SyntaxElement to = pres.getStartPresentation((ISyntaxElement) element, context);
+		for (BaseSpecialTreatment special : specials) {
 			special.adaptSyntaxElement(to, element);
+		}
 		return to;
 	}
 
@@ -132,9 +133,8 @@ public class ExpressionElementAdapter implements ElementAdapter {
 	}
 
 	public List<NameValuePair> getVariables(Object element) {
-		if (element instanceof ChainExpression || element instanceof Literal) {
+		if (element instanceof ChainExpression || element instanceof Literal)
 			return Collections.EMPTY_LIST;
-		}
 		if (element instanceof OperationCall) {
 			ArrayList<NameValuePair> result = getAllVisibleVariables();
 
@@ -161,9 +161,8 @@ public class ExpressionElementAdapter implements ElementAdapter {
 
 			return result;
 		}
-		if (element instanceof FeatureCall) {
+		if (element instanceof FeatureCall)
 			return evaluateFeatureCall((FeatureCall) element);
-		}
 		if (element instanceof Collection) {
 			List<NameValuePair> result = new ArrayList<NameValuePair>();
 			Collection col = (Collection) element;
@@ -216,9 +215,12 @@ public class ExpressionElementAdapter implements ElementAdapter {
 		return getAllPropertiesFor(type, evaluate);
 	}
 
-	// Hint: We don't use the AbstractTypeImpl collection of all properties, because it collects methods with the
-	// same name from superclasses twice. We take only the most specialized method here (as in Java)
-	// Is this a bug or intended that way in AbstractTypeImpl? (TODO: ask Sven or Arno)
+	// Hint: We don't use the AbstractTypeImpl collection of all properties,
+	// because it collects methods with the
+	// same name from superclasses twice. We take only the most specialized
+	// method here (as in Java)
+	// Is this a bug or intended that way in AbstractTypeImpl? (TODO: ask Sven
+	// or Arno)
 	private List<NameValuePair> getAllPropertiesFor(Type type, Object element) {
 		ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
 
@@ -228,7 +230,8 @@ public class ExpressionElementAdapter implements ElementAdapter {
 				Object value = null;
 				try {
 					value = p.get(element);
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					value = "Error: " + e.getMessage();
 				}
 				if (value != null) {
@@ -250,15 +253,17 @@ public class ExpressionElementAdapter implements ElementAdapter {
 
 	public final Set<Callable> getAllFeatures(Type type) {
 		Map<String, Callable> allFeatures;
-		if (typeCache.containsKey(type))
+		if (typeCache.containsKey(type)) {
 			allFeatures = typeCache.get(type);
+		}
 		else {
 			allFeatures = new HashMap<String, Callable>();
 			Callable[] contribs = ((AbstractTypeImpl) type).getContributedFeatures();
 			addIfNotExist(allFeatures, Arrays.asList(contribs));
 			for (Type superType : type.getSuperTypes()) {
-				if (superType != null)
+				if (superType != null) {
 					addIfNotExist(allFeatures, getAllFeatures(superType));
+				}
 			}
 			typeCache.put(type, allFeatures);
 		}
@@ -270,8 +275,9 @@ public class ExpressionElementAdapter implements ElementAdapter {
 	private void addIfNotExist(Map<String, Callable> all, Collection<Callable> more) {
 		for (Callable one : more) {
 			String name = one.getName();
-			if (!all.containsKey(name))
+			if (!all.containsKey(name)) {
 				all.put(name, one);
+			}
 		}
 	}
 

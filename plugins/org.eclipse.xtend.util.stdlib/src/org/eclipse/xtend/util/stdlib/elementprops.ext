@@ -1,5 +1,33 @@
+/*******************************************************************************
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *******************************************************************************/
+
+// ****************************************************************************
+// *** openArchitectureWare stdlib extensions: elementprops
+// *** ------------------------------------------------------------------------
+// *** This library contains functions for storing and retrieving dynamic
+// *** properties on model elements.
+// ****************************************************************************
+
+/**
+ * Sets a dynamic property on an element.
+ * @param element The element
+ * @param name Name of the property to set
+ * @param value The property value
+ */
 Void setProperty( Object element, String name, Object value ):
 	JAVA org.eclipse.xtend.util.stdlib.ElementPropertiesExtensions.setProperty(java.lang.Object,java.lang.String,java.lang.Object);
 	
+/**
+ * Retrieves a dynamic property from an element.
+ * @param elements The element
+ * @param name Property name
+ * @return The property value
+ */
 Object getProperty( Object element, String name ):
 	JAVA org.eclipse.xtend.util.stdlib.ElementPropertiesExtensions.getProperty(java.lang.Object,java.lang.String);	

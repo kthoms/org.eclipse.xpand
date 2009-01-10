@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xpand2.ast;
@@ -44,7 +42,8 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 
 	protected boolean wildParams = false;
 
-	public AbstractDefinition(final Identifier name, final Identifier type, final DeclaredParameter[] params, final Statement[] body) {
+	public AbstractDefinition(final Identifier name, final Identifier type, final DeclaredParameter[] params,
+			final Statement[] body) {
 		this.name = name;
 		this.type = type;
 		this.params = params;
@@ -99,8 +98,9 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 		for (int i = 0; i < params.length; i++) {
 			final DeclaredParameter p = params[i];
 			buff.append(p.getType().getValue());
-			if(!typesOnly)
+			if (!typesOnly) {
 				buff.append(" ").append(p.getName().getValue());
+			}
 			if (i + 1 < params.length) {
 				buff.append(",");
 			}
@@ -120,59 +120,101 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 	}
 
 	public void analyze(XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
-		if (getType()==null) {
-			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Invalid definition: " + this.toString(), this));
-			return;
-		}
-		final Type thisType = ctx.getTypeForName(getType().getValue());
-		if (thisType == null) {
-			issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't find " + getType().getValue(), getType()));
-		}
-		ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, thisType));
-		for (int i = 0; i < params.length; i++) {
-			final DeclaredParameter param = params[i];
-			Type paramType = ctx.getTypeForName(param.getType().getValue());
-			if (paramType == null) {
-				issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't find " + param.getType().getValue(), param.getType()));
-				paramType = ctx.getObjectType();
+		try {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().pre(this, ctx);
 			}
-			final String name = param.getName().getValue();
-			ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(name, paramType));
+			final Type thisType = ctx.getTypeForName(getType().getValue());
+			if (thisType == null) {
+				issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't find "
+						+ getType().getValue(), getType()));
+			}
+			ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE,
+					thisType));
+			for (int i = 0; i < params.length; i++) {
+				final DeclaredParameter param = params[i];
+				Type paramType = ctx.getTypeForName(param.getType().getValue());
+				if (paramType == null) {
+					issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't find "
+							+ param.getType().getValue(), param.getType()));
+					paramType = ctx.getObjectType();
+				}
+				final String name = param.getName().getValue();
+				ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(name, paramType));
+			}
+			for (int i = 0; i < getBody().length; i++) {
+				Statement stmt = getBody()[i];
+				try {
+					stmt.analyze(ctx, issues);
+				}
+				catch (RuntimeException ex) {
+					Map<String, Object> info = new HashMap<String, Object>();
+					info.put("body", stmt);
+					ctx.handleRuntimeException(ex, this, info);
+				}
+			}
 		}
-		for (int i = 0; i < getBody().length; i++) {
-			Statement stmt = getBody()[i];
-			try {
-				stmt.analyze(ctx, issues);
-			} catch (RuntimeException ex) {
-				Map<String, Object> info = new HashMap<String, Object>();
-				info.put("body", stmt);
-				ctx.handleRuntimeException(ex, this, info);
+		finally {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().post(null);
 			}
 		}
 	}
 
 	public void evaluate(XpandExecutionContext ctx) {
-		ctx = (XpandExecutionContext) ctx.cloneWithResource(getOwner());
-		for (int i = 0; i < getBody().length; i++) {
-			Statement stmt = getBody()[i];
-			try {
-				stmt.evaluate(ctx);
-			} catch (RuntimeException ex) {
-				Map<String, Object> info = new HashMap<String, Object>();
-				info.put("body", stmt);
-				ctx.handleRuntimeException(ex, this, info);
+		try {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().pre(this, ctx);
+			}
+			ctx = (XpandExecutionContext) ctx.cloneWithResource(getOwner());
+			for (int i = 0; i < getBody().length; i++) {
+				Statement stmt = getBody()[i];
+				try {
+					stmt.evaluate(ctx);
+				}
+				catch (RuntimeException ex) {
+					Map<String, Object> info = new HashMap<String, Object>();
+					info.put("body", stmt);
+					ctx.handleRuntimeException(ex, this, info);
+				}
+			}
+		}
+		finally {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().post(null);
 			}
 		}
 	}
 
 	@Override
 	public String toString() {
-		String type = getType()!=null ? getType().getValue() : "null";
 		if (_stringRepresentation == null) {
-			_stringRepresentation = name.getValue() + getParamString(false) + " : " + type;
+			_stringRepresentation = name.getValue() + getParamString(false) + " : " + getType().getValue();
 		}
 
 		return _stringRepresentation;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((toString() == null) ? 0 : toString().hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+
+		if (obj == null || toString() == null)
+			return false;
+
+		if (getClass() != obj.getClass())
+			return false;
+
+		AbstractDefinition other = (AbstractDefinition) obj;
+		return toString().equals(other.toString());
+	}
 }

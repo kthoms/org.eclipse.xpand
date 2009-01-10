@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.xtend;
 
@@ -33,182 +31,235 @@ import org.eclipse.xtend.expression.Variable;
 
 public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 
-    String extensionFile = null;
+	private static final String COMPONENT_NAME = "Xtend Component";
 
-    private final Log log = LogFactory.getLog(getClass());
+	private final Log log = LogFactory.getLog(getClass());
 
-    private final List<String> extensionAdvices = new ArrayList<String>();
+	String extensionFile = null;
 
-    /** Stores the value of the 'invoke' property. Needed for error analysis. */
-    private String invokeExpression;
+	private final List<String> extensionAdvices = new ArrayList<String>();
 
-    private String expression = null;
+	/** Stores the value of the 'invoke' property. Needed for error analysis. */
+	private String invokeExpression;
 
-    private String collectProfileSummary = null;
+	private String expression = null;
 
-    private String verboseProfileFilename = null;
+	private String collectProfileSummary = null;
 
-    private String outputSlot = WorkflowContext.DEFAULT_SLOT;
+	private String verboseProfileFilename = null;
 
-    @Override
-    public void addExtensionAdvice(final String extensionAdvices) {
-        if (!this.extensionAdvices.contains(extensionAdvices))
-            this.extensionAdvices.add(extensionAdvices);
-    }
+	private String outputSlot = WorkflowContext.DEFAULT_SLOT;
 
-    @Override
-    public void checkConfiguration(final Issues issues) {
-        super.checkConfiguration(issues);
+	/**
+	 * Adds an extension advice.
+	 * 
+	 * @param extensionAdvice
+	 *            the advice
+	 */
+	@Override
+	public void addExtensionAdvice(final String extensionAdvice) {
+		if (!extensionAdvices.contains(extensionAdvice)) {
+			extensionAdvices.add(extensionAdvice);
+		}
+	}
 
-        // Try to create detailed error message (see Bug#172567)
-        final String compPrefix = getId() != null ? getId() + ": " : "";
+	/**
+	 * @see org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent#checkConfigurationInternal(org.eclipse.emf.mwe.core.issues.Issues)
+	 */
+	@Override
+	public void checkConfigurationInternal(final Issues issues) {
+		super.checkConfigurationInternal(issues);
 
-        if (invokeExpression == null || invokeExpression.trim().length() == 0) {
-            issues.addError(compPrefix + "Property 'invoke' not specified.");
-            return;
-        } else if (extensionFile == null) {
-            issues
-                    .addError(compPrefix
-                            + "Error parsing property 'invoke': Could not extract name of the extension file.");
-            return;
-        }
-        if (getExtFileIS() == null && expression == null) {
-            issues
-                    .addError(compPrefix
-                            + "Property 'invoke' not specified properly. AbstractExtension file '"
-                            + extensionFile + "' not found.");
-            return;
-        } else if (expression == null) {
-            issues
-                    .addError(compPrefix
-                            + "Error parsing property 'invoke': Could not extract the expression to invoke in extension file '"
-                            + extensionFile + "'.");
-            return;
-        }
+		// Try to create detailed error message (see Bug#172567)
+		final String compPrefix = getId() != null ? getId() + ": " : "";
 
-    }
+		if (invokeExpression == null || invokeExpression.trim().length() == 0) {
+			issues.addError(compPrefix + "Property 'invoke' not specified.");
+			return;
+		}
+		if (extensionFile == null) {
+			issues.addError(compPrefix
+					+ "Error parsing property 'invoke': Could not extract name of the extension file.");
+			return;
+		}
 
-    @Override
-    public String getLogMessage() {
-        return "executing '" + extensionFile + "'";
-    }
+		final InputStream in = getExtFileIS();
+		if (in == null || expression == null) {
+			issues.addError(compPrefix + "Property 'invoke' not specified properly. AbstractExtension file '"
+					+ extensionFile + "' not found.");
+			return;
+		}
 
-    @Override
-    public void invokeInternal2(final WorkflowContext ctx,
-            final ProgressMonitor monitor, final Issues issues) {
+		try {
+			in.close();
+		}
+		catch (final IOException e) {
+			log.error("I/O exception", e);
+		}
 
-        final InputStream in = getExtFileIS();
-        if (in == null) {
-            issues.addError("Cannot find extension file: " + extensionFile);
-            return;
-        }
+		if (expression == null) {
+			issues.addError(compPrefix
+					+ "Error parsing property 'invoke': Could not extract the expression to invoke in extension file '"
+					+ extensionFile + "'.");
+			return;
+		}
 
-        try {
-            in.close();
-        } catch (final IOException e) {
-            log.error("could not close extension file", e);
-        }
+	}
 
-        OutputStream verboseProfileOutputStream = null;
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 */
+	@Override
+	public String getLogMessage() {
+		return "executing '" + extensionFile + "'";
+	}
 
-        if (verboseProfileFilename != null) {
-            try {
-                verboseProfileOutputStream =
-                        new BufferedOutputStream(new FileOutputStream(
-                                verboseProfileFilename));
-                ProfileCollector.getInstance().setDetailedLoggingWriter(
-                        verboseProfileOutputStream);
-            } catch (final IOException exc) {
-                log.warn("could not open profiling log file", exc);
-            }
-        }
+	/**
+	 * @see org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent#invokeInternal2(org.eclipse.emf.mwe.core.WorkflowContext,
+	 *      org.eclipse.emf.mwe.core.monitor.ProgressMonitor,
+	 *      org.eclipse.emf.mwe.core.issues.Issues)
+	 */
+	@Override
+	public void invokeInternal2(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 
-        ExecutionContextImpl ec = getExecutionContext(ctx);
+		final InputStream in = getExtFileIS();
+		if (in == null) {
+			issues.addError("Cannot find extension file: " + extensionFile);
+			return;
+		}
+		else {
+			try {
+				in.close();
+			}
+			catch (final IOException e) {
+				log.error("I/O exception", e);
+			}
+		}
 
-        for (final String advice : extensionAdvices) {
-            final String[] allAdvices = advice.split(",");
-            for (final String string : allAdvices) {
-                ec.registerExtensionAdvices(string.trim());
-            }
-        }
+		OutputStream verboseProfileOutputStream = null;
 
-        ec = (ExecutionContextImpl) ec.cloneWithResource(new Resource() {
-            private String name = "noName";
+		if (verboseProfileFilename != null) {
+			try {
+				verboseProfileOutputStream = new BufferedOutputStream(new FileOutputStream(verboseProfileFilename));
+				ProfileCollector.getInstance().setDetailedLoggingWriter(verboseProfileOutputStream);
+			}
+			catch (final IOException exc) {
+				log.warn("could not open profiling log file", exc);
+			}
+		}
 
-            public String getFullyQualifiedName() {
-                return name;
-            }
+		ExecutionContextImpl ec = getExecutionContext(ctx);
 
-            public String[] getImportedExtensions() {
-                return new String[] { extensionFile };
-            }
+		for (final String advice : extensionAdvices) {
+			final String[] allAdvices = advice.split(",");
+			for (final String string : allAdvices) {
+				ec.registerExtensionAdvices(string.trim());
+			}
+		}
 
-            public String[] getImportedNamespaces() {
-                return new String[0];
-            }
+		ec = (ExecutionContextImpl) ec.cloneWithResource(new Resource() {
+			private String name = "noName";
 
-            public void setFullyQualifiedName(final String fqn) {
-                name = fqn;
-            }
-        });
-        final String[] slots = ctx.getSlotNames();
-        for (final String element : slots) {
-            ec =
-                    (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
-                            element, ctx.get(element)));
-        }
+			public String getFullyQualifiedName() {
+				return name;
+			}
 
-        if (monitor != null) {
-            ec.setMonitor(monitor);
-        }
+			public String[] getImportedExtensions() {
+				return new String[] { extensionFile };
+			}
 
-        final Object result = new ExpressionFacade(ec).evaluate(expression);
-        ctx.set(outputSlot, result);
+			public String[] getImportedNamespaces() {
+				return new String[0];
+			}
 
-        ProfileCollector.getInstance().finish();
-        if ("true".equalsIgnoreCase(collectProfileSummary)) {
-            log.info("profiling info: \n"
-                    + ProfileCollector.getInstance().toString());
-        }
+			public void setFullyQualifiedName(final String fqn) {
+				name = fqn;
+			}
+		});
+		final String[] slots = ctx.getSlotNames();
+		for (final String slot : slots) {
+			ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(slot, ctx.get(slot)));
+		}
 
-        if (verboseProfileOutputStream != null) {
-            try {
-                verboseProfileOutputStream.close();
-            } catch (final IOException exc) {
-                log.warn("problem closing profile log file", exc);
-            }
-        }
-    }
+		if (monitor != null) {
+			ec.setMonitor(monitor);
+		}
 
-    public void setCollectProfileSummary(final String c) {
-        collectProfileSummary = c;
-    }
+		final Object result = new ExpressionFacade(ec).evaluate(expression);
+		ctx.set(outputSlot, result);
 
-    public void setInvoke(final String invoke) {
-        invokeExpression = invoke;
-        final int i = invoke.lastIndexOf("::");
-        if (i != -1) {
-            extensionFile = invoke.substring(0, i);
-            expression = invoke.substring(i + 2);
-        } else {
-            expression = invoke;
-        }
-    }
+		ProfileCollector.getInstance().finish();
+		if ("true".equalsIgnoreCase(this.collectProfileSummary)) {
+			log.info("profiling info: \n" + ProfileCollector.getInstance().toString());
+		}
 
-    public void setOutputSlot(final String outputSlot) {
-        this.outputSlot = outputSlot;
-    }
+		if (verboseProfileOutputStream != null) {
+			try {
+				verboseProfileOutputStream.close();
+			}
+			catch (final IOException exc) {
+				log.warn("problem closing profile log file", exc);
+			}
+		}
+	}
 
-    public void setVerboseProfileFilename(final String f) {
-        verboseProfileFilename = f;
-    }
+	/**
+	 * Sets the collect profile summary.
+	 * 
+	 * @param summary
+	 *            the summary
+	 */
+	public void setCollectProfileSummary(final String summary) {
+		collectProfileSummary = summary;
+	}
 
-    private InputStream getExtFileIS() {
-        final InputStream in =
-                ResourceLoaderFactory.createResourceLoader()
-                        .getResourceAsStream(
-                                extensionFile.replace("::", "/") + ".ext");
-        return in;
-    }
+	/**
+	 * Sets the invoke expression.
+	 * 
+	 * @param invokeExpr
+	 *            the invoke expression
+	 */
+	public void setInvoke(final String invokeExpr) {
+		invokeExpression = invokeExpr;
+		final int i = invokeExpr.lastIndexOf("::");
+		if (i != -1) {
+			extensionFile = invokeExpr.substring(0, i);
+			expression = invokeExpr.substring(i + 2);
+		}
+		else {
+			expression = invokeExpr;
+		}
+	}
+
+	/**
+	 * Sets the output slot.
+	 * 
+	 * @param outputSlot
+	 *            the output slot
+	 */
+	public void setOutputSlot(final String outputSlot) {
+		this.outputSlot = outputSlot;
+	}
+
+	/**
+	 * Sets the filename for the verbose profile.
+	 * 
+	 * @param fileName
+	 *            the filename
+	 */
+	public void setVerboseProfileFilename(final String fileName) {
+		verboseProfileFilename = fileName;
+	}
+
+	@Override
+	public String getComponentName() {
+		return COMPONENT_NAME;
+	}
+
+	private InputStream getExtFileIS() {
+		final InputStream in = ResourceLoaderFactory.createResourceLoader().getResourceAsStream(
+				extensionFile.replace("::", "/") + ".ext");
+		return in;
+	}
 
 }

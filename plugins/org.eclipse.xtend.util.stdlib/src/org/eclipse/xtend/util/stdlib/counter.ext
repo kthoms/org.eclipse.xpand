@@ -1,15 +1,59 @@
+/*******************************************************************************
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *******************************************************************************/
 
+// ****************************************************************************
+// *** openArchitectureWare stdlib extensions: globalvar
+// *** ------------------------------------------------------------------------
+// *** This library contains functions to work with counters.
+// ****************************************************************************
+
+/**
+ * Increments a counter.
+ * @param o A key for this counter. If this function is called with a Null argument 
+ *          an anonymous counter is used. If no counter was registered for the key
+ *          a new counter instance will be created and initialized with 0. 
+ * @return The incremented counter. 
+ */
 int counterInc(Object o) :
    internalCounterInc(o);
    
+/**
+ * Decrements a counter.
+ * @param o A key for this counter. If this function is called with a Null argument 
+ *          an anonymous counter is used. If no counter was registered for the key
+ *          a new counter instance will be created and initialized with 0.
+ * @return The decremented counter. 
+ */
 int counterDec(Object o) :
    internalCounterDec(o);
 
+/**
+ * Resets a counter.
+ * @param o A key for this counter. If this function is called with a Null argument 
+ *          the anonymous counter is resetted. If no counter was registered for the key
+ *          a new counter instance will be created and initialized with 0.
+ * @return Always 0. 
+ */
 int counterReset(Object o) :
    internalCounterReset(o) -> 0;
 
+/**
+ * Retrieves the current state of a counter.
+ * @param o A key for this counter. If this function is called with a Null argument 
+ *          the anonymous counter is used. 
+ * @return Current counter value. 
+ */
 int counterGet(Object o) :
    internalCounterGet(o);
+
+
+// -------------------------------- INTERNAL --------------------------------   
 
 
 private Void internalCounterReset(Object o) :

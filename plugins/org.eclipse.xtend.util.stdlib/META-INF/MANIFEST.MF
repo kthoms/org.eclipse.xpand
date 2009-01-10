@@ -12,8 +12,9 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.apache.commons.logging,
  org.eclipse.xtend,
  org.eclipse.emf.mwe.utils,
- org.eclipse.xpand;resolution:=optional
-Eclipse-LazyStart: true
+ org.eclipse.xpand;resolution:=optional,
+ org.eclipse.emf.ecore.xmi
+LazyStart: true
 Export-Package: org.eclipse.xpand.util.stdlib,
  org.eclipse.xtend.util.stdlib,
  org.eclipse.xtend.util.stdlib.texttest,

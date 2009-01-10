@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.type.baseimpl;
@@ -61,6 +59,7 @@ public class PolymorphicResolver {
         return getFeature(callables, Callable.class, name, paramTypes);
     }
 
+    @SuppressWarnings("unchecked")
 	public static <T> Set<T> select(final Set<? extends Callable> features, final Class<T> type) {
         final Set<T> result = new HashSet<T>();
         for (Callable callable : features) {
@@ -71,6 +70,7 @@ public class PolymorphicResolver {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
 	public final static Callable getFeature(final Set<? extends Callable> features, final Class type, final String name,
             final List<? extends Type> paramTypes) {
         final List<Callable> possFeatures = new ArrayList<Callable>();
@@ -88,11 +88,24 @@ public class PolymorphicResolver {
         else if (possFeatures.isEmpty())
             return null;
         else {
-            // sort features by specialization
-            Collections.sort(possFeatures, paramFeatureComparator);
-            if (paramFeatureComparator.compare(possFeatures.get(1), possFeatures.get(0)) > 0) {
-                return possFeatures.get(0);
+            // remove assignable features
+        	for (int c1 = 0; c1 < possFeatures.size() - 1; ++c1) {
+        		Callable feature1 = possFeatures.get(c1);
+            	for (int c2 = c1 + 1; c2 < possFeatures.size(); ++c2) {
+            		Callable feature2 = possFeatures.get(c2);
+            		if (paramFeatureComparator.compare(feature2, feature1) > 0) {
+            			possFeatures.remove(c2);
+            			--c2;
+            		} else if (paramFeatureComparator.compare(feature1, feature2) > 0) {
+            			possFeatures.remove(c1);
+            			--c1;
+            			break;
+            		}
+            	}
             }
+
+        	if (possFeatures.size() == 1)
+                return possFeatures.get(0);
 
             for (Callable callable : possFeatures) {
                 if (callable instanceof Extension) {

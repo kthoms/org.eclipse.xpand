@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.expression.ast;
@@ -32,6 +30,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Arno Haase
  * @author Bernd Kolb
  */
+@SuppressWarnings("unchecked")
 public class FeatureCall extends Expression {
 
 	private Expression target;
@@ -176,7 +175,8 @@ public class FeatureCall extends Expression {
 	 * 
 	 * otherwise it's a property
 	 */
-	public Type analyze(final ExecutionContext ctx,
+	@Override
+    public Type analyzeInternal(final ExecutionContext ctx,
 			final Set<AnalysationIssue> issues) {
 		Type targetType = null;
 		if (target == null) {
@@ -257,7 +257,7 @@ public class FeatureCall extends Expression {
 	protected Type findType(final Object value, final ExecutionContext ctx) {
 		final Type t = ctx.getType(value);
 		if (t == null)
-			throw new EvaluationException("Unkown object type : "
+			throw new EvaluationException("Unknown object type : "
 					+ value.getClass().getName(), this, ctx);
 		return t;
 	}

@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xpand2;
@@ -18,8 +16,9 @@ import java.io.OutputStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -44,361 +43,467 @@ import org.eclipse.xtend.typesystem.MetaModel;
 
 public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 
-    private String genPath = null;
+	private static final String COMPONENT_NAME = "Xpand Generator";
 
-    private String srcPath = null;
+	private String genPath = null;
 
-    private String prSrcPaths = null;
+	private String srcPath = null;
 
-    private String prExcludes = null;
+	private String prSrcPaths = null;
 
-    private boolean prDefaultExcludes = true;
+	private String prExcludes = null;
 
-    private String expand = null;
+	private boolean prDefaultExcludes = true;
 
-    private String fileEncoding = null;
+	private String expand = null;
 
-    private List<?> beautifier = new ArrayList<Object>();
+	private String fileEncoding = null;
 
-    private List<String> advices = new ArrayList<String>();
+	private List<?> beautifier = new ArrayList<Object>();
 
-    private List<String> extensionAdvices = new ArrayList<String>();
-    
-    private boolean automaticHyphens = false;
-    
-    private ExceptionHandler exceptionHandler = null;
+	private final List<String> advices = new ArrayList<String>();
 
-    private String collectProfileSummary = null;
-    private String verboseProfileFilename = null;
-    
-    private Output output = null;
-    
-    public void setCollectProfileSummary (String c) {
-        collectProfileSummary = c;
-    }
-    
-    public void setVerboseProfileFilename (String f) {
-        verboseProfileFilename = f;
-    }
-     
-    public void setAutomaticHyphens(boolean automaticHyphens) {
-        this.automaticHyphens = automaticHyphens;
-    }
+	private final List<String> extensionAdvices = new ArrayList<String>();
 
-    @Override
+	private boolean automaticHyphens = false;
+
+	private ExceptionHandler exceptionHandler = null;
+
+	private String collectProfileSummary = null;
+	private String verboseProfileFilename = null;
+
+	private Output output = null;
+
+	/**
+	 * Sets the collection profile summary.
+	 * 
+	 * @param summary
+	 *            the summary
+	 */
+	public void setCollectProfileSummary(final String summary) {
+		collectProfileSummary = summary;
+	}
+
+	/**
+	 * Sets the filename for verbose profile.
+	 * 
+	 * @param fileName
+	 *            filename for verbose profile
+	 */
+	public void setVerboseProfileFilename(final String fileName) {
+		verboseProfileFilename = fileName;
+	}
+
+	/**
+	 * Enables or disables the automatic hyphenation. If automatic hyphenation
+	 * is enabled, redundant blank lines are avoided automatically.
+	 * 
+	 * @param automaticHyphens
+	 *            If <code>true</code>, automatic hyphenation is enabled,
+	 *            otherwise disabled.
+	 */
+	public void setAutomaticHyphens(final boolean automaticHyphens) {
+		this.automaticHyphens = automaticHyphens;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 */
+	@Override
 	public String getLogMessage() {
-    	return "generating '"+expand+"' => directory '"+genPath+"'";
-    }
-    
-    @Override
-    public void addAdvices(final String advice) {
-        if ( !this.advices.contains(advice) ) this.advices.add( advice );
-    }
-    
-    @Override
-    public void addAdvice(final String advice) {
-    	if ( !this.advices.contains(advice) ) this.advices.add( advice );
-    }
-    
-    @Override
-    public void addExtensionAdvices(String extensionAdvices) {
-    	if ( !this.extensionAdvices.contains(extensionAdvices) ) 
-    		this.extensionAdvices.add( extensionAdvices );
+		Set<String> outletDescriptions = new HashSet<String>();
+		for (Outlet outlet : outlets) {
+			outletDescriptions.add(outlet.toString());
+		}
+		String outletDesc = outletDescriptions.size() == 1 ? outletDescriptions.iterator().next() : outletDescriptions
+				.toString();
+		return "generating '" + expand + "' => " + outletDesc;
 	}
 
-    @Override
-    public void addExtensionAdvice(String extensionAdvice) {
-    	if ( !this.extensionAdvices.contains(extensionAdvice) ) 
-		this.extensionAdvices.add( extensionAdvice );
+	/**
+	 * Adds an advice.
+	 * 
+	 * @param advice
+	 *            the advice
+	 */
+	@Override
+	public void addAdvice(final String advice) {
+		if (!advices.contains(advice)) {
+			advices.add(advice);
+		}
 	}
 
-    public List<?> getBeautifier() {
-        return beautifier;
-    }
+	/**
+	 * Adds an extension advice.
+	 * 
+	 * @param extensionAdvice
+	 *            the extension advice
+	 */
+	@Override
+	public void addExtensionAdvice(final String extensionAdvice) {
+		if (!extensionAdvices.contains(extensionAdvice)) {
+			extensionAdvices.add(extensionAdvice);
+		}
+	}
 
-    public void setBeautifier(final List<?> beautifiers) {
-        beautifier = beautifiers;
-    }
+	/**
+	 * Returns the list of beatifiers that will be applied to the generated
+	 * output.
+	 * 
+	 * @return list of beautifiers
+	 */
+	public List<?> getBeautifier() {
+		return beautifier;
+	}
 
-    public void setFileEncoding(final String fileEncoding) {
-        this.fileEncoding = fileEncoding;
-    }
-    
+	/**
+	 * Sets the list of beatifiers that will be applied to the generated output.
+	 * 
+	 * @param beautifiers
+	 *            list of beautifiera
+	 */
+	public void setBeautifier(final List<?> beautifiers) {
+		beautifier = beautifiers;
+	}
+
+	/**
+	 * Sets the character encoding used for the output file.
+	 * 
+	 * @param fileEncoding
+	 *            name of character encoding
+	 */
+	public void setFileEncoding(final String fileEncoding) {
+		this.fileEncoding = fileEncoding;
+	}
+
+	/**
+	 * Returns the name of character encoding used for the output file.
+	 * 
+	 * @return name of character encoding
+	 */
 	public String getFileEncoding() {
 		return fileEncoding;
 	}
 
-    /**
-     * 
-     * @deprecated use outlets instead
-     */
-    @Deprecated
-    public void setGenPath(final String genPath) {
-        this.genPath = fixPath(genPath);
-    }
-
-    public void setExpand(final String invoke) {
-        expand = invoke;
-    }
-
-    public void setPrDefaultExcludes(final boolean prDefaultExcludes) {
-        this.prDefaultExcludes = prDefaultExcludes;
-    }
-
-    public void setPrExcludes(final String prExcludes) {
-        this.prExcludes = prExcludes;
-    }
-
-    public void setPrSrcPaths(final String prSrcPathes) {
-        this.prSrcPaths = prSrcPathes;
-    }
-    
-    public void setExceptionHandler(final ExceptionHandler exceptionHandler) {
-		this.exceptionHandler = exceptionHandler;
+	/**
+	 * 
+	 * @deprecated use outlets instead
+	 */
+	@Deprecated
+	public void setGenPath(final String genPath) {
+		this.genPath = fixPath(genPath);
 	}
 
 	/**
-     * 
-     * @deprecated use outlets instead
-     */
-    @Deprecated
-    public void setSrcPath(final String srcPath) {
-        this.srcPath = fixPath(srcPath);
-    }
+	 * Sets the statement that is to expand by the generator.
+	 * 
+	 * @param invoke
+	 *            statement to expand
+	 */
+	public void setExpand(final String invoke) {
+		expand = invoke;
+	}
 
-    private String fixPath(final String p) {
-        if (p.endsWith("\\"))
-            return p.replace('\\', '/');
-        if (p.endsWith("/"))
-            return p;
-        return p + "/";
-    }
-    
-    @Override
-    protected void invokeInternal2(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
-        OutputStream verboseProfileOutputStream = null;
+	/**
+	 * Enables oder disables the default excludes for protected regions.
+	 * 
+	 * @param prDefaultExcludes
+	 *            If <code>true</code>, the default excludes are enabled,
+	 *            otherwise disabled.
+	 */
+	public void setPrDefaultExcludes(final boolean prDefaultExcludes) {
+		this.prDefaultExcludes = prDefaultExcludes;
+	}
 
-        if (verboseProfileFilename != null) {
-            try {
-                verboseProfileOutputStream = new BufferedOutputStream (new FileOutputStream (verboseProfileFilename));
-                ProfileCollector.getInstance().setDetailedLoggingWriter(verboseProfileOutputStream);
-            }
-            catch (IOException exc) {
-                log.warn("could nto open profiling log file", exc);
-            }
-        }
+	/**
+	 * Sets the additional excludes for protected regions.
+	 * 
+	 * @param prExcludes
+	 *            the excludes
+	 */
+	public void setPrExcludes(final String prExcludes) {
+		this.prExcludes = prExcludes;
+	}
 
-        final Output out = getOutput();
-        final List<Outlet> outlets = getInitializedOutlets();
-        for (final Iterator<Outlet> iter = outlets.iterator(); iter.hasNext();) {
-            out.addOutlet(iter.next());
-        }
+	/**
+	 * Sets the source paths for protected regions.
+	 * 
+	 * @param prSrcPathes
+	 *            the source paths
+	 */
+	public void setPrSrcPaths(final String prSrcPathes) {
+		this.prSrcPaths = prSrcPathes;
+	}
 
-        ProtectedRegionResolverImpl prs = null;
-        if (prSrcPaths != null) {
-            prs = new ProtectedRegionResolverImpl();
-            prs.setDefaultExcludes(prDefaultExcludes);
-            prs.setIgnoreList(prExcludes);
-            prs.setSrcPathes(prSrcPaths);
-            prs.setFileEncoding(fileEncoding);
-        }
-        
-        XpandExecutionContextImpl executionContext = new XpandExecutionContextImpl(out, prs, getGlobalVars(ctx), exceptionHandler,getNullEvaluationHandler());
-        if (monitor!=null) {
-        	executionContext.setMonitor(monitor);
-        }
-        
-        
-        if (fileEncoding != null) {
-            executionContext.setFileEncoding(fileEncoding);
-        }
-        
-        for (MetaModel mm : metaModels) {
-            executionContext.registerMetaModel(mm);
-        }
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getComponentName()
+	 */
+	@Override
+	public String getComponentName() {
+		return COMPONENT_NAME;
+	}
 
-        final ExpandStatement es = getStatement();
-        if (es == null)
-            throw new ConfigurationException("property 'expand' has wrong syntax!");
+	/**
+	 * 
+	 * @deprecated use outlets instead
+	 */
+	@Deprecated
+	public void setSrcPath(final String srcPath) {
+		this.srcPath = fixPath(srcPath);
+	}
 
-        final String[] names = ctx.getSlotNames();
-        for (int i = 0; i < names.length; i++) {
-            final String name = names[i];
-            executionContext = (XpandExecutionContextImpl) executionContext.cloneWithVariable(new Variable(name, ctx
-                    .get(name)));
-        }
+	private String fixPath(final String p) {
+		if (p.endsWith("\\"))
+			return p.replace('\\', '/');
+		if (p.endsWith("/"))
+			return p;
+		return p + "/";
+	}
 
-        for (String advice : advices) {
-            final String[] allAdvices = advice.split(",");
-            for (int i = 0; i < allAdvices.length; i++) {
-                final String string = allAdvices[i];
-                executionContext.registerAdvices(string.trim());
-            }
+	@Override
+	protected void invokeInternal2(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
+		OutputStream verboseProfileOutputStream = null;
+
+		if (verboseProfileFilename != null) {
+			try {
+				verboseProfileOutputStream = new BufferedOutputStream(new FileOutputStream(verboseProfileFilename));
+				ProfileCollector.getInstance().setDetailedLoggingWriter(verboseProfileOutputStream);
+			}
+			catch (final IOException exc) {
+				log.warn("Could not open profiling log file", exc);
+			}
 		}
-        
-        for (String advice : extensionAdvices) {
-        	final String[] allAdvices = advice.split(",");
-        	for (int i = 0; i < allAdvices.length; i++) {
-        		final String string = allAdvices[i];
-        		executionContext.registerExtensionAdvices(string.trim());
-        	}
-        }
-        
-        	es.evaluate(executionContext);
-        
-        for (final Iterator<Outlet> iter = outlets.iterator(); iter.hasNext();) {
-            final Outlet element = iter.next();
-            final String name = (element.getName() == null ? "[default]" : element.getName()) + "(" + element.getPath()
-                    + ")";
-            if (element.getFilesWrittenAndClosed() > 0) {
-                log.info("Written " + element.getFilesWrittenAndClosed() + " files to outlet " + name);
-            }
-            if (element.getFilesCreated() > element.getFilesWrittenAndClosed()) {
-                log.info("Skipped writing of " + (element.getFilesCreated() - element.getFilesWrittenAndClosed())
-                        + " files to outlet " + name);
-            }
-        }
-        
-        ProfileCollector.getInstance().finish();
-        if ("true".equalsIgnoreCase(this.collectProfileSummary)) {
-            log.info ("profiling info: \n" + ProfileCollector.getInstance().toString());
-        }
-        
-        if (verboseProfileOutputStream != null) {
-            try {
-                verboseProfileOutputStream.close ();
-            }
-            catch (IOException exc) {
-                log.warn("problem closing profile log file", exc);
-            }
-        }
-    }
 
-    private final List<Outlet> outlets = new ArrayList<Outlet>();
+		final Output out = getOutput();
+		final List<Outlet> outlets = getInitializedOutlets();
+		for (final Outlet outlet : outlets) {
+			out.addOutlet(outlet);
+		}
 
-    public void addOutlet(final Outlet outlet) {
-        outlets.add(outlet);
-    }
-    
-    public void setOutput (final Output output) {
-    	this.output = output;
-    }
-    
-    private Output getOutput () {
-    	if (output==null) {
-    		// lazy initialization
-    		OutputImpl out = new OutputImpl();
-    		out.setAutomaticHyphens(automaticHyphens);
-    		this.output = out;
-    	} 
-    	return output;
-    }
+		ProtectedRegionResolverImpl prs = null;
+		if (prSrcPaths != null) {
+			prs = new ProtectedRegionResolverImpl();
+			prs.setDefaultExcludes(prDefaultExcludes);
+			prs.setIgnoreList(prExcludes);
+			prs.setSrcPathes(prSrcPaths);
+			prs.setFileEncoding(fileEncoding);
+		}
 
-    private List<Outlet> initializedOutlets = null;
+		XpandExecutionContextImpl executionContext = new XpandExecutionContextImpl(out, prs, getGlobalVars(ctx),
+				exceptionHandler, getNullEvaluationHandler());
+		if (monitor != null) {
+			executionContext.setMonitor(monitor);
+		}
+		executionContext.setResourceManager(getResourceManager());
+		if (callback != null) {
+			executionContext.setCallBack(callback);
+		}
 
-    private List<Outlet> getInitializedOutlets() {
-        if (initializedOutlets == null) {
-            final List<Outlet> result = new ArrayList<Outlet>(outlets);
-            if (result.isEmpty()) {
-                if (genPath != null) { // backward compatibility
-                    Outlet o = new Outlet();
-                    o.setAppend(false);
-                    o.setFileEncoding(fileEncoding);
-                    o.setOverwrite(true);
-                    o.setPath(genPath);
-                    result.add(o);
+		if (fileEncoding != null) {
+			executionContext.setFileEncoding(fileEncoding);
+		}
 
-                    o = new Outlet();
-                    o.setAppend(true);
-                    o.setFileEncoding(fileEncoding);
-                    o.setName("APPEND");
-                    o.setOverwrite(true);
-                    o.setPath(genPath);
-                    result.add(o);
-                }
-                if (srcPath != null) {
-                    final Outlet o = new Outlet();
-                    o.setAppend(false);
-                    o.setFileEncoding(fileEncoding);
-                    o.setName("ONCE");
-                    o.setOverwrite(false);
-                    o.setPath(srcPath);
+		for (final MetaModel mm : metaModels) {
+			executionContext.registerMetaModel(mm);
+		}
 
-                    result.add(o);
-                }
-            }
-            for (final Iterator<Outlet> iter = result.iterator(); iter.hasNext();) {
-                final Outlet o = iter.next();
-                if (o.postprocessors.isEmpty()) {
-                    for (final Iterator<?> iterator = beautifier.iterator(); iterator.hasNext();) {
-                        final PostProcessor element = (PostProcessor) iterator.next();
-                        o.addPostprocessor(element);
-                    }
-                }
-                // Initialize file encoding for outlets. If it is not set then take the Generator
-                // default encoding. If this not set also then take System default.
-                if (o.hasDefaultEncoding() && fileEncoding!=null) {
-                    o.setFileEncoding(fileEncoding);
-                }
-            }
-            initializedOutlets = result;
-        }
-        return initializedOutlets;
-    }
+		final ExpandStatement es = getStatement();
+		if (es == null)
+			throw new ConfigurationException("property 'expand' has wrong syntax!");
 
-    /**
-     * Retrieves the configured and initialized outlets of the generator.
-     * @since 4.2
-     */
-    public final List<Outlet> getOutlets () {
-    	return Collections.unmodifiableList(getInitializedOutlets());
-    }
-    
-    private ExpandStatement getStatement() {
-        Template tpl = XpandParseFacade.file(new StringReader(XpandTokens.LT + "DEFINE test FOR test" + XpandTokens.RT
-                + XpandTokens.LT + "EXPAND " + expand + XpandTokens.RT + XpandTokens.LT + "ENDDEFINE" + XpandTokens.RT),null);
-        ExpandStatement es = null;
-        try {
-            es = (ExpandStatement) ((Definition) tpl.getDefinitions()[0]).getBody()[1];
-        } catch (final Exception e) {
-            log.error(e);
-        }
-        return es;
-    }
+		final String[] names = ctx.getSlotNames();
+		for (final String name : names) {
+			executionContext = (XpandExecutionContextImpl) executionContext.cloneWithVariable(new Variable(name, ctx
+					.get(name)));
+		}
 
-    @Override
-    public void checkConfiguration(final Issues issues) {
-        super.checkConfiguration(issues);
-        if (genPath == null && getInitializedOutlets().isEmpty()) {
-            issues.addError(this, "You need to configure at least one outlet!");
-        }
-        if ((genPath != null || srcPath != null) && !outlets.isEmpty()) {
-            issues.addWarning(this, "'genPath' and 'srcPath' properties are ignored since you have specified outlets!");
-        }
-        int defaultOutlets = 0;
-        for (final Iterator<Outlet> iter = getInitializedOutlets().iterator(); iter.hasNext();) {
-            final Outlet o = iter.next();
-            if (o.getName() == null)
-                defaultOutlets++;
-        }
-        if (defaultOutlets > 1) {
-            issues.addError(this,
-                    "Only one outlet can be the default outlet. Please specifiy a name for the other outlets!");
-        } else if (defaultOutlets == 0) {
-            issues.addWarning(this, "No default outlet configured!");
-        }
-        if (expand == null) {
-            issues.addError(this, "property 'expand' not configured!");
-        } else {
-        	try {
+		for (final String advice : advices) {
+			final String[] allAdvices = advice.split(",");
+			for (final String string : allAdvices) {
+				executionContext.registerAdvices(string.trim());
+			}
+		}
+
+		for (final String advice : extensionAdvices) {
+			final String[] allAdvices = advice.split(",");
+			for (final String string : allAdvices) {
+				executionContext.registerExtensionAdvices(string.trim());
+			}
+		}
+
+		es.evaluate(executionContext);
+
+		for (final Outlet element : outlets) {
+			final String name = (element.getName() == null ? "[default]" : element.getName()) + "(" + element.getPath()
+					+ ")";
+			if (element.getFilesWrittenAndClosed() > 0) {
+				log.info("Written " + element.getFilesWrittenAndClosed() + " files to outlet " + name);
+			}
+			if (element.getFilesCreated() > element.getFilesWrittenAndClosed()) {
+				log.info("Skipped writing of " + (element.getFilesCreated() - element.getFilesWrittenAndClosed())
+						+ " files to outlet " + name);
+			}
+		}
+
+		ProfileCollector.getInstance().finish();
+		if ("true".equalsIgnoreCase(this.collectProfileSummary)) {
+			log.info("profiling info: \n" + ProfileCollector.getInstance().toString());
+		}
+
+		if (verboseProfileOutputStream != null) {
+			try {
+				verboseProfileOutputStream.close();
+			}
+			catch (final IOException exc) {
+				log.warn("problem closing profile log file", exc);
+			}
+		}
+	}
+
+	private final List<Outlet> outlets = new ArrayList<Outlet>();
+
+	/**
+	 * Adds an outlet.
+	 * 
+	 * @param outlet
+	 *            the outlet
+	 */
+	public void addOutlet(final Outlet outlet) {
+		outlets.add(outlet);
+	}
+
+	/**
+	 * Sets the output.
+	 * 
+	 * @param output
+	 *            the output
+	 */
+	public void setOutput(final Output output) {
+		this.output = output;
+	}
+
+	private Output getOutput() {
+		if (output == null) {
+			// lazy initialization
+			final OutputImpl out = new OutputImpl();
+			out.setAutomaticHyphens(automaticHyphens);
+			this.output = out;
+		}
+		return output;
+	}
+
+	private List<Outlet> initializedOutlets = null;
+
+	private List<Outlet> getInitializedOutlets() {
+		if (initializedOutlets == null) {
+			final List<Outlet> result = new ArrayList<Outlet>(outlets);
+			if (result.isEmpty()) {
+				if (genPath != null) { // backward compatibility
+					Outlet o = new Outlet();
+					o.setAppend(false);
+					o.setFileEncoding(fileEncoding);
+					o.setOverwrite(true);
+					o.setPath(genPath);
+					result.add(o);
+
+					o = new Outlet();
+					o.setAppend(true);
+					o.setFileEncoding(fileEncoding);
+					o.setName("APPEND");
+					o.setOverwrite(true);
+					o.setPath(genPath);
+					result.add(o);
+				}
+				if (srcPath != null) {
+					final Outlet o = new Outlet();
+					o.setAppend(false);
+					o.setFileEncoding(fileEncoding);
+					o.setName("ONCE");
+					o.setOverwrite(false);
+					o.setPath(srcPath);
+
+					result.add(o);
+				}
+			}
+			for (final Outlet o : result) {
+				if (o.postprocessors.isEmpty()) {
+					for (final Object name : beautifier) {
+						final PostProcessor element = (PostProcessor) name;
+						o.addPostprocessor(element);
+					}
+				}
+				// Initialize file encoding for outlets. If it is not set then
+				// take the Generator
+				// default encoding. If this not set also then take System
+				// default.
+				if (o.hasDefaultEncoding() && fileEncoding != null) {
+					o.setFileEncoding(fileEncoding);
+				}
+			}
+			initializedOutlets = result;
+		}
+		return initializedOutlets;
+	}
+
+	/**
+	 * Retrieves the configured and initialized outlets of the generator.
+	 * 
+	 * @since 4.2
+	 */
+	public final List<Outlet> getOutlets() {
+		return Collections.unmodifiableList(getInitializedOutlets());
+	}
+
+	private ExpandStatement getStatement() {
+		final Template tpl = XpandParseFacade.file(new StringReader(XpandTokens.LT + "DEFINE test FOR test"
+				+ XpandTokens.RT + XpandTokens.LT + "EXPAND " + expand + XpandTokens.RT + XpandTokens.LT + "ENDDEFINE"
+				+ XpandTokens.RT), null);
+		ExpandStatement es = null;
+		try {
+			es = (ExpandStatement) ((Definition) tpl.getDefinitions()[0]).getBody()[1];
+		}
+		catch (final Exception e) {
+			log.error(e);
+		}
+		return es;
+	}
+
+	@Override
+	protected void checkConfigurationInternal(final Issues issues) {
+		super.checkConfigurationInternal(issues);
+		if (genPath == null && getInitializedOutlets().isEmpty()) {
+			issues.addError(this, "You need to configure at least one outlet!");
+		}
+		if ((genPath != null || srcPath != null) && !outlets.isEmpty()) {
+			issues.addWarning(this, "'genPath' and 'srcPath' properties are ignored since you have specified outlets!");
+		}
+		int defaultOutlets = 0;
+		for (final Outlet o : getInitializedOutlets()) {
+			if (o.getName() == null) {
+				defaultOutlets++;
+			}
+		}
+		if (defaultOutlets > 1) {
+			issues.addError(this,
+					"Only one outlet can be the default outlet. Please specifiy a name for the other outlets!");
+		}
+		else if (defaultOutlets == 0) {
+			issues.addWarning(this, "No default outlet configured!");
+		}
+		if (expand == null) {
+			issues.addError(this, "property 'expand' not configured!");
+		}
+		else {
+			try {
 				final ExpandStatement es = getStatement();
 				if (es == null) {
 					issues.addError(this, "property 'expand' has wrong syntax!");
 				}
-			} catch (ParseException e) {
-				issues.addError(this, "property 'expand' has wrong syntax : "+e.getMessage());
 			}
-        }
-    }
+			catch (final ParseException e) {
+				issues.addError(this, "property 'expand' has wrong syntax : " + e.getMessage());
+			}
+		}
+	}
 
 }

@@ -1,15 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.expression.codeassist;
+
+import java.util.Set;
 
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.xtend.expression.Variable;
@@ -80,4 +80,31 @@ public class ProposalFactoryDefaultImpl implements ProposalFactory {
 		return new ProposalImpl(prefix, insertStr, displayStr, displayStr);
 	}
 
+	public boolean isDuplicate(Set<String> nameCache, Object proposal) {
+		if (nameCache == null || proposal == null)
+			throw new IllegalArgumentException();
+
+		ProposalImpl p = castToProposal(proposal);
+		if (p != null) {
+			if (nameCache.contains(p.getDisplayString()))
+				return true;
+			else
+				return false;
+		}
+		return true;
+	}
+
+	public void addToCache(Set<String> nameCache, Object proposal) {
+		ProposalImpl p = castToProposal(proposal);
+		if (p != null) {
+			nameCache.add(p.getDisplayString());
+		}
+	}
+
+	private ProposalImpl castToProposal(Object obj) {
+		if (obj instanceof ProposalImpl)
+			return (ProposalImpl) obj;
+
+		return null;
+	}
 }

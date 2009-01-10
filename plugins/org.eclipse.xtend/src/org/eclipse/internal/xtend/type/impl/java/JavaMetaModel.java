@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.internal.xtend.type.impl.java;
@@ -36,10 +34,16 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 
 	private TypeSystem typeSystem;
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getTypeSystem()
+	 */
 	public TypeSystem getTypeSystem() {
 		return typeSystem;
 	}
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#setTypeSystem(org.eclipse.xtend.expression.TypeSystem)
+	 */
 	public void setTypeSystem(final TypeSystem typeSystem) {
 		if (typeSystem != null) {
 			this.typeSystem = typeSystem;
@@ -59,13 +63,12 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 		@Override
 		protected Type createNew(Class<?> clazz) {
 			JavaTypeImpl impl = new JavaTypeImpl(JavaMetaModel.this, clazz, getName(clazz), _strategy);
-			if (List.class.isAssignableFrom(clazz)) {
+			if (List.class.isAssignableFrom(clazz))
 				return typeSystem.getListType(typeSystem.getObjectType());
-			} else if (Set.class.isAssignableFrom(clazz)) {
+			else if (Set.class.isAssignableFrom(clazz))
 				return typeSystem.getSetType(typeSystem.getObjectType());
-			} else if (Collection.class.isAssignableFrom(clazz)) {
+			else if (Collection.class.isAssignableFrom(clazz))
 				return typeSystem.getCollectionType(typeSystem.getObjectType());
-			}
 			return impl;
 		}
 	};
@@ -84,7 +87,8 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 			try {
 				Class<?> loadedClass = ResourceLoaderFactory.createResourceLoader().loadClass(classname);
 				return loadedClass == null ? NOCLASS : loadedClass;
-			} catch (Exception e1) {
+			}
+			catch (Exception e1) {
 				// FIXME: This catch block should really be removed - the
 				// built-in ResosurceLoader implementation
 				// never throws an exception, and contributed implementations
@@ -94,6 +98,9 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 		}
 	};
 
+	/**
+	 * @see org.eclipse.internal.xtend.type.impl.java.TypeFinder#builtinAwareGetTypeForName(java.lang.String)
+	 */
 	public Type builtinAwareGetTypeForName(final String typeName) {
 		Type type = typeSystem.getTypeForName(typeName);
 		if (type == null) {
@@ -102,14 +109,19 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 		return type;
 	}
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getTypeForName(java.lang.String)
+	 */
 	public Type getTypeForName(final String typeName) {
 		final Class<?> clazz = classCache.get(typeName);
-		if (clazz == NOCLASS) {
+		if (clazz == NOCLASS)
 			return null;
-		}
 		return getTypeForClass(clazz);
 	}
 
+	/**
+	 * @see org.eclipse.internal.xtend.type.impl.java.TypeFinder#builtinAwareGetType(java.lang.Object)
+	 */
 	public Type builtinAwareGetType(final Object obj) {
 		Type type = typeSystem.getType(obj);
 		if (type == null) {
@@ -118,13 +130,18 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 		return type;
 	}
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getType(java.lang.Object)
+	 */
 	public Type getType(final Object obj) {
-		if (obj == null) {
+		if (obj == null)
 			return null;
-		}
 		return getTypeForClass(obj.getClass());
 	}
 
+	/**
+	 * @see org.eclipse.internal.xtend.type.impl.java.TypeFinder#builtinAwareGetTypeForClass(java.lang.Class)
+	 */
 	public Type builtinAwareGetTypeForClass(final Class<?> clazz) {
 		Type type = typeSystem.getTypeForName(getName(clazz));
 		if (type == null) {
@@ -133,19 +150,40 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 		return type;
 	}
 
+	/**
+	 * Returns the corresponding type for an <code>EClass</code> object.
+	 * 
+	 * @param clazz
+	 *            the <code>EClass</code> object
+	 * @return the corresponding type
+	 */
 	public Type getTypeForClass(final Class<?> clazz) {
 		return cache.get(clazz);
 	}
 
+	/**
+	 * @see org.eclipse.xtend.typesystem.MetaModel#getKnownTypes()
+	 */
 	public Set<Type> getKnownTypes() {
 		final Collection<Type> col = cache.getValues();
 		return (Set<Type>) (col instanceof Set ? col : new HashSet<Type>(col));
 	}
 
+	/**
+	 * Returns the metamodel name.
+	 * 
+	 * @return the metamodel name
+	 */
 	public String getName() {
 		return _name;
 	}
 
+	/**
+	 * Sets the type strategy.
+	 * 
+	 * @param strategy
+	 *            the type strategy
+	 */
 	public void setTypeStrategy(final JavaTypeStrategy strategy) {
 		_strategy = strategy;
 	}

@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.xtend.typesystem.emf;
@@ -38,7 +36,7 @@ public class EObjectType extends AbstractTypeImpl {
 
 	@Override
 	public String getDocumentation() {
-		return "base type for all ecore based metamodels (added by xtend's typesystem)";
+		return "base type for all ecore based metamodels (added by oAW4 emftools)";
 	}
 
 	@Override
@@ -84,6 +82,7 @@ public class EObjectType extends AbstractTypeImpl {
 				new PropertyImpl(EObjectType.this, "eAllContents",
 						getTypeSystem().getSetType(EObjectType.this)) {
 
+					@SuppressWarnings("unchecked")
 					public Object get(final Object target) {
 						final HashSet allCont = new HashSet();
 						final Iterator iter = ((EObject) target).eAllContents();
@@ -126,6 +125,7 @@ public class EObjectType extends AbstractTypeImpl {
 		return Collections.singleton(getTypeSystem().getObjectType());
 	}
 
+	@SuppressWarnings("unchecked")
 	public static StringBuffer toString(EObject x) {
 		if (x == null) {
 			return new StringBuffer("null");

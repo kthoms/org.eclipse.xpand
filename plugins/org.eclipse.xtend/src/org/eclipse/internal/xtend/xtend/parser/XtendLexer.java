@@ -1,11 +1,4 @@
-/*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- *******************************************************************************/
+// $ANTLR 3.0 /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g 2008-11-24 17:55:04
  	
 package org.eclipse.internal.xtend.xtend.parser; 
 	

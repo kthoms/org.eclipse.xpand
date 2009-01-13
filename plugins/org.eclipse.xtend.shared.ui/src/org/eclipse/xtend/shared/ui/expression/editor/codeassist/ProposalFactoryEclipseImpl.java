@@ -11,8 +11,8 @@
 package org.eclipse.xtend.shared.ui.expression.editor.codeassist;
 
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalFactory;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
@@ -54,7 +54,8 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 	}
 
 	/**
-	 * @see ProposalFactory#createStaticPropertyProposal(StaticProperty, String, boolean)
+	 * @see ProposalFactory#createStaticPropertyProposal(StaticProperty, String,
+	 *      boolean)
 	 */
 	public Object createStaticPropertyProposal(final StaticProperty p, final String prefix, final boolean onOperation) {
 		final String returnType = computeReturnType(p.getReturnType(), onOperation);
@@ -67,9 +68,8 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 	}
 
 	private String computeReturnType(Type returnType, final boolean onOperation) {
-		if (returnType == null) {
+		if (returnType == null)
 			return "unknown";
-		}
 		if (onOperation) {
 			if (returnType instanceof ParameterizedType) {
 				returnType = ((ParameterizedType) returnType).getInnerType();
@@ -109,7 +109,7 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 	public Object createExtensionOnMemberPositionProposal(final Extension p, final String prefix,
 			final boolean onOperation) {
 		final String displayStr = p.getName() + toParamString(p, true) + " - "
-				+ ((DeclaredParameter) p.getFormalParameters().get(0)).getType();
+				+ (p.getFormalParameters().get(0)).getType();
 		final String insertStr = p.getName() + "()";
 		int x = insertStr.length();
 		if (p.getFormalParameters().size() > 1) {
@@ -136,7 +136,7 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 		final StringBuffer b = new StringBuffer("(");
 		int i = member ? 1 : 0;
 		for (final int x = p.getFormalParameters().size(); i < x; i++) {
-			b.append(((DeclaredParameter) p.getFormalParameters().get(i)).toString());
+			b.append((p.getFormalParameters().get(i)).toString());
 			if (i + 1 < x) {
 				b.append(",");
 			}
@@ -200,4 +200,31 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 		throw new UnsupportedOperationException();
 	}
 
+	public boolean isDuplicate(Set<String> nameCache, Object proposal) {
+		if (nameCache == null || proposal == null)
+			throw new IllegalArgumentException();
+
+		CompletionProposal p = castToProposal(proposal);
+		if (p != null) {
+			if (nameCache.contains(p.getDisplayString()))
+				return true;
+			else
+				return false;
+		}
+		return true;
+	}
+
+	public void addToCache(Set<String> nameCache, Object proposal) {
+		CompletionProposal p = castToProposal(proposal);
+		if (p != null) {
+			nameCache.add(p.getDisplayString());
+		}
+	}
+
+	private CompletionProposal castToProposal(Object obj) {
+		if (obj instanceof CompletionProposal)
+			return (CompletionProposal) obj;
+
+		return null;
+	}
 }

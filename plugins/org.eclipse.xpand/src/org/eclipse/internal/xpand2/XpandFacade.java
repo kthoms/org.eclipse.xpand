@@ -16,6 +16,7 @@ import java.util.Set;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xpand2.model.XpandResource;
 import org.eclipse.xpand2.XpandExecutionContext;
+import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;

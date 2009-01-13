@@ -25,39 +25,43 @@ import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 
 public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecutionContextImpl {
-    private final IXtendXpandProject project;
+	private final IXtendXpandProject project;
 
-    public XpandPluginExecutionContext(final IXtendXpandProject xp) {
-        this (new PluginResourceManager(xp), null, new TypeSystemImpl(), new HashMap<String, Variable>(), new HashMap<String, Variable>(), null, null, null, xp);
-    }
+	public XpandPluginExecutionContext(final IXtendXpandProject xp) {
+		this(new PluginResourceManager(xp), null, new TypeSystemImpl(), new HashMap<String, Variable>(),
+				new HashMap<String, Variable>(), null, null, null, xp);
+	}
 
-    protected XpandPluginExecutionContext (ResourceManager resourceManager, Resource currentResource, TypeSystemImpl typeSystem, Map<String, Variable> vars,
-            Map<String, Variable> globalVars, Output output, ProtectedRegionResolver prs, ProgressMonitor monitor, IXtendXpandProject xp) {
-        super (resourceManager, currentResource, typeSystem, vars, globalVars, output, prs, monitor, null, null,null,null);
-        this.project = xp;
-    }
-    
-    @Override
-    public XpandPluginExecutionContext cloneContext() {
-        return new XpandPluginExecutionContext (resourceManager, currentResource(), typeSystem, getVisibleVariables(), getGlobalVariables(), output, protectedRegionResolver, getMonitor(), project);
-    }
+	protected XpandPluginExecutionContext(ResourceManager resourceManager, Resource currentResource,
+			TypeSystemImpl typeSystem, Map<String, Variable> vars, Map<String, Variable> globalVars, Output output,
+			ProtectedRegionResolver prs, ProgressMonitor monitor, IXtendXpandProject xp) {
+		super(resourceManager, currentResource, typeSystem, vars, globalVars, output, prs, monitor, null, null, null,
+				null, null);
+		this.project = xp;
+	}
 
-    public static class PluginResourceManager implements ResourceManager {
-        private IXtendXpandProject project;
+	@Override
+	public XpandPluginExecutionContext cloneContext() {
+		return new XpandPluginExecutionContext(resourceManager, currentResource(), typeSystem, getVisibleVariables(),
+				getGlobalVariables(), output, protectedRegionResolver, getMonitor(), project);
+	}
 
-        public PluginResourceManager(final IXtendXpandProject project) {
-            assert project!=null;
-            this.project = project;
-        }
+	public static class PluginResourceManager implements ResourceManager {
+		private IXtendXpandProject project;
 
-        public Resource loadResource(final String fullyQualifiedName, final String extension) {
-            return project.findExtXptResource(fullyQualifiedName,extension);
-        }
+		public PluginResourceManager(final IXtendXpandProject project) {
+			assert project != null;
+			this.project = project;
+		}
 
-        public void setFileEncoding(final String fileEncoding) {
-        }
+		public Resource loadResource(final String fullyQualifiedName, final String extension) {
+			return project.findExtXptResource(fullyQualifiedName, extension);
+		}
 
-        public void registerParser(final String template_extension, final ResourceParser parser) {
-        }
-    };
+		public void setFileEncoding(final String fileEncoding) {
+		}
+
+		public void registerParser(final String template_extension, final ResourceParser parser) {
+		}
+	};
 }

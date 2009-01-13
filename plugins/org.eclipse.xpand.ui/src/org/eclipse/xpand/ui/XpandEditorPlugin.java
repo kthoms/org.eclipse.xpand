@@ -88,9 +88,8 @@ public class XpandEditorPlugin extends AbstractUIPlugin {
 
 	public static Shell getActiveWorkbenchShell() {
 		final IWorkbenchWindow window = getActiveWorkbenchWindow();
-		if (window != null) {
+		if (window != null)
 			return window.getShell();
-		}
 		return null;
 	}
 
@@ -100,9 +99,8 @@ public class XpandEditorPlugin extends AbstractUIPlugin {
 
 	public static XpandExecutionContext getExecutionContext(final IJavaProject project) {
 		final IXtendXpandProject xp = Activator.getExtXptModelManager().findProject(project.getPath());
-		if (xp == null) {
+		if (xp == null)
 			return null;
-		}
 		final XpandExecutionContextImpl ctx = new XpandPluginExecutionContext(xp);
 
 		final List<? extends MetamodelContributor> contr = MetamodelContributorRegistry
@@ -122,7 +120,8 @@ public class XpandEditorPlugin extends AbstractUIPlugin {
 					"templates");
 			try {
 				templateStore.load();
-			} catch (IOException e) {
+			}
+			catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

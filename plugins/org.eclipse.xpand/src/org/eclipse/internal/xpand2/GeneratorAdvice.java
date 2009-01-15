@@ -75,30 +75,17 @@ import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowAdvice;
  * </table>
  */
 public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
-
+	/** Component name. */
 	private static final String COMPONENT_NAME = "Xpand Generator Advice";
 
+	/** Xpand template advices. */ 
 	private List<String> advices = new ArrayList<String>();
 
+	/** Xtend extension advices. */
 	private List<String> extensionAdvices = new ArrayList<String>();
 
+	/** File encoding for reading templates. */
 	private String fileEncoding;
-
-	/**
-	 * @deprecated Use <code>addAdvice(String)</code> instead.
-	 */
-	@Deprecated
-	public void addAdvices(String advices) {
-		this.advices.add(advices);
-	}
-
-	/**
-	 * @deprecated Use <code>addExtensionAdvice(String)</code> instead.
-	 */
-	@Deprecated
-	public void addExtensionAdvices(String extensionAdvices) {
-		addExtensionAdvice(extensionAdvices);
-	}
 
 	/**
 	 * Adds an advice.
@@ -125,8 +112,6 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	 * 
 	 * @param fileEncoding
 	 *            Encoding string, e.g. 'ISO-8859-1'
-	 * @since 4.2
-	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=195042
 	 */
 	public void setFileEncoding(String fileEncoding) {
 		this.fileEncoding = fileEncoding;

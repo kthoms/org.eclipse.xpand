@@ -10,10 +10,17 @@
  *******************************************************************************/
 package org.eclipse.internal.xpand2;
 
+/**
+ * Indicates that a qualified template cannot be found.
+ */
 public class NoSuchTemplateException extends RuntimeException {
 
 	private static final long serialVersionUID = -6939510590247142812L;
 
+	/**
+	 * Creates an instance.
+	 * @param fullyQualifiedName Qualified name of the template.
+	 */
 	public NoSuchTemplateException(final String fullyQualifiedName) {
 		super("Couldn't find template : " + fullyQualifiedName);
 	}

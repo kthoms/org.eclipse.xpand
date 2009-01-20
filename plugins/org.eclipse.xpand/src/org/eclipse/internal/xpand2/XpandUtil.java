@@ -13,10 +13,10 @@ package org.eclipse.internal.xpand2;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 
 /**
- * 
+ * Xpand utility class. Contains static helper methods and constants. 
  * @author Sven Efftinge (http://www.efftinge.de) *
  */
-public class XpandUtil {
+public final class XpandUtil {
 
 	private static final String SLASH = "/";
 
@@ -28,12 +28,24 @@ public class XpandUtil {
 		return fqn.replaceAll(NS_DELIM, SLASH) + "." + TEMPLATE_EXTENSION;
 	}
 
+	/**
+	 * Returns the name without its last segment.
+	 * @param fqn Qualified name (foo::bar).
+	 * @return <tt>fqn</tt> without the last segment. Returns <tt>null</tt> if <tt>fqn</tt> is null
+	 * or the name does not contain a qualifier ('::').
+	 */
 	public static String withoutLastSegment(final String fqn) {
 		if (fqn == null || fqn.lastIndexOf(SyntaxConstants.NS_DELIM) == -1)
 			return null;
 		return fqn.substring(0, fqn.lastIndexOf(SyntaxConstants.NS_DELIM));
 	}
 
+	/**
+	 * Returns the last segment of a qualified name.
+	 * @param fqn Qualified name (foo::bar).
+	 * @return The last segment of <tt>fqn</tt>. Returns <tt>null</tt> if <tt>fqn</tt> is null.
+	 * Returns <tt>fqn</tt> if the name does not contain a qualifier ('::'). 
+	 */
 	public static String getLastSegment(final String fqn) {
 		if (fqn == null || fqn.lastIndexOf(SyntaxConstants.NS_DELIM) == -1)
 			return fqn;

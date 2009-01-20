@@ -33,6 +33,8 @@ import org.eclipse.internal.xpand2.pr.ProtectedRegionResolver;
 import org.eclipse.internal.xpand2.type.XpandTypesMetaModel;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
+import org.eclipse.internal.xtend.util.Cache;
+import org.eclipse.internal.xtend.util.Triplet;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.xpand2.output.Output;
@@ -92,8 +94,8 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
 
     
     protected XpandExecutionContextImpl (ResourceManager resourceManager, Resource currentResource, TypeSystemImpl typeSystem, Map<String, Variable> vars, 
-            Map<String, Variable> globalVars, Output output, ProtectedRegionResolver protectedRegionResolver, ProgressMonitor monitor, ExceptionHandler exceptionHandler,List<Around> advices, NullEvaluationHandler nullEvaluationHandler, Map<Resource, Set<Extension>> allExtensionsPerResource, Callback callback) {
-        super (resourceManager, currentResource, typeSystem, vars, globalVars, monitor, exceptionHandler,advices, nullEvaluationHandler,allExtensionsPerResource, callback);
+            Map<String, Variable> globalVars, Output output, ProtectedRegionResolver protectedRegionResolver, ProgressMonitor monitor, ExceptionHandler exceptionHandler,List<Around> advices, NullEvaluationHandler nullEvaluationHandler, Map<Resource, Set<Extension>> allExtensionsPerResource, Callback callback, Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache) {
+        super (resourceManager, currentResource, typeSystem, vars, globalVars, monitor, exceptionHandler,advices, nullEvaluationHandler,allExtensionsPerResource, callback,extensionsForNameAndTypesCache);
         registerMetaModel(new XpandTypesMetaModel(this));
         this.output = output;
         this.protectedRegionResolver = protectedRegionResolver;
@@ -105,7 +107,7 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
     @Override
     public XpandExecutionContextImpl cloneContext() {
         final XpandExecutionContextImpl result = new XpandExecutionContextImpl (resourceManager, currentResource(), typeSystem, getVisibleVariables(), getGlobalVariables(), output, 
-                protectedRegionResolver, getMonitor(), exceptionHandler,registeredExtensionAdvices, nullEvaluationHandler,allExtensionsPerResource, callback);
+                protectedRegionResolver, getMonitor(), exceptionHandler,registeredExtensionAdvices, nullEvaluationHandler,allExtensionsPerResource, callback,this.extensionsForNameAndTypesCache);
         result.registeredAdvices.addAll(registeredAdvices); //todo: [aha] before I refactored, there was an assignment in this place. Is this modification correct?
         return result;
     }

@@ -29,6 +29,8 @@ import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
 import org.eclipse.internal.xtend.type.baseimpl.TypesComparator;
+import org.eclipse.internal.xtend.util.Cache;
+import org.eclipse.internal.xtend.util.Triplet;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
@@ -82,30 +84,32 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	public ExecutionContextImpl(Map<String, Variable> globalVars) {
 		this(new ResourceManagerDefaultImpl(), null, new TypeSystemImpl(), new HashMap<String, Variable>(), globalVars,
-				null, null, null, null, null, null);
+				null, null, null, null, null, null,null);
 	}
 
 	public ExecutionContextImpl(TypeSystemImpl ts, Map<String, Variable> globalVars) {
 		this(new ResourceManagerDefaultImpl(), null, ts, new HashMap<String, Variable>(), globalVars, null, null, null,
-				null, null, null);
+				null, null, null,null);
 	}
 
 	public ExecutionContextImpl(ResourceManager resourceManager, TypeSystemImpl typeSystem,
 			Map<String, Variable> globalVars) {
 		this(resourceManager, null, typeSystem, new HashMap<String, Variable>(), globalVars, null, null, null, null,
-				null, null);
+				null, null,null);
 	}
 
 	public ExecutionContextImpl(ResourceManager resourceManager, Resource resource, TypeSystemImpl typeSystem,
 			Map<String, Variable> variables, Map<String, Variable> globalVars, ProgressMonitor monitor,
 			ExceptionHandler exceptionHandler, List<Around> advices, NullEvaluationHandler neh2,
-			Map<Resource, Set<Extension>> extensionPerResourceMap, Callback callback) {
+			Map<Resource, Set<Extension>> extensionPerResourceMap, Callback callback, Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache) {
 		if (extensionPerResourceMap != null) {
 			this.allExtensionsPerResource = extensionPerResourceMap;
 		}
 		else {
 			this.allExtensionsPerResource = new HashMap<Resource, Set<Extension>>();
 		}
+		if (extensionsForNameAndTypesCache!=null)
+			this.extensionsForNameAndTypesCache = extensionsForNameAndTypesCache;
 		this.resourceManager = resourceManager;
 		this.currentResource = resource;
 		this.typeSystem = typeSystem;
@@ -221,7 +225,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	public ExecutionContextImpl cloneContext() {
 		return new ExecutionContextImpl(resourceManager, currentResource, typeSystem, variables, globalVars, monitor,
-				exceptionHandler, registeredExtensionAdvices, nullEvaluationHandler, allExtensionsPerResource, callback);
+				exceptionHandler, registeredExtensionAdvices, nullEvaluationHandler, allExtensionsPerResource, callback, extensionsForNameAndTypesCache);
 	}
 
 	public void setFileEncoding(final String encoding) {
@@ -276,18 +280,24 @@ public class ExecutionContextImpl implements ExecutionContext {
 		return currentResource;
 	}
 
-	protected Map<Resource, Set<Extension>> allExtensionsPerResource = null;
 
 	public Set<? extends Extension> getAllExtensions() {
-		Set<Extension> allExtensions = allExtensionsPerResource.get(currentResource());
+		return internalAllExtensions(currentResource());
+	}
+	
+	protected Map<Resource, Set<Extension>> allExtensionsPerResource = null;
+
+	private Set<? extends Extension> internalAllExtensions(Resource currentResource2) {
+		Set<Extension> allExtensions = allExtensionsPerResource.get(currentResource2);
 		if (allExtensions == null) {
+			ExecutionContext ctx = this.cloneWithResource(currentResource2);
 			allExtensions = new HashSet<Extension>();
-			final Resource res = currentResource();
+			final Resource res = currentResource2;
 			if (res != null) {
 				if (res instanceof XtendFile) {
 					final List<Extension> extensionList = ((XtendFile) res).getExtensions();
 					for (Extension element : extensionList) {
-						element.init(this);
+						element.init(ctx);
 						allExtensions.add(advise(element));
 					}
 				}
@@ -297,7 +307,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 					final XtendFile extFile = (XtendFile) o;
 					if (extFile == null)
 						throw new RuntimeException("Unable to load extension file : " + extension);
-					final ExecutionContext ctx = cloneWithResource(extFile);
+					ctx = cloneWithResource(extFile);
 					final List<Extension> extensionList = extFile.getPublicExtensions(resourceManager, ctx);
 					for (final Extension element : extensionList) {
 						element.init(ctx);
@@ -309,9 +319,17 @@ public class ExecutionContextImpl implements ExecutionContext {
 		}
 		return allExtensions;
 	}
+	
+	protected Cache<Triplet<Resource,String,List<Type>>, Extension> extensionsForNameAndTypesCache = new Cache<Triplet<Resource,String,List<Type>>, Extension>(){
+
+		@Override
+		protected Extension createNew(Triplet<Resource, String, List<Type>> arg0) {
+			return PolymorphicResolver.getExtension(internalAllExtensions(arg0.getFirst()), arg0.getSecond(), arg0.getThird());
+		}};
 
 	public Extension getExtensionForTypes(final String functionName, final Type[] parameterTypes) {
-		return PolymorphicResolver.getExtension(getAllExtensions(), functionName, Arrays.asList(parameterTypes));
+		return extensionsForNameAndTypesCache.get(new Triplet<Resource, String, List<Type>>(currentResource(),functionName,Arrays.asList(parameterTypes)));
+//		return PolymorphicResolver.getExtension(getAllExtensions(), functionName, Arrays.asList(parameterTypes));
 	}
 
 	public Extension getExtension(final String functionName, final Object[] actualParameters) {

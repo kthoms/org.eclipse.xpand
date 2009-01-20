@@ -36,7 +36,7 @@ public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecuti
 			TypeSystemImpl typeSystem, Map<String, Variable> vars, Map<String, Variable> globalVars, Output output,
 			ProtectedRegionResolver prs, ProgressMonitor monitor, IXtendXpandProject xp) {
 		super(resourceManager, currentResource, typeSystem, vars, globalVars, output, prs, monitor, null, null, null,
-				null, null);
+				null, null, null);
 		this.project = xp;
 	}
 

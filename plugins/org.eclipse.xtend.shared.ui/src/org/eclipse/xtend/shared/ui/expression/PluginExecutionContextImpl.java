@@ -33,7 +33,7 @@ public class PluginExecutionContextImpl extends ExecutionContextImpl implements 
 	protected PluginExecutionContextImpl(ResourceManager resourceManager, Resource currentResource,
 			TypeSystemImpl typeSystem, Map<String, Variable> vars, Map<String, Variable> globalVars,
 			IXtendXpandProject xp) {
-		super(resourceManager, currentResource, typeSystem, vars, globalVars, null, null, null, null, null, null);
+		super(resourceManager, currentResource, typeSystem, vars, globalVars, null, null, null, null, null, null,null);
 		project = xp;
 	}
 

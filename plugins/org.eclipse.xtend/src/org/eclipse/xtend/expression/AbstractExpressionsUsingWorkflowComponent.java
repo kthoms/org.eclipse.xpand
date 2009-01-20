@@ -122,7 +122,7 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 
 		final ExecutionContextImpl executionContext = new ExecutionContextImpl(getResourceManager(), null,
 				new TypeSystemImpl(), new HashMap<String, Variable>(), getGlobalVars(ctx), null, exceptionHandler,
-				null, getNullEvaluationHandler(), null, callback);
+				null, getNullEvaluationHandler(), null, callback,null);
 		for (MetaModel mm : metaModels) {
 			executionContext.registerMetaModel(mm);
 		}

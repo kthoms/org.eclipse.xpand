@@ -19,5 +19,7 @@ public interface Resource {
     public String[] getImportedNamespaces();
 
     public String[] getImportedExtensions();
+    
+    
 
 }

@@ -1,0 +1,52 @@
+
+
+doStuff(List[String] s) :
+	s.collect(e|e.doStuff());
+
+doStuff(String s) :
+	s;
+	
+doStuff(Object s) :
+	s;
+	
+other1(Object this) :
+	"1-Object";
+	
+other2(Object this) :
+	"2-Object";
+
+other3(Object this) :
+	"3-Object";
+	
+other4(Object this) :
+	"4-Object";
+	
+other5(Object this) :
+	"4-Object";
+	
+other6(Object this) :
+	"4-Object";
+	
+other7(Object this) :
+	"4-Object";
+	
+other8(Object this) :
+	"4-Object";
+	
+other9(Object this) :
+	"4-Object";
+	
+other10(Object this) :
+	"4-Object";
+	
+other11(Object this) :
+	"4-Object";
+	
+other12(Object this) :
+	"4-Object";
+	
+other13(Object this) :
+	"4-Object";
+	
+other14(Object this) :
+	"4-Object";

@@ -28,7 +28,6 @@ import org.eclipse.internal.xtend.expression.debug.NoResourceSpecial;
  */
 public class XpandElementAdapter extends ExpressionElementAdapter {
 
-	@SuppressWarnings("hiding")
 	public static final String TYPE = "xpand";
 
 	// -------------------------------------------------------------------------

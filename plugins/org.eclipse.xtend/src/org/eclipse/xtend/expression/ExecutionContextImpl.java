@@ -328,7 +328,8 @@ public class ExecutionContextImpl implements ExecutionContext {
 		}};
 
 	public Extension getExtensionForTypes(final String functionName, final Type[] parameterTypes) {
-		return extensionsForNameAndTypesCache.get(new Triplet<Resource, String, List<Type>>(currentResource(),functionName,Arrays.asList(parameterTypes)));
+		Triplet<Resource, String, List<Type>> key = new Triplet<Resource, String, List<Type>>(currentResource(),functionName,Arrays.asList(parameterTypes));
+		return extensionsForNameAndTypesCache.get(key);
 //		return PolymorphicResolver.getExtension(getAllExtensions(), functionName, Arrays.asList(parameterTypes));
 	}
 

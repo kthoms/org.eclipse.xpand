@@ -31,6 +31,7 @@ Export-Package: org.eclipse.xpand.ui,
  org.eclipse.xpand.ui.editor.codeassist,
  org.eclipse.xpand.ui.editor.color,
  org.eclipse.xpand.ui.editor.outline,
- org.eclipse.xpand.ui.editor.scanning
+ org.eclipse.xpand.ui.editor.scanning,
+ org.eclipse.xpand.ui.wizard
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

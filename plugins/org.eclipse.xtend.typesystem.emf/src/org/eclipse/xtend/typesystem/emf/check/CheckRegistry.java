@@ -13,6 +13,9 @@
 
 package org.eclipse.xtend.typesystem.emf.check;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -51,6 +54,27 @@ public class CheckRegistry {
 		return INSTANCE;
 	}
 
+	public void registerCheckFile(EPackage ePackage, String checkFileName, boolean isWrapExistingValidator,
+			List<String> referencedEPackageNsURIs) {
+		CheckEValidatorAdapter oawValidator;
+		if (isWrapExistingValidator) {
+			EValidator validator = EValidator.Registry.INSTANCE.getEValidator(ePackage);
+			if (validator instanceof CheckEValidatorAdapter)
+				oawValidator = (CheckEValidatorAdapter) validator;
+			else
+				oawValidator = new CheckEValidatorAdapter(ePackage, validator);
+		}
+		else {
+			oawValidator = new CheckEValidatorAdapter(ePackage);
+		}
+		CheckFileWithContext checkFile = new CheckFileWithContext(checkFileName);
+		for (String referencedEPackageNsURI : referencedEPackageNsURIs) {
+			checkFile.addImportedEPackageNsUri(referencedEPackageNsURI);
+		}
+		oawValidator.addCheckFile(checkFile);
+		EValidator.Registry.INSTANCE.put(ePackage, oawValidator);
+	}
+
 	private void registerExtensions() {
 		try {
 			IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
@@ -60,35 +84,23 @@ public class CheckRegistry {
 				try {
 					String nsURI = metaModel.getAttribute(NS_URI_ATTR_ID);
 					EPackage ePackage = findEPackage(nsURI);
-					String override = metaModel.getAttribute(OVERRIDE_ATTR_ID);
-					CheckEValidatorAdapter oawValidator;
-					if ("true".equals(override)) {
-						oawValidator = new CheckEValidatorAdapter(ePackage);
-					}
-					else {
-						EValidator validator = EValidator.Registry.INSTANCE.getEValidator(ePackage);
-						if (validator instanceof CheckEValidatorAdapter)
-							oawValidator = (CheckEValidatorAdapter) validator;
-						else
-							oawValidator = new CheckEValidatorAdapter(ePackage, validator);
-					}
+					boolean isWrapExistingValidator = !"true".equals(metaModel.getAttribute(OVERRIDE_ATTR_ID));
 					IConfigurationElement[] checkFiles = metaModel.getChildren(CHECK_FILE_ATTR_ID);
 					for (IConfigurationElement checkFile : checkFiles) {
 						try {
 							String checkFileName = checkFile.getAttribute(CHECK_FILE_PATH_ATTR_ID);
-							CheckFileWithContext registeredCheckFile = new CheckFileWithContext(checkFileName);
+							List<String> referencedEPackageNsURIs = new ArrayList<String>();
 							for (IConfigurationElement referencedMetaModel : checkFile
 									.getChildren(REFERENCED_META_MODEL)) {
 								String refNsURI = referencedMetaModel.getAttribute(NS_URI_ATTR_ID);
-								registeredCheckFile.addImportedEPackageNsUri(refNsURI);
+								referencedEPackageNsURIs.add(refNsURI);
 							}
-							oawValidator.addCheckFile(registeredCheckFile);
+							registerCheckFile(ePackage, checkFileName, isWrapExistingValidator, referencedEPackageNsURIs);
 						}
 						catch (Exception exc) {
 							log.error(exc);
 						}
 					}
-					EValidator.Registry.INSTANCE.put(ePackage, oawValidator);
 				}
 				catch (Exception exc) {
 					log.error(exc);

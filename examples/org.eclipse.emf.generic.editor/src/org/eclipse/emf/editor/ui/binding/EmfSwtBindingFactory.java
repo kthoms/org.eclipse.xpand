@@ -46,7 +46,6 @@ import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.fieldassist.SimpleContentProposalProvider;
 import org.eclipse.jface.fieldassist.TextContentAdapter;
-import org.eclipse.jface.internal.databinding.viewers.SelectionProviderMultipleSelectionObservableList;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.swt.SWT;
@@ -54,7 +53,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
@@ -62,7 +60,6 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * @author Dennis Huebner
  * 
  */
-@SuppressWarnings("restriction")
 public class EmfSwtBindingFactory {
 	private Composite parent = null;
 	private FormToolkit toolkit = null;
@@ -112,8 +109,7 @@ public class EmfSwtBindingFactory {
 		MultipleFeatureControl mfc = new MultipleFeatureControl(parent, toolkit, new AdapterFactoryLabelProvider(
 				adapterFactory), owner, feature, choice);
 
-		IObservableList target = new SelectionProviderMultipleSelectionObservableList(SWTObservables.getRealm(Display
-				.getDefault()), mfc.getInternalSelectionProvider(), Object.class);
+		IObservableList target = ViewersObservables.observeMultiSelection(mfc.getInternalSelectionProvider());
 		Binding binding = edbc.bindList(target, source, null, null);
 		binding.updateModelToTarget();
 		return mfc;

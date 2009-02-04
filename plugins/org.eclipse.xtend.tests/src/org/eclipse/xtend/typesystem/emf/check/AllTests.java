@@ -17,10 +17,11 @@ public class AllTests {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for org.eclipse.xtend.typesystem.emf.check");
-		//$JUnit-BEGIN$
-		suite.addTestSuite(OawValidatorPluginTests.class);
+		// $JUnit-BEGIN$
+		// TODO create an plugin test suit and put this test in
+		// suite.addTestSuite(OawValidatorPluginTests.class);
 		suite.addTestSuite(OawValidatorStandaloneTests.class);
-		//$JUnit-END$
+		// $JUnit-END$
 		return suite;
 	}
 

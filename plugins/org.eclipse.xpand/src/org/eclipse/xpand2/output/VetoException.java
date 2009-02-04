@@ -11,7 +11,7 @@
 package org.eclipse.xpand2.output;
 
 /**
- * Signals a veto by a {@link VetoStrategy2} implementation.
+ * Signals a veto by a {@link VetoStrategy2} implementation.
  * 
  * @author thoms
  * @since 4.3.1

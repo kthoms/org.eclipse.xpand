@@ -62,15 +62,13 @@ public class MultipleFeatureControl extends Composite {
 	// private IPropertyChangeListener propertyChangeListener;
 	private boolean beQueit;
 
-	public MultipleFeatureControl(final Composite parent, FormToolkit toolkit,
-			final ILabelProvider labelProvider, final Object object,
-			final EStructuralFeature feature,
-			final List<? extends Object> choiceOfValues) {
+	public MultipleFeatureControl(final Composite parent, FormToolkit toolkit, final ILabelProvider labelProvider,
+			final Object object, final EStructuralFeature feature, final List<? extends Object> choiceOfValues) {
 		super(parent, SWT.NONE);
 		this.labelProvider = labelProvider;
 		toolkit.adapt(this);
 		setLayout(new GridLayout(2, false));
-		label = toolkit.createLabel(this, "unreadable value");
+		label = toolkit.createLabel(this, new String());
 		label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -86,14 +84,11 @@ public class MultipleFeatureControl extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				List<?> oldValue = unwrapSelection();
-				dialog = new FeatureEditorDialog(parent.getShell(),
-						labelProvider, object, feature.getEType(), oldValue,
-						"Display Name", choiceOfValues, false, feature
-								.isOrdered());
+				dialog = new FeatureEditorDialog(parent.getShell(), labelProvider, object, feature.getEType(),
+						oldValue, "Display Name", choiceOfValues, false, feature.isOrdered());
 				dialog.setBlockOnOpen(true);
 				if (dialog.open() == Window.OK) {
-					setSelection(new StructuredSelection(dialog.getResult()
-							.toArray()));
+					setSelection(new StructuredSelection(dialog.getResult().toArray()));
 					// propertyChangeListener
 					// .propertyChange(new PropertyChangeEvent(this,
 					// feature.getName(), oldValue, currentValue));
@@ -109,10 +104,8 @@ public class MultipleFeatureControl extends Composite {
 
 	private List<?> unwrapSelection() {
 		List<Object> l = new ArrayList<Object>();
-		if (getSelection() != null && !getSelection().isEmpty()
-				&& getSelection() instanceof IStructuredSelection) {
-			for (Iterator<?> iterator = ((IStructuredSelection) getSelection())
-					.iterator(); iterator.hasNext();) {
+		if (getSelection() != null && !getSelection().isEmpty() && getSelection() instanceof IStructuredSelection) {
+			for (Iterator<?> iterator = ((IStructuredSelection) getSelection()).iterator(); iterator.hasNext();) {
 				Object object = iterator.next();
 				l.add(object);
 
@@ -130,7 +123,8 @@ public class MultipleFeatureControl extends Composite {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.swt.widgets.Control#setMenu(org.eclipse.swt.widgets.Menu)
+	 * @see
+	 * org.eclipse.swt.widgets.Control#setMenu(org.eclipse.swt.widgets.Menu)
 	 */
 	@Override
 	public void setMenu(Menu menu) {
@@ -165,8 +159,7 @@ public class MultipleFeatureControl extends Composite {
 		StringBuffer buffy = new StringBuffer();
 		List<?> currSelection = unwrapSelection();
 		if (currSelection != null && !currSelection.isEmpty())
-			for (Iterator<?> iterator = currSelection.iterator(); iterator
-					.hasNext();) {
+			for (Iterator<?> iterator = currSelection.iterator(); iterator.hasNext();) {
 				Object sel = iterator.next();
 				buffy.append(labelProvider.getText(sel));
 				if (iterator.hasNext())
@@ -188,21 +181,18 @@ public class MultipleFeatureControl extends Composite {
 				// notify
 				// SelectionProviderMultipleSelectionObservableList$SelectionListener
 				for (ISelectionChangedListener currListener : listeners) {
-					currListener.selectionChanged(new SelectionChangedEvent(
-							this, this.selection));
+					currListener.selectionChanged(new SelectionChangedEvent(this, this.selection));
 				}
 			}
 		}
 
 		private java.util.List<ISelectionChangedListener> listeners = new ArrayList<ISelectionChangedListener>();
 
-		public void addSelectionChangedListener(
-				ISelectionChangedListener listener) {
+		public void addSelectionChangedListener(ISelectionChangedListener listener) {
 			listeners.add(listener);
 		}
 
-		public void removeSelectionChangedListener(
-				ISelectionChangedListener listener) {
+		public void removeSelectionChangedListener(ISelectionChangedListener listener) {
 			listeners.remove(listener);
 		}
 
@@ -222,7 +212,8 @@ public class MultipleFeatureControl extends Composite {
 		beQueit = true;
 		try {
 			this.setSelection(new StructuredSelection());
-		} finally {
+		}
+		finally {
 			beQueit = false;
 		}
 	}

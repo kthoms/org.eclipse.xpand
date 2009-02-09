@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.xtend,
  org.apache.commons.logging,
  org.eclipse.emf.mwe.core,
  org.eclipse.emf.mwe.utils,
- org.eclipse.core.runtime;bundle-version="3.4.0";resolution:=optional,
+ org.eclipse.core.runtime;resolution:=optional,
  org.eclipse.ui;resolution:=optional
 Export-Package: org.eclipse.xtend.typesystem.emf,
  org.eclipse.xtend.typesystem.emf.check

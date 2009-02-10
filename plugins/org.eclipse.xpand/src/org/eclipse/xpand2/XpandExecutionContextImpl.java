@@ -105,7 +105,7 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
     
 
     @Override
-    public XpandExecutionContextImpl cloneContext() {
+    public ExecutionContextImpl cloneContext() {
         final XpandExecutionContextImpl result = new XpandExecutionContextImpl (resourceManager, currentResource(), typeSystem, getVisibleVariables(), getGlobalVariables(), output, 
                 protectedRegionResolver, getMonitor(), exceptionHandler,registeredExtensionAdvices, nullEvaluationHandler,allExtensionsPerResource, callback,this.extensionsForNameAndTypesCache);
         result.registeredAdvices.addAll(registeredAdvices); //todo: [aha] before I refactored, there was an assignment in this place. Is this modification correct?
@@ -295,9 +295,5 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
 	public void setResourceManager(ResourceManager resourceManager) {
 		registerParser(resourceManager);
 		this.resourceManager = resourceManager;
-	}
-
-	public void setCallBack(Callback callback) {
-		this.callback = callback;
 	}
 }

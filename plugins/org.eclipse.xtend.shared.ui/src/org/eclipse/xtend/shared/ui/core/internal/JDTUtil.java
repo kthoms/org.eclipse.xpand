@@ -15,6 +15,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IStorage;
@@ -27,40 +28,57 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.internal.core.ExternalPackageFragmentRoot;
 import org.eclipse.jdt.internal.core.JarPackageFragmentRoot;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class JDTUtil {
-	
+
 	private static final Pattern patternNamespace = Pattern.compile("::");
 	private static final Pattern patternSlash = Pattern.compile("/");
 
 	/**
 	 * find the path for the oaw name space and extension
 	 * 
-	 * @param project -
-	 *            the javaproject
-	 * @param oawns -
-	 *            oaw name space (i.e. 'my::xtend::File')
-	 * @param ext -
-	 *            file extension (i.e. 'ext')
+	 * @param project
+	 *            - the javaproject
+	 * @param oawns
+	 *            - oaw name space (i.e. 'my::xtend::File')
+	 * @param ext
+	 *            - file extension (i.e. 'ext')
 	 * @return
 	 */
-	public static IStorage findStorage(IJavaProject project, ResourceID id, boolean searchJars) {
+	@SuppressWarnings("restriction")
+	public static IStorage findStorage(IJavaProject project, ResourceID id,
+			boolean searchJars) {
 		IPath p = path(id);
 		try {
 			IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 			for (int i = 0; i < roots.length; i++) {
 				IPackageFragmentRoot root = roots[i];
 				if (!root.isArchive()) {
-					IResource r = project.getProject().findMember(
-							root.getUnderlyingResource()
-									.getProjectRelativePath().append(p));
-					if (r instanceof IFile)
-						return (IFile) r;
+
+					IFolder rootFolder = null;
+					IResource correspondingResource = root
+							.getCorrespondingResource();
+					if (correspondingResource instanceof IFolder) {
+						rootFolder = (IFolder) correspondingResource;
+					} else if (root instanceof ExternalPackageFragmentRoot) {
+						IResource resource = ((ExternalPackageFragmentRoot) root)
+								.resource();
+						if (resource instanceof IFolder) {
+							rootFolder = (IFolder) resource;
+						}
+					}
+					if (rootFolder != null) {
+						IResource r = project.getProject().findMember(
+								rootFolder.getProjectRelativePath().append(p));
+						if (r instanceof IFile)
+							return (IFile) r;
+					}
 				} else if (searchJars) {
 					IStorage storage = loadFromJar(id, root);
-					if (storage!=null)
+					if (storage != null)
 						return storage;
 				}
 			}
@@ -71,7 +89,8 @@ public class JDTUtil {
 	}
 
 	@SuppressWarnings("restriction")
-	public static IStorage loadFromJar(ResourceID id, IPackageFragmentRoot root) throws JavaModelException {
+	public static IStorage loadFromJar(ResourceID id, IPackageFragmentRoot root)
+			throws JavaModelException {
 		if (root instanceof JarPackageFragmentRoot) {
 			JarPackageFragmentRoot jar = (JarPackageFragmentRoot) root;
 			ZipFile zipFile;
@@ -82,8 +101,8 @@ public class JDTUtil {
 				return null;
 			}
 			ZipEntry entry = zipFile.getEntry(id.toFileName());
-			if (entry!=null && zipFile!=null) {
-				return new ZipEntryStorage(zipFile,entry);
+			if (entry != null && zipFile != null) {
+				return new ZipEntryStorage(zipFile, entry);
 			}
 		}
 		return null;
@@ -139,7 +158,8 @@ public class JDTUtil {
 	}
 
 	private static IPath path(ResourceID id) {
-		return new Path(patternNamespace.matcher(id.name).replaceAll("/") + "." + id.extension);
+		return new Path(patternNamespace.matcher(id.name).replaceAll("/") + "."
+				+ id.extension);
 	}
 
 	public static String getQualifiedName(IStorage source) {

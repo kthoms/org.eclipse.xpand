@@ -6,7 +6,7 @@
 	Other authors:		Peter Friese <peter.friese@itemis.com>
 -->
 
-<project name="eclipse.org article (docbook)" default="docbook2html" basedir=".">
+<project name="org.eclipse.xpand.doc" default="docbook2html" basedir=".">
 	
 	<!-- ========== Properties: User Defined Options ========================= -->
 	
@@ -152,6 +152,12 @@
 		<delete file="${dest.dir}${file.separator}${article.name}.fo"/>
 	</target>
 	
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean" description="Cleanup task">
+    </target>
+
 	<target name="dist">
 		<echo>Building article zip file...</echo>
 		<delete file="${dest.dir}${file.separator}${article.name}.zip"/>

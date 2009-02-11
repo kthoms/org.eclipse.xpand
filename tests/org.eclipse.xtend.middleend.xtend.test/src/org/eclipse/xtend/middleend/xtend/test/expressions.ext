@@ -1,0 +1,60 @@
+import org::eclipse::xtend::middleend::xtend::test;
+
+extension org::eclipse::xtend::middleend::xtend::test::sub::subpackage;
+
+//	function dispatch
+String testMultiDispatch(Person p) : "Person";
+String testMultiDispatch(Employee e) : "Employee";
+
+
+//	basic expressions
+String testFeatureCall(Person p) : p.name;
+String testSetter(Person p) : p.setName("NewName") -> p.name;
+String testOperationCall(Person p, String param) : p.call(param);
+
+
+//	create extensions
+create Person testCreatePerson(): setName("Tester");
+create Person testCreatePersonThis(): this.setName("Tester");
+create Person p testCreatePersonVar(): p.setName("Tester") -> p;
+
+Person createPersonWithLet(): let p = new Person : p.setName("Tester")->p;
+
+
+//	opreators
+Boolean testNotEqualsNull (Person p) : p.name != null;
+Boolean testEqualsNull (Person p) : p.name == null;
+Boolean testLess (Integer x) :  x < 7;
+Boolean testLessOrEqual (Integer x) :  x <= 7;
+Boolean testGreater (Integer x) :  x > 7;
+Boolean testGreaterOrEqual (Integer x) : x >= 7;
+Boolean testIsInstance (Object o) : Person.isInstance(o);
+Boolean testIsAssignableFrom (Object o) : Person.isAssignableFrom(o.metaType);
+
+
+//	control structures
+String testIf (String s) : s == "first"? "isFirst" : "isOther";
+String testSwitch (String name) : 
+	switch(name) {
+	case "first" : "firstCase"
+	case "second": "secondCase"
+	default: "defaultCase"
+	};
+
+private String call (String param) : "called:"+param;
+
+
+//	Collections
+List testTypeSelectPolymorphism (List p) : p.typeSelect(Person);
+List testTypeSelect (List p) : p.typeSelect(Employee);
+
+List[Person] testSelect (List[Person] p) : p.select(e|e.name.startsWith("D"));
+List[String] testCollect (List[Person] p) : p.collect(e|e.name);
+
+
+//	AOP tests
+
+String testSomeAdvicedFunction (String param) : param + " body";
+String testSomeAdvicedFunction (String param, Person p) : p.name + " " + param;
+String testAdviceSubPackageFunction (String param1, Integer param2) : testSomeFunction (param1, param2);
+String testOtherAdviceSubPackageFunction (String param1, Integer param2) : testSomeAdvicedFunction (param1, param2);

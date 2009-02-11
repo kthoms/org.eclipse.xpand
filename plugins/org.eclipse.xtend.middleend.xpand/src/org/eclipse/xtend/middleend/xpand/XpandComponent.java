@@ -1,13 +1,28 @@
+/*
+Copyright (c) 2008 Arno Haase, André Arnold.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    Arno Haase - initial API and implementation
+    André Arnold
+ */
 package org.eclipse.xtend.middleend.xpand;
 
 
+import java.io.File;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
@@ -18,11 +33,13 @@ import org.eclipse.internal.xpand2.codeassist.XpandTokens;
 import org.eclipse.internal.xpand2.parser.XpandParseFacade;
 import org.eclipse.internal.xtend.xtend.parser.ParseException;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
+import org.eclipse.xpand2.XpandUtil;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
+import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
 
 
 /**
@@ -30,6 +47,7 @@ import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
  *  combines the steps of parsing and transforming the source files, and of invoking the script.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
     //TODO profiler
@@ -47,6 +65,9 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
     private List<PostProcessor> _postprocessors = new ArrayList <PostProcessor>();
     private List<Outlet> _initializedOutlets = new ArrayList<Outlet> ();
 
+	private String _ignoreList;
+	private boolean _defaultExcludes;
+	private boolean _useBase64;
     
     public List<PostProcessor> getBeautifier() {
         return _postprocessors;
@@ -102,6 +123,18 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         _srcPath = fixPath(srcPath);
     }
 
+	public void setIgnoreList(String ignoreList) {
+		_ignoreList = ignoreList;
+	}
+
+	public void setDefaultExcludes(boolean defaultExcludes) {
+		_defaultExcludes = defaultExcludes;
+	}
+
+	public void setUseBase64(boolean useBase64) {
+		_useBase64 = useBase64;
+	}
+
     
     private String fixPath(final String p) {
         if (p.endsWith("\\"))
@@ -122,12 +155,16 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
             executionContext.setFileEncoding (_fileEncoding);
         
         final String code = XpandTokens.LT + "EXPAND " + _expand + XpandTokens.RT;
+        final String filename = new String( _expand.substring(0, _expand.lastIndexOf(XpandUtil.NS_DELIM)));
+        XpandBackendFacade bf = XpandBackendFacade.createForFile(filename, _fileEncoding, metaModels, _outlets );
 
         final Map<String, Object> variables = new HashMap<String, Object> ();        
         for (String name: wfContext.getSlotNames())
             variables.put (name, wfContext.get (name));
-
-        XpandBackendFacade.executeStatement (code, _fileEncoding, metaModels, variables, _outlets, _advice);
+        
+        XpandProtectedRegionResolver resolver = new XpandProtectedRegionResolver(_ignoreList, _defaultExcludes, getInitializedOutlets(), _fileEncoding, _useBase64);
+        //XpandBackendFacade.executeStatement (code, _fileEncoding, metaModels, variables, _outlets, _advice);
+        bf.executeStatement (code, variables, _advice, resolver);
     }
 
     public void addOutlet (Outlet outlet) {
@@ -177,7 +214,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
     }
     
 
-    private ExpandStatement getStatement() {
+    private ExpandStatement getStatement () {
         Template tpl = XpandParseFacade.file (new StringReader(XpandTokens.LT + "DEFINE test FOR test" + XpandTokens.RT + XpandTokens.LT + "EXPAND " + _expand + XpandTokens.RT + XpandTokens.LT + "ENDDEFINE" + XpandTokens.RT), null);
         ExpandStatement es = null;
         try {
@@ -189,7 +226,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
     }
 
     @Override
-    public void checkConfiguration(final Issues issues) {
+    public void checkConfigurationInternal (final Issues issues) {
         super.checkConfiguration(issues);
         if (_genPath == null && getInitializedOutlets().isEmpty()) 
             issues.addError(this, "You need to configure at least one outlet!");

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.types.java.internal;
 
@@ -15,10 +16,12 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ErrorHandler;
@@ -27,6 +30,7 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class JavaBeansType extends AbstractType {
     private final Class<?> _javaClass;
@@ -38,7 +42,7 @@ public final class JavaBeansType extends AbstractType {
     }
     
     private static BackendType[] superTypes (Class<?> javaCls, BackendTypesystem ts) {
-        final List<Class<?>> resultRaw = new ArrayList<Class<?>> (Arrays.asList (javaCls.getInterfaces()));
+        final List<Class<?>> resultRaw = new ArrayList<Class<?>> ((Collection<? extends Class<?>>) Arrays.asList (javaCls.getInterfaces()));	//final List<Class<?>> resultRaw = new ArrayList<Class<?>> (Arrays.asList (javaCls.getInterfaces()));
         
         Class<?> superClass = javaCls.getSuperclass();
         if (superClass != null)
@@ -67,7 +71,7 @@ public final class JavaBeansType extends AbstractType {
                 paramTypes.add (ts.getRootTypesystem().findType(cls));
             }
 
-            register (mtd.getName(), new JavaOperation (mtd, paramTypes, null));
+            register (new QualifiedName (mtd.getName()), new JavaOperation (mtd, paramTypes, null));
         }
 
         // static properties

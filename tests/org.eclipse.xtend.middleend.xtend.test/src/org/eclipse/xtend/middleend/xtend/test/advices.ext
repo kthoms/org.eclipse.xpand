@@ -1,0 +1,8 @@
+import org::eclipse::xtend::middleend::xtend::test;
+
+
+around *SomeAdviced* (String s, *) : 
+	"before1 " + s + " " + ctx.proceed() + " after1";
+
+around org::eclipse::xtend::middleend::xtend::test::sub::* (*) : 
+	"before2 " + ctx.proceed() + " after2";

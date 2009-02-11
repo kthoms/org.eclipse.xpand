@@ -91,5 +91,9 @@ public class CreateExtensionStatement extends AbstractExtension {
     protected Object evaluateInternal(final Object[] parameters, final ExecutionContext ctx) {
         throw new UnsupportedOperationException();
     }
+    
+    public String getReturnVarName() {
+    	return returnVarName;
+    }
 
 }

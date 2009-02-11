@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.types.internal;
 
@@ -29,6 +30,7 @@ import org.eclipse.xtend.backend.util.Pair;
  *  against Java Bean naming conventions.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class SyntheticPropertyExtracter {
     private final Cache<String, AccessorPair> _accessorPairs = new Cache<String, AccessorPair> () {
@@ -56,9 +58,9 @@ public final class SyntheticPropertyExtracter {
             
             final boolean isSetter = propAcc.getFirst();
             if (isSetter)
-                ap._setterName = f.getName();
+                ap._setterName = f.getName().getSimpleName();
             else
-                ap._getterName = f.getName();
+                ap._getterName = f.getName().getSimpleName();
         }
     }
 
@@ -82,21 +84,21 @@ public final class SyntheticPropertyExtracter {
         if (f.getFunction().getGuard() != null)
             return null;
         
-        if (hasPrefix (f.getName(), "set")) { 
+        if (hasPrefix (f.getName().getSimpleName(), "set")) { 
             if (f.getFunction().getParameterTypes().size() != 2)
                 return null;
 
-            return new Pair<Boolean, String> (true, f.getName().substring (3));
+            return new Pair<Boolean, String> (true, f.getName().getSimpleName().substring (3));
         }
 
         if (f.getFunction().getParameterTypes().size() != 1)
             return null;
         
-        if (hasPrefix (f.getName(), "get") || hasPrefix (f.getName(), "has"))
-            return new Pair<Boolean, String> (false, f.getName().substring (3));
+        if (hasPrefix (f.getName().getSimpleName(), "get") || hasPrefix (f.getName().getSimpleName(), "has"))
+            return new Pair<Boolean, String> (false, f.getName().getSimpleName().substring (3));
         
-        if (hasPrefix (f.getName(), "is"))
-            return new Pair<Boolean, String> (false, f.getName().substring (2));
+        if (hasPrefix (f.getName().getSimpleName(), "is"))
+            return new Pair<Boolean, String> (false, f.getName().getSimpleName().substring (2));
         
         return null;
     }

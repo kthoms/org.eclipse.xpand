@@ -1,0 +1,6 @@
+
+«DEFINE WithFileOutput FOR String»
+    «FILE "dummy.txt"»
+	Hello «this»: «this.length»!
+	«ENDFILE»
+«ENDDEFINE»

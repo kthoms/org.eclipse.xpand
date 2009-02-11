@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
 */
 package org.eclipse.xtend.backend.aop;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import org.eclipse.xtend.backend.aop.internal.AdviceScopeCounter;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.util.ObjectWrapper;
 import org.eclipse.xtend.backend.util.Triplet;
 
@@ -30,6 +32,7 @@ import org.eclipse.xtend.backend.util.Triplet;
  *  name and context. 
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class AdvisedFunction {
     private final Function _function;
@@ -40,7 +43,7 @@ public final class AdvisedFunction {
     private final ThisJoinPointStaticPart _thisJoinPointStaticPart;
 
     
-    public AdvisedFunction (String functionName, Function function, List<AroundAdvice> advice, AdviceScopeCounter scopeCounter) {
+    public AdvisedFunction (QualifiedName functionName, Function function, List<AroundAdvice> advice, AdviceScopeCounter scopeCounter) {
         _function = function;
         _advice = advice;
         _scopeCounter = scopeCounter;

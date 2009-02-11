@@ -1,0 +1,100 @@
+«IMPORT org::eclipse::xtend::middleend::xpand::test»
+
+«DEFINE testIf FOR String»
+«IF this == "one"»
+first: «this»
+«ELSEIF this == "three"»
+last: «this»
+«ELSE»
+«this»
+«ENDIF»
+«ENDDEFINE»
+
+«DEFINE testForeach FOR List[String]»
+«FOREACH this AS e»
+element: «e»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE testForeachWithSeparator FOR List[String]»
+«FOREACH this AS e SEPARATOR ","»
+element: «e»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE testForeachWithSeparatorAndDelLine FOR List[String] -»
+«FILE "output.txt"-»
+«FOREACH this AS e SEPARATOR "," -»element: «e»«ENDFOREACH-»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE testForeachWithIterator FOR List[String]»
+«FOREACH this AS e ITERATOR it SEPARATOR ","»
+«IF it.firstIteration»
+first: «e»
+«ELSEIF it.lastIteration»
+last: «e»
+«ELSE»
+«e»
+«ENDIF»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE testLet FOR Person»
+«LET name AS e»
+«e»
+«ENDLET»
+«ENDDEFINE»
+
+«DEFINE testRem FOR String»
+«REM»
+This 
+is 
+my 
+comment.
+«ENDREM»
+«this»
+«ENDDEFINE»
+
+«DEFINE testAop FOR String»
+«FILE "aopoutput1.txt"-»
+«EXPAND testSomeAdvicedDefinition FOR this-»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE testAopNameNotMatched FOR String»
+«FILE "aopoutput2.txt"-»
+«EXPAND testSomeOtherDefinition FOR this-»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE testAopParamsMatched(String param) FOR String»
+«FILE "aopoutput3.txt"-»
+«EXPAND testSomeAdvicedDefinition(param) FOR this-»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE testAopWildcardParamsMatched(String param, Person person) FOR String»
+«FILE "aopoutput4.txt"-»
+«EXPAND testSomeAdvicedDefinition(param, person) FOR this-»
+«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE testSomeAdvicedDefinition FOR String-»
+«this-»
+«ENDDEFINE»
+
+«DEFINE testSomeAdvicedDefinition(String param1) FOR String-»
+«this» «param1-»
+«ENDDEFINE»
+
+«DEFINE testSomeAdvicedDefinition(String param1, Person param2) FOR String-»
+«this» «param1» «param2.name-»
+«ENDDEFINE»
+
+«DEFINE testSomeOtherDefinition FOR String-»
+«this-»
+«ENDDEFINE»
+
+

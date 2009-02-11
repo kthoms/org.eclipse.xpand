@@ -1,0 +1,4 @@
+«DEFINE other FOR String»
+  This is a message from another package!
+«ENDDEFINE»
+

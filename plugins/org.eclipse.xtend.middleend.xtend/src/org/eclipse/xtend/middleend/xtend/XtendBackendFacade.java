@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.middleend.xtend;
 
@@ -24,6 +25,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
@@ -41,6 +43,7 @@ import org.eclipse.xtend.typesystem.MetaModel;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class XtendBackendFacade {
     private final String _xtendFile;
@@ -125,11 +128,11 @@ public final class XtendBackendFacade {
      * This function invokes a single Xtend function, returning the result. The fileEncoding may be null, in which case the platform's default file
      *  encoding is used.
      */
-    public static Object invokeXtendFunction (String xtendFileName, String fileEncoding, Collection<MetaModel> mms, String functionName, Object... parameters) {
+    public static Object invokeXtendFunction (String xtendFileName, String fileEncoding, Collection<MetaModel> mms, QualifiedName functionName, Object... parameters) {
         return createForFile (xtendFileName, fileEncoding, mms).invokeXtendFunction (functionName, parameters);
     }
         
-    public Object invokeXtendFunction (String functionName, Object... parameters) {
+    public Object invokeXtendFunction (QualifiedName functionName, Object... parameters) {
         final FunctionDefContext fdc = _middleEnd.getFunctions (_xtendFile);
         final ExecutionContext ctx = BackendFacade.createExecutionContext (fdc, _middleEnd.getTypesystem(), true); //TODO configure isLogStacktrace
         return fdc.invoke (ctx, functionName, Arrays.asList (parameters));

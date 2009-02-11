@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.xtend.backend.uml2types"
+      label="%featureName"
+      version="0.7.0.qualifier"
+      provider-name="%providerName">
+
+   <description url="http://www.eclipse.org/modeling/m2t">
+      %description
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.apache.commons.logging"/>
+      <import plugin="org.eclipse.xtend.backend"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.xtend.backend.uml2types"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

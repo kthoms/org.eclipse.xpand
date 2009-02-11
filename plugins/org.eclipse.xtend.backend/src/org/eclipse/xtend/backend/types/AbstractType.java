@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.types;
 
@@ -26,6 +27,7 @@ import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.Property;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
@@ -36,6 +38,7 @@ import org.eclipse.xtend.backend.util.StringHelper;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public abstract class AbstractType implements BackendType {
     private final String _name;
@@ -71,16 +74,16 @@ public abstract class AbstractType implements BackendType {
     protected void register (Property p, BackendType type) {
         _properties.put (p.getName(), p);
         
-        register ("get" + StringHelper.firstUpper (p.getName()), new GetterOperation (p));
+        register (new QualifiedName ("get" + StringHelper.firstUpper (p.getName())), new GetterOperation (p));
         if (p.isWritable())
-            register ("set" + StringHelper.firstUpper (p.getName()), new SetterOperation (p, type));
+            register (new QualifiedName ("set" + StringHelper.firstUpper (p.getName())), new SetterOperation (p, type));
     }
     
     protected void register (StaticProperty p) {
         _staticProperties.put (p.getName(), p);
     }
     
-    protected void register (String name, Function f) {
+    protected void register (QualifiedName name, Function f) {
         _builtinOperations.add (new NamedFunction (name, f));
     }
     

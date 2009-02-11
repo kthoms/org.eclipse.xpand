@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,11 +7,13 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.aop;
 
 import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyFdc;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createFdc;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.expr.ConcatExpression;
 import org.eclipse.xtend.backend.expr.InvocationOnObjectExpression;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
@@ -41,6 +44,7 @@ import org.junit.Test;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public class AopTest {
     @Test
@@ -54,24 +58,24 @@ public class AopTest {
         final Pointcut pointCut = new ExecutionPointcut ("*", Collections.EMPTY_LIST, true, new AdviceParamType (ObjectType.INSTANCE, true));
         registerAdvice (ctx, "pre-1", "post-1", true, pointCut, true);
         
-        assertEquals ("pre-10post-1", ctx.getFunctionDefContext().invoke (ctx, "nextCounterValue", Collections.emptyList()).toString());
-        assertEquals ("pre-11post-1", ctx.getFunctionDefContext().invoke (ctx, "nextCounterValue", Collections.emptyList()).toString());
+        assertEquals ("pre-10post-1", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("nextCounterValue"), Collections.emptyList()).toString());
+        assertEquals ("pre-11post-1", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("nextCounterValue"), Collections.emptyList()).toString());
 
         // test wrapped advice, particularly the application order
         final AdviceContext advCtx1 = ctx.getAdviceContext();
         registerAdvice (ctx, "pre-2", "post-2", true, pointCut, true);
-        assertEquals ("pre-1pre-22post-2post-1", ctx.getFunctionDefContext().invoke (ctx, "nextCounterValue", Collections.emptyList()).toString());
+        assertEquals ("pre-1pre-22post-2post-1", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("nextCounterValue"), Collections.emptyList()).toString());
         
         // test without calling proceed, and at the same time reverting to an earlier AdviceContext
         ctx.setAdviceContext (advCtx1);
         registerAdvice (ctx, "pre-3", "post-3", false, pointCut, true);
-        assertEquals ("pre-1pre-3post-3post-1", ctx.getFunctionDefContext().invoke (ctx, "nextCounterValue", Collections.emptyList()).toString());
-        assertEquals ("pre-1pre-3post-3post-1", ctx.getFunctionDefContext().invoke (ctx, "nextCounterValue", Collections.emptyList()).toString());
-        assertEquals ("pre-1pre-3post-3post-1", ctx.getFunctionDefContext().invoke (ctx, "nextCounterValue", Collections.emptyList()).toString());
+        assertEquals ("pre-1pre-3post-3post-1", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("nextCounterValue"), Collections.emptyList()).toString());
+        assertEquals ("pre-1pre-3post-3post-1", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("nextCounterValue"), Collections.emptyList()).toString());
+        assertEquals ("pre-1pre-3post-3post-1", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("nextCounterValue"), Collections.emptyList()).toString());
         
         // test that the previous invocations did not reach the actual function implementation
         ctx.setAdviceContext (advCtx1);
-        assertEquals ("pre-13post-1", ctx.getFunctionDefContext().invoke (ctx, "nextCounterValue", Collections.emptyList()).toString());
+        assertEquals ("pre-13post-1", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("nextCounterValue"), Collections.emptyList()).toString());
     }
 
     private void registerAdvice (ExecutionContext ctx, String prefix, String postfix, boolean proceed, Pointcut pointCut, boolean cached) {
@@ -99,10 +103,10 @@ public class AopTest {
         registerAdvice (ctx, "collection ", "", true, pointCutCollection, false);
         registerAdvice (ctx, "collection+ ", "", true, pointCutCollectionPlus, false);
         
-        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList (new Object ())).toString());
-        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList ("")).toString());
-        assertEquals ("object+ collection collection+ f(Collection)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList (new HashSet<Object> ())).toString());
-        assertEquals ("object+ collection+ f(List)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList (new ArrayList<Object> ())).toString());
+        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList (new Object ())).toString());
+        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList ("")).toString());
+        assertEquals ("object+ collection collection+ f(Collection)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList (new HashSet<Object> ())).toString());
+        assertEquals ("object+ collection+ f(List)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList (new ArrayList<Object> ())).toString());
     }
     
     @SuppressWarnings("unchecked")
@@ -123,10 +127,10 @@ public class AopTest {
         registerAdvice (ctx, "collection ", "", true, pointCutCollection, false);
         registerAdvice (ctx, "collection+ ", "", true, pointCutCollectionPlus, false);
         
-        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList (new Object ())).toString());
-        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList ("")).toString());
-        assertEquals ("object+ collection collection+ f(Collection)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList (new HashSet<Object> ())).toString());
-        assertEquals ("object+ collection+ f(List)", ctx.getFunctionDefContext().invoke(ctx, "f", Arrays.asList (new ArrayList<Object> ())).toString());
+        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList (new Object ())).toString());
+        assertEquals ("object object+ f(Object)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList ("")).toString());
+        assertEquals ("object+ collection collection+ f(Collection)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList (new HashSet<Object> ())).toString());
+        assertEquals ("object+ collection+ f(List)", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName ("f"), Arrays.asList (new ArrayList<Object> ())).toString());
     }
     
     @SuppressWarnings("unchecked")
@@ -159,8 +163,8 @@ public class AopTest {
 
         registerAdvice (ctx, "bothIn ", "", true, pointCutBothIn, false);
         
-        assertEquals ("firstPre firstPost firstIn firstIn2 bothIn first", ctx.getFunctionDefContext().invoke (ctx, "firstFunction", Collections.emptyList()).toString());
-        assertEquals ("secondPre secondPost secondIn secondIn2 bothIn second", ctx.getFunctionDefContext().invoke (ctx, "secondFunction", Collections.emptyList()).toString());
+        assertEquals ("firstPre firstPost firstIn firstIn2 bothIn first", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("firstFunction"), Collections.emptyList()).toString());
+        assertEquals ("secondPre secondPost secondIn secondIn2 bothIn second", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("secondFunction"), Collections.emptyList()).toString());
     }
 
     private long _counter = 0;
@@ -175,7 +179,7 @@ public class AopTest {
         final FunctionDefContextInternal fdc = createFdc (ctx.getTypesystem(), CounterFunction.class);
         ctx.setFunctionDefContext (fdc);
 
-        fdc.register (new NamedFunction ("f", new AbstractFunction (null, new ArrayList<BackendType> (), true) {
+        fdc.register (new NamedFunction (new QualifiedName ("f"), new AbstractFunction (null, new ArrayList<BackendType> (), true) {
             public Object invoke (ExecutionContext localCtx, Object[] params) {
                 return _counter++; 
             }
@@ -187,9 +191,9 @@ public class AopTest {
         registerSideEffectAdvice (ctx, "second ", pointCut, false);
         registerSideEffectAdvice (ctx, "third ", pointCut, true);
         
-        assertEquals ("first 0 second 1 third 2 0", ctx.getFunctionDefContext().invoke (ctx, "f", Collections.EMPTY_LIST).toString());
-        assertEquals ("first 3 second 4 third 2 0", ctx.getFunctionDefContext().invoke (ctx, "f", Collections.EMPTY_LIST).toString());
-        assertEquals ("first 5 second 6 third 2 0", ctx.getFunctionDefContext().invoke (ctx, "f", Collections.EMPTY_LIST).toString());
+        assertEquals ("first 0 second 1 third 2 0", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("f"), Collections.EMPTY_LIST).toString());
+        assertEquals ("first 3 second 4 third 2 0", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("f"), Collections.EMPTY_LIST).toString());
+        assertEquals ("first 5 second 6 third 2 0", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("f"), Collections.EMPTY_LIST).toString());
     }
     
     @SuppressWarnings("unchecked")
@@ -197,7 +201,7 @@ public class AopTest {
         final List<ExpressionBase> toBeConcatenated = new ArrayList<ExpressionBase> ();
         
         toBeConcatenated.add (new LiteralExpression (marker, null));
-        toBeConcatenated.add (new InvocationOnObjectExpression ("nextCounterValue", Collections.EMPTY_LIST, true, null));
+        toBeConcatenated.add (new InvocationOnObjectExpression (new QualifiedName ("nextCounterValue"), Collections.EMPTY_LIST, true, null));
         toBeConcatenated.add (new LiteralExpression (" ", null));
         toBeConcatenated.add (ConcatAdviceFactory.createProceedExpression());
         

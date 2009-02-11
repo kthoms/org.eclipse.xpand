@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.types.builtin;
 
@@ -19,6 +20,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.util.ReflectionHelper;
@@ -28,6 +30,7 @@ import org.eclipse.xtend.backend.util.ReflectionHelper;
  * This class represents the type of a type. It serves as an entry point for meta programming.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class TypeType extends AbstractType {
     public static final TypeType INSTANCE = new TypeType ();
@@ -58,7 +61,7 @@ public final class TypeType extends AbstractType {
             } 
         }, CollectionType.INSTANCE);
         
-        register ("getProperty", new Function () {
+        register (new QualifiedName ("getProperty"), new Function () {
             final List<? extends BackendType> _paramTypes = Arrays.asList (TypeType.this, StringType.INSTANCE);
             
             public ExpressionBase getGuard () {

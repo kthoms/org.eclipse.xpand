@@ -1,3 +1,14 @@
+/*
+Copyright (c) 2008 Arno Haase, André Arnold.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    Arno Haase - initial API and implementation
+    André Arnold
+ */
 package org.eclipse.xtend.middleend.xpand;
 
 
@@ -24,11 +35,11 @@ import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.PostProcessor;
-import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.syslib.FileIoOperations;
 import org.eclipse.xtend.backend.syslib.FileOutlet;
@@ -40,6 +51,7 @@ import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.xpand.internal.OldDefinitionConverter;
 import org.eclipse.xtend.middleend.xpand.internal.OldXpandRegistryFactory;
+import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
 import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
@@ -50,9 +62,10 @@ import org.eclipse.xtend.typesystem.MetaModel;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class XpandBackendFacade {
-    private final String _xpandFile;
+	private final String _xpandFile;
     private final MiddleEnd _middleEnd;
 
     private final String _fileEncoding;
@@ -71,8 +84,8 @@ public final class XpandBackendFacade {
      *  
      * Both the "variables" and "outlets" parameter may be null.
      */
-    public static Object executeStatement (String code, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets) {
-        return executeStatement (code, null, mms, variables, outlets);
+    public static Object executeStatement (String code, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, XpandProtectedRegionResolver resolver) {
+        return executeStatement (code, null, mms, variables, outlets, resolver);
     }
     
     /**
@@ -87,8 +100,8 @@ public final class XpandBackendFacade {
      *  
      * Both the "variables" and "outlets" parameter may be null.
      */
-    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets) {
-        return executeStatement (code, fileEncoding, mms, variables, outlets, null);
+    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, XpandProtectedRegionResolver resolver) {
+        return executeStatement (code, fileEncoding, mms, variables, outlets, null, resolver);
     }
         
     /**
@@ -103,12 +116,12 @@ public final class XpandBackendFacade {
      *  
      * The "variables", "outlets" and "advice" parameter may be null.
      */
-    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, List<String> advice) {
-        return createForFile (null, fileEncoding, mms, outlets).executeStatement (code, variables, advice);
+    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, List<String> advice, XpandProtectedRegionResolver resolver) {
+        return createForFile (null, fileEncoding, mms, outlets).executeStatement (code, variables, advice, resolver);
     }
 
     
-    public Object executeStatement (String code, Map<String, Object> variables, List<String> advice) {
+    public Object executeStatement (String code, Map<String, Object> variables, List<String> advice, XpandProtectedRegionResolver resolver) {
         if (variables == null)
             variables = new HashMap<String, Object> ();
         if (advice == null)
@@ -117,7 +130,7 @@ public final class XpandBackendFacade {
         for (String adv: advice)
             _middleEnd.applyAdvice (adv);
         
-        final Template tpl = XpandParseFacade.file (new StringReader (XpandTokens.LT + "DEFINE dUmMy FOR dUmMy" + XpandTokens.RT + code + XpandTokens.RT + XpandTokens.LT + "ENDDEFINE" + XpandTokens.RT), null);
+        final Template tpl = XpandParseFacade.file (new StringReader (XpandTokens.LT + "DEFINE dUmMy FOR dUmMy" + XpandTokens.RT + code + XpandTokens.LT + "ENDDEFINE" + XpandTokens.RT), null);
         final Statement[] statements = ((Definition) tpl.getDefinitions()[0]).getBody();
 
         XpandExecutionContext ctx = createXpandExecutionContext (_fileEncoding, _mms, _outlets);
@@ -134,11 +147,13 @@ public final class XpandBackendFacade {
             for (NamedFunction f: _middleEnd.getFunctions (xdn.getCanonicalTemplateFileName ()).getPublicFunctions())
                 fdc.register (f, false);
         
-        final ExecutionContext backendCtx = BackendFacade.createExecutionContext (fdc, _middleEnd.getTypesystem(), true); //TODO configure isLogStacktrace 
-        backendCtx.getLocalVarContext().getLocalVars().putAll (variables);
-        registerOutlets (backendCtx, _outlets);
-
-        return converted.evaluate (backendCtx);
+        _middleEnd.getExecutionContext().setFunctionDefContext (fdc);
+        //TODO configure isLogStacktrace
+        _middleEnd.getExecutionContext().getLocalVarContext().getLocalVars().putAll (variables);
+        registerOutlets (_middleEnd.getExecutionContext(), _outlets);
+        registerProtectedRegionResolver(_middleEnd.getExecutionContext(), resolver);
+        
+        return converted.evaluate (_middleEnd.getExecutionContext());
     }
     
     public static void registerOutlets (ExecutionContext ctx, Collection<Outlet> outlets) {
@@ -156,8 +171,13 @@ public final class XpandBackendFacade {
             }
             
             final String outletName = (oldOutlet.getName() != null) ? oldOutlet.getName() : FileIoOperations.DEFAULT_OUTLET_NAME;
-            ctx.getFunctionDefContext ().invoke (ctx, SysLibNames.REGISTER_OUTLET, Arrays.asList (outletName, newOutlet));
+            ctx.getFunctionDefContext ().invoke (ctx, new QualifiedName (SysLibNames.REGISTER_OUTLET), Arrays.asList (outletName, newOutlet));
         }
+    }
+    
+    public static void registerProtectedRegionResolver (ExecutionContext ctx, XpandProtectedRegionResolver resolver) {
+    	if (resolver != null)
+    		ctx.getContributionStateContext ().storeState (XpandProtectedRegionResolver.XPAND_PROTECTED_REGION_RESOLVER, resolver);
     }
     
     private static class InMemoryPpAdapter implements InMemoryPostprocessor {

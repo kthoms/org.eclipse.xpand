@@ -1,0 +1,4 @@
+import org::eclipse::xtend::middleend::xtend::test;
+
+context Person if name != "Doe" WARNING "Name too short: " + name : name.length > 3;
+context Employee ERROR "Company not defined" : company != null;

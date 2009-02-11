@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.middleend.xpand.internal;
 
@@ -29,6 +30,7 @@ import org.eclipse.internal.xpand2.ast.LetStatement;
 import org.eclipse.internal.xpand2.ast.ProtectStatement;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.TextStatement;
+import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xpand2.type.IteratorType;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
@@ -41,6 +43,7 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.expr.ConcatExpression;
@@ -58,7 +61,9 @@ import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.xpand.internal.xpandlib.XpandLibNames;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
 import org.eclipse.xtend.middleend.xtend.internal.OldExpressionConverter;
 import org.eclipse.xtend.middleend.xtend.internal.OldTypeAnalyzer;
@@ -74,8 +79,12 @@ import org.eclipse.xtend.typesystem.Type;
  * converts a single template
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class OldDefinitionConverter {
+
+    public static final List<String> ADVICE_LOCAL_VAR_NAMES = Arrays.asList (Advice.DEF_VAR_NAME, SyntaxConstants.THIS_JOINPOINT_STATICPART);
+	
     private XpandExecutionContext _ctx;
     private final TypeToBackendType _typeConverter;
     
@@ -98,13 +107,17 @@ public final class OldDefinitionConverter {
 
             _ctx = (XpandExecutionContext) _ctx.cloneWithoutVariables();
             
-            final List<String> localVarNames = exprConv.getAdviceLocalVarNames();
-            final List<Type> localVarTypes = exprConv.getAdviceLocalVarTypes (oldCtx);
-            for (int i=0; i<localVarNames.size(); i++)
-                _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (localVarNames.get(i), localVarTypes.get(i)));
-        
+            final List<String> localAdviceVarNames = ADVICE_LOCAL_VAR_NAMES;
+            final List<Type> localAdviceVarTypes = getAdviceLocalVarTypes (oldCtx);
+            for (int i=0; i<localAdviceVarNames.size(); i++)
+                _ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (localAdviceVarNames.get(i), localAdviceVarTypes.get(i)));
+            final List<DeclaredParameter> localVarNames = a.getParamsAsList();
+            for (DeclaredParameter declaredParameter : localVarNames) {
+				_ctx = (XpandExecutionContext) _ctx.cloneWithVariable (new Variable (declaredParameter.getName().getValue(), declaredParameter.getType()));
+			}
+            
             final ExpressionBase body = convertStatementSequence (a.getBody(), a, referencedDefinitions);
-            return exprConv.convertAdvice (body, a.getName(), Arrays.asList (a.getParams()), a.isWildcardParams());
+            return exprConv.convertAdvice (body, a.getPointCut().getValue(), a.getType(), Arrays.asList (a.getParams()), a.isWildcardParams());
         }
         finally {
             _ctx = oldCtx;
@@ -114,7 +127,7 @@ public final class OldDefinitionConverter {
     public NamedFunction createUnregistered (XpandDefinition def, Set<XpandDefinitionName> referencedDefinitions) {
         if (def instanceof Definition) {
             final String canonicalName = new XpandDefinitionName (def).getCanonicalDefinitionName();
-            return new NamedFunction (canonicalName, createNormalDefinition ((Definition) def, referencedDefinitions));
+            return new NamedFunction (new QualifiedName (canonicalName.replaceAll ("/", SyntaxConstants.NS_DELIM)), createNormalDefinition ((Definition) def, referencedDefinitions));
         }
         
         throw new IllegalArgumentException ("unsupported definition type " + def.getClass().getName());
@@ -140,7 +153,7 @@ public final class OldDefinitionConverter {
                 paramTypes.add (_typeConverter.convertToBackendType (pt));
             }
 
-            return new SourceDefinedFunction (def.getName(), paramNames, paramTypes, convertStatementSequence (def.getBody(), def, referencedDefinitions), false, null);
+            return new SourceDefinedFunction (new QualifiedName (def.getName()), paramNames, paramTypes, convertStatementSequence (def.getBody(), def, referencedDefinitions), false, null);
         }
         finally {
             _ctx = oldCtx;
@@ -217,13 +230,13 @@ public final class OldDefinitionConverter {
             referencedDefinitions.add (called);
             
             
-            final ExpressionBase invocationExpression = new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, false, getSourcePos(stmt));
+            final ExpressionBase invocationExpression = new InvocationOnObjectExpression (new QualifiedName (called.getCanonicalDefinitionName()), params, false, getSourcePos(stmt));
             final ExpressionBase loopBody = new InitClosureExpression (Arrays.asList(closureParamName), Arrays.asList(ObjectType.INSTANCE), invocationExpression, getSourcePos(stmt));
             
             if (separator == null)
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody), true, getSourcePos (stmt));
+                return new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.FOREACH_WITHOUT_ITERATOR), Arrays.asList(target, loopBody), true, getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, loopBody, separator), true, getSourcePos (stmt));
+                return new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.FOREACH_WITHOUT_ITERATOR), Arrays.asList(target, loopBody, separator), true, getSourcePos (stmt));
         }
         else {
             final List<ExpressionBase> params = new ArrayList<ExpressionBase>();
@@ -237,7 +250,7 @@ public final class OldDefinitionConverter {
             
             final XpandDefinitionName called = new XpandDefinitionName (stmt.getDefinition().getValue(), stmt.getTarget(), stmt.getParametersAsList(), _ctx);
             referencedDefinitions.add (called);
-            return new InvocationOnObjectExpression (called.getCanonicalDefinitionName(), params, true, getSourcePos(stmt));
+            return new InvocationOnObjectExpression (new QualifiedName (called.getCanonicalDefinitionName().replaceAll("/", SyntaxConstants.NS_DELIM)), params, true, getSourcePos(stmt));
         }
     }
     
@@ -275,9 +288,9 @@ public final class OldDefinitionConverter {
             final ExpressionBase closureCreation = new InitClosureExpression (Arrays.asList (varName), Arrays.asList (_typeConverter.convertToBackendType(eleType)), body, getSourcePos (stmt));
 
             if (separator == null)
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation), true, getSourcePos (stmt));
+                return new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.FOREACH_WITHOUT_ITERATOR), Arrays.asList(target, closureCreation), true, getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITHOUT_ITERATOR, Arrays.asList(target, closureCreation, separator), true, getSourcePos (stmt));
+                return new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.FOREACH_WITHOUT_ITERATOR), Arrays.asList(target, closureCreation, separator), true, getSourcePos (stmt));
         }
         else {
             // forEach with an iterator
@@ -296,16 +309,16 @@ public final class OldDefinitionConverter {
             final ExpressionBase closureCreation = new InitClosureExpression (paramNames, paramTypes, body, getSourcePos (stmt));
 
             if (separator == null)
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation), true, getSourcePos (stmt));
+                return new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.FOREACH_WITH_ITERATOR), Arrays.asList(target, closureCreation), true, getSourcePos (stmt));
             else
-                return new InvocationOnObjectExpression (XtendLibNames.FOREACH_WITH_ITERATOR, Arrays.asList(target, closureCreation, separator), true, getSourcePos (stmt));
+                return new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.FOREACH_WITH_ITERATOR), Arrays.asList(target, closureCreation, separator), true, getSourcePos (stmt));
         }
     }
     
     private ExpressionBase convertIfStatement (IfStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
         if (stmt.getCondition() != null) {
             final ExpressionBase condExpr = convertExpression (stmt.getCondition());
-            final ExpressionBase ifExpr = convertStatement (stmt.getUpperIf(), referencedDefinitions);
+            final ExpressionBase ifExpr = convertStatementSequence(stmt.getBody(), stmt, referencedDefinitions);
             final ExpressionBase elseExpr = stmt.getElseIf() != null ? convertStatement (stmt.getElseIf(), referencedDefinitions) : new LiteralExpression (null, getSourcePos (stmt));
             
             return new IfExpression (condExpr, ifExpr, elseExpr, getSourcePos (stmt));
@@ -354,22 +367,28 @@ public final class OldDefinitionConverter {
         final ExpressionBase append = new LiteralExpression (outlet.isAppend(), getSourcePos(stmt));
         
         final List<ExpressionBase> emptyParamList = Collections.emptyList();
-        final ExpressionBase initIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_INIT, emptyParamList, false, getSourcePos (stmt));
+        final ExpressionBase initIsDeleteLineExpression = new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.DELETE_LINE_INIT), emptyParamList, false, getSourcePos (stmt));
 
-        final ExpressionBase postprocessIsDeleteLineExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_POSTPROCESS, Arrays.asList(body), false, getSourcePos (stmt));
-        final ExpressionBase writeToFileExpression = new InvocationOnObjectExpression (SysLibNames.WRITE_TO_FILE, Arrays.asList(outletName, filename, append, postprocessIsDeleteLineExpression), false, getSourcePos (stmt));
+        final ExpressionBase postprocessIsDeleteLineExpression = new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.DELETE_LINE_POSTPROCESS), Arrays.asList(body), false, getSourcePos (stmt));
+        final ExpressionBase writeToFileExpression = new InvocationOnObjectExpression (new QualifiedName (SysLibNames.WRITE_TO_FILE), Arrays.asList(outletName, filename, append, postprocessIsDeleteLineExpression), false, getSourcePos (stmt));
         
         return new SequenceExpression (Arrays.asList (initIsDeleteLineExpression, writeToFileExpression), getSourcePos (stmt));
     }
     
     private ExpressionBase convertProtectStatement (ProtectStatement stmt, Set<XpandDefinitionName> referencedDefinitions) {
-        throw new UnsupportedOperationException(); //TODO implement ProtectStatement
+    	ExpressionBase body = convertStatementSequence(stmt.getBody(), stmt, referencedDefinitions);
+    	final ExpressionBase id = convertExpression(stmt.getId());
+    	final ExpressionBase startComment = convertExpression(stmt.getCommentStart());
+    	final ExpressionBase endComment = convertExpression(stmt.getCommentEnd());
+    	final ExpressionBase isDisabled = new LiteralExpression(stmt.getDisable(), getSourcePos(stmt));
+        final ExpressionBase protectExpr = new InvocationOnObjectExpression (new QualifiedName(XpandLibNames.PROTECT), Arrays.asList(id, startComment, endComment, isDisabled, body), true, getSourcePos(stmt));
+        return protectExpr; //TODO implement ProtectStatement
     }
     
     private ExpressionBase convertTextStatement (TextStatement stmt) {
         if (stmt.isDeleteLine()) {
             final List<ExpressionBase> emptyParamList = Collections.emptyList();
-            final ExpressionBase registerExpression = new InvocationOnObjectExpression (XtendLibNames.DELETE_LINE_REGISTER, emptyParamList, false, getSourcePos(stmt));
+            final ExpressionBase registerExpression = new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.DELETE_LINE_REGISTER), emptyParamList, false, getSourcePos(stmt));
             
             final ExpressionBase markerExpression = new LiteralExpression (XpandIsDeleteLine.MARKER_FOR_IS_DELETE_LINE, getSourcePos(stmt));
             final ExpressionBase contentExpression = new LiteralExpression (stmt.getValue(), getSourcePos (stmt));
@@ -390,5 +409,10 @@ public final class OldDefinitionConverter {
         final OldExpressionConverter exprConverter = new OldExpressionConverter (_ctx, _typeConverter, _definitionName);
         return exprConverter.convert (expr);
     }
+    
+    private List<Type> getAdviceLocalVarTypes (TypeSystem ts) {
+        return Arrays.asList (ts.getStringType(), ts.getStringType()); // any type other than Object will do - as a hint for the right optimizations
+    }
+
 }
 

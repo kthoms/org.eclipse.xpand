@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.middleend.xtend.internal;
 
@@ -18,6 +19,7 @@ import org.eclipse.xpand2.XpandUtil;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
+import org.eclipse.xtend.check.CheckUtils;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
@@ -25,6 +27,7 @@ import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class OldHelper {
     public static BackendTypesystem guessTypesystem (Collection<MetaModel> mms) {
@@ -77,6 +80,19 @@ public final class OldHelper {
             xpandName = xpandName.substring (1);
         
         return xpandName;
+    }
+    
+    public static String normalizeCheckResourceName (String checkName) {
+        if (checkName == null)
+            return null;
+        
+        checkName = checkName.replace (SyntaxConstants.NS_DELIM, "/");
+        if (checkName.endsWith ("." + XtendFile.FILE_EXTENSION))
+            checkName = checkName.substring (0, checkName.length() - (CheckUtils.FILE_EXTENSION.length() + 1));
+        if (checkName.startsWith("/"))
+            checkName = checkName.substring (1);
+        
+        return checkName;
     }
     
     public static String xpandFileAsOldResourceName (String xpandName) {

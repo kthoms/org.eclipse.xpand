@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.syslib;
 
@@ -16,6 +17,7 @@ import org.eclipse.xtend.backend.common.Helpers;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public interface SysLibNames {
     // special function names
@@ -37,7 +39,7 @@ public interface SysLibNames {
     String OPERATOR_DIV = "operatorDiv";
     String OPERATOR_MOD = "operatorMod";
     
-    String OPERATOR_EQUALS = Helpers.EQUALS_NAME;
+    String OPERATOR_EQUALS = Helpers.EQUALS_NAME.getSimpleName();
     String OPERATOR_NOT_EQUALS = "operatorNotEquals";
     String OPERATOR_LESS = "operatorLess";
     String OPERATOR_LESS_OR_EQUALS = "operatorLessOrEquals";

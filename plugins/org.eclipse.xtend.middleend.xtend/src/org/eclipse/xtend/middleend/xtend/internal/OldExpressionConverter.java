@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.middleend.xtend.internal;
 
@@ -24,6 +25,7 @@ import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.GlobalVarExpression;
+import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.IfExpression;
 import org.eclipse.internal.xtend.expression.ast.IntegerLiteral;
 import org.eclipse.internal.xtend.expression.ast.LetExpression;
@@ -40,12 +42,14 @@ import org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ListTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.SetTypeImpl;
+import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.xtend.backend.aop.AdviceParamType;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.aop.ExecutionPointcut;
 import org.eclipse.xtend.backend.aop.Pointcut;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.expr.AndExpression;
@@ -78,9 +82,13 @@ import org.eclipse.xtend.typesystem.Type;
  * converts a single expression or advice
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class OldExpressionConverter {
-    private final TypeToBackendType _typeConverter;
+    private static final String AROUND_PROCEED = "proceed";
+    private static final String XPAND_AROUND_DEF = "targetDef";
+
+	private final TypeToBackendType _typeConverter;
     private ExecutionContext _ctx;
     private final String _extensionName;
     
@@ -90,7 +98,7 @@ public final class OldExpressionConverter {
         _extensionName = extensionName;
     }
     
-    private static final List<String> _adviceLocalVarNames = Arrays.asList (SyntaxConstants.THIS_JOINPOINT, SyntaxConstants.THIS_JOINPOINT_STATICPART);
+    private static final List<String> _adviceLocalVarNames = Arrays.asList (Around.CONTEXT_PARAM_NAME, SyntaxConstants.THIS_JOINPOINT_STATICPART);
     
     public List<String> getAdviceLocalVarNames () {
         return _adviceLocalVarNames;
@@ -104,6 +112,18 @@ public final class OldExpressionConverter {
 
     public AroundAdvice convertAdvice (ExpressionBase body, String namePattern, List<DeclaredParameter> params, boolean hasVarArgs) {
         final List <Pair <String, AdviceParamType>> paramTypes = new ArrayList <Pair <String, AdviceParamType>> ();
+        for (DeclaredParameter dp: params)
+            paramTypes.add (new Pair <String, AdviceParamType> (dp.getName().getValue(), new AdviceParamType (_typeConverter.convertToBackendType (dp.getType()), true)));
+
+        final Pointcut pointcut = new ExecutionPointcut (namePattern, paramTypes, hasVarArgs, _wildCardParamType);
+
+        return new AroundAdvice (body, pointcut, false);
+    }
+
+    public AroundAdvice convertAdvice (ExpressionBase body, String namePattern, Identifier targetType, List<DeclaredParameter> params, boolean hasVarArgs) {
+        final List <Pair <String, AdviceParamType>> paramTypes = new ArrayList <Pair <String, AdviceParamType>> ();
+        if (targetType != null)
+        	paramTypes.add (new Pair<String, AdviceParamType> (ExecutionContext.IMPLICIT_VARIABLE, new AdviceParamType (_typeConverter.convertToBackendType (_ctx.getTypeForName (targetType.getValue())), true)));
         for (DeclaredParameter dp: params)
             paramTypes.add (new Pair <String, AdviceParamType> (dp.getName().getValue(), new AdviceParamType (_typeConverter.convertToBackendType (dp.getType()), true)));
 
@@ -175,7 +195,7 @@ public final class OldExpressionConverter {
                 // if a function matches directly (i.e. without implicitly passing 'this' as a first parameter), that
                 //  has precedence in matching
                 if (hasMatchingOperationCall (functionName, paramTypes.toArray (new Type[0]))) 
-                    return new InvocationOnObjectExpression (functionName, params, false, sourcePos);
+                    return new InvocationOnObjectExpression (new QualifiedName (functionName), params, false, sourcePos);
                 else {
                     final ExpressionBase thisExpression = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
                     final Type thisType = (Type) _ctx.getVariable (ExecutionContext.IMPLICIT_VARIABLE).getValue();
@@ -183,11 +203,20 @@ public final class OldExpressionConverter {
                 }
             }
             else 
-                return new InvocationOnObjectExpression (functionName, params, false, sourcePos);
+                return new InvocationOnObjectExpression (new QualifiedName (functionName), params, false, sourcePos);
         }
-        else
-            return createInvocationOnTargetExpression(functionName, convert (expr.getTarget()), new OldTypeAnalyzer ().analyze (_ctx, expr.getTarget ()), params, paramTypes, true, sourcePos);
+        else if (isAdviceProceedCall(expr)) {
+        	return new InvocationOnObjectExpression (new QualifiedName (AROUND_PROCEED), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos)), true, sourcePos);
+        } else
+            return createInvocationOnTargetExpression (functionName, convert (expr.getTarget()), new OldTypeAnalyzer ().analyze (_ctx, expr.getTarget ()), params, paramTypes, true, sourcePos);
     }
+
+	private boolean isAdviceProceedCall(OperationCall expr) {
+		return expr.getName ().getValue ().equals (AROUND_PROCEED) && 
+        		expr.getTarget () instanceof FeatureCall && 
+        		(((FeatureCall) expr.getTarget ()).getName ().getValue ().equals(Around.CONTEXT_PARAM_NAME) ||
+        		((FeatureCall) expr.getTarget ()).getName ().getValue ().equals(XPAND_AROUND_DEF));
+	}
     
     private boolean hasMatchingOperationCall (String functionName, Type[] paramTypes) {
         if (_ctx.getExtensionForTypes (functionName, paramTypes) != null)
@@ -252,18 +281,18 @@ public final class OldExpressionConverter {
             
             if (hasMatchingOperationCall (functionName, paramTypeArray)) 
                 // check if there is a function that directly matches the collection
-                return new InvocationOnObjectExpression (functionName, allParams, true, sourcePos);
+                return new InvocationOnObjectExpression (new QualifiedName (functionName), allParams, true, sourcePos);
             else
                 // otherwise, do a 'collect' and call the function on all elements of the collection
-                return new InvocationOnCollectionExpression (targetExpression, functionName, paramsWithoutFirst, sourcePos);
+                return new InvocationOnCollectionExpression (targetExpression, new QualifiedName (functionName), paramsWithoutFirst, sourcePos);
         }
         
         if (isObjectType (targetType))
             // if the static type is "Object", we do not know if it is a collection, so we do the logic at runtime
-            return new InvocationOnWhateverExpression (functionName, allParams, isMethodStyle, sourcePos);
+            return new InvocationOnWhateverExpression (new QualifiedName (functionName), allParams, isMethodStyle, sourcePos);
         
         // otherwise we know that it is not a collection and can avoid repeating this logic at runtime
-        return new InvocationOnObjectExpression (functionName, allParams, true, sourcePos);
+        return new InvocationOnObjectExpression (new QualifiedName (functionName), allParams, isNullIfNullParam(functionName), sourcePos);
     }
     
     private ExpressionBase convertTypeSelectExpression (TypeSelectExpression expr) {
@@ -277,10 +306,10 @@ public final class OldExpressionConverter {
                 throw new IllegalStateException ("typeSelect with neither a target nor an implicit 'this'");
             
             final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
-            return new InvocationOnObjectExpression (SysLibNames.TYPE_SELECT, Arrays.asList (thisExpr, typeExpr), true, sourcePos);
+            return new InvocationOnObjectExpression (new QualifiedName (SysLibNames.TYPE_SELECT), Arrays.asList (thisExpr, typeExpr), true, sourcePos);
         }
         else
-            return new InvocationOnObjectExpression (SysLibNames.TYPE_SELECT, Arrays.asList(convert (expr.getTarget()), typeExpr), false, sourcePos);
+            return new InvocationOnObjectExpression (new QualifiedName (SysLibNames.TYPE_SELECT), Arrays.asList(convert (expr.getTarget()), typeExpr), false, sourcePos);
     }
     
     private ExpressionBase convertSwitchExpression (SwitchExpression expr) {
@@ -398,10 +427,10 @@ public final class OldExpressionConverter {
                 throw new IllegalStateException (functionName + " with neither a target nor an implicit 'this'");
             
             final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
-            return new InvocationOnObjectExpression (functionName, Arrays.asList (thisExpr, closureExpr), true, sourcePos);
+            return new InvocationOnObjectExpression (new QualifiedName (functionName), Arrays.asList (thisExpr, closureExpr), true, sourcePos);
         }
         else
-            return new InvocationOnObjectExpression (functionName, Arrays.asList(convert (expr.getTarget()), closureExpr), true, sourcePos);
+            return new InvocationOnObjectExpression (new QualifiedName (functionName), Arrays.asList(convert (expr.getTarget()), closureExpr), true, sourcePos);
     }
     
     private ExpressionBase convertChainExpression (ChainExpression expr) {
@@ -429,7 +458,7 @@ public final class OldExpressionConverter {
     }
     
     private ExpressionBase convertGlobalVarExpression (GlobalVarExpression expr) {
-        return new InvocationOnObjectExpression (XtendLibNames.GLOBAL_VAR_VALUE, Arrays.asList (new LiteralExpression (expr.getVarName(), getSourcePos(expr))), true, getSourcePos (expr));
+        return new InvocationOnObjectExpression (new QualifiedName (XtendLibNames.GLOBAL_VAR_VALUE), Arrays.asList (new LiteralExpression (expr.getVarName(), getSourcePos(expr))), true, getSourcePos (expr));
     }
     
     private ExpressionBase convertBooleanOperation (BooleanOperation expr) {
@@ -441,7 +470,7 @@ public final class OldExpressionConverter {
         if ("||".equals (expr.getOperator().getValue()))
             return new OrExpression (left, right, getSourcePos(expr));
         if ("implies".equals (expr.getOperator().getValue()))
-            return new InvocationOnObjectExpression (SysLibNames.IMPLIES, Arrays.asList(left, right), true, getSourcePos(expr));
+            return new InvocationOnObjectExpression (new QualifiedName (SysLibNames.IMPLIES), Arrays.asList(left, right), true, getSourcePos(expr));
         
         throw new IllegalArgumentException ("unknown boolean operator " + expr.getOperator().getValue());
     }
@@ -464,8 +493,26 @@ public final class OldExpressionConverter {
             t instanceof SetTypeImpl;
     }
     
-    private boolean hasThis () {
+    //TODO should this become private again?
+    public boolean hasThis () {
         return _ctx.getVisibleVariables().containsKey (ExecutionContext.IMPLICIT_VARIABLE);
+    }
+    
+    private boolean hasThisJoinPoint() {
+    	return _ctx.getVisibleVariables().containsKey(Around.CONTEXT_PARAM_NAME);
+    }
+    
+    private boolean isNullIfNullParam(String functionName) {
+    	return !(functionName.equals(SysLibNames.OPERATOR_EQUALS) || 
+    			functionName.equals(SysLibNames.OPERATOR_NOT_EQUALS));
+    }
+    
+    public ExecutionContext getExecutionContext() {
+    	return _ctx;
+    }
+    
+    public void setExecutionContext(ExecutionContext ctx) {
+    	_ctx = ctx;
     }
 }
 

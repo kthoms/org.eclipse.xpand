@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.syslib;
 
@@ -16,6 +17,7 @@ import java.util.List;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.Property;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
 
@@ -24,6 +26,7 @@ import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware
  * This class provides the built-in operations for the Xtend reflection layer
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class ReflectionOperations extends AbstractExecutionContextAware {
 
@@ -51,7 +54,7 @@ public final class ReflectionOperations extends AbstractExecutionContextAware {
         return t.getStaticProperties().get (name);
     }
     
-    public Function getOperation (BackendType t, String name, List<BackendType> paramTypes) {
+    public Function getOperation (BackendType t, QualifiedName name, List<BackendType> paramTypes) {
         final List<BackendType> allParamTypes = new ArrayList<BackendType> ();
         allParamTypes.add (t);
         allParamTypes.addAll (paramTypes);

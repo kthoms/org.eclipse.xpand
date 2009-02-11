@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.common;
 
@@ -16,12 +17,13 @@ package org.eclipse.xtend.backend.common;
  *  concept from Function itself so that the same function can have several names.
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public class NamedFunction {
     private final Function _function;
-    private final String _name;
+    private final QualifiedName _name;
 
-    public NamedFunction (String name, Function f) {
+    public NamedFunction (QualifiedName name, Function f) {
         _function = f;
         _name = name;
     }
@@ -30,7 +32,7 @@ public class NamedFunction {
         return _function;
     }
     
-    public String getName () {
+    public QualifiedName getName () {
         return _name;
     }
 

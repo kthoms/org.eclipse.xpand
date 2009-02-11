@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.types.internal;
 
@@ -15,11 +16,13 @@ import java.util.Arrays;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Property;
+import org.eclipse.xtend.backend.common.QualifiedName;
 
 
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class FunctionBackedProperty implements Property {
     private final String _name;
@@ -38,11 +41,11 @@ public final class FunctionBackedProperty implements Property {
 
 
     public Object get (ExecutionContext ctx, Object o) {
-        return ctx.getFunctionDefContext().invoke (ctx, _getterName, Arrays.asList (o));
+        return ctx.getFunctionDefContext().invoke (ctx, new QualifiedName (_getterName), Arrays.asList (o));
     }
 
     public void set (ExecutionContext ctx, Object o, Object newValue) {
-        ctx.getFunctionDefContext().invoke (ctx, _setterName, Arrays.asList (o, newValue));
+        ctx.getFunctionDefContext().invoke (ctx, new QualifiedName (_setterName), Arrays.asList (o, newValue));
     }
 
     public String getName () {

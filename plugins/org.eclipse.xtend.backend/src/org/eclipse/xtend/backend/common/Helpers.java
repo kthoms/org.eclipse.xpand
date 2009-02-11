@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.common;
 
@@ -18,10 +19,11 @@ import java.util.Collections;
  * This class contains commonly used helper operations.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public class Helpers {
-    public static String TO_STRING_METHOD_NAME = "toString";
-    public static String EQUALS_NAME = "operatorEquals";
+    public static QualifiedName TO_STRING_METHOD_NAME = new QualifiedName ("toString");
+    public static QualifiedName EQUALS_NAME = new QualifiedName ("operatorEquals");
     
     /**
      * This method is public static so as to be available as a helper method for all code that needs to call "toString".

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.expr;
 
@@ -29,6 +30,7 @@ import org.junit.Test;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public class ConcatExpressionTest {
     @Test public void testLogic () {
@@ -46,7 +48,7 @@ public class ConcatExpressionTest {
     }
     
     @Test public void testUsesToStringExtension () {
-        final NamedFunction myToString = new NamedFunctionFactory (Helpers.TO_STRING_METHOD_NAME, ObjectType.INSTANCE) {
+        final NamedFunction myToString = new NamedFunctionFactory (Helpers.TO_STRING_METHOD_NAME.getSimpleName(), ObjectType.INSTANCE) {
             public Object invoke (ExecutionContext ctx, Object[] params) {
                 return "#" + params[0] + "!";
             }

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,10 +7,13 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyFdc;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
@@ -34,6 +38,7 @@ import org.junit.Test;
 /**
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public class InitClosureExpressionTest {
     
@@ -78,14 +83,14 @@ public class InitClosureExpressionTest {
         final BackendTypesystem ts = new CompositeTypesystem ();
         
         final FunctionDefContextInternal fdc = createEmptyFdc (ts);
-        fdc.register (new NamedFunction ("myFunction", new AbstractFunction (null, new ArrayList<BackendType> (), false) {
+        fdc.register (new NamedFunction (new QualifiedName ("myFunction"), new AbstractFunction (null, new ArrayList<BackendType> (), false) {
             public Object invoke (ExecutionContext ctx, Object[] params) {
                 return "myResult";
             }
         }), true);
         
         final ExecutionContext initCtx = BackendFacade.createExecutionContext (fdc, ts, true);
-        final ExpressionBase body = new InvocationOnObjectExpression ("myFunction", new ArrayList<ExpressionBase> (), false, SOURCE_POS);
+        final ExpressionBase body = new InvocationOnObjectExpression (new QualifiedName ("myFunction"), new ArrayList<ExpressionBase> (), false, SOURCE_POS);
         final Function closure = (Function) new InitClosureExpression (new ArrayList<String>(), new ArrayList<BackendType>(), body, SOURCE_POS).evaluate (initCtx);
         
         assertEquals ("myResult", closure.invoke(createEmptyExecutionContext(), new Object[]{}));

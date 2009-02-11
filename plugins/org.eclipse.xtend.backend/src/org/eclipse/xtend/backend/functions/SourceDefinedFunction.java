@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.functions;
 
@@ -16,19 +17,21 @@ import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.LocalVarContext;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.StacktraceEntry;
 
 
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class SourceDefinedFunction extends AbstractFunction {
-    private final String _name;
+    private final QualifiedName _name;
     private final List<String> _paramNames;
     private final ExpressionBase _def;
 
-    public SourceDefinedFunction (String name, List<String> paramNames, List<BackendType> paramTypes, ExpressionBase def, boolean cached, ExpressionBase guard) {
+    public SourceDefinedFunction (QualifiedName name, List<String> paramNames, List<BackendType> paramTypes, ExpressionBase def, boolean cached, ExpressionBase guard) {
         super (guard, paramTypes, cached);
         _name = name;
         _paramNames = paramNames;
@@ -58,7 +61,7 @@ public final class SourceDefinedFunction extends AbstractFunction {
         }
     }
 
-    public String getName () {
+    public QualifiedName getName () {
         return _name;
     }
     

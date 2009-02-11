@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.middleend.xtend.internal.xtendlib;
 
@@ -21,6 +22,7 @@ import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class XtendCollectionOperations extends AbstractExecutionContextAware {
     
@@ -48,7 +50,8 @@ public final class XtendCollectionOperations extends AbstractExecutionContextAwa
             
             final Object part = f.invoke (_ctx, new Object[] {o});
             if (part != null)
-                result = EfficientLazyString.createAppendedString (result, StringOperations.overridableToString (_ctx, o));
+            	// TODO verify fix
+                result = EfficientLazyString.createAppendedString (result, StringOperations.overridableToString (_ctx, /*o*/part));
         }
 
         return result;
@@ -64,7 +67,7 @@ public final class XtendCollectionOperations extends AbstractExecutionContextAwa
         
     /**
      * invokes the function for each element of the collection, concatenating the results and
-     *  adding the separator between themn. The function is passed an "XtendIterator" instance 
+     *  adding the separator between them. The function is passed an "XtendIterator" instance 
      *  as a second parameter.
      */
     public CharSequence XpandForEachWithIterator (Collection<?> c, Function f, CharSequence separator) {
@@ -81,7 +84,7 @@ public final class XtendCollectionOperations extends AbstractExecutionContextAwa
             
             final Object part = f.invoke (_ctx, new Object[] {o, iter});
             if (part != null)
-                result = EfficientLazyString.createAppendedString (result, StringOperations.overridableToString (_ctx, o));
+                result = EfficientLazyString.createAppendedString (result, StringOperations.overridableToString (_ctx, part));
             
             iter.increment();
         }

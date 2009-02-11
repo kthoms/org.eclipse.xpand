@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold 
 */
 package org.eclipse.xtend.backend.aop.internal;
 
@@ -20,6 +21,7 @@ import org.eclipse.xtend.backend.aop.AdvisedFunction;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.common.AdviceContext;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.util.DoubleKeyCache;
 import org.eclipse.xtend.backend.util.ObjectWrapper;
 import org.eclipse.xtend.backend.util.Triplet;
@@ -36,6 +38,7 @@ import org.eclipse.xtend.backend.util.Triplet;
  *  invocation of functions.
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class AdviceContextImpl implements AdviceContext {
     private final List<AroundAdvice> _advice = new ArrayList<AroundAdvice> ();
@@ -56,9 +59,9 @@ public final class AdviceContextImpl implements AdviceContext {
     };
     
     
-    private final DoubleKeyCache <String, Function, AdvisedFunction> _advisedFunctionCache = new DoubleKeyCache<String, Function, AdvisedFunction> () {
+    private final DoubleKeyCache <QualifiedName, Function, AdvisedFunction> _advisedFunctionCache = new DoubleKeyCache<QualifiedName, Function, AdvisedFunction> () {
         @Override
-        protected AdvisedFunction create (String functionName, Function f) {
+        protected AdvisedFunction create (QualifiedName functionName, Function f) {
             final List<AroundAdvice> applicableAdvice = new ArrayList<AroundAdvice> ();
             
             for (AroundAdvice advice: _advice)
@@ -96,14 +99,12 @@ public final class AdviceContextImpl implements AdviceContext {
         return result;
     }
 
-    //TODO test this (including the order in which advice is applied)!!!
-    
     /**
      * returns the advice to be applied to this function, starting with the outermost
      *  advice, i.e. the advice that is to wrapped around all other advice applicable
      *  to a given function. 
      */
-    public AdvisedFunction getAdvice (String functionName, Function f) {
+    public AdvisedFunction getAdvice (QualifiedName functionName, Function f) {
         // this distinction adds an implicit " && ! within <any advice>" to every pointcut. That is
         //  done to avoid endless recursion when a function is called from within advice that is
         //  applicable to this function
@@ -116,7 +117,7 @@ public final class AdviceContextImpl implements AdviceContext {
     }
 
     @SuppressWarnings("unchecked")
-    private AdvisedFunction unadvisedFunction (String functionName, Function f) {
+    private AdvisedFunction unadvisedFunction (QualifiedName functionName, Function f) {
         return new AdvisedFunction (functionName, f, Collections.EMPTY_LIST, _scopeCounter);
     }
     

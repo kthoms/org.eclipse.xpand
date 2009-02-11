@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.eclipse.xtend.middleend.xpand;singleton:=true
 Bundle-Version: 1.0.0
 Export-Package: org.eclipse.xtend.middleend.xpand,
  org.eclipse.xtend.middleend.xpand.internal;x-internal:=true,
+ org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr;x-internal:=true,
  org.eclipse.xtend.middleend.xpand.plugin
 Require-Bundle: org.eclipse.xpand,
  org.eclipse.xtend,

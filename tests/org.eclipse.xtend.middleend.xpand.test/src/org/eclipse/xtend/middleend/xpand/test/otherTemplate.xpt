@@ -1,0 +1,3 @@
+«DEFINE ot FOR String»
+    ... output from otherTemplate.xpt...
+«ENDDEFINE»

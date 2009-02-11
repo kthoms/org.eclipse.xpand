@@ -1,0 +1,27 @@
+«IMPORT org::eclipse::xtend::middleend::xpand::test»
+
+«DEFINE testProtect FOR Person»
+«FILE "Person.java"»
+package org.eclipse.xtend.middleend.xpand.test;
+
+public class Person {
+
+public void someOperation {
+«PROTECT CSTART '/*' CEND '*/' ID "Person_" + name + "_1"»
+/* TODO Protected Region 1: Implement this method */
+«ENDPROTECT»
+}
+
+«EXPAND SomeOtherFunction FOR this»
+}
+
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE SomeOtherFunction FOR Person»
+public void someOtherFunction {
+«PROTECT CSTART '/*' CEND '*/' ID "Person_" + name + "_2"»
+/* TODO Protected Region 2: Implement this method */
+«ENDPROTECT»
+}
+«ENDDEFINE»

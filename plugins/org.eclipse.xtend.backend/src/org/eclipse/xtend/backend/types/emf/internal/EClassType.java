@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.backend.types.emf.internal;
 
@@ -27,6 +28,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.types.emf.EObjectType;
@@ -38,6 +40,7 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
 /**
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class EClassType extends AbstractType {
     private final EClass _cls;
@@ -100,7 +103,7 @@ public final class EClassType extends AbstractType {
             try {
                 final Method mtd = _cls.getInstanceClass().getMethod(op.getName(), paramClasses);
 
-                register (op.getName(), new Function () {
+                register (new QualifiedName (op.getName()), new Function () {
                     public ExpressionBase getGuard () {
                         return null;
                     }

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.middleend.xpand;
 
@@ -26,6 +27,7 @@ import org.eclipse.xtend.middleend.plugins.ImportedResource;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.middleend.plugins.ParsedResource;
 import org.eclipse.xtend.middleend.xpand.internal.OldDefinitionConverter;
+import org.eclipse.xtend.middleend.xpand.internal.xpandlib.XpandLibContributor;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
 import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
@@ -36,6 +38,7 @@ import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
  * This class manages the interdependent graph of parsed and converted Xpand files, allowing access to them by "compilation unit".
  * 
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
     private final XpandExecutionContext _ctx;
@@ -90,6 +93,10 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
         // register the XtendLib. Do this first so the extension can override functions
         for (NamedFunction f: new XtendLibContributor (_middleEnd).getContributedFunctions())
             result.getPrivateFunctions().add (f);
+        
+        // register the XpandLib
+        for (NamedFunction f: new XpandLibContributor (_middleEnd).getContributedFunctions())
+        	result.getPrivateFunctions().add (f);
         
         final Set<XpandDefinitionName> referenced = new HashSet<XpandDefinitionName> ();
         

@@ -1,0 +1,11 @@
+«AROUND *SomeAdviced* FOR String-»
+pre1: *SomeAdviced* («targetDef.proceed()-») post1
+«ENDAROUND»
+
+«AROUND *SomeAdviced* (String param1, *) FOR String-»
+pre2: *SomeAdviced* (String param1, *) «param1» («targetDef.proceed()-») post2
+«ENDAROUND»
+
+«AROUND *SomeAdviced* (*) FOR String-»
+pre3: *SomeAdviced* (*) («targetDef.proceed()-») post3
+«ENDAROUND»

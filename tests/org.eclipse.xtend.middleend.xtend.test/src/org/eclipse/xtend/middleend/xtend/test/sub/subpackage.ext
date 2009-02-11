@@ -1,0 +1,5 @@
+import org::eclipse::xtend::middleend::xtend::test;
+
+
+String testSomeFunction(String param1, Integer param2) : param1 + param2;
+String testSomeAdvicedFunction(String param1, Integer param2) : param1 + param2;

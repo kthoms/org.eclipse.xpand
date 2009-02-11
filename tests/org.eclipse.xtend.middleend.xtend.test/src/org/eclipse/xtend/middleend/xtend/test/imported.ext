@@ -1,0 +1,5 @@
+
+extension org::eclipse::xtend::middleend::xtend::test::reexported reexport;
+
+other(Object o): "imported " + o + "!";
+private Boolean aPrivateFunction() : true;

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase.
+Copyright (c) 2008 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
+    André Arnold
  */
 package org.eclipse.xtend.middleend.javaannotations;
 
@@ -16,6 +17,8 @@ import java.lang.reflect.Modifier;
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
@@ -28,6 +31,7 @@ import org.eclipse.xtend.middleend.plugins.ParsedResource;
  *  For more global sharing of the instance, Contributor instances must be shared. 
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
+ * @author André Arnold
  */
 public final class JavaFunctionClassContributor implements LanguageSpecificMiddleEnd {
     public static final String MIDDLE_END_NAME = "JavaAnnotations";
@@ -78,7 +82,11 @@ public final class JavaFunctionClassContributor implements LanguageSpecificMiddl
                 continue;
          
             final boolean isPublicFunction = (mtd.getAnnotation (M2tPrivateFunction.class) == null);
-            final NamedFunction f = new NamedFunction (mtd.getName(), new JavaDefinedFunction (mtd, null, _middleEnd.getTypesystem()));
+            final QualifiedName functionName = (mtd.getAnnotation (M2tQualifiedName.class) != null) ? 
+               		new QualifiedName (cls.getCanonicalName().replaceAll(".", SyntaxConstants.NS_DELIM), mtd.getName()) 
+             	: 
+               		new QualifiedName (mtd.getName());
+            final NamedFunction f = new NamedFunction (functionName, new JavaDefinedFunction (mtd, null, _middleEnd.getTypesystem()));
             
             if (isPublicFunction)
                 result.getPublicFunctions().add (f);

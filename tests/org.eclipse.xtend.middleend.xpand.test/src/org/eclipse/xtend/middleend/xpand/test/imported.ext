@@ -1,0 +1,4 @@
+
+extension org::eclipse::xtend::middleend::xpand::test::reexported reexport;
+
+other(Object o): "imported " + o + "!";

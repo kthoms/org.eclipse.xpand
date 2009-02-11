@@ -176,6 +176,9 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
             if (imp.isExported()) {
                 final XtendFile xf = (XtendFile) rm.loadResource(imp.getImportedId().getValue(),
                         XtendFile.FILE_EXTENSION);
+				if (xf == null)
+					throw new RuntimeException("Unable rexport extension file " + imp.getImportedId().getValue() + " from " + this.getFullyQualifiedName());
+				
                 ExecutionContext context = ctx.cloneWithResource(xf);
                 List<Extension> publicExtensions = xf.getPublicExtensions(rm, context, flowoverCache);
                 for (Extension extension : publicExtensions) {

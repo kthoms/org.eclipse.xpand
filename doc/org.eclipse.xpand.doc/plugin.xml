@@ -1,3 +1,5 @@
-<?xml version="1.0"?>
-<?eclipse version="3.0"?>
-<plugin><extension point="org.eclipse.help.toc"><toc file="toc.xml" primary="true"/><index path="index"/></extension><extension point="org.eclipse.help.toc"><toc file="topics_Reference.xml"/></extension><extension point="org.eclipse.pde.core.javadoc"><javadoc path="doc.zip!/references/javadoc" archive="true"><plugin id="org.eclipse.m2t.common.recipe"/><plugin id="org.eclipse.m2t.common.recipe.astChecks"/><plugin id="org.eclipse.m2t.common.recipe.simpleChecks"/><plugin id="org.eclipse.m2t.common.recipe.ui"/><plugin id="org.eclipse.m2t.common.recipe.workflow"/><plugin id="org.eclipse.xpand"/><plugin id="org.eclipse.xpand.ui"/><plugin id="org.eclipse.xtend"/><plugin id="org.eclipse.xtend.check.ui"/><plugin id="org.eclipse.xtend.shared.ui"/><plugin id="org.eclipse.xtend.typesystem.emf"/><plugin id="org.eclipse.xtend.typesystem.emf.ui"/><plugin id="org.eclipse.xtend.typesystem.uml2"/><plugin id="org.eclipse.xtend.typesystem.uml2.ui"/><plugin id="org.eclipse.xtend.ui"/><plugin id="org.eclipse.xtend.util.stdlib"/></javadoc></extension></plugin>
+<plugin provider-name="Eclipse.org" version="1.0" id="org.eclipse.xpand.doc" name="Xpand core documentation (Incubation)">
+<extension point="org.eclipse.help.toc">
+<toc primary="true" file="toc.xml"/>
+</extension>
+</plugin>

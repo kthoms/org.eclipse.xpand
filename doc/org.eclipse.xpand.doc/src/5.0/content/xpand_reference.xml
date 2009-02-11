@@ -2838,7 +2838,4 @@
       &lt;&lt;ENDAROUND&gt;&gt;</programlisting>
     </section>
   </section>
-  
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../content/builtin_api.xml"/>
 </chapter>

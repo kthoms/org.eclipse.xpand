@@ -1,6 +1,6 @@
 import test;
 
-extension org::openarchitectureware::adapter::emf::check::cache::Cached;
+extension org::eclipse::xtend::typesystem::emf::check::cache::Cached;
 
 context MyMetaClass ERROR "Name not set":
 	nameIsSet();

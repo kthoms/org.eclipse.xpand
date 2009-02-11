@@ -39,8 +39,8 @@ public class Bug155018Test extends XpandCoreTestBase {
         env.addInternalJar(proj.getFullPath(), "ExtensionInJar.jar", readJar(), false);
         env.fullBuild();
         IXtendXpandProject project = Activator.getExtXptModelManager().findProject(proj.getFullPath());
-        assertNotNull(JavaCore.create(proj).findType("org.openarchitectureware.expression.Analyzable"));
-        IXtendXpandResource res = project.findExtXptResource("org::openarchitectureware::util::IO","ext");
+        assertNotNull(JavaCore.create(proj).findType("org.eclipse.xtend.expression.Analyzable"));
+        IXtendXpandResource res = project.findExtXptResource("org::eclipse::xtend::util::stdlib::io","ext");
         assertNotNull(res);
         assertNotNull(res.getFullyQualifiedName());
         assertNotNull("AbstractExtension from Jar not found (Bug155018)", res);

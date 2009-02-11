@@ -182,20 +182,22 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	           return getMetamodelsForProjectInternal(project, visited);
 	       }
 	    
-	       /**
-	        * Retrieves the list of EPackages that are accessible for the given
-	        * project, i.e. that are in the project's classpath. The referenced projects are searched
-	        * recursively, but loops are detected.
-	        * 
-	        * @param project The project to retrieve the metamodels for. Must not be null.
-	        * @param visited The names of the projects that have already been visited. 
-	        * @return The metamodels for the given project. An empty array if none
-	        *         are accessible.
-	        */
-	       private EPackage[] getMetamodelsForProjectInternal(IJavaProject project, Set<String> visited) {
-	           if (visited.contains(project.getProject().getName()))
-	               return new EPackage[0];
-	           visited.add(project.getProject().getName());
+	/**
+	 * Retrieves the list of EPackages that are accessible for the given
+	 * project, i.e. that are in the project's classpath. The referenced
+	 * projects are searched recursively, but loops are detected.
+	 * 
+	 * @param project
+	 *            The project to retrieve the metamodels for. Must not be null.
+	 * @param visited
+	 *            The names of the projects that have already been visited.
+	 * @return The metamodels for the given project. An empty array if none are
+	 *         accessible.
+	 */
+	private EPackage[] getMetamodelsForProjectInternal(IJavaProject project, Set<String> visited) {
+		if (visited.contains(project.getProject().getName()))
+			return new EPackage[0];
+		visited.add(project.getProject().getName());
 	           
 		ProjectAnalyzer projectAnalyzer = getProjectAnalyzer(project.getProject());
 		if (projectAnalyzer == null) {

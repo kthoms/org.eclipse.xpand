@@ -137,6 +137,14 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		}
 		for (final Iterator<?> iter = toAnalyze.iterator(); iter.hasNext();) {
 			final IXtendXpandResource res = (IXtendXpandResource) iter.next();
+			IStorage underlyingStorage = res.getUnderlyingStorage();
+		    if(underlyingStorage instanceof IResource) {
+		    	IResource resource = (IResource) underlyingStorage;
+		    	IProject project = resource.getProject();
+		    	if(project.isLinked()) {
+		    		continue;
+		    	}
+		    }
 			res.analyze();
 		}
 		IXtendXpandProject p = Activator.getExtXptModelManager().findProject(getProject());

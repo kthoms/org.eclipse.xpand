@@ -47,7 +47,7 @@ public class XmiReader extends AbstractWorkflowComponent {
 	protected boolean firstElementOnly = true;
 
 	/**
-	 * @see org.openarchitectureware.workflow.lib.AbstractWorkflowComponent#getLogMessage()
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
 	 */
 	@Override
 	public String getLogMessage() {
@@ -116,7 +116,7 @@ public class XmiReader extends AbstractWorkflowComponent {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.WorkflowComponent#checkConfiguration(org.openarchitectureware.workflow.issues.Issues)
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.openarchitectureware.workflow.issues.Issues)
 	 */
 	public void checkConfiguration(final Issues issues) {
 		loadFile(issues);
@@ -169,7 +169,7 @@ public class XmiReader extends AbstractWorkflowComponent {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.WorkflowComponent#getComponentName()
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getComponentName()
 	 */
 	@Override
 	public String getComponentName() {

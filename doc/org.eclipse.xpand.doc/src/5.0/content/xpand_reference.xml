@@ -39,7 +39,7 @@
       concrete syntax for executable expressions, using the type system.</para>
     
     <para>The Java API described here is located in the
-      <package>org.openarchitectureware.type</package> package and is a part of the
+      <package>org.eclipse.xtend.type</package> package and is a part of the
       subproject
       <package>core-expressions</package>.</para>
     
@@ -2449,9 +2449,7 @@
         <title>Main configuration</title>
         
         <para>The first thing to note is that the qualified Java name of the component is
-          <varname>org.openarchitectureware.xpand2.Generator2</varname>. One can
-          use the shortcut <varname>oaw</varname> instead of a preceding
-          <varname>org.openarchitectureware</varname>. The workflow engine will
+          <varname>org.eclipse.xpand2.Generator</varname>. The workflow engine will
           resolve it.</para>
       </section>
       
@@ -2566,15 +2564,15 @@
           
           
           <programlisting>&lt;beautifier
-          class="org.openarchitectureware.xpand2.output.JavaBeautifier"/&gt;
+          class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
           &lt;beautifier
-          class="org.openarchitectureware.xpand2.output.XmlBeautifier"/&gt;</programlisting>
+          class="org.eclipse.xpand2.output.XmlBeautifier"/&gt;</programlisting>
           These are the two beautifiers delivered with <emphasis>Xpand</emphasis>. If
           you want to use your own beautifier, you would just need to implement the
           following Java interface:
           
           
-          <programlisting>package org.openarchitectureware.xpand2.output;
+          <programlisting>package org.eclipse.xpand2.output;
           public interface PostProcessor { public void
           beforeWriteAndClose(FileHandle handle); public void
           afterClose(FileHandle handle); }</programlisting>The

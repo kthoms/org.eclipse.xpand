@@ -68,6 +68,10 @@ public class JDTUtil {
 								.resource();
 						if (resource instanceof IFolder) {
 							rootFolder = (IFolder) resource;
+							IStorage member = (IStorage) rootFolder.findMember(p);
+							if(member != null) {
+								return member;
+							}
 						}
 					}
 					if (rootFolder != null) {

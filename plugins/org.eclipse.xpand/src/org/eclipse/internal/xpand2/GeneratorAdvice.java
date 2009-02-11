@@ -62,7 +62,7 @@ import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowAdvice;
  * <tr>
  * <td>metaModel</td>
  * <td>0..n</td>
- * <td>org.openarchitectureware.type.MetaModel</td>
+ * <td>org.eclipse.extend.typesystem.MetaModel</td>
  * <td>Additional metamodels needed for the advices.</td>
  * </tr>
  * 
@@ -118,7 +118,7 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.ao.AbstractWorkflowAdvice#checkConfiguration(org.openarchitectureware.workflow.issues.Issues)
+	 * @see org.eclipse.emf.mwe.core.ao.AbstractWorkflowAdvice#checkConfiguration(org.openarchitectureware.workflow.issues.Issues)
 	 */
 	@Override
 	public void checkConfiguration(Issues issues) {
@@ -129,8 +129,8 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	}
 
 	/**
-	 * @see org.openarchitectureware.expression.AbstractExpressionsUsingWorkflowAdvice#weave(org.openarchitectureware.workflow.WorkflowComponent,
-	 *      org.openarchitectureware.workflow.issues.Issues)
+	 * @see org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowAdvice#weave(org.openarchitectureware.workflow.WorkflowComponent,
+	 *      org.eclipse.emf.mwe.core.issues.Issues)
 	 */
 	@Override
 	public void weave(WorkflowComponent c, Issues issues) {

@@ -10,7 +10,7 @@ Profile applyProfile (Model model, String uri) :
 	
 cached Stereotype getStereotype (Model m, String stereotype) :
 	m.getAppliedProfiles().allOwnedElements().typeSelect(Stereotype).select(st|st.qualifiedName==stereotype).first();
-	
+
 // allOwnedElements().getApplicableStereotypes()
 Void setTaggedValue (Element elem, String stereotypeName, String taggedValueName, Object value) :
 	JAVA org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.setTaggedValue(

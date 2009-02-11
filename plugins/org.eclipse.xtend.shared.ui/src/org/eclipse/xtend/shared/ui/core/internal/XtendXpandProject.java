@@ -33,6 +33,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.core.ElementChangedEvent;
 import org.eclipse.jdt.core.IElementChangedListener;
+import org.eclipse.jdt.core.IJarEntryResource;
 import org.eclipse.jdt.core.IJavaElementDelta;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
@@ -59,12 +60,14 @@ public class XtendXpandProject implements IXtendXpandProject {
 				if (initializing.add(project)) {
 					try {
 						Activator.getExtXptModelManager().findProject(ps[i]);
-					} finally {
+					}
+					finally {
 						initializing.remove(project);
 					}
 				}
 			}
-		} catch (final CoreException e) {
+		}
+		catch (final CoreException e) {
 			XtendLog.logError(e);
 		}
 		JavaCore.addElementChangedListener(new IElementChangedListener() {
@@ -72,8 +75,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 			public void elementChanged(ElementChangedEvent event) {
 				if (fromJar.isEmpty())
 					return;
-				if (containsRemovedClassPathEntry(event.getDelta()
-						.getAffectedChildren()))
+				if (containsRemovedClassPathEntry(event.getDelta().getAffectedChildren()))
 					removeResourcesFromJar();
 			}
 		}, ElementChangedEvent.POST_CHANGE);
@@ -83,25 +85,22 @@ public class XtendXpandProject implements IXtendXpandProject {
 			protected IStatus run(final IProgressMonitor monitor) {
 				try {
 					final IProject p = project.getProject();
-					if (p.isAccessible()
-							&& p.isNatureEnabled(XtendXpandNature.NATURE_ID)) {
-						p.build(IncrementalProjectBuilder.CLEAN_BUILD,
-								XtendXpandBuilder.getBUILDER_ID(),
+					if (p.isAccessible() && p.isNatureEnabled(XtendXpandNature.NATURE_ID)) {
+						p.build(IncrementalProjectBuilder.CLEAN_BUILD, XtendXpandBuilder.getBUILDER_ID(),
 								new HashMap<Object, Object>(), monitor);
 					}
-				} catch (final CoreException e) {
+				}
+				catch (final CoreException e) {
 					XtendLog.logError(e);
 				}
 				return Status.OK_STATUS;
 			}
 		};
-		j.setRule(project.getResource().getWorkspace().getRuleFactory()
-				.buildRule());
+		j.setRule(project.getResource().getWorkspace().getRuleFactory().buildRule());
 		j.schedule();
 	}
 
-	protected boolean containsRemovedClassPathEntry(
-			IJavaElementDelta[] affectedChildren) {
+	protected boolean containsRemovedClassPathEntry(IJavaElementDelta[] affectedChildren) {
 		for (int i = 0; i < affectedChildren.length; i++) {
 			IJavaElementDelta delta = affectedChildren[i];
 			if ((delta.getFlags() & IJavaElementDelta.F_REMOVED_FROM_CLASSPATH) != 0) {
@@ -149,20 +148,19 @@ public class XtendXpandProject implements IXtendXpandProject {
 	public IXtendXpandProject[] getReferencedProjects() {
 		Set<IXtendXpandProject> result = new HashSet<IXtendXpandProject>();
 		try {
-			IProject[] projects = getProject().getProject()
-					.getReferencedProjects();
+			IProject[] projects = getProject().getProject().getReferencedProjects();
 			for (IProject project : projects) {
-				IXtendXpandProject p = Activator.getExtXptModelManager().findProject(
-						project);
+				IXtendXpandProject p = Activator.getExtXptModelManager().findProject(project);
 				if (p != null)
 					result.add(p);
 			}
-		} catch (CoreException e) {
+		}
+		catch (CoreException e) {
 			XtendLog.logError(e);
 		}
 		return result.toArray(new IXtendXpandProject[result.size()]);
 	}
-	
+
 	/**
 	 * @see IXtendXpandProject#getAllReferencedProjects()
 	 */
@@ -186,10 +184,8 @@ public class XtendXpandProject implements IXtendXpandProject {
 	public void unregisterOawResource(final IXtendXpandResource res) {
 		if (res != null) {
 			if (res.getUnderlyingStorage() instanceof IFile)
-				XtendXpandMarkerManager.deleteMarkers((IFile) res
-						.getUnderlyingStorage());
-			resources.remove(new ResourceID(res.getFullyQualifiedName(), res
-					.getFileExtension()));
+				XtendXpandMarkerManager.deleteMarkers((IFile) res.getUnderlyingStorage());
+			resources.remove(new ResourceID(res.getFullyQualifiedName(), res.getFileExtension()));
 		}
 	}
 
@@ -199,7 +195,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 	public IXtendXpandResource findExtXptResource(final String fqn, final String extension) {
 		assert (fqn != null);
 		assert (extension != null);
-		if (Activator.getRegisteredResourceContributorFor(extension)==null)
+		if (Activator.getRegisteredResourceContributorFor(extension) == null)
 			return null;
 		// for performance reasons ask the cache first
 		IXtendXpandResource res = findCachedOawResource(fqn, extension);
@@ -227,12 +223,13 @@ public class XtendXpandProject implements IXtendXpandProject {
 		IXtendXpandResource res = resources.get(new ResourceID(fqn, extension));
 		if (res == null)
 			return null;
-		
+
 		// eliminate stale resources
-		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember((res.getUnderlyingStorage().getFullPath()));
+		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(
+				(res.getUnderlyingStorage().getFullPath()));
 		if (workspaceResource != null && workspaceResource.exists())
 			return res;
-		else {			
+		else {
 			resources.remove(new ResourceID(fqn, extension));
 			return null;
 		}
@@ -240,30 +237,32 @@ public class XtendXpandProject implements IXtendXpandProject {
 
 	/**
 	 * Loads an oAW Resource. Searches the project and all referenced projects.
-	 * @param fqn Qualified name of the resource, e.g. '<tt>org::eclipse::xtend::util::stdlib::io.ext'
-	 * @param extension The resource's file extension
-	 * @param searchJars <tt>true</tt> search also in referenced Jar files on the classpath
+	 * 
+	 * @param fqn
+	 *            Qualified name of the resource, e.g. '<tt>org::eclipse::xtend::util::stdlib::io.ext'
+	 * @param extension
+	 *            The resource's file extension
+	 * @param searchJars
+	 *            <tt>true</tt> search also in referenced Jar files on the
+	 *            classpath
 	 * @return The resource or <code>null</code> if not found
 	 */
-	private IXtendXpandResource loadOawResource(final String fqn,
-			final String extension, boolean searchJars) {
+	private IXtendXpandResource loadOawResource(final String fqn, final String extension, boolean searchJars) {
 		assert (fqn != null);
 		assert (extension != null);
-		
+
 		// search the resource using JDT
-		IStorage storage = JDTUtil.findStorage(project, new ResourceID(fqn,
-				extension), searchJars);
-		
+		IStorage storage = JDTUtil.findStorage(project, new ResourceID(fqn, extension), searchJars);
+
 		// Found in this project?
 		if (storage != null && (searchJars || (storage instanceof IFile))) {
 			IXtendXpandResource result = null;
-			// get the file extension and find the appropriate ResourceContributor for this
+			// get the file extension and find the appropriate
+			// ResourceContributor for this
 			// kind of resource (Xpand/Xtend)
-			String fileExtension = storage.getName().substring(
-					storage.getName().lastIndexOf(".") + 1);
-			final ResourceContributor contr = Activator
-					.getRegisteredResourceContributorFor(fileExtension);
-			
+			String fileExtension = storage.getName().substring(storage.getName().lastIndexOf(".") + 1);
+			final ResourceContributor contr = Activator.getRegisteredResourceContributorFor(fileExtension);
+
 			// we have a registered contributor for this resource
 			if (contr != null) {
 				// load the resource using the ResourceContributor
@@ -280,23 +279,24 @@ public class XtendXpandProject implements IXtendXpandProject {
 				}
 			}
 		}
-		
-		// if reached here then the resource was not found in the current project. 
+
+		// if reached here then the resource was not found in the current
+		// project.
 		// Now we perform the same search on all referenced projects.
 		try {
 			final IProject[] p = project.getProject().getReferencedProjects();
 			for (int i = 0; i < p.length; i++) {
 				IProject project = p[i];
-				final XtendXpandProject oawp = (XtendXpandProject) Activator
-						.getExtXptModelManager().findProject(project);
+				final XtendXpandProject oawp = (XtendXpandProject) Activator.getExtXptModelManager().findProject(
+						project);
 				if (oawp != null) {
-					IXtendXpandResource result = oawp.loadOawResource(fqn, extension,
-							searchJars);
+					IXtendXpandResource result = oawp.loadOawResource(fqn, extension, searchJars);
 					if (result != null)
 						return result;
 				}
 			}
-		} catch (final CoreException e) {
+		}
+		catch (final CoreException e) {
 			XtendLog.logError(e);
 		}
 		return null;
@@ -319,23 +319,38 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @see IXtendXpandProject#analyze(IProgressMonitor)
 	 */
 	public void analyze(final IProgressMonitor monitor) {
-		for (final Iterator<IXtendXpandResource> iter = new ArrayList<IXtendXpandResource>(resources.values()).iterator(); iter
-				.hasNext();) {
+		for (final Iterator<IXtendXpandResource> iter = new ArrayList<IXtendXpandResource>(resources.values())
+				.iterator(); iter.hasNext();) {
 			if (monitor.isCanceled())
 				return;
 			IXtendXpandResource resource = iter.next();
 			synchronized (resource) {
-				resource.analyze();
+				if (!isInExternalPackageFragmentRoot(resource)) {
+					resource.analyze();
+				}
 			}
 			monitor.worked(1);
 		}
+	}
+
+	private boolean isInExternalPackageFragmentRoot(IXtendXpandResource resource) {
+		IStorage underlyingStorage = resource.getUnderlyingStorage();
+		IProject containerProject = null;
+		if (underlyingStorage instanceof IJarEntryResource) {
+			containerProject = ((IJarEntryResource) underlyingStorage).getPackageFragmentRoot().getJavaProject()
+					.getProject();
+		}
+		if (underlyingStorage instanceof IFile) {
+			containerProject = ((IFile) underlyingStorage).getProject();
+		}
+		return (containerProject != null) && containerProject.isHidden();
 	}
 
 	/**
 	 * Returns the name of the underlying project.
 	 */
 	@Override
-    public String toString() {
+	public String toString() {
 		return project.getPath().toString();
 	}
 

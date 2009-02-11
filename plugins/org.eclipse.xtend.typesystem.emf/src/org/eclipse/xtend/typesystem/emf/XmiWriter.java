@@ -106,7 +106,7 @@ public class XmiWriter extends AbstractWorkflowComponent {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.lib.AbstractWorkflowComponent#getLogMessage()
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
 	 */
 	@Override
 	public String getLogMessage() {
@@ -114,7 +114,7 @@ public class XmiWriter extends AbstractWorkflowComponent {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.WorkflowComponent#checkConfiguration(org.openarchitectureware.workflow.issues.Issues)
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.eclipse.emf.mwe.core.issues.Issues)
 	 */
 	public void checkConfiguration(final Issues issues) {
 		modelFile = modelFile.replace('\\', '/');
@@ -209,7 +209,7 @@ public class XmiWriter extends AbstractWorkflowComponent {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.WorkflowComponent#getComponentName()
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getComponentName()
 	 */
 	@Override
 	public String getComponentName() {

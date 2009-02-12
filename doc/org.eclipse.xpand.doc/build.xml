@@ -187,6 +187,26 @@
 		<delete file="${dest.dir}${file.separator}${article.name}.fo"/>
 	</target>
 	
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+	    <mkdir dir="${destination.temp.folder}/${docPlugin}_${pluginVersion}"/>
+	    <copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}"
+	      failonerror="false" overwrite="false">
+	      <fileset dir="${basedir}" includes="${filesToInclude}"/>
+	    </copy>
+	    <eclipse.versionReplacer
+	      path="${destination.temp.folder}/${docPlugin}_${pluginVersion}"
+	      version="${pluginVersion}"/>
+	  </target>
+	  
+	  <target name="build.zips" depends="init">
+	  </target>
+	  
+	  <target name="gather.sources" depends="init" if="destination.temp.folder">
+	  </target>
+	  
+	  <target name="gather.logs" depends="init" if="destination.temp.folder">
+	  </target>
+	  
 	<!-- ================================= 
           target: clean              
          ================================= -->

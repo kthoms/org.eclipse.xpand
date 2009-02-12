@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,11 @@ import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.typesystem.Type;
 
+/**
+ * @author Sven Efftinge (http://www.efftinge.de)
+ * @author Arno Haase
+ * @author Heiko Behrens
+ */
 public class JavaExtensionStatement extends AbstractExtension {
 
     protected Identifier javaType;
@@ -65,6 +70,7 @@ public class JavaExtensionStatement extends AbstractExtension {
                 }
                 throw new EvaluationException(javaMethodToString() + " not found, problems were: \n" + b, this, ctx);
             }
+            convertTypesToMethodSignature(ctx, method, parameters);
             return method.invoke(null, parameters);
         } catch (final InvocationTargetException ite) {
             throw new RuntimeException(ite.getCause());
@@ -73,7 +79,15 @@ public class JavaExtensionStatement extends AbstractExtension {
         }
     }
 
-    private String javaMethodToString() {
+	private void convertTypesToMethodSignature(ExecutionContext ctx, Method method, Object[] parameters) {
+		Class<?>[] paramTypes = method.getParameterTypes();
+		for(int i = 0; i < parameters.length; i++) {
+			Object param = parameters[i];
+			parameters[i] = ctx.getType(param).convert(param, paramTypes[i]);
+		}
+	}
+
+	private String javaMethodToString() {
         final StringBuffer buff = new StringBuffer();
         for (final Iterator<Identifier> iter = javaParamTypes.iterator(); iter.hasNext();) {
             buff.append(iter.next());

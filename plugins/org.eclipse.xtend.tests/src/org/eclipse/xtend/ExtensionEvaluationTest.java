@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@
 package org.eclipse.xtend;
 
 import java.io.StringReader;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -96,12 +97,12 @@ public class ExtensionEvaluationTest extends TestCase {
 
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 
-		final Extension ext = ec.getExtension("recExtension", new Object[] { new Long(5), new Long(10) });
-		final List<Long> expected = new ArrayList<Long>();
+		final Extension ext = ec.getExtension("recExtension", new Object[] { new BigInteger("5"), new BigInteger("10") });
+		final List<BigInteger> expected = new ArrayList<BigInteger>();
 		for (int i = 5; i <= 10; i++) {
-			expected.add(new Long(i));
+			expected.add(new BigInteger(""+i));
 		}
-		final Object evalResult = ext.evaluate(new Object[] { new Long(5), new Long(10) }, ec);
+		final Object evalResult = ext.evaluate(new Object[] { new BigInteger("5"), new BigInteger("10") }, ec);
 		assertEquals(expected, evalResult);
 
 	}

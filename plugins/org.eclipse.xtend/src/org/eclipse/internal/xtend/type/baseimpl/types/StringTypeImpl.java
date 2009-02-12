@@ -11,6 +11,7 @@
 
 package org.eclipse.internal.xtend.type.baseimpl.types;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -122,7 +123,7 @@ public class StringTypeImpl extends BuiltinBaseType implements Type {
                     
                     @Override
                     public String getDocumentation() {
-                        return "Tests if this string ends with the specified prefix.";
+                        return "Returns a new string that is a substring of this string.";
                     }
                     
                     @Override
@@ -291,7 +292,7 @@ public class StringTypeImpl extends BuiltinBaseType implements Type {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         try {
-                            return Integer.valueOf((String) target);
+                            return new BigInteger((String) target);
                         } catch (NumberFormatException nfe) {
                             log.error("'asInteger' on '"+target+"' returned null!");
                             return null;

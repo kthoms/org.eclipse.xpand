@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.xtend.typesystem.baseimpl.types;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -67,7 +68,7 @@ public class CollectionTypeTest extends TestCase {
 	public final void testToSet() {
 		final Set result = (Set) ef.evaluate("{1,2,3}.toSet()");
 		assertEquals(3, result.size());
-		assertTrue(result.contains(new Long(2)));
+		assertTrue(result.contains(new BigInteger("2")));
 	}
 
 	public final void testSize() {
@@ -93,28 +94,28 @@ public class CollectionTypeTest extends TestCase {
 	}
 
 	public final void testFirst() {
-		assertEquals(1l, ef.evaluate("{1,2,3}.first()"));
+		assertEquals(BigInteger.ONE, ef.evaluate("{1,2,3}.first()"));
 		assertEquals(null, ef.evaluate("{}.first()"));
 		assertEquals(null, ef.evaluate("null.first()"));
 	}
 
 	public final void testLast() {
-		assertEquals(3l, ef.evaluate("{1,2,3}.last()"));
+		assertEquals(new BigInteger("3"), ef.evaluate("{1,2,3}.last()"));
 		assertNull(ef.evaluate("{}.last()"));
 		assertNull(ef.evaluate("null.last()"));
 	}
 
 	public final void testReverse() {
-		assertEquals(3l, ef.evaluate("{1,2,3}.reverse().first()"));
-		assertEquals(1l, ef.evaluate("{1,2,3}.reverse().reverse().first()"));
+		assertEquals(new BigInteger("3"), ef.evaluate("{1,2,3}.reverse().first()"));
+		assertEquals(BigInteger.ONE, ef.evaluate("{1,2,3}.reverse().reverse().first()"));
 		assertTrue(((List) ef.evaluate("{}.reverse()")).isEmpty());
 		assertNull(ef.evaluate("null.reverse()"));
 	}
 
 	public final void testWithoutFirst() {
-		List<Long> l = new ArrayList<Long>();
-		l.add(2l);
-		l.add(3l);
+		List<BigInteger> l = new ArrayList<BigInteger>();
+		l.add(new BigInteger("2"));
+		l.add(new BigInteger("3"));
 		assertEquals(l, ef.evaluate("{1,2,3}.withoutFirst()"));
 		assertEquals(Collections.EMPTY_LIST, ef.evaluate("{1}.withoutFirst()"));
 		assertEquals(Collections.EMPTY_LIST, ef.evaluate("{}.withoutFirst()"));
@@ -122,9 +123,9 @@ public class CollectionTypeTest extends TestCase {
 	}
 
 	public final void testWithoutLast() {
-		List<Long> l = new ArrayList<Long>();
-		l.add(1l);
-		l.add(2l);
+		List<BigInteger> l = new ArrayList<BigInteger>();
+		l.add(BigInteger.ONE);
+		l.add(new BigInteger("2"));
 		assertEquals(l, ef.evaluate("{1,2,3}.withoutLast()"));
 		assertEquals(Collections.EMPTY_LIST, ef.evaluate("{1}.withoutLast()"));
 		assertEquals(Collections.EMPTY_LIST, ef.evaluate("{}.withoutLast()"));

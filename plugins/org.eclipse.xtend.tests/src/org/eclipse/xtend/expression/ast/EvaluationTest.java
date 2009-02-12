@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
 
 package org.eclipse.xtend.expression.ast;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -115,8 +116,8 @@ public class EvaluationTest extends TestCase {
 	@SuppressWarnings("unchecked")
     public final void testCollectionLiteral1() {
 		assertEquals(Arrays.asList("hallo"), eval ("{\"hallo\"}"));
-		assertEquals(Arrays.asList(3L), eval ("{3}"));
-	    assertEquals (Arrays.asList("hallo", 3L), eval ("{\"hallo\",3}"));
+		assertEquals(Arrays.asList(new BigInteger("3")), eval ("{3}"));
+	    assertEquals (Arrays.asList("hallo", new BigInteger("3")), eval ("{\"hallo\",3}"));
 	}
 
 	public final void testFeatureCall() {
@@ -150,16 +151,16 @@ public class EvaluationTest extends TestCase {
 	}
 
 	public final void testArithmetic() {
-		assertEquals(new Long(11), eval ("4 * 2 + 3"));
-		assertEquals(new Long(11), eval ("3 + 4 * 2"));
-		assertEquals(new Long(9), eval ("4 * 2 + 3 / 3"));
-		assertEquals(new Long(4), eval ("4 * 2 - (9 / 2)"));
+		assertEquals(new BigInteger("11"), eval ("4 * 2 + 3"));
+		assertEquals(new BigInteger("11"), eval ("3 + 4 * 2"));
+		assertEquals(new BigInteger("9"), eval ("4 * 2 + 3 / 3"));
+		assertEquals(new BigInteger("4"), eval ("4 * 2 - (9 / 2)"));
 
 		assertEquals(new Double(11), eval ("3 + 4.0 * 2"));
 		assertEquals(new Double(11), eval ("4.0 * 2 + 3"));
 		assertEquals(new Double(9), eval ("4 * 2 + 3 / 3.0"));
 
-		assertEquals(new Long(2), eval ("5 / 2"));
+		assertEquals(new BigInteger("2"), eval ("5 / 2"));
 		assertEquals(new Double(2.5), eval ("5 / 2.0"));
 	}
 

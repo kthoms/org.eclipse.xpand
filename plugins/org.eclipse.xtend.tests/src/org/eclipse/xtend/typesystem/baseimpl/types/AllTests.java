@@ -17,6 +17,7 @@ public class AllTests {
 		suite.addTestSuite(StringTypeTest.class);
 		suite.addTestSuite(EnumTest.class);
 		suite.addTestSuite(BooleanTypeTest.class);
+		suite.addTestSuite(RealAndIntegerTeamplayTest.class);
 		//$JUnit-END$
 		return suite;
 	}

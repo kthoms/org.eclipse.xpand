@@ -20,6 +20,7 @@ public class AllTests {
 		suite.addTestSuite(XtendFacadeTest.class);
 		suite.addTestSuite(XtendComponentTest.class);
 		suite.addTestSuite(ExtensionEvaluationTest.class);
+		suite.addTestSuite(JavaExtensionTypeConversionTest.class);
 		//$JUnit-END$
 		return suite;
 	}

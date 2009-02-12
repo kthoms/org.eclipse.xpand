@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.xtend.typesystem.baseimpl.types;
 
+import java.math.BigInteger;
+
 import junit.framework.TestCase;
 
 import org.eclipse.xtend.expression.ExecutionContextImpl;
@@ -33,7 +35,7 @@ public class StringTypeTest extends TestCase {
     }
     
     public final void testAsInteger() {
-        assertEquals(new Integer(42),ef.evaluate("'42'.asInteger()"));
+        assertEquals(new BigInteger("42"),ef.evaluate("'42'.asInteger()"));
     }
 
     public final void testSplit() {

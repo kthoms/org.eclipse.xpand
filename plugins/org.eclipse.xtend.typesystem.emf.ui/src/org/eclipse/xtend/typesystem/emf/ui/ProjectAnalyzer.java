@@ -82,6 +82,8 @@ final class ProjectAnalyzer extends Job {
 		mapping = new HashMap<IStorage, Resource>();
 		packages = new HashMap<String, EPackage>();
 		loadMetamodelsForProject(project, rs, monitor);
+		// always add ecore
+		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 
 		// done. now trigger build for the project.
 		// only do this if it is an oaw project

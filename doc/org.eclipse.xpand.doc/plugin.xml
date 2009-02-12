@@ -1,5 +1,8 @@
 <plugin provider-name="Eclipse.org" version="1.0" id="org.eclipse.xpand.doc" name="Xpand core documentation (Incubation)">
 <extension point="org.eclipse.help.toc">
 <toc primary="true" file="toc.xml"/>
+<index
+      path="org.eclipse.xpand.doc.index">
+</index>
 </extension>
 </plugin>

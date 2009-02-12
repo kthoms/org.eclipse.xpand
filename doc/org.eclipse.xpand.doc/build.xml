@@ -61,7 +61,42 @@
 		<available file="${jai.dir}" property="jai.exists"/>
 		<antcall target="notifyJAI"/>
 	</target>
-	
+
+	  <target name="build.update.jar" depends="init"
+	    description="Build the plug-in: ${plugin} for an update site.">
+	    <delete dir="${temp.folder}"/>
+	    <mkdir dir="${temp.folder}"/>
+	    <antcall target="build.jars"/>
+	    <antcall target="gather.bin.parts">
+	      <param name="destination.temp.folder" value="${temp.folder}/"/>
+	    </antcall>
+	    <zip destfile="${plugin.destination}/${docPlugin}_${pluginVersion}.jar"
+	      basedir="${temp.folder}/${docPlugin}_${pluginVersion}" filesonly="false"
+	      whenempty="skip" update="false"/>
+	    <delete dir="${temp.folder}"/>
+	  </target>
+	  
+	  <target name="build.jars" depends="init"
+	    description="Build all the jars for the plug-in: ${docPlugin}.">
+	    
+	    <!-- Execute a shell script that will create an ant javadoc script and then run it for us -->
+	    <exec executable="sh">
+	      <arg value="build/antJavadoc.sh"/>
+	      <arg value="${eclipse.home}/../eclipse"/>
+	    </exec>
+	    
+	    <antcall target="build.index"/>
+	    
+	  </target>
+	  
+	  <target name="build.index" depends="init"
+	    description="Builds search index for the plug-in" if="eclipse.running">
+	    <help.buildHelpIndex manifest="plugin.xml" destination="."/>
+	  </target>
+	  
+	  <target name="build.sources" depends="init">
+	  </target>
+
 	<target name="notifyJAI" unless="jai.exists">
 		<echo message="The Java Advanced Imaging (JAI) library is not available."/>
 		<echo message="JAI is required if you want to use PNG images in your article."/>

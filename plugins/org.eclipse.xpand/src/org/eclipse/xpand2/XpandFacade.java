@@ -83,7 +83,7 @@ public class XpandFacade {
 		return issues.toArray(new AnalysationIssue[issues.size()]);
 	}
 
-	public static XpandFacade create(XpandExecutionContextImpl execCtx) {
+	public static XpandFacade create(XpandExecutionContext execCtx) {
 		return new XpandFacade(execCtx);
 	}
 }

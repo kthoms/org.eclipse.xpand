@@ -11,7 +11,10 @@
 
 package org.eclipse.xpand2;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.internal.xpand2.model.XpandDefinition;
@@ -39,11 +42,17 @@ public class XpandFacade {
 	}
 
 	public void evaluate(final String definitionName, final Object targetObject, Object... params) {
-		params = params == null ? new Object[0] : params;
+		evaluate2(definitionName, targetObject, params!=null ? Arrays.asList(params) : null);
+	}
+	
+	public void evaluate2(final String definitionName, final Object targetObject, List<Object> paramList) {
+		if (paramList==null)
+			paramList = Collections.emptyList();
 		final Type targetType = ctx.getType(targetObject);
-		final Type[] paramTypes = new Type[params.length];
+		final Type[] paramTypes = new Type[paramList.size()];
 		for (int i = 0; i < paramTypes.length; i++) {
-			paramTypes[i] = ctx.getType(params[i]);
+			Object obj = paramList.get(i);
+			paramTypes[i] = ctx.getType(obj);
 		}
 
 		final XpandDefinition def = ctx.findDefinition(definitionName, targetType, paramTypes);
@@ -53,8 +62,8 @@ public class XpandFacade {
 
 		ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE,
 				targetObject));
-		for (int i = 0; i < params.length; i++) {
-			final Variable v = new Variable(def.getParams()[i].getName().getValue(), params[i]);
+		for (int i = 0; i < paramList.size(); i++) {
+			final Variable v = new Variable(def.getParams()[i].getName().getValue(), paramList.get(i));
 			ctx = (XpandExecutionContext) ctx.cloneWithVariable(v);
 		}
 		ctx = (XpandExecutionContext) ctx.cloneWithResource(def.getOwner());

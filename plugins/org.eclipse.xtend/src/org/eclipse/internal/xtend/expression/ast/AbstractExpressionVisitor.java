@@ -10,9 +10,8 @@
  *******************************************************************************/
 package org.eclipse.internal.xtend.expression.ast;
 
-public abstract class AbstractExpressionVisitor extends AbstractVisitor {
+public abstract class AbstractExpressionVisitor extends AbstractVisitor{
 
-	@Override
 	public final Object visit(final ISyntaxElement ele) {
 		Object result = null;
 		if (result == null && ele instanceof BooleanOperation) {
@@ -72,139 +71,120 @@ public abstract class AbstractExpressionVisitor extends AbstractVisitor {
 		return result;
 	}
 
-	protected Object visitBooleanOperation(BooleanOperation node) {
-		if (node.getLeft() != null) {
+	protected Object visitBooleanOperation(BooleanOperation node){
+		if(node.getLeft() != null)
 			node.getLeft().accept(this);
-		}
-		if (node.getRight() != null) {
+		if(node.getRight() != null)
 			node.getRight().accept(this);
-		}
 		return node;
 	}
 
-	protected Object visitCast(Cast node) {
-		if (node.getTarget() != null) {
+	protected Object visitCast(Cast node){
+		if(node.getTarget() != null)
 			node.getTarget().accept(this);
-		}
 		return node;
 	}
 
-	protected Object visitConstructorCallExpression(ConstructorCallExpression node) {
+	protected Object visitConstructorCallExpression(ConstructorCallExpression node){
 		return node;
 	}
 
-	protected Object visitGlobalVarExpression(GlobalVarExpression node) {
+	protected Object visitGlobalVarExpression(GlobalVarExpression node){
 		return node;
 	}
 
 	protected Object visitChainExpression(ChainExpression ce) {
-		if (ce.getFirst() != null) {
+		if(ce.getFirst() != null)
 			ce.getFirst().accept(this);
-		}
-		if (ce.getNext() != null) {
+		if(ce.getNext() != null)
 			ce.getNext().accept(this);
-		}
 		return ce;
 	}
 
 	protected Object visitFeatureCall(FeatureCall fc) {
-		if (fc.getTarget() != null) {
+		if(fc.getTarget() != null)
 			fc.getTarget().accept(this);
-		}
 		return fc;
 	}
 
-	protected Object visitCollectionExpression(CollectionExpression node) {
-		if (node.getClosure() != null) {
+	protected Object visitCollectionExpression(CollectionExpression node){
+		if(node.getClosure() != null)
 			node.getClosure().accept(this);
-		}
-		if (node.getTarget() != null) {
+		if(node.getTarget() != null)
 			node.getTarget().accept(this);
-		}
 		return node;
 	}
 
 	protected Object visitOperationCall(OperationCall oc) {
-		if (oc.getTarget() != null) {
+		if(oc.getTarget() != null)
 			oc.getTarget().accept(this);
-		}
-		if (oc.getParamsAsList() != null) {
-			for (Expression expr : oc.getParamsAsList()) {
+		if(oc.getParamsAsList() != null){
+			for(Expression expr: oc.getParamsAsList()){
 				expr.accept(this);
 			}
 		}
 		return oc;
 	}
 
-	protected Object visitTypeSelectExpression(TypeSelectExpression node) {
-		if (node.getTarget() != null) {
+	protected Object visitTypeSelectExpression(TypeSelectExpression node){
+		if(node.getTarget() != null)
 			node.getTarget().accept(this);
-		}
 		return node;
 	}
 
-	protected Object visitIfExpression(IfExpression node) {
-		if (node.getCondition() != null) {
+	protected Object visitIfExpression(IfExpression node){
+		if(node.getCondition() != null)
 			node.getCondition().accept(this);
-		}
-		if (node.getThenPart() != null) {
+		if(node.getThenPart() != null)
 			node.getThenPart().accept(this);
-		}
-		if (node.getElsePart() != null) {
+		if(node.getElsePart() != null)
 			node.getElsePart().accept(this);
-		}
 		return node;
 	}
 
-	protected Object visitLetExpression(LetExpression node) {
-		if (node.getTargetExpression() != null) {
+	protected Object visitLetExpression(LetExpression node){
+		if(node.getTargetExpression() != null)
 			node.getTargetExpression().accept(this);
-		}
-		if (node.getVarExpression() != null) {
+		if(node.getVarExpression() != null)
 			node.getVarExpression().accept(this);
-		}
 		return node;
 	}
 
-	protected Object visitSwitchExpression(SwitchExpression node) {
+	protected Object visitSwitchExpression(SwitchExpression node){
 		for (Case caze : node.getCases()) {
-			if (caze.getCondition() != null) {
+			if(caze.getCondition() != null)
 				caze.getCondition().accept(this);
-			}
-			if (caze.getThenPart() != null) {
+			if(caze.getThenPart() != null)
 				caze.getThenPart().accept(this);
 			}
-		}
-		if (node.getSwitchExpr() != null) {
+		if(node.getSwitchExpr() != null)
 			node.getSwitchExpr().accept(this);
-		}
-		if (node.getDefaultExpr() != null) {
+		if(node.getDefaultExpr() != null)
 			node.getDefaultExpr().accept(this);
-		}
 		return node;
 	}
 
-	protected Object visitListLiteral(ListLiteral node) {
+	protected Object visitListLiteral(ListLiteral node){
 		return node;
 	}
 
-	protected Object visitBooleanLiteral(BooleanLiteral node) {
+	protected Object visitBooleanLiteral(BooleanLiteral node){
 		return node;
 	}
 
-	protected Object visitIntegerLiteral(IntegerLiteral node) {
+	protected Object visitIntegerLiteral(IntegerLiteral node){
 		return node;
 	}
 
-	protected Object visitNullLiteral(NullLiteral node) {
+	protected Object visitNullLiteral(NullLiteral node){
 		return node;
 	}
 
-	protected Object visitRealLiteral(RealLiteral node) {
+	protected Object visitRealLiteral(RealLiteral node){
 		return node;
 	}
 
-	protected Object visitStringLiteral(StringLiteral node) {
+	protected Object visitStringLiteral(StringLiteral node){
 		return node;
 	}
 }

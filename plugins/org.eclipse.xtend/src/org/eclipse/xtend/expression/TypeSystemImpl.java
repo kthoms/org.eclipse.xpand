@@ -144,7 +144,6 @@ public class TypeSystemImpl implements TypeSystem {
 					}
 				}
 			}
-			
 			return bestMatch;
 		}
 
@@ -168,9 +167,12 @@ public class TypeSystemImpl implements TypeSystem {
 			t = (ParameterizedType) builtin.getTypeForName(collectionTypeName);
 			if (t == null) {
 				return null;
-			}
+		}
 		}
 		Type r = null;
+		// FIXME This loop can potentially return wrong results depending on the
+		// installed metamodels and the order of these models in the
+		// list "metamodels".
 		for (int i = 0; i < metaModels.size() && r == null; i++) {
 			final MetaModel curMeta = metaModels.get(i);
 			r = curMeta.getTypeForName(typeName);
@@ -181,7 +183,7 @@ public class TypeSystemImpl implements TypeSystem {
 			return r;
 		} else {
 			return t.cloneWithInnerType(r);
-		}
+	}
 	}
 
 	public Type getFeatureType() {
@@ -264,7 +266,7 @@ public class TypeSystemImpl implements TypeSystem {
 				colType = (ParameterizedType) builtin.getTypeForName(colTypeName);
 				if (colType == null) {
 					return new Type[0];
-				}
+			}
 			}
 
 			for (int i = 0; i < metaModels.size(); i++) {

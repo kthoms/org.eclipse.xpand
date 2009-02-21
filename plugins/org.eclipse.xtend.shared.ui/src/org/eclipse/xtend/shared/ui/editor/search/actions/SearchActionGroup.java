@@ -26,7 +26,7 @@ import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
 
 /**
- * Action group that adds the oAW search actions to a context menu and the
+ * Action group that adds the Xtend search actions to a context menu and the
  * global menu bar.
  * 
  * This class may be instantiated; it is not intended to be subclassed.

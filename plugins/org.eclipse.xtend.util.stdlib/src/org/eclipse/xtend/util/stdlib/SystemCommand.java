@@ -62,7 +62,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
  * <h2>Example</h2>
  * 
  * <pre>
- * &lt;component class=&quot;oaw.util.stdlib.SystemCommand&quot;&gt;
+ * &lt;component class=&quot;org.ecipse.xtend.util.stdlib.SystemCommand&quot;&gt;
  * 	&lt;directory value=&quot;src-gen&quot;/&gt;
  * 	&lt;command value=&quot;sh&quot;/&gt;
  * 	&lt;arg value=&quot;processdot.sh&quot;/&gt;
@@ -82,31 +82,31 @@ public class SystemCommand extends AbstractWorkflowComponent2 {
 
 	private File directory;
 
-	private boolean inheritEnvironment = false;
+	private final boolean inheritEnvironment = false;
 
-	private List<String> args = new ArrayList<String>();
-	private List<String> enventry = new ArrayList<String>();
+	private final List<String> args = new ArrayList<String>();
+	private final List<String> enventry = new ArrayList<String>();
 
 	@Override
-	protected void checkConfigurationInternal(Issues issues) {
+	protected void checkConfigurationInternal(final Issues issues) {
 		if (command == null) {
 			issues.addError("command not specified");
 		}
 	}
 
 	@Override
-	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
+	protected void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		try {
 			int rc;
-			List<String> pbArgs = new ArrayList<String>();
+			final List<String> pbArgs = new ArrayList<String>();
 			pbArgs.add(command);
 			pbArgs.addAll(args);
-			ProcessBuilder pb = new ProcessBuilder(pbArgs);
+			final ProcessBuilder pb = new ProcessBuilder(pbArgs);
 			if (directory != null) {
 				pb.directory(directory);
 			}
-			for (String env : enventry) {
-				String[] keyvalue = env.split(",");
+			for (final String env : enventry) {
+				final String[] keyvalue = env.split(",");
 				pb.environment().put(keyvalue[0], keyvalue[1]);
 			}
 			if (inheritEnvironment) {
@@ -121,7 +121,7 @@ public class SystemCommand extends AbstractWorkflowComponent2 {
 			log
 					.info("Running command '" + pb.command() + "' in directory " + pb.directory().getAbsolutePath()
 							+ " ...");
-			Process p = pb.start();
+			final Process p = pb.start();
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 			String lineRead;
@@ -147,7 +147,7 @@ public class SystemCommand extends AbstractWorkflowComponent2 {
 				log.info("Execution of command was successful.");
 			}
 		}
-		catch (Exception re) {
+		catch (final Exception re) {
 			issues.addError("Runtime error: " + re.getMessage());
 		}
 	}
@@ -156,19 +156,19 @@ public class SystemCommand extends AbstractWorkflowComponent2 {
 		return command;
 	}
 
-	public void setCommand(String command) {
+	public void setCommand(final String command) {
 		this.command = command;
 	}
 
-	public void setDirectory(File directory) {
+	public void setDirectory(final File directory) {
 		this.directory = directory;
 	}
 
-	public void addArg(String arg) {
+	public void addArg(final String arg) {
 		args.add(arg);
 	}
 
-	public void addEnv(String entry) {
+	public void addEnv(final String entry) {
 		if (!entry.matches("\\A[^,]+,.+\\z"))
 			throw new IllegalArgumentException(entry);
 		enventry.add(entry);

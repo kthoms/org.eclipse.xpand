@@ -30,21 +30,24 @@ public class PluginJavaExtensionStatement extends JavaExtensionStatement {
 
     private IJavaProject jp;
 
-    public PluginJavaExtensionStatement(final IJavaProject jp,
-            final Identifier name, final List formalParameters, final Identifier returnType, final Identifier javaType, final Identifier javaMethod, final List javaParamTypes,
-            final boolean cached, final boolean isPriv) {
-        super(name, formalParameters, returnType,javaType, javaMethod, javaParamTypes,
-                cached, isPriv);
+	@SuppressWarnings("unchecked")
+	public PluginJavaExtensionStatement(final IJavaProject jp, final Identifier name, final List formalParameters,
+			final Identifier returnType, final Identifier javaType, final Identifier javaMethod,
+			final List javaParamTypes, final boolean cached, final boolean isPriv) {
+		super(name, formalParameters, returnType, javaType, javaMethod, javaParamTypes, cached, isPriv);
         this.jp = jp;
     }
 
+	@SuppressWarnings("unchecked")
     @Override
     public void analyzeInternal(final ExecutionContext ctx, final Set issues) {
+		checkForAmbiguousDefinitions(ctx, issues);
         boolean everythingFine = true;
         IType it = null;
         try {
             it = jp.findType(getJavaType().getValue());
-        } catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
             XtendLog.logError(e);
         }
         if (it == null) {
@@ -59,7 +62,8 @@ public class PluginJavaExtensionStatement extends JavaExtensionStatement {
             final Identifier typeName = (Identifier) l.get(i);
             try {
                 pts[i] = jp.findType(typeName.getValue());
-            } catch (final JavaModelException e) {
+			}
+			catch (final JavaModelException e) {
                 issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, typeName.getValue() + " not found",
                         typeName));
                 everythingFine = false;
@@ -68,7 +72,8 @@ public class PluginJavaExtensionStatement extends JavaExtensionStatement {
                 issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, typeName.getValue() + " not found",
                         typeName));
                 everythingFine = false;
-            } else {
+			}
+			else {
                 signs[i] = Signature.createTypeSignature(pts[i].getFullyQualifiedName(), true);
             }
         }
@@ -84,7 +89,8 @@ public class PluginJavaExtensionStatement extends JavaExtensionStatement {
             int f = 0;
             try {
                 f = ms[0].getFlags();
-            } catch (final JavaModelException e) {
+			}
+			catch (final JavaModelException e) {
                 XtendLog.logError(e);
                 return;
             }

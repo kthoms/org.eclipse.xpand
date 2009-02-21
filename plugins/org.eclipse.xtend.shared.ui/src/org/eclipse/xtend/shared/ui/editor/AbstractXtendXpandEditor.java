@@ -47,7 +47,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	}
 
 	@Override
-	public void doSave(IProgressMonitor aMonitor) {
+	public void doSave(final IProgressMonitor aMonitor) {
 		super.doSave(aMonitor);
 		if (outlinePage != null) {
 			this.outlinePage.refresh();
@@ -63,11 +63,11 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	}
 
 	@Override
-	protected void editorContextMenuAboutToShow(IMenuManager menu) {
+	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
 		menu.add(new Separator("mwe"));
 		super.editorContextMenuAboutToShow(menu);
 
-		ActionContext context = new ActionContext(getSelectionProvider().getSelection());
+		final ActionContext context = new ActionContext(getSelectionProvider().getSelection());
 		searchActionGroup.setContext(context);
 		searchActionGroup.fillContextMenu(menu);
 		searchActionGroup.setContext(null);
@@ -104,7 +104,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 			}
 
 			@Override
-			protected Object handleGetObject(String key) {
+			protected Object handleGetObject(final String key) {
 				return null;
 			}
 		};
@@ -119,7 +119,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		setAction("ContentAssistTip", a);
 
 		// hyperlinking and F3 support
-		OpenAction openAction = new OpenAction(this);
+		final OpenAction openAction = new OpenAction(this);
 		openAction.setActionDefinitionId(IJavaEditorActionDefinitionIds.OPEN_EDITOR);
 		setAction(JdtActionConstants.OPEN, openAction);
 
@@ -131,8 +131,8 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	}
 
 	@Override
-	protected void rulerContextMenuAboutToShow(IMenuManager menu) {
-		menu.add(new Separator("oaw")); //$NON-NLS-1$
+	protected void rulerContextMenuAboutToShow(final IMenuManager menu) {
+		menu.add(new Separator("Xpand")); //$NON-NLS-1$
 		super.rulerContextMenuAboutToShow(menu);
 
 		bpActionGroup.fillContextMenu(menu);

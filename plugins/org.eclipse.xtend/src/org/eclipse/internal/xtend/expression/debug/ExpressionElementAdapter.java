@@ -39,7 +39,7 @@ import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
- * The IElementAdapter implementation for expressions.
+ * The ElementAdapter implementation for expressions.
  * 
  * @author Bernd Kolb
  * @author Clemens Kadura (zAJKa)
@@ -67,7 +67,7 @@ public class ExpressionElementAdapter implements ElementAdapter {
 		return context;
 	}
 
-	public void setContext(Object context) {
+	public void setContext(final Object context) {
 		this.context = (ExecutionContext) context;
 	}
 
@@ -77,85 +77,85 @@ public class ExpressionElementAdapter implements ElementAdapter {
 
 	// -------------------------------------------------------------------------
 
-	public boolean canHandle(Object element) {
+	public boolean canHandle(final Object element) {
 		if (element instanceof Expression)
 			return true;
 		if (element instanceof SyntaxElement) {
-			SyntaxElement se = (SyntaxElement) element;
+			final SyntaxElement se = (SyntaxElement) element;
 			return se.resource.endsWith(".ext");
 		}
 		return false;
 	}
 
-	public boolean shallHandle(Object element) {
+	public boolean shallHandle(final Object element) {
 		return element instanceof OperationCall && ((OperationCall) element).getName().getValue().length() > 2;
 	}
 
-	public boolean shallSuspend(Object element, int flag) {
+	public boolean shallSuspend(final Object element, final int flag) {
 		boolean result = true;
-		for (BaseSpecialTreatment special : specials) {
-			result &= !(special.shallNotSuspend(element, flag, context));
+		for (final BaseSpecialTreatment special : specials) {
+			result &= !special.shallNotSuspend(element, flag, context);
 		}
 		return result;
 	}
 
-	public SyntaxElement createElementTO(Object element) {
-		SyntaxElement to = pres.getStartPresentation((ISyntaxElement) element, context);
-		for (BaseSpecialTreatment special : specials) {
+	public SyntaxElement createElement(final Object element) {
+		final SyntaxElement to = pres.getStartPresentation((ISyntaxElement) element, context);
+		for (final BaseSpecialTreatment special : specials) {
 			special.adaptSyntaxElement(to, element);
 		}
 		return to;
 	}
 
-	public boolean isSurroundingElement(Object element) {
+	public boolean isSurroundingElement(final Object element) {
 		return false;
 	}
 
-	public SyntaxElement createEndElementTO(Object element) {
+	public SyntaxElement createEndElementTO(final Object element) {
 		// TODO: CK: low: decide where end location is available and set it here
 		return pres.getEndPresentation((org.eclipse.internal.xtend.expression.ast.SyntaxElement) element, context);
 	}
 
-	public String getVariableDetailRep(Object element) {
+	public String getVariableDetailRep(final Object element) {
 		return pres.getStringRep(element);
 	}
 
-	public String getVariableSimpleRep(Object element) {
+	public String getVariableSimpleRep(final Object element) {
 		return pres.getVariableSimpleRep(element, context);
 	}
 
-	public boolean checkVariableHasMembers(Object element) {
+	public boolean checkVariableHasMembers(final Object element) {
 		if (element instanceof Collection)
 			return !((Collection<?>) element).isEmpty();
 		if (element instanceof Type) {
-			Type t = (Type) element;
+			final Type t = (Type) element;
 			return t.getAllProperties().size() > 0;
 		}
 		return context.getType(element).getAllProperties().size() > 0;
 	}
 
-	public List<NameValuePair> getVariables(Object element) {
+	public List<NameValuePair> getVariables(final Object element) {
 		if (element instanceof ChainExpression || element instanceof Literal)
 			return Collections.EMPTY_LIST;
 		if (element instanceof OperationCall) {
-			ArrayList<NameValuePair> result = getAllVisibleVariables();
+			final ArrayList<NameValuePair> result = getAllVisibleVariables();
 
-			Map<String, Variable> visibleVariables = context.getVisibleVariables();
+			final Map<String, Variable> visibleVariables = context.getVisibleVariables();
 
-			Expression[] params = ((OperationCall) element).getParams();
-			for (Expression expression : params) {
+			final Expression[] params = ((OperationCall) element).getParams();
+			for (final Expression expression : params) {
 				if (expression instanceof FeatureCall && !(expression instanceof OperationCall)) {
-					FeatureCall fc = (FeatureCall) expression;
+					final FeatureCall fc = (FeatureCall) expression;
 					if (!visibleVariables.containsKey(fc.toString())) {
 						result.addAll(evaluateFeatureCall(fc));
 					}
 				}
 			}
 
-			Expression target = ((OperationCall) element).getTarget();
+			final Expression target = ((OperationCall) element).getTarget();
 			if (target instanceof FeatureCall && !(target instanceof OperationCall)) {
 				if (!visibleVariables.containsKey(target.toString())) {
-					FeatureCall fc = (FeatureCall) target;
+					final FeatureCall fc = (FeatureCall) target;
 					result.addAll(evaluateFeatureCall(fc));
 				}
 
@@ -166,25 +166,25 @@ public class ExpressionElementAdapter implements ElementAdapter {
 		if (element instanceof FeatureCall)
 			return evaluateFeatureCall((FeatureCall) element);
 		if (element instanceof Collection) {
-			List<NameValuePair> result = new ArrayList<NameValuePair>();
-			Collection col = (Collection) element;
+			final List<NameValuePair> result = new ArrayList<NameValuePair>();
+			final Collection col = (Collection) element;
 			int i = 0;
-			for (Object object : col) {
+			for (final Object object : col) {
 				result.add(new NameValuePair("[" + i + "]", object));
 				i++;
 			}
 			return result;
 		}
-		Type type = context.getType(element);
+		final Type type = context.getType(element);
 		return getAllPropertiesFor(type, element);
 	}
 
-	public Object findElement(SyntaxElement se, Object actual, int flag) {
+	public Object findElement(final SyntaxElement se, final Object actual, final int flag) {
 		if (actual == null)
 			return null;
 		if (actual instanceof OperationCall) {
-			OperationCall op = (OperationCall) actual;
-			int start = pres.getStart(op);
+			final OperationCall op = (OperationCall) actual;
+			final int start = pres.getStart(op);
 			if (se.resource.endsWith(pres.getStringRep(op.getFileName())) && se.start == start)
 				return actual;
 		}
@@ -194,26 +194,26 @@ public class ExpressionElementAdapter implements ElementAdapter {
 	// -------------------------------------------------------------------------
 
 	protected ArrayList<NameValuePair> getAllVisibleVariables() {
-		ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
-		Map<String, Variable> visibleVariables = context.getVisibleVariables();
+		final ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
+		final Map<String, Variable> visibleVariables = context.getVisibleVariables();
 
-		for (Entry<String, Variable> nameValuePair : visibleVariables.entrySet()) {
+		for (final Entry<String, Variable> nameValuePair : visibleVariables.entrySet()) {
 			result.add(new NameValuePair(nameValuePair.getKey(), nameValuePair.getValue().getValue()));
 		}
 		return result;
 	}
 
-	private List<NameValuePair> evaluateFeatureCall(FeatureCall fc) {
+	private List<NameValuePair> evaluateFeatureCall(final FeatureCall fc) {
 		return getEvalResultProperties(fc.toString(), fc.evaluate(context.cloneWithoutMonitor()));
 	}
 
-	private List<NameValuePair> getEvalResultProperties(String prefix, Object evaluate) {
-		ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
+	private List<NameValuePair> getEvalResultProperties(final String prefix, final Object evaluate) {
+		final ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
 		if (evaluate instanceof Collection) {
 			result.add(new NameValuePair(prefix, evaluate));
 			return result;
 		}
-		Type type = context.getType(evaluate);
+		final Type type = context.getType(evaluate);
 		return getAllPropertiesFor(type, evaluate);
 	}
 
@@ -223,17 +223,17 @@ public class ExpressionElementAdapter implements ElementAdapter {
 	// method here (as in Java)
 	// Is this a bug or intended that way in AbstractTypeImpl? (TODO: ask Sven
 	// or Arno)
-	private List<NameValuePair> getAllPropertiesFor(Type type, Object element) {
-		ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
+	private List<NameValuePair> getAllPropertiesFor(final Type type, final Object element) {
+		final ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
 
-		for (Property p : getAllProperties(type)) {
-			String name = p.getName();
+		for (final Property p : getAllProperties(type)) {
+			final String name = p.getName();
 			if (!(name.equals("wait") || name.startsWith("notify"))) {
 				Object value = null;
 				try {
 					value = p.get(element);
 				}
-				catch (Exception e) {
+				catch (final Exception e) {
 					value = "Error: " + e.getMessage();
 				}
 				if (value != null) {
@@ -249,34 +249,34 @@ public class ExpressionElementAdapter implements ElementAdapter {
 
 	private final Map<Type, Map<String, Callable>> typeCache = new HashMap<Type, Map<String, Callable>>();
 
-	private Set<? extends Property> getAllProperties(Type type) {
+	private Set<? extends Property> getAllProperties(final Type type) {
 		return PolymorphicResolver.select(getAllFeatures(type), Property.class);
 	}
 
-	public final Set<Callable> getAllFeatures(Type type) {
+	public final Set<Callable> getAllFeatures(final Type type) {
 		Map<String, Callable> allFeatures;
 		if (typeCache.containsKey(type)) {
 			allFeatures = typeCache.get(type);
 		}
 		else {
 			allFeatures = new HashMap<String, Callable>();
-			Callable[] contribs = ((AbstractTypeImpl) type).getContributedFeatures();
+			final Callable[] contribs = ((AbstractTypeImpl) type).getContributedFeatures();
 			addIfNotExist(allFeatures, Arrays.asList(contribs));
-			for (Type superType : type.getSuperTypes()) {
+			for (final Type superType : type.getSuperTypes()) {
 				if (superType != null) {
 					addIfNotExist(allFeatures, getAllFeatures(superType));
 				}
 			}
 			typeCache.put(type, allFeatures);
 		}
-		Set<Callable> result = new HashSet<Callable>();
+		final Set<Callable> result = new HashSet<Callable>();
 		result.addAll(allFeatures.values());
 		return result;
 	}
 
-	private void addIfNotExist(Map<String, Callable> all, Collection<Callable> more) {
-		for (Callable one : more) {
-			String name = one.getName();
+	private void addIfNotExist(final Map<String, Callable> all, final Collection<Callable> more) {
+		for (final Callable one : more) {
+			final String name = one.getName();
 			if (!all.containsKey(name)) {
 				all.put(name, one);
 			}

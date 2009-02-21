@@ -83,10 +83,9 @@ public class FileStatement extends StatementWithBody {
 				body[i].evaluate(ctx);
 			}
 			ctx.getOutput().closeFile();
-		}
-		catch (VetoException e) {
+		} catch (VetoException e) {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("Generation of file '" + fileName + "' on outlet '" + outletName + "' skipped due to veto.");
+				LOG.debug("Generation of file '"+fileName+"' on outlet '"+outletName+"' skipped due to veto.");
 			}
 		}
 	}

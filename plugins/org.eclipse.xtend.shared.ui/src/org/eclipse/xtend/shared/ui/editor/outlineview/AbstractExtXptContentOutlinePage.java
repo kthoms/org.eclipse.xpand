@@ -237,11 +237,11 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 			super();
 
 			PlatformUI.getWorkbench().getHelpSystem().setHelp(this, LEXICAL_SORTING_OUTLINE_ACTION);
-			setText(Messages.AbstractOawContentOutlinePage_1);
+			setText(Messages.AbstractXtendXpandContentOutlinePage_1);
 
 			this.setImageDescriptor(Activator.getImageDescriptor("icons/alphab_sort_co.gif")); //$NON-NLS-1$
-			setToolTipText(Messages.AbstractOawContentOutlinePage_3);
-			setDescription(Messages.AbstractOawContentOutlinePage_4);
+			setToolTipText(Messages.AbstractXtendXpandContentOutlinePage_3);
+			setDescription(Messages.AbstractXtendXpandContentOutlinePage_4);
 
 			boolean checked = Activator.getDefault().getPreferenceStore().getBoolean("LexicalSortingAction.isChecked"); //$NON-NLS-1$
 			valueChanged(checked, false);

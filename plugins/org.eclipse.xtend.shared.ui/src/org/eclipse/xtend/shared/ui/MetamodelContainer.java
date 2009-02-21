@@ -30,67 +30,69 @@ import org.eclipse.xtend.typesystem.MetaModel;
 
 public class MetamodelContainer implements IElementChangedListener, IResourceChangeListener {
 
-    List<IJavaProject> projects;
+	List<IJavaProject> projects;
 
-    boolean changed = false;
+	boolean changed = false;
 
-    private Set<MetaModel> metaModels;
+	private final Set<MetaModel> metaModels;
 
-    Set<IResource> resources;
+	Set<IResource> resources;
 
-    public MetamodelContainer(final List<IJavaProject> project, final Set<IResource> resource, final Set<MetaModel> metamodels) {
-        projects = project;
-        metaModels = metamodels;
-        resources = resource;
-    }
+	public MetamodelContainer(final List<IJavaProject> project, final Set<IResource> resource,
+			final Set<MetaModel> metamodels) {
+		projects = project;
+		metaModels = metamodels;
+		resources = resource;
+	}
 
-    public void elementChanged(final ElementChangedEvent event) {
-        for (final Iterator<IJavaProject> iter = projects.iterator(); !changed && iter.hasNext();) {
-            final IJavaProject project = iter.next();
-            if (project.isOnClasspath(event.getDelta().getElement())) {
-                changed = true;
-            }
-        }
-    }
+	public void elementChanged(final ElementChangedEvent event) {
+		for (final Iterator<IJavaProject> iter = projects.iterator(); !changed && iter.hasNext();) {
+			final IJavaProject project = iter.next();
+			if (project.isOnClasspath(event.getDelta().getElement())) {
+				changed = true;
+			}
+		}
+	}
 
-    public boolean hasChanged() {
-        return changed;
-    }
+	public boolean hasChanged() {
+		return changed;
+	}
 
-    public Set<MetaModel> getMetaModels() {
-        return metaModels;
-    }
+	public Set<MetaModel> getMetaModels() {
+		return metaModels;
+	}
 
-    public void resourceChanged(final IResourceChangeEvent event) {
-        if (changed)
-            return;
-        // we are only interested in POST_CHANGE events
-        if (event.getType() != IResourceChangeEvent.POST_CHANGE)
-            return;
-        final IResourceDelta rootDelta = event.getDelta();
-        try {
-            rootDelta.accept(new IResourceDeltaVisitor() {
+	public void resourceChanged(final IResourceChangeEvent event) {
+		if (changed)
+			return;
+		// we are only interested in POST_CHANGE events
+		if (event.getType() != IResourceChangeEvent.POST_CHANGE)
+			return;
+		final IResourceDelta rootDelta = event.getDelta();
+		try {
+			rootDelta.accept(new IResourceDeltaVisitor() {
 
-                public boolean visit(final IResourceDelta delta) throws CoreException {
-                    if (!changed && delta.getResource() != null) {
-                        if (resources.contains(delta.getResource())) {
-                            changed = true;
-                        }
-                        if (delta.getResource() instanceof IProject) {
-                            for (final Iterator<IJavaProject> iter = projects.iterator(); !changed && iter.hasNext();) {
-                                final IJavaProject project = iter.next();
-                                if (project.getProject().equals(delta.getResource())) {
-                                    changed = true;
-                                }
-                            }
-                        }
-                    }
-                    return true;
-                }
-            });
-        } catch (final CoreException e) {
-            XtendLog.logError(e);
-        }
-    }
+				public boolean visit(final IResourceDelta delta) throws CoreException {
+					if (!changed && delta.getResource() != null) {
+						if (resources.contains(delta.getResource())) {
+							changed = true;
+						}
+						if (delta.getResource() instanceof IProject) {
+							for (final Iterator<IJavaProject> iter = projects.iterator(); !changed && iter.hasNext();) {
+								final IJavaProject project = iter.next();
+								if (project.getProject().equals(delta.getResource())) {
+									changed = true;
+								}
+							}
+						}
+					}
+					return true;
+				}
+			});
+		}
+		catch (final CoreException e) {
+			XtendLog.logError(e);
+		}
+	}
 
 }

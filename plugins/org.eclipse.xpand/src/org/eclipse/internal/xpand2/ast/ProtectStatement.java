@@ -27,88 +27,92 @@ import org.eclipse.xtend.expression.EvaluationException;
  */
 public class ProtectStatement extends StatementWithBody {
 
-    private Expression commentStart;
+	private final Expression commentStart;
 
-    private Expression commentEnd;
+	private final Expression commentEnd;
 
-    private Expression id;
+	private final Expression id;
 
-    private boolean disable;
+	private final boolean disable;
 
-    public ProtectStatement( final Expression commentStart,
-            final Expression commentEnd, final Statement[] body, final Expression id, final boolean disable) {
-        super(body);
-        this.commentStart = commentStart;
-        this.commentEnd = commentEnd;
-        this.id = id;
-        this.disable = disable;
-    }
+	public ProtectStatement(final Expression commentStart, final Expression commentEnd, final Statement[] body,
+			final Expression id, final boolean disable) {
+		super(body);
+		this.commentStart = commentStart;
+		this.commentEnd = commentEnd;
+		this.id = id;
+		this.disable = disable;
+	}
 
-    public Expression getCommentEnd() {
-        return commentEnd;
-    }
+	public Expression getCommentEnd() {
+		return commentEnd;
+	}
 
-    public Expression getCommentStart() {
-        return commentStart;
-    }
+	public Expression getCommentStart() {
+		return commentStart;
+	}
 
-    public Expression getId() {
-        return id;
-    }
-    
-    public boolean getDisable () {
-        return disable;
-    }
+	public Expression getId() {
+		return id;
+	}
 
-    public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
-        getCommentStart().analyze(ctx, issues);
-        getCommentEnd().analyze(ctx, issues);
-        getId().analyze(ctx, issues);
+	public boolean getDisable() {
+		return disable;
+	}
 
-        for (int i = 0; i < body.length; i++) {
-            body[i].analyze(ctx, issues);
-        }
-    }
+	@Override
+	public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		getCommentStart().analyze(ctx, issues);
+		getCommentEnd().analyze(ctx, issues);
+		getId().analyze(ctx, issues);
 
-    @Override
-    public void evaluateInternal(final XpandExecutionContext ctx) {
-        final String cStart = nullSafe(getCommentStart().evaluate(ctx));
-        if (cStart == null)
-            throw new EvaluationException("NullEvaluation!", getCommentStart(), ctx);
-        final String cEnd = nullSafe(getCommentEnd().evaluate(ctx));
-        if (cEnd == null)
-            throw new EvaluationException("NullEvaluation!", getCommentEnd(), ctx);
-        final String id = nullSafe(getId().evaluate(ctx));
-        if (id == null)
-            throw new EvaluationException("NullEvaluation!", getId(), ctx);
+		for (final Statement element : body) {
+			element.analyze(ctx, issues);
+		}
+	}
 
-        ProtectedRegion region = null;
-        if (ctx.getProtectedRegionResolver() != null) {
-            region = ctx.getProtectedRegionResolver().getProtectedRegion(id.toString());
-        } else
-            throw new EvaluationException("No protected region resolver configured!",this,ctx);
+	@Override
+	public void evaluateInternal(final XpandExecutionContext ctx) {
+		final String cStart = nullSafe(getCommentStart().evaluate(ctx));
+		if (cStart == null)
+			throw new EvaluationException("NullEvaluation!", getCommentStart(), ctx);
+		final String cEnd = nullSafe(getCommentEnd().evaluate(ctx));
+		if (cEnd == null)
+			throw new EvaluationException("NullEvaluation!", getCommentEnd(), ctx);
+		final String id = nullSafe(getId().evaluate(ctx));
+		if (id == null)
+			throw new EvaluationException("NullEvaluation!", getId(), ctx);
 
-        if (region == null) {
-            region = ctx.getProtectedRegionResolver().createProtectedRegion(id, disable);
-            ctx.getOutput().write(region.getStartString(cStart, cEnd));
-            for (int i = 0; i < body.length; i++) {
-                body[i].evaluate(ctx);
-            }
-            ctx.getOutput().write(region.getEndString(cStart, cEnd));
-        } else {
-            ctx.getOutput().write(region.getStartString(cStart, cEnd));
-            try {
-                ctx.getOutput().write(region.getBody(cStart, cEnd));
-            } catch (final ProtectedRegionSyntaxException e) {
-                throw new EvaluationException(e.getMessage(), getId(), ctx);
-            }
-            ctx.getOutput().write(region.getEndString(cStart, cEnd));
-        }
+		ProtectedRegion region = null;
+		if (ctx.getProtectedRegionResolver() != null) {
+			region = ctx.getProtectedRegionResolver().getProtectedRegion(id.toString());
+		}
+		else
+			throw new EvaluationException("No protected region resolver configured!", this, ctx);
 
-    }
+		if (region == null) {
+			region = ctx.getProtectedRegionResolver().createProtectedRegion(id, disable);
+			ctx.getOutput().write(region.getStartString(cStart, cEnd));
+			for (final Statement element : body) {
+				element.evaluate(ctx);
+			}
+			ctx.getOutput().write(region.getEndString(cStart, cEnd));
+		}
+		else {
+			ctx.getOutput().write(region.getStartString(cStart, cEnd));
+			try {
+				ctx.getOutput().write(region.getBody(cStart, cEnd));
+			}
+			catch (final ProtectedRegionSyntaxException e) {
+				throw new EvaluationException(e.getMessage(), getId(), ctx);
+			}
+			ctx.getOutput().write(region.getEndString(cStart, cEnd));
+		}
 
-    private String nullSafe(final Object string) {
-        return string != null ? string.toString() : "";
-    }
+	}
+
+	private String nullSafe(final Object string) {
+		return string != null ? string.toString() : "";
+	}
 
 }

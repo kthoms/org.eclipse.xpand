@@ -24,8 +24,7 @@ import org.eclipse.xtend.shared.ui.core.metamodel.jdt.JdtTypeStrategy;
 
 public class JdtJavaBeanTypeStrategy implements JdtTypeStrategy {
 
-    public JdtJavaBeanTypeStrategy(
-    final IJavaProject project) {
+    public JdtJavaBeanTypeStrategy (final IJavaProject project) {
         super();
     }
 

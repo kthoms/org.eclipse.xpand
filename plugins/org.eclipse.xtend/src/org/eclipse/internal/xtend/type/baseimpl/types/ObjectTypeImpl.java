@@ -142,6 +142,7 @@ public class ObjectTypeImpl extends BuiltinBaseType implements Type {
         return new Object();
     }
 
+    @SuppressWarnings("unchecked")
 	@Override
     public Set<Type> getSuperTypes() {
         return Collections.EMPTY_SET;

@@ -14,12 +14,12 @@ import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
-import org.eclipse.xtend.shared.ui.editor.search.query.OawSearchDeclarationsQuery;
+import org.eclipse.xtend.shared.ui.editor.search.query.XpandXtendSearchDeclarationsQuery;
 import org.eclipse.xtend.shared.ui.expression.editor.EditorImages;
 
 /**
  * Finds declarations of the selected element in the workspace. The action is
- * applicable to selections representing an oAW element.
+ * applicable to selections representing an Xtend element.
  * 
  * This class may be instantiated; it is not intended to be subclassed.
  */
@@ -29,9 +29,9 @@ public class FindDeclarationsAction extends FindAction {
 	 * Creates a new {@link FindDeclarationsAction}.
 	 * 
 	 * @param editor
-	 *            The oAW editor.
+	 *            thr editor
 	 */
-	public FindDeclarationsAction(AbstractXtendXpandEditor editor) {
+	public FindDeclarationsAction(final AbstractXtendXpandEditor editor) {
 		super(editor);
 	}
 
@@ -39,9 +39,9 @@ public class FindDeclarationsAction extends FindAction {
 	 * Creates a new {@link FindDeclarationsAction}.
 	 * 
 	 * @param site
-	 *            The workbench site that owns this action.
+	 *            the workbench site that owns this action
 	 */
-	public FindDeclarationsAction(IWorkbenchSite site) {
+	public FindDeclarationsAction(final IWorkbenchSite site) {
 		super(site);
 	}
 
@@ -53,8 +53,8 @@ public class FindDeclarationsAction extends FindAction {
 	}
 
 	@Override
-	protected ISearchQuery createSearchQuery(String selectedText, IXtendXpandProject project) {
-		ISearchQuery query = new OawSearchDeclarationsQuery(project, selectedText);
+	protected ISearchQuery createSearchQuery(final String selectedText, final IXtendXpandProject project) {
+		final ISearchQuery query = new XpandXtendSearchDeclarationsQuery(project, selectedText);
 		return query;
 	}
 }

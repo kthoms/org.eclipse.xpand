@@ -29,9 +29,9 @@ import org.eclipse.xtend.typesystem.emf.check.model.test.subpackage.SubpackagePa
 /**
  * @author Jan Köhnlein
  */
-public class OawValidatorStandaloneTests extends TestCase {
+public class XtendXpandValidatorStandaloneTests extends TestCase {
 
-	public void testOawValidator() {
+	public void testExtXptValidator() {
 		// workaround for MacOSX classloader bug
 		ClassLoader classLoader = this.getClass().getClassLoader();
 		Thread.currentThread().setContextClassLoader(classLoader);

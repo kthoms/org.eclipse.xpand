@@ -14,12 +14,12 @@ import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
-import org.eclipse.xtend.shared.ui.editor.search.query.OawSearchReferencesQuery;
+import org.eclipse.xtend.shared.ui.editor.search.query.XtendXpandSearchReferencesQuery;
 import org.eclipse.xtend.shared.ui.expression.editor.EditorImages;
 
 /**
  * Finds references to the selected element in the workspace. The action is
- * applicable to selections representing an oAW element.
+ * applicable to selections representing an Xtend element.
  * 
  * This class may be instantiated; it is not intended to be subclassed.
  */
@@ -29,7 +29,7 @@ public class FindReferencesAction extends FindAction {
 	 * Creates a new {@link FindDeclarationsAction}.
 	 * 
 	 * @param editor
-	 *            The oAW editor.
+	 *            The Xtend editor.
 	 */
 	public FindReferencesAction(AbstractXtendXpandEditor editor) {
 		super(editor);
@@ -54,7 +54,7 @@ public class FindReferencesAction extends FindAction {
 
 	@Override
 	protected ISearchQuery createSearchQuery(String selectedText, IXtendXpandProject project) {
-		ISearchQuery query = new OawSearchReferencesQuery(project, selectedText);
+		ISearchQuery query = new XtendXpandSearchReferencesQuery(project, selectedText);
 		return query;
 	}
 }

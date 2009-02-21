@@ -21,7 +21,7 @@ import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
  * 
  * @since 2.0
  */
-public interface IOawEditorActionDefinitionIds extends ITextEditorActionDefinitionIds {
+public interface IXpandXtendEditorActionDefinitionIds extends ITextEditorActionDefinitionIds {
 
 	// search
 
@@ -30,7 +30,7 @@ public interface IOawEditorActionDefinitionIds extends ITextEditorActionDefiniti
 	 * (value
 	 * <code>"org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace"</code>).
 	 */
-	public static final String SEARCH_REFERENCES_IN_WORKSPACE = "org.eclipse.internal.xtend.editor.search.references.in.workspace"; //$NON-NLS-1$
+	public static final String SEARCH_REFERENCES_IN_WORKSPACE = "org.eclipse.editor.search.references.in.workspace"; //$NON-NLS-1$
 
 	/**
 	 * Action definition ID of the search -> references in project action (value

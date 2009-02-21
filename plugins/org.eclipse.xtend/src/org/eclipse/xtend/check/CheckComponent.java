@@ -98,7 +98,7 @@ public class CheckComponent extends AbstractExpressionsUsingWorkflowComponent {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 * @see org.eclipse.workflow.lib.AbstractWorkflowComponent#getLogMessage()
 	 */
 	@Override
 	public String getLogMessage() {
@@ -117,9 +117,8 @@ public class CheckComponent extends AbstractExpressionsUsingWorkflowComponent {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getComponentName()
+	 * @see org.eclipse.workflow.WorkflowComponent#getComponentName()
 	 */
-	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}

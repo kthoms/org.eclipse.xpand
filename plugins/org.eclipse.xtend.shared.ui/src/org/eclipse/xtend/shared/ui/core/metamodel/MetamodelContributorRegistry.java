@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.ProjectScope;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -39,7 +38,7 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
  */
 public class MetamodelContributorRegistry {
 
-	private static final String CONTRIBUTOR_ID = "org.eclipse.xtend.shared.ui.metamodelContributor";
+	private static final String CONTRIBUTOR_ID = "org.eclipse.base.metamodelContributor";
 
 	/**
 	 * Retrieves the registered metamodel contributors.
@@ -55,15 +54,12 @@ public class MetamodelContributorRegistry {
 			final IExtensionPoint point = registry.getExtensionPoint(MetamodelContributorRegistry.CONTRIBUTOR_ID);
 			if (point != null) {
 				final IExtension[] extensions = point.getExtensions();
-				for (int i = 0; i < extensions.length; i++) {
-					final IExtension extension = extensions[i];
+				for (final IExtension extension : extensions) {
 					final IConfigurationElement[] configs = extension.getConfigurationElements();
-					for (int j = 0; j < configs.length; j++) {
-						final IConfigurationElement element = configs[j];
-
-						String label = element.getAttribute("name");
-						String className = element.getAttribute("class");
-						Contributor contributor = new Contributor(label, className, element, false);
+					for (final IConfigurationElement element : configs) {
+						final String label = element.getAttribute("name");
+						final String className = element.getAttribute("class");
+						final Contributor contributor = new Contributor(label, className, element, false);
 						contributors.put(className, contributor);
 					}
 				}
@@ -73,23 +69,25 @@ public class MetamodelContributorRegistry {
 	}
 
 	public static List<? extends MetamodelContributor> getActiveMetamodelContributors(final IJavaProject project) {
-		ScopedPreferenceStore scopedPreferenceStore = new ScopedPreferenceStore(new InstanceScope(), Activator.getId());
-		IScopeContext[] scopes = { new ProjectScope(project.getProject()),  new InstanceScope() };
+		final ScopedPreferenceStore scopedPreferenceStore = new ScopedPreferenceStore(new InstanceScope(), Activator
+				.getId());
+		final IScopeContext[] scopes = { new ProjectScope(project.getProject()), new InstanceScope() };
 		scopedPreferenceStore.setSearchContexts(scopes);
 		fixMetamodelContributorPreferences(scopedPreferenceStore);
-		
-		String metamodelContr = scopedPreferenceStore.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
-		String[] mm = metamodelContr.split(",");
 
-		List<MetamodelContributor> result = new ArrayList<MetamodelContributor>();
-		for (String metamodelContributorName : mm) {
+		final String metamodelContr = scopedPreferenceStore.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
+		final String[] mm = metamodelContr.split(",");
+
+		final List<MetamodelContributor> result = new ArrayList<MetamodelContributor>();
+		for (final String metamodelContributorName : mm) {
 			if (metamodelContributorName != null && !metamodelContributorName.equals("")) {
-				MetamodelContributor metamodelContributor = MetamodelContributorRegistry.getMetamodelContributorByClassName(metamodelContributorName);
+				final MetamodelContributor metamodelContributor = MetamodelContributorRegistry
+						.getMetamodelContributorByClassName(metamodelContributorName);
 				if (metamodelContributor != null) {
 					result.add(metamodelContributor);
-				} else {
-					XtendLog.logInfo("Metamodel contributor '" + metamodelContributorName + "' is not available\n" +
-							"Choose one of: "+ getAllAvailableMMContribsAsString());
+				}
+				else {
+					XtendLog.logInfo("Metamodel contributor '" + metamodelContributorName + "' is not available\n");
 				}
 			}
 		}
@@ -97,49 +95,22 @@ public class MetamodelContributorRegistry {
 	}
 
 	/**
-	 * fix: package name from UML2MetamodelContributor was wrong. For compatibility
-	 * reasons we fix this name here on the fly. Later we could offer a migration path.
+	 * fix: package name from UML2MetamodelContributor was wrong. For
+	 * compatibility reasons we fix this name here on the fly. Later we could
+	 * offer a migration path.
 	 */
-	private static void fixMetamodelContributorPreferences(IPreferenceStore prefStore) {
+	private static void fixMetamodelContributorPreferences(final IPreferenceStore prefStore) {
 		String metamodelContr = prefStore.getString(PreferenceConstants.METAMODELCONTRIBUTORS);
-		if (metamodelContr.indexOf("openarchitecturware")>0) {
+		if (metamodelContr.indexOf("openarchitecturware") > 0) {
 			metamodelContr = metamodelContr.replace("openarchitecturware", "openarchitectureware");
 			prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS, metamodelContr);
 		}
 	}
-	
-	private static Map<String, MetamodelContributor> mmContributors = null;
 
-	private static MetamodelContributor getMetamodelContributorByClassName(String metamodelContr) {
-		if (mmContributors == null) {
-			mmContributors = new HashMap<String, MetamodelContributor>();
-			final IExtensionRegistry registry = Platform.getExtensionRegistry();
-			final IExtensionPoint point = registry.getExtensionPoint(MetamodelContributorRegistry.CONTRIBUTOR_ID);
-			if (point != null) {
-				final IExtension[] extensions = point.getExtensions();
-				for (int i = 0; i < extensions.length; i++) {
-					final IExtension extension = extensions[i];
-					final IConfigurationElement[] configs = extension.getConfigurationElements();
-					for (int j = 0; j < configs.length; j++) {
-						final IConfigurationElement element = configs[j];
-						try {
-							mmContributors.put(element.getAttribute("class"), (MetamodelContributor) element.createExecutableExtension("class"));
-						} catch (final CoreException e) {
-							XtendLog.logError(e);
-						}
-					}
-				}
-			}
-		}
-		return mmContributors.get(metamodelContr);
-	}
-	
-	private static String getAllAvailableMMContribsAsString() {
-		StringBuffer sb = new StringBuffer();
-		for (String s : mmContributors.keySet()) {
-			sb.append(s);
-			sb.append("\n");
-		}
-		return sb.toString();
+	private static MetamodelContributor getMetamodelContributorByClassName(final String metamodelContr) {
+		final Contributor contributor = getRegisteredMetamodelContributors().get(metamodelContr);
+		if (contributor == null)
+			return null;
+		return contributor.getMetaModelContributor();
 	}
 }

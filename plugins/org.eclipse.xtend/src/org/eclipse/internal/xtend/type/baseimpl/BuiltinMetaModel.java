@@ -32,6 +32,10 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
  */
+/**
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.6 $
+ */
 public final class BuiltinMetaModel implements MetaModel {
 
 	public static final String OBJECT = "Object";
@@ -298,15 +302,15 @@ public final class BuiltinMetaModel implements MetaModel {
 	private final Cache<Object, Type> typeCache = new Cache<Object, Type>() {
 
 		@Override
-		protected Type createNew(Object obj) {
+		protected Type createNew(final Object obj) {
 			if (obj == null)
 				return getVoidType();
 			if (obj instanceof Set)
-				return getSetType(getObjectType());
+				return getSetType(null);
 			if (obj instanceof List)
-				return getListType(getObjectType());
+				return getListType(null);
 			if (obj instanceof Collection)
-				return getCollectionType(getObjectType());
+				return getCollectionType(null);
 			// datatypes
 			if (stringType.isInstance(obj))
 				return stringType;
@@ -391,5 +395,4 @@ public final class BuiltinMetaModel implements MetaModel {
 		// TODO: provide real implementation
 		return new HashSet<String>();
 	}
-
 }

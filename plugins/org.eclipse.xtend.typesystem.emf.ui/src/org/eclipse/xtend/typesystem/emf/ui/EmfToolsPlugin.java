@@ -45,21 +45,21 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 
 	// The shared instance.
 	private static EmfToolsPlugin plugin;
-	
+
 	// project analyzer per project
 	private final Map<IJavaProject, ProjectAnalyzer> projectAnalyzerCache = new HashMap<IJavaProject, ProjectAnalyzer>();
 
 	// get trace state
 	public static boolean trace = false;
 	static {
-		String value = Platform.getDebugOption("org.eclipse.internal.xtend.emftools/trace");
+		final String value = Platform.getDebugOption("org.eclipse.internal.xtend.emftools/trace");
 		if (value != null && value.equals("true")) {
 			trace = true;
 		}
 	}
-	
-	public ProjectAnalyzer getProjectAnalyzer(IProject p) {
-		IJavaProject jp = JavaCore.create(p);
+
+	public ProjectAnalyzer getProjectAnalyzer(final IProject p) {
+		final IJavaProject jp = JavaCore.create(p);
 		if (jp == null || !jp.exists())
 			return null;
 		ProjectAnalyzer analyzer = projectAnalyzerCache.get(jp);
@@ -71,19 +71,20 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	}
 
 	private final IResourceChangeListener resourceListener = new IResourceChangeListener() {
-		public void resourceChanged(IResourceChangeEvent event) {
+		public void resourceChanged(final IResourceChangeEvent event) {
 			try {
 				// under special circumstances (e.g. renaming a project) the
 				// event.getDelta() can be null. Avoid NPE.
 				if (event.getDelta() == null)
 					return;
 
-				// collect changed projects. only ecore files and jars in the classpath are relevant
+				// collect changed projects. only ecore files and jars in the
+				// classpath are relevant
 				final Set<IProject> changedProjects = new HashSet<IProject>();
 				event.getDelta().accept(new IResourceDeltaVisitor() {
-					public boolean visit(IResourceDelta delta) throws CoreException {
-						if ((isEcoreFile(delta.getResource()) || isJarFile(delta.getResource())) &&
-								JavaCore.create(delta.getResource().getProject()).isOnClasspath(delta.getResource())) {
+					public boolean visit(final IResourceDelta delta) throws CoreException {
+						if ((isEcoreFile(delta.getResource()) || isJarFile(delta.getResource()))
+								&& JavaCore.create(delta.getResource().getProject()).isOnClasspath(delta.getResource())) {
 							changedProjects.add(delta.getResource().getProject());
 						}
 						return true;
@@ -91,32 +92,33 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 				});
 
 				analyzeAndRebuildProjects(changedProjects);
-			} catch (CoreException e) {
+			}
+			catch (final CoreException e) {
 				EmfToolsLog.logError(e);
 			}
-		}		
+		}
 	};
 
 	private final IElementChangedListener classpathListener = new IElementChangedListener() {
-		public void elementChanged(ElementChangedEvent event) {
-			Set<IProject> projects = new HashSet<IProject>();
+		public void elementChanged(final ElementChangedEvent event) {
+			final Set<IProject> projects = new HashSet<IProject>();
 			collectChangedProjects(event.getDelta(), projects);
 			analyzeAndRebuildProjects(projects);
 		}
 
-		private void collectChangedProjects(IJavaElementDelta delta, Set<IProject> projects) {
+		private void collectChangedProjects(final IJavaElementDelta delta, final Set<IProject> projects) {
 			// we're interested in classpath changes. classpath reordering is
 			// not of interest since we wont find any other metamodels than
 			// before
 			if ((delta.getFlags() & IJavaElementDelta.F_ADDED_TO_CLASSPATH) != 0
 					|| (delta.getFlags() & IJavaElementDelta.F_REMOVED_FROM_CLASSPATH) != 0
 					|| (delta.getFlags() & IJavaElementDelta.F_CLASSPATH_CHANGED) != 0) {
-				IJavaProject javaProject = delta.getElement().getJavaProject();
+				final IJavaProject javaProject = delta.getElement().getJavaProject();
 				if (javaProject != null) {
 					projects.add(javaProject.getProject());
 				}
 			}
-			for (IJavaElementDelta d : delta.getAffectedChildren()) {
+			for (final IJavaElementDelta d : delta.getAffectedChildren()) {
 				collectChangedProjects(d, projects);
 			}
 		}
@@ -138,11 +140,12 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 
 		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
-		// traverse all oaw projects in workspace and analyze their MMs in classpath
-		for (IProject p : workspace.getRoot().getProjects()) {
+		// traverse all Xpans projects in workspace and analyze their MMs in
+		// classpath
+		for (final IProject p : workspace.getRoot().getProjects()) {
 			if (Activator.getExtXptModelManager().findProject(p) != null) {
-				ProjectAnalyzer pa = getProjectAnalyzer(p);
-				if (pa!=null) {
+				final ProjectAnalyzer pa = getProjectAnalyzer(p);
+				if (pa != null) {
 					if (pa.getState() != Job.WAITING) {
 						pa.schedule();
 					}
@@ -174,14 +177,14 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	 * 
 	 * @param project
 	 *            The project to retrieve the metamodels for. Must not be null,
-	 * @return The metamodels for the given project. An empty array if none
-	 *         are accessible.
+	 * @return The metamodels for the given project. An empty array if none are
+	 *         accessible.
 	 */
-	public EPackage[] getMetamodelsForProject(IJavaProject project) {
-	           Set<String> visited = new HashSet<String>();
-	           return getMetamodelsForProjectInternal(project, visited);
-	       }
-	    
+	public EPackage[] getMetamodelsForProject(final IJavaProject project) {
+		final Set<String> visited = new HashSet<String>();
+		return getMetamodelsForProjectInternal(project, visited);
+	}
+
 	/**
 	 * Retrieves the list of EPackages that are accessible for the given
 	 * project, i.e. that are in the project's classpath. The referenced
@@ -194,38 +197,40 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	 * @return The metamodels for the given project. An empty array if none are
 	 *         accessible.
 	 */
-	private EPackage[] getMetamodelsForProjectInternal(IJavaProject project, Set<String> visited) {
+	private EPackage[] getMetamodelsForProjectInternal(final IJavaProject project, final Set<String> visited) {
 		if (visited.contains(project.getProject().getName()))
 			return new EPackage[0];
 		visited.add(project.getProject().getName());
-	           
-		ProjectAnalyzer projectAnalyzer = getProjectAnalyzer(project.getProject());
-		if (projectAnalyzer == null) {
+
+		final ProjectAnalyzer projectAnalyzer = getProjectAnalyzer(project.getProject());
+		if (projectAnalyzer == null)
 			return new EPackage[0];
-		}
 		// wait if analyzation is currently executed
-		while (projectAnalyzer.getState() == Job.RUNNING ||
-				projectAnalyzer.getState() == Job.WAITING) {
+		while (projectAnalyzer.getState() == Job.RUNNING || projectAnalyzer.getState() == Job.WAITING) {
 			try {
 				Thread.sleep(500l);
-				if (EmfToolsPlugin.trace)
-					System.out.println("Waiting 500ms for ProjectAnalyzer of project " + project.getProject().getName() + " to finish.");				
-			} catch (InterruptedException e) {
+				if (EmfToolsPlugin.trace) {
+					System.out.println("Waiting 500ms for ProjectAnalyzer of project " + project.getProject().getName()
+							+ " to finish.");
+				}
+			}
+			catch (final InterruptedException e) {
 				EmfToolsLog.logError(e);
 			}
 		}
-		Map<String, EPackage> packages = new HashMap<String, EPackage>(projectAnalyzer.getNamedEPackageMap());
+		final Map<String, EPackage> packages = new HashMap<String, EPackage>(projectAnalyzer.getNamedEPackageMap());
 		try {
-			for (IProject p : project.getProject().getReferencedProjects()) {
-				IJavaProject jp = JavaCore.create(p);
-				EPackage[] ps = getMetamodelsForProjectInternal(jp, visited);
-				for (EPackage package1 : ps) {
+			for (final IProject p : project.getProject().getReferencedProjects()) {
+				final IJavaProject jp = JavaCore.create(p);
+				final EPackage[] ps = getMetamodelsForProjectInternal(jp, visited);
+				for (final EPackage package1 : ps) {
 					if (!packages.containsKey(package1.getNsURI())) {
 						packages.put(package1.getNsURI(), package1);
 					}
 				}
 			}
-		} catch (CoreException e) {
+		}
+		catch (final CoreException e) {
 			EmfToolsLog.logError(e);
 		}
 		return packages.values().toArray(new EPackage[packages.values().size()]);
@@ -259,23 +264,31 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	}
 
 	protected boolean isJarFile(final IResource f) {
-		return f instanceof IFile && !f.isDerived()	&& "jar".equalsIgnoreCase(f.getFileExtension());
+		return f instanceof IFile && !f.isDerived() && "jar".equalsIgnoreCase(f.getFileExtension());
 	}
 
 	/**
-	 * Finds oaw projects that depend on the given project, recursively. Uses a Map to collect projects
-	 * since sometimes the same project is referenced through different IProject objects.
-	 * @param project The project whose referenced projects should be retrieved
-	 * @param referencingProjects Result map where the assignment of a project to its referencing projects is stored
-	 * @param visited All project names that where already visited during this recursion. This is to avoid loops when having
-	 *        circular dependencies. 
+	 * Finds Xpand projects that depend on the given project, recursively. Uses
+	 * a Map to collect projects since sometimes the same project is referenced
+	 * through different IProject objects.
+	 * 
+	 * @param project
+	 *            The project whose referenced projects should be retrieved
+	 * @param referencingProjects
+	 *            Result map where the assignment of a project to its
+	 *            referencing projects is stored
+	 * @param visited
+	 *            All project names that where already visited during this
+	 *            recursion. This is to avoid loops when having circular
+	 *            dependencies.
 	 */
-	private void collectReferencingExtXptProjects(IProject project, Map<String, IProject> referencingProjects, Set<String> visited) {
+	private void collectReferencingExtXptProjects(final IProject project,
+			final Map<String, IProject> referencingProjects, final Set<String> visited) {
 		if (visited.contains(project.getName()))
 			return;
 		visited.add(project.getName());
-		
-		for (IProject p : project.getReferencingProjects()) {
+
+		for (final IProject p : project.getReferencingProjects()) {
 			if (Activator.getExtXptModelManager().findProject(p) != null) {
 				referencingProjects.put(p.getName(), p);
 			}
@@ -284,28 +297,31 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Analyzes the given projects, finds all oaw projects that depend on these, and rebuild those.
-	 * The given projects themselves are built in their ProjectAnalyers
-	 *  
-	 * @param projects The projects to analyze.
+	 * Analyzes the given projects, finds all Xpand projects that depend on
+	 * these, and rebuild those. The given projects themselves are built in
+	 * their ProjectAnalyers
+	 * 
+	 * @param projects
+	 *            The projects to analyze.
 	 */
-	private void analyzeAndRebuildProjects(Set<IProject> projects) {
-		Map<String, IProject> referencingProjects = new HashMap<String, IProject>();
-		Set<String> visited = new HashSet<String>();
-		for (IProject p : projects) {
-			ProjectAnalyzer pa = getProjectAnalyzer(p);
-			if (pa!=null) {
+	private void analyzeAndRebuildProjects(final Set<IProject> projects) {
+		final Map<String, IProject> referencingProjects = new HashMap<String, IProject>();
+		final Set<String> visited = new HashSet<String>();
+		for (final IProject p : projects) {
+			final ProjectAnalyzer pa = getProjectAnalyzer(p);
+			if (pa != null) {
 				if (pa.getState() != Job.WAITING) {
 					pa.schedule();
 				}
 			}
 			collectReferencingExtXptProjects(p, referencingProjects, visited);
 		}
-		// remove those projects that we just analyzed. they will be built in their ProjectAnalyzer.
+		// remove those projects that we just analyzed. they will be built in
+		// their ProjectAnalyzer.
 		// so we shouldn't start another builder here.
-		ArrayList<IProject> relevantProjects = new ArrayList<IProject>(referencingProjects.values());
+		final ArrayList<IProject> relevantProjects = new ArrayList<IProject>(referencingProjects.values());
 		relevantProjects.removeAll(projects);
-		for (IProject refProject : relevantProjects) {
+		for (final IProject refProject : relevantProjects) {
 			new BuildJob(refProject).schedule();
 		}
 	}

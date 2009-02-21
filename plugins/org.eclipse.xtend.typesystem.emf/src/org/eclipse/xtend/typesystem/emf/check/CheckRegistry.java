@@ -56,23 +56,23 @@ public class CheckRegistry {
 
 	public void registerCheckFile(EPackage ePackage, String checkFileName, boolean isWrapExistingValidator,
 			List<String> referencedEPackageNsURIs) {
-		CheckEValidatorAdapter oawValidator;
+		CheckEValidatorAdapter extxptValidator;
 		if (isWrapExistingValidator) {
 			EValidator validator = EValidator.Registry.INSTANCE.getEValidator(ePackage);
 			if (validator instanceof CheckEValidatorAdapter)
-				oawValidator = (CheckEValidatorAdapter) validator;
+				extxptValidator = (CheckEValidatorAdapter) validator;
 			else
-				oawValidator = new CheckEValidatorAdapter(ePackage, validator);
+				extxptValidator = new CheckEValidatorAdapter(ePackage, validator);
 		}
 		else {
-			oawValidator = new CheckEValidatorAdapter(ePackage);
+			extxptValidator = new CheckEValidatorAdapter(ePackage);
 		}
 		CheckFileWithContext checkFile = new CheckFileWithContext(checkFileName);
 		for (String referencedEPackageNsURI : referencedEPackageNsURIs) {
 			checkFile.addImportedEPackageNsUri(referencedEPackageNsURI);
 		}
-		oawValidator.addCheckFile(checkFile);
-		EValidator.Registry.INSTANCE.put(ePackage, oawValidator);
+		extxptValidator.addCheckFile(checkFile);
+		EValidator.Registry.INSTANCE.put(ePackage, extxptValidator);
 	}
 
 	private void registerExtensions() {

@@ -52,29 +52,20 @@ public class Check extends SyntaxElement {
 	}
 
 	public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		try {
+			if (ctx.getCallback() != null)
+				ctx.getCallback().pre(this,ctx);
 		final Type toCheck = ctx.getTypeForName(type.getValue());
 		if (toCheck == null) {
-			issues
-					.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: " + type.getValue(),
-							this));
-			return;
-		}
-		if (feature != null) {
-			Property property = toCheck.getProperty(feature.getValue());
-			if (property == null) {
-				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find property '"
-						+ feature.getValue() + "' for type '" + type.getValue() + "'", this));
+				issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: " + type.getValue(), this));
 				return;
 			}
-		}
-
 		ctx = ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, toCheck));
 		if (guard != null) {
 			Type guardType = null;
 			try {
 				guardType = guard.analyze(ctx, issues);
-			}
-			catch (RuntimeException ex) {
+				} catch (RuntimeException ex) {
 				ctx.handleRuntimeException(ex, this, null);
 			}
 			if (guardType == null)
@@ -88,8 +79,7 @@ public class Check extends SyntaxElement {
 		Type constraintType = null;
 		try {
 			constraintType = constraint.analyze(ctx, issues);
-		}
-		catch (RuntimeException ex) {
+			} catch (RuntimeException ex) {
 			ctx.handleRuntimeException(ex, this, null);
 		}
 		if (constraintType == null)
@@ -101,9 +91,12 @@ public class Check extends SyntaxElement {
 
 		try {
 			msg.analyze(ctx, issues);
-		}
-		catch (RuntimeException ex) {
+			} catch (RuntimeException ex) {
 			ctx.handleRuntimeException(ex, this, null);
+		}
+		} finally {
+			if (ctx.getCallback() != null)
+				ctx.getCallback().post(null);
 		}
 	}
 
@@ -120,13 +113,16 @@ public class Check extends SyntaxElement {
 	 *            <code>true</code>: If this check is not evaluated for any
 	 *            elements an warning will be added to <tt>issues</tt>
 	 */
-	public void validate(ExecutionContext ctx, final Collection<?> colToCheck, final Issues issues,
-			boolean warnIfNothingChecked) {
+	public void validate(ExecutionContext ctx, final Collection<?> colToCheck, final Issues issues, boolean warnIfNothingChecked) {
+		try {
+			if (ctx.getCallback() != null)
+				ctx.getCallback().pre(this, ctx);
 		// get the type for which the check should be evaluated
 		final Type typeToCheck = ctx.getTypeForName(type.getValue());
 		// The type is unknown => exit with exception
 		if (typeToCheck == null)
 			throw new EvaluationException("Type not found : " + type.getValue(), this, ctx);
+
 		// will be set to true when check is evaluated for any object
 		boolean someObjectFound = false;
 		for (final Iterator<?> iter = colToCheck.iterator(); iter.hasNext();) {
@@ -137,48 +133,47 @@ public class Check extends SyntaxElement {
 				try {
 					// create a new execution context for evaluation
 					ctx = ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, o));
-					// check the guard condition; do not evaluate if guard is
+						// check the guard condition; do not evaluate if guard
+						// is
 					// evaluated to false
 					if (process(ctx)) {
-						final Object result = constraint.evaluate(ctx);
+							Object result = null;
+							try {
+								result = constraint.evaluate(ctx);
+							} catch (RuntimeException e) {
+								final String msg = e.getMessage();
+								issues.addError(msg, e);
+							}
 
 						// check result must be of Boolean type
 						if (result != null && !(result instanceof Boolean))
-							throw new EvaluationException("Boolean expected! ( was " + result.getClass().getName()
-									+ ")", this, ctx);
+								throw new EvaluationException("Boolean expected! ( was " + result.getClass().getName() + ")",
+										this, ctx);
 
 						// add issue if result of the check is false
 						final Boolean r = (Boolean) result;
 						if (Boolean.FALSE.equals(r)) {
 							// get the error message
-							final Object msgResult = msg.evaluate(ctx);
+								Object msgResult = null;
+								try {
+									msgResult = msg.evaluate(ctx);
+								} catch (RuntimeException e) {
+									final String msg = e.getMessage();
+									issues.addError(msg, e);
+								}
+								
 							String stringResult = "Message evaluation returned null";
 							if (msgResult != null) {
 								stringResult = msgResult.toString();
 							}
-							// Involved property e.g. test::Bean#property
-							String propertyName = null;
-							if (feature != null) {
-								String featureValue = feature.getValue();
-								Property property = typeToCheck.getProperty(featureValue);
-								if (property == null) {
-									throw new EvaluationException("Property " + featureValue + " for Type "
-											+ typeToCheck + " not found!", this, ctx);
-								}
-								else {
-									propertyName = property.getName();
-								}
-							}
 							if (errorSeverity) {
-								issues.addError(null, stringResult, o, propertyName, null, Collections.emptyList());
-							}
-							else {
-								issues.addWarning(null, stringResult, o, propertyName, null, Collections.emptyList());
+									issues.addError(stringResult, o);
+								} else {
+									issues.addWarning(stringResult, o);
 							}
 						}
 					}
-				}
-				catch (final NullPointerException npe) {
+					} catch (final NullPointerException npe) {
 					final Object msgResult = msg.evaluate(ctx);
 					String stringResult = "Message evaluation returned null";
 					if (msgResult != null) {
@@ -186,16 +181,19 @@ public class Check extends SyntaxElement {
 					}
 					if (errorSeverity) {
 						issues.addError(stringResult + " (NPE in constraint evaluation)", o);
-					}
-					else {
+						} else {
 						issues.addWarning(stringResult + " (NPE in constraint evaluation)", o);
 					}
 				}
 			}
 		}
 		if (warnIfNothingChecked && (!someObjectFound)) {
-			issues.addWarning("The constraint did not match any model elements. Context: " + type.toString()
-					+ ", message: " + msg);
+				issues.addWarning("The constraint did not match any model elements. Context: " + type.toString() + ", message: "
+						+ msg);
+			}
+		} finally {
+			if (ctx.getCallback() != null)
+				ctx.getCallback().post(null);
 		}
 	}
 

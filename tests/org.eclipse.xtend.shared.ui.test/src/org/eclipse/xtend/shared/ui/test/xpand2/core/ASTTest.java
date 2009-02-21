@@ -35,10 +35,10 @@ public class ASTTest extends XpandCoreTestBase {
         dumpMarkers(tpl);
         dumpMarkers(tpl2);
         final IXpandResource xptpl = (IXpandResource) Activator.getExtXptModelManager().findExtXptResource(storage(tpl));
-        assertNotNull("OawModelManager could not find Xpand Resource '"+tpl+"' in the workspace", xptpl);
+        assertNotNull("XtendXpandModelManager could not find Xpand Resource '"+tpl+"' in the workspace", xptpl);
 
         final IXpandResource xptpl2 = (IXpandResource) Activator.getExtXptModelManager().findExtXptResource(storage(tpl2));
-        assertNotNull("OawModelManager could not find Xpand Resource '"+tpl2+"' in the workspace", xptpl2);
+        assertNotNull("XtendXpandModelManager could not find Xpand Resource '"+tpl2+"' in the workspace", xptpl2);
 
         env.removeFile(tpl);
         env.incrementalBuild();

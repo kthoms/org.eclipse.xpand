@@ -50,10 +50,6 @@ public class Advice extends AbstractDefinition implements XpandAdvice {
 
 	private Pattern p = null;
 
-	public boolean isWildcardParams () {
-	    return wildParams;
-	}
-	
 	public boolean matches(final XpandDefinition def, XpandExecutionContext ctx) {
 		if (p == null) {
 			p = Pattern.compile(getName().replaceAll("\\*", ".*"));
@@ -86,6 +82,16 @@ public class Advice extends AbstractDefinition implements XpandAdvice {
 	@Override
 	public String getNameString(ExecutionContext context) {
 		return "AROUND";
+	}
+
+	@Override
+	public String toString() {
+		if (_stringRepresentation == null) {
+			_stringRepresentation = getOwner().getFullyQualifiedName() + ": " + getName() + getParamString(false)
+					+ " : " + getType().getValue();
+		}
+
+		return _stringRepresentation;
 	}
 
 }

@@ -50,7 +50,7 @@ public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecuti
 		private IXtendXpandProject project;
 
 		public PluginResourceManager(final IXtendXpandProject project) {
-			assert project != null;
+            assert project!=null;
 			this.project = project;
 		}
 

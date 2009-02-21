@@ -26,69 +26,68 @@ import org.eclipse.internal.xtend.xtend.parser.XtendError;
 public final class XpandParseFacade {
 	private XpandParseFacade() {
 	}
-	
-	public static Template file(Reader r, String fileName) {
-		return file(r,fileName,null);
+
+	public static Template file(final Reader r, final String fileName) {
+		return file(r, fileName, null);
 	}
 
-	public static Template file(Reader r, String fileName,
-			ErrorHandler handler) {
+	public static Template file(final Reader r, final String fileName, final ErrorHandler handler) {
 		ANTLRReaderStream readerStream;
 		try {
 			readerStream = new ANTLRReaderStream(r);
-		} catch (IOException e2) {
+		}
+		catch (final IOException e2) {
 			throw new RuntimeException(e2);
 		}
 		final ErrorHandler h = getErrorHandler(handler);
 		try {
 			return getParser(fileName, readerStream, h).template();
-		} catch (final RecognitionException e) {
+		}
+		catch (final RecognitionException e) {
 			h.handleError(createError(e, ""));
 		}
 		return null;
 	}
 
-	private static XpandLocationAddingParser getParser(String fileName, ANTLRReaderStream readerStream, final ErrorHandler h) {
-		XpandLexer lex = new XpandLexer(readerStream) {
+	private static XpandLocationAddingParser getParser(final String fileName, final ANTLRReaderStream readerStream,
+			final ErrorHandler h) {
+		final XpandLexer lex = new XpandLexer(readerStream) {
 			@Override
-			public void reportError(RecognitionException e) {
-				h.handleError(createError(e, this.getErrorMessage(e, this
-						.getTokenNames())));
+			public void reportError(final RecognitionException e) {
+				h.handleError(createError(e, getErrorMessage(e, getTokenNames())));
 			}
 		};
 
-		CommonTokenStream str = new CommonTokenStream();
+		final CommonTokenStream str = new CommonTokenStream();
 		str.setTokenSource(lex);
-		XpandLocationAddingParser parser = new XpandLocationAddingParser(str,
-				fileName) {
+		final XpandLocationAddingParser parser = new XpandLocationAddingParser(str, fileName) {
 			@Override
-			public void reportError(RecognitionException e) {
-				h.handleError(createError(e, this.getErrorMessage(e, this
-						.getTokenNames())));
+			public void reportError(final RecognitionException e) {
+				h.handleError(createError(e, getErrorMessage(e, getTokenNames())));
 			}
 		};
 		return parser;
 	}
 
 	private static ErrorHandler getErrorHandler(ErrorHandler handler) {
-		if (handler == null)
+		if (handler == null) {
 			handler = new ErrorHandler() {
 
-				public void handleError(XtendError e) {
+				public void handleError(final XtendError e) {
 					throw new ParseException(e);
 				}
 			};
+		}
 		final ErrorHandler h = handler;
 		return h;
 	}
 
-	protected static XtendError createError(RecognitionException e, String string) {
-		if (e.token == null) {
+	protected static XtendError createError(final RecognitionException e, final String string) {
+		if (e.token == null)
 			return new SyntaxError(e.index, e.line, e.index + 1, string);
-		} else {
-			CommonToken t = (CommonToken) e.token;
-			return new SyntaxError(t.getStartIndex(), t.getStopIndex(), t
-					.getLine(), string);
+		else {
+			final CommonToken t = (CommonToken) e.token;
+			return new SyntaxError(t.getStartIndex(), t.getStopIndex(), t.getLine(), string);
 		}
 	}
 }

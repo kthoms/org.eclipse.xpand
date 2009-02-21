@@ -38,45 +38,46 @@ public class ExtensionFactory extends ExpressionFactory {
 
 	public ExtensionFile createExtensionFile(final List<ImportStatement> nsimports,
 			final List<ImportStatement> extimports, final List<Extension> extensions, final List<Around> arounds,
-			List<Check> checks) {
+			final List<Check> checks) {
 		return (ExtensionFile) handle(new ExtensionFile(nonNull(nsimports), nonNull(extimports), nonNull(extensions),
 				nonNull(arounds), nonNull(checks)));
 	}
 
 	public ImportStatement createNsImport(final Identifier t) {
-		return (ImportStatement) handle(new ImportStatement(t, false));
+		return handle(new ImportStatement(t, false));
 	}
 
 	public ImportStatement createExtensionFileImport(final Identifier t, final Identifier exported) {
-		return (ImportStatement) handle(new ImportStatement(t, exported != null));
+		return handle(new ImportStatement(t, exported != null));
 	}
 
 	public JavaExtensionStatement createJavaExtension(final Identifier name, final Identifier type,
 			final List<DeclaredParameter> params, final Identifier typeName, final Identifier methodName,
 			final List<Identifier> javaParamTypes, final Identifier cached, final Identifier priv) {
-		return (JavaExtensionStatement) handle(new JavaExtensionStatement(name, nonNull(params), type, typeName,
-				methodName, nonNull(javaParamTypes), cached != null, priv != null));
+		return handle(new JavaExtensionStatement(name, nonNull(params), type, typeName, methodName,
+				nonNull(javaParamTypes), cached != null, priv != null));
 	}
 
 	public ExpressionExtensionStatement createExpressionExtension(final Identifier name, final Identifier returnType,
 			final List<DeclaredParameter> params, final Expression expr, final Identifier cached, final Identifier priv) {
-		return (ExpressionExtensionStatement) handle(new ExpressionExtensionStatement(name, returnType,
-				nonNull(params), expr, cached != null, priv != null));
+		return handle(new ExpressionExtensionStatement(name, returnType, nonNull(params), expr, cached != null,
+				priv != null));
 	}
 
 	public Extension createCreateExtension(final Identifier create, final Identifier returnType, final Identifier rtn,
 			final Identifier name, final List<DeclaredParameter> params, final Expression expr, final Identifier priv) {
-		return (CreateExtensionStatement) handle(new CreateExtensionStatement(name, returnType, rtn != null ? rtn
-				: null, nonNull(params), expr, priv != null));
+		return handle(new CreateExtensionStatement(name, returnType, rtn != null ? rtn : null, nonNull(params), expr,
+				priv != null));
 	}
 
-	public Around createAround(Identifier pointcut, List<DeclaredParameter> p, boolean wildparams, Expression expr) {
-		return (Around) handle(new Around(pointcut, nonNull(p), wildparams, expr));
+	public Around createAround(final Identifier pointcut, final List<DeclaredParameter> p, final boolean wildparams,
+			final Expression expr) {
+		return handle(new Around(pointcut, nonNull(p), wildparams, expr));
 	}
 
-	public Check createCheck(Identifier t, Identifier f, Expression guard, boolean errorSev, Expression msg,
-			Expression expr) {
-		return (Check) handle(new Check(t, f, guard, errorSev, msg, expr));
+	public Check createCheck(final Identifier t, final Identifier f, final Expression guard, final boolean errorSev,
+			final Expression msg, final Expression expr) {
+		return handle(new Check(t, f, guard, errorSev, msg, expr));
 	}
 
 }

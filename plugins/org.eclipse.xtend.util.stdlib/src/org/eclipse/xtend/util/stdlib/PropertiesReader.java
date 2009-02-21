@@ -48,7 +48,7 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
  * <h2>Example</h2> Workflow configuration:
  * 
  * <pre>
- * &lt;component class=&quot;oaw.util.stdlib.PropertiesReader&quot;&gt;
+ * &lt;component class=&quot;org.eclipse.xtend.util.stdlib.PropertiesReader&quot;&gt;
  * 	&lt;propertiesFile value=&quot;src/config1.properties&quot;/&gt;
  * 	&lt;propertiesFile value=&quot;src/config2.properties&quot;/&gt;
  * &lt;/component&gt;
@@ -76,13 +76,13 @@ public class PropertiesReader extends AbstractWorkflowComponent2 {
 	private List<String> propertiesFile;
 
 	@Override
-	protected void checkConfigurationInternal(Issues issues) {
+	protected void checkConfigurationInternal(final Issues issues) {
 		if (propertiesFile == null || propertiesFile.isEmpty()) {
 			issues.addError("propertiesFile not set. ");
 		}
 		else {
-			for (String uri : propertiesFile) {
-				URL url = ResourceLoaderFactory.createResourceLoader().getResource(uri);
+			for (final String uri : propertiesFile) {
+				final URL url = ResourceLoaderFactory.createResourceLoader().getResource(uri);
 				if (url == null) {
 					issues.addError("propertiesFile '" + uri + "' not found.");
 				}
@@ -91,18 +91,18 @@ public class PropertiesReader extends AbstractWorkflowComponent2 {
 	}
 
 	@Override
-	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
-		ResourceLoader rl = ResourceLoaderFactory.createResourceLoader();
-		for (String uri : propertiesFile) {
+	protected void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
+		final ResourceLoader rl = ResourceLoaderFactory.createResourceLoader();
+		for (final String uri : propertiesFile) {
 			try {
-				Properties p = new Properties();
+				final Properties p = new Properties();
 				if (LOG.isDebugEnabled()) {
 					LOG.debug("Reading properties file " + uri);
 				}
 				p.load(rl.getResourceAsStream(uri));
 				PropertiesExtension.setProperties(p);
 			}
-			catch (Exception e) {
+			catch (final Exception e) {
 				issues.addError(e.getMessage(), e);
 			}
 		}
@@ -114,7 +114,7 @@ public class PropertiesReader extends AbstractWorkflowComponent2 {
 	 * @param propertiesFile
 	 *            A properties file
 	 */
-	public final void addPropertiesFile(String propFile) {
+	public final void addPropertiesFile(final String propFile) {
 		if (propertiesFile == null) {
 			propertiesFile = new ArrayList<String>();
 		}

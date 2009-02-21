@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Text;
  * as the file name. The page will only accept file name without the extension
  * OR with the extension that matches the expected one (xtxt).
  */
-public class OawProjectWizardPage extends WizardPage {
+public class XtendXpandProjectWizardPage extends WizardPage {
 	private Text projectText;
 
 	private Button generateSimpleExample;
@@ -40,10 +40,10 @@ public class OawProjectWizardPage extends WizardPage {
 	 * 
 	 * @param pageName
 	 */
-	public OawProjectWizardPage(ISelection selection) {
+	public XtendXpandProjectWizardPage(ISelection selection) {
 		super("wizardPage");
-		setTitle("oAW Project");
-		setDescription("This wizard creates a simple oAW generator project including the references to the required libraries.");
+		setTitle("Xtend Project");
+		setDescription("This wizard creates a simple Xtend generator project including the references to the required libraries.");
 	}
 
 	/**

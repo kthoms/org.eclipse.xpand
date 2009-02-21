@@ -52,8 +52,8 @@ public abstract class AbstractExpressionsUsingWorkflowAdvice extends AbstractWor
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.core.ao.AbstractWorkflowAdvice#weave(org.eclipse.emf.mwe.core.WorkflowComponent,
-	 *      org.eclipse.emf.mwe.core.issues.Issues)
+	 * @see org.eclipse.workflow.ao.AbstractWorkflowAdvice#weave(org.eclipse.workflow.WorkflowComponent,
+	 *      org.eclipse.workflow.issues.Issues)
 	 */
 	@Override
 	public void weave(WorkflowComponent c, Issues issues) {

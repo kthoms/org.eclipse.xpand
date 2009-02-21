@@ -39,7 +39,7 @@ import org.eclipse.ui.IWorkbenchSite;
  * selectionChanged(ISelection)}.</li>
  * </ul>
  * 
- * Note: This class is not intended to be subclassed outside the oAW UI plug-in.
+ * Note: This class is not intended to be subclassed outside the Xtend UI plug-in.
  */
 public abstract class SelectionDispatchAction extends Action implements ISelectionChangedListener {
 

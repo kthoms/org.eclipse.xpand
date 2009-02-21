@@ -47,15 +47,15 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.texteditor.ITextEditor;
-import org.eclipse.xtend.shared.ui.editor.search.query.OawSearchQuery;
+import org.eclipse.xtend.shared.ui.editor.search.query.XtendXpandSearchQuery;
 
 /**
- * <code>OawSearchResultPage </code> displays the search results of an oAW
+ * <code>XtendXpandSearchResultPage </code> displays the search results of an Xtend
  * related query.
  * 
  * @author Peter Friese
  */
-public class OawSearchResultPage extends AbstractTextSearchViewPage implements IAdaptable {
+public class XtendXpandSearchResultPage extends AbstractTextSearchViewPage implements IAdaptable {
 
 	public static class DecoratorIgnoringViewerSorter extends ViewerComparator {
 		private final ILabelProvider labelProvider;
@@ -72,6 +72,7 @@ public class OawSearchResultPage extends AbstractTextSearchViewPage implements I
 			return 2;
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public int compare(Viewer viewer, Object e1, Object e2) {
 			int cat1 = category(e1);
@@ -97,18 +98,18 @@ public class OawSearchResultPage extends AbstractTextSearchViewPage implements I
 	private static final String KEY_SORTING = "org.eclipse.search.resultpage.sorting"; //$NON-NLS-1$
 
 	private ActionGroup actionGroup;
-	private OawTableContentProvider contentProvider;
+	private XtendXpandTableContentProvider contentProvider;
 
 	private final EditorOpener editorOpener = new EditorOpener();
 
 	private static final String[] SHOW_IN_TARGETS = new String[] { IPageLayout.ID_RES_NAV };
 	private static final IShowInTargetList SHOW_IN_TARGET_LIST = new IShowInTargetList() {
 		public String[] getShowInTargetIds() {
-			return OawSearchResultPage.SHOW_IN_TARGETS;
+			return XtendXpandSearchResultPage.SHOW_IN_TARGETS;
 		}
 	};
 
-	public OawSearchResultPage() {
+	public XtendXpandSearchResultPage() {
 		super(AbstractTextSearchViewPage.FLAG_LAYOUT_FLAT);
 	}
 
@@ -130,9 +131,9 @@ public class OawSearchResultPage extends AbstractTextSearchViewPage implements I
 		WorkbenchLabelProvider innerLabelProvider = new WorkbenchLabelProvider();
 		viewer.setLabelProvider(new DecoratingLabelProvider(innerLabelProvider, PlatformUI.getWorkbench()
 				.getDecoratorManager().getLabelDecorator()));
-		viewer.setContentProvider(new OawTableContentProvider(this));
+		viewer.setContentProvider(new XtendXpandTableContentProvider(this));
 		viewer.setComparator(new DecoratorIgnoringViewerSorter(innerLabelProvider));
-		contentProvider = (OawTableContentProvider) viewer.getContentProvider();
+		contentProvider = (XtendXpandTableContentProvider) viewer.getContentProvider();
 		addDragAdapters(viewer);
 	}
 
@@ -195,7 +196,7 @@ public class OawSearchResultPage extends AbstractTextSearchViewPage implements I
 		actionGroup.setContext(new ActionContext(getSite().getSelectionProvider().getSelection()));
 		actionGroup.fillContextMenu(mgr);
 		@SuppressWarnings("unused")
-		OawSearchQuery query = (OawSearchQuery) getInput().getQuery();
+		XtendXpandSearchQuery query = (XtendXpandSearchQuery) getInput().getQuery();
 	}
 
 	private void addSortActions(IMenuManager mgr) {
@@ -241,9 +242,10 @@ public class OawSearchResultPage extends AbstractTextSearchViewPage implements I
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		if (IShowInTargetList.class.equals(adapter)) {
-			return OawSearchResultPage.SHOW_IN_TARGET_LIST;
+			return XtendXpandSearchResultPage.SHOW_IN_TARGET_LIST;
 		}
 		return null;
 	}

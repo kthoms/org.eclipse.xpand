@@ -82,7 +82,7 @@ public class AdvicedDefinition implements XpandDefinition {
 		return advice.getFileName();
 	}
 
-	public String getNameString(ExecutionContext context) {
+	public String getNameString(ExecutionContext context){
 		return advice.getNameString(context);
 	}
 

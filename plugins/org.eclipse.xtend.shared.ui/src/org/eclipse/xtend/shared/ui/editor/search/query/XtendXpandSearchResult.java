@@ -23,24 +23,24 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtend.shared.ui.expression.editor.EditorImages;
 
 /**
- * <code>OawSearchResult</code> contains a list of text-based matches for a
+ * <code>XtendXpandSearchResult</code> contains a list of text-based matches for a
  * given query.
  * 
  * @author Peter Friese
  */
-public class OawSearchResult extends AbstractTextSearchResult implements IEditorMatchAdapter, IFileMatchAdapter {
+public class XtendXpandSearchResult extends AbstractTextSearchResult implements IEditorMatchAdapter, IFileMatchAdapter {
 
-	private final OawSearchQuery query;
+	private final XtendXpandSearchQuery query;
 
 	private final Match[] EMPTY_ARR = new Match[0];
 
 	/**
-	 * Creates a new <code>OawSearchResult</code>.
+	 * Creates a new <code>XtendXpandSearchResult</code>.
 	 * 
 	 * @param query
 	 *            The query that yielded this result.
 	 */
-	public OawSearchResult(OawSearchQuery query) {
+	public XtendXpandSearchResult(XtendXpandSearchQuery query) {
 		super();
 		this.query = query;
 	}

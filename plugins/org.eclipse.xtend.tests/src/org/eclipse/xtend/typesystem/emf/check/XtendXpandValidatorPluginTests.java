@@ -28,14 +28,14 @@ import org.eclipse.xtend.typesystem.emf.check.model.test.TestPackage;
 /**
  * @author Jan Köhnlein
  */
-public class OawValidatorPluginTests extends TestCase {
+public class XtendXpandValidatorPluginTests extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		CheckRegistry.getInstance();
 	}
 
-	public void testOawValidator() {
+	public void testExtXptValidator() {
 		// Plugin test
 		EValidator validator = EValidator.Registry.INSTANCE.getEValidator(TestPackage.eINSTANCE);
 		assertNotNull("Validator registration failed", validator);
@@ -55,7 +55,7 @@ public class OawValidatorPluginTests extends TestCase {
 		assertEquals("Validation should have a warning", Diagnostic.WARNING, diagnostic.getSeverity());
 	}
 
-	public void testOawValidatorFeatureScope() {
+	public void testExtXptValidatorFeatureScope() {
 		MyMetaClass objectUnderTest = TestFactory.eINSTANCE.createMyMetaClass();
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(objectUnderTest);
 		assertEquals("Validation should have failed", Diagnostic.ERROR, diagnostic.getSeverity());

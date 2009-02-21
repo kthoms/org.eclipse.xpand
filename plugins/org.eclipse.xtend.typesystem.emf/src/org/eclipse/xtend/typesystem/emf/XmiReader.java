@@ -116,7 +116,7 @@ public class XmiReader extends AbstractWorkflowComponent {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.openarchitectureware.workflow.issues.Issues)
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.eclipse.emf.mwe.core.issues.Issues)
 	 */
 	public void checkConfiguration(final Issues issues) {
 		loadFile(issues);
@@ -156,7 +156,7 @@ public class XmiReader extends AbstractWorkflowComponent {
 			return null;
 		}
 		final URL url = ResourceLoaderFactory.createResourceLoader().getResource(modelFile);
-		if ((url == null) || (url.getFile() == null)) {
+		if (url == null || url.getFile() == null) {
 			issues.addError(this, "cannot find file: " + modelFile);
 			return null;
 		}

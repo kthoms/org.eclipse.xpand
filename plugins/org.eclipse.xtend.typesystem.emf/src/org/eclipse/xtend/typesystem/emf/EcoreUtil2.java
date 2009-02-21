@@ -251,11 +251,9 @@ public class EcoreUtil2 {
 
 				uri = URI.createURI(url.toExternalForm());
 
-				// this is the old implementation of this block, but it caused
-				// errors:
+				// this is the old implementation of this block, but it caused errors:
 				// https://bugs.eclipse.org/bugs/show_bug.cgi?id=256833
-				// I'm leaving this here for a while to make sure unforeseen
-				// side effects can be understood
+				// I'm leaving this here for a while to make sure unforeseen side effects can be understood  
 				// if (url.getProtocol().equals("file")) {
 				// uri = URI.createFileURI(url.getFile());
 				// }

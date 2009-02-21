@@ -21,19 +21,15 @@ import org.eclipse.xtend.XtendComponent;
 
 public class XtendAdvice extends AbstractWorkflowAdvice {
 
-    private List<String> extensionAdvices = new ArrayList<String>();
+	private final List<String> extensionAdvices = new ArrayList<String>();
 
-    public void addExtensionAdvices(String extensionAdvices) {
-		this.extensionAdvices.add( extensionAdvices );
-	}
-
-    public void addExtensionAdvice(String extensionAdvices) {
-		this.extensionAdvices.add( extensionAdvices );
+	public void addExtensionAdvice(final String extensionAdvice) {
+		this.extensionAdvices.add(extensionAdvice);
 	}
 
 	@Override
 	public void weave(WorkflowComponent c, Issues issues) {
-		if ( !(c instanceof XtendComponent) ) {
+		if (!(c instanceof XtendComponent)) {
 			issues.addError(this, "advice target is not an XtendComponent.");
 		} else {
 			XtendComponent xc = (XtendComponent)c;
@@ -42,11 +38,13 @@ public class XtendAdvice extends AbstractWorkflowAdvice {
 			}
 		}
 	}
-	
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 */
 	@Override
 	public String getLogMessage() {
-		return "extensionAdvices: "+buildList( extensionAdvices );
+		return "extensionAdvices: " + buildList(extensionAdvices);
 	}
 
-	
 }

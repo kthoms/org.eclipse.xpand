@@ -22,7 +22,7 @@ import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 /**
- * GenericHyperlink is used by oAW editors to support hyperlinking and F3
+ * GenericHyperlink is used by Xtend editors to support hyperlinking and F3
  * lookup.
  * 
  * @author Peter Friese
@@ -38,8 +38,8 @@ public class GenericHyperlink implements IHyperlink {
 	/**
 	 * Creates a new Generic hyperlink.
 	 */
-	public GenericHyperlink(IWorkbenchPage workbenchPage, SearchMatch searchMatch, IRegion region,
-			String identifierString) {
+	public GenericHyperlink(final IWorkbenchPage workbenchPage, final SearchMatch searchMatch, final IRegion region,
+			final String identifierString) {
 		Assert.isNotNull(workbenchPage);
 		Assert.isNotNull(identifierString);
 		Assert.isNotNull(region);
@@ -55,12 +55,13 @@ public class GenericHyperlink implements IHyperlink {
 	public void open() {
 		try {
 			if (searchMatch.getFile() != null) {
-				IEditorPart opened = IDE.openEditor(workbenchPage, searchMatch.getFile());
+				final IEditorPart opened = IDE.openEditor(workbenchPage, searchMatch.getFile());
 				if (opened instanceof ITextEditor) {
 					((ITextEditor) opened).selectAndReveal(searchMatch.getOffSet(), searchMatch.getLength());
 				}
 			}
-		} catch (PartInitException e) {
+		}
+		catch (final PartInitException e) {
 			XtendLog.logError(e);
 		}
 	}

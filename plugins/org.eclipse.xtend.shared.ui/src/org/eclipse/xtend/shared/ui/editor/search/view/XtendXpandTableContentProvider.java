@@ -14,29 +14,29 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.search.ui.text.AbstractTextSearchResult;
-import org.eclipse.xtend.shared.ui.editor.search.query.OawSearchResult;
+import org.eclipse.xtend.shared.ui.editor.search.query.XtendXpandSearchResult;
 
 /**
- * <code>OawTableContentProvider</code> is a chnage/aware content provider for
+ * <code>XtendXpandTableContentProvider</code> is a chnage/aware content provider for
  * the search result list view.
  * 
  * @author Peter Friese
  */
-public class OawTableContentProvider implements IStructuredContentProvider, IFileSearchContentProvider {
+public class XtendXpandTableContentProvider implements IStructuredContentProvider, IFileSearchContentProvider {
 
 	private final Object[] EMPTY_ARR = new Object[0];
 
-	private final OawSearchResultPage page;
+	private final XtendXpandSearchResultPage page;
 	private AbstractTextSearchResult result;
 
 	/**
-	 * Creates a new <code>OawTableContentProvider</code>.
+	 * Creates a new <code>XtendXpandTableContentProvider</code>.
 	 * 
 	 * @param page
-	 *            The oAW search result page this content provider is associated
+	 *            The Xtend search result page this content provider is associated
 	 *            with.
 	 */
-	public OawTableContentProvider(OawSearchResultPage page) {
+	public XtendXpandTableContentProvider(XtendXpandSearchResultPage page) {
 		this.page = page;
 	}
 
@@ -44,9 +44,9 @@ public class OawTableContentProvider implements IStructuredContentProvider, IFil
 	 * {@inheritDoc}
 	 */
 	public Object[] getElements(Object inputElement) {
-		if (inputElement instanceof OawSearchResult) {
+		if (inputElement instanceof XtendXpandSearchResult) {
 			int elementLimit = 1000; // getElementLimit();
-			Object[] elements = ((OawSearchResult) inputElement).getElements();
+			Object[] elements = ((XtendXpandSearchResult) inputElement).getElements();
 			if (elementLimit != -1 && elements.length > elementLimit) {
 				Object[] shownElements = new Object[elementLimit];
 				System.arraycopy(elements, 0, shownElements, 0, elementLimit);
@@ -61,8 +61,8 @@ public class OawTableContentProvider implements IStructuredContentProvider, IFil
 	 * {@inheritDoc}
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		if (newInput instanceof OawSearchResult) {
-			result = (OawSearchResult) newInput;
+		if (newInput instanceof XtendXpandSearchResult) {
+			result = (XtendXpandSearchResult) newInput;
 		}
 	}
 

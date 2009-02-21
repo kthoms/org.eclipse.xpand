@@ -29,7 +29,7 @@ public class Bug155018Test extends XpandCoreTestBase {
 	/**
 	 * Test for Bug#155018: The bug concerns loading resources from Jar files.
 	 */
-    public final void testFindOawResourceInJar() throws JavaModelException {
+    public final void testFindExtXptResourceInJar() throws JavaModelException {
         env.openEmptyWorkspace();
         // create a test project and add a Jar file to its classpath. The Jar 'ExtensionInJar.jar' contains the 
         // extension 'org::openarchitectureware::util::IO.ext'

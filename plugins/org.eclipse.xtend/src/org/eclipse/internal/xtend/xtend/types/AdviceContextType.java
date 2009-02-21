@@ -57,6 +57,7 @@ public class AdviceContextType extends AbstractTypeImpl {
 				},
 				new OperationImpl(AdviceContextType.this,"proceed",getTypeSystem().getObjectType(),getTypeSystem().getListType(getTypeSystem().getObjectType())) {
 
+					@SuppressWarnings("unchecked")
 					@Override
 					protected Object evaluateInternal(Object target, Object[] params) {
 						return ((AdviceContext)target).proceed(((List<Object>)params[0]).toArray());

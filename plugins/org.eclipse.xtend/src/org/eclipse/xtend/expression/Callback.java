@@ -24,12 +24,8 @@ public interface Callback {
 	 * @param ctx
 	 */
 	void pre(SyntaxElement ele, ExecutionContext ctx);
-
 	/**
-	 * @param expressionResult
-	 *            the result of the evaluation (an instance of {@link Type} in
-	 *            analyzation phase) if syntax element was an instance of
-	 *            {@link Expression}
+	 * @param expressionResult the result of the evaluation (an instance of {@link Type} in analyzation phase) if syntax element was an instance of {@link Expression}
 	 */
 	void post(Object expressionResult);
 }

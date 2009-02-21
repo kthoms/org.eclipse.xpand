@@ -62,7 +62,7 @@ public class ProfileCollector {
      */
     public void finish () {
         if (_out != null) {
-            _out.println ("</m2t-profile>");
+            _out.println ("</oaw-profile>");
             _out.flush();
             _out = null;
         }

@@ -28,64 +28,66 @@ import org.eclipse.ui.IWorkbenchPart;
 
 public abstract class AbstractCoreModelTransformerAction implements IObjectActionDelegate {
 
-    private IFile file;
+	private IFile file;
 
-    protected static final String ANNO_SOURCE = GenModelPackage.eNS_URI;
+	protected static final String ANNO_SOURCE = GenModelPackage.eNS_URI;
 
-    protected static final String ANNO_KEY = "body";
+	protected static final String ANNO_KEY = "body";
 
-    /**
-     * Constructor for Action1.
-     */
-    public AbstractCoreModelTransformerAction() {
-        super();
-    }
+	/**
+	 * Constructor for Action1.
+	 */
+	public AbstractCoreModelTransformerAction() {
+		super();
+	}
 
-    /**
-     * @see IObjectActionDelegate#setActivePart(IAction, IWorkbenchPart)
-     */
-    public void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
-    }
+	/**
+	 * @see IObjectActionDelegate#setActivePart(IAction, IWorkbenchPart)
+	 */
+	public void setActivePart(final IAction action, final IWorkbenchPart targetPart) {
+	}
 
-    /**
-     * @see IActionDelegate#run(IAction)
-     */
-    public void run(final IAction action) {
-        final URI fileURI = URI.createFileURI(file.getFullPath().toPortableString());
+	/**
+	 * @see IActionDelegate#run(IAction)
+	 */
+	public void run(final IAction action) {
+		final URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toPortableString(), true);
 
-        final Resource r = new ResourceSetImpl().createResource(fileURI);
-        try {
-            r.load(null);
-        } catch (final IOException e) {
-            throwE(e);
-        }
-        transform(r);
-        try {
-            r.save(null);
-        } catch (final IOException e) {
-            throwE(e);
-        }
-    }
+		final Resource r = new ResourceSetImpl().createResource(fileURI);
+		try {
+			r.load(null);
+		}
+		catch (final IOException e) {
+			throwE(e);
+		}
+		transform(r);
+		try {
+			r.save(null);
+		}
+		catch (final IOException e) {
+			throwE(e);
+		}
+	}
 
-    public abstract void transform(Resource r);
+	public abstract void transform(Resource r);
 
-    public void throwE(final IOException e) {
-        final Shell shell = new Shell();
-        MessageDialog.openError(shell, "oAW EMF Eclipse Plug-in", e.getMessage());
-        throw new RuntimeException(e);
-    }
+	public void throwE(final IOException e) {
+		final Shell shell = new Shell();
+		MessageDialog.openError(shell, "Xtend EMF Eclipse Plug-in", e.getMessage());
+		throw new RuntimeException(e);
+	}
 
-    /**
-     * @see IActionDelegate#selectionChanged(IAction, ISelection)
-     */
-    public void selectionChanged(final IAction action, final ISelection selection) {
-        if (selection instanceof IStructuredSelection) {
-            final IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-            final Object object = structuredSelection.getFirstElement();
-            if (object instanceof IFile) {
-                file = (IFile) object;
-            }
-        }
-    }
+	/**
+	 * @see IActionDelegate#selectionChanged(IAction, ISelection)
+	 */
+	public void selectionChanged(final IAction action, final ISelection selection) {
+		if (selection instanceof IStructuredSelection) {
+			final IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+			final Object object = structuredSelection.getFirstElement();
+			if (object instanceof IFile) {
+				file = (IFile) object;
+			}
+		}
+	}
 
 }

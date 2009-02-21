@@ -25,27 +25,27 @@ import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
 
 /**
- * <code>OawSearchQuery</code> is a base class for search queries. Queries
+ * <code>XtendXpandSearchQuery</code> is a base class for search queries. Queries
  * contain the search parameters for the search and the code that performs the
  * query as well.
  * 
  * @author Peter Friese
  */
-public abstract class OawSearchQuery implements ISearchQuery {
+public abstract class XtendXpandSearchQuery implements ISearchQuery {
 
 	private final String identifier;
 	private final IXtendXpandProject project;
-	private OawSearchResult result;
+	private XtendXpandSearchResult result;
 
 	/**
-	 * Creates a new <code>OawSearchQuery</code>.
+	 * Creates a new <code>XtendXpandSearchQuery</code>.
 	 * 
 	 * @param project
 	 *            The project to run this query on.
 	 * @param identifier
 	 *            The identifier to look for.
 	 */
-	public OawSearchQuery(IXtendXpandProject project, String identifier) {
+	public XtendXpandSearchQuery(IXtendXpandProject project, String identifier) {
 		this.project = project;
 		this.identifier = identifier;
 	}
@@ -98,7 +98,7 @@ public abstract class OawSearchQuery implements ISearchQuery {
 	 */
 	public ISearchResult getSearchResult() {
 		if (result == null) {
-			result = new OawSearchResult(this);
+			result = new XtendXpandSearchResult(this);
 		}
 		return result;
 	}

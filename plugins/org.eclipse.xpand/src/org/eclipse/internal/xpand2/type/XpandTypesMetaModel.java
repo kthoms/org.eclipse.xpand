@@ -88,7 +88,7 @@ public class XpandTypesMetaModel implements MetaModel {
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(Object arg0) {
+	public boolean equals(final Object arg0) {
 		return arg0 instanceof XpandTypesMetaModel;
 	}
 
@@ -106,5 +106,4 @@ public class XpandTypesMetaModel implements MetaModel {
 	public Set<String> getNamespaces() {
 		return new HashSet<String>();
 	}
-
 }

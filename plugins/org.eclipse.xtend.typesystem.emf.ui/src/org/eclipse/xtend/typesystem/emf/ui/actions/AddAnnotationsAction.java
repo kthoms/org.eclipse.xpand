@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 public class AddAnnotationsAction extends AbstractCoreModelTransformerAction {
 
+    @SuppressWarnings("unchecked")
 	@Override
     public void transform(final Resource r) {
         final Iterator<EObject> iter = r.getAllContents();
@@ -52,9 +53,8 @@ public class AddAnnotationsAction extends AbstractCoreModelTransformerAction {
         final List<EParameter> params = op.getEParameters();
         for (final Iterator<EParameter> iter = params.iterator(); iter.hasNext();) {
             final EParameter element = iter.next();
-            buff.append(element.getName());
-            buff.append(", ");
-        }
+			buff.append(element.getName());
+		}
         return buff.append("this);").toString();
     }
 

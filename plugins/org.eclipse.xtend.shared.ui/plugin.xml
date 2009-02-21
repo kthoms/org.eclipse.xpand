@@ -158,8 +158,8 @@
         point="org.eclipse.search.searchResultViewPages">
 		<viewPage
 			id="org.eclipse.xtend.shared.ui.editor.SearchResultPage"
-			searchResultClass="org.eclipse.xtend.shared.ui.editor.search.query.OawSearchResult"
-			class="org.eclipse.xtend.shared.ui.editor.search.view.OawSearchResultPage">
+			searchResultClass="org.eclipse.xtend.shared.ui.editor.search.query.XtendXpandSearchResult"
+			class="org.eclipse.xtend.shared.ui.editor.search.view.XtendXpandSearchResultPage">
 		</viewPage>
    </extension>
 </plugin>

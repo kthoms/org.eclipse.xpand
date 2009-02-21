@@ -179,9 +179,9 @@ public class XtendXpandProject implements IXtendXpandProject {
 	}
 
 	/**
-	 * @see IXtendXpandProject#unregisterOawResource(IXtendXpandResource)
+	 * @see IXtendXpandProject#unregisterXtendXpandResource(IXtendXpandResource)
 	 */
-	public void unregisterOawResource(final IXtendXpandResource res) {
+	public void unregisterXtendXpandResource(final IXtendXpandResource res) {
 		if (res != null) {
 			if (res.getUnderlyingStorage() instanceof IFile)
 				XtendXpandMarkerManager.deleteMarkers((IFile) res.getUnderlyingStorage());
@@ -198,15 +198,15 @@ public class XtendXpandProject implements IXtendXpandProject {
 		if (Activator.getRegisteredResourceContributorFor(extension) == null)
 			return null;
 		// for performance reasons ask the cache first
-		IXtendXpandResource res = findCachedOawResource(fqn, extension);
+		IXtendXpandResource res = findCachedXtendXpandResource(fqn, extension);
 		if (res != null)
 			return res;
 		// ask to load the resource without looking into jars
-		res = loadOawResource(fqn, extension, false);
+		res = loadXtendXpandResource(fqn, extension, false);
 		if (res != null)
 			return res;
 		// look into jars
-		return loadOawResource(fqn, extension, true);
+		return loadXtendXpandResource(fqn, extension, true);
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @return The cached resource or <code>null</code> if the resource is not
 	 *         known
 	 */
-	private IXtendXpandResource findCachedOawResource(String fqn, String extension) {
+	private IXtendXpandResource findCachedXtendXpandResource(String fqn, String extension) {
 		IXtendXpandResource res = resources.get(new ResourceID(fqn, extension));
 		if (res == null)
 			return null;
@@ -236,7 +236,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 	}
 
 	/**
-	 * Loads an oAW Resource. Searches the project and all referenced projects.
+	 * Loads an Xtend Resource. Searches the project and all referenced projects.
 	 * 
 	 * @param fqn
 	 *            Qualified name of the resource, e.g. '<tt>org::eclipse::xtend::util::stdlib::io.ext'
@@ -247,7 +247,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 *            classpath
 	 * @return The resource or <code>null</code> if not found
 	 */
-	private IXtendXpandResource loadOawResource(final String fqn, final String extension, boolean searchJars) {
+	private IXtendXpandResource loadXtendXpandResource(final String fqn, final String extension, boolean searchJars) {
 		assert (fqn != null);
 		assert (extension != null);
 
@@ -287,10 +287,10 @@ public class XtendXpandProject implements IXtendXpandProject {
 			final IProject[] p = project.getProject().getReferencedProjects();
 			for (int i = 0; i < p.length; i++) {
 				IProject project = p[i];
-				final XtendXpandProject oawp = (XtendXpandProject) Activator.getExtXptModelManager().findProject(
+				final XtendXpandProject extxptp = (XtendXpandProject) Activator.getExtXptModelManager().findProject(
 						project);
-				if (oawp != null) {
-					IXtendXpandResource result = oawp.loadOawResource(fqn, extension, searchJars);
+				if (extxptp != null) {
+					IXtendXpandResource result = extxptp.loadXtendXpandResource(fqn, extension, searchJars);
 					if (result != null)
 						return result;
 				}
@@ -305,10 +305,10 @@ public class XtendXpandProject implements IXtendXpandProject {
 	/**
 	 * @see IXtendXpandProject#findExtXptResource(IPath, boolean)
 	 */
-	public IXtendXpandResource findOawResource(final IStorage file) {
+	public IXtendXpandResource findXtendXpandResource(final IStorage file) {
 		if (file == null)
 			return null;
-		ResourceID id = JDTUtil.findOawResourceID(project, file);
+		ResourceID id = JDTUtil.findXtendXpandResourceID(project, file);
 		if (id == null) {
 			return null;
 		}

@@ -45,11 +45,9 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 	private String invokeExpression;
 
 	private String expression = null;
-
 	private String collectProfileSummary = null;
 
 	private String verboseProfileFilename = null;
-
 	private String outputSlot = WorkflowContext.DEFAULT_SLOT;
 
 	/**
@@ -58,7 +56,6 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 	 * @param extensionAdvice
 	 *            the advice
 	 */
-	@Override
 	public void addExtensionAdvice(final String extensionAdvice) {
 		if (!extensionAdvices.contains(extensionAdvice)) {
 			extensionAdvices.add(extensionAdvice);
@@ -66,7 +63,7 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 	}
 
 	/**
-	 * @see org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent#checkConfigurationInternal(org.eclipse.emf.mwe.core.issues.Issues)
+	 * @see org.eclipse.expression.AbstractExpressionsUsingWorkflowComponent#checkConfigurationInternal(org.eclipse.workflow.issues.Issues)
 	 */
 	@Override
 	public void checkConfigurationInternal(final Issues issues) {
@@ -109,7 +106,7 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 * @see org.eclipse.workflow.lib.AbstractWorkflowComponent#getLogMessage()
 	 */
 	@Override
 	public String getLogMessage() {
@@ -117,9 +114,9 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 	}
 
 	/**
-	 * @see org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent#invokeInternal2(org.eclipse.emf.mwe.core.WorkflowContext,
-	 *      org.eclipse.emf.mwe.core.monitor.ProgressMonitor,
-	 *      org.eclipse.emf.mwe.core.issues.Issues)
+	 * @see org.eclipse.expression.AbstractExpressionsUsingWorkflowComponent#invokeInternal2(org.eclipse.workflow.WorkflowContext,
+	 *      org.eclipse.workflow.monitor.ProgressMonitor,
+	 *      org.eclipse.workflow.issues.Issues)
 	 */
 	@Override
 	public void invokeInternal2(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
@@ -253,7 +250,6 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 		verboseProfileFilename = fileName;
 	}
 
-	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}
@@ -263,5 +259,4 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 				extensionFile.replace("::", "/") + ".ext");
 		return in;
 	}
-
 }

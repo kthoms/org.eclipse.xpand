@@ -39,7 +39,6 @@ import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
-import org.eclipse.xtend.expression.ExceptionHandler;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.MetaModel;
 
@@ -69,9 +68,8 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 
 	private boolean automaticHyphens = false;
 
-	private ExceptionHandler exceptionHandler = null;
-
 	private String collectProfileSummary = null;
+
 	private String verboseProfileFilename = null;
 
 	private Output output = null;
@@ -113,12 +111,12 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 	 */
 	@Override
 	public String getLogMessage() {
-		Set<String> outletDescriptions = new HashSet<String>();
-		for (Outlet outlet : outlets) {
+		final Set<String> outletDescriptions = new HashSet<String>();
+		for (final Outlet outlet : outlets) {
 			outletDescriptions.add(outlet.toString());
 		}
-		String outletDesc = outletDescriptions.size() == 1 ? outletDescriptions.iterator().next() : outletDescriptions
-				.toString();
+		final String outletDesc = outletDescriptions.size() == 1 ? outletDescriptions.iterator().next()
+				: outletDescriptions.toString();
 		return "generating '" + expand + "' => " + outletDesc;
 	}
 

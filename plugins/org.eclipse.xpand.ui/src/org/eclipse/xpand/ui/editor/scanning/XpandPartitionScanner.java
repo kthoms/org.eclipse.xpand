@@ -40,10 +40,13 @@ public class XpandPartitionScanner extends RuleBasedPartitionScanner {
         final List<IRule> rules = new ArrayList<IRule>();
 
         // TODO we need to handle whitespace like this: '<< REM .... ENDREM >>'
-        rules.add(new MultiLineRule(XpandTokens.LT + XpandTokens.REM, XpandTokens.ENDREM + XpandTokens.RT, comment));
+		rules.add(new MultiLineRule(XpandTokens.LT + XpandTokens.REM, XpandTokens.ENDREM + XpandTokens.RT, comment,
+				(char) 0, true));
+		rules.add(new MultiLineRule(XpandTokens.LT + XpandTokens.REM, XpandTokens.ENDREM + "-" + XpandTokens.RT,
+				comment, (char) 0, true));
 
         rules.add(new MultiLineRule(XpandTokens.LT, XpandTokens.RT, tag));
 
-        setPredicateRules((IPredicateRule[]) rules.toArray(new IPredicateRule[rules.size()]));
+		setPredicateRules(rules.toArray(new IPredicateRule[rules.size()]));
     }
 }

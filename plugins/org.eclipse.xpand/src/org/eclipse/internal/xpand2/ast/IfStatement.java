@@ -103,8 +103,4 @@ public class IfStatement extends StatementWithBody {
         }
     }
 
-	public Statement getUpperIf() {
-		return upperIf;
-	}
-
 }

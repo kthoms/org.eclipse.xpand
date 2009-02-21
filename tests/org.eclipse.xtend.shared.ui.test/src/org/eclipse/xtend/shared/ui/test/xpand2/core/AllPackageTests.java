@@ -11,7 +11,7 @@ public class AllPackageTests {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(Bug155018Test.class);
 		suite.addTestSuite(JdtJavaBeanTest.class);
-		suite.addTestSuite(OawProjectTest.class);
+		suite.addTestSuite(XtendXpandProjectTest.class);
 		suite.addTestSuite(SimpleProjectTest.class);
 		suite.addTestSuite(ASTTest.class);
 		//$JUnit-END$

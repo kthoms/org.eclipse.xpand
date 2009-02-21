@@ -82,8 +82,7 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 			if (body == null) {
 				try {
 					body = FSIO.readSingleFile(file, fileEncoding).substring(startIndex, endIndex);
-				}
-				catch (final IOException e) {
+                } catch (final IOException e) {
 					throw new RuntimeException("Unexpected I/O exception (source files removed?)", e);
 				}
 			}
@@ -141,8 +140,7 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 				try {
 					return (startComment + PROTECT_BEGIN + PROTECT_B64_BEFORE_ID + BASE64.toString(id)
 							+ PROTECT_B64_AFTER_ID + " " + (!disabled ? ENABLED + " " : "") + PROTECT_START_END + endComment);
-				}
-				catch (final IOException ie) {
+                } catch (final IOException ie) {
 					// fallback to old style if BASE64Encoder fails
 				}
 			}
@@ -188,25 +186,19 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 	private Map<String, ProtectedRegionImpl> regionMap = null;
 
 	/**
-	 * All already queried Protected Region Ids. Is used for detecting ambigious
-	 * usage of Protected Regions.
+     * All already queried Protected Region Ids. Is used for detecting ambigious usage of
+     * Protected Regions.
 	 */
 	private Set<String> usedSet = null;
 
 	/**
 	 * Retrieves all Protected Regions from a source file.
-	 * 
-	 * @param file
-	 *            The source file to scan.
+     * @param file The source file to scan.
 	 * @return All found Protected Regions in the specified file.
-	 * @throws ProtectedRegionSyntaxException
-	 *             If one of the Protected Regions in the file is incomplete or
-	 *             invalid.
-	 * @throws IOException
-	 *             On errors occuring when reading the file
+     * @throws ProtectedRegionSyntaxException If one of the Protected Regions in the file is incomplete or invalid.
+     * @throws IOException On errors occuring when reading the file
 	 */
-	protected Collection<ProtectedRegionImpl> getAllRegions(final File file) throws ProtectedRegionSyntaxException,
-			IOException {
+    protected Collection<ProtectedRegionImpl> getAllRegions(final File file) throws ProtectedRegionSyntaxException, IOException {
 		final List<ProtectedRegionImpl> regions = new ArrayList<ProtectedRegionImpl>();
 
 		final String source = FSIO.readSingleFile(file, encoding);
@@ -249,8 +241,7 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 			if (isB64) {
 				try {
 					id = new String(BASE64.toByteArray(id));
-				}
-				catch (final IOException ie) {
+                } catch (final IOException ie) {
 					throw new ProtectedRegionSyntaxException("Protected region Id at index " + start + " in file '"
 							+ file + "' is incomplete", ie);
 				}
@@ -266,7 +257,7 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 			if (!(type.equals("") || type.equals(ENABLED)))
 				throw new ProtectedRegionSyntaxException("Protected region start at index " + start + " in file "
-						+ file + " has illegal type '" + type + "'");
+                        + file + " has illegal type '" + type+ "'");
 			if (type.equals(ENABLED)) {
 				final String body = new String(source.substring(startEnd + startEndLength, end));
 				regions.add(new ProtectedRegionImpl(id, false, file, encoding, useBASE64, startEnd + startEndLength,
@@ -284,9 +275,9 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 	public ProtectedRegion getProtectedRegion(final String id) {
 		init();
-		// if (!usedSet.isEmpty()) { // Fix:No error if Handle is not used
-		// return null;
-		// }
+//        if (!usedSet.isEmpty()) {  // Fix:No error if Handle is not used
+//            return null;
+//        }
 		if (!usedSet.add(id)) {
 			// id was not added to usedSet -> id was already queried before!
 			log.warn("Protected region with ID '" + id + "' referenced more than once");
@@ -296,26 +287,23 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 	}
 
 	/**
-	 * Initializes the ProtectedRegionResolver. This starts the scan over all
-	 * configured paths (property 'srcPaths').
+     * Initializes the ProtectedRegionResolver. This starts the scan over all configured paths (property 'srcPaths').
 	 * <p>
-	 * A second call (already initialized) to this method will return
-	 * immediately.
+     * A second call (already initialized) to this method will return immediately. 
 	 * 
-	 * @throws IllegalStateException
-	 *             If a Protected Region Id is detected the second time, i.e. it
-	 *             is not unique.
+     * @throws IllegalStateException If a Protected Region Id is detected the second time, i.e. it is not unique.
 	 */
 	public void init() throws IllegalStateException {
 		// Already initialized?
-		if (regionMap != null)
+        if (regionMap != null) {
 			return;
+        }
 
 		// Initialize the Protected Region map
 		regionMap = new HashMap<String, ProtectedRegionImpl>();
 		usedSet = new HashSet<String>();
 
-		if (srcPaths == null) {
+        if (srcPaths==null) {
 			log.warn("No source paths configured for scanning.");
 			// abort
 			return;
@@ -335,8 +323,7 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 		// Scan all configured paths
 		for (int i = 0; i < srcPaths.length; i += 1) {
 			try {
-				// retrieve (recursive) all files from a path matching the
-				// configured filter
+            	// retrieve (recursive) all files from a path matching the configured filter 
 				final File[] files = FSIO.getAllFiles(srcPaths[i], filter);
 
 				fileCount += files.length;
@@ -351,18 +338,18 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 						final String id = region.getId();
 						// check for non-uniqueness of a Protected Region Id
-						if (regionMap.containsKey(id))
-							throw new IllegalStateException("Id '" + id + "' occuring in files " + region.getFile()
-									+ " and " + regionMap.get(id).getFile() + " is not unique");
+                        if (regionMap.containsKey(id)) {
+                            throw new IllegalStateException ("Id '" + id + "' occuring in files " + region.getFile()
+                                    + " and " + regionMap.get(id).getFile()
+                                    + " is not unique");
+                        }
 						// Store this region
 						regionMap.put(id, region);
 					}
 				}
-			}
-			catch (final IOException e) {
+            } catch (final IOException e) {
 				throw new RuntimeException("Unexpected I/O exception", e);
-			}
-			catch (final ProtectedRegionSyntaxException e) {
+            } catch (final ProtectedRegionSyntaxException e) {
 				throw new RuntimeException(e.getMessage(), e);
 			}
 		}
@@ -378,11 +365,8 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 	}
 
 	/**
-	 * Dumps all known protected regions to files. For each protected region a
-	 * file is created.
-	 * 
-	 * @param dumpPath
-	 *            Directory where the dump files are created within.
+     * Dumps all known protected regions to files. For each protected region a file is created. 
+     * @param dumpPath Directory where the dump files are created within.
 	 */
 	public void reportRegions(final File dumpPath) {
 		final int unused = regionMap.size() - usedSet.size();
@@ -411,8 +395,7 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 							if (encoding == null) {
 								writer = new FileWriter(file);
-							}
-							else {
+                            } else {
 								writer = new OutputStreamWriter(new FileOutputStream(file), encoding);
 							}
 
@@ -422,11 +405,9 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 							writer.close();
 						}
-					}
-					catch (final IOException e) {
+                    } catch (final IOException e) {
 						throw new RuntimeException("Unexpected I/O exception", e);
-					}
-					catch (final ProtectedRegionSyntaxException e) {
+                    } catch (final ProtectedRegionSyntaxException e) {
 						log.error(e.getMessage(), e);
 					}
 				}
@@ -435,13 +416,9 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 	}
 
 	/**
-	 * This flag determines whether default file exclusion patterns should be
-	 * used.
-	 * 
-	 * @param defaultExcludes
-	 *            <code>true</code>: Use default file exclusion patterns,
-	 *            <code>false</code>: ignore them, just use the patterns
-	 *            specified by {@link #setIgnoreList(String) ignoreList}
+     * This flag determines whether default file exclusion patterns should be used.
+     * @param defaultExcludes <code>true</code>: Use default file exclusion patterns, <code>false</code>: ignore them, just use
+     * the patterns specified by {@link #setIgnoreList(String) ignoreList}
 	 * @see Xpand reference manual
 	 */
 	public void setDefaultExcludes(final boolean defaultExcludes) {
@@ -450,20 +427,16 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 	/**
 	 * Sets the file encoding to be used when reading files.
-	 * 
-	 * @param encoding
-	 *            A valid encoding string.
+     * @param encoding A valid encoding string.
 	 */
 	public void setFileEncoding(final String encoding) {
 		this.encoding = encoding;
 	}
 
 	/**
-	 * Sets a custom list of file patterns that should be filtered during
-	 * scanning of source files and directories.
-	 * 
-	 * @param ignoreList
-	 *            A comma separated list of file patterns to ignore during scan.
+     * Sets a custom list of file patterns that should be filtered during scanning of source files 
+     * and directories.
+     * @param ignoreList A comma separated list of file patterns to ignore during scan.
 	 */
 	public void setIgnoreList(final String ignoreList) {
 		this.ignoreList = ignoreList;
@@ -471,20 +444,15 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 	/**
 	 * Sets the source paths that should be scanned.
-	 * 
-	 * @param srcPathsAsString
-	 *            A comma separated list of directory paths.
-	 * @throws IllegalArgumentException
-	 *             If one of the passed arguments is not a directory or does not
-	 *             exist
+     * @param srcPathsAsString A comma separated list of directory paths.
+     * @throws IllegalArgumentException If one of the passed arguments is not a directory or does not exist
 	 */
 	public void setSrcPathes(final String srcPathsAsString) throws IllegalArgumentException {
 		// Split the paths and initialize the
 		// file array 'srcPaths' from it
 		if ("".equals(srcPathsAsString)) {
 			this.srcPaths = new File[0];
-		}
-		else {
+        } else {
 			final String[] s = srcPathsAsString.split(",");
 			final List<File> validPaths = new ArrayList<File>(s.length);
 			for (int i = 0; i < s.length; i++) {
@@ -492,14 +460,11 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 				// The configured path must point to an existing directory
 				if (dir.isDirectory()) {
 					validPaths.add(dir);
-				}
-				else {
-					final String msg = "Ignoring non-existing protected region path " + dir.getAbsolutePath();
-					LOG.warn(msg);
-					throw new IllegalArgumentException(msg);
+	            } else {
+	            	LOG.warn("Ignoring non-existing protected region path "+dir.getAbsolutePath());
 				}
 			}
-			this.srcPaths = validPaths.toArray(new File[] {});
+	        this.srcPaths = validPaths.toArray(new File[]{});
 		}
 	}
 

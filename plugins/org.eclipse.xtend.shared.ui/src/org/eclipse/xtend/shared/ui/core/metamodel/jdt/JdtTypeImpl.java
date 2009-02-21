@@ -111,7 +111,7 @@ public class JdtTypeImpl extends AbstractTypeImpl implements Type {
 	}
 
 	/**
-	 * Returns the oAW Type instance for an IField instance.
+	 * Returns the Xtend Type instance for an IField instance.
 	 * 
 	 * @param field
 	 * @return

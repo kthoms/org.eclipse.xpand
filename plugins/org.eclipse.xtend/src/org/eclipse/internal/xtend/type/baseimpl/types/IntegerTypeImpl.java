@@ -34,12 +34,12 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
     }
 
     public boolean isInstance(final Object o) {
-        return o instanceof BigInteger || o instanceof Integer || o instanceof Byte || o instanceof Long
+        return o instanceof Integer || o instanceof BigInteger || o instanceof Byte || o instanceof Long
                 || o instanceof Short;
     }
 
     public Object newInstance() {
-        return new BigInteger("-1");
+        return new Long(-1);
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (params[0] == null)
                             return null;
-                        return toInt(target).add(toInt(params[0]));
+                        return new Long(((Number) target).longValue() + ((Number) params[0]).longValue());
                     }
                 },
                 new OperationImpl(this, "-", IntegerTypeImpl.this, new Type[] { IntegerTypeImpl.this }) {
@@ -58,13 +58,13 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (params[0] == null)
                             return null;
-                        return toInt(target).subtract(toInt(params[0]));
+                        return new Long(((Number) target).longValue() - ((Number) params[0]).longValue());
                     }
                 },
                 new OperationImpl(this, "-", IntegerTypeImpl.this, new Type[] {}) {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
-                    	return toInt(target).negate();
+                        return new Long(((Number) target).longValue() * -1l);
                     }
                 },
                 new OperationImpl(this, "*", IntegerTypeImpl.this, new Type[] { IntegerTypeImpl.this }) {
@@ -73,7 +73,7 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                         if (params[0] == null)
                             return null;
 
-                        return toInt(target).multiply(toInt(params[0]));
+                        return new Long(((Number) target).longValue() * ((Number) params[0]).longValue());
                     }
                 },
                 new OperationImpl(this, "/", IntegerTypeImpl.this, new Type[] { IntegerTypeImpl.this }) {
@@ -82,38 +82,48 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                         if (params[0] == null)
                             return null;
 
-                        return toInt(target).divide(toInt(params[0]));
+                        return new Long(((Number) target).longValue() / ((Number) params[0]).longValue());
                     }
                 },
-                new OperationImpl(this, "==", getTypeSystem().getBooleanType(), new Type[] { IntegerTypeImpl.this }) {
+                new OperationImpl(this, "==", getTypeSystem().getBooleanType(), new Type[] { getTypeSystem()
+                        .getObjectType() }) {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (target == null)
                             return new Boolean(target == params[0]);
+
                         try {
-                        	return toInt(target).equals(toInt(params[0]));
+                            return toLong(target).equals(toLong(params[0]));
                         }
                         catch (Exception exc) {
+                            if (target instanceof Number && params[0] instanceof Number)
+                                return ((Number) target).doubleValue() == ((Number) params[0]).doubleValue();
+                            
                             return false;
                         }
                     }
 
                 },
-                new OperationImpl(this, "!=", getTypeSystem().getBooleanType(), new Type[] { IntegerTypeImpl.this }) {
+                new OperationImpl(this, "!=", getTypeSystem().getBooleanType(), new Type[] { getTypeSystem()
+                        .getObjectType() }) {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (target == null)
                             return params[0] != null;
 
                         try {
-                            return ! toInt(target).equals(toInt(params[0]));
+                            return ! toLong(target).equals(toLong(params[0]));
                         }
                         catch (Exception exc) {
+                            if (target instanceof Number && params[0] instanceof Number)
+                                return ((Number) target).doubleValue() != ((Number) params[0]).doubleValue();
+                            
                             return true;
                         }
                     }
                 },
-                new OperationImpl(this, ">", getTypeSystem().getBooleanType(), new Type[] { IntegerTypeImpl.this }) {
+                new OperationImpl(this, ">", getTypeSystem().getBooleanType(), new Type[] { getTypeSystem()
+                        .getObjectType() }) {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (target == null)
@@ -122,14 +132,15 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                             return Boolean.FALSE;
                         
                         try {
-                        	return toInt(target).compareTo(toInt(params[0])) > 0;
+                            return ((Comparable<Long>) toLong(target)).compareTo(toLong(params[0])) > 0;
                         }
                         catch (Exception exc) {
-                            return Boolean.FALSE; 
+                            return ((Number) target).doubleValue() > ((Number) params[0]).doubleValue(); 
                         }
                     }
                 },
-                new OperationImpl(this, ">=", getTypeSystem().getBooleanType(), new Type[] { IntegerTypeImpl.this }) {
+                new OperationImpl(this, ">=", getTypeSystem().getBooleanType(), new Type[] { getTypeSystem()
+                        .getObjectType() }) {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (target == null)
@@ -138,14 +149,15 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                             return Boolean.FALSE;
                         
                         try {
-                        	return toInt(target).compareTo(toInt(params[0])) >= 0;
+                            return ((Comparable<Long>) toLong(target)).compareTo(toLong(params[0])) >= 0;
                         }
                         catch (Exception exc) {
-                            return Boolean.FALSE; 
+                            return ((Number) target).doubleValue() >= ((Number) params[0]).doubleValue(); 
                         }
                     }
                 },
-                new OperationImpl(this, "<", getTypeSystem().getBooleanType(), new Type[] { IntegerTypeImpl.this }) {
+                new OperationImpl(this, "<", getTypeSystem().getBooleanType(), new Type[] { getTypeSystem()
+                        .getObjectType() }) {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (target == null)
@@ -154,14 +166,15 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                             return Boolean.FALSE;
 
                         try {
-                        	return toInt(target).compareTo(toInt(params[0])) < 0;
+                            return ((Comparable<Long>) toLong(target)).compareTo(toLong(params[0])) < 0;
                         }
                         catch (Exception exc) {
-                            return Boolean.FALSE; 
+                            return ((Number) target).doubleValue() < ((Number) params[0]).doubleValue(); 
                         }
                     }
                 },
-                new OperationImpl(this, "<=", getTypeSystem().getBooleanType(), new Type[] { IntegerTypeImpl.this }) {
+                new OperationImpl(this, "<=", getTypeSystem().getBooleanType(), new Type[] { getTypeSystem()
+                        .getObjectType() }) {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (target == null)
@@ -170,30 +183,30 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
                             return Boolean.FALSE;
 
                         try {
-                        	return toInt(target).compareTo(toInt(params[0])) <= 0;
+                            return ((Comparable<Long>) toLong(target)).compareTo(toLong(params[0])) <= 0;
                         }
                         catch (Exception exc) {
-                            return Boolean.FALSE; 
+                            return ((Number) target).doubleValue() <= ((Number) params[0]).doubleValue(); 
                         }
                     }
                 }, new OperationImpl(this, "upTo", getTypeSystem().getListType(this), new Type[] { this }) {
 
                     @Override
                     public String getDocumentation() {
-                        return "returns a List of Integers starting with the value of the target expression, up to "
+                        return "returns a List of Integers starting with the value of the target expression, up to"
                                 + "the value of the specified Integer, incremented by one.<br/>"
                                 + "e.g. '1.upTo(5)' evaluates to {1,2,3,4,5}";
                     }
 
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
-                        final List<BigInteger> result = new ArrayList<BigInteger>();
-                        BigInteger l1 = toInt(target);
-                        final BigInteger l2 = toInt(params[0]);
+                        final List<Long> result = new ArrayList<Long>();
+                        long l1 = toLong(target).longValue();
+                        final long l2 = toLong(params[0]).longValue();
 
-                        while (l1.compareTo(l2) <= 0) {
-                            result.add(l1);
-                            l1 = l1.add(BigInteger.ONE);
+                        while (l1 <= l2) {
+                            result.add(new Long(l1));
+                            l1++;
                         }
                         return result;
                     }
@@ -201,21 +214,21 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
 
                     @Override
                     public String getDocumentation() {
-                        return "returns a List of Integers starting with the value of the target expression, up to "
+                        return "returns a List of Integers starting with the value of the target expression, up to"
                                 + "the value of the first paramter, incremented by the second parameter.<br/>"
                                 + "e.g. '1.upTo(10, 2)' evaluates to {1,3,5,7,9}";
                     }
 
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
-                        final List<BigInteger> result = new ArrayList<BigInteger>();
-                        BigInteger l1 = toInt(target);
-                        final BigInteger l2 = toInt(params[0]);
-                        final BigInteger l3 = toInt(params[1]);
+                        final List<Long> result = new ArrayList<Long>();
+                        long l1 = toLong(target).longValue();
+                        final long l2 = toLong(params[0]).longValue();
+                        final long l3 = toLong(params[1]).longValue();
 
-                        while (l1.compareTo(l2) <= 0) {
-                            result.add(l1);
-                            l1 = l1.add(l3);
+                        while (l1 <= l2) {
+                            result.add(new Long(l1));
+                            l1 = l1 + l3;
                         }
                         return result;
                     }
@@ -227,39 +240,36 @@ public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
         return Collections.singleton(getTypeSystem().getRealType());
     }
 
-	protected BigInteger toInt(final Object o) {
-		if(o == null)
+    Long toLong(final Object o) {
+        if (o == null)
 			return null;
 		
-		if (o instanceof BigInteger)
-			return (BigInteger) o;
-		
         if (o instanceof Integer)
-            return BigInteger.valueOf(((Integer)o).longValue()); 
+            return new Long(((Integer) o).longValue());
+        else if (o instanceof BigInteger)
+            return new Long(((BigInteger) o).longValue());
         else if (o instanceof Byte)
-        	return BigInteger.valueOf(((Byte)o).longValue());
+            return new Long(((Byte) o).longValue());
         else if (o instanceof Long)
-        	return BigInteger.valueOf((Long)o);
+            return (Long) o;
         else if (o instanceof Short)
-            return BigInteger.valueOf(((Short) o).longValue());
-		
+            return new Long(((Short) o).longValue());
 		throw new IllegalArgumentException(o.getClass().getName() + " not supported");
 	}
     
     @Override
     public Object convert(final Object src, final Class<?> targetType) {
-        final BigInteger value = toInt(src);
-        
-        if (targetType.isAssignableFrom(BigInteger.class))
-        	return value;
-        else if (targetType.isAssignableFrom(Long.class) || targetType.isAssignableFrom(Long.TYPE))
-        	return value.longValue();
-        else if (targetType.isAssignableFrom(Integer.class) || targetType.isAssignableFrom(Integer.TYPE))
-            return value.intValue();
+        final Long l = toLong(src);
+        if (targetType.isAssignableFrom(Integer.class) || targetType.isAssignableFrom(Integer.TYPE))
+            return new Integer(l.intValue());
+        else if (targetType.isAssignableFrom(BigInteger.class))
+            return BigInteger.valueOf(l.longValue());
         else if (targetType.isAssignableFrom(Byte.class) || targetType.isAssignableFrom(Byte.TYPE))
-            return value.byteValue();
+            return new Byte(l.byteValue());
+        else if (targetType.isAssignableFrom(Long.class) || targetType.isAssignableFrom(Long.TYPE))
+            return src;
         else if (targetType.isAssignableFrom(Short.class) || targetType.isAssignableFrom(Short.TYPE))
-            return value.shortValue();
+            return new Short(l.shortValue());
         return super.convert(src, targetType);
     }
 

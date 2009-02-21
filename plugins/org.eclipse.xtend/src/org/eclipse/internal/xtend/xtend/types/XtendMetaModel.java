@@ -29,14 +29,25 @@ public class XtendMetaModel implements MetaModel {
 		types.put(t.getName(), t);
 	}
 
+	/**
+	 * @see org.eclipse.type.MetaModel#getKnownTypes()
+	 */
 	public Set<? extends Type> getKnownTypes() {
 		return new HashSet<Type>(types.values());
 	}
 
+	/**
+	 * Returns the name of the metamodel.
+	 * 
+	 * @return name of metamodel
+	 */
 	public String getName() {
 		return "xtend";
 	}
 
+	/**
+	 * @see org.eclipse.type.MetaModel#getType(java.lang.Object)
+	 */
 	public Type getType(Object obj) {
 		Type bestMatch = null;
 		for (Type aType : getKnownTypes()) {
@@ -49,22 +60,33 @@ public class XtendMetaModel implements MetaModel {
 		return bestMatch;
 	}
 
+	/**
+	 * @see org.eclipse.type.MetaModel#getTypeForName(java.lang.String)
+	 */
 	public Type getTypeForName(String typeName) {
 		return types.get(typeName);
 	}
 
 	private TypeSystem ts = null;
 
+	/**
+	 * @see org.eclipse.type.MetaModel#getTypeSystem()
+	 */
 	public TypeSystem getTypeSystem() {
 		return ts;
 	}
 
+	/**
+	 * @see org.eclipse.type.MetaModel#setTypeSystem(org.eclipse.expression.TypeSystem)
+	 */
 	public void setTypeSystem(TypeSystem typeSystem) {
 		ts = typeSystem;
 	}
 
+	/**
+	 * @see org.eclipse.type.MetaModel#getNamespaces()
+	 */
 	public Set<String> getNamespaces() {
 		return new HashSet<String>();
 	}
-
 }

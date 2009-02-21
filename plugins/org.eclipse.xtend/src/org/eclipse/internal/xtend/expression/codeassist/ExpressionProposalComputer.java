@@ -99,8 +99,8 @@ public class ExpressionProposalComputer implements ProposalComputer {
 
     private final static Map<String, String> blockTokens = new HashMap<String, String>();
     static {
-        blockTokens.put("(",")");
-        blockTokens.put("{","}");
+		blockTokens.put("(", ")");
+		blockTokens.put("{", "}");
     }
 
     private static final Pattern QUALIFIED_NAME = Pattern.compile("\\W*(.*)(?:::\\w*)$");
@@ -179,7 +179,7 @@ public class ExpressionProposalComputer implements ProposalComputer {
             if (m.matches()) {
             	String typeName = m.group(1);
             	implicitVariableType = ctx.getTypeForName(typeName);
-            	if (implicitVariableType!=null) {
+				if (implicitVariableType != null) {
             		for (StaticProperty p : implicitVariableType.getAllStaticProperties()) {
             			if (p.getName().startsWith(prefix)) {
 							proposals.add(factory.createStaticPropertyProposal(p, prefix, false));
@@ -506,7 +506,7 @@ public class ExpressionProposalComputer implements ProposalComputer {
 
     private final static boolean isOpposite(final CommonToken left, final CommonToken right) {
         final String temp = blockTokens.get(left.getText());
-        if (temp==null)
+		if (temp == null)
         	return false;
         return temp != null && right.getText().equals(temp);
     }

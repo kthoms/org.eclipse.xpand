@@ -31,69 +31,68 @@ public class EditorOpener {
 
 	private IEditorPart fEditor;
 
-	public IEditorPart open(IFile file, boolean activate) throws PartInitException {
-		IWorkbenchPage wbPage = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		if (NewSearchUI.reuseEditor()) {
+	public IEditorPart open(final IFile file, final boolean activate) throws PartInitException {
+		final IWorkbenchPage wbPage = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		if (NewSearchUI.reuseEditor())
 			return showWithReuse(file, wbPage, activate);
-		}
 		return showWithoutReuse(file, wbPage, activate);
 	}
 
-	private IEditorPart showWithoutReuse(IFile file, IWorkbenchPage wbPage, boolean activate) throws PartInitException {
+	private IEditorPart showWithoutReuse(final IFile file, final IWorkbenchPage wbPage, final boolean activate)
+			throws PartInitException {
 		return IDE.openEditor(wbPage, file, activate);
 	}
 
-	private IEditorPart showWithReuse(IFile file, IWorkbenchPage wbPage, boolean activate) throws PartInitException {
-		String editorID = getEditorID(file);
+	private IEditorPart showWithReuse(final IFile file, final IWorkbenchPage wbPage, final boolean activate)
+			throws PartInitException {
+		final String editorID = getEditorID(file);
 		return showInEditor(wbPage, file, editorID, activate);
 	}
 
-	private String getEditorID(IFile file) throws PartInitException {
-		IEditorDescriptor desc = IDE.getEditorDescriptor(file);
-		if (desc == null) {
+	private String getEditorID(final IFile file) throws PartInitException {
+		final IEditorDescriptor desc = IDE.getEditorDescriptor(file);
+		if (desc == null)
 			return Activator.getDefault().getWorkbench().getEditorRegistry().findEditor(
 					IEditorRegistry.SYSTEM_EXTERNAL_EDITOR_ID).getId();
-		}
 		return desc.getId();
 	}
 
-	private boolean isPinned(IEditorPart editor) {
-		if (editor == null) {
+	private boolean isPinned(final IEditorPart editor) {
+		if (editor == null)
 			return false;
-		}
 
-		IEditorReference[] editorRefs = editor.getEditorSite().getPage().getEditorReferences();
+		final IEditorReference[] editorRefs = editor.getEditorSite().getPage().getEditorReferences();
 		int i = 0;
 		while (i < editorRefs.length) {
-			if (editor.equals(editorRefs[i].getEditor(false))) {
+			if (editor.equals(editorRefs[i].getEditor(false)))
 				return editorRefs[i].isPinned();
-			}
 			i++;
 		}
 		return false;
 	}
 
-	private IEditorPart showInEditor(IWorkbenchPage page, IFile file, String editorId, boolean activate)
-			throws PartInitException {
-		IFileEditorInput input = new FileEditorInput(file);
+	private IEditorPart showInEditor(final IWorkbenchPage page, final IFile file, final String editorId,
+			final boolean activate) throws PartInitException {
+		final IFileEditorInput input = new FileEditorInput(file);
 		IEditorPart editor = page.findEditor(input);
 		if (editor != null) {
 			page.bringToTop(editor);
 			if (activate) {
 				page.activate(editor);
 			}
-		} else {
+		}
+		else {
 			boolean isOpen = false;
 			if (fEditor != null) {
-				IEditorReference[] parts = page.getEditorReferences();
+				final IEditorReference[] parts = page.getEditorReferences();
 				int i = 0;
 				while (!isOpen && i < parts.length) {
 					isOpen = fEditor == parts[i++].getEditor(false);
 				}
 			}
 
-			boolean canBeReused = isOpen && !fEditor.isDirty() && !isPinned(fEditor);
-			boolean showsSameInputType = fEditor != null && fEditor.getSite().getId().equals(editorId);
+			final boolean canBeReused = isOpen && !fEditor.isDirty() && !isPinned(fEditor);
+			final boolean showsSameInputType = fEditor != null && fEditor.getSite().getId().equals(editorId);
 			if (canBeReused && !showsSameInputType) {
 				page.closeEditor(fEditor, false);
 				fEditor = null;
@@ -106,11 +105,13 @@ public class EditorOpener {
 				if (activate) {
 					page.activate(editor);
 				}
-			} else {
+			}
+			else {
 				editor = IDE.openEditor(page, file, activate);
 				if (editor instanceof IReusableEditor) {
 					fEditor = editor;
-				} else {
+				}
+				else {
 					fEditor = null;
 				}
 			}

@@ -48,9 +48,9 @@ public class Template extends SyntaxElement implements XpandResource {
         return extensions;
     }
     
-    public List<String> getImportedExtensionsAsList () {
+	public List<String> getImportedExtensionsAsList() {
         final List<String> result = new ArrayList<String>();
-        for (ImportDeclaration ext: extensions) {
+		for (ImportDeclaration ext : extensions) {
             result.add(ext.getImportString().getValue());
         }
         return result;
@@ -91,7 +91,7 @@ public class Template extends SyntaxElement implements XpandResource {
         l.addAll(Arrays.asList(definitions));
         l.addAll(Arrays.asList(advices));
         
-        Collections.sort(l,new Comparator<SyntaxElement>() {
+		Collections.sort(l, new Comparator<SyntaxElement>() {
 
             public int compare(SyntaxElement o1, SyntaxElement o2) {
                 return new Integer(o1.getStart()).compareTo(o2.getStart());
@@ -121,6 +121,7 @@ public class Template extends SyntaxElement implements XpandResource {
 	        for (int i = 0; i < definitions.length; i++) {
 	            definitions[i].analyze(ctx, issues);
 	        }
+
 	        for (int i = 0; i < advices.length; i++) {
 	            advices[i].analyze(ctx, issues);
 	        }

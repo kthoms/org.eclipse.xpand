@@ -78,11 +78,11 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	/** Component name. */
 	private static final String COMPONENT_NAME = "Xpand Generator Advice";
 
-	/** Xpand template advices. */ 
-	private List<String> advices = new ArrayList<String>();
+	/** Xpand template advices. */
+	private final List<String> advices = new ArrayList<String>();
 
 	/** Xtend extension advices. */
-	private List<String> extensionAdvices = new ArrayList<String>();
+	private final List<String> extensionAdvices = new ArrayList<String>();
 
 	/** File encoding for reading templates. */
 	private String fileEncoding;
@@ -93,7 +93,7 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	 * @param advice
 	 *            the advice
 	 */
-	public void addAdvice(String advice) {
+	public void addAdvice(final String advice) {
 		this.advices.add(advice);
 	}
 
@@ -103,7 +103,7 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	 * @param extensionAdvice
 	 *            the extension advice
 	 */
-	public void addExtensionAdvice(String extensionAdvice) {
+	public void addExtensionAdvice(final String extensionAdvice) {
 		this.extensionAdvices.add(extensionAdvice);
 	}
 
@@ -113,15 +113,15 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	 * @param fileEncoding
 	 *            Encoding string, e.g. 'ISO-8859-1'
 	 */
-	public void setFileEncoding(String fileEncoding) {
+	public void setFileEncoding(final String fileEncoding) {
 		this.fileEncoding = fileEncoding;
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.core.ao.AbstractWorkflowAdvice#checkConfiguration(org.openarchitectureware.workflow.issues.Issues)
+	 * @see org.eclipse.emf.mwe.core.ao.AbstractWorkflowAdvice#checkConfiguration(org.eclipse.emf.mwe.core.issues.Issues)
 	 */
 	@Override
-	public void checkConfiguration(Issues issues) {
+	public void checkConfiguration(final Issues issues) {
 		super.checkConfiguration(issues);
 		if (advices.isEmpty() && extensionAdvices.isEmpty()) {
 			issues.addError("Neither 'advices' nor 'extensionAdvices' configured.");
@@ -129,21 +129,21 @@ public class GeneratorAdvice extends AbstractExpressionsUsingWorkflowAdvice {
 	}
 
 	/**
-	 * @see org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowAdvice#weave(org.openarchitectureware.workflow.WorkflowComponent,
+	 * @see org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowAdvice#weave(org.eclipse.emf.mwe.core.WorkflowComponent,
 	 *      org.eclipse.emf.mwe.core.issues.Issues)
 	 */
 	@Override
-	public void weave(WorkflowComponent c, Issues issues) {
+	public void weave(final WorkflowComponent c, final Issues issues) {
 		super.weave(c, issues);
 		if (!(c instanceof Generator)) {
 			issues.addError(this, "advice target is not a Generator component.");
 		}
 		else {
-			Generator gen = (Generator) c;
-			for (String advice : advices) {
+			final Generator gen = (Generator) c;
+			for (final String advice : advices) {
 				gen.addAdvice(advice);
 			}
-			for (String advice : extensionAdvices) {
+			for (final String advice : extensionAdvices) {
 				gen.addExtensionAdvice(advice);
 			}
 			if (fileEncoding != null) {

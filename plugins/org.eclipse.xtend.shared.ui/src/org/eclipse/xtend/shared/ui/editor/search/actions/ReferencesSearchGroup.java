@@ -52,7 +52,7 @@ public class ReferencesSearchGroup extends ActionGroup {
 	 * @param site
 	 *            The workbench site that owns this action group
 	 */
-	public ReferencesSearchGroup(IWorkbenchSite site) {
+	public ReferencesSearchGroup(final IWorkbenchSite site) {
 		this.site = site;
 		groupId = IContextMenuConstants.GROUP_SEARCH;
 
@@ -60,8 +60,8 @@ public class ReferencesSearchGroup extends ActionGroup {
 		findReferencesAction.setActionDefinitionId(IJavaEditorActionDefinitionIds.SEARCH_REFERENCES_IN_WORKSPACE);
 
 		// register the actions as selection listeners
-		ISelectionProvider provider = site.getSelectionProvider();
-		ISelection selection = provider.getSelection();
+		final ISelectionProvider provider = site.getSelectionProvider();
+		final ISelection selection = provider.getSelection();
 		registerAction(findReferencesAction, provider, selection);
 	}
 
@@ -70,9 +70,9 @@ public class ReferencesSearchGroup extends ActionGroup {
 	 * this constructor.
 	 * 
 	 * @param editor
-	 *            The oAW editor
+	 *            ehe editor
 	 */
-	protected ReferencesSearchGroup(AbstractXtendXpandEditor editor) {
+	protected ReferencesSearchGroup(final AbstractXtendXpandEditor editor) {
 		Assert.isNotNull(editor);
 		site = editor.getSite();
 		groupId = ITextEditorActionConstants.GROUP_FIND;
@@ -83,19 +83,20 @@ public class ReferencesSearchGroup extends ActionGroup {
 
 	}
 
-	private void registerAction(SelectionDispatchAction action, ISelectionProvider provider, ISelection selection) {
+	private void registerAction(final SelectionDispatchAction action, final ISelectionProvider provider,
+			final ISelection selection) {
 		action.update(selection);
 		provider.addSelectionChangedListener(action);
 	}
 
-	private void addAction(IAction action, IMenuManager manager) {
+	private void addAction(final IAction action, final IMenuManager manager) {
 		if (action.isEnabled()) {
 			manager.add(action);
 		}
 	}
 
 	@Override
-	public void fillActionBars(IActionBars actionBars) {
+	public void fillActionBars(final IActionBars actionBars) {
 		Assert.isNotNull(actionBars);
 		super.fillActionBars(actionBars);
 		this.actionBars = actionBars;
@@ -103,8 +104,8 @@ public class ReferencesSearchGroup extends ActionGroup {
 	}
 
 	@Override
-	public void fillContextMenu(IMenuManager manager) {
-		IMenuManager menuManager = new MenuManager("Re&ferences", IContextMenuConstants.GROUP_SEARCH);
+	public void fillContextMenu(final IMenuManager manager) {
+		final IMenuManager menuManager = new MenuManager("Re&ferences", IContextMenuConstants.GROUP_SEARCH);
 		addAction(findReferencesAction, menuManager);
 
 		menuManager.add(new Separator());
@@ -116,7 +117,7 @@ public class ReferencesSearchGroup extends ActionGroup {
 
 	@Override
 	public void dispose() {
-		ISelectionProvider provider = site.getSelectionProvider();
+		final ISelectionProvider provider = site.getSelectionProvider();
 		if (provider != null) {
 			disposeAction(findReferencesAction, provider);
 		}
@@ -131,7 +132,7 @@ public class ReferencesSearchGroup extends ActionGroup {
 		}
 	}
 
-	private void disposeAction(ISelectionChangedListener action, ISelectionProvider provider) {
+	private void disposeAction(final ISelectionChangedListener action, final ISelectionProvider provider) {
 		if (action != null) {
 			provider.removeSelectionChangedListener(action);
 		}

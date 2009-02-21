@@ -88,8 +88,9 @@ public class XpandEditorPlugin extends AbstractUIPlugin {
 
 	public static Shell getActiveWorkbenchShell() {
 		final IWorkbenchWindow window = getActiveWorkbenchWindow();
-		if (window != null)
+		if (window != null) {
 			return window.getShell();
+		}
 		return null;
 	}
 

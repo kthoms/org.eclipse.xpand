@@ -13,7 +13,6 @@ package org.eclipse.xtend.shared.ui.core.builder;
 
 import java.util.Enumeration;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipEntry;
@@ -43,15 +42,15 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class XtendXpandBuilder extends IncrementalProjectBuilder {
 
-	class OawDeltaVisitor implements IResourceDeltaVisitor, IResourceVisitor {
-		private IProgressMonitor monitor;
-		private Set<String> extensions;
+	class XtendXpandDeltaVisitor implements IResourceDeltaVisitor, IResourceVisitor {
+		private final IProgressMonitor monitor;
+		private final Set<String> extensions;
 
-		public OawDeltaVisitor(final IProgressMonitor monitor) {
+		public XtendXpandDeltaVisitor(final IProgressMonitor monitor) {
 			this.monitor = monitor;
 			extensions = new HashSet<String>();
-			ResourceContributor[] contributors = Activator.getRegisteredResourceContributors();
-			for (ResourceContributor resourceContributor : contributors) {
+			final ResourceContributor[] contributors = Activator.getRegisteredResourceContributors();
+			for (final ResourceContributor resourceContributor : contributors) {
 				extensions.add(resourceContributor.getFileExtension());
 			}
 		}
@@ -59,38 +58,40 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse.core.resources.IResourceDelta)
+		 * @see
+		 * org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse
+		 * .core.resources.IResourceDelta)
 		 */
 		public boolean visit(final IResourceDelta delta) throws CoreException {
 			final IResource resource = delta.getResource();
-			if (isOawResource(resource)) {
+			if (isXtendXpandResource(resource)) {
 				switch (delta.getKind()) {
-				case IResourceDelta.ADDED:
-					// handle added resource
-					XtendXpandMarkerManager.deleteMarkers((IFile) resource);
-					reloadResource((IFile) resource);
-					break;
-				case IResourceDelta.REMOVED:
-					// handle removed resource
-					handleRemovement((IFile) resource);
-					break;
-				case IResourceDelta.CHANGED:
-					// handle changed resource
-					reloadResource((IFile) resource);
-					break;
+					case IResourceDelta.ADDED:
+						// handle added resource
+						XtendXpandMarkerManager.deleteMarkers(resource);
+						reloadResource((IFile) resource);
+						break;
+					case IResourceDelta.REMOVED:
+						// handle removed resource
+						handleRemovement((IFile) resource);
+						break;
+					case IResourceDelta.CHANGED:
+						// handle changed resource
+						reloadResource((IFile) resource);
+						break;
 				}
 			}
 			monitor.worked(1);
 			return true;
 		}
 
-		private boolean isOawResource(final IResource resource) {
+		private boolean isXtendXpandResource(final IResource resource) {
 			return resource instanceof IFile && extensions.contains(((IFile) resource).getFileExtension())
 					&& isOnJavaClassPath(resource);
 		}
 
 		public boolean visit(final IResource resource) {
-			if (isOawResource(resource)) {
+			if (isXtendXpandResource(resource)) {
 				reloadResource((IFile) resource);
 			}
 			monitor.worked(1);
@@ -116,7 +117,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int,
-	 *      java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
+	 * java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
 	protected IProject[] build(final int kind, final Map args, final IProgressMonitor monitor) throws CoreException {
@@ -124,30 +125,33 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		try {
 			if (kind == FULL_BUILD) {
 				fullBuild(monitor);
-			} else {
+			}
+			else {
 				final IResourceDelta delta = getDelta(getProject());
 				if (delta == null) {
 					fullBuild(monitor);
-				} else {
+				}
+				else {
 					incrementalBuild(delta, monitor);
 				}
 			}
-		} catch (final Throwable e) {
+		}
+		catch (final Throwable e) {
 			e.printStackTrace();
 		}
-		for (final Iterator<?> iter = toAnalyze.iterator(); iter.hasNext();) {
-			final IXtendXpandResource res = (IXtendXpandResource) iter.next();
-			IStorage underlyingStorage = res.getUnderlyingStorage();
-		    if(underlyingStorage instanceof IResource) {
-		    	IResource resource = (IResource) underlyingStorage;
-		    	IProject project = resource.getProject();
-		    	if(project.isLinked()) {
-		    		continue;
-		    	}
-		    }
+		for (final Object name : toAnalyze) {
+			final IXtendXpandResource res = (IXtendXpandResource) name;
+			final IStorage underlyingStorage = res.getUnderlyingStorage();
+			if (underlyingStorage instanceof IResource) {
+				final IResource resource = (IResource) underlyingStorage;
+				final IProject project = resource.getProject();
+				if (project.isLinked()) {
+					continue;
+				}
+			}
 			res.analyze();
 		}
-		IXtendXpandProject p = Activator.getExtXptModelManager().findProject(getProject());
+		final IXtendXpandProject p = Activator.getExtXptModelManager().findProject(getProject());
 		p.analyze(monitor);
 		return null;
 	}
@@ -156,10 +160,11 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		if (resource.exists()) {
 			final IXtendXpandProject project = Activator.getExtXptModelManager().findProject(resource);
 			if (project != null) {
-				final IXtendXpandResource r = project.findOawResource(resource);
+				final IXtendXpandResource r = project.findXtendXpandResource(resource);
 				if (r != null) {
-					if (r.refresh())
+					if (r.refresh()) {
 						resource.getLocalTimeStamp();
+					}
 					toAnalyze.add(r);
 				}
 			}
@@ -169,54 +174,57 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 	public void handleRemovement(final IFile resource) {
 		final IXtendXpandProject project = Activator.getExtXptModelManager().findProject(resource);
 		if (project != null) {
-			project.unregisterOawResource(project.findOawResource(resource));
-		} else {
-			XtendLog.logInfo("No oaw project found for " + resource.getProject().getName());
+			project.unregisterXtendXpandResource(project.findXtendXpandResource(resource));
+		}
+		else {
+			XtendLog.logInfo("No Xpand project found for " + resource.getProject().getName());
 		}
 	}
 
 	protected void fullBuild(final IProgressMonitor monitor) throws CoreException {
 		final IXtendXpandProject project = Activator.getExtXptModelManager().findProject(getProject().getFullPath());
 		if (project != null) {
-			getProject().accept(new OawDeltaVisitor(monitor));
-			IJavaProject jp = JavaCore.create(getProject());
-			IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
-			Set<String> extensions = new HashSet<String>();
-			ResourceContributor[] contributors = Activator.getRegisteredResourceContributors();
-			for (ResourceContributor resourceContributor : contributors) {
+			getProject().accept(new XtendXpandDeltaVisitor(monitor));
+			final IJavaProject jp = JavaCore.create(getProject());
+			final IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
+			final Set<String> extensions = new HashSet<String>();
+			final ResourceContributor[] contributors = Activator.getRegisteredResourceContributors();
+			for (final ResourceContributor resourceContributor : contributors) {
 				extensions.add(resourceContributor.getFileExtension());
 			}
-			for (int i = 0; i < roots.length; i++) {
-				IPackageFragmentRoot root = roots[i];
+			for (final IPackageFragmentRoot root : roots) {
 				if (root.isArchive()) {
 					root.open(monitor);
 					try {
-						ZipFile zip = ((JarPackageFragmentRoot) root).getJar();
-						Enumeration<? extends ZipEntry> entries = zip.entries();
+						final ZipFile zip = ((JarPackageFragmentRoot) root).getJar();
+						final Enumeration<? extends ZipEntry> entries = zip.entries();
 						while (entries.hasMoreElements()) {
-							ZipEntry entry = entries.nextElement();
-							for (String ext : extensions) {
-								String name = entry.getName();
+							final ZipEntry entry = entries.nextElement();
+							for (final String ext : extensions) {
+								final String name = entry.getName();
 								if (name.endsWith(ext)) {
-									String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/", "::");
-									ResourceID resourceID = new ResourceID(fqn, ext);
-									IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
-									project.findOawResource(findStorage);
+									final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll(
+											"/", "::");
+									final ResourceID resourceID = new ResourceID(fqn, ext);
+									final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
+									project.findXtendXpandResource(findStorage);
 								}
 							}
 						}
-					} finally {
+					}
+					finally {
 						root.close();
 					}
 				}
 			}
-		} else {
-			XtendLog.logInfo("Couldn't create oawproject for project " + getProject().getName());
+		}
+		else {
+			XtendLog.logInfo("Couldn't create Xpand project for project " + getProject().getName());
 		}
 	}
 
 	protected void incrementalBuild(final IResourceDelta delta, final IProgressMonitor monitor) throws CoreException {
-		final OawDeltaVisitor visitor = new OawDeltaVisitor(monitor);
+		final XtendXpandDeltaVisitor visitor = new XtendXpandDeltaVisitor(monitor);
 		delta.accept(visitor);
 	}
 }

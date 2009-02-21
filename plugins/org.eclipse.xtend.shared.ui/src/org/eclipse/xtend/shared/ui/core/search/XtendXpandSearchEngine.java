@@ -38,7 +38,7 @@ import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 /**
- * Search engine for oAW.
+ * Search engine for Xtend.
  * 
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Peter Friese
@@ -103,9 +103,9 @@ public class XtendXpandSearchEngine {
 
 		}
 		for (IProject p : project.getProject().getProject().getReferencingProjects()) {
-			IXtendXpandProject oawp = Activator.getExtXptModelManager().findProject(p);
-			if (oawp != null) {
-				matches.addAll(findAllOccurrences(oawp, identifier));
+			IXtendXpandProject extxptp = Activator.getExtXptModelManager().findProject(p);
+			if (extxptp != null) {
+				matches.addAll(findAllOccurrences(extxptp, identifier));
 			}
 		}
 		return sort(matches);
@@ -130,9 +130,9 @@ public class XtendXpandSearchEngine {
 			}
 		}
 		for (IProject p : project.getProject().getProject().getReferencingProjects()) {
-			IXtendXpandProject oawp = Activator.getExtXptModelManager().findProject(p);
-			if (oawp != null) {
-				matches.addAll(findReferences(oawp, identifier));
+			IXtendXpandProject extxptp = Activator.getExtXptModelManager().findProject(p);
+			if (extxptp != null) {
+				matches.addAll(findReferences(extxptp, identifier));
 			}
 		}
 		return sort(matches);
@@ -180,9 +180,9 @@ public class XtendXpandSearchEngine {
 		}
 		try {
 			for (IProject p : project.getProject().getProject().getReferencedProjects()) {
-				IXtendXpandProject oawp = Activator.getExtXptModelManager().findProject(p);
-				if (oawp != null) {
-					matches.addAll(findDeclarations(oawp, identifier));
+				IXtendXpandProject extxptp = Activator.getExtXptModelManager().findProject(p);
+				if (extxptp != null) {
+					matches.addAll(findDeclarations(extxptp, identifier));
 				}
 			}
 		} catch (CoreException e) {

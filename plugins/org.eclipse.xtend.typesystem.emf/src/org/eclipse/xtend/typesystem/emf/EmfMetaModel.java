@@ -25,29 +25,44 @@ public class EmfMetaModel extends EmfRegistryMetaModel implements MetaModel {
 		this.metamodel = metamodel;
 	}
 	
+	/**
+	 * Sets the metamodel descriptor.
+	 * 
+	 * @param ePackageDescriptor
+	 *            the descriptor
+	 */
 	public void setMetaModelDescriptor(final String ePackageDescriptor) {
 		metamodel = EcoreUtil2.getEPackageByDescriptorClassName(ePackageDescriptor);
-		if (metamodel == null) {
+		if (metamodel == null)
 			throw new ConfigurationException("Couldn't find ePackage Descriptor '" + ePackageDescriptor);
 		}
-	}
 
+	/**
+	 * Sets the metamodel package.
+	 * 
+	 * @param ePackage
+	 *            the package
+	 */
 	public void setMetaModelPackage(final String ePackage) {
 		metamodel = EcoreUtil2.getEPackageByClassName(ePackage);
-		if (metamodel == null) {
+		if (metamodel == null)
 			throw new ConfigurationException("Couldn't find ePackage '" + ePackage);
 		}
-	}
 
+	/**
+	 * Sets the name of the metamodel file.
+	 * 
+	 * @param metaModelFile
+	 *            the metamodel filename
+	 */
 	public void setMetaModelFile(final String metaModelFile) {
 		metamodel = EcoreUtil2.getEPackage(metaModelFile);
-		if (metamodel == null) {
+		if (metamodel == null)
 			throw new ConfigurationException("Couldn't load ecore file '" + metaModelFile);
 		}
-	}
 	
 	@Override
 	protected EPackage[] allPackages() {
-		return new EPackage[]{metamodel};
+		return new EPackage[] { metamodel };
 	}
 }

@@ -76,7 +76,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 
 					@Override
 					public Object evaluateInternal(final Object target, final Object[] params) {
-						if (target == null) {
+						if (target==null) {
 							LOG.warn("toList called with Null argument. Will return an empty list.");
 							return new ArrayList<Object>(0);
 						}
@@ -101,7 +101,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 
 					@Override
 					public Object evaluateInternal(final Object target, final Object[] params) {
-						if (target == null) {
+						if (target==null) {
 							LOG.warn("toSet called with Null argument. Will return an empty set.");
 							return new ArrayList<Object>(0);
 						}
@@ -157,7 +157,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 					}
 
 					public Object get(final Object target) {
-						if (target == null) {
+						if (target==null) {
 							LOG.warn("isEmpty called with Null argument. Will return true.");
 							return Boolean.TRUE;
 						}
@@ -259,11 +259,10 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 					@Override
 					public Object evaluateInternal(final Object target, final Object[] params) {
 						final Set r = new HashSet((Collection) target);
-						if (params != null && params[0] != null) {
+						if (params!=null && params[0]!=null) {
 							r.addAll((Collection) params[0]);
-						}
-						else {
-							LOG.warn("Invoking union() with Null as argument. Will return the source collection.");
+						} else {
+							LOG.warn ("Invoking union() with Null as argument. Will return the source collection.");
 						}
 						return r;
 					}

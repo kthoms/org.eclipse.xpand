@@ -27,7 +27,7 @@ import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
 import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
 
 /**
- * GenericHyperlinkDetector is used to detect hyperlinkable words inside oAW
+ * GenericHyperlinkDetector is used to detect hyperlinkable words inside Xtend
  * editors.
  * 
  * @author Peter Friese
@@ -58,7 +58,7 @@ public class GenericHyperlinkDetector implements IHyperlinkDetector {
 		String hyperlinkedWord = textViewer.getDocument().get().substring(hyperlinkRegion.getOffset(),
 				hyperlinkRegion.getOffset() + hyperlinkRegion.getLength());
 
-		IXtendXpandProject project = getOawProject();
+		IXtendXpandProject project = getXtendXpandProject();
 		if (project != null) {
 			List<SearchMatch> matches = XtendXpandSearchEngine.findDeclarations(project, hyperlinkedWord);
 			List<GenericHyperlink> links = new ArrayList<GenericHyperlink>();
@@ -67,11 +67,14 @@ public class GenericHyperlinkDetector implements IHyperlinkDetector {
 						hyperlinkRegion, hyperlinkedWord);
 				links.add(genericHyperlink);
 			}
+			// must return null if no links found
+			if (!links.isEmpty()) {
 			if (canShowMultipleHyperlinks) {
 				return links.toArray(new IHyperlink[links.size()]);
-			} else if (!links.isEmpty()) {
+				} else {
 				return new IHyperlink[] { links.get(0) };
 			}
+		}
 		}
 		return null;
 	}
@@ -80,7 +83,7 @@ public class GenericHyperlinkDetector implements IHyperlinkDetector {
 		return editor.getSite().getWorkbenchWindow().getActivePage();
 	}
 
-	private IXtendXpandProject getOawProject() {
+	private IXtendXpandProject getXtendXpandProject() {
 		IFile file = getFile();
 		if (file == null) {
 			return null;

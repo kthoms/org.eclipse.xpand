@@ -62,20 +62,21 @@ import org.eclipse.xtend.typesystem.emf.ui.internal.EmfToolsLog;
  * </p>
  */
 final class ProjectAnalyzer extends Job {
-	private IJavaProject project;
+	private final IJavaProject project;
 	private ResourceSet rs;
 	private Map<IStorage, Resource> mapping;
 	private Map<String, EPackage> packages;
 
-	public ProjectAnalyzer(IJavaProject project) {
+	public ProjectAnalyzer(final IJavaProject project) {
 		super("Analyzing accessible EMF metamodels for project " + project.getProject().getProject().getName());
 		this.project = project;
 	}
 
 	@Override
-	protected IStatus run(IProgressMonitor monitor) {
-		if (EmfToolsPlugin.trace)
+	protected IStatus run(final IProgressMonitor monitor) {
+		if (EmfToolsPlugin.trace) {
 			System.out.println("Analyzing EMF metamodels for project " + project.getProject().getProject().getName());
+		}
 
 		// load models
 		rs = new ResourceSetImpl();
@@ -86,7 +87,7 @@ final class ProjectAnalyzer extends Job {
 		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 
 		// done. now trigger build for the project.
-		// only do this if it is an oaw project
+		// only do this if it is an Xpand project
 		// do not build referencing projects. the EmfToolsPlugin will take care
 		// of this
 		if (Activator.getExtXptModelManager().findProject(project.getProject()) != null) {
@@ -96,11 +97,11 @@ final class ProjectAnalyzer extends Job {
 		return Status.OK_STATUS;
 	}
 
-	@SuppressWarnings("restriction")
-	private void loadMetamodelsForProject(IJavaProject javaProject, final ResourceSet rs, IProgressMonitor monitor) {
+	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs,
+			final IProgressMonitor monitor) {
 		try {
 			final String ext = "ecore";
-			for (IPackageFragmentRoot root : javaProject.getPackageFragmentRoots()) {
+			for (final IPackageFragmentRoot root : javaProject.getPackageFragmentRoots()) {
 				if (!root.isArchive()) {
 					IResource rootResource = null;
 					if (root instanceof ExternalPackageFragmentRoot) {
@@ -112,7 +113,7 @@ final class ProjectAnalyzer extends Job {
 					if (rootResource != null) {
 						try {
 							rootResource.accept(new IResourceVisitor() {
-								public boolean visit(IResource resource) throws CoreException {
+								public boolean visit(final IResource resource) throws CoreException {
 									if (resource instanceof IFile && ext.equals(((IFile) resource).getFileExtension())) {
 										loadModelFromStorage(rs, (IFile) resource);
 									}
@@ -120,7 +121,7 @@ final class ProjectAnalyzer extends Job {
 								}
 							});
 						}
-						catch (CoreException e) {
+						catch (final CoreException e) {
 							EmfToolsLog.logError(e);
 						}
 					}
@@ -128,29 +129,32 @@ final class ProjectAnalyzer extends Job {
 				else {
 					// skip JRE jars
 					if (((JarPackageFragmentRoot) root).getPath().toString().contains("jre/lib")) {
-						if (EmfToolsPlugin.trace)
+						if (EmfToolsPlugin.trace) {
 							System.out.println("Skipping " + ((JarPackageFragmentRoot) root).getPath().toString());
+						}
 						continue;
 					}
 
 					root.open(monitor);
 					try {
-						ZipFile zip = ((JarPackageFragmentRoot) root).getJar();
+						final ZipFile zip = ((JarPackageFragmentRoot) root).getJar();
 
-						Enumeration<? extends ZipEntry> entries = zip.entries();
+						final Enumeration<? extends ZipEntry> entries = zip.entries();
 						while (entries.hasMoreElements()) {
-							ZipEntry entry = entries.nextElement();
-							String name = entry.getName();
+							final ZipEntry entry = entries.nextElement();
+							final String name = entry.getName();
 							if (name.endsWith(ext)) {
-								String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/", "::");
-								ResourceID resourceID = new ResourceID(fqn, ext);
-								IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
-								if (findStorage != null)
+								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/",
+										"::");
+								final ResourceID resourceID = new ResourceID(fqn, ext);
+								final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
+								if (findStorage != null) {
 									loadModelFromStorage(rs, findStorage);
+								}
 							}
 						}
 					}
-					catch (CoreException e) {
+					catch (final CoreException e) {
 						EmfToolsLog.logError(e);
 					}
 					finally {
@@ -159,15 +163,16 @@ final class ProjectAnalyzer extends Job {
 				}
 			}
 		}
-		catch (JavaModelException e) {
+		catch (final JavaModelException e) {
 			EmfToolsLog.logError(e);
 		}
 	}
 
-	private void loadModelFromStorage(ResourceSet rs, IStorage storage) {
-		URI uri = URI.createPlatformResourceURI(storage.getFullPath().toString(), true);
-		if (EmfToolsPlugin.trace)
+	private void loadModelFromStorage(final ResourceSet rs, final IStorage storage) {
+		final URI uri = URI.createPlatformResourceURI(storage.getFullPath().toString(), true);
+		if (EmfToolsPlugin.trace) {
 			System.out.println("Loading EMF metamodel " + storage.getFullPath().toString());
+		}
 
 		final Resource r = rs.createResource(uri);
 		if (r.isLoaded() && !r.isModified())
@@ -175,32 +180,34 @@ final class ProjectAnalyzer extends Job {
 		try {
 			r.load(storage.getContents(), Collections.EMPTY_MAP);
 			mapping.put(storage, r);
-			Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(), EcorePackage.Literals.EPACKAGE);
-			for (EPackage pack : packages) {
+			final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(),
+					EcorePackage.Literals.EPACKAGE);
+			for (final EPackage pack : packages) {
 				registerPackage(storage, pack);
 			}
 		}
-		catch (IOException e) {
+		catch (final IOException e) {
 			EmfToolsLog.logError(e);
 		}
-		catch (CoreException e) {
+		catch (final CoreException e) {
 			EmfToolsLog.logError(e);
 		}
 	}
 
-	private void registerPackage(IStorage storage, EPackage pack) {
+	private void registerPackage(final IStorage storage, final EPackage pack) {
 		// finding duplicates by nsURI is better than by name since package
 		// names may be used across MMs
 		if (this.packages.containsKey(pack.getNsURI())) {
-			if (EmfToolsPlugin.trace)
+			if (EmfToolsPlugin.trace) {
 				System.out.println("Did not register '" + pack.getName() + "' from " + storage.getFullPath()
 						+ " because an EPackage with the same nsURI has already been registered.");
+			}
 		}
 		else {
 			this.packages.put(pack.getNsURI(), pack);
 		}
 		// recurse into subpackages
-		for (EPackage p : pack.getESubpackages()) {
+		for (final EPackage p : pack.getESubpackages()) {
 			registerPackage(storage, p);
 		}
 	}

@@ -16,11 +16,11 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.internal.xtend.editor.outlineview.messages"; //$NON-NLS-1$
 
-	public static String AbstractOawContentOutlinePage_1;
+	public static String AbstractXtendXpandContentOutlinePage_1;
 
-	public static String AbstractOawContentOutlinePage_3;
+	public static String AbstractXtendXpandContentOutlinePage_3;
 
-	public static String AbstractOawContentOutlinePage_4;
+	public static String AbstractXtendXpandContentOutlinePage_4;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

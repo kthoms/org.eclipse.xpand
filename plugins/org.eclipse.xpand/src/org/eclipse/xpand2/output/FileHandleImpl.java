@@ -19,17 +19,23 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class FileHandleImpl implements FileHandle {
-	private final Log log = LogFactory.getLog(getClass());
+	private final Log log =
+			LogFactory.getLog(getClass());
 
-	private StringBuffer buffer = new StringBuffer();
+	private StringBuffer buffer =
+			new StringBuffer();
 
-	private File targetFile = null;
+	private File targetFile =
+			null;
 
-	private Outlet outlet = null;
+	private Outlet outlet =
+			null;
 
 	public FileHandleImpl(final Outlet outlet, final File f) {
-		this.outlet = outlet;
-		targetFile = f.getAbsoluteFile();
+		this.outlet =
+				outlet;
+		targetFile =
+				f.getAbsoluteFile();
 	}
 
 	public Outlet getOutlet() {
@@ -41,7 +47,8 @@ public class FileHandleImpl implements FileHandle {
 	}
 
 	public void setBuffer(final CharSequence buffer) {
-		this.buffer = new StringBuffer(buffer);
+		this.buffer =
+				new StringBuffer(buffer);
 	}
 
 	public File getTargetFile() {
@@ -63,35 +70,47 @@ public class FileHandleImpl implements FileHandle {
 	public void writeAndClose() {
 		try {
 			if (!isOverwrite() && targetFile.exists()) {
+				if (log.isDebugEnabled()) {
 				log.debug("Skipping file : " + targetFile.getAbsolutePath() + " cause it exists already");
+				}
 				return;
 			}
+			if (log.isDebugEnabled()) {
 			log.debug("Opening file : " + targetFile.getAbsolutePath());
+			}
 			// create all parent directories
-			final File parentDir = targetFile.getParentFile();
+			final File parentDir =
+					targetFile.getParentFile();
 			if (!parentDir.exists()) {
 				parentDir.mkdirs();
-				if (!parentDir.isDirectory())
-					throw new RuntimeException("Failed to create parent directories of file " + targetFile.getAbsolutePath());
+				if (!parentDir.isDirectory()) {
+					throw new RuntimeException("Failed to create parent directories of file "
+							+ targetFile.getAbsolutePath());
+				}
 			}
 			outlet.beforeWriteAndClose(this);
 			if (outlet.shouldWrite(this)) {
-				FileOutputStream out = null;
+				FileOutputStream out =
+						null;
 				try {
-					out = new FileOutputStream(targetFile, isAppend());
+					out =
+							new FileOutputStream(targetFile, isAppend());
 					out.write(getBytes());
-				} finally {
+				}
+				finally {
 					if (out != null) {
 						try {
 							out.close();
 							outlet.afterClose(this);
-						} catch (final IOException e) {
+						}
+						catch (final IOException e) {
 							throw new RuntimeException(e);
 						}
 					}
 				}
 			}
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -100,7 +119,8 @@ public class FileHandleImpl implements FileHandle {
 		if (getFileEncoding() != null) {
 			try {
 				return buffer.toString().getBytes(getFileEncoding());
-			} catch (UnsupportedEncodingException e) {
+			}
+			catch (final UnsupportedEncodingException e) {
 				log.error(e.getMessage(), e);
 			}
 		}

@@ -16,47 +16,58 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IJavaProject;
 
 /**
- * Represents a project containing openArchitectureWare resources. These are Xpand template, Xtend
- * files, Workflow files etc.
+ * Represents a project containing openArchitectureWare resources. These are
+ * Xpand template, Xtend files, Workflow files etc.
+ * 
  * @since 4.0
  */
 public interface IXtendXpandProject {
 	/**
-	 * Finds an oAW resource by its fully qualified name and file extension.
-	 * @param fqn The full qualified name in oAW syntax. For example: my::templates::Main 
+	 * Finds an Xtend resource by its fully qualified name and file extension.
+	 * 
+	 * @param fqn
+	 *            The full qualified name in Xtend syntax. For example:
+	 *            my::templates::Main
 	 * @return The resource or null if the resource could not be located.
 	 */
-    IXtendXpandResource findExtXptResource(String fqn, String extension);
-    
-    /**
-     * Finds an oAW resource by it's underlying IStorage instance
-     * @param 
-     * @return The resource or null if the resource could not be located (i.e it's not an oaw resource).
-     */
-    IXtendXpandResource findOawResource(IStorage file);
+	IXtendXpandResource findExtXptResource(String fqn, String extension);
 
-    /**
-     * Returns all registered resources within the project.
-     * @return
-     */
-    IXtendXpandResource[] getRegisteredResources();
+	/**
+	 * Finds an Xtend resource by it's underlying IStorage instance
+	 * 
+	 * @param
+	 * @return The resource or null if the resource could not be located (i.e
+	 *         it's not an Xtend/Xpand resource).
+	 */
+	IXtendXpandResource findXtendXpandResource(IStorage file);
 
-    /**
-     * Returns the corresponding {@link IJavaProject Java Project}. 
-     */
-    IJavaProject getProject();
+	/**
+	 * Returns all registered resources within the project.
+	 * 
+	 * @return
+	 */
+	IXtendXpandResource[] getRegisteredResources();
 
-    /**
-     * Unregisters a resource from the project.
-     * @param res Resource which should be unregistered.
-     */
-    void unregisterOawResource(IXtendXpandResource res);
+	/**
+	 * Returns the corresponding {@link IJavaProject Java Project}.
+	 */
+	IJavaProject getProject();
 
-    /**
-     * Analyzes the project's resources and marks erraneous resources.
-     * @param monitor (optional) A monitor for the progress of the analysis.
-     */
-    void analyze(IProgressMonitor monitor);
+	/**
+	 * Unregisters a resource from the project.
+	 * 
+	 * @param res
+	 *            Resource which should be unregistered.
+	 */
+	void unregisterXtendXpandResource(IXtendXpandResource res);
+
+	/**
+	 * Analyzes the project's resources and marks erraneous resources.
+	 * 
+	 * @param monitor
+	 *            (optional) A monitor for the progress of the analysis.
+	 */
+	void analyze(IProgressMonitor monitor);
 
 	public IXtendXpandResource[] getAllRegisteredResources();
 

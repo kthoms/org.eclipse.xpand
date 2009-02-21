@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +35,7 @@ import org.eclipse.xtend.typesystem.Type;
  */
 public class OperationCall extends FeatureCall {
 
-	private Expression[] params;
+	private final Expression[] params;
 
 	public OperationCall(final Identifier name, final Expression target, final Expression... params) {
 		super(name, target);
@@ -56,7 +55,7 @@ public class OperationCall extends FeatureCall {
 		// evaluate from left to right
 		// first the target
 		Object targetObj = null;
-		if (getTarget()!=null) {
+		if (getTarget() != null) {
 			targetObj = getTarget().evaluate(ctx);
 		}
 		// then the parameters in the defined order
@@ -66,7 +65,7 @@ public class OperationCall extends FeatureCall {
 				evaluatedParams[i] = getParams()[i].evaluate(ctx);
 			}
 		}
-		
+
 		if (getTarget() == null) {
 			// extension
 			final Extension f = ctx.getExtension(getName().getValue(), evaluatedParams);
@@ -74,10 +73,12 @@ public class OperationCall extends FeatureCall {
 				ProfileCollector.getInstance().enter(f.toString());
 				try {
 					return evaluate(f, evaluatedParams, ctx);
-				} catch (EvaluationException e) {
+				}
+				catch (final EvaluationException e) {
 					e.addStackElement(this, ctx);
 					throw e;
-				} finally {
+				}
+				finally {
 					ProfileCollector.getInstance().leave();
 				}
 			}
@@ -85,10 +86,11 @@ public class OperationCall extends FeatureCall {
 			// implicite
 			final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
 			if (var == null)
-				throw new EvaluationException("Couldn't find extension '" + getName().getValue() + getParamTypes(evaluatedParams, ctx) + "'!", this, ctx);
+				throw new EvaluationException("Couldn't find extension '" + getName().getValue()
+						+ getParamTypes(evaluatedParams, ctx) + "'!", this, ctx);
 			targetObj = var.getValue();
-		} 
-		
+		}
+
 		// operation
 		Operation op = ctx.findOperation(getName().getValue(), targetObj, evaluatedParams);
 		if (op != null)
@@ -102,10 +104,12 @@ public class OperationCall extends FeatureCall {
 			try {
 				ProfileCollector.getInstance().enter(f.toString());
 				return evaluate(f, ps, ctx);
-			} catch (EvaluationException e) {
+			}
+			catch (final EvaluationException e) {
 				e.addStackElement(this, ctx);
 				throw e;
-			} finally {
+			}
+			finally {
 				ProfileCollector.getInstance().leave();
 			}
 		}
@@ -113,18 +117,19 @@ public class OperationCall extends FeatureCall {
 		if (targetObj instanceof Collection) {
 			final List<Object> result = new ArrayList<Object>();
 			final Collection<?> col = (Collection<?>) targetObj;
-			for (final Iterator<?> iter = col.iterator(); iter.hasNext();) {
-				final Object element = iter.next();
+			for (final Object element : col) {
 				// operation
 				op = ctx.findOperation(getName().getValue(), element, evaluatedParams);
 				if (op != null) {
 					final Object r = evaluate(op, element, evaluatedParams, ctx);
 					if (r instanceof Collection) {
 						result.addAll((Collection<?>) r);
-					} else {
+					}
+					else {
 						result.add(r);
 					}
-				} else {
+				}
+				else {
 					// extension as members
 					ps = new Object[evaluatedParams.length + 1];
 					ps[0] = element;
@@ -134,26 +139,31 @@ public class OperationCall extends FeatureCall {
 						Object r = null;
 						try {
 							r = evaluate(f, ps, ctx);
-						} catch (EvaluationException e) {
+						}
+						catch (final EvaluationException e) {
 							e.addStackElement(this, ctx);
 							throw e;
 						}
 						if (r instanceof Collection) {
 							result.addAll((Collection<?>) r);
-						} else {
+						}
+						else {
 							result.add(r);
 						}
-					} else
-						throw new EvaluationException("Couldn't find operation '" + getName().getValue() + getParamTypes(evaluatedParams, ctx) + "' for "
-								+ ctx.getType(targetObj).getName() + "!", this, ctx);
+					}
+					else
+						throw new EvaluationException("Couldn't find operation '" + getName().getValue()
+								+ getParamTypes(evaluatedParams, ctx) + "' for " + ctx.getType(targetObj).getName()
+								+ "!", this, ctx);
 				}
 			}
 			return result;
 		}
 
 		if (targetObj != null && f == null && op == null)
-			throw new EvaluationException("Couldn't find operation '" + getName().getValue() + getParamTypes(evaluatedParams, ctx) + "' for "
-					+ ctx.getType(targetObj).getName() + ".", this, ctx);
+			throw new EvaluationException("Couldn't find operation '" + getName().getValue()
+					+ getParamTypes(evaluatedParams, ctx) + "' for " + ctx.getType(targetObj).getName() + ".", this,
+					ctx);
 		return ctx.handleNullEvaluation(this);
 
 	}
@@ -187,18 +197,23 @@ public class OperationCall extends FeatureCall {
 			Extension f = null;
 			try {
 				f = ctx.getExtensionForTypes(getName().getValue(), paramTypes);
-			} catch (final Exception e) {
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
+			}
+			catch (final Exception e) {
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : "
+						+ e.getMessage(), this));
 			}
 			if (f != null)
 				return f.getReturnType(paramTypes, ctx, issues);
 			final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
 			if (var != null) {
 				targetType = (Type) var.getValue();
-			} else {
-				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find extensions : " + toString(), this));
 			}
-		} else {
+			else {
+				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find extensions : "
+						+ toString(), this));
+			}
+		}
+		else {
 			targetType = getTarget().analyze(ctx, issues);
 		}
 		if (targetType == null)
@@ -235,43 +250,49 @@ public class OperationCall extends FeatureCall {
 			additionalMsg = " or type '" + innerType + "'";
 		}
 
-		issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find operation '" + getName().getValue()
-				+ getParamsString(paramTypes) + "' for type '" + targetType.getName() + "'" + additionalMsg, this));
+		issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find operation '"
+				+ getName().getValue() + getParamsString(paramTypes) + "' for type '" + targetType.getName() + "'"
+				+ additionalMsg, this));
 		return null;
 
 	}
 
-	private Type getExtensionsReturnType(final ExecutionContext ctx, final Set<AnalysationIssue> issues, final Type[] paramTypes,
-			final Type targetType) {
+	private Type getExtensionsReturnType(final ExecutionContext ctx, final Set<AnalysationIssue> issues,
+			final Type[] paramTypes, final Type targetType) {
 		final Type[] pts = new Type[paramTypes.length + 1];
 		pts[0] = targetType;
 		System.arraycopy(paramTypes, 0, pts, 1, paramTypes.length);
 		Extension f = null;
 		try {
 			f = ctx.getExtensionForTypes(getName().getValue(), pts);
-		} catch (final Exception e) {
-			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
+		}
+		catch (final Exception e) {
+			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : "
+					+ e.getMessage(), this));
 		}
 		if (f != null) {
 			final Set<AnalysationIssue> temp = new HashSet<AnalysationIssue>();
 			final Type rt = f.getReturnType(pts, ctx, temp);
 			if (rt == null) {
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "couldn't resolve return type for extension " + f + "! Errors : "
-						+ temp.toString(), this));
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR,
+						"couldn't resolve return type for extension " + f + "! Errors : " + temp.toString(), this));
 			}
 			return rt;
-		} else if (getTarget() == null) { // try without implicite this
+		}
+		else if (getTarget() == null) { // try without implicite this
 			try {
 				f = ctx.getExtensionForTypes(getName().getValue(), paramTypes);
-			} catch (final Exception e) {
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
+			}
+			catch (final Exception e) {
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : "
+						+ e.getMessage(), this));
 			}
 			if (f != null) {
 				final Set<AnalysationIssue> temp = new HashSet<AnalysationIssue>();
 				final Type rt = f.getReturnType(pts, ctx, temp);
 				if (rt == null) {
-					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "couldn't resolve return type for extension " + f
-							+ "! Errors : " + temp.toString(), this));
+					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR,
+							"couldn't resolve return type for extension " + f + "! Errors : " + temp.toString(), this));
 				}
 				return rt;
 			}
@@ -293,36 +314,43 @@ public class OperationCall extends FeatureCall {
 
 	@Override
 	protected String toStringInternal() {
-		return (getTarget() != null ? getTarget().toStringInternal() + "." : "") + getName() + getParamsExpressionString(getParams());
+		return (getTarget() != null ? getTarget().toStringInternal() + "." : "") + getName()
+				+ getParamsExpressionString(getParams());
 	}
 
 	@Override
-	public String getNameString(ExecutionContext context) {
+	public String getNameString(final ExecutionContext context) {
 		final StringBuffer buff = new StringBuffer();
 		buff.append(getName().getValue());
 		buff.append("(");
 		if (params.length > 0)
-			if (context != null)
+			if (context != null) {
 				buff.append(getParamTypesString(context));
-			else
-				// TODO: CK low: Get parameter types from OawModelManager for Breakpoints
+			}
+			else {
+				// TODO: CK low: Get parameter types from XtendXpandModelManager
+				// for Breakpoints
 				buff.append("..");
+			}
 		return buff.append(")").toString();
 	}
 
-	private String getParamTypesString(ExecutionContext context) {
+	private String getParamTypesString(final ExecutionContext context) {
 		final ExecutionContext ctx = context.cloneWithoutMonitor();
 		final StringBuffer buff = new StringBuffer();
 		for (int i = 0; i < getParams().length; i++) {
-			Type type = ctx.getType(params[i].evaluate(ctx));
-			String name = type.getName();
-			int pos = name.lastIndexOf("::");
-			if (pos < 0)
+			final Type type = ctx.getType(params[i].evaluate(ctx));
+			final String name = type.getName();
+			final int pos = name.lastIndexOf("::");
+			if (pos < 0) {
 				buff.append(name);
-			else
+			}
+			else {
 				buff.append(name.substring(pos + 2));
-			if (i + 1 < params.length)
+			}
+			if (i + 1 < params.length) {
 				buff.append(",");
+			}
 		}
 		return buff.toString();
 	}
@@ -338,16 +366,17 @@ public class OperationCall extends FeatureCall {
 		return buff.append(")").toString();
 	}
 
-	private Object evaluate(Extension ext, Object[] params, ExecutionContext ctx) {
+	private Object evaluate(final Extension ext, final Object[] params, final ExecutionContext ctx) {
 		ctx.preTask(this);
-		Object result = ext.evaluate(params, ctx);
+		final Object result = ext.evaluate(params, ctx);
 		ctx.postTask(this);
 		return result;
 	}
 
-	private Object evaluate(Operation op, Object targetObj, Object[] params, ExecutionContext ctx) {
+	private Object evaluate(final Operation op, final Object targetObj, final Object[] params,
+			final ExecutionContext ctx) {
 		ctx.preTask(this);
-		Object result = op.evaluate(targetObj, params);
+		final Object result = op.evaluate(targetObj, params);
 		ctx.postTask(this);
 		return result;
 	}

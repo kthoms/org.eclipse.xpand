@@ -36,23 +36,16 @@ public class XpandFacade {
 	/**
 	 * @deprecated use XpandFacade.create instead
 	 */
-	@Deprecated
 	public XpandFacade(final XpandExecutionContext ctx) {
 		this.ctx = ctx;
 	}
 
 	public void evaluate(final String definitionName, final Object targetObject, Object... params) {
-		evaluate2(definitionName, targetObject, params!=null ? Arrays.asList(params) : null);
-	}
-	
-	public void evaluate2(final String definitionName, final Object targetObject, List<Object> paramList) {
-		if (paramList==null)
-			paramList = Collections.emptyList();
+        params = params == null ? new Object[0] : params;
 		final Type targetType = ctx.getType(targetObject);
-		final Type[] paramTypes = new Type[paramList.size()];
+        final Type[] paramTypes = new Type[params.length];
 		for (int i = 0; i < paramTypes.length; i++) {
-			Object obj = paramList.get(i);
-			paramTypes[i] = ctx.getType(obj);
+            paramTypes[i] = ctx.getType(params[i]);
 		}
 
 		final XpandDefinition def = ctx.findDefinition(definitionName, targetType, paramTypes);
@@ -62,8 +55,8 @@ public class XpandFacade {
 
 		ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE,
 				targetObject));
-		for (int i = 0; i < paramList.size(); i++) {
-			final Variable v = new Variable(def.getParams()[i].getName().getValue(), paramList.get(i));
+        for (int i = 0; i < params.length; i++) {
+            final Variable v = new Variable(def.getParams()[i].getName().getValue(), params[i]);
 			ctx = (XpandExecutionContext) ctx.cloneWithVariable(v);
 		}
 		ctx = (XpandExecutionContext) ctx.cloneWithResource(def.getOwner());
@@ -92,7 +85,7 @@ public class XpandFacade {
 		return issues.toArray(new AnalysationIssue[issues.size()]);
 	}
 
-	public static XpandFacade create(XpandExecutionContext execCtx) {
+	public static XpandFacade create(XpandExecutionContextImpl execCtx) {
 		return new XpandFacade(execCtx);
 	}
 }

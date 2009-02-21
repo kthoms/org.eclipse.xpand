@@ -43,9 +43,9 @@ public class EClassType extends AbstractTypeImpl {
 
 	private final static Log log = LogFactory.getLog(EClassType.class);
 
-	private EmfRegistryMetaModel emfMetaModel;
+	private final EmfRegistryMetaModel emfMetaModel;
 
-	private EClass eClass;
+	private final EClass eClass;
 
 	public EClassType(final EmfRegistryMetaModel model, final String name, final EClass class1) {
 		super(model.getTypeSystem(), name);
@@ -57,7 +57,7 @@ public class EClassType extends AbstractTypeImpl {
 	public Feature[] getContributedFeatures() {
 		final Set<FeatureImpl> result = new HashSet<FeatureImpl>();
 		// Attributes
-		List<EStructuralFeature> list = eClass.getEStructuralFeatures();
+		final List<EStructuralFeature> list = eClass.getEStructuralFeatures();
 		for (final EStructuralFeature feature : list) {
 			final Type t = emfMetaModel.getTypeForETypedElement(feature);
 			if (t == null) {
@@ -166,9 +166,10 @@ public class EClassType extends AbstractTypeImpl {
 		return result.toArray(new Feature[result.size()]);
 	}
 
-	private String getTypeName(EClassifier type) {
+	private String getTypeName(final EClassifier type) {
 		if (type == null)
 			return "null";
+
 		return type.getName();
 	}
 

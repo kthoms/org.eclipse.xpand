@@ -27,7 +27,7 @@ public class EmfXpandTest extends XpandCoreTestBase {
 			" xmlns:ecore=\"http://www.eclipse.org/emf/2002/Ecore\" name=\"mm\" "
 			+
 
-			" nsURI=\"http://www.openarchitectureware.org/mm/test/mm\" nsPrefix=\"mm\">"
+			" nsURI=\"http://www.eclipse.org/mm/test/mm\" nsPrefix=\"mm\">"
 			+ "<eClassifiers xsi:type=\"ecore:EClass\" name=\"MetaType\">"
 			+ "<eStructuralFeatures xsi:type=\"ecore:EAttribute\" name=\"name\" eType=\"ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString\"/>"
 			+ "</eClassifiers>" + "</ecore:EPackage>";

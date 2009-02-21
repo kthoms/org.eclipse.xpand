@@ -23,7 +23,7 @@ import org.eclipse.xtend.typesystem.Type;
  */
 public class BooleanLiteral extends Literal {
 
-	public BooleanLiteral(final Identifier literalValue) {
+    public BooleanLiteral( final Identifier literalValue) {
 		super(literalValue);
 	}
 
@@ -32,7 +32,6 @@ public class BooleanLiteral extends Literal {
 		return new Boolean(getLiteralValue().getValue());
 	}
 
-	@Override
 	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		return ctx.getBooleanType();
 	}

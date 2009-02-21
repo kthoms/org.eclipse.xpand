@@ -29,7 +29,7 @@ import org.eclipse.ui.navigator.ICommonMenuConstants;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.eclipse.xtend.shared.ui.core.action.SelectionDispatchAction;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
-import org.eclipse.xtend.shared.ui.editor.IOawEditorActionDefinitionIds;
+import org.eclipse.xtend.shared.ui.editor.IXpandXtendEditorActionDefinitionIds;
 
 /**
  * Action group that adds the search for declarations actions to a context menu
@@ -54,17 +54,17 @@ public class DeclarationsSearchGroup extends ActionGroup {
 	 * @param site
 	 *            The workbench site that owns this action group
 	 */
-	public DeclarationsSearchGroup(IWorkbenchSite site) {
+	public DeclarationsSearchGroup(final IWorkbenchSite site) {
 		this.site = site;
 
 		groupId = ICommonMenuConstants.GROUP_SEARCH;
 
 		findDeclarationsAction = new FindDeclarationsAction(site);
-		findDeclarationsAction.setActionDefinitionId(IOawEditorActionDefinitionIds.SEARCH_DECLARATIONS_IN_WORKSPACE);
+		findDeclarationsAction.setActionDefinitionId(IXpandXtendEditorActionDefinitionIds.SEARCH_DECLARATIONS_IN_WORKSPACE);
 
 		// register the actions as selection listeners
-		ISelectionProvider provider = site.getSelectionProvider();
-		ISelection selection = provider.getSelection();
+		final ISelectionProvider provider = site.getSelectionProvider();
+		final ISelection selection = provider.getSelection();
 		registerAction(findDeclarationsAction, provider, selection);
 	}
 
@@ -73,9 +73,9 @@ public class DeclarationsSearchGroup extends ActionGroup {
 	 * this constructor.
 	 * 
 	 * @param editor
-	 *            The oAW editor
+	 *            the editor
 	 */
-	protected DeclarationsSearchGroup(AbstractXtendXpandEditor editor) {
+	protected DeclarationsSearchGroup(final AbstractXtendXpandEditor editor) {
 		Assert.isNotNull(editor);
 		site = editor.getSite();
 		groupId = ITextEditorActionConstants.GROUP_FIND;
@@ -86,19 +86,20 @@ public class DeclarationsSearchGroup extends ActionGroup {
 
 	}
 
-	private void addAction(IAction action, IMenuManager manager) {
+	private void addAction(final IAction action, final IMenuManager manager) {
 		if (action.isEnabled()) {
 			manager.add(action);
 		}
 	}
 
-	private void registerAction(SelectionDispatchAction action, ISelectionProvider provider, ISelection selection) {
+	private void registerAction(final SelectionDispatchAction action, final ISelectionProvider provider,
+			final ISelection selection) {
 		action.update(selection);
 		provider.addSelectionChangedListener(action);
 	}
 
 	@Override
-	public void fillActionBars(IActionBars actionBars) {
+	public void fillActionBars(final IActionBars actionBars) {
 		Assert.isNotNull(actionBars);
 		super.fillActionBars(actionBars);
 		this.actionBars = actionBars;
@@ -106,8 +107,8 @@ public class DeclarationsSearchGroup extends ActionGroup {
 	}
 
 	@Override
-	public void fillContextMenu(IMenuManager manager) {
-		IMenuManager menuManager = new MenuManager("Dec&larations", IContextMenuConstants.GROUP_SEARCH);
+	public void fillContextMenu(final IMenuManager manager) {
+		final IMenuManager menuManager = new MenuManager("Dec&larations", IContextMenuConstants.GROUP_SEARCH);
 		addAction(findDeclarationsAction, menuManager);
 
 		menuManager.add(new Separator());
@@ -119,7 +120,7 @@ public class DeclarationsSearchGroup extends ActionGroup {
 
 	@Override
 	public void dispose() {
-		ISelectionProvider provider = site.getSelectionProvider();
+		final ISelectionProvider provider = site.getSelectionProvider();
 		if (provider != null) {
 			disposeAction(findDeclarationsAction, provider);
 		}
@@ -135,7 +136,7 @@ public class DeclarationsSearchGroup extends ActionGroup {
 		}
 	}
 
-	private void disposeAction(ISelectionChangedListener action, ISelectionProvider provider) {
+	private void disposeAction(final ISelectionChangedListener action, final ISelectionProvider provider) {
 		if (action != null) {
 			provider.removeSelectionChangedListener(action);
 		}

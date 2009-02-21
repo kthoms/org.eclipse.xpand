@@ -75,9 +75,6 @@ public class JavaBeansStrategy implements JavaTypeStrategy {
 			final PropertyDescriptor pd = pdArr[i];
 			final Method m = pd.getReadMethod() != null ? pd.getReadMethod() : pd.getWriteMethod();
 			if (m != null && clazz.equals(m.getDeclaringClass())) {
-				// remember the getter method for this property; we do not need
-				// to add this feature as an operation, too.
-				String propName = pd.getName();
 				if (pd.getReadMethod() != null) {
 					usedMethods.add(pd.getReadMethod());
 				}

@@ -98,8 +98,6 @@ public class ForEachStatement extends StatementWithBody {
 		}
 	}
 
-	static String indent = "";
-	
 	@Override
 	public void evaluateInternal(XpandExecutionContext ctx) {
 		Object o = getTarget().evaluate(ctx);
@@ -115,7 +113,6 @@ public class ForEachStatement extends StatementWithBody {
 		if (iteratorName != null) {
 			ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(iteratorName.getValue(), iterator));
 		}
-		indent += "  ";
 		for (final Iterator<?> iter = col.iterator(); iter.hasNext();) {
 			final Object element = iter.next();
 			ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(getVariable().getValue(), element));
@@ -129,7 +126,6 @@ public class ForEachStatement extends StatementWithBody {
 			}
 			iterator.increment();
 		}
-		indent = indent.substring(2);
 	}
 
 	@Override

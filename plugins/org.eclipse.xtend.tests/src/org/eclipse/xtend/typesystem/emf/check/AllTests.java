@@ -19,8 +19,8 @@ public class AllTests {
 		TestSuite suite = new TestSuite("Test for org.eclipse.xtend.typesystem.emf.check");
 		// $JUnit-BEGIN$
 		// TODO create an plugin test suit and put this test in
-		// suite.addTestSuite(OawValidatorPluginTests.class);
-		suite.addTestSuite(OawValidatorStandaloneTests.class);
+		// suite.addTestSuite(XtendXpandValidatorPluginTests.class);
+		suite.addTestSuite(XtendXpandValidatorStandaloneTests.class);
 		// $JUnit-END$
 		return suite;
 	}

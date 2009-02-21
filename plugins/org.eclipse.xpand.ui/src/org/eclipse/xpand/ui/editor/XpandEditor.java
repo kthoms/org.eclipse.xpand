@@ -45,15 +45,14 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 	}
 
 	@Override
-	protected void editorContextMenuAboutToShow(IMenuManager menu) {
+	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
 		super.editorContextMenuAboutToShow(menu);
 
-		ActionContext context = new ActionContext(getSelectionProvider().getSelection());
+		final ActionContext context = new ActionContext(getSelectionProvider().getSelection());
 		contextMenuRefactoringGroup.setContext(context);
 		contextMenuRefactoringGroup.fillContextMenu(menu);
 		contextMenuRefactoringGroup.setContext(null);
 	}
-	
 
 	@Override
 	protected void createActions() {
@@ -66,7 +65,7 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 			}
 
 			@Override
-			protected Object handleGetObject(String key) {
+			protected Object handleGetObject(final String key) {
 				return null;
 			}
 		};
@@ -86,7 +85,7 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 	public ActionGroup getActionGroup() {
 		return contextMenuRefactoringGroup;
 	}
-	
+
 	@Override
 	protected void initializeKeyBindingScopes() {
 		setKeyBindingScopes(new String[] { "org.eclipse.internal.xtend.xpand2.editor.XpandEditorScope" }); //$NON-NLS-1$

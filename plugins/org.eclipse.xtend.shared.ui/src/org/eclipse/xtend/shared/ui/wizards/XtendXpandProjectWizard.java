@@ -36,21 +36,21 @@ import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
-public class OawProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
-	private OawProjectWizardPage page;
+public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
+	private XtendXpandProjectWizardPage page;
 
 	private ISelection selection;
 
 	private IConfigurationElement configElement;
 
-	public OawProjectWizard() {
+	public XtendXpandProjectWizard() {
 		super();
 		setNeedsProgressMonitor(true);
 	}
 
 	@Override
 	public void addPages() {
-		page = new OawProjectWizardPage(selection);
+		page = new XtendXpandProjectWizardPage(selection);
 		addPage(page);
 	}
 
@@ -58,21 +58,24 @@ public class OawProjectWizard extends Wizard implements INewWizard, IExecutableE
 	public boolean performFinish() {
 		final String name = page.getProjectName();
 		final boolean genExample = page.isCreateExample();
-		IRunnableWithProgress op = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) throws InvocationTargetException {
+		final IRunnableWithProgress op = new IRunnableWithProgress() {
+			public void run(final IProgressMonitor monitor) throws InvocationTargetException {
 				try {
 					doFinish(name, genExample, monitor);
-				} finally {
+				}
+				finally {
 					monitor.done();
 				}
 			}
 		};
 		try {
 			getContainer().run(true, false, op);
-		} catch (InterruptedException e) {
+		}
+		catch (final InterruptedException e) {
 			return false;
-		} catch (InvocationTargetException e) {
-			Throwable realException = e.getTargetException();
+		}
+		catch (final InvocationTargetException e) {
+			final Throwable realException = e.getTargetException();
 			MessageDialog.openError(getShell(), "Error", realException.getMessage());
 			return false;
 		}
@@ -80,40 +83,41 @@ public class OawProjectWizard extends Wizard implements INewWizard, IExecutableE
 		return true;
 	}
 
-	void doFinish(String name, boolean genExample, IProgressMonitor monitor) {
-		String projectName = name;
-		monitor.beginTask("Creating oaw generator project " + name, 2);
+	void doFinish(final String name, final boolean genExample, final IProgressMonitor monitor) {
+		final String projectName = name;
+		monitor.beginTask("Creating Xpand generator project " + name, 2);
 
-		Set<String> refs = new HashSet<String>();
-		List<String> srcfolders = new ArrayList<String>();
+		final Set<String> refs = new HashSet<String>();
+		final List<String> srcfolders = new ArrayList<String>();
 		srcfolders.add("src");
 		srcfolders.add("src-gen");
 
-		IProject p = EclipseHelper.createExtXptProject(projectName, srcfolders, Collections.<IProject> emptyList(), refs,
-				null, monitor, getShell());
+		final IProject p = EclipseHelper.createExtXptProject(projectName, srcfolders, Collections
+				.<IProject> emptyList(), refs, null, monitor, getShell());
 
-		if (p == null) {
+		if (p == null)
 			return;
-		}
 		if (genExample) {
 			EclipseHelper.createFile("src/metamodel/Checks.chk", p, getContents("Checks.chk"), monitor);
 			EclipseHelper.createFile("src/metamodel/Extensions.ext", p, getContents("Extensions.ext"), monitor);
 			EclipseHelper.createFile("src/metamodel/metamodel.ecore", p, getContents("metamodel.ecore"), monitor);
-			EclipseHelper.createFile("src/template/GeneratorExtensions.ext", p, getContents("GeneratorExtensions.ext"), monitor);
+			EclipseHelper.createFile("src/template/GeneratorExtensions.ext", p, getContents("GeneratorExtensions.ext"),
+					monitor);
 			EclipseHelper.createFile("src/template/Template.xpt", p, getContents("Template.xpt"), monitor);
-			EclipseHelper.createFile("src/workflow/generator.oaw", p, getContents("generator.oaw").replace("PROJECTNAME", projectName), monitor);
+			EclipseHelper.createFile("src/workflow/generator.mwe", p, getContents("generator.mwe").replace(
+					"PROJECTNAME", projectName), monitor);
 			EclipseHelper.createFile("src/Model.xmi", p, getContents("Model.xmi"), monitor);
 		}
 		monitor.worked(1);
 	}
 
-	private String getContents(String resource) {
+	private String getContents(final String resource) {
 		try {
-			InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
+			final InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
 					"org/openarchitectureware/wizards/example/" + resource);
 
-			byte[] buffer = new byte[4096];
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			final byte[] buffer = new byte[4096];
+			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
 			while (true) {
 				int read;
@@ -130,7 +134,8 @@ public class OawProjectWizard extends Wizard implements INewWizard, IExecutableE
 			inputStream.close();
 
 			return outputStream.toString("iso-8859-1");
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 			XtendLog.logError(e);
 			return "";
 		}
@@ -142,11 +147,11 @@ public class OawProjectWizard extends Wizard implements INewWizard, IExecutableE
 	 * 
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
 	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
+	public void init(final IWorkbench workbench, final IStructuredSelection selection) {
 		this.selection = selection;
 	}
 
-	public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
+	public void setInitializationData(final IConfigurationElement config, final String propertyName, final Object data)
 			throws CoreException {
 		this.configElement = config;
 	}

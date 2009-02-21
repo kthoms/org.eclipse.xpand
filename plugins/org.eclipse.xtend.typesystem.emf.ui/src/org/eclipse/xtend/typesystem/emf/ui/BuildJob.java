@@ -21,25 +21,28 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandBuilder;
 
 public class BuildJob extends Job {
-	private IProject project;
+	private final IProject project;
 
-	public BuildJob(IProject project) {
+	public BuildJob(final IProject project) {
 		super("Building " + project.getName());
 		setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
 		this.project = project;
 	}
 
 	@Override
-	protected IStatus run(IProgressMonitor monitor) {
-		if (EmfToolsPlugin.trace)
-			System.out.println("Running oAW builder for project " + project.getName());
+	protected IStatus run(final IProgressMonitor monitor) {
+		if (EmfToolsPlugin.trace) {
+			System.out.println("Running Xtend/Xpand builder for project " + project.getName());
+		}
 
 		try {
-			project.getProject().build(IncrementalProjectBuilder.CLEAN_BUILD,
-					XtendXpandBuilder.getBUILDER_ID(), null, monitor);
-		} catch (CoreException e) {
-			if (EmfToolsPlugin.trace)
+			project.getProject().build(IncrementalProjectBuilder.CLEAN_BUILD, XtendXpandBuilder.getBUILDER_ID(), null,
+					monitor);
+		}
+		catch (final CoreException e) {
+			if (EmfToolsPlugin.trace) {
 				e.printStackTrace();
+			}
 		}
 		return Status.OK_STATUS;
 	}

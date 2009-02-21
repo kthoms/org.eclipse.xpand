@@ -53,8 +53,8 @@ public abstract class AbstractExtXptContentAssistProcessor implements IContentAs
             return null;
         try {
             if (!p.isNatureEnabled(XtendXpandNature.NATURE_ID)) {
-                if (MessageDialog.openQuestion(editor.getEditorSite().getShell(), "oAW Nature not configured",
-                        "Do you want to add the oAW nature to project '" + p.getName() + "'?")) {
+                if (MessageDialog.openQuestion(editor.getEditorSite().getShell(), "Xtend Nature not configured",
+                        "Do you want to add the Xtend nature to project '" + p.getName() + "'?")) {
                     XtendXpandNatureUtil.addExtXptNature(jp);
                 } else
                     return null;

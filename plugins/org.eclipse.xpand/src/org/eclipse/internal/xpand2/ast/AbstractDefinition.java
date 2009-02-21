@@ -40,7 +40,7 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 
 	private Statement[] body;
 
-	private String _stringRepresentation = null;
+	protected String _stringRepresentation = null;
 
 	protected boolean wildParams = false;
 

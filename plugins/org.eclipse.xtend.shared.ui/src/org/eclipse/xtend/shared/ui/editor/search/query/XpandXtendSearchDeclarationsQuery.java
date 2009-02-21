@@ -17,28 +17,29 @@ import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
 import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
 
 /**
- * <code>OawSearchReferencesQuery</code> performs a query for references of a
- * given identifier.
+ * <code>XtendXpandSearchReferencesQuery</code> performs a query for declarations of
+ * a given identifier.
  * 
  * @author Peter Friese
  */
-public class OawSearchReferencesQuery extends OawSearchQuery {
+public class XpandXtendSearchDeclarationsQuery extends XtendXpandSearchQuery {
 
 	/**
-	 * Creates a new <code>OawSearchReferencesQuery</code>.
+	 * Creates a new <code>XtendXpandSearchReferencesQuery</code>.
 	 * 
 	 * @param project
 	 *            The project to operate on.
 	 * @param identifier
 	 *            The identifier to look for.
 	 */
-	public OawSearchReferencesQuery(IXtendXpandProject project, String identifier) {
+	public XpandXtendSearchDeclarationsQuery(IXtendXpandProject project, String identifier) {
 		super(project, identifier);
 	}
 
 	@Override
 	protected List<SearchMatch> performSearch() {
-		List<SearchMatch> matches = XtendXpandSearchEngine.findReferences(getProject(), getIdentifier());
+		List<SearchMatch> matches = XtendXpandSearchEngine.findDeclarations(getProject(), getIdentifier());
 		return matches;
 	}
+
 }

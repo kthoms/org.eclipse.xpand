@@ -26,6 +26,6 @@ public interface IModelManager {
 
     public abstract void analyze(IProgressMonitor monitor);
 
-	public IXtendXpandResource findOawResource(String oawNamespace, String extension);
+	public IXtendXpandResource findXtendXpandResource(String extxptNamespace, String extension);
 
 }

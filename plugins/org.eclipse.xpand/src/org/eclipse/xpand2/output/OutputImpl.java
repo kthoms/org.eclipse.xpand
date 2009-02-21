@@ -31,11 +31,11 @@ public class OutputImpl implements Output {
 
 	private boolean automaticHyphenation = false;
 
-	public void setAutomaticHyphens(boolean automaticHyphenation) {
+	public void setAutomaticHyphens(final boolean automaticHyphenation) {
 		this.automaticHyphenation = automaticHyphenation;
 	}
 
-	protected Stack<FileHandleImpl> fileHandles = new Stack<FileHandleImpl>();
+	protected Stack<FileHandle> fileHandles = new Stack<FileHandle>();
 
 	private final Map<String, Outlet> outlets = new HashMap<String, Outlet>();
 
@@ -44,49 +44,49 @@ public class OutputImpl implements Output {
 			if (outlet.getName() == null)
 				throw new IllegalArgumentException("A default outlet is already registered!");
 			else
-				throw new IllegalArgumentException("An outlet with name " + outlet.getName() + " is already registered!");
+				throw new IllegalArgumentException("An outlet with name " + outlet.getName()
+						+ " is already registered!");
 		}
 		outlets.put(outlet.getName(), outlet);
 	}
 
-	public Outlet getOutlet (String name) {
-	    return outlets.get (name);
+	public Outlet getOutlet(final String name) {
+		return outlets.get(name);
 	}
-	
+
 	protected FileHandle current() {
-		return (fileHandles.isEmpty() ? null : fileHandles.peek());
+		return fileHandles.isEmpty() ? null : fileHandles.peek();
 	}
-	
+
 	/**
 	 * DO NOT CALL THIS METHOD - FOR TESTS ONLY
 	 */
 	public FileHandle current__testONLY() {
 		return current();
 	}
-	
-	
 
 	private boolean deleteLine = false;
 
 	public void write(final String bytes) {
 		if (current() != null) {
 			if (deleteLine) {
-				String temp = trimUntilNewline(bytes);
+				final String temp = trimUntilNewline(bytes);
 				removeWSAfterLastNewline(current().getBuffer());
 				((StringBuffer) current().getBuffer()).append(temp);
-			} else {
-			    ((StringBuffer)current().getBuffer()).append(bytes);
+			}
+			else {
+				((StringBuffer) current().getBuffer()).append(bytes);
 			}
 		}
 		deleteLine = false;
 	}
 
-	public void removeWSAfterLastNewline(CharSequence cs) {
-	    final StringBuffer buffer = (StringBuffer) cs;
+	public void removeWSAfterLastNewline(final CharSequence cs) {
+		final StringBuffer buffer = (StringBuffer) cs;
 		int i = buffer.length();
 		boolean wsOnly = true;
 		for (; i > 0 && wsOnly; i--) {
-			char c = buffer.charAt(i - 1);
+			final char c = buffer.charAt(i - 1);
 			wsOnly = Character.isWhitespace(c);
 			if (wsOnly && isNewLine(c)) {
 				buffer.delete(i, buffer.length());
@@ -96,19 +96,20 @@ public class OutputImpl implements Output {
 		return;
 	}
 
-	private boolean isNewLine(char c) {
+	private boolean isNewLine(final char c) {
 		return c == '\n' || c == '\r';
 	}
 
-	public String trimUntilNewline(String bytes) {
+	public String trimUntilNewline(final String bytes) {
 		int i = 0;
 		boolean wsOnly = true;
 		for (; i < bytes.length() && wsOnly; i++) {
-			char c = bytes.charAt(i);
+			final char c = bytes.charAt(i);
 			wsOnly = Character.isWhitespace(c);
 			if (wsOnly && isNewLine(c)) {
-				if (c == '\r' && i + 1 < bytes.length() && bytes.charAt(i + 1) == '\n')
+				if (c == '\r' && i + 1 < bytes.length() && bytes.charAt(i + 1) == '\n') {
 					i++;
+				}
 				return bytes.substring(i + 1);
 			}
 		}
@@ -117,32 +118,33 @@ public class OutputImpl implements Output {
 
 	private final static Pattern p = Pattern.compile("(.+)://(.+)");
 
-	public static Pair<Outlet, String> resolveOutlet (Map<String, Outlet> allOutlets, String path, String outletName) {
-        if (outletName == null) {
-            final Matcher m = p.matcher(path);
-            if (m.matches()) {
-                outletName = m.group(1);
-                path = m.group(2);
-            }
-        }
-        final Outlet o = allOutlets.get(outletName);
-        if (o == null) {
-            if (outletName == null)
-                throw new IllegalArgumentException ("No default outlet was configured!");
-            else
-                throw new IllegalArgumentException ("No outlet with the name " + outletName + " could be found!");
-        }
-        
-        return new Pair<Outlet, String> (o, path);
+	public static Pair<Outlet, String> resolveOutlet(final Map<String, Outlet> allOutlets, String path,
+			String outletName) {
+		if (outletName == null) {
+			final Matcher m = p.matcher(path);
+			if (m.matches()) {
+				outletName = m.group(1);
+				path = m.group(2);
+			}
+		}
+		final Outlet o = allOutlets.get(outletName);
+		if (o == null) {
+			if (outletName == null)
+				throw new IllegalArgumentException("No default outlet was configured!");
+			else
+				throw new IllegalArgumentException("No outlet with the name " + outletName + " could be found!");
+		}
+
+		return new Pair<Outlet, String>(o, path);
 	}
-	
-	public void openFile(String path, String outletName) {
-	    final Pair<Outlet, String> raw = resolveOutlet(outlets, path, outletName);
-	    
-	    final Outlet actualOutlet = raw.getFirst();
-	    final String actualPath = raw.getSecond();
-	    
-		fileHandles.push (actualOutlet.createFileHandle (actualPath));
+
+	public void openFile(final String path, final String outletName) {
+		final Pair<Outlet, String> raw = resolveOutlet(outlets, path, outletName);
+
+		final Outlet actualOutlet = raw.getFirst();
+		final String actualPath = raw.getSecond();
+
+		fileHandles.push(actualOutlet.createFileHandle(actualPath));
 	}
 
 	public void closeFile() {
@@ -152,7 +154,7 @@ public class OutputImpl implements Output {
 
 	private final Stack<SyntaxElement> s = new Stack<SyntaxElement>();
 
-	public void pushStatement(final SyntaxElement stmt, XpandExecutionContext ctx) {
+	public void pushStatement(final SyntaxElement stmt, final XpandExecutionContext ctx) {
 		if (stmt instanceof TextStatement) {
 			deleteLine = ((TextStatement) stmt).isDeleteLine();
 			if (automaticHyphenation) {

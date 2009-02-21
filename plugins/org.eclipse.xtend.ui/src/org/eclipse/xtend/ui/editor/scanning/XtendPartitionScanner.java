@@ -38,11 +38,11 @@ public class XtendPartitionScanner extends RuleBasedPartitionScanner {
 
         final List<IPredicateRule> rules = new ArrayList<IPredicateRule>();
 
-        rules.add(new MultiLineRule("/*", "*/", comment));
+		rules.add(new MultiLineRule("/*", "*/", comment, (char) 0, true));
         rules.add(new SingleLineRule("//", "", comment));
         
-        rules.add(new MultiLineRule("'", "'", stringLit,'\\'));
-        rules.add(new MultiLineRule("\"", "\"", stringLit,'\\'));
+		rules.add(new MultiLineRule("'", "'", stringLit, '\\', true));
+		rules.add(new MultiLineRule("\"", "\"", stringLit, '\\', true));
 
         setPredicateRules(rules.toArray(new IPredicateRule[rules.size()]));
     }

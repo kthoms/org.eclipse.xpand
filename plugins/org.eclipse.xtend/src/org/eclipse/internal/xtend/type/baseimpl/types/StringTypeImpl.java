@@ -123,7 +123,7 @@ public class StringTypeImpl extends BuiltinBaseType implements Type {
                     
                     @Override
                     public String getDocumentation() {
-                        return "Returns a new string that is a substring of this string.";
+                        return "Tests if this string ends with the specified prefix.";
                     }
                     
                     @Override
@@ -292,7 +292,7 @@ public class StringTypeImpl extends BuiltinBaseType implements Type {
                     @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         try {
-                            return new BigInteger((String) target);
+                            return Integer.valueOf((String) target);
                         } catch (NumberFormatException nfe) {
                             log.error("'asInteger' on '"+target+"' returned null!");
                             return null;

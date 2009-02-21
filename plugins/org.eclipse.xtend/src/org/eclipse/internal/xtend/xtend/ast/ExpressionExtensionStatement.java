@@ -26,12 +26,10 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class ExpressionExtensionStatement extends AbstractExtension {
 
-	private Expression expression;
+	private final Expression expression;
 
-	public ExpressionExtensionStatement(final Identifier name,
-			final Identifier returnType,
-			final List<DeclaredParameter> formalParameters,
-			final Expression expression, final boolean cached,
+	public ExpressionExtensionStatement(final Identifier name, final Identifier returnType,
+			final List<DeclaredParameter> formalParameters, final Expression expression, final boolean cached,
 			final boolean isPrivate) {
 		super(name, returnType, formalParameters, cached, isPrivate);
 		this.expression = expression;
@@ -44,13 +42,11 @@ public class ExpressionExtensionStatement extends AbstractExtension {
 	private final Stack<List<Type>> analyzations = new Stack<List<Type>>();
 
 	@Override
-	public Object evaluateInternal(final Object[] parameters,
-			final ExecutionContext ctx) {
+	public Object evaluateInternal(final Object[] parameters, final ExecutionContext ctx) {
 		return evaluateInternal2(parameters, ctx);
 	}
 
-	protected Object evaluateInternal2(final Object[] parameters,
-			ExecutionContext ctx) {
+	protected Object evaluateInternal2(final Object[] parameters, ExecutionContext ctx) {
 		ctx = ctx.cloneWithoutVariables();
 		ctx = ctx.cloneWithResource(file);
 		final List<String> paramNames = getParameterNames();
@@ -62,43 +58,40 @@ public class ExpressionExtensionStatement extends AbstractExtension {
 	}
 
 	@Override
-	public void analyzeInternal(final ExecutionContext ctx,
-			final Set<AnalysationIssue> issues) {
-		if (expression != null)
+	public void analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		if (expression != null) {
 			expression.analyze(ctx, issues);
+		}
 	}
 
 	@Override
-	protected Type internalGetReturnType(final Type[] parameters,
-			final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+	protected Type internalGetReturnType(final Type[] parameters, final ExecutionContext ctx,
+			final Set<AnalysationIssue> issues) {
 		if (getReturnTypeIdentifier() != null)
 			return ctx.getTypeForName(getReturnTypeIdentifier().getValue());
-		if (parameters == null
-				|| parameters.length != getParameterNames().size())
+		if (parameters == null || parameters.length != getParameterNames().size())
 			return null;
 		final List<Type> params = Arrays.asList(parameters);
 		if (!analyzations.contains(params)) {
 			analyzations.push(params);
 			try {
 				return analyzeInternal(parameters, ctx, issues);
-			} finally {
+			}
+			finally {
 				analyzations.pop();
 			}
-		} else {
+		}
+		else {
 			if (returnType == null) {
-				issues
-						.add(new AnalysationIssue(
-								AnalysationIssue.INTERNAL_ERROR,
-								"Recursive extensions need to have a return type specified!",
-								this));
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR,
+						"Recursive extensions need to have a return type specified!", this));
 				return null;
 			}
 			return ctx.getTypeForName(returnType.getValue());
 		}
 	}
 
-	protected Type analyzeInternal(final Type[] parameters,
-			ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+	protected Type analyzeInternal(final Type[] parameters, ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		ctx = ctx.cloneWithoutVariables();
 		ctx = ctx.cloneWithResource(file);
 		final List<String> paramNames = getParameterNames();

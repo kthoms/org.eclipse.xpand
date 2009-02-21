@@ -23,11 +23,13 @@ public class XtendEditor extends AbstractXtendXpandEditor {
         setDocumentProvider(new XtendDocumentProvider());
     }
 
-
     @Override
     protected AbstractExtXptContentOutlinePage createOutlinePage() {
         return new XtendContentOutlinePage(this);
     }
 
-
+	@Override
+	protected void initializeKeyBindingScopes() {
+		setKeyBindingScopes(new String[] { "org.eclipse.xtend.editor.XtendEditorScope" }); //$NON-NLS-1$
+	}
 }

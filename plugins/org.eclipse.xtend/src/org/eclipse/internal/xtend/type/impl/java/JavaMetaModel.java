@@ -63,8 +63,8 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 
 	private final Cache<Class<?>, Type> cache = new Cache<Class<? extends Object>, Type>() {
 		@Override
-		protected Type createNew(Class<?> clazz) {
-			JavaTypeImpl impl = new JavaTypeImpl(JavaMetaModel.this, clazz, getName(clazz), _strategy);
+		protected Type createNew(final Class<?> clazz) {
+			final JavaTypeImpl impl = new JavaTypeImpl(JavaMetaModel.this, clazz, getName(clazz), _strategy);
 			if (List.class.isAssignableFrom(clazz))
 				return typeSystem.getListType(typeSystem.getObjectType());
 			else if (Set.class.isAssignableFrom(clazz))
@@ -83,14 +83,14 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 
 	private final Cache<String, Class<?>> classCache = new Cache<String, Class<? extends Object>>() {
 		@Override
-		protected Class<?> createNew(String typeName) {
+		protected Class<?> createNew(final String typeName) {
 			// try to load the requested class by its name
 			final String classname = typeName.replaceAll(SyntaxConstants.NS_DELIM, ".");
 			try {
-				Class<?> loadedClass = ResourceLoaderFactory.createResourceLoader().loadClass(classname);
+				final Class<?> loadedClass = ResourceLoaderFactory.createResourceLoader().loadClass(classname);
 				return loadedClass == null ? NOCLASS : loadedClass;
 			}
-			catch (Exception e1) {
+			catch (final Exception e1) {
 				// FIXME: This catch block should really be removed - the
 				// built-in ResosurceLoader implementation
 				// never throws an exception, and contributed implementations

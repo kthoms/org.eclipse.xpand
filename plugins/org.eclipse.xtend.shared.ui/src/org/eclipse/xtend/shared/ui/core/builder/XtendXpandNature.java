@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.xtend.shared.ui.Activator;
 
 /**
- * This class configures the build configuration for oAW projects.
+ * This class configures the build configuration for Xtend projects.
  *  
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Peter Friese

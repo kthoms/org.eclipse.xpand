@@ -41,8 +41,8 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 
     private boolean isPrivate = false;
 
-    public AbstractExtension( final Identifier name,
-            final Identifier returnType, final List<DeclaredParameter> formalParameters, final boolean cached, final boolean isPrivate) {
+	public AbstractExtension(final Identifier name, final Identifier returnType,
+			final List<DeclaredParameter> formalParameters, final boolean cached, final boolean isPrivate) {
         this.name = name;
         this.formalParameters = formalParameters;
         this.returnType = returnType;
@@ -50,15 +50,19 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
         this.isPrivate = isPrivate;
     }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getFormalParameters()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#getFormalParameters()
 	 */
 	public List<DeclaredParameter> getFormalParameters() {
         return formalParameters;
     }
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getName()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#getName()
 	 */
     public String getName() {
         return name.getValue();
@@ -68,8 +72,12 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 		return name;
 	}
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getReturnType(org.eclipse.internal.xtend.type.Type[], org.eclipse.internal.xtend.expression.ExecutionContext, java.util.Set)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @seeorg.eclipse.xtend.ast.Extension#getReturnType(org.
+	 * openarchitectureware.type.Type[],
+	 * org.eclipse.expression.ExecutionContext, java.util.Set)
 	 */
     public final Type getReturnType(final Type[] parameters, ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         ctx = ctx.cloneWithResource(getExtensionFile());
@@ -78,10 +86,18 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 
     protected abstract Type internalGetReturnType(Type[] parameters, ExecutionContext ctx, Set<AnalysationIssue> issues);
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#analyze(org.eclipse.internal.xtend.expression.ExecutionContext, java.util.Set)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.xtend.ast.Extension#analyze(org.eclipse
+	 * .expression.ExecutionContext, java.util.Set)
 	 */
     public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		try {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().pre(this, ctx);
+			}
         final List<DeclaredParameter> params = getFormalParameters();
         final Set<String> usedNames = new HashSet<String>();
         for (final Iterator<DeclaredParameter> iter = params.iterator(); iter.hasNext();) {
@@ -106,19 +122,36 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
         }
         try {
         	analyzeInternal(ctx, issues);
-        } catch (RuntimeException ex) {
+			}
+			catch (RuntimeException ex) {
         	ctx.handleRuntimeException(ex, this, null);
         }
     }
+		finally {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().post(null);
+			}
+		}
+	}
 
-    protected abstract void analyzeInternal(ExecutionContext ctx, Set<AnalysationIssue> issues);
+	protected void analyzeInternal(ExecutionContext ctx, Set<AnalysationIssue> issues) {
+		checkForAmbiguousDefinitions(ctx, issues);
+	}
 
     private final Map<List<Object>, Object> cache = new HashMap<List<Object>, Object>();
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#evaluate(java.lang.Object[], org.eclipse.internal.xtend.expression.ExecutionContext)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.xtend.ast.Extension#evaluate(java.lang.Object[],
+	 * org.eclipse.expression.ExecutionContext)
 	 */
     public Object evaluate(final Object[] parameters, ExecutionContext ctx) {
     	try {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().pre(this, ctx);
+			}
             if (cached) {
                 final List<Object> l = Arrays.asList(parameters);
                 if (cache.containsKey(l))
@@ -132,9 +165,15 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
                 cache.put(Arrays.asList(parameters), result);
             }
             return result;
-    	} catch (RuntimeException ex) {
+		}
+		catch (RuntimeException ex) {
     		ctx.handleRuntimeException(ex, this, null);
     	}
+		finally {
+			if (ctx.getCallback() != null) {
+				ctx.getCallback().post(null);
+			}
+		}
     	return null;
     }
 
@@ -142,8 +181,10 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
         file = f;
     }
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getExtensionFile()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#getExtensionFile()
 	 */
     public ExtensionFile getExtensionFile() {
         return file;
@@ -151,8 +192,10 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 
     protected abstract Object evaluateInternal(Object[] parameters, ExecutionContext ctx);
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getParameterNames()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#getParameterNames()
 	 */
     public List<String> getParameterNames() {
         final List<String> names = new ArrayList<String>();
@@ -162,8 +205,12 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
         return names;
     }
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#init(org.eclipse.internal.xtend.expression.ExecutionContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.xtend.ast.Extension#init(org.eclipse
+	 * .expression.ExecutionContext)
 	 */
     public void init(final ExecutionContext ctx) {
         if (parameterTypes == null) {
@@ -177,15 +224,18 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
                                 + "'. Did you forget to configure the corresponding metamodel?", this, ctx);
                     parameterTypes.add(t);
                 }
-            } catch (final RuntimeException e) {
+			}
+			catch (final RuntimeException e) {
                 parameterTypes = null;
                 throw e;
             }
         }
     }
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getReturnType()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#getReturnType()
 	 */
     public Type getReturnType() {
         throw new UnsupportedOperationException();
@@ -195,15 +245,20 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 
     protected Identifier returnType;
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getParameterTypes()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#getParameterTypes()
 	 */
     public List<Type> getParameterTypes() {
         return parameterTypes;
     }
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#getReturnTypeIdentifier()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.xtend.ast.Extension#getReturnTypeIdentifier()
 	 */
     public Identifier getReturnTypeIdentifier() {
         return returnType;
@@ -211,13 +266,16 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 
     private String _stringRepresentation = null;
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#toString()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#toString()
 	 */
     @Override
     public String toString() {
         if (_stringRepresentation == null) {
-            _stringRepresentation = (returnType != null ? returnType.getValue() + " " : "") + getName() + "(" + paramsToString() + ")";
+			_stringRepresentation = (returnType != null ? returnType.getValue() + " " : "") + getName() + "("
+					+ paramsToString() + ")";
         }
 
         return _stringRepresentation;
@@ -225,12 +283,15 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
     
     private String _outlineRepresentation = null;
     
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#toOutlineString()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#toOutlineString()
 	 */
     public String toOutlineString() {
         if (_outlineRepresentation == null) {
-        	_outlineRepresentation = getName() + "(" + paramsToOutlineString() + ")" + (returnType != null ? ": "+returnType.getValue() : "") ;
+			_outlineRepresentation = getName() + "(" + paramsToOutlineString() + ")"
+					+ (returnType != null ? ": " + returnType.getValue() : "");
         } 
         return _outlineRepresentation;
     }
@@ -251,7 +312,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
         final StringBuffer buff = new StringBuffer();
         for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
             final DeclaredParameter element = iter.next();
-            buff.append(element.getName());
+			buff.append(element.getType());
             if (iter.hasNext()) {
                 buff.append(", ");
             }
@@ -259,22 +320,26 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
         return buff.toString();
     }
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#isPrivate()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#isPrivate()
 	 */
     public boolean isPrivate() {
         return isPrivate;
     }
 
-    /* (non-Javadoc)
-	 * @see org.eclipse.internal.xtend.xtend.ast.Extension#isCached()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.xtend.ast.Extension#isCached()
 	 */
-    public boolean isCached () {
+	public boolean isCached() {
         return cached;
     }
     
     public String getQualifiedName() {
-    	return getExtensionFile().getFullyQualifiedName()+"::"+getName();
+		return getExtensionFile().getFullyQualifiedName() + "::" + getName();
     }
 
 	@Override
@@ -298,16 +363,31 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 		if (getName() == null) {
 			if (other.getName() != null)
 				return false;
-		} else if (!getName().equals(other.getName()))
+		}
+		else if (!getName().equals(other.getName()))
 			return false;
 		if (parameterTypes == null) {
 			if (other.parameterTypes != null)
 				return false;
-		} else if (!parameterTypes.equals(other.parameterTypes))
+		}
+		else if (!parameterTypes.equals(other.parameterTypes))
 			return false;
 		return true;
 	}
     
-    
+	protected void checkForAmbiguousDefinitions(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		String name = getName();
+		for (Extension ext : ctx.getAllExtensions()) {
+			String otherName = ext.getName();
+			if (name.equals(otherName) && (!getFileName().equals(ext.getFileName()) || getLine() != ext.getLine())) {
+				if (getParameterTypes().equals(ext.getParameterTypes())) {
+					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Ambiguous definition: "
+							+ toOutlineString(), this, true));
+					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Ambiguous definition: "
+							+ ext.toOutlineString(), (AbstractExtension) ext, true));
+				}
+			}
+		}
+	}
 
 }

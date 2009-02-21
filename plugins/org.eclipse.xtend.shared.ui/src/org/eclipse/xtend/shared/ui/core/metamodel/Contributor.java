@@ -21,12 +21,12 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
  * @author Peter Friese
  */
 public class Contributor {
-	private String displayName;
+	private final String displayName;
 
-	private String className;
+	private final String className;
 
-	private IConfigurationElement element;
-	
+	private final IConfigurationElement element;
+
 	/**
 	 * Creates a new Contributor instance.
 	 * 
@@ -34,9 +34,10 @@ public class Contributor {
 	 *            The display name of the metamodel contributor.
 	 * @param className
 	 *            The class name of the metamodel contributor.
-	 * @param element 
+	 * @param element
 	 */
-	public Contributor(String displayName, String className, IConfigurationElement element, boolean enabled) {
+	public Contributor(final String displayName, final String className, final IConfigurationElement element,
+			final boolean enabled) {
 		super();
 		this.displayName = displayName;
 		this.className = className;
@@ -52,12 +53,12 @@ public class Contributor {
 	}
 
 	@Override
-	public boolean equals(Object other) {
+	public boolean equals(final Object other) {
 		if (other instanceof Contributor) {
-			Contributor otherContributor = (Contributor) other;
-			if (otherContributor.getClassName().equals(this.getClassName()) && otherContributor.getDisplayName().equals(this.getDisplayName())) {
+			final Contributor otherContributor = (Contributor) other;
+			if (otherContributor.getClassName().equals(getClassName())
+					&& otherContributor.getDisplayName().equals(getDisplayName()))
 				return true;
-			}
 		}
 		return false;
 	}
@@ -71,11 +72,12 @@ public class Contributor {
 	public String toString() {
 		return "Metamodel contributor '" + displayName + "'" + " [" + className + "]";
 	}
-	
+
 	public MetamodelContributor getMetaModelContributor() {
 		try {
 			return (MetamodelContributor) element.createExecutableExtension("class");
-		} catch (CoreException e) {
+		}
+		catch (final CoreException e) {
 			XtendLog.logError(e);
 			return null;
 		}

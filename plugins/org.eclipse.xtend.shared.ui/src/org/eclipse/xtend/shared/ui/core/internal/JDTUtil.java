@@ -112,7 +112,7 @@ public class JDTUtil {
 		return null;
 	}
 
-	public static ResourceID findOawResourceID(IJavaProject project,
+	public static ResourceID findXtendXpandResourceID(IJavaProject project,
 			IStorage file) {
 		if (file == null)
 			return null;
@@ -167,7 +167,7 @@ public class JDTUtil {
 	}
 
 	public static String getQualifiedName(IStorage source) {
-		ResourceID id = findOawResourceID(getJProject(source), source);
+		ResourceID id = findXtendXpandResourceID(getJProject(source), source);
 		if (id != null)
 			return id.name;
 		return null;

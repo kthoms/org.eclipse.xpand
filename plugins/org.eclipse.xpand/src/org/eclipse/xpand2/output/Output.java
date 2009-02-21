@@ -30,5 +30,4 @@ public interface Output {
 
 	public void addOutlet(Outlet outlet);
 
-   public Outlet getOutlet (String name);
 }

@@ -17,9 +17,8 @@ import org.eclipse.internal.xtend.expression.ast.AbstractVisitor;
 import org.eclipse.internal.xtend.expression.ast.ISyntaxElement;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 
-public class AbstractXpandVisitor extends AbstractVisitor {
+public class AbstractXpandVisitor extends AbstractVisitor{
 
-	@Override
 	public final Object visit(final ISyntaxElement ele) {
 		Object result = null;
 
@@ -65,12 +64,12 @@ public class AbstractXpandVisitor extends AbstractVisitor {
 		return result;
 	}
 
-	protected void visitChild(final SyntaxElement child) {
+	protected void visitChild(final SyntaxElement child){
 		if(child != null)
 			child.accept(this);
 		}
 
-	protected void visitChildren(final List<? extends SyntaxElement> children) {
+	protected void visitChildren(final List<? extends SyntaxElement> children){
 		if (children != null) {
 			for (SyntaxElement child : children) {
 				visitChild(child);
@@ -78,64 +77,64 @@ public class AbstractXpandVisitor extends AbstractVisitor {
 		}
 	}
 
-	protected Object visitAdvice(Advice node) {
+	protected Object visitAdvice(Advice node){
 		visitChildren(node.getBodyAsList());
 		return node;
 	}
 
-	protected Object visitDefinition(Definition node) {
+	protected Object visitDefinition(Definition node){
 		visitChildren(node.getBodyAsList());
 		return node;
 	}
 
-	protected Object visitErrorStatement(ErrorStatement node) {
+	protected Object visitErrorStatement(ErrorStatement node){
 		return node;
 	}
 
-	protected Object visitExpandStatement(ExpandStatement node) {
+	protected Object visitExpandStatement(ExpandStatement node){
 		return node;
 	}
 
-	protected Object visitExpressionStatement(ExpressionStatement node) {
+	protected Object visitExpressionStatement(ExpressionStatement node){
 		return node;
 	}
 
-	protected Object visitFileStatement(FileStatement node) {
+	protected Object visitFileStatement(FileStatement node){
 		visitChildren(node.getBodyAsList());
 		return node;
 	}
 
-	protected Object visitForEachStatement(ForEachStatement node) {
+	protected Object visitForEachStatement(ForEachStatement node){
 		visitChildren(node.getBodyAsList());
 		return node;
 	}
 
-	protected Object visitIfStatement(IfStatement node) {
+	protected Object visitIfStatement(IfStatement node){
 		visitChildren(node.getBodyAsList());
 		visitChild(node.getElseIf());
 		return node;
 	}
 
-	protected Object visitImportDeclaration(ImportDeclaration node) {
+	protected Object visitImportDeclaration(ImportDeclaration node){
 		return node;
 	}
 
-	protected Object visitLetStatement(LetStatement node) {
+	protected Object visitLetStatement(LetStatement node){
 		visitChildren(node.getBodyAsList());
 		return node;
 	}
 
-	protected Object visitProtectStatement(ProtectStatement node) {
+	protected Object visitProtectStatement(ProtectStatement node){
 		visitChildren(node.getBodyAsList());
 		return node;
 	}
 
-	protected Object visitTemplate(Template node) {
+	protected Object visitTemplate(Template node){
 		visitChildren(Arrays.asList(node.getAllDefinitions()));
 		return node;
 	}
 
-	protected Object visitTextStatement(TextStatement node) {
+	protected Object visitTextStatement(TextStatement node){
 		return node;
 	}
 }

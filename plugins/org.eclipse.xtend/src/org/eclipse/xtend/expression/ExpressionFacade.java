@@ -32,7 +32,7 @@ public class ExpressionFacade {
         return execContext;
     }
 
-    public ExpressionFacade (final ExecutionContext execCtx) {
+    public ExpressionFacade(final ExecutionContext execCtx) {
         execContext = execCtx;
     }
 

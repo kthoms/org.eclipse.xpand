@@ -101,10 +101,10 @@ public class EclipseHelper {
 			ICommand schema = projectDescription.newCommand();
 			schema.setBuilderName("org.eclipse.pde.SchemaBuilder");
 
-			ICommand oaw = projectDescription.newCommand();
-			oaw.setBuilderName(XtendXpandBuilder.getBUILDER_ID());
+			ICommand extxpt = projectDescription.newCommand();
+			extxpt.setBuilderName(XtendXpandBuilder.getBUILDER_ID());
 
-			projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema, oaw });
+			projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema, extxpt });
 
 			project.open(new SubProgressMonitor(progressMonitor, 1));
 			project.setDescription(projectDescription, new SubProgressMonitor(progressMonitor, 1));

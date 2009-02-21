@@ -21,7 +21,7 @@ import org.eclipse.xtend.shared.ui.core.action.SelectionDispatchAction;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
 
 /**
- * Abstract class for oAW search actions.
+ * Abstract class for Xtend search actions.
  * 
  * Note: This class is for internal use only. Clients should not use this class.
  */
@@ -59,11 +59,11 @@ public abstract class FindAction extends SelectionDispatchAction {
 	abstract void init();
 
 	/**
-	 * Returns the oAW project associated with the currently edited file.
+	 * Returns the Xtend project associated with the currently edited file.
 	 * 
-	 * @return A reference to the current oAW project.
+	 * @return A reference to the current Xtend project.
 	 */
-	protected IXtendXpandProject getOawProject() {
+	protected IXtendXpandProject getXtendXpandProject() {
 		IFile file = getActiveFile();
 		if (file == null) {
 			return null;
@@ -92,7 +92,7 @@ public abstract class FindAction extends SelectionDispatchAction {
 	@Override
 	public void run(ITextSelection selection) {
 		String selectedText = selection.getText();
-		IXtendXpandProject project = getOawProject();
+		IXtendXpandProject project = getXtendXpandProject();
 
 		ISearchQuery query = createSearchQuery(selectedText, project);
 		NewSearchUI.runQuery(query);

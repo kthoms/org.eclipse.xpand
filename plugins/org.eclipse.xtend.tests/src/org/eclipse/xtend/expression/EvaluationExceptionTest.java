@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 import junit.framework.TestCase;
 
 public class EvaluationExceptionTest extends TestCase {
-	public void testOawID() throws Exception {
+	public void testExtXptID() throws Exception {
 		Matcher m =EvaluationException.P.matcher(" dsvdfgv df df gvd fgdf  stuff::Test.ext[3,56] dnvfd gvdf bvdfgbvd");
 		assertTrue(m.find());
 		String text = m.group();

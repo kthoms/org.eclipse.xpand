@@ -64,10 +64,18 @@ public class Outlet {
         this.path = path;
     }
 
-    public FileHandleImpl createFileHandle(final String filePath) {
-        filesCreated++;
+    public FileHandle createFileHandle(final String filePath) throws VetoException {
         final File f = new File(path, filePath);
-        return new FileHandleImpl(this, f);
+        FileHandleImpl fileHandle = new FileHandleImpl(this, f);
+        for (VetoStrategy vetoStrategy : vetoStrategies) {
+        	if (vetoStrategy instanceof VetoStrategy2) {
+        		if (((VetoStrategy2)vetoStrategy).hasVetoBeforeOpen(fileHandle)) {
+        			throw new VetoException (filePath);
+        		}
+        	}
+        }
+        incFilesCreated();    
+        return fileHandle;
     }
 
     public String getFileEncoding() {
@@ -84,14 +92,13 @@ public class Outlet {
     public void addPostprocessor(final PostProcessor b) {
         postprocessors.add(b);
     }
-    public List<VetoStrategy> vetoStartegies = new ArrayList<VetoStrategy>();
+    public List<VetoStrategy> vetoStrategies = new ArrayList<VetoStrategy>();
     
     public void addVetoStrategy(final VetoStrategy b) {
-    	vetoStartegies.add(b);
+    	vetoStrategies.add(b);
     }
 
     public void beforeWriteAndClose(final FileHandle impl) {
-        filesWrittenAndClosed++;
         for (final Iterator<PostProcessor> iter = postprocessors.iterator(); iter.hasNext();) {
             final PostProcessor b = iter.next();
             b.beforeWriteAndClose(impl);
@@ -99,6 +106,7 @@ public class Outlet {
     }
 
     public void afterClose(final FileHandle impl) {
+        incFilesWrittenAndClosed();
         for (final Iterator<PostProcessor> iter = postprocessors.iterator(); iter.hasNext();) {
             final PostProcessor b = iter.next();
             b.afterClose(impl);
@@ -113,9 +121,23 @@ public class Outlet {
         return filesCreated;
     }
 
+    /**
+     * @since 4.3.1
+     */
+    protected final void incFilesCreated () {
+    	filesCreated++;
+    }
+
     public int getFilesWrittenAndClosed() {
         return filesWrittenAndClosed;
     }
+
+    /**
+     * @since 4.3.1
+     */
+    protected final void incFilesWrittenAndClosed () {
+    	filesWrittenAndClosed++;
+    }    
 
     public Outlet(String path) {
         this.path = path;
@@ -124,20 +146,31 @@ public class Outlet {
     public Outlet() {
     }
 
-    public Outlet (boolean append, String encoding, String name, boolean overwrite, String path) {
-        this.append = append;
-        this.fileEncoding = encoding;
-        this.name = name;
-        this.overwrite = overwrite;
-        this.path = path;
-    }
-    
 	public boolean shouldWrite(FileHandleImpl fileHandleImpl) {
-		for (VetoStrategy vs : vetoStartegies) {
+		for (VetoStrategy vs : vetoStrategies) {
 			if (vs.hasVeto(fileHandleImpl))
             	return false;
         }
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder ();
+		if (name!=null) sb.append(name+":");
+		sb.append(path);
+		if (isAppend() || !isOverwrite() || !hasDefaultEncoding()) {
+			sb
+				.append("(")
+				.append("overwrite=")
+				.append(overwrite)
+				.append(",append=")
+				.append(append)
+				.append(",fileEncoding=")
+				.append(fileEncoding)
+				.append(")");
+		}
+		return sb.toString();
 	}
 
 }

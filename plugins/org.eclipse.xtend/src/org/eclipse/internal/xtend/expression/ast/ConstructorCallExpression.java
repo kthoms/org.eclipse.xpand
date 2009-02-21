@@ -29,11 +29,7 @@ public class ConstructorCallExpression extends Expression {
 		this.type = type;
 	}
 
-	public Identifier getType() {
-		return type;
-	}
-
-	public String getTypeName() {
+    public String getTypeName () {
 		return type.getValue();
 	}
 
@@ -46,7 +42,6 @@ public class ConstructorCallExpression extends Expression {
 			throw new EvaluationException("Couldn't find type " + type, this, ctx);
 	}
 
-	@Override
 	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		final Type t = ctx.getTypeForName(type.getValue());
 		if (t == null) {

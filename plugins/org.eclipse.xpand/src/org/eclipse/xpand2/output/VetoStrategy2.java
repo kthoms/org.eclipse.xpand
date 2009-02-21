@@ -19,12 +19,9 @@ public interface VetoStrategy2 extends VetoStrategy {
 
 	/**
 	 * Called before the file will be opened and generated.
-	 * 
-	 * @param impl
-	 *            A handle to the file that will be generated
-	 * @return if hasVetoBeforeOpen returns true the file will not be opened nor
-	 *         generated
+	 * @param impl A handle to the file that will be generated
+	 * @return if hasVetoBeforeOpen returns true the file will not be opened nor generated
 	 */
-	boolean hasVetoBeforeOpen(FileHandle handle);
+	boolean hasVetoBeforeOpen (FileHandle handle);
 
 }

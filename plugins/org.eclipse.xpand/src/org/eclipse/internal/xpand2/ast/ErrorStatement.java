@@ -26,7 +26,7 @@ public class ErrorStatement extends Statement {
 
 	private final Expression message;
 
-	public ErrorStatement(final Expression msg) {
+    public ErrorStatement( final Expression msg) {
 		message = msg;
 	}
 
@@ -34,8 +34,7 @@ public class ErrorStatement extends Statement {
 	public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		if (message != null) {
 			message.analyze(ctx, issues);
-		}
-		else {
+		} else {
 			issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, "Error message required", this));
 		}
 	}

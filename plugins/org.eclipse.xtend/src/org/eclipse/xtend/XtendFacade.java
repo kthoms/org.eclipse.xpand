@@ -84,26 +84,6 @@ public class XtendFacade {
         return extension.evaluate(params, ctx);
     }
     
-    public Object call(final String ext, List<?> params) {
-    	Object[] paramsArray = new Object[params.size()];
-    	paramsArray = params.toArray(paramsArray);
-    	final Extension extension = ctx.getExtension(ext, paramsArray);
-        if (extension == null)
-            throw new IllegalArgumentException("Couldn't find extension " + ext);
-        return extension.evaluate(paramsArray, ctx);
-    }
-
-    public boolean hasExtension(final String ext, Object[] paramsArray) {
-    	final Extension extension = ctx.getExtension(ext, paramsArray);
-        return extension != null;
-    }
-
-    public boolean hasExtension(final String ext, List<?> params) {
-    	Object[] paramsArray = new Object[params.size()];
-    	paramsArray = params.toArray(paramsArray);
-    	return hasExtension(ext, paramsArray);
-    }
-    
     public Type analyze(final String string, Object[] objects, final Set<AnalysationIssue> issues) {
         if (objects == null) {
             objects = new Object[0];

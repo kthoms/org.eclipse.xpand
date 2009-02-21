@@ -65,7 +65,7 @@ public class XtendXpandModelManager implements IModelManager {
     }
 
     public void analyze(final IProgressMonitor monitor) {
-        monitor.beginTask("Analyzing oAW4 projects...", computeAmoutOfWork());
+        monitor.beginTask("Analyzing Xtend4 projects...", computeAmoutOfWork());
         for (final Iterator<?> iter = projects.getValues().iterator(); iter.hasNext();) {
             if (monitor.isCanceled())
                 return;
@@ -76,7 +76,7 @@ public class XtendXpandModelManager implements IModelManager {
 
     /**
      * Computes the amount of work that has to be done during a build.
-     * @return the number of resources registered within all oAW projects.
+     * @return the number of resources registered within all Xtend projects.
      */
     private int computeAmoutOfWork() {
         int i = 0;
@@ -88,7 +88,7 @@ public class XtendXpandModelManager implements IModelManager {
     }
 
     /**
-     * Tries to locate an oAW resource by its underlying file.
+     * Tries to locate an Xtend resource by its underlying file.
      * @param underlying IStorage
      */
     public IXtendXpandResource findExtXptResource(IStorage file) {
@@ -96,7 +96,7 @@ public class XtendXpandModelManager implements IModelManager {
     	if (!(file instanceof IFile)) {
     		for (Iterator<?> it=projects.getValues().iterator(); it.hasNext(); ) {
     			IXtendXpandProject p = (IXtendXpandProject) it.next();
-    			IXtendXpandResource res = p.findOawResource(file);
+    			IXtendXpandResource res = p.findXtendXpandResource(file);
     			if (res!=null) {
     				return res;
     			}
@@ -104,13 +104,13 @@ public class XtendXpandModelManager implements IModelManager {
     	} else {
 	        final IXtendXpandProject project = findProject((IFile)file);
 	        if (project != null) {
-	            return project.findOawResource(file);
+	            return project.findXtendXpandResource(file);
 	        }
         }
         return null;
     }
 
-	public IXtendXpandResource findOawResource(String oawNamespace, String extension) {
+	public IXtendXpandResource findXtendXpandResource(String oawNamespace, String extension) {
 		for (IXtendXpandProject p : projects.getValues()) {
 			IXtendXpandResource res = p.findExtXptResource(oawNamespace, extension);
 			if (res!=null)

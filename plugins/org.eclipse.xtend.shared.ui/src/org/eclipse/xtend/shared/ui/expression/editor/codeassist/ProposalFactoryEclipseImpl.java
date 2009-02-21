@@ -68,8 +68,9 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 	}
 
 	private String computeReturnType(Type returnType, final boolean onOperation) {
-		if (returnType == null)
+		if (returnType == null) {
 			return "unknown";
+		}
 		if (onOperation) {
 			if (returnType instanceof ParameterizedType) {
 				returnType = ((ParameterizedType) returnType).getInnerType();
@@ -204,6 +205,7 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 		if (nameCache == null || proposal == null)
 			throw new IllegalArgumentException();
 
+		
 		CompletionProposal p = castToProposal(proposal);
 		if (p != null) {
 			if (nameCache.contains(p.getDisplayString()))

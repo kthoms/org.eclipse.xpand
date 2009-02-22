@@ -146,6 +146,14 @@ public class Outlet {
     public Outlet() {
     }
 
+    public Outlet (boolean append, String encoding, String name, boolean overwrite, String path) {
+        this.append = append;
+        this.fileEncoding = encoding;
+        this.name = name;
+        this.overwrite = overwrite;
+        this.path = path;
+    }
+    
 	public boolean shouldWrite(FileHandleImpl fileHandleImpl) {
 		for (VetoStrategy vs : vetoStrategies) {
 			if (vs.hasVeto(fileHandleImpl))

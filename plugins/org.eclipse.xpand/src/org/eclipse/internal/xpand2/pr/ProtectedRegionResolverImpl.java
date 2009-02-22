@@ -444,8 +444,12 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 
 	/**
 	 * Sets the source paths that should be scanned.
-     * @param srcPathsAsString A comma separated list of directory paths.
-     * @throws IllegalArgumentException If one of the passed arguments is not a directory or does not exist
+	 * 
+	 * @param srcPathsAsString
+	 *            A comma separated list of directory paths.
+	 * @throws IllegalArgumentException
+	 *             If one of the passed arguments is not a directory or does not
+	 *             exist
 	 */
 	public void setSrcPathes(final String srcPathsAsString) throws IllegalArgumentException {
 		// Split the paths and initialize the
@@ -460,8 +464,11 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 				// The configured path must point to an existing directory
 				if (dir.isDirectory()) {
 					validPaths.add(dir);
-	            } else {
-	            	LOG.warn("Ignoring non-existing protected region path "+dir.getAbsolutePath());
+				}
+				else {
+					final String msg = "Ignoring non-existing protected region path " + dir.getAbsolutePath();
+					LOG.warn(msg);
+					throw new IllegalArgumentException(msg);
 				}
 			}
 	        this.srcPaths = validPaths.toArray(new File[]{});

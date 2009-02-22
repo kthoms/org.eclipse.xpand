@@ -18,17 +18,29 @@ import org.apache.commons.logging.LogFactory;
  * Contains extension functions for logging messages and errors.
  */
 public class IOExtensions {
+    private final static Log log = LogFactory.getLog(IOExtensions.class);
+
+    public final static void syserr(final Object s) {
+    	System.err.println(s);
+    }
+
+    public final static void syserr(final Object s, String prefix) {
+    	System.err.println("["+prefix+"] "+s);
+    }
 
     public final static void debug(final Object s) {
-        System.out.println(s);
+        log.debug(s);
     }
 
     public final static void info(final Object s) {
-    	System.out.println("info: "+s);
+        log.info(s);
     }
 
     public final static void error(final Object s) {
-    	System.err.println(s);
+        log.error(s);
+    }
+    public final static void throwError(final Object s) {
+    	throw new IllegalStateException(""+s);
     }
 
 }

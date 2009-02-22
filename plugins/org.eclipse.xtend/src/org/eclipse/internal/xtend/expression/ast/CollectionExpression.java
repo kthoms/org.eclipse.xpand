@@ -41,7 +41,7 @@ public class CollectionExpression extends FeatureCall {
 	private Identifier eleName;
 
 	public CollectionExpression(final Identifier name, final Identifier eleName, final Expression closure) {
-    	super(name,null);
+		super(name, null);
 		this.eleName = eleName;
 		this.closure = closure;
 	}
@@ -51,7 +51,7 @@ public class CollectionExpression extends FeatureCall {
 		return super.toStringInternal() + "(" + (eleName != null ? eleName.getValue() + "|" : "") + closure + ")";
 	}
 
-    public Expression getClosure () {
+	public Expression getClosure() {
 		return closure;
 	}
 
@@ -63,14 +63,15 @@ public class CollectionExpression extends FeatureCall {
 			if (v != null) {
 				targetObj = v.getValue();
 			}
-        } else {
+		}
+		else {
 			targetObj = getTarget().evaluate(ctx);
 		}
 		if (targetObj == null)
 			return ctx.handleNullEvaluation(this);
-        if (!(targetObj instanceof Collection)) {
-            throw new EvaluationException("Couldn't call '"+this.toString()+"' on an object of java type "+targetObj.getClass().getName(),this, ctx);
-        }
+		if (!(targetObj instanceof Collection))
+			throw new EvaluationException("Couldn't call '" + toString() + "' on an object of java type "
+					+ targetObj.getClass().getName(), this, ctx);
 
 		if (getName().getValue().equals(SyntaxConstants.COLLECT))
 			return executeCollect((Collection) targetObj, ctx);
@@ -97,22 +98,23 @@ public class CollectionExpression extends FeatureCall {
 	private Object executeSortBy(Collection collection, final ExecutionContext ctx) {
 		List<Object> result = new ArrayList<Object>();
 		result.addAll(collection);
-		Collections.sort(result, new Comparator<Object> () {
+		Collections.sort(result, new Comparator<Object>() {
 
 			@SuppressWarnings("unchecked")
 			public int compare(Object o1, Object o2) {
 				final Object a = closure.evaluate(ctx.cloneWithVariable(new Variable(getElementName(), o1)));
 				final Object b = closure.evaluate(ctx.cloneWithVariable(new Variable(getElementName(), o2)));
-	            if (a==b)
+				if (a == b)
 					return 0;
-	            if (a==null)
+				if (a == null)
 					return -1;
-	            if (b==null)
+				if (b == null)
 					return 1;
 				if (a instanceof Comparable)
-	            	return ((Comparable)a).compareTo(b);
+					return ((Comparable) a).compareTo(b);
 				return a.toString().compareTo(b.toString());
-			}});
+			}
+		});
 		return result;
 	}
 
@@ -183,7 +185,8 @@ public class CollectionExpression extends FeatureCall {
 				resultCol.add(ele);
 			}
 		}
-        if ( resultCol.size() == 0 ) return null;
+		if (resultCol.size() == 0)
+			return null;
 		return resultCol.iterator().next();
 	}
 
@@ -206,7 +209,8 @@ public class CollectionExpression extends FeatureCall {
 			if (v != null) {
 				targetType = (Type) v.getValue();
 			}
-        } else {
+		}
+		else {
 			targetType = getTarget().analyze(ctx, issues);
 		}
 		if (targetType == null)
@@ -229,19 +233,20 @@ public class CollectionExpression extends FeatureCall {
 				return ctx.getListType(closureType);
 			else
 				return ctx.getCollectionType(closureType);
-        } else if (getName().getValue().equals(SyntaxConstants.SELECT)
-                || getName().getValue().equals(SyntaxConstants.REJECT)
-                 ) {
+		}
+		else if (getName().getValue().equals(SyntaxConstants.SELECT)
+				|| getName().getValue().equals(SyntaxConstants.REJECT))
 			return targetType;
-        } else if (getName().getValue().equals(SyntaxConstants.SELECTFIRST)) {
+		else if (getName().getValue().equals(SyntaxConstants.SELECTFIRST))
 			return innerType;
-        } else if (getName().getValue().equals(SyntaxConstants.SORT_BY)) {
+		else if (getName().getValue().equals(SyntaxConstants.SORT_BY))
 			return ctx.getListType(innerType);
-        }else if (getName().getValue().equals(SyntaxConstants.TYPE_SELECT)) {
+		else if (getName().getValue().equals(SyntaxConstants.TYPE_SELECT)) {
 			if (closureType == null)
 				return null;
 			return ctx.getListType(closureType);
-        } else if (getName().getValue().equals(SyntaxConstants.EXISTS)
+		}
+		else if (getName().getValue().equals(SyntaxConstants.EXISTS)
 				|| getName().getValue().equals(SyntaxConstants.NOT_EXISTS)
 				|| getName().getValue().equals(SyntaxConstants.FOR_ALL)) {
 			if (!ctx.getBooleanType().isAssignableFrom(closureType)) {
@@ -249,7 +254,8 @@ public class CollectionExpression extends FeatureCall {
 						+ closureType, closure));
 			}
 			result = ctx.getBooleanType();
-        } else {
+		}
+		else {
 			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Unknown operation : "
 					+ getName().getValue(), this));
 		}

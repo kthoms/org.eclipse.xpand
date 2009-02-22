@@ -24,9 +24,13 @@ public interface ProposalFactory {
 
 	/**
 	 * Creates an proposal for a static property
-	 * @param p The property for which a proposal should be created
-	 * @param prefix Current evaluation text prefix
-	 * @param onCollection <code>true</code>: Proposal is computed on a collection
+	 * 
+	 * @param p
+	 *            The property for which a proposal should be created
+	 * @param prefix
+	 *            Current evaluation text prefix
+	 * @param onCollection
+	 *            <code>true</code>: Proposal is computed on a collection
 	 * @return A proposal for the content assist
 	 */
 	public Object createStaticPropertyProposal(StaticProperty p, String prefix, boolean onCollection);
@@ -61,5 +65,4 @@ public interface ProposalFactory {
 	public boolean isDuplicate(Set<String> nameCache, Object proposal);
 
 	public void addToCache(Set<String> nameCache, Object proposal);
-
 }

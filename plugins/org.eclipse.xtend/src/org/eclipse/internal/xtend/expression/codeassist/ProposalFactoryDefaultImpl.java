@@ -86,7 +86,6 @@ public class ProposalFactoryDefaultImpl implements ProposalFactory {
 		if (nameCache == null || proposal == null)
 			throw new IllegalArgumentException();
 
-		
 		ProposalImpl p = castToProposal(proposal);
 		if (p != null) {
 			if (nameCache.contains(p.getDisplayString()))

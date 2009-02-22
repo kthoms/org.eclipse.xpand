@@ -31,24 +31,24 @@ import org.eclipse.xtend.typesystem.Type;
 
 public abstract class AbstractExtension extends SyntaxElement implements Extension {
 
-    private Identifier name;
+	private Identifier name;
 
-    private List<DeclaredParameter> formalParameters;
+	private List<DeclaredParameter> formalParameters;
 
-    protected ExtensionFile file;
+	protected ExtensionFile file;
 
-    protected boolean cached = false;
+	protected boolean cached = false;
 
-    private boolean isPrivate = false;
+	private boolean isPrivate = false;
 
 	public AbstractExtension(final Identifier name, final Identifier returnType,
 			final List<DeclaredParameter> formalParameters, final boolean cached, final boolean isPrivate) {
-        this.name = name;
-        this.formalParameters = formalParameters;
-        this.returnType = returnType;
-        this.cached = cached;
-        this.isPrivate = isPrivate;
-    }
+		this.name = name;
+		this.formalParameters = formalParameters;
+		this.returnType = returnType;
+		this.cached = cached;
+		this.isPrivate = isPrivate;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -56,19 +56,19 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	 * @see org.eclipse.xtend.ast.Extension#getFormalParameters()
 	 */
 	public List<DeclaredParameter> getFormalParameters() {
-        return formalParameters;
-    }
+		return formalParameters;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#getName()
 	 */
-    public String getName() {
-        return name.getValue();
-    }
-    
-    public Identifier getNameIdentifier() {
+	public String getName() {
+		return name.getValue();
+	}
+
+	public Identifier getNameIdentifier() {
 		return name;
 	}
 
@@ -79,54 +79,53 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	 * openarchitectureware.type.Type[],
 	 * org.eclipse.expression.ExecutionContext, java.util.Set)
 	 */
-    public final Type getReturnType(final Type[] parameters, ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-        ctx = ctx.cloneWithResource(getExtensionFile());
-        return internalGetReturnType(parameters, ctx, issues);
-    }
+	public final Type getReturnType(final Type[] parameters, ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		ctx = ctx.cloneWithResource(getExtensionFile());
+		return internalGetReturnType(parameters, ctx, issues);
+	}
 
-    protected abstract Type internalGetReturnType(Type[] parameters, ExecutionContext ctx, Set<AnalysationIssue> issues);
+	protected abstract Type internalGetReturnType(Type[] parameters, ExecutionContext ctx, Set<AnalysationIssue> issues);
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.xtend.ast.Extension#analyze(org.eclipse
+	 * @see org.eclipse.xtend.ast.Extension#analyze(org.eclipse
 	 * .expression.ExecutionContext, java.util.Set)
 	 */
-    public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+	public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		try {
 			if (ctx.getCallback() != null) {
 				ctx.getCallback().pre(this, ctx);
 			}
-        final List<DeclaredParameter> params = getFormalParameters();
-        final Set<String> usedNames = new HashSet<String>();
-        for (final Iterator<DeclaredParameter> iter = params.iterator(); iter.hasNext();) {
-            final DeclaredParameter p = iter.next();
-            final Type pt = ctx.getTypeForName(p.getType().getValue());
-            if (pt == null) {
-                issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: "
-                        + p.getType().getValue(), p.getType()));
-            }
-            if (!usedNames.add(p.getName().getValue())) {
-                issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, "Duplicate parameter name: "
-                        + p.getName().getValue(), p.getName()));
-            }
-            ctx = ctx.cloneWithVariable(new Variable(p.getName().getValue(), pt));
-        }
-        if (returnType != null) {
-            final Type pt = ctx.getTypeForName(returnType.getValue());
-            if (pt == null) {
-                issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: "
-                        + returnType.getValue(), returnType));
-            }
-        }
-        try {
-        	analyzeInternal(ctx, issues);
+			final List<DeclaredParameter> params = getFormalParameters();
+			final Set<String> usedNames = new HashSet<String>();
+			for (final Iterator<DeclaredParameter> iter = params.iterator(); iter.hasNext();) {
+				final DeclaredParameter p = iter.next();
+				final Type pt = ctx.getTypeForName(p.getType().getValue());
+				if (pt == null) {
+					issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: "
+							+ p.getType().getValue(), p.getType()));
+				}
+				if (!usedNames.add(p.getName().getValue())) {
+					issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, "Duplicate parameter name: "
+							+ p.getName().getValue(), p.getName()));
+				}
+				ctx = ctx.cloneWithVariable(new Variable(p.getName().getValue(), pt));
+			}
+			if (returnType != null) {
+				final Type pt = ctx.getTypeForName(returnType.getValue());
+				if (pt == null) {
+					issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Type not found: "
+							+ returnType.getValue(), returnType));
+				}
+			}
+			try {
+				analyzeInternal(ctx, issues);
 			}
 			catch (RuntimeException ex) {
-        	ctx.handleRuntimeException(ex, this, null);
-        }
-    }
+				ctx.handleRuntimeException(ex, this, null);
+			}
+		}
 		finally {
 			if (ctx.getCallback() != null) {
 				ctx.getCallback().post(null);
@@ -138,196 +137,193 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 		checkForAmbiguousDefinitions(ctx, issues);
 	}
 
-    private final Map<List<Object>, Object> cache = new HashMap<List<Object>, Object>();
+	private final Map<List<Object>, Object> cache = new HashMap<List<Object>, Object>();
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.xtend.ast.Extension#evaluate(java.lang.Object[],
+	 * @see org.eclipse.xtend.ast.Extension#evaluate(java.lang.Object[],
 	 * org.eclipse.expression.ExecutionContext)
 	 */
-    public Object evaluate(final Object[] parameters, ExecutionContext ctx) {
-    	try {
+	public Object evaluate(final Object[] parameters, ExecutionContext ctx) {
+		try {
 			if (ctx.getCallback() != null) {
 				ctx.getCallback().pre(this, ctx);
 			}
-            if (cached) {
-                final List<Object> l = Arrays.asList(parameters);
-                if (cache.containsKey(l))
-                    return cache.get(l);
-            }
-            if (getExtensionFile() == null)
-                throw new IllegalStateException("No containing file!");
-            ctx = ctx.cloneWithResource(getExtensionFile());
-            final Object result = evaluateInternal(parameters, ctx);
-            if (cached) {
-                cache.put(Arrays.asList(parameters), result);
-            }
-            return result;
+			if (cached) {
+				final List<Object> l = Arrays.asList(parameters);
+				if (cache.containsKey(l))
+					return cache.get(l);
+			}
+			if (getExtensionFile() == null)
+				throw new IllegalStateException("No containing file!");
+			ctx = ctx.cloneWithResource(getExtensionFile());
+			final Object result = evaluateInternal(parameters, ctx);
+			if (cached) {
+				cache.put(Arrays.asList(parameters), result);
+			}
+			return result;
 		}
 		catch (RuntimeException ex) {
-    		ctx.handleRuntimeException(ex, this, null);
-    	}
+			ctx.handleRuntimeException(ex, this, null);
+		}
 		finally {
 			if (ctx.getCallback() != null) {
 				ctx.getCallback().post(null);
 			}
 		}
-    	return null;
-    }
+		return null;
+	}
 
-    public final void setExtensionFile(final ExtensionFile f) {
-        file = f;
-    }
+	public final void setExtensionFile(final ExtensionFile f) {
+		file = f;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#getExtensionFile()
 	 */
-    public ExtensionFile getExtensionFile() {
-        return file;
-    }
+	public ExtensionFile getExtensionFile() {
+		return file;
+	}
 
-    protected abstract Object evaluateInternal(Object[] parameters, ExecutionContext ctx);
+	protected abstract Object evaluateInternal(Object[] parameters, ExecutionContext ctx);
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#getParameterNames()
 	 */
-    public List<String> getParameterNames() {
-        final List<String> names = new ArrayList<String>();
-        for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
-            names.add(iter.next().getName().getValue());
-        }
-        return names;
-    }
+	public List<String> getParameterNames() {
+		final List<String> names = new ArrayList<String>();
+		for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
+			names.add(iter.next().getName().getValue());
+		}
+		return names;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.xtend.ast.Extension#init(org.eclipse
+	 * @see org.eclipse.xtend.ast.Extension#init(org.eclipse
 	 * .expression.ExecutionContext)
 	 */
-    public void init(final ExecutionContext ctx) {
-        if (parameterTypes == null) {
-            try {
-                parameterTypes = new ArrayList<Type>();
-                for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
-                    final String name = iter.next().getType().getValue();
-                    final Type t = ctx.getTypeForName(name);
-                    if (t == null)
-                        throw new EvaluationException("Couldn't resolve type for '" + name
-                                + "'. Did you forget to configure the corresponding metamodel?", this, ctx);
-                    parameterTypes.add(t);
-                }
+	public void init(final ExecutionContext ctx) {
+		if (parameterTypes == null) {
+			try {
+				parameterTypes = new ArrayList<Type>();
+				for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
+					final String name = iter.next().getType().getValue();
+					final Type t = ctx.getTypeForName(name);
+					if (t == null)
+						throw new EvaluationException("Couldn't resolve type for '" + name
+								+ "'. Did you forget to configure the corresponding metamodel?", this, ctx);
+					parameterTypes.add(t);
+				}
 			}
 			catch (final RuntimeException e) {
-                parameterTypes = null;
-                throw e;
-            }
-        }
-    }
+				parameterTypes = null;
+				throw e;
+			}
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#getReturnType()
 	 */
-    public Type getReturnType() {
-        throw new UnsupportedOperationException();
-    }
+	public Type getReturnType() {
+		throw new UnsupportedOperationException();
+	}
 
-    private List<Type> parameterTypes = null;
+	private List<Type> parameterTypes = null;
 
-    protected Identifier returnType;
+	protected Identifier returnType;
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#getParameterTypes()
 	 */
-    public List<Type> getParameterTypes() {
-        return parameterTypes;
-    }
+	public List<Type> getParameterTypes() {
+		return parameterTypes;
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.xtend.ast.Extension#getReturnTypeIdentifier()
+	 * @see org.eclipse.xtend.ast.Extension#getReturnTypeIdentifier()
 	 */
-    public Identifier getReturnTypeIdentifier() {
-        return returnType;
-    }
+	public Identifier getReturnTypeIdentifier() {
+		return returnType;
+	}
 
-    private String _stringRepresentation = null;
+	private String _stringRepresentation = null;
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#toString()
 	 */
-    @Override
-    public String toString() {
-        if (_stringRepresentation == null) {
+	@Override
+	public String toString() {
+		if (_stringRepresentation == null) {
 			_stringRepresentation = (returnType != null ? returnType.getValue() + " " : "") + getName() + "("
 					+ paramsToString() + ")";
-        }
+		}
 
-        return _stringRepresentation;
-    }
-    
-    private String _outlineRepresentation = null;
-    
+		return _stringRepresentation;
+	}
+
+	private String _outlineRepresentation = null;
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#toOutlineString()
 	 */
-    public String toOutlineString() {
-        if (_outlineRepresentation == null) {
+	public String toOutlineString() {
+		if (_outlineRepresentation == null) {
 			_outlineRepresentation = getName() + "(" + paramsToOutlineString() + ")"
 					+ (returnType != null ? ": " + returnType.getValue() : "");
-        } 
-        return _outlineRepresentation;
-    }
+		}
+		return _outlineRepresentation;
+	}
 
-    private String paramsToString() {
-        final StringBuffer buff = new StringBuffer();
-        for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
-            final DeclaredParameter element = iter.next();
-            buff.append(element.getType() + " " + element.getName());
-            if (iter.hasNext()) {
-                buff.append(",");
-            }
-        }
-        return buff.toString();
-    }
+	private String paramsToString() {
+		final StringBuffer buff = new StringBuffer();
+		for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
+			final DeclaredParameter element = iter.next();
+			buff.append(element.getType() + " " + element.getName());
+			if (iter.hasNext()) {
+				buff.append(",");
+			}
+		}
+		return buff.toString();
+	}
 
-    private String paramsToOutlineString() {
-        final StringBuffer buff = new StringBuffer();
-        for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
-            final DeclaredParameter element = iter.next();
+	private String paramsToOutlineString() {
+		final StringBuffer buff = new StringBuffer();
+		for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
+			final DeclaredParameter element = iter.next();
 			buff.append(element.getType());
-            if (iter.hasNext()) {
-                buff.append(", ");
-            }
-        }
-        return buff.toString();
-    }
+			if (iter.hasNext()) {
+				buff.append(", ");
+			}
+		}
+		return buff.toString();
+	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.xtend.ast.Extension#isPrivate()
 	 */
-    public boolean isPrivate() {
-        return isPrivate;
-    }
+	public boolean isPrivate() {
+		return isPrivate;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -335,12 +331,12 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	 * @see org.eclipse.xtend.ast.Extension#isCached()
 	 */
 	public boolean isCached() {
-        return cached;
-    }
-    
-    public String getQualifiedName() {
+		return cached;
+	}
+
+	public String getQualifiedName() {
 		return getExtensionFile().getFullyQualifiedName() + "::" + getName();
-    }
+	}
 
 	@Override
 	public int hashCode() {
@@ -374,7 +370,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 			return false;
 		return true;
 	}
-    
+
 	protected void checkForAmbiguousDefinitions(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		String name = getName();
 		for (Extension ext : ctx.getAllExtensions()) {

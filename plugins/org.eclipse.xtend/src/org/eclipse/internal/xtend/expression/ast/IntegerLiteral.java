@@ -31,7 +31,7 @@ public class IntegerLiteral extends Literal {
 
     @Override
     public Object evaluateInternal(final ExecutionContext ctx) {
-        return new Long(getLiteralValue().getValue());
+        return new BigInteger(getLiteralValue().getValue());
     }
 
     public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {

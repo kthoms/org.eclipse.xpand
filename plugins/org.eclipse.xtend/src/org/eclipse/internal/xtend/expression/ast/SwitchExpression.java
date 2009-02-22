@@ -35,8 +35,7 @@ public class SwitchExpression extends Expression {
 
 	private List<Case> cases = null;
 
-    public SwitchExpression(final Expression switchExpr,
-            final List<Case> cases, final Expression defaultExpr) {
+	public SwitchExpression(final Expression switchExpr, final List<Case> cases, final Expression defaultExpr) {
 		this.switchExpr = switchExpr;
 		this.cases = cases;
 		this.defaultExpr = defaultExpr;
@@ -45,8 +44,9 @@ public class SwitchExpression extends Expression {
 	@Override
 	protected Object evaluateInternal(final ExecutionContext ctx) {
 		Object switchVal = Boolean.TRUE;
-        if (switchExpr != null)
+		if (switchExpr != null) {
 			switchVal = switchExpr.evaluate(ctx);
+		}
 		for (final Iterator<Case> iter = cases.iterator(); iter.hasNext();) {
 			final Case c = iter.next();
 			final Object caseCondVal = c.getCondition().evaluate(ctx);
@@ -64,10 +64,12 @@ public class SwitchExpression extends Expression {
 		return (Boolean) new ExpressionFacade(ctx).evaluate("swtch==cse", props);
 	}
 
+	@Override
 	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		Type condType = ctx.getBooleanType();
-        if (switchExpr != null)
+		if (switchExpr != null) {
 			condType = switchExpr.analyze(ctx, issues);
+		}
 		if (condType == null)
 			return null;
 		Type returnType = defaultExpr.analyze(ctx, issues);
@@ -87,7 +89,8 @@ public class SwitchExpression extends Expression {
 				if (!returnType.isAssignableFrom(caseThenType)) {
 					if (caseThenType.isAssignableFrom(returnType)) {
 						returnType = caseThenType;
-                    } else {
+					}
+					else {
 						returnType = ctx.getObjectType();
 					}
 				}
@@ -110,6 +113,6 @@ public class SwitchExpression extends Expression {
 
 	@Override
 	protected String toStringInternal() {
-    	return "switch " + switchExpr.toStringInternal() ;
+		return "switch " + switchExpr.toStringInternal();
 	}
 }

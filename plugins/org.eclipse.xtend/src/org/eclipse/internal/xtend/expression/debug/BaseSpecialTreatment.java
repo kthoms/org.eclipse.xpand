@@ -21,33 +21,29 @@ import org.eclipse.xtend.expression.ExecutionContext;
  */
 public abstract class BaseSpecialTreatment {
 
-	public boolean shallNotSuspend(final Object element, final int flag, final ExecutionContext context) {
+	public boolean shallNotSuspend(Object element, int flag, ExecutionContext context) {
 		return false;
 	}
 
-	public void adaptSyntaxElement(final SyntaxElement to, final Object element) {
+	public void adaptSyntaxElement(SyntaxElement to, Object element) {
 		// empty implementation
 	}
 
 	/**
-	 * add syntax element specific content to the element name that will be
-	 * shown in Launch view
-	 * 
-	 * @param se
-	 *            the syntax element
-	 * @param context
-	 *            the execution context
+	 * add syntax element specific content to the element name that will be shown in Launch view
+	 * @param se the syntax element
+	 * @param context the execution context
 	 * @return the special text to add to the name
 	 */
-	public String adaptElementName(final ISyntaxElement se, final ExecutionContext context) {
+	public String adaptElementName(ISyntaxElement se, ExecutionContext context){
 		return "";
 	}
 
-	public ISyntaxElement getSpecialEndSyntaxElement(final ISyntaxElement se) {
+	public ISyntaxElement getSpecialEndSyntaxElement(ISyntaxElement se){
 		return null;
 	}
 
-	public int getElementNameLength(final ISyntaxElement se) {
+	public int getElementNameLength(ISyntaxElement se) {
 		return -1;
 	}
 

@@ -40,9 +40,9 @@ public class JavaExtensionStatement extends AbstractExtension {
 
     protected List<Identifier> javaParamTypes;
 
-	public JavaExtensionStatement(final Identifier name, final List<DeclaredParameter> formalParameters,
-			final Identifier returnType, final Identifier javaType, final Identifier javaMethod,
-			final List<Identifier> javaParamTypes, final boolean cached, final boolean isPrivate) {
+    public JavaExtensionStatement(final Identifier name,
+            final List<DeclaredParameter> formalParameters, final Identifier returnType, final Identifier javaType,
+            final Identifier javaMethod, final List<Identifier> javaParamTypes, final boolean cached, final boolean isPrivate) {
         super(name, returnType, formalParameters, cached, isPrivate);
         this.javaType = javaType;
         this.javaMethod = javaMethod;
@@ -53,7 +53,7 @@ public class JavaExtensionStatement extends AbstractExtension {
         return javaType;
     }
     
-	public String getJavaMethodName() {
+    public String getJavaMethodName () {
         return javaMethod.getValue();
     }
 
@@ -70,13 +70,20 @@ public class JavaExtensionStatement extends AbstractExtension {
                 }
                 throw new EvaluationException(javaMethodToString() + " not found, problems were: \n" + b, this, ctx);
             }
+            convertTypesToMethodSignature(ctx, method, parameters);
             return method.invoke(null, parameters);
+        } catch (final InvocationTargetException ite) {
+            throw new RuntimeException(ite.getCause());
+        } catch (final Exception e) {
+            throw new EvaluationException(e, this, ctx);
         }
-		catch (final InvocationTargetException ite) {
-			throw new RuntimeException(ite.getCause());
     }
-		catch (final Exception e) {
-			throw new EvaluationException(e, this, ctx);
+
+	private void convertTypesToMethodSignature(ExecutionContext ctx, Method method, Object[] parameters) {
+		Class<?>[] paramTypes = method.getParameterTypes();
+		for(int i = 0; i < parameters.length; i++) {
+			Object param = parameters[i];
+			parameters[i] = ctx.getType(param).convert(param, paramTypes[i]);
 		}
 	}
 
@@ -92,14 +99,12 @@ public class JavaExtensionStatement extends AbstractExtension {
         return javaType + "." + javaMethod + "(" + buff + ")";
     }
 
-	@SuppressWarnings("unchecked")
 	public Method getJavaMethod(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         try {
             Class clazz = null;
             clazz = ResourceLoaderFactory.createResourceLoader().loadClass(javaType.getValue());
             if (clazz == null) {
-				issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't find Java type "
-						+ javaType.getValue(), javaType));
+                issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't find Java type "+javaType.getValue(), javaType));
                 return null;
             }
             final Class[] paramTypes = new Class[javaParamTypes.size()];
@@ -108,24 +113,20 @@ public class JavaExtensionStatement extends AbstractExtension {
 
                 paramTypes[i] = ResourceLoaderFactory.createResourceLoader().loadClass(javaParamType.getValue());
                 if (paramTypes[i] == null) {
-					issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, javaParamType.getValue(),
-							javaParamType));
+                    issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, javaParamType.getValue(), javaParamType));
                     return null;
                 }
             }
             final Method m = clazz.getMethod(javaMethod.getValue(), paramTypes);
             if (!Modifier.isStatic(m.getModifiers())) {
-				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue()
-						+ " must be static!", javaMethod));
+                issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue() + " must be static!", javaMethod));
             }
 
             if (!Modifier.isPublic(m.getModifiers())) {
-				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue()
-						+ " must be public!", javaMethod));
+                issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue() + " must be public!", javaMethod));
             }
             return m;
-		}
-		catch (final NoSuchMethodException e) {
+        } catch (final NoSuchMethodException e) {
             issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue(), javaMethod));
         }
         return null;
@@ -133,23 +134,18 @@ public class JavaExtensionStatement extends AbstractExtension {
 
     @Override
     public void analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-		super.analyzeInternal(ctx, issues);
         if (returnType == null) {
-			issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR,
-					"A return type must be specified for java extensions!", this));
+            issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, "A return type must be specified for java extensions!", this));
         }
         getJavaMethod(ctx, issues);
     }
 
     @Override
-	protected Type internalGetReturnType(final Type[] parameters, final ExecutionContext ctx,
-			final Set<AnalysationIssue> issues) {
+    protected Type internalGetReturnType(final Type[] parameters, final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         if (returnType == null) {
-			issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR,
-					"A return type must be specified for java extensions!", this));
+            issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, "A return type must be specified for java extensions!", this));
             return null;
-		}
-		else
+        } else
             return ctx.getTypeForName(returnType.getValue());
     }
 

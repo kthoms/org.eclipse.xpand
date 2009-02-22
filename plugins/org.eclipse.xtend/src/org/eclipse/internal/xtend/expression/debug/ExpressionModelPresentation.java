@@ -20,8 +20,7 @@ import org.eclipse.xtend.expression.ExpressionFacade;
 import org.eclipse.xtend.expression.Variable;
 
 /**
- * This class is responsible for all presentation topics for expressions in the
- * debugger views.
+ * This class is responsible for all presentation topics for expressions in the debugger views.
  * 
  * @author Clemens Kadura (zAJKa)
  */
@@ -31,14 +30,14 @@ public class ExpressionModelPresentation {
 
 	// -------------------------------------------------------------------------
 
-	public ExpressionModelPresentation(final Set<BaseSpecialTreatment> specials) {
+	public ExpressionModelPresentation(Set<BaseSpecialTreatment> specials) {
 		this.specials = specials;
 	}
 
 	// -------------------------------------------------------------------------
 
-	public SyntaxElement getStartPresentation(final ISyntaxElement se, final ExecutionContext context) {
-		final SyntaxElement to = new SyntaxElement();
+	public SyntaxElement getStartPresentation(ISyntaxElement se, ExecutionContext context) {
+		SyntaxElement to = new SyntaxElement();
 
 		to.containerName = getContainerName(se);
 		to.elementName = se.getNameString(context);
@@ -49,51 +48,50 @@ public class ExpressionModelPresentation {
 		return to;
 	}
 
-	public SyntaxElement getEndPresentation(final ISyntaxElement se, final ExecutionContext context) {
+	public SyntaxElement getEndPresentation(ISyntaxElement se, ExecutionContext context) {
 		return getStartPresentation(se, context);
 	}
 
-	public String getVariableSimpleRep(final Object element, final ExecutionContext context) {
+	public String getVariableSimpleRep(Object element, ExecutionContext context) {
 		if (element == null)
 			return "null";
 		if (element instanceof String)
 			return (String) element;
-		return (String) new ExpressionFacade(context.cloneWithVariable(new Variable("this", element)))
-				.evaluate("metaType.name");
+		return (String) new ExpressionFacade(context.cloneWithVariable(new Variable("this", element))).evaluate("metaType.name");
 	}
 
 	// -------------------------------------------------------------------------
 
-	public int getStart(final ISyntaxElement se) {
+	public int getStart(ISyntaxElement se) {
 		if (se instanceof FeatureCall)
 			return ((FeatureCall) se).getName().getStart();
 		return se.getStart();
 	}
 
-	public int getStartingEndPosition(final ISyntaxElement se) {
+	public int getStartingEndPosition(ISyntaxElement se) {
 		return se.getEnd();
 	}
 
 	// -------------------------------------------------------------------------
 
-	protected String getContainerName(final ISyntaxElement se) {
+	protected String getContainerName(ISyntaxElement se) {
 		return getTemplateName(se);
 	}
 
-	protected String getTemplateName(final ISyntaxElement se) {
-		final String fileName = se.getFileName();
+	protected String getTemplateName(ISyntaxElement se) {
+		String fileName = se.getFileName();
 		if (fileName == null)
 			return "";
 		return fileName.substring(fileName.lastIndexOf('/') + 1, fileName.length() - 4);
 	}
 
-	protected String getResource(final ISyntaxElement se) {
+	protected String getResource(ISyntaxElement se) {
 		if (se.getFileName() == null)
 			return "";
 		return se.getFileName();
 	}
 
-	public String getStringRep(final Object element) {
+	public String getStringRep(Object element) {
 		if (element == null)
 			return "null";
 		return element.toString();

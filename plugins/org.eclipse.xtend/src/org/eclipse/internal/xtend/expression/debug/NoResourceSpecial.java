@@ -15,16 +15,19 @@ import org.eclipse.emf.mwe.core.debug.processing.EventHandler;
 import org.eclipse.xtend.expression.ExecutionContext;
 
 /**
- * Adapter to handle statements that don't have an associated resource. (mainly the initial one)
+ * Adapter to handle statements that don't have an associated resource. (mainly
+ * the initial one)
  * 
  * @author Clemens Kadura (zAJKa)
  */
 public class NoResourceSpecial extends BaseSpecialTreatment {
 
 	/**
-	 * Don't suspend for normal frame, if the element has no resource (virtual ones)
+	 * Don't suspend for normal frame, if the element has no resource (virtual
+	 * ones)
 	 * 
-	 * @see org.eclipse.internal.xtend.expression.debug.BaseSpecialTreatment#shallNotSuspend(java.lang.Object, int)
+	 * @see org.eclipse.internal.xtend.expression.debug.BaseSpecialTreatment#shallNotSuspend(java.lang.Object,
+	 *      int, org.eclipse.xtend.expression.ExecutionContext)
 	 */
 	@Override
 	public boolean shallNotSuspend(Object element, int flag, ExecutionContext ctx) {
@@ -32,21 +35,24 @@ public class NoResourceSpecial extends BaseSpecialTreatment {
 	}
 
 	/**
-	 * Don't show frame in Launch view, if the element has no resource (virtual ones)
+	 * Don't show frame in Launch view, if the element has no resource (virtual
+	 * ones)
 	 * 
 	 * @see org.eclipse.internal.xtend.expression.debug.BaseSpecialTreatment#adaptSyntaxElementTO(org.eclipse.internal.xtend.debug.model.SyntaxElement,
 	 *      java.lang.Object)
 	 */
 	@Override
 	public void adaptSyntaxElement(SyntaxElement to, Object element) {
-		if (!hasResource(element))
+		if (!hasResource(element)) {
 			to.visible = false;
+		}
 	}
 
 	// -------------------------------------------------------------------------
 
 	private boolean hasResource(Object element) {
-		return getClass().getResource("/" + ((org.eclipse.internal.xtend.expression.ast.SyntaxElement) element).getFileName()) != null;
+		return getClass().getResource(
+				"/" + ((org.eclipse.internal.xtend.expression.ast.SyntaxElement) element).getFileName()) != null;
 	}
 
 }

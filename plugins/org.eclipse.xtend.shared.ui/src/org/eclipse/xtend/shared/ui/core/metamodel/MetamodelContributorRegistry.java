@@ -38,7 +38,7 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
  */
 public class MetamodelContributorRegistry {
 
-	private static final String CONTRIBUTOR_ID = "org.eclipse.base.metamodelContributor";
+	private static final String CONTRIBUTOR_ID = "org.eclipse.xtend.shared.ui.metamodelContributor";
 
 	/**
 	 * Retrieves the registered metamodel contributors.

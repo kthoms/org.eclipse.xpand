@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.xtend.shared.ui">
+<schema targetNamespace="org.eclipse.xtend.shared.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.xtend.shared.ui" id="metaModelContributor" name="oAW4 Metamodel Contributor"/>
+         <meta.schema plugin="org.eclipse.xtend.shared.ui" id="metaModelContributor" name="Xpand Metamodel Contributor"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -11,6 +11,11 @@
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="metamodelContributor" minOccurs="1" maxOccurs="unbounded"/>
@@ -100,13 +105,5 @@
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>

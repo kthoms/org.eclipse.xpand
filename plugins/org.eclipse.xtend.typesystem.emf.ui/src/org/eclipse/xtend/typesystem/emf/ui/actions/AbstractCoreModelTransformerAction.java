@@ -13,7 +13,6 @@ package org.eclipse.xtend.typesystem.emf.ui.actions;
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -30,7 +29,7 @@ public abstract class AbstractCoreModelTransformerAction implements IObjectActio
 
 	private IFile file;
 
-	protected static final String ANNO_SOURCE = GenModelPackage.eNS_URI;
+	protected static final String ANNO_SOURCE = "http://www.eclipse.org/emf/2002/GenModel";
 
 	protected static final String ANNO_KEY = "body";
 

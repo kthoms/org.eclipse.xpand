@@ -78,19 +78,20 @@ public abstract class UML2MetaModelBase extends EmfMetaModel {
         return result;
     }
 
-    private Type getPrimitive(String typeName) {
-        if (typeName.equalsIgnoreCase(UML2_STRING) || typeName.equalsIgnoreCase(UML2_STRING1)) {
-            return getTypeSystem().getStringType();
-        } else if (typeName.equalsIgnoreCase(UML2_BOOLEAN) || typeName.equalsIgnoreCase(UML2_BOOLEAN1)) {
-            return getTypeSystem().getBooleanType();
-        } else if (typeName.equalsIgnoreCase(UML2_INTEGER) || typeName.equalsIgnoreCase(UML2_UNLIMITED_NATURAL)
-                || typeName.equalsIgnoreCase(UML2_INTEGER1) || typeName.equalsIgnoreCase(UML2_UNLIMITED_NATURAL1)) {
-            return getTypeSystem().getIntegerType();
-        } else if (typeName.equalsIgnoreCase(UML2_REAL) || typeName.equalsIgnoreCase(UML2_REAL1)) {
-            return getTypeSystem().getRealType();
-        }
-        return null;
-    }
+	private Type getPrimitive(String typeName) {
+		if (UML2_STRING.equalsIgnoreCase(typeName) || UML2_STRING1.equalsIgnoreCase(typeName)) {
+			return getTypeSystem().getStringType();
+		} else if (UML2_BOOLEAN.equalsIgnoreCase(typeName) || UML2_BOOLEAN1.equalsIgnoreCase(typeName)) {
+			return getTypeSystem().getBooleanType();
+		} else if (UML2_INTEGER.equalsIgnoreCase(typeName) || UML2_UNLIMITED_NATURAL.equalsIgnoreCase(typeName)
+				|| UML2_INTEGER1.equalsIgnoreCase(typeName) || UML2_UNLIMITED_NATURAL1.equalsIgnoreCase(typeName)) {
+			return getTypeSystem().getIntegerType();
+		} else if (UML2_REAL.equalsIgnoreCase(typeName) || UML2_REAL1.equalsIgnoreCase(typeName)) {
+			return getTypeSystem().getRealType();
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public void setTypeSystem(TypeSystem typeSystem) {

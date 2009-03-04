@@ -13,20 +13,32 @@
          
          <!-- UI elements, defined using general pattern -->
     <activity
-          description="%activity.ui.description"
+          description="%activity.xpand.ui.description"
           id="org.eclipse.xpand.ui"
-          name="%activity.ui">
+          name="%activity.xpand.ui">
+    </activity>
+    <activity
+          description="%activity.xtend.ui.description"
+          id="org.eclipse.xtend.ui"
+          name="%activity.xtend.ui">
     </activity>
     <activityPatternBinding
           activityId="org.eclipse.xpand.ui"
           pattern="org\.eclipse\.xpand\.ui\..*/.*">
     </activityPatternBinding>
+    <activityPatternBinding
+          activityId="org.eclipse.xtend.ui"
+          pattern="org\.eclipse\.xtend\.ui\..*/.*">
+    </activityPatternBinding>
     <categoryActivityBinding
-        activityId="org.eclipse.xpand.ui"
+        activityId="org.eclipse.xtend.ui"
         categoryId="org.eclipse.xpand.ui.category">
     </categoryActivityBinding>
    <defaultEnablement
        id="org.eclipse.xpand.ui">
+   </defaultEnablement>
+   <defaultEnablement
+       id="org.eclipse.xtend.ui">
    </defaultEnablement>
     </extension>      
 </plugin>

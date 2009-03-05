@@ -21,8 +21,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
+import org.eclipse.xtend.expression.ExpressionFacade;
+import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Property;
@@ -57,6 +60,46 @@ public class EmfMetaModelTest extends TestCase {
 		assertEquals(mm.getTypeForName("ecore::EStructuralFeature"), op
 				.getReturnType());
 	}
+	
+	
+	public void testSettingMultiValueDataType() throws Exception {
+		EcoreFactory f = EcoreFactory.eINSTANCE;
+		final EPackage pack = f.createEPackage();
+		pack.setName("test");
+		
+		EClass clazz = f.createEClass();
+		clazz.setName("AClass");
+		pack.getEClassifiers().add(clazz);
+		
+		EAttribute attr = f.createEAttribute();
+		attr.setName("multiString");
+		attr.setEType(EcorePackage.eINSTANCE.getEString());
+		attr.setUpperBound(-1);
+		clazz.getEStructuralFeatures().add(attr);
+		
+		final ExecutionContextImpl ctx = new ExecutionContextImpl();
+		final EmfRegistryMetaModel mm = new EmfRegistryMetaModel() {
+			@Override
+			protected EPackage[] allPackages() {
+				return new EPackage[]{pack};
+			}
+		};
+		ctx.registerMetaModel(mm);
+
+		Type aClassType = mm.getTypeForName("test::AClass");
+		assertNotNull(aClassType);
+		Operation op = aClassType.getOperation("setMultiString", new Type[] {ctx.getListType(ctx.getStringType()) });
+		assertNull(op);
+		
+		EObject aClassInstance = EcoreUtil.create(clazz);
+		ExpressionFacade facade = new ExpressionFacade(ctx);
+		facade = facade.cloneWithVariable(new Variable("aClassInstance", aClassInstance));
+		assertEquals("0", "" + facade.evaluate("aClassInstance.multiString.size"));
+		facade.evaluate("aClassInstance.multiString.add('foo')");
+		assertEquals("1", "" + facade.evaluate("aClassInstance.multiString.size"));
+		assertEquals("foo", "" + facade.evaluate("aClassInstance.multiString.first()"));
+	}
+
 
 	public final void testEEnumType() {
 		final ExecutionContextImpl ctx = new ExecutionContextImpl();

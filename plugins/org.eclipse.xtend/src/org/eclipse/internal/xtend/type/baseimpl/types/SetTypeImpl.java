@@ -12,7 +12,7 @@
 package org.eclipse.internal.xtend.type.baseimpl.types;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.xtend.expression.TypeSystem;
@@ -47,7 +47,7 @@ public class SetTypeImpl extends CollectionTypeImpl {
 
     @Override
     public Object newInstance() {
-        return new HashSet<Object>();
+        return new LinkedHashSet<Object>();
     }
 
     @Override

@@ -12,7 +12,9 @@ package org.eclipse.xtend.typesystem.baseimpl.types;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -54,9 +56,35 @@ public class CollectionTypeTest extends TestCase {
 		assertEquals(3, l.intValue());
 	}
 
+	@SuppressWarnings("unchecked")
+	public final void testUnionStableOrder() {
+		final Set<Number> result = (Set) ef.evaluate("{1,2,2,1,2}.union({2,1,3,2})");
+		assertEquals(3, result.size());
+		Iterator<Number> iter = result.iterator();
+		assertTrue(iter.hasNext());
+		assertEquals("1", iter.next().toString());
+		assertTrue(iter.hasNext());
+		assertEquals("2", iter.next().toString());
+		assertTrue(iter.hasNext());
+		assertEquals("3", iter.next().toString());
+		assertFalse(iter.hasNext());
+	}
+
 	public final void testIntersect() {
 		final Set result = (Set) ef.evaluate("{1,2,3}.intersect({2,3,4})");
 		assertEquals(2, result.size());
+	}
+
+	@SuppressWarnings("unchecked")
+	public final void testIntersectStableOrder() {
+		final Set<Number> result = (Set) ef.evaluate("{1,2,1,2,3}.intersect({2,4,3,4})");
+		assertEquals(2, result.size());
+		Iterator<Number> iter = result.iterator();
+		assertTrue(iter.hasNext());
+		assertEquals("2", iter.next().toString());
+		assertTrue(iter.hasNext());
+		assertEquals("3", iter.next().toString());
+		assertFalse(iter.hasNext());
 	}
 
 	public final void testWithout() {
@@ -65,10 +93,43 @@ public class CollectionTypeTest extends TestCase {
 		assertFalse(result.contains(new Long(2)));
 	}
 
+	@SuppressWarnings("unchecked")
+	public final void testWithoutStableOrder() {
+		final Set<Number> result = (Set) ef.evaluate("{1,2,1,2,3}.without({2,4})");
+		assertEquals(2, result.size());
+		Iterator<Number> iter = result.iterator();
+		assertTrue(iter.hasNext());
+		assertEquals("1", iter.next().toString());
+		assertTrue(iter.hasNext());
+		assertEquals("3", iter.next().toString());
+		assertFalse(iter.hasNext());
+	}
+
 	public final void testToSet() {
 		final Set result = (Set) ef.evaluate("{1,2,3}.toSet()");
 		assertEquals(3, result.size());
 		assertTrue(result.contains(new BigInteger("2")));
+	}
+
+	@SuppressWarnings("unchecked")
+	public void testToSetStableOrder() {
+		final Set<Number> result = (Set) ef.evaluate("{1,1,2,1,2,3,2,1,3}.toSet()");
+		assertEquals(3, result.size());
+		Iterator<Number> iter = result.iterator();
+		assertTrue(iter.hasNext());
+		assertEquals("1", iter.next().toString());
+		assertTrue(iter.hasNext());
+		assertEquals("2", iter.next().toString());
+		assertTrue(iter.hasNext());
+		assertEquals("3", iter.next().toString());
+		assertFalse(iter.hasNext());
+	}
+
+	@SuppressWarnings("unchecked")
+	public void testToSetReturnsEmptySet() {
+		final Collection result = (Collection) ef.evaluate("{}.toSet()");
+		assertTrue(result instanceof Set);
+		assertTrue(result.isEmpty());
 	}
 
 	public final void testSize() {

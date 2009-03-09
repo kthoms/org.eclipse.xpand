@@ -14,8 +14,8 @@ package org.eclipse.internal.xtend.type.baseimpl.types;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +36,7 @@ import org.eclipse.xtend.typesystem.Type;
 public class CollectionTypeImpl extends BuiltinBaseType implements ParameterizedType {
 	private static final Log LOG = LogFactory.getLog(CollectionTypeImpl.class);
 
-	private Type innerType;
+	private final Type innerType;
 
 	public CollectionTypeImpl(final Type innerType, final TypeSystem ts, final String name) {
 		super(ts, name);
@@ -103,9 +103,9 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 					public Object evaluateInternal(final Object target, final Object[] params) {
 						if (target==null) {
 							LOG.warn("toSet called with Null argument. Will return an empty set.");
-							return new ArrayList<Object>(0);
+							return new LinkedHashSet<Object>(0);
 						}
-						return new java.util.LinkedHashSet<Object>((Collection<?>) target);
+						return new LinkedHashSet<Object>((Collection<?>) target);
 					}
 
 					@Override
@@ -258,7 +258,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 
 					@Override
 					public Object evaluateInternal(final Object target, final Object[] params) {
-						final Set r = new HashSet((Collection) target);
+						final Set r = new LinkedHashSet((Collection) target);
 						if (params!=null && params[0]!=null) {
 							r.addAll((Collection) params[0]);
 						} else {
@@ -278,7 +278,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 
 					@Override
 					public Object evaluateInternal(final Object target, final Object[] params) {
-						final Set r = new HashSet((Collection) target);
+						final Set r = new LinkedHashSet((Collection) target);
 						r.removeAll((Collection) params[0]);
 						return r;
 					}
@@ -294,7 +294,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 
 					@Override
 					public Object evaluateInternal(final Object target, final Object[] params) {
-						final Set r = new HashSet((Collection) target);
+						final Set r = new LinkedHashSet((Collection) target);
 						r.retainAll((Collection) params[0]);
 						return r;
 					}

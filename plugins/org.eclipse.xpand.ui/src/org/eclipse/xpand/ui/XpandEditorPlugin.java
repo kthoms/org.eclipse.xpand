@@ -133,7 +133,7 @@ public class XpandEditorPlugin extends AbstractUIPlugin {
 	public ContextTypeRegistry getContextTypeRegistry() {
 		if (contextTypeRegistry == null) {
 			contextTypeRegistry = new ContributionContextTypeRegistry();
-			contextTypeRegistry.addContextType("org.eclipse.internal.xtend.xpand2.editor.context.Default");
+			contextTypeRegistry.addContextType("org.eclipse.xpand.ui.editor.context.Default");
 		}
 		return contextTypeRegistry;
 	}

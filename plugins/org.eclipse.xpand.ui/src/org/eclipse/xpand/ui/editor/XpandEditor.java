@@ -79,7 +79,6 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 
 		// refactoring
 		contextMenuRefactoringGroup = new RefactorActionGroup(this, ITextEditorActionConstants.GROUP_EDIT);
-
 	}
 
 	public ActionGroup getActionGroup() {
@@ -88,6 +87,6 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 
 	@Override
 	protected void initializeKeyBindingScopes() {
-		setKeyBindingScopes(new String[] { "org.eclipse.internal.xtend.xpand2.editor.XpandEditorScope" }); //$NON-NLS-1$
+		setKeyBindingScopes(new String[] { "org.eclipse.xpand.ui.XpandEditorScope" }); //$NON-NLS-1$
 	}
 }

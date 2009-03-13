@@ -17,7 +17,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.issues.Issues;
-import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
 import org.eclipse.xtend.expression.ExecutionContext;

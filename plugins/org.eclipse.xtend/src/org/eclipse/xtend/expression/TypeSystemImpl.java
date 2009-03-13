@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
@@ -131,6 +132,9 @@ public class TypeSystemImpl implements TypeSystem {
 	}
 
 	private final Cache<Object, Type> typeCache = new Cache<Object, Type>() {
+		{
+			this.internal = new WeakHashMap<Object, Type>();
+		}
 
 		@Override
 		protected Type createNew(Object obj) {

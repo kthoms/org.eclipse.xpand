@@ -12,12 +12,13 @@ package org.eclipse.internal.xtend.util;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Cache<K, V> {
 
 	protected abstract V createNew(K arg0);
 
-	private final HashMap<K, V> internal = new HashMap<K, V>();
+	protected Map<K, V> internal = new HashMap<K, V>();
 
 	public V get(final K key) {
 		if (internal.containsKey(key))

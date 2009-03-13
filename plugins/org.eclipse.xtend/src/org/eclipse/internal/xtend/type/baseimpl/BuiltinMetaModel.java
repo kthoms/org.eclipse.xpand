@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.types.*;
@@ -34,7 +35,7 @@ import org.eclipse.xtend.typesystem.Type;
  */
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public final class BuiltinMetaModel implements MetaModel {
 
@@ -300,7 +301,11 @@ public final class BuiltinMetaModel implements MetaModel {
 	}
 
 	private final Cache<Object, Type> typeCache = new Cache<Object, Type>() {
+		{
+			this.internal = new WeakHashMap<Object, Type>();
+		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		protected Type createNew(Object obj) {
 			if (obj == null)

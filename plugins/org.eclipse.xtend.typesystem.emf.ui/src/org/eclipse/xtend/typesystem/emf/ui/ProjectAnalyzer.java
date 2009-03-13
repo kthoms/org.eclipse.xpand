@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -32,6 +33,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -47,18 +49,16 @@ import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 import org.eclipse.xtend.typesystem.emf.ui.internal.EmfToolsLog;
 
 /**
- * Analyzes a project's classpath for ecore metamodels. We need to take care of
- * Ecore files
+ * Analyzes a project's classpath for ecore metamodels. We need to take care of Ecore files
  * <ul>
  * <li>directly contained in the classpath</li>
  * <li>in JARs within the classpath</li>
  * <li>in the classpath of projects referenced by this project (recursively)</li>
- * <li>in plugins referenced by the project, either within the target platform
- * or as referenced plugin projects (recursively)</li>
+ * <li>in plugins referenced by the project, either within the target platform or as referenced plugin projects
+ * (recursively)</li>
  * </ul>
  * <p>
- * Reading Ecore files occurs in background Jobs. Each Job uses its own
- * ResourceSet. This avoids concurrency issues.
+ * Reading Ecore files occurs in background Jobs. Each Job uses its own ResourceSet. This avoids concurrency issues.
  * </p>
  */
 final class ProjectAnalyzer extends Job {
@@ -69,6 +69,8 @@ final class ProjectAnalyzer extends Job {
 
 	public ProjectAnalyzer(final IJavaProject project) {
 		super("Analyzing accessible EMF metamodels for project " + project.getProject().getProject().getName());
+		// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=268516
+		setRule(ResourcesPlugin.getWorkspace().getRoot());
 		this.project = project;
 	}
 
@@ -83,6 +85,7 @@ final class ProjectAnalyzer extends Job {
 		mapping = new HashMap<IStorage, Resource>();
 		packages = new HashMap<String, EPackage>();
 		loadMetamodelsForProject(project, rs, monitor);
+		
 		// always add ecore
 		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 
@@ -97,6 +100,7 @@ final class ProjectAnalyzer extends Job {
 		return Status.OK_STATUS;
 	}
 
+	@SuppressWarnings("restriction")
 	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs,
 			final IProgressMonitor monitor) {
 		try {
@@ -180,11 +184,7 @@ final class ProjectAnalyzer extends Job {
 		try {
 			r.load(storage.getContents(), Collections.EMPTY_MAP);
 			mapping.put(storage, r);
-			final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(),
-					EcorePackage.Literals.EPACKAGE);
-			for (final EPackage pack : packages) {
-				registerPackage(storage, pack);
-			}
+			registerEPackages(rs, r, false);
 		}
 		catch (final IOException e) {
 			EmfToolsLog.logError(e);
@@ -194,21 +194,31 @@ final class ProjectAnalyzer extends Job {
 		}
 	}
 
-	private void registerPackage(final IStorage storage, final EPackage pack) {
+	private void registerEPackages(final ResourceSet rs, final Resource r, boolean overwrite) {
+		final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(),
+				EcorePackage.Literals.EPACKAGE);
+		for (final EPackage pack : packages) {
+			registerPackage(pack, rs, overwrite);
+		}
+	}
+
+	private void registerPackage(final EPackage pack, ResourceSet rs, boolean overwrite) {
+		Registry packageRegistry = rs.getPackageRegistry();
 		// finding duplicates by nsURI is better than by name since package
 		// names may be used across MMs
-		if (this.packages.containsKey(pack.getNsURI())) {
+		if (!overwrite && packageRegistry.containsKey(pack.getNsURI())) {
 			if (EmfToolsPlugin.trace) {
-				System.out.println("Did not register '" + pack.getName() + "' from " + storage.getFullPath()
+				System.out.println("Did not register '" + pack.getName() //+ "' from " + storage.getFullPath()
 						+ " because an EPackage with the same nsURI has already been registered.");
 			}
 		}
 		else {
-			this.packages.put(pack.getNsURI(), pack);
+			packageRegistry.put(pack.getNsURI(), pack);
+			packages.put(pack.getNsURI(), pack);
 		}
 		// recurse into subpackages
 		for (final EPackage p : pack.getESubpackages()) {
-			registerPackage(storage, p);
+			registerPackage(p, rs, overwrite);
 		}
 	}
 

@@ -27,6 +27,7 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EPackage;
@@ -140,6 +141,9 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 
 		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
+		// avoid deadlock with JDT by starting JDT's classpath resolution job
+		JavaCore.initializeAfterLoad(new NullProgressMonitor());
+		
 		// traverse all Xpans projects in workspace and analyze their MMs in
 		// classpath
 		for (final IProject p : workspace.getRoot().getProjects()) {

@@ -196,33 +196,5 @@
            pluginClass="org.eclipse.xpand.ui.debug.XpandPluginAdapter"
            runtimeClass="org.eclipse.internal.xpand2.debug.XpandElementAdapter">
      </adapter>
-  </extension>
-  
-   <extension
-         point="org.eclipse.ui.activities">
-         <!-- Category -->
-    <category
-         description="%activity.category.description"
-         id="org.eclipse.xpand.ui.category"
-         name="%activity.category">
-    </category>
-         
-         <!-- UI elements, defined using general pattern -->
-    <activity
-          description="%activity.ui.description"
-          id="org.eclipse.xpand.ui"
-          name="%activity.ui">
-    </activity>
-    <activityPatternBinding
-          activityId="org.eclipse.xpand.ui"
-          pattern="org\.eclipse\.xpand\.ui\..*/.*">
-    </activityPatternBinding>
-    <categoryActivityBinding
-        activityId="org.eclipse.xpand.ui"
-        categoryId="org.eclipse.xpand.ui.category">
-    </categoryActivityBinding>
-   <defaultEnablement
-       id="org.eclipse.xpand.ui">
-   </defaultEnablement>
-    </extension>      
+  </extension>    
 </plugin>

@@ -16,7 +16,7 @@
 package org.eclipse.emf.editor.ui;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.editor.EEditor;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -39,10 +39,9 @@ public class EEDetailsPageProvider implements IDetailsPageProvider {
 	}
 
 	public IDetailsPage getPage(Object key) {
-		EObjectImpl input = null;
-		if (key instanceof EObjectImpl) {
-			EObjectImpl eModelElement = (EObjectImpl) key;
-			input = eModelElement;
+		EObject input = null;
+		if (key instanceof EObject) {
+			input =  (EObject) key;
 		}
 		page = new GenericDetailsPage(input, editor);
 		page.addSelectionChangedListener(new ISelectionChangedListener() {

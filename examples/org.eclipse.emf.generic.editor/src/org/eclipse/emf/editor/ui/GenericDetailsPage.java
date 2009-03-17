@@ -10,10 +10,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.editor.EEditor;
@@ -71,12 +71,12 @@ public class GenericDetailsPage extends AbstractFormPart implements
 		}
 	}
 
-	private EObjectImpl input;
+	private EObject input;
 
 	private Composite main;
 	private EEditor editor;
 
-	public GenericDetailsPage(EObjectImpl object, EEditor editor) {
+	public GenericDetailsPage(EObject object, EEditor editor) {
 		this.input = object;
 		this.editor = editor;
 	}

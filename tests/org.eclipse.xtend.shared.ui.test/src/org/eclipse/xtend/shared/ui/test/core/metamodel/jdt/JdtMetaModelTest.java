@@ -22,6 +22,8 @@ import org.eclipse.xtend.shared.ui.core.metamodel.jdt.javabean.JdtJavaBeanTypeSt
 import org.eclipse.xtend.shared.ui.expression.PluginExecutionContextImpl;
 import org.eclipse.xtend.shared.ui.test.PluginTestBase;
 import org.eclipse.xtend.typesystem.Operation;
+import org.eclipse.xtend.typesystem.ParameterizedType;
+import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -73,6 +75,16 @@ public class JdtMetaModelTest extends PluginTestBase {
 	 */
 	public void testResolveConstantFromInterface () throws Exception {
 		checkConstant("java::net::SocketOptions", "IP_MULTICAST_IF", java.net.SocketOptions.IP_MULTICAST_IF);
+	}
+	
+	public void testResolveProperty() throws Exception {
+		Type type = (Type) ef.evaluate("javax::swing::JComponent");
+		Property property = type.getProperty("registeredKeyStrokes");
+		Type returnType = property.getReturnType();
+		assertTrue(returnType instanceof ParameterizedType);
+		ParameterizedType pt = (ParameterizedType) returnType;
+		
+		assertEquals(pt.getInnerType(), ef.evaluate("javax::swing::KeyStroke"));
 	}
 	
 	/**

@@ -80,7 +80,6 @@ public abstract class AbstractTypeImpl implements Type {
         }
     };
 
-    @SuppressWarnings("unchecked")
 	public Property getProperty(final String name) {
         return propertyCache.get(name);
     }

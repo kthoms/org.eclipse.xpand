@@ -71,10 +71,11 @@ public class ModelCheckor {
 					if (eclipseResourcesUtil != null) {
 						eclipseResourcesUtil.deleteMarkers(res);
 					}
-					TreeIterator<EObject> allContents = res.getAllContents();
-					if (!allContents.hasNext())
+					ValidationInfoAdapter.removeAll(res);
+					EList<EObject> contents = res.getContents();
+					if (contents.isEmpty())
 						continue;
-					EObject rootObject = allContents.next();
+					EObject rootObject = contents.iterator().next();
 					// xtend checks
 					List<MessageData> checkValidation = checkValidation(rootObject);
 					for (MessageData md : checkValidation) {
@@ -84,15 +85,19 @@ public class ModelCheckor {
 						Object o = iterator.next();// object index 0
 						if (o instanceof EObject) {
 							EObject eO = (EObject) o;
+							EStructuralFeature f = null;
 							location = extendedReflectiveItemProvider.getText(eO);
-							Object obj = iterator.next();// feature index 1
-							// TODO get location using Element and Feature
-							// from
-							// md.getData()
-							if (obj instanceof EStructuralFeature) {
-								EStructuralFeature f = (EStructuralFeature) obj;
-								location += ("#" + f.getName());
+							if (iterator.hasNext()) {
+								Object obj = iterator.next();// feature index 1
+								// TODO get location using Element and Feature
+								// from
+								// md.getData()
+								if (obj instanceof EStructuralFeature) {
+									f = (EStructuralFeature) obj;
+									location += ("#" + f.getName());
+								}
 							}
+							eO.eAdapters().add(new ValidationInfoAdapter(md.getMessage(), f, md.getStatus()));
 						}
 						markerHandler.addMarker(file, md.getMessage(), md.getStatus(), location);
 					}
@@ -101,8 +106,7 @@ public class ModelCheckor {
 					messages.addAll(ecoreValidation(rootObject));
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			String erMes = e.getLocalizedMessage();
 			if (erMes == null) {
 				erMes = e.toString();
@@ -130,16 +134,16 @@ public class ModelCheckor {
 		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(rootObject);
 
 		switch (diagnostic.getSeverity()) {
-			case Diagnostic.ERROR:
-				status = IMessageProvider.ERROR;
-				break;
-			case Diagnostic.WARNING:
-				status = IMessageProvider.WARNING;
-				break;
-			case Diagnostic.INFO:
-				status = IMessageProvider.INFORMATION;
-			default:
-				break;
+		case Diagnostic.ERROR:
+			status = IMessageProvider.ERROR;
+			break;
+		case Diagnostic.WARNING:
+			status = IMessageProvider.WARNING;
+			break;
+		case Diagnostic.INFO:
+			status = IMessageProvider.INFORMATION;
+		default:
+			break;
 		}
 		return createMessagesFromDiagnostic(rootObject, diagnostic, status);
 	}

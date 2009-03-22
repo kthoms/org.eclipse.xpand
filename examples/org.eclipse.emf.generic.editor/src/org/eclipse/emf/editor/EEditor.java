@@ -27,16 +27,19 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 import org.eclipse.emf.editor.extxpt.WorkspaceResourceManager;
+import org.eclipse.emf.editor.provider.ClasspathUriResolver;
 import org.eclipse.emf.editor.provider.DecoratingItemLabelProvider;
 import org.eclipse.emf.editor.provider.ExtendedLabelProvider;
 import org.eclipse.emf.editor.provider.ExtendedReflectiveItemProviderAdapterFactory;
@@ -114,7 +117,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 		ILabelDecorator decorator = PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator();
 
 		ExtendedReflectiveItemProviderAdapterFactory extendedReflectiveItemProviderAdapterFactory = new ExtendedReflectiveItemProviderAdapterFactory(
-				new DecoratingItemLabelProvider(customProvider, decorator), facade);
+				new DecoratingItemLabelProvider(customProvider, decorator), facade, getFile());
 		caf.addAdapterFactory(extendedReflectiveItemProviderAdapterFactory);
 
 		// register item provider for details view
@@ -232,12 +235,26 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	 */
 	private void initInternal() {
 		project = getFile().getProject();
+		editingDomain.getResourceSet().setURIConverter(new ExtensibleURIConverterImpl(){
+			@Override
+			public URI normalize(URI uri) {
+				if (ClasspathUriResolver.isClasspathUri(uri)) {
+					URI result = new ClasspathUriResolver().resolve(project,uri);
+					if (ClasspathUriResolver.isClasspathUri(result))
+						throw new IllegalArgumentException("Couldn't find resource on classpath : "+result);
+					result = super.normalize(result);
+					return result;
+				}
+				return super.normalize(uri);
+			}
+		});
 		facade = createExtXptFacade();
 
 		if (editingDomain.getAdapterFactory() instanceof ComposedAdapterFactory) {
 			ComposedAdapterFactory caf = (ComposedAdapterFactory) editingDomain.getAdapterFactory();
 			rejectFactory(caf);
 		}
+		
 	}
 
 	@Override
@@ -255,6 +272,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	public void doSave(IProgressMonitor progressMonitor) {
 		try {
 			checkModel();
+			stateChanged(null);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

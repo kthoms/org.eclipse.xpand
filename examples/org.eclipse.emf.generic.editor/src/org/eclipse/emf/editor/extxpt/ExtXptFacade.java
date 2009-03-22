@@ -78,7 +78,7 @@ public class ExtXptFacade {
 			EEPlugin.logError("Exception during extension evaluation", e);
 		}
 		catch (RuntimeException e) {
-			// TODO check file exists
+			e.printStackTrace();
 			// extension file not found
 		}
 		catch (Throwable e) {

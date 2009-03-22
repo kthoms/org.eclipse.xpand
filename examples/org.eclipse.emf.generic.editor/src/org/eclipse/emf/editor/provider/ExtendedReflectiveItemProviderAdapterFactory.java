@@ -16,6 +16,7 @@ package org.eclipse.emf.editor.provider;
  *
  */
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
@@ -24,8 +25,9 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.emf.editor.EEPlugin;
+import org.eclipse.emf.editor.ValidationInfoAdapter;
 import org.eclipse.emf.editor.extxpt.ExtXptFacade;
-import org.eclipse.emf.mwe.core.issues.MWEDiagnostic;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
@@ -41,12 +43,14 @@ import org.eclipse.swt.graphics.Image;
 public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 
 	private final ExtXptFacade facade;
+	private IFile file;
 
 	public ExtendedReflectiveItemProviderAdapterFactory(final DecoratingLabelProvider decoratingLabelProvider,
-			ExtXptFacade facade) {
+			ExtXptFacade facade, IFile iFile) {
 		super();
 		this.facade = facade;
 		reflectiveItemProviderAdapter = new ExtendedReflectiveItemProvider(this, decoratingLabelProvider);
+		this.file = iFile;
 	}
 
 	public final class ExtendedReflectiveItemProvider extends ReflectiveItemProvider {
@@ -75,11 +79,11 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 			return text;
 		}
 
-		protected Image annotateImage(Image image, Diagnostic diag) {
+		protected Image annotateImage(Image image, int severity) {
 			ImageDescriptor[] descriptors = new ImageDescriptor[5];
-			if (diag.getSeverity() == Diagnostic.ERROR)
+			if (severity == IMessageProvider.ERROR)
 				descriptors[IDecoration.BOTTOM_LEFT] = EEPlugin.getDefault().getImageDescriptor("/icons/error.gif");
-			if (diag.getSeverity() == Diagnostic.WARNING)
+			if (severity == IMessageProvider.WARNING)
 				descriptors[IDecoration.BOTTOM_RIGHT] = EEPlugin.getDefault().getImageDescriptor("/icons/warning_co.gif");
 			image = getImageManager().createImage(new DecorationOverlayIcon(image, descriptors));
 			return image;
@@ -99,15 +103,9 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 			Image im = ExtendedImageRegistry.getInstance().getImage(imURI);
 			if (im != null) {
 				if (object instanceof EObject) {
-					MWEDiagnostic[] errors = facade.check((EObject) object).getIssues();
-					if (errors.length > 0) {
-						for (MWEDiagnostic diag : errors) {
-							if (object.equals(diag.getElement())) {
-								im = annotateImage(im, diag);
-								break;
-							}
-						}
-					}
+					ValidationInfoAdapter find = ValidationInfoAdapter.find((EObject)object);
+					if (find!=null)
+						im = annotateImage(im, find.getSeverity());
 				}
 				return im;
 			}

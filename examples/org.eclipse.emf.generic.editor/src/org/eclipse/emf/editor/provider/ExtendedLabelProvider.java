@@ -122,7 +122,7 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 				// return URI. Image will be stored in
 				// ExtendedImageRegistry
 				// which is not refreshable
-				if (!ClasspathUriResolver.isClassapthUri(iconNormalizedURI) && checkAccessable(iconNormalizedURI))
+				if (!ClasspathUriResolver.isClasspathUri(iconNormalizedURI) && checkAccessable(iconNormalizedURI))
 					retVal = iconNormalizedURI;
 			}
 		}

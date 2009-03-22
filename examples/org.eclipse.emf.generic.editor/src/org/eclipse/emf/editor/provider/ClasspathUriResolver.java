@@ -69,7 +69,7 @@ public class ClasspathUriResolver {
 
 	public URI resolve(ClassLoader classLoader, URI classpathUri) {
 		try {
-			if (isClassapthUri(classpathUri)) {
+			if (isClasspathUri(classpathUri)) {
 				return findResourceOnClasspath(classLoader, classpathUri);
 			}
 		}
@@ -81,7 +81,7 @@ public class ClasspathUriResolver {
 
 	public URI resolve(IResource resource, URI classpathUri) {
 		try {
-			if (isClassapthUri(classpathUri)) {
+			if (isClasspathUri(classpathUri)) {
 				IProject project = resource.getProject();
 				IJavaProject javaProject = JavaCore.create(project);
 				return findResourceInWorkspace(javaProject, classpathUri);
@@ -95,7 +95,7 @@ public class ClasspathUriResolver {
 
 	public URI resolve(IJavaElement javaElement, URI classpathUri) {
 		try {
-			if (isClassapthUri(classpathUri)) {
+			if (isClasspathUri(classpathUri)) {
 				IJavaProject javaProject = javaElement.getJavaProject();
 				return findResourceInWorkspace(javaProject, classpathUri);
 			}
@@ -108,7 +108,7 @@ public class ClasspathUriResolver {
 
 	public URI resolve(Bundle bundle, URI classpathUri) {
 		try {
-			if (isClassapthUri(classpathUri)) {
+			if (isClasspathUri(classpathUri)) {
 				return findResourceInBundle(bundle, classpathUri);
 			}
 		}
@@ -118,7 +118,7 @@ public class ClasspathUriResolver {
 		return classpathUri;
 	}
 
-	public static boolean isClassapthUri(URI uri) {
+	public static boolean isClasspathUri(URI uri) {
 		String scheme = uri.scheme();
 		return CLASSPATH_SCHEME.equals(scheme);
 	}

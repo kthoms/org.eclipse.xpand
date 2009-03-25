@@ -31,6 +31,7 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExpressionFacade;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.Callable;
+import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Property;
@@ -288,53 +289,38 @@ public class ExpressionProposalComputer implements ProposalComputer {
         final List<Object> result = new ArrayList<Object>();
 		final Set<String> nameCache = new HashSet<String>();
         if (targetType != null) {
-			Set<? extends Callable> s;
 			result.addAll(addFeatureProposals(targetType, prefix, factory, nameCache));
-			Set<? extends Type> superTypes = targetType.getSuperTypes();
-			for (final Type t : superTypes) {
-				result.addAll(addFeatureProposals(targetType, prefix, factory, nameCache));
-            }
+			getAllExtensionProposals(targetType, prefix, ctx, factory, result, nameCache);
             
-			// get all extensions whose first parameter is compatible with
-			// 'targetType'
-            Set<? extends Extension> extensions = ctx.getAllExtensions();
-            for (Extension extension : extensions) {
-            	if (extension.getName().toLowerCase().startsWith(prefix.toLowerCase())) {
-            		if (extension.getParameterTypes().size() >= 1) {
-            			Type firstParameterType = extension.getParameterTypes().get(0);
-						if (firstParameterType.isAssignableFrom(targetType)) {
-            				result.add(factory.createExtensionOnMemberPositionProposal(extension, prefix, false));
-            			}
-            		}
-            	}
-            }
-            if (targetType instanceof ParameterizedType) {
-                result.addAll(getAllCollectionOperations(prefix, factory));
+			if (targetType instanceof ParameterizedType) {
+            	result.addAll(getAllCollectionOperations(prefix, factory));
                 targetType = ((ParameterizedType) targetType).getInnerType();
-                s = targetType.getAllFeatures();
-                for (final Callable f : s) {
-                    if (f.getName().toLowerCase().startsWith(prefix.toLowerCase())) {
-                        if (f instanceof Property) {
-                            result.add(factory.createPropertyProposal((Property) f, prefix, true));
-						}
-						else if (f instanceof Operation) {
-                            if (Character.isJavaIdentifierStart(f.getName().charAt(0))) {
-                                result.add(factory.createOperationProposal((Operation) f, prefix, true));
-                            }
-                        }
-                    }
-                }
-                extensions = ctx.getAllExtensions();
-                for (final Extension e : extensions) {
-                    if (e.getName().toLowerCase().startsWith(prefix.toLowerCase()) && e.getParameterTypes().size() >= 1
-                            && e.getParameterTypes().get(0).isAssignableFrom(targetType)) {
-                        result.add(factory.createExtensionOnMemberPositionProposal(e, prefix, true));
-                    }
-                }
+                result.addAll(addFeatureProposals(targetType, prefix, factory, nameCache));
+                getAllExtensionProposals(targetType, prefix, ctx, factory, result, nameCache);
             }
         }
         return result;
     }
+
+	private static void getAllExtensionProposals(Type targetType,
+			final String prefix, final ExecutionContext ctx,
+			final ProposalFactory factory, final List<Object> result,
+			final Set<String> nameCache) {
+		// get all extensions whose first parameter is compatible with
+		// 'targetType'
+		Set<? extends Extension> extensions = ctx.getAllExtensions();
+		for (Extension extension : extensions) {
+			if (extension.getName().toLowerCase().startsWith(prefix.toLowerCase())) {
+				if (extension.getParameterTypes().size() >= 1) {
+					Type firstParameterType = extension.getParameterTypes().get(0);
+					if (firstParameterType.isAssignableFrom(targetType)) {
+						if (!factory.isDuplicate(nameCache, extension))
+							result.add(factory.createExtensionOnMemberPositionProposal(extension, prefix, false));
+					}
+				}
+			}
+		}
+	}
 
 	private static List<Object> addFeatureProposals(Type targetType, final String prefix,
 			final ProposalFactory factory, Set<String> nameCache) {
@@ -352,8 +338,8 @@ public class ExpressionProposalComputer implements ProposalComputer {
 					}
 				}
 			}
-			if (proposal != null && !factory.isDuplicate(nameCache, proposal)) {
-				factory.addToCache(nameCache, proposal);
+			if (proposal != null && !factory.isDuplicate(nameCache, (Feature) f)) {
+				factory.addToCache(nameCache, f);
 				result.add(proposal);
 			}
 		}

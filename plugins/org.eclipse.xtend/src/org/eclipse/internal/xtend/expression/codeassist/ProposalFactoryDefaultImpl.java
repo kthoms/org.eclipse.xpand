@@ -11,8 +11,6 @@
 
 package org.eclipse.internal.xtend.expression.codeassist;
 
-import java.util.Set;
-
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.Operation;
@@ -20,7 +18,7 @@ import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
 
-public class ProposalFactoryDefaultImpl implements ProposalFactory {
+public class ProposalFactoryDefaultImpl extends AbstractProposalFactory implements ProposalFactory {
 
 	public Object createPropertyProposal(final Property p, final String prefix, final boolean onCollection) {
 		return new ProposalImpl(prefix, p.getName(), p.toString(), p);
@@ -82,31 +80,4 @@ public class ProposalFactoryDefaultImpl implements ProposalFactory {
 		return new ProposalImpl(prefix, insertStr, displayStr, displayStr);
 	}
 
-	public boolean isDuplicate(Set<String> nameCache, Object proposal) {
-		if (nameCache == null || proposal == null)
-			throw new IllegalArgumentException();
-
-		ProposalImpl p = castToProposal(proposal);
-		if (p != null) {
-			if (nameCache.contains(p.getDisplayString()))
-				return true;
-			else
-				return false;
-		}
-		return true;
-	}
-
-	public void addToCache(Set<String> nameCache, Object proposal) {
-		ProposalImpl p = castToProposal(proposal);
-		if (p != null) {
-			nameCache.add(p.getDisplayString());
-		}
-	}
-
-	private ProposalImpl castToProposal(Object obj) {
-		if (obj instanceof ProposalImpl)
-			return (ProposalImpl) obj;
-
-		return null;
-	}
 }

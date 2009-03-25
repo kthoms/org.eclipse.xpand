@@ -13,6 +13,7 @@ package org.eclipse.xtend.shared.ui.expression.editor.codeassist;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.internal.xtend.expression.codeassist.AbstractProposalFactory;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalFactory;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
@@ -26,7 +27,7 @@ import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
 
-public class ProposalFactoryEclipseImpl implements ProposalFactory {
+public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 
 	public int offset;
 
@@ -77,8 +78,25 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 			}
 			return "List[" + XpandUtil.getLastSegment(returnType.getName()) + "]";
 		}
-
-		return TypeNameUtil.getSimpleName(returnType.getName());
+		StringBuilder result = new StringBuilder();
+		computeReturnType(returnType, result);
+		return result.toString();
+	}
+	
+	private void computeReturnType(Type returnType, StringBuilder result) {
+		if (returnType == null) {
+			result.append("unknown");
+			return;
+		}
+			
+		if (returnType instanceof ParameterizedType) {
+			result.append(TypeNameUtil.getSimpleName(returnType.getName()));
+			result.append('[');
+			computeReturnType(((ParameterizedType) returnType).getInnerType(), result);
+			result.append(']');
+		} else {
+			result.append(TypeNameUtil.getSimpleName(returnType.getName()));
+		}
 	}
 
 	public Object createOperationProposal(final Operation p, final String prefix, final boolean onOperation) {
@@ -199,34 +217,5 @@ public class ProposalFactoryEclipseImpl implements ProposalFactory {
 
 	public Object createKeywordProposal(final String insertString, final String displayString, final String prefix) {
 		throw new UnsupportedOperationException();
-	}
-
-	public boolean isDuplicate(Set<String> nameCache, Object proposal) {
-		if (nameCache == null || proposal == null)
-			throw new IllegalArgumentException();
-
-		
-		CompletionProposal p = castToProposal(proposal);
-		if (p != null) {
-			if (nameCache.contains(p.getDisplayString()))
-				return true;
-			else
-				return false;
-		}
-		return true;
-	}
-
-	public void addToCache(Set<String> nameCache, Object proposal) {
-		CompletionProposal p = castToProposal(proposal);
-		if (p != null) {
-			nameCache.add(p.getDisplayString());
-		}
-	}
-
-	private CompletionProposal castToProposal(Object obj) {
-		if (obj instanceof CompletionProposal)
-			return (CompletionProposal) obj;
-
-		return null;
 	}
 }

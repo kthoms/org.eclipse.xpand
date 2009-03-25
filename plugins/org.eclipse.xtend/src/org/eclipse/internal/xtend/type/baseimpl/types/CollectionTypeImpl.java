@@ -46,6 +46,13 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 	public Type getInnerType() {
 		return innerType;
 	}
+	
+	private Type getInnerTypeRec(Type type) {
+		Type result = type;
+		if (result instanceof CollectionTypeImpl)
+			return getInnerTypeRec(((ParameterizedType) result).getInnerType());
+		return result;
+	}
 
 	public ParameterizedType cloneWithInnerType(final Type innerType) {
 		return (ParameterizedType) getTypeSystem().getCollectionType(innerType);
@@ -300,7 +307,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 					}
 				},
 
-				new OperationImpl(this, "flatten", getTypeSystem().getListType(getTypeSystem().getObjectType()),
+				new OperationImpl(this, "flatten", getTypeSystem().getListType(getInnerTypeRec(CollectionTypeImpl.this)),
 						new Type[0]) {
 
 					@Override
@@ -310,20 +317,20 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 
 					@Override
 					public Object evaluateInternal(final Object target, final Object[] params) {
-						return flattenRec((Collection) target);
+						final List<Object> result = new ArrayList<Object>();
+						flattenRec(result, (Collection) target);
+						return result;
 					}
 
-					public List<Object> flattenRec(final Collection col) {
-						final List<Object> result = new ArrayList<Object>();
+					public void flattenRec(final List<Object> result, final Collection col) {
 						for (final Object element : col) {
 							if (element instanceof Collection) {
-								result.addAll(flattenRec((Collection) element));
+								flattenRec(result, (Collection) element);
 							}
 							else {
 								result.add(element);
 							}
 						}
-						return result;
 					}
 				}
 

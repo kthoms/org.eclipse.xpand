@@ -142,7 +142,7 @@ public class EClassType extends AbstractTypeImpl {
 				log.warn("Couldn't resolve type for " + getTypeName(feature.getEType()));
 			}
 			else {
-				if (feature.isChangeable() && !feature.isDerived() && !feature.isMany()) { // !feature.isUnsettable()
+				if (feature.isChangeable() && !feature.isMany()){ //  && !feature.isDerived()  { !feature.isUnsettable()
 					// &&
 					result.add(new OperationImpl(this, "set" + StringHelper.firstUpper(feature.getName()), this,
 							new Type[] { t }) {

@@ -13,16 +13,16 @@ package org.eclipse.xtend.expression;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.WeakHashMap;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
-import org.eclipse.internal.xtend.util.Cache;
+import org.eclipse.internal.xtend.util.WeakCache;
 import org.eclipse.internal.xtend.xtend.types.XtendMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Operation;
@@ -131,9 +131,13 @@ public class TypeSystemImpl implements TypeSystem {
 		return builtin.getSetType(innerType);
 	}
 
-	private final Cache<Object, Type> typeCache = new Cache<Object, Type>() {
-		{
-			this.internal = new WeakHashMap<Object, Type>();
+	private final WeakCache<Object, Type> typeCache = new WeakCache<Object, Type>() {
+		
+		@Override
+		public Type get(Object key) {
+			if (key instanceof Collection)
+				return createNew(key);
+			return super.get(key);
 		}
 
 		@Override
@@ -171,12 +175,12 @@ public class TypeSystemImpl implements TypeSystem {
 			t = (ParameterizedType) builtin.getTypeForName(collectionTypeName);
 			if (t == null) {
 				return null;
-		}
+			}
 		}
 		Type r = null;
 		// FIXME This loop can potentially return wrong results depending on the
-		// installed metamodels and the order of these models in the
-		// list "metamodels".
+		//       installed metamodels and the order of these models in the
+		//       list "metamodels".
 		for (int i = 0; i < metaModels.size() && r == null; i++) {
 			final MetaModel curMeta = metaModels.get(i);
 			r = curMeta.getTypeForName(typeName);
@@ -187,7 +191,7 @@ public class TypeSystemImpl implements TypeSystem {
 			return r;
 		} else {
 			return t.cloneWithInnerType(r);
-	}
+		}
 	}
 
 	public Type getFeatureType() {
@@ -270,7 +274,7 @@ public class TypeSystemImpl implements TypeSystem {
 				colType = (ParameterizedType) builtin.getTypeForName(colTypeName);
 				if (colType == null) {
 					return new Type[0];
-			}
+				}
 			}
 
 			for (int i = 0; i < metaModels.size(); i++) {

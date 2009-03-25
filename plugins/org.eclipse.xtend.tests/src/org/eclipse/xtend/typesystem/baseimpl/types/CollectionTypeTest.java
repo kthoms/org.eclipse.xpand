@@ -23,6 +23,8 @@ import junit.framework.TestCase;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.ExpressionFacade;
+import org.eclipse.xtend.typesystem.Callable;
+import org.eclipse.xtend.typesystem.Type;
 
 public class CollectionTypeTest extends TestCase {
 
@@ -43,7 +45,8 @@ public class CollectionTypeTest extends TestCase {
 		try {
 			ef.evaluate("{Object.newInstance()} + 'b'");
 			fail("EvaluationException expected");
-		} catch (final EvaluationException e) {
+		}
+		catch (final EvaluationException e) {
 		}
 		assertTrue(((Set) ef.evaluate("{'a'}.union({'b'})")).contains("a"));
 	}
@@ -191,6 +194,18 @@ public class CollectionTypeTest extends TestCase {
 		assertEquals(Collections.EMPTY_LIST, ef.evaluate("{1}.withoutLast()"));
 		assertEquals(Collections.EMPTY_LIST, ef.evaluate("{}.withoutLast()"));
 		assertEquals(null, ef.evaluate("null.withoutLast()"));
+	}
+
+	public final void testFlattenReturnType() {
+		Type innerMostType = ec.getBooleanType();
+		Type innerType = ec.getCollectionType(innerMostType);
+		Type innerType2 = ec.getCollectionType(innerType);
+		Type collectionType = ec.getCollectionType(innerType2);
+		Type expectedResult = ec.getListType(innerMostType);
+		Callable feature = collectionType.getFeature("flatten", new Type[0]);
+		assertNotNull(feature);
+		assertEquals(expectedResult, feature.getReturnType());
+		assertTrue(feature.getReturnType().isAssignableFrom(expectedResult));
 	}
 
 }

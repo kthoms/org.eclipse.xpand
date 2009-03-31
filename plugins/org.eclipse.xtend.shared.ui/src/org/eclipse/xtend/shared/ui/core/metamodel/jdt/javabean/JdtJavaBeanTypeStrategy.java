@@ -11,8 +11,6 @@
 
 package org.eclipse.xtend.shared.ui.core.metamodel.jdt.javabean;
 
-import java.security.SignatureSpi;
-
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.internal.xtend.util.StringHelper;
 import org.eclipse.jdt.core.Flags;
@@ -24,6 +22,7 @@ import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.Signature;
 import org.eclipse.xtend.shared.ui.core.metamodel.jdt.JdtTypeStrategy;
+import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class JdtJavaBeanTypeStrategy implements JdtTypeStrategy {
 
@@ -138,7 +137,7 @@ public class JdtJavaBeanTypeStrategy implements JdtTypeStrategy {
 			if (Signature.getTypeSignatureKind(returnType) == Signature.ARRAY_TYPE_SIGNATURE) {
 				String elementType = Signature.getElementType(returnType);
 				return elementType;
-			} else if (isCollectionType(returnType)) {
+			} else if (isCollectionType(returnType, method)) {
 				String[] arguments = Signature.getTypeArguments(returnType);
 				if (arguments.length == 1)
 					return arguments[0];
@@ -153,18 +152,41 @@ public class JdtJavaBeanTypeStrategy implements JdtTypeStrategy {
 	 * @param returnType
 	 * @return
 	 */
-	private boolean isCollectionType(String returnType) {
+	private boolean isCollectionType(String returnType, IMethod method) {
 		try {
-			String signatureSimpleName = Signature.getTypeErasure(Signature.toString(returnType));
-			IType type = this.project.findType(signatureSimpleName);
-			IType collection = this.project.findType("java.util.Collection");
-			if (type != null && type.exists()) {
-				return type.newSupertypeHierarchy(null).contains(collection);
+			String signatureSimpleName = Signature.getTypeErasure(returnType);
+			String typeName = qualifiedName(method, signatureSimpleName);
+			if (typeName != null) {
+				IType type = this.project.findType(typeName);
+				IType collection = this.project.findType("java.util.Collection");
+				if (type != null && type.exists()) {
+					return type.newSupertypeHierarchy(null).contains(collection);
+				}
 			}
 		} catch (JavaModelException e) {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	private String qualifiedName(IMethod method, String signatureSimpleName) {
+		try {
+			String[][] result = method.getDeclaringType().resolveType(Signature.toString(signatureSimpleName));
+			if (result!=null && result.length > 0) {
+				StringBuffer buff = new StringBuffer();
+				for (int i = 0; i < result[0].length; i++) {
+					String part = result[0][i];
+					buff.append(part);
+					if (i < result[0].length - 1) {
+						buff.append(".");
+					}
+				}
+				return buff.toString();
+			}
+		} catch (JavaModelException e) {
+			XtendLog.logError(e);
+		}
+		return null;
 	}
 
 	public String propertyName(IField field) {

@@ -191,9 +191,10 @@ public class JdtMetaModelTest extends PluginTestBase {
 		IPath pack = env.addPackage(pPath, "mypack");
 		env.addClass(pack, "MyType", 
 			"package mypack;"
+			+"import java.util.HashSet;"
 			+"public interface MyType {"
 			+" public java.util.ArrayList<String> getList();"
-			+" public java.util.HashSet<String> getSet();"
+			+" public HashSet<String> getSet();"
 			+" public String[] getArray();"
 			+"}");
 		env.fullBuild();

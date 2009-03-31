@@ -1,0 +1,18 @@
+<workflow>
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
+		<registerEcoreFile value="${plugin-dir}/loadcurve.ecore"/>
+		<registerEcoreFile value="${plugin-dir}/device.ecore"/>
+	</bean>
+	
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel id="mm2"	class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel"/>
+		<invoke value="${src-pkg}::XMLWriter-CreateXMLECore::${method}()" />
+		<outputSlot value="model" />
+	</component>
+	
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLWriter">
+		<metaModel idRef="mm2" />
+		<modelSlot value="model" />
+		<uri value="${src-gen-dir}/CreateXML-ECore-${method}.xml" />
+	</component>
+</workflow>

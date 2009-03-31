@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/qname" xmlns:tns="http://www.example.org/qname" elementFormDefault="qualified">
+
+    <complexType name="TypeWithQName">
+    	<sequence>
+    		<element name="qname1" type="QName"></element>
+    		<element name="qname2" type="tns:MyQName"></element>
+    		<element name="qname3" type="QName"></element>
+    		<element name="qname4" type="QName"></element>
+    		<element name="qname5" type="QName"></element>
+    	</sequence>
+    </complexType>
+    
+    <element name="rootElement" type="tns:TypeWithQName"></element>
+
+    <simpleType name="MyQName">
+    	<restriction base="QName"></restriction>
+    </simpleType>
+</schema>

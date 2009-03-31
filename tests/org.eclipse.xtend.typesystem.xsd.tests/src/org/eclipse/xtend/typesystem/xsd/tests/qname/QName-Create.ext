@@ -1,0 +1,18 @@
+import qName;
+import type;
+
+extension org::eclipse::xtend::typesystem::xsd::lib::qname;
+
+create TypeWithQName this createQName():
+	setQname1(createQName("myLocalPart")) ->
+	setQname2(createQName("http://www.my.ns/","myLocalPart")) ->
+	setQname3(createQName("http://www.my.ns/","myLocalPart","myPrefix")) ->
+	setQname4(createQName1()) ->
+	setQname5(createQName2(createQName("createQName2")));
+	
+		
+private QName createQName1():
+	createQName("createQName1");
+	
+private QName createQName2(QName param):
+	param; 

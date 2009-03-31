@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Ns2"
+	xmlns:tns="http://www.example.org/Ns2" elementFormDefault="qualified"
+	xmlns:pref="http://www.example.org/Ns1">
+
+	<import namespace="http://www.example.org/Ns1"
+		schemaLocation="Ns1-C-AB.xsd">
+	</import>
+	<complexType name="ComplexK">
+		<sequence>
+			<element name="ElementK" type="string"></element>
+			<element name="ElementCRef" type="pref:ComplexC"></element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="SimpleK">
+		<restriction base="string"></restriction>
+	</simpleType>
+</schema>

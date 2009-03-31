@@ -1,0 +1,12 @@
+<workflow>
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel" />
+	 	<invoke value="${src-pkg}::XMLReader::${ext}('${xmlfile}')" /> 
+		<outputSlot value="model" />
+	</component>
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel" />
+	 	<invoke value="${src-pkg}::XMLReader::${ext}('${xmlfile}')" /> 
+		<outputSlot value="model" />
+	</component>
+</workflow>

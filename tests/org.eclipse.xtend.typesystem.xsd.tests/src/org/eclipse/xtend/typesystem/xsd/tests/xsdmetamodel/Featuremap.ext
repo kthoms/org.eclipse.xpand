@@ -1,0 +1,12 @@
+import featuremap;
+	
+BodyType transform(BodyType b):
+	b.b.add("MyNewPhattText") ->
+	b.mixed.text.add("MyNormal Text und so weiter") ->
+	b;
+	
+create BodyType this createBody():
+	//b.add("MyNewPhattText") ->
+	mixed.text.add("MyNormal Text und so weiter") ->
+	b.add("Einfacher fetter text");
+	

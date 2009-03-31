@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:rootElement xmlns:tns="http://www.example.org/qname"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:qname1>QName</tns:qname1>
+	<tns:qname2>myLocalPart</tns:qname2>
+	<tns:qname3>xsi:test</tns:qname3>
+	<tns:qname4>test1</tns:qname4>
+	<tns:qname5>test2</tns:qname5>
+</tns:rootElement>

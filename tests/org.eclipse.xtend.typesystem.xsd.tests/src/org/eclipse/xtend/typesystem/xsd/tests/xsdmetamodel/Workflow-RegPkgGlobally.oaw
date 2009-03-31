@@ -1,0 +1,6 @@
+<workflow>
+	<bean id="mm" class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+		<schemaFile value="${src-dir}/Device.xsd" />
+		<registerPackagesGlobally value="${global}" />
+	</bean>
+</workflow>

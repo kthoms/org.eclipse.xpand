@@ -1,0 +1,12 @@
+«DEFINE Root FOR qName::TypeWithQName»
+«FILE "qname.txt"-»
+qname1:«qname1»
+qname2:«qname2»
+qname3:«qname3»
+qname3.namespaceURI:«qname3.namespaceURI»
+qname3.localPart:«qname3.localPart»
+qname3.prefix:«qname3.prefix»
+qname4:«qname4»
+qname5:«qname5»
+«ENDFILE»
+«ENDDEFINE»

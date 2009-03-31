@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/schema"
+	xmlns:tns="http://www.example.org/schema"
+	elementFormDefault="qualified">
+
+	<complexType name="bodyType" mixed="true">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="b" type="string" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="h1" type="tns:h1Type" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+		</choice>
+	</complexType>
+
+	<complexType name="h1Type" mixed="true">
+		<attribute name="style" type="string"></attribute>
+	</complexType>
+
+
+	<element name="body" type="tns:bodyType"></element>
+</schema>

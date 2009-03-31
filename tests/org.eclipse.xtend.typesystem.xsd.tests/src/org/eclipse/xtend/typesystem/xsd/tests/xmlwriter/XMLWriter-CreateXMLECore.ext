@@ -1,0 +1,7 @@
+create device::DocumentRoot this createDocumentRoot():
+    xMLNSPrefixMap.put("myprefix","http://second.namespace/") ->
+    xSISchemaLocation.put("http://second.namespace/","myfile.xsd") ->
+	setDevice(createRootElement());
+	
+create device::Device this createRootElement():
+	setName("testName");

@@ -1,0 +1,15 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="model" />
+		<uri value="${src-dir}/QName.xml" />
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="${src-dir}/QName.xsd" />
+		</metaModel>
+	</component>
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm" />
+		<expand value="${src-pkg}::QName::Root FOR model" />
+		<outlet path="${src-gen-dir}" />
+	</component>
+</workflow>

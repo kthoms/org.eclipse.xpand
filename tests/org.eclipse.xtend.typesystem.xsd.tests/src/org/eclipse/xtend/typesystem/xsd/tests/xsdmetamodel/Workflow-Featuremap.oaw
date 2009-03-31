@@ -1,0 +1,20 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="inmodel" />
+		<uri value="${src-dir}/Featuremap.xml" />
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="${src-dir}/Featuremap.xsd" />
+		</metaModel>
+	</component>
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel idRef="mm" />
+	 	<invoke value="${src-pkg}::Featuremap::transform(inmodel)" /> 
+		<outputSlot value="outmodel" />
+	</component>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLWriter">
+		<metaModel idRef="mm" />
+		<modelSlot value="outmodel" />
+		<uri value="${src-gen-dir}/featuremap.xml" />
+	</component>
+</workflow>

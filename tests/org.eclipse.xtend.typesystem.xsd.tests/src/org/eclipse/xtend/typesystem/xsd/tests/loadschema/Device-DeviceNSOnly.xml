@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Device
+	xmlns="http://www.openarchitectureware.org/example/model/device">
+	<Name>Magicwash</Name>
+	<Description>Waesche rein und die Welt wird gut</Description>
+	<Company>Siemens</Company>
+	<Mode id="opm12331">
+		<Name>30</Name>
+		<Description>Waesche bei 30 Grad waschen</Description>
+		<LoadCurve>
+			<Name>Normalverbrauch</Name>
+			<Measurement Time="0" Value="20.0" />
+			<Measurement Time="200" Value="20.0" />
+		</LoadCurve>
+	</Mode>
+	<Mode id="opm234">
+		<Name>60</Name>
+		<PowerInput>300.0</PowerInput>
+	</Mode>
+	<Mode id="opm123">
+		<Name>Standby</Name>
+		<PowerInput>10.0</PowerInput>
+	</Mode>
+	<Planable>true</Planable>
+	<PurchasePrice>300.0</PurchasePrice>
+	<StandbyMode>opm123</StandbyMode>
+</Device>

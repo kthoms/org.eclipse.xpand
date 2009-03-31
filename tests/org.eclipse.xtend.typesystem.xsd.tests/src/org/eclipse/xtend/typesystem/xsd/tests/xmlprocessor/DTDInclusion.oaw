@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<workflow>
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+		</metaModel>
+		<expand	value="${src-pkg}::DTDInclusion::Root FOR 'DTDInclusion.xml'" />
+		<outlet path="${src-gen-dir}" >
+			<postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier" />
+		</outlet>
+	</component>
+</workflow>

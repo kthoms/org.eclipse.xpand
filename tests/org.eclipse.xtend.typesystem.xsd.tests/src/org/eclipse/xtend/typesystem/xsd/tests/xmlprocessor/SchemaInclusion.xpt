@@ -1,0 +1,32 @@
+
+«DEFINE Root FOR String»
+«FILE this»
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-ejb-jar
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://imaginary.org/example"
+    xmlns:imag="http://imaginary.org/example" 
+    xmlns:j2ee="http://java.sun.com/xml/ns/j2ee"
+    xsi:schemaLocation="http://imaginary.org/example ftp://blockme/test http://www.bea.com/ns/weblogic/90 http://www.bea.com/ns/weblogic/90/weblogic-ejb-jar.xsd">
+  <weblogic-enterprise-bean>
+    <ejb-name>name</ejb-name>
+    <stateless-session-descriptor>
+      <pool>
+        <max-beans-in-free-pool>1000</max-beans-in-free-pool>
+        <initial-beans-in-free-pool>0</initial-beans-in-free-pool>
+      </pool>
+    </stateless-session-descriptor>
+    <transaction-descriptor>
+      <trans-timeout-seconds>0</trans-timeout-seconds>
+    </transaction-descriptor>
+    
+    <imag:bluppp />
+    
+    <enable-call-by-reference>true</enable-call-by-reference>
+    <jndi-name>blubber</jndi-name>
+  </weblogic-enterprise-bean>
+</weblogic-ejb-jar>
+
+«ENDFILE»
+«ENDDEFINE»
+
+

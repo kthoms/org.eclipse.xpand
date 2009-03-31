@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Ns2"
+	xmlns:tns="http://www.example.org/Ns2"
+	elementFormDefault="qualified">
+
+	<include schemaLocation="Ns2-K-C.xsd" />
+
+	<complexType name="ComplexB">
+		<sequence>
+			<element name="ElementB" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="SimpleB">
+		<restriction base="string"></restriction>
+	</simpleType>
+</schema>

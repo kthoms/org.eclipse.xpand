@@ -1,0 +1,25 @@
+import device;
+
+create DeviceDocumentRoot this createDocumentRoot():
+    xMLNSPrefixMap.put("myprefix","http://second.namespace/") ->
+    xSISchemaLocation.put("http://second.namespace/","myfile.xsd") ->
+	setDevice(createRootElement());
+	
+create Device this createRootElement():
+	setName("testName");
+	
+Device createRootElement2(): let d = new Device:
+	d.setName("testName") ->
+	d;
+	
+create Device this createDevice(String name):
+	setName(name);
+	
+create List[Device] this createMultiDevices():
+	add(createDevice("Device1")) ->
+	add(createDevice("Device2")) ->
+	add(createDevice("Device3"));
+	
+String GetFileName(Device device):
+	device.name + "-extfile.txt";
+	

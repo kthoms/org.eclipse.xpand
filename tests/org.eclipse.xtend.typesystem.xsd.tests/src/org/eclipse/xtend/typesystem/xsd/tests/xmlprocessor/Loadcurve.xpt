@@ -1,0 +1,35 @@
+«DEFINE Root FOR String»
+«FILE this»
+<?xml version="1.0" encoding="UTF-8"?>
+<LoadCurve><Name>MyLoadcurve</Name>
+  <CreationDate>2001-12-31T12:00:00</CreationDate>
+                <StartTime>2001-12-31T12:00:00</StartTime>
+<Measurement Time="5" Value="55" />
+  <CreationDate>2001-12-31T12:00:00</CreationDate>
+  <![CDATA[ Move 
+     current line 
+         up or down. Also, 
+              very handy to selec]]>
+                <StartTime>2001-12-31T12:00:00</StartTime>
+<Measurement Time="5" Value="55" /><!-- Duplicate current line above/below.  -->
+  <CreationDate>2001-12-31T12:00:00</CreationDate>
+  <?target data?>
+  <StartTime>2001-12-31T12:00:00</StartTime>LoadCurve
+<Measurement Time="5" Value="55" /><!-- Duplicate current line above/below. 2. Ctrl + K/ Ctrl + Shift + K : Search next selected text in forward or reverse direction. -->
+  <CreationDate>2001-12-31T12:00:00</CreationDate>
+                <StartTime>2001-12-31           T12:00:00</StartTime>
+<Measurement Time="5" Value="55" /> Das Keyboard III comes with mechanical key switches with gold contacts which were designed by the German company Cherry. It compares to the legendary IBM model M by providing a tactile and audio click that makes typing pure joy. 
+<MyText>Ctrl + J / Ctrl + Shift + J : Inline search, meaning you can type on the fly to search text in current editor. You can use Up/Down arrow keys to navigate between matching text fragment in forward/reverse direction. This is one of the most powerful features you will find in advanced editors like Vim or Emacs.
+
+2. Ctrl + K/ Ctrl + Shift + K : Search next selected text in forward or reverse direction.
+
+3. Ctrl + L : Go to line.
+
+4. Ctrl + Alt + Up/Down : <!-- Duplicate current line above/below.  -->Very useful in repeatative assignment statements.
+
+5. Alt + Up/Down : Move current line up or down. Also, very handy to select current line.
+
+6. Ctrl + . OR , : This is contextual and may be specific to Java editors: if you have error or warnings in current file in editor it will navigate to them.</MyText>
+</LoadCurve>
+«ENDFILE»
+«ENDDEFINE»

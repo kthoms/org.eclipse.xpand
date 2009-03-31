@@ -1,0 +1,7 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="model" />
+		<uri value="${file}" />
+		<metaModel id="mm" class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel" />
+	</component>
+</workflow>

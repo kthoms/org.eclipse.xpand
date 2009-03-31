@@ -1,0 +1,8 @@
+qname1:myLocalPart
+qname2:{http://www.my.ns/}myLocalPart
+qname3:{http://www.my.ns/}myLocalPart
+qname3.namespaceURI:http://www.my.ns/
+qname3.localPart:myLocalPart
+qname3.prefix:myPrefix
+qname4:createQName1
+qname5:createQName2

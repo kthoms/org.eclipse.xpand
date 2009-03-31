@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/simpletypes"
+	xmlns:tns="http://www.example.org/simpletypes"
+	elementFormDefault="qualified">
+
+	<simpleType name="myBoolean">
+		<restriction base="boolean"></restriction>
+	</simpleType>
+	<simpleType name="myInt">
+		<restriction base="int"></restriction>
+	</simpleType>
+	<simpleType name="myString">
+		<restriction base="string"></restriction>
+	</simpleType>
+	<simpleType name="myFloat">
+		<restriction base="float"></restriction>
+	</simpleType>
+	<simpleType name="myDouble">
+		<restriction base="double"></restriction>
+	</simpleType>
+	<simpleType name="myTime">
+		<restriction base="time"></restriction>
+	</simpleType>
+
+	<complexType name="Data">
+		<sequence>
+			<element name="booleanElem" type="tns:myBoolean"></element>
+			<element name="doubleElem" type="tns:myDouble"></element>
+			<element name="floatElem" type="tns:myFloat"></element>
+			<element name="intElem" type="tns:myInt"></element>
+			<element name="stringElem" type="tns:myString"></element>
+			<element name="timeElem" type="tns:myTime"></element>
+			<element name="uriElem" type="anyURI"></element>
+			<element name="nameElem" type="Name"></element>
+			<element name="ncnameElem" type="NCName"></element>
+		</sequence>
+	</complexType>
+
+	<element name="myData" type="tns:Data"></element>
+</schema>

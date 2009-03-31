@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:root xmlns:tns="http://www.openarchitectureware.org/example/FeatureMap"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.openarchitectureware.org/example/FeatureMap FeatureMap.xsd ">
+	<tns:element1>ele11</tns:element1>
+	<tns:element1>ele12</tns:element1>
+	some text
+	<tns:element2>ele21</tns:element2>
+	more text
+	<tns:elementAny><p></p>
+	</tns:elementAny>
+	<tns:elementAnyAttribute />
+</tns:root>

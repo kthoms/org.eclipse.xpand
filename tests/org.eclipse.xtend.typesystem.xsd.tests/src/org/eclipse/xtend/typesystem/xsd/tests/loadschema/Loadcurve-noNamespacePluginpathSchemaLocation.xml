@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LoadCurve xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="src/org/eclipse/xtend/typesystem/xsd/tests/loadschema/Loadcurve-noTargetNS.xsd">
+	<Name>MyLoadcurve</Name>
+	<CreationDate>2001-12-31T12:00:00</CreationDate>
+	<StartTime>2001-12-31T12:00:00</StartTime>
+	<Measurement Time="5" Value="55" />
+</LoadCurve>

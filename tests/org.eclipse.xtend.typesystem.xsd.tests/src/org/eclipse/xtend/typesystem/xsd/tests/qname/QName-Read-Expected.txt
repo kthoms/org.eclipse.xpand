@@ -1,0 +1,8 @@
+qname1:QName
+qname2:myLocalPart
+qname3:{http://www.w3.org/2001/XMLSchema-instance}test
+qname3.namespaceURI:http://www.w3.org/2001/XMLSchema-instance
+qname3.localPart:test
+qname3.prefix:xsi
+qname4:test1
+qname5:test2

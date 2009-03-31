@@ -1,0 +1,13 @@
+import emf;
+import fileList;
+import loadCurve;
+
+extension org::eclipse::xtend::typesystem::xsd::lib::xmlreader;
+	
+List[Loadcurve] readXMLWithContext(FileList files, String path):
+	files.file.collect(e| (Loadcurve)files.readXML(e));
+	
+List[EObject] readDocRootAll(FileList files, String path): {
+	files.readDocumentRoot("Loadcurve.xml"),
+	readDocumentRoot(path + "/Loadcurve.xml", "mm"), 
+	readDocumentRoot(path + "/Loadcurve.xml")};

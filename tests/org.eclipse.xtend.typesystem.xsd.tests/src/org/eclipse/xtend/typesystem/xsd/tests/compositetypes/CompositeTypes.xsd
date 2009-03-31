@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.openarchitectureware.org/example/mixedenums"
+	xmlns:tns="http://www.openarchitectureware.org/example/mixedenums"
+	elementFormDefault="qualified">
+	<simpleType name="B-A">
+		<union memberTypes="tns:A">
+			<simpleType>
+				<restriction base="NMTOKEN">
+					<enumeration value="unbounded" />
+					<enumeration value="undefined" />
+				</restriction>
+			</simpleType>
+		</union>
+	</simpleType>
+	<simpleType name="A">
+		<restriction base="integer">
+			<minInclusive value="0" />
+		</restriction>
+	</simpleType>
+	<complexType name="RootType">
+		<sequence>
+			<element name="a" type="tns:A" maxOccurs="1" minOccurs="0"></element>
+			<element name="b" type="tns:B-A" maxOccurs="1" minOccurs="0"></element>
+			<element name="c" type="tns:C-B" maxOccurs="1" minOccurs="0"></element>
+			<element name="d" type="tns:D" maxOccurs="1" minOccurs="0"></element>
+			<element name="e" type="tns:E" maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+	<element name="root" type="tns:RootType"></element>
+	<simpleType name="D">
+		<restriction base="string">
+			<pattern value="[a-z]{3,5}"></pattern>
+		</restriction>
+	</simpleType>
+	<simpleType name="C-B">
+		<union memberTypes="tns:B-A float"></union>
+	</simpleType>
+	<simpleType name="E">
+		<union memberTypes="tns:C-B tns:D"></union>
+	</simpleType>
+</schema>

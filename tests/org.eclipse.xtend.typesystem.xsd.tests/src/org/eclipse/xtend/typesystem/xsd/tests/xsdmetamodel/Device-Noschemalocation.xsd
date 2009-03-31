@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://www.openarchitectureware.org/example/model/device"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.openarchitectureware.org/example/model/device"
+	xmlns:lc="http://www.openarchitectureware.org/example/model/loadcurve"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+
+	<import
+		namespace="http://www.openarchitectureware.org/example/model/loadcurve">
+	</import>
+	<import
+		namespace="http://www.openarchitectureware.org/example/model/loadcurve">
+	</import>
+
+	<complexType name="Device">
+		<sequence>
+			<element name="Name" type="string"></element>
+			<element name="CreationDate" type="dateTime"></element>
+			<element name="Description" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Company" type="string"></element>
+			<element name="Mode" type="tns:OperationalMode"
+				maxOccurs="unbounded">
+			</element>
+			<element name="YearOfConstruction" type="gYear"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="Verified" type="boolean" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Planable" type="boolean" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="PurchaseDate" type="date" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="PurchasePrice" type="float" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="StandbyMode" type="IDREF" maxOccurs="1"
+				minOccurs="0" ecore:reference="tns:OperationalMode">
+			</element>
+			<element name="EnergyEfficiencyGrade" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+		</sequence>
+
+	</complexType>
+
+	<complexType name="OperationalMode">
+		<sequence>
+			<element name="Name" type="string"></element>
+			<element name="Description" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="PowerInput" type="float"></element>
+			<element name="LoadCurve" type="lc:LoadCurve" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Duration" type="int" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<element name="Device" type="tns:Device"></element>
+</schema>

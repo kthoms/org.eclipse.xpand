@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xtend.typesystem.xsd.tests/src"
+    modelPluginID="org.eclipse.xtend.typesystem.xsd.tests" modelName="Device" importerID="org.eclipse.xsd.ecore.importer"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="Loadcurve.genmodel#//loadcurve">
+  <foreignModel>Device.xsd</foreignModel>
+  <genPackages prefix="Device" basePackage="org.openarchitectureware.example.model"
+      resource="XML" disposableProviderFactory="true" ecorePackage="device.ecore#/">
+    <genClasses ecoreClass="device.ecore#//Device">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/creationDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/company"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference device.ecore#//Device/mode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/yearOfConstruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/verified"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/planable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/purchaseDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/purchasePrice"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference device.ecore#//Device/standbyMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/energyEfficiencyGrade"/>
+    </genClasses>
+    <genClasses ecoreClass="device.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference device.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference device.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference device.ecore#//DocumentRoot/device"/>
+    </genClasses>
+    <genClasses ecoreClass="device.ecore#//OperationalMode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//OperationalMode/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//OperationalMode/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//OperationalMode/powerInput"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference device.ecore#//OperationalMode/loadCurve"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//OperationalMode/duration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//OperationalMode/id"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

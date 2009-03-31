@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LoadCurve
+	xmlns="http://www.openarchitectureware.org/example/model/wrong">
+	<Name>MyLoadcurve</Name>
+	<CreationDate>2001-12-31T12:00:00</CreationDate>
+	<StartTime>2001-12-31T12:00:00</StartTime>
+	<Measurement Time="5" Value="55" />
+</LoadCurve>

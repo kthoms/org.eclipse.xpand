@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:LoadCurve
+	xmlns:tns="http://www.openarchitectureware.org/example/model/loadcurve"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.openarchitectureware.org/example/model/loadcurve Loadcurve.xsd ">
+	<tns:Name>MyLoadcurve</tns:Name>
+	<tns:CreationDate>2001-12-31T12:00:00</tns:CreationDate>
+	<tns:StartTime>2001-12-31T12:00:00</tns:StartTime>
+	<tns:Measurement Time="5" Value="55" />
+</tns:LoadCurve>

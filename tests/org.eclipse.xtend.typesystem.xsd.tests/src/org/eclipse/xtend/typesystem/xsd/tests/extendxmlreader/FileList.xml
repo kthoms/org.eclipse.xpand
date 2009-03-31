@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:files xmlns:tns="http://www.example.org/FileList"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:file>Loadcurve.xml</tns:file>
+	<tns:file>Loadcurve-noSchemaLocation.xml</tns:file>
+	<tns:file>org/eclipse/xtend/typesystem/xsd/tests/extendxmlreader/Loadcurve.xml</tns:file>
+</tns:files>

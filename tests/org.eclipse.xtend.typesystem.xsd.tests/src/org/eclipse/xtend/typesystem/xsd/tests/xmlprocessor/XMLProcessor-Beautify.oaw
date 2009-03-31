@@ -1,0 +1,6 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLProcessor">
+		<uri value="${src-dir}/${file}" />
+		<outUri value="${src-gen-dir}/${file}" />
+	</component>
+</workflow>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Ns1"
+	xmlns:tns="http://www.example.org/Ns1"
+	elementFormDefault="qualified">
+
+	<complexType name="ComplexA">
+		<sequence>
+			<element name="ElementA" type="string"></element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="SimpleA">
+		<restriction base="string"></restriction>
+	</simpleType>
+</schema>

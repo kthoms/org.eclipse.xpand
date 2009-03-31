@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.openarchitectureware.org/example/model/nameconversion" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.openarchitectureware.org/example/model/nameconversion">
+
+    <complexType name="UPPERCASE-COMPLEX_TYPE">
+    	<sequence>
+    		<element name="UPPERCASE_ELEMENT" type="string"></element>
+    	</sequence>
+    	<attribute name="UPPERCASE-ATTRIBUTE" type="string"></attribute>
+    </complexType>
+
+    <simpleType name="UPPERCASE--SIMPLE__TYPE">
+    	<restriction base="string"></restriction>
+    </simpleType>
+
+    <simpleType name="CamelCaseSimpleType">
+    	<restriction base="string"></restriction>
+    </simpleType>
+
+    <simpleType name="underscore_separated_simple-type">
+    	<restriction base="string"></restriction>
+    </simpleType>
+
+    <simpleType name="enum_type">
+    	<restriction base="string">
+    		<enumeration value="UPPERCASE_ENUM_LITERAL1"></enumeration>
+    		<enumeration value="UPPERCASE_ENUM_LITERAL2"></enumeration>
+    	</restriction>
+    </simpleType>
+</schema>

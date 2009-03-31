@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device:Device
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:device="http://www.openarchitectureware.org/example/model/device"
+    xmlns:myprefix="http://second.namespace/" xsi:schemaLocation="http://second.namespace/ myfile.xsd">
+  <device:Name>testName</device:Name>
+</device:Device>

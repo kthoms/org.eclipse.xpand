@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device:Device
+	xmlns:device="http://www.openarchitectureware.org/example/model/device"
+	xmlns:loadcurve="http://www.openarchitectureware.org/example/model/loadcurve"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.openarchitectureware.org/example/model/device Device.xsd">
+	<device:Name>Magicwash</device:Name>
+	<device:CreationDate>2001-12-31T12:00:00</device:CreationDate>
+	<device:Description>
+		Waesche rein und die Welt wird gut
+	</device:Description>
+	<device:Company>Siemens</device:Company>
+	<device:Mode id="opm12331">
+		<device:Name>30</device:Name>
+		<device:Description>
+			Waesche bei 30 Grad waschen
+		</device:Description>
+		<device:PowerInput>23.4</device:PowerInput>
+		<device:LoadCurve>
+			<loadcurve:Name>Normalverbrauch</loadcurve:Name>
+			<loadcurve:Description>test</loadcurve:Description>
+			<loadcurve:CreationDate>2001-12-31T12:00:00</loadcurve:CreationDate>
+			<loadcurve:StartTime>2001-12-31T12:00:00</loadcurve:StartTime>
+			<loadcurve:Measurement Time="0" Value="20.0" />
+			<loadcurve:Measurement Time="200" Value="20.0" />
+		</device:LoadCurve>
+	</device:Mode>
+	<device:Mode id="opm234">
+		<device:Name>60</device:Name>
+		<device:PowerInput>300.0</device:PowerInput>
+	</device:Mode>
+	<device:Mode id="opm123">
+		<device:Name>Standby</device:Name>
+		<device:PowerInput>10.0</device:PowerInput>
+	</device:Mode>
+	<device:Planable>true</device:Planable>
+	<device:PurchasePrice>300.0</device:PurchasePrice>
+	<device:StandbyMode>opm123</device:StandbyMode>
+</device:Device>

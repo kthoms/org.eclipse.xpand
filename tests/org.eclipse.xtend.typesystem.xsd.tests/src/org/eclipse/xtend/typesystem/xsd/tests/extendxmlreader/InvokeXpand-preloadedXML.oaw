@@ -1,0 +1,15 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="ref" />
+		<uri value="${src-dir}/FileList.xml" />
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="${src-dir}/FileList.xsd" />
+		</metaModel>
+	</component>
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel idRef="mm" />
+	 	<invoke value="${src-pkg}::XMLReader-FileList::${ext}(ref,'${src-dir}')" /> 
+		<outputSlot value="model" />
+	</component>
+</workflow>

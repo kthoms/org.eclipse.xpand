@@ -1,0 +1,9 @@
+import emf;
+
+extension org::eclipse::xtend::typesystem::xsd::lib::xmlreader;
+
+EObject readXMLWithMM(String file):
+	readXML(file, "mm");
+	
+EObject readXMLSimple(String file):
+	readXML(file);

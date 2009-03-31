@@ -1,0 +1,16 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="model" />
+		<uri value="${src-dir}/Loadcurve-WrongNamespace.xml" />
+		<option key="NAMESPACE_MAP">
+			<val class="org.eclipse.xtend.typesystem.xsd.lib.MapBean">
+				<mapping from="http://www.openarchitectureware.org/example/model/wrong"
+			  			 to="http://www.openarchitectureware.org/example/model/loadcurve" />
+			</val>
+		</option>
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="${src-dir}/Loadcurve.xsd" />
+		</metaModel>
+	</component>
+</workflow>

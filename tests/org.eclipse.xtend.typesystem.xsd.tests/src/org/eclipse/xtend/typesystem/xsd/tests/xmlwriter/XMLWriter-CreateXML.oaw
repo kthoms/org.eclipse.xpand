@@ -1,0 +1,16 @@
+<workflow>
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel id="mm" class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="${src-dir}/Loadcurve.xsd" />
+			<schemaFile value="${src-dir}/Device.xsd" />
+		</metaModel>
+		<invoke value="${src-pkg}::XMLWriter-CreateXML::${method}()" />
+		<outputSlot value="model" />
+	</component>
+	
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLWriter">
+		<metaModel idRef="mm" />
+		<modelSlot value="model" />
+		<uri value="${src-gen-dir}/CreateXML-${method}.xml" />
+	</component>
+</workflow>

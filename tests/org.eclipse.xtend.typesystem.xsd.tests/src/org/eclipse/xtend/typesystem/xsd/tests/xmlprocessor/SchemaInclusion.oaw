@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<workflow>
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+		</metaModel>
+		<expand	value="${src-pkg}::SchemaInclusion::Root FOR 'SchemaInclusion.xml'" />
+		<outlet path="${src-gen-dir}" >
+			<postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier">
+				<uriConverter class="org.eclipse.xtend.typesystem.xsd.util.AccessControlURIConverter">
+					<denySchemes value="http, https" />
+					<denyRegex value=".*blockme.*" />
+				</uriConverter>
+			</postprocessor>
+		</outlet>
+	</component>
+</workflow>

@@ -1,0 +1,17 @@
+<workflow>
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+		</metaModel>
+		<expand value="${src-pkg}::${file}::Root FOR '${out}'" />
+		<outlet path="${src-gen-dir}" />
+		<beautifier class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier">
+			<maxLineWidth value="60" />
+			<formatComments value="true" />
+			<fileExtensions value=".xml, .html" />
+			<loadOption key="RECORD_UNKNOWN_FEATURE" val="true" />
+			<saveOption key="XML_VERSION" val="1.1" />
+			<saveOption key="ENCODING" val="ASCII" />
+		</beautifier>
+	</component>
+</workflow>

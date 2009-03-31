@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://www.openarchitectureware.org/example/model/loadcurve"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.openarchitectureware.org/example/model/loadcurve">
+
+	<complexType name="LoadCurve">
+		<sequence>
+			<element name="Name" type="string"></element>
+			<element name="Description" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="CreationDate" type="dateTime"></element>
+			<element name="StartTime" type="dateTime" />
+			<element name="Measurement" type="tns:Measurement"
+				maxOccurs="unbounded" minOccurs="1">
+			</element>
+
+		</sequence>
+	</complexType>
+
+	<complexType name="Measurement">
+		<attribute name="Time" type="int"></attribute>
+		<attribute name="Value" type="float"></attribute>
+	</complexType>
+
+	<element name="LoadCurve" type="tns:LoadCurve"></element>
+</schema>

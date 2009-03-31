@@ -11,6 +11,8 @@
 
 package org.eclipse.xtend.shared.ui.core.metamodel.jdt.javabean;
 
+import java.security.SignatureSpi;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.internal.xtend.util.StringHelper;
 import org.eclipse.jdt.core.Flags;
@@ -134,9 +136,12 @@ public class JdtJavaBeanTypeStrategy implements JdtTypeStrategy {
 		try {
 			String returnType = method.getReturnType();
 			if (Signature.getTypeSignatureKind(returnType) == Signature.ARRAY_TYPE_SIGNATURE) {
-				return Signature.getElementType(returnType);
+				String elementType = Signature.getElementType(returnType);
+				return elementType;
 			} else if (isCollectionType(returnType)) {
-				return Signature.getTypeParameters(returnType)[0];
+				String[] arguments = Signature.getTypeArguments(returnType);
+				if (arguments.length == 1)
+					return arguments[0];
 			}
 		} catch (JavaModelException e) {
 			// ignore
@@ -150,9 +155,10 @@ public class JdtJavaBeanTypeStrategy implements JdtTypeStrategy {
 	 */
 	private boolean isCollectionType(String returnType) {
 		try {
-			IType type = this.project.findType(returnType);
+			String signatureSimpleName = Signature.getTypeErasure(Signature.toString(returnType));
+			IType type = this.project.findType(signatureSimpleName);
 			IType collection = this.project.findType("java.util.Collection");
-			if (type!=null && type.exists()) {
+			if (type != null && type.exists()) {
 				return type.newSupertypeHierarchy(null).contains(collection);
 			}
 		} catch (JavaModelException e) {

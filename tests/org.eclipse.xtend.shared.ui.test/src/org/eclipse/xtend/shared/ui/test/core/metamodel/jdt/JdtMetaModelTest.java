@@ -21,6 +21,7 @@ import org.eclipse.xtend.shared.ui.core.metamodel.jdt.JdtMetaModel;
 import org.eclipse.xtend.shared.ui.core.metamodel.jdt.javabean.JdtJavaBeanTypeStrategy;
 import org.eclipse.xtend.shared.ui.expression.PluginExecutionContextImpl;
 import org.eclipse.xtend.shared.ui.test.PluginTestBase;
+import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Property;
@@ -141,4 +142,70 @@ public class JdtMetaModelTest extends PluginTestBase {
 		// so the value will be null !!!
 		checkConstant("mypack::ClassWithConstant", "INTCONST2", null);
 	}
+	
+	public void testHierarchy() throws Exception {
+		IPath pack = env.addPackage(pPath, "mypack");
+		env.addClass(pack, "SubType", 
+			"package mypack;"
+			+"public interface SubType extends Super1, Super2{"
+			+"public String getFoo();"
+			+"}");
+		env.addClass(pack, "Super1", 
+				"package mypack;"
+				+"public interface Super1 extends Super2 {"
+				+"public String getSuper1();"
+				+"}");
+		env.addClass(pack, "Super2", 
+				"package mypack;"
+				+"public interface Super2 {"
+				+"public String getSuper2();"
+				+"}");
+		env.fullBuild();
+		
+//		Type stringType = (Type) ef.evaluate("String");
+		Type[] params = new Type[0];
+		
+		Type subType = (Type) ef.evaluate("mypack::SubType");
+		
+		assertEquals(2, subType.getSuperTypes().size());
+		
+		
+		assertNotNull(subType.getFeature("foo",params));
+		assertNotNull(subType.getFeature("super1",params));
+		assertNotNull(subType.getFeature("super2",params));
+		
+		Type super1 = (Type) ef.evaluate("mypack::Super1");
+		
+		assertTrue(subType.getSuperTypes().contains(super1));
+		assertNotNull(super1.getFeature("super1",params));
+		assertNotNull(super1.getFeature("super2",params));
+		
+		Type super2 = (Type) ef.evaluate("mypack::Super2");
+		
+		assertTrue(subType.getSuperTypes().contains(super2));
+		assertTrue(super1.getSuperTypes().contains(super2));
+		assertNotNull(super2.getFeature("super2",params));
+	}
+	
+	public void testParameterizedType() throws Exception {
+		IPath pack = env.addPackage(pPath, "mypack");
+		env.addClass(pack, "MyType", 
+			"package mypack;"
+			+"public interface MyType {"
+			+" public java.util.ArrayList<String> getList();"
+			+" public java.util.HashSet<String> getSet();"
+			+" public String[] getArray();"
+			+"}");
+		env.fullBuild();
+		
+		Type subType = (Type) ef.evaluate("mypack::MyType");
+		Type[] params = new Type[0];
+		Feature list = (Feature) subType.getFeature("list",params);
+		assertEquals("String", ((ParameterizedType)list.getReturnType()).getInnerType().getName());
+		Feature set = (Feature) subType.getFeature("set",params);
+		assertEquals("String", ((ParameterizedType)set.getReturnType()).getInnerType().getName());
+		Feature array = (Feature) subType.getFeature("array",params);
+		assertEquals("String", ((ParameterizedType)array.getReturnType()).getInnerType().getName());
+	}
+	
 }

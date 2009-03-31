@@ -119,6 +119,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int,
 	 * java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected IProject[] build(final int kind, final Map args, final IProgressMonitor monitor) throws CoreException {
 		toAnalyze = new HashSet<IXtendXpandResource>();
@@ -151,8 +152,8 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 			}
 			res.analyze();
 		}
-		final IXtendXpandProject p = Activator.getExtXptModelManager().findProject(getProject());
-		p.analyze(monitor);
+//		final IXtendXpandProject p = Activator.getExtXptModelManager().findProject(getProject());
+//		p.analyze(monitor);
 		return null;
 	}
 

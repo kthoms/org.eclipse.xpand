@@ -1,0 +1,19 @@
+<workflow>
+	<property name="plugin-src" value="src"/>
+
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
+		<registerEcoreFile value="${plugin-src}/xsd/m2t/genmodel/loadcurve.ecore" />
+	</bean>
+
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="model" />
+		<uri value="xsd/m2t/genmodel/mycurve.xml" />
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel" />
+	</component>
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm" />
+		<expand value="xsd::m2t::genmodel::genmodel::Root FOR model" />
+		<outlet path="src-gen" />
+	</component>
+</workflow>

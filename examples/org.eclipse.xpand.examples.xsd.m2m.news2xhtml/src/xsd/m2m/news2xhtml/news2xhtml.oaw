@@ -1,0 +1,26 @@
+<workflow>
+	<bean id="mm" class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+		<schemaFile value="http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd" />
+		<schemaFile value="http://www.dlese.org/Metadata/opml/2.0/opml.xsd" />
+	</bean>
+
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<metaModel idRef="mm" />
+		<modelSlot value="model" />
+		<!-- <uri value="http://planeteclipse.org/planet/opml.xml" /> --> 
+		<uri value="http://softeys.de/planeteclipse/opml.xml" /> 
+		<option key="DEFAULT_NAMESPACE" val="http://www.dlese.org/Metadata/opml" />
+	</component>
+
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel idRef="mm" />
+		<invoke value="xsd::m2m::news2xhtml::news2xhtml::Root(model)" />
+		<outputSlot value="xhtmlmodel" />
+	</component>
+	
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLWriter">
+		<metaModel idRef="mm" />
+		<modelSlot value="xhtmlmodel" />
+		<uri value="src-gen/out.html" />
+	</component>
+</workflow>

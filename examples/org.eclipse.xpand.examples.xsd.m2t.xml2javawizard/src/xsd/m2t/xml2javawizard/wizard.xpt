@@ -1,0 +1,264 @@
+«IMPORT wizard»
+«EXTENSION xsd::m2t::xml2javawizard::wizard»
+
+«DEFINE Root FOR wizard::Wizard»
+«FILE package() + "/" + className() + ".java"»package «package()»;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+
+public class «className()» {
+
+	private abstract class AbstractPage extends Composite {
+
+		protected Composite content;
+
+		public AbstractPage(Composite parent) {
+			super(parent, SWT.NONE);
+			setLayout(new GridLayout(1, false));
+			content = new Composite(this, SWT.NONE);
+			content.setLayoutData(new GridData(GridData.CENTER,
+					GridData.CENTER, true, true));
+		}
+
+		public abstract String getTitle();
+		
+		public void onHide() {}
+		
+		public void onShow() {}
+	}
+	
+	private interface NextPageOwner {
+		public void nextPage();
+	}
+	
+	«EXPAND WizardOptions»
+	«EXPAND WelcomePage»
+	«EXPAND OptionsPage FOREACH optionpage»	
+	«EXPAND ChoicePage FOREACH choicepage»
+	«EXPAND FinalPage FOREACH finalpage»
+	
+	public static void main(String[] args) {
+		«className()» t = new «className()»();
+		t.run();
+	}
+
+	private AbstractPage currentPage;
+
+	private Display display;
+
+	private Button next;
+
+	private Composite pagearea;
+
+	private StackLayout pagestack;
+
+	private Label title;
+
+	private Shell window;
+
+	public «className()»() {
+		display = new Display();
+		window = new Shell(display);
+		window.setLayout(new GridLayout(1, false));
+		window.setText("WizardName");
+		title = new Label(window, SWT.NONE);
+		title.setText("welcomemessage!!!");
+		pagearea = new Composite(window, SWT.NONE);
+		pagearea.setBackground(new Color(null, 255, 0, 0));
+		pagearea.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true,
+				true));
+		pagearea.setLayout(pagestack = new StackLayout());
+		next = new Button(window, SWT.NONE);
+		next.setText("Next");
+		next.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_CENTER));
+		next.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				if (currentPage instanceof NextPageOwner)
+					((NextPageOwner) currentPage).nextPage();
+			}
+		});
+
+		«EXPAND InitPages»
+
+		activatePage(welcomePage);
+		window.pack();
+		window.setBounds(new Rectangle(300, 200, 400, 300));
+		window.open();
+	}
+
+	public void activatePage(AbstractPage page) {
+		if(currentPage != null)
+			currentPage.onHide();
+		pagestack.topControl = page;
+		title.setText(page.getTitle());
+		next.setEnabled(page instanceof NextPageOwner);
+		currentPage = page;
+		page.onShow();
+		pagearea.layout();
+		window.layout();
+	}
+
+	public void run() {
+		while (!window.isDisposed())
+			if (!display.readAndDispatch())
+				display.sleep();
+		display.dispose();
+	}
+}
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE WizardOptions FOR Wizard»
+	private «optionsName()» options = new «optionsName()»();
+
+	/** 
+	 * The class «optionsName()» provides easy access to all informations the user
+	 * has supplied while execution of the wizard.
+	 */
+	public class «optionsName()» {
+«FOREACH optionpage AS page»«FOREACH page.option AS opt»
+		/**
+		 * «opt»
+		 */
+		public String «opt.optionVar()» = "";
+«ENDFOREACH»«ENDFOREACH»
+	
+		public String toString() {
+			StringBuffer buf = new StringBuffer();
+			buf.append("«optionsName()» (\n");
+«FOREACH optionpage AS page»«FOREACH page.option AS opt»buf.append("\t«opt» = '" + «opt.optionVar()» + "'\n");
+«ENDFOREACH»«ENDFOREACH»buf.append(")\n");
+			return buf.toString();
+		}
+	}
+	
+	public «optionsName()» getOptions() {
+		return options;
+	}
+«ENDDEFINE»
+
+«DEFINE WelcomePage FOR Wizard»
+	private final WelcomePage welcomePage;
+	
+	private class WelcomePage extends AbstractPage implements NextPageOwner {
+		public WelcomePage(Composite parent) {
+			super(parent);
+			content.setLayout(new FillLayout());
+			Label welcome = new Label(content, SWT.NONE);
+			welcome.setText("«welcometext»");
+		}
+
+		public String getTitle() {
+			return "";
+		}
+
+		public void nextPage() {
+			activatePage(«startpage.pageVar()»);
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE OptionsPage FOR OptionPage»
+private final «optionsPageClass()» «id.pageVar()»;
+
+private class «optionsPageClass()» extends AbstractPage implements NextPageOwner {
+
+«FOREACH option AS opt»private Text «opt.optionVar()»;
+«ENDFOREACH»
+
+		public «optionsPageClass()»(Composite parent) {
+			super(parent);
+			content.setLayout(new GridLayout(2, false));
+«FOREACH option AS opt»
+			Label «opt.optionVar()»Label = new Label(content, SWT.NONE);
+			«opt.optionVar()»Label.setText("«opt»");
+			«opt.optionVar()» = new Text(content, SWT.BORDER);
+			«opt.optionVar()».setLayoutData(new GridData(150, 14));
+«ENDFOREACH»}
+
+		public String getTitle() {
+			return "«title»";
+		}
+
+		public void nextPage() {
+			activatePage(«nextpage.pageVar()»);
+		}
+
+		public void onHide() {
+«FOREACH option AS opt»options.«opt.optionVar()» = «opt.optionVar()».getText();
+«ENDFOREACH»}
+
+		public void onShow() {
+«FOREACH option AS opt»«opt.optionVar()».setText(options.«opt.optionVar()»);
+«ENDFOREACH»}
+	}
+«ENDDEFINE»
+
+«DEFINE ChoicePage FOR ChoicePage»
+    private final «choicePageClass()» «id.pageVar()»;
+
+	private class «choicePageClass()» extends AbstractPage {
+
+		public «choicePageClass()»(Composite parent) {
+			super(parent);
+			content.setLayout(new GridLayout(1, false));
+«FOREACH choice AS e»
+			Button «e.choiceButton()» = new Button(content, SWT.NONE);
+			«e.choiceButton()».setText("«e.title»");
+			«e.choiceButton()».setLayoutData(new GridData(150, 42));
+			«e.choiceButton()».addSelectionListener(new SelectionAdapter() {
+				public void widgetSelected(SelectionEvent e) {
+					activatePage(«e.target.pageVar()»);
+				}
+			});
+«ENDFOREACH»
+		}
+
+		public String getTitle() {
+			return "«title»";
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE FinalPage FOR FinalPage»
+	private final «finalPageClass()» «id.pageVar()»;
+	
+	private class «finalPageClass()» extends AbstractPage {
+		public «finalPageClass()»(Composite parent) {
+			super(parent);
+			content.setLayout(new FillLayout());
+			Label welcome = new Label(content, SWT.NONE);
+			welcome.setText("«text»");
+		}
+
+		public String getTitle() {
+			return "«title»";
+		}
+		
+		public void onShow() {
+			System.out.println("Submitted Information: " + getOptions());
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE InitPages FOR Wizard»
+		welcomePage = new WelcomePage(pagearea);
+«FOREACH optionpage AS p»«p.id.pageVar()» = new «p.optionsPageClass()»(pagearea);
+«ENDFOREACH»«FOREACH choicepage AS p»«p.id.pageVar()» = new «p.choicePageClass()»(pagearea);
+«ENDFOREACH»«FOREACH finalpage AS p»«p.id.pageVar()» = new «p.finalPageClass()»(pagearea);
+«ENDFOREACH»
+«ENDDEFINE»

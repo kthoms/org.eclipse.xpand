@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: M2T custom XML to Text via Xpand (minimal Example)
+Bundle-SymbolicName: org.eclipse.xpand.examples.xsd.m2t.minimal
+Bundle-Version: 1.0.0
+Export-Package: xsd.m2t.minimal
+Require-Bundle: org.eclipse.xtend.typesystem.xsd,
+ org.eclipse.emf.mwe.core,
+ org.eclipse.emf.mwe.utils,
+ org.eclipse.xpand
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Demo-Description: This minimal example shows how to use an XML file as model to generate text. The meta model is XML Schema (XSD).

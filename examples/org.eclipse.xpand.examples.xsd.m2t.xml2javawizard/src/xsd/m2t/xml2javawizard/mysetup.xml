@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wizard xmlns="http://www.example.org/wizard"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/wizard wizard.xsd ">
+	<startpage>start</startpage>
+	<name>My Example Setup</name>
+	<welcometext>Welcome to this little demo application.</welcometext>
+
+	<optionpage id="license">
+		<title>Please enter your license code.</title>
+		<option>Surname</option>
+		<option>Given name</option>
+		<option>License Code</option>
+		<nextpage>path</nextpage>
+	</optionpage>
+
+	<optionpage id="path">
+		<title>Please enter the target path on your hard drive.</title>
+		<option>Target Path</option>
+		<nextpage>final</nextpage>
+	</optionpage>
+
+	<choicepage id="start">
+		<title>Please choose your preferred version.</title>
+		<choice title="Install Full Version" target="license" />
+		<choice title="Demo Version" target="path"/>
+		<choice title="Cancel. Don't install anything." target="cancel"/>
+	</choicepage>
+
+	<finalpage id="final">
+		<title>Done.</title>
+		<text>Thank you for choosing our product.</text>
+	</finalpage>
+
+	<finalpage id="cancel">
+		<title>Setup Canceled</title>
+		<text>Please try us again at some point, anyway.</text>
+	</finalpage>
+
+</wizard>

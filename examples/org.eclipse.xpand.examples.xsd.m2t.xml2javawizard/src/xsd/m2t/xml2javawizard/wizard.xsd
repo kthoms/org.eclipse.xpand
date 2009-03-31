@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/wizard" elementFormDefault="qualified" targetNamespace="http://www.example.org/wizard">
+
+	<complexType name="Wizard">
+		<sequence>
+			<element name="startpage" type="IDREF"/>
+			<element name="name" type="string"/>
+			<element name="welcometext" type="string"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="optionpage" type="tns:OptionPage"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="choicepage" type="tns:ChoicePage"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="finalpage" type="tns:FinalPage"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="AbstractPage">
+		<sequence>
+			<element name="title" type="string"/>
+		</sequence>
+		<attribute name="id" type="ID"/>
+	</complexType>
+
+	<complexType name="OptionPage">
+		<complexContent>
+			<extension base="tns:AbstractPage">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="1" name="option" type="string"/>
+					<element name="nextpage" type="IDREF"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="ChoicePage">
+		<complexContent>
+			<extension base="tns:AbstractPage">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="1" name="choice">
+						<complexType>
+							<attribute name="title" type="string"/>
+							<attribute name="target" type="IDREF"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="FinalPage">
+		<complexContent>
+			<extension base="tns:AbstractPage">
+				<sequence>
+					<element name="text" type="string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<element name="wizard" type="tns:Wizard"/>
+</schema>

@@ -1,0 +1,10 @@
+«IMPORT metamodel»
+
+«DEFINE Root FOR metamodel::Wizard»
+«FILE "wizard.txt"»
+Name: «name»
+Startpage: «startpage»
+Welcometext: «welcometext»
+First Page Title: «choicepage.title»
+«ENDFILE»
+«ENDDEFINE»

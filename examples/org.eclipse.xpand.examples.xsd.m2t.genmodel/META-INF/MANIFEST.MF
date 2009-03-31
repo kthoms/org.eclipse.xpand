@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: M2T custom XML to Text using Xpand and an EMF Meta Model
+Bundle-SymbolicName: org.eclipse.xpand.examples.xsd.m2t.genmodel
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.xtend.typesystem.xsd,
+ org.eclipse.emf.mwe.core,
+ org.eclipse.emf.mwe.utils,
+ org.eclipse.xpand
+Export-Package: xsd.m2t.genmodel
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Demo-Description: This demo shows how to generate text from a custom XML dialect.
+ The metamodel is an EMF Model, which is derived from an XSD using EMF's Genmodel approach.

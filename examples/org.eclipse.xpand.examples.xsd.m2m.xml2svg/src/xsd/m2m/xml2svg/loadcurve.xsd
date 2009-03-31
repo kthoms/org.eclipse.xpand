@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.example.org/loadcurve"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.example.org/loadcurve">
+
+	<complexType name="LoadCurve">
+		<sequence>
+			<element name="Name" type="string" />
+			<element name="Description" type="string" />
+			<element name="CreationDate" type="dateTime" />
+			<element name="StartTime" type="dateTime" />
+			<element name="Measurement" type="tns:Measurement"
+				maxOccurs="unbounded" minOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<complexType name="Measurement">
+		<attribute name="Time" type="int" />
+		<attribute name="Value" type="float" />
+	</complexType>
+
+	<element name="LoadCurve" type="tns:LoadCurve"></element>
+</schema>

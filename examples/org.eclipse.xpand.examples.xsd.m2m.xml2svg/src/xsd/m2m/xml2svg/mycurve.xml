@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:LoadCurve xmlns:tns="http://www.example.org/loadcurve"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/loadcurve loadcurve.xsd ">
+	<tns:Name>My Custom Load Curve</tns:Name>
+	<tns:Description>
+		This load curve has been transformed from custom XML to SVG.
+	</tns:Description>
+	<tns:CreationDate>2001-12-31T12:00:00</tns:CreationDate>
+	<tns:StartTime>2001-12-31T12:00:00</tns:StartTime>
+	<tns:Measurement Time="0" Value="0.0" />
+	<tns:Measurement Time="4" Value="10.0" />
+	<tns:Measurement Time="7" Value="5.0" />
+	<tns:Measurement Time="10" Value="67.0" />
+	<tns:Measurement Time="15" Value="12.0" />
+	<tns:Measurement Time="20" Value="45.0" />
+	<tns:Measurement Time="21" Value="23.0" />
+	<tns:Measurement Time="22" Value="30.0" />
+	<tns:Measurement Time="30" Value="28.0" />
+	<tns:Measurement Time="35" Value="35.0" />
+</tns:LoadCurve>

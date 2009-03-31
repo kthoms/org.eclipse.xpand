@@ -1,0 +1,11 @@
+«IMPORT loadcurve»
+
+«DEFINE Root FOR LoadCurve»
+«FILE "curve.txt"-»
+Name: «name»
+Description: «description»
+«FOREACH measurement AS m-»
+Point («m.time», «m.value»)
+«ENDFOREACH-»
+«ENDFILE»
+«ENDDEFINE»

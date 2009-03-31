@@ -1,0 +1,37 @@
+
+String package():
+	"mypackage";
+
+String toName(String name):
+	name.replaceAll("\\.","").replaceAll(" ","").replaceAll("'","");
+
+String toUpperName(String name):
+	name.toName().toFirstUpper();
+	
+String toLowerName(String name):
+	name.toName().toFirstLower();
+	
+String className(wizard::Wizard wiz):
+	wiz.name.toUpperName();
+	
+String optionsName(wizard::Wizard wiz):
+	wiz.className() + "Options";
+	
+String pageVar(String id):
+	id.toLowerName() + "Page";
+
+String optionsPageClass(wizard::OptionPage page):
+	page.id.toUpperName() + "OptionsPage";	
+	
+String optionVar(String name):
+	name.toLowerName();
+
+String choicePageClass(wizard::ChoicePage page):
+	page.id.toUpperName() + "ChoicePage";
+	
+String choiceButton(wizard::ChoiceType choice):
+	choice.title.toLowerName() + "Button";	
+	
+String finalPageClass(wizard::FinalPage page):
+	page.id.toUpperName() + "FinalPage";
+	

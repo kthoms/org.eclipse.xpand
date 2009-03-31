@@ -1,0 +1,94 @@
+import ecore;
+import xmlSchema;
+import type;
+
+extension org::eclipse::xtend::typesystem::xsd::lib::qname;
+extension org::eclipse::xtend::typesystem::xsd::lib::map;
+
+// This basic Xtend m2m transformation converts an ecore package with multiple subpackages to 
+// XML Schema, whereas one XSD file is created for every ecore subpackage. 
+
+// If you are looking for a general Ecore to XSD transformation, you should take a look at 
+// org.eclipse.xsd.ecore.XSDEcoreBuilder.generateResources(Collection<URI>)
+
+
+// create a DocumentRoot for every sub-Epackage
+List[XmlSchemaDocumentRoot] ECore2XSD(EPackage pkg):
+	pkg.eSubpackages.collect(e|createDocumentRoot(e));
+	
+// create a DocumentRoot object and declare depending namespaces.
+// EMF defines the XMLSchema namespace automatically, but this way we avoid using a prefix for it. 
+create XmlSchemaDocumentRoot this createDocumentRoot(EPackage pkg):
+	setSchema(createSchema(pkg)) ->
+	xMLNSPrefixMap.putAll(getDependencies(pkg).collect(e|createMapEntry(getPrefix(e),getNamespace(e)))) ->
+	xMLNSPrefixMap.put(getPrefix(pkg),getNamespace(pkg)) ->
+	xMLNSPrefixMap.put("","http://www.w3.org/2001/XMLSchema"); 
+	
+// create a Schema Object with all its imports, complexTypes and simpleTypes.
+create SchemaType this createSchema(EPackage pkg):
+	setId(pkg.name) ->
+	setTargetNamespace(getNamespace(pkg)) ->
+	^import.addAll(pkg.getDependencies().createImport()) ->
+	complexType.addAll(pkg.eClassifiers.typeSelect(EClass).collect(e|createComplexType(e))) ->
+	simpleType.addAll(pkg.eClassifiers.typeSelect(EDataType).collect(e|createSimpleType(e)));
+	
+ImportType createImport(EPackage pkg): let r = new ImportType:
+	r.setSchemaLocation(createDocumentRoot(pkg).getFileName()) ->
+	r.setNamespace(getNamespace(pkg)) ->
+	r;
+	
+TopLevelComplexType createComplexType(EClass cls): let r = new TopLevelComplexType:
+	r.setName(cls.name) ->
+	r.setSequence(createSequence(cls)) ->
+	r.setAnnotation(createAnno("This type is based on EClass '"+cls.name+"' from EPackage '"+cls.ePackage.name+"'")) ->
+	r;
+	
+AnnotationType createAnno(String doc): let r = new AnnotationType:
+	r.documentation.add(let d = new DocumentationType: d.any.text.add(doc) -> d) ->
+	r;
+
+ExplicitGroup createSequence(EClass cls): let r = new ExplicitGroup:
+	r.element.addAll(cls.eAttributes.collect(e|createElement(e))) ->
+	r.element.addAll(cls.eReferences.collect(e|createElement(e))) ->
+	r;
+	
+TopLevelSimpleType createSimpleType(EDataType dat): let r = new TopLevelSimpleType:
+	r.setName(dat.name) ->
+	r.setRestriction(createRestrictionType(dat)) ->
+	r;
+	
+RestrictionType1 createRestrictionType(EDataType dat): let r = new RestrictionType1:
+	r.setBase(createQName(dat.instanceClassName)) ->
+	r;
+	
+LocalElement createElement(ETypedElement ele): let r = new LocalElement:
+	r.setName(ele.name) ->
+	r.setType(getType(ele.eType)) ->
+	r.setMinOccurs(ele.lowerBound) ->
+	r.setMaxOccurs((ele.upperBound == -1) ? AllNniMember1::unbounded : ele.upperBound) ->
+	r;
+
+// collect all used types for the package and see if they belong to different packages.
+cached List[EPackage] getDependencies(EPackage pkg):
+	pkg.eClassifiers.eContents.typeSelect(ETypedElement).eType
+	.ePackage.select(e|e != pkg && e.eSuperPackage == pkg.eSuperPackage);
+
+QName getType(EClassifier c): 
+	createQName(getNamespace(c.ePackage),c.name,getPrefix(c.ePackage));
+	
+QName getType(EDataType c): 
+	(c.ePackage.eSuperPackage == null) ? 
+	switch(c.instanceClassName) {
+		case "java.lang.String": createQName("string")
+		default: createQName(c.instanceClassName)
+	} : createQName(getNamespace(c.ePackage),c.name,getPrefix(c.ePackage));
+
+String getPrefix(EPackage pkg):
+	pkg.name.toLowerCase().subString(0,3);
+	
+String getNamespace(EPackage pkg):
+	pkg.eSuperPackage.nsURI+"/"+pkg.name.toLowerCase();
+	
+String getFileName(XmlSchemaDocumentRoot docroot):
+	docroot.schema.id + ".xsd";
+	

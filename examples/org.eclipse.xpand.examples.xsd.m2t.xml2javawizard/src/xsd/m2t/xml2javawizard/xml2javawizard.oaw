@@ -1,0 +1,26 @@
+<workflow>
+	<!-- load the file -->
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="model" />
+		<uri value="xsd/m2t/xml2javawizard/mysetup.xml" />
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+		</metaModel>
+	</component>
+
+	<!-- clean up the target directory -->
+	<component
+		class="org.eclipse.emf.mwe.utils.DirectoryCleaner">
+		<directory value="src-gen/mypackage" />
+	</component>
+
+	<!-- generate some code -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm" />
+		<expand value="xsd::m2t::xml2javawizard::wizard::Root FOR model" />
+		<outlet path="src-gen" />
+		<beautifier
+			class="org.eclipse.xpand2.output.JavaBeautifier" />
+	</component>
+
+</workflow>

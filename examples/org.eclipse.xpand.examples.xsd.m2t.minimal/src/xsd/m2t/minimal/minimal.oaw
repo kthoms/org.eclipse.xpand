@@ -1,0 +1,15 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="model" />
+		<uri value="xsd/m2t/minimal/model.xml" />
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="xsd/m2t/minimal/metamodel.xsd" />
+		</metaModel>
+	</component>
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm" />
+		<expand value="xsd::m2t::minimal::template::Root FOR model" />
+		<outlet path="src-gen" />
+	</component>
+</workflow>

@@ -1,0 +1,33 @@
+import xhtml1Strict;
+
+// create document
+
+create Xhtml1StrictDocumentRoot Root(opml::OpmlType opml):
+	xMLNSPrefixMap.put("","http://www.w3.org/1999/xhtml") ->
+	setHtml(let this = new HtmlType: setBody(createBody(opml)) -> this);
+	
+create BodyType createBody(opml::OpmlType opml):
+	h1.add(newH1(opml.head.title /* + " (" + opml.head.dateModified + ")" */)) ->
+	p.add(createBodyParagraph(opml.body)) ->
+	ul.add(let this = new UlType: li.addAll(opml.body.outline.collect(e|createLink(e))) -> this);
+		
+create PType createBodyParagraph(opml::BodyType opml):
+	mixed.text.add("This is my paragraph with a link to ") ->
+	a.add(newA("Planet Eclipse","http://planet.eclipse.org/"));
+	
+create LiType createLink(opml::OutlineType outline):
+	mixed.text.add(outline.text + ": ") ->
+	a.add(newA(outline.title, outline.xmlUrl));
+
+	
+	
+// helpers
+	
+private H1Type newH1(String title): let r = new H1Type:
+	r.mixed.text.add(title) ->
+	r;
+
+private AType newA(String title, String url): let r = new AType:
+	r.setHref(url) ->
+	r.mixed.text.add(title) ->
+	r;

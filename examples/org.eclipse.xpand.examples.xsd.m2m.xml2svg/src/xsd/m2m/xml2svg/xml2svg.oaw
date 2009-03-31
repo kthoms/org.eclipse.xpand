@@ -1,0 +1,25 @@
+<workflow>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
+		<modelSlot value="curvemodel" />
+		<uri value="xsd/m2m/xml2svg/mycurve.xml" />
+		<metaModel id="curvemm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="xsd/m2m/xml2svg/loadcurve.xsd" />
+		</metaModel>
+	</component>
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel idRef="curvemm" />
+		<metaModel id="svgmm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="http://softeys.de/w3c/SVG.xsd" />
+			<savePackagesPath value="src-gen/" />
+		</metaModel>
+		<invoke value="xsd::m2m::xml2svg::loadcurve2svg::LoadCurve2SVG(curvemodel)" />
+		<outputSlot value="svgmodel" />
+	</component>
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLWriter">
+		<metaModel idRef="svgmm" />
+		<modelSlot value="svgmodel" />
+		<uri value="src-gen/mycurve.svg" />
+	</component>
+</workflow>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.openarchitectureware.xsd.demo.m2t-genmodel/src"
+    modelPluginID="org.openarchitectureware.xsd.demo.m2t_genmodel" modelName="Loadcurve"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>loadcurve.xsd</foreignModel>
+  <genPackages prefix="Loadcurve" basePackage="org.example" resource="XML" disposableProviderFactory="true"
+      ecorePackage="loadcurve.ecore#/">
+    <genClasses ecoreClass="loadcurve.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference loadcurve.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference loadcurve.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference loadcurve.ecore#//DocumentRoot/loadCurve"/>
+    </genClasses>
+    <genClasses ecoreClass="loadcurve.ecore#//LoadCurve">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//LoadCurve/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//LoadCurve/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//LoadCurve/creationDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//LoadCurve/startTime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference loadcurve.ecore#//LoadCurve/measurement"/>
+    </genClasses>
+    <genClasses ecoreClass="loadcurve.ecore#//Measurement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//Measurement/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//Measurement/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

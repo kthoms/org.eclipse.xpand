@@ -1,0 +1,33 @@
+<workflow>
+	<property name="plugin-src" value="src"/>
+
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
+		<registerGeneratedEPackage
+			value="org.eclipse.emf.ecore.EcorePackage" />
+	</bean>
+	
+	<component class="org.eclipse.emf.mwe.utils.Reader">
+		<modelSlot value="ecoremodel" />
+		<uri value="${plugin-src}/xsd/m2m/ecore2xsd/model.ecore" />
+	</component>
+	
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel id="ecoremm"
+			class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel">
+		</metaModel>
+		<metaModel id="xsdmm"
+			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
+			<schemaFile value="http://www.w3.org/2001/XMLSchema.xsd" />
+		</metaModel>
+		<invoke value="xsd::m2m::ecore2xsd::ecore2xsd::ECore2XSD(ecoremodel)" />
+		<outputSlot value="xsdmodel" />
+	</component>
+	
+	<component class="org.eclipse.xtend.typesystem.xsd.XMLWriter">
+		<metaModel idRef="xsdmm" />
+		<metaModel idRef="ecoremm" />
+		<modelSlot value="xsdmodel" />
+		<uriExpression varName="docroot"
+			expression="'src-gen/'+xsd::m2m::ecore2xsd::ecore2xsd::getFileName(docroot)" />
+	</component>
+</workflow>

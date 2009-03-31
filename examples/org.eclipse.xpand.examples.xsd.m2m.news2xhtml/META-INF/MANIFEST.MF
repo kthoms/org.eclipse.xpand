@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: M2M News (OPML, Atom, RSS) to XHTML 
+Bundle-SymbolicName: org.eclipse.xpand.examples.xsd.m2m.news2xhtml
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.xtend.typesystem.xsd,
+ org.eclipse.emf.mwe.core,
+ org.eclipse.emf.mwe.utils,
+ org.eclipse.xpand
+Export-Package: xsd.m2m.news2xhtml
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Demo-Description: This demo (which is still under development) aims at transforming news-related XML dialects (OPML, Atom, RSS) to an XHTML document.

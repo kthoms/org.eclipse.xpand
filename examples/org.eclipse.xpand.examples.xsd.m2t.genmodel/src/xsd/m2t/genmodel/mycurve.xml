@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:LoadCurve xmlns:tns="http://www.example.org/loadcurve" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/loadcurve loadcurve.xsd ">
+  <tns:Name>My Simple Loadcurve</tns:Name>
+  <tns:Description>This is a really long description for a curve</tns:Description>
+  <tns:CreationDate>2001-12-31T12:00:00</tns:CreationDate>
+  <tns:StartTime>2001-12-31T12:00:00</tns:StartTime>
+  <tns:Measurement Time="0" Value="0.0"/>
+  <tns:Measurement Time="1" Value="3.0"/>
+  <tns:Measurement Time="2" Value="5.7"/>
+  <tns:Measurement Time="5" Value="1.2"/>
+</tns:LoadCurve>

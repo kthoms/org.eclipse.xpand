@@ -11,7 +11,6 @@
 package org.eclipse.xtend.shared.ui.expression.editor.codeassist;
 
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.internal.xtend.expression.codeassist.AbstractProposalFactory;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalFactory;

@@ -33,7 +33,7 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class XtendXpandMarkerManager {
 
-    static final String getMARKER_TYPE() {
+    public static final String getMARKER_TYPE() {
         return Activator.getId() + ".problem";
     }
 

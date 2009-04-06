@@ -12,6 +12,7 @@
 package org.eclipse.xtend.shared.ui.test.core;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.xtend.expression.TypeSystemImpl;
@@ -34,6 +35,8 @@ public class JdtJavaBeanTest extends PluginTestBase {
         super.setUp();
         env.openEmptyWorkspace();
         final IPath pPath = env.addProject("test-"+System.currentTimeMillis());
+        // Clear classpath, we set it up on our own...
+		env.setClasspath(pPath, new IClasspathEntry[0]);
         env.addExternalJars(pPath, env.getJavaClassLibs());
         final IJavaProject project = env.getJavaProject(pPath);
         final IXtendXpandProject xp = Activator.getExtXptModelManager().findProject(pPath);

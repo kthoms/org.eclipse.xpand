@@ -152,7 +152,7 @@ Exception {
 	public final void testECoreMetaModelInDifferentProject() throws Exception {
 		env.openEmptyWorkspace();
 		final IPath pPath = env.addProject("test-"+System.currentTimeMillis());
-		final IPath pPath2 = env.addProject("test-"+System.currentTimeMillis());
+		final IPath pPath2 = env.addProject("test2-"+System.currentTimeMillis());
 		env.addExternalJars(pPath, env.getJavaClassLibs());
 		env.addExternalJars(pPath2, env.getJavaClassLibs());
 		final IPath templatesFolder = env.addPackage(pPath, "templates");

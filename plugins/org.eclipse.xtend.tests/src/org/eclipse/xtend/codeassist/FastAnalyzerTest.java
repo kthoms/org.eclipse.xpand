@@ -235,8 +235,8 @@ public class FastAnalyzerTest extends TestCase {
         assertInExpression("myStuff() : ele");
         assertInExpression("myStuff() : 'stuff'+ele");
         assertInExpression("myStuff() : let x = \"holla\" :\n x -> 3 ->true ->");
-        assertInExpression("import org::openarchitectureware::meta::uml;\n" +
-                "import org::openarchitectureware::meta::uml::classifier;\n" +
+        assertInExpression("import org::eclipse::xtend::meta::uml;\n" +
+                "import org::eclipse::xtend::meta::uml::classifier;\n" +
                 "\n" +
                 "String asParameter (ModelElement elem) :\n");
         

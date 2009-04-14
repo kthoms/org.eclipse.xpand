@@ -32,6 +32,10 @@ Object removeGlobalVar(String s) :
    internalRemoveGlobalVar(s)
 ;
 
+/**
+ * Clears all global variables.
+ */
+Void clearGlobalVars() : internalClearGlobalVars();
 
 // -------------------------------- INTERNAL --------------------------------   
 
@@ -46,4 +50,8 @@ private Object internalGetGlobalVar(String s) :
 
 private Object internalRemoveGlobalVar(String s) :
    JAVA org.eclipse.xtend.util.stdlib.GlobalVarExtensions.removeGlobalVar(java.lang.String)
+;
+
+private Void internalClearGlobalVars() :
+   JAVA org.eclipse.xtend.util.stdlib.GlobalVarExtensions.clearGlobalVars()
 ;

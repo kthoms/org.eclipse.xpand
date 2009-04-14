@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Java helper class for Stdlib extension <tt>org::openarchitectureware::util::stdlib::globalvar</tt>.
+ * Java helper class for Stdlib extension <tt>org::eclipse::xtend::util::stdlib::globalvar</tt>.
  */
 public class GlobalVarExtensions {
 	
 	private static Map<String,Object> vars = new HashMap<String,Object>();
 	
-	public static void storeGlobalVar(String s, Object o){
+	public static void storeGlobalVar(String s, Object o) {
 		if (o != null) {
 		vars.put(s, o);
 		} else {
@@ -28,13 +28,16 @@ public class GlobalVarExtensions {
 		}
 	}
 	
-	public static Object getGlobalVar(String s){
+	public static Object getGlobalVar(String s) {
 		return vars.get(s);
 	}
 
-	public static Object removeGlobalVar(String s){
+	public static Object removeGlobalVar(String s) {
 		return vars.remove(s);
 	}
 	
-
+	public static void clearGlobalVars () {
+		vars.clear();
+	}
+	
 }

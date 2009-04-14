@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
- * Java helper class for Stdlib extension <tt>org::openarchitectureware::util::stdlib::cloning</tt>.
+ * Java helper class for Stdlib extension <tt>org::eclipse::xtend::util::stdlib::cloning</tt>.
  */
 public class CloningExtensions {
 

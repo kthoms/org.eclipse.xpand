@@ -31,9 +31,9 @@ import org.eclipse.xtend.typesystem.Type;
 
 public abstract class AbstractExtension extends SyntaxElement implements Extension {
 
-	private Identifier name;
+	private final Identifier name;
 
-	private List<DeclaredParameter> formalParameters;
+	private final List<DeclaredParameter> formalParameters;
 
 	protected ExtensionFile file;
 
@@ -75,9 +75,10 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeorg.eclipse.xtend.ast.Extension#getReturnType(org.
-	 * openarchitectureware.type.Type[],
-	 * org.eclipse.expression.ExecutionContext, java.util.Set)
+	 * @see
+	 * org.eclipse.internal.xtend.xtend.ast.Extension#getReturnType(org.eclipse
+	 * .xtend.typesystem.Type[], org.eclipse.xtend.expression.ExecutionContext,
+	 * java.util.Set)
 	 */
 	public final Type getReturnType(final Type[] parameters, ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		ctx = ctx.cloneWithResource(getExtensionFile());
@@ -122,7 +123,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 			try {
 				analyzeInternal(ctx, issues);
 			}
-			catch (RuntimeException ex) {
+			catch (final RuntimeException ex) {
 				ctx.handleRuntimeException(ex, this, null);
 			}
 		}
@@ -133,7 +134,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 		}
 	}
 
-	protected void analyzeInternal(ExecutionContext ctx, Set<AnalysationIssue> issues) {
+	protected void analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		checkForAmbiguousDefinitions(ctx, issues);
 	}
 
@@ -164,7 +165,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 			}
 			return result;
 		}
-		catch (RuntimeException ex) {
+		catch (final RuntimeException ex) {
 			ctx.handleRuntimeException(ex, this, null);
 		}
 		finally {
@@ -348,7 +349,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -372,9 +373,9 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	}
 
 	protected void checkForAmbiguousDefinitions(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-		String name = getName();
-		for (Extension ext : ctx.getAllExtensions()) {
-			String otherName = ext.getName();
+		final String name = getName();
+		for (final Extension ext : ctx.getAllExtensions()) {
+			final String otherName = ext.getName();
 			if (name.equals(otherName) && (!getFileName().equals(ext.getFileName()) || getLine() != ext.getLine())) {
 				if (getParameterTypes().equals(ext.getParameterTypes())) {
 					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Ambiguous definition: "

@@ -13,19 +13,7 @@ package org.eclipse.internal.xpand2.parser;
 import org.antlr.runtime.CommonToken;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
-import org.eclipse.internal.xpand2.ast.Advice;
-import org.eclipse.internal.xpand2.ast.Definition;
-import org.eclipse.internal.xpand2.ast.ErrorStatement;
-import org.eclipse.internal.xpand2.ast.ExpandStatement;
-import org.eclipse.internal.xpand2.ast.ExpressionStatement;
-import org.eclipse.internal.xpand2.ast.FileStatement;
-import org.eclipse.internal.xpand2.ast.ForEachStatement;
-import org.eclipse.internal.xpand2.ast.IfStatement;
-import org.eclipse.internal.xpand2.ast.ImportDeclaration;
-import org.eclipse.internal.xpand2.ast.LetStatement;
-import org.eclipse.internal.xpand2.ast.ProtectStatement;
-import org.eclipse.internal.xpand2.ast.Statement;
-import org.eclipse.internal.xpand2.ast.Template;
+import org.eclipse.internal.xpand2.ast.*;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
@@ -34,16 +22,15 @@ import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 
 public class XpandLocationAddingParser extends XpandParser {
 
-	XpandLocationAddingParser(TokenStream stream) {
+	XpandLocationAddingParser(final TokenStream stream) {
 		super(stream, new XpandFactory("nofile"));
 	}
 
-	XpandLocationAddingParser(TokenStream stream, String fileName) {
+	XpandLocationAddingParser(final TokenStream stream, final String fileName) {
 		super(stream, new XpandFactory(fileName));
 	}
 
-	private static <T extends SyntaxElement> T addLocation(int[] startAndLine,
-			T ele, int end) {
+	private static <T extends SyntaxElement> T addLocation(final int[] startAndLine, final T ele, final int end) {
 		if (ele != null) {
 			ele.setStart(startAndLine[0]);
 			ele.setLine(startAndLine[1]);
@@ -53,23 +40,21 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	private int[] start() {
-		CommonToken t = (CommonToken) input.LT(1);
-		if (t == null) {
+		final CommonToken t = (CommonToken) input.LT(1);
+		if (t == null)
 			return new int[] { 0, 0 };
-		}
 		return new int[] { t.getStartIndex(), t.getLine() };
 	}
 
 	private int end() {
-		CommonToken t = (CommonToken) input.LT(-1);
-		if (t == null) {
+		final CommonToken t = (CommonToken) input.LT(-1);
+		if (t == null)
 			return -1;
-		}
 		return t.getStopIndex() + 1;
 	}
 
 	@Override
-	public void reportError(RecognitionException e) {
+	public void reportError(final RecognitionException e) {
 		System.out.println(super.getErrorMessage(e, tokenNames));
 		throw new RuntimeException(e);
 	}
@@ -120,8 +105,7 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	@Override
-	public org.eclipse.internal.xtend.expression.ast.Identifier collectionType()
-			throws RecognitionException {
+	public org.eclipse.internal.xtend.expression.ast.Identifier collectionType() throws RecognitionException {
 		return addLocation(start(), super.collectionType(), end());
 	}
 
@@ -141,8 +125,7 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	@Override
-	public org.eclipse.internal.xtend.expression.ast.Identifier definitionName()
-			throws RecognitionException {
+	public org.eclipse.internal.xtend.expression.ast.Identifier definitionName() throws RecognitionException {
 		return addLocation(start(), super.definitionName(), end());
 	}
 
@@ -192,14 +175,12 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	@Override
-	public GlobalVarExpression globalVarExpression()
-			throws RecognitionException {
+	public GlobalVarExpression globalVarExpression() throws RecognitionException {
 		return addLocation(start(), super.globalVarExpression(), end());
 	}
 
 	@Override
-	public org.eclipse.internal.xtend.expression.ast.Identifier identifier()
-			throws RecognitionException {
+	public org.eclipse.internal.xtend.expression.ast.Identifier identifier() throws RecognitionException {
 		return addLocation(start(), super.identifier(), end());
 	}
 
@@ -264,8 +245,7 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	@Override
-	public org.eclipse.internal.xtend.expression.ast.Identifier pointcut()
-			throws RecognitionException {
+	public org.eclipse.internal.xtend.expression.ast.Identifier pointcut() throws RecognitionException {
 		return addLocation(start(), super.pointcut(), end());
 	}
 
@@ -290,8 +270,7 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	@Override
-	public org.eclipse.internal.xtend.expression.ast.Identifier simpleType()
-			throws RecognitionException {
+	public org.eclipse.internal.xtend.expression.ast.Identifier simpleType() throws RecognitionException {
 		return addLocation(start(), super.simpleType(), end());
 	}
 
@@ -316,8 +295,7 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	@Override
-	public org.eclipse.internal.xtend.expression.ast.Identifier type()
-			throws RecognitionException {
+	public org.eclipse.internal.xtend.expression.ast.Identifier type() throws RecognitionException {
 		return addLocation(start(), super.type(), end());
 	}
 

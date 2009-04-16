@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.internal.xtend.expression.ast.*;
-import org.eclipse.internal.xtend.xpand2.ast.*;
+import org.eclipse.internal.xpand2.ast.*;
 }
 
 @lexer::header { 	
@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Collections;
 
 import org.eclipse.internal.xtend.expression.ast.*;
-import org.eclipse.internal.xtend.xpand2.ast.*;
+import org.eclipse.internal.xpand2.ast.*;
 }
 
 

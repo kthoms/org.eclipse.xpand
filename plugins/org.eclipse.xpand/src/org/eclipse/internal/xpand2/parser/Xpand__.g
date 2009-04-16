@@ -1,13 +1,13 @@
 lexer grammar Xpand;
 @header { 	
-package org.eclipse.xtend.xpand2.parser; 
+package org.eclipse.internal.xpand2.parser; 
 	
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import org.eclipse.xtend.expression.ast.*;
-import org.eclipse.xtend.xpand2.ast.*;
+import org.eclipse.internal.xtend.expression.ast.*;
+import org.eclipse.internal.xpand2.ast.*;
 }
 
 T21 : 'IMPORT' ;
@@ -91,16 +91,16 @@ T98 : 'Set' ;
 T99 : '[' ;
 T100 : ']' ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 372
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 372
 IntLiteral : ('0' | '1'..'9' '0'..'9'*) ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 374
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 374
 StringLiteral
     :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
     |  '\'' ( EscapeSequence | ~('\''|'\\') )* '\''
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 379
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 379
 fragment
 EscapeSequence
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
@@ -108,7 +108,7 @@ EscapeSequence
     |   OctalEscape
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 386
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 386
 fragment
 OctalEscape
     :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
@@ -116,21 +116,21 @@ OctalEscape
     |   '\\' ('0'..'7')
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 393
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 393
 fragment
 UnicodeEscape
     :   '\\' 'u' HexDigit HexDigit HexDigit HexDigit
     ;
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 397
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 397
 fragment
 HexDigit : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 400
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 400
 Identifier 
     :   ('^')? Letter (Letter|JavaIDDigit)*
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 404
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 404
 fragment
 Letter
     :  '\u0024' |
@@ -148,7 +148,7 @@ Letter
        '\uf900'..'\ufaff'
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 421
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 421
 fragment
 JavaIDDigit
     :  '\u0030'..'\u0039' |
@@ -168,40 +168,40 @@ JavaIDDigit
        '\u1040'..'\u1049'
    ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 440
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 440
 WS  :  (' '|'\r'|'\t'|'\u000C'|'\n') {$channel=HIDDEN;}
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 443
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 443
 ML_COMMENT
     :   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 447
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 447
 LINE_COMMENT
     : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 451
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 451
 LG  : '\u00AB';
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 452
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 452
 fragment
 RG: '\u00BB';
 
 // comments
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 456
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 456
 COMMENT :
 	'REM' RG ( options {greedy=false;} : . )* '\u00ABENDREM'
 ;
 
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 460
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 460
 TEXT :
   RG ~(LG)* (LG)?
 ;
 
 // a dummy rule to force vocabulary to be all characters (except special
 // ones that ANTLR uses internally (0 to 2) and the guillemot characters
-// $ANTLR src "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g" 466
+// $ANTLR src "C:\eclipse\workspaces\HEAD\org.eclipse.xpand\src\org\eclipse\internal\xpand2\parser\Xpand.g" 466
 fragment
 VOCAB :
 	('\3'..'\u00aa'|'\u00ac'..'\u00ba'|'\u00bc'..'\ufffe')

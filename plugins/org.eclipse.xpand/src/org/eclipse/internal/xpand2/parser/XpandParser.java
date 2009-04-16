@@ -1,71 +1,41 @@
-/*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
- *******************************************************************************/
-// $ANTLR 3.0 ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g 2007-08-13 15:51:04
+// $ANTLR 3.0.1 C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g 2009-04-16 12:56:53
  	
 package org.eclipse.internal.xpand2.parser; 
 	
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import org.antlr.runtime.BaseRecognizer;
-import org.antlr.runtime.BitSet;
-import org.antlr.runtime.CommonToken;
-import org.antlr.runtime.DFA;
-import org.antlr.runtime.IntStream;
-import org.antlr.runtime.MismatchedSetException;
-import org.antlr.runtime.NoViableAltException;
-import org.antlr.runtime.Parser;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.Token;
-import org.antlr.runtime.TokenStream;
-import org.eclipse.internal.xpand2.ast.Advice;
-import org.eclipse.internal.xpand2.ast.Definition;
-import org.eclipse.internal.xpand2.ast.ErrorStatement;
-import org.eclipse.internal.xpand2.ast.ExpandStatement;
-import org.eclipse.internal.xpand2.ast.ExpressionStatement;
-import org.eclipse.internal.xpand2.ast.FileStatement;
-import org.eclipse.internal.xpand2.ast.ForEachStatement;
-import org.eclipse.internal.xpand2.ast.IfStatement;
-import org.eclipse.internal.xpand2.ast.ImportDeclaration;
-import org.eclipse.internal.xpand2.ast.LetStatement;
-import org.eclipse.internal.xpand2.ast.ProtectStatement;
-import org.eclipse.internal.xpand2.ast.Statement;
-import org.eclipse.internal.xpand2.ast.Template;
-import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
-import org.eclipse.internal.xtend.expression.ast.Expression;
-import org.eclipse.internal.xtend.expression.ast.FeatureCall;
-import org.eclipse.internal.xtend.expression.ast.GlobalVarExpression;
-import org.eclipse.internal.xtend.expression.ast.Identifier;
+import org.eclipse.internal.xtend.expression.ast.*;
+import org.eclipse.internal.xpand2.ast.*;
+
+
+import org.antlr.runtime.*;
+import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 public class XpandParser extends Parser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LG", "COMMENT", "TEXT", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "ML_COMMENT", "LINE_COMMENT", "RG", "VOCAB", "'IMPORT'", "'EXTENSION'", "'AROUND'", "'('", "','", "'*'", "')'", "'FOR'", "'ENDAROUND'", "'::'", "'DEFINE'", "'ENDDEFINE'", "'-'", "'ERROR'", "'EXPAND'", "'FOREACH'", "'SEPARATOR'", "'FILE'", "'ENDFILE'", "'AS'", "'ITERATOR'", "'ENDFOREACH'", "'IF'", "'ENDIF'", "'ELSEIF'", "'ELSE'", "'LET'", "'ENDLET'", "'PROTECT'", "'CSTART'", "'CEND'", "'ID'", "'DISABLE'", "'ENDPROTECT'", "'let'", "'='", "':'", "'->'", "'?'", "'if'", "'then'", "'else'", "'switch'", "'{'", "'case'", "'default'", "'}'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'/'", "'!'", "'.'", "'GLOBALVAR'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'", "'Collection'", "'List'", "'Set'", "'['", "']'"
     };
-    public static final int IntLiteral=8;
-    public static final int Identifier=9;
-    public static final int HexDigit=13;
-    public static final int WS=16;
     public static final int RG=19;
-    public static final int COMMENT=5;
-    public static final int StringLiteral=7;
     public static final int LINE_COMMENT=18;
-    public static final int JavaIDDigit=15;
-    public static final int Letter=14;
-    public static final int UnicodeEscape=11;
-    public static final int EscapeSequence=10;
-    public static final int VOCAB=20;
-    public static final int EOF=-1;
+    public static final int IntLiteral=8;
     public static final int TEXT=6;
-    public static final int OctalEscape=12;
+    public static final int EOF=-1;
+    public static final int HexDigit=13;
+    public static final int Identifier=9;
+    public static final int StringLiteral=7;
     public static final int ML_COMMENT=17;
+    public static final int WS=16;
+    public static final int UnicodeEscape=11;
+    public static final int VOCAB=20;
+    public static final int JavaIDDigit=15;
+    public static final int COMMENT=5;
+    public static final int EscapeSequence=10;
+    public static final int OctalEscape=12;
+    public static final int Letter=14;
     public static final int LG=4;
 
         public XpandParser(TokenStream input) {
@@ -75,7 +45,7 @@ public class XpandParser extends Parser {
         
 
     public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g"; }
+    public String getGrammarFileName() { return "C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g"; }
 
 
     	private XpandFactory factory;
@@ -99,7 +69,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start template
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:44:1: template returns [Template t] : ( LG ( COMMENT TEXT )* ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )* ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )* | );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:44:1: template returns [Template t] : ( LG ( COMMENT TEXT )* ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )* ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )* | );
     public Template template() throws RecognitionException {
         Template t = null;
 
@@ -112,7 +82,7 @@ public class XpandParser extends Parser {
 
         List imports = new ArrayList(),extensions = new ArrayList(), defines = new ArrayList(), advices = new ArrayList();
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:46:2: ( LG ( COMMENT TEXT )* ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )* ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )* | )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:45:123: ( LG ( COMMENT TEXT )* ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )* ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )* | )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -131,10 +101,10 @@ public class XpandParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:46:2: LG ( COMMENT TEXT )* ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )* ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )*
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:46:2: LG ( COMMENT TEXT )* ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )* ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )*
                     {
                     match(input,LG,FOLLOW_LG_in_template47); if (failed) return t;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:47:3: ( COMMENT TEXT )*
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:47:3: ( COMMENT TEXT )*
                     loop1:
                     do {
                         int alt1=2;
@@ -147,7 +117,7 @@ public class XpandParser extends Parser {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:47:4: COMMENT TEXT
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:47:4: COMMENT TEXT
                     	    {
                     	    match(input,COMMENT,FOLLOW_COMMENT_in_template52); if (failed) return t;
                     	    match(input,TEXT,FOLLOW_TEXT_in_template54); if (failed) return t;
@@ -160,7 +130,7 @@ public class XpandParser extends Parser {
                         }
                     } while (true);
 
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:48:3: ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )*
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:48:3: ( (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )* )*
                     loop4:
                     do {
                         int alt4=2;
@@ -173,9 +143,9 @@ public class XpandParser extends Parser {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:48:4: (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )*
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:48:4: (imp= anImport | imp= anExtensionImport ) TEXT ( COMMENT TEXT )*
                     	    {
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:48:4: (imp= anImport | imp= anExtensionImport )
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:48:4: (imp= anImport | imp= anExtensionImport )
                     	    int alt2=2;
                     	    int LA2_0 = input.LA(1);
 
@@ -194,7 +164,7 @@ public class XpandParser extends Parser {
                     	    }
                     	    switch (alt2) {
                     	        case 1 :
-                    	            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:48:5: imp= anImport
+                    	            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:48:5: imp= anImport
                     	            {
                     	            pushFollow(FOLLOW_anImport_in_template64);
                     	            imp=anImport();
@@ -207,7 +177,7 @@ public class XpandParser extends Parser {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:48:41: imp= anExtensionImport
+                    	            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:48:41: imp= anExtensionImport
                     	            {
                     	            pushFollow(FOLLOW_anExtensionImport_in_template73);
                     	            imp=anExtensionImport();
@@ -223,7 +193,7 @@ public class XpandParser extends Parser {
                     	    }
 
                     	    match(input,TEXT,FOLLOW_TEXT_in_template78); if (failed) return t;
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:48:92: ( COMMENT TEXT )*
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:48:92: ( COMMENT TEXT )*
                     	    loop3:
                     	    do {
                     	        int alt3=2;
@@ -236,7 +206,7 @@ public class XpandParser extends Parser {
 
                     	        switch (alt3) {
                     	    	case 1 :
-                    	    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:48:93: COMMENT TEXT
+                    	    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:48:93: COMMENT TEXT
                     	    	    {
                     	    	    match(input,COMMENT,FOLLOW_COMMENT_in_template81); if (failed) return t;
                     	    	    match(input,TEXT,FOLLOW_TEXT_in_template83); if (failed) return t;
@@ -258,7 +228,7 @@ public class XpandParser extends Parser {
                         }
                     } while (true);
 
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:49:3: ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )*
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:49:3: ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )*
                     loop7:
                     do {
                         int alt7=2;
@@ -271,9 +241,9 @@ public class XpandParser extends Parser {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:49:4: (d= define | a= around ) TEXT ( COMMENT TEXT )*
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:49:4: (d= define | a= around ) TEXT ( COMMENT TEXT )*
                     	    {
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:49:4: (d= define | a= around )
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:49:4: (d= define | a= around )
                     	    int alt5=2;
                     	    int LA5_0 = input.LA(1);
 
@@ -292,7 +262,7 @@ public class XpandParser extends Parser {
                     	    }
                     	    switch (alt5) {
                     	        case 1 :
-                    	            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:49:5: d= define
+                    	            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:49:5: d= define
                     	            {
                     	            pushFollow(FOLLOW_define_in_template95);
                     	            d=define();
@@ -305,7 +275,7 @@ public class XpandParser extends Parser {
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:49:33: a= around
+                    	            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:49:33: a= around
                     	            {
                     	            pushFollow(FOLLOW_around_in_template102);
                     	            a=around();
@@ -321,7 +291,7 @@ public class XpandParser extends Parser {
                     	    }
 
                     	    match(input,TEXT,FOLLOW_TEXT_in_template106); if (failed) return t;
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:49:65: ( COMMENT TEXT )*
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:49:65: ( COMMENT TEXT )*
                     	    loop6:
                     	    do {
                     	        int alt6=2;
@@ -334,7 +304,7 @@ public class XpandParser extends Parser {
 
                     	        switch (alt6) {
                     	    	case 1 :
-                    	    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:49:66: COMMENT TEXT
+                    	    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:49:66: COMMENT TEXT
                     	    	    {
                     	    	    match(input,COMMENT,FOLLOW_COMMENT_in_template109); if (failed) return t;
                     	    	    match(input,TEXT,FOLLOW_TEXT_in_template111); if (failed) return t;
@@ -363,7 +333,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:52:1: 
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:52:1: 
                     {
                     }
                     break;
@@ -382,7 +352,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start anImport
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:54:1: anImport returns [ImportDeclaration imp] : 'IMPORT' id= simpleType ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:54:1: anImport returns [ImportDeclaration imp] : 'IMPORT' id= simpleType ;
     public ImportDeclaration anImport() throws RecognitionException {
         ImportDeclaration imp = null;
 
@@ -390,8 +360,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:55:2: ( 'IMPORT' id= simpleType )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:55:2: 'IMPORT' id= simpleType
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:54:42: ( 'IMPORT' id= simpleType )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:55:2: 'IMPORT' id= simpleType
             {
             match(input,21,FOLLOW_21_in_anImport137); if (failed) return imp;
             pushFollow(FOLLOW_simpleType_in_anImport141);
@@ -417,7 +387,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start anExtensionImport
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:58:1: anExtensionImport returns [ImportDeclaration imp] : 'EXTENSION' id= simpleType ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:58:1: anExtensionImport returns [ImportDeclaration imp] : 'EXTENSION' id= simpleType ;
     public ImportDeclaration anExtensionImport() throws RecognitionException {
         ImportDeclaration imp = null;
 
@@ -425,8 +395,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:59:2: ( 'EXTENSION' id= simpleType )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:59:2: 'EXTENSION' id= simpleType
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:58:50: ( 'EXTENSION' id= simpleType )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:59:2: 'EXTENSION' id= simpleType
             {
             match(input,22,FOLLOW_22_in_anExtensionImport156); if (failed) return imp;
             pushFollow(FOLLOW_simpleType_in_anExtensionImport160);
@@ -452,7 +422,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start around
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:62:1: around returns [Advice a] : 'AROUND' pc= pointcut ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )? 'FOR' t= type s= sequence 'ENDAROUND' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:62:1: around returns [Advice a] : 'AROUND' pc= pointcut ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )? 'FOR' t= type s= sequence 'ENDAROUND' ;
     public Advice around() throws RecognitionException {
         Advice a = null;
 
@@ -467,15 +437,15 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:63:4: ( 'AROUND' pc= pointcut ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )? 'FOR' t= type s= sequence 'ENDAROUND' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:63:4: 'AROUND' pc= pointcut ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )? 'FOR' t= type s= sequence 'ENDAROUND'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:62:27: ( 'AROUND' pc= pointcut ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )? 'FOR' t= type s= sequence 'ENDAROUND' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:63:4: 'AROUND' pc= pointcut ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )? 'FOR' t= type s= sequence 'ENDAROUND'
             {
             match(input,23,FOLLOW_23_in_around178); if (failed) return a;
             pushFollow(FOLLOW_pointcut_in_around182);
             pc=pointcut();
             _fsp--;
             if (failed) return a;
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:64:4: ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:64:4: ( '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -484,10 +454,10 @@ public class XpandParser extends Parser {
             }
             switch (alt11) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:64:5: '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:64:5: '(' (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' ) ')'
                     {
                     match(input,24,FOLLOW_24_in_around188); if (failed) return a;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:64:9: (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' )
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:64:9: (p= declaredParameterList ( ',' wildparams= '*' )? | wildparams= '*' )
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -506,13 +476,13 @@ public class XpandParser extends Parser {
                     }
                     switch (alt10) {
                         case 1 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:64:10: p= declaredParameterList ( ',' wildparams= '*' )?
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:64:10: p= declaredParameterList ( ',' wildparams= '*' )?
                             {
                             pushFollow(FOLLOW_declaredParameterList_in_around193);
                             p=declaredParameterList();
                             _fsp--;
                             if (failed) return a;
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:64:34: ( ',' wildparams= '*' )?
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:64:34: ( ',' wildparams= '*' )?
                             int alt9=2;
                             int LA9_0 = input.LA(1);
 
@@ -521,7 +491,7 @@ public class XpandParser extends Parser {
                             }
                             switch (alt9) {
                                 case 1 :
-                                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:64:35: ',' wildparams= '*'
+                                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:64:35: ',' wildparams= '*'
                                     {
                                     match(input,25,FOLLOW_25_in_around196); if (failed) return a;
                                     wildparams=(Token)input.LT(1);
@@ -536,7 +506,7 @@ public class XpandParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:64:59: wildparams= '*'
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:64:59: wildparams= '*'
                             {
                             wildparams=(Token)input.LT(1);
                             match(input,26,FOLLOW_26_in_around209); if (failed) return a;
@@ -582,7 +552,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start pointcut
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:70:1: pointcut returns [Identifier i] : (x= '*' | i1= identifier ) (x1= '*' | n1= identifier | dc= '::' )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:70:1: pointcut returns [Identifier i] : (x= '*' | i1= identifier ) (x1= '*' | n1= identifier | dc= '::' )* ;
     public Identifier pointcut() throws RecognitionException {
         Identifier i = null;
 
@@ -595,10 +565,10 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:71:2: ( (x= '*' | i1= identifier ) (x1= '*' | n1= identifier | dc= '::' )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:71:2: (x= '*' | i1= identifier ) (x1= '*' | n1= identifier | dc= '::' )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:70:33: ( (x= '*' | i1= identifier ) (x1= '*' | n1= identifier | dc= '::' )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:71:2: (x= '*' | i1= identifier ) (x1= '*' | n1= identifier | dc= '::' )*
             {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:71:2: (x= '*' | i1= identifier )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:71:2: (x= '*' | i1= identifier )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -617,7 +587,7 @@ public class XpandParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:71:3: x= '*'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:71:3: x= '*'
                     {
                     x=(Token)input.LT(1);
                     match(input,26,FOLLOW_26_in_pointcut256); if (failed) return i;
@@ -628,7 +598,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:71:23: i1= identifier
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:71:23: i1= identifier
                     {
                     pushFollow(FOLLOW_identifier_in_pointcut262);
                     i1=identifier();
@@ -643,7 +613,7 @@ public class XpandParser extends Parser {
 
             }
 
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:72:2: (x1= '*' | n1= identifier | dc= '::' )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:72:2: (x1= '*' | n1= identifier | dc= '::' )*
             loop13:
             do {
                 int alt13=4;
@@ -668,7 +638,7 @@ public class XpandParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:72:3: x1= '*'
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:72:3: x1= '*'
             	    {
             	    x1=(Token)input.LT(1);
             	    match(input,26,FOLLOW_26_in_pointcut271); if (failed) return i;
@@ -679,7 +649,7 @@ public class XpandParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:72:31: n1= identifier
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:72:31: n1= identifier
             	    {
             	    pushFollow(FOLLOW_identifier_in_pointcut277);
             	    n1=identifier();
@@ -692,7 +662,7 @@ public class XpandParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:72:62: dc= '::'
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:72:62: dc= '::'
             	    {
             	    dc=(Token)input.LT(1);
             	    match(input,30,FOLLOW_30_in_pointcut283); if (failed) return i;
@@ -724,7 +694,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start define
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:75:1: define returns [Definition d] : 'DEFINE' name= identifier ( '(' p= declaredParameterList ')' )? 'FOR' t= type s= sequence 'ENDDEFINE' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:75:1: define returns [Definition d] : 'DEFINE' name= identifier ( '(' p= declaredParameterList ')' )? 'FOR' t= type s= sequence 'ENDDEFINE' ;
     public Definition define() throws RecognitionException {
         Definition d = null;
 
@@ -738,15 +708,15 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:76:4: ( 'DEFINE' name= identifier ( '(' p= declaredParameterList ')' )? 'FOR' t= type s= sequence 'ENDDEFINE' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:76:4: 'DEFINE' name= identifier ( '(' p= declaredParameterList ')' )? 'FOR' t= type s= sequence 'ENDDEFINE'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:75:31: ( 'DEFINE' name= identifier ( '(' p= declaredParameterList ')' )? 'FOR' t= type s= sequence 'ENDDEFINE' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:76:4: 'DEFINE' name= identifier ( '(' p= declaredParameterList ')' )? 'FOR' t= type s= sequence 'ENDDEFINE'
             {
             match(input,31,FOLLOW_31_in_define303); if (failed) return d;
             pushFollow(FOLLOW_identifier_in_define307);
             name=identifier();
             _fsp--;
             if (failed) return d;
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:76:29: ( '(' p= declaredParameterList ')' )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:76:29: ( '(' p= declaredParameterList ')' )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -755,7 +725,7 @@ public class XpandParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:76:30: '(' p= declaredParameterList ')'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:76:30: '(' p= declaredParameterList ')'
                     {
                     match(input,24,FOLLOW_24_in_define310); if (failed) return d;
                     pushFollow(FOLLOW_declaredParameterList_in_define314);
@@ -798,7 +768,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start sequence
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:82:1: sequence returns [List<Statement> s=new ArrayList<Statement>()] : s1= textSequence (s2= statement s1= textSequence )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:82:1: sequence returns [List<Statement> s=new ArrayList<Statement>()] : s1= textSequence (s2= statement s1= textSequence )* ;
     public List<Statement> sequence() throws RecognitionException {
         List<Statement> s = new ArrayList<Statement>();
 
@@ -808,8 +778,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:83:3: (s1= textSequence (s2= statement s1= textSequence )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:83:3: s1= textSequence (s2= statement s1= textSequence )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:82:65: (s1= textSequence (s2= statement s1= textSequence )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:83:3: s1= textSequence (s2= statement s1= textSequence )*
             {
             pushFollow(FOLLOW_textSequence_in_sequence361);
             s1=textSequence();
@@ -818,7 +788,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               s.addAll(s1);
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:84:3: (s2= statement s1= textSequence )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:84:3: (s2= statement s1= textSequence )*
             loop15:
             do {
                 int alt15=2;
@@ -831,7 +801,7 @@ public class XpandParser extends Parser {
 
                 switch (alt15) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:84:4: s2= statement s1= textSequence
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:84:4: s2= statement s1= textSequence
             	    {
             	    pushFollow(FOLLOW_statement_in_sequence370);
             	    s2=statement();
@@ -872,7 +842,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start statement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:93:1: statement returns [Statement s] : (s1= simpleStatement | s2= fileStatement | s3= foreachStatement | s4= ifStatement | s5= letStatement | s6= protectStatement );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:93:1: statement returns [Statement s] : (s1= simpleStatement | s2= fileStatement | s3= foreachStatement | s4= ifStatement | s5= letStatement | s6= protectStatement );
     public Statement statement() throws RecognitionException {
         Statement s = null;
 
@@ -890,7 +860,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:94:3: (s1= simpleStatement | s2= fileStatement | s3= foreachStatement | s4= ifStatement | s5= letStatement | s6= protectStatement )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:93:33: (s1= simpleStatement | s2= fileStatement | s3= foreachStatement | s4= ifStatement | s5= letStatement | s6= protectStatement )
             int alt16=6;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -961,7 +931,7 @@ public class XpandParser extends Parser {
 
             switch (alt16) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:94:3: s1= simpleStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:94:3: s1= simpleStatement
                     {
                     pushFollow(FOLLOW_simpleStatement_in_statement409);
                     s1=simpleStatement();
@@ -974,7 +944,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:95:3: s2= fileStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:95:3: s2= fileStatement
                     {
                     pushFollow(FOLLOW_fileStatement_in_statement417);
                     s2=fileStatement();
@@ -987,7 +957,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:96:3: s3= foreachStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:96:3: s3= foreachStatement
                     {
                     pushFollow(FOLLOW_foreachStatement_in_statement425);
                     s3=foreachStatement();
@@ -1000,7 +970,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:97:3: s4= ifStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:97:3: s4= ifStatement
                     {
                     pushFollow(FOLLOW_ifStatement_in_statement433);
                     s4=ifStatement();
@@ -1013,7 +983,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:98:3: s5= letStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:98:3: s5= letStatement
                     {
                     pushFollow(FOLLOW_letStatement_in_statement441);
                     s5=letStatement();
@@ -1026,7 +996,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:99:3: s6= protectStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:99:3: s6= protectStatement
                     {
                     pushFollow(FOLLOW_protectStatement_in_statement449);
                     s6=protectStatement();
@@ -1053,7 +1023,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start textSequence
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:102:1: textSequence returns [List<Statement> s=new ArrayList<Statement>();] : t= text ( COMMENT t1= text )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:102:1: textSequence returns [List<Statement> s=new ArrayList<Statement>();] : t= text ( COMMENT t1= text )* ;
     public List<Statement> textSequence() throws RecognitionException {
         List<Statement> s = new ArrayList<Statement>();;
 
@@ -1063,8 +1033,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:103:2: (t= text ( COMMENT t1= text )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:103:2: t= text ( COMMENT t1= text )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:102:70: (t= text ( COMMENT t1= text )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:103:2: t= text ( COMMENT t1= text )*
             {
             pushFollow(FOLLOW_text_in_textSequence468);
             t=text();
@@ -1073,7 +1043,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               s.add(t);
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:104:3: ( COMMENT t1= text )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:104:3: ( COMMENT t1= text )*
             loop17:
             do {
                 int alt17=2;
@@ -1086,7 +1056,7 @@ public class XpandParser extends Parser {
 
                 switch (alt17) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:104:4: COMMENT t1= text
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:104:4: COMMENT t1= text
             	    {
             	    match(input,COMMENT,FOLLOW_COMMENT_in_textSequence475); if (failed) return s;
             	    pushFollow(FOLLOW_text_in_textSequence479);
@@ -1121,7 +1091,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start text
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:107:1: text returns [Statement s] : (m= '-' )? t= TEXT ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:107:1: text returns [Statement s] : (m= '-' )? t= TEXT ;
     public Statement text() throws RecognitionException {
         Statement s = null;
 
@@ -1129,10 +1099,10 @@ public class XpandParser extends Parser {
         Token t=null;
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:108:2: ( (m= '-' )? t= TEXT )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:108:2: (m= '-' )? t= TEXT
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:107:28: ( (m= '-' )? t= TEXT )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:108:2: (m= '-' )? t= TEXT
             {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:108:2: (m= '-' )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:108:2: (m= '-' )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1141,7 +1111,7 @@ public class XpandParser extends Parser {
             }
             switch (alt18) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:108:3: m= '-'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:108:3: m= '-'
                     {
                     m=(Token)input.LT(1);
                     match(input,33,FOLLOW_33_in_text500); if (failed) return s;
@@ -1172,7 +1142,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start simpleStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:111:1: simpleStatement returns [Statement s] : (s1= errorStatement | s2= expandStatement | s3= expressionStmt );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:111:1: simpleStatement returns [Statement s] : (s1= errorStatement | s2= expandStatement | s3= expressionStmt );
     public Statement simpleStatement() throws RecognitionException {
         Statement s = null;
 
@@ -1184,7 +1154,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:112:3: (s1= errorStatement | s2= expandStatement | s3= expressionStmt )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:111:39: (s1= errorStatement | s2= expandStatement | s3= expressionStmt )
             int alt19=3;
             switch ( input.LA(1) ) {
             case 34:
@@ -1238,7 +1208,7 @@ public class XpandParser extends Parser {
 
             switch (alt19) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:112:3: s1= errorStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:112:3: s1= errorStatement
                     {
                     pushFollow(FOLLOW_errorStatement_in_simpleStatement525);
                     s1=errorStatement();
@@ -1251,7 +1221,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:113:3: s2= expandStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:113:3: s2= expandStatement
                     {
                     pushFollow(FOLLOW_expandStatement_in_simpleStatement533);
                     s2=expandStatement();
@@ -1264,7 +1234,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:114:3: s3= expressionStmt
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:114:3: s3= expressionStmt
                     {
                     pushFollow(FOLLOW_expressionStmt_in_simpleStatement541);
                     s3=expressionStmt();
@@ -1291,7 +1261,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start errorStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:117:1: errorStatement returns [ErrorStatement e] : 'ERROR' expr= expression ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:117:1: errorStatement returns [ErrorStatement e] : 'ERROR' expr= expression ;
     public ErrorStatement errorStatement() throws RecognitionException {
         ErrorStatement e = null;
 
@@ -1299,8 +1269,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:118:3: ( 'ERROR' expr= expression )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:118:3: 'ERROR' expr= expression
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:117:43: ( 'ERROR' expr= expression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:118:3: 'ERROR' expr= expression
             {
             match(input,34,FOLLOW_34_in_errorStatement558); if (failed) return e;
             pushFollow(FOLLOW_expression_in_errorStatement562);
@@ -1326,7 +1296,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start expandStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:121:1: expandStatement returns [ExpandStatement e] : 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:121:1: expandStatement returns [ExpandStatement e] : 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? ;
     public ExpandStatement expandStatement() throws RecognitionException {
         ExpandStatement e = null;
 
@@ -1341,15 +1311,15 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:3: ( 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:3: 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:121:45: ( 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:122:3: 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )?
             {
             match(input,35,FOLLOW_35_in_expandStatement579); if (failed) return e;
             pushFollow(FOLLOW_definitionName_in_expandStatement583);
             t=definitionName();
             _fsp--;
             if (failed) return e;
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:29: ( '(' pl= parameterList ')' )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:122:29: ( '(' pl= parameterList ')' )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1358,7 +1328,7 @@ public class XpandParser extends Parser {
             }
             switch (alt20) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:30: '(' pl= parameterList ')'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:122:30: '(' pl= parameterList ')'
                     {
                     match(input,24,FOLLOW_24_in_expandStatement586); if (failed) return e;
                     pushFollow(FOLLOW_parameterList_in_expandStatement590);
@@ -1372,7 +1342,7 @@ public class XpandParser extends Parser {
 
             }
 
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:57: ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:122:57: ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )?
             int alt22=3;
             int LA22_0 = input.LA(1);
 
@@ -1384,10 +1354,10 @@ public class XpandParser extends Parser {
             }
             switch (alt22) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:58: ( 'FOR' expr= expression )
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:122:58: ( 'FOR' expr= expression )
                     {
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:58: ( 'FOR' expr= expression )
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:122:59: 'FOR' expr= expression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:122:58: ( 'FOR' expr= expression )
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:122:59: 'FOR' expr= expression
                     {
                     match(input,28,FOLLOW_28_in_expandStatement598); if (failed) return e;
                     pushFollow(FOLLOW_expression_in_expandStatement602);
@@ -1401,10 +1371,10 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:123:5: (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? )
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:123:5: (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? )
                     {
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:123:5: (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? )
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:123:6: fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:123:5: (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? )
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:123:6: fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )?
                     {
                     fe=(Token)input.LT(1);
                     match(input,36,FOLLOW_36_in_expandStatement612); if (failed) return e;
@@ -1412,7 +1382,7 @@ public class XpandParser extends Parser {
                     expr=expression();
                     _fsp--;
                     if (failed) return e;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:123:35: ( 'SEPARATOR' sep= expression )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:123:35: ( 'SEPARATOR' sep= expression )?
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
@@ -1421,7 +1391,7 @@ public class XpandParser extends Parser {
                     }
                     switch (alt21) {
                         case 1 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:123:36: 'SEPARATOR' sep= expression
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:123:36: 'SEPARATOR' sep= expression
                             {
                             match(input,37,FOLLOW_37_in_expandStatement619); if (failed) return e;
                             pushFollow(FOLLOW_expression_in_expandStatement623);
@@ -1462,7 +1432,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start definitionName
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:128:1: definitionName returns [Identifier id] : id1= simpleType ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:128:1: definitionName returns [Identifier id] : id1= simpleType ;
     public Identifier definitionName() throws RecognitionException {
         Identifier id = null;
 
@@ -1470,8 +1440,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:129:2: (id1= simpleType )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:129:2: id1= simpleType
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:128:40: (id1= simpleType )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:129:2: id1= simpleType
             {
             pushFollow(FOLLOW_simpleType_in_definitionName653);
             id1=simpleType();
@@ -1496,7 +1466,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start expressionStmt
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:132:1: expressionStmt returns [ExpressionStatement es] : e= expression ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:132:1: expressionStmt returns [ExpressionStatement es] : e= expression ;
     public ExpressionStatement expressionStmt() throws RecognitionException {
         ExpressionStatement es = null;
 
@@ -1504,8 +1474,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:133:2: (e= expression )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:133:2: e= expression
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:132:49: (e= expression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:133:2: e= expression
             {
             pushFollow(FOLLOW_expression_in_expressionStmt671);
             e=expression();
@@ -1530,7 +1500,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start fileStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:136:1: fileStatement returns [FileStatement f] : 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:136:1: fileStatement returns [FileStatement f] : 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' ;
     public FileStatement fileStatement() throws RecognitionException {
         FileStatement f = null;
 
@@ -1542,15 +1512,15 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:137:2: ( 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:137:2: 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:136:41: ( 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:137:2: 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE'
             {
             match(input,38,FOLLOW_38_in_fileStatement687); if (failed) return f;
             pushFollow(FOLLOW_expression_in_fileStatement691);
             e=expression();
             _fsp--;
             if (failed) return f;
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:137:22: (option= identifier )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:137:22: (option= identifier )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -1559,7 +1529,7 @@ public class XpandParser extends Parser {
             }
             switch (alt23) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:137:23: option= identifier
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:137:23: option= identifier
                     {
                     pushFollow(FOLLOW_identifier_in_fileStatement696);
                     option=identifier();
@@ -1595,7 +1565,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start foreachStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:143:1: foreachStatement returns [ForEachStatement f] : 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:143:1: foreachStatement returns [ForEachStatement f] : 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' ;
     public ForEachStatement foreachStatement() throws RecognitionException {
         ForEachStatement f = null;
 
@@ -1611,8 +1581,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:144:3: ( 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:144:3: 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:143:46: ( 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:144:3: 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH'
             {
             match(input,36,FOLLOW_36_in_foreachStatement726); if (failed) return f;
             pushFollow(FOLLOW_expression_in_foreachStatement730);
@@ -1624,7 +1594,7 @@ public class XpandParser extends Parser {
             v=identifier();
             _fsp--;
             if (failed) return f;
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:144:44: ( 'ITERATOR' iter= identifier )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:144:44: ( 'ITERATOR' iter= identifier )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -1633,7 +1603,7 @@ public class XpandParser extends Parser {
             }
             switch (alt24) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:144:45: 'ITERATOR' iter= identifier
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:144:45: 'ITERATOR' iter= identifier
                     {
                     match(input,41,FOLLOW_41_in_foreachStatement739); if (failed) return f;
                     pushFollow(FOLLOW_identifier_in_foreachStatement743);
@@ -1646,7 +1616,7 @@ public class XpandParser extends Parser {
 
             }
 
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:144:74: ( 'SEPARATOR' sep= expression )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:144:74: ( 'SEPARATOR' sep= expression )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -1655,7 +1625,7 @@ public class XpandParser extends Parser {
             }
             switch (alt25) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:144:75: 'SEPARATOR' sep= expression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:144:75: 'SEPARATOR' sep= expression
                     {
                     match(input,37,FOLLOW_37_in_foreachStatement748); if (failed) return f;
                     pushFollow(FOLLOW_expression_in_foreachStatement752);
@@ -1692,7 +1662,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start ifStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:150:1: ifStatement returns [IfStatement i] : 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:150:1: ifStatement returns [IfStatement i] : 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' ;
     public IfStatement ifStatement() throws RecognitionException {
         IfStatement i = null;
 
@@ -1707,8 +1677,8 @@ public class XpandParser extends Parser {
 
         IfStatement temp = null;
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:151:6: ( 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:151:6: 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:150:68: ( 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:151:6: 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF'
             {
             match(input,43,FOLLOW_43_in_ifStatement793); if (failed) return i;
             pushFollow(FOLLOW_expression_in_ifStatement797);
@@ -1723,7 +1693,7 @@ public class XpandParser extends Parser {
               i = factory.createIfStatement(e,s);
               		 temp = i;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:155:3: (elif= elseIfStatement )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:155:3: (elif= elseIfStatement )*
             loop26:
             do {
                 int alt26=2;
@@ -1736,7 +1706,7 @@ public class XpandParser extends Parser {
 
                 switch (alt26) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:155:4: elif= elseIfStatement
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:155:4: elif= elseIfStatement
             	    {
             	    pushFollow(FOLLOW_elseIfStatement_in_ifStatement815);
             	    elif=elseIfStatement();
@@ -1755,7 +1725,7 @@ public class XpandParser extends Parser {
                 }
             } while (true);
 
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:157:3: (el= elseStatement )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:157:3: (el= elseStatement )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -1764,7 +1734,7 @@ public class XpandParser extends Parser {
             }
             switch (alt27) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:157:4: el= elseStatement
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:157:4: el= elseStatement
                     {
                     pushFollow(FOLLOW_elseStatement_in_ifStatement826);
                     el=elseStatement();
@@ -1797,7 +1767,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start elseIfStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:162:1: elseIfStatement returns [IfStatement i] : 'ELSEIF' e= expression s= sequence ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:162:1: elseIfStatement returns [IfStatement i] : 'ELSEIF' e= expression s= sequence ;
     public IfStatement elseIfStatement() throws RecognitionException {
         IfStatement i = null;
 
@@ -1807,8 +1777,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:163:2: ( 'ELSEIF' e= expression s= sequence )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:163:2: 'ELSEIF' e= expression s= sequence
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:162:41: ( 'ELSEIF' e= expression s= sequence )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:163:2: 'ELSEIF' e= expression s= sequence
             {
             match(input,45,FOLLOW_45_in_elseIfStatement852); if (failed) return i;
             pushFollow(FOLLOW_expression_in_elseIfStatement856);
@@ -1838,7 +1808,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start elseStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:168:1: elseStatement returns [IfStatement i] : 'ELSE' s= sequence ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:168:1: elseStatement returns [IfStatement i] : 'ELSE' s= sequence ;
     public IfStatement elseStatement() throws RecognitionException {
         IfStatement i = null;
 
@@ -1846,8 +1816,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:169:2: ( 'ELSE' s= sequence )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:169:2: 'ELSE' s= sequence
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:168:39: ( 'ELSE' s= sequence )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:169:2: 'ELSE' s= sequence
             {
             match(input,46,FOLLOW_46_in_elseStatement883); if (failed) return i;
             pushFollow(FOLLOW_sequence_in_elseStatement889);
@@ -1873,7 +1843,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start letStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:174:1: letStatement returns [LetStatement l] : 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:174:1: letStatement returns [LetStatement l] : 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' ;
     public LetStatement letStatement() throws RecognitionException {
         LetStatement l = null;
 
@@ -1885,8 +1855,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:175:3: ( 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:175:3: 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:174:39: ( 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:175:3: 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET'
             {
             match(input,47,FOLLOW_47_in_letStatement910); if (failed) return l;
             pushFollow(FOLLOW_expression_in_letStatement914);
@@ -1922,7 +1892,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start protectStatement
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:181:1: protectStatement returns [ProtectStatement l] : 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:181:1: protectStatement returns [ProtectStatement l] : 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' ;
     public ProtectStatement protectStatement() throws RecognitionException {
         ProtectStatement l = null;
 
@@ -1937,8 +1907,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:182:2: ( 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:182:2: 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:181:47: ( 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:182:2: 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT'
             {
             match(input,49,FOLLOW_49_in_protectStatement952); if (failed) return l;
             match(input,50,FOLLOW_50_in_protectStatement957); if (failed) return l;
@@ -1956,7 +1926,7 @@ public class XpandParser extends Parser {
             id=expression();
             _fsp--;
             if (failed) return l;
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:185:30: (disabled= 'DISABLE' )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:185:30: (disabled= 'DISABLE' )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -1965,7 +1935,7 @@ public class XpandParser extends Parser {
             }
             switch (alt28) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:185:31: disabled= 'DISABLE'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:185:31: disabled= 'DISABLE'
                     {
                     disabled=(Token)input.LT(1);
                     match(input,53,FOLLOW_53_in_protectStatement992); if (failed) return l;
@@ -1999,7 +1969,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start expression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:194:1: expression returns [Expression e] : x= letExpression ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:194:1: expression returns [Expression e] : x= letExpression ;
     public Expression expression() throws RecognitionException {
         Expression e = null;
 
@@ -2007,8 +1977,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:195:2: (x= letExpression )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:195:2: x= letExpression
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:194:34: (x= letExpression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:195:2: x= letExpression
             {
             pushFollow(FOLLOW_letExpression_in_expression1027);
             x=letExpression();
@@ -2033,7 +2003,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start letExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:198:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:198:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );
     public Expression letExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2047,7 +2017,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:199:4: ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:198:39: ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -2066,7 +2036,7 @@ public class XpandParser extends Parser {
             }
             switch (alt29) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:199:4: 'let' v= identifier '=' varExpr= castedExpression ':' target= expression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:199:4: 'let' v= identifier '=' varExpr= castedExpression ':' target= expression
                     {
                     match(input,55,FOLLOW_55_in_letExpression1046); if (failed) return e;
                     pushFollow(FOLLOW_identifier_in_letExpression1050);
@@ -2090,7 +2060,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:201:4: x= castedExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:201:4: x= castedExpression
                     {
                     pushFollow(FOLLOW_castedExpression_in_letExpression1075);
                     x=castedExpression();
@@ -2117,7 +2087,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start castedExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:204:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:204:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );
     public Expression castedExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2127,12 +2097,12 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:205:5: ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:204:41: ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression )
             int alt30=2;
             alt30 = dfa30.predict(input);
             switch (alt30) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:205:5: ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:205:5: ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression
                     {
                     match(input,24,FOLLOW_24_in_castedExpression1106); if (failed) return e;
                     pushFollow(FOLLOW_type_in_castedExpression1110);
@@ -2151,7 +2121,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:207:4: x= chainExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:207:4: x= chainExpression
                     {
                     pushFollow(FOLLOW_chainExpression_in_castedExpression1125);
                     x=chainExpression();
@@ -2178,7 +2148,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start chainExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:211:1: chainExpression returns [Expression e] : x= ifExpression ( '->' right= ifExpression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:211:1: chainExpression returns [Expression e] : x= ifExpression ( '->' right= ifExpression )* ;
     public Expression chainExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2188,8 +2158,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:212:2: (x= ifExpression ( '->' right= ifExpression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:212:2: x= ifExpression ( '->' right= ifExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:211:41: (x= ifExpression ( '->' right= ifExpression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:212:2: x= ifExpression ( '->' right= ifExpression )*
             {
             pushFollow(FOLLOW_ifExpression_in_chainExpression1145);
             x=ifExpression();
@@ -2198,7 +2168,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:212:25: ( '->' right= ifExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:212:25: ( '->' right= ifExpression )*
             loop31:
             do {
                 int alt31=2;
@@ -2211,7 +2181,7 @@ public class XpandParser extends Parser {
 
                 switch (alt31) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:212:27: '->' right= ifExpression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:212:27: '->' right= ifExpression
             	    {
             	    match(input,58,FOLLOW_58_in_chainExpression1151); if (failed) return e;
             	    pushFollow(FOLLOW_ifExpression_in_chainExpression1155);
@@ -2246,7 +2216,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start ifExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:215:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:215:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );
     public Expression ifExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2260,7 +2230,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:216:2: (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:215:38: (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? )
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -2279,7 +2249,7 @@ public class XpandParser extends Parser {
             }
             switch (alt34) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:216:2: x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:216:2: x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
                     {
                     pushFollow(FOLLOW_switchExpression_in_ifExpression1176);
                     x=switchExpression();
@@ -2288,7 +2258,7 @@ public class XpandParser extends Parser {
                     if ( backtracking==0 ) {
                       e =x;
                     }
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:216:28: ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:216:28: ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
                     int alt32=2;
                     int LA32_0 = input.LA(1);
 
@@ -2297,7 +2267,7 @@ public class XpandParser extends Parser {
                     }
                     switch (alt32) {
                         case 1 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:216:29: '?' thenPart= switchExpression ':' elsePart= switchExpression
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:216:29: '?' thenPart= switchExpression ':' elsePart= switchExpression
                             {
                             match(input,59,FOLLOW_59_in_ifExpression1180); if (failed) return e;
                             pushFollow(FOLLOW_switchExpression_in_ifExpression1184);
@@ -2322,7 +2292,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:217:3: 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:217:3: 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )?
                     {
                     match(input,60,FOLLOW_60_in_ifExpression1198); if (failed) return e;
                     pushFollow(FOLLOW_switchExpression_in_ifExpression1202);
@@ -2334,7 +2304,7 @@ public class XpandParser extends Parser {
                     thenPart=switchExpression();
                     _fsp--;
                     if (failed) return e;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:217:68: ( 'else' elsePart= expression )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:217:68: ( 'else' elsePart= expression )?
                     int alt33=2;
                     int LA33_0 = input.LA(1);
 
@@ -2343,7 +2313,7 @@ public class XpandParser extends Parser {
                     }
                     switch (alt33) {
                         case 1 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:217:69: 'else' elsePart= expression
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:217:69: 'else' elsePart= expression
                             {
                             match(input,62,FOLLOW_62_in_ifExpression1211); if (failed) return e;
                             pushFollow(FOLLOW_expression_in_ifExpression1215);
@@ -2377,7 +2347,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start switchExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:221:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:221:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );
     public Expression switchExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2394,7 +2364,7 @@ public class XpandParser extends Parser {
 
         List cases = new ArrayList();
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:222:4: ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:221:85: ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression )
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -2413,10 +2383,10 @@ public class XpandParser extends Parser {
             }
             switch (alt37) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:222:4: 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:222:4: 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}'
                     {
                     match(input,63,FOLLOW_63_in_switchExpression1242); if (failed) return e;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:222:13: ( '(' pred= orExpression ')' )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:222:13: ( '(' pred= orExpression ')' )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
 
@@ -2425,7 +2395,7 @@ public class XpandParser extends Parser {
                     }
                     switch (alt35) {
                         case 1 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:222:14: '(' pred= orExpression ')'
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:222:14: '(' pred= orExpression ')'
                             {
                             match(input,24,FOLLOW_24_in_switchExpression1245); if (failed) return e;
                             pushFollow(FOLLOW_orExpression_in_switchExpression1251);
@@ -2440,7 +2410,7 @@ public class XpandParser extends Parser {
                     }
 
                     match(input,64,FOLLOW_64_in_switchExpression1260); if (failed) return e;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:224:4: ( 'case' c= orExpression ':' v= orExpression )*
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:224:4: ( 'case' c= orExpression ':' v= orExpression )*
                     loop36:
                     do {
                         int alt36=2;
@@ -2453,7 +2423,7 @@ public class XpandParser extends Parser {
 
                         switch (alt36) {
                     	case 1 :
-                    	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:225:6: 'case' c= orExpression ':' v= orExpression
+                    	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:225:6: 'case' c= orExpression ':' v= orExpression
                     	    {
                     	    match(input,65,FOLLOW_65_in_switchExpression1273); if (failed) return e;
                     	    pushFollow(FOLLOW_orExpression_in_switchExpression1277);
@@ -2491,7 +2461,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:231:4: x= orExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:231:4: x= orExpression
                     {
                     pushFollow(FOLLOW_orExpression_in_switchExpression1328);
                     x=orExpression();
@@ -2518,7 +2488,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start orExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:234:1: orExpression returns [Expression e] : x= andExpression (name= '||' r= andExpression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:234:1: orExpression returns [Expression e] : x= andExpression (name= '||' r= andExpression )* ;
     public Expression orExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2529,8 +2499,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:235:4: (x= andExpression (name= '||' r= andExpression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:235:4: x= andExpression (name= '||' r= andExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:234:37: (x= andExpression (name= '||' r= andExpression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:235:4: x= andExpression (name= '||' r= andExpression )*
             {
             pushFollow(FOLLOW_andExpression_in_orExpression1348);
             x=andExpression();
@@ -2539,7 +2509,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:235:28: (name= '||' r= andExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:235:28: (name= '||' r= andExpression )*
             loop38:
             do {
                 int alt38=2;
@@ -2552,7 +2522,7 @@ public class XpandParser extends Parser {
 
                 switch (alt38) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:235:29: name= '||' r= andExpression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:235:29: name= '||' r= andExpression
             	    {
             	    name=(Token)input.LT(1);
             	    match(input,68,FOLLOW_68_in_orExpression1355); if (failed) return e;
@@ -2588,7 +2558,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start andExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:238:1: andExpression returns [Expression e] : x= impliesExpression (name= '&&' r= impliesExpression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:238:1: andExpression returns [Expression e] : x= impliesExpression (name= '&&' r= impliesExpression )* ;
     public Expression andExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2599,8 +2569,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:239:2: (x= impliesExpression (name= '&&' r= impliesExpression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:239:2: x= impliesExpression (name= '&&' r= impliesExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:238:39: (x= impliesExpression (name= '&&' r= impliesExpression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:239:2: x= impliesExpression (name= '&&' r= impliesExpression )*
             {
             pushFollow(FOLLOW_impliesExpression_in_andExpression1382);
             x=impliesExpression();
@@ -2609,7 +2579,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:239:30: (name= '&&' r= impliesExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:239:30: (name= '&&' r= impliesExpression )*
             loop39:
             do {
                 int alt39=2;
@@ -2622,7 +2592,7 @@ public class XpandParser extends Parser {
 
                 switch (alt39) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:239:31: name= '&&' r= impliesExpression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:239:31: name= '&&' r= impliesExpression
             	    {
             	    name=(Token)input.LT(1);
             	    match(input,69,FOLLOW_69_in_andExpression1389); if (failed) return e;
@@ -2658,7 +2628,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start impliesExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:242:1: impliesExpression returns [Expression e] : x= relationalExpression (name= 'implies' r= relationalExpression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:242:1: impliesExpression returns [Expression e] : x= relationalExpression (name= 'implies' r= relationalExpression )* ;
     public Expression impliesExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2669,8 +2639,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:243:2: (x= relationalExpression (name= 'implies' r= relationalExpression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:243:2: x= relationalExpression (name= 'implies' r= relationalExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:242:42: (x= relationalExpression (name= 'implies' r= relationalExpression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:243:2: x= relationalExpression (name= 'implies' r= relationalExpression )*
             {
             pushFollow(FOLLOW_relationalExpression_in_impliesExpression1415);
             x=relationalExpression();
@@ -2679,7 +2649,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:243:33: (name= 'implies' r= relationalExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:243:33: (name= 'implies' r= relationalExpression )*
             loop40:
             do {
                 int alt40=2;
@@ -2692,7 +2662,7 @@ public class XpandParser extends Parser {
 
                 switch (alt40) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:243:34: name= 'implies' r= relationalExpression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:243:34: name= 'implies' r= relationalExpression
             	    {
             	    name=(Token)input.LT(1);
             	    match(input,70,FOLLOW_70_in_impliesExpression1422); if (failed) return e;
@@ -2728,7 +2698,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start relationalExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:247:1: relationalExpression returns [Expression e] : x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:247:1: relationalExpression returns [Expression e] : x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* ;
     public Expression relationalExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2739,8 +2709,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:248:2: (x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:248:2: x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:247:45: (x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:248:2: x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
             {
             pushFollow(FOLLOW_additiveExpression_in_relationalExpression1450);
             x=additiveExpression();
@@ -2749,7 +2719,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:249:2: (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:249:2: (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
             loop41:
             do {
                 int alt41=2;
@@ -2762,7 +2732,7 @@ public class XpandParser extends Parser {
 
                 switch (alt41) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:249:3: name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:249:3: name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression
             	    {
             	    name=(Token)input.LT(1);
             	    if ( (input.LA(1)>=71 && input.LA(1)<=76) ) {
@@ -2808,7 +2778,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start additiveExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:253:1: additiveExpression returns [Expression e] : x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:253:1: additiveExpression returns [Expression e] : x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* ;
     public Expression additiveExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2819,8 +2789,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:254:2: (x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:254:2: x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:253:43: (x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:254:2: x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )*
             {
             pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1505);
             x=multiplicativeExpression();
@@ -2829,7 +2799,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:255:4: (name= ( '+' | '-' ) r= multiplicativeExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:255:4: (name= ( '+' | '-' ) r= multiplicativeExpression )*
             loop42:
             do {
                 int alt42=2;
@@ -2851,7 +2821,7 @@ public class XpandParser extends Parser {
 
                 switch (alt42) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:255:5: name= ( '+' | '-' ) r= multiplicativeExpression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:255:5: name= ( '+' | '-' ) r= multiplicativeExpression
             	    {
             	    name=(Token)input.LT(1);
             	    if ( input.LA(1)==33||input.LA(1)==77 ) {
@@ -2897,7 +2867,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start multiplicativeExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:258:1: multiplicativeExpression returns [Expression e] : x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:258:1: multiplicativeExpression returns [Expression e] : x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* ;
     public Expression multiplicativeExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2908,8 +2878,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:259:2: (x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:259:2: x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:258:48: (x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:259:2: x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )*
             {
             pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1543);
             x=unaryExpression();
@@ -2918,7 +2888,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:260:2: (name= ( '*' | '/' ) r= unaryExpression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:260:2: (name= ( '*' | '/' ) r= unaryExpression )*
             loop43:
             do {
                 int alt43=2;
@@ -2931,7 +2901,7 @@ public class XpandParser extends Parser {
 
                 switch (alt43) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:260:3: name= ( '*' | '/' ) r= unaryExpression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:260:3: name= ( '*' | '/' ) r= unaryExpression
             	    {
             	    name=(Token)input.LT(1);
             	    if ( input.LA(1)==26||input.LA(1)==78 ) {
@@ -2977,7 +2947,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start unaryExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:264:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:264:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );
     public Expression unaryExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2986,7 +2956,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:265:2: (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:264:40: (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression )
             int alt44=3;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -3035,7 +3005,7 @@ public class XpandParser extends Parser {
 
             switch (alt44) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:265:2: x= infixExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:265:2: x= infixExpression
                     {
                     pushFollow(FOLLOW_infixExpression_in_unaryExpression1582);
                     x=infixExpression();
@@ -3048,7 +3018,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:266:3: name= '!' x= infixExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:266:3: name= '!' x= infixExpression
                     {
                     name=(Token)input.LT(1);
                     match(input,79,FOLLOW_79_in_unaryExpression1590); if (failed) return e;
@@ -3063,7 +3033,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:267:3: name= '-' x= infixExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:267:3: name= '-' x= infixExpression
                     {
                     name=(Token)input.LT(1);
                     match(input,33,FOLLOW_33_in_unaryExpression1602); if (failed) return e;
@@ -3092,7 +3062,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start infixExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:270:1: infixExpression returns [Expression e] : x= primaryExpression ( '.' op= featureCall )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:270:1: infixExpression returns [Expression e] : x= primaryExpression ( '.' op= featureCall )* ;
     public Expression infixExpression() throws RecognitionException {
         Expression e = null;
 
@@ -3102,8 +3072,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:271:2: (x= primaryExpression ( '.' op= featureCall )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:271:2: x= primaryExpression ( '.' op= featureCall )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:270:40: (x= primaryExpression ( '.' op= featureCall )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:271:2: x= primaryExpression ( '.' op= featureCall )*
             {
             pushFollow(FOLLOW_primaryExpression_in_infixExpression1624);
             x=primaryExpression();
@@ -3112,7 +3082,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:271:30: ( '.' op= featureCall )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:271:30: ( '.' op= featureCall )*
             loop45:
             do {
                 int alt45=2;
@@ -3125,7 +3095,7 @@ public class XpandParser extends Parser {
 
                 switch (alt45) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:271:32: '.' op= featureCall
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:271:32: '.' op= featureCall
             	    {
             	    match(input,80,FOLLOW_80_in_infixExpression1630); if (failed) return e;
             	    pushFollow(FOLLOW_featureCall_in_infixExpression1634);
@@ -3160,7 +3130,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start primaryExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:274:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:274:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );
     public Expression primaryExpression() throws RecognitionException {
         Expression e = null;
 
@@ -3169,7 +3139,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:275:4: (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:274:44: (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression )
             int alt46=9;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -3240,7 +3210,7 @@ public class XpandParser extends Parser {
 
             switch (alt46) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:275:4: c= StringLiteral
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:275:4: c= StringLiteral
                     {
                     c=(Token)input.LT(1);
                     match(input,StringLiteral,FOLLOW_StringLiteral_in_primaryExpression1660); if (failed) return e;
@@ -3251,7 +3221,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:276:5: x= featureCall
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:276:5: x= featureCall
                     {
                     pushFollow(FOLLOW_featureCall_in_primaryExpression1671);
                     x=featureCall();
@@ -3264,7 +3234,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:277:5: x= booleanLiteral
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:277:5: x= booleanLiteral
                     {
                     pushFollow(FOLLOW_booleanLiteral_in_primaryExpression1681);
                     x=booleanLiteral();
@@ -3277,7 +3247,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:278:5: x= numberLiteral
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:278:5: x= numberLiteral
                     {
                     pushFollow(FOLLOW_numberLiteral_in_primaryExpression1691);
                     x=numberLiteral();
@@ -3290,7 +3260,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:279:5: x= nullLiteral
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:279:5: x= nullLiteral
                     {
                     pushFollow(FOLLOW_nullLiteral_in_primaryExpression1701);
                     x=nullLiteral();
@@ -3303,7 +3273,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:280:5: x= listLiteral
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:280:5: x= listLiteral
                     {
                     pushFollow(FOLLOW_listLiteral_in_primaryExpression1711);
                     x=listLiteral();
@@ -3316,7 +3286,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:281:5: x= constructorCall
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:281:5: x= constructorCall
                     {
                     pushFollow(FOLLOW_constructorCall_in_primaryExpression1721);
                     x=constructorCall();
@@ -3329,7 +3299,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:282:5: x= globalVarExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:282:5: x= globalVarExpression
                     {
                     pushFollow(FOLLOW_globalVarExpression_in_primaryExpression1731);
                     x=globalVarExpression();
@@ -3342,7 +3312,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:283:5: x= paranthesizedExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:283:5: x= paranthesizedExpression
                     {
                     pushFollow(FOLLOW_paranthesizedExpression_in_primaryExpression1741);
                     x=paranthesizedExpression();
@@ -3369,7 +3339,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start paranthesizedExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:286:1: paranthesizedExpression returns [Expression e] : '(' x= expression ')' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:286:1: paranthesizedExpression returns [Expression e] : '(' x= expression ')' ;
     public Expression paranthesizedExpression() throws RecognitionException {
         Expression e = null;
 
@@ -3377,8 +3347,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:287:5: ( '(' x= expression ')' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:287:5: '(' x= expression ')'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:286:48: ( '(' x= expression ')' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:287:5: '(' x= expression ')'
             {
             match(input,24,FOLLOW_24_in_paranthesizedExpression1760); if (failed) return e;
             pushFollow(FOLLOW_expression_in_paranthesizedExpression1764);
@@ -3405,7 +3375,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start globalVarExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:290:1: globalVarExpression returns [GlobalVarExpression e] : 'GLOBALVAR' name= identifier ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:290:1: globalVarExpression returns [GlobalVarExpression e] : 'GLOBALVAR' name= identifier ;
     public GlobalVarExpression globalVarExpression() throws RecognitionException {
         GlobalVarExpression e = null;
 
@@ -3413,8 +3383,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:291:5: ( 'GLOBALVAR' name= identifier )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:291:5: 'GLOBALVAR' name= identifier
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:290:54: ( 'GLOBALVAR' name= identifier )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:291:5: 'GLOBALVAR' name= identifier
             {
             match(input,81,FOLLOW_81_in_globalVarExpression1786); if (failed) return e;
             pushFollow(FOLLOW_identifier_in_globalVarExpression1790);
@@ -3440,7 +3410,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start featureCall
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:293:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:293:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );
     public FeatureCall featureCall() throws RecognitionException {
         FeatureCall e = null;
 
@@ -3454,18 +3424,18 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:294:2: (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:293:38: (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression )
             int alt48=3;
             switch ( input.LA(1) ) {
             case Identifier:
                 {
                 int LA48_1 = input.LA(2);
 
-                if ( (LA48_1==EOF||LA48_1==TEXT||LA48_1==Identifier||(LA48_1>=25 && LA48_1<=27)||LA48_1==30||LA48_1==33||LA48_1==37||LA48_1==40||(LA48_1>=51 && LA48_1<=53)||(LA48_1>=57 && LA48_1<=59)||(LA48_1>=61 && LA48_1<=62)||(LA48_1>=65 && LA48_1<=78)||LA48_1==80) ) {
-                    alt48=2;
-                }
-                else if ( (LA48_1==24) ) {
+                if ( (LA48_1==24) ) {
                     alt48=1;
+                }
+                else if ( (LA48_1==EOF||LA48_1==TEXT||LA48_1==Identifier||(LA48_1>=25 && LA48_1<=27)||LA48_1==30||LA48_1==33||LA48_1==37||LA48_1==40||(LA48_1>=51 && LA48_1<=53)||(LA48_1>=57 && LA48_1<=59)||(LA48_1>=61 && LA48_1<=62)||(LA48_1>=65 && LA48_1<=78)||LA48_1==80) ) {
+                    alt48=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return e;}
@@ -3506,14 +3476,14 @@ public class XpandParser extends Parser {
 
             switch (alt48) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:294:2: id1= identifier '(' (l= parameterList )? ')'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:294:2: id1= identifier '(' (l= parameterList )? ')'
                     {
                     pushFollow(FOLLOW_identifier_in_featureCall1808);
                     id1=identifier();
                     _fsp--;
                     if (failed) return e;
                     match(input,24,FOLLOW_24_in_featureCall1810); if (failed) return e;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:294:21: (l= parameterList )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:294:21: (l= parameterList )?
                     int alt47=2;
                     int LA47_0 = input.LA(1);
 
@@ -3522,7 +3492,7 @@ public class XpandParser extends Parser {
                     }
                     switch (alt47) {
                         case 1 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:294:22: l= parameterList
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:294:22: l= parameterList
                             {
                             pushFollow(FOLLOW_parameterList_in_featureCall1815);
                             l=parameterList();
@@ -3542,7 +3512,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:295:5: t= type
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:295:5: t= type
                     {
                     pushFollow(FOLLOW_type_in_featureCall1829);
                     t=type();
@@ -3555,7 +3525,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:296:5: x= collectionExpression
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:296:5: x= collectionExpression
                     {
                     pushFollow(FOLLOW_collectionExpression_in_featureCall1840);
                     x=collectionExpression();
@@ -3582,7 +3552,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start listLiteral
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:299:1: listLiteral returns [Expression e] : '{' (l= parameterList )? '}' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:299:1: listLiteral returns [Expression e] : '{' (l= parameterList )? '}' ;
     public Expression listLiteral() throws RecognitionException {
         Expression e = null;
 
@@ -3590,11 +3560,11 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:300:2: ( '{' (l= parameterList )? '}' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:300:2: '{' (l= parameterList )? '}'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:299:37: ( '{' (l= parameterList )? '}' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:300:2: '{' (l= parameterList )? '}'
             {
             match(input,64,FOLLOW_64_in_listLiteral1857); if (failed) return e;
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:300:6: (l= parameterList )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:300:6: (l= parameterList )?
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -3603,7 +3573,7 @@ public class XpandParser extends Parser {
             }
             switch (alt49) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:300:7: l= parameterList
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:300:7: l= parameterList
                     {
                     pushFollow(FOLLOW_parameterList_in_listLiteral1862);
                     l=parameterList();
@@ -3635,7 +3605,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start constructorCall
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:303:1: constructorCall returns [Expression e] : 'new' t= simpleType ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:303:1: constructorCall returns [Expression e] : 'new' t= simpleType ;
     public Expression constructorCall() throws RecognitionException {
         Expression e = null;
 
@@ -3643,8 +3613,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:304:2: ( 'new' t= simpleType )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:304:2: 'new' t= simpleType
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:303:41: ( 'new' t= simpleType )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:304:2: 'new' t= simpleType
             {
             match(input,82,FOLLOW_82_in_constructorCall1883); if (failed) return e;
             pushFollow(FOLLOW_simpleType_in_constructorCall1887);
@@ -3670,13 +3640,13 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start booleanLiteral
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:308:1: booleanLiteral returns [Expression e=factory.createBooleanLiteral(id(input.LT(1)))] : ( 'false' | 'true' );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:308:1: booleanLiteral returns [Expression e=factory.createBooleanLiteral(id(input.LT(1)))] : ( 'false' | 'true' );
     public Expression booleanLiteral() throws RecognitionException {
         Expression e = factory.createBooleanLiteral(id(input.LT(1)));
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:309:2: ( 'false' | 'true' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:308:86: ( 'false' | 'true' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:
             {
             if ( (input.LA(1)>=83 && input.LA(1)<=84) ) {
                 input.consume();
@@ -3705,13 +3675,13 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start nullLiteral
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:312:1: nullLiteral returns [Expression e=factory.createNullLiteral(id(input.LT(1)))] : 'null' ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:312:1: nullLiteral returns [Expression e=factory.createNullLiteral(id(input.LT(1)))] : 'null' ;
     public Expression nullLiteral() throws RecognitionException {
         Expression e = factory.createNullLiteral(id(input.LT(1)));
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:313:2: ( 'null' )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:313:2: 'null'
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:312:80: ( 'null' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:313:2: 'null'
             {
             match(input,85,FOLLOW_85_in_nullLiteral1922); if (failed) return e;
 
@@ -3730,7 +3700,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start numberLiteral
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:316:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:316:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );
     public Expression numberLiteral() throws RecognitionException {
         Expression e = null;
 
@@ -3739,7 +3709,7 @@ public class XpandParser extends Parser {
         Token c=null;
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:317:4: (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:316:39: (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral )
             int alt50=2;
             int LA50_0 = input.LA(1);
 
@@ -3783,7 +3753,7 @@ public class XpandParser extends Parser {
             }
             switch (alt50) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:317:4: a= IntLiteral
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:317:4: a= IntLiteral
                     {
                     a=(Token)input.LT(1);
                     match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1941); if (failed) return e;
@@ -3794,7 +3764,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:318:4: a= IntLiteral b= '.' c= IntLiteral
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:318:4: a= IntLiteral b= '.' c= IntLiteral
                     {
                     a=(Token)input.LT(1);
                     match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1950); if (failed) return e;
@@ -3823,7 +3793,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start collectionExpression
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:321:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:321:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );
     public FeatureCall collectionExpression() throws RecognitionException {
         FeatureCall e = null;
 
@@ -3836,7 +3806,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:322:3: (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:321:47: (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' )
             int alt52=2;
             int LA52_0 = input.LA(1);
 
@@ -3855,7 +3825,7 @@ public class XpandParser extends Parser {
             }
             switch (alt52) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:322:3: name= 'typeSelect' '(' t= type ')'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:322:3: name= 'typeSelect' '(' t= type ')'
                     {
                     name=(Token)input.LT(1);
                     match(input,86,FOLLOW_86_in_collectionExpression1978); if (failed) return e;
@@ -3872,7 +3842,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:325:5: name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:325:5: name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')'
                     {
                     name=(Token)input.LT(1);
                     if ( (input.LA(1)>=87 && input.LA(1)<=94) ) {
@@ -3887,7 +3857,7 @@ public class XpandParser extends Parser {
                     }
 
                     match(input,24,FOLLOW_24_in_collectionExpression2051); if (failed) return e;
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:332:19: (var= identifier '|' )?
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:332:19: (var= identifier '|' )?
                     int alt51=2;
                     int LA51_0 = input.LA(1);
 
@@ -3900,7 +3870,7 @@ public class XpandParser extends Parser {
                     }
                     switch (alt51) {
                         case 1 :
-                            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:332:20: var= identifier '|'
+                            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:332:20: var= identifier '|'
                             {
                             pushFollow(FOLLOW_identifier_in_collectionExpression2056);
                             var=identifier();
@@ -3939,7 +3909,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start declaredParameterList
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:338:1: declaredParameterList returns [List<DeclaredParameter> l = new ArrayList<DeclaredParameter>()] : dp= declaredParameter ( ',' dp1= declaredParameter )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:338:1: declaredParameterList returns [List<DeclaredParameter> l = new ArrayList<DeclaredParameter>()] : dp= declaredParameter ( ',' dp1= declaredParameter )* ;
     public List<DeclaredParameter> declaredParameterList() throws RecognitionException {
         List<DeclaredParameter> l =  new ArrayList<DeclaredParameter>();
 
@@ -3949,8 +3919,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:339:2: (dp= declaredParameter ( ',' dp1= declaredParameter )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:339:2: dp= declaredParameter ( ',' dp1= declaredParameter )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:338:97: (dp= declaredParameter ( ',' dp1= declaredParameter )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:339:2: dp= declaredParameter ( ',' dp1= declaredParameter )*
             {
             pushFollow(FOLLOW_declaredParameter_in_declaredParameterList2090);
             dp=declaredParameter();
@@ -3959,7 +3929,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               l.add(dp);
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:339:36: ( ',' dp1= declaredParameter )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:339:36: ( ',' dp1= declaredParameter )*
             loop53:
             do {
                 int alt53=2;
@@ -3978,7 +3948,7 @@ public class XpandParser extends Parser {
 
                 switch (alt53) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:339:37: ',' dp1= declaredParameter
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:339:37: ',' dp1= declaredParameter
             	    {
             	    match(input,25,FOLLOW_25_in_declaredParameterList2094); if (failed) return l;
             	    pushFollow(FOLLOW_declaredParameter_in_declaredParameterList2098);
@@ -4013,7 +3983,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start declaredParameter
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:342:1: declaredParameter returns [DeclaredParameter dp] : t= type name= identifier ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:342:1: declaredParameter returns [DeclaredParameter dp] : t= type name= identifier ;
     public DeclaredParameter declaredParameter() throws RecognitionException {
         DeclaredParameter dp = null;
 
@@ -4023,8 +3993,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:343:2: (t= type name= identifier )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:343:2: t= type name= identifier
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:342:50: (t= type name= identifier )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:343:2: t= type name= identifier
             {
             pushFollow(FOLLOW_type_in_declaredParameter2118);
             t=type();
@@ -4053,7 +4023,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start parameterList
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:346:1: parameterList returns [List<Expression> list = new ArrayList<Expression>()] : a= expression ( ',' b= expression )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:346:1: parameterList returns [List<Expression> list = new ArrayList<Expression>()] : a= expression ( ',' b= expression )* ;
     public List<Expression> parameterList() throws RecognitionException {
         List<Expression> list =  new ArrayList<Expression>();
 
@@ -4063,8 +4033,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:347:5: (a= expression ( ',' b= expression )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:347:5: a= expression ( ',' b= expression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:346:78: (a= expression ( ',' b= expression )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:347:5: a= expression ( ',' b= expression )*
             {
             pushFollow(FOLLOW_expression_in_parameterList2144);
             a=expression();
@@ -4073,7 +4043,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               list.add(a);
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:347:34: ( ',' b= expression )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:347:34: ( ',' b= expression )*
             loop54:
             do {
                 int alt54=2;
@@ -4086,7 +4056,7 @@ public class XpandParser extends Parser {
 
                 switch (alt54) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:347:35: ',' b= expression
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:347:35: ',' b= expression
             	    {
             	    match(input,25,FOLLOW_25_in_parameterList2149); if (failed) return list;
             	    pushFollow(FOLLOW_expression_in_parameterList2153);
@@ -4121,7 +4091,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start type
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:352:1: type returns [Identifier id] : (a= collectionType | b= simpleType );
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:352:1: type returns [Identifier id] : (a= collectionType | b= simpleType );
     public Identifier type() throws RecognitionException {
         Identifier id = null;
 
@@ -4131,7 +4101,7 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:353:2: (a= collectionType | b= simpleType )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:352:30: (a= collectionType | b= simpleType )
             int alt55=2;
             int LA55_0 = input.LA(1);
 
@@ -4150,7 +4120,7 @@ public class XpandParser extends Parser {
             }
             switch (alt55) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:353:2: a= collectionType
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:353:2: a= collectionType
                     {
                     pushFollow(FOLLOW_collectionType_in_type2179);
                     a=collectionType();
@@ -4163,7 +4133,7 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:354:2: b= simpleType
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:354:2: b= simpleType
                     {
                     pushFollow(FOLLOW_simpleType_in_type2189);
                     b=simpleType();
@@ -4190,7 +4160,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start collectionType
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:357:1: collectionType returns [Identifier id ] : cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:357:1: collectionType returns [Identifier id ] : cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? ;
     public Identifier collectionType() throws RecognitionException {
         Identifier id = null;
 
@@ -4201,8 +4171,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:358:3: (cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:358:3: cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:357:42: (cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:358:3: cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )?
             {
             cl=(Token)input.LT(1);
             if ( (input.LA(1)>=96 && input.LA(1)<=98) ) {
@@ -4219,7 +4189,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               id = id(cl);
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:359:3: (b= '[' id1= simpleType c= ']' )?
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:359:3: (b= '[' id1= simpleType c= ']' )?
             int alt56=2;
             int LA56_0 = input.LA(1);
 
@@ -4228,7 +4198,7 @@ public class XpandParser extends Parser {
             }
             switch (alt56) {
                 case 1 :
-                    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:359:4: b= '[' id1= simpleType c= ']'
+                    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:359:4: b= '[' id1= simpleType c= ']'
                     {
                     b=(Token)input.LT(1);
                     match(input,99,FOLLOW_99_in_collectionType2232); if (failed) return id;
@@ -4263,7 +4233,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start simpleType
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:362:1: simpleType returns [Identifier id] : x= identifier (d= '::' end= identifier )* ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:362:1: simpleType returns [Identifier id] : x= identifier (d= '::' end= identifier )* ;
     public Identifier simpleType() throws RecognitionException {
         Identifier id = null;
 
@@ -4274,8 +4244,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:363:2: (x= identifier (d= '::' end= identifier )* )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:363:2: x= identifier (d= '::' end= identifier )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:362:36: (x= identifier (d= '::' end= identifier )* )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:363:2: x= identifier (d= '::' end= identifier )*
             {
             pushFollow(FOLLOW_identifier_in_simpleType2260);
             x=identifier();
@@ -4284,7 +4254,7 @@ public class XpandParser extends Parser {
             if ( backtracking==0 ) {
               id =x;
             }
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:364:2: (d= '::' end= identifier )*
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:364:2: (d= '::' end= identifier )*
             loop57:
             do {
                 int alt57=2;
@@ -4297,7 +4267,7 @@ public class XpandParser extends Parser {
 
                 switch (alt57) {
             	case 1 :
-            	    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:364:3: d= '::' end= identifier
+            	    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:364:3: d= '::' end= identifier
             	    {
             	    d=(Token)input.LT(1);
             	    match(input,30,FOLLOW_30_in_simpleType2268); if (failed) return id;
@@ -4333,15 +4303,15 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start identifier
-    // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:367:1: identifier returns [Identifier r] : x= Identifier ;
+    // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:367:1: identifier returns [Identifier r] : x= Identifier ;
     public Identifier identifier() throws RecognitionException {
         Identifier r = null;
 
         Token x=null;
 
         try {
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:368:4: (x= Identifier )
-            // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:368:4: x= Identifier
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:367:35: (x= Identifier )
+            // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:368:4: x= Identifier
             {
             x=(Token)input.LT(1);
             match(input,Identifier,FOLLOW_Identifier_in_identifier2295); if (failed) return r;
@@ -4364,8 +4334,8 @@ public class XpandParser extends Parser {
 
     // $ANTLR start synpred1
     public void synpred1_fragment() throws RecognitionException {   
-        // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:205:5: ( '(' type ')' castedExpression )
-        // ../core.xpand2/main/src/org/openarchitectureware/xpand2/parser/Xpand.g:205:6: '(' type ')' castedExpression
+        // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:205:5: ( '(' type ')' castedExpression )
+        // C:\\eclipse\\workspaces\\HEAD\\org.eclipse.xpand\\src\\org\\eclipse\\internal\\xpand2\\parser\\Xpand.g:205:6: '(' type ')' castedExpression
         {
         match(input,24,FOLLOW_24_in_synpred11095); if (failed) return ;
         pushFollow(FOLLOW_type_in_synpred11097);
@@ -4382,7 +4352,7 @@ public class XpandParser extends Parser {
     }
     // $ANTLR end synpred1
 
-    public final boolean synpred1() {
+    public boolean synpred1() {
         backtracking++;
         int start = input.mark();
         try {
@@ -4404,9 +4374,9 @@ public class XpandParser extends Parser {
     static final String DFA30_eofS =
         "\6\uffff\1\2\60\uffff";
     static final String DFA30_minS =
-        "\2\7\1\uffff\1\32\1\30\1\11\1\6\1\11\1\36\2\uffff\1\0\13\uffff\1"+
-        "\6\1\uffff\1\32\1\11\1\32\3\0\2\30\4\0\2\11\1\0\1\36\1\11\3\0\2"+
-        "\33\1\11\1\0\1\11\1\36\1\33\1\11\1\33\1\36";
+        "\2\7\1\uffff\1\32\1\30\1\11\1\6\1\11\1\36\2\uffff\1\0\13\uffff"+
+        "\1\6\1\uffff\1\32\1\11\1\32\3\0\2\30\4\0\2\11\1\0\1\36\1\11\3\0"+
+        "\2\33\1\11\1\0\1\11\1\36\1\33\1\11\1\33\1\36";
     static final String DFA30_maxS =
         "\2\142\1\uffff\1\143\1\120\1\11\1\142\1\11\1\144\2\uffff\1\0\13"+
         "\uffff\1\142\1\uffff\1\120\1\11\1\120\3\0\2\30\4\0\2\11\1\0\1\144"+
@@ -4414,23 +4384,23 @@ public class XpandParser extends Parser {
     static final String DFA30_acceptS =
         "\2\uffff\1\2\6\uffff\2\1\1\uffff\13\1\1\uffff\1\1\36\uffff";
     static final String DFA30_specialS =
-        "\6\uffff\1\0\4\uffff\1\7\20\uffff\1\10\1\11\1\13\2\uffff\1\12\1"+
-        "\14\1\5\1\15\2\uffff\1\2\2\uffff\1\3\1\6\1\4\3\uffff\1\1\6\uffff}>";
+        "\6\uffff\1\0\4\uffff\1\3\20\uffff\1\7\1\2\1\15\2\uffff\1\6\1\1"+
+        "\1\4\1\12\2\uffff\1\13\2\uffff\1\10\1\11\1\5\3\uffff\1\14\6\uffff}>";
     static final String[] DFA30_transitionS = {
-            "\3\2\16\uffff\1\1\10\uffff\1\2\32\uffff\1\2\2\uffff\2\2\16\uffff"+
-            "\1\2\1\uffff\16\2\1\uffff\3\2",
-            "\2\2\1\4\16\uffff\1\2\10\uffff\1\2\25\uffff\1\2\4\uffff\1\2"+
-            "\2\uffff\2\2\16\uffff\1\2\1\uffff\16\2\1\uffff\3\3",
+            "\3\2\16\uffff\1\1\10\uffff\1\2\32\uffff\1\2\2\uffff\2\2\16"+
+            "\uffff\1\2\1\uffff\16\2\1\uffff\3\2",
+            "\2\2\1\4\16\uffff\1\2\10\uffff\1\2\25\uffff\1\2\4\uffff\1"+
+            "\2\2\uffff\2\2\16\uffff\1\2\1\uffff\16\2\1\uffff\3\3",
             "",
-            "\1\2\1\6\5\uffff\1\2\30\uffff\2\2\10\uffff\13\2\1\uffff\1\2"+
-            "\22\uffff\1\5",
-            "\1\2\1\uffff\1\2\1\6\2\uffff\1\7\2\uffff\1\2\30\uffff\2\2\10"+
-            "\uffff\13\2\1\uffff\1\2",
+            "\1\2\1\6\5\uffff\1\2\30\uffff\2\2\10\uffff\13\2\1\uffff\1"+
+            "\2\22\uffff\1\5",
+            "\1\2\1\uffff\1\2\1\6\2\uffff\1\7\2\uffff\1\2\30\uffff\2\2"+
+            "\10\uffff\13\2\1\uffff\1\2",
             "\1\10",
-            "\1\2\1\12\1\20\1\13\16\uffff\1\25\3\2\5\uffff\1\27\3\uffff\1"+
-            "\2\2\uffff\1\2\12\uffff\3\2\3\uffff\3\2\1\30\2\uffff\1\11\1"+
-            "\22\2\uffff\14\2\1\26\1\2\1\24\1\23\2\17\1\21\1\15\10\16\1\uffff"+
-            "\3\14",
+            "\1\2\1\12\1\20\1\13\16\uffff\1\25\3\2\5\uffff\1\27\3\uffff"+
+            "\1\2\2\uffff\1\2\12\uffff\3\2\3\uffff\3\2\1\30\2\uffff\1\11"+
+            "\1\22\2\uffff\14\2\1\26\1\2\1\24\1\23\2\17\1\21\1\15\10\16\1"+
+            "\uffff\3\14",
             "\1\31",
             "\1\32\105\uffff\1\33",
             "",
@@ -4447,14 +4417,15 @@ public class XpandParser extends Parser {
             "",
             "",
             "",
-            "\1\2\1\34\1\42\1\35\16\uffff\1\47\10\uffff\1\2\36\uffff\1\44"+
-            "\16\uffff\1\2\1\uffff\1\46\1\45\2\41\1\43\1\37\10\40\1\uffff"+
+            "\1\2\1\34\1\42\1\35\16\uffff\1\47\10\uffff\1\2\36\uffff\1"+
+            "\44\16\uffff\1\2\1\uffff\1\46\1\45\2\41\1\43\1\37\10\40\1\uffff"+
             "\3\36",
             "",
-            "\1\2\1\6\2\uffff\1\7\2\uffff\1\2\30\uffff\2\2\10\uffff\13\2"+
-            "\1\uffff\1\2",
+            "\1\2\1\6\2\uffff\1\7\2\uffff\1\2\30\uffff\2\2\10\uffff\13"+
+            "\2\1\uffff\1\2",
             "\1\50",
-            "\1\2\1\6\5\uffff\1\2\30\uffff\2\2\10\uffff\13\2\1\uffff\1\2",
+            "\1\2\1\6\5\uffff\1\2\30\uffff\2\2\10\uffff\13\2\1\uffff\1"+
+            "\2",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -4565,171 +4536,6 @@ public class XpandParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA30_48 = input.LA(1);
-
-                         
-                        int index30_48 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_48);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA30_39 = input.LA(1);
-
-                         
-                        int index30_39 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_39);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA30_42 = input.LA(1);
-
-                         
-                        int index30_42 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_42);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA30_44 = input.LA(1);
-
-                         
-                        int index30_44 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_44);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA30_35 = input.LA(1);
-
-                         
-                        int index30_35 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_35);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA30_43 = input.LA(1);
-
-                         
-                        int index30_43 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_43);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA30_11 = input.LA(1);
-
-                         
-                        int index30_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA30_28 = input.LA(1);
-
-                         
-                        int index30_28 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_28);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA30_29 = input.LA(1);
-
-                         
-                        int index30_29 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_29);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA30_33 = input.LA(1);
-
-                         
-                        int index30_33 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_33);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA30_30 = input.LA(1);
-
-                         
-                        int index30_30 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1()) ) {s = 24;}
-
-                        else if ( (true) ) {s = 2;}
-
-                         
-                        input.seek(index30_30);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
                         int LA30_34 = input.LA(1);
 
                          
@@ -4744,7 +4550,127 @@ public class XpandParser extends Parser {
                         input.seek(index30_34);
                         if ( s>=0 ) return s;
                         break;
-                    case 13 : 
+                    case 2 : 
+                        int LA30_29 = input.LA(1);
+
+                         
+                        int index30_29 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_29);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA30_11 = input.LA(1);
+
+                         
+                        int index30_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_11);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA30_35 = input.LA(1);
+
+                         
+                        int index30_35 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_35);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA30_44 = input.LA(1);
+
+                         
+                        int index30_44 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_44);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA30_33 = input.LA(1);
+
+                         
+                        int index30_33 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_33);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA30_28 = input.LA(1);
+
+                         
+                        int index30_28 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_28);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA30_42 = input.LA(1);
+
+                         
+                        int index30_42 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_42);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA30_43 = input.LA(1);
+
+                         
+                        int index30_43 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_43);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
                         int LA30_36 = input.LA(1);
 
                          
@@ -4757,6 +4683,51 @@ public class XpandParser extends Parser {
 
                          
                         input.seek(index30_36);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 11 : 
+                        int LA30_39 = input.LA(1);
+
+                         
+                        int index30_39 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_39);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 12 : 
+                        int LA30_48 = input.LA(1);
+
+                         
+                        int index30_48 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_48);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 13 : 
+                        int LA30_30 = input.LA(1);
+
+                         
+                        int index30_30 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1()) ) {s = 24;}
+
+                        else if ( (true) ) {s = 2;}
+
+                         
+                        input.seek(index30_30);
                         if ( s>=0 ) return s;
                         break;
             }

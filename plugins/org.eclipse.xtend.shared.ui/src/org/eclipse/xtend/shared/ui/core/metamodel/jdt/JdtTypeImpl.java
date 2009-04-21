@@ -45,6 +45,15 @@ public class JdtTypeImpl extends AbstractTypeImpl implements Type {
 	}
 
 	public IType getJdtType() {
+		if (!type.exists()) {
+			// maybe the project has been closed or opend, so we need to recalculate the type
+			try {
+				type = metamodel.findType(type.getJavaProject(), type.getFullyQualifiedName());
+			}
+			catch (JavaModelException e) {
+				// ignore, since caller will deal with not existing types and log an error
+			}
+		}
 		return type;
 	}
 

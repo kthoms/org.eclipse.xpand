@@ -135,7 +135,7 @@ public class JdtMetaModel implements MetaModel, IElementChangedListener {
 	};
 
 	public Type getTypeForName(final String typeName) {
-		return (Type) typeNameCache.get(typeName);
+		return typeNameCache.get(typeName);
 	}
 
 	public Type getType(final Object obj) {
@@ -201,7 +201,7 @@ public class JdtMetaModel implements MetaModel, IElementChangedListener {
 	};
 
 	public String getFullyQualifiedName(final String signature, final IType usingType) {
-		return (String) signCache.get(new Pair<String,IType>(signature, usingType));
+		return signCache.get(new Pair<String,IType>(signature, usingType));
 	}
 
 	public IType findType(final IJavaProject project, final String typeName) throws JavaModelException {

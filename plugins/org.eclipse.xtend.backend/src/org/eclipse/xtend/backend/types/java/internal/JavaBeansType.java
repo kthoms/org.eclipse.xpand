@@ -16,7 +16,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
@@ -42,7 +41,7 @@ public final class JavaBeansType extends AbstractType {
     }
     
     private static BackendType[] superTypes (Class<?> javaCls, BackendTypesystem ts) {
-        final List<Class<?>> resultRaw = new ArrayList<Class<?>> ((Collection<? extends Class<?>>) Arrays.asList (javaCls.getInterfaces()));	//final List<Class<?>> resultRaw = new ArrayList<Class<?>> (Arrays.asList (javaCls.getInterfaces()));
+        final List<Class<?>> resultRaw = new ArrayList<Class<?>> (Arrays.asList (javaCls.getInterfaces()));
         
         Class<?> superClass = javaCls.getSuperclass();
         if (superClass != null)

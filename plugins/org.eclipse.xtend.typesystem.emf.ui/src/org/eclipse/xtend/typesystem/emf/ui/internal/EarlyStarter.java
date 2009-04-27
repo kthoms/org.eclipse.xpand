@@ -6,7 +6,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  *******************************************************************************/
-package org.eclipse.xtend.typesystem.emf.internal;
+package org.eclipse.xtend.typesystem.emf.ui.internal;
 
 import org.eclipse.ui.IStartup;
 import org.eclipse.xtend.typesystem.emf.check.CheckRegistry;

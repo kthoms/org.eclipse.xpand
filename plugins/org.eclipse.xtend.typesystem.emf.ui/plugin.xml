@@ -2,6 +2,12 @@
 <?eclipse version="3.0"?>
 <plugin>
    <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.xtend.typesystem.emf.ui.internal.EarlyStarter"></startup>
+   </extension>
+
+   <extension
          point="org.eclipse.xtend.shared.ui.metamodelContributor">
       <metamodelContributor
             class="org.eclipse.xtend.typesystem.emf.ui.EmfMetamodelContributor"

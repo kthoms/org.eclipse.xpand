@@ -28,8 +28,4 @@ public class XtendEditor extends AbstractXtendXpandEditor {
         return new XtendContentOutlinePage(this);
     }
 
-	@Override
-	protected void initializeKeyBindingScopes() {
-		setKeyBindingScopes(new String[] { "org.eclipse.xtend.editor.XtendEditorScope" }); //$NON-NLS-1$
-	}
 }

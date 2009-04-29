@@ -8,3 +8,4 @@ temp.folder
 build.xml
 javaCompiler...args
 oaw-core-plugins-4.0.0
+target

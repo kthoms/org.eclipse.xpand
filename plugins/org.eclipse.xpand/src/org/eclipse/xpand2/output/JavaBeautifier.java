@@ -13,11 +13,9 @@ package org.eclipse.xpand2.output;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +37,9 @@ import org.eclipse.text.edits.TextEdit;
  * @author Sven Efftinge (http://www.efftinge.de) (initial)
  * @author Bernd Kolb
  * @author Peter Friese
- * @author Markus Voelter
+ * @author Markus V?lter
+ * @author Michael Leopoldseder
+ * @author Karsten Thoms
  * @since 4.0
  */
 public class JavaBeautifier implements PostProcessor {
@@ -123,11 +123,11 @@ public class JavaBeautifier implements PostProcessor {
 		BufferedReader reader = null;
 		
 		try {
-		   File file = loadFile(filename); // new File(filename);
+		   InputStream is = openStream(filename);
 		   final Properties formatterOptions = new Properties();
 			if ( filename.endsWith(".xml")) {
 			   Pattern pattern = Pattern.compile("<setting id=\"([^\"]*)\" value=\"([^\"]*)\"\\/>");
-			   reader = new BufferedReader(new FileReader(file));
+			   reader = new BufferedReader(new InputStreamReader(is));
 			   for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				  Matcher matcher = pattern.matcher(line);
 				  if ( matcher.matches() ) {
@@ -136,9 +136,15 @@ public class JavaBeautifier implements PostProcessor {
 			   }
 			}
 			else {
-			   stream = new BufferedInputStream(new FileInputStream(file));
+			   stream = new BufferedInputStream(is);
 			   formatterOptions.load(stream);
-			}           
+			}        
+			
+		    // add some settings for the compiler options
+	        // which are not included in the Eclipse code style settings
+	        // to make the code formatter working
+	        // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=222736
+		   
 		   if( formatterOptions.get("org.eclipse.jdt.core.compiler.compliance") == null )
 			   formatterOptions.put("org.eclipse.jdt.core.compiler.compliance", "1.5");
 		   if( formatterOptions.get("org.eclipse.jdt.core.compiler.codegen.targetPlatform") == null )
@@ -167,18 +173,23 @@ public class JavaBeautifier implements PostProcessor {
 		return null;
 	}
 
-	protected File loadFile(String filename) throws IOException {
-		final URL url = ResourceLoaderFactory.createResourceLoader().getResource(filename);
-		if (url == null || url.getFile() == null) {
-			throw new IOException("Could not find config file [" + filename + "]");
-		}
-		final File file = new File(url.getFile());
-		if (!file.exists()) {
-			throw new IOException("Config file [" + filename + "] does not exist.");
-		}
-		return file;
-	}
-
+	 /**
+	  * Searches for the given filename as a ressource and returns a stream on it. Throws an IOException, if the file
+	  * cannot be found.
+	  * 
+	  * @param filename
+	  *				   The name of the file to be searched in the ressources.
+	  * @return InputStream for subsequent reading
+	  * @throws IOException
+	  */
+	 protected InputStream openStream(String filename) throws IOException {
+		 InputStream is = ResourceLoaderFactory.createResourceLoader().getResourceAsStream(filename);
+		 if (is == null) {
+			 throw new IOException("Config file [" + filename + "] does not exist.");
+		 }
+		 return is;
+	 }
+	
 	/**
 	 * @return the configuration file for the formatter
 	 */

@@ -26,7 +26,6 @@ Export-Package: org.eclipse.xtend,
  org.eclipse.xtend.typesystem.emf.check.model.test.util,
  org.eclipse.xtend.typesystem.emf.check.model.test.validation,
  org.eclipse.xtend.typesystem.impl.javabeans,
- org.eclipse.xtend.typesystem.impl.oawclassic,
  org.eclipse.xtend.typesystem.javabeansimpl.test,
  test
 Require-Bundle: org.junit,

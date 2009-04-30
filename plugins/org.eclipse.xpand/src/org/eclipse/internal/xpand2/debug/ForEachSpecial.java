@@ -12,8 +12,6 @@ package org.eclipse.internal.xpand2.debug;
 
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 import org.eclipse.internal.xpand2.ast.ForEachStatement;
-import org.eclipse.internal.xpand2.type.XpandIterator;
-import org.eclipse.internal.xtend.expression.ast.ISyntaxElement;
 import org.eclipse.internal.xtend.expression.debug.BaseSpecialTreatment;
 import org.eclipse.xtend.expression.ExecutionContext;
 
@@ -67,20 +65,6 @@ public class ForEachSpecial extends BaseSpecialTreatment {
 				to.elementName = to.elementName + " #" + (iterationCounter++);
 			}
 		}
-	}
-
-	@Override
-	public String adaptElementName(ISyntaxElement se, ExecutionContext context) {
-		if (se instanceof ForEachStatement) {
-			String name = "FOREACH";
-			// add counter to the FOREACH name
-			XpandIterator it = null; // ((ForEachStatement) se).getIterator();
-			if (it != null)
-				// Hint: We can ignore it == null (the outer call), since it
-				// isn't visible anyway
-				return name + " " + it.counter1() + " of " + it.elements();
-		}
-		return "";
 	}
 
 }

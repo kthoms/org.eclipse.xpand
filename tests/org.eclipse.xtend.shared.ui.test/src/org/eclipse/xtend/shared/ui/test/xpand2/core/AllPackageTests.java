@@ -9,7 +9,6 @@ public class AllPackageTests {
 		TestSuite suite = new TestSuite(
 				"Test for org.eclipse.xtend.shared.ui.test.xpand2.core");
 		//$JUnit-BEGIN$
-		suite.addTestSuite(Bug155018Test.class);
 		suite.addTestSuite(JdtJavaBeanTest.class);
 		suite.addTestSuite(XtendXpandProjectTest.class);
 		suite.addTestSuite(SimpleProjectTest.class);

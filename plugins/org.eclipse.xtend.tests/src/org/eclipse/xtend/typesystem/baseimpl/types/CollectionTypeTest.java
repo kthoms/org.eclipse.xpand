@@ -38,6 +38,7 @@ public class CollectionTypeTest extends TestCase {
 		ef = new ExpressionFacade(ec);
 	}
 
+	@SuppressWarnings("unchecked")
 	public final void testStuff() {
 		final List<String> l = new ArrayList<String>();
 		l.add("a");
@@ -51,12 +52,18 @@ public class CollectionTypeTest extends TestCase {
 		assertTrue(((Set) ef.evaluate("{'a'}.union({'b'})")).contains("a"));
 	}
 
+	@SuppressWarnings("unchecked")
 	public final void testUnion() {
 		final Set result = (Set) ef.evaluate("{1,2}.union({2,3})");
 		assertEquals(3, result.size());
 
 		final Number l = (Number) ef.evaluate("{1,2}.union({2,3}).size");
 		assertEquals(3, l.intValue());
+		
+		// ugly, but for the case a Null argument is passed to union() the result is a copy of the original collection
+		final Number l2 = (Number) ef.evaluate("{1,2}.union({2,3}).union(null).size");
+		assertEquals(3, l2.intValue());
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -73,6 +80,7 @@ public class CollectionTypeTest extends TestCase {
 		assertFalse(iter.hasNext());
 	}
 
+	@SuppressWarnings("unchecked")
 	public final void testIntersect() {
 		final Set result = (Set) ef.evaluate("{1,2,3}.intersect({2,3,4})");
 		assertEquals(2, result.size());
@@ -90,6 +98,7 @@ public class CollectionTypeTest extends TestCase {
 		assertFalse(iter.hasNext());
 	}
 
+	@SuppressWarnings("unchecked")
 	public final void testWithout() {
 		final Set result = (Set) ef.evaluate("{1,2,3}.without({2})");
 		assertEquals(2, result.size());
@@ -108,6 +117,7 @@ public class CollectionTypeTest extends TestCase {
 		assertFalse(iter.hasNext());
 	}
 
+	@SuppressWarnings("unchecked")
 	public final void testToSet() {
 		final Set result = (Set) ef.evaluate("{1,2,3}.toSet()");
 		assertEquals(3, result.size());
@@ -169,6 +179,7 @@ public class CollectionTypeTest extends TestCase {
 		assertNull(ef.evaluate("null.last()"));
 	}
 
+	@SuppressWarnings("unchecked")
 	public final void testReverse() {
 		assertEquals(new BigInteger("3"), ef.evaluate("{1,2,3}.reverse().first()"));
 		assertEquals(BigInteger.ONE, ef.evaluate("{1,2,3}.reverse().reverse().first()"));

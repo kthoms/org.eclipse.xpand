@@ -26,6 +26,7 @@ public class Outlet {
     private String name = null;
 
     private String fileEncoding = System.getProperty("file.encoding");
+    
     private boolean hasDefaultEncoding = true;
 
     public boolean hasDefaultEncoding () {
@@ -146,12 +147,13 @@ public class Outlet {
     public Outlet() {
     }
 
-    public Outlet (boolean append, String encoding, String name, boolean overwrite, String path) {
+    public Outlet (boolean append, String encoding, String name, boolean overwrite, String path, boolean hasDefaultEncoding) {
         this.append = append;
         this.fileEncoding = encoding;
         this.name = name;
         this.overwrite = overwrite;
         this.path = path;
+        this.hasDefaultEncoding = hasDefaultEncoding;
     }
     
 	public boolean shouldWrite(FileHandleImpl fileHandleImpl) {

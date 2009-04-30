@@ -168,6 +168,15 @@ public class ExtensionParserTest extends TestCase {
 		}
 	}
 	
+	public void testMissingSemicolon() {
+		try {
+			parse("import org::oaw;\nfoo() : true");
+			fail();
+		} catch (RuntimeException e) {
+			// Expected
+		}       
+	}
+
 	public void testLocation() throws Exception {
 		final ExtensionFile file = parse("foo() : 1;\n" +
 				"bar() : 2;\n");

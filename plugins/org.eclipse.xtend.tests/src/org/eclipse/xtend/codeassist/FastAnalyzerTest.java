@@ -286,5 +286,19 @@ public class FastAnalyzerTest extends TestCase {
         assertTrue(FastAnalyzer.isInsideExtensionImport("extension org::"));
         assertTrue(FastAnalyzer.isInsideExtensionImport("extension org::oaw"));
     }
+    
+	public final void testIsInsideComment() {
+		assertTrue(FastAnalyzer.isInsideComment("// A comment"));
+		assertFalse(FastAnalyzer.isInsideComment("/* A comment */"));
+		assertFalse(FastAnalyzer.isInsideComment("/* A comment \n* Second line */"));
+	    assertFalse(FastAnalyzer.isInsideComment("test"));
+		assertTrue(FastAnalyzer.isInsideComment("test // Comment"));
+        assertFalse(FastAnalyzer.isInsideComment("test \n test /* Comment */"));
+        assertTrue(FastAnalyzer.isInsideComment("test /* Comment"));
+        assertTrue(FastAnalyzer.isInsideComment("test /* Comment */ \ntest\n /*"));
+        assertFalse(FastAnalyzer.isInsideComment("test /* Comment */ \ntest\n /* \n * \n */"));
+		assertEquals(Partition.DEFAULT, FastAnalyzer.computePartition("doStuff()"));
+		assertTrue(FastAnalyzer.isInsideComment("// doStuff()"));
+	}
 
 }

@@ -41,6 +41,7 @@ public class PluginExecutionContextImpl extends ExecutionContextImpl implements 
 	public PluginExecutionContextImpl cloneContext() {
 		final PluginExecutionContextImpl result = new PluginExecutionContextImpl(resourceManager, currentResource(),
 				typeSystem, getVisibleVariables(), getGlobalVariables(), project);
+		result.callback = this.callback;
 		return result;
 	}
 

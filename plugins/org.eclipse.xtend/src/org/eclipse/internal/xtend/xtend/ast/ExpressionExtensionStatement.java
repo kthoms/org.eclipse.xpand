@@ -24,7 +24,7 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.Type;
 
-public class ExpressionExtensionStatement extends AbstractExtension {
+public class ExpressionExtensionStatement extends AbstractExtensionDefinition {
 
 	private final Expression expression;
 
@@ -35,6 +35,7 @@ public class ExpressionExtensionStatement extends AbstractExtension {
 		this.expression = expression;
 	}
 
+	@Override
 	public Expression getExpression() {
 		return expression;
 	}

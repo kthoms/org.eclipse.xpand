@@ -53,4 +53,14 @@ public class StringTypeTest extends TestCase {
     public final void testCombination() {
     	assertEquals("test",ef.evaluate("'(test,a,b)'.replaceFirst('\\\\(','').replaceAll('\\\\)','').split(',').get(0)"));
     }
+    
+    public final void testToFirstUpper () {
+    	assertEquals("pParam",ef.evaluate("'p'+'param'.toFirstUpper()"));
+    	assertEquals("",ef.evaluate("''.toFirstUpper()"));
+    }
+
+    public final void testToFirstLower () {
+    	assertEquals("param",ef.evaluate("'Param'.toFirstLower()"));
+    	assertEquals("",ef.evaluate("''.toFirstLower()"));
+    }
 }

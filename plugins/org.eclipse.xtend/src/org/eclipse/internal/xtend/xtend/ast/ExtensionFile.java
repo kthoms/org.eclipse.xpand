@@ -86,49 +86,57 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
         return Arrays.asList(getImportedNamespaces());
     }
 
-    public void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-        ctx = ctx.cloneWithResource(this);
+	public void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		try {
+			ctx = ctx.cloneWithResource(this);
+			if (ctx.getCallback() != null)
+				ctx.getCallback().pre(this, ctx);
 
-        // try to load all declared imported extensions. Add error issues if the resource cannot be located
-        // by the ResourceManager
-        for (ImportStatement imp : extImports) {
-            final XtendFile xf = (XtendFile) ctx.getResourceManager().loadResource(imp.getImportedId().getValue(),
-                    XtendFile.FILE_EXTENSION);
-            if (xf == null) {
-            	final String msg = "Error while importing extension: File " + imp.getImportedId().getValue() +  " not found.";
-            	issues.add(new AnalysationIssue(AnalysationIssue.RESOURCE_NOT_FOUND, msg, imp));
-            	return;
-            }
-        }
+			// try to load all declared imported extensions. Add error issues if
+			// the resource cannot be located
+			// by the ResourceManager
+			for (ImportStatement imp : extImports) {
+				imp.analyze(ctx, issues);
+			}
 
-        for (Extension ext : extensions) {
-        	try {
-        		ext.analyze(ctx, issues);
-        	} catch (RuntimeException ex) {
-        		Map<String,Object> info = new HashMap<String,Object>();
-        		info.put("extension", ext);
-        		ctx.handleRuntimeException(ex, this, info);
-        	}
-        }
-        
-        for (Around around : arounds) {
-        	try {
-        		around.analyze(ctx, issues);
-        	} catch (RuntimeException ex) {
-        		Map<String,Object> info = new HashMap<String,Object>();
-        		info.put("around", around);
-        		ctx.handleRuntimeException(ex, this, info);
-        	}
-        }
-        
-        for (final Check check : checks) {
-        	try {
-        		check.analyze(ctx, issues);
-            } catch (RuntimeException ex) {
-            	ctx.handleRuntimeException(ex, this, null);
-            }
-        }
-    }
+			for (Extension ext : extensions) {
+				try {
+					ext.analyze(ctx, issues);
+				}
+				catch (RuntimeException ex) {
+					Map<String, Object> info = new HashMap<String, Object>();
+					info.put("extension", ext);
+					ctx.handleRuntimeException(ex, this, info);
+				}
+			}
+
+			for (Around around : arounds) {
+				try {
+					around.analyze(ctx, issues);
+				}
+				catch (RuntimeException ex) {
+					Map<String, Object> info = new HashMap<String, Object>();
+					info.put("around", around);
+					ctx.handleRuntimeException(ex, this, info);
+				}
+			}
+
+			for (final Check check : checks) {
+				try {
+					check.analyze(ctx, issues);
+				}
+				catch (RuntimeException ex) {
+					ctx.handleRuntimeException(ex, this, null);
+				}
+			}
+
+		}
+		finally {
+			if (ctx.getCallback() != null)
+				ctx.getCallback().post(null);
+		}
+
+	}
 
     private String fullyQualifiedName;
 

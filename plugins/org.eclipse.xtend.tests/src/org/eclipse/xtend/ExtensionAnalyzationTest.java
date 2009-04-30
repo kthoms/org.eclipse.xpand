@@ -161,4 +161,14 @@ public class ExtensionAnalyzationTest extends TestCase {
 		assertEquals(0,issues.size());
 	}
 
+	public void testResolving() {
+	    if (!VersionComparator.isAtLeastVersion("1.6"))
+	        return;
+	    final ExtensionFile file = parse("import javax::lang::model::element;\n" + 
+	    		"test(TypeElement e) : e.typeParameters.first();\n");
+	    file.analyze(ec, issues);
+	    System.out.println(issues);
+	    assertEquals(0, issues.size());
+    }
+
 }

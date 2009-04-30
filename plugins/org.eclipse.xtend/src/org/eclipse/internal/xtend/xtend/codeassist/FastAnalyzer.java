@@ -37,6 +37,14 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class FastAnalyzer {
 
+	private static final Pattern ENDS_WITH_SINGLE_LINE_COMMENT_PATTERN = Pattern.compile("//.*$");
+
+	private static final Pattern CONTAINS_SINGLE_LINE_COMMENT_PATTERN = Pattern.compile("//.*$", Pattern.MULTILINE);
+	
+	private static final Pattern BEGIN_MULTI_LINE_COMMENT_PATTERN = Pattern.compile("/\\*", Pattern.MULTILINE);
+
+	private static final Pattern COMPLETE_MULTI_LINE_COMMENT_PATTERN = Pattern.compile("/\\*.*\\*/", Pattern.MULTILINE | Pattern.DOTALL);
+		
 	private static final Pattern PARAM_PATTERN = Pattern
 			.compile("([\\[\\]:\\w]+)\\s+([\\w]+)");
 
@@ -93,6 +101,27 @@ public class FastAnalyzer {
 		return true;
 	}
 
+	public static boolean isInsideComment(final String input) {
+		final Matcher singleLineCommentMatcher = ENDS_WITH_SINGLE_LINE_COMMENT_PATTERN.matcher(input);
+		if(singleLineCommentMatcher.find()) {
+			return true;
+		}
+		final Matcher removeSingleLineCommentsMatcher = CONTAINS_SINGLE_LINE_COMMENT_PATTERN.matcher(input);
+		String inputWithoutSingleLineComments = removeSingleLineCommentsMatcher.replaceAll("\n");
+		final Matcher beinMultiLineCommentMatcher = BEGIN_MULTI_LINE_COMMENT_PATTERN.matcher(inputWithoutSingleLineComments);
+		if(beinMultiLineCommentMatcher.find()) {
+			int lastBeginMultiLineComment = -1;
+			do {
+				lastBeginMultiLineComment = beinMultiLineCommentMatcher.start();
+			} while (beinMultiLineCommentMatcher.find());
+			final Matcher completeMultiLineCommentMatcher = COMPLETE_MULTI_LINE_COMMENT_PATTERN.matcher(inputWithoutSingleLineComments);
+			// if completeMultiLineComment does not match at the last beginMultiLineComment position,
+			// we're inside a multiline comment
+			return !completeMultiLineCommentMatcher.find(lastBeginMultiLineComment);
+		}
+		return false;
+	}
+	
 	public final static List<String> findImports(final String template) {
 		final Matcher m = IMPORT_PATTERN.matcher(template);
 		final List<String> result = new ArrayList<String>();
@@ -164,6 +193,9 @@ public class FastAnalyzer {
 	}
 
 	public final static Partition computePartition(final String str) {
+		if (isInsideComment(str))
+			return Partition.COMMENT;
+		
 		if (isInsideImport(str))
 			return Partition.NAMESPACE_IMPORT;
 

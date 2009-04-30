@@ -113,7 +113,7 @@ public final class ParseFacade {
 			return new SyntaxError(e.index, e.line, e.index + 1, string);
 		} else {
 			CommonToken t = (CommonToken) e.token;
-			return new SyntaxError(t.getStartIndex(), t.getStopIndex(), t
+			return new SyntaxError(t.getStartIndex(), t.getStopIndex() + 1, t
 					.getLine(), string);
 		}
 	}

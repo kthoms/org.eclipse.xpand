@@ -274,10 +274,16 @@ public class StringHelper {
 	}
 
 	public static String firstUpper(String str) {
-		return str.substring(0, 1).toUpperCase().concat(str.substring(1));
+		if (str.length() > 0)
+			return str.substring(0, 1).toUpperCase().concat(str.substring(1));
+		else
+			return "";
 	}
 
 	public static String firstLower(String str) {
-		return str.substring(0, 1).toLowerCase().concat(str.substring(1));
+		if (str.length() > 0)
+			return str.substring(0, 1).toLowerCase().concat(str.substring(1));
+		else
+			return "";
 	}
 }

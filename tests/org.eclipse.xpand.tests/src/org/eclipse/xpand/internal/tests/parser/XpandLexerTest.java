@@ -28,6 +28,7 @@ public class XpandLexerTest extends TestCase {
         return LG + str + RG;
     }
     
+	@SuppressWarnings("unchecked")
 	public void testComments() throws Exception {
 		String toScan = tag("REM")+"foo"+tag("DEFINE")+"'//"+LG+"ENDRE"+tag("ENDREM");
 		XpandLexer l = new XpandLexer(new ANTLRStringStream(toScan));

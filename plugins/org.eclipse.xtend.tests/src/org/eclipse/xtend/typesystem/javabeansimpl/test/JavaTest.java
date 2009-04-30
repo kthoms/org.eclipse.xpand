@@ -75,7 +75,8 @@ public class JavaTest extends TestCase {
         assertEquals("Mork vom Ork", refType.getOperation("computeWholeName", null).evaluate(obj, null));
     }
 
-    public final void testSimpleCollection() {
+    @SuppressWarnings("unchecked")
+	public final void testSimpleCollection() {
         final Type bType = ec.getTypeForName(TypeB.class.getName().replaceAll("\\.", "::"));
         final Type lType = ec.getListType(bType);
         final List l = (List) lType.newInstance();
@@ -166,11 +167,28 @@ public class JavaTest extends TestCase {
         assertNotNull(op);
     }
 
-    public final void testArrayAsCollection () {
+    @SuppressWarnings("unchecked")
+	public final void testArrayAsCollection () {
         final Map vars = new HashMap ();
         vars.put ("a", TypeA.class);
         final String arrayTypeName = (String) ef.evaluate ("a.methods.metaType.name", vars);
         assertEquals ("List", arrayTypeName);
+        
+        // now test evaluating instances
+        TypeA aInstance = new TypeA();
+        TypeC cInstance1 = new TypeB();
+        TypeC cInstance2 = new TypeB();
+        aInstance.setArrayOfCs(new TypeC[] {cInstance1, cInstance2});
+        
+        vars.put ("ainst", aInstance);
+        Long size = (Long) ef.evaluate("ainst.arrayOfCs.size", vars);
+        assertEquals(2, size.longValue());
+        TypeC cInstanceEval1 = (TypeC) ef.evaluate("ainst.arrayOfCs.get(0)", vars);
+        assertNotNull (cInstanceEval1);
+        assertEquals (cInstance1, cInstanceEval1);
+        TypeC cInstanceEval2 = (TypeC) ef.evaluate("ainst.arrayOfCs.get(1)", vars);
+        assertNotNull (cInstanceEval2);
+        assertEquals (cInstance2, cInstanceEval2);
     }
 }
 

@@ -24,7 +24,6 @@ public class AllAllTests extends TestSuite {
 		addTest(org.eclipse.xtend.typesystem.emf.check.AllTests.suite());
 		addTest(org.eclipse.xtend.typesystem.emf.check.cache.AllTests.suite());
 		addTest(org.eclipse.xtend.typesystem.impl.javabeans.AllTests.suite());
-		addTest(org.eclipse.xtend.typesystem.impl.oawclassic.AllTests.suite());
 		addTest(org.eclipse.xtend.typesystem.javabeansimpl.test.AllTests.suite());
 	}
 

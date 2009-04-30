@@ -11,8 +11,13 @@
 
 package org.eclipse.internal.xtend.xtend.ast;
 
+import java.util.Set;
+
 import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
+import org.eclipse.internal.xtend.xtend.XtendFile;
+import org.eclipse.xtend.expression.AnalysationIssue;
+import org.eclipse.xtend.expression.ExecutionContext;
 
 public class ImportStatement extends SyntaxElement {
 
@@ -33,5 +38,22 @@ public class ImportStatement extends SyntaxElement {
     public boolean isExported() {
         return exported;
     }
+
+	public void analyze(ExecutionContext ctx, Set<AnalysationIssue> issues) {
+		try {
+			if (ctx.getCallback() != null)
+				ctx.getCallback().pre(this, ctx);
+			final XtendFile xf = (XtendFile) ctx.getResourceManager().loadResource(this.getImportedId().getValue(),
+					XtendFile.FILE_EXTENSION);
+			if (xf == null) {
+				final String msg = "Error while importing extension: File " + this.getImportedId().getValue() + " not found.";
+				issues.add(new AnalysationIssue(AnalysationIssue.RESOURCE_NOT_FOUND, msg, this));
+				return;
+			}
+		} finally {
+			if (ctx.getCallback() != null)
+				ctx.getCallback().post(null);
+		}
+	}
 
 }

@@ -33,10 +33,6 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
  */
-/**
- * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
- */
 public final class BuiltinMetaModel implements MetaModel {
 
 	public static final String OBJECT = "Object";

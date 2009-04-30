@@ -21,6 +21,9 @@ private Void internalInfo(Object s) :
 private Void internalError(Object s) :
    JAVA org.eclipse.xtend.util.stdlib.IOExtensions.error(java.lang.Object);
 
+private Void internalThrowError(Object s) :
+   JAVA org.eclipse.xtend.util.stdlib.IOExtensions.throwError(java.lang.Object);
+
 /**
  * Prints an Object to stderr with a prefix string.
  * @param o The object that should be printed. null is allowed.
@@ -67,6 +70,6 @@ error(Object o) :
  * @return Nothing, since an exception is thrown.
  */
 throwError(Object o) :
-   internalError(o) -> o; 
+  internalThrowError(o) -> o; 
    
    

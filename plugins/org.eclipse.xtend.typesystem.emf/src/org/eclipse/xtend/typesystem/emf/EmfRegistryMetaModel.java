@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -32,12 +33,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.utils.SingleGlobalResourceSet;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
+import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
 import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Type;
 
-@SuppressWarnings("unchecked")
 public class EmfRegistryMetaModel implements MetaModel {
 
 	TypeSystem typeSystem;
@@ -48,13 +49,29 @@ public class EmfRegistryMetaModel implements MetaModel {
 		return eobjectType;
 	}
 
-	private final Cache<EClassifier, Type> cache = new Cache<EClassifier, Type>() {
+	private final Cache<EObject, Type> cache = new Cache<EObject, Type>() {
 
 		@Override
-		protected Type createNew(EClassifier ele) {
-			if (ele == null) {
+		protected Type createNew(EObject param) {
+			if (param == null) {
 				return null;
 			}
+			if (param instanceof EGenericType) {
+				EGenericType genericType = (EGenericType) param;
+				if (typeSystem != null) {
+					Type innerType = getTypeForEClassifier(genericType.getETypeArguments().get(0));
+					return new EmfListType(innerType, typeSystem, BuiltinMetaModel.LIST);
+				}
+				else {
+					param = genericType.getEClassifier();
+				}
+			}
+			
+			if (!(param instanceof EClassifier))
+				return null;
+			
+			EClassifier ele = (EClassifier) param;
+				
 			if (ele.getName() == null) {
 				return null;
 			}
@@ -77,7 +94,9 @@ public class EmfRegistryMetaModel implements MetaModel {
 						return typeSystem.getRealType();
 					} else if (objectTypes.contains(ele)) {
 						return typeSystem.getObjectType();
-					}
+					}else if (listTypes.contains(ele)) {
+						return new EmfListType(typeSystem.getObjectType(), typeSystem, BuiltinMetaModel.LIST);
+					}	
 				}
 				EDataType dataType = (EDataType) ele;
 				return new EDataTypeType(EmfRegistryMetaModel.this,
@@ -97,6 +116,8 @@ public class EmfRegistryMetaModel implements MetaModel {
 	private final HashSet<EClassifier> booleanTypes;
 
 	private final HashSet<EClassifier> objectTypes;
+
+	private final HashSet<EClassifier> listTypes;
 
 	public void setUseSingleGlobalResourceSet(boolean b) {
 		if (b) {
@@ -141,6 +162,9 @@ public class EmfRegistryMetaModel implements MetaModel {
 
 		objectTypes = new HashSet<EClassifier>();
 		objectTypes.add(EcorePackage.eINSTANCE.getEJavaObject());
+	
+		listTypes = new HashSet<EClassifier>();
+		listTypes.add(EcorePackage.eINSTANCE.getEEList());
 	}
 
 	private final Cache<String, Type> typeForNameCache = new Cache<String, Type>() {
@@ -283,22 +307,37 @@ public class EmfRegistryMetaModel implements MetaModel {
 		return (Type) cache.get(element);
 	}
 
+	public Type getTypeForEClassifier(final EGenericType element) {
+		EClassifier baseType = element.getEClassifier();
+		if ((baseType == null) || !listTypes.contains(baseType))
+			return getTypeForEClassifier(baseType);
+
+		if (element.getETypeArguments().size() != 1)
+			throw new RuntimeException("Unexpected number of type arguments");
+
+		return (Type) cache.get(element);
+	}
+
 	public Type getTypeForETypedElement(final ETypedElement typedElement) {
 		if (typedElement.getEType() == null) {
 			return getTypeSystem().getVoidType();
 		}
 		Type t = null;
 		if (typedElement.getEType() instanceof EDataType) {
-			t = getTypeForEClassifier(typedElement.getEType());
+			if (typedElement.getEGenericType() != null) {
+				t = getTypeForEClassifier(typedElement.getEGenericType());
+			}
+			else {
+				t = getTypeForEClassifier(typedElement.getEType());
+			}
 		} else {
 			t = getTypeSystem().getTypeForName(
 					getFullyQualifiedName(typedElement.getEType()));
 		}
-		if (typedElement.getUpperBound() == 1) {
+		if (typedElement.isMany())
+			return new EmfListType(t, typeSystem, BuiltinMetaModel.LIST);
+		else
 			return t;
-		} else {
-			return typeSystem.getListType(t);
-		}
 	}
 
 	public TypeSystem getTypeSystem() {

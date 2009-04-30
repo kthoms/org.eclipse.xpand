@@ -22,7 +22,6 @@ import org.eclipse.internal.xtend.type.baseimpl.StaticPropertyImpl;
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
 
-@SuppressWarnings("unchecked")
 public class EEnumType extends AbstractTypeImpl {
 
     private EEnum eEnum;

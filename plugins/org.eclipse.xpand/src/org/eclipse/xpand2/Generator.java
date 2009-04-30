@@ -58,7 +58,7 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 
 	private String expand = null;
 
-	private String fileEncoding = null;
+	private String fileEncoding = System.getProperty("file.encoding");
 
 	private List<?> beautifier = new ArrayList<Object>();
 
@@ -436,7 +436,7 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 				// take the Generator
 				// default encoding. If this not set also then take System
 				// default.
-				if (o.hasDefaultEncoding() && fileEncoding != null) {
+				if (o.getFileEncoding() == null) {
 					o.setFileEncoding(fileEncoding);
 				}
 			}

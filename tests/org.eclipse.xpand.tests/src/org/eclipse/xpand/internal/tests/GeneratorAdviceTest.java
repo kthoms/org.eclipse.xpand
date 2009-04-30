@@ -43,7 +43,6 @@ public class GeneratorAdviceTest extends TestCase {
 	}
 	
 	public void testSetFileEncoding () throws Exception {
-		assertNull(generator._getFileEncoding());
 		fixture.setFileEncoding("ISO-8859-1");
 		fixture.weave(generator, issues);
 		assertNoErrorIssues();

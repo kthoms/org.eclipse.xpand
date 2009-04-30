@@ -29,7 +29,6 @@ public class GeneratorTest extends TestCase {
 		List<Outlet> outlets = generator.getOutlets();
 		assertEquals(1, outlets.size());
 		Outlet o = outlets.get(0);
-		assertTrue(o.hasDefaultEncoding());
 		assertEquals(System.getProperty("file.encoding"), o.getFileEncoding());
 	}
 	
@@ -42,7 +41,6 @@ public class GeneratorTest extends TestCase {
 		List<Outlet> outlets = generator.getOutlets();
 		assertEquals(1, outlets.size());
 		Outlet o = outlets.get(0);
-		assertTrue(!o.hasDefaultEncoding());
 		assertEquals(encoding, o.getFileEncoding());
 	}
 	

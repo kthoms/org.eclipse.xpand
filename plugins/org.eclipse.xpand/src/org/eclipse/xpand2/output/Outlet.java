@@ -25,13 +25,7 @@ public class Outlet {
 
     private String name = null;
 
-    private String fileEncoding = System.getProperty("file.encoding");
-    
-    private boolean hasDefaultEncoding = true;
-
-    public boolean hasDefaultEncoding () {
-        return hasDefaultEncoding;
-    }
+    private String fileEncoding;
     
     public boolean isAppend() {
         return append;
@@ -85,7 +79,6 @@ public class Outlet {
 
     public void setFileEncoding(final String fileEncoding) {
         this.fileEncoding = fileEncoding;
-        hasDefaultEncoding = false;
     }
 
     public List<PostProcessor> postprocessors = new ArrayList<PostProcessor>();
@@ -147,13 +140,12 @@ public class Outlet {
     public Outlet() {
     }
 
-    public Outlet (boolean append, String encoding, String name, boolean overwrite, String path, boolean hasDefaultEncoding) {
+    public Outlet (boolean append, String encoding, String name, boolean overwrite, String path) {
         this.append = append;
         this.fileEncoding = encoding;
         this.name = name;
         this.overwrite = overwrite;
         this.path = path;
-        this.hasDefaultEncoding = hasDefaultEncoding;
     }
     
 	public boolean shouldWrite(FileHandleImpl fileHandleImpl) {
@@ -169,9 +161,8 @@ public class Outlet {
 		StringBuilder sb = new StringBuilder ();
 		if (name!=null) sb.append(name+":");
 		sb.append(path);
-		if (isAppend() || !isOverwrite() || !hasDefaultEncoding()) {
-			sb
-				.append("(")
+		if (isAppend() || !isOverwrite()) {
+			sb.append("(")
 				.append("overwrite=")
 				.append(overwrite)
 				.append(",append=")

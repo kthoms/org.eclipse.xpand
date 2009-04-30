@@ -44,6 +44,7 @@ public class ProfilingExtensions {
 	 * We utilize the XmiReader to load profiles. To use the XmiReader class within this class
 	 * we need to override a method. 
 	 */
+	@SuppressWarnings("deprecation")
 	private static class XmiReader extends org.eclipse.xtend.typesystem.emf.XmiReader {
 		
 		public XmiReader() {
@@ -102,7 +103,8 @@ public class ProfilingExtensions {
 		if (st!=null && !elem.isStereotypeApplied(st)) {
 			elem.applyStereotype(st);
 		}
-		if (elem.getAppliedStereotype(stereotypeName)!=null) LOG.debug("Stereotype '"+stereotypeName+"' applied for '"+elem);
+		if (LOG.isDebugEnabled() && (elem.getAppliedStereotype(stereotypeName)!=null))
+			LOG.debug("Stereotype '"+stereotypeName+"' applied for '"+elem);
 	}
 	
 	/**
@@ -135,6 +137,7 @@ public class ProfilingExtensions {
 	 * @param taggedValueName Name of the tagged value.
 	 * @param value The value to set.
 	 */
+	@SuppressWarnings("unchecked")
 	public static void addTaggedValue (Element elem, String stereotypeName, String taggedValueName, Object value) {
 		Stereotype st = elem.getApplicableStereotype(stereotypeName);
 		if (st!=null) {

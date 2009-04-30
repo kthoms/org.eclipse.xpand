@@ -53,8 +53,8 @@ public class EnumType extends AbstractTypeImpl implements Type {
                 }
             });
         }
-        // Add a property 'literal' which resolves the literal name
-        result.add(new PropertyImpl(this, "literal", getTypeSystem().getStringType()) {
+        // Add a property 'name' which resolves the literal name
+        result.add(new PropertyImpl(this, "name", getTypeSystem().getStringType()) {
 			public Object get(Object target) {
 				if (target==null) {
 					return null;

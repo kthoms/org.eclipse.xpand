@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.PropertyImpl;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -60,7 +61,7 @@ public class StereotypeType extends AbstractTypeImpl {
             Object obj = iter.next();
             if (obj instanceof Property) {
                 Property p = (Property) obj;
-                String name = fixedName(p.getName());
+                String name = normalizedName(p.getName());
                 if (name != null) {
                     org.eclipse.uml2.uml.Type type = p.getType();
                     if (type.eIsProxy()) {
@@ -105,6 +106,7 @@ public class StereotypeType extends AbstractTypeImpl {
                         if (rt != null) {
                             PropertyImpl prop = new PropertyImpl(StereotypeType.this, name, rt) {
 
+								@SuppressWarnings("unchecked")
 								public Object get(Object target) {
 									if (target instanceof Element) {
                                         Element ele = (Element) target;
@@ -223,7 +225,7 @@ public class StereotypeType extends AbstractTypeImpl {
 
     private String getFullName(Object object) {
         if (object instanceof NamedElement) {
-            return ((NamedElement) object).getQualifiedName();
+            return normalizedName(((NamedElement) object).getQualifiedName());
         } else if (object instanceof EClassifier) {
             return EmfMetaModel.getFullyQualifiedName((EClassifier) object);
         }
@@ -250,11 +252,19 @@ public class StereotypeType extends AbstractTypeImpl {
 
     /**
      * It is not allowed to have whitespaces in profile, stereotype or tagged value names. Therefore we need to replace them w
-     * @param name
-     * @return
+     * All non-word characters are replaced by underscore.
+     * @param name An element's name
+     * @return All non-word characters are replaced by underscores
      */
-    private static String fixedName (String name) {
-    	return name.replaceAll("[\\s\\.]", "_");
+    private static String normalizedName (String name) {
+    	String[] fragments = name.split(SyntaxConstants.NS_DELIM);
+    	StringBuffer result = new StringBuffer(name.length());
+    	result.append(fragments[0].replaceAll("\\W", "_"));
+    	for (int i=1; i<fragments.length; i++) {
+    		result.append(SyntaxConstants.NS_DELIM);
+        	result.append(fragments[1].replaceAll("\\W", "_"));
+    	}
+    	return result.toString();
     }
     
 }

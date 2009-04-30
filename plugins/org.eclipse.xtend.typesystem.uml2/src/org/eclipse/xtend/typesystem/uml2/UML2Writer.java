@@ -136,6 +136,7 @@ public class UML2Writer extends AbstractWorkflowComponent {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void saveModel(Package model, ResourceSet rsImpl) {
 		// compute file name, e.g. './src-gen/myModel.uml"
 		String modelFile = destinationFolder + outPath + model.getName() + "."+getUMLFileExtension();

@@ -127,7 +127,6 @@ public class ProfileMetaModel implements MetaModel {
 	private void init() {
 		if (stereoTypes != null || profile == null || typeSystem == null)
 			return;
-		fixName(profile);
 		internalProfileMetaModel = new InternaleProfileMetaModel();
 		internalProfileMetaModel.setTypeSystem(typeSystem);
 
@@ -137,20 +136,18 @@ public class ProfileMetaModel implements MetaModel {
 			final Object o = iter.next();
 			if (o instanceof Stereotype) {
 				final Stereotype st = (Stereotype) o;
-				fixName(st);
 				final String typeName = getFullName(st);
 				final Type t = new StereotypeType(getTypeSystem(), typeName, st);
 				stereoTypes.put(typeName, t);
 			}
 			else if (o instanceof Enumeration) {
 				final Enumeration en = (Enumeration) o;
-				fixName(en);
 				final String typeName = getFullName(en);
 				final Type t = new EnumType(getTypeSystem(), typeName, en);
 				stereoTypes.put(typeName, t);
 			}
 		}
-		namespaces.add(profile.getName());
+		namespaces.add(normalizedName(profile.getName()));
 	}
 
 	private List<org.eclipse.uml2.uml.Type> getAllOwnedTypes(final Package pck) {
@@ -163,25 +160,32 @@ public class ProfileMetaModel implements MetaModel {
 	}
 
 	/**
-	 * It is not allowed to have whitespaces in profile, stereotype or tagged
-	 * value names. Therefore we need to replace them w
+	 * It is not allowed to have non-word characters in profile, stereotype or
+	 * tagged value names. All non-word characters are replaced by underscore.
 	 * 
 	 * @param name
-	 * @return
+	 *            An element's name
+	 * @return All non-word characters are replaced by underscores except for
+	 *         occurances of the namespace delimiter '::'
 	 */
-	private static void fixName(final NamedElement elem) {
-		if (elem.getName().matches(".*[\\s].*")) {
-			elem.setName(elem.getName().replaceAll("\\s", "_"));
+	private static String normalizedName(String name) {
+		String[] fragments = name.split(SyntaxConstants.NS_DELIM);
+		StringBuffer result = new StringBuffer(name.length());
+		result.append(fragments[0].replaceAll("\\W", "_"));
+		for (int i = 1; i < fragments.length; i++) {
+			result.append(SyntaxConstants.NS_DELIM);
+			result.append(fragments[1].replaceAll("\\W", "_"));
 		}
+		return result.toString();
 	}
 
-	public String getFullName(final org.eclipse.uml2.uml.Type st) {
-		return st.getQualifiedName();
+	public String getFullName(final org.eclipse.uml2.uml.Type type) {
+		return normalizedName(type.getQualifiedName());
 	}
 
 	public Type getTypeForName(final String typeName) {
 		Type result = stereoTypes.get(typeName);
-		if (result == null && typeName.startsWith(profile.getName() + SyntaxConstants.NS_DELIM)) {
+		if (result == null && typeName.startsWith(normalizedName(profile.getName()) + SyntaxConstants.NS_DELIM)) {
 			result = internalProfileMetaModel.getTypeForName(typeName);
 		}
 		return result;
@@ -208,56 +212,45 @@ public class ProfileMetaModel implements MetaModel {
 	 */
 	public Type getType(final Object obj) {
 		if (obj instanceof EnumerationLiteral) {
-			// first, try to determine the literal's type by it's stereotype
-			final EnumerationLiteral el = (EnumerationLiteral) obj;
-			final Type result = getTypeByStereotype(el);
-			if (result != null)
-				return result;
-
-			// if that doesn't work, try to get the type of the containing
-			// enumeration
-			final String fqn = getFullName(el.getEnumeration());
+			EnumerationLiteral el = (EnumerationLiteral) obj;
+			String fqn = getFullName(el.getEnumeration());
 			return getTypeSystem().getTypeForName(fqn);
-
 		}
 		else if (obj instanceof Element) {
-			final Element element = (Element) obj;
-			return getTypeByStereotype(element);
-		}
-		return null;
-	}
+			Element element = (Element) obj;
+			List<Stereotype> stereotypes = element.getAppliedStereotypes();
+			// if no stereotype is found, the stereotype is skipped or an
+			// Exception is thrown
+			if (stereotypes.isEmpty())
+				// collection will be empty if the required profile is not
+				// loaded
+				if (errorIfStereotypeMissing && !stereotypes.toString().equals("[]"))
+					throw new RuntimeException("Stereotype could not be loaded! Possible hint: '" + stereotypes);
+				else
+					return null;
 
-	private Type getTypeByStereotype(final Element element) {
-		final List<Stereotype> stereotypes = element.getAppliedStereotypes();
-		// if no stereotype is found, the stereotype is skipped or an Exception
-		// is thrown
-		if (stereotypes.isEmpty())
-			// collection will be empty if the required profile is not loaded
-			if (errorIfStereotypeMissing && !stereotypes.toString().equals("[]"))
-				throw new RuntimeException("Stereotype could not be loaded! Possible hint: '" + stereotypes);
-			else
-				return null;
-
-		final List<StereotypeType> types = new ArrayList<StereotypeType>();
-		// collect StereotypeTypes
-		for (final Iterator<Stereotype> iter = stereotypes.iterator(); iter.hasNext();) {
-			final Stereotype st = iter.next();
-			final StereotypeType stType = (StereotypeType) getTypeSystem().getTypeForName(getFullName(st));
-			if (stType != null) {
-				types.add(stType);
+			List<StereotypeType> types = new ArrayList<StereotypeType>(stereotypes.size());
+			// collect StereotypeTypes
+			for (Iterator<Stereotype> iter = stereotypes.iterator(); iter.hasNext();) {
+				Stereotype st = iter.next();
+				StereotypeType stType = (StereotypeType) getTypeSystem().getTypeForName(getFullName(st));
+				if (stType != null) {
+					types.add(stType);
+				}
+			}
+			switch (types.size()) {
+				case 0:
+					return null;
+				case 1:
+					return types.get(0);
+					// when more than one stereotype is applied we return a
+					// MultipleStereotypeType instance
+					// containing all applied stereotypes
+				default:
+					return new MultipleStereotypeType(getTypeSystem(), types);
 			}
 		}
-		switch (types.size()) {
-			case 0:
-				return null;
-			case 1:
-				return types.get(0);
-				// when more than one stereotype is applied we return a
-				// MultipleStereotypeType instance
-				// containing all applied stereotypes
-			default:
-				return new MultipleStereotypeType(getTypeSystem(), types);
-		}
+		return null;
 	}
 
 	public Set<Type> getKnownTypes() {

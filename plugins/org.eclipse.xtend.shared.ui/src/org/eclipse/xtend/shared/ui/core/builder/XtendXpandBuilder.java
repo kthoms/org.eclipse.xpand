@@ -182,6 +182,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
+	@SuppressWarnings("restriction")
 	protected void fullBuild(final IProgressMonitor monitor) throws CoreException {
 		final IXtendXpandProject project = Activator.getExtXptModelManager().findProject(getProject().getFullPath());
 		if (project != null) {
@@ -195,26 +196,30 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 			}
 			for (final IPackageFragmentRoot root : roots) {
 				if (root.isArchive()) {
-					root.open(monitor);
 					try {
-						final ZipFile zip = ((JarPackageFragmentRoot) root).getJar();
-						final Enumeration<? extends ZipEntry> entries = zip.entries();
-						while (entries.hasMoreElements()) {
-							final ZipEntry entry = entries.nextElement();
-							for (final String ext : extensions) {
-								final String name = entry.getName();
-								if (name.endsWith(ext)) {
-									final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll(
-											"/", "::");
-									final ResourceID resourceID = new ResourceID(fqn, ext);
-									final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
-									project.findXtendXpandResource(findStorage);
+						root.open(monitor);
+						try {
+							final ZipFile zip = ((JarPackageFragmentRoot) root).getJar();
+							final Enumeration<? extends ZipEntry> entries = zip.entries();
+							while (entries.hasMoreElements()) {
+								final ZipEntry entry = entries.nextElement();
+								for (final String ext : extensions) {
+									final String name = entry.getName();
+									if (name.endsWith(ext)) {
+										final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll(
+												"/", "::");
+										final ResourceID resourceID = new ResourceID(fqn, ext);
+										final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
+										project.findXtendXpandResource(findStorage);
+									}
 								}
 							}
 						}
-					}
-					finally {
-						root.close();
+						finally {
+							root.close();
+						}
+					} catch( CoreException ex) {
+						XtendLog.logError(ex);
 					}
 				}
 			}

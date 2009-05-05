@@ -8,7 +8,7 @@
       <version>0.7.0-SNAPSHOT</version>
    </parent>
 
-   <artifactId>m2t-xtend-util-stdlib</artifactId>
+   <artifactId>m2t-xpand-xtend-util-stdlib</artifactId>
    <name>Eclipse M2T XPand - Util Stdlib</name>
    <description />
 

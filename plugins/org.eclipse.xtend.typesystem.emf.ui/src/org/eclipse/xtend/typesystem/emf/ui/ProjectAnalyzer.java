@@ -33,7 +33,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -49,16 +48,18 @@ import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 import org.eclipse.xtend.typesystem.emf.ui.internal.EmfToolsLog;
 
 /**
- * Analyzes a project's classpath for ecore metamodels. We need to take care of Ecore files
+ * Analyzes a project's classpath for ecore metamodels. We need to take care of
+ * Ecore files
  * <ul>
  * <li>directly contained in the classpath</li>
  * <li>in JARs within the classpath</li>
  * <li>in the classpath of projects referenced by this project (recursively)</li>
- * <li>in plugins referenced by the project, either within the target platform or as referenced plugin projects
- * (recursively)</li>
+ * <li>in plugins referenced by the project, either within the target platform
+ * or as referenced plugin projects (recursively)</li>
  * </ul>
  * <p>
- * Reading Ecore files occurs in background Jobs. Each Job uses its own ResourceSet. This avoids concurrency issues.
+ * Reading Ecore files occurs in background Jobs. Each Job uses its own
+ * ResourceSet. This avoids concurrency issues.
  * </p>
  */
 final class ProjectAnalyzer extends Job {
@@ -85,7 +86,7 @@ final class ProjectAnalyzer extends Job {
 		mapping = new HashMap<IStorage, Resource>();
 		packages = new HashMap<String, EPackage>();
 		loadMetamodelsForProject(project, rs, monitor);
-		
+
 		// always add ecore
 		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 
@@ -101,8 +102,7 @@ final class ProjectAnalyzer extends Job {
 	}
 
 	@SuppressWarnings("restriction")
-	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs,
-			final IProgressMonitor monitor) {
+	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs, final IProgressMonitor monitor) {
 		try {
 			final String ext = "ecore";
 			for (final IPackageFragmentRoot root : javaProject.getPackageFragmentRoots()) {
@@ -110,8 +110,7 @@ final class ProjectAnalyzer extends Job {
 					IResource rootResource = null;
 					if (root instanceof ExternalPackageFragmentRoot) {
 						rootResource = ((ExternalPackageFragmentRoot) root).resource();
-					}
-					else {
+					} else {
 						rootResource = root.getUnderlyingResource();
 					}
 					if (rootResource != null) {
@@ -124,13 +123,11 @@ final class ProjectAnalyzer extends Job {
 									return true;
 								}
 							});
-						}
-						catch (final CoreException e) {
+						} catch (final CoreException e) {
 							EmfToolsLog.logError(e);
 						}
 					}
-				}
-				else {
+				} else {
 					// skip JRE jars
 					if (((JarPackageFragmentRoot) root).getPath().toString().contains("jre/lib")) {
 						if (EmfToolsPlugin.trace) {
@@ -148,8 +145,7 @@ final class ProjectAnalyzer extends Job {
 							final ZipEntry entry = entries.nextElement();
 							final String name = entry.getName();
 							if (name.endsWith(ext)) {
-								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/",
-										"::");
+								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/", "::");
 								final ResourceID resourceID = new ResourceID(fqn, ext);
 								final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
 								if (findStorage != null) {
@@ -157,17 +153,14 @@ final class ProjectAnalyzer extends Job {
 								}
 							}
 						}
-					}
-					catch (final CoreException e) {
+					} catch (final CoreException e) {
 						EmfToolsLog.logError(e);
-					}
-					finally {
+					} finally {
 						root.close();
 					}
 				}
 			}
-		}
-		catch (final JavaModelException e) {
+		} catch (final JavaModelException e) {
 			EmfToolsLog.logError(e);
 		}
 	}
@@ -185,35 +178,31 @@ final class ProjectAnalyzer extends Job {
 			r.load(storage.getContents(), Collections.EMPTY_MAP);
 			mapping.put(storage, r);
 			registerEPackages(rs, r, false);
-		}
-		catch (final IOException e) {
-			EmfToolsLog.logError(e);
-		}
-		catch (final CoreException e) {
-			EmfToolsLog.logError(e);
+		} catch (final IOException e) {
+			EmfToolsLog.logError("Trying to load "+uri,e);
+		} catch (final CoreException e) {
+			EmfToolsLog.logError("Trying to load "+uri,e);
+		} catch (final RuntimeException e) {
+			EmfToolsLog.logError("Trying to load "+uri,e);
 		}
 	}
 
 	private void registerEPackages(final ResourceSet rs, final Resource r, boolean overwrite) {
-		final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(),
-				EcorePackage.Literals.EPACKAGE);
+		final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(), EcorePackage.Literals.EPACKAGE);
 		for (final EPackage pack : packages) {
 			registerPackage(pack, rs, overwrite);
 		}
 	}
 
 	private void registerPackage(final EPackage pack, ResourceSet rs, boolean overwrite) {
-		Registry packageRegistry = rs.getPackageRegistry();
 		// finding duplicates by nsURI is better than by name since package
 		// names may be used across MMs
-		if (!overwrite && packages.containsKey(pack.getNsURI())) {//packageRegistry.containsKey(pack.getNsURI())) {
+		if (!overwrite && packages.containsKey(pack.getNsURI())) {
 			if (EmfToolsPlugin.trace) {
-				System.out.println("Did not register '" + pack.getName() //+ "' from " + storage.getFullPath()
+				System.out.println("Did not register '" + pack.getName() 
 						+ " because an EPackage with the same nsURI has already been registered.");
 			}
-		}
-		else {
-			packageRegistry.put(pack.getNsURI(), pack);
+		} else {
 			packages.put(pack.getNsURI(), pack);
 		}
 		// recurse into subpackages

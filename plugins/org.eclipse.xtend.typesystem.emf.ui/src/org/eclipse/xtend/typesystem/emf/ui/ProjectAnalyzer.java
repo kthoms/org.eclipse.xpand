@@ -206,7 +206,7 @@ final class ProjectAnalyzer extends Job {
 		Registry packageRegistry = rs.getPackageRegistry();
 		// finding duplicates by nsURI is better than by name since package
 		// names may be used across MMs
-		if (!overwrite && packageRegistry.containsKey(pack.getNsURI())) {
+		if (!overwrite && packages.containsKey(pack.getNsURI())) {//packageRegistry.containsKey(pack.getNsURI())) {
 			if (EmfToolsPlugin.trace) {
 				System.out.println("Did not register '" + pack.getName() //+ "' from " + storage.getFullPath()
 						+ " because an EPackage with the same nsURI has already been registered.");

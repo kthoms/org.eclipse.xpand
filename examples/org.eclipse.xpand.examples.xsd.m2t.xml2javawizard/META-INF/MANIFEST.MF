@@ -4,9 +4,10 @@ Bundle-Name: M2T custom XML to Java via Xpand
 Bundle-SymbolicName: org.eclipse.xpand.examples.xsd.m2t.xml2javawizard
 Bundle-Version: 1.0.0
 Export-Package: xsd.m2t.xml2javawizard
-Require-Bundle:  org.eclipse.xtend.typesystem.xsd,
+Require-Bundle: org.eclipse.xtend.typesystem.xsd,
  org.eclipse.emf.mwe.core,
  org.eclipse.emf.mwe.utils,
- org.eclipse.xpand
+ org.eclipse.xpand,
+ org.eclipse.swt
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Demo-Description: This example uses a custom XML format to describe a wizard-like application. Xpand is used to generate fully-working SWT-Java-application from this description.

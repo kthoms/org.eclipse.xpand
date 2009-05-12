@@ -1,0 +1,6 @@
+Name: My Simple Loadcurve
+Description: This is a really long description for a curve
+Point (0, 0.0)
+Point (1, 3.0)
+Point (2, 5.7)
+Point (5, 1.2)

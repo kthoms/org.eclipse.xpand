@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.xtend.typesystem.uml2.feature"
+      id="org.eclipse.xtend.typesystem.uml2s"
       label="Xtend UML2 typesystem feature"
       version="0.7.0.qualifier">
 

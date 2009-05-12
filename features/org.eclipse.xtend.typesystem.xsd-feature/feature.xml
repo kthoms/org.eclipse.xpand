@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.xtend.typesystem.xsd.feature"
+      id="org.eclipse.xtend.typesystem.xsd"
       label="Xtend XSD typesystem feature"
       version="0.7.0.qualifier">
 

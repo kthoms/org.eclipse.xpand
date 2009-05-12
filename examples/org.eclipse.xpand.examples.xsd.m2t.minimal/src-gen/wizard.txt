@@ -1,5 +1,0 @@
-
-Name: My Example Setup
-Startpage: start
-Welcometext: Welcome to this little demo application.
-First Page Title: Wizard Page One

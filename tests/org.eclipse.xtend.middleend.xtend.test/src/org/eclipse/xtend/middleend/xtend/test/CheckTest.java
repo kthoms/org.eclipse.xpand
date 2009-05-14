@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
-import org.eclipse.emf.mwe.internal.core.WorkflowContextDefaultImpl;
+import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.xtend.middleend.xtend.CheckBackendFacade;
 import org.eclipse.xtend.middleend.xtend.CheckComponent;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;

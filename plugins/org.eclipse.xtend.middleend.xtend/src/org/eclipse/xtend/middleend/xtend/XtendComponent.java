@@ -14,6 +14,7 @@ package org.eclipse.xtend.middleend.xtend;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
@@ -75,8 +76,9 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
             localVars.put (slotName, ctx.get (slotName));
         
         final Map<String, Object> globalVars = new HashMap<String, Object> ();
-        for (GlobalVarDef gvd: globalVarDefs)
-            globalVars.put (gvd.getName(), gvd.getValue());
+        Set<String> varNames = getGlobalVars(ctx).keySet();
+        for (String varName: varNames)
+            globalVars.put (varName, getGlobalVars(ctx).get(varName).getValue());
         
         final Object result = XtendBackendFacade.evaluateExpression (_expression, _extensionFile, _fileEncoding, metaModels, localVars, globalVars, _advice);
         ctx.set (_outputSlot, result);

@@ -30,7 +30,7 @@ import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
-import org.eclipse.emf.mwe.internal.core.WorkflowContextDefaultImpl;
+import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.internal.xpand2.codeassist.XpandTokens;
 import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xpand2.output.Outlet;

@@ -205,7 +205,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
                     for (PostProcessor pp: _postprocessors)
                         o.addPostprocessor (pp);
 
-                if (o.hasDefaultEncoding() && _fileEncoding!=null) 
+                if (_fileEncoding != null) 
                     o.setFileEncoding(_fileEncoding);
             }
         }        

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtend Plug-in
+Bundle-Name: Xtend Middleend Plug-in (Incubation)
 Bundle-SymbolicName: org.eclipse.xtend.middleend.xtend;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.7.0.qualifier
 Export-Package: org.eclipse.xtend.middleend.xtend,
  org.eclipse.xtend.middleend.xtend.internal;x-friends:="org.eclipse.xtend.middleend.xpand",
  org.eclipse.xtend.middleend.xtend.internal.xtend;x-internal:=true,

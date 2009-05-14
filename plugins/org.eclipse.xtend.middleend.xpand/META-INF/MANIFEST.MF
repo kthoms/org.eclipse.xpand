@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xpand Plug-in
+Bundle-Name: Xpand Middleend Plug-in (Incubation)
 Bundle-SymbolicName: org.eclipse.xtend.middleend.xpand;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.7.0.qualifier
 Export-Package: org.eclipse.xtend.middleend.xpand,
  org.eclipse.xtend.middleend.xpand.internal;x-internal:=true,
  org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr;x-internal:=true,

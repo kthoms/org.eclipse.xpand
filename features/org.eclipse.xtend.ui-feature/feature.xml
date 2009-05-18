@@ -36,10 +36,6 @@
       <import plugin="org.eclipse.debug.ui"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.emf.mwe.ui"/>
-      <import plugin="org.eclipse.xtend.typesystem.emf"/>
-      <import plugin="org.eclipse.uml2.uml"/>
-      <import plugin="org.eclipse.uml2.uml.ecore.importer"/>
-      <import plugin="org.eclipse.xtend.typesystem.uml2"/>
       <import plugin="org.eclipse.debug.core"/>
    </requires>
 
@@ -56,7 +52,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
 
    <plugin
          id="org.eclipse.xtend.ui"

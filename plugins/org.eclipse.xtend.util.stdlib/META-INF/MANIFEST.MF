@@ -6,11 +6,7 @@ Bundle-Version: 0.7.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.emf.ecore,
- org.eclipse.emf.mwe.core,
- org.eclipse.xtend.typesystem.emf,
- org.apache.commons.logging,
- org.eclipse.xtend,
+Require-Bundle: org.eclipse.xtend,
  org.eclipse.emf.mwe.utils,
  org.eclipse.xpand;resolution:=optional,
  org.eclipse.emf.ecore.xmi

@@ -205,8 +205,7 @@ public class XMLTypeMapper {
 		return instance;
 	}
 
-	public Type get(XSDMetaModel mm, EClassifier classifier,
-			TypeSystem typesystem) {
+	public Type get(XSDMetaModel mm, EClassifier classifier, TypeSystem typesystem) {
 		if (classifier == null)
 			return null;
 
@@ -221,26 +220,24 @@ public class XMLTypeMapper {
 			return null;
 
 		switch (type) {
-		case BOOL:
-			return typesystem.getBooleanType();
-		case INT:
-			return typesystem.getIntegerType();
-		case REAL:
-			return typesystem.getRealType();
-		case STRING:
-			return typesystem.getStringType();
-		case OBJECT:
-			return typesystem.getObjectType();
-		case QNAME:
-			return mm.getQNameType();
-		case LIST:
-		case DATE:
-		case DURATION:
-		case UNHANDLED:
-			if (classifier instanceof EDataType)
-				return new EDataTypeType(mm, mm
-						.getFullyQualifiedName(classifier),
-						(EDataType) classifier);
+			case BOOL:
+				return typesystem.getBooleanType();
+			case INT:
+				return typesystem.getIntegerType();
+			case REAL:
+				return typesystem.getRealType();
+			case STRING:
+				return typesystem.getStringType();
+			case OBJECT:
+				return typesystem.getObjectType();
+			case QNAME:
+				return mm.getQNameType();
+			case LIST:
+			case DATE:
+			case DURATION:
+			case UNHANDLED:
+				if (classifier instanceof EDataType)
+					return new EDataTypeType(mm, XSDMetaModel.getFullyQualifiedName(classifier), (EDataType) classifier);
 		}
 		return typesystem.getObjectType();
 	}

@@ -62,6 +62,7 @@ import org.eclipse.xtend.typesystem.emf.ui.internal.EmfToolsLog;
  * ResourceSet. This avoids concurrency issues.
  * </p>
  */
+@SuppressWarnings("restriction")
 final class ProjectAnalyzer extends Job {
 	private final IJavaProject project;
 	private ResourceSet rs;
@@ -101,8 +102,8 @@ final class ProjectAnalyzer extends Job {
 		return Status.OK_STATUS;
 	}
 
-	@SuppressWarnings("restriction")
-	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs, final IProgressMonitor monitor) {
+	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs,
+			final IProgressMonitor monitor) {
 		try {
 			final String ext = "ecore";
 			for (final IPackageFragmentRoot root : javaProject.getPackageFragmentRoots()) {
@@ -110,7 +111,8 @@ final class ProjectAnalyzer extends Job {
 					IResource rootResource = null;
 					if (root instanceof ExternalPackageFragmentRoot) {
 						rootResource = ((ExternalPackageFragmentRoot) root).resource();
-					} else {
+					}
+					else {
 						rootResource = root.getUnderlyingResource();
 					}
 					if (rootResource != null) {
@@ -123,11 +125,13 @@ final class ProjectAnalyzer extends Job {
 									return true;
 								}
 							});
-						} catch (final CoreException e) {
+						}
+						catch (final CoreException e) {
 							EmfToolsLog.logError(e);
 						}
 					}
-				} else {
+				}
+				else {
 					// skip JRE jars
 					if (((JarPackageFragmentRoot) root).getPath().toString().contains("jre/lib")) {
 						if (EmfToolsPlugin.trace) {
@@ -145,7 +149,8 @@ final class ProjectAnalyzer extends Job {
 							final ZipEntry entry = entries.nextElement();
 							final String name = entry.getName();
 							if (name.endsWith(ext)) {
-								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/", "::");
+								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/",
+										"::");
 								final ResourceID resourceID = new ResourceID(fqn, ext);
 								final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
 								if (findStorage != null) {
@@ -153,14 +158,17 @@ final class ProjectAnalyzer extends Job {
 								}
 							}
 						}
-					} catch (final CoreException e) {
+					}
+					catch (final CoreException e) {
 						EmfToolsLog.logError(e);
-					} finally {
+					}
+					finally {
 						root.close();
 					}
 				}
 			}
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			EmfToolsLog.logError(e);
 		}
 	}
@@ -178,17 +186,21 @@ final class ProjectAnalyzer extends Job {
 			r.load(storage.getContents(), Collections.EMPTY_MAP);
 			mapping.put(storage, r);
 			registerEPackages(rs, r, false);
-		} catch (final IOException e) {
-			EmfToolsLog.logError("Trying to load "+uri,e);
-		} catch (final CoreException e) {
-			EmfToolsLog.logError("Trying to load "+uri,e);
-		} catch (final RuntimeException e) {
-			EmfToolsLog.logError("Trying to load "+uri,e);
+		}
+		catch (final IOException e) {
+			EmfToolsLog.logError("Trying to load " + uri, e);
+		}
+		catch (final CoreException e) {
+			EmfToolsLog.logError("Trying to load " + uri, e);
+		}
+		catch (final RuntimeException e) {
+			EmfToolsLog.logError("Trying to load " + uri, e);
 		}
 	}
 
 	private void registerEPackages(final ResourceSet rs, final Resource r, boolean overwrite) {
-		final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(), EcorePackage.Literals.EPACKAGE);
+		final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(),
+				EcorePackage.Literals.EPACKAGE);
 		for (final EPackage pack : packages) {
 			registerPackage(pack, rs, overwrite);
 		}
@@ -199,10 +211,11 @@ final class ProjectAnalyzer extends Job {
 		// names may be used across MMs
 		if (!overwrite && packages.containsKey(pack.getNsURI())) {
 			if (EmfToolsPlugin.trace) {
-				System.out.println("Did not register '" + pack.getName() 
+				System.out.println("Did not register '" + pack.getName()
 						+ " because an EPackage with the same nsURI has already been registered.");
 			}
-		} else {
+		}
+		else {
 			packages.put(pack.getNsURI(), pack);
 		}
 		// recurse into subpackages

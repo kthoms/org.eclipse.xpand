@@ -82,7 +82,7 @@ public class XSDToolsPlugin extends AbstractUIPlugin {
 
 	public static void traceLog(String msg) {
 		if (trace)
-			System.out.println("oAW-XSD[" + Thread.currentThread().getName()
+			System.out.println("XSD adapter [" + Thread.currentThread().getName()
 					+ "]: " + msg);
 	}
 

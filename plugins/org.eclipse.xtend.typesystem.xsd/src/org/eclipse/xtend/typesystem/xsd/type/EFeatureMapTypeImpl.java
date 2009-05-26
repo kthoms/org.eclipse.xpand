@@ -45,10 +45,10 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 
 	static {
 		if (cacheBugExists())
-			log.warn("There is a bug in oAW's internal object cache. "
+			log.warn("There is a bug in the internal object cache of Xpand. "
 					+ "Therefore feature maps (which are needed to handle "
 					+ "mixed XML content) will be just partially functional. "
-					+ "Please update to the latest version of oAW.");
+					+ "Please update to the latest version of Xpand.");
 	}
 
 	// public enum FeatureType {

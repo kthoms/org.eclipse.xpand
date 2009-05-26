@@ -1,0 +1,506 @@
+<!-- ****************************************************************************
+ * Copyright (c) 2005 - 2009 itemis AG (http://www.itemis.eu) and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *******************************************************************************/
+
+@author Moritz Eysholdt - Initial contribution and API
+ 
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+		<!DOCTYPE chapter SYSTEM
+		"/home/docfx/eclipse/workspace-3.3-oaw-cvs-4.2/documentation/lib/docbook/dtd/4.3/docbookx.dtd">
+	-->
+<chapter id="xsd_reference">
+  <title>XSD Adapter</title>
+
+  <para>The XSD Adapter allows oAW to read/write XML files as models and to
+  use XML Schemas (XSDs) as meta models. This reference provides in-depth
+  details, for a quick and pragmatic introduction see <xref
+  linkend="xsd_tutorial" /> .</para>
+
+  <!-- =========================================================== -->
+
+  <!-- ======================== Setup ============================ -->
+
+  <!-- =========================================================== -->
+
+  <section id="xsd_reference_prerequisites">
+     
+
+    <title>Prerequisites</title>
+
+     Please take a look at 
+
+    <xref linkend="xsd_tutorial_setup" />
+
+     . 
+  </section>
+
+  <!-- =========================================================== -->
+
+  <!-- ======================== Overview ============================ -->
+
+  <!-- =========================================================== -->
+
+  <section id="xsd_reference_overview">
+    <title>Overview</title>
+
+    <para>The XSD Adapter performs two major tasks:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>It converts XML Schemas (XSDs) to Ecore models in a transparent
+        manner, so that the Ecore models are hidden from the user. This is
+        done in the workflow as well as in the IDE (to allow XSD-aware code
+        completion for Xtend/Xpand/Check). For details about the mapping see
+        <xref linkend="xsd_reference_xsd2ecore" /> . For details about the
+        workflow integration see <xref
+        linkend="xsd_reference_workflow_components" /></para>
+      </listitem>
+
+      <listitem>
+        <para>It extends the EmfMetaModel with concepts that are needed for
+        XSDs. Theses are, for example, support for feature maps (needed to
+        handle comments, nested text, CDATA and processing instructions),
+        QNames, EMaps and composed Simpletypes.</para>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <!-- =========================================================== -->
+
+  <!--
+		======================== Workflow Components
+		============================
+	-->
+
+  <!-- =========================================================== -->
+
+  <section id="xsd_reference_workflow_components">
+     
+
+    <title>Workflow Components</title>
+
+     The XSD Adapter provides the following workflow components: 
+
+    <!--
+			===================== XSDMetaModel =====================
+		-->
+
+     
+
+    <section id="xsd_reference_workflow_components_xsdmetamodel">
+      <title>
+        <classname>XSDMetaModel</classname>
+      </title>
+
+      <para>The XSDMetaModel loads the specified XSD, transforms them to Ecore
+      models and makes them available for the other oAW components. If XSDs
+      include/import other XSDs or if XML files reference XSDs via
+      <property>schemaLocation</property>, theses XSDs are also loaded
+      (details: <xref linkend="xsd_reference_declare_xsd" /> ). The most
+      common scenario is to declare the <classname>XSDMetaModel</classname>
+      within an <classname>XMLReader</classname>:</para>
+
+      <programlisting language="xml">&lt;component class="org.eclipse.xtend.typesystem.xsd.XMLReader"&gt;
+  &lt;modelSlot value="model" /&gt;
+  &lt;uri value="model.xml" /&gt;
+  &lt;metaModel id="mm" class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel"&gt;
+    &lt;schemaFile value="metamodel.xsd" /&gt;
+    &lt;registerPackagesGlobally value="true" /&gt;
+  &lt;/metaModel&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>Another option is to specify an
+      <classname>XSDMetaModel</classname> independently of other components as
+      a bean:</para>
+
+      <programlisting language="xml">&lt;bean id="<emphasis role="bold">mymetamodel</emphasis>" class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel"&gt;
+  &lt;schemaFile value="metamodel.xsd" /&gt;
+&lt;/bean&gt;
+&lt;component class="org.eclipse.xtend.typesystem.xsd.XMLReader"&gt;
+  &lt;modelSlot value="model" /&gt;
+  &lt;uri value="model.xml" /&gt;
+  &lt;metaModel <emphasis role="bold">idRef="mymetamodel"</emphasis> /&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>Attention: It can lead to errors when XSDs are loaded multiple
+      times, which can only happen when using multiple
+      <classname>XSDMetaModels</classname> within one workflow. The safe way
+      to go is to declare just one <classname>XSDMetaModel</classname> per
+      workflow and reference it from all components that need it.</para>
+
+      <para>Properties:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><property>schemaFile</property>: optional, allowed multiple
+          times: Specifies an XSD file which is being loaded. The path can be
+          a complete URI, or relative to the project root or classpath.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>registerPackagesGlobally</property>: optional,
+          default "<property>false</property>": If <property>true</property>,
+          generated EPackages are registered to
+          <classname>org.eclipse.emf.ecore.EPackage.Registry.INSTANCE</classname>,
+          EMF's global package registry. Warning: when running workflows from
+          your own java code, make sure to remove the generated packages from
+          the registry before the next run!</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+     
+
+    <!-- ===================== XMLReader ===================== -->
+
+     
+
+    <section id="xsd_reference_workflow_components_xmlreader">
+      <title>
+        <classname>XMLReader</classname>
+      </title>
+
+      <para>The <classname>XMLReader</classname> reads one XML file which is
+      valid according to the XSDs loaded by the
+      <classname>XSDMetaModel</classname>. The XML file is loaded as a model
+      and stored in the specified slot. Example:</para>
+
+      <programlisting language="xml">&lt;component class="org.eclipse.xtend.typesystem.xsd.XMLReader"&gt;
+  &lt;modelSlot value="model" /&gt;
+  &lt;uri value="model.xml" /&gt;
+  &lt;metaModel idRef="mymetamodel" /&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>Properties:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><property>slot</property>: required: The name of the slot
+          which in which the loaded model is stored. Other workflow components
+          can access the model via referring to this slot.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>uri</property>: required: The file name of the XML
+          file which should be read. Absolute URIs, and pathnames relative to
+          the project root or to the classpath are valid.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>metaModel</property>: optional: Specifies the
+          <classname>XSDMetaModel</classname> (see <xref
+          linkend="xsd_reference_workflow_components_xsdmetamodel" />) for the
+          <classname>XMLReader</classname>. In case no
+          <classname>XSDMetaModel</classname> is specified, an
+          <classname>XSDMetaModel</classname> with default configuration is
+          instantiated implicitly. It is important to pay attention that all
+          needed XSDs can be found while the loading process: <xref
+          linkend="xsd_reference_declare_xsd" />.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>useDocumentRoot</property>: optional, default
+          "<property>false</property>": Dealing with XML files as models, most
+          people think of the XML's root element as the model's root object.
+          This is the default used by the <classname>XMLReader</classname>.
+          But the XML's root element actually has a parent, the so-called
+          DocumentRoot. Additionally the DocumentRoot contains
+          comments/processing instructions and CDATA section which appears
+          before or after the XML's root element, and, most notably, the
+          DocumentRoot contains information about the used namespaces. If
+          <property>useDocumentRoot</property> is set to
+          <property>true</property>, the <classname>XMLReader</classname>
+          stores the DocumentRoot-Object instead the XML's root element's
+          object to the specified slot.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>option</property>: optional, can be specified
+          multiple times: Option specifies a key-value-pair, which is handed
+          on to the EMF's XMLResource in the loading process. Valid options
+          are documented via JavaDoc in interface <ulink
+              url="http://help.eclipse.org/ganymede/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/ecore/xmi/XMLResource.html">
+              <classname>org.eclipse.emf.ecore.xmi.XMLResource</classname>
+            </ulink>. Additionally, the <classname>XMLReader</classname>
+          supports these options:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><property>DEFAULT_NAMESPACE</property>: Specifies a
+              default namespace, in case the XML file does not declare
+              one:</para>
+
+              <programlisting language="xml">&lt;option key="DEFAULT_NAMESPACE" val="http://www.dlese.org/Metadata/opml" /&gt;</programlisting>
+            </listitem>
+
+            <listitem>
+              <para><property>NAMESPACE_MAP</property>: Specifies a mapping
+              for namespaces, which is applied when loading XML files.</para>
+
+              <programlisting language="xml">&lt;option key="NAMESPACE_MAP"&gt;
+  &lt;val class="org.eclipse.xtend.typesystem.xsd.lib.MapBean"&gt;
+    &lt;mapping from="http://www.eclipse.org/modeling/xpand/example/model/wrong"
+             to="http://www.eclipse.org/modeling/xpand/example/model/loadcurve" /&gt;
+  &lt;/val&gt;
+&lt;/option&gt;</programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+     
+
+    <!-- ===================== XMLWriter ===================== -->
+
+     
+
+    <section id="xsd_reference_workflow_components_xmlwriter">
+      <title>
+        <classname>XMLWriter</classname>
+      </title>
+
+      <para>The <classname>XMLWriter</classname> writes the model stored in a
+      slot to an XML file. If the slot contains a collection of models, each
+      one is written to a separate file. The model(s) must have been
+      instantiated using an XSD-based meta model. Example:</para>
+
+      <programlisting language="xml">&lt;component class="org.eclipse.xtend.typesystem.xsd.XMLWriter"&gt;
+  &lt;metaModel idRef="svgmm" /&gt;
+  &lt;modelSlot value="svgmodel" /&gt;
+  &lt;uri value="src-gen/mycurve.svg" /&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>Properties:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><property>slot</property>: required: The name of the slot
+          which holds the model or the collection of models which shall be
+          serialized to XML.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>metaModel</property>: required: The instance of
+          <classname>XSDMetaModel</classname>, which holds the XSD that the
+          supplied models are based on. Also see <xref
+          linkend="xsd_reference_workflow_components_xsdmetamodel" /></para>
+        </listitem>
+
+        <listitem>
+          <para><property>uri</property>: required if no
+          <property>uriExpression</property> is specified: The file name of
+          the XML file which should be written. Absolute URIs are valid. Use
+          relative path names on your own risk.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>uriExpression</property>: required if no
+          <property>uri</property> is specified: In the scenario where
+          multiple XML files are written, this provides a mechanism to
+          determine the file name for each of them. The oAW-expression
+          specified in <classname>expression</classname> is evaluated for each
+          file and has to return a file name. The model that is going to be
+          written is accessible in the expression via a variable that has the
+          name specified in <classname>varName</classname>. Example:
+          <programlisting language="xml">&lt;uriExpression varName="docroot" expression="'src-gen/'+ecore2xsd::getFileName(docroot)" /&gt;</programlisting></para>
+        </listitem>
+
+        <listitem>
+          <para><property>option</property>: optional, can be specified
+          multiple times: Option specifies a key-value-pair, which is handed
+          on to the EMF's XMLResource in the writing process. Valid options
+          are documented via JavaDoc in interface <ulink
+              url="http://help.eclipse.org/ganymede/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/ecore/xmi/XMLResource.html">
+              <classname>org.eclipse.emf.ecore.xmi.XMLResource</classname>
+            </ulink>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+     
+
+    <!-- ===================== XMLBeautifier ===================== -->
+
+     
+
+    <section id="xsd_reference_workflow_components_xmlbeautifier">
+      <title>
+        <classname>XMLBeautifier</classname>
+      </title>
+
+      <para>The <classname>XMLBeautifier</classname> uses EMF to load the XML
+      file, formats the mixed content (elements and text contained by the same
+      element) and writes the file back to disk applying a nice indentation
+      for the elements. The <classname>XMLBeautifier</classname> is not
+      intended to be used in combination with the
+      <classname>XMLWriter</classname>, since the
+      <classname>XMLWriter</classname> cares about indentation by itself.
+      Instead, use it for "manually" constructed XML files using Xpand. Since
+      the frameworks for loading/storing XML always load the whole file into a
+      complex data structure in memory, this approach does not scale well for
+      huge XML files. Example:</para>
+
+      <programlisting language="xml">&lt;component class="org.eclipse.xpand2.Generator"&gt;
+  &lt;metaModel idRef="mm" /&gt;
+  &lt;expand value="${src-pkg}::${file}::Root FOR '${out}'" /&gt;
+  &lt;outlet path="${src-gen-dir}" /&gt;
+  &lt;beautifier class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"&gt;
+    &lt;maxLineWidth value="60" /&gt;
+    &lt;formatComments value="true" /&gt;
+    &lt;fileExtensions value=".xml, .html" /&gt;
+  &lt;/beautifier&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>Properties:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><property>maxLineWidth</property>: optional: Specifies the
+          number of character after which a linewrap should be
+          performed.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>formatComments</property>: optional, default
+          <property>true</property>: Specifies if formatting should also be
+          applied to comments.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>fileExtensions</property>: optional, default
+          "<property>.xml, .xsl, .xsd, .wsdd, .wsdl</property>": Specifies a
+          filter for which files formatting should be applied. Only files that
+          match one of the specified file extensions are processed.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>loadOption</property>: optional, can be specified
+          multiple times: Option specifies a key-value-pair, which is handed
+          on to the EMF's XMLResource in the loading process. Valid options
+          are documented via JavaDoc in interface <ulink
+              url="http://help.eclipse.org/ganymede/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/ecore/xmi/XMLResource.html">
+              <classname>org.eclipse.emf.ecore.xmi.XMLResource</classname>
+            </ulink>.</para>
+        </listitem>
+
+        <listitem>
+          <para><property>saveOption</property>: optional, can be specified
+          multiple times: Same as <property>loadOption</property>, except for
+          the difference that these options are applied while the writing
+          process. Example: <programlisting language="xml">&lt;saveOption key="XML_VERSION" val="1.1" /&gt;
+&lt;saveOption key="ENCODING" val="ASCII" /&gt;</programlisting></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+     
+  </section>
+
+  <!-- =========================================================== -->
+
+  <!-- ======== Behind the Scenes: Transforming XSD to Ecore ======= -->
+
+  <!-- =========================================================== -->
+
+  <section id="xsd_reference_xsd2ecore">
+    <title>Behind the scenes: Transforming XSD to Ecore</title>
+
+    <para>In the code generation process an XML Schema is transformed to an
+    EMF Ecore model, which is then used as a meta model by EMF. XSD complex
+    data types are mapped to EClasses, XSD simple data types are mapped to EMF
+    data types defined in <classname>
+    org.eclipse.emf.ecore.xml.type.XMLTypePackage </classname> and <classname>
+    org.eclipse.xtend.typesystem.xsd.XSDMetaModel </classname> maps them to oAW
+    data types. The document <emphasis><ulink
+    url="http://www.eclipse.org/modeling/emf/docs/overviews/XMLSchemaToEcoreMapping.pdf">XML
+    Schema to Ecore Mapping</ulink></emphasis> explains the mapping's details.
+    <ulink
+    url="http://www.eclipse.org/modeling/emf/docs/overviews/XMLSchemaToEcoreMapping.pdf"></ulink></para>
+  </section>
+
+  <!-- =========================================================== -->
+
+  <!-- ======== Behind the Scenes: Transforming XSD to Ecore ======= -->
+
+  <!-- =========================================================== -->
+
+  <section id="xsd_reference_declare_xsd">
+    <title>How to declare XML Schemas</title>
+
+    <para>There are three different ways to declare your XSDs. It does not
+    matter which way you choose, or how you combine them, as long as the XSD
+    Adapter can find all needed schemas.</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Within the Workflow: <classname>
+        org.eclipse.xtend.typesystem.xsd.XSDMetaModel </classname> can have any
+        amount of <classname>schemaFile</classname> elements.</para>
+
+        <programlisting language="xml">&lt;component class="org.eclipse.xtend.typesystem.xsd.XMLReader"&gt;
+  &lt;modelSlot value="model" /&gt;
+  &lt;uri value="${file}" /&gt;
+  &lt;metaModel id="mm" class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel"&gt;
+    &lt;schemaFile value="model/loadcurve.xsd" /&gt;
+    &lt;schemaFile value="model/device.xsd" /&gt;
+  &lt;/metaModel&gt;
+&lt;/component&gt;</programlisting>
+      </listitem>
+
+      <listitem>
+        <para>Within the XML file: XML files can contain
+        <classname>schemaLocation</classname> attributes which associate the
+        schema's namespace with the schema's filename. If the schema is
+        created using WTP like described in <xref
+        linkend="xsd_tutorial_model" /> , the
+        <classname>schemaLocation</classname> attribute is created
+        automatically.</para>
+
+        <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;device:Device
+  xmlns:device="http://www.eclipse.org/modeling/xpand/example/model/device"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.eclipse.org/modeling/xpand/example/model/device device.xsd"&gt;
+  &lt;device:Name&gt;MyLaptop&lt;/device:Name&gt;
+&lt;/device:Device&gt;</programlisting>
+      </listitem>
+
+      <listitem>
+        <para>Within an XSD: If one schema imports another, the
+        <classname>import</classname> element can have a
+        <classname>schemaLocation</classname> attribute, too.</para>
+
+        <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;schema
+  targetNamespace="http://www.eclipse.org/modeling/xpand/example/model/device"
+  elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://www.eclipse.org/modeling/xpand/example/model/device"
+  xmlns:lc="http://www.eclipse.org/modeling/xpand/example/model/loadcurve"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"&gt;
+
+  &lt;import
+    namespace="http://www.eclipse.org/modeling/xpand/example/model/loadcurve"
+    schemaLocation="loadcurve.xsd"&gt;
+  &lt;/import&gt;
+
+  &lt;complexType name="Device"&gt;
+    &lt;sequence&gt;
+      &lt;element name="Name" type="string" /&gt;
+      &lt;element name="LoadCurve" type="lc:LoadCurve" /&gt;
+    &lt;/sequence&gt;
+  &lt;/complexType&gt;
+
+  &lt;element name="Device" type="tns:Device"&gt;&lt;/element&gt;
+&lt;/schema&gt;</programlisting>
+      </listitem>
+    </orderedlist>
+  </section>
+</chapter>

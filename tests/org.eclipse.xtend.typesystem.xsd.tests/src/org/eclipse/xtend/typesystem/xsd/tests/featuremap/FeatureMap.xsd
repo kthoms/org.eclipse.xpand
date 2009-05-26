@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.openarchitectureware.org/example/FeatureMap"
-	xmlns:tns="http://www.openarchitectureware.org/example/FeatureMap"
+	targetNamespace="http://www.eclipse.org/modeling/xpand/example/FeatureMap"
+	xmlns:tns="http://www.eclipse.org/modeling/xpand/example/FeatureMap"
 	elementFormDefault="qualified">
 
 	<complexType name="ClassMixed" mixed="true">

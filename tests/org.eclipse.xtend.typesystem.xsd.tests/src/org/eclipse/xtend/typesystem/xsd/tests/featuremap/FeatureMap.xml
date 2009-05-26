@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:root xmlns:tns="http://www.openarchitectureware.org/example/FeatureMap"
+<tns:root xmlns:tns="http://www.eclipse.org/modeling/xpand/example/FeatureMap"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.openarchitectureware.org/example/FeatureMap FeatureMap.xsd ">
+	xsi:schemaLocation="http://www.eclipse.org/modeling/xpand/example/FeatureMap FeatureMap.xsd ">
 	<tns:element1>ele11</tns:element1>
 	<tns:element1>ele12</tns:element1>
 	some text

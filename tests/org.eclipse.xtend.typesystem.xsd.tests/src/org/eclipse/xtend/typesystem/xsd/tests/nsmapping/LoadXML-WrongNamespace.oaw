@@ -4,8 +4,8 @@
 		<uri value="${src-dir}/Loadcurve-WrongNamespace.xml" />
 		<option key="NAMESPACE_MAP">
 			<val class="org.eclipse.xtend.typesystem.xsd.lib.MapBean">
-				<mapping from="http://www.openarchitectureware.org/example/model/wrong"
-			  			 to="http://www.openarchitectureware.org/example/model/loadcurve" />
+				<mapping from="http://www.eclipse.org/modeling/xpand/example/model/wrong"
+			  			 to="http://www.eclipse.org/modeling/xpand/example/model/loadcurve" />
 			</val>
 		</option>
 		<metaModel id="mm"

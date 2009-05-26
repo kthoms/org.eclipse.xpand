@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.openarchitectureware.xsd.demo.m2t-genmodel/src"
-    modelPluginID="org.openarchitectureware.xsd.demo.m2t_genmodel" modelName="Loadcurve"
-    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0" copyrightFields="false">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xpand.examples.xsd.m2t.genmodel/src"
+    editDirectory="/org.eclipse.xpand.examples.xsd.m2t.genmodel.edit/src" editorDirectory="/org.eclipse.xpand.examples.xsd.m2t.genmodel.editor/src"
+    modelPluginID="org.eclipse.xpand.examples.xsd.m2t.genmodel" modelName="Loadcurve"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="org.eclipse.xpand.examples.xsd.m2t.genmodel.edit" editorPluginID="org.eclipse.xpand.examples.xsd.m2t.genmodel">
   <foreignModel>loadcurve.xsd</foreignModel>
   <genPackages prefix="Loadcurve" basePackage="org.example" resource="XML" disposableProviderFactory="true"
       ecorePackage="loadcurve.ecore#/">

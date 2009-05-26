@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="loadcurve"
-    nsURI="http://www.openarchitectureware.org/example/model/loadcurve" nsPrefix="loadcurve">
+    nsURI="http://www.eclipse.org/modeling/xpand/example/model/loadcurve" nsPrefix="loadcurve">
   <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value=""/>

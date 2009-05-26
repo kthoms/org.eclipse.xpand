@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <device:Device
-	xmlns:device="http://www.openarchitectureware.org/example/model/device"
-	xmlns:loadcurve="http://www.openarchitectureware.org/example/model/loadcurve"
+	xmlns:device="http://www.eclipse.org/modeling/xpand/example/model/device"
+	xmlns:loadcurve="http://www.eclipse.org/modeling/xpand/example/model/loadcurve"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.openarchitectureware.org/example/model/device Device.xsd">
+	xsi:schemaLocation="http://www.eclipse.org/modeling/xpand/example/model/device Device.xsd">
 	<device:Name>Magicwash</device:Name>
 	<device:CreationDate>2001-12-31T12:00:00</device:CreationDate>
 	<device:Description>

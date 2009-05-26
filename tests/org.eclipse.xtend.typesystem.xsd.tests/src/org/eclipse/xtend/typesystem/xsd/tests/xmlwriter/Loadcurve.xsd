@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema
-	targetNamespace="http://www.openarchitectureware.org/example/model/loadcurve"
+	targetNamespace="http://www.eclipse.org/modeling/xpand/example/model/loadcurve"
 	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://www.openarchitectureware.org/example/model/loadcurve">
+	xmlns:tns="http://www.eclipse.org/modeling/xpand/example/model/loadcurve">
 
 	<complexType name="LoadCurve">
 		<sequence>

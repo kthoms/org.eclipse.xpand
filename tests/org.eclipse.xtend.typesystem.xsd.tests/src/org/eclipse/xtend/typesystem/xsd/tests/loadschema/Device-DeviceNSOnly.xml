@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Device
-	xmlns="http://www.openarchitectureware.org/example/model/device">
+	xmlns="http://www.eclipse.org/modeling/xpand/example/model/device">
 	<Name>Magicwash</Name>
 	<Description>Waesche rein und die Welt wird gut</Description>
 	<Company>Siemens</Company>

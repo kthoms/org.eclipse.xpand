@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.openarchitectureware.org/example/mixedenums"
-	xmlns:tns="http://www.openarchitectureware.org/example/mixedenums"
+	targetNamespace="http://www.eclipse.org/modeling/xpand/example/mixedenums"
+	xmlns:tns="http://www.eclipse.org/modeling/xpand/example/mixedenums"
 	elementFormDefault="qualified">
 	<simpleType name="B-A">
 		<union memberTypes="tns:A">

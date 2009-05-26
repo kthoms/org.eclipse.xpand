@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://www.openarchitectureware.org/example/model/nameconversion" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.openarchitectureware.org/example/model/nameconversion">
+<schema targetNamespace="http://www.eclipse.org/modeling/xpand/example/model/nameconversion" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.eclipse.org/modeling/xpand/example/model/nameconversion">
 
     <complexType name="UPPERCASE-COMPLEX_TYPE">
     	<sequence>

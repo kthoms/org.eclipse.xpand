@@ -2,7 +2,7 @@
 	<component class="org.eclipse.xtend.typesystem.xsd.XMLReader">
 		<modelSlot value="model" />
 		<uri value="${src-dir}/Loadcurve-NoNamespace.xml" />
-		<option key="DEFAULT_NAMESPACE" val="http://www.openarchitectureware.org/example/model/loadcurve" />
+		<option key="DEFAULT_NAMESPACE" val="http://www.eclipse.org/modeling/xpand/example/model/loadcurve" />
 		<metaModel id="mm"
 			class="org.eclipse.xtend.typesystem.xsd.XSDMetaModel">
 			<schemaFile value="${src-dir}/Loadcurve.xsd" />

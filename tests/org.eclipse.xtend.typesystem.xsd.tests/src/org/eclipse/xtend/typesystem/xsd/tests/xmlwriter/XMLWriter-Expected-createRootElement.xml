@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<device:Device xmlns:device="http://www.openarchitectureware.org/example/model/device">
+<device:Device xmlns:device="http://www.eclipse.org/modeling/xpand/example/model/device">
   <device:Name>testName</device:Name>
 </device:Device>

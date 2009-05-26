@@ -5,7 +5,7 @@
     modelPluginID="org.eclipse.xtend.typesystem.xsd.tests" modelName="Loadcurve" importerID="org.eclipse.xsd.ecore.importer"
     complianceLevel="5.0" copyrightFields="false">
   <foreignModel>Loadcurve.xsd</foreignModel>
-  <genPackages prefix="Loadcurve" basePackage="org.openarchitectureware.example.model"
+  <genPackages prefix="Loadcurve" basePackage="org.eclipse.modeling.xpand.example.model"
       resource="XML" disposableProviderFactory="true" ecorePackage="loadcurve.ecore#/">
     <genClasses ecoreClass="loadcurve.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute loadcurve.ecore#//DocumentRoot/mixed"/>

@@ -5,7 +5,7 @@
     modelPluginID="org.eclipse.xtend.typesystem.xsd.tests" modelName="Device" importerID="org.eclipse.xsd.ecore.importer"
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="Loadcurve.genmodel#//loadcurve">
   <foreignModel>Device.xsd</foreignModel>
-  <genPackages prefix="Device" basePackage="org.openarchitectureware.example.model"
+  <genPackages prefix="Device" basePackage="org.eclipse.modeling.xpand.example.model"
       resource="XML" disposableProviderFactory="true" ecorePackage="device.ecore#/">
     <genClasses ecoreClass="device.ecore#//Device">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute device.ecore#//Device/name"/>

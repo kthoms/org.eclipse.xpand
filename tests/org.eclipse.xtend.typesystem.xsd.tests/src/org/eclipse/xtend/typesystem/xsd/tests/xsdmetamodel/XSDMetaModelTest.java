@@ -1,13 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2005 - 2008 committers of openArchitectureWare and others.
+ * Copyright (c) 2005 - 2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
+
 package org.eclipse.xtend.typesystem.xsd.tests.xsdmetamodel;
 
 import java.util.ArrayList;
@@ -39,8 +38,8 @@ import org.eclipse.xtend.typesystem.xsd.type.XMLFeatureMapTypeImpl;
  */
 public class XSDMetaModelTest extends AbstractTestCase {
 
-	private final static String NS_LOADCURVE = "http://www.openarchitectureware.org/example/model/loadcurve";
-	private final static String NS_DEVICE = "http://www.openarchitectureware.org/example/model/device";
+	private final static String NS_LOADCURVE = "http://www.eclipse.org/modeling/xpand/example/model/loadcurve";
+	private final static String NS_DEVICE = "http://www.eclipse.org/modeling/xpand/example/model/device";
 
 	public void testSimpleXSDInClasspath() {
 		final XSDMetaModel mm = new XSDMetaModel();
@@ -171,7 +170,7 @@ public class XSDMetaModelTest extends AbstractTestCase {
 		params.put("global", "true");
 		runWorkflow("Workflow-RegPkgGlobally.oaw", params);
 		assertTrue(EPackage.Registry.INSTANCE
-				.containsKey("http://www.openarchitectureware.org/example/model/device"));
+				.containsKey("http://www.eclipse.org/modeling/xpand/example/model/device"));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -180,7 +179,7 @@ public class XSDMetaModelTest extends AbstractTestCase {
 		params.put("global", "false");
 		runWorkflow("Workflow-RegPkgGlobally.oaw", params);
 		assertFalse(EPackage.Registry.INSTANCE
-				.containsKey("http://www.openarchitectureware.org/example/model/device"));
+				.containsKey("http://www.eclipse.org/modeling/xpand/example/model/device"));
 	}
 
 	private EPackage getByNS(XSDMetaModel mm, String ns) {

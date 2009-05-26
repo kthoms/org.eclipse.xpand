@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema
-	targetNamespace="http://www.openarchitectureware.org/example/model/device"
+	targetNamespace="http://www.eclipse.org/modeling/xpand/example/model/device"
 	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://www.openarchitectureware.org/example/model/device"
-	xmlns:lc="http://www.openarchitectureware.org/example/model/loadcurve"
+	xmlns:tns="http://www.eclipse.org/modeling/xpand/example/model/device"
+	xmlns:lc="http://www.eclipse.org/modeling/xpand/example/model/loadcurve"
 	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
 
 	<import
-		namespace="http://www.openarchitectureware.org/example/model/loadcurve"
+		namespace="http://www.eclipse.org/modeling/xpand/example/model/loadcurve"
 		schemaLocation="src/org/eclipse/xtend/typesystem/xsd/tests/loadschema/Loadcurve.xsd">
 	</import>
 

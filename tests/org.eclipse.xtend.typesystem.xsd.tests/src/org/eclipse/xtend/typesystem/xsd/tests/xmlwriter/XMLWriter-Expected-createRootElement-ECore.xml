@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <device:Device xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:device="http://www.openarchitectureware.org/example/model/device" xsi:schemaLocation="http://www.openarchitectureware.org/example/model/device ../src/org/eclipse/xtend/typesystem/xsd/tests/xmlwriter/device.ecore">
+    xmlns:device="http://www.eclipse.org/modeling/xpand/example/model/device" xsi:schemaLocation="http://www.eclipse.org/modeling/xpand/example/model/device ../src/org/eclipse/xtend/typesystem/xsd/tests/xmlwriter/device.ecore">
   <device:Name>testName</device:Name>
 </device:Device>

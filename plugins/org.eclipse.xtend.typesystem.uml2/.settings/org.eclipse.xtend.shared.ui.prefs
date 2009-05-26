@@ -1,4 +1,4 @@
-#Wed Feb 11 16:27:21 CET 2009
+#Tue May 26 09:26:33 CEST 2009
 eclipse.preferences.version=1
-metamodelContributor=org.eclipse.xtend.typesystem.emf.ui.EmfMetamodelContributor,org.eclipse.xtend.typesystem.uml2.ui.Uml2MetamodelContributor
+metamodelContributor=org.eclipse.xtend.typesystem.uml2.ui.Uml2MetamodelContributor,org.eclipse.xtend.typesystem.emf.ui.EmfMetamodelContributor
 project.specific.metamodel=true

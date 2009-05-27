@@ -38,7 +38,7 @@
          id="org.eclipse.xtend.typesystem.emf"
          version="0.0.0"/>
 
- n   <includes
+   <includes
          id="org.eclipse.xtend.typesystem.uml2"
          version="0.0.0"/>
 

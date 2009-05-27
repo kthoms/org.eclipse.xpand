@@ -65,10 +65,6 @@
          id="org.eclipse.xtend.ui.source"
          version="0.0.0"/>
 
-  <includes
-         id="org.eclipse.xtend.typesystem.emf.source"
-         version="0.0.0"/>
-
     <includes
          id="org.eclipse.xtend.typesystem.uml2.source"
          version="0.0.0"/>
@@ -77,18 +73,6 @@
          id="org.eclipse.xtend.typesystem.xsd.source"
          version="0.0.0"/>
    
-  <includes
-         id="org.eclipse.xtend.typesystem.emf.ui.source"
-         version="0.0.0"/>
-
-    <includes
-         id="org.eclipse.xtend.typesystem.uml2.ui.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.xtend.typesystem.xsd.ui.source"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.xtend.util.stdlib"/>
    </requires>

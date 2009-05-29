@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.IModelManager;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
@@ -65,11 +66,12 @@ public class XtendXpandModelManager implements IModelManager {
     }
 
     public void analyze(final IProgressMonitor monitor) {
-        monitor.beginTask("Analyzing Xtend4 projects...", computeAmoutOfWork());
+        monitor.beginTask("Analyzing Xtend/Xpand projects...", computeAmoutOfWork());
         for (final Iterator<?> iter = projects.getValues().iterator(); iter.hasNext();) {
             if (monitor.isCanceled())
                 return;
-            ((IXtendXpandProject) iter.next()).analyze(monitor);
+            IXtendXpandProject project = (IXtendXpandProject) iter.next();
+			project.analyze(monitor, Activator.getExecutionContext(project.getProject()));
         }
         monitor.done();
     }

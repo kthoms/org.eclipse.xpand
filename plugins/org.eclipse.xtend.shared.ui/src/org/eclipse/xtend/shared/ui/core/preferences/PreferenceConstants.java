@@ -20,4 +20,10 @@ public class PreferenceConstants {
     
 	/** Key for setting: project specific metamodels are used */
 	public static final String PROJECT_SPECIFIC_METAMODEL = "project.specific.metamodel";
+	
+	public static final String INCREMENTAL_ANALYZER_STRATEGY = "incrementalAnalyzerStrategy";
+	
+	public static final int INCREMENTAL_ANALYZER_STRATEGY_PROJECT_AND_DEPENDENT = 0;
+	public static final int INCREMENTAL_ANALYZER_STRATEGY_PROJECT = 1;
+	public static final int INCREMENTAL_ANALYZER_STRATEGY_FILE_ONLY = 2;
 }

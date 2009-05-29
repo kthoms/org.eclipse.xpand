@@ -11,8 +11,10 @@
 
 package org.eclipse.xtend.shared.ui.expression;
 
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.internal.xtend.util.Pair;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Resource;
 import org.eclipse.xtend.expression.ResourceManager;
@@ -21,6 +23,7 @@ import org.eclipse.xtend.expression.TypeSystemImpl;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.PluginExecutionContext;
+import org.eclipse.xtend.typesystem.Type;
 
 public class PluginExecutionContextImpl extends ExecutionContextImpl implements PluginExecutionContext {
 	private final IXtendXpandProject project;
@@ -32,15 +35,15 @@ public class PluginExecutionContextImpl extends ExecutionContextImpl implements 
 
 	protected PluginExecutionContextImpl(ResourceManager resourceManager, Resource currentResource,
 			TypeSystemImpl typeSystem, Map<String, Variable> vars, Map<String, Variable> globalVars,
-			IXtendXpandProject xp) {
-		super(resourceManager, currentResource, typeSystem, vars, globalVars, null, null, null, null, null, null,null);
+			IXtendXpandProject xp, Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
+		super(resourceManager, currentResource, typeSystem, vars, globalVars, null, null, null, null, null, null,null, extensionsReturnTypeCache);
 		project = xp;
 	}
 
 	@Override
 	public PluginExecutionContextImpl cloneContext() {
 		final PluginExecutionContextImpl result = new PluginExecutionContextImpl(resourceManager, currentResource(),
-				typeSystem, getVisibleVariables(), getGlobalVariables(), project);
+				typeSystem, getVisibleVariables(), getGlobalVariables(), project, extensionsReturnTypeCache);
 		result.callback = this.callback;
 		return result;
 	}

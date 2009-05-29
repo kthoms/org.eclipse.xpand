@@ -86,11 +86,9 @@ public abstract class AbstractResource implements IXtendXpandResource {
 
 	private boolean hasSemanticErrors = false;
 
-	public final void analyze() {
+	public final void analyze(ExecutionContext ctx) {
 		if (getUnderlyingStorage() instanceof IFile) {
 			IFile f = (IFile) getUnderlyingStorage();
-			final IJavaProject p = JavaCore.create(f.getProject());
-			final ExecutionContext ctx = getExecutionContext(p);
 			final Set<AnalysationIssue> issues = new HashSet<AnalysationIssue>();
 			analyze(ctx, issues);
 			if (hasSemanticErrors) {

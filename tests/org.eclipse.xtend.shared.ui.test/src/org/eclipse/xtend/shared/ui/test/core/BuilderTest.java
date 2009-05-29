@@ -14,15 +14,16 @@ import java.io.InputStream;
 import org.eclipse.core.internal.utils.FileUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
@@ -59,7 +60,10 @@ public class BuilderTest extends XpandCoreTestBase {
 
 		final IXtendXpandProject xp = Activator.getExtXptModelManager().findProject(pPath);
 		IXtendXpandResource resource = xp.findExtXptResource("Extensions0", "ext");
-		resource.analyze();
+		
+		IJavaProject project = JavaCore.create(((IResource)resource.getUnderlyingStorage()).getProject());
+		ExecutionContext ctx = Activator.getExecutionContext(project);
+		resource.analyze(ctx );
 		IFile file = (IFile) resource.getUnderlyingStorage();
 		assertTrue(file.findMarkers(XtendXpandMarkerManager.getMARKER_TYPE(), true, -1).length == 0);
 	}

@@ -40,6 +40,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -90,6 +91,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 
 	private List<Contributor> availableMetamodelContributors;
 	private Table table;
+	private Combo analyzerCombobox;
 
 	private List<Contributor> getMetamodelContributors(final boolean includeDisabled) {
 		final Map<String, Contributor> availableMetamodelContributors = MetamodelContributorRegistry
@@ -251,7 +253,19 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		gridData.widthHint = 75;
 		downButton.setLayoutData(gridData);
 		downButton.setText("&Down");
-		//
+		
+		if(!isProjectPreferencePage()) {
+			Label analyzerLabel = new Label(container, SWT.NONE);
+			analyzerLabel.setText("Incremental syntax analysis:");
+			new Label(container, SWT.NONE);
+			analyzerCombobox = new Combo(container, SWT.READ_ONLY);
+			analyzerCombobox.setItems(new String[] {
+					"On save, analyze current and dependent projects",
+					"On save, analyze whole project",
+					"On save, analyze file only"});
+			new Label(container, SWT.NONE);
+		}
+		
 		setupData();
 		return container;
 	}
@@ -266,6 +280,9 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 
 		final Collection<Contributor> enabledMetamodelContributors = getMetamodelContributors(false);
 		checkboxTableViewer.setCheckedElements(enabledMetamodelContributors.toArray());
+		
+		if(!isProjectPreferencePage())
+			analyzerCombobox.select(getPreferenceStore().getInt(PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY));
 	}
 
 	@Override
@@ -288,6 +305,8 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 	public boolean performOk() {
 		if (isProjectPreferencePage()) {
 			prefStore.setValue(PreferenceConstants.PROJECT_SPECIFIC_METAMODEL, useProjectSettings());
+		} else {
+			prefStore.setValue(PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY, analyzerCombobox.getSelectionIndex());
 		}
 		prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS, createStoreString());
 		try {
@@ -310,7 +329,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 								final IXtendXpandProject p = Activator.getExtXptModelManager().findProject(project);
 								if (p != null) {
 									monitor.beginTask("...", p.getRegisteredResources().length);
-									p.analyze(monitor);
+									p.analyze(monitor, Activator.getExecutionContext(p.getProject()));
 									monitor.done();
 								}
 							}

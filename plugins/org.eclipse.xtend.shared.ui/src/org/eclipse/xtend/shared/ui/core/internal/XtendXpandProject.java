@@ -37,6 +37,7 @@ import org.eclipse.jdt.core.IJarEntryResource;
 import org.eclipse.jdt.core.IJavaElementDelta;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.ResourceContributor;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
@@ -318,15 +319,16 @@ public class XtendXpandProject implements IXtendXpandProject {
 	/**
 	 * @see IXtendXpandProject#analyze(IProgressMonitor)
 	 */
-	public void analyze(final IProgressMonitor monitor) {
+	public void analyze(final IProgressMonitor monitor, ExecutionContext ctx) {
 		for (final Iterator<IXtendXpandResource> iter = new ArrayList<IXtendXpandResource>(resources.values())
 				.iterator(); iter.hasNext();) {
 			if (monitor.isCanceled())
 				return;
+			
 			IXtendXpandResource resource = iter.next();
 			synchronized (resource) {
 				if (!isInExternalPackageFragmentRoot(resource)) {
-					resource.analyze();
+					resource.analyze(ctx);
 				}
 			}
 			monitor.worked(1);

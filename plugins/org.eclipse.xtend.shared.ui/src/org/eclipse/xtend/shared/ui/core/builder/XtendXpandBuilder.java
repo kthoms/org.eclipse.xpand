@@ -11,10 +11,15 @@
 
 package org.eclipse.xtend.shared.ui.core.builder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -26,18 +31,23 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.internal.core.JarPackageFragmentRoot;
+import org.eclipse.ui.preferences.ScopedPreferenceStore;
+import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.ResourceContributor;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
 import org.eclipse.xtend.shared.ui.core.internal.JDTUtil;
 import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
+import org.eclipse.xtend.shared.ui.core.preferences.PreferenceConstants;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class XtendXpandBuilder extends IncrementalProjectBuilder {
@@ -100,6 +110,28 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 
 	}
 
+	private int incrementalAnalyzerStrategy;
+	
+	private void updateIncrementalAnalyzerStrategy() {
+		final ScopedPreferenceStore scopedPreferenceStore = new ScopedPreferenceStore(new InstanceScope(), Activator
+				.getId());
+		incrementalAnalyzerStrategy = scopedPreferenceStore.getInt(PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY);
+	}
+	
+	private boolean analyzeDependentProjectsWhenIncremental() {
+		return incrementalAnalyzerStrategy == PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY_PROJECT_AND_DEPENDENT;
+	}
+	
+	private boolean analyzeWholeProjectWhenIncremental() {
+		switch(incrementalAnalyzerStrategy) {
+			case PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY_PROJECT:
+			case PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY_PROJECT_AND_DEPENDENT:
+				return true;
+			default:
+				return false;
+		}
+	}
+
 	boolean isOnJavaClassPath(final IResource resource) {
 		final IJavaProject jp = JavaCore.create(resource.getProject());
 		if (jp != null)
@@ -140,21 +172,62 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		catch (final Throwable e) {
 			e.printStackTrace();
 		}
+		
+
+		updateIncrementalAnalyzerStrategy();
+		Map<IXtendXpandProject, ExecutionContext> projects = new HashMap<IXtendXpandProject, ExecutionContext>();
+		
 		for (final Object name : toAnalyze) {
+			if(monitor.isCanceled())
+				break;
+			
 			final IXtendXpandResource res = (IXtendXpandResource) name;
-			final IStorage underlyingStorage = res.getUnderlyingStorage();
-			if (underlyingStorage instanceof IResource) {
-				final IResource resource = (IResource) underlyingStorage;
-				final IProject project = resource.getProject();
-				if (project.isLinked()) {
-					continue;
-				}
+			final IResource resource = (IResource) res.getUnderlyingStorage();
+			final IProject project = resource.getProject();
+
+			if (!project.isLinked()) {
+				final IXtendXpandProject xtdxptProject = Activator.getExtXptModelManager().findProject(project);
+				
+				if(xtdxptProject!=null && analyzeWholeProjectWhenIncremental())
+					addProject(projects, xtdxptProject);
+				else
+					res.analyze(Activator.getExecutionContext(JavaCore.create(project)));
+				
 			}
-			res.analyze();
 		}
-//		final IXtendXpandProject p = Activator.getExtXptModelManager().findProject(getProject());
-//		p.analyze(monitor);
+		
+		for (Entry<IXtendXpandProject, ExecutionContext> e : projects.entrySet()) {
+			e.getKey().analyze(monitor, e.getValue());
+		}
+
 		return null;
+	}
+
+	private void addProject(final Map<IXtendXpandProject, ExecutionContext> projects, final IXtendXpandProject xtdxptProject) {
+		if(projects.containsKey(xtdxptProject))
+			return;
+		
+		projects.put(xtdxptProject, Activator.getExecutionContext(xtdxptProject.getProject()));
+		
+		if(analyzeDependentProjectsWhenIncremental()) {
+			for(IXtendXpandProject dependent: getDependentProjects(xtdxptProject))
+				if(!projects.containsKey(dependent))
+					addProject(projects, dependent);
+		}
+		
+	}
+
+	private Collection<IXtendXpandProject> getDependentProjects(IXtendXpandProject xtdxptProject) {
+		Collection<IXtendXpandProject> result = new ArrayList<IXtendXpandProject>();
+		
+		for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+			IXtendXpandProject p = Activator.getExtXptModelManager().findProject(project);
+			if(p!=null && Arrays.asList(p.getReferencedProjects()).contains(xtdxptProject)) {
+				result.add(p);
+			}
+		}
+		
+		return result;
 	}
 
 	void reloadResource(final IFile resource) {

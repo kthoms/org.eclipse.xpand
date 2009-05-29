@@ -12,6 +12,7 @@
 package org.eclipse.xtend.shared.ui.core;
 
 import org.eclipse.core.resources.IStorage;
+import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Resource;
 
 public interface IXtendXpandResource extends Resource {
@@ -22,7 +23,7 @@ public interface IXtendXpandResource extends Resource {
      * analyzes the underlying AST and adds respective markers to the
      * underlying IFile (getCorrspondingFile())
      */
-    public void analyze();
+    public void analyze(ExecutionContext ctx);
 
     /**
      * updates the underlying AST

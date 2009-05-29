@@ -14,6 +14,7 @@ package org.eclipse.xtend.shared.ui.core;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.xtend.expression.ExecutionContext;
 
 /**
  * Represents a project containing openArchitectureWare resources. These are
@@ -67,7 +68,7 @@ public interface IXtendXpandProject {
 	 * @param monitor
 	 *            (optional) A monitor for the progress of the analysis.
 	 */
-	void analyze(IProgressMonitor monitor);
+	void analyze(IProgressMonitor monitor, ExecutionContext ctx);
 
 	public IXtendXpandResource[] getAllRegisteredResources();
 

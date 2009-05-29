@@ -113,6 +113,6 @@ public class XtendFacade {
         for (int i = 0; i < params.length; i++) {
             params[i] = ctx.getType(objects[i]);
         }
-        return extension.getReturnType(params, ctx, issues);
+        return ctx.getReturnType(extension, params, issues);
     }
 }

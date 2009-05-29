@@ -30,6 +30,7 @@ import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
 import org.eclipse.internal.xtend.type.baseimpl.TypesComparator;
 import org.eclipse.internal.xtend.util.Cache;
+import org.eclipse.internal.xtend.util.Pair;
 import org.eclipse.internal.xtend.util.Triplet;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.ast.Around;
@@ -84,24 +85,27 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	public ExecutionContextImpl(Map<String, Variable> globalVars) {
 		this(new ResourceManagerDefaultImpl(), null, new TypeSystemImpl(), new HashMap<String, Variable>(), globalVars,
-				null, null, null, null, null, null,null);
+				null, null, null, null, null, null,null, null);
 	}
 
 	public ExecutionContextImpl(TypeSystemImpl ts, Map<String, Variable> globalVars) {
 		this(new ResourceManagerDefaultImpl(), null, ts, new HashMap<String, Variable>(), globalVars, null, null, null,
-				null, null, null,null);
+				null, null, null,null, null);
 	}
 
 	public ExecutionContextImpl(ResourceManager resourceManager, TypeSystemImpl typeSystem,
 			Map<String, Variable> globalVars) {
 		this(resourceManager, null, typeSystem, new HashMap<String, Variable>(), globalVars, null, null, null, null,
-				null, null,null);
+				null, null,null, null);
 	}
 
 	public ExecutionContextImpl(ResourceManager resourceManager, Resource resource, TypeSystemImpl typeSystem,
 			Map<String, Variable> variables, Map<String, Variable> globalVars, ProgressMonitor monitor,
 			ExceptionHandler exceptionHandler, List<Around> advices, NullEvaluationHandler neh2,
-			Map<Resource, Set<Extension>> extensionPerResourceMap, Callback callback, Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache) {
+			Map<Resource, Set<Extension>> extensionPerResourceMap, Callback callback,
+			Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache,
+			Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
+		
 		if (extensionPerResourceMap != null) {
 			this.allExtensionsPerResource = extensionPerResourceMap;
 		}
@@ -110,6 +114,9 @@ public class ExecutionContextImpl implements ExecutionContext {
 		}
 		if (extensionsForNameAndTypesCache!=null)
 			this.extensionsForNameAndTypesCache = extensionsForNameAndTypesCache;
+		if (extensionsReturnTypeCache!=null)
+			this.extensionsReturnTypeCache = extensionsReturnTypeCache;
+		
 		this.resourceManager = resourceManager;
 		this.currentResource = resource;
 		this.typeSystem = typeSystem;
@@ -225,7 +232,8 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	public ExecutionContextImpl cloneContext() {
 		return new ExecutionContextImpl(resourceManager, currentResource, typeSystem, variables, globalVars, monitor,
-				exceptionHandler, registeredExtensionAdvices, nullEvaluationHandler, allExtensionsPerResource, callback, extensionsForNameAndTypesCache);
+				exceptionHandler, registeredExtensionAdvices, nullEvaluationHandler, allExtensionsPerResource, callback, 
+				extensionsForNameAndTypesCache, extensionsReturnTypeCache);
 	}
 
 	public void setFileEncoding(final String encoding) {
@@ -480,7 +488,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 		}
 
 		public Type getReturnType(Type[] parameters, ExecutionContext ctx, Set<AnalysationIssue> issues) {
-			return delegate.getReturnType(parameters, ctx, issues);
+			return ctx.getReturnType(delegate, parameters, issues);
 		}
 
 		public Type getReturnType() {
@@ -545,6 +553,20 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	public void setCallBack(Callback callback) {
 		this.callback = callback;
+	}
+
+	protected Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache = new HashMap<Pair<String,List<Type>>, Type>();
+	
+	public Type getReturnType(Extension extension, Type[] paramTypes,
+			Set<AnalysationIssue> issues) {
+		Pair<String, List<Type>> key = new Pair<String, List<Type>>(extension.getQualifiedName(), Arrays.asList(paramTypes));	
+		if(extensionsReturnTypeCache.containsKey(key))
+			return extensionsReturnTypeCache.get(key);
+		else {
+			Type result = extension.getReturnType(paramTypes, this, issues);
+			extensionsReturnTypeCache.put(key, result);
+			return result;
+		}
 	}
 
 }

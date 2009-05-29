@@ -170,5 +170,22 @@ public class ExtensionAnalyzationTest extends TestCase {
 	    System.out.println(issues);
 	    assertEquals(0, issues.size());
     }
+	
+	public final void testMultipleCalls() {
+		final ExtensionFile file = parse(
+				"a()    : 'A' ; \n" +
+				"aa()   : a() + 'B'; \n" +
+				"ab()   : a() + 'B'; \n" +
+				"aaab() : aa() + ab(); \n" +
+				"outer(): aaab();"
+				);
+
+		file.analyze(ec, issues);
+		dumpIssues();
+
+		assertEquals(0, issues.size());
+	}
+	
+
 
 }

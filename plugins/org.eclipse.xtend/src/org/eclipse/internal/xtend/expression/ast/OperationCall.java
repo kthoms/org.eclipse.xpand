@@ -191,7 +191,7 @@ public class OperationCall extends FeatureCall {
 				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
 			}
 			if (f != null)
-				return f.getReturnType(paramTypes, ctx, issues);
+				return ctx.getReturnType(f, paramTypes, issues);
 			final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
 			if (var != null) {
 				targetType = (Type) var.getValue();
@@ -254,7 +254,7 @@ public class OperationCall extends FeatureCall {
 		}
 		if (f != null) {
 			final Set<AnalysationIssue> temp = new HashSet<AnalysationIssue>();
-			final Type rt = f.getReturnType(pts, ctx, temp);
+			final Type rt = ctx.getReturnType(f, pts, temp);
 			if (rt == null) {
 				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "couldn't resolve return type for extension " + f + "! Errors : "
 						+ temp.toString(), this));
@@ -268,7 +268,7 @@ public class OperationCall extends FeatureCall {
 			}
 			if (f != null) {
 				final Set<AnalysationIssue> temp = new HashSet<AnalysationIssue>();
-				final Type rt = f.getReturnType(pts, ctx, temp);
+				final Type rt = ctx.getReturnType(f, pts, temp);
 				if (rt == null) {
 					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "couldn't resolve return type for extension " + f
 							+ "! Errors : " + temp.toString(), this));

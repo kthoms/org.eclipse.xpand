@@ -77,4 +77,7 @@ public interface ExecutionContext extends TypeSystem {
 
 	public Callback getCallback();
 
+	Type getReturnType(Extension extension, Type[] paramTypes,
+			Set<AnalysationIssue> issues);
+
 }

@@ -10,7 +10,7 @@
             extensions="chk"
             icon="icons/checkfile.gif"
             id="org.eclipse.xtend.check.editor.CheckEditor"
-            name="Check Editor">
+            name="%editor.name">
       </editor>
    </extension>
    
@@ -28,16 +28,16 @@
 	      point = "org.eclipse.ui.newWizards">
 		<category 
 		   id = "org.eclipse.xtend.ui.newWizards"
-		   name="Xtend">
+		   name="%category.name">
 	</category>
 		 <wizard
          category="org.eclipse.xtend.ui.newWizards"
          class="org.eclipse.xtend.check.ui.wizard.NewCheckFileWizard"
          icon="icons/checkfile.gif"
          id="org.eclipse.xtend.check.ui.wizard.NewCheckFileWizard"
-         name="Check File"
+         name="%wizard.name"
          >
-	       <description>Create a new Check File</description>
+	       <description>%wizard.description</description>
 		   <selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>   

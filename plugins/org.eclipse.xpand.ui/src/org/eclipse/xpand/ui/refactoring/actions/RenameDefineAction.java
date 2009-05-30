@@ -13,6 +13,7 @@ package org.eclipse.xpand.ui.refactoring.actions;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor;
 import org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation;
+import org.eclipse.xpand.ui.Messages;
 import org.eclipse.xpand.ui.editor.XpandEditor;
 import org.eclipse.xpand.ui.refactoring.renamedefine.RenameDefineProcessor;
 import org.eclipse.xpand.ui.refactoring.renamedefine.RenameDefineRefactoring;
@@ -25,7 +26,7 @@ public class RenameDefineAction extends SelectionDispatchAction {
 
 	public RenameDefineAction(XpandEditor editor) {
 		super(editor.getEditorSite());
-		setText("Rename Define");
+		setText(Messages.RenameDefineAction_Name);
 		this.editor = editor;
 	}
 

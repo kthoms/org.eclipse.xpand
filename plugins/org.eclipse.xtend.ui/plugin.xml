@@ -16,7 +16,7 @@
             extensions="ext"
             icon="icons/extensionfile.gif"
             id="org.eclipse.xtend.ui.XtendEditor"
-            name="Extension Editor">
+            name="%editor.name">
       </editor>
    </extension>
    
@@ -29,15 +29,15 @@
 	      point = "org.eclipse.ui.newWizards">
 		<category 
 		   id = "org.eclipse.xtend.ui.newWizards"
-		   name="Xtend">
+		   name="%category.name">
 	</category>
 		 <wizard
          category="org.eclipse.xtend.ui.newWizards"
          class="org.eclipse.xtend.ui.wizard.NewXtendFileWizard"
          icon="icons/extensionfile.gif"
          id="org.eclipse.xtend.xtend.wizard.NewXtendFileWizard"
-         name="Xtend File">
-	       <description>Create a new Xtend File</description>
+         name="%wizard.name">
+	       <description>%wizard.description</description>
 		   <selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>

@@ -47,8 +47,8 @@ public class FindReferencesAction extends FindAction {
 
 	@Override
 	void init() {
-		setText("&Project");
-		setToolTipText("Search for References of the Selected Element in the selected Project");
+		setText(Messages.FindReferencesAction_Label);
+		setToolTipText(Messages.FindReferencesAction_Description);
 		setImageDescriptor(EditorImages.getImageDescriptor(EditorImages.SEARCH_REFERENCES));
 	}
 

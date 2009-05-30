@@ -15,7 +15,7 @@
             extensions="xpt"
             icon="icons/templatefile.gif"
             id="org.eclipse.xpand.ui.XpandEditor"
-            name="Xpand Editor">
+            name="%editor.name">
       </editor>
    </extension>
 
@@ -26,21 +26,21 @@
    <extension
          point="org.eclipse.ui.commands">
       <category
-            name="Xpand Editor"
-            description="Xpand Editor Commands"
+            name="%editor.category.name"
+            description="%category.description"
             id="org.eclipse.xpand.ui">
       </category>
       <command
-            name="Insert LT"
+            name="%command.LT.name"
             categoryId="org.eclipse.xpand.ui"
-            description="Insert Xpand start terminal"
+            description="%command.LT.description"
             id="org.eclipse.xpand.ui.insertLT"
             >
       </command>
       <command
-            name="Insert RT"
+            name="%command.RT.name"
             categoryId="org.eclipse.xpand.ui"
-            description="Insert Xpand end terminal"
+            description="%command.RT.description"
             id="org.eclipse.xpand.ui.insertRT"
             >
       </command>
@@ -87,15 +87,15 @@
 	      point = "org.eclipse.ui.newWizards">
 		<category 
 		   id = "org.eclipse.xpand.ui.newWizards"
-		   name="Xpand">
+		   name="%category.xpand">
 		</category>
 		 <wizard
          category="org.eclipse.xpand.ui.newWizards"
          class="org.eclipse.xpand.ui.wizard.NewTemplateFileWizard"
          icon="icons/templatefile.gif"
          id="org.eclipse.xpand.ui.wizard.NewTemplateFileWizard"
-         name="Xpand Template">
-	       <description>Create a new Xpand Template File</description>
+         name="%wizard.name">
+	       <description>%wizard.description</description>
 		   <selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>
@@ -106,22 +106,22 @@
 			defaultsTo="org.eclipse.jdt.ui.editors.textfont"
 			id="org.eclipse.xpand.ui.xpandFont"
 			isEditable="true"
-			label="Xpand Editor Text Font"/>
+			label="%fontDefinition.label"/>
 		<themeElementCategory
 			id="org.eclipse.xpand.ui.xpandCategory"
-			label="Xpand"
+			label="%themeElementCategory.label"
 			parentId="org.eclipse.xtend.shared.ui.extXptThemeCategory"/>
  	</extension>
   <extension
         point="org.eclipse.ui.actionSets">
      <actionSet
-           description="Xpand refactoring actions"
+           description="%refactoring.actionSet.description"
            id="org.eclipse.xpand.ui.refactoring.CodingActionSet"
-           label="Xpand Coding"
+           label="%refactoring.actionSet.label"
            visible="true">
         <menu
               id="org.eclipse.xpand.ui.refactoring.menu"
-              label="Refactor"
+              label="%refactoring.menu.label"
               path="edit">
            <separator
                  name="codingGroup">
@@ -138,7 +138,7 @@
 		-->
 		<action
 			definitionId="org.eclipse.xpand.ui.refactoring.rename.define"
-			label="Rename Define..."
+			label="%refactoring.rename.define.action.label"
 			retarget="true"
 			menubarPath="org.eclipse.xpand.ui.refactoring.menu/codingGroup"
 			id="org.eclipse.xpand.ui.actions.RenameDefine">
@@ -148,21 +148,21 @@
   <extension
         point="org.eclipse.ui.commands">
       <category
-            name="XPand Refactoring"
-            description="Xpand Refactoring Commands"
+            name="%category.refactoring.commands.name"
+            description="%category.refactoring.commands.description"
             id="org.eclipse.xpand.ui.refactoring">
       </category>
       <command
-            name="Refactoring..."
-            description="Open the refactoring quick menu"
+            name="%command.refactoring.quickmenu.name"
+            description="%command.refactoring.quickmenu.description"
             categoryId="org.eclipse.xpand.ui.refactoring"
             id="org.eclipse.xpand.ui.refactoring.quickMenu">
       </command>
      <command
            categoryId="org.eclipse.xpand.ui.refactoring"
-           description="Rename Define Refactoring"
+           description="%command.refactoring.rename.define.description"
            id="org.eclipse.xpand.ui.refactoring.rename.define"
-           name="Rename Define">
+           name="%command.refactoring.rename.define.name">
      </command>      
   </extension>
   <extension
@@ -183,9 +183,9 @@
   <extension
         point="org.eclipse.ui.contexts">
      <context
-           description="Editing Xpand Files Scope"
+           description="%context.description"
            id="org.eclipse.xpand.ui.XpandEditorScope"
-           name="Editing Xpand Files"
+           name="%context.name"
            parentId="org.eclipse.ui.textEditorScope">
      </context>
   </extension>

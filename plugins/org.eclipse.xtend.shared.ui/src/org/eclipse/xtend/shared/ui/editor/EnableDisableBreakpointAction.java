@@ -24,6 +24,7 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.SimpleMarkerAnnotation;
 import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.Messages;
 
 public class EnableDisableBreakpointAction extends Action {
 
@@ -38,7 +39,7 @@ public class EnableDisableBreakpointAction extends Action {
 	protected EnableDisableBreakpointAction(final TextEditor editor, final BreakpointActionGroup group) {
 		this.editor = editor;
 		this.group = group;
-		setToolTipText("enable or disable breakpoint");
+		setToolTipText(Messages.EnableDisableBreakpointAction_Description);
 	}
 
 	public void updateText() {
@@ -47,14 +48,14 @@ public class EnableDisableBreakpointAction extends Action {
 		if (fBreakpoint != null) {
 			try {
 				if (fBreakpoint.isEnabled()) {
-					setText("Disable Breakpoint");
+					setText(Messages.EnableDisableBreakpointAction_DisableAction);
 				} else {
-					setText("Enable Breakpoint");
+					setText(Messages.EnableDisableBreakpointAction_EnableAction);
 				}
 			} catch (CoreException e) {
 			}
 		} else {
-			setText("Disable Breakpoint");
+			setText(Messages.EnableDisableBreakpointAction_DisableAction);
 		}
 	}
 
@@ -66,7 +67,7 @@ public class EnableDisableBreakpointAction extends Action {
 			try {
 				fBreakpoint.setEnabled(!fBreakpoint.isEnabled());
 			} catch (CoreException e) {
-				Activator.logError("Failed to toggle breakpoint enablement.", e);
+				Activator.logError(Messages.EnableDisableBreakpointAction_Error, e);
 			}
 		}
 	}

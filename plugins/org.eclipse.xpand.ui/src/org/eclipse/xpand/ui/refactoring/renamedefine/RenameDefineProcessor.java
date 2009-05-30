@@ -30,6 +30,7 @@ import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
 import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.text.edits.TextEditGroup;
+import org.eclipse.xpand.ui.Messages;
 import org.eclipse.xpand.ui.editor.XpandEditor;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
@@ -77,9 +78,9 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 
 		RefactoringStatus result = new RefactoringStatus();
 		if (sourceFile == null || !sourceFile.exists()) {
-			result.addFatalError("File does not exist!");
+			result.addFatalError(Messages.RenameDefineProcessor_NoSuchFile);
 		} else if (sourceFile.isReadOnly()) {
-			result.addFatalError("File is readonly!");
+			result.addFatalError(Messages.RenameDefineProcessor_FileReadonly);
 		}
 		return result;
 	}
@@ -95,7 +96,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 	@Override
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
 
-		CompositeChange result = new CompositeChange("Rename");
+		CompositeChange result = new CompositeChange(Messages.RenameDefineProcessor_CompositeChangeName);
 
 		IFile file = (IFile) editor.getEditorInput().getAdapter(IFile.class);
 		IXtendXpandProject project = Activator.getExtXptModelManager().findProject(file);
@@ -108,7 +109,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 			if (fileChanges.containsKey(match.getFile())) {
 				fileChange = fileChanges.get(match.getFile());
 			} else {
-				fileChange = new TextFileChange("Rename", match.getFile());
+				fileChange = new TextFileChange(Messages.RenameDefineProcessor_TextFileChangeName, match.getFile());
 				MultiTextEdit fileChangeRootEdit = new MultiTextEdit();
 				fileChange.setEdit(fileChangeRootEdit);
 				fileChanges.put(match.getFile(), fileChange);
@@ -118,7 +119,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 			ReplaceEdit replaceSelectionEdit = new ReplaceEdit(match.getOffSet() + 1, match.getLength(), newName);
 			fileChange.addEdit(replaceSelectionEdit);
 
-			TextEditGroup teg2 = new TextEditGroup("Substitute old text with new text");
+			TextEditGroup teg2 = new TextEditGroup(Messages.RenameDefineProcessor_GroupDescription);
 			fileChange.addTextEditGroup(teg2);
 			teg2.addTextEdit(replaceSelectionEdit);
 
@@ -153,7 +154,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 	 */
 	@Override
 	public String getIdentifier() {
-		return "RenameDefine";
+		return Messages.RenameDefineProcessor_ID;
 	}
 
 	/**
@@ -161,7 +162,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 	 */
 	@Override
 	public String getProcessorName() {
-		return "Rename Define Processor";
+		return Messages.RenameDefineProcessor_ProcessorName;
 	}
 
 	/**

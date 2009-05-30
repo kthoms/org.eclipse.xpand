@@ -41,6 +41,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandBuilder;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandNature;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
@@ -53,7 +54,7 @@ public class EclipseHelper {
 		IProject project = null;
 		try {
 			progressMonitor.beginTask("", 10);
-			progressMonitor.subTask("Creating project " + projectName);
+			progressMonitor.subTask(Messages.EclipseHelper_TaskTitle + projectName);
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			project = workspace.getRoot().getProject(projectName);
 
@@ -62,9 +63,9 @@ public class EclipseHelper {
 				final boolean[] result = new boolean[1];
 				PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 					public void run() {
-						result[0] = MessageDialog.openQuestion(theShell, "Do you want to overwrite the project "
-								+ projectName, "Note that everything inside the project '" + projectName
-								+ "' will be deleted if you confirm this dialog.");
+						result[0] = MessageDialog.openQuestion(theShell, Messages.EclipseHelper_OvewritePrompt
+								+ projectName, Messages.EclipseHelper_Warning1 + projectName
+								+ Messages.EclipseHelper_Warning2);
 					}
 				});
 				if (result[0]) {

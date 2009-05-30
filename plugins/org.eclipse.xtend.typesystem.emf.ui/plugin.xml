@@ -20,7 +20,7 @@
             nameFilter="*.ecore"
             id="org.eclipse.xtend.ecoreContribution">
          <menu
-               label="Xtend"
+               label="%menu.label"
                path="additions"
                id="org.eclipse.xtend.ui.menu">
             <separator
@@ -28,7 +28,7 @@
             </separator>
          </menu>
          <action
-               label="Add EOperation delegation"
+               label="%action.add.EOperation..delegation.label"
                class="org.eclipse.xtend.typesystem.emf.ui.actions.AddAnnotationsAction"
                menubarPath="org.eclipse.xtend.ui.menu/group1"
                enablesFor="1"

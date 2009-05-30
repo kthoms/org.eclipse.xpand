@@ -31,6 +31,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IKeyBindingService;
 import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.ui.actions.ActionGroup;
+import org.eclipse.xpand.ui.Messages;
 import org.eclipse.xpand.ui.editor.IXpandEditorActionDefinitionIds;
 import org.eclipse.xpand.ui.editor.XpandEditor;
 import org.eclipse.xtend.shared.ui.core.action.SelectionDispatchAction;
@@ -114,7 +115,7 @@ public class RefactorActionGroup extends ActionGroup {
 	private static class NoActionAvailable extends Action {
 		public NoActionAvailable() {
 			setEnabled(true);
-			setText("No refactorings available.");
+			setText(Messages.RefactorActionGroup_NoRefactoringsAvailable);
 		}
 	}
 
@@ -220,7 +221,7 @@ public class RefactorActionGroup extends ActionGroup {
 	}
 
 	private void addRefactorSubmenu(IMenuManager menu) {
-		String menuText = "Refactor";
+		String menuText = Messages.RefactorActionGroup_MenuName;
 		if (quickAccessAction != null) {
 			menuText = quickAccessAction.addShortcut(menuText);
 		}

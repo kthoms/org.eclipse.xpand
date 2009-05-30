@@ -105,7 +105,7 @@ public class ReferencesSearchGroup extends ActionGroup {
 
 	@Override
 	public void fillContextMenu(final IMenuManager manager) {
-		final IMenuManager menuManager = new MenuManager("Re&ferences", IContextMenuConstants.GROUP_SEARCH);
+		final IMenuManager menuManager = new MenuManager(Messages.ReferencesSearchGroup_Label, IContextMenuConstants.GROUP_SEARCH);
 		addAction(findReferencesAction, menuManager);
 
 		menuManager.add(new Separator());

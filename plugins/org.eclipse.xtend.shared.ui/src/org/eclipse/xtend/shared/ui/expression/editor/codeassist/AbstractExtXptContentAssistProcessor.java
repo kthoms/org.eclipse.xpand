@@ -21,6 +21,7 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandNature;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandNatureUtil;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
@@ -53,8 +54,8 @@ public abstract class AbstractExtXptContentAssistProcessor implements IContentAs
             return null;
         try {
             if (!p.isNatureEnabled(XtendXpandNature.NATURE_ID)) {
-                if (MessageDialog.openQuestion(editor.getEditorSite().getShell(), "Xtend Nature not configured",
-                        "Do you want to add the Xtend nature to project '" + p.getName() + "'?")) {
+                if (MessageDialog.openQuestion(editor.getEditorSite().getShell(), Messages.AbstractExtXptContentAssistProcessor_Error,
+                        Messages.AbstractExtXptContentAssistProcessor_Prompt + p.getName() + "'?")) {
                     XtendXpandNatureUtil.addExtXptNature(jp);
                 } else
                     return null;

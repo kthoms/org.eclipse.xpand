@@ -16,6 +16,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
+import org.eclipse.xtend.shared.ui.Messages;
 
 public abstract class NewExtXptResourceWizard extends BasicNewResourceWizard {
 
@@ -62,7 +63,7 @@ public abstract class NewExtXptResourceWizard extends BasicNewResourceWizard {
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection currentSelection) {
 		super.init(workbench, currentSelection);
-		setWindowTitle("New File");
+		setWindowTitle(Messages.NewExtXptResourceWizard_Title);
 		setNeedsProgressMonitor(true);
 	}
 

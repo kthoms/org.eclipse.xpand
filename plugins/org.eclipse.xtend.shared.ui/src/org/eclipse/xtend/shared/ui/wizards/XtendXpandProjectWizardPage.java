@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.xtend.shared.ui.Messages;
 
 /**
  * The "New" wizard page allows setting the container for the new file as well
@@ -41,9 +42,9 @@ public class XtendXpandProjectWizardPage extends WizardPage {
 	 * @param pageName
 	 */
 	public XtendXpandProjectWizardPage(ISelection selection) {
-		super("wizardPage");
-		setTitle("Xtend Project");
-		setDescription("This wizard creates a simple Xtend generator project including the references to the required libraries.");
+		super(Messages.XtendXpandProjectWizardPage_Name);
+		setTitle(Messages.XtendXpandProjectWizardPage_Title);
+		setDescription(Messages.XtendXpandProjectWizardPage_Description);
 	}
 
 	/**
@@ -57,7 +58,7 @@ public class XtendXpandProjectWizardPage extends WizardPage {
 		layout.verticalSpacing = 9;
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		Label label = new Label(container, SWT.NULL);
-		label.setText("&Project name:");
+		label.setText(Messages.XtendXpandProjectWizardPage_ProjectLabel);
 
 		projectText = new Text(container, SWT.BORDER | SWT.SINGLE);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -69,7 +70,7 @@ public class XtendXpandProjectWizardPage extends WizardPage {
 		});
 
 		label = new Label(container, SWT.NULL);
-		label.setText("&Create a sample:");
+		label.setText(Messages.XtendXpandProjectWizardPage_SampleLabel);
 
 		generateSimpleExample = new Button(container, SWT.CHECK);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -96,7 +97,7 @@ public class XtendXpandProjectWizardPage extends WizardPage {
 	 */
 
 	private void initialize() {
-		projectText.setText("my.generator.project");
+		projectText.setText(Messages.XtendXpandProjectWizardPage_DefaultFileName);
 	}
 
 	/**
@@ -105,7 +106,7 @@ public class XtendXpandProjectWizardPage extends WizardPage {
 	void dialogChanged() {
 
 		if (projectText.getText().length() == 0) {
-			setErrorMessage("Project name must be specified");
+			setErrorMessage(Messages.XtendXpandProjectWizardPage_Error);
 			return;
 		}
 		setErrorMessage(null);

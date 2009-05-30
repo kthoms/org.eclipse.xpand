@@ -70,7 +70,7 @@ final class ProjectAnalyzer extends Job {
 	private Map<String, EPackage> packages;
 
 	public ProjectAnalyzer(final IJavaProject project) {
-		super("Analyzing accessible EMF metamodels for project " + project.getProject().getProject().getName());
+		super(Messages.ProjectAnalyzer_AnalysingPrompt + project.getProject().getProject().getName());
 		// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=268516
 		setRule(ResourcesPlugin.getWorkspace().getRoot());
 		this.project = project;
@@ -79,7 +79,7 @@ final class ProjectAnalyzer extends Job {
 	@Override
 	protected IStatus run(final IProgressMonitor monitor) {
 		if (EmfToolsPlugin.trace) {
-			System.out.println("Analyzing EMF metamodels for project " + project.getProject().getProject().getName());
+			System.out.println(Messages.ProjectAnalyzer_1 + project.getProject().getProject().getName());
 		}
 
 		// load models
@@ -105,7 +105,7 @@ final class ProjectAnalyzer extends Job {
 	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs,
 			final IProgressMonitor monitor) {
 		try {
-			final String ext = "ecore";
+			final String ext = Messages.ProjectAnalyzer_2;
 			for (final IPackageFragmentRoot root : javaProject.getPackageFragmentRoots()) {
 				if (!root.isArchive()) {
 					IResource rootResource = null;
@@ -133,9 +133,9 @@ final class ProjectAnalyzer extends Job {
 				}
 				else {
 					// skip JRE jars
-					if (((JarPackageFragmentRoot) root).getPath().toString().contains("jre/lib")) {
+					if (((JarPackageFragmentRoot) root).getPath().toString().contains(Messages.ProjectAnalyzer_3)) {
 						if (EmfToolsPlugin.trace) {
-							System.out.println("Skipping " + ((JarPackageFragmentRoot) root).getPath().toString());
+							System.out.println(Messages.ProjectAnalyzer_4 + ((JarPackageFragmentRoot) root).getPath().toString());
 						}
 						continue;
 					}
@@ -149,8 +149,8 @@ final class ProjectAnalyzer extends Job {
 							final ZipEntry entry = entries.nextElement();
 							final String name = entry.getName();
 							if (name.endsWith(ext)) {
-								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll("/",
-										"::");
+								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll(Messages.ProjectAnalyzer_5,
+										Messages.ProjectAnalyzer_6);
 								final ResourceID resourceID = new ResourceID(fqn, ext);
 								final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
 								if (findStorage != null) {
@@ -176,7 +176,7 @@ final class ProjectAnalyzer extends Job {
 	private void loadModelFromStorage(final ResourceSet rs, final IStorage storage) {
 		final URI uri = URI.createPlatformResourceURI(storage.getFullPath().toString(), true);
 		if (EmfToolsPlugin.trace) {
-			System.out.println("Loading EMF metamodel " + storage.getFullPath().toString());
+			System.out.println(Messages.ProjectAnalyzer_7 + storage.getFullPath().toString());
 		}
 
 		final Resource r = rs.createResource(uri);
@@ -188,13 +188,13 @@ final class ProjectAnalyzer extends Job {
 			registerEPackages(rs, r, false);
 		}
 		catch (final IOException e) {
-			EmfToolsLog.logError("Trying to load " + uri, e);
+			EmfToolsLog.logError(Messages.ProjectAnalyzer_8 + uri, e);
 		}
 		catch (final CoreException e) {
-			EmfToolsLog.logError("Trying to load " + uri, e);
+			EmfToolsLog.logError(Messages.ProjectAnalyzer_9 + uri, e);
 		}
 		catch (final RuntimeException e) {
-			EmfToolsLog.logError("Trying to load " + uri, e);
+			EmfToolsLog.logError(Messages.ProjectAnalyzer_10 + uri, e);
 		}
 	}
 
@@ -211,8 +211,8 @@ final class ProjectAnalyzer extends Job {
 		// names may be used across MMs
 		if (!overwrite && packages.containsKey(pack.getNsURI())) {
 			if (EmfToolsPlugin.trace) {
-				System.out.println("Did not register '" + pack.getName()
-						+ " because an EPackage with the same nsURI has already been registered.");
+				System.out.println(Messages.ProjectAnalyzer_11 + pack.getName()
+						+ Messages.ProjectAnalyzer_12);
 			}
 		}
 		else {

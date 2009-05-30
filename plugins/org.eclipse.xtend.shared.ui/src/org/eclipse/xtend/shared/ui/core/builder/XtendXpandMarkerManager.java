@@ -29,6 +29,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class XtendXpandMarkerManager {
@@ -103,7 +104,7 @@ public class XtendXpandMarkerManager {
                                     final int line = doc.getLineOfOffset(start);
                                     if (line > 0) {
                                         marker.setAttribute(IMarker.LINE_NUMBER, doc.getLineOfOffset(start));
-                                        marker.setAttribute(IMarker.LOCATION, "line: " + line);
+                                        marker.setAttribute(IMarker.LOCATION, Messages.XtendXpandMarkerManager_Line + line);
                                     }
                                 }
                             } finally {

@@ -24,7 +24,7 @@ public class BuildJob extends Job {
 	private final IProject project;
 
 	public BuildJob(final IProject project) {
-		super("Building " + project.getName());
+		super(Messages.BuildJob_JobName + project.getName());
 		setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
 		this.project = project;
 	}

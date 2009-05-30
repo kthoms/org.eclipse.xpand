@@ -34,6 +34,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
@@ -76,7 +77,7 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 		}
 		catch (final InvocationTargetException e) {
 			final Throwable realException = e.getTargetException();
-			MessageDialog.openError(getShell(), "Error", realException.getMessage());
+			MessageDialog.openError(getShell(), Messages.XtendXpandProjectWizard_ErrorLabel, realException.getMessage());
 			return false;
 		}
 		BasicNewProjectResourceWizard.updatePerspective(configElement);
@@ -85,7 +86,7 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 
 	void doFinish(final String name, final boolean genExample, final IProgressMonitor monitor) {
 		final String projectName = name;
-		monitor.beginTask("Creating Xpand generator project " + name, 2);
+		monitor.beginTask(Messages.XtendXpandProjectWizard_ProjectCreationMessage + name, 2);
 
 		final Set<String> refs = new HashSet<String>();
 		final List<String> srcfolders = new ArrayList<String>();

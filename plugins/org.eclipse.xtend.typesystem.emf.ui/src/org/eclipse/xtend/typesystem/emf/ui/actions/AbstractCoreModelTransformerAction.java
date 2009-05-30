@@ -72,7 +72,7 @@ public abstract class AbstractCoreModelTransformerAction implements IObjectActio
 
 	public void throwE(final IOException e) {
 		final Shell shell = new Shell();
-		MessageDialog.openError(shell, "Xtend EMF Eclipse Plug-in", e.getMessage());
+		MessageDialog.openError(shell, Messages.AbstractCoreModelTransformerAction_PluginName, e.getMessage());
 		throw new RuntimeException(e);
 	}
 

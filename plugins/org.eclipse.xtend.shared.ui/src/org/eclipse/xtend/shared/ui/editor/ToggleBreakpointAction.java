@@ -20,6 +20,7 @@ import org.eclipse.emf.mwe.ui.debug.processing.PluginAdapter;
 import org.eclipse.emf.mwe.ui.debug.processing.PluginExtensionManager;
 import org.eclipse.jface.action.Action;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.xtend.shared.ui.Messages;
 
 /**
  * Toggle breakpoint action that can be used both at vertical ruler and editor context menu.
@@ -34,8 +35,8 @@ public class ToggleBreakpointAction extends Action {
 	public ToggleBreakpointAction(final TextEditor editor, final BreakpointActionGroup group) {
 		this.editor = editor;
 		this.group = group;
-		setText("Toggle Breakpoint");
-		setToolTipText("set or delete breakpoint");
+		setText(Messages.ToggleBreakpointAction_ToggleAction);
+		setToolTipText(Messages.ToggleBreakpointAction_Description);
 	}
 
 	public void updateText() {

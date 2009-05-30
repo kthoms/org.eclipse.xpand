@@ -15,6 +15,7 @@ import java.io.InputStream;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.eclipse.xtend.shared.ui.Messages;
 
 public class NewOAWResourcePage extends WizardNewFileCreationPage {
 
@@ -30,7 +31,7 @@ public class NewOAWResourcePage extends WizardNewFileCreationPage {
 	
 	@Override
 	public String getErrorMessage() {
-		if ( !getFileName().endsWith("."+extension) ) return "extension must be ."+extension;
+		if ( !getFileName().endsWith("."+extension) ) return Messages.NewOAWResourcePage_Error+extension;
 		return null;
 	}
 	

@@ -21,6 +21,7 @@ import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.search.ui.ISearchResult;
 import org.eclipse.search.ui.text.AbstractTextSearchResult;
 import org.eclipse.search.ui.text.Match;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
 
@@ -68,7 +69,7 @@ public abstract class XtendXpandSearchQuery implements ISearchQuery {
 	 * {@inheritDoc}
 	 */
 	public String getLabel() {
-		return "openArchitectureWare Search";
+		return Messages.XtendXpandSearchQuery_Label;
 	}
 
 	/**

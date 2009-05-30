@@ -82,7 +82,7 @@ public class Activator extends AbstractUIPlugin {
 	private final IPropertyChangeListener listener = new IPropertyChangeListener() {
 
 		public void propertyChange(PropertyChangeEvent event) {
-			Job job = new Job("Analyzing workspace...") {
+			Job job = new Job(Messages.Activator_AnalyzingProgress) {
 
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {

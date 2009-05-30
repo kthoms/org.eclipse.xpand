@@ -12,6 +12,7 @@ package org.eclipse.xtend.shared.ui.editor.search.actions;
 
 import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.ui.IWorkbenchSite;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
 import org.eclipse.xtend.shared.ui.editor.search.query.XpandXtendSearchDeclarationsQuery;
@@ -47,8 +48,8 @@ public class FindDeclarationsAction extends FindAction {
 
 	@Override
 	void init() {
-		setText("&Project");
-		setToolTipText("Search for Declarations of the Selected Element in the selected Project");
+		setText(Messages.FindDeclarationsAction_Label);
+		setToolTipText(Messages.FindDeclarationsAction_Description);
 		setImageDescriptor(EditorImages.getImageDescriptor(EditorImages.SEARCH_DECLARATIONS));
 	}
 

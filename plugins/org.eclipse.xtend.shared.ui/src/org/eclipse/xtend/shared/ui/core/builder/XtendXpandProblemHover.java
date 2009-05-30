@@ -26,6 +26,7 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
+import org.eclipse.xtend.shared.ui.Messages;
 
 public class XtendXpandProblemHover implements IAnnotationHover, ITextHover {
 
@@ -91,7 +92,7 @@ public class XtendXpandProblemHover implements IAnnotationHover, ITextHover {
 	private String formatInfo(final List<String> messages) {
 		buffer = new StringBuffer();
 		if (messages.size() > 1) {
-			buffer.append("Multiple markers at this line\n");
+			buffer.append(Messages.XtendXpandProblemHover_MultipleMarkers);
 			final Iterator<String> e = messages.iterator();
 			while (e.hasNext()) {
 				splitInfo("- " + e.next() + "\n");

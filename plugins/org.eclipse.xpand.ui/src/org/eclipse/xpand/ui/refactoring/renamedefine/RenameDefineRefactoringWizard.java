@@ -11,6 +11,7 @@
 package org.eclipse.xpand.ui.refactoring.renamedefine;
 
 import org.eclipse.ltk.ui.refactoring.RefactoringWizard;
+import org.eclipse.xpand.ui.Messages;
 
 /**
  * RenameDefineRefactoringWizard guides the user through the process of renaming an Xpand definition.
@@ -21,7 +22,7 @@ public class RenameDefineRefactoringWizard extends RefactoringWizard {
 
 	public RenameDefineRefactoringWizard(RenameDefineRefactoring refactoring) {
 		super(refactoring, RefactoringWizard.DIALOG_BASED_USER_INTERFACE | RefactoringWizard.PREVIEW_EXPAND_FIRST_NODE);
-		setDefaultPageTitle("Rename Define");
+		setDefaultPageTitle(Messages.RenameDefineRefactoringWizard_PageTitle);
 	}
 
 	/**
@@ -29,7 +30,7 @@ public class RenameDefineRefactoringWizard extends RefactoringWizard {
 	 */
 	@Override
 	protected void addUserInputPages() {
-		addPage(new RenameDefineRefactoringWizardPage("Rename Define Refactoring"));
+		addPage(new RenameDefineRefactoringWizardPage(Messages.RenameDefineRefactoringWizard_WizardPageTitle));
 	}
 
 }

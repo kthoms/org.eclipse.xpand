@@ -19,6 +19,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.xpand.ui.Messages;
 
 public class RenameDefineRefactoringWizardPage extends UserInputWizardPage {
 
@@ -37,7 +38,7 @@ public class RenameDefineRefactoringWizardPage extends UserInputWizardPage {
 		setControl(container);
 
 		final Label newNameLabel = new Label(container, SWT.NONE);
-		newNameLabel.setText("New &name:");
+		newNameLabel.setText(Messages.RenameDefineRefactoringWizardPage_label);
 
 		newNameText = new Text(container, SWT.BORDER);
 		newNameText.addModifyListener(new ModifyListener() {

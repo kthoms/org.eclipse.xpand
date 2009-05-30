@@ -10,13 +10,14 @@
  *******************************************************************************/
 package org.eclipse.xtend.check.ui.wizard;
 
+import org.eclipse.xtend.check.ui.Messages;
 import org.eclipse.xtend.shared.ui.wizards.NewExtXptResourceWizard;
 
 
 public class NewCheckFileWizard extends NewExtXptResourceWizard {
 	
     public NewCheckFileWizard() {
-        super("NewCheckFile.chk", "chk", "New Check File", "Creates a new Check File", null);
+        super(Messages.NewCheckFileWizard_DefaultFileName, Messages.NewCheckFileWizard_DefaultExtension, Messages.NewCheckFileWizard_WizardTitle, Messages.NewCheckFileWizard_WizardDescription, null);
     }
 
 }

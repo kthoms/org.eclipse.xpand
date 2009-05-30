@@ -16,6 +16,7 @@ import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.hyperlink.IHyperlink;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
 
 /**
@@ -38,7 +39,7 @@ public class OpenAction extends SelectionDispatchAction {
 	public OpenAction(AbstractXtendXpandEditor editor) {
 		super(editor.getEditorSite());
 		this.editor = editor;
-		setText("Open");
+		setText(Messages.OpenAction_ActionName);
 		setEnabled(editor.getEditorInput() instanceof IFileEditorInput);
 	}
 

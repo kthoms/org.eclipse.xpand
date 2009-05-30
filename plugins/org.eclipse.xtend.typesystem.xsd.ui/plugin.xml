@@ -7,7 +7,7 @@
 			class="org.eclipse.xtend.typesystem.xsd.ui.XSDMetamodelContributor"
 			name="XSD Metamodels" />
 	</extension>
-	<extension id="xsdBuilder" name="XSD Metamodel Builder"
+	<extension id="xsdBuilder" name="%builder.name"
 		point="org.eclipse.core.resources.builders">
 		<builder
         callOnEmptyDelta="true"

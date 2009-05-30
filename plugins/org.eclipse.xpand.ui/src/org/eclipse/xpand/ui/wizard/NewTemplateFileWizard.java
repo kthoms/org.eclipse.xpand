@@ -10,13 +10,14 @@
  *******************************************************************************/
 package org.eclipse.xpand.ui.wizard;
 
+import org.eclipse.xpand.ui.Messages;
 import org.eclipse.xtend.shared.ui.wizards.NewExtXptResourceWizard;
 
 
 public class NewTemplateFileWizard extends NewExtXptResourceWizard {
 	
     public NewTemplateFileWizard() {
-        super("NewTemplateFile.xpt", "xpt", "New Template File", "Creates a new Xpand Template File", null);
+        super(Messages.NewTemplateFileWizard_DefaultFileName, Messages.NewTemplateFileWizard_DefaultExtension, Messages.NewTemplateFileWizard_WizardTitle, Messages.NewTemplateFileWizard_WizardDescription, null);
     }
 
 }

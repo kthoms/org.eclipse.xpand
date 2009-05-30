@@ -23,6 +23,7 @@ import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.actions.ActionGroup;
 import org.eclipse.ui.part.Page;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
 
 /**
@@ -115,7 +116,7 @@ public class SearchActionGroup extends ActionGroup {
 			IMenuManager target = menu;
 			IMenuManager searchSubMenu = null;
 			if (editor != null) {
-				String groupName = "Search";
+				String groupName = Messages.SearchActionGroup_Name;
 				searchSubMenu = new MenuManager(groupName, ITextEditorActionConstants.GROUP_FIND);
 				searchSubMenu.add(new GroupMarker(ITextEditorActionConstants.GROUP_FIND));
 				target = searchSubMenu;

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
-   <extension-point id="resourceContributor" name="xtend / xpand Resource Contributor" schema="schema/resourceContributor.exsd"/>
-   <extension-point id="metamodelContributor" name="xtend Metamodel Contributor" schema="schema/metamodelContributor.exsd"/>
+   <extension-point id="resourceContributor" name="%extension-point.resource.contributor.name" schema="schema/resourceContributor.exsd"/>
+   <extension-point id="metamodelContributor" name="%extension-point.metamodel.contributor.name" schema="schema/metamodelContributor.exsd"/>
    
    <extension
          id="xtendXPandNature"
-         name="Xtend Project Nature"
+         name="%nature.name"
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
@@ -17,7 +17,7 @@
    
    <extension
          id="xtendBuilder"
-         name="Xtend/Xpand Builder"
+         name="%builder.name"
          point="org.eclipse.core.resources.builders">
       <builder
             hasNature="false">
@@ -27,7 +27,7 @@
    
    <extension
          id="problem"
-         name="Xtend/Xpand Problem"
+         name="%marker.name"
          point="org.eclipse.core.resources.markers">
       <super type="org.eclipse.core.resources.problemmarker"/>
       <super type="org.eclipse.core.resources.textmarker"/>
@@ -41,7 +41,7 @@
       <page
             class="org.eclipse.xtend.shared.ui.core.properties.MetamodelContributorsPropertyAndPreferencePage"
             id="org.eclipse.xtend.shared.ui.properties.MetamodelContributorsPropertyPage"
-            name="Xtend/Xpand">
+            name="%preference.page.metamodel.contributors.name">
       </page>
    </extension>
    
@@ -50,7 +50,7 @@
       <page
             class="org.eclipse.xtend.shared.ui.core.properties.MetamodelContributorsPropertyAndPreferencePage"
             id="org.eclipse.xtend.shared.ui.properties.MetamodelContributorsPropertyPage"
-            name="Xtend/Xpand"
+            name="%property.page.metamodel.contributors.name"
             objectClass="org.eclipse.core.resources.IProject">
        <filter
              name="nature"
@@ -59,7 +59,7 @@
       <page
             class="org.eclipse.xtend.shared.ui.core.properties.MetamodelContributorsPropertyAndPreferencePage"
             id="org.eclipse.xtend.shared.ui.properties.MetamodelContributorsPropertyPage"
-            name="Xtend/Xpand"
+            name="%property.page.project.metamodel.contributors.name"
             objectClass="org.eclipse.jdt.core.IJavaProject">
        <filter
              name="nature"
@@ -70,7 +70,7 @@
          point="org.eclipse.ui.themes">
       <themeElementCategory
             id="org.eclipse.xtend.shared.ui.extXptThemeCategory"
-            label="Xtend/Xpand"/>
+            label="%themeElementCategory.label"/>
    </extension>
    
    <extension point="org.eclipse.xtend.shared.ui.metamodelContributor">
@@ -92,7 +92,7 @@
             objectClass="org.eclipse.jdt.core.IJavaProject">
          <menu
                id="org.eclipse.xtend.base.menu"
-               label="Xtend/Xpand"
+               label="%menu.xpand.label"
                path="additions">
             <separator
                   name="project">
@@ -105,7 +105,7 @@
          <action
                class="org.eclipse.xtend.shared.ui.core.action.AddXtendXpandNatureAction"
                id="org.eclipse.xtend.shared.ui.action.AddXtendXpandNatureAction"
-               label="Add Xpand/Xtend Nature"
+               label="%action.add.nature.label"
                menubarPath="org.eclipse.xtend.base.menu/project"
                >
          </action>
@@ -124,7 +124,7 @@
          <action
                class="org.eclipse.xtend.shared.ui.core.action.RemoveXtendXpandNatureAction"
                id="org.eclipse.xtend.shared.ui.action.RemoveXtendXpandNatureAction"
-               label="Remove Xtend/Xpand Nature"
+               label="%action.remove.nature.label"
                menubarPath="org.eclipse.xtend.base.menu/project">
          </action>
          <visibility>
@@ -141,7 +141,7 @@
             adaptable="true"
             icon="icons/nature_ovr.gif"
             id="oorg.eclipse.xtend.shared.ui.decorator"
-            label="Resource Decorator"
+            label="%decorator.label"
             lightweight="true"
             location="TOP_RIGHT"
             state="true">

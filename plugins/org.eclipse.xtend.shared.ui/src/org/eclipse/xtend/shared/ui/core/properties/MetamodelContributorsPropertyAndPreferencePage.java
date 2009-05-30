@@ -48,6 +48,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.metamodel.Contributor;
 import org.eclipse.xtend.shared.ui.core.metamodel.MetamodelContributorRegistry;
@@ -185,7 +186,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		container.setLayout(gridLayout);
 
 		final Label activatedMetamodelContributorsLabel = new Label(container, SWT.NONE);
-		activatedMetamodelContributorsLabel.setText("&Activated metamodel contributors:");
+		activatedMetamodelContributorsLabel.setText(Messages.MetamodelContributorsPropertyAndPreferencePage_ContributorsLabel);
 		new Label(container, SWT.NONE);
 
 		checkboxTableViewer = CheckboxTableViewer.newCheckList(container, SWT.BORDER);
@@ -228,7 +229,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		final GridData gridData_1 = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		gridData_1.widthHint = 75;
 		upButton.setLayoutData(gridData_1);
-		upButton.setText("&Up");
+		upButton.setText(Messages.MetamodelContributorsPropertyAndPreferencePage_UpButton);
 
 		downButton = new Button(composite, SWT.NONE);
 		downButton.addSelectionListener(new SelectionAdapter() {
@@ -252,17 +253,17 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		final GridData gridData = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		gridData.widthHint = 75;
 		downButton.setLayoutData(gridData);
-		downButton.setText("&Down");
+		downButton.setText(Messages.MetamodelContributorsPropertyAndPreferencePage_DownButton);
 		
 		if(!isProjectPreferencePage()) {
 			Label analyzerLabel = new Label(container, SWT.NONE);
-			analyzerLabel.setText("Incremental syntax analysis:");
+			analyzerLabel.setText(Messages.MetamodelContributorsPropertyAndPreferencePage_IncrementalAnalysisLabel);
 			new Label(container, SWT.NONE);
 			analyzerCombobox = new Combo(container, SWT.READ_ONLY);
 			analyzerCombobox.setItems(new String[] {
-					"On save, analyze current and dependent projects",
-					"On save, analyze whole project",
-					"On save, analyze file only"});
+					Messages.MetamodelContributorsPropertyAndPreferencePage_CurrentAndDependentProjects,
+					Messages.MetamodelContributorsPropertyAndPreferencePage_WholeProject,
+					Messages.MetamodelContributorsPropertyAndPreferencePage_FileOnly});
 			new Label(container, SWT.NONE);
 		}
 		
@@ -318,7 +319,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 
 		if (isProjectPreferencePage()) {
 			final IProject project = getProject();
-			final Job job = new Job("Analyzing " + project.getName() + " ...") {
+			final Job job = new Job(Messages.MetamodelContributorsPropertyAndPreferencePage_Analyzing + project.getName() + " ...") {
 				@Override
 				protected IStatus run(final IProgressMonitor monitor) {
 					try {
@@ -347,7 +348,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 			job.schedule();
 		}
 		else {
-			final Job job = new Job("Analyzing all Xtend projects...") {
+			final Job job = new Job(Messages.MetamodelContributorsPropertyAndPreferencePage_JobName) {
 
 				@Override
 				protected IStatus run(final IProgressMonitor monitor) {
@@ -376,7 +377,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 				result += className;
 			}
 			if (i < checkedElements.length - 1) {
-				result += ",";
+				result += Messages.MetamodelContributorsPropertyAndPreferencePage_19;
 			}
 		}
 		return result;

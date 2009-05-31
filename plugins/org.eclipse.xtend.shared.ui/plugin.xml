@@ -88,25 +88,13 @@
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
-            id="org.eclipse.xtend.shared.ui.BaseContribution"
-            objectClass="org.eclipse.jdt.core.IJavaProject">
-         <menu
-               id="org.eclipse.xtend.base.menu"
-               label="%menu.xpand.label"
-               path="additions">
-            <separator
-                  name="project">
-            </separator>
-         </menu>
-      </objectContribution>
-      <objectContribution
             id="org.eclipse.xtend.shared.ui.JavaProjectContribution"
             objectClass="org.eclipse.jdt.core.IJavaProject">
          <action
                class="org.eclipse.xtend.shared.ui.core.action.AddXtendXpandNatureAction"
                id="org.eclipse.xtend.shared.ui.action.AddXtendXpandNatureAction"
                label="%action.add.nature.label"
-               menubarPath="org.eclipse.xtend.base.menu/project"
+               menubarPath="org.eclipse.ui.projectConfigure/additions"
                >
          </action>
          <visibility>
@@ -125,7 +113,7 @@
                class="org.eclipse.xtend.shared.ui.core.action.RemoveXtendXpandNatureAction"
                id="org.eclipse.xtend.shared.ui.action.RemoveXtendXpandNatureAction"
                label="%action.remove.nature.label"
-               menubarPath="org.eclipse.xtend.base.menu/project">
+               menubarPath="org.eclipse.ui.projectConfigure/additions">
          </action>
          <visibility>
                <objectState

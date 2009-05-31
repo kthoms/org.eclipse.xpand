@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.xtend.shared.ui.core.action;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -36,10 +37,15 @@ public class AddXtendXpandNatureAction implements IObjectActionDelegate {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			Object firstElement = structuredSelection.getFirstElement();
+			IProject project = null; 
 			if (firstElement instanceof IJavaProject) {
 				IJavaProject javaProject = (IJavaProject) firstElement;
-				XtendXpandNatureUtil.addExtXptNature(javaProject);
+				javaProject.getProject();
 			}
+			else if (firstElement instanceof IProject) {
+				project = (IProject) firstElement;
+			}
+			XtendXpandNatureUtil.addExtXptNature(project);
 		}
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -48,15 +48,15 @@ public abstract class AbstractExtXptContentAssistProcessor implements IContentAs
     }
 
     public final ICompletionProposal[] computeCompletionProposals(final ITextViewer viewer, final int offset) {
-        final IProject p = getFile().getProject();
-        final IJavaProject jp = JavaCore.create(p);
-        if (jp == null)
+        final IProject project = getFile().getProject();
+        final IJavaProject javaProject = JavaCore.create(project);
+        if (javaProject == null)
             return null;
         try {
-            if (!p.isNatureEnabled(XtendXpandNature.NATURE_ID)) {
+            if (!project.isNatureEnabled(XtendXpandNature.NATURE_ID)) {
                 if (MessageDialog.openQuestion(editor.getEditorSite().getShell(), Messages.AbstractExtXptContentAssistProcessor_Error,
-                        Messages.AbstractExtXptContentAssistProcessor_Prompt + p.getName() + "'?")) {
-                    XtendXpandNatureUtil.addExtXptNature(jp);
+                        Messages.AbstractExtXptContentAssistProcessor_Prompt + project.getName() + "'?")) {
+                    XtendXpandNatureUtil.addExtXptNature(project);
                 } else
                     return null;
             }

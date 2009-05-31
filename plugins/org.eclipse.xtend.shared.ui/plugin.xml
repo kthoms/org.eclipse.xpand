@@ -88,8 +88,9 @@
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
+            adaptable="true"
             id="org.eclipse.xtend.shared.ui.JavaProjectContribution"
-            objectClass="org.eclipse.jdt.core.IJavaProject">
+            objectClass="org.eclipse.core.resources.IProject">
          <action
                class="org.eclipse.xtend.shared.ui.core.action.AddXtendXpandNatureAction"
                id="org.eclipse.xtend.shared.ui.action.AddXtendXpandNatureAction"
@@ -107,8 +108,9 @@
          </visibility>
       </objectContribution>
       <objectContribution
+            adaptable="true"
             id="org.eclipse.xtend.shared.ui.XtendXpandProjectContribution"
-            objectClass="org.eclipse.jdt.core.IJavaProject">
+            objectClass="org.eclipse.core.resources.IProject">
          <action
                class="org.eclipse.xtend.shared.ui.core.action.RemoveXtendXpandNatureAction"
                id="org.eclipse.xtend.shared.ui.action.RemoveXtendXpandNatureAction"

@@ -115,7 +115,7 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 	private String getContents(final String resource) {
 		try {
 			final InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
-					"org/openarchitectureware/wizards/example/" + resource);
+					"org/eclipse/xtend/shared/ui/wizards/example/" + resource);
 
 			final byte[] buffer = new byte[4096];
 			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

@@ -15,6 +15,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.eclipse.xtend.backend.aop.Pointcut;
+
 
 /**
  * Methods marked with this annotation are treated as "around" advice
@@ -26,6 +28,7 @@ import java.lang.annotation.Target;
 @Retention (RetentionPolicy.RUNTIME)
 @Target (ElementType.METHOD)
 public @interface M2tAroundAdvice {
+	M2tPointcut pointcut();
     //TODO add name matching pattern
     //TODO add type parameters for the function params, including support for wildcard arguments
 }

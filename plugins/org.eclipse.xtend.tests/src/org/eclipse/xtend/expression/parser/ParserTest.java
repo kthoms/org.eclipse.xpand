@@ -155,7 +155,7 @@ public class ParserTest extends TestCase {
 
     public final void testTypeLiterals() {
         final Expression e = parse("{" + "  Object,\n" + " String,\n" + "Collection,\n" + " Set,\n" + " List,\n"
-                + " oaw::Type,\n" + " oaw::Feature,\n" + " oaw::Property\n}");
+                + " xpand2::Type,\n" + " xpand2::Feature,\n" + " xpand2::Property\n}");
 
         assertNotNull(e);
     }

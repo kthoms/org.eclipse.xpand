@@ -54,15 +54,15 @@ public final class BuiltinMetaModel implements MetaModel {
 	public final static String LIST = "List";
 
 	// reflection layer types
-	public static final String TYPE = "oaw::Type";
+	public static final String TYPE = "xpand2::Type";
 
-	public static final String FEATURE = "oaw::Feature";
+	public static final String FEATURE = "xpand2::Feature";
 
-	public static final String PROPERTY = "oaw::Property";
+	public static final String PROPERTY = "xpand2::Property";
 
-	public static final String OPERATION = "oaw::Operation";
+	public static final String OPERATION = "xpand2::Operation";
 
-	private static final String STATIC_PROPERTY = "oaw::StaticProperty";
+	private static final String STATIC_PROPERTY = "xpand2::StaticProperty";
 
 	public static final String VOID = "Void";
 

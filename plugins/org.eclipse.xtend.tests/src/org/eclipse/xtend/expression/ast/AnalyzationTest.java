@@ -245,7 +245,7 @@ public class AnalyzationTest extends TestCase {
 	}
 
 	public final void testTypeLiteral2() {
-		final Expression e = parse("String.getOperation('length',(List[oaw::Type]){})");
+		final Expression e = parse("String.getOperation('length',(List[xpand2::Type]){})");
 		assertEquals(ec.getOperationType(), e.analyze(ec,
 				new HashSet<AnalysationIssue>()));
 	}

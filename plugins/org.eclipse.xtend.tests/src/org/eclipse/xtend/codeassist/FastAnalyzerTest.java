@@ -169,7 +169,7 @@ public class FastAnalyzerTest extends TestCase {
     }
 
     public final void testComputeProposals7() {
-        final String s = "import oaw;\n doStuff(Typ";
+        final String s = "import xpand2;\n doStuff(Typ";
         ctx = (ExecutionContextImpl) FastAnalyzer.computeExecutionContext(s, ctx, new ArrayList<Extension>());
         assertEquals(Partition.TYPE_DECLARATION, FastAnalyzer.computePartition(s));
         assertEquals(0, ctx.getVisibleVariables().size());
@@ -260,13 +260,13 @@ public class FastAnalyzerTest extends TestCase {
         assertTrue(FastAnalyzer.isInsideTypeDeclaration("test () : true ; test2("));
         assertTrue(FastAnalyzer.isInsideTypeDeclaration("test (String txt,"));
         assertTrue(FastAnalyzer.isInsideTypeDeclaration("test (S"));
-        assertTrue(FastAnalyzer.isInsideTypeDeclaration("test (List[oaw::Ty"));
+        assertTrue(FastAnalyzer.isInsideTypeDeclaration("test (List[xpand2::Ty"));
 
-        assertFalse(FastAnalyzer.isInsideTypeDeclaration("test (List[oaw::Type] t"));
+        assertFalse(FastAnalyzer.isInsideTypeDeclaration("test (List[xpand2::Type] t"));
         assertFalse(FastAnalyzer.isInsideTypeDeclaration("test () : test("));
         assertFalse(FastAnalyzer.isInsideTypeDeclaration("test (String t"));
         assertFalse(FastAnalyzer.isInsideTypeDeclaration("import test;\n test"));
-        assertFalse(FastAnalyzer.isInsideTypeDeclaration("test (List[oaw::Type] c)"));
+        assertFalse(FastAnalyzer.isInsideTypeDeclaration("test (List[xpand2::Type] c)"));
     }
 
     public final void testIsInsideImport() {

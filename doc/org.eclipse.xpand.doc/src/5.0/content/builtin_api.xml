@@ -1,9 +1,9 @@
 
-<section id="builtin_api">
+<section id="r99">
 	<title>Built-in types API documentation</title>
 	
 	
-	<section id="builtin_api_Object">
+	<section id="r99_Object">
 		<title><classname>Object</classname></title>
 		<para>
 			Supertype: 
@@ -12,8 +12,8 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_Object_Properties">
-			<title>Properties of <classname>Object</classname></title>
+		<table frame='all' id="r99_Object_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -28,7 +28,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_oaw::Type'>oaw::Type</link></classname>
+							<classname><link linkend='r99_xpand2::Type'>xpand2::Type</link></classname>
 						</entry>
 						<entry>
 							<methodname>metaType</methodname>
@@ -46,10 +46,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_Object_Operations">
-			<title>Operations of <classname>Object</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_Object_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -63,11 +62,11 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>==</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -75,11 +74,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&lt;</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -87,7 +86,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>toString</methodname>
@@ -99,11 +98,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&lt;=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -111,11 +110,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>!=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -123,11 +122,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&gt;</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -135,11 +134,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>compareTo</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							Compares this object with the specified object for order.  Returns a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
@@ -147,11 +146,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&gt;=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -166,17 +165,17 @@ none
 	</section>
 
 
-	<section id="builtin_api_String">
+	<section id="r99_String">
 		<title><classname>String</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
 
-		<table frame='all' id="builtin_api_String_Properties">
-			<title>Properties of <classname>String</classname></title>
+		<table frame='all' id="r99_String_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -191,7 +190,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>length</methodname>
@@ -209,10 +208,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_String_Operations">
-			<title>Operations of <classname>String</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_String_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -226,7 +224,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>toLowerCase</methodname>
@@ -238,11 +236,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>+</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							concatenates two strings
@@ -250,7 +248,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>toCharList</methodname>
@@ -262,7 +260,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>toFirstUpper</methodname>
@@ -274,19 +272,19 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>subString</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>, <classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>, <classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
-							Tests if this string ends with the specified prefix.
+							Returns a new string that is a substring of this string.
 						</entry>
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>trim</methodname>
@@ -298,7 +296,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>toFirstLower</methodname>
@@ -310,7 +308,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>toUpperCase</methodname>
@@ -322,11 +320,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>split</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							Splits this string around matches of the given regular expression (from Java 1.4)
@@ -334,11 +332,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>startsWith</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							Tests if this string starts with the specified prefix.
@@ -346,11 +344,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>matches</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							Tells whether or not this string matches the given regular expression. (from Java 1.4)
@@ -358,7 +356,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>asInteger</methodname>
@@ -370,11 +368,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>contains</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							Tests if this string contains substring.
@@ -382,11 +380,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>endsWith</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							Tests if this string ends with the specified prefix.
@@ -394,11 +392,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>replaceFirst</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>, <classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>, <classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							Replaces the first substring of this string that matches the given regular expression with the given replacement.
@@ -406,11 +404,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>replaceAll</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>, <classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>, <classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							Replaces each substring of this string that matches the given regular expression with the given replacement.
@@ -425,11 +423,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_Integer">
+	<section id="r99_Integer">
 		<title><classname>Integer</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Real'>Real</link></classname>
+<classname><link linkend='r99_Real'>Real</link></classname>
 		</para>
 		<para>
 		
@@ -441,10 +439,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_Integer_Operations">
-			<title>Operations of <classname>Integer</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_Integer_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -458,23 +455,23 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>upTo</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
-							returns a List of Integers starting with the value of the target expression, up to the value of the specified Integer, incremented by one.e.g. '1.upTo(5)' evaluates to {1,2,3,4,5}
+							returns a List of Integers starting with the value of the target expression, up to the value of the specified Integer, incremented by one.<br/>e.g. '1.upTo(5)' evaluates to {1,2,3,4,5}
 						</entry>
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&gt;=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
 							
@@ -482,59 +479,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
-						</entry>
-						<entry>
-							<methodname>upTo</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>, <classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
-						</entry>
-						<entry>
-							returns a List of Integers starting with the value of the target expression, up to the value of the first paramter, incremented by the second parameter.e.g. '1.upTo(10, 2)' evaluates to {1,3,5,7,9}
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
-						</entry>
-						<entry>
-							<methodname>-</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
-						</entry>
-						<entry>
-							
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
-						</entry>
-						<entry>
-							<methodname>+</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
-						</entry>
-						<entry>
-							
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
-						</entry>
-						<entry>
-							<methodname>&lt;=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
-						</entry>
-						<entry>
-							
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>==</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
 							
@@ -542,23 +491,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
-						</entry>
-						<entry>
-							<methodname>*</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
-						</entry>
-						<entry>
-							
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>!=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
 							
@@ -566,11 +503,23 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
-							<methodname>&gt;</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							<methodname>upTo</methodname>
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>, <classname><link linkend='r99_Integer'>Integer</link></classname>)
+						</entry>
+						<entry>
+							returns a List of Integers starting with the value of the target expression, up to the value of the first paramter, incremented by the second parameter.<br/>e.g. '1.upTo(10, 2)' evaluates to {1,3,5,7,9}
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>-</methodname>
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
 							
@@ -578,7 +527,55 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>+</methodname>
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;=</methodname>
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;</methodname>
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>*</methodname>
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>-</methodname>
@@ -590,11 +587,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
-							<methodname>&lt;</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							<methodname>&gt;</methodname>
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
 							
@@ -602,11 +599,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>/</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
 							
@@ -621,11 +618,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_Boolean">
+	<section id="r99_Boolean">
 		<title><classname>Boolean</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
@@ -637,10 +634,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_Boolean_Operations">
-			<title>Operations of <classname>Boolean</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_Boolean_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -654,7 +650,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>!</methodname>
@@ -673,11 +669,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_Real">
+	<section id="r99_Real">
 		<title><classname>Real</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
@@ -689,10 +685,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_Real_Operations">
-			<title>Operations of <classname>Real</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_Real_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -706,11 +701,11 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Real'>Real</link></classname>
+							<classname><link linkend='r99_Real'>Real</link></classname>
 						</entry>
 						<entry>
 							<methodname>*</methodname>
-							(<classname><link linkend='builtin_api_Real'>Real</link></classname>)
+							(<classname><link linkend='r99_Real'>Real</link></classname>)
 						</entry>
 						<entry>
 							
@@ -718,11 +713,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&gt;=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -730,11 +725,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&lt;=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -742,7 +737,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Real'>Real</link></classname>
+							<classname><link linkend='r99_Real'>Real</link></classname>
 						</entry>
 						<entry>
 							<methodname>-</methodname>
@@ -754,11 +749,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>==</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -766,11 +761,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>!=</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -778,11 +773,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&lt;</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -790,11 +785,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Real'>Real</link></classname>
+							<classname><link linkend='r99_Real'>Real</link></classname>
 						</entry>
 						<entry>
 							<methodname>-</methodname>
-							(<classname><link linkend='builtin_api_Real'>Real</link></classname>)
+							(<classname><link linkend='r99_Real'>Real</link></classname>)
 						</entry>
 						<entry>
 							
@@ -802,11 +797,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Real'>Real</link></classname>
+							<classname><link linkend='r99_Real'>Real</link></classname>
 						</entry>
 						<entry>
 							<methodname>/</methodname>
-							(<classname><link linkend='builtin_api_Real'>Real</link></classname>)
+							(<classname><link linkend='r99_Real'>Real</link></classname>)
 						</entry>
 						<entry>
 							
@@ -814,11 +809,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>&gt;</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -826,11 +821,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Real'>Real</link></classname>
+							<classname><link linkend='r99_Real'>Real</link></classname>
 						</entry>
 						<entry>
 							<methodname>+</methodname>
-							(<classname><link linkend='builtin_api_Real'>Real</link></classname>)
+							(<classname><link linkend='r99_Real'>Real</link></classname>)
 						</entry>
 						<entry>
 							
@@ -845,17 +840,17 @@ none
 	</section>
 
 
-	<section id="builtin_api_Collection">
+	<section id="r99_Collection">
 		<title><classname>Collection</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
 
-		<table frame='all' id="builtin_api_Collection_Properties">
-			<title>Properties of <classname>Collection</classname></title>
+		<table frame='all' id="r99_Collection_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -870,7 +865,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>isEmpty</methodname>
@@ -881,7 +876,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>size</methodname>
@@ -899,10 +894,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_Collection_Operations">
-			<title>Operations of <classname>Collection</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_Collection_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -916,11 +910,11 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>contains</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							returns true if this collection contains the specified object. otherwise false. returns this Collection.
@@ -928,7 +922,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>toList</methodname>
@@ -940,7 +934,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>toSet</methodname>
@@ -952,23 +946,23 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>flatten</methodname>
 							()
 						</entry>
 						<entry>
-							returns a flatten List.
+							returns a flattened List.
 						</entry>
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>intersect</methodname>
-							(<classname><link linkend='builtin_api_Collection'>Collection</link></classname>)
+							(<classname><link linkend='r99_Collection'>Collection</link></classname>)
 						</entry>
 						<entry>
 							returns a new Set, containing only the elements contained in this and the specified Collection
@@ -976,11 +970,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>toString</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							concatenates each contained element (using toString()), separated by the specified String.
@@ -988,11 +982,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Collection'>Collection</link></classname>
+							<classname><link linkend='r99_Collection'>Collection</link></classname>
 						</entry>
 						<entry>
 							<methodname>removeAll</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							removes all elements contained in the specified collection from this Collection if contained (modifies it!). returns this Collection.
@@ -1000,11 +994,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Collection'>Collection</link></classname>
+							<classname><link linkend='r99_Collection'>Collection</link></classname>
 						</entry>
 						<entry>
 							<methodname>remove</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							removes the specified element from this Collection if contained (modifies it!). returns this Collection.
@@ -1012,11 +1006,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>without</methodname>
-							(<classname><link linkend='builtin_api_Collection'>Collection</link></classname>)
+							(<classname><link linkend='r99_Collection'>Collection</link></classname>)
 						</entry>
 						<entry>
 							returns a new Set, containing all elements from this Collection without the elements from specified Collection
@@ -1024,11 +1018,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Collection'>Collection</link></classname>
+							<classname><link linkend='r99_Collection'>Collection</link></classname>
 						</entry>
 						<entry>
 							<methodname>addAll</methodname>
-							(<classname><link linkend='builtin_api_Collection'>Collection</link></classname>)
+							(<classname><link linkend='r99_Collection'>Collection</link></classname>)
 						</entry>
 						<entry>
 							adds all elements to the Collection (modifies it!). returns this Collection.
@@ -1036,11 +1030,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Collection'>Collection</link></classname>
+							<classname><link linkend='r99_Collection'>Collection</link></classname>
 						</entry>
 						<entry>
 							<methodname>add</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							adds an element to the Collection (modifies it!). returns this Collection.
@@ -1048,11 +1042,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>union</methodname>
-							(<classname><link linkend='builtin_api_Collection'>Collection</link></classname>)
+							(<classname><link linkend='r99_Collection'>Collection</link></classname>)
 						</entry>
 						<entry>
 							returns a new Set, containing all elements from this and the specified Collection
@@ -1060,11 +1054,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>containsAll</methodname>
-							(<classname><link linkend='builtin_api_Collection'>Collection</link></classname>)
+							(<classname><link linkend='r99_Collection'>Collection</link></classname>)
 						</entry>
 						<entry>
 							returns true if this collection contains each element contained in the specified collection. otherwise false. returns this Collection.
@@ -1079,11 +1073,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_List">
+	<section id="r99_List">
 		<title><classname>List</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Collection'>Collection</link></classname>
+<classname><link linkend='r99_Collection'>Collection</link></classname>
 		</para>
 		<para>
 		
@@ -1095,10 +1089,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_List_Operations">
-			<title>Operations of <classname>List</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_List_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -1112,7 +1105,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>withoutFirst</methodname>
@@ -1124,7 +1117,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
 							<methodname>last</methodname>
@@ -1136,11 +1129,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>indexOf</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1148,7 +1141,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>withoutLast</methodname>
@@ -1160,7 +1153,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Collection'>Collection</link></classname>
 						</entry>
 						<entry>
 							<methodname>reverse</methodname>
@@ -1172,7 +1165,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
 							<methodname>first</methodname>
@@ -1184,11 +1177,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
 							<methodname>get</methodname>
-							(<classname><link linkend='builtin_api_Integer'>Integer</link></classname>)
+							(<classname><link linkend='r99_Integer'>Integer</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1203,11 +1196,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_Set">
+	<section id="r99_Set">
 		<title><classname>Set</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Collection'>Collection</link></classname>
+<classname><link linkend='r99_Collection'>Collection</link></classname>
 		</para>
 		<para>
 		
@@ -1226,17 +1219,17 @@ none
 	</section>
 
 
-	<section id="builtin_api_oaw::Type">
-		<title><classname>oaw::Type</classname></title>
+	<section id="r99_xpand2::Type">
+		<title><classname>xpand2::Type</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
 
-		<table frame='all' id="builtin_api_oaw::Type_Properties">
-			<title>Properties of <classname>oaw::Type</classname></title>
+		<table frame='all' id="r99_xpand2::Type_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1251,7 +1244,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>name</methodname>
@@ -1262,7 +1255,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>allStaticProperties</methodname>
@@ -1273,7 +1266,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>documentation</methodname>
@@ -1284,7 +1277,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>superTypes</methodname>
@@ -1295,7 +1288,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>allProperties</methodname>
@@ -1306,7 +1299,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>allFeatures</methodname>
@@ -1317,7 +1310,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Set'>Set</link></classname>
+							<classname><link linkend='r99_Set'>Set</link></classname>
 						</entry>
 						<entry>
 							<methodname>allOperations</methodname>
@@ -1335,10 +1328,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_oaw::Type_Operations">
-			<title>Operations of <classname>oaw::Type</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_xpand2::Type_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -1352,11 +1344,11 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_oaw::Operation'>oaw::Operation</link></classname>
+							<classname><link linkend='r99_xpand2::StaticProperty'>xpand2::StaticProperty</link></classname>
 						</entry>
 						<entry>
-							<methodname>getOperation</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>, <classname><link linkend='builtin_api_List'>List</link></classname>)
+							<methodname>getStaticProperty</methodname>
+							(<classname><link linkend='r99_String'>String</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1364,11 +1356,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_oaw::Feature'>oaw::Feature</link></classname>
+							<classname><link linkend='r99_xpand2::Feature'>xpand2::Feature</link></classname>
 						</entry>
 						<entry>
 							<methodname>getFeature</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>, <classname><link linkend='builtin_api_List'>List</link></classname>)
+							(<classname><link linkend='r99_String'>String</link></classname>, <classname><link linkend='r99_List'>List</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1376,7 +1368,31 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>isInstance</methodname>
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_xpand2::Property'>xpand2::Property</link></classname>
+						</entry>
+						<entry>
+							<methodname>getProperty</methodname>
+							(<classname><link linkend='r99_String'>String</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
 							<methodname>newInstance</methodname>
@@ -1388,35 +1404,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_oaw::StaticProperty'>oaw::StaticProperty</link></classname>
-						</entry>
-						<entry>
-							<methodname>getStaticProperty</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
-						</entry>
-						<entry>
-							
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_oaw::Property'>oaw::Property</link></classname>
-						</entry>
-						<entry>
-							<methodname>getProperty</methodname>
-							(<classname><link linkend='builtin_api_String'>String</link></classname>)
-						</entry>
-						<entry>
-							
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>isAssignableFrom</methodname>
-							(<classname><link linkend='builtin_api_oaw::Type'>oaw::Type</link></classname>)
+							(<classname><link linkend='r99_xpand2::Type'>xpand2::Type</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1424,11 +1416,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_xpand2::Operation'>xpand2::Operation</link></classname>
 						</entry>
 						<entry>
-							<methodname>isInstance</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							<methodname>getOperation</methodname>
+							(<classname><link linkend='r99_String'>String</link></classname>, <classname><link linkend='r99_List'>List</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1443,17 +1435,17 @@ none
 	</section>
 
 
-	<section id="builtin_api_oaw::Feature">
-		<title><classname>oaw::Feature</classname></title>
+	<section id="r99_xpand2::Feature">
+		<title><classname>xpand2::Feature</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
 
-		<table frame='all' id="builtin_api_oaw::Feature_Properties">
-			<title>Properties of <classname>oaw::Feature</classname></title>
+		<table frame='all' id="r99_xpand2::Feature_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1468,7 +1460,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>name</methodname>
@@ -1479,10 +1471,10 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_oaw::Type'>oaw::Type</link></classname>
+							<classname><link linkend='r99_xpand2::Type'>xpand2::Type</link></classname>
 						</entry>
 						<entry>
-							<methodname>owner</methodname>
+							<methodname>returnType</methodname>
 						</entry>
 						<entry>
 							
@@ -1490,7 +1482,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>documentation</methodname>
@@ -1501,10 +1493,10 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_oaw::Type'>oaw::Type</link></classname>
+							<classname><link linkend='r99_xpand2::Type'>xpand2::Type</link></classname>
 						</entry>
 						<entry>
-							<methodname>returnType</methodname>
+							<methodname>owner</methodname>
 						</entry>
 						<entry>
 							
@@ -1526,11 +1518,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_oaw::Property">
-		<title><classname>oaw::Property</classname></title>
+	<section id="r99_xpand2::Property">
+		<title><classname>xpand2::Property</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_oaw::Feature'>oaw::Feature</link></classname>
+<classname><link linkend='r99_xpand2::Feature'>xpand2::Feature</link></classname>
 		</para>
 		<para>
 		
@@ -1542,10 +1534,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_oaw::Property_Operations">
-			<title>Operations of <classname>oaw::Property</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_xpand2::Property_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -1559,11 +1550,11 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Void'>Void</link></classname>
 						</entry>
 						<entry>
-							<methodname>get</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							<methodname>set</methodname>
+							(<classname><link linkend='r99_Object'>Object</link></classname>, <classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1571,11 +1562,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Void'>Void</link></classname>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
-							<methodname>set</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>, <classname><link linkend='builtin_api_Object'>Object</link></classname>)
+							<methodname>get</methodname>
+							(<classname><link linkend='r99_Object'>Object</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1590,11 +1581,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_oaw::Operation">
-		<title><classname>oaw::Operation</classname></title>
+	<section id="r99_xpand2::Operation">
+		<title><classname>xpand2::Operation</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_oaw::Feature'>oaw::Feature</link></classname>
+<classname><link linkend='r99_xpand2::Feature'>xpand2::Feature</link></classname>
 		</para>
 		<para>
 		
@@ -1606,10 +1597,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_oaw::Operation_Operations">
-			<title>Operations of <classname>oaw::Operation</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_xpand2::Operation_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -1623,19 +1613,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
-						</entry>
-						<entry>
-							<methodname>evaluate</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>, <classname><link linkend='builtin_api_List'>List</link></classname>)
-						</entry>
-						<entry>
-							
-						</entry>
-					</row>
-					<row>
-						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>getParameterTypes</methodname>
@@ -1645,6 +1623,18 @@ none
 							
 						</entry>
 					</row>
+					<row>
+						<entry>
+							<classname><link linkend='r99_Object'>Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>evaluate</methodname>
+							(<classname><link linkend='r99_Object'>Object</link></classname>, <classname><link linkend='r99_List'>List</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
 				</tbody>
 			</tgroup>
 		</table>
@@ -1654,11 +1644,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_oaw::StaticProperty">
-		<title><classname>oaw::StaticProperty</classname></title>
+	<section id="r99_xpand2::StaticProperty">
+		<title><classname>xpand2::StaticProperty</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_oaw::Feature'>oaw::Feature</link></classname>
+<classname><link linkend='r99_xpand2::Feature'>xpand2::Feature</link></classname>
 		</para>
 		<para>
 		
@@ -1670,10 +1660,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_oaw::StaticProperty_Operations">
-			<title>Operations of <classname>oaw::StaticProperty</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_xpand2::StaticProperty_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -1687,7 +1676,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
 							<methodname>get</methodname>
@@ -1706,11 +1695,11 @@ none
 	</section>
 
 
-	<section id="builtin_api_Void">
+	<section id="r99_Void">
 		<title><classname>Void</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
@@ -1729,17 +1718,17 @@ none
 	</section>
 
 
-	<section id="builtin_api_xtend::AdviceContext">
+	<section id="r99_xtend::AdviceContext">
 		<title><classname>xtend::AdviceContext</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
 
-		<table frame='all' id="builtin_api_xtend::AdviceContext_Properties">
-			<title>Properties of <classname>xtend::AdviceContext</classname></title>
+		<table frame='all' id="r99_xtend::AdviceContext_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1754,7 +1743,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>paramTypes</methodname>
@@ -1765,7 +1754,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>name</methodname>
@@ -1776,7 +1765,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>paramNames</methodname>
@@ -1787,7 +1776,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>paramValues</methodname>
@@ -1805,10 +1794,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_xtend::AdviceContext_Operations">
-			<title>Operations of <classname>xtend::AdviceContext</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_xtend::AdviceContext_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -1822,11 +1810,11 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
 							<methodname>proceed</methodname>
-							(<classname><link linkend='builtin_api_List'>List</link></classname>)
+							(<classname><link linkend='r99_List'>List</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1834,7 +1822,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Object'>Object</link></classname>
+							<classname><link linkend='r99_Object'>Object</link></classname>
 						</entry>
 						<entry>
 							<methodname>proceed</methodname>
@@ -1853,17 +1841,17 @@ none
 	</section>
 
 
-	<section id="builtin_api_xpand2::Definition">
+	<section id="r99_xpand2::Definition">
 		<title><classname>xpand2::Definition</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
 
-		<table frame='all' id="builtin_api_xpand2::Definition_Properties">
-			<title>Properties of <classname>xpand2::Definition</classname></title>
+		<table frame='all' id="r99_xpand2::Definition_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -1878,7 +1866,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>paramTypes</methodname>
@@ -1889,7 +1877,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>name</methodname>
@@ -1900,7 +1888,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_List'>List</link></classname>
+							<classname><link linkend='r99_List'>List</link></classname>
 						</entry>
 						<entry>
 							<methodname>paramNames</methodname>
@@ -1911,7 +1899,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_oaw::Type'>oaw::Type</link></classname>
+							<classname><link linkend='r99_xpand2::Type'>xpand2::Type</link></classname>
 						</entry>
 						<entry>
 							<methodname>targetType</methodname>
@@ -1929,10 +1917,9 @@ none
 		<para>
 		
 
-		<table frame='all' id="builtin_api_xpand2::Definition_Operations">
-			<title>Operations of <classname>xpand2::Definition</classname></title>
-            <?dbfo keep-together.within-column="auto" ?>
-            <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+		<table frame='all' id="r99_xpand2::Definition_Operations">
+			<title>Operations</title>
+			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
 				<colspec colname='c3'/>
@@ -1946,7 +1933,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Void'>Void</link></classname>
+							<classname><link linkend='r99_Void'>Void</link></classname>
 						</entry>
 						<entry>
 							<methodname>proceed</methodname>
@@ -1958,7 +1945,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_String'>String</link></classname>
+							<classname><link linkend='r99_String'>String</link></classname>
 						</entry>
 						<entry>
 							<methodname>toString</methodname>
@@ -1970,11 +1957,11 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Void'>Void</link></classname>
+							<classname><link linkend='r99_Void'>Void</link></classname>
 						</entry>
 						<entry>
 							<methodname>proceed</methodname>
-							(<classname><link linkend='builtin_api_Object'>Object</link></classname>, <classname><link linkend='builtin_api_List'>List</link></classname>)
+							(<classname><link linkend='r99_Object'>Object</link></classname>, <classname><link linkend='r99_List'>List</link></classname>)
 						</entry>
 						<entry>
 							
@@ -1989,17 +1976,17 @@ none
 	</section>
 
 
-	<section id="builtin_api_xpand2::Iterator">
+	<section id="r99_xpand2::Iterator">
 		<title><classname>xpand2::Iterator</classname></title>
 		<para>
 			Supertype: 
-<classname><link linkend='builtin_api_Object'>Object</link></classname>
+<classname><link linkend='r99_Object'>Object</link></classname>
 		</para>
 		<para>
 		
 
-		<table frame='all' id="builtin_api_xpand2::Iterator_Properties">
-			<title>Properties of <classname>xpand2::Iterator</classname></title>
+		<table frame='all' id="r99_xpand2::Iterator_Properties">
+			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
 				<colspec colname='c2'/>
@@ -2014,7 +2001,7 @@ none
 				<tbody>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>lastIteration</methodname>
@@ -2025,7 +2012,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Boolean'>Boolean</link></classname>
+							<classname><link linkend='r99_Boolean'>Boolean</link></classname>
 						</entry>
 						<entry>
 							<methodname>firstIteration</methodname>
@@ -2036,7 +2023,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>elements</methodname>
@@ -2047,7 +2034,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>counter0</methodname>
@@ -2058,7 +2045,7 @@ none
 					</row>
 					<row>
 						<entry>
-							<classname><link linkend='builtin_api_Integer'>Integer</link></classname>
+							<classname><link linkend='r99_Integer'>Integer</link></classname>
 						</entry>
 						<entry>
 							<methodname>counter1</methodname>

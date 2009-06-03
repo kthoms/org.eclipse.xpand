@@ -125,7 +125,7 @@ public class FastAnalyzerTest extends TestCase {
     }
 
     public final void testComputeStack2() {
-        final String txt = tag("DEFINE test(String txt, List[oaw::Type] typeList) FOR Entity")
+        final String txt = tag("DEFINE test(String txt, List[xpand2::Type] typeList) FOR Entity")
                 + tag("FOREACH txt.list AS c") + tag("c.stuff") + tag("ENDFOREACH")
                 + tag("LET stuff(txt+'holla') AS stuff") + tag("stuff.bla");
         final Stack<StackElement> s = FastAnalyzer.computeStack(txt);
@@ -146,7 +146,7 @@ public class FastAnalyzerTest extends TestCase {
         assertEquals("txt", v.name);
         v = se.variables.get("typeList");
         assertNotNull(v);
-        assertEquals("List[oaw::Type]", v.typeName);
+        assertEquals("List[xpand2::Type]", v.typeName);
         assertEquals("typeList", v.name);
         v = se.variables.get(ExecutionContext.IMPLICIT_VARIABLE);
         assertNotNull(v);
@@ -169,7 +169,7 @@ public class FastAnalyzerTest extends TestCase {
 
         assertFalse(FastAnalyzer.isInImport("IMPORT"));
         assertTrue(FastAnalyzer.isInImport(XpandTokens.LT + "IMPORT "));
-        assertTrue(FastAnalyzer.isInImport(XpandTokens.LT + "IMPORT org::oaw::"));
+        assertTrue(FastAnalyzer.isInImport(XpandTokens.LT + "IMPORT org::xpand2::"));
 
     }
 
@@ -179,7 +179,7 @@ public class FastAnalyzerTest extends TestCase {
 
         assertFalse(FastAnalyzer.isInExtensionImport("EXTENSION"));
         assertTrue(FastAnalyzer.isInExtensionImport(XpandTokens.LT + "EXTENSION "));
-        assertTrue(FastAnalyzer.isInExtensionImport(XpandTokens.LT + "EXTENSION org::oaw::"));
+        assertTrue(FastAnalyzer.isInExtensionImport(XpandTokens.LT + "EXTENSION org::xpand2::"));
 
     }
 
@@ -206,7 +206,7 @@ public class FastAnalyzerTest extends TestCase {
         assertTrue(FastAnalyzer.isInTypeDecl(XpandTokens.LT + ("DEFINE test(String s) FOR ")));
         assertTrue(FastAnalyzer.isInTypeDecl(XpandTokens.LT + ("DEFINE test(String s) FOR oaw")));
         assertTrue(FastAnalyzer.isInTypeDecl(XpandTokens.LT + ("test.typeSelect(")));
-        assertTrue(FastAnalyzer.isInTypeDecl(XpandTokens.LT + ("test.typeSelect( oaw::")));
+        assertTrue(FastAnalyzer.isInTypeDecl(XpandTokens.LT + ("test.typeSelect( xpand2::")));
 
         assertFalse(FastAnalyzer.isInTypeDecl(XpandTokens.LT + ("DEFINE test")));
         assertFalse(FastAnalyzer.isInTypeDecl(XpandTokens.LT + ("DEFINE test(String ")));

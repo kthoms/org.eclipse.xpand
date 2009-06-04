@@ -2040,12 +2040,12 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>This example uses Eclipse EMF as the basis <indexterm>
             <primary>Model-to-model transformation</primary>
-          </indexterm>for model-to-model transformations. It builds on the
+          </indexterm>for model-to-model transformations. <!-- It builds on the
         <emphasis>emfExample</emphasis> documented elsewhere. Please read and
         install the <emphasis>emfExample</emphasis> first.</para>
 
         <para>You can download the example from <ulink
-        url="http://www.eclipse.org/gmt/oaw/download"></ulink>.</para>
+        url="http://www.eclipse.org/gmt/oaw/download"></ulink>.--></para>
 
         <para>The idea in this example is to transform the data model
         introduced in the EMF example into itself. This might seem boring, but

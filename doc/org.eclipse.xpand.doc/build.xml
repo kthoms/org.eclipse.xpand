@@ -165,10 +165,10 @@
 
 	<target name="docbook2html">
 		<echo>Converting article to HTML...</echo>
-		<delete file="${dest.dir}${file.separator}${article.name}.html" />
+		<delete file="${dest.dir}${file.separator}references${file.separator}${article.name}.html" />
 		<xslt in="${src.dir}${file.separator}${article.name}.xml"
 		      extension="xml"
-		      out="${dest.dir}${file.separator}${article.name}.html"
+		      out="${dest.dir}${file.separator}references${file.separator}${article.name}.html"
 		      style="${article.stylesheet}">
 			<factory name="org.apache.xalan.processor.TransformerFactoryImpl">
 				<attribute name="http://xml.apache.org/xalan/features/optimize"

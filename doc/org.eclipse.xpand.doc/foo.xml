@@ -1,10 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE chapter [
-<!ENTITY % isopub SYSTEM "http://www.w3.org/2003/entities/iso8879/isopub.ent">
-%isopub;
-]>
-
-<chapter id="core_reference" xreflabel="Core reference">
+<?xml version="1.0" encoding="UTF-8"?><part id="xpand_reference">
+  <title>Xpand Reference</title>
+  <chapter id="core_reference" xml:base="../content/xpand_reference.xml" xreflabel="Core reference">
   <title><emphasis>Xpand</emphasis> / <emphasis>Xtend</emphasis> /
     <emphasis>Check</emphasis> Reference</title>
   
@@ -161,8 +157,7 @@ Set[my::Type]
       not document all of the operations here, because the built-in types will
       evolve over time and we want to derive the documentation from the
       implementation (model-driven, of course). For a complete reference,
-      consult the generated API documentation (<ulink
-      url="http://www.openarchitectureware.org/api/built-ins/">http://www.openarchitectureware.org/api/built-ins/</ulink>).</para>
+      consult the generated API documentation (<ulink url="http://www.openarchitectureware.org/api/built-ins/">http://www.openarchitectureware.org/api/built-ins/</ulink>).</para>
 
       <section id="r10_builtintypes_object">
         <title><classname>Object<indexterm>
@@ -874,7 +869,7 @@ true || false // OR
         <methodname>toString()</methodname> is invoked and the the result is
         used.</para>
 
-        <para>More Examples â€“ all the following expressions return
+        <para>More Examples Ã¢&#128;&#147; all the following expressions return
         <varname>true</varname>:</para>
 
         <programlisting>{'C','B','A'}.sortBy(e | e) == {'A','B','C'}
@@ -1153,7 +1148,7 @@ context Attribute ERROR
               constraints</title>
 
               <tgroup cols="2" colsep="1" rowsep="1">
-                <colspec colnum="2" colwidth="7*" />
+                <colspec colnum="2" colwidth="7*"/>
 
                 <tbody>
                   <row>
@@ -1801,8 +1796,7 @@ f.call("sayHello",new Object[]{"World"});
         </indexterm> strategy. This strategy provides as additional feature:
       the access to properties using the getter and setter methods.</para>
 
-      <para>For more information about type systems, see the <emphasis><xref
-      linkend="r10_expressions_language" /></emphasis> reference
+      <para>For more information about type systems, see the <emphasis><xref linkend="r10_expressions_language"/></emphasis> reference
       documentation.</para>
 
       <para>We have one JavaBean-like metamodel class:</para>
@@ -2187,8 +2181,7 @@ my::Templ::extension(*) // templ def with any number of parameters
    setTarget( old.target.duplicate() );</programlisting>
 
         <para>For more information about the <emphasis>Xtend</emphasis>
-        language please see the <emphasis><xref
-        linkend="Xtend_language" /></emphasis> reference documentation.</para>
+        language please see the <emphasis><xref linkend="Xtend_language"/></emphasis> reference documentation.</para>
       </section>
     </section>
   </section>
@@ -2206,7 +2199,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
     <para>Typing the <foreignphrase>guillemets</foreignphrase><indexterm>
         <primary>Guillemet</primary>
-      </indexterm> (« and ») used in the templates is supported by the Eclipse
+      </indexterm> (Â« and Â») used in the templates is supported by the Eclipse
     editor: which provides keyboard shortcuts with <keycombo action="simul">
         <keycap>Ctrl</keycap>
 
@@ -2239,8 +2232,8 @@ my::Templ::extension(*) // templ def with any number of parameters
       encoding<indexterm>
           <primary>Encoding</primary>
         </indexterm>. The only limitation are the tag brackets
-      (<emphasis>guillemets</emphasis>), for which the characters "«" (Unicode
-      <varname>00AB</varname>) and "»" (Unicode <varname>00BB</varname>) are
+      (<emphasis>guillemets</emphasis>), for which the characters "Â«" (Unicode
+      <varname>00AB</varname>) and "Â»" (Unicode <varname>00BB</varname>) are
       used. So for reading templates, an encoding should be used that supports
       these characters (e.g. <varname>ISO-8859-1</varname> or
       <varname>UTF-8</varname>).</para>
@@ -2252,18 +2245,18 @@ my::Templ::extension(*) // templ def with any number of parameters
     <section id="xpand_reference_general_structure_of_template_files">
       <title>General structure of template files</title>
 
-      <para>Here is a first example of a template:<programlisting>«IMPORT meta::model»
-«EXTENSION my::ExtensionFile»
+      <para>Here is a first example of a template:<programlisting>Â«IMPORT meta::modelÂ»
+Â«EXTENSION my::ExtensionFileÂ»
 
-«DEFINE javaClass FOR Entity»
-   «FILE fileName()»
-      package «javaPackage()»;
+Â«DEFINE javaClass FOR EntityÂ»
+   Â«FILE fileName()Â»
+      package Â«javaPackage()Â»;
 
-      public class «name» {
+      public class Â«nameÂ» {
          // implementation
       }
-   «ENDFILE»
-«ENDDEFINE»</programlisting> A template file consists of any number of IMPORT
+   Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»</programlisting> A template file consists of any number of IMPORT
       statements, followed by any number of EXTENSION statements, followed by
       one or more DEFINE blocks (called definitions).</para>
     </section>
@@ -2278,7 +2271,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>If you are tired of always typing the fully qualified names of
         your types and definitions, you can import a namespace using the
-        IMPORT statement. <programlisting>«IMPORT meta::model»</programlisting>This
+        IMPORT statement. <programlisting>Â«IMPORT meta::modelÂ»</programlisting>This
         one imports the namespace <varname>meta::model</varname>. If your
         template contains such a statement, you can use the unqualified names
         of all types and template files contained in that namespace. This is
@@ -2306,7 +2299,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         documentation for details)</para>
 
         <para>An EXTENSION import points to the <emphasis>Xtend</emphasis>
-        file containing the required extensions: <programlisting>«EXTENSION my::ExtensionFile»</programlisting>
+        file containing the required extensions: <programlisting>Â«EXTENSION my::ExtensionFileÂ»</programlisting>
         Note that extension files have to reside on the Java
         classpath<indexterm>
             <primary>Classpath</primary>
@@ -2327,10 +2320,10 @@ my::Templ::extension(*) // templ def with any number of parameters
             <secondary>File</secondary>
           </indexterm>. The tag consists of a name, an optional
         comma-separated parameter list, as well as the name of the metamodel
-        class for which the template is defined. <programlisting>«DEFINE templateName(formalParameterList) FOR MetaClass»
+        class for which the template is defined. <programlisting>Â«DEFINE templateName(formalParameterList) FOR MetaClassÂ»
    a sequence of statements
-«ENDDEFINE»</programlisting>To some extent, templates can be seen as special
-        methods of the metaclass â€“ there is always an implicit
+Â«ENDDEFINEÂ»</programlisting>To some extent, templates can be seen as special
+        methods of the metaclass Ã¢&#128;&#147; there is always an implicit
         <emphasis>this</emphasis> parameter which can be used to address the
         "underlying" model element; in our example above, this model element
         is "<classname>MetaClass</classname>".</para>
@@ -2361,12 +2354,11 @@ my::Templ::extension(*) // templ def with any number of parameters
 
             <mediaobject>
               <imageobject role="fo">
-                <imagedata fileref="images/xPandReference/metamodelexample.gif"
-                           scale="80" />
+                <imagedata fileref="images/xPandReference/metamodelexample.gif" scale="80"/>
               </imageobject>
 
               <imageobject role="html">
-                <imagedata fileref="images/xPandReference/metamodelexample.gif" />
+                <imagedata fileref="images/xPandReference/metamodelexample.gif"/>
               </imageobject>
             </mediaobject>
           </figure></para>
@@ -2375,21 +2367,21 @@ my::Templ::extension(*) // templ def with any number of parameters
         collection of <classname>A</classname>, <classname>B</classname> and
         <classname>C</classname> instances in the property
         <methodname>listOfAs</methodname>. Then, you can write the following
-        template: <programlisting>«DEFINE someOtherDefine FOR SomeMetaClass»
-   «EXPAND implClass FOREACH listOfAs»
-«ENDDEFINE»
+        template: <programlisting>Â«DEFINE someOtherDefine FOR SomeMetaClassÂ»
+   Â«EXPAND implClass FOREACH listOfAsÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE implClass FOR A»
+Â«DEFINE implClass FOR AÂ»
    // this is the code generated for the superclass A
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE implClass FOR B»
+Â«DEFINE implClass FOR BÂ»
    // this is the code generated for the subclass B
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE implClass FOR C»
+Â«DEFINE implClass FOR CÂ»
    // this is the code generated for the subclass C
-«ENDDEFINE»</programlisting>So for each <classname>B</classname> in the list,
+Â«ENDDEFINEÂ»</programlisting>So for each <classname>B</classname> in the list,
         the template defined for <classname>B</classname> is executed, for
         each <classname>C</classname> in the collection the template defined
         for <emphasis><classname>C</classname></emphasis> is invoked, and for
@@ -2404,9 +2396,9 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>The <varname>FILE</varname> statement redirects the output
         generated from its body statements to the specified target.
-        <programlisting>«FILE expression [outletName]»
+        <programlisting>Â«FILE expression [outletName]Â»
    a sequence of statements
-«ENDFILE»</programlisting>The target is a file in the file system whose name
+Â«ENDFILEÂ»</programlisting>The target is a file in the file system whose name
         is specified by the expression (relative to the specified target
         directory for that generator run). The expression for the target
         specification can be a concatenation (using the + operator).
@@ -2417,24 +2409,24 @@ my::Templ::extension(*) // templ def with any number of parameters
         outlets).</para>
 
         <para>The body of a <varname>FILE</varname> statement can contain any
-        other statements. Example: <programlisting>«FILE InterfaceName + ".java"»
-   package «InterfacePackageName»;
+        other statements. Example: <programlisting>Â«FILE InterfaceName + ".java"Â»
+   package Â«InterfacePackageNameÂ»;
 
    /* generated class! Do not modify! */
-   public interface «InterfaceName» {
-      «EXPAND Operation::InterfaceImplementation FOREACH  Operation»
+   public interface Â«InterfaceNameÂ» {
+      Â«EXPAND Operation::InterfaceImplementation FOREACH  OperationÂ»
    }
-«ENDFILE»
+Â«ENDFILEÂ»
 
 
-«FILE ImplName + ".java" MY_OUTLET»
-   package «ImplPackageName»;
+Â«FILE ImplName + ".java" MY_OUTLETÂ»
+   package Â«ImplPackageNameÂ»;
 
-   public class «ImplName» extends «ImplBaseName»
-                           implements «InterfaceName» {
+   public class Â«ImplNameÂ» extends Â«ImplBaseNameÂ»
+                           implements Â«InterfaceNameÂ» {
    //TODO: implement it
    }
-«ENDFILE»</programlisting></para>
+Â«ENDFILEÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_expand">
@@ -2446,8 +2438,8 @@ my::Templ::extension(*) // templ def with any number of parameters
         <varname>DEFINE</varname> block (in a separate variable context),
         inserts its output at the current location and continues with the next
         statement. This is similar in concept to a subroutine call.
-        <programlisting>«EXPAND definitionName [(parameterList)]
-   [FOR expression | FOREACH expression [SEPARATOR expression] ]»</programlisting>The
+        <programlisting>Â«EXPAND definitionName [(parameterList)]
+   [FOR expression | FOREACH expression [SEPARATOR expression] ]Â»</programlisting>The
         various alternative syntaxes are explained below.</para>
 
         <section id="xpand_reference_names">
@@ -2459,7 +2451,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
           <para>If the called definition is not contained in the same template
           file, the name of the template file must be specified. As usual, the
-          double colon is used to delimit namespaces. <programlisting>«EXPAND TemplateFile::definitionName FOR myModelElement»</programlisting>Note
+          double colon is used to delimit namespaces. <programlisting>Â«EXPAND TemplateFile::definitionName FOR myModelElementÂ»</programlisting>Note
           that you would need to import the namespace<indexterm>
               <primary>Namespace</primary>
 
@@ -2467,11 +2459,11 @@ my::Templ::extension(*) // templ def with any number of parameters
             </indexterm> of the template file (if there is one). For instance,
           if the template file resides in the java package
           <varname>my.templates</varname>, there are two alternatives. You
-          could either write <programlisting>«IMPORT my::templates»
+          could either write <programlisting>Â«IMPORT my::templatesÂ»
 ...
-«EXPAND TemplateFile::definitionName FOR myModelElement»</programlisting> or
-          <programlisting>«EXPAND my::templates::TemplateFile::definitionName
-        FOR myModelElement»</programlisting></para>
+Â«EXPAND TemplateFile::definitionName FOR myModelElementÂ»</programlisting> or
+          <programlisting>Â«EXPAND my::templates::TemplateFile::definitionName
+        FOR myModelElementÂ»</programlisting></para>
         </section>
       </section>
 
@@ -2484,15 +2476,15 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>If <varname>FOR</varname> or <varname>FOREACH</varname> is
         omitted the other template is called <varname>FOR this</varname>.
-        <programlisting>«EXPAND TemplateFile::definitionName»</programlisting>
-        equals <programlisting>«EXPAND TemplateFile::definitionName FOR this»</programlisting>
+        <programlisting>Â«EXPAND TemplateFile::definitionNameÂ»</programlisting>
+        equals <programlisting>Â«EXPAND TemplateFile::definitionName FOR thisÂ»</programlisting>
         If <varname>FOR</varname> is specified, the definition is executed for
-        the result of the target expression. <programlisting>«EXPAND myDef FOR entity»</programlisting>If
+        the result of the target expression. <programlisting>Â«EXPAND myDef FOR entityÂ»</programlisting>If
         <varname>FOREACH</varname> is specified, the target expression must
         evaluate to a collection type<indexterm>
             <primary>collection type</primary>
           </indexterm>. In this case, the specified definition is executed for
-        each element of that collection. <programlisting>«EXPAND myDef FOREACH entity.allAttributes»  </programlisting></para>
+        each element of that collection. <programlisting>Â«EXPAND myDef FOREACH entity.allAttributesÂ»  </programlisting></para>
 
         <section id="xpand_reference_specifying_a_separator">
           <title>Specifying a Separator<indexterm>
@@ -2501,7 +2493,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
           <para>If a definition is to be expanded <varname>FOREACH</varname>
           element of the target expression it is possible to specify a
-          <varname>SEPARATOR</varname> expression: <programlisting>«EXPAND paramTypeAndName FOREACH params SEPARATOR ','»</programlisting>The
+          <varname>SEPARATOR</varname> expression: <programlisting>Â«EXPAND paramTypeAndName FOREACH params SEPARATOR ','Â»</programlisting>The
           result of the separator expression<indexterm>
               <primary>Expression</primary>
 
@@ -2528,10 +2520,10 @@ my::Templ::extension(*) // templ def with any number of parameters
             <primary>Collection</primary>
           </indexterm> that results from the expression. The current element
         is bound to a variable with the specified name in the current context.
-        <programlisting>«FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]»
+        <programlisting>Â«FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]Â»
    a sequence of statements using variableName to access the
    current element of the iteration
-«ENDFOREACH»</programlisting>The body of a <varname>FOREACH</varname> block
+Â«ENDFOREACHÂ»</programlisting>The body of a <varname>FOREACH</varname> block
         can contain any other statements; specifically
         <varname>FOREACH</varname> statements may be nested. If
         <varname>ITERATOR</varname><indexterm>
@@ -2542,9 +2534,9 @@ my::Templ::extension(*) // templ def with any number of parameters
         expression works in the same way as the one for
         <varname>EXPAND</varname>.</para>
 
-        <para>Example: <programlisting>«FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','»
-   «iter.counter1» : «c»
-«ENDFOREACH»</programlisting>The evaluation of the above statement results in
+        <para>Example: <programlisting>Â«FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','Â»
+   Â«iter.counter1Â» : Â«cÂ»
+Â«ENDFOREACHÂ»</programlisting>The evaluation of the above statement results in
         the following text: <programlisting>1 : A,
 2 : B,
 3 : C</programlisting></para>
@@ -2564,13 +2556,13 @@ my::Templ::extension(*) // templ def with any number of parameters
             <primary>ENDIF</primary>
           </indexterm>. The body of an <varname>IF</varname> block can contain
         any other statement, specifically, <varname>IF</varname> statements
-        may be nested. <programlisting>«IF expression»
+        may be nested. <programlisting>Â«IF expressionÂ»
    a sequence of statements
-[ «ELSEIF expression» ]
+[ Â«ELSEIF expressionÂ» ]
    a sequence of statements ]
-[ «ELSE»
+[ Â«ELSEÂ»
    a sequence of statements ]
-«ENDIF»</programlisting></para>
+Â«ENDIFÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_protect">
@@ -2582,9 +2574,9 @@ my::Templ::extension(*) // templ def with any number of parameters
             <primary>Protected region</primary>
           </indexterm> are used to mark sections in the generated code that
         shall not be overridden again by the subsequent generator run. These
-        sections typically contain manually written code. <programlisting>«PROTECT CSTART expression CEND expression ID expression (DISABLE)?»
+        sections typically contain manually written code. <programlisting>Â«PROTECT CSTART expression CEND expression ID expression (DISABLE)?Â»
    a sequence of statements
-«ENDPROTECT»</programlisting> The values of CSTART<indexterm>
+Â«ENDPROTECTÂ»</programlisting> The values of CSTART<indexterm>
             <primary>CSTART</primary>
           </indexterm> and CEND<indexterm>
             <primary>CEND</primary>
@@ -2592,9 +2584,9 @@ my::Templ::extension(*) // templ def with any number of parameters
         marker in the output. They should build valid comment beginning and
         end strings corresponding to the generated target language (e.g.
         <emphasis>"/*"</emphasis> and <emphasis>"*/"</emphasis> for Java). The
-        following is an example for Java: <programlisting>«PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueID»
+        following is an example for Java: <programlisting>Â«PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueIDÂ»
    here goes some content
-«ENDPROTECT»</programlisting>The ID is set by the <varname>ID</varname>
+Â«ENDPROTECTÂ»</programlisting>The ID is set by the <varname>ID</varname>
         expression and must be globally unique (at least for one complete pass
         of the generator).</para>
 
@@ -2618,7 +2610,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>If you want the generator to generate disabled protected
         regions, you need to add the <varname>DISABLE</varname> keyword inside
-        the declaration: <programlisting>«PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE»</programlisting></para>
+        the declaration: <programlisting>Â«PROTECT CSTART '/*' CEND '*/' ID this.name DISABLEÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_let">
@@ -2627,17 +2619,17 @@ my::Templ::extension(*) // templ def with any number of parameters
           </indexterm></title>
 
         <para><varname>LET</varname> lets you specify local
-        variables:<programlisting>«LET expression AS variableName»
+        variables:<programlisting>Â«LET expression AS variableNameÂ»
    a sequence of statements
-«ENDLET»</programlisting>During the expansion of the body of the
+Â«ENDLETÂ»</programlisting>During the expansion of the body of the
         <varname>LET</varname><indexterm>
             <primary>LET</primary>
           </indexterm> block, the value of the expression is bound to the
         specified variable. Note that the expression will only be evaluated
         once, independent from the number of usages of the variable within the
-        <varname>LET</varname> block. Example: <programlisting>«LET packageName + "." + className AS fqn»
-   the fully qualified name is: «fqn»;
-«ENDLET»</programlisting></para>
+        <varname>LET</varname> block. Example: <programlisting>Â«LET packageName + "." + className AS fqnÂ»
+   the fully qualified name is: Â«fqnÂ»;
+Â«ENDLETÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_error">
@@ -2649,7 +2641,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         the templates by throwing an
         <varname>XpandException</varname><indexterm>
             <primary>XpandException</primary>
-          </indexterm> with the specified message. <programlisting>«ERROR expression»</programlisting>Note
+          </indexterm> with the specified message. <programlisting>Â«ERROR expressionÂ»</programlisting>Note
         that you should use this facility very sparingly, since it is better
         practice to check for invalid models using constraints on the
         metamodel, and not in the templates.</para>
@@ -2662,16 +2654,16 @@ my::Templ::extension(*) // templ def with any number of parameters
             <secondary>Comments</secondary>
           </indexterm></title>
 
-        <para>Comments are only allowed outside of tags. <programlisting>«REM»
+        <para>Comments are only allowed outside of tags. <programlisting>Â«REMÂ»
    text comment
-«ENDREM»</programlisting>Comments may not contain a REM<indexterm>
+Â«ENDREMÂ»</programlisting>Comments may not contain a REM<indexterm>
             <primary>REM</primary>
           </indexterm> tag, this implies that comments are not nestable. A
         comment may not have a white space between the REM keyword and its
-        brackets. Example: <programlisting>«REM»«LET expression AS variableName»«ENDREM»
+        brackets. Example: <programlisting>Â«REMÂ»Â«LET expression AS variableNameÂ»Â«ENDREMÂ»
    a sequence of statements
-«REM»  «variableName.stuff»
-«ENDLET»«ENDREM»</programlisting></para>
+Â«REMÂ»  Â«variableName.stuffÂ»
+Â«ENDLETÂ»Â«ENDREMÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_expression_statement">
@@ -2688,12 +2680,10 @@ my::Templ::extension(*) // templ def with any number of parameters
         expression statement just evaluates the contained expression and
         writes the result to the output (using the
         <varname>toString()</varname> method of
-        <varname>java.lang.Object</varname>). Example: <programlisting>public class «this.name» {</programlisting>
+        <varname>java.lang.Object</varname>). Example: <programlisting>public class Â«this.nameÂ» {</programlisting>
         All expressions defined by the oArchitectureWare expressions
         sublanguage are also available in <emphasis>Xpand</emphasis>. You can invoke imported
-        extensions. (See the <emphasis><xref
-        linkend="r10_expressions_language" /></emphasis> and <emphasis><xref
-        linkend="Xtend_language" /> language reference</emphasis> for more
+        extensions. (See the <emphasis><xref linkend="r10_expressions_language"/></emphasis> and <emphasis><xref linkend="Xtend_language"/> language reference</emphasis> for more
         details).</para>
       </section>
 
@@ -2706,12 +2696,12 @@ my::Templ::extension(*) // templ def with any number of parameters
 
             <secondary>Omit</secondary>
           </indexterm> you can add a minus sign just before any closing
-        bracket. Example: <programlisting>«FILE InterfaceName + ".java"-»
-«IF hasPackage-»
-package «InterfacePackageName»;
-«ENDIF-»
+        bracket. Example: <programlisting>Â«FILE InterfaceName + ".java"-Â»
+Â«IF hasPackage-Â»
+package Â«InterfacePackageNameÂ»;
+Â«ENDIF-Â»
 ...
-«ENDFILE»</programlisting>The generated file would start with two new lines
+Â«ENDFILEÂ»</programlisting>The generated file would start with two new lines
         (one after the <varname>FILE</varname> and one after the
         <varname>IF</varname> statement) if the minus characters had not been
         set.</para>
@@ -2738,9 +2728,9 @@ package «InterfacePackageName»;
       change some small generation stuff, you can make use of the
       <varname>AROUND</varname><indexterm>
           <primary>AROUND</primary>
-        </indexterm> aspects. <programlisting>«AROUND qualifiedDefinitionName(parameterList)? FOR type»
+        </indexterm> aspects. <programlisting>Â«AROUND qualifiedDefinitionName(parameterList)? FOR typeÂ»
    a sequence of statements
-«ENDAROUND» </programlisting> <varname>AROUND</varname> lets you add templates
+Â«ENDAROUNDÂ» </programlisting> <varname>AROUND</varname> lets you add templates
       in an non-invasive way (you do not need to touch the generator
       templates). Because aspects are invasive, a template file containing
       <varname>AROUND</varname> aspects must be wrapped by configuration (see
@@ -2769,9 +2759,9 @@ package «InterfacePackageName»;
         <para>You specify on which join points the contributed code should be
         executed by specifying something like a 'query' on all available join
         points. Such a query is called a <emphasis>point cut</emphasis>.
-        <programlisting>«AROUND [pointcut]»
+        <programlisting>Â«AROUND [pointcut]Â»
    do stuff
-«ENDAROUND»</programlisting> A pointcut consists of a fully qualified name,
+Â«ENDAROUNDÂ»</programlisting> A pointcut consists of a fully qualified name,
         parameter types and the target type.</para>
 
         <section id="xpand_reference_definition_name">
@@ -2914,7 +2904,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         metamodels the <emphasis>Xpand</emphasis> templates should be
         evaluated. One can specify more than one metamodel here. Metamodel
         implementations are required by the expression framework (see
-        <emphasis><xref linkend="r10_expressions_language" /></emphasis>) used
+        <emphasis><xref linkend="r10_expressions_language"/></emphasis>) used
         by <emphasis>Xpand2</emphasis>. In the example above we configured the
         Ecore metamodel using the <emphasis>EMFMetaModel</emphasis>
         implementation shipped with the core part of the <emphasis>Xpand</emphasis> release.</para>
@@ -2955,18 +2945,18 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
 &lt;/component&gt;</programlisting>In the example there are two outlets
         configured. The first one has no name and is therefore handled as the
         default outlet. Default outlets are triggered by omitting an outlet
-        name: <programlisting>«FILE 'test/note.txt'»
+        name: <programlisting>Â«FILE 'test/note.txt'Â»
 # this goes to the default outlet
-«ENDFILE»</programlisting>The configured base path is
+Â«ENDFILEÂ»</programlisting>The configured base path is
         '<filename>main/src-gen</filename>', so the file from above would go
         to '<filename>main/src-gen/test/note.txt</filename>'.</para>
 
         <para>The second outlet has a <varname>name</varname> ('TO_SRC')
         specified. Additionally the flag <varname>overwrite</varname> is set
         to <varname>false</varname> (defaults to <varname>true</varname>). The
-        following <emphasis>Xpand</emphasis> fragment <programlisting>«FILE 'test/note.txt' TO_SRC»
+        following <emphasis>Xpand</emphasis> fragment <programlisting>Â«FILE 'test/note.txt' TO_SRCÂ»
 # this goes to the TO_SRC outlet
-«ENDFILE»</programlisting>would cause the generator to write the contents to
+Â«ENDFILEÂ»</programlisting>would cause the generator to write the contents to
         '<filename>main/src/test/note.txt</filename>' if the file does not
         already exist (the <varname>overwrite</varname> flag).</para>
 
@@ -2985,7 +2975,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         important that generated code looks good, because developers should be
         able to understand it. On the other hand template files should look
         good, too. It is thus best practice to write nice looking template
-        files and not to care how the generated code looks â€“ and then you run
+        files and not to care how the generated code looks Ã¢&#128;&#147; and then you run
         a beautifier over the generated code to fix that problem. Of course,
         if a beautifier is not available, or if white space has syntactical
         meaning (as in Python), you would have to write your templates with
@@ -3038,7 +3028,7 @@ public interface PostProcessor {
           </indexterm>. <programlisting>&lt;prSrcPaths value="main/src"/&gt;
 &lt;prDefaultExcludes value="false"/&gt;
 &lt;prExcludes value="*.xml"/&gt;</programlisting>The
-        <emphasis>prSrcPaths</emphasis>  <indexterm>
+        <emphasis>prSrcPaths</emphasis> Â <indexterm>
             <primary>prSrcPaths</primary>
           </indexterm>property points to a comma-separated list of
         directories. The protected region resolver will scan these directories
@@ -3195,7 +3185,7 @@ public interface PostProcessor {
         </indexterm>This example shows how to use aspect-oriented programming
       techniques in <emphasis>Xpand</emphasis> templates. It is applicable to
       EMF based and <emphasis>Classic</emphasis> systems. However, we explain
-      the idea based on the <emphasis>emfExample</emphasis> â€“ hence you should
+      the idea based on the <emphasis>emfExample</emphasis> Ã¢&#128;&#147; hence you should
       read that before.</para>
     </section>
 
@@ -3209,7 +3199,7 @@ public interface PostProcessor {
       nice generator that generates certain artifacts. The generator (or
       cartridge) might be a third party product, delivered in a single JAR
       file. Still you might want to adapt certain aspects of the generation
-      process â€“ <emphasis>without modifying the original
+      process Ã¢&#128;&#147; <emphasis>without modifying the original
       generator</emphasis>.</para>
 
       <para><emphasis role="bold">Scenario 2:</emphasis> You are building a
@@ -3250,42 +3240,42 @@ public interface PostProcessor {
         <classname>Impl</classname> that generates the implementation of the
         JavaBean.</para>
 
-        <programlisting language="Xpand">«DEFINE Entity FOR data::Entity»
-   «FILE baseClassFileName() »
-      // generated at «timestamp()»
-      public abstract class «baseClassName()» {
-         «EXPAND Impl»
+        <programlisting language="Xpand">Â«DEFINE Entity FOR data::EntityÂ»
+   Â«FILE baseClassFileName() Â»
+      // generated at Â«timestamp()Â»
+      public abstract class Â«baseClassName()Â» {
+         Â«EXPAND ImplÂ»
       }
-   «ENDFILE»
-«ENDDEFINE»
+   Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE Impl FOR data::Entity»
-   «EXPAND GettersAndSetters»
-«ENDDEFINE»
+Â«DEFINE Impl FOR data::EntityÂ»
+   Â«EXPAND GettersAndSettersÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE Impl FOR data::PersistentEntity»
-   «EXPAND GettersAndSetters»
+Â«DEFINE Impl FOR data::PersistentEntityÂ»
+   Â«EXPAND GettersAndSettersÂ»
     public void save() {
 
    }
-«ENDDEFINE»</programlisting>
+Â«ENDDEFINEÂ»</programlisting>
 
         <para>What we now want to do is as follows: Whenever the
         <emphasis>Impl</emphasis> template is executed, we want to run an
         additional template that generates additional code (for example, some
-        kind of meta information for frameworks â€“ the specific code is not
+        kind of meta information for frameworks Ã¢Â€Â“ the specific code is not
         important for the example here).</para>
 
         <para>So, in our new project, we define the following template
         file:</para>
 
-        <programlisting language="Xpand">«AROUND Impl FOR data::Entity»
-   «FOREACH attribute AS a»
-      public static final AttrInfo «a.name»Info = new AttrInfo(
-         "«a.name»", «a.type».class );
-   «ENDFOREACH»
-   «targetDef.proceed()»
-«ENDAROUND»</programlisting>
+        <programlisting language="Xpand">Â«AROUND Impl FOR data::EntityÂ»
+   Â«FOREACH attribute AS aÂ»
+      public static final AttrInfo Â«a.nameÂ»Info = new AttrInfo(
+         "Â«a.nameÂ»", Â«a.typeÂ».class );
+   Â«ENDFOREACHÂ»
+   Â«targetDef.proceed()Â»
+Â«ENDAROUNDÂ»</programlisting>
 
         <para>So, this new template wraps around the existing template called
         <classname>Impl</classname> It first generates additional code and
@@ -3421,3 +3411,2076 @@ public interface PostProcessor {
 -->
   </section>
 </chapter>
+  <section id="r99" xml:base="../content/builtin_api.xml">
+	<title>Built-in types API documentation</title>
+	
+	
+	<section id="r99_Object">
+		<title><classname>Object</classname></title>
+		<para>
+			Supertype: 
+none
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_Object_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::Type">xpand2::Type</link></classname>
+						</entry>
+						<entry>
+							<methodname>metaType</methodname>
+						</entry>
+						<entry>
+							returns this object's meta type.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_Object_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>==</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>toString</methodname>
+							()
+						</entry>
+						<entry>
+							returns the String representation of this object. (Calling Java's toString() method)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;=</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>!=</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&gt;</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>compareTo</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							Compares this object with the specified object for order.  Returns a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&gt;=</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_String">
+		<title><classname>String</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_String_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>length</methodname>
+						</entry>
+						<entry>
+							the length of this string
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_String_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>toLowerCase</methodname>
+							()
+						</entry>
+						<entry>
+							Converts all of the characters in this String to lower case using the rules of the default locale (from Java)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>+</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							concatenates two strings
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>toCharList</methodname>
+							()
+						</entry>
+						<entry>
+							splits this String into a List[String] containing Strings of length 1
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>toFirstUpper</methodname>
+							()
+						</entry>
+						<entry>
+							Converts the first character in this String to upper case using the rules of the default locale (from Java)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>subString</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>, <classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							Returns a new string that is a substring of this string.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>trim</methodname>
+							()
+						</entry>
+						<entry>
+							Returns a copy of the string, with leading and trailing whitespace omitted. (from Java 1.4)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>toFirstLower</methodname>
+							()
+						</entry>
+						<entry>
+							Converts the first character in this String to lower case using the rules of the default locale (from Java)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>toUpperCase</methodname>
+							()
+						</entry>
+						<entry>
+							Converts all of the characters in this String to upper case using the rules of the default locale (from Java)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>split</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							Splits this string around matches of the given regular expression (from Java 1.4)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>startsWith</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							Tests if this string starts with the specified prefix.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>matches</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							Tells whether or not this string matches the given regular expression. (from Java 1.4)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>asInteger</methodname>
+							()
+						</entry>
+						<entry>
+							Returns an Integer object holding the value of the specified String (from Java 1.5)
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>contains</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							Tests if this string contains substring.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>endsWith</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							Tests if this string ends with the specified prefix.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>replaceFirst</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>, <classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							Replaces the first substring of this string that matches the given regular expression with the given replacement.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>replaceAll</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>, <classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							Replaces each substring of this string that matches the given regular expression with the given replacement.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_Integer">
+		<title><classname>Integer</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Real">Real</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_Integer_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>upTo</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							returns a List of Integers starting with the value of the target expression, up to the value of the specified Integer, incremented by one.<br/>e.g. '1.upTo(5)' evaluates to {1,2,3,4,5}
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&gt;=</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>==</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>!=</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>upTo</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>, <classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							returns a List of Integers starting with the value of the target expression, up to the value of the first paramter, incremented by the second parameter.<br/>e.g. '1.upTo(10, 2)' evaluates to {1,3,5,7,9}
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>-</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>+</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;=</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>*</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>-</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&gt;</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>/</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_Boolean">
+		<title><classname>Boolean</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_Boolean_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>!</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_Real">
+		<title><classname>Real</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_Real_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Real">Real</link></classname>
+						</entry>
+						<entry>
+							<methodname>*</methodname>
+							(<classname><link linkend="r99_Real">Real</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&gt;=</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;=</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Real">Real</link></classname>
+						</entry>
+						<entry>
+							<methodname>-</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>==</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>!=</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&lt;</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Real">Real</link></classname>
+						</entry>
+						<entry>
+							<methodname>-</methodname>
+							(<classname><link linkend="r99_Real">Real</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Real">Real</link></classname>
+						</entry>
+						<entry>
+							<methodname>/</methodname>
+							(<classname><link linkend="r99_Real">Real</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>&gt;</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Real">Real</link></classname>
+						</entry>
+						<entry>
+							<methodname>+</methodname>
+							(<classname><link linkend="r99_Real">Real</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_Collection">
+		<title><classname>Collection</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_Collection_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>isEmpty</methodname>
+						</entry>
+						<entry>
+							returns true if this Collection is empty
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>size</methodname>
+						</entry>
+						<entry>
+							returns the size of this Collection
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_Collection_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>contains</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							returns true if this collection contains the specified object. otherwise false. returns this Collection.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>toList</methodname>
+							()
+						</entry>
+						<entry>
+							converts this collection to List
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>toSet</methodname>
+							()
+						</entry>
+						<entry>
+							converts this collection to Set
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>flatten</methodname>
+							()
+						</entry>
+						<entry>
+							returns a flattened List.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>intersect</methodname>
+							(<classname><link linkend="r99_Collection">Collection</link></classname>)
+						</entry>
+						<entry>
+							returns a new Set, containing only the elements contained in this and the specified Collection
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>toString</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							concatenates each contained element (using toString()), separated by the specified String.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Collection">Collection</link></classname>
+						</entry>
+						<entry>
+							<methodname>removeAll</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							removes all elements contained in the specified collection from this Collection if contained (modifies it!). returns this Collection.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Collection">Collection</link></classname>
+						</entry>
+						<entry>
+							<methodname>remove</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							removes the specified element from this Collection if contained (modifies it!). returns this Collection.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>without</methodname>
+							(<classname><link linkend="r99_Collection">Collection</link></classname>)
+						</entry>
+						<entry>
+							returns a new Set, containing all elements from this Collection without the elements from specified Collection
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Collection">Collection</link></classname>
+						</entry>
+						<entry>
+							<methodname>addAll</methodname>
+							(<classname><link linkend="r99_Collection">Collection</link></classname>)
+						</entry>
+						<entry>
+							adds all elements to the Collection (modifies it!). returns this Collection.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Collection">Collection</link></classname>
+						</entry>
+						<entry>
+							<methodname>add</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							adds an element to the Collection (modifies it!). returns this Collection.
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>union</methodname>
+							(<classname><link linkend="r99_Collection">Collection</link></classname>)
+						</entry>
+						<entry>
+							returns a new Set, containing all elements from this and the specified Collection
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>containsAll</methodname>
+							(<classname><link linkend="r99_Collection">Collection</link></classname>)
+						</entry>
+						<entry>
+							returns true if this collection contains each element contained in the specified collection. otherwise false. returns this Collection.
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_List">
+		<title><classname>List</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Collection">Collection</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_List_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>withoutFirst</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>last</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>indexOf</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>withoutLast</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Collection">Collection</link></classname>
+						</entry>
+						<entry>
+							<methodname>reverse</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>first</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>get</methodname>
+							(<classname><link linkend="r99_Integer">Integer</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_Set">
+		<title><classname>Set</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Collection">Collection</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+	This type does not define any operations.
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xpand2::Type">
+		<title><classname>xpand2::Type</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Type_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>name</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>allStaticProperties</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>documentation</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>superTypes</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>allProperties</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>allFeatures</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Set">Set</link></classname>
+						</entry>
+						<entry>
+							<methodname>allOperations</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Type_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::StaticProperty">xpand2::StaticProperty</link></classname>
+						</entry>
+						<entry>
+							<methodname>getStaticProperty</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::Feature">xpand2::Feature</link></classname>
+						</entry>
+						<entry>
+							<methodname>getFeature</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>, <classname><link linkend="r99_List">List</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>isInstance</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::Property">xpand2::Property</link></classname>
+						</entry>
+						<entry>
+							<methodname>getProperty</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>newInstance</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>isAssignableFrom</methodname>
+							(<classname><link linkend="r99_xpand2::Type">xpand2::Type</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::Operation">xpand2::Operation</link></classname>
+						</entry>
+						<entry>
+							<methodname>getOperation</methodname>
+							(<classname><link linkend="r99_String">String</link></classname>, <classname><link linkend="r99_List">List</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xpand2::Feature">
+		<title><classname>xpand2::Feature</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Feature_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>name</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::Type">xpand2::Type</link></classname>
+						</entry>
+						<entry>
+							<methodname>returnType</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>documentation</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::Type">xpand2::Type</link></classname>
+						</entry>
+						<entry>
+							<methodname>owner</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+	This type does not define any operations.
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xpand2::Property">
+		<title><classname>xpand2::Property</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_xpand2::Feature">xpand2::Feature</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Property_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Void">Void</link></classname>
+						</entry>
+						<entry>
+							<methodname>set</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>, <classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>get</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xpand2::Operation">
+		<title><classname>xpand2::Operation</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_xpand2::Feature">xpand2::Feature</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Operation_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>getParameterTypes</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>evaluate</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>, <classname><link linkend="r99_List">List</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xpand2::StaticProperty">
+		<title><classname>xpand2::StaticProperty</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_xpand2::Feature">xpand2::Feature</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::StaticProperty_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>get</methodname>
+							()
+						</entry>
+						<entry>
+							returns the static value
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_Void">
+		<title><classname>Void</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+	This type does not define any properties.
+		
+
+		</para>
+		<para>
+		
+
+	This type does not define any operations.
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xtend::AdviceContext">
+		<title><classname>xtend::AdviceContext</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xtend::AdviceContext_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>paramTypes</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>name</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>paramNames</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>paramValues</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xtend::AdviceContext_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>proceed</methodname>
+							(<classname><link linkend="r99_List">List</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Object">Object</link></classname>
+						</entry>
+						<entry>
+							<methodname>proceed</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xpand2::Definition">
+		<title><classname>xpand2::Definition</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Definition_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>paramTypes</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>name</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_List">List</link></classname>
+						</entry>
+						<entry>
+							<methodname>paramNames</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_xpand2::Type">xpand2::Type</link></classname>
+						</entry>
+						<entry>
+							<methodname>targetType</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Definition_Operations">
+			<title>Operations</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>	
+					<row>
+						<entry>Return type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Void">Void</link></classname>
+						</entry>
+						<entry>
+							<methodname>proceed</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_String">String</link></classname>
+						</entry>
+						<entry>
+							<methodname>toString</methodname>
+							()
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Void">Void</link></classname>
+						</entry>
+						<entry>
+							<methodname>proceed</methodname>
+							(<classname><link linkend="r99_Object">Object</link></classname>, <classname><link linkend="r99_List">List</link></classname>)
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+	</section>
+
+
+	<section id="r99_xpand2::Iterator">
+		<title><classname>xpand2::Iterator</classname></title>
+		<para>
+			Supertype: 
+<classname><link linkend="r99_Object">Object</link></classname>
+		</para>
+		<para>
+		
+
+		<table frame="all" id="r99_xpand2::Iterator_Properties">
+			<title>Properties</title>
+			<tgroup align="left" cols="3" colsep="1" rowsep="1">
+				<colspec colname="c1"/>
+				<colspec colname="c2"/>
+				<colspec colname="c3"/>
+				<thead>
+					<row>
+						<entry>Type</entry>
+						<entry>Name</entry>
+						<entry>Description</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>lastIteration</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Boolean">Boolean</link></classname>
+						</entry>
+						<entry>
+							<methodname>firstIteration</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>elements</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>counter0</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+					<row>
+						<entry>
+							<classname><link linkend="r99_Integer">Integer</link></classname>
+						</entry>
+						<entry>
+							<methodname>counter1</methodname>
+						</entry>
+						<entry>
+							
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+		
+
+		</para>
+		<para>
+		
+
+	This type does not define any operations.
+		
+
+		</para>
+	</section>
+
+
+</section>
+</part>

@@ -8,7 +8,8 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.mwe.core;visibility:=reexport,
  org.apache.commons.logging,
  org.antlr.runtime,
- org.eclipse.emf.common
+ org.eclipse.emf.common,
+ com.ibm.icu;bundle-version="4.0.1"
 Export-Package: org.eclipse.internal.xtend.check.codeassist,
  org.eclipse.internal.xtend.expression.ast,
  org.eclipse.internal.xtend.expression.codeassist,

@@ -10,11 +10,12 @@
  *******************************************************************************/
 package org.eclipse.internal.xtend.util;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.NumberFormat;
 
 /**
  * This class is a collection of helper functions for string handling.

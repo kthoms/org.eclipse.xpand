@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.xtend.shared.ui.editor.search.query;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -24,6 +23,8 @@ import org.eclipse.search.ui.text.Match;
 import org.eclipse.xtend.shared.ui.Messages;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
+
+import com.ibm.icu.text.MessageFormat;
 
 /**
  * <code>XtendXpandSearchQuery</code> is a base class for search queries. Queries
@@ -85,11 +86,11 @@ public abstract class XtendXpandSearchQuery implements ISearchQuery {
 		String searchText = identifier;
 		String scope = "project";
 		if (matchCount == 1) {
-			result = MessageFormat.format("''{0}'' - 1 match in {1}", searchText, scope);
+			result = MessageFormat.format("''{0}'' - 1 match in {1}",new Object[]{ searchText, scope});
 		} else if (matchCount >= 2) {
-			result = MessageFormat.format("''{0}'' - {1} matches in {2}", searchText, matchCount, scope);
+			result = MessageFormat.format("''{0}'' - {1} matches in {2}", new Object[]{ searchText, matchCount, scope});
 		} else {
-			result = MessageFormat.format("''{0}'' - no match found in {1}", searchText, scope);
+			result = MessageFormat.format("''{0}'' - no match found in {1}", new Object[]{ searchText, scope});
 		}
 		return result;
 	}

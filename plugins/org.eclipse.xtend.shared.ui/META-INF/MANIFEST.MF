@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.search,
  org.eclipse.debug.ui,
  org.eclipse.ui.navigator,
- org.eclipse.emf.mwe.ui
+ org.eclipse.emf.mwe.ui,
+ com.ibm.icu;bundle-version="4.0.1"
 Eclipse-LazyStart: true
 Bundle-Activator: org.eclipse.xtend.shared.ui.Activator
 Export-Package: org.eclipse.xtend.shared.ui,

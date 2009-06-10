@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.xtend.shared.ui.editor.search.view;
 
-import java.text.MessageFormat;
 import java.util.HashMap;
 
 import org.eclipse.core.resources.IContainer;
@@ -48,6 +47,8 @@ import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.xtend.shared.ui.editor.search.query.XtendXpandSearchQuery;
+
+import com.ibm.icu.text.MessageFormat;
 
 /**
  * <code>XtendXpandSearchResultPage </code> displays the search results of an Xtend

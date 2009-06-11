@@ -1,12 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>  
-<part id="xpand_reference">
-  <title>Xpand Reference</title>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../content/xpand_reference.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../content/builtin_api.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../content/xsdAdapterTutorial.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
-    href="../content/xsdAdapterReference.xml"/>
-</part>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<book id="xpand_documentation">
+		<title>Xpand Documentation</title>
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xpand_reference.xml" />
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/builtin_api.xml" />
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterTutorial.xml" />
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterReference.xml" />
+</book>

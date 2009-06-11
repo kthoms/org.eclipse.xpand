@@ -22,4 +22,4 @@ linkedName(xpand2::Type t, String target) :
 
 
 db_linkedName (xpand2::Type t) :
-	"<classname><link linkend='r99_"+t.name+"'>"+t.name+"</link></classname>";
+	"<link linkend='"+fileName(t)+"'><classname>"+t.name+"</classname></link>";

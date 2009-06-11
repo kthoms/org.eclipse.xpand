@@ -14,7 +14,7 @@
     <xsl:param name="chunk.first.sections" select="0" />
     <xsl:param name="chunk.section.depth" select="1" />
     <xsl:param name="base.dir" select="'help/'"></xsl:param>
-    <xsl:param name="use.id.as.filename" select="1" />
+    <xsl:param name="use.id.as.filename" select="0" />
     <xsl:param name="suppress.navigation" select="1" />
     <xsl:param name="chapter.autolabel" select="0" />
     <xsl:param name="generate.section.toc.level" select="1"></xsl:param>

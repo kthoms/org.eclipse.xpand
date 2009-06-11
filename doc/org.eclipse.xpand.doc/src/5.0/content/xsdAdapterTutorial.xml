@@ -10,10 +10,7 @@
 @author Moritz Eysholdt - Initial contribution and API
  
 -->
-<!--
-		<!DOCTYPE chapter SYSTEM
-		"/home/docfx/eclipse/workspace-3.3-oaw-cvs-4.2/documentation/lib/docbook/dtd/4.3/docbookx.dtd">
-	-->
+
 <chapter id="xsd_tutorial">
   <title>XSD Tutorial</title>
 

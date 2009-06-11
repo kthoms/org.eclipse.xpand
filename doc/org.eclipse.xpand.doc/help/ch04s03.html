@@ -3,10 +3,10 @@
 <title>Workflow Components</title>
 <link href="book.css" rel="stylesheet" type="text/css"/>
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator"/>
-<link rel="home" href="index.html" title="Part I. Xpand Reference"/>
-<link rel="up" href="xsd_reference.html" title="XSD Adapter"/>
-<link rel="prev" href="xsd_reference_overview.html" title="Overview"/>
-<link rel="next" href="xsd_reference_xsd2ecore.html" title="Behind the scenes: Transforming XSD to Ecore"/>
+<link rel="home" href="index.html" title="Xpand Documentation"/>
+<link rel="up" href="ch04.html" title="XSD Adapter"/>
+<link rel="prev" href="ch04s02.html" title="Overview"/>
+<link rel="next" href="ch04s04.html" title="Behind the scenes: Transforming XSD to Ecore"/>
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Workflow Components</h1>
@@ -14,22 +14,22 @@
 <div class="titlepage">
 <div>
 <div>
-<h3 class="title">
-<a name="xsd_reference_workflow_components"/>Workflow Components</h3>
+<h2 class="title" style="clear: both">
+<a name="xsd_reference_workflow_components"/>Workflow Components</h2>
 </div>
 </div>
 </div>
-
-     The XSD Adapter provides the following workflow components: 
-
-    <div class="section" title="XSDMetaModel">
+<p>
+    		The XSD Adapter provides the following workflow components:
+    </p>
+<div class="section" title="XSDMetaModel">
 <div class="titlepage">
 <div>
 <div>
-<h4 class="title">
+<h3 class="title">
 <a name="xsd_reference_workflow_components_xsdmetamodel"/>
         <code class="classname">XSDMetaModel</code>
-      </h4>
+      </h3>
 </div>
 </div>
 </div>
@@ -37,7 +37,7 @@
       models and makes them available for the other oAW components. If XSDs
       include/import other XSDs or if XML files reference XSDs via
       <span class="property">schemaLocation</span>, theses XSDs are also loaded
-      (details: <a class="xref" href="xsd_reference_declare_xsd.html" title="How to declare XML Schemas">the section called “How to declare XML Schemas”</a> ). The most
+      (details: <a class="xref" href="ch04s05.html" title="How to declare XML Schemas">the section called “How to declare XML Schemas”</a> ). The most
       common scenario is to declare the <code class="classname">XSDMetaModel</code>
       within an <code class="classname">XMLReader</code>:</p>
 <pre class="programlisting">&lt;component class="org.eclipse.xtend.typesystem.xsd.XMLReader"&gt;
@@ -94,10 +94,10 @@
 <div class="titlepage">
 <div>
 <div>
-<h4 class="title">
+<h3 class="title">
 <a name="xsd_reference_workflow_components_xmlreader"/>
         <code class="classname">XMLReader</code>
-      </h4>
+      </h3>
 </div>
 </div>
 </div>
@@ -128,14 +128,14 @@
 <li class="listitem">
 <p>
 <span class="property">metaModel</span>: optional: Specifies the
-          <code class="classname">XSDMetaModel</code> (see <a class="xref" href="xsd_reference_workflow_components.html#xsd_reference_workflow_components_xsdmetamodel" title="XSDMetaModel">the section called “
+          <code class="classname">XSDMetaModel</code> (see <a class="xref" href="ch04s03.html#xsd_reference_workflow_components_xsdmetamodel" title="XSDMetaModel">the section called “
         <code class="classname">XSDMetaModel</code>
       ”</a>) for the
           <code class="classname">XMLReader</code>. In case no
           <code class="classname">XSDMetaModel</code> is specified, an
           <code class="classname">XSDMetaModel</code> with default configuration is
           instantiated implicitly. It is important to pay attention that all
-          needed XSDs can be found while the loading process: <a class="xref" href="xsd_reference_declare_xsd.html" title="How to declare XML Schemas">the section called “How to declare XML Schemas”</a>.</p>
+          needed XSDs can be found while the loading process: <a class="xref" href="ch04s05.html" title="How to declare XML Schemas">the section called “How to declare XML Schemas”</a>.</p>
 </li>
 <li class="listitem">
 <p>
@@ -192,10 +192,10 @@
 <div class="titlepage">
 <div>
 <div>
-<h4 class="title">
+<h3 class="title">
 <a name="xsd_reference_workflow_components_xmlwriter"/>
         <code class="classname">XMLWriter</code>
-      </h4>
+      </h3>
 </div>
 </div>
 </div>
@@ -221,7 +221,7 @@
 <p>
 <span class="property">metaModel</span>: required: The instance of
           <code class="classname">XSDMetaModel</code>, which holds the XSD that the
-          supplied models are based on. Also see <a class="xref" href="xsd_reference_workflow_components.html#xsd_reference_workflow_components_xsdmetamodel" title="XSDMetaModel">the section called “
+          supplied models are based on. Also see <a class="xref" href="ch04s03.html#xsd_reference_workflow_components_xsdmetamodel" title="XSDMetaModel">the section called “
         <code class="classname">XSDMetaModel</code>
       ”</a>
 </p>
@@ -262,10 +262,10 @@
 <div class="titlepage">
 <div>
 <div>
-<h4 class="title">
+<h3 class="title">
 <a name="xsd_reference_workflow_components_xmlbeautifier"/>
         <code class="classname">XMLBeautifier</code>
-      </h4>
+      </h3>
 </div>
 </div>
 </div>

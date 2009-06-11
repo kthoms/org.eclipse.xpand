@@ -1,177 +1,183 @@
-<toc topic="help/index.html" label="I. Xpand Reference">
-<topic href="help/core_reference.html" label="Xpand / Xtend / Check Reference">
-<topic href="help/core_reference.html#r10_introduction" label="Introduction"/>
-<topic href="help/r10_typesystem.html" label="Type System">
-<topic href="help/r10_typesystem.html#r10_typesystem_types" label="Types">
-<topic href="help/r10_typesystem.html#r10_typesystem_typenames" label="Type Names"/>
-<topic href="help/r10_typesystem.html#r10_typesystem_collection_typenames" label="Collection Type Names"/>
-<topic href="help/r10_typesystem.html#r10_typesystem_features" label="Features"/>
+<toc topic="help/index.html" label="Xpand Documentation">
+<topic href="help/ch01.html" label="Xpand / Xtend / Check Reference">
+<topic href="help/ch01.html#r10_introduction" label="Introduction"/>
+<topic href="help/ch01s02.html" label="Type System">
+<topic href="help/ch01s02.html#r10_typesystem_types" label="Types">
+<topic href="help/ch01s02.html#r10_typesystem_typenames" label="Type Names"/>
+<topic href="help/ch01s02.html#r10_typesystem_collection_typenames" label="Collection Type Names"/>
+<topic href="help/ch01s02.html#r10_typesystem_features" label="Features"/>
 </topic>
-<topic href="help/r10_typesystem.html#r10_builtintypes" label="Built-In Types">
-<topic href="help/r10_typesystem.html#r10_builtintypes_object" label="Object"/>
-<topic href="help/r10_typesystem.html#r10_builtintypes_void" label="Void"/>
-<topic href="help/r10_typesystem.html#r10_builtintypes_simple" label="Simple types (Data types)"/>
-<topic href="help/r10_typesystem.html#r10_builtintypes_collections" label="Collection types"/>
-<topic href="help/r10_typesystem.html#r10_builtintypes_typesystem_types" label="Type system types"/>
+<topic href="help/ch01s02.html#r10_builtintypes" label="Built-In Types">
+<topic href="help/ch01s02.html#r10_builtintypes_object" label="Object"/>
+<topic href="help/ch01s02.html#r10_builtintypes_void" label="Void"/>
+<topic href="help/ch01s02.html#r10_builtintypes_simple" label="Simple types (Data types)"/>
+<topic href="help/ch01s02.html#r10_builtintypes_collections" label="Collection types"/>
+<topic href="help/ch01s02.html#r10_builtintypes_typesystem_types" label="Type system types"/>
 </topic>
-<topic href="help/r10_typesystem.html#r10_metamodel_implementations" label="Metamodel Implementations (also known as Meta-Metamodels)">
-<topic href="help/r10_typesystem.html#r10_metamodel_example_java" label="Example JavaMetaModel"/>
-<topic href="help/r10_typesystem.html#r10_metamodel_contributors" label="Eclipse IDE MetaModelContributors"/>
-<topic href="help/r10_typesystem.html#r10_metamodel_workflow" label="Configuring Metamodel implementations with the workflow"/>
+<topic href="help/ch01s02.html#r10_metamodel_implementations" label="Metamodel Implementations (also known as Meta-Metamodels)">
+<topic href="help/ch01s02.html#r10_metamodel_example_java" label="Example JavaMetaModel"/>
+<topic href="help/ch01s02.html#r10_metamodel_contributors" label="Eclipse IDE MetaModelContributors"/>
+<topic href="help/ch01s02.html#r10_metamodel_workflow" label="Configuring Metamodel implementations with the workflow"/>
 </topic>
-<topic href="help/r10_typesystem.html#r10_using_different_metamodels" label="Using different Metamodel implementations (also known as Meta-Metamodels)"/>
+<topic href="help/ch01s02.html#r10_using_different_metamodels" label="Using different Metamodel implementations (also known as Meta-Metamodels)"/>
 </topic>
-<topic href="help/r10_expressions_language.html" label="Expressions">
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin" label="Literals and special operators for built-in types">
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_object" label="Object"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_void" label="Void"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_typeliterals" label="Type literals"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_staticproperties" label="StaticProperty literals"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_string" label="String"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_boolean" label="Boolean"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_numeric" label="Integer and Real"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_builtin_collections" label="Collections"/>
+<topic href="help/ch01s03.html" label="Expressions">
+<topic href="help/ch01s03.html#r10_expressions_builtin" label="Literals and special operators for built-in types">
+<topic href="help/ch01s03.html#r10_expressions_builtin_object" label="Object"/>
+<topic href="help/ch01s03.html#r10_expressions_builtin_void" label="Void"/>
+<topic href="help/ch01s03.html#r10_expressions_builtin_typeliterals" label="Type literals"/>
+<topic href="help/ch01s03.html#r10_expressions_builtin_staticproperties" label="StaticProperty literals"/>
+<topic href="help/ch01s03.html#r10_expressions_builtin_string" label="String"/>
+<topic href="help/ch01s03.html#r10_expressions_builtin_boolean" label="Boolean"/>
+<topic href="help/ch01s03.html#r10_expressions_builtin_numeric" label="Integer and Real"/>
+<topic href="help/ch01s03.html#r10_expressions_builtin_collections" label="Collections"/>
 </topic>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_operations" label="Special Collection operations">
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_select" label="select"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_typeselect" label="typeSelect"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_reject" label="reject"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_collect" label="collect"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_collect_shorthand" label="Shorthand for collect (and more than that)"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_forall" label="forAll"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_exists" label="exists"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_collection_sortby" label="sortBy"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_operations" label="Special Collection operations">
+<topic href="help/ch01s03.html#r10_expressions_collection_select" label="select"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_typeselect" label="typeSelect"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_reject" label="reject"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_collect" label="collect"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_collect_shorthand" label="Shorthand for collect (and more than that)"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_forall" label="forAll"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_exists" label="exists"/>
+<topic href="help/ch01s03.html#r10_expressions_collection_sortby" label="sortBy"/>
 </topic>
-<topic href="help/r10_expressions_language.html#r10_expressions_if" label="if expression"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_switch" label="switch expression"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_chain" label="Chain expression"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_create" label="create expression"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_let" label="let expression"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_globalvar" label="'GLOBALVAR' expression">
-<topic href="help/r10_expressions_language.html#r10_expressions_globalvar_workflow" label="Using GLOBALVARS to configure workflows"/>
+<topic href="help/ch01s03.html#r10_expressions_if" label="if expression"/>
+<topic href="help/ch01s03.html#r10_expressions_switch" label="switch expression"/>
+<topic href="help/ch01s03.html#r10_expressions_chain" label="Chain expression"/>
+<topic href="help/ch01s03.html#r10_expressions_create" label="create expression"/>
+<topic href="help/ch01s03.html#r10_expressions_let" label="let expression"/>
+<topic href="help/ch01s03.html#r10_expressions_globalvar" label="'GLOBALVAR' expression">
+<topic href="help/ch01s03.html#r10_expressions_globalvar_workflow" label="Using GLOBALVARS to configure workflows"/>
 </topic>
-<topic href="help/r10_expressions_language.html#r10_expressions_multidispatch" label="Multi methods (multiple dispatch)"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_casting" label="Casting"/>
+<topic href="help/ch01s03.html#r10_expressions_multidispatch" label="Multi methods (multiple dispatch)"/>
+<topic href="help/ch01s03.html#r10_expressions_casting" label="Casting"/>
 </topic>
-<topic href="help/Check_language.html" label="Check">
-<topic href="help/Check_language.html#Guard_conditions" label="Guard Conditions"/>
+<topic href="help/ch01s04.html" label="Check">
+<topic href="help/ch01s04.html#Guard_conditions" label="Guard Conditions"/>
 </topic>
-<topic href="help/Xtend_language.html" label="Xtend">
-<topic href="help/Xtend_language.html#N105DD" label="Extend files"/>
-<topic href="help/Xtend_language.html#N105FB" label="Comments"/>
-<topic href="help/Xtend_language.html#N1060B" label="Import Statements"/>
-<topic href="help/Xtend_language.html#N1061C" label="Extension Import Statement">
-<topic href="help/Xtend_language.html#N1062B" label="Reexporting Extensions"/>
+<topic href="help/ch01s05.html" label="Xtend">
+<topic href="help/ch01s05.html#N105DD" label="Extend files"/>
+<topic href="help/ch01s05.html#N105FB" label="Comments"/>
+<topic href="help/ch01s05.html#N1060B" label="Import Statements"/>
+<topic href="help/ch01s05.html#N1061C" label="Extension Import Statement">
+<topic href="help/ch01s05.html#N1062B" label="Reexporting Extensions"/>
 </topic>
-<topic href="help/Xtend_language.html#N10636" label="Extensions">
-<topic href="help/Xtend_language.html#N10641" label="Extension Invocation"/>
-<topic href="help/Xtend_language.html#N10657" label="Type Inference"/>
-<topic href="help/Xtend_language.html#N1069B" label="Recursion"/>
-<topic href="help/Xtend_language.html#N106AD" label="Cached Extensions"/>
-<topic href="help/Xtend_language.html#N106C8" label="Private Extensions"/>
+<topic href="help/ch01s05.html#N10636" label="Extensions">
+<topic href="help/ch01s05.html#N10641" label="Extension Invocation"/>
+<topic href="help/ch01s05.html#N10657" label="Type Inference"/>
+<topic href="help/ch01s05.html#N1069B" label="Recursion"/>
+<topic href="help/ch01s05.html#N106AD" label="Cached Extensions"/>
+<topic href="help/ch01s05.html#N106C8" label="Private Extensions"/>
 </topic>
-<topic href="help/Xtend_language.html#N106D8" label="Java Extensions"/>
-<topic href="help/Xtend_language.html#N10700" label="Create Extensions (Model Transformation)"/>
-<topic href="help/Xtend_language.html#N10775" label="Calling Extensions From Java"/>
-<topic href="help/Xtend_language.html#N107B3" label="WorkflowComponent"/>
-<topic href="help/Xtend_language.html#N107CA" label="Aspect-Oriented Programming in Xtend (since 4.2)">
-<topic href="help/Xtend_language.html#N107EC" label="Join Point and Point Cut Syntax">
-<topic href="help/Xtend_language.html#N1080A" label="Extensions Name"/>
-<topic href="help/Xtend_language.html#N10814" label="Parameter Types"/>
-<topic href="help/Xtend_language.html#N10824" label="Proceeding"/>
+<topic href="help/ch01s05.html#N106D8" label="Java Extensions"/>
+<topic href="help/ch01s05.html#N10700" label="Create Extensions (Model Transformation)"/>
+<topic href="help/ch01s05.html#N10775" label="Calling Extensions From Java"/>
+<topic href="help/ch01s05.html#N107B3" label="WorkflowComponent"/>
+<topic href="help/ch01s05.html#N107CA" label="Aspect-Oriented Programming in Xtend (since 4.2)">
+<topic href="help/ch01s05.html#N107EC" label="Join Point and Point Cut Syntax">
+<topic href="help/ch01s05.html#N1080A" label="Extensions Name"/>
+<topic href="help/ch01s05.html#N10814" label="Parameter Types"/>
+<topic href="help/ch01s05.html#N10824" label="Proceeding"/>
 </topic>
-<topic href="help/Xtend_language.html#N10845" label="Workflow configuration"/>
-<topic href="help/Xtend_language.html#xtend_example_introduction" label="Model-to-Model transformation with Xtend"/>
-<topic href="help/Xtend_language.html#xtend_example_workflow" label="Workflow"/>
-<topic href="help/Xtend_language.html#xtend_example_the_transformation" label="The transformation"/>
-</topic>
-</topic>
-<topic href="help/xpand_reference_introduction.html" label="Xpand2">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_template_files_and_ecoding" label="Template files and encoding"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_general_structure_of_template_files" label="General structure of template files"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_statements_of_the_expand_language" label="Statements of the Xpand language">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_import" label="IMPORT"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_extension" label="EXTENSION"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_define" label="DEFINE"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_file" label="FILE"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_expand" label="EXPAND">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_names" label="Names"/>
-</topic>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_for_vs_foreach" label="FOR vs. FOREACH">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_specifying_a_separator" label="Specifying a Separator"/>
-</topic>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_foreach" label="FOREACH"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_if" label="IF"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_protect" label="PROTECT"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_let" label="LET"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_error" label="ERROR"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_comments" label="Comments"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_expression_statement" label="Expression Statement"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_controlling_generation_of_white_space" label="Controlling generation of whitespace"/>
-</topic>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_aspect-oriented_programming_in_xpand" label="Aspect-Oriented Programming in Xpand">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_join_point_and_cut_syntax" label="Join Point and Point Cut Syntax">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_definition_name" label="Definition Name"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_parameter_types" label="Parameter Types"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_target_type" label="Target Type"/>
-</topic>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_proceeding" label="Proceeding"/>
-</topic>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_generator_workflow_component" label="Generator Workflow Component">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_main_configuration" label="Main configuration"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_encoding" label="Encoding"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_metamodel" label="Metamodel"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_output_configuration" label="Output configuration"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_beautifier" label="Beautifier">
-<topic href="help/xpand_reference_introduction.html#xpand_reference_javabeautifier" label="JavaBeautifier"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_xmlbeautifier" label="XmlBeautifier"/>
-</topic>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_protected_region_configuration" label="Protected Region Configuration"/>
-<topic href="help/xpand_reference_introduction.html#N10D75" label="VetoStrategy"/>
-</topic>
-<topic href="help/xpand_reference_introduction.html#aop_template_introduction" label="Example for using Aspect-Oriented Programming in Xpand"/>
-<topic href="help/xpand_reference_introduction.html#aop_template_the_problem" label="The Problem"/>
+<topic href="help/ch01s05.html#N10845" label="Workflow configuration"/>
+<topic href="help/ch01s05.html#xtend_example_introduction" label="Model-to-Model transformation with Xtend"/>
+<topic href="help/ch01s05.html#xtend_example_workflow" label="Workflow"/>
+<topic href="help/ch01s05.html#xtend_example_the_transformation" label="The transformation"/>
 </topic>
 </topic>
-<topic href="help/index.html#r99" label="Built-in types API documentation">
-<topic href="help/index.html#r99_Object" label="Object"/>
-<topic href="help/index.html#r99_String" label="String"/>
-<topic href="help/index.html#r99_Integer" label="Integer"/>
-<topic href="help/index.html#r99_Boolean" label="Boolean"/>
-<topic href="help/index.html#r99_Real" label="Real"/>
-<topic href="help/index.html#r99_Collection" label="Collection"/>
-<topic href="help/index.html#r99_List" label="List"/>
-<topic href="help/index.html#r99_Set" label="Set"/>
-<topic href="help/index.html#r99_xpand2::Type" label="xpand2::Type"/>
-<topic href="help/index.html#r99_xpand2::Feature" label="xpand2::Feature"/>
-<topic href="help/index.html#r99_xpand2::Property" label="xpand2::Property"/>
-<topic href="help/index.html#r99_xpand2::Operation" label="xpand2::Operation"/>
-<topic href="help/index.html#r99_xpand2::StaticProperty" label="xpand2::StaticProperty"/>
-<topic href="help/index.html#r99_Void" label="Void"/>
-<topic href="help/index.html#r99_xtend::AdviceContext" label="xtend::AdviceContext"/>
-<topic href="help/index.html#r99_xpand2::Definition" label="xpand2::Definition"/>
-<topic href="help/index.html#r99_xpand2::Iterator" label="xpand2::Iterator"/>
+<topic href="help/ch01s06.html" label="Xpand2">
+<topic href="help/ch01s06.html#xpand_reference_template_files_and_ecoding" label="Template files and encoding"/>
+<topic href="help/ch01s06.html#xpand_reference_general_structure_of_template_files" label="General structure of template files"/>
+<topic href="help/ch01s06.html#xpand_reference_statements_of_the_expand_language" label="Statements of the Xpand language">
+<topic href="help/ch01s06.html#xpand_reference_import" label="IMPORT"/>
+<topic href="help/ch01s06.html#xpand_reference_extension" label="EXTENSION"/>
+<topic href="help/ch01s06.html#xpand_reference_define" label="DEFINE"/>
+<topic href="help/ch01s06.html#xpand_reference_file" label="FILE"/>
+<topic href="help/ch01s06.html#xpand_reference_expand" label="EXPAND">
+<topic href="help/ch01s06.html#xpand_reference_names" label="Names"/>
 </topic>
-<topic href="help/xsd_tutorial.html" label="XSD Tutorial">
-<topic href="help/xsd_tutorial.html#xsd_tutorial_setup" label="Setup"/>
-<topic href="help/xsd_tutorial_overview.html" label="Overview"/>
-<topic href="help/xsd_tutorial_create_project.html" label="Step 1: Create a Project"/>
-<topic href="help/xsd_tutorial_metamodel.html" label="Step 2: Define a Meta Model using XML Schema"/>
-<topic href="help/xsd_tutorial_model.html" label="Step 3: Create a Model using XML"/>
-<topic href="help/xsd_tutorial_template.html" label="Step 4: Create a Template using Xpand"/>
-<topic href="help/xsd_tutorial_create_workflow.html" label="Step 5: Create a Workflow"/>
-<topic href="help/xsd_tutorial_execute_workflow.html" label="Step 6: Execute Workflow aka Generate Code"/>
+<topic href="help/ch01s06.html#xpand_reference_for_vs_foreach" label="FOR vs. FOREACH">
+<topic href="help/ch01s06.html#xpand_reference_specifying_a_separator" label="Specifying a Separator"/>
 </topic>
-<topic href="help/xsd_reference.html" label="XSD Adapter">
-<topic href="help/xsd_reference.html#xsd_reference_prerequisites" label="Prerequisites"/>
-<topic href="help/xsd_reference_overview.html" label="Overview"/>
-<topic href="help/xsd_reference_workflow_components.html" label="Workflow Components">
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xsdmetamodel" label="XSDMetaModel"/>
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlreader" label="XMLReader"/>
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlwriter" label="XMLWriter"/>
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlbeautifier" label="XMLBeautifier"/>
+<topic href="help/ch01s06.html#xpand_reference_foreach" label="FOREACH"/>
+<topic href="help/ch01s06.html#xpand_reference_if" label="IF"/>
+<topic href="help/ch01s06.html#xpand_reference_protect" label="PROTECT"/>
+<topic href="help/ch01s06.html#xpand_reference_let" label="LET"/>
+<topic href="help/ch01s06.html#xpand_reference_error" label="ERROR"/>
+<topic href="help/ch01s06.html#xpand_reference_comments" label="Comments"/>
+<topic href="help/ch01s06.html#xpand_reference_expression_statement" label="Expression Statement"/>
+<topic href="help/ch01s06.html#xpand_reference_controlling_generation_of_white_space" label="Controlling generation of whitespace"/>
 </topic>
-<topic href="help/xsd_reference_xsd2ecore.html" label="Behind the scenes: Transforming XSD to Ecore"/>
-<topic href="help/xsd_reference_declare_xsd.html" label="How to declare XML Schemas"/>
+<topic href="help/ch01s06.html#xpand_reference_aspect-oriented_programming_in_xpand" label="Aspect-Oriented Programming in Xpand">
+<topic href="help/ch01s06.html#xpand_reference_join_point_and_cut_syntax" label="Join Point and Point Cut Syntax">
+<topic href="help/ch01s06.html#xpand_reference_definition_name" label="Definition Name"/>
+<topic href="help/ch01s06.html#xpand_reference_parameter_types" label="Parameter Types"/>
+<topic href="help/ch01s06.html#xpand_reference_target_type" label="Target Type"/>
+</topic>
+<topic href="help/ch01s06.html#xpand_reference_proceeding" label="Proceeding"/>
+</topic>
+<topic href="help/ch01s06.html#xpand_reference_generator_workflow_component" label="Generator Workflow Component">
+<topic href="help/ch01s06.html#xpand_reference_main_configuration" label="Main configuration"/>
+<topic href="help/ch01s06.html#xpand_reference_encoding" label="Encoding"/>
+<topic href="help/ch01s06.html#xpand_reference_metamodel" label="Metamodel"/>
+<topic href="help/ch01s06.html#xpand_reference_output_configuration" label="Output configuration"/>
+<topic href="help/ch01s06.html#xpand_reference_beautifier" label="Beautifier">
+<topic href="help/ch01s06.html#xpand_reference_javabeautifier" label="JavaBeautifier"/>
+<topic href="help/ch01s06.html#xpand_reference_xmlbeautifier" label="XmlBeautifier"/>
+</topic>
+<topic href="help/ch01s06.html#xpand_reference_protected_region_configuration" label="Protected Region Configuration"/>
+<topic href="help/ch01s06.html#N10D75" label="VetoStrategy"/>
+</topic>
+<topic href="help/ch01s06.html#aop_template_introduction" label="Example for using Aspect-Oriented Programming in Xpand"/>
+<topic href="help/ch01s06.html#aop_template_the_problem" label="The Problem"/>
+<topic href="help/ch01s06.html#aop_template_example" label="Example">
+<topic href="help/ch01s06.html#aop_template_example_templates" label="Templates"/>
+<topic href="help/ch01s06.html#aop_template_example_workflow_file" label="Workflow File"/>
+<topic href="help/ch01s06.html#aop_template_example_running_the_new_generator" label="Running the new generator"/>
+</topic>
+<topic href="help/ch01s06.html#aop_template_more_ao" label="More Aspect Orientation"/>
+</topic>
+</topic>
+<topic href="help/ch02.html" label="Built-in types API documentation">
+<topic href="help/ch02.html#Object.html" label="Object"/>
+<topic href="help/ch02s02.html" label="String"/>
+<topic href="help/ch02s03.html" label="Integer"/>
+<topic href="help/ch02s04.html" label="Boolean"/>
+<topic href="help/ch02s05.html" label="Real"/>
+<topic href="help/ch02s06.html" label="Collection"/>
+<topic href="help/ch02s07.html" label="List"/>
+<topic href="help/ch02s08.html" label="Set"/>
+<topic href="help/ch02s09.html" label="xpand2::Type"/>
+<topic href="help/ch02s10.html" label="xpand2::Feature"/>
+<topic href="help/ch02s11.html" label="xpand2::Property"/>
+<topic href="help/ch02s12.html" label="xpand2::Operation"/>
+<topic href="help/ch02s13.html" label="xpand2::StaticProperty"/>
+<topic href="help/ch02s14.html" label="Void"/>
+<topic href="help/ch02s15.html" label="xtend::AdviceContext"/>
+<topic href="help/ch02s16.html" label="xpand2::Definition"/>
+<topic href="help/ch02s17.html" label="xpand2::Iterator"/>
+</topic>
+<topic href="help/ch03.html" label="XSD Tutorial">
+<topic href="help/ch03.html#xsd_tutorial_setup" label="Setup"/>
+<topic href="help/ch03s02.html" label="Overview"/>
+<topic href="help/ch03s03.html" label="Step 1: Create a Project"/>
+<topic href="help/ch03s04.html" label="Step 2: Define a Meta Model using XML Schema"/>
+<topic href="help/ch03s05.html" label="Step 3: Create a Model using XML"/>
+<topic href="help/ch03s06.html" label="Step 4: Create a Template using Xpand"/>
+<topic href="help/ch03s07.html" label="Step 5: Create a Workflow"/>
+<topic href="help/ch03s08.html" label="Step 6: Execute Workflow aka Generate Code"/>
+</topic>
+<topic href="help/ch04.html" label="XSD Adapter">
+<topic href="help/ch04.html#xsd_reference_prerequisites" label="Prerequisites"/>
+<topic href="help/ch04s02.html" label="Overview"/>
+<topic href="help/ch04s03.html" label="Workflow Components">
+<topic href="help/ch04s03.html#xsd_reference_workflow_components_xsdmetamodel" label="XSDMetaModel"/>
+<topic href="help/ch04s03.html#xsd_reference_workflow_components_xmlreader" label="XMLReader"/>
+<topic href="help/ch04s03.html#xsd_reference_workflow_components_xmlwriter" label="XMLWriter"/>
+<topic href="help/ch04s03.html#xsd_reference_workflow_components_xmlbeautifier" label="XMLBeautifier"/>
+</topic>
+<topic href="help/ch04s04.html" label="Behind the scenes: Transforming XSD to Ecore"/>
+<topic href="help/ch04s05.html" label="How to declare XML Schemas"/>
 </topic>
 </toc>

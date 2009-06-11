@@ -2,18 +2,17 @@
 
 
 «DEFINE Start FOR List[xpand2::Type]»
-«FILE "builtin_api.xml" DOCBOOK»
+«FILE "builtin_api.xml" DOCBOOK-»
 <?xml version="1.0" encoding="UTF-8"?>
-<section id="api_doc">
+<chapter id="builtin_api">
 	<title>Built-in types API documentation</title>
-	
-	«EXPAND Section FOREACH this»
-</section>
+    «EXPAND Section FOREACH this»
+</chapter>
 «ENDFILE»
 «ENDDEFINE»
 
 «DEFINE Section FOR xpand2::Type»
-	<section id="«name»">
+	<section id="«fileName(this)»">
 		<title><classname>«name»</classname></title>
 		<para>
 			Supertype: 
@@ -32,7 +31,7 @@
 
 «DEFINE PropertyTable FOR xpand2::Type»
 «IF !getOwnedProperties().isEmpty»
-		<table frame='all' id="r99_«name»_Properties">
+		<table frame='all' id="«name»_Properties">
 			<title>Properties</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>
@@ -71,7 +70,7 @@
 
 «DEFINE OperationTable FOR xpand2::Type»
 «IF !getOwnedOperations().isEmpty»
-		<table frame='all' id="r99_«name»_Operations">
+		<table frame='all' id="«name»_Operations">
 			<title>Operations</title>
 			<tgroup cols='3' align='left' colsep='1' rowsep='1'>
 				<colspec colname='c1'/>

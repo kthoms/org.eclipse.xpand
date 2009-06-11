@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE chapter [
-<!ENTITY % isopub SYSTEM "http://www.w3.org/2003/entities/iso8879/isopub.ent">
-%isopub;
-]>
-
 <chapter id="core_reference" xreflabel="Core reference">
   <title><emphasis>Xpand</emphasis> / <emphasis>Xtend</emphasis> /
     <emphasis>Check</emphasis> Reference</title>
@@ -3220,15 +3215,14 @@ public interface PostProcessor {
       <emphasis>if</emphasis> statements in the templates.</para>
     </section>
 
-<!-- 
     <section id="aop_template_example">
       <title>Example</title>
 
       <para>To illustrate the idea of extending a generator without "touching"
       it, let us create a new project called
-      <classname>oaw4.demo.emf.datamodel.generator-aop</classname>. The idea
+      <classname>org.eclipse.demo.emf.datamodel.generator-aop</classname>. The idea
       is that it will "extend" the original
-      <classname>oaw4.demo.emf.datamodel.generator</classname> project
+      <classname>org.eclipse.demo.emf.datamodel.generator</classname> project
       introduced in the <emphasis>emfExample</emphasis>. So this new projects
       needs to have a project dependency to the former one.</para>
 
@@ -3244,7 +3238,7 @@ public interface PostProcessor {
         <emphasis>AROUND</emphasis><indexterm>
             <primary>AROUND</primary>
           </indexterm> previously existing templates. If you take a look at
-        the <classname>oaw4.demo.emf.datamodel.generator</classname> source
+        the <classname>org.eclipse.demo.emf.datamodel.generator</classname> source
         folder of the project, you can find the <filename>Root.xpt</filename>
         template file. Inside, you can find a template called
         <classname>Impl</classname> that generates the implementation of the
@@ -3418,6 +3412,5 @@ public interface PostProcessor {
    &lt;&lt;targetDef.proceed()&gt;&gt;
 &lt;&lt;ENDAROUND&gt;&gt;</programlisting>
     </section>
--->
   </section>
 </chapter>

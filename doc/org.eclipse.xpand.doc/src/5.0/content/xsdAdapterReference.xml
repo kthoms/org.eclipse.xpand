@@ -10,10 +10,6 @@
 @author Moritz Eysholdt - Initial contribution and API
  
 -->
-<!--
-		<!DOCTYPE chapter SYSTEM
-		"/home/docfx/eclipse/workspace-3.3-oaw-cvs-4.2/documentation/lib/docbook/dtd/4.3/docbookx.dtd">
-	-->
 <chapter id="xsd_reference">
   <title>XSD Adapter</title>
 
@@ -33,11 +29,9 @@
 
     <title>Prerequisites</title>
 
-     Please take a look at 
-
-    <xref linkend="xsd_tutorial_setup" />
-
-     . 
+    <para>
+     Please take a look at <xref linkend="xsd_tutorial_setup" />. 
+     </para>
   </section>
 
   <!-- =========================================================== -->
@@ -85,8 +79,9 @@
 
     <title>Workflow Components</title>
 
-     The XSD Adapter provides the following workflow components: 
-
+    <para>
+    		The XSD Adapter provides the following workflow components:
+    </para>
     <!--
 			===================== XSDMetaModel =====================
 		-->

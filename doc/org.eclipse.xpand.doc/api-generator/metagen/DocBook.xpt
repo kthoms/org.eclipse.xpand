@@ -3,7 +3,8 @@
 
 «DEFINE Start FOR List[xpand2::Type]»
 «FILE "builtin_api.xml" DOCBOOK»
-<section id="r99">
+<?xml version="1.0" encoding="UTF-8"?>
+<section id="api_doc">
 	<title>Built-in types API documentation</title>
 	
 	«EXPAND Section FOREACH this»
@@ -12,7 +13,7 @@
 «ENDDEFINE»
 
 «DEFINE Section FOR xpand2::Type»
-	<section id="r99_«name»">
+	<section id="«name»">
 		<title><classname>«name»</classname></title>
 		<para>
 			Supertype: 

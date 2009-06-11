@@ -92,9 +92,12 @@
 
 	<target name="build-doc" depends="init, get-docbook-xsl, get-fop">
 		<echo>Building Output...</echo>
-		<antcall target="docbook2pdf" />
-		<antcall target="docbook2html" />
 		<antcall target="docbook2eclipsehelp" />
+		<antcall target="docbook2html" />
+<!--
+         FIXME: fop still raises an error, needs to be fixed.
+		<antcall target="docbook2pdf" />
+-->
 		<antcall target="clean-artifacts" />
 	</target>
 

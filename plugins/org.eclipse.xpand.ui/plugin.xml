@@ -119,14 +119,14 @@
            id="org.eclipse.xpand.ui.refactoring.CodingActionSet"
            label="%refactoring.actionSet.label"
            visible="false">
-        <menu
+        <!--<menu
               id="org.eclipse.xpand.ui.refactoring.menu"
               label="%refactoring.menu.label"
               path="edit">
            <separator
                  name="codingGroup">
            </separator>
-        </menu>
+        </menu>-->
         <!--
 		<action
 			definitionId="org.eclipse.xtend.xpand2.extract.define"
@@ -140,7 +140,6 @@
 			definitionId="org.eclipse.xpand.ui.refactoring.rename.define"
 			label="%refactoring.rename.define.action.label"
 			retarget="true"
-			menubarPath="org.eclipse.xpand.ui.refactoring.menu/codingGroup"
 			id="org.eclipse.xpand.ui.actions.RenameDefine">
 		</action>
      </actionSet>

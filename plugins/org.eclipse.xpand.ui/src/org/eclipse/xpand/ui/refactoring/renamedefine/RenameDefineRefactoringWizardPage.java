@@ -39,20 +39,34 @@ public class RenameDefineRefactoringWizardPage extends UserInputWizardPage {
 
 		final Label newNameLabel = new Label(container, SWT.NONE);
 		newNameLabel.setText(Messages.RenameDefineRefactoringWizardPage_label);
-
 		newNameText = new Text(container, SWT.BORDER);
 		newNameText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				String newName = newNameText.getText();
-				RenameDefineRefactoring renameDefineRefactoring = (RenameDefineRefactoring) getRefactoring();
-				RenameDefineProcessor renameDefineProcessor = (RenameDefineProcessor) renameDefineRefactoring
-						.getProcessor();
-				renameDefineProcessor.setNewName(newName);
+				updateNewNameAndValidate(newNameText.getText());
 			}
+
 		});
-		final GridData gd_newNameText = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		final GridData gd_newNameText = new GridData(SWT.FILL, SWT.CENTER,
+				true, false);
 		newNameText.setLayoutData(gd_newNameText);
+		String initialText = renameDefineProcessor().getSelection().getText();
+		newNameText.setText(initialText);// set selected text as initial value,
+											// validation will be triggered
 		newNameText.setFocus();
 	}
 
+	private void updateNewNameAndValidate(String newName) {
+		// set name
+		RenameDefineProcessor renameDefineProcessor = renameDefineProcessor();
+		renameDefineProcessor.setNewName(newName);
+		// set valid status
+		setPageComplete(renameDefineProcessor.validateNewName());
+	}
+
+	private RenameDefineProcessor renameDefineProcessor() {
+		RenameDefineRefactoring renameDefineRefactoring = (RenameDefineRefactoring) getRefactoring();
+		RenameDefineProcessor renameDefineProcessor = (RenameDefineProcessor) renameDefineRefactoring
+				.getProcessor();
+		return renameDefineProcessor;
+	}
 }

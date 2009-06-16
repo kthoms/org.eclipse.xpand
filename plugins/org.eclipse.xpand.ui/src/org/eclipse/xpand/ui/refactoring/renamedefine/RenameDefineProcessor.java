@@ -38,7 +38,8 @@ import org.eclipse.xtend.shared.ui.core.search.SearchMatch;
 import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
 
 /**
- * RenameDefineProcessor creates the refactoring changes for rename refactorings.
+ * RenameDefineProcessor creates the refactoring changes for rename
+ * refactorings.
  * 
  * @author Peter Friese
  */
@@ -63,8 +64,9 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RefactoringStatus checkFinalConditions(IProgressMonitor pm, CheckConditionsContext context)
-			throws CoreException, OperationCanceledException {
+	public RefactoringStatus checkFinalConditions(IProgressMonitor pm,
+			CheckConditionsContext context) throws CoreException,
+			OperationCanceledException {
 		return new RefactoringStatus();
 	}
 
@@ -72,8 +74,8 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws CoreException,
-			OperationCanceledException {
+	public RefactoringStatus checkInitialConditions(IProgressMonitor pm)
+			throws CoreException, OperationCanceledException {
 		IFile sourceFile = getSourceFile();
 
 		RefactoringStatus result = new RefactoringStatus();
@@ -86,7 +88,8 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 	}
 
 	private IFile getSourceFile() {
-		IFile sourceFile = (IFile) editor.getEditorInput().getAdapter(IFile.class);
+		IFile sourceFile = (IFile) editor.getEditorInput().getAdapter(
+				IFile.class);
 		return sourceFile;
 	}
 
@@ -94,14 +97,18 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+	public Change createChange(IProgressMonitor pm) throws CoreException,
+			OperationCanceledException {
 
-		CompositeChange result = new CompositeChange(Messages.RenameDefineProcessor_CompositeChangeName);
+		CompositeChange result = new CompositeChange(
+				Messages.RenameDefineProcessor_CompositeChangeName);
 
 		IFile file = (IFile) editor.getEditorInput().getAdapter(IFile.class);
-		IXtendXpandProject project = Activator.getExtXptModelManager().findProject(file);
+		IXtendXpandProject project = Activator.getExtXptModelManager()
+				.findProject(file);
 		String selectedText = selection.getText();
-		List<SearchMatch> references = XtendXpandSearchEngine.findAllOccurrences(project, selectedText);
+		List<SearchMatch> references = XtendXpandSearchEngine
+				.findAllOccurrences(project, selectedText);
 
 		Map<IFile, TextFileChange> fileChanges = new HashMap<IFile, TextFileChange>();
 		for (SearchMatch match : references) {
@@ -109,17 +116,21 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 			if (fileChanges.containsKey(match.getFile())) {
 				fileChange = fileChanges.get(match.getFile());
 			} else {
-				fileChange = new TextFileChange(Messages.RenameDefineProcessor_TextFileChangeName, match.getFile());
+				fileChange = new TextFileChange(
+						Messages.RenameDefineProcessor_TextFileChangeName,
+						match.getFile());
 				MultiTextEdit fileChangeRootEdit = new MultiTextEdit();
 				fileChange.setEdit(fileChangeRootEdit);
 				fileChanges.put(match.getFile(), fileChange);
 				result.add(fileChange);
 			}
 
-			ReplaceEdit replaceSelectionEdit = new ReplaceEdit(match.getOffSet() + 1, match.getLength(), newName);
+			ReplaceEdit replaceSelectionEdit = new ReplaceEdit(match
+					.getOffSet() + 1, match.getLength(), newName);
 			fileChange.addEdit(replaceSelectionEdit);
 
-			TextEditGroup teg2 = new TextEditGroup(Messages.RenameDefineProcessor_GroupDescription);
+			TextEditGroup teg2 = new TextEditGroup(
+					Messages.RenameDefineProcessor_GroupDescription);
 			fileChange.addTextEditGroup(teg2);
 			teg2.addTextEdit(replaceSelectionEdit);
 
@@ -173,12 +184,18 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 		return true;
 	}
 
+	public boolean validateNewName() {
+		// TODO (dennis) check if newName is a valid define name
+		return newName != null && !newName.trim().equals("")
+				&& !selection.getText().equals(newName);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RefactoringParticipant[] loadParticipants(RefactoringStatus status, SharableParticipants sharedParticipants)
-			throws CoreException {
+	public RefactoringParticipant[] loadParticipants(RefactoringStatus status,
+			SharableParticipants sharedParticipants) throws CoreException {
 		return new RefactoringParticipant[0];
 	}
 
@@ -186,4 +203,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 		this.newName = newName;
 	}
 
+	public ITextSelection getSelection() {
+		return selection;
+	}
 }

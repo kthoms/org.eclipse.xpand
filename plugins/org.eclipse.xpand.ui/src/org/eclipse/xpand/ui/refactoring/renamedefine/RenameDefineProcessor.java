@@ -42,6 +42,7 @@ import org.eclipse.xtend.shared.ui.core.search.XtendXpandSearchEngine;
  * refactorings.
  * 
  * @author Peter Friese
+ * @author Dennis Hübner
  */
 public class RenameDefineProcessor extends RefactoringProcessor {
 
@@ -83,6 +84,9 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 			result.addFatalError(Messages.RenameDefineProcessor_NoSuchFile);
 		} else if (sourceFile.isReadOnly()) {
 			result.addFatalError(Messages.RenameDefineProcessor_FileReadonly);
+		} else if (findXtendXpandProject() == null) {
+			result
+					.addFatalError(Messages.RenameDefineProcessor_NotXpandXtendProject);
 		}
 		return result;
 	}
@@ -91,6 +95,10 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 		IFile sourceFile = (IFile) editor.getEditorInput().getAdapter(
 				IFile.class);
 		return sourceFile;
+	}
+
+	private IXtendXpandProject findXtendXpandProject() {
+		return Activator.getExtXptModelManager().findProject(getSourceFile());
 	}
 
 	/**
@@ -103,9 +111,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 		CompositeChange result = new CompositeChange(
 				Messages.RenameDefineProcessor_CompositeChangeName);
 
-		IFile file = (IFile) editor.getEditorInput().getAdapter(IFile.class);
-		IXtendXpandProject project = Activator.getExtXptModelManager()
-				.findProject(file);
+		IXtendXpandProject project = findXtendXpandProject();
 		String selectedText = selection.getText();
 		List<SearchMatch> references = XtendXpandSearchEngine
 				.findAllOccurrences(project, selectedText);
@@ -133,9 +139,7 @@ public class RenameDefineProcessor extends RefactoringProcessor {
 					Messages.RenameDefineProcessor_GroupDescription);
 			fileChange.addTextEditGroup(teg2);
 			teg2.addTextEdit(replaceSelectionEdit);
-
 		}
-
 		return result;
 	}
 

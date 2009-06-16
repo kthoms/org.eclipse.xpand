@@ -24,6 +24,7 @@ public class Messages extends NLS {
 	public static String RenameDefineAction_Name;
 	public static String RenameDefineProcessor_CompositeChangeName;
 	public static String RenameDefineProcessor_FileReadonly;
+	public static String RenameDefineProcessor_NotXpandXtendProject;
 	public static String RenameDefineProcessor_GroupDescription;
 	public static String RenameDefineProcessor_ID;
 	public static String RenameDefineProcessor_NoSuchFile;

@@ -118,7 +118,7 @@
            description="%refactoring.actionSet.description"
            id="org.eclipse.xpand.ui.refactoring.CodingActionSet"
            label="%refactoring.actionSet.label"
-           visible="true">
+           visible="false">
         <menu
               id="org.eclipse.xpand.ui.refactoring.menu"
               label="%refactoring.menu.label"

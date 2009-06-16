@@ -17,7 +17,7 @@ extension org::eclipse::xtend::util::stdlib::issues;
  * @param t The type of the mixin model element.
  * @return The mixin model element corresponding to ctx.
  */
-Object getMandatoryMixin( Object mixinModel, Object ctx, oaw::Type t ):
+Object getMandatoryMixin( Object mixinModel, Object ctx, xpand2::Type t ):
 	let m = getMixin( mixinModel, ctx, t ): m != null ? m : ( reportError( ctx, "no mixin of type "+t.name+" found in mixin model "+mixinModel.metaType.getName()+". Available mixins of that type are "+mixinModel.all(t) ) -> createEmpty(t) );
 
 /**
@@ -29,7 +29,7 @@ Object getMandatoryMixin( Object mixinModel, Object ctx, oaw::Type t ):
  * @param t The type of the mixin model element.
  * @return The mixin model element corresponding to ctx.
  */
-Object getOptionalMixin( Object mixinModel, Object ctx, oaw::Type t ):
+Object getOptionalMixin( Object mixinModel, Object ctx, xpand2::Type t ):
 	getMixin( mixinModel, ctx, t );
 
 
@@ -37,15 +37,15 @@ Object getOptionalMixin( Object mixinModel, Object ctx, oaw::Type t ):
 // -------------------------------- INTERNAL --------------------------------   
 			
 
-private Collection all( Object container, oaw::Type t ):
+private Collection all( Object container, xpand2::Type t ):
 	container.getEAllContents().select(e | t.isInstance(e) ).collect( e| e.getName() );
 	
-private createEmpty( oaw::Type t ): t.newInstance();
+private createEmpty( xpand2::Type t ): t.newInstance();
 
-Object getOptionalMixin( Object mixinModel, Object ctx, oaw::Type t ):
+Object getOptionalMixin( Object mixinModel, Object ctx, xpand2::Type t ):
 	getMixin( mixinModel, ctx, t );
 
-private Object getMixin( Object mixinModel, Object ctx, oaw::Type t ):
+private Object getMixin( Object mixinModel, Object ctx, xpand2::Type t ):
 	mixinModel.getEAllContents().selectFirst(e | t.isInstance(e) && e.getName() == ctx.qualifiedName() );
 	
 	

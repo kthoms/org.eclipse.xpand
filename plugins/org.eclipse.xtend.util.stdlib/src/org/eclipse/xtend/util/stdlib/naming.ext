@@ -43,7 +43,7 @@ String loc(Object this):
 		"["+this.metaType+", "+getName()+"]" : 
 		"["+this.metaType+", "+namespace()+"."+getName()+"]"; 
 
-Object findChildByName( Object contextObject, String name, oaw::Type t ):
+Object findChildByName( Object contextObject, String name, xpand2::Type t ):
 	contextObject.getEContents().selectFirst( e | t.isAssignableFrom(e.metaType) && e.getName() == name );
 			
 /**
@@ -55,20 +55,20 @@ Object findChildByName( Object contextObject, String name, oaw::Type t ):
 Object findByName( Collection candidates, String name ):
 	candidates.selectFirst( e | e.getName() == name );
 			
-Object findSiblingByName( Object object, String name, oaw::Type t ):
+Object findSiblingByName( Object object, String name, xpand2::Type t ):
 	findChildByName( object.getEContainer(), name, t );
 	
-Object resolveNameFromHere( Object ctx, String name, oaw::Type t ):
+Object resolveNameFromHere( Object ctx, String name, xpand2::Type t ):
 	!name.isQualifiedName()	? findSiblingByName( ctx, name, t ) :
 		findObjectByQualifiedName( ctx.getERootContainer(), name, t );
 		
-Object resolveNameFromParent( Object ctx, String name, oaw::Type t ):
+Object resolveNameFromParent( Object ctx, String name, xpand2::Type t ):
 	resolveNameFromHere( ctx.getEContainer(), name, t );
 	
 Object resolveNameFromParent( Object ctx, String name ):
 	resolveNameFromHere( ctx.getEContainer(), name, Object );
 		
-Object findObjectByQualifiedName( Object root, String qName, oaw::Type t ):
+Object findObjectByQualifiedName( Object root, String qName, xpand2::Type t ):
 	root.getEAllContents().selectFirst(e | t.isInstance(e) && e.qualifiedName() == qName );
 		
 /**

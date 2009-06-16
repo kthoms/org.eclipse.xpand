@@ -1,7 +1,5 @@
 /**
- * <copyright>
- *
- * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.
+ * Copyright (c) 2005-2009 Sven Efftinge (http://www.efftinge.de) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,19 +7,18 @@
  *
  * Contributors:
  *     Sven Efftinge (http://www.efftinge.de) - Initial API and implementation
- *
- * </copyright>
  */
 package org.eclipse.xtend.typesystem.emf;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -87,10 +84,9 @@ public class EClassType extends AbstractTypeImpl {
 			}
 		}
 		// Operations
-		final List operations = eClass.getEOperations();
-		for (final Iterator iter = operations.iterator(); iter.hasNext();) {
-			final EOperation op = (EOperation) iter.next();
-			final EList emfParams = op.getEParameters();
+		final EList<EOperation> eOperations = eClass.getEOperations();
+		for (EOperation op : eOperations) {
+			final EList<EParameter> emfParams = op.getEParameters();
 			final Type[] paramTypes = new Type[emfParams.size()];
 			boolean errors = false;
 			for (int i = 0, x = emfParams.size(); i < x; i++) {
@@ -112,7 +108,7 @@ public class EClassType extends AbstractTypeImpl {
 
 					@Override
 					protected Object evaluateInternal(final Object target, final Object[] params) {
-						final Class[] paramClasses = new Class[emfParams.size()];
+						final Class<?>[] paramClasses = new Class<?>[emfParams.size()];
 						for (int i = 0, x = emfParams.size(); i < x; i++) {
 							final EParameter param = (EParameter) emfParams.get(i);
 							if (param.isMany()) {
@@ -161,6 +157,35 @@ public class EClassType extends AbstractTypeImpl {
 
 					});
 				}
+				else if (feature.isMany()) {
+					result.add(new OperationImpl(this, "set" + StringHelper.firstUpper(feature.getName()), this, new Type[] { t }) {
+						@SuppressWarnings("unchecked")
+						@Override
+						protected Object evaluateInternal(Object target, Object[] params) {
+							if (params != null) {
+								Object newValue = params[0];
+								
+								if (newValue != null && feature.getEType() instanceof EDataType
+										&& !(feature.getEType() instanceof EEnum)) {
+									final EDataType dt = (EDataType) feature.getEType();
+									newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
+								}
+								
+								EList<Object> newColl = new BasicEList<Object>((List<?>)newValue);
+
+								EObject targetObject = ((EObject) target);
+								EClass targetClass = targetObject.eClass();
+								EStructuralFeature eStructuralFeature = targetClass.getEStructuralFeature(feature.getName());
+								
+								EList<Object> coll = (EList<Object>) targetObject.eGet(eStructuralFeature);
+
+								ECollections.setEList(coll, newColl);
+								return target;
+							}
+							return null;
+						}
+					});
+				}
 			}
 		}
 		return result.toArray(new Feature[result.size()]);
@@ -183,10 +208,9 @@ public class EClassType extends AbstractTypeImpl {
 
 	@Override
 	protected Set<Type> internalGetSuperTypes() {
-		final EList st = eClass.getESuperTypes();
+		final EList<EClass> superTypes = eClass.getESuperTypes();
 		final Set<Type> result = new HashSet<Type>();
-		for (final Iterator iter = st.iterator(); iter.hasNext();) {
-			final EClass element = (EClass) iter.next();
+		for (EClass element : superTypes) {
 			result.add(emfMetaModel.getTypeForEClassifier(element));
 		}
 		result.add(emfMetaModel.getEobjectType());

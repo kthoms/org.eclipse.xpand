@@ -11,6 +11,8 @@
 
 package org.eclipse.xtend.typesystem.emf;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -51,46 +53,42 @@ public class EmfMetaModelTest extends TestCase {
 		prop = t.getProperty("eAllOperations");
 		assertNotNull(prop);
 		assertTrue(prop.getReturnType() instanceof ParameterizedType);
-		assertEquals(mm.getTypeForName("ecore::EOperation"),
-				((ParameterizedType) prop.getReturnType()).getInnerType());
+		assertEquals(mm.getTypeForName("ecore::EOperation"), ((ParameterizedType) prop.getReturnType()).getInnerType());
 
-		final Operation op = t.getOperation("getEStructuralFeature",
-				new Type[] { ctx.getIntegerType() });
+		final Operation op = t.getOperation("getEStructuralFeature", new Type[] { ctx.getIntegerType() });
 		assertNotNull(op);
-		assertEquals(mm.getTypeForName("ecore::EStructuralFeature"), op
-				.getReturnType());
+		assertEquals(mm.getTypeForName("ecore::EStructuralFeature"), op.getReturnType());
 	}
-	
-	
+
 	public void testSettingMultiValueDataType() throws Exception {
 		EcoreFactory f = EcoreFactory.eINSTANCE;
 		final EPackage pack = f.createEPackage();
 		pack.setName("test");
-		
+
 		EClass clazz = f.createEClass();
 		clazz.setName("AClass");
 		pack.getEClassifiers().add(clazz);
-		
+
 		EAttribute attr = f.createEAttribute();
 		attr.setName("multiString");
 		attr.setEType(EcorePackage.eINSTANCE.getEString());
 		attr.setUpperBound(-1);
 		clazz.getEStructuralFeatures().add(attr);
-		
+
 		final ExecutionContextImpl ctx = new ExecutionContextImpl();
 		final EmfRegistryMetaModel mm = new EmfRegistryMetaModel() {
 			@Override
 			protected EPackage[] allPackages() {
-				return new EPackage[]{pack};
+				return new EPackage[] { pack };
 			}
 		};
 		ctx.registerMetaModel(mm);
 
 		Type aClassType = mm.getTypeForName("test::AClass");
 		assertNotNull(aClassType);
-		Operation op = aClassType.getOperation("setMultiString", new Type[] {ctx.getListType(ctx.getStringType()) });
-		assertNull(op);
-		
+		Operation op = aClassType.getOperation("setMultiString", new Type[] { ctx.getListType(ctx.getStringType()) });
+		assertNotNull(op);
+
 		EObject aClassInstance = EcoreUtil.create(clazz);
 		ExpressionFacade facade = new ExpressionFacade(ctx);
 		facade = facade.cloneWithVariable(new Variable("aClassInstance", aClassInstance));
@@ -100,6 +98,58 @@ public class EmfMetaModelTest extends TestCase {
 		assertEquals("foo", "" + facade.evaluate("aClassInstance.multiString.first()"));
 	}
 
+	@SuppressWarnings("unchecked")
+	public void testSetList() {
+		EcoreFactory f = EcoreFactory.eINSTANCE;
+		final EPackage pack = f.createEPackage();
+		pack.setName("test");
+
+		EClass clazz = f.createEClass();
+		clazz.setName("AClass");
+		pack.getEClassifiers().add(clazz);
+
+		EAttribute attr = f.createEAttribute();
+		attr.setName("multiA");
+		attr.setEType(clazz);
+		attr.setUpperBound(-1);
+		clazz.getEStructuralFeatures().add(attr);
+
+		final ExecutionContextImpl ctx = new ExecutionContextImpl();
+		final EmfRegistryMetaModel mm = new EmfRegistryMetaModel() {
+			@Override
+			protected EPackage[] allPackages() {
+				return new EPackage[] { pack };
+			}
+		};
+		ctx.registerMetaModel(mm);
+
+		Type aClassType = mm.getTypeForName("test::AClass");
+		Operation op2 = aClassType.getOperation("setMultiA", new Type[] { ctx.getListType(aClassType) });
+		assertNotNull(op2);
+
+		EObject aObject = (EObject) aClassType.newInstance();
+		Type listType = ctx.getListType(aClassType);
+		final List<Object> l = (List<Object>) listType.newInstance();
+		for (int i = 0; i < 5; i++) {
+			l.add(aClassType.newInstance());
+		}
+		Object params[] = { l };
+		op2.evaluate(aObject, params);
+		
+		List<Object> theList = (List<Object>) aObject.eGet(attr);
+		assertEquals(5, theList.size());
+		
+		final List<Object> yetAnotherList = (List<Object>) listType.newInstance();
+		for (int i = 0; i < 2; i++) {
+			yetAnotherList.add(aClassType.newInstance());
+		}
+		Object params2[] = { yetAnotherList };
+		op2.evaluate(aObject, params2);
+		
+		List<Object> anotherList = (List<Object>) aObject.eGet(attr);
+		assertEquals(2, anotherList.size());
+
+	}
 
 	public final void testEEnumType() {
 		final ExecutionContextImpl ctx = new ExecutionContextImpl();
@@ -168,7 +218,5 @@ public class EmfMetaModelTest extends TestCase {
 		ctx.registerMetaModel(mm);
 		assertNotNull(ctx.getTypeForName("ecore::EOperation"));
 	}
-
-
 
 }

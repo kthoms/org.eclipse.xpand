@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -31,6 +32,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IStorageEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
@@ -39,7 +41,14 @@ import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
 import org.eclipse.xtend.shared.ui.core.i18n.Messages;
 import org.eclipse.xtend.shared.ui.expression.editor.EditorImages;
 
-public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePage {
+/**
+ * Abstract class that should be used for building ExtXpt Outline pages
+ * 
+ * @author Dennis Huebner
+ * 
+ */
+public abstract class AbstractExtXptContentOutlinePage extends
+		ContentOutlinePage {
 
 	private final TextEditor editor;
 
@@ -68,6 +77,15 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 		if (input == null)
 			return null;
 		IStorage file = (IStorage) input.getAdapter(IStorage.class);
+		// somehow AdapterManager returns null for IStorage, so fall back to
+		// IStorageEditorInput
+		if (file == null && input instanceof IStorageEditorInput) {
+			try {
+				file = ((IStorageEditorInput) input).getStorage();
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
 		return Activator.getExtXptModelManager().findExtXptResource(file);
 	}
 
@@ -110,12 +128,14 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 				// do nothing
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput,
+					Object newInput) {
 				// do nothing
 			}
 
 			public Object[] getChildren(Object parentElement) {
-				return AbstractExtXptContentOutlinePage.this.getChildren(parentElement);
+				return AbstractExtXptContentOutlinePage.this
+						.getChildren(parentElement);
 			}
 
 			public Object getParent(Object element) {
@@ -154,7 +174,8 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 			if (selection.isEmpty()) {
 				editor.resetHighlightRange();
 			} else {
-				Object segment = ((IStructuredSelection) selection).getFirstElement();
+				Object segment = ((IStructuredSelection) selection)
+						.getFirstElement();
 				if (segment != null && segment instanceof OutlineElement) {
 					OutlineElement ext = (OutlineElement) segment;
 					int start = ext.start;
@@ -197,20 +218,26 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 
 	protected abstract OutlineElement[] getChildren(Object parentElement);
 
-	protected List<OutlineElement> toOutlineElementsForNamespaceImports(List<ImportStatement> imports) {
+	protected List<OutlineElement> toOutlineElementsForNamespaceImports(
+			List<ImportStatement> imports) {
 		List<OutlineElement> l = new ArrayList<OutlineElement>();
 		for (ImportStatement s : imports) {
-			l.add(new OutlineElement(s.getImportedId().getValue(), s.getStart(), s.getEnd() - s.getStart(),
-					EditorImages.getImage(EditorImages.NS_IMPORT), OutlineElement.IMPORT));
+			l.add(new OutlineElement(s.getImportedId().getValue(),
+					s.getStart(), s.getEnd() - s.getStart(), EditorImages
+							.getImage(EditorImages.NS_IMPORT),
+					OutlineElement.IMPORT));
 		}
 		return l;
 	}
 
-	protected List<OutlineElement> toOutlineElementsForExtensionImports(List<ImportStatement> imports) {
+	protected List<OutlineElement> toOutlineElementsForExtensionImports(
+			List<ImportStatement> imports) {
 		List<OutlineElement> l = new ArrayList<OutlineElement>();
 		for (ImportStatement s : imports) {
-			l.add(new OutlineElement(s.getImportedId().getValue(), s.getStart(), s.getEnd() - s.getStart(),
-					EditorImages.getImage(EditorImages.EXT_IMPORT), OutlineElement.EXTENSION));
+			l.add(new OutlineElement(s.getImportedId().getValue(),
+					s.getStart(), s.getEnd() - s.getStart(), EditorImages
+							.getImage(EditorImages.EXT_IMPORT),
+					OutlineElement.EXTENSION));
 		}
 		return l;
 	}
@@ -222,7 +249,8 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 		// bringed-here constants for dependencies shooting...:
 		public static final String ID_PLUGIN = "org.eclipse.internal.xtend"; //$NON-NLS-1$
 		public static final String PREFIX = ID_PLUGIN + '.';
-		public static final String LEXICAL_SORTING_OUTLINE_ACTION = PREFIX + "lexical_sorting_outline_action"; //$NON-NLS-1$
+		public static final String LEXICAL_SORTING_OUTLINE_ACTION = PREFIX
+				+ "lexical_sorting_outline_action"; //$NON-NLS-1$
 
 		private OutlineElementComparator fComparator = new OutlineElementComparator();
 		private ViewerComparator fSourcePositonComparator = new ViewerComparator() {
@@ -236,14 +264,17 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 		public LexicalSortingAction() {
 			super();
 
-			PlatformUI.getWorkbench().getHelpSystem().setHelp(this, LEXICAL_SORTING_OUTLINE_ACTION);
+			PlatformUI.getWorkbench().getHelpSystem().setHelp(this,
+					LEXICAL_SORTING_OUTLINE_ACTION);
 			setText(Messages.AbstractXtendXpandContentOutlinePage_1);
 
-			this.setImageDescriptor(Activator.getImageDescriptor("icons/alphab_sort_co.gif")); //$NON-NLS-1$
+			this.setImageDescriptor(Activator
+					.getImageDescriptor("icons/alphab_sort_co.gif")); //$NON-NLS-1$
 			setToolTipText(Messages.AbstractXtendXpandContentOutlinePage_3);
 			setDescription(Messages.AbstractXtendXpandContentOutlinePage_4);
 
-			boolean checked = Activator.getDefault().getPreferenceStore().getBoolean("LexicalSortingAction.isChecked"); //$NON-NLS-1$
+			boolean checked = Activator.getDefault().getPreferenceStore()
+					.getBoolean("LexicalSortingAction.isChecked"); //$NON-NLS-1$
 			valueChanged(checked, false);
 		}
 
@@ -258,17 +289,20 @@ public abstract class AbstractExtXptContentOutlinePage extends ContentOutlinePag
 
 			final TreeViewer fOutlineViewer = getTreeViewer();
 
-			BusyIndicator.showWhile(fOutlineViewer.getControl().getDisplay(), new Runnable() {
-				public void run() {
-					if (on)
-						fOutlineViewer.setComparator(fComparator);
-					else
-						fOutlineViewer.setComparator(fSourcePositonComparator);
-				}
-			});
+			BusyIndicator.showWhile(fOutlineViewer.getControl().getDisplay(),
+					new Runnable() {
+						public void run() {
+							if (on)
+								fOutlineViewer.setComparator(fComparator);
+							else
+								fOutlineViewer
+										.setComparator(fSourcePositonComparator);
+						}
+					});
 
 			if (store)
-				Activator.getDefault().getPreferenceStore().setValue("LexicalSortingAction.isChecked", on); //$NON-NLS-1$
+				Activator.getDefault().getPreferenceStore().setValue(
+						"LexicalSortingAction.isChecked", on); //$NON-NLS-1$
 
 		}
 	}

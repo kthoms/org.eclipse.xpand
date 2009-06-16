@@ -24,10 +24,13 @@ import org.eclipse.ui.actions.ActionGroup;
 import org.eclipse.ui.editors.text.TextEditor;
 
 /**
- * Action group with 2 actions: "Toggle Breakpoints" and "Enable/Disable Breakpoints".<br>
- * Despite of usual breakpoint actions these actions can be used not only for vertical ruler context menu (incl.
- * double click), but also for editor context menu. That way "in line" breakpoints can be handled.
+ * Action group with 2 actions: "Toggle Breakpoints" and
+ * "Enable/Disable Breakpoints".<br>
+ * Despite of usual breakpoint actions these actions can be used not only for
+ * vertical ruler context menu (incl. double click), but also for editor context
+ * menu. That way "in line" breakpoints can be handled.
  * 
+ * @author Dennis Hübner
  */
 public class BreakpointActionGroup extends ActionGroup {
 
@@ -50,7 +53,8 @@ public class BreakpointActionGroup extends ActionGroup {
 	public BreakpointActionGroup(final TextEditor editor) {
 		Assert.isNotNull(editor);
 
-		// Note: We don't want to define a new "IOurOwnTextEditor" interface, so we do it via Reflection
+		// Note: We don't want to define a new "IOurOwnTextEditor" interface, so
+		// we do it via Reflection
 		Object obj = getterMethod("getSourceViewer", editor);
 		if (obj == null) {
 			return;
@@ -77,7 +81,8 @@ public class BreakpointActionGroup extends ActionGroup {
 
 		});
 
-		// set lastSelectedLine if RightMouseClick or DoubleClick on vertical ruler
+		// set lastSelectedLine if RightMouseClick or DoubleClick on vertical
+		// ruler
 		verticalRuler.getControl().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(final MouseEvent e) {
@@ -98,19 +103,54 @@ public class BreakpointActionGroup extends ActionGroup {
 	}
 
 	private void updateLastSelectedLine(final int y) {
-		// Note: we use our own "lastSelectedLine mechanism" (not the ruler's one) because of sequencing problems
-		// our action mouseHandler would be called after the ruler mouseHandler, so for doubleClick the
+		// Note: we use our own "lastSelectedLine mechanism" (not the ruler's
+		// one) because of sequencing problems
+		// our action mouseHandler would be called after the ruler mouseHandler,
+		// so for doubleClick the
 		// lastSelectedLine value may not be correct
-		// (see AbstractTextEditor.createPartCOntrol(): createVerticalRuler() is before createActions()
+		// (see AbstractTextEditor.createPartCOntrol(): createVerticalRuler() is
+		// before createActions()
 		rulerSelected = true;
-		lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
-			lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(0, y));
+		final int oldLine = lastSelectedLine;
+		final int oldOffset = lastSelectedOffset;
+		try {
+			lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
+			lastSelectedOffset = textWidget
+					.getOffsetAtLocation(new Point(0, y));
+		} catch (IllegalArgumentException e) {
+			// Restore original values
+			lastSelectedLine = oldLine;
+			lastSelectedOffset = oldOffset;
+		}
 	}
 
 	private void updateLastSelectedOffset(final int x, final int y) {
 		rulerSelected = false;
-		lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
-		lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(x, y));
+		final int oldLine = lastSelectedLine;
+		try {
+			lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
+			try {
+				lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(
+						x, y));
+			} catch (Exception e) {
+				try {
+					// If we got the offset, move to the end of the line.
+					lastSelectedOffset = textWidget
+							.getOffsetAtLocation(new Point(0, y));
+					int lineIndex = textWidget
+							.getLineAtOffset(lastSelectedOffset);
+					lastSelectedOffset += textWidget.getLine(lineIndex)
+							.length();
+				} catch (Exception e2) {
+					// Otherwise, create an offset to the end of the entire
+					// text.
+					lastSelectedOffset = textWidget.getText().length();
+				}
+			}
+		} catch (Exception e) {
+			lastSelectedLine = oldLine;
+		}
+
 	}
 
 	// -------------------------------------------------------------------------
@@ -136,9 +176,9 @@ public class BreakpointActionGroup extends ActionGroup {
 	@Override
 	public void fillContextMenu(final IMenuManager manager) {
 		toggleAction.updateText();
-		manager.appendToGroup("mwe", toggleAction);
+		manager.appendToGroup("Xpand", toggleAction);
 		enableAction.updateText();
-		manager.appendToGroup("mwe", enableAction);
+		manager.appendToGroup("Xpand", enableAction);
 	}
 
 	@Override
@@ -156,7 +196,7 @@ public class BreakpointActionGroup extends ActionGroup {
 				return m.invoke(element, new Object[] {});
 			}
 		} catch (Exception e) {
-			System.out.println("error");
+			System.out.println("BreakpointActionGroup.getterMethod() caused an error");
 		}
 		return null;
 	}

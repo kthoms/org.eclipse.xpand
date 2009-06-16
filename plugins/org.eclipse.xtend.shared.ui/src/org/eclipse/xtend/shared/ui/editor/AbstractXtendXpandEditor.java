@@ -64,7 +64,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 
 	@Override
 	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
-		menu.add(new Separator("mwe"));
+		menu.add(new Separator("Xpand"));
 		super.editorContextMenuAboutToShow(menu);
 
 		final ActionContext context = new ActionContext(getSelectionProvider().getSelection());

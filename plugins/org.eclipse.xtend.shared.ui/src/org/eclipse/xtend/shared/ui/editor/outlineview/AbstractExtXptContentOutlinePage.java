@@ -14,8 +14,8 @@ package org.eclipse.xtend.shared.ui.editor.outlineview;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IStorage;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -32,7 +32,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IStorageEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
@@ -78,13 +77,9 @@ public abstract class AbstractExtXptContentOutlinePage extends
 			return null;
 		IStorage file = (IStorage) input.getAdapter(IStorage.class);
 		// somehow AdapterManager returns null for IStorage, so fall back to
-		// IStorageEditorInput
-		if (file == null && input instanceof IStorageEditorInput) {
-			try {
-				file = ((IStorageEditorInput) input).getStorage();
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
+		// IFile
+		if (file == null) {
+			file = (IStorage) input.getAdapter(IFile.class);
 		}
 		return Activator.getExtXptModelManager().findExtXptResource(file);
 	}

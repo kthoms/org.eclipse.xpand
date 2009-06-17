@@ -122,7 +122,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 
 	private final Map<ResourceID, IXtendXpandResource> resources = new HashMap<ResourceID, IXtendXpandResource>();
 
-	private Set<ResourceID> fromJar = new HashSet<ResourceID>();
+	private final Set<ResourceID> fromJar = new HashSet<ResourceID>();
 
 	/**
 	 * @see IXtendXpandProject#getRegisteredResources()
@@ -211,7 +211,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fqn
 	 *            Full qualified name of the searched resource
 	 * @param extension
@@ -238,7 +238,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 
 	/**
 	 * Loads an Xtend Resource. Searches the project and all referenced projects.
-	 * 
+	 *
 	 * @param fqn
 	 *            Qualified name of the resource, e.g. '<tt>org::eclipse::xtend::util::stdlib::io.ext'
 	 * @param extension
@@ -249,8 +249,16 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @return The resource or <code>null</code> if not found
 	 */
 	private IXtendXpandResource loadXtendXpandResource(final String fqn, final String extension, boolean searchJars) {
+		return loadXtendXpandResource(fqn, extension, searchJars, new HashSet<XtendXpandProject>(5));
+	}
+
+	private IXtendXpandResource loadXtendXpandResource(final String fqn, final String extension, boolean searchJars, Set<XtendXpandProject> projects) {
 		assert (fqn != null);
 		assert (extension != null);
+
+		// prevent stackoverflow with recursive project dependencies and resources that could not be found
+		if (!projects.add(this))
+			return null;
 
 		// search the resource using JDT
 		IStorage storage = JDTUtil.findStorage(project, new ResourceID(fqn, extension), searchJars);
@@ -291,7 +299,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 				final XtendXpandProject extxptp = (XtendXpandProject) Activator.getExtXptModelManager().findProject(
 						project);
 				if (extxptp != null) {
-					IXtendXpandResource result = extxptp.loadXtendXpandResource(fqn, extension, searchJars);
+					IXtendXpandResource result = extxptp.loadXtendXpandResource(fqn, extension, searchJars, projects);
 					if (result != null)
 						return result;
 				}

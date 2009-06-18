@@ -46,10 +46,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.xpand.examples"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.xtend.source"
          version="0.0.0"/>
 

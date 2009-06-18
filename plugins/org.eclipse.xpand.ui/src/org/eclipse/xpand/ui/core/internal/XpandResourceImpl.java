@@ -65,10 +65,6 @@ public class XpandResourceImpl extends AbstractResource implements IXpandResourc
 		return resource().getDefinitionsByName(name);
 	}
 
-	protected ExecutionContext getExecutionContext(final IJavaProject p) {
-		return XpandEditorPlugin.getExecutionContext(p);
-	}
-
 	public XpandAdvice[] getAdvices() {
 		return resource().getAdvices();
 	}

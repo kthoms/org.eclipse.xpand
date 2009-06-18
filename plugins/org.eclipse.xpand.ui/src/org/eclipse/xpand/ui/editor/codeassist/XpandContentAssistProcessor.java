@@ -71,7 +71,7 @@ public class XpandContentAssistProcessor extends AbstractExtXptContentAssistProc
 			if (tpl != null) {
 				defs = tpl.getDefinitions();
 			}
-			XpandExecutionContext ctx = XpandEditorPlugin.getExecutionContext(getJavaProject());
+			XpandExecutionContext ctx = (XpandExecutionContext) Activator.getExecutionContext(getJavaProject());
 			final Partition p = FastAnalyzer.computePartition(txt);
 
 			// Shortcut: No proposals within comments

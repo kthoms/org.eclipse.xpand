@@ -9,13 +9,15 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.xpand.ui;
+package org.eclipse.xtend.shared.ui.expression;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.internal.xpand2.pr.ProtectedRegionResolver;
+import org.eclipse.internal.xtend.util.Pair;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xtend.expression.Resource;
 import org.eclipse.xtend.expression.ResourceManager;
@@ -23,27 +25,29 @@ import org.eclipse.xtend.expression.ResourceParser;
 import org.eclipse.xtend.expression.TypeSystemImpl;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
+import org.eclipse.xtend.typesystem.Type;
 
 public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecutionContextImpl {
 	private final IXtendXpandProject project;
 
 	public XpandPluginExecutionContext(final IXtendXpandProject xp) {
 		this(new PluginResourceManager(xp), null, new TypeSystemImpl(), new HashMap<String, Variable>(),
-				new HashMap<String, Variable>(), null, null, null, xp);
+				new HashMap<String, Variable>(), null, null, null, xp, null);
 	}
 
 	protected XpandPluginExecutionContext(ResourceManager resourceManager, Resource currentResource,
 			TypeSystemImpl typeSystem, Map<String, Variable> vars, Map<String, Variable> globalVars, Output output,
-			ProtectedRegionResolver prs, ProgressMonitor monitor, IXtendXpandProject xp) {
+			ProtectedRegionResolver prs, ProgressMonitor monitor, IXtendXpandProject xp,
+			Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
 		super(resourceManager, currentResource, typeSystem, vars, globalVars, output, prs, monitor, null, null, null,
-				null, null, null, null);
+				null, null, null, extensionsReturnTypeCache);
 		this.project = xp;
 	}
 
 	@Override
 	public XpandPluginExecutionContext cloneContext() {
 		return new XpandPluginExecutionContext(resourceManager, currentResource(), typeSystem, getVisibleVariables(),
-				getGlobalVariables(), output, protectedRegionResolver, getMonitor(), project);
+				getGlobalVariables(), output, protectedRegionResolver, getMonitor(), project, extensionsReturnTypeCache);
 	}
 
 	public static class PluginResourceManager implements ResourceManager {

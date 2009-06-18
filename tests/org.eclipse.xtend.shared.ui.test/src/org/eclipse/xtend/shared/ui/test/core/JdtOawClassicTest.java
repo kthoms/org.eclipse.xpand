@@ -17,12 +17,11 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.xtend.expression.TypeSystemImpl;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.metamodel.jdt.JdtMetaModel;
 import org.eclipse.xtend.shared.ui.core.metamodel.jdt.oaw.JdtOawClassicTypeStrategy;
-import org.eclipse.xtend.shared.ui.expression.PluginExecutionContextImpl;
+import org.eclipse.xtend.shared.ui.expression.XpandPluginExecutionContext;
 import org.eclipse.xtend.shared.ui.test.PluginTestBase;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.ParameterizedType;
@@ -30,7 +29,7 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class JdtOawClassicTest extends PluginTestBase {
 
-    private PluginExecutionContextImpl ctx;
+    private XpandPluginExecutionContext ctx;
 
     @Override
     public void setUp() throws Exception {
@@ -46,7 +45,7 @@ public class JdtOawClassicTest extends PluginTestBase {
                 + "public String doStuff(String txt) {return txt;}" + "}");
         final IJavaProject project = env.getJavaProject(pPath);
         final IXtendXpandProject xp = Activator.getExtXptModelManager().findProject(pPath);
-        ctx = new PluginExecutionContextImpl(xp, new TypeSystemImpl());
+        ctx = new XpandPluginExecutionContext(xp);
         final JdtMetaModel mm = new JdtMetaModel("DEFAULT", project, new JdtOawClassicTypeStrategy());
         ctx.registerMetaModel(mm);
         env.fullBuild();

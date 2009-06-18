@@ -101,10 +101,6 @@ public abstract class AbstractResource implements IXtendXpandResource {
 		}
 	}
 
-	protected ExecutionContext getExecutionContext(final IJavaProject p) {
-		return Activator.getExecutionContext(p);
-	}
-
 	protected abstract void analyze(ExecutionContext ctx, Set<AnalysationIssue> issues);
 
 	public final boolean refresh() {

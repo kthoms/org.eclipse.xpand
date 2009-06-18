@@ -39,14 +39,13 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
-import org.eclipse.xtend.expression.TypeSystemImpl;
 import org.eclipse.xtend.shared.ui.core.IModelManager;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandNature;
 import org.eclipse.xtend.shared.ui.core.internal.XtendXpandModelManager;
 import org.eclipse.xtend.shared.ui.core.metamodel.Contributor;
 import org.eclipse.xtend.shared.ui.core.metamodel.MetamodelContributorRegistry;
-import org.eclipse.xtend.shared.ui.expression.PluginExecutionContextImpl;
+import org.eclipse.xtend.shared.ui.expression.XpandPluginExecutionContext;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.osgi.framework.BundleContext;
@@ -196,7 +195,7 @@ public class Activator extends AbstractUIPlugin {
 
 	public static ExecutionContext getExecutionContext(final IJavaProject project) {
 		final IXtendXpandProject xp = Activator.getExtXptModelManager().findProject(project.getPath());
-		final ExecutionContextImpl ctx = new PluginExecutionContextImpl(xp, new TypeSystemImpl());
+		final ExecutionContextImpl ctx = new XpandPluginExecutionContext(xp);
 
 		final List<? extends MetamodelContributor> contr = MetamodelContributorRegistry.getActiveMetamodelContributors(project);
 		for (MetamodelContributor contributor : contr) {

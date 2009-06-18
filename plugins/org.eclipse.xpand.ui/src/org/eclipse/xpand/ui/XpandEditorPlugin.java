@@ -12,9 +12,7 @@
 package org.eclipse.xpand.ui;
 
 import java.io.IOException;
-import java.util.List;
 
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.text.templates.ContextTypeRegistry;
 import org.eclipse.jface.text.templates.persistence.TemplateStore;
@@ -25,13 +23,7 @@ import org.eclipse.ui.editors.text.templates.ContributionTemplateStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xpand.ui.editor.PreferencesConstants;
 import org.eclipse.xpand.ui.editor.color.ColorProvider;
-import org.eclipse.xpand2.XpandExecutionContext;
-import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xtend.shared.ui.Activator;
-import org.eclipse.xtend.shared.ui.MetamodelContributor;
-import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
-import org.eclipse.xtend.shared.ui.core.metamodel.MetamodelContributorRegistry;
-import org.eclipse.xtend.typesystem.MetaModel;
 import org.osgi.framework.BundleContext;
 
 public class XpandEditorPlugin extends AbstractUIPlugin {
@@ -96,23 +88,6 @@ public class XpandEditorPlugin extends AbstractUIPlugin {
 
 	private static IWorkbenchWindow getActiveWorkbenchWindow() {
 		return getDefault().getWorkbench().getActiveWorkbenchWindow();
-	}
-
-	public static XpandExecutionContext getExecutionContext(final IJavaProject project) {
-		final IXtendXpandProject xp = Activator.getExtXptModelManager().findProject(project.getPath());
-		if (xp == null)
-			return null;
-		final XpandExecutionContextImpl ctx = new XpandPluginExecutionContext(xp);
-
-		final List<? extends MetamodelContributor> contr = MetamodelContributorRegistry
-				.getActiveMetamodelContributors(project);
-		for (MetamodelContributor contributor : contr) {
-			final MetaModel[] metamodels = contributor.getMetamodels(project, ctx);
-			for (MetaModel element : metamodels) {
-				ctx.registerMetaModel(element);
-			}
-		}
-		return ctx;
 	}
 
 	public TemplateStore getTemplateStore() {

@@ -23,14 +23,14 @@ import org.eclipse.jface.text.source.IAnnotationHover;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandProblemHover;
-import org.eclipse.xtend.shared.ui.editor.AbstractXtendXandSourceViewerConfiguration;
+import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandSourceViewerConfiguration;
 import org.eclipse.xtend.ui.editor.codeassist.XtendContentAssistProcessor;
 import org.eclipse.xtend.ui.editor.scanning.CommentScanner;
 import org.eclipse.xtend.ui.editor.scanning.ContentScanner;
 import org.eclipse.xtend.ui.editor.scanning.StringLiteralScanner;
 import org.eclipse.xtend.ui.editor.scanning.XtendPartitionScanner;
 
-public class XtendSourceViewerConfiguration extends AbstractXtendXandSourceViewerConfiguration {
+public class XtendSourceViewerConfiguration extends AbstractXtendXpandSourceViewerConfiguration {
 
 	private ContentScanner contentScanner;
 

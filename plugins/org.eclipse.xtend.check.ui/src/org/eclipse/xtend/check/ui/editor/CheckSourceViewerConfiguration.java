@@ -24,11 +24,11 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtend.check.ui.editor.codeassist.CheckContentAssistProcessor;
 import org.eclipse.xtend.check.ui.editor.scanning.ContentScanner;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandProblemHover;
-import org.eclipse.xtend.shared.ui.editor.AbstractXtendXandSourceViewerConfiguration;
+import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandSourceViewerConfiguration;
 import org.eclipse.xtend.ui.editor.scanning.CommentScanner;
 import org.eclipse.xtend.ui.editor.scanning.XtendPartitionScanner;
 
-public class CheckSourceViewerConfiguration extends AbstractXtendXandSourceViewerConfiguration {
+public class CheckSourceViewerConfiguration extends AbstractXtendXpandSourceViewerConfiguration {
 
 	private ContentScanner contentScanner;
 

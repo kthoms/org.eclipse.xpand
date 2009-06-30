@@ -24,7 +24,7 @@ import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 import org.eclipse.xtend.shared.ui.editor.navigation.GenericHyperlinkDetector;
 
-public abstract class AbstractXtendXandSourceViewerConfiguration extends TextSourceViewerConfiguration {
+public abstract class AbstractXtendXpandSourceViewerConfiguration extends TextSourceViewerConfiguration {
 
 	private final IEditorPart editor;
 
@@ -32,12 +32,12 @@ public abstract class AbstractXtendXandSourceViewerConfiguration extends TextSou
 		return editor;
 	}
 
-	public AbstractXtendXandSourceViewerConfiguration(final IEditorPart editor, IPreferenceStore preferenceStore) {
+	public AbstractXtendXpandSourceViewerConfiguration(final IEditorPart editor, IPreferenceStore preferenceStore) {
 		super(preferenceStore);
 		this.editor = editor;
 	}
 
-	public AbstractXtendXandSourceViewerConfiguration(IEditorPart editor) {
+	public AbstractXtendXpandSourceViewerConfiguration(IEditorPart editor) {
 		this.editor = editor;
 	}
 

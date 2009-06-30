@@ -29,9 +29,9 @@ import org.eclipse.xpand.ui.editor.scanning.ContentScanner;
 import org.eclipse.xpand.ui.editor.scanning.TemplateTagScanner;
 import org.eclipse.xpand.ui.editor.scanning.XpandPartitionScanner;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandProblemHover;
-import org.eclipse.xtend.shared.ui.editor.AbstractXtendXandSourceViewerConfiguration;
+import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandSourceViewerConfiguration;
 
-public class XpandSourceViewerConfiguration extends AbstractXtendXandSourceViewerConfiguration {
+public class XpandSourceViewerConfiguration extends AbstractXtendXpandSourceViewerConfiguration {
 
 	private ContentScanner contentScanner;
 

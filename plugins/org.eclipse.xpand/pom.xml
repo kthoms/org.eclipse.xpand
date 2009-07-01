@@ -7,9 +7,11 @@
       <groupId>org.eclipse.m2t.xpand</groupId>
       <version>0.7.0</version>
    </parent>
-
+   
+   <groupId>org.eclipse.m2t.xpand</groupId>
    <artifactId>m2t-xpand-xpand</artifactId>
    <name>Eclipse M2T XPand - Xpand</name>
+   <version>0.7.0</version>
    <description />
 
    <dependencies>

@@ -27,7 +27,6 @@ import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
@@ -40,8 +39,6 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
 public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
 	private XtendXpandProjectWizardPage page;
 
-	private ISelection selection;
-
 	private IConfigurationElement configElement;
 
 	public XtendXpandProjectWizard() {
@@ -51,7 +48,7 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 
 	@Override
 	public void addPages() {
-		page = new XtendXpandProjectWizardPage(selection);
+		page = new XtendXpandProjectWizardPage();
 		addPage(page);
 	}
 
@@ -149,7 +146,6 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
 	 */
 	public void init(final IWorkbench workbench, final IStructuredSelection selection) {
-		this.selection = selection;
 	}
 
 	public void setInitializationData(final IConfigurationElement config, final String propertyName, final Object data)

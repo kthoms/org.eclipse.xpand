@@ -11,7 +11,6 @@
 package org.eclipse.xtend.shared.ui.wizards;
 
 import org.eclipse.jface.dialogs.IDialogPage;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -41,7 +40,7 @@ public class XtendXpandProjectWizardPage extends WizardPage {
 	 * 
 	 * @param pageName
 	 */
-	public XtendXpandProjectWizardPage(ISelection selection) {
+	public XtendXpandProjectWizardPage() {
 		super(Messages.XtendXpandProjectWizardPage_Name);
 		setTitle(Messages.XtendXpandProjectWizardPage_Title);
 		setDescription(Messages.XtendXpandProjectWizardPage_Description);

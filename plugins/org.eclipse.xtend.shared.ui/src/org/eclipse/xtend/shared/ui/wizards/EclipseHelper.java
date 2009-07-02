@@ -178,7 +178,9 @@ public class EclipseHelper {
 		for (String entry : requiredBundles) {
 			maniContent.append(" " + entry + ",\n");
 		}
-		maniContent.append(" org.eclipse.internal.xtend.dependencies\n");
+		maniContent.append(" org.eclipse.xpand,\n");
+		maniContent.append(" org.eclipse.xtend,\n");
+		maniContent.append(" org.eclipse.xtend.typesystem.emf\n");
 
 		if (exportedPackages != null && !exportedPackages.isEmpty()) {
 			maniContent.append("Require-Bundle: " + exportedPackages.get(0));

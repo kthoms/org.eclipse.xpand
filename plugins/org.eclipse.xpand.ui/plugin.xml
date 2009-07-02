@@ -94,10 +94,19 @@
          class="org.eclipse.xpand.ui.wizard.NewTemplateFileWizard"
          icon="icons/templatefile.gif"
          id="org.eclipse.xpand.ui.wizard.NewTemplateFileWizard"
-         name="%wizard.name">
-	       <description>%wizard.description</description>
+         name="%templateWizard.name">
+	       <description>%templateWizard.description</description>
 		   <selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
+		<wizard
+         category="org.eclipse.xpand.ui.newWizards"
+         class="org.eclipse.xtend.shared.ui.wizards.XtendXpandProjectWizard"
+         icon="icons/genproject.gif"
+         id="org.eclipse.xpand.ui.wizard.NewXpandProjectWizard"
+         name="%projectWizard.name">
+           <description>%projectWizard.description</description>
+           <selection class="org.eclipse.core.resources.IResource"/>
+        </wizard>
 	</extension>
  	<extension
 	       point="org.eclipse.ui.themes">

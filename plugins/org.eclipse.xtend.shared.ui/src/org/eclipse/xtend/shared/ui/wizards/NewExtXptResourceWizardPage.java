@@ -17,12 +17,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.xtend.shared.ui.Messages;
 
-public class NewOAWResourcePage extends WizardNewFileCreationPage {
+public class NewExtXptResourceWizardPage extends WizardNewFileCreationPage {
 
 	private String extension;
 	private String initialContents;
 	
-	public NewOAWResourcePage(String pageName, IStructuredSelection selection, String initial, String extension, String initialContents ) {
+	public NewExtXptResourceWizardPage(String pageName, IStructuredSelection selection, String initial, String extension, String initialContents ) {
 		super(pageName, selection);
 		setFileName(initial);
 		this.extension = extension;

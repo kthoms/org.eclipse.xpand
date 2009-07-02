@@ -20,7 +20,7 @@ import org.eclipse.xtend.shared.ui.Messages;
 
 public abstract class NewExtXptResourceWizard extends BasicNewResourceWizard {
 
-	private NewOAWResourcePage mainPage;
+	private NewExtXptResourceWizardPage mainPage;
 
 	private String extension;
 
@@ -50,7 +50,7 @@ public abstract class NewExtXptResourceWizard extends BasicNewResourceWizard {
 	@Override
 	public void addPages() {
 		super.addPages();
-		mainPage = new NewOAWResourcePage("newFilePage1", getSelection(), initial, extension, initialContents);//$NON-NLS-1$
+		mainPage = new NewExtXptResourceWizardPage("newFilePage1", getSelection(), initial, extension, initialContents);//$NON-NLS-1$
 		mainPage.setTitle(title);
 		mainPage.setDescription(description);
 		addPage(mainPage);

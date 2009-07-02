@@ -41,7 +41,7 @@ public class Messages extends NLS {
 	public static String MetamodelContributorsPropertyAndPreferencePage_UpButton;
 	public static String MetamodelContributorsPropertyAndPreferencePage_WholeProject;
 	public static String NewExtXptResourceWizard_Title;
-	public static String NewOAWResourcePage_Error;
+	public static String NewExtXptResourceWizardPage_Error;
 	public static String OpenAction_ActionName;
 	public static String ReferencesSearchGroup_Label;
 	public static String SearchActionGroup_Name;

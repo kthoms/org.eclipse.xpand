@@ -31,7 +31,7 @@ public class NewExtXptResourceWizardPage extends WizardNewFileCreationPage {
 	
 	@Override
 	public String getErrorMessage() {
-		if ( !getFileName().endsWith("."+extension) ) return Messages.NewOAWResourcePage_Error+extension;
+		if ( !getFileName().endsWith("."+extension) ) return Messages.NewExtXptResourceWizardPage_Error+extension;
 		return null;
 	}
 	

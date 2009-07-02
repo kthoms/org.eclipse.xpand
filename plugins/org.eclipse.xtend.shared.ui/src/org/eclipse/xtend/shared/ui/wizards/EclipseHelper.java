@@ -160,7 +160,8 @@ public class EclipseHelper {
 	}
 
 	private static void createBuildProps(final IProgressMonitor progressMonitor, IProject project) {
-		StringBuilder bpContent = new StringBuilder("source.. = src/\n");
+		StringBuilder bpContent = new StringBuilder("source.. = src/,\\\n");
+		bpContent.append("           src-gen\n");
 		bpContent.append("bin.includes = META-INF/,.\n");
 		createFile("build.properties", project, bpContent.toString(), progressMonitor);
 	}

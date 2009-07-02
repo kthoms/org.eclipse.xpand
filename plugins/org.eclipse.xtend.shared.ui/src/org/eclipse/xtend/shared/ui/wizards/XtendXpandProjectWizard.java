@@ -105,6 +105,8 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 			EclipseHelper.createFile("src/workflow/generator.mwe", p, getContents("generator.mwe").replace(
 					"PROJECTNAME", projectName), monitor);
 			EclipseHelper.createFile("src/Model.xmi", p, getContents("Model.xmi"), monitor);
+			EclipseHelper.createFile(".settings/org.eclipse.core.resources.prefs", p,
+					"eclipse.preferences.version=1\nencoding/<project>=ISO-8859-1\n", monitor);
 		}
 		monitor.worked(1);
 	}

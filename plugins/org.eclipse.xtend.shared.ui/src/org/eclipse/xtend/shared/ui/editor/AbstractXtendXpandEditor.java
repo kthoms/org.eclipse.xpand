@@ -11,19 +11,33 @@
 package org.eclipse.xtend.shared.ui.editor;
 
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.ui.actions.IJavaEditorActionDefinitionIds;
 import org.eclipse.jdt.ui.actions.JdtActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.jface.text.Position;
+import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.jface.text.source.IAnnotationModel;
+import org.eclipse.jface.text.source.IAnnotationModelExtension2;
 import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.jface.viewers.IPostSelectionProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
+import org.eclipse.ui.texteditor.MarkerAnnotation;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.xtend.shared.ui.editor.navigation.OpenAction;
@@ -37,6 +51,47 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	private SearchActionGroup searchActionGroup;
 
 	private BreakpointActionGroup bpActionGroup;
+
+	private ISelectionChangedListener selectionChangedListener;
+
+	/**
+	 * @see org.eclipse.ui.texteditor.AbstractDecoratedTextEditor#createPartControl(org.eclipse.swt.widgets.Composite)
+	 */
+	@Override
+	public void createPartControl(Composite parent) {
+		super.createPartControl(parent);
+		selectionChangedListener = new ISelectionChangedListener() {
+			public void selectionChanged(final SelectionChangedEvent event) {
+				updateStatusLine();
+			}
+		};
+		final ISelectionProvider selectionProvider = getSelectionProvider();
+		if (selectionProvider instanceof IPostSelectionProvider) {
+			final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
+			postSelectionProvider.addPostSelectionChangedListener(selectionChangedListener);
+		}
+		else {
+			getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.ui.editors.text.TextEditor#dispose()
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (selectionChangedListener != null) {
+			final ISelectionProvider selectionProvider = getSelectionProvider();
+			if (selectionProvider instanceof IPostSelectionProvider) {
+				final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
+				postSelectionProvider.removePostSelectionChangedListener(selectionChangedListener);
+			}
+			else {
+				getSelectionProvider().removeSelectionChangedListener(selectionChangedListener);
+			}
+		}
+	}
 
 	@Override
 	public void doRevertToSaved() {
@@ -142,4 +197,49 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		return getSourceViewer();
 	}
 
+	protected void updateStatusLine() {
+		final ITextSelection selection = (ITextSelection) getSelectionProvider().getSelection();
+		final Annotation annotation = getAnnotation(selection.getOffset(), selection.getLength());
+		String message = null;
+		if (annotation != null) {
+			updateMarkerViews(annotation);
+			if (isProblemMarkerAnnotation(annotation)) {
+				message = annotation.getText();
+			}
+		}
+		setStatusLineMessage(message);
+	}
+	
+	private Annotation getAnnotation(final int offset, final int length) {
+		final IAnnotationModel model = getDocumentProvider().getAnnotationModel(getEditorInput());
+		if (model == null)
+			return null;
+
+		Iterator iterator;
+		if (model instanceof IAnnotationModelExtension2) {
+			iterator = ((IAnnotationModelExtension2) model).getAnnotationIterator(offset, length, true, true);
+		}
+		else {
+			iterator = model.getAnnotationIterator();
+		}
+
+		while (iterator.hasNext()) {
+			final Annotation a = (Annotation) iterator.next();
+			final Position p = model.getPosition(a);
+			if (p != null && p.overlapsWith(offset, length))
+				return a;
+		}
+		return null;
+	}
+	
+	private boolean isProblemMarkerAnnotation(final Annotation annotation) {
+		if (!(annotation instanceof MarkerAnnotation))
+			return false;
+		try {
+			return (((MarkerAnnotation) annotation).getMarker().isSubtypeOf(IMarker.PROBLEM));
+		}
+		catch (final CoreException e) {
+			return false;
+		}
+	}
 }

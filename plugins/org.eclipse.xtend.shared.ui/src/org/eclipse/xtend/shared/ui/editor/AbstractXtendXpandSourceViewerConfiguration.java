@@ -15,6 +15,7 @@ import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.hyperlink.IHyperlinkDetector;
 import org.eclipse.jface.text.reconciler.IReconciler;
+import org.eclipse.jface.text.source.IAnnotationHover;
 import org.eclipse.jface.text.source.ISharedTextColors;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.swt.graphics.Color;
@@ -22,6 +23,7 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
+import org.eclipse.xtend.shared.ui.editor.hover.ProblemHover;
 import org.eclipse.xtend.shared.ui.editor.navigation.GenericHyperlinkDetector;
 
 public abstract class AbstractXtendXpandSourceViewerConfiguration extends TextSourceViewerConfiguration {
@@ -39,6 +41,14 @@ public abstract class AbstractXtendXpandSourceViewerConfiguration extends TextSo
 
 	public AbstractXtendXpandSourceViewerConfiguration(IEditorPart editor) {
 		this.editor = editor;
+	}
+
+	/**
+	 * @see org.eclipse.ui.editors.text.TextSourceViewerConfiguration#getAnnotationHover(org.eclipse.jface.text.source.ISourceViewer)
+	 */
+	@Override
+	public IAnnotationHover getAnnotationHover(ISourceViewer sourceViewer) {
+		return new ProblemHover(sourceViewer);
 	}
 
 	@Override

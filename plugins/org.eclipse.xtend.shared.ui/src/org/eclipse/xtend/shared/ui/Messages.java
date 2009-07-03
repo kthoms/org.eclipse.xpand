@@ -17,6 +17,7 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.xtend.shared.ui.messages"; //$NON-NLS-1$
 	public static String AbstractExtXptContentAssistProcessor_Error;
 	public static String AbstractExtXptContentAssistProcessor_Prompt;
+	public static String AbstractHover_MultipleMarkers;
 	public static String Activator_AnalyzingProgress;
 	public static String EclipseHelper_OvewritePrompt;
 	public static String EclipseHelper_TaskTitle;

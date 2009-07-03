@@ -182,7 +182,8 @@ public class EclipseHelper {
 		maniContent.append(" org.eclipse.xpand,\n");
 		maniContent.append(" org.eclipse.xtend,\n");
 		maniContent.append(" org.eclipse.xtend.typesystem.emf\n");
-
+		maniContent.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
+		
 		if (exportedPackages != null && !exportedPackages.isEmpty()) {
 			maniContent.append("Require-Bundle: " + exportedPackages.get(0));
 			for (int i = 1, x = exportedPackages.size(); i < x; i++) {

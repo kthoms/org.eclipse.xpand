@@ -18,7 +18,6 @@ package org.eclipse.xpand2.output;
  */
 public class BlankLineSkippingOutput extends OutputImpl {
 	private final static String NEWLINE = "\n";
-	private final static String NEWLINE_WINDOWS = "\r\n";
 
 	@Override
 	public void write(final String bytes) {

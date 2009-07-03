@@ -96,7 +96,7 @@ public class OutputImpl implements Output {
 		return;
 	}
 
-	private boolean isNewLine(final char c) {
+	protected boolean isNewLine(final char c) {
 		return c == '\n' || c == '\r';
 	}
 

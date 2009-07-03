@@ -4,63 +4,47 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+
  *
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.xpand2.output;
 
-import org.eclipse.internal.xpand2.ast.TextStatement;
-import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
-import org.eclipse.xpand2.XpandExecutionContext;
-
-
 /**
- * This output implementation avoids writing of unnecessary blank lines.  
+ * This output implementation avoids writing of unnecessary blank lines.
+ * 
  * @author Karsten Thoms
  */
 public class BlankLineSkippingOutput extends OutputImpl {
-    private final static char NEWLINE = '\n';
-    private StringBuffer buffer = null;
-    private boolean evaluateLine = false;
-    public void write(final String bytes) {
-        if (current() != null) {
-        	int idxNL = bytes.indexOf(NEWLINE);
-        	if (buffer==null && idxNL>=0) {
-        		buffer = new StringBuffer();
-        		((StringBuffer) current().getBuffer()).append(bytes.substring(0, idxNL));
-        		if (idxNL<bytes.length()) buffer.append(bytes.substring(idxNL));
-        	} else if (buffer!=null && idxNL>=0) {
-        		buffer.append(bytes.substring(0, idxNL));
-        		if (evaluateLine && !buffer.toString().trim().equals("")) {
-        		    ((StringBuffer) current().getBuffer()).append (buffer.toString());
-        		}
-        		buffer = null;
-        		evaluateLine = false;
-        		if (idxNL<bytes.length()) write(bytes.substring(idxNL));
-        	} else if (buffer!=null) {
-        		buffer.append(bytes);
-        	} else {
-        	    ((StringBuffer) current().getBuffer()).append(bytes);
-            }
-        }
-    }
-
-    public void closeFile() {
-    	if (buffer!=null && current()!=null) {
-    	    ((StringBuffer) current().getBuffer()).append(buffer);
-    		buffer=null;
-    	}
-        super.closeFile();
-    }
+	private final static String NEWLINE = "\n";
+	private final static String NEWLINE_WINDOWS = "\r\n";
 
 	@Override
-	public void pushStatement(SyntaxElement stmt, XpandExecutionContext ctx) {
-		if (buffer!=null && !(stmt instanceof TextStatement)) {
-			evaluateLine = true;
+	public void write(final String bytes) {
+		if (current() != null && bytes != null && bytes.length() > 0) {
+			StringBuffer outputBuffer = (StringBuffer) current().getBuffer();
+			int idxNL = bytes.indexOf(NEWLINE);
+			if (idxNL < 0) {
+				outputBuffer.append(bytes);
+				return;
+			}
+
+			String s = new String(bytes);
+			if (isNewLine(s.charAt(0)) && outputBuffer.length() > 0
+					&& isNewLine(outputBuffer.charAt(outputBuffer.length() - 1))) {
+				int i;
+				for (i = 1; i < s.length(); i++) {
+					if (!isNewLine(s.charAt(i)))
+						break;
+				}
+				s = s.substring(i);
+				idxNL = s.indexOf(NEWLINE);
+			}
+			outputBuffer.append((idxNL < s.length() - 1) ? s.substring(0, idxNL + 1) : s);
+			if (idxNL + 1 < s.length()) {
+				write(s.substring(idxNL + 1));
+			}
 		}
-		super.pushStatement(stmt, ctx);
 	}
-    
-    
 }

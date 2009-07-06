@@ -227,7 +227,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
 
     @Override
     public void checkConfigurationInternal (final Issues issues) {
-        super.checkConfiguration(issues);
+        super.checkConfigurationInternal(issues);
         if (_genPath == null && getInitializedOutlets().isEmpty()) 
             issues.addError(this, "You need to configure at least one outlet!");
 

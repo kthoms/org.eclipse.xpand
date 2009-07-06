@@ -103,7 +103,7 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
 
     @Override
     public void checkConfigurationInternal (Issues issues) {
-        super.checkConfiguration (issues);
+        super.checkConfigurationInternal (issues);
         
         // Try to create detailed error message (see Bug#172567)
         String compPrefix = getId()!=null ? getId()+": " : "";

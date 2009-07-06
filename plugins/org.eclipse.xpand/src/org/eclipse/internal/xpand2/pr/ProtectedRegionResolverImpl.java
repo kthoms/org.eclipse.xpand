@@ -253,8 +253,13 @@ public class ProtectedRegionResolverImpl implements ProtectedRegionResolver {
 				throw new ProtectedRegionSyntaxException("Protected region start at index " + start + " in file '"
 						+ file + "' is incomplete");
 
-			final String type = new String(source.substring(idEnd + idEndLength, startEnd).trim().toUpperCase());
+			String type = new String(source.substring(idEnd + idEndLength, startEnd).trim().toUpperCase());
 
+			// If start marker is wrapped
+			if (type.startsWith(ENABLED) && type.substring(ENABLED.length()).contains("\n*")) {
+				type = ENABLED;
+			}
+				
 			if (!(type.equals("") || type.equals(ENABLED)))
 				throw new ProtectedRegionSyntaxException("Protected region start at index " + start + " in file "
                         + file + " has illegal type '" + type+ "'");

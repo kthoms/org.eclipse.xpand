@@ -30,6 +30,7 @@ import org.eclipse.internal.xpand2.pr.util.FSIO;
  */
 public class ProtectedRegionResolverImplTest extends TestCase {
 	private File file1;
+	private File file2;
 	private File tempDir;
 	/**
 	 * Provides access to protected methods that should be tested here.
@@ -48,7 +49,7 @@ public class ProtectedRegionResolverImplTest extends TestCase {
 		prResolver = new ProtectedRegionResolverTestImpl();
 		
 		// create a temporary directory for this test. The directory will be deleted automatically.
-		tempDir = new File(System.getProperty("java.io.tmpdir")+"/oaw/");
+		tempDir = new File(System.getProperty("java.io.tmpdir")+"/xpand/");
 		tempDir.mkdir();
 		tempDir.deleteOnExit();
 		
@@ -59,6 +60,11 @@ public class ProtectedRegionResolverImplTest extends TestCase {
 		file1 = new File(tempDir.getPath(),"file1.txt");
 		file1.deleteOnExit();
 		FSIO.writeSingleFile(new FileWriter(file1), new InputStreamReader(getClass().getResourceAsStream("testfile1.txt")));
+		
+		// Create a test file with the content of 'testfile2.txt'
+		file2 = new File(tempDir.getPath(),"file2.txt");
+		file2.deleteOnExit();
+		FSIO.writeSingleFile(new FileWriter(file2), new InputStreamReader(getClass().getResourceAsStream("testfile2.txt")));
 	}
 	
 	/**
@@ -150,5 +156,20 @@ public class ProtectedRegionResolverImplTest extends TestCase {
 		} catch (IllegalArgumentException e) {
 			; // OK 
 		}
+	}
+	
+	/**
+	 * Bug#282350 reports that protected regions are not parsable if the markers are linewrapped
+	 * for whatever reason.
+	 * 
+	 * @since 06.07.2009
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=282350
+	 */
+	public void testWrappedMarkers() throws Exception {
+		Collection<ProtectedRegionImpl> allRegions = prResolver._getAllRegions(file2);
+		assertNotNull(allRegions);
+		assertTrue("File must contain protected regions", !allRegions.isEmpty());
+		// disabled protected regions are overread
+		assertEquals("Enabled protected regions", 1, allRegions.size());
 	}
 }

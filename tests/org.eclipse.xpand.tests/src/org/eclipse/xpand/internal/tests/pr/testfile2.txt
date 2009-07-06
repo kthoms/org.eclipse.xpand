@@ -1,0 +1,5 @@
+/*PROTECTED REGION ID(Person) ENABLED
+*START
+*/
+This protected region is not parseable
+/*PROTECTED REGION END*/

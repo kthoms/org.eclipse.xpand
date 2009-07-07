@@ -898,6 +898,15 @@ true || false // OR
       <para>Example:</para>
 
       <programlisting>name != null ? name : 'unknown'</programlisting>
+      
+      <para>Alternatively, you also could write:</para>
+
+      <programlisting>
+      if name != null then
+         name 
+      else
+        'unknown'
+    </programlisting>
     </section>
 
     <section id="r10_expressions_switch">

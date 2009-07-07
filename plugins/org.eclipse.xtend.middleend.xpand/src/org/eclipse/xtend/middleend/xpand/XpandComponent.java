@@ -208,6 +208,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
                 if (_fileEncoding != null) 
                     o.setFileEncoding(_fileEncoding);
             }
+            _initializedOutlets = result;
         }        
         
         return _initializedOutlets;

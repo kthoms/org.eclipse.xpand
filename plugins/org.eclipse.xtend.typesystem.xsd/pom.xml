@@ -7,11 +7,11 @@
       <groupId>org.eclipse.m2t.xpand</groupId>
       <version>0.7.0</version>
    </parent>
-   <groupId>org.eclipse.m2t.xpand</groupId>
 
-   <artifactId>m2t-xpand-xtend-util-stdlib</artifactId>
-   <name>Eclipse M2T XPand - Util Stdlib</name>
+   <groupId>org.eclipse.m2t.xpand</groupId>
+   <artifactId>m2t-xpand-xtend-typesystem-xsd</artifactId>
    <version>0.7.0</version>
+   <name>Eclipse M2T XPand - XTend Typesystem XSD</name>
    <description />
 
    <licenses>
@@ -26,13 +26,14 @@
       <!-- own stuff -->
       <dependency>
          <groupId>org.eclipse.m2t.xpand</groupId>
-         <artifactId>m2t-xpand-xpand</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.eclipse.m2t.xpand</groupId>
          <artifactId>m2t-xpand-xtend-typesystem-emf</artifactId>
       </dependency>
 
+      <!-- Eclipse stuff -->
+      <dependency>
+         <groupId>org.eclipse.xsd</groupId>
+         <artifactId>xsd</artifactId>
+      </dependency>
    </dependencies>
 
 </project>

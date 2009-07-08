@@ -65,6 +65,10 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 				updateStatusLine();
 			}
 		};
+		installSelectionChangedListener();
+	}
+
+	private void installSelectionChangedListener() {
 		final ISelectionProvider selectionProvider = getSelectionProvider();
 		if (selectionProvider instanceof IPostSelectionProvider) {
 			final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
@@ -81,14 +85,20 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	@Override
 	public void dispose() {
 		super.dispose();
+		uninstallSelectionChangedListener();
+	}
+
+	private void uninstallSelectionChangedListener() {
 		if (selectionChangedListener != null) {
 			final ISelectionProvider selectionProvider = getSelectionProvider();
-			if (selectionProvider instanceof IPostSelectionProvider) {
-				final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
-				postSelectionProvider.removePostSelectionChangedListener(selectionChangedListener);
-			}
-			else {
-				getSelectionProvider().removeSelectionChangedListener(selectionChangedListener);
+			if (selectionProvider != null) {
+				if (selectionProvider instanceof IPostSelectionProvider) {
+					final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
+					postSelectionProvider.removePostSelectionChangedListener(selectionChangedListener);
+				}
+				else {
+					selectionProvider.removeSelectionChangedListener(selectionChangedListener);
+				}
 			}
 		}
 	}

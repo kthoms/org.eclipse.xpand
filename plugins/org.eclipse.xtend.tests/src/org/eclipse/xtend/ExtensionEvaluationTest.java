@@ -49,7 +49,7 @@ public class ExtensionEvaluationTest extends TestCase {
 				"foo(Integer int) : 'Int';" +
 				"foo(Void void) : 'void';");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
-		XtendFacade facade = new XtendFacade(ec);
+		XtendFacade facade = XtendFacade.create(ec);
 		assertEquals("String",facade.call("foo", "String"));
 		assertEquals("Int",facade.call("foo", new Long(42)));
 		assertEquals("void",facade.call("foo", (Object) null));

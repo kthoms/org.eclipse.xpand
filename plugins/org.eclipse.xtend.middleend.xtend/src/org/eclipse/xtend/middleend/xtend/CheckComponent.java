@@ -95,7 +95,7 @@ public class CheckComponent extends AbstractExpressionsUsingWorkflowComponent {
 
     @Override
     public void checkConfigurationInternal (Issues issues) {
-        super.checkConfiguration (issues);
+        super.checkConfigurationInternal (issues);
         
         if (_expression == null && _emfAllChildrenSlot != null) 
             _expression = _emfAllChildrenSlot + ".eAllContents.union ( {" + _emfAllChildrenSlot + "} )";

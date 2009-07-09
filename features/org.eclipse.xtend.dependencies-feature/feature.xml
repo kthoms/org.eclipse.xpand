@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xtend.dependencies"
       label="%featureName"
-      version="0.7.0.qualifier"
+      version="0.7.1.qualifier"
       provider-name="%providerName">
 
    <description url="http://www.eclipse.org/modeling/m2t">
@@ -20,6 +20,7 @@
    <url>
       <update label="%updateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/"/>
    </url>
+
    <plugin
          id="org.antlr.runtime"
          download-size="0"

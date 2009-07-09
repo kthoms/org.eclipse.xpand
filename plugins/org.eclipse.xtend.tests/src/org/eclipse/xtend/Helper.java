@@ -31,8 +31,8 @@ public class Helper {
         return null;
     }
 
-	public final static Collection union(final Collection c1, final Collection c2) {
-        final Set r = new HashSet();
+	public final static Collection<?> union(final Collection<?> c1, final Collection<?> c2) {
+        final Set<Object> r = new HashSet<Object>();
         r.addAll(c1);
         r.addAll(c2);
         return r;

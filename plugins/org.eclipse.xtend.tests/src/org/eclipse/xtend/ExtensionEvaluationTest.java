@@ -79,7 +79,7 @@ public class ExtensionEvaluationTest extends TestCase {
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		final Object[] params = new Object[] { Collections.singleton("1"), Collections.singleton("2") };
 		final Extension ext = ec.getExtension("union", params);
-		final Collection result = (Collection) ext.evaluate(params, ec);
+		final Collection<?> result = (Collection<?>) ext.evaluate(params, ec);
 		assertTrue(result.size() == 2);
 		assertTrue(result.contains("1"));
 		assertTrue(result.contains("2"));
@@ -150,7 +150,7 @@ public class ExtensionEvaluationTest extends TestCase {
 	public final void testCreateExtension() {
 		final ExtensionFile file = parse("create List l test(String s) : l.add(s) ;");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
-		final List l = (List) (file.getExtensions().get(0)).evaluate(new String[] { "test" }, ec);
+		final List<?> l = (List<?>) (file.getExtensions().get(0)).evaluate(new String[] { "test" }, ec);
 
 		assertEquals(Collections.singletonList("test"), l);
 	}
@@ -158,7 +158,7 @@ public class ExtensionEvaluationTest extends TestCase {
 	public final void testCreateExtension1() {
 		final ExtensionFile file = parse("create List test(String s) : add(s) ;");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
-		final List l = (List) (file.getExtensions().get(0)).evaluate(new String[] { "test" }, ec);
+		final List<?> l = (List<?>) (file.getExtensions().get(0)).evaluate(new String[] { "test" }, ec);
 
 		assertEquals(Collections.singletonList("test"), l);
 	}

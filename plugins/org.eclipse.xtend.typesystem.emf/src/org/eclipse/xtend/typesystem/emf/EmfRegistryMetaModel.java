@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
@@ -41,6 +43,8 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class EmfRegistryMetaModel implements MetaModel {
 
+	private final Log log = LogFactory.getLog(getClass());
+
 	TypeSystem typeSystem;
 
 	private EObjectType eobjectType = null;
@@ -61,27 +65,24 @@ public class EmfRegistryMetaModel implements MetaModel {
 				if (typeSystem != null) {
 					Type innerType = getTypeForEClassifier(genericType.getETypeArguments().get(0));
 					return new EmfListType(innerType, typeSystem, BuiltinMetaModel.LIST);
-				}
-				else {
+				} else {
 					param = genericType.getEClassifier();
 				}
 			}
-			
+
 			if (!(param instanceof EClassifier))
 				return null;
-			
+
 			EClassifier ele = (EClassifier) param;
-				
+
 			if (ele.getName() == null) {
 				return null;
 			}
 
 			if (ele instanceof EClass) {
-				return new EClassType(EmfRegistryMetaModel.this,
-						getFullyQualifiedName(ele), (EClass) ele);
+				return new EClassType(EmfRegistryMetaModel.this, getFullyQualifiedName(ele), (EClass) ele);
 			} else if (ele instanceof EEnum) {
-				return new EEnumType(EmfRegistryMetaModel.this,
-						getFullyQualifiedName(ele), (EEnum) ele);
+				return new EEnumType(EmfRegistryMetaModel.this, getFullyQualifiedName(ele), (EEnum) ele);
 			} else if (ele instanceof EDataType) {
 				if (typeSystem != null) {
 					if (stringTypes.contains(ele)) {
@@ -94,13 +95,12 @@ public class EmfRegistryMetaModel implements MetaModel {
 						return typeSystem.getRealType();
 					} else if (objectTypes.contains(ele)) {
 						return typeSystem.getObjectType();
-					}else if (listTypes.contains(ele)) {
+					} else if (listTypes.contains(ele)) {
 						return new EmfListType(typeSystem.getObjectType(), typeSystem, BuiltinMetaModel.LIST);
-					}	
+					}
 				}
 				EDataType dataType = (EDataType) ele;
-				return new EDataTypeType(EmfRegistryMetaModel.this,
-						getFullyQualifiedName(dataType), dataType);
+				return new EDataTypeType(EmfRegistryMetaModel.this, getFullyQualifiedName(dataType), dataType);
 			}
 			return null;
 		}
@@ -162,7 +162,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 
 		objectTypes = new HashSet<EClassifier>();
 		objectTypes.add(EcorePackage.eINSTANCE.getEJavaObject());
-	
+
 		listTypes = new HashSet<EClassifier>();
 		listTypes.add(EcorePackage.eINSTANCE.getEEList());
 	}
@@ -181,8 +181,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 					classifiers = classifiers && element instanceof EClassifier;
 				}
 				if (classifiers) {
-					System.err.println("Multiple types (" + ele.size()
-							+ ") with name " + typeName + " found!");
+					System.err.println("Multiple types (" + ele.size() + ") with name " + typeName + " found!");
 				}
 			}
 			if (ele.isEmpty()) {
@@ -198,21 +197,27 @@ public class EmfRegistryMetaModel implements MetaModel {
 	};
 
 	/**
-	 * returns the managed packages. Uses the globale EPackage Registry.
+	 * returns the managed packages. Uses the global EPackage Registry.
 	 * 
 	 * @return
 	 */
 	protected EPackage[] allPackages() {
 		Set<EPackage> packages = new HashSet<EPackage>();
-		for (String name : new HashSet<String>(EPackage.Registry.INSTANCE
-				.keySet())) {
-			packages.add(EPackage.Registry.INSTANCE.getEPackage(name));
+		for (String name : new HashSet<String>(EPackage.Registry.INSTANCE.keySet())) {
+			try {
+				packages.add(EPackage.Registry.INSTANCE.getEPackage(name));
+			} catch (Exception e) {
+				log.error(e);
+			}
 		}
 		if (!resourceSets.isEmpty()) {
 			for (ResourceSet rs : resourceSets) {
-				for (String name : (Set<String>) rs.getPackageRegistry()
-						.keySet()) {
-					packages.add(rs.getPackageRegistry().getEPackage(name));
+				for (String name : (Set<String>) rs.getPackageRegistry().keySet()) {
+					try {
+						packages.add(rs.getPackageRegistry().getEPackage(name));
+					} catch (Exception e) {
+						log.error(e);
+					}
 				}
 			}
 		}
@@ -229,23 +234,19 @@ public class EmfRegistryMetaModel implements MetaModel {
 		return (Type) typeForNameCache.get(typeName);
 	}
 
-	private Set<ENamedElement> getNamedElementRec(
-			final ENamedElement[] elements, final String name) {
+	private Set<ENamedElement> getNamedElementRec(final ENamedElement[] elements, final String name) {
 		Set<ENamedElement> result = new HashSet<ENamedElement>();
 		final String[] frags = name.split(SyntaxConstants.NS_DELIM);
 		final String firstFrag = frags[0];
 		for (final ENamedElement ele : elements) {
-			if (ele != null && ele.getName() != null
-					&& ele.getName().equals(firstFrag)) {
+			if (ele != null && ele.getName() != null && ele.getName().equals(firstFrag)) {
 				if (frags.length > 1) {
-					final Collection<ENamedElement> children = EcoreUtil
-							.getObjectsByType(ele.eContents(),
-									EcorePackage.eINSTANCE.getENamedElement());
+					final Collection<ENamedElement> children = EcoreUtil.getObjectsByType(ele.eContents(), EcorePackage.eINSTANCE
+							.getENamedElement());
 
-					result.addAll(getNamedElementRec(children
-							.toArray(new ENamedElement[children.size()]), name
-							.substring(name.indexOf(SyntaxConstants.NS_DELIM)
-									+ SyntaxConstants.NS_DELIM.length())));
+					result.addAll(getNamedElementRec(children.toArray(new ENamedElement[children.size()]), name.substring(name
+							.indexOf(SyntaxConstants.NS_DELIM)
+							+ SyntaxConstants.NS_DELIM.length())));
 				} else {
 					result.add(ele);
 				}
@@ -256,9 +257,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 
 	public Type getType(final Object obj) {
 		if (obj instanceof EObject) {
-			if (obj instanceof EEnumLiteral
-					&& ((EEnumLiteral) obj).getName() != null
-					&& ((EEnumLiteral) obj).getEEnum() != null) {
+			if (obj instanceof EEnumLiteral && ((EEnumLiteral) obj).getName() != null && ((EEnumLiteral) obj).getEEnum() != null) {
 				final EEnumLiteral el = (EEnumLiteral) obj;
 				return getTypeForEClassifier(el.getEEnum());
 			}
@@ -282,8 +281,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 		final Set<Type> result = new HashSet<Type>();
 		result.add(eobjectType);
 		for (EPackage pack : allPackages()) {
-			for (final Iterator<EObject> iter = pack.eAllContents(); iter
-					.hasNext();) {
+			for (final Iterator<EObject> iter = pack.eAllContents(); iter.hasNext();) {
 				final Object obj = iter.next();
 				if (obj instanceof EClassifier) {
 					try {
@@ -326,13 +324,11 @@ public class EmfRegistryMetaModel implements MetaModel {
 		if (typedElement.getEType() instanceof EDataType) {
 			if (typedElement.getEGenericType() != null) {
 				t = getTypeForEClassifier(typedElement.getEGenericType());
-			}
-			else {
+			} else {
 				t = getTypeForEClassifier(typedElement.getEType());
 			}
 		} else {
-			t = getTypeSystem().getTypeForName(
-					getFullyQualifiedName(typedElement.getEType()));
+			t = getTypeSystem().getTypeForName(getFullyQualifiedName(typedElement.getEType()));
 		}
 		if (typedElement.isMany())
 			return new EmfListType(t, typeSystem, BuiltinMetaModel.LIST);
@@ -352,13 +348,11 @@ public class EmfRegistryMetaModel implements MetaModel {
 		if (ele == null || !(ele instanceof ENamedElement)) {
 			return suffix;
 		} else {
-			return getFqnRec(ele.eContainer(), ((ENamedElement) ele).getName()
-					+ SyntaxConstants.NS_DELIM + suffix);
+			return getFqnRec(ele.eContainer(), ((ENamedElement) ele).getName() + SyntaxConstants.NS_DELIM + suffix);
 		}
 	}
 
-	private void traversePackage(final String parentNamespace,
-			final Set<String> namespaces, final EPackage thePackage) {
+	private void traversePackage(final String parentNamespace, final Set<String> namespaces, final EPackage thePackage) {
 		StringBuilder sb = new StringBuilder();
 		if (parentNamespace != null) {
 			sb.append(parentNamespace);

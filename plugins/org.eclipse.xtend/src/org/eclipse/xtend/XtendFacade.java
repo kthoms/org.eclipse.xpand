@@ -29,7 +29,7 @@ public class XtendFacade {
 
     private ExecutionContext ctx;
 
-    private XtendFacade(final ExecutionContext ctx) {
+    XtendFacade(final ExecutionContext ctx) {
         this.ctx = ctx;
     }
     

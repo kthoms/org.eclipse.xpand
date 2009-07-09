@@ -42,6 +42,18 @@ public class ExtensionEvaluationTest extends TestCase {
 	private ExtensionFile parse(final String expression) {
 		return ParseFacade.file(new StringReader(expression), "nofile");
 	}
+	
+	public void testVoidInSignature() throws Exception {
+		final ExtensionFile file = parse(
+				"foo(String str) : 'String';" +
+				"foo(Integer int) : 'Int';" +
+				"foo(Void void) : 'void';");
+		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
+		XtendFacade facade = new XtendFacade(ec);
+		assertEquals("String",facade.call("foo", "String"));
+		assertEquals("Int",facade.call("foo", new Long(42)));
+		assertEquals("void",facade.call("foo", (Object) null));
+	}
 
 	public final void testWithEverything() {
 		final ExtensionFile file = parse("String toUpperCase(String str) : JAVA org.eclipse.xtend.Helper.toUpperCase(java.lang.String) ; \n"

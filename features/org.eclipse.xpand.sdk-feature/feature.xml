@@ -62,6 +62,10 @@
          version="0.0.0"/>
 
    <includes
+         id="org.eclipse.xtend.typesystem.emf.source"
+         version="0.0.0"/>
+
+   <includes
          id="org.eclipse.xtend.typesystem.uml2.source"
          version="0.0.0"/>
 

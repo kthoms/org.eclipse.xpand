@@ -121,7 +121,7 @@ public class TraceComponent extends AbstractEMFWorkflowComponent {
 		try {
 			StandaloneSetup setup = new StandaloneSetup();
 			setup
-					.addRegisterEcoreFile("platform:/resource/eclipse.xtend.util.stdlib/src/org/openarchitectureware/util/stdlib/trace.ecore");
+					.addRegisterEcoreFile("platform:/resource/eclipse.xtend.util.stdlib/src/org/eclipse/xtend/util/stdlib/trace.ecore");
 			EPackage pack = setup.getPackage("http://openarchitectureware.org/trace");
 			DynamicEcoreHelper h = new DynamicEcoreHelper(pack);
 			EObject model = h.create("Trace");

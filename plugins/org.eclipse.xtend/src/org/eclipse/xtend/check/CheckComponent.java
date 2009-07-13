@@ -119,6 +119,7 @@ public class CheckComponent extends AbstractExpressionsUsingWorkflowComponent {
 	/**
 	 * @see org.eclipse.emf.mwe.workflow.WorkflowComponent#getComponentName()
 	 */
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}

@@ -232,12 +232,13 @@ public class ProfileMetaModel implements MetaModel {
 			List<StereotypeType> types = new ArrayList<StereotypeType>(stereotypes.size());
 			// collect StereotypeTypes
 			for (Iterator<Stereotype> iter = stereotypes.iterator(); iter.hasNext();) {
-				Stereotype st = iter.next();
-				StereotypeType stType = (StereotypeType) getTypeSystem().getTypeForName(getFullName(st));
-				if (stType != null) {
-					types.add(stType);
+				  Stereotype st = iter.next();
+				  Type theType = getTypeSystem().getTypeForName(getFullName(st));
+				  if (theType != null && theType instanceof StereotypeType) {
+				    StereotypeType stType = (StereotypeType) theType;
+				    types.add(stType);
+				  }
 				}
-			}
 			switch (types.size()) {
 				case 0:
 					return null;

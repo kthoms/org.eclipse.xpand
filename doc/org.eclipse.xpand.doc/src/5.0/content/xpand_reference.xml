@@ -1115,6 +1115,8 @@ ImplName(Class c) :
 
   <section id="Check_language" xreflabel="Check language">
     <title><emphasis>Check</emphasis></title>
+  <section id="Check_language_description" xreflabel="Description of the Check language">
+    <title>Description of the <emphasis>Check</emphasis> language</title>
 
     <para><emphasis>Xpand</emphasis> also provides a language to specify constraints
     <indexterm>
@@ -1225,6 +1227,78 @@ context Attribute if name.length &gt; 1 ERROR
   "Attribute names have to start with an 'a'" :
   name.startsWith("a");</programlisting></para>
     </section>
+  </section>
+  
+  <section id="check_checkcomponent" xreflabel="The workflow component CheckComponent">
+  <title>The workflow component <emphasis>CheckComponent</emphasis></title>
+  
+  <para>
+  The workflow component <emphasis>CheckComponent</emphasis> allows to integrate model 
+  validation constraints using the <emphasis>Check</emphasis> into a modeling workflow 
+  using MWE.
+  </para>
+  
+  <para>
+  This component provides the following configuration properties:
+  </para>
+  
+              <table frame='all' id="properties_directorycleaner">
+            <title>Properties</title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='directorycleaner_property_name'/>
+                <colspec colname='directorycleaner_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                        checkFile
+                        </entry>
+                        <entry>
+                        This property allows to add files containing constraints written
+                        in the <emphasis>Check</emphasis> language to the validation
+                        component. <emphasis role="strong">This property only works
+                        in conjunction with EMF based models.</emphasis>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                       expression
+                        </entry>
+                        <entry>
+                        This property allows to set a check expression for the validation
+                        component. <emphasis role="strong">This property only works
+                        in conjunction with non-EMF based models.</emphasis>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        abortOnError
+                        </entry>
+                        <entry>
+                        This boolean property determines if the workflow will be aborted
+                        or not if one of the validation constraints fails.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        warnIfNothingChecked
+                        </entry>
+                        <entry>
+                        If this boolean property will be set to <emphasis>true</emphasis>,
+                        a warning will be generated if there were no validation checks. Otherwise,
+                        no warning will be issued.
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+  
+  </section>
   </section>
 
   <section id="Xtend_language" xreflabel="Xtend">

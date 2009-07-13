@@ -5,7 +5,7 @@
     (c) Peter Friese <peter.friese@itemis.com>
     (c) Patrick Schönbach <patrick.schoenbach@itemis.de>
 -->
-<project name="org.eclipse.xpand.doc" default="build-doc" basedir="${basedir}">
+<project name="org.eclipse.xpand.doc" default="build-doc" basedir=".">
 
 	<!--
 		Global vars

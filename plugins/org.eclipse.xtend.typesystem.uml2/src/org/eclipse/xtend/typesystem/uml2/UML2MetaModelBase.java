@@ -1,3 +1,4 @@
+package org.eclipse.xtend.typesystem.uml2;
 /*******************************************************************************
  * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +9,6 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.xtend.typesystem.uml2;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
@@ -16,8 +16,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.emf.EmfMetaModel;
+import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
-public abstract class UML2MetaModelBase extends EmfMetaModel {
+public abstract class UML2MetaModelBase extends EmfRegistryMetaModel {
 
     private static final String UML2_STRING = "uml::String";
 
@@ -49,9 +50,10 @@ public abstract class UML2MetaModelBase extends EmfMetaModel {
     }
 
     public UML2MetaModelBase(EPackage metamodel) {
-        super(metamodel);
+        super();
     	ecoreMetaModel = new EmfMetaModel();
     	ecoreMetaModel.setMetaModelPackage(EcorePackage.class.getName());
+    	EPackage.Registry.INSTANCE.put(metamodel.getNsURI(), metamodel);
     }
 
     @Override

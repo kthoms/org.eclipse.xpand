@@ -1,3 +1,5 @@
+package org.eclipse.xtend.typesystem.uml2.profile;
+
 /*******************************************************************************
  * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +10,6 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.xtend.typesystem.uml2.profile;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,15 +54,19 @@ public class ProfileMetaModel implements MetaModel {
 				if (ele != null) {
 					final Type result = getTypeForEClassifier(ele.eClass());
 					return result;
-				}
-				else
+				} else {
 					return null;
+				}
 			}
 		};
 
 		@Override
 		public Type getTypeForName(final String typeName) {
-			return typeForNameCache.get(typeName);
+			Type result = typeForNameCache.get(typeName);
+			if (result == null) {
+				result = super.getTypeForName(typeName);
+			}
+			return result;
 		}
 
 		private NamedElement getNamedElementRec(final NamedElement[] elements, final String name) {
@@ -185,7 +190,7 @@ public class ProfileMetaModel implements MetaModel {
 
 	public Type getTypeForName(final String typeName) {
 		Type result = stereoTypes.get(typeName);
-		if (result == null && typeName.startsWith(normalizedName(profile.getName()) + SyntaxConstants.NS_DELIM)) {
+		if (result == null) {
 			result = internalProfileMetaModel.getTypeForName(typeName);
 		}
 		return result;
@@ -227,21 +232,21 @@ public class ProfileMetaModel implements MetaModel {
 				if (errorIfStereotypeMissing && !stereotypes.toString().equals("[]"))
 					throw new RuntimeException("Stereotype could not be loaded! Possible hint: '" + stereotypes);
 				else
-					return null;
+					return internalProfileMetaModel.getType(obj);
 
 			List<StereotypeType> types = new ArrayList<StereotypeType>(stereotypes.size());
 			// collect StereotypeTypes
 			for (Iterator<Stereotype> iter = stereotypes.iterator(); iter.hasNext();) {
-				  Stereotype st = iter.next();
-				  Type theType = getTypeSystem().getTypeForName(getFullName(st));
-				  if (theType != null && theType instanceof StereotypeType) {
-				    StereotypeType stType = (StereotypeType) theType;
-				    types.add(stType);
-				  }
+				Stereotype st = iter.next();
+				Type theType = getTypeSystem().getTypeForName(getFullName(st));
+				if (theType != null && theType instanceof StereotypeType) {
+					StereotypeType stType = (StereotypeType) theType;
+					types.add(stType);
 				}
+			}
 			switch (types.size()) {
 				case 0:
-					return null;
+					return internalProfileMetaModel.getType(obj);
 				case 1:
 					return types.get(0);
 					// when more than one stereotype is applied we return a
@@ -250,8 +255,9 @@ public class ProfileMetaModel implements MetaModel {
 				default:
 					return new MultipleStereotypeType(getTypeSystem(), types);
 			}
+		} else {
+			return internalProfileMetaModel.getType(obj);
 		}
-		return null;
 	}
 
 	public Set<Type> getKnownTypes() {

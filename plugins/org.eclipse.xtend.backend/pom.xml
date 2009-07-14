@@ -5,11 +5,12 @@
    <parent>
       <artifactId>m2t-xpand</artifactId>
       <groupId>org.eclipse.m2t.xpand</groupId>
-      <version>0.7.0</version>
+      <version>0.7.1</version>
    </parent>
 
    <artifactId>m2t-xpand-xtend-backend</artifactId>
    <name>Eclipse M2T XPand - XTend Backend</name>
+   <version>0.7.1</version>
    <description />
 
    <dependencies>

@@ -1,7 +1,7 @@
 <html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Xpand Documentation</title><link href="book.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.75.1" name="generator"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" title="Xpand Documentation"><div class="titlepage"><div><div><h1 class="title"><a name="xpand_documentation"></a>Xpand Documentation</h1></div></div><hr></div><div class="chapter" title="Chapter&nbsp;1.&nbsp;Xpand / Xtend / Check Reference"><div class="titlepage"><div><div><h2 class="title"><a name="core_reference"></a>Chapter&nbsp;1.&nbsp;<span class="emphasis"><em>Xpand</em></span> / <span class="emphasis"><em>Xtend</em></span> /
     <span class="emphasis"><em>Check</em></span> Reference</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#r10_introduction">Introduction</a></span></dt><dt><span class="section"><a href="#r10_typesystem">Type System  </a></span></dt><dd><dl><dt><span class="section"><a href="#r10_typesystem_types">Types</a></span></dt><dt><span class="section"><a href="#r10_builtintypes">Built-In Types</a></span></dt><dt><span class="section"><a href="#r10_metamodel_implementations">Metamodel Implementations (also known as
       Meta-Metamodels)</a></span></dt><dt><span class="section"><a href="#r10_using_different_metamodels">Using different Metamodel implementations (also known as
-      Meta-Metamodels)</a></span></dt></dl></dd><dt><span class="section"><a href="#r10_expressions_language">Expressions</a></span></dt><dd><dl><dt><span class="section"><a href="#r10_expressions_builtin">Literals and special operators for built-in types</a></span></dt><dt><span class="section"><a href="#r10_expressions_collection_operations">Special Collection operations</a></span></dt><dt><span class="section"><a href="#r10_expressions_if"><code class="methodname">if</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_switch"><code class="methodname">switch</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_chain">Chain expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_create"><code class="methodname">create</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_let"><code class="methodname">let</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_globalvar">'GLOBALVAR' expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_multidispatch">Multi methods (multiple dispatch)</a></span></dt><dt><span class="section"><a href="#r10_expressions_casting">Casting</a></span></dt></dl></dd><dt><span class="section"><a href="#Check_language"><span class="emphasis"><em>Check</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#Guard_conditions">Guard Conditions</a></span></dt></dl></dd><dt><span class="section"><a href="#Xtend_language"><span class="emphasis"><em>Xtend</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#N105DD">Extend files</a></span></dt><dt><span class="section"><a href="#N105FB">Comments</a></span></dt><dt><span class="section"><a href="#N1060B">Import Statements</a></span></dt><dt><span class="section"><a href="#N1061C">Extension Import Statement</a></span></dt><dt><span class="section"><a href="#N10636">Extensions</a></span></dt><dt><span class="section"><a href="#N106D8">Java Extensions</a></span></dt><dt><span class="section"><a href="#N10700">Create Extensions (Model Transformation)</a></span></dt><dt><span class="section"><a href="#N10775">Calling Extensions From Java</a></span></dt><dt><span class="section"><a href="#N107B3">WorkflowComponent</a></span></dt><dt><span class="section"><a href="#N107CA">Aspect-Oriented Programming in <span class="emphasis"><em>Xtend</em></span> (since
+      Meta-Metamodels)</a></span></dt><dt><span class="section"><a href="#metamodel_reference">Metamodel Reference</a></span></dt></dl></dd><dt><span class="section"><a href="#r10_expressions_language">Expressions</a></span></dt><dd><dl><dt><span class="section"><a href="#r10_expressions_builtin">Literals and special operators for built-in types</a></span></dt><dt><span class="section"><a href="#r10_expressions_collection_operations">Special Collection operations</a></span></dt><dt><span class="section"><a href="#r10_expressions_if"><code class="methodname">if</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_switch"><code class="methodname">switch</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_chain">Chain expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_create"><code class="methodname">create</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_let"><code class="methodname">let</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_globalvar">'GLOBALVAR' expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_multidispatch">Multi methods (multiple dispatch)</a></span></dt><dt><span class="section"><a href="#r10_expressions_casting">Casting</a></span></dt></dl></dd><dt><span class="section"><a href="#Check_language"><span class="emphasis"><em>Check</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#Check_language_description">Description of the <span class="emphasis"><em>Check</em></span> language</a></span></dt><dt><span class="section"><a href="#check_checkcomponent">The workflow component <span class="emphasis"><em>CheckComponent</em></span></a></span></dt></dl></dd><dt><span class="section"><a href="#Xtend_language"><span class="emphasis"><em>Xtend</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#N107FA">Extend files</a></span></dt><dt><span class="section"><a href="#N10818">Comments</a></span></dt><dt><span class="section"><a href="#N10828">Import Statements</a></span></dt><dt><span class="section"><a href="#N10839">Extension Import Statement</a></span></dt><dt><span class="section"><a href="#N10853">Extensions</a></span></dt><dt><span class="section"><a href="#N108F5">Java Extensions</a></span></dt><dt><span class="section"><a href="#N1091D">Create Extensions (Model Transformation)</a></span></dt><dt><span class="section"><a href="#N10992">Calling Extensions From Java</a></span></dt><dt><span class="section"><a href="#N109D0">WorkflowComponent</a></span></dt><dt><span class="section"><a href="#N109E7">Aspect-Oriented Programming in <span class="emphasis"><em>Xtend</em></span> (since
       4.2)</a></span></dt></dl></dd><dt><span class="section"><a href="#xpand_reference_introduction"><span class="emphasis"><em>Xpand2</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#xpand_reference_template_files_and_ecoding">Template files and encoding</a></span></dt><dt><span class="section"><a href="#xpand_reference_general_structure_of_template_files">General structure of template files</a></span></dt><dt><span class="section"><a href="#xpand_reference_statements_of_the_expand_language">Statements of the <span class="emphasis"><em>Xpand</em></span> language</a></span></dt><dt><span class="section"><a href="#xpand_reference_aspect-oriented_programming_in_xpand">Aspect-Oriented Programming in
       <span class="emphasis"><em>Xpand</em></span></a></span></dt><dt><span class="section"><a href="#xpand_reference_generator_workflow_component">Generator Workflow Component</a></span></dt><dt><span class="section"><a href="#aop_template_introduction">Example for using Aspect-Oriented Programming in
       <span class="emphasis"><em>Xpand</em></span></a></span></dt><dt><span class="section"><a href="#aop_template_the_problem">The Problem</a></span></dt><dt><span class="section"><a href="#aop_template_example">Example</a></span></dt><dt><span class="section"><a href="#aop_template_more_ao">More Aspect Orientation</a></span></dt></dl></dd></dl></div><div class="section" title="Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="r10_introduction"></a>Introduction</h2></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span> generator framework provides textual languages, that are useful in
@@ -202,13 +202,171 @@ Set[my::Type]
    &lt;metaModel class="org.eclipse.internal.xtend.type.impl.java.JavaMetaModel"/&gt;
 
    ...
-&lt;/component&gt;</pre></div></div><div class="section" title="Expressions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="r10_expressions_language"></a>Expressions<a name="N1027F" class="indexterm"></a></h2></div></div></div><p>The expression sub-language<a name="N10284" class="indexterm"></a> is a syntactical mixture of Java and OCL<a name="N10288" class="indexterm"></a>. This documentation provides a detailed description of each
-    available expression. Let us start with some simple examples.</p><p>Accessing a property:</p><pre class="programlisting">myModelElement.name</pre><p>Accessing an operation:</p><pre class="programlisting">myModelElement.doStuff()</pre><p>simple arithmetic:</p><pre class="programlisting">1 + 1 * 2</pre><p>boolean expressions (just an example:-)):</p><pre class="programlisting">!('text'.startsWith('t') &amp;&amp; ! false)</pre><div class="section" title="Literals and special operators for built-in types"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_builtin"></a>Literals and special operators for built-in types</h3></div></div></div><p>There are several literals<a name="N102A2" class="indexterm"></a> for built-in types:</p><div class="section" title="Object"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_object"></a><code class="classname">Object</code> <a name="N102AC" class="indexterm"></a> <a name="N102B3" class="indexterm"></a></h4></div></div></div><p>There are naturally no literals for object, but we have two
+&lt;/component&gt;</pre></div><div class="section" title="Metamodel Reference"><div class="titlepage"><div><div><h3 class="title"><a name="metamodel_reference"></a>Metamodel Reference</h3></div></div></div><a name="N1027F" class="indexterm"></a><p>
+ 
+ In the following, each of the built-in metamodels that come with 
+ <span class="emphasis"><em>Xpand</em></span> will be documented. Furthermore, there will be some
+  guidelines on how to implement your own metamodel.
+  </p><div class="section" title="EMF Metamodels"><div class="titlepage"><div><div><h4 class="title"><a name="emf_metamodels"></a>EMF Metamodels</h4></div></div></div><p>
+  This section will describe the metamodels that can be used for EMF models. 
+  <span class="strong"><strong>Please note that you have to execute one of the
+  setup utility classes, <code class="classname">Setup</code> or 
+  <code class="classname">StandaloneSetup</code>, in your workflow
+  before you can use one of the EMF metamodels</strong></span>
+  </p><div class="section" title="The EMF Registry Metamodel (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)"><div class="titlepage"><div><div><h5 class="title"><a name="emfregistry_metamodel"></a>The EMF Registry Metamodel (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)</h5></div></div></div><a name="N1029D" class="indexterm"></a><a name="N102A2" class="indexterm"></a><p>
+  This metamodel looks for the referenced metamodels in the global EMF model registry.
+  This means, when using this metamodel, only models that are registered in this global
+  EMF model registry will be accessible from within the metamodel.
+  </p><p>
+  This metamodel provides the following configuration property:
+  </p><div class="table"><a name="properties_emfregistrymetamodel"></a><p class="title"><b>Table&nbsp;1.&nbsp;Properties of <code class="classname">EmfRegistryMetaModel</code></b></p><div class="table-contents"><table summary="Properties of EmfRegistryMetaModel" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                        useSingleGlobalResourceSet
+                        </td><td align="left">
+                        This boolean property determines the way resource sets are used.
+                        If set to <span class="emphasis"><em>true</em></span>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div><div class="section" title="The EMF Metamodel (org.eclipse.xtend.typesystem.emf.EmfMetaModel)"><div class="titlepage"><div><div><h5 class="title"><a name="emf_metamodel"></a>The EMF Metamodel (org.eclipse.xtend.typesystem.emf.EmfMetaModel)</h5></div></div></div><a name="N102CD" class="indexterm"></a><a name="N102D2" class="indexterm"></a><p>
+  This metamodel is a specialized version of the <a class="xref" href="#emfregistry_metamodel" title="The EMF Registry Metamodel (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)">EMF registry metamodel</a>. 
+  In addition to the features of the former, it allows to specify an unregistered model in 
+  different ways that will be added to the metamodel. 
+  </p><p>
+  This metamodel provides the following configuration properties:
+  </p><div class="table"><a name="properties_emfmetamodel"></a><p class="title"><b>Table&nbsp;2.&nbsp;Properties of <code class="classname">EmfMetaModel</code></b></p><div class="table-contents"><table summary="Properties of EmfMetaModel" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                        useSingleGlobalResourceSet
+                        </td><td align="left">
+                        This boolean property determines the way resource sets are used.
+                        If set to <span class="emphasis"><em>true</em></span>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </td></tr><tr><td align="left">
+                        metaModelFile
+                        </td><td align="left">
+                        Sets the path to the Ecore file that will be added to the metamodel.
+                        </td></tr><tr><td align="left">
+                        metaModelDescriptor
+                        </td><td align="left">
+                        Adds a model to the metamodel by specifying the name of an EPackage descriptor class.
+                        </td></tr><tr><td align="left">
+                        metaModelPackage
+                        </td><td align="left">
+                        Adds a model to the metamodel by specifying the name of an EPackage.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="section" title="UML Metamodels"><div class="titlepage"><div><div><h4 class="title"><a name="uml_metamodels"></a>UML Metamodels</h4></div></div></div><p>
+  <span class="emphasis"><em>Xpand</em></span> also provides several metamodels that allow to use UML models in
+  conjunction with this model-to-text generation framework.
+  <span class="strong"><strong>Please note that you have to execute the
+  setup utility class <code class="classname">Setup</code> in your workflow
+  before you can use one of the UML metamodels</strong></span>
+  </p><div class="section" title="The UML2 Metamodel (org.eclipse.xtend.typesystem.uml2.UML2MetaModel)"><div class="titlepage"><div><div><h5 class="title"><a name="uml2_metamodel"></a>The UML2 Metamodel (org.eclipse.xtend.typesystem.uml2.UML2MetaModel)</h5></div></div></div><a name="N10320" class="indexterm"></a><a name="N10325" class="indexterm"></a><p>
+  This metamodel is a specialized version of the <span class="emphasis"><em><a class="xref" href="#emf_metamodel" title="The EMF Metamodel (org.eclipse.xtend.typesystem.emf.EmfMetaModel)">EMF metamodel</a></em></span>.
+  It provides access to UML2 models, and it has the following configuration properties:
+  </p><div class="table"><a name="properties_uml2metamodel"></a><p class="title"><b>Table&nbsp;3.&nbsp;Properties of <code class="classname">UML2MetaModel</code></b></p><div class="table-contents"><table summary="Properties of UML2MetaModel" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                        useSingleGlobalResourceSet
+                        </td><td align="left">
+                        This boolean property determines the way resource sets are used.
+                        If set to <span class="emphasis"><em>true</em></span>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </td></tr><tr><td align="left">
+                        modelFile
+                        </td><td align="left">
+                        Sets the path to the UML2 model file that will be added to the metamodel.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div><div class="section" title="The UML2 Profile Metamodel (org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel)"><div class="titlepage"><div><div><h5 class="title"><a name="uml2profile_metamodel"></a>The UML2 Profile Metamodel (org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel)</h5></div></div></div><a name="N10357" class="indexterm"></a><a name="N1035C" class="indexterm"></a><p>
+  This metamodel allows to apply UML profiles to UML2 models. It has the following
+  configuration properties
+  </p><div class="table"><a name="properties_profilemetamodel"></a><p class="title"><b>Table&nbsp;4.&nbsp;Properties of <code class="classname">ProfileMetaModel</code></b></p><div class="table-contents"><table summary="Properties of ProfileMetaModel" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                        useSingleGlobalResourceSet
+                        </td><td align="left">
+                        This boolean property determines the way resource sets are used.
+                        If set to <span class="emphasis"><em>true</em></span>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </td></tr><tr><td align="left">
+                        modelFile
+                        </td><td align="left">
+                        Sets the path to the UML2 model file that will be added to the metamodel.
+                        </td></tr><tr><td align="left">
+                        profile
+                        </td><td align="left">
+                        Sets the path to the UML profile that will be applied to the UML2 model.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div><div class="section" title="The XMI reader (org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.XmiReader)"><div class="titlepage"><div><div><h5 class="title"><a name="xmi_reader"></a>The XMI reader (org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.XmiReader)</h5></div></div></div><a name="N1038F" class="indexterm"></a><a name="N10392" class="indexterm"></a><p>
+  The XMI reader component is important when working with UML models. It allows to
+  read out a model stored in an XMI file and put its contents into a model slot.
+  </p><p>
+  The <code class="classname">XMIReader</code> component provides the following configurable
+  properties:
+  </p><div class="table"><a name="properties_xmireader"></a><p class="title"><b>Table&nbsp;5.&nbsp;Properties of <code class="classname">XMIReader</code></b></p><div class="table-contents"><table summary="Properties of XMIReader" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                        metaModelFile
+                        </td><td align="left">
+                        Sets the path to the Ecore file that will be added to the metamodel.
+                        </td></tr><tr><td align="left">
+                        metaModelDescriptor
+                        </td><td align="left">
+                        Adds a model to the metamodel by specifying the name of an EPackage descriptor class.
+                        </td></tr><tr><td align="left">
+                        metaModelPackage
+                        </td><td align="left">
+                        Adds a model to the metamodel by specifying the name of an EPackage.
+                        </td></tr><tr><td align="left">
+                        outputSlot
+                        </td><td align="left">
+                        Sets the name of the model slot where the read model will be stored in.
+                        </td></tr><tr><td align="left">
+                    firstElementOnly
+                    </td><td align="left">
+                    This boolean property determines if only the first model element
+                    of the XMI file will be used. If set to <span class="emphasis"><em>true</em></span>,
+                    only the first model element will be used, all other elements will
+                    be ignored. Otherwise, all model elements in the XMI file will be used.
+                    </td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="section" title="The Java Metamodel (org.eclipse.internal.xtend.type.impl.java.JavaMetaModel)"><div class="titlepage"><div><div><h4 class="title"><a name="java_metamodel"></a>The Java Metamodel (org.eclipse.internal.xtend.type.impl.java.JavaMetaModel)</h4></div></div></div><a name="N103D4" class="indexterm"></a><a name="N103D9" class="indexterm"></a><p>
+  The Java metamodel allows normal Java classes as metatypes for your metamodel. The
+  <code class="classname">JavaMetaClass</code> uses the strategy pattern to define how the
+  elements are exactly mapped to the metamodel elements. There is a class called
+  <code class="classname">org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel</code>
+  that is preconfigured with a strategy that maps simple Java beans onto the
+  metamodel elements.
+  </p><p>
+  The Java metamodel has no configurable properties.
+  </p></div><div class="section" title="The XSD Metamodel (org.eclipse.xtend.typesystem.xsd.XSDMetaModel)"><div class="titlepage"><div><div><h4 class="title"><a name="xsd_metamodel"></a>The XSD Metamodel (org.eclipse.xtend.typesystem.xsd.XSDMetaModel)</h4></div></div></div><a name="N103EB" class="indexterm"></a><a name="N103F0" class="indexterm"></a><p>
+  The XSD metamodel provides access to models implemented in the XML Schema Definition
+  language. It has the following configuration properties:
+  </p><div class="table"><a name="properties_xsdmetamodel"></a><p class="title"><b>Table&nbsp;6.&nbsp;Properties of <code class="classname">XSDMetaModel</code></b></p><div class="table-contents"><table summary="Properties of XSDMetaModel" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                        id
+                    </td><td align="left">
+                        Sets the ID of the current model.
+                    </td></tr><tr><td align="left">
+                        registerPackagesGlobally
+                    </td><td align="left">
+                        This boolean property determines if the model packages will be registered
+                        globally. If set to <span class="emphasis"><em>true</em></span>, the model packages will be registered
+                        in the global registry. Otherwise, packages will not be registered.
+                    </td></tr><tr><td align="left">
+                        savePackagesPath
+                    </td><td align="left">
+                        Sets the path where model packages will be saved (in XMI format).
+                    </td></tr></tbody></table></div></div><br class="table-break"></div><div class="section" title="Implementing Your Own Metamodel"><div class="titlepage"><div><div><h4 class="title"><a name="implementing_metamodels"></a>Implementing Your Own Metamodel</h4></div></div></div><a name="N10423" class="indexterm"></a><p>
+  The <span class="emphasis"><em>Xpand</em></span> framework also allows you to integrate new metamodel
+  implementations. This section quickly outlines the steps that have to be taken in order
+  to implement a metamodel:
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+            Create a class that implements the <code class="classname">MetaModel</code> interface.
+        </p></li><li class="listitem"><p>
+            In order to be able to integrate your metamodel into the Eclipse UI, you
+            also have to provide a metamodel contributor class for your metamodel implementation
+            that implements either the <code class="classname">MetaModelContributor</code> or the
+            <code class="classname">MetaModelContributor2</code> interface. 
+        </p></li><li class="listitem"><p>
+            Finally, you have to extend the 
+            <code class="classname">org.eclipse.xtend.shared.ui.metaModelContributors</code>
+            extension point in order to register your metamodel contributor with the
+            Eclipse UI.
+        </p></li></ol></div></div></div></div><div class="section" title="Expressions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="r10_expressions_language"></a>Expressions<a name="N10448" class="indexterm"></a></h2></div></div></div><p>The expression sub-language<a name="N1044D" class="indexterm"></a> is a syntactical mixture of Java and OCL<a name="N10451" class="indexterm"></a>. This documentation provides a detailed description of each
+    available expression. Let us start with some simple examples.</p><p>Accessing a property:</p><pre class="programlisting">myModelElement.name</pre><p>Accessing an operation:</p><pre class="programlisting">myModelElement.doStuff()</pre><p>simple arithmetic:</p><pre class="programlisting">1 + 1 * 2</pre><p>boolean expressions (just an example:-)):</p><pre class="programlisting">!('text'.startsWith('t') &amp;&amp; ! false)</pre><div class="section" title="Literals and special operators for built-in types"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_builtin"></a>Literals and special operators for built-in types</h3></div></div></div><p>There are several literals<a name="N1046B" class="indexterm"></a> for built-in types:</p><div class="section" title="Object"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_object"></a><code class="classname">Object</code> <a name="N10475" class="indexterm"></a> <a name="N1047C" class="indexterm"></a></h4></div></div></div><p>There are naturally no literals for object, but we have two
         operators:</p><p>equals:</p><pre class="programlisting">obj1 == obj2</pre><p>not equals:</p><pre class="programlisting">obj1 != obj2</pre></div><div class="section" title="Void"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_void"></a><code class="classname">Void</code></h4></div></div></div><p>The only possible instance of <code class="classname">Void</code> is the
         <code class="varname">null</code> reference. Therefore, we have one
         literal:</p><pre class="programlisting">null</pre></div><div class="section" title="Type literals"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_typeliterals"></a>Type literals</h4></div></div></div><p>The literal for types is just the name of the type (no '.class'
         suffix, etc.). Example:</p><pre class="programlisting">String // the type string
-my::special::Type // evaluates to the type 'my::special::Type'</pre></div><div class="section" title="StaticProperty literals"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_staticproperties"></a>StaticProperty literals</h4></div></div></div><p>The literal for static properties<a name="N102E0" class="indexterm"></a> (aka enum literals<a name="N102E6" class="indexterm"></a>) is correlative to type literals:</p><pre class="programlisting">my::Color::RED</pre></div><div class="section" title="String"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_string"></a><code class="classname">String</code></h4></div></div></div><p>There are two different literal syntaxes (with the same
+my::special::Type // evaluates to the type 'my::special::Type'</pre></div><div class="section" title="StaticProperty literals"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_staticproperties"></a>StaticProperty literals</h4></div></div></div><p>The literal for static properties<a name="N104A9" class="indexterm"></a> (aka enum literals<a name="N104AF" class="indexterm"></a>) is correlative to type literals:</p><pre class="programlisting">my::Color::RED</pre></div><div class="section" title="String"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_string"></a><code class="classname">String</code></h4></div></div></div><p>There are two different literal syntaxes (with the same
         semantics):</p><pre class="programlisting">'a String literal'
 "a String literal" // both are okay</pre><p>For Strings the expression sub-language supports the plus
         operator that is overloaded with concatenation:</p><pre class="programlisting">'my element '+ ele.name +' is really cool!'</pre><p>Note, that multi-line Strings are supported.</p></div><div class="section" title="Boolean"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_builtin_boolean"></a><code class="classname">Boolean</code></h4></div></div></div><p>The boolean literals are:</p><pre class="programlisting">true
@@ -238,7 +396,7 @@ true || false // OR
         operation on the list literal:</p><pre class="programlisting">{1,2,4,4}.toSet() // a set with 3(!) integers</pre></div></div><div class="section" title="Special Collection operations"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_collection_operations"></a>Special Collection operations</h3></div></div></div><p>Like OCL, the <span class="emphasis"><em>Xpand</em></span> expression sub-language defines several special
       operations on collections. However, those operations are not members of
       the type system, therefore you cannot use them in a reflective
-      manner.</p><div class="section" title="select"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_select"></a><code class="methodname">select<a name="N1033B" class="indexterm"></a></code></h4></div></div></div><p>Sometimes, an expression yields a large collection, but one is
+      manner.</p><div class="section" title="select"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_select"></a><code class="methodname">select<a name="N10504" class="indexterm"></a></code></h4></div></div></div><p>Sometimes, an expression yields a large collection, but one is
         only interested in a special subset of the collection. The expression
         sub-language has special constructs to specify a selection out of a
         specific collection. These are the <code class="methodname">select</code> and
@@ -247,16 +405,16 @@ true || false // OR
         operation on a collection and is specified as follows:</p><pre class="programlisting">collection.select(v | boolean-expression-with-v)</pre><p><code class="methodname">select</code> returns a sublist of the
         specified collection. The list contains all elements for which the
         evaluation of boolean-expression-with-v results is
-        <code class="varname">true</code>. Example:</p><pre class="programlisting">{1,2,3,4}.select(i | i &gt;= 3) // returns {3,4}</pre></div><div class="section" title="typeSelect"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_typeselect"></a><code class="methodname">typeSelect</code> <a name="N1035A" class="indexterm"></a></h4></div></div></div><p>A special version of a select expression is
+        <code class="varname">true</code>. Example:</p><pre class="programlisting">{1,2,3,4}.select(i | i &gt;= 3) // returns {3,4}</pre></div><div class="section" title="typeSelect"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_typeselect"></a><code class="methodname">typeSelect</code> <a name="N10523" class="indexterm"></a></h4></div></div></div><p>A special version of a select expression is
         <code class="methodname">typeSelect</code>. Rather than providing a boolean
         expression a class name is here provided.</p><pre class="programlisting">collection.typeSelect(classname) </pre><p><code class="methodname">typeSelect</code> returns that sublist of the
         specified collection, that contains only objects which are an instance
-        of the specified class (also inherited).</p></div><div class="section" title="reject"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_reject"></a><code class="methodname">reject<a name="N1036D" class="indexterm"></a></code></h4></div></div></div><p>The <code class="methodname">reject</code> operation is similar to the
+        of the specified class (also inherited).</p></div><div class="section" title="reject"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_reject"></a><code class="methodname">reject<a name="N10536" class="indexterm"></a></code></h4></div></div></div><p>The <code class="methodname">reject</code> operation is similar to the
         <code class="methodname">select</code> operation, but with
         <code class="methodname">reject</code> we get the subset of all the elements
         of the collection for which the expression evaluates to
         <code class="varname">false</code>. The <code class="methodname">reject</code> syntax
-        is identical to the <code class="methodname">select</code> syntax:</p><pre class="programlisting">collection.reject(v | boolean-expression-with-v)</pre><p>Example:</p><pre class="programlisting">{1,2,3,4}.reject(i | i &gt;= 3) // returns {1,2}</pre></div><div class="section" title="collect"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_collect"></a><code class="methodname">collect<a name="N1038F" class="indexterm"></a></code></h4></div></div></div><p>As shown in the previous section, the
+        is identical to the <code class="methodname">select</code> syntax:</p><pre class="programlisting">collection.reject(v | boolean-expression-with-v)</pre><p>Example:</p><pre class="programlisting">{1,2,3,4}.reject(i | i &gt;= 3) // returns {1,2}</pre></div><div class="section" title="collect"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_collect"></a><code class="methodname">collect<a name="N10558" class="indexterm"></a></code></h4></div></div></div><p>As shown in the previous section, the
         <code class="methodname">select</code> and <code class="methodname">reject</code>
         operations always result in a sub-collection of the original
         collection. Sometimes one wants to specify a collection which is
@@ -271,7 +429,7 @@ true || false // OR
         collected in a list. When an iteration is finished the list with all
         results is returned. Example:</p><pre class="programlisting">namedElements.collect(ne | ne.name) // returns a list of strings </pre></div><div class="section" title="Shorthand for collect (and more than that)"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_collect_shorthand"></a>Shorthand for <code class="methodname">collect</code> (and more than
         that)</h4></div></div></div><p>As navigation through many objects is very common, there is a
-        shorthand notation for collect <a name="N103BA" class="indexterm"></a>that makes the expressions more readable. Instead
+        shorthand notation for collect <a name="N10583" class="indexterm"></a>that makes the expressions more readable. Instead
         of</p><pre class="programlisting">self.employee.collect(e | e.birthdate) </pre><p>one can also write:</p><pre class="programlisting">self.employee.birthdate</pre><p>In general, when a property is applied to a collection of
         Objects, it will automatically be interpreted as a
         <code class="methodname">collect</code> over the members of the collection
@@ -279,7 +437,7 @@ true || false // OR
         if the feature does not return a collection itself. But sometimes we
         have the following:</p><pre class="programlisting">self.buildings.rooms.windows // returns a list of windows</pre><p>This syntax works, but one cannot express it using the
         <code class="methodname">collect</code> operation in an easy way.</p></div><div class="section" title="forAll"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_forall"></a><code class="methodname">forAll</code></h4></div></div></div><p>Often a boolean expression has to be evaluated for all elements
-        in a collection. The <code class="methodname">forAll</code><a name="N103DE" class="indexterm"></a> operation allows specifying a Boolean expression, which
+        in a collection. The <code class="methodname">forAll</code><a name="N105A7" class="indexterm"></a> operation allows specifying a Boolean expression, which
         must be <code class="varname">true</code>for all objects in a collection in
         order for the <code class="methodname">forAll</code> operation to return
         <code class="varname">true</code>:</p><pre class="programlisting">collection.forAll(v | boolean-expression-with-v)</pre><p>The result of <code class="methodname">forAll</code> is
@@ -289,7 +447,7 @@ true || false // OR
         <code class="varname">boolean-expression-with-v</code> is
         <code class="varname">false</code> for one or more of the elements in the
         collection, then the <code class="methodname">forAll</code> expression
-        evaluates to <code class="varname">false</code>.</p><p>Example:</p><pre class="programlisting">{3,4,500}.forAll(i | i &lt; 10) // evaluates to false (500 &lt; 10 is false)</pre></div><div class="section" title="exists"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_exists"></a><code class="methodname">exists<a name="N10410" class="indexterm"></a></code></h4></div></div></div><p>Often you will need to know whether there is at least one
+        evaluates to <code class="varname">false</code>.</p><p>Example:</p><pre class="programlisting">{3,4,500}.forAll(i | i &lt; 10) // evaluates to false (500 &lt; 10 is false)</pre></div><div class="section" title="exists"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_exists"></a><code class="methodname">exists<a name="N105D9" class="indexterm"></a></code></h4></div></div></div><p>Often you will need to know whether there is at least one
         element in a collection for which a boolean is
         <code class="varname">true</code>. The exists operation allows you to specify a
         Boolean expression which must be <code class="varname">true</code> for at least
@@ -298,8 +456,8 @@ true || false // OR
         <code class="varname">true</code> for at least one element of collection. If the
         <code class="varname">boolean-expression-with-v</code> is
         <code class="varname">false</code> for all elements in collection, then the
-        complete expression evaluates to <code class="varname">false</code>.</p><p>Example:</p><pre class="programlisting">{3,4,500}.exists(i | i &lt; 10) // evaluates to true (e.g. 3 &lt; 10 is true)</pre></div><div class="section" title="sortBy"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_sortby"></a><code class="methodname">sortBy</code><sup>[<a href="#ftn.N1043A" name="N1043A" class="footnote">1</a>]</sup></h4></div></div></div><p>If you want to sort a list of elements, you can use the higher
-        order function <code class="methodname">sortBy</code> <a name="N10442" class="indexterm"></a>. The list you invoke the
+        complete expression evaluates to <code class="varname">false</code>.</p><p>Example:</p><pre class="programlisting">{3,4,500}.exists(i | i &lt; 10) // evaluates to true (e.g. 3 &lt; 10 is true)</pre></div><div class="section" title="sortBy"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_collection_sortby"></a><code class="methodname">sortBy</code><sup>[<a href="#ftn.N10603" name="N10603" class="footnote">1</a>]</sup></h4></div></div></div><p>If you want to sort a list of elements, you can use the higher
+        order function <code class="methodname">sortBy</code> <a name="N1060B" class="indexterm"></a>. The list you invoke the
         <code class="methodname">sortBy</code> operation on, is sorted by the results
         of the given expression.</p><p>Example:</p><pre class="programlisting">myListOfEntity.sortBy(entity | entity.name)</pre><p>In the example the list of entities is sorted by the name of the
         entities. Note that there is no such <code class="classname">Comparable</code>
@@ -312,9 +470,14 @@ true || false // OR
 {'AAA','BB','C'}.sortBy(e | e.length) == {'C','BB','AAA'}
 {5,3,1,2}.sortBy(e | e) == {1,2,3,5}
 {5,3,1,2}.sortBy(e | e - 2 * e) == {5,3,2,1}
-...</pre></div></div><div class="section" title="if expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_if"></a><code class="methodname">if</code> expression</h3></div></div></div><a name="N1046B" class="indexterm"></a><p>There are two different forms of conditional expressions. The
+...</pre></div></div><div class="section" title="if expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_if"></a><code class="methodname">if</code> expression</h3></div></div></div><a name="N10634" class="indexterm"></a><p>There are two different forms of conditional expressions. The
       first one is the so-called <span class="emphasis"><em>if expression</em></span>.
-      Syntax:</p><pre class="programlisting">condition ? thenExpression : elseExpression</pre><p>Example:</p><pre class="programlisting">name != null ? name : 'unknown'</pre></div><div class="section" title="switch expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_switch"></a><code class="methodname">switch</code> expression</h3></div></div></div><a name="N10481" class="indexterm"></a><p>The other one is called <span class="emphasis"><em>switch expression</em></span>.
+      Syntax:</p><pre class="programlisting">condition ? thenExpression : elseExpression</pre><p>Example:</p><pre class="programlisting">name != null ? name : 'unknown'</pre><p>Alternatively, you also could write:</p><pre class="programlisting">
+      if name != null then
+         name 
+      else
+        'unknown'
+    </pre></div><div class="section" title="switch expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_switch"></a><code class="methodname">switch</code> expression</h3></div></div></div><a name="N1064E" class="indexterm"></a><p>The other one is called <span class="emphasis"><em>switch expression</em></span>.
       Syntax:</p><pre class="programlisting">switch (expression) {
    (case expression : thenExpression)*
    default : catchAllExpression
@@ -327,7 +490,7 @@ true || false // OR
       expressions:</p><pre class="programlisting">switch {
    case booleanExpression : thenExpression
    default : catchAllExpression
-} </pre></div><div class="section" title="Chain expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_chain"></a>Chain expression</h3></div></div></div><a name="N1049F" class="indexterm"></a><p>Expressions and functional languages should be free of side
+} </pre></div><div class="section" title="Chain expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_chain"></a>Chain expression</h3></div></div></div><a name="N1066C" class="indexterm"></a><p>Expressions and functional languages should be free of side
       effects as far as possible. But sometimes there you need invocations
       that do have side effects. In some cases expressions even don not have a
       return type (i.e. the return type is <code class="classname">Void</code>). If
@@ -337,8 +500,8 @@ anotherExpr -&gt;
 lastExpr </pre><p>Each expression is evaluated in sequence, but only the result of
       the last expression is returned. Example:</p><pre class="programlisting">pers.setName('test') -&gt;
 pers</pre><p>This chain expression will set the <code class="varname">name</code> of the
-      person first, before it returns the person object itself.</p></div><div class="section" title="create expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_create"></a><code class="methodname">create</code> expression</h3></div></div></div><a name="N104BA" class="indexterm"></a><p>The <code class="methodname">create</code> expression is used to
-      instantiate new objects of a given type:</p><pre class="programlisting">new TypeName</pre></div><div class="section" title="let expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_let"></a><code class="methodname">let</code> expression</h3></div></div></div><a name="N104CC" class="indexterm"></a><p>The <code class="methodname">let</code> expression lets you define local
+      person first, before it returns the person object itself.</p></div><div class="section" title="create expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_create"></a><code class="methodname">create</code> expression</h3></div></div></div><a name="N10687" class="indexterm"></a><p>The <code class="methodname">create</code> expression is used to
+      instantiate new objects of a given type:</p><pre class="programlisting">new TypeName</pre></div><div class="section" title="let expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_let"></a><code class="methodname">let</code> expression</h3></div></div></div><a name="N10699" class="indexterm"></a><p>The <code class="methodname">let</code> expression lets you define local
       variables. Syntax is as follows:</p><pre class="programlisting">let v = expression : expression-with-v </pre><p>This is especially useful together with a chain- and a create
       expressions. Example:</p><pre class="programlisting">let p = new Person :
    p.name('John Doe') -&gt;
@@ -346,11 +509,11 @@ pers</pre><p>This chain expression will set the <code class="varname">name</code
    p.city('New York') -&gt;
    p</pre></div><div class="section" title="'GLOBALVAR' expression"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_globalvar"></a>'GLOBALVAR' expression</h3></div></div></div><p>Sometimes you don't want to pass everything down the call stack by
       parameter. Therefore, we have the <code class="methodname">GLOBALVAR</code>
-      <a name="N104E5" class="indexterm"></a> expression. There are two things you need to do, to use
+      <a name="N106B2" class="indexterm"></a> expression. There are two things you need to do, to use
       global variables.</p><div class="section" title="Using GLOBALVARS to configure workflows"><div class="titlepage"><div><div><h4 class="title"><a name="r10_expressions_globalvar_workflow"></a>Using GLOBALVARS to configure workflows</h4></div></div></div><p>Each workflow component using the expression framework
         (<span class="emphasis"><em>Xpand</em></span>, <span class="emphasis"><em>Check</em></span> and
         <span class="emphasis"><em>Xtend</em></span>) can be configured with global variables.
-        <a name="N104F8" class="indexterm"></a> Here is an example:</p><pre class="programlisting">&lt;workflow&gt;
+        <a name="N106C5" class="indexterm"></a> Here is an example:</p><pre class="programlisting">&lt;workflow&gt;
    .... stuff
    &lt;component class="org.eclipse.xpand2.Generator"&gt;
       ... usual stuff (see ref doc)
@@ -364,7 +527,7 @@ pers</pre><p>This chain expression will set the <code class="varname">name</code
         always refer to that extension:</p><pre class="programlisting">String implClassSuffix() : GLOBALVAR ImplClassSuffix;
 // usage of the typed global var extension
 ImplName(Class c) :
-   name+implClassSuffix();</pre></div></div><div class="section" title="Multi methods (multiple dispatch)"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_multidispatch"></a>Multi methods (multiple dispatch)</h3></div></div></div><p>The expressions language supports multiple dispatching <a name="N10515" class="indexterm"></a>. This means that when there is a bunch of overloaded
+   name+implClassSuffix();</pre></div></div><div class="section" title="Multi methods (multiple dispatch)"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_multidispatch"></a>Multi methods (multiple dispatch)</h3></div></div></div><p>The expressions language supports multiple dispatching <a name="N106E2" class="indexterm"></a>. This means that when there is a bunch of overloaded
       operations, the decision which operation has to be resolved is based on
       the dynamic type of all parameters (the implicit
       '<code class="varname">this</code>' included).</p><p>In Java only the dynamic type of the '<code class="varname">this</code>'
@@ -380,18 +543,18 @@ ImplName(Class c) :
       //implementation...
    }
 } </pre><p>The method <code class="methodname">equals(Object o)</code> would not
-      have to be overwritten, if Java would support multiple dispatch.</p></div><div class="section" title="Casting"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_casting"></a>Casting<a name="N1052F" class="indexterm"></a></h3></div></div></div><p>The expression language is statically type checked. Although there
+      have to be overwritten, if Java would support multiple dispatch.</p></div><div class="section" title="Casting"><div class="titlepage"><div><div><h3 class="title"><a name="r10_expressions_casting"></a>Casting<a name="N106FC" class="indexterm"></a></h3></div></div></div><p>The expression language is statically type checked. Although there
       are many concepts that help the programmer to have really good static
       type information, sometimes. one knows more about the real type than the
       system. To explicitly give the system such an information casts are
       available. <span class="emphasis"><em>Casts are 100% static, so you do not need them, if
-      you never statically typecheck your expressions! </em></span></p><p>The syntax for casts is very Java-like:</p><pre class="programlisting">((String)unTypedList.get(0)).toUpperCase()</pre></div></div><div class="section" title="Check"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Check_language"></a><span class="emphasis"><em>Check</em></span></h2></div></div></div><p><span class="emphasis"><em>Xpand</em></span> also provides a language to specify constraints
-    <a name="N10544" class="indexterm"></a> that the model has to fulfill in order to be correct. This
+      you never statically typecheck your expressions! </em></span></p><p>The syntax for casts is very Java-like:</p><pre class="programlisting">((String)unTypedList.get(0)).toUpperCase()</pre></div></div><div class="section" title="Check"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Check_language"></a><span class="emphasis"><em>Check</em></span></h2></div></div></div><div class="section" title="Description of the Check language"><div class="titlepage"><div><div><h3 class="title"><a name="Check_language_description"></a>Description of the <span class="emphasis"><em>Check</em></span> language</h3></div></div></div><p><span class="emphasis"><em>Xpand</em></span> also provides a language to specify constraints
+    <a name="N10719" class="indexterm"></a> that the model has to fulfill in order to be correct. This
     language is very easy to understand and use. Basically, it is built around
     the expression syntax that has been discussed in detail in the previous
     section. Constraints specified in the <span class="emphasis"><em>Check</em></span>
-    <a name="N1054B" class="indexterm"></a> language have to be stored in files with the file extension
-    <code class="filename">.chk</code> <a name="N10554" class="indexterm"></a><a name="N10557" class="indexterm"></a>. Furthermore, these files have to be on the Java classpath,
+    <a name="N10720" class="indexterm"></a> language have to be stored in files with the file extension
+    <code class="filename">.chk</code> <a name="N10729" class="indexterm"></a><a name="N1072C" class="indexterm"></a>. Furthermore, these files have to be on the Java classpath,
     of course, in order to be found. Let us look at an example, in order to
     understand, what these constraints look like and what they
     do:</p><pre class="programlisting">import data;
@@ -403,7 +566,7 @@ context Attribute ERROR
           put the name of the metaclass that is going to be checked by the
           constraint. Then, there follows either <code class="code">ERROR</code> or
           <code class="code">WARNING</code>, These keywords specify what kind of action
-          will be taken in case the constraint fails:</p><div class="table"><a name="N10571"></a><p class="title"><b>Table&nbsp;1.1.&nbsp;Types of action for <span class="emphasis"><em>Check</em></span>
+          will be taken in case the constraint fails:</p><div class="table"><a name="N10746"></a><p class="title"><b>Table&nbsp;7.&nbsp;Types of action for <span class="emphasis"><em>Check</em></span>
               constraints</b></p><div class="table-contents"><table summary="Types of action for Check
               constraints" border="1"><colgroup><col><col></colgroup><tbody><tr><td><code class="code">WARNING</code></td><td>If the constraint fails, the specified message is
                     printed, but the workflow execution is not
@@ -423,8 +586,8 @@ context Attribute ERROR
         with the constraint is printed, if the condition of the constraint is
         <code class="varname">false</code>! Thus, if the specified constraint condition
         is <code class="varname">true</code>, nothing will be printed out and the
-        constraint will be fulfilled.</p></td></tr></table></div><div class="section" title="Guard Conditions"><div class="titlepage"><div><div><h3 class="title"><a name="Guard_conditions"></a>Guard Conditions</h3></div></div></div><p>The <span class="emphasis"><em>Check</em></span> language of <span class="emphasis"><em>Xpand</em></span> also provides so
-      called <a name="N105AF" class="indexterm"></a>. These conditions allow to apply a check constraint only to
+        constraint will be fulfilled.</p></td></tr></table></div><div class="section" title="Guard Conditions"><div class="titlepage"><div><div><h4 class="title"><a name="Guard_conditions"></a>Guard Conditions</h4></div></div></div><p>The <span class="emphasis"><em>Check</em></span> language of <span class="emphasis"><em>Xpand</em></span> also provides so
+      called <a name="N10784" class="indexterm"></a>. These conditions allow to apply a check constraint only to
       model elements that meet certain criteria. Specifying such a guard
       condition is done by adding an <span class="emphasis"><em>if</em></span> clause to the
       check constraint. The <span class="emphasis"><em>if</em></span> clause has to be added
@@ -432,13 +595,43 @@ context Attribute ERROR
       following example: </p><pre class="programlisting">import data;
 context Attribute if name.length &gt; 1 ERROR
   "Attribute names have to start with an 'a'" :
-  name.startsWith("a");</pre></div></div><div class="section" title="Xtend"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Xtend_language"></a><span class="emphasis"><em>Xtend</em></span></h2></div></div></div><a name="N105C5" class="indexterm"></a><p>Like the expressions sublanguage that summarizes the syntax of
+  name.startsWith("a");</pre></div></div><div class="section" title="The workflow component CheckComponent"><div class="titlepage"><div><div><h3 class="title"><a name="check_checkcomponent"></a>The workflow component <span class="emphasis"><em>CheckComponent</em></span></h3></div></div></div><p>
+  The workflow component <span class="emphasis"><em>CheckComponent</em></span> allows to integrate model 
+  validation constraints using the <span class="emphasis"><em>Check</em></span> into a modeling workflow 
+  using MWE.
+  </p><p>
+  This component provides the following configuration properties:
+  </p><div class="table"><a name="properties_checkcomponent"></a><p class="title"><b>Table&nbsp;8.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                        checkFile
+                        </td><td align="left">
+                        This property allows to add files containing constraints written
+                        in the <span class="emphasis"><em>Check</em></span> language to the validation
+                        component. <span class="strong"><strong>This property only works
+                        in conjunction with EMF based models.</strong></span>
+                        </td></tr><tr><td align="left">
+                       expression
+                        </td><td align="left">
+                        This property allows to set a check expression for the validation
+                        component. <span class="strong"><strong>This property only works
+                        in conjunction with non-EMF based models.</strong></span>
+                        </td></tr><tr><td align="left">
+                        abortOnError
+                        </td><td align="left">
+                        This boolean property determines if the workflow will be aborted
+                        or not if one of the validation constraints fails.
+                        </td></tr><tr><td align="left">
+                        warnIfNothingChecked
+                        </td><td align="left">
+                        If this boolean property will be set to <span class="emphasis"><em>true</em></span>,
+                        a warning will be generated if there were no validation checks. Otherwise,
+                        no warning will be issued.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="section" title="Xtend"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Xtend_language"></a><span class="emphasis"><em>Xtend</em></span></h2></div></div></div><a name="N107E2" class="indexterm"></a><p>Like the expressions sublanguage that summarizes the syntax of
     expressions for all the other textual languages delivered with the
     <span class="emphasis"><em>Xpand</em></span> framework, there is another commonly used language
     called <span class="emphasis"><em>Xtend</em></span>.</p><p>This language provides the possibility to define rich libraries of
-    independent operations and non-invasive metamodel extensions<a name="N105D4" class="indexterm"></a> based on either Java methods or<span class="emphasis"><em>Xtend</em></span>  expressions. Those
+    independent operations and non-invasive metamodel extensions<a name="N107F1" class="indexterm"></a> based on either Java methods or<span class="emphasis"><em>Xtend</em></span>  expressions. Those
     libraries can be referenced from all other textual languages, that are
-    based on the expressions framework.</p><div class="section" title="Extend files"><div class="titlepage"><div><div><h3 class="title"><a name="N105DD"></a>Extend files</h3></div></div></div><a name="N105E0" class="indexterm"></a><p><a name="N105E4" class="indexterm"></a>An extend file must reside in the Java class path of the
+    based on the expressions framework.</p><div class="section" title="Extend files"><div class="titlepage"><div><div><h3 class="title"><a name="N107FA"></a>Extend files</h3></div></div></div><a name="N107FD" class="indexterm"></a><p><a name="N10801" class="indexterm"></a>An extend file must reside in the Java class path of the
       used execution context. Additionally it is file extension must be
       <code class="filename">*.ext</code>. Let us have a look at an extend file.</p><pre class="programlisting">import my::metamodel;extension other::ExtensionFile;
 
@@ -455,15 +648,15 @@ anExpressionExtension(String stringParam) :
 String aJavaExtension(String param) : JAVA
   my.JavaClass.staticMethod(java.lang.String)
 ;
-</pre><p>The example shows the following statements:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>import statements</p></li><li class="listitem"><p>extension import statements</p></li><li class="listitem"><p>expression or java extensions</p></li></ol></div></div><div class="section" title="Comments"><div class="titlepage"><div><div><h3 class="title"><a name="N105FB"></a>Comments<a name="N105FE" class="indexterm"></a></h3></div></div></div><p>We have single- and multi-line comments. The syntax for single
-      line comments is:</p><pre class="programlisting">// my comment</pre><p>Multi line comments are written like this:</p><pre class="programlisting">/* My multi line comment */</pre></div><div class="section" title="Import Statements"><div class="titlepage"><div><div><h3 class="title"><a name="N1060B"></a>Import Statements</h3></div></div></div><p>Using the import<a name="N10610" class="indexterm"></a> statement one can import name spaces of different
+</pre><p>The example shows the following statements:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>import statements</p></li><li class="listitem"><p>extension import statements</p></li><li class="listitem"><p>expression or java extensions</p></li></ol></div></div><div class="section" title="Comments"><div class="titlepage"><div><div><h3 class="title"><a name="N10818"></a>Comments<a name="N1081B" class="indexterm"></a></h3></div></div></div><p>We have single- and multi-line comments. The syntax for single
+      line comments is:</p><pre class="programlisting">// my comment</pre><p>Multi line comments are written like this:</p><pre class="programlisting">/* My multi line comment */</pre></div><div class="section" title="Import Statements"><div class="titlepage"><div><div><h3 class="title"><a name="N10828"></a>Import Statements</h3></div></div></div><p>Using the import<a name="N1082D" class="indexterm"></a> statement one can import name spaces of different
       types.(see expressions framework reference documentation).</p><p>Syntax is:</p><pre class="programlisting">import my::imported::namespace;</pre><p>Extend does not support static imports or any similar concept.
-      Therefore, the following is incorrect syntax:</p><pre class="programlisting">import my::imported::namespace::*; // WRONG! import my::Type; // WRONG!</pre></div><div class="section" title="Extension Import Statement"><div class="titlepage"><div><div><h3 class="title"><a name="N1061C"></a>Extension Import Statement</h3></div></div></div><a name="N1061F" class="indexterm"></a><p>You can import another extend file using the extension statement.
+      Therefore, the following is incorrect syntax:</p><pre class="programlisting">import my::imported::namespace::*; // WRONG! import my::Type; // WRONG!</pre></div><div class="section" title="Extension Import Statement"><div class="titlepage"><div><div><h3 class="title"><a name="N10839"></a>Extension Import Statement</h3></div></div></div><a name="N1083C" class="indexterm"></a><p>You can import another extend file using the extension statement.
       The syntax is:</p><pre class="programlisting">extension fully::qualified::ExtensionFileName;</pre><p>Note, that no file extension (<code class="filename">*.ext</code>) is
-      specified.</p><div class="section" title="Reexporting Extensions"><div class="titlepage"><div><div><h4 class="title"><a name="N1062B"></a>Reexporting Extensions</h4></div></div></div><p>If you want to export extensions from another extension file
+      specified.</p><div class="section" title="Reexporting Extensions"><div class="titlepage"><div><div><h4 class="title"><a name="N10848"></a>Reexporting Extensions</h4></div></div></div><p>If you want to export extensions from another extension file
         together with your local extensions, you can add the keyword
-        'reexport' <a name="N10630" class="indexterm"></a> to the end of the respective extension import
-        statement.</p><pre class="programlisting">extension fully::qualified::ExtensionFileName reexport;</pre></div></div><div class="section" title="Extensions"><div class="titlepage"><div><div><h3 class="title"><a name="N10636"></a>Extensions</h3></div></div></div><p>The syntax of a simple expression extension is as follows:</p><pre class="programlisting">ReturnType extensionName(ParamType1 paramName1, ParamType2...): expression-using-params;</pre><p>Example:</p><pre class="programlisting">String getterName(NamedElement ele) : 'get'+ele.name.firstUpper();</pre><div class="section" title="Extension Invocation"><div class="titlepage"><div><div><h4 class="title"><a name="N10641"></a>Extension Invocation<a name="N10644" class="indexterm"></a></h4></div></div></div><p>There are two different ways of how to invoke an extension. It
+        'reexport' <a name="N1084D" class="indexterm"></a> to the end of the respective extension import
+        statement.</p><pre class="programlisting">extension fully::qualified::ExtensionFileName reexport;</pre></div></div><div class="section" title="Extensions"><div class="titlepage"><div><div><h3 class="title"><a name="N10853"></a>Extensions</h3></div></div></div><p>The syntax of a simple expression extension is as follows:</p><pre class="programlisting">ReturnType extensionName(ParamType1 paramName1, ParamType2...): expression-using-params;</pre><p>Example:</p><pre class="programlisting">String getterName(NamedElement ele) : 'get'+ele.name.firstUpper();</pre><div class="section" title="Extension Invocation"><div class="titlepage"><div><div><h4 class="title"><a name="N1085E"></a>Extension Invocation<a name="N10861" class="indexterm"></a></h4></div></div></div><p>There are two different ways of how to invoke an extension. It
         can be invoked like a function:</p><pre class="programlisting">getterName(myNamedElement)</pre><p>The other way to invoke an extension is through the "member
         syntax":</p><pre class="programlisting">myNamedElement.getterName()</pre><p>For any invocation in member syntax, the target expression (the
         member) is mapped to the first parameter. Therefore, both syntactical
@@ -471,12 +664,12 @@ String aJavaExtension(String param) : JAVA
         the type system, hence, they are not accessible through reflection and
         you cannot specialize or overwrite operations using them.</p><p>The expression evaluation engine first looks for an appropriate
         operation before looking for an extension, in other words operations
-        have higher precedence.</p></div><div class="section" title="Type Inference"><div class="titlepage"><div><div><h4 class="title"><a name="N10657"></a>Type Inference<a name="N1065A" class="indexterm"></a></h4></div></div></div><p>For most extensions, you do not need to specify the return
-        type,<a name="N1065F" class="indexterm"></a> because it can be derived from the specified
+        have higher precedence.</p></div><div class="section" title="Type Inference"><div class="titlepage"><div><div><h4 class="title"><a name="N10874"></a>Type Inference<a name="N10877" class="indexterm"></a></h4></div></div></div><p>For most extensions, you do not need to specify the return
+        type,<a name="N1087C" class="indexterm"></a> because it can be derived from the specified
         expression. The special thing is, that the static return type of such
         an extension depends on the context of use.</p><p>For instance, if you have the following extension</p><pre class="programlisting">asList(Object o): {o};</pre><p>the invocation of</p><pre class="programlisting">asList('text')</pre><p>has the static type List[String]. This means you can call</p><pre class="programlisting">asList('text').get(0).toUpperCase()</pre><p>The expression is statically type safe, because its return type
         is derived automatically.</p><p>There is always a return value, whether you specify it or not,
-        even if you specify explicitly '<code class="classname">Void</code>'.</p><p>See the following example.</p><pre class="programlisting">modelTarget.ownedElements.addAllNotNull(modelSource.contents.duplicate())</pre><p>In this example duplicate() dispatches polymorphically<a name="N1067C" class="indexterm"></a>. Two of the extensions might look like:</p><pre class="programlisting">Void duplicate(Realization realization):
+        even if you specify explicitly '<code class="classname">Void</code>'.</p><p>See the following example.</p><pre class="programlisting">modelTarget.ownedElements.addAllNotNull(modelSource.contents.duplicate())</pre><p>In this example duplicate() dispatches polymorphically<a name="N10899" class="indexterm"></a>. Two of the extensions might look like:</p><pre class="programlisting">Void duplicate(Realization realization):
    realization.Specifier().duplicate()-&gt;
    realization.Realizer().duplicate()
 ;
@@ -495,22 +688,22 @@ create target::Class duplicate(source::Class):
    realization.Specifier().duplicate()-&gt;
    realization.Realizer().duplicate() -&gt;
    {}
-;</pre></div><div class="section" title="Recursion"><div class="titlepage"><div><div><h4 class="title"><a name="N1069B"></a>Recursion</h4></div></div></div><p>There is only one exception: For recursive extensions <a name="N106A0" class="indexterm"></a><a name="N106A3" class="indexterm"></a> the return type cannot be inferred, therefore you need
+;</pre></div><div class="section" title="Recursion"><div class="titlepage"><div><div><h4 class="title"><a name="N108B8"></a>Recursion</h4></div></div></div><p>There is only one exception: For recursive extensions <a name="N108BD" class="indexterm"></a><a name="N108C0" class="indexterm"></a> the return type cannot be inferred, therefore you need
         to specify it explicitly:</p><pre class="programlisting">String fullyQualifiedName(NamedElement n) : n.parent == null ? n.name :
    fullyQualifiedName(n.parent)+'::'+n.name
 ;</pre><p>Recursive extensions are non-deterministic in a static context,
-        therefore, it is necessary to specify a return type.</p></div><div class="section" title="Cached Extensions"><div class="titlepage"><div><div><h4 class="title"><a name="N106AD"></a>Cached Extensions<a name="N106B0" class="indexterm"></a></h4></div></div></div><p>If you call an extension without side effects very often, you
+        therefore, it is necessary to specify a return type.</p></div><div class="section" title="Cached Extensions"><div class="titlepage"><div><div><h4 class="title"><a name="N108CA"></a>Cached Extensions<a name="N108CD" class="indexterm"></a></h4></div></div></div><p>If you call an extension without side effects very often, you
         would like to cache the result for each set of parameters, in order
         improve the performance. You can just add the keyword
-        '<code class="code">cached</code>'<a name="N106BA" class="indexterm"></a> to the extension in order to achieve this:</p><pre class="programlisting">cached String getterName(NamedElement ele) :
+        '<code class="code">cached</code>'<a name="N108D7" class="indexterm"></a> to the extension in order to achieve this:</p><pre class="programlisting">cached String getterName(NamedElement ele) :
    'get'+ele.name.firstUpper()
 ;</pre><p>The <code class="methodname">getterName</code> will be computed only
-        once for each <code class="classname">NamedElement</code>.</p></div><div class="section" title="Private Extensions"><div class="titlepage"><div><div><h4 class="title"><a name="N106C8"></a>Private Extensions<a name="N106CB" class="indexterm"></a></h4></div></div></div><p>By default all extensions are public, i.e. they are visible from
+        once for each <code class="classname">NamedElement</code>.</p></div><div class="section" title="Private Extensions"><div class="titlepage"><div><div><h4 class="title"><a name="N108E5"></a>Private Extensions<a name="N108E8" class="indexterm"></a></h4></div></div></div><p>By default all extensions are public, i.e. they are visible from
         outside the extension file. If you want to hide extensions you can add
-        the keyword 'private'<a name="N106D2" class="indexterm"></a> in front of them:</p><pre class="programlisting">private internalHelper(NamedElement ele) :
+        the keyword 'private'<a name="N108EF" class="indexterm"></a> in front of them:</p><pre class="programlisting">private internalHelper(NamedElement ele) :
    // implementation....
-;</pre></div></div><div class="section" title="Java Extensions"><div class="titlepage"><div><div><h3 class="title"><a name="N106D8"></a>Java Extensions</h3></div></div></div><p>In some rare cases one does want to call a Java method from inside
-      an expression. This can be done by providing a Java extension<a name="N106DD" class="indexterm"></a><a name="N106E0" class="indexterm"></a>:</p><pre class="programlisting">Void myJavaExtension(String param) :
+;</pre></div></div><div class="section" title="Java Extensions"><div class="titlepage"><div><div><h3 class="title"><a name="N108F5"></a>Java Extensions</h3></div></div></div><p>In some rare cases one does want to call a Java method from inside
+      an expression. This can be done by providing a Java extension<a name="N108FA" class="indexterm"></a><a name="N108FD" class="indexterm"></a>:</p><pre class="programlisting">Void myJavaExtension(String param) :
    JAVA my.Type.staticMethod(java.lang.String)
 ;</pre><p>The signature is the same as for any other extension. The
       implementation is redirected to a public static method in a Java
@@ -529,9 +722,9 @@ public class Helper {
    }
 }</pre><p>the expressions</p><pre class="programlisting">dump('Hello world!')
 'Hello World'.dump()</pre><p>both result are invoking the Java method void dump(String
-      aString)</p></div><div class="section" title="Create Extensions (Model Transformation)"><div class="titlepage"><div><div><h3 class="title"><a name="N10700"></a>Create Extensions (Model Transformation)</h3></div></div></div><p>Since Version 4.1 the <span class="emphasis"><em>Xtend</em></span> language supports
-      additional support for model transformation<a name="N10708" class="indexterm"></a>. The new concept is called <span class="emphasis"><em>create
-      extension</em></span> and <a name="N1070F" class="indexterm"></a><a name="N10714" class="indexterm"></a> it is explained a bit more comprehensive as usual.</p><p>Elements contained in a model are usually referenced multiple
+      aString)</p></div><div class="section" title="Create Extensions (Model Transformation)"><div class="titlepage"><div><div><h3 class="title"><a name="N1091D"></a>Create Extensions (Model Transformation)</h3></div></div></div><p>Since Version 4.1 the <span class="emphasis"><em>Xtend</em></span> language supports
+      additional support for model transformation<a name="N10925" class="indexterm"></a>. The new concept is called <span class="emphasis"><em>create
+      extension</em></span> and <a name="N1092C" class="indexterm"></a><a name="N10931" class="indexterm"></a> it is explained a bit more comprehensive as usual.</p><p>Elements contained in a model are usually referenced multiple
       times. Consider the following model structure:</p><pre class="programlisting">    P
    / \
   C1 C2
@@ -562,7 +755,7 @@ toReference(EReference x) :
 </pre><p>What happened? The C2 class has been created 2 times (one time for
       the package containment and another time for the reference R that also
       refers to C2). We can solve the problem by adding the 'cached' keyword
-      <a name="N10728" class="indexterm"></a> to the second extension:</p><pre class="programlisting">cached toClass(EClass x) :
+      <a name="N10945" class="indexterm"></a> to the second extension:</p><pre class="programlisting">cached toClass(EClass x) :
    let c = new Class :
       c.attributes.addAll(c.eAttributes.toAttribute()) -&gt;
       c;
@@ -583,17 +776,17 @@ create Reference toReference(EReference x) :
 </pre><p>This is not only a shorter syntax, but it also has the needed
       semantics: The created model element will be added to the cache before
       evaluating the body. The return value is always the reference to the
-      created and maybe not completely initialized element.</p></div><div class="section" title="Calling Extensions From Java"><div class="titlepage"><div><div><h3 class="title"><a name="N10775"></a>Calling Extensions From Java</h3></div></div></div><p>The previous section showed how to implement Extensions in Java.
-      This section shows how to call Extensions from Java.<a name="N1077A" class="indexterm"></a></p><pre class="programlisting">// setup
+      created and maybe not completely initialized element.</p></div><div class="section" title="Calling Extensions From Java"><div class="titlepage"><div><div><h3 class="title"><a name="N10992"></a>Calling Extensions From Java</h3></div></div></div><p>The previous section showed how to implement Extensions in Java.
+      This section shows how to call Extensions from Java.<a name="N10997" class="indexterm"></a></p><pre class="programlisting">// setup
 XtendFacade f = XtendFacade.create("my::path::MyExtensionFile");
 
 // use
 f.call("sayHello",new Object[]{"World"});
-</pre><p>The called extension file looks like this: <a name="N10781" class="indexterm"></a></p><pre class="programlisting">sayHello(String s) :
+</pre><p>The called extension file looks like this: <a name="N1099E" class="indexterm"></a></p><pre class="programlisting">sayHello(String s) :
    "Hello " + s;</pre><p>This example uses only features of the BuiltinMetaModel, in this
       case the "<code class="methodname">+</code>" feature from the
       StringTypeImpl.</p><p>Here is another example, that uses the
-      <code class="classname">JavaBeansMetaModel</code><a name="N10791" class="indexterm"></a> strategy. This strategy provides as additional feature:
+      <code class="classname">JavaBeansMetaModel</code><a name="N109AE" class="indexterm"></a> strategy. This strategy provides as additional feature:
       the access to properties using the getter and setter methods.</p><p>For more information about type systems, see the <span class="emphasis"><em><a class="xref" href="#r10_expressions_language" title="Expressions">Expressions</a></em></span> reference
       documentation.</p><p>We have one JavaBean-like metamodel class:</p><pre class="programlisting">package mypackage;
 public class MyBeanMetaClass {
@@ -601,8 +794,8 @@ public class MyBeanMetaClass {
    public String getMyProp() { return myProp; }
    public void setMyProp(String s) { myProp = s;}
 }</pre><p>in addition to the built-in metamodel type system, we register the
-      <code class="classname">JavaMetaModel</code><a name="N107A3" class="indexterm"></a> with the
-      <code class="classname">JavaBeansStrategy</code><a name="N107A9" class="indexterm"></a> for our facade. Now, we can use also this strategy in our
+      <code class="classname">JavaMetaModel</code><a name="N109C0" class="indexterm"></a> with the
+      <code class="classname">JavaBeansStrategy</code><a name="N109C6" class="indexterm"></a> for our facade. Now, we can use also this strategy in our
       extension:</p><pre class="programlisting">// setup facade
 
 XtendFacade f = XtendFacade.create("myext::JavaBeanExtension");
@@ -621,10 +814,10 @@ f.call("readMyProp", new Object[]{jb}));</pre><p>The called extension file looks
 readMyProp(MyBeanMetaClass jb) :
    jb.myProp
 ;
-</pre></div><div class="section" title="WorkflowComponent"><div class="titlepage"><div><div><h3 class="title"><a name="N107B3"></a>WorkflowComponent<a name="N107B6" class="indexterm"></a></h3></div></div></div><p>With the additional support for model transformation, it makes
+</pre></div><div class="section" title="WorkflowComponent"><div class="titlepage"><div><div><h3 class="title"><a name="N109D0"></a>WorkflowComponent<a name="N109D3" class="indexterm"></a></h3></div></div></div><p>With the additional support for model transformation, it makes
       sense to invoke <span class="emphasis"><em>Xtend</em></span> within a workflow. A typical
       workflow configuration of the <span class="emphasis"><em>Xtend</em></span> component
-      <a name="N107C1" class="indexterm"></a>looks like this:</p><pre class="programlisting">&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
+      <a name="N109DE" class="indexterm"></a>looks like this:</p><pre class="programlisting">&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
    &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"&gt;
       &lt;metaModelFile value="metamodel1.ecore"/&gt;
    &lt;/metamodel&gt;
@@ -635,26 +828,26 @@ readMyProp(MyBeanMetaClass jb) :
    &lt;outputSlot value="transformedModel"/&gt;
 &lt;/component&gt;
 </pre><p>Note that you can mix and use any kinds of metamodels (not only
-      EMF metamodels).</p></div><div class="section" title="Aspect-Oriented Programming in Xtend (since 4.2)"><div class="titlepage"><div><div><h3 class="title"><a name="N107CA"></a>Aspect-Oriented Programming in <span class="emphasis"><em>Xtend</em></span> (since
-      4.2)<a name="N107D0" class="indexterm"></a><a name="N107D3" class="indexterm"></a></h3></div></div></div><p>Using the workflow engine, it is now possible to package (e.g.
+      EMF metamodels).</p></div><div class="section" title="Aspect-Oriented Programming in Xtend (since 4.2)"><div class="titlepage"><div><div><h3 class="title"><a name="N109E7"></a>Aspect-Oriented Programming in <span class="emphasis"><em>Xtend</em></span> (since
+      4.2)<a name="N109ED" class="indexterm"></a><a name="N109F0" class="indexterm"></a></h3></div></div></div><p>Using the workflow engine, it is now possible to package (e.g.
       zip) a written generator and deliver it as a kind of black box. If you
       want to use such a generator but need to change some things without
       modifying any code, you can make use of around advices that are
-      supported by <span class="emphasis"><em>Xtend</em></span>.</p><p>The following advice is weaved<a name="N107DD" class="indexterm"></a> around every invocation of an extension whose name starts
+      supported by <span class="emphasis"><em>Xtend</em></span>.</p><p>The following advice is weaved<a name="N109FA" class="indexterm"></a> around every invocation of an extension whose name starts
       with '<span class="package">my::generator::</span>':</p><pre class="programlisting">around my::generator::*(*) :
   log('Invoking ' + ctx.name) -&gt; ctx.proceed()
 ;
-</pre><p>Around advices<a name="N107E8" class="indexterm"></a> let you change behaviour in an non-invasive way (you do
-      not need to touch the packaged extensions).</p><div class="section" title="Join Point and Point Cut Syntax"><div class="titlepage"><div><div><h4 class="title"><a name="N107EC"></a>Join Point and Point Cut Syntax</h4></div></div></div><p>Aspect orientaton is basically about weaving code into different
+</pre><p>Around advices<a name="N10A05" class="indexterm"></a> let you change behaviour in an non-invasive way (you do
+      not need to touch the packaged extensions).</p><div class="section" title="Join Point and Point Cut Syntax"><div class="titlepage"><div><div><h4 class="title"><a name="N10A09"></a>Join Point and Point Cut Syntax</h4></div></div></div><p>Aspect orientaton is basically about weaving code into different
         points inside the call graph of a software module. Such points are
         called <span class="emphasis"><em>join points</em></span>. In <span class="emphasis"><em>Xtend</em></span>
         the join points are the extension invocations (Note that
         <span class="emphasis"><em>Xpand</em></span> offers a similar feature, see the
-        <span class="emphasis"><em>Xpand</em></span> documentation).</p><p>One specifies on which join points <a name="N107FF" class="indexterm"></a> the contributed code should be executed by specifying
+        <span class="emphasis"><em>Xpand</em></span> documentation).</p><p>One specifies on which join points <a name="N10A1C" class="indexterm"></a> the contributed code should be executed by specifying
         something like a 'query' on all available join points. Such a query is
-        called a point cut.<a name="N10803" class="indexterm"></a></p><pre class="programlisting">around [pointcut] :
+        called a point cut.<a name="N10A20" class="indexterm"></a></p><pre class="programlisting">around [pointcut] :
    expression;</pre><p>A point cut consists of a fully qualified name and a list of
-        parameter declarations.</p><div class="section" title="Extensions Name"><div class="titlepage"><div><div><h5 class="title"><a name="N1080A"></a>Extensions Name</h5></div></div></div><p>The extension name part of a point cut must match the fully
+        parameter declarations.</p><div class="section" title="Extensions Name"><div class="titlepage"><div><div><h5 class="title"><a name="N10A27"></a>Extensions Name</h5></div></div></div><p>The extension name part of a point cut must match the fully
           qualified name of the definition of the join point. Such expressions
           are case sensitive. The asterisk character is used to specify
           wildcards. Some examples:</p><pre class="programlisting">my::Extension::definition // extensions with the specified name
@@ -662,31 +855,31 @@ org::eclipse::xpand2::* //extensions prefixed with 'org::eclipse::xpand2::'
 *Operation* // extensions containing the word 'Operation' in it.
 * // all extensions</pre><div class="warning" title="Warning" style="margin-left: 0.38in; margin-right: 0.38in;"><table border="0" summary="Warning"><tr><td valign="top" align="center" rowspan="2" width="25"><img alt="[Warning]" src="images/warning.gif"></td><th align="left"></th></tr><tr><td valign="top" align="left"><p>Be careful when using wildcards, because you will get an
             endless recursion, in case you weave an extension, which is called
-            inside the advice.</p></td></tr></table></div></div><div class="section" title="Parameter Types"><div class="titlepage"><div><div><h5 class="title"><a name="N10814"></a>Parameter Types</h5></div></div></div><p>The parameters of the extensions that we want to add our
+            inside the advice.</p></td></tr></table></div></div><div class="section" title="Parameter Types"><div class="titlepage"><div><div><h5 class="title"><a name="N10A31"></a>Parameter Types</h5></div></div></div><p>The parameters of the extensions that we want to add our
           advice to, can also be specified in the point cut. The rule is, that
           the type of the specified parameter must be the same or a supertype
           of the corresponding parameter type (the dynamic type at runtime) of
           the definition to be called.</p><p>Additionally, one can set the wildcard at the end of the
           parameter list, to specify that there might be none or more
-          parameters of any kind.<a name="N1081B" class="indexterm"></a></p><p>Some examples:</p><pre class="programlisting">my::Templ::extension() // extension without parameters
+          parameters of any kind.<a name="N10A38" class="indexterm"></a></p><p>Some examples:</p><pre class="programlisting">my::Templ::extension() // extension without parameters
 my::Templ::extension(String s) // extension with exactly one parameter of type String
 my::Templ::extension(String s,*) // templ def with one or more parameters,
                                  // where the first parameter is of type String
 my::Templ::extension(*) // templ def with any number of parameters
-</pre></div><div class="section" title="Proceeding"><div class="titlepage"><div><div><h5 class="title"><a name="N10824"></a>Proceeding</h5></div></div></div><p>Inside an advice, you might want to call the underlying
+</pre></div><div class="section" title="Proceeding"><div class="titlepage"><div><div><h5 class="title"><a name="N10A41"></a>Proceeding</h5></div></div></div><p>Inside an advice, you might want to call the underlying
           definition. This can be done using the implicit variable
           <code class="varname">ctx</code>, which is of the type
-          <span class="type">xtend::AdviceContext</span><a name="N1082E" class="indexterm"></a> and provides an operation
-          <code class="methodname">proceed()</code><a name="N10834" class="indexterm"></a> which invokes the underlying definition with the
+          <span class="type">xtend::AdviceContext</span><a name="N10A4B" class="indexterm"></a> and provides an operation
+          <code class="methodname">proceed()</code><a name="N10A51" class="indexterm"></a> which invokes the underlying definition with the
           original parameters (Note that you might have changed any mutable
           object in the advice before).</p><p>If you want to control what parameters are to be passed to the
           definition, you can use the operation
           <code class="methodname">proceed(List[Object] params)</code>. You should be
           aware, that in advices, no type checking is done.</p><p>Additionally, there are some inspection properties (like
           <code class="varname">name</code>, <code class="varname">paramTypes</code>, etc.)
-          available.</p></div></div><div class="section" title="Workflow configuration"><div class="titlepage"><div><div><h4 class="title"><a name="N10845"></a>Workflow configuration</h4></div></div></div><p>To weave the defined advices into the different join
-        points<a name="N1084A" class="indexterm"></a>, you need to configure the
-        <code class="classname">XtendComponent</code><a name="N10850" class="indexterm"></a> with the qualified names of the Extension files
+          available.</p></div></div><div class="section" title="Workflow configuration"><div class="titlepage"><div><div><h4 class="title"><a name="N10A62"></a>Workflow configuration</h4></div></div></div><p>To weave the defined advices into the different join
+        points<a name="N10A67" class="indexterm"></a>, you need to configure the
+        <code class="classname">XtendComponent</code><a name="N10A6D" class="indexterm"></a> with the qualified names of the Extension files
         containing the advices.</p><p>Example:</p><pre class="programlisting">&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
    &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"&gt;
       &lt;metaModelFile value="metamodel1.ecore"/&gt;
@@ -700,7 +893,7 @@ my::Templ::extension(*) // templ def with any number of parameters
    &lt;advices value="my::Advices,my::Advices2"/&gt;
 &lt;/component&gt;
 </pre></div><div class="section" title="Model-to-Model transformation with Xtend"><div class="titlepage"><div><div><h4 class="title"><a name="xtend_example_introduction"></a>Model-to-Model transformation with
-        <span class="emphasis"><em>Xtend</em></span></h4></div></div></div><p>This example uses Eclipse EMF as the basis <a name="N10863" class="indexterm"></a>for model-to-model transformations. </p><p>The idea in this example is to transform the data model
+        <span class="emphasis"><em>Xtend</em></span></h4></div></div></div><p>This example uses Eclipse EMF as the basis <a name="N10A80" class="indexterm"></a>for model-to-model transformations. </p><p>The idea in this example is to transform the data model
         introduced in the EMF example into itself. This might seem boring, but
         the example is in fact quite illustrative.</p></div><div class="section" title="Workflow"><div class="titlepage"><div><div><h4 class="title"><a name="xtend_example_workflow"></a>Workflow</h4></div></div></div><p>By now, you should know the role and structure of workflow
         files. Therefore, the interesting aspect of the workflow file below is
@@ -725,17 +918,17 @@ my::Templ::extension(*) // templ def with any number of parameters
         contents of the <code class="classname">rootElement</code> slot as a
         parameter</p></li><li class="listitem"><p>the function can be found in the
         <code class="filename">Trafo.ext</code> file</p></li><li class="listitem"><p>and that in turn is in the classpath, in the
-        <span class="package">test</span>. <em><span class="remark"><span class="author"><span class="firstname">Rainer</span> <span class="surname">Klute</span></span>
+        <span class="package">test</span>. <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-style="italic"><fo:inline background-color="#FFEE30"><span class="remark"><span class="author"><span class="firstname">Rainer</span> <span class="surname">Klute</span></span>
           I hope this is what is meant here. The former text was broken
-          XML.</span></em></p></li></ul></div></div><div class="section" title="The transformation"><div class="titlepage"><div><div><h4 class="title"><a name="xtend_example_the_transformation"></a>The transformation</h4></div></div></div><p>The transformation, as mentioned above, can be found in the
+          XML.</span></fo:inline></fo:block></p></li></ul></div></div><div class="section" title="The transformation"><div class="titlepage"><div><div><h4 class="title"><a name="xtend_example_the_transformation"></a>The transformation</h4></div></div></div><p>The transformation, as mentioned above, can be found in the
         <code class="filename">Trafo.ext</code> file in the <code class="classname">test</code>
         package in the <code class="classname">src</code> folder. Let us walk through
-        the file.</p><p>So, first we import the metamodel.</p><pre class="programlisting">import data;</pre><p>The next function is a so-called create extension<a name="N108B4" class="indexterm"></a><a name="N108B9" class="indexterm"></a>. Create extensions, as a side effect when called,
+        the file.</p><p>So, first we import the metamodel.</p><pre class="programlisting">import data;</pre><p>The next function is a so-called create extension<a name="N10AD1" class="indexterm"></a><a name="N10AD6" class="indexterm"></a>. Create extensions, as a side effect when called,
         create an instance of the type given after the
         <code class="classname">create</code> keyword. In our case, the
         <code class="classname">duplicate</code> function creates an instance of
         <code class="classname">DataModel</code>. This newly created object can be
-        referred to in the transformation <a name="N108C6" class="indexterm"></a>by <code class="classname">this</code> (which is why
+        referred to in the transformation <a name="N10AE3" class="indexterm"></a>by <code class="classname">this</code> (which is why
         <code class="classname">this</code> is specified behind the type). Since
         <code class="classname">this</code> can be omitted, we do not have to mention
         it explicitly in the transformation.</p><p>The function also takes an instance of
@@ -759,7 +952,7 @@ my::Templ::extension(*) // templ def with any number of parameters
    setName(old.name);</pre><p>The function that copies the attribute is rather straight
         forward, but ...</p><pre class="programlisting">create Attribute this duplicate(Attribute old):
    setName(old.name) -&gt;
-   setType(old.type);</pre><a name="N108F7" class="indexterm"></a><p>... the one for the references is more interesting. Note that a
+   setType(old.type);</pre><a name="N10B14" class="indexterm"></a><p>... the one for the references is more interesting. Note that a
         reference, while being owned by some <code class="classname">Entity</code>,
         also references another Entity as its target. So, how do you make sure
         you do not duplicate the target twice? <span class="emphasis"><em>Xtend</em></span>
@@ -773,14 +966,14 @@ my::Templ::extension(*) // templ def with any number of parameters
         transformations.</p><pre class="programlisting">create EntityReference this duplicate(EntityReference old):
    setName( old.name ) -&gt;
    setTarget( old.target.duplicate() );</pre><p>For more information about the <span class="emphasis"><em>Xtend</em></span>
-        language please see the <span class="emphasis"><em><a class="xref" href="#Xtend_language" title="Xtend">Xtend</a></em></span> reference documentation.</p></div></div></div><div class="section" title="Xpand2"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xpand_reference_introduction"></a><span class="emphasis"><em>Xpand2</em></span></h2></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span><a name="N10925" class="indexterm"></a> language is used in templates to control the output generation.
+        language please see the <span class="emphasis"><em><a class="xref" href="#Xtend_language" title="Xtend">Xtend</a></em></span> reference documentation.</p></div></div></div><div class="section" title="Xpand2"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xpand_reference_introduction"></a><span class="emphasis"><em>Xpand2</em></span></h2></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span><a name="N10B42" class="indexterm"></a> language is used in templates to control the output generation.
     This documentation describes the general syntax and semantics of the
-    <span class="emphasis"><em>Xpand</em></span> language.</p><p>Typing the <span class="foreignphrase"><em class="foreignphrase">guillemets</em></span><a name="N10932" class="indexterm"></a> (&laquo; and &raquo;) used in the templates is supported by the Eclipse
+    <span class="emphasis"><em>Xpand</em></span> language.</p><p>Typing the <span class="foreignphrase"><em class="foreignphrase">guillemets</em></span><a name="N10B4F" class="indexterm"></a> (&laquo; and &raquo;) used in the templates is supported by the Eclipse
     editor: which provides keyboard shortcuts with <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>&lt;</strong></span> and <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>&gt;</strong></span>.</p><div class="section" title="Template files and encoding"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_template_files_and_ecoding"></a>Template files and encoding</h3></div></div></div><p>Templates are stored in files with the extension
-      <code class="filename">.xpt</code><a name="N1094C" class="indexterm"></a>.<a name="N10952" class="indexterm"></a> Template files<a name="N10956" class="indexterm"></a> must reside on the Java classpath of the generator
+      <code class="filename">.xpt</code><a name="N10B69" class="indexterm"></a>.<a name="N10B6F" class="indexterm"></a> Template files<a name="N10B73" class="indexterm"></a> must reside on the Java classpath of the generator
       process.</p><p>Almost all characters used in the standard syntax are part of
       <span class="emphasis"><em>ASCII</em></span> and should therefore be available in any
-      encoding<a name="N10961" class="indexterm"></a>. The only limitation are the tag brackets
+      encoding<a name="N10B7E" class="indexterm"></a>. The only limitation are the tag brackets
       (<span class="emphasis"><em>guillemets</em></span>), for which the characters "&laquo;" (Unicode
       <code class="varname">00AB</code>) and "&raquo;" (Unicode <code class="varname">00BB</code>) are
       used. So for reading templates, an encoding should be used that supports
@@ -799,28 +992,28 @@ my::Templ::extension(*) // templ def with any number of parameters
    &laquo;ENDFILE&raquo;
 &laquo;ENDDEFINE&raquo;</pre><p> A template file consists of any number of IMPORT
       statements, followed by any number of EXTENSION statements, followed by
-      one or more DEFINE blocks (called definitions).</p></div><div class="section" title="Statements of the Xpand language"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_statements_of_the_expand_language"></a>Statements of the <span class="emphasis"><em>Xpand</em></span> language</h3></div></div></div><div class="section" title="IMPORT"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_import"></a>IMPORT<a name="N1098A" class="indexterm"></a></h4></div></div></div><p>If you are tired of always typing the fully qualified names of
+      one or more DEFINE blocks (called definitions).</p></div><div class="section" title="Statements of the Xpand language"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_statements_of_the_expand_language"></a>Statements of the <span class="emphasis"><em>Xpand</em></span> language</h3></div></div></div><div class="section" title="IMPORT"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_import"></a>IMPORT<a name="N10BA7" class="indexterm"></a></h4></div></div></div><p>If you are tired of always typing the fully qualified names of
         your types and definitions, you can import a namespace using the
         IMPORT statement. </p><pre class="programlisting">&laquo;IMPORT meta::model&raquo;</pre><p>This
         one imports the namespace <code class="varname">meta::model</code>. If your
         template contains such a statement, you can use the unqualified names
         of all types and template files contained in that namespace. This is
         similar to a Java import statement <code class="varname">import
-        meta.model.*</code>.</p></div><div class="section" title="EXTENSION"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_extension"></a>EXTENSION<a name="N1099C" class="indexterm"></a></h4></div></div></div><p>Metamodels are typically described in a structural way
+        meta.model.*</code>.</p></div><div class="section" title="EXTENSION"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_extension"></a>EXTENSION<a name="N10BB9" class="indexterm"></a></h4></div></div></div><p>Metamodels are typically described in a structural way
         (graphical, or hierarchical, etc.) . A shortcoming of this is that it
         is difficult to specify additional behaviour (query operations,
         derived properties, etc.). Also, it is a good idea not to pollute the
         metamodel with target platform specific information (e.g. Java type
         names, packages, getter and setter names, etc.).</p><p>Extensions provide a flexible and convenient way of defining
         additional features of metaclasses. You do this by using the
-        <span class="emphasis"><em>Xtend</em></span><a name="N109A5" class="indexterm"></a> language. (See the corresponding reference
+        <span class="emphasis"><em>Xtend</em></span><a name="N10BC2" class="indexterm"></a> language. (See the corresponding reference
         documentation for details)</p><p>An EXTENSION import points to the <span class="emphasis"><em>Xtend</em></span>
         file containing the required extensions: </p><pre class="programlisting">&laquo;EXTENSION my::ExtensionFile&raquo;</pre><p>
         Note that extension files have to reside on the Java
-        classpath<a name="N109B1" class="indexterm"></a>, too. Therefore, they use the same namespace mechanism
-        (and syntax) as types and template files.</p></div><div class="section" title="DEFINE"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_define"></a>DEFINE<a name="N109B9" class="indexterm"></a></h4></div></div></div><p>The central concept of <span class="emphasis"><em>Xpand</em></span> is the
+        classpath<a name="N10BCE" class="indexterm"></a>, too. Therefore, they use the same namespace mechanism
+        (and syntax) as types and template files.</p></div><div class="section" title="DEFINE"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_define"></a>DEFINE<a name="N10BD6" class="indexterm"></a></h4></div></div></div><p>The central concept of <span class="emphasis"><em>Xpand</em></span> is the
         <code class="code">DEFINE</code> block, also called a template. This is the
-        smallest identifiable unit in a template file<a name="N109C4" class="indexterm"></a>. The tag consists of a name, an optional
+        smallest identifiable unit in a template file<a name="N10BE1" class="indexterm"></a>. The tag consists of a name, an optional
         comma-separated parameter list, as well as the name of the metamodel
         class for which the template is defined. </p><pre class="programlisting">&laquo;DEFINE templateName(formalParameterList) FOR MetaClass&raquo;
    a sequence of statements
@@ -830,14 +1023,14 @@ my::Templ::extension(*) // templ def with any number of parameters
         "underlying" model element; in our example above, this model element
         is "<code class="classname">MetaClass</code>".</p><p>As in Java, a formal parameter list entry consists of the type
         followed by the name of that parameter.</p><p>The body of a template can contain a sequence of other
-        statements including any text.</p><p>A full parametric polymorphism<a name="N109D9" class="indexterm"></a> <a name="N109DD" class="indexterm"></a> is available for templates. If there are two templates
+        statements including any text.</p><p>A full parametric polymorphism<a name="N10BF6" class="indexterm"></a> <a name="N10BFA" class="indexterm"></a> is available for templates. If there are two templates
         with the same name that are defined for two metaclasses which inherit
         from the same superclass, <span class="emphasis"><em>Xpand</em></span> will use the
         corresponding subclass template, in case the template is called for
         the superclass. Vice versa, the template of the superclass would be
         used in case a subclass template is not available. Note that this not
         only works for the target type, but for all parameters. Technically,
-        the target type is handled as the first parameter.</p><p>So, let us assume you have the following metamodel: </p><div class="figure"><a name="N109E8"></a><p class="title"><b>Figure&nbsp;1.1.&nbsp;Sample metamodel</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xPandReference/metamodelexample.gif" alt="Sample metamodel"></div></div></div><p><br class="figure-break"></p><p>Assume further, you would have a model which contains a
+        the target type is handled as the first parameter.</p><p>So, let us assume you have the following metamodel: </p><div class="figure"><a name="N10C05"></a><p class="title"><b>Figure&nbsp;1.&nbsp;Sample metamodel</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xPandReference/metamodelexample.gif" alt="Sample metamodel"></div></div></div><p><br class="figure-break"></p><p>Assume further, you would have a model which contains a
         collection of <code class="classname">A</code>, <code class="classname">B</code> and
         <code class="classname">C</code> instances in the property
         <code class="methodname">listOfAs</code>. Then, you can write the following
@@ -860,7 +1053,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         each <code class="classname">C</code> in the collection the template defined
         for <span class="emphasis"><em><code class="classname">C</code></em></span> is invoked, and for
         all others (which are then instances of <code class="classname">A</code>) the
-        default template is executed.</p></div><div class="section" title="FILE"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_file"></a>FILE<a name="N10A1A" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">FILE</code> statement redirects the output
+        default template is executed.</p></div><div class="section" title="FILE"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_file"></a>FILE<a name="N10C37" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">FILE</code> statement redirects the output
         generated from its body statements to the specified target.
         </p><pre class="programlisting">&laquo;FILE expression [outletName]&raquo;
    a sequence of statements
@@ -869,7 +1062,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         directory for that generator run). The expression for the target
         specification can be a concatenation (using the + operator).
         Additionally, you can specify an identifier (a legal Java identifier)
-        for the name of the outlet<a name="N10A25" class="indexterm"></a>. (See the configuration section for a description of
+        for the name of the outlet<a name="N10C42" class="indexterm"></a>. (See the configuration section for a description of
         outlets).</p><p>The body of a <code class="varname">FILE</code> statement can contain any
         other statements. Example: </p><pre class="programlisting">&laquo;FILE InterfaceName + ".java"&raquo;
    package &laquo;InterfacePackageName&raquo;;
@@ -888,7 +1081,7 @@ my::Templ::extension(*) // templ def with any number of parameters
                            implements &laquo;InterfaceName&raquo; {
    //TODO: implement it
    }
-&laquo;ENDFILE&raquo;</pre></div><div class="section" title="EXPAND"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expand"></a>EXPAND<a name="N10A34" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">EXPAND</code> statement "expands" another
+&laquo;ENDFILE&raquo;</pre></div><div class="section" title="EXPAND"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expand"></a>EXPAND<a name="N10C51" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">EXPAND</code> statement "expands" another
         <code class="varname">DEFINE</code> block (in a separate variable context),
         inserts its output at the current location and continues with the next
         statement. This is similar in concept to a subroutine call.
@@ -899,25 +1092,25 @@ my::Templ::extension(*) // templ def with any number of parameters
           must be in the same template file.</p><p>If the called definition is not contained in the same template
           file, the name of the template file must be specified. As usual, the
           double colon is used to delimit namespaces. </p><pre class="programlisting">&laquo;EXPAND TemplateFile::definitionName FOR myModelElement&raquo;</pre><p>Note
-          that you would need to import the namespace<a name="N10A53" class="indexterm"></a> of the template file (if there is one). For instance,
+          that you would need to import the namespace<a name="N10C70" class="indexterm"></a> of the template file (if there is one). For instance,
           if the template file resides in the java package
           <code class="varname">my.templates</code>, there are two alternatives. You
           could either write </p><pre class="programlisting">&laquo;IMPORT my::templates&raquo;
 ...
 &laquo;EXPAND TemplateFile::definitionName FOR myModelElement&raquo;</pre><p> or
           </p><pre class="programlisting">&laquo;EXPAND my::templates::TemplateFile::definitionName
-        FOR myModelElement&raquo;</pre></div></div><div class="section" title="FOR vs. FOREACH"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_for_vs_foreach"></a>FOR vs. FOREACH<a name="N10A65" class="indexterm"></a><a name="N10A68" class="indexterm"></a></h4></div></div></div><p>If <code class="varname">FOR</code> or <code class="varname">FOREACH</code> is
+        FOR myModelElement&raquo;</pre></div></div><div class="section" title="FOR vs. FOREACH"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_for_vs_foreach"></a>FOR vs. FOREACH<a name="N10C82" class="indexterm"></a><a name="N10C85" class="indexterm"></a></h4></div></div></div><p>If <code class="varname">FOR</code> or <code class="varname">FOREACH</code> is
         omitted the other template is called <code class="varname">FOR this</code>.
         </p><pre class="programlisting">&laquo;EXPAND TemplateFile::definitionName&raquo;</pre><p>
         equals </p><pre class="programlisting">&laquo;EXPAND TemplateFile::definitionName FOR this&raquo;</pre><p>
         If <code class="varname">FOR</code> is specified, the definition is executed for
         the result of the target expression. </p><pre class="programlisting">&laquo;EXPAND myDef FOR entity&raquo;</pre><p>If
         <code class="varname">FOREACH</code> is specified, the target expression must
-        evaluate to a collection type<a name="N10A85" class="indexterm"></a>. In this case, the specified definition is executed for
-        each element of that collection. </p><pre class="programlisting">&laquo;EXPAND myDef FOREACH entity.allAttributes&raquo;  </pre><div class="section" title="Specifying a Separator"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_specifying_a_separator"></a>Specifying a Separator<a name="N10A8F" class="indexterm"></a></h5></div></div></div><p>If a definition is to be expanded <code class="varname">FOREACH</code>
+        evaluate to a collection type<a name="N10CA2" class="indexterm"></a>. In this case, the specified definition is executed for
+        each element of that collection. </p><pre class="programlisting">&laquo;EXPAND myDef FOREACH entity.allAttributes&raquo;  </pre><div class="section" title="Specifying a Separator"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_specifying_a_separator"></a>Specifying a Separator<a name="N10CAC" class="indexterm"></a></h5></div></div></div><p>If a definition is to be expanded <code class="varname">FOREACH</code>
           element of the target expression it is possible to specify a
           <code class="varname">SEPARATOR</code> expression: </p><pre class="programlisting">&laquo;EXPAND paramTypeAndName FOREACH params SEPARATOR ','&raquo;</pre><p>The
-          result of the separator expression<a name="N10A9D" class="indexterm"></a> will be written to the output between each evaluation
+          result of the separator expression<a name="N10CBA" class="indexterm"></a> will be written to the output between each evaluation
           of the target definition (not <span class="emphasis"><em>after</em></span> each one,
           but rather only in <span class="emphasis"><em>between</em></span> two elements. This
           comes in handy for things such as comma-separated parameter
@@ -926,7 +1119,7 @@ my::Templ::extension(*) // templ def with any number of parameters
           element of the instantiated model or no suitable
           <code class="varname">DEFINE</code> block can be found.</p></div></div><div class="section" title="FOREACH"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_foreach"></a>FOREACH</h4></div></div></div><p>This statement expands the body of the
         <code class="varname">FOREACH</code> block for each element of the target
-        collection<a name="N10ABA" class="indexterm"></a> that results from the expression. The current element
+        collection<a name="N10CD7" class="indexterm"></a> that results from the expression. The current element
         is bound to a variable with the specified name in the current context.
         </p><pre class="programlisting">&laquo;FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]&raquo;
    a sequence of statements using variableName to access the
@@ -934,7 +1127,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 &laquo;ENDFOREACH&raquo;</pre><p>The body of a <code class="varname">FOREACH</code> block
         can contain any other statements; specifically
         <code class="varname">FOREACH</code> statements may be nested. If
-        <code class="varname">ITERATOR</code><a name="N10AC9" class="indexterm"></a> name is specified, an object of the type
+        <code class="varname">ITERATOR</code><a name="N10CE6" class="indexterm"></a> name is specified, an object of the type
         <span class="emphasis"><em>xpand2::Iterator</em></span> (see API doc for details) is
         accessible using the specified name. The <code class="varname">SEPARATOR</code>
         expression works in the same way as the one for
@@ -943,10 +1136,10 @@ my::Templ::extension(*) // templ def with any number of parameters
 &laquo;ENDFOREACH&raquo;</pre><p>The evaluation of the above statement results in
         the following text: </p><pre class="programlisting">1 : A,
 2 : B,
-3 : C</pre></div><div class="section" title="IF"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_if"></a>IF<a name="N10AE1" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">IF</code> statement supports conditional
-        expansion. Any number of <code class="varname">ELSEIF</code><a name="N10AEB" class="indexterm"></a> statements are allowed. The <code class="varname">ELSE</code>
+3 : C</pre></div><div class="section" title="IF"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_if"></a>IF<a name="N10CFE" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">IF</code> statement supports conditional
+        expansion. Any number of <code class="varname">ELSEIF</code><a name="N10D08" class="indexterm"></a> statements are allowed. The <code class="varname">ELSE</code>
         block is optional. Every <code class="varname">IF</code> statement must be
-        closed with an <code class="varname">ENDIF</code><a name="N10AF7" class="indexterm"></a>. The body of an <code class="varname">IF</code> block can contain
+        closed with an <code class="varname">ENDIF</code><a name="N10D14" class="indexterm"></a>. The body of an <code class="varname">IF</code> block can contain
         any other statement, specifically, <code class="varname">IF</code> statements
         may be nested. </p><pre class="programlisting">&laquo;IF expression&raquo;
    a sequence of statements
@@ -954,11 +1147,11 @@ my::Templ::extension(*) // templ def with any number of parameters
    a sequence of statements ]
 [ &laquo;ELSE&raquo;
    a sequence of statements ]
-&laquo;ENDIF&raquo;</pre></div><div class="section" title="PROTECT"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_protect"></a>PROTECT<a name="N10B07" class="indexterm"></a></h4></div></div></div><p>Protected Regions<a name="N10B0C" class="indexterm"></a> are used to mark sections in the generated code that
+&laquo;ENDIF&raquo;</pre></div><div class="section" title="PROTECT"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_protect"></a>PROTECT<a name="N10D24" class="indexterm"></a></h4></div></div></div><p>Protected Regions<a name="N10D29" class="indexterm"></a> are used to mark sections in the generated code that
         shall not be overridden again by the subsequent generator run. These
         sections typically contain manually written code. </p><pre class="programlisting">&laquo;PROTECT CSTART expression CEND expression ID expression (DISABLE)?&raquo;
    a sequence of statements
-&laquo;ENDPROTECT&raquo;</pre><p> The values of CSTART<a name="N10B13" class="indexterm"></a> and CEND<a name="N10B17" class="indexterm"></a> expressions are used to enclose the protected regions
+&laquo;ENDPROTECT&raquo;</pre><p> The values of CSTART<a name="N10D30" class="indexterm"></a> and CEND<a name="N10D34" class="indexterm"></a> expressions are used to enclose the protected regions
         marker in the output. They should build valid comment beginning and
         end strings corresponding to the generated target language (e.g.
         <span class="emphasis"><em>"/*"</em></span> and <span class="emphasis"><em>"*/"</em></span> for Java). The
@@ -973,31 +1166,31 @@ my::Templ::extension(*) // templ def with any number of parameters
    from the template you must remove the ENABLED keyword (or even
    remove the whole file :-))
 /*PROTECTED REGION END*/
-}</pre><p> Protected regions are generated in enabled state<a name="N10B2C" class="indexterm"></a> by default. Unless you manually disable<a name="N10B32" class="indexterm"></a> them, by removing the <code class="varname">ENABLED</code>
+}</pre><p> Protected regions are generated in enabled state<a name="N10D49" class="indexterm"></a> by default. Unless you manually disable<a name="N10D4F" class="indexterm"></a> them, by removing the <code class="varname">ENABLED</code>
         keyword, they will always be preserved.</p><p>If you want the generator to generate disabled protected
         regions, you need to add the <code class="varname">DISABLE</code> keyword inside
-        the declaration: </p><pre class="programlisting">&laquo;PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE&raquo;</pre></div><div class="section" title="LET"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_let"></a>LET<a name="N10B46" class="indexterm"></a></h4></div></div></div><p><code class="varname">LET</code> lets you specify local
+        the declaration: </p><pre class="programlisting">&laquo;PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE&raquo;</pre></div><div class="section" title="LET"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_let"></a>LET<a name="N10D63" class="indexterm"></a></h4></div></div></div><p><code class="varname">LET</code> lets you specify local
         variables:</p><pre class="programlisting">&laquo;LET expression AS variableName&raquo;
    a sequence of statements
 &laquo;ENDLET&raquo;</pre><p>During the expansion of the body of the
-        <code class="varname">LET</code><a name="N10B52" class="indexterm"></a> block, the value of the expression is bound to the
+        <code class="varname">LET</code><a name="N10D6F" class="indexterm"></a> block, the value of the expression is bound to the
         specified variable. Note that the expression will only be evaluated
         once, independent from the number of usages of the variable within the
         <code class="varname">LET</code> block. Example: </p><pre class="programlisting">&laquo;LET packageName + "." + className AS fqn&raquo;
    the fully qualified name is: &laquo;fqn&raquo;;
-&laquo;ENDLET&raquo;</pre></div><div class="section" title="ERROR"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_error"></a>ERROR<a name="N10B5F" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">ERROR</code> statement aborts the evaluation of
+&laquo;ENDLET&raquo;</pre></div><div class="section" title="ERROR"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_error"></a>ERROR<a name="N10D7C" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">ERROR</code> statement aborts the evaluation of
         the templates by throwing an
-        <code class="varname">XpandException</code><a name="N10B69" class="indexterm"></a> with the specified message. </p><pre class="programlisting">&laquo;ERROR expression&raquo;</pre><p>Note
+        <code class="varname">XpandException</code><a name="N10D86" class="indexterm"></a> with the specified message. </p><pre class="programlisting">&laquo;ERROR expression&raquo;</pre><p>Note
         that you should use this facility very sparingly, since it is better
         practice to check for invalid models using constraints on the
-        metamodel, and not in the templates.</p></div><div class="section" title="Comments"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_comments"></a>Comments<a name="N10B74" class="indexterm"></a></h4></div></div></div><p>Comments are only allowed outside of tags. </p><pre class="programlisting">&laquo;REM&raquo;
+        metamodel, and not in the templates.</p></div><div class="section" title="Comments"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_comments"></a>Comments<a name="N10D91" class="indexterm"></a></h4></div></div></div><p>Comments are only allowed outside of tags. </p><pre class="programlisting">&laquo;REM&raquo;
    text comment
-&laquo;ENDREM&raquo;</pre><p>Comments may not contain a REM<a name="N10B7E" class="indexterm"></a> tag, this implies that comments are not nestable. A
+&laquo;ENDREM&raquo;</pre><p>Comments may not contain a REM<a name="N10D9B" class="indexterm"></a> tag, this implies that comments are not nestable. A
         comment may not have a white space between the REM keyword and its
         brackets. Example: </p><pre class="programlisting">&laquo;REM&raquo;&laquo;LET expression AS variableName&raquo;&laquo;ENDREM&raquo;
    a sequence of statements
 &laquo;REM&raquo;  &laquo;variableName.stuff&raquo;
-&laquo;ENDLET&raquo;&laquo;ENDREM&raquo;</pre></div><div class="section" title="Expression Statement"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expression_statement"></a>Expression Statement<a name="N10B88" class="indexterm"></a></h4></div></div></div><p>Expressions support processing of the information provided by
+&laquo;ENDLET&raquo;&laquo;ENDREM&raquo;</pre></div><div class="section" title="Expression Statement"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expression_statement"></a>Expression Statement<a name="N10DA5" class="indexterm"></a></h4></div></div></div><p>Expressions support processing of the information provided by
         the instantiated metamodel. <span class="emphasis"><em>Xpand</em></span> provides powerful expressions for
         selection, aggregation, and navigation. <span class="emphasis"><em>Xpand</em></span> uses the expressions
         sublanguage in almost any statement that we have seen so far. The
@@ -1009,7 +1202,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         sublanguage are also available in <span class="emphasis"><em>Xpand</em></span>. You can invoke imported
         extensions. (See the <span class="emphasis"><em><a class="xref" href="#r10_expressions_language" title="Expressions">Expressions</a></em></span> and <span class="emphasis"><em><a class="xref" href="#Xtend_language" title="Xtend">Xtend</a> language reference</em></span> for more
         details).</p></div><div class="section" title="Controlling generation of whitespace"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_controlling_generation_of_white_space"></a>Controlling generation of whitespace</h4></div></div></div><p>If you want to omit the output of superfluous
-        whitespace<a name="N10BB0" class="indexterm"></a> you can add a minus sign just before any closing
+        whitespace<a name="N10DCD" class="indexterm"></a> you can add a minus sign just before any closing
         bracket. Example: </p><pre class="programlisting">&laquo;FILE InterfaceName + ".java"-&raquo;
 &laquo;IF hasPackage-&raquo;
 package &laquo;InterfacePackageName&raquo;;
@@ -1020,20 +1213,20 @@ package &laquo;InterfacePackageName&raquo;;
         <code class="varname">IF</code> statement) if the minus characters had not been
         set.</p><p>In general, this mechanism works as follows: If a statement (or
         comment) ends with such a minus all preceding whitespace up to the
-        newline<a name="N10BC1" class="indexterm"></a> character (excluded!) is removed. Additionally all
+        newline<a name="N10DDE" class="indexterm"></a> character (excluded!) is removed. Additionally all
         following whitespace including the first newline character (\r\n is
         handled as one character) is also removed.</p></div></div><div class="section" title="Aspect-Oriented Programming in Xpand"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_aspect-oriented_programming_in_xpand"></a>Aspect-Oriented Programming in
-      <span class="emphasis"><em>Xpand</em></span><a name="N10BCB" class="indexterm"></a></h3></div></div></div><p>Using the workflow engine it is now possible to package
+      <span class="emphasis"><em>Xpand</em></span><a name="N10DE8" class="indexterm"></a></h3></div></div></div><p>Using the workflow engine it is now possible to package
       (<span class="emphasis"><em>e.g.</em></span> zip) a written generator and deliver it as a
       kind of black box. If you want to use such a generator but need to
       change some small generation stuff, you can make use of the
-      <code class="varname">AROUND</code><a name="N10BD5" class="indexterm"></a> aspects. </p><pre class="programlisting">&laquo;AROUND qualifiedDefinitionName(parameterList)? FOR type&raquo;
+      <code class="varname">AROUND</code><a name="N10DF2" class="indexterm"></a> aspects. </p><pre class="programlisting">&laquo;AROUND qualifiedDefinitionName(parameterList)? FOR type&raquo;
    a sequence of statements
 &laquo;ENDAROUND&raquo; </pre><p> <code class="varname">AROUND</code> lets you add templates
       in an non-invasive way (you do not need to touch the generator
       templates). Because aspects are invasive, a template file containing
       <code class="varname">AROUND</code> aspects must be wrapped by configuration (see
-      next section).</p><div class="section" title="Join Point and Point Cut Syntax"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_join_point_and_cut_syntax"></a>Join Point<a name="N10BE6" class="indexterm"></a><a name="N10BE9" class="indexterm"></a> and Point Cut<a name="N10BEF" class="indexterm"></a><a name="N10BF2" class="indexterm"></a> Syntax</h4></div></div></div><p>AOP is basically about weaving code into different points inside
+      next section).</p><div class="section" title="Join Point and Point Cut Syntax"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_join_point_and_cut_syntax"></a>Join Point<a name="N10E03" class="indexterm"></a><a name="N10E06" class="indexterm"></a> and Point Cut<a name="N10E0C" class="indexterm"></a><a name="N10E0F" class="indexterm"></a> Syntax</h4></div></div></div><p>AOP is basically about weaving code into different points inside
         the call graph of a software module. Such points are called
         <span class="emphasis"><em>Join Points</em></span>. In <span class="emphasis"><em>Xpand</em></span>, there
         is only one join point so far: a call to a definition.</p><p>You specify on which join points the contributed code should be
@@ -1074,7 +1267,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre></div></div>
         <code class="varname">params</code>). Please keep in mind that no type checking
         is done in this context.</p><p>Additionally, there are some inspection properties (like
         <code class="varname">name</code>, <code class="varname">paramTypes</code>, etc.)
-        available.</p></div></div><div class="section" title="Generator Workflow Component"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_generator_workflow_component"></a>Generator Workflow Component<a name="N10C52" class="indexterm"></a></h3></div></div></div><p>This section describes the workflow component that is provided to
+        available.</p></div></div><div class="section" title="Generator Workflow Component"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_generator_workflow_component"></a>Generator Workflow Component<a name="N10E6F" class="indexterm"></a></h3></div></div></div><p>This section describes the workflow component that is provided to
       perform the code generation, i.e. run the templates. You should have a
       basic idea of how the workflow engine works. A simple generator
       component configuration could look as follows:</p><pre class="programlisting">&lt;component class="org.eclipse.xpand2.Generator"&gt;
@@ -1101,12 +1294,12 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre></div></div>
       properties one by one.</p><div class="section" title="Main configuration"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_main_configuration"></a>Main configuration</h4></div></div></div><p>The first thing to note is that the qualified Java name of the
         component is
         <code class="varname">org.eclipse.xpand2.Generator</code>.</p></div><div class="section" title="Encoding"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_encoding"></a>Encoding</h4></div></div></div><p>For <span class="emphasis"><em>Xpand</em></span>, it is important to have the file
-        encoding<a name="N10C6E" class="indexterm"></a> in mind because of the
-        <span class="foreignphrase"><em class="foreignphrase">guillemet</em></span> characters <a name="N10C75" class="indexterm"></a> used to delimit keywords and property access. The
-        <code class="varname">fileEncoding</code> property<a name="N10C7C" class="indexterm"></a> specifies the file encoding to use for reading the
+        encoding<a name="N10E8B" class="indexterm"></a> in mind because of the
+        <span class="foreignphrase"><em class="foreignphrase">guillemet</em></span> characters <a name="N10E92" class="indexterm"></a> used to delimit keywords and property access. The
+        <code class="varname">fileEncoding</code> property<a name="N10E99" class="indexterm"></a> specifies the file encoding to use for reading the
         templates, reading the protected regions and writing the generated
         files. This property defaults to the default file encoding of your
-        JVM.</p></div><div class="section" title="Metamodel"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_metamodel"></a>Metamodel</h4></div></div></div><p>The property <code class="varname">metaModel</code><a name="N10C8A" class="indexterm"></a> is used to tell the generator engine on which
+        JVM.</p></div><div class="section" title="Metamodel"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_metamodel"></a>Metamodel</h4></div></div></div><p>The property <code class="varname">metaModel</code><a name="N10EA7" class="indexterm"></a> is used to tell the generator engine on which
         metamodels the <span class="emphasis"><em>Xpand</em></span> templates should be
         evaluated. One can specify more than one metamodel here. Metamodel
         implementations are required by the expression framework (see
@@ -1116,7 +1309,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre></div></div>
         implementation shipped with the core part of the <span class="emphasis"><em>Xpand</em></span> release.</p><p>A mandatory configuration is the <code class="varname">expand</code>
         property. It expects a syntax similar to that of the
         <code class="varname">EXPAND</code> statement (described above). The only
-        difference is that we omit the <code class="varname">EXPAND</code><a name="N10CAA" class="indexterm"></a> keyword. Instead, we specify the name of the property.
+        difference is that we omit the <code class="varname">EXPAND</code><a name="N10EC7" class="indexterm"></a> keyword. Instead, we specify the name of the property.
         Examples: </p><pre class="programlisting">&lt;expand value="Template::define FOR mySlot"/&gt;</pre><p>
         or: </p><pre class="programlisting">&lt;expand value="Template::define('foo') FOREACH {mySlot1,mySlot2}"/&gt;</pre><p>The
         expressions are evaluated using the workflow context. Each slot is
@@ -1125,10 +1318,10 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre></div></div>
         <code class="varname">'mySlot1'</code> and <code class="varname">'mySlot2'</code>. It is
         also possible to specify some complex expressions here. If, for
         instance, the slot <code class="varname">myModel</code> contains a collection of
-        model elements one could write:<a name="N10CC0" class="indexterm"></a> </p><pre class="programlisting">&lt;expand value="Template::define FOREACH myModel.typeSelect(Entity)"/&gt;</pre><p>This
+        model elements one could write:<a name="N10EDD" class="indexterm"></a> </p><pre class="programlisting">&lt;expand value="Template::define FOREACH myModel.typeSelect(Entity)"/&gt;</pre><p>This
         selects all elements of type <span class="emphasis"><em>Entity</em></span> contained in
         the collection stored in the <code class="varname">myModel</code> slot.</p></div><div class="section" title="Output configuration"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_output_configuration"></a>Output configuration</h4></div></div></div><p>The second mandatory configuration is the specification of so
-        called outlets (a concept borrowed from AndroMDA). Outlets<a name="N10CD3" class="indexterm"></a> are responsible for writing the generated files to
+        called outlets (a concept borrowed from AndroMDA). Outlets<a name="N10EF0" class="indexterm"></a> are responsible for writing the generated files to
         disk. Example: </p><pre class="programlisting">&lt;component class="org.eclipse.xpand2.Generator2"&gt;
    ...
    &lt;outlet path='main/src-gen'/&gt;
@@ -1151,7 +1344,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre></div></div>
         already exist (the <code class="varname">overwrite</code> flag).</p><p>Another option called <code class="varname">append</code> (defaults to
         <code class="varname">false</code>) causes the generator to append the generated
         text to an existing file. If <code class="varname">overwrite</code> is set to
-        <code class="varname">false</code> this flag has no effect.</p></div><div class="section" title="Beautifier"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_beautifier"></a>Beautifier <a name="N10D0F" class="indexterm"></a></h4></div></div></div><p>Beautifying the generated code is a good idea. It is very
+        <code class="varname">false</code> this flag has no effect.</p></div><div class="section" title="Beautifier"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_beautifier"></a>Beautifier <a name="N10F2C" class="indexterm"></a></h4></div></div></div><p>Beautifying the generated code is a good idea. It is very
         important that generated code looks good, because developers should be
         able to understand it. On the other hand template files should look
         good, too. It is thus best practice to write nice looking template
@@ -1167,22 +1360,22 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre></div></div>
    class="org.eclipse.xpand2.output.XMLBeautifier"/&gt;</pre><p>These
         are the two beautifiers delivered with <span class="emphasis"><em>Xpand</em></span>. If
         you want to use your own beautifier, you would just need to implement
-        the <code class="classname">PostProcessor</code> Java interface<a name="N10D22" class="indexterm"></a>: </p><pre class="programlisting">package org.eclipse.xpand2.output;
+        the <code class="classname">PostProcessor</code> Java interface<a name="N10F3F" class="indexterm"></a>: </p><pre class="programlisting">package org.eclipse.xpand2.output;
 
 public interface PostProcessor {
    public void beforeWriteAndClose(FileHandle handle);
    public void afterClose(FileHandle handle);
 }</pre><p>The <code class="varname">beforeWriteAndClose</code> method is called
-        for each <code class="varname">ENDFILE</code> statement.</p><div class="section" title="JavaBeautifier"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_javabeautifier"></a>JavaBeautifier</h5></div></div></div><p>The JavaBeautifier<a name="N10D35" class="indexterm"></a> is based on the Eclipse Java formatter provides base
+        for each <code class="varname">ENDFILE</code> statement.</p><div class="section" title="JavaBeautifier"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_javabeautifier"></a>JavaBeautifier</h5></div></div></div><p>The JavaBeautifier<a name="N10F52" class="indexterm"></a> is based on the Eclipse Java formatter provides base
           beautifying for Java files.</p></div><div class="section" title="XmlBeautifier"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_xmlbeautifier"></a>XmlBeautifier</h5></div></div></div><p>The XmlBeautifier is based on <span class="emphasis"><em>dom4j</em></span> and
           provides a single option <code class="varname">fileExtensions</code> (defaults
           to "<code class="filename">.xml</code>, <code class="filename">.xsl</code>,
           <code class="filename">.wsdd</code>, <code class="filename">.wsdl</code>") used to
           specify which files should be pretty-printed.</p></div></div><div class="section" title="Protected Region Configuration"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_protected_region_configuration"></a>Protected Region Configuration</h4></div></div></div><p>Finally, you need to configure the protected region resolver, if
-        you want to use protected regions<a name="N10D57" class="indexterm"></a>. </p><pre class="programlisting">&lt;prSrcPaths value="main/src"/&gt;
+        you want to use protected regions<a name="N10F74" class="indexterm"></a>. </p><pre class="programlisting">&lt;prSrcPaths value="main/src"/&gt;
 &lt;prDefaultExcludes value="false"/&gt;
 &lt;prExcludes value="*.xml"/&gt;</pre><p>The
-        <span class="emphasis"><em>prSrcPaths</em></span> &nbsp;<a name="N10D61" class="indexterm"></a>property points to a comma-separated list of
+        <span class="emphasis"><em>prSrcPaths</em></span> &nbsp;<a name="N10F7E" class="indexterm"></a>property points to a comma-separated list of
         directories. The protected region resolver will scan these directories
         for files containing activated protected regions.</p><p>There are several file names which are excluded by default:
         </p><pre class="programlisting">RCS, SCCS, CVS, CVS.adm, RCSLOG, cvslog.*, tags, TAGS, .make.state, .nse_depinfo, *~, #*,
@@ -1196,7 +1389,7 @@ public interface PostProcessor {
           leverage the extension features of the used target language
           (inheritance, inclusion, references, etc.) wherever possible. It is
           very rare that the use of protected regions is an appropriate
-          solution.</p></td></tr></table></div></div><div class="section" title="VetoStrategy"><div class="titlepage"><div><div><h4 class="title"><a name="N10D75"></a>VetoStrategy<a name="N10D78" class="indexterm"></a></h4></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span> engine will generate code for each processed
+          solution.</p></td></tr></table></div></div><div class="section" title="VetoStrategy"><div class="titlepage"><div><div><h4 class="title"><a name="N10F92"></a>VetoStrategy<a name="N10F95" class="indexterm"></a></h4></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span> engine will generate code for each processed
         <span class="property">FILE</span> statement. This implies that files are
         written that might not have changed to the previous generator run.
         Normally it does not matter that files are rewritten. There are at
@@ -1241,7 +1434,7 @@ public interface PostProcessor {
 </pre><p>One <code class="classname">VetoStrategy</code> is already provided.
         The
         <code class="classname">org.eclipse.xpand2.output.NoChangesVetoStrategy</code>
-        <a name="N10DBB" class="indexterm"></a>is a simple implementation that will compare the
+        <a name="N10FD8" class="indexterm"></a>is a simple implementation that will compare the
         produced output, after it has been postprocessed, with the target
         file. If the content is identical the strategy vetoes the file
         writing. This strategy is effective, but has two severe
@@ -1257,7 +1450,7 @@ public interface PostProcessor {
         component like this:</p><pre class="programlisting">2192 INFO  - Generator(generator): generating &lt;...&gt;
 3792 INFO  - <span class="bold"><strong>Skipped writing of 2 files to outlet</strong></span> [default](src-gen)
 </pre></div></div><div class="section" title="Example for using Aspect-Oriented Programming in Xpand"><div class="titlepage"><div><div><h3 class="title"><a name="aop_template_introduction"></a>Example for using Aspect-Oriented Programming in
-      <span class="emphasis"><em>Xpand</em></span></h3></div></div></div><p><a name="N10DDB" class="indexterm"></a>This example shows how to use aspect-oriented programming
+      <span class="emphasis"><em>Xpand</em></span></h3></div></div></div><p><a name="N10FF8" class="indexterm"></a>This example shows how to use aspect-oriented programming
       techniques in <span class="emphasis"><em>Xpand</em></span> templates. It is applicable to
       EMF based and <span class="emphasis"><em>Classic</em></span> systems. However, we explain
       the idea based on the <span class="emphasis"><em>emfExample</em></span> &acirc;&#128;&#147; hence you should
@@ -1278,11 +1471,11 @@ public interface PostProcessor {
       is that it will "extend" the original
       <code class="classname">org.eclipse.demo.emf.datamodel.generator</code> project
       introduced in the <span class="emphasis"><em>emfExample</em></span>. So this new projects
-      needs to have a project dependency to the former one.</p><div class="section" title="Templates"><div class="titlepage"><div><div><h4 class="title"><a name="aop_template_example_templates"></a>Templates</h4></div></div></div><p>An AOP system always needs to define a join point<a name="N10E15" class="indexterm"></a> model; this is, you have to define, at which locations
+      needs to have a project dependency to the former one.</p><div class="section" title="Templates"><div class="titlepage"><div><div><h4 class="title"><a name="aop_template_example_templates"></a>Templates</h4></div></div></div><p>An AOP system always needs to define a join point<a name="N11032" class="indexterm"></a> model; this is, you have to define, at which locations
         of a (template) program you can add additional (template) code. In
         <span class="emphasis"><em>Xpand</em></span>, the join points are simply templates (i.e. <span class="emphasis"><em>DEFINE ..
         ENDDEFINE</em></span>) blocks. An "aspect template" can be declared
-        <span class="emphasis"><em>AROUND</em></span><a name="N10E21" class="indexterm"></a> previously existing templates. If you take a look at
+        <span class="emphasis"><em>AROUND</em></span><a name="N1103E" class="indexterm"></a> previously existing templates. If you take a look at
         the <code class="classname">org.eclipse.demo.emf.datamodel.generator</code> source
         folder of the project, you can find the <code class="filename">Root.xpt</code>
         template file. Inside, you can find a template called
@@ -1323,7 +1516,7 @@ public interface PostProcessor {
         <code class="varname">BEFORE</code> advice. Moving the
         <code class="methodname">proceed</code> statement to the beginning makes it
         an <code class="varname">AFTER</code> advice, omitting it, makes it an
-        override.</p></div><div class="section" title="Workflow File"><div class="titlepage"><div><div><h4 class="title"><a name="aop_template_example_workflow_file"></a>Workflow File<a name="N10E50" class="indexterm"></a></h4></div></div></div><p>Let us take a look at the workflow file to run this
+        override.</p></div><div class="section" title="Workflow File"><div class="titlepage"><div><div><h4 class="title"><a name="aop_template_example_workflow_file"></a>Workflow File<a name="N1106D" class="indexterm"></a></h4></div></div></div><p>Let us take a look at the workflow file to run this
         generator:</p><pre class="programlisting">&lt;workflow&gt;
    &lt;cartridge file="workflow.mwe"/&gt;
    &lt;component adviceTarget="generator"
@@ -1367,7 +1560,7 @@ public interface PostProcessor {
       return this.name2;
    }
 }</pre></div></div><div class="section" title="More Aspect Orientation"><div class="titlepage"><div><div><h3 class="title"><a name="aop_template_more_ao"></a>More Aspect Orientation</h3></div></div></div><p>In general, the syntax for the
-      <span class="emphasis"><em>AROUND</em></span><a name="N10E7C" class="indexterm"></a> construct is as follows:</p><pre class="programlisting">&lt;&lt;AROUND fullyQualifiedDefinitionNameWithWildcards
+      <span class="emphasis"><em>AROUND</em></span><a name="N11099" class="indexterm"></a> construct is as follows:</p><pre class="programlisting">&lt;&lt;AROUND fullyQualifiedDefinitionNameWithWildcards
       (Paramlist (*)?) FOR TypeName&gt;&gt;
    do Stuff
 &lt;&lt;ENDAROUND&gt;&gt;</pre><p>Here are some examples:</p><pre class="programlisting">&lt;&lt;AROUND *(*) FOR Object&gt;&gt;</pre><p>matches all templates</p><pre class="programlisting">&lt;&lt;AROUND *define(*) FOR Object&gt;&gt;</pre><p>matches all templates with <span class="emphasis"><em>define</em></span> at the end
@@ -1382,13 +1575,13 @@ public interface PostProcessor {
       things:</p><pre class="programlisting">&lt;&lt;AROUND my::Template::definition(String s) FOR String&gt;&gt;
    log('invoking '+&lt;&lt;targetDef.name&gt;&gt;+' with '+this)
    &lt;&lt;targetDef.proceed()&gt;&gt;
-&lt;&lt;ENDAROUND&gt;&gt;</pre></div></div><div class="footnotes"><br><hr align="left" width="100"><div class="footnote"><p><sup>[<a href="#N1043A" name="ftn.N1043A" class="para">1</a>] </sup>since 4.1.2</p></div></div></div><div class="chapter" title="Chapter&nbsp;2.&nbsp;Built-in types API documentation"><div class="titlepage"><div><div><h2 class="title"><a name="builtin_api"></a>Chapter&nbsp;2.&nbsp;Built-in types API documentation</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#Object.html"><code class="classname">Object</code></a></span></dt><dt><span class="section"><a href="#String.html"><code class="classname">String</code></a></span></dt><dt><span class="section"><a href="#Integer.html"><code class="classname">Integer</code></a></span></dt><dt><span class="section"><a href="#Boolean.html"><code class="classname">Boolean</code></a></span></dt><dt><span class="section"><a href="#Real.html"><code class="classname">Real</code></a></span></dt><dt><span class="section"><a href="#Collection.html"><code class="classname">Collection</code></a></span></dt><dt><span class="section"><a href="#List.html"><code class="classname">List</code></a></span></dt><dt><span class="section"><a href="#Set.html"><code class="classname">Set</code></a></span></dt><dt><span class="section"><a href="#xpand2_Type.html"><code class="classname">xpand2::Type</code></a></span></dt><dt><span class="section"><a href="#xpand2_Feature.html"><code class="classname">xpand2::Feature</code></a></span></dt><dt><span class="section"><a href="#xpand2_Property.html"><code class="classname">xpand2::Property</code></a></span></dt><dt><span class="section"><a href="#xpand2_Operation.html"><code class="classname">xpand2::Operation</code></a></span></dt><dt><span class="section"><a href="#xpand2_StaticProperty.html"><code class="classname">xpand2::StaticProperty</code></a></span></dt><dt><span class="section"><a href="#Void.html"><code class="classname">Void</code></a></span></dt><dt><span class="section"><a href="#xtend_AdviceContext.html"><code class="classname">xtend::AdviceContext</code></a></span></dt><dt><span class="section"><a href="#xpand2_Definition.html"><code class="classname">xpand2::Definition</code></a></span></dt><dt><span class="section"><a href="#xpand2_Iterator.html"><code class="classname">xpand2::Iterator</code></a></span></dt></dl></div><div class="section" title="Object"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Object.html"></a><code class="classname">Object</code></h2></div></div></div><p>
+&lt;&lt;ENDAROUND&gt;&gt;</pre></div></div><div class="footnotes"><br><hr align="left" width="100"><div class="footnote"><p><sup>[<a href="#N10603" name="ftn.N10603" class="para">1</a>] </sup>since 4.1.2</p></div></div></div><div class="chapter" title="Chapter&nbsp;2.&nbsp;Built-in types API documentation"><div class="titlepage"><div><div><h2 class="title"><a name="builtin_api"></a>Chapter&nbsp;2.&nbsp;Built-in types API documentation</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#Object.html"><code class="classname">Object</code></a></span></dt><dt><span class="section"><a href="#String.html"><code class="classname">String</code></a></span></dt><dt><span class="section"><a href="#Integer.html"><code class="classname">Integer</code></a></span></dt><dt><span class="section"><a href="#Boolean.html"><code class="classname">Boolean</code></a></span></dt><dt><span class="section"><a href="#Real.html"><code class="classname">Real</code></a></span></dt><dt><span class="section"><a href="#Collection.html"><code class="classname">Collection</code></a></span></dt><dt><span class="section"><a href="#List.html"><code class="classname">List</code></a></span></dt><dt><span class="section"><a href="#Set.html"><code class="classname">Set</code></a></span></dt><dt><span class="section"><a href="#xpand2_Type.html"><code class="classname">xpand2::Type</code></a></span></dt><dt><span class="section"><a href="#xpand2_Feature.html"><code class="classname">xpand2::Feature</code></a></span></dt><dt><span class="section"><a href="#xpand2_Property.html"><code class="classname">xpand2::Property</code></a></span></dt><dt><span class="section"><a href="#xpand2_Operation.html"><code class="classname">xpand2::Operation</code></a></span></dt><dt><span class="section"><a href="#xpand2_StaticProperty.html"><code class="classname">xpand2::StaticProperty</code></a></span></dt><dt><span class="section"><a href="#Void.html"><code class="classname">Void</code></a></span></dt><dt><span class="section"><a href="#xtend_AdviceContext.html"><code class="classname">xtend::AdviceContext</code></a></span></dt><dt><span class="section"><a href="#xpand2_Definition.html"><code class="classname">xpand2::Definition</code></a></span></dt><dt><span class="section"><a href="#xpand2_Iterator.html"><code class="classname">xpand2::Iterator</code></a></span></dt></dl></div><div class="section" title="Object"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Object.html"></a><code class="classname">Object</code></h2></div></div></div><p>
 			Supertype: 
 none
 		</p><p>
 		
 
-		</p><div class="table"><a name="Object_Properties"></a><p class="title"><b>Table&nbsp;2.1.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="Object_Properties"></a><p class="title"><b>Table&nbsp;1.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#xpand2_Type.html" title="xpand2::Type"><code class="classname">xpand2::Type</code></a>
 						</td><td align="left">
 							<code class="methodname">metaType</code>
@@ -1400,7 +1593,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="Object_Operations"></a><p class="title"><b>Table&nbsp;2.2.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="Object_Operations"></a><p class="title"><b>Table&nbsp;2.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Boolean.html" title="Boolean"><code class="classname">Boolean</code></a>
 						</td><td align="left">
 							<code class="methodname">==</code>
@@ -1465,7 +1658,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="String_Properties"></a><p class="title"><b>Table&nbsp;2.3.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="String_Properties"></a><p class="title"><b>Table&nbsp;3.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Integer.html" title="Integer"><code class="classname">Integer</code></a>
 						</td><td align="left">
 							<code class="methodname">length</code>
@@ -1477,7 +1670,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="String_Operations"></a><p class="title"><b>Table&nbsp;2.4.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="String_Operations"></a><p class="title"><b>Table&nbsp;4.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#String.html" title="String"><code class="classname">String</code></a>
 						</td><td align="left">
 							<code class="methodname">toLowerCase</code>
@@ -1604,7 +1797,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="Integer_Operations"></a><p class="title"><b>Table&nbsp;2.5.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="Integer_Operations"></a><p class="title"><b>Table&nbsp;5.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#List.html" title="List"><code class="classname">List</code></a>
 						</td><td align="left">
 							<code class="methodname">upTo</code>
@@ -1710,7 +1903,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="Boolean_Operations"></a><p class="title"><b>Table&nbsp;2.6.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="Boolean_Operations"></a><p class="title"><b>Table&nbsp;6.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Boolean.html" title="Boolean"><code class="classname">Boolean</code></a>
 						</td><td align="left">
 							<code class="methodname">!</code>
@@ -1732,7 +1925,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="Real_Operations"></a><p class="title"><b>Table&nbsp;2.7.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="Real_Operations"></a><p class="title"><b>Table&nbsp;7.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Real.html" title="Real"><code class="classname">Real</code></a>
 						</td><td align="left">
 							<code class="methodname">*</code>
@@ -1818,7 +2011,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="Collection_Properties"></a><p class="title"><b>Table&nbsp;2.8.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="Collection_Properties"></a><p class="title"><b>Table&nbsp;8.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Boolean.html" title="Boolean"><code class="classname">Boolean</code></a>
 						</td><td align="left">
 							<code class="methodname">isEmpty</code>
@@ -1836,7 +2029,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="Collection_Operations"></a><p class="title"><b>Table&nbsp;2.9.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="Collection_Operations"></a><p class="title"><b>Table&nbsp;9.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Boolean.html" title="Boolean"><code class="classname">Boolean</code></a>
 						</td><td align="left">
 							<code class="methodname">contains</code>
@@ -1942,7 +2135,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="List_Operations"></a><p class="title"><b>Table&nbsp;2.10.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="List_Operations"></a><p class="title"><b>Table&nbsp;10.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#List.html" title="List"><code class="classname">List</code></a>
 						</td><td align="left">
 							<code class="methodname">withoutFirst</code>
@@ -2015,7 +2208,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Type_Properties"></a><p class="title"><b>Table&nbsp;2.11.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Type_Properties"></a><p class="title"><b>Table&nbsp;11.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#String.html" title="String"><code class="classname">String</code></a>
 						</td><td align="left">
 							<code class="methodname">name</code>
@@ -2063,7 +2256,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Type_Operations"></a><p class="title"><b>Table&nbsp;2.12.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Type_Operations"></a><p class="title"><b>Table&nbsp;12.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#xpand2_StaticProperty.html" title="xpand2::StaticProperty"><code class="classname">xpand2::StaticProperty</code></a>
 						</td><td align="left">
 							<code class="methodname">getStaticProperty</code>
@@ -2121,7 +2314,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Feature_Properties"></a><p class="title"><b>Table&nbsp;2.13.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Feature_Properties"></a><p class="title"><b>Table&nbsp;13.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#String.html" title="String"><code class="classname">String</code></a>
 						</td><td align="left">
 							<code class="methodname">name</code>
@@ -2166,7 +2359,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Property_Operations"></a><p class="title"><b>Table&nbsp;2.14.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Property_Operations"></a><p class="title"><b>Table&nbsp;14.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Void.html" title="Void"><code class="classname">Void</code></a>
 						</td><td align="left">
 							<code class="methodname">set</code>
@@ -2195,7 +2388,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Operation_Operations"></a><p class="title"><b>Table&nbsp;2.15.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Operation_Operations"></a><p class="title"><b>Table&nbsp;15.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#List.html" title="List"><code class="classname">List</code></a>
 						</td><td align="left">
 							<code class="methodname">getParameterTypes</code>
@@ -2224,7 +2417,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::StaticProperty_Operations"></a><p class="title"><b>Table&nbsp;2.16.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::StaticProperty_Operations"></a><p class="title"><b>Table&nbsp;16.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Object.html" title="Object"><code class="classname">Object</code></a>
 						</td><td align="left">
 							<code class="methodname">get</code>
@@ -2255,7 +2448,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xtend::AdviceContext_Properties"></a><p class="title"><b>Table&nbsp;2.17.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xtend::AdviceContext_Properties"></a><p class="title"><b>Table&nbsp;17.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#List.html" title="List"><code class="classname">List</code></a>
 						</td><td align="left">
 							<code class="methodname">paramTypes</code>
@@ -2285,7 +2478,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xtend::AdviceContext_Operations"></a><p class="title"><b>Table&nbsp;2.18.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xtend::AdviceContext_Operations"></a><p class="title"><b>Table&nbsp;18.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Object.html" title="Object"><code class="classname">Object</code></a>
 						</td><td align="left">
 							<code class="methodname">proceed</code>
@@ -2308,7 +2501,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Definition_Properties"></a><p class="title"><b>Table&nbsp;2.19.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Definition_Properties"></a><p class="title"><b>Table&nbsp;19.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#List.html" title="List"><code class="classname">List</code></a>
 						</td><td align="left">
 							<code class="methodname">paramTypes</code>
@@ -2338,7 +2531,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Definition_Operations"></a><p class="title"><b>Table&nbsp;2.20.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Definition_Operations"></a><p class="title"><b>Table&nbsp;20.&nbsp;Operations</b></p><div class="table-contents"><table summary="Operations" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Return type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Void.html" title="Void"><code class="classname">Void</code></a>
 						</td><td align="left">
 							<code class="methodname">proceed</code>
@@ -2368,7 +2561,7 @@ none
 		</p><p>
 		
 
-		</p><div class="table"><a name="xpand2::Iterator_Properties"></a><p class="title"><b>Table&nbsp;2.21.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+		</p><div class="table"><a name="xpand2::Iterator_Properties"></a><p class="title"><b>Table&nbsp;21.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Type</th><th align="left">Name</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
 							<a class="link" href="#Boolean.html" title="Boolean"><code class="classname">Boolean</code></a>
 						</td><td align="left">
 							<code class="methodname">lastIteration</code>
@@ -2433,7 +2626,7 @@ none
     custom XML to Java via Xpand</em></span>"
     (<code class="classname">org.eclipse.xpand.examples.xsd.m2t.xml2javawizard</code>)
     which is more comprehensive and recommended for further reading.</p><p>To generate code from XML files with oAW, at least files of the
-    following four types are needed:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Meta Model ( <code class="filename">metamodel.xsd</code> )</p></li><li class="listitem"><p>Model ( <code class="filename">model.xml</code> )</p></li><li class="listitem"><p>oAW Xpand Template ( <code class="filename">template.xpt</code> )</p></li><li class="listitem"><p>oAW Workflow ( <code class="filename">workflow.oaw</code> )</p></li></ul></div><div class="figure"><a name="xsd_tutorial_xsd_project"></a><p class="title"><b>Figure&nbsp;3.1.&nbsp;Minimalistic oAW XSD Project</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/workspace-minidemo.png" alt="Minimalistic oAW XSD Project"></div></div></div><br class="figure-break"></div><div class="section" title="Step 1: Create a Project"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xsd_tutorial_create_project"></a>Step 1: Create a Project</h2></div></div></div><p>To create a Project, create an ordinary
+    following four types are needed:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Meta Model ( <code class="filename">metamodel.xsd</code> )</p></li><li class="listitem"><p>Model ( <code class="filename">model.xml</code> )</p></li><li class="listitem"><p>oAW Xpand Template ( <code class="filename">template.xpt</code> )</p></li><li class="listitem"><p>oAW Workflow ( <code class="filename">workflow.oaw</code> )</p></li></ul></div><div class="figure"><a name="xsd_tutorial_xsd_project"></a><p class="title"><b>Figure&nbsp;1.&nbsp;Minimalistic oAW XSD Project</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/workspace-minidemo.png" alt="Minimalistic oAW XSD Project"></div></div></div><br class="figure-break"></div><div class="section" title="Step 1: Create a Project"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xsd_tutorial_create_project"></a>Step 1: Create a Project</h2></div></div></div><p>To create a Project, create an ordinary
     Xtend/Xpand-Project. This is done in Eclipse by changing to the
     Xtend/Xpand perspective and clicking on <span class="emphasis"><em>"File" / "New"
     / "Xtend/Xpand Project"</em></span>. After entering a name for the
@@ -2443,13 +2636,13 @@ none
     "<span class="emphasis"><em>enable project specific settings</em></span>" and activate the
     "<span class="emphasis"><em>XSD Metamodels</em></span>" checkbox. There is no need to leave
     support for any other meta models activated, except you are sure that you
-    want to use one of them, too. <a class="xref" href="#xsd_tutorial_project_properties_mm" title="Figure&nbsp;3.2.&nbsp;Activate XSD Meta Model Support for Project">Figure&nbsp;3.2, &ldquo;Activate XSD Meta Model Support for Project&rdquo;</a> shows how the
-    configuration is supposed to look like.</p><div class="figure"><a name="xsd_tutorial_project_properties_mm"></a><p class="title"><b>Figure&nbsp;3.2.&nbsp;Activate XSD Meta Model Support for Project</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/project-properties-mm.png" alt="Activate XSD Meta Model Support for Project"></div></div></div><br class="figure-break"><p>Then, <code class="classname">org.eclipse.xtend.typesystem.xsd</code> needs to
+    want to use one of them, too. <a class="xref" href="#xsd_tutorial_project_properties_mm" title="Figure&nbsp;2.&nbsp;Activate XSD Meta Model Support for Project">Figure&nbsp;2, &ldquo;Activate XSD Meta Model Support for Project&rdquo;</a> shows how the
+    configuration is supposed to look like.</p><div class="figure"><a name="xsd_tutorial_project_properties_mm"></a><p class="title"><b>Figure&nbsp;2.&nbsp;Activate XSD Meta Model Support for Project</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/project-properties-mm.png" alt="Activate XSD Meta Model Support for Project"></div></div></div><br class="figure-break"><p>Then, <code class="classname">org.eclipse.xtend.typesystem.xsd</code> needs to
     be added to the project's dependencies. To do so open the file
     <code class="filename">META-INF/MANIFEST.MF</code> from your project and navigate
     to the "Dependencies"-tab.
     <code class="classname">org.eclipse.xtend.typesystem.xsd</code> needs to be added to
-    the list of "Required Plug-ins", as it is shown in <a class="xref" href="#xsd_tutorial_project_dependencies" title="Figure&nbsp;3.3.&nbsp;Required Dependencies for Project">Figure&nbsp;3.3, &ldquo;Required Dependencies for Project&rdquo;</a> .</p><div class="figure"><a name="xsd_tutorial_project_dependencies"></a><p class="title"><b>Figure&nbsp;3.3.&nbsp;Required Dependencies for Project</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/project-dependencies.png" alt="Required Dependencies for Project"></div></div></div><br class="figure-break"></div><div class="section" title="Step 2: Define a Meta Model using XML Schema"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xsd_tutorial_metamodel"></a>Step 2: Define a Meta Model using XML Schema</h2></div></div></div><p>In case you are not going to use an existing XML Schema Definition,
+    the list of "Required Plug-ins", as it is shown in <a class="xref" href="#xsd_tutorial_project_dependencies" title="Figure&nbsp;3.&nbsp;Required Dependencies for Project">Figure&nbsp;3, &ldquo;Required Dependencies for Project&rdquo;</a> .</p><div class="figure"><a name="xsd_tutorial_project_dependencies"></a><p class="title"><b>Figure&nbsp;3.&nbsp;Required Dependencies for Project</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/project-dependencies.png" alt="Required Dependencies for Project"></div></div></div><br class="figure-break"></div><div class="section" title="Step 2: Define a Meta Model using XML Schema"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xsd_tutorial_metamodel"></a>Step 2: Define a Meta Model using XML Schema</h2></div></div></div><p>In case you are not going to use an existing XML Schema Definition,
     you can create a new a new one like described below. These steps make use
     of the Eclipse Web Tools Platform (WTP) to have fancy editors.</p><p>In Eclipse, click on <span class="emphasis"><em>"File", "New", "Other..."</em></span>
     and choose <span class="emphasis"><em>"XML Schema"</em></span> from category "XML". Select
@@ -2472,7 +2665,7 @@ none
     value.</p><p>To get an overview how schemas can be used by the oAW XSD Adapter,
     see <a class="xref" href="#xsd_reference_declare_xsd" title="How to declare XML Schemas">the section called &ldquo;How to declare XML Schemas&rdquo;</a></p><p>Internally, the oAW XSD Adapter transforms the XSD model to an Ecore
     model which oAW can use like any other Ecore model. For more information
-    about that, see <a class="xref" href="#xsd_reference_xsd2ecore" title="Behind the scenes: Transforming XSD to Ecore">the section called &ldquo;Behind the scenes: Transforming XSD to Ecore&rdquo;</a></p><div class="figure"><a name="xsd_tutorial_xsd_editor"></a><p class="title"><b>Figure&nbsp;3.4.&nbsp;WTP Schema Editor</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/xsd-editor.png" alt="WTP Schema Editor"></div></div></div><br class="figure-break"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    about that, see <a class="xref" href="#xsd_reference_xsd2ecore" title="Behind the scenes: Transforming XSD to Ecore">the section called &ldquo;Behind the scenes: Transforming XSD to Ecore&rdquo;</a></p><div class="figure"><a name="xsd_tutorial_xsd_editor"></a><p class="title"><b>Figure&nbsp;4.&nbsp;WTP Schema Editor</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/xsd-editor.png" alt="WTP Schema Editor"></div></div></div><br class="figure-break"><pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;schema xmlns="http://www.w3.org/2001/XMLSchema"
   targetNamespace="http://www.example.org/wizard" 
   xmlns:tns="http://www.example.org/wizard"
@@ -2588,10 +2781,10 @@ First Page Title: &laquo;choicepage.title&raquo;
     &lt;outlet path="src-gen" /&gt;
   &lt;/component&gt;
 &lt;/workflow&gt;</pre></div><div class="section" title="Step 6: Execute Workflow aka Generate Code"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xsd_tutorial_execute_workflow"></a>Step 6: Execute Workflow aka Generate Code</h2></div></div></div><p>Before you actually execute the workflow, or in case of errors, you
-    can use <a class="xref" href="#xsd_tutorial_minidemo_all" title="Figure&nbsp;3.5.&nbsp;Files of this Tutorial">Figure&nbsp;3.5, &ldquo;Files of this Tutorial&rdquo;</a> to double check your
-    files.</p><div class="figure"><a name="xsd_tutorial_minidemo_all"></a><p class="title"><b>Figure&nbsp;3.5.&nbsp;Files of this Tutorial</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/minidemo-all.png" alt="Files of this Tutorial"></div></div></div><br class="figure-break"><p>To execute the workflow, click with your right mouse button on the
+    can use <a class="xref" href="#xsd_tutorial_minidemo_all" title="Figure&nbsp;5.&nbsp;Files of this Tutorial">Figure&nbsp;5, &ldquo;Files of this Tutorial&rdquo;</a> to double check your
+    files.</p><div class="figure"><a name="xsd_tutorial_minidemo_all"></a><p class="title"><b>Figure&nbsp;5.&nbsp;Files of this Tutorial</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/minidemo-all.png" alt="Files of this Tutorial"></div></div></div><br class="figure-break"><p>To execute the workflow, click with your right mouse button on the
     workflow file and choose <span class="emphasis"><em>"Run As", "oAW Workflow"</em></span>, as
-    it is shown in <a class="xref" href="#xsd_tutorial_execute_workflow" title="Step 6: Execute Workflow aka Generate Code">the section called &ldquo;Step 6: Execute Workflow aka Generate Code&rdquo;</a> .</p><div class="figure"><a name="xsd_tutorial_launch_workflow"></a><p class="title"><b>Figure&nbsp;3.6.&nbsp;Execute Workflow</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/execute-workflow.png" alt="Execute Workflow"></div></div></div><br class="figure-break"><p>When executing the workflow, this output is supposed to appear in
+    it is shown in <a class="xref" href="#xsd_tutorial_execute_workflow" title="Step 6: Execute Workflow aka Generate Code">the section called &ldquo;Step 6: Execute Workflow aka Generate Code&rdquo;</a> .</p><div class="figure"><a name="xsd_tutorial_launch_workflow"></a><p class="title"><b>Figure&nbsp;6.&nbsp;Execute Workflow</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xsd_tutorial/execute-workflow.png" alt="Execute Workflow"></div></div></div><br class="figure-break"><p>When executing the workflow, this output is supposed to appear in
     Eclipse's Console View. If that View does not pop up automatically, you
     can reach it via <span class="emphasis"><em>"Window", "Show View",
     "Console"</em></span>.</p><pre class="programlisting">May 25, 2009 3:09:35 PM org.eclipse.emf.mwe.core.WorkflowRunner prepare

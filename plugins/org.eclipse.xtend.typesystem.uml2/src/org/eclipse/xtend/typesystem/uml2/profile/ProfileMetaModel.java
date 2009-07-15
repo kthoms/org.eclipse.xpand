@@ -216,12 +216,16 @@ public class ProfileMetaModel implements MetaModel {
 	 * @author Moritz@Eysholdt.de
 	 */
 	public Type getType(final Object obj) {
-		if (obj instanceof EnumerationLiteral) {
-			EnumerationLiteral el = (EnumerationLiteral) obj;
-			String fqn = getFullName(el.getEnumeration());
-			return getTypeSystem().getTypeForName(fqn);
-		}
-		else if (obj instanceof Element) {
+		if (obj instanceof Element) {
+			if (obj instanceof EnumerationLiteral) {
+				EnumerationLiteral el = (EnumerationLiteral) obj;
+				String fqn = getFullName(el.getEnumeration());
+				Type enumType = getTypeSystem().getTypeForName(fqn);
+				if (enumType != null) {
+					return enumType;
+				}
+			}
+			
 			Element element = (Element) obj;
 			List<Stereotype> stereotypes = element.getAppliedStereotypes();
 			// if no stereotype is found, the stereotype is skipped or an

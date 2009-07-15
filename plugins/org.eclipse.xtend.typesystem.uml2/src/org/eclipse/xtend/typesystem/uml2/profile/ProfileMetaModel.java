@@ -179,7 +179,7 @@ public class ProfileMetaModel implements MetaModel {
 		result.append(fragments[0].replaceAll("\\W", "_"));
 		for (int i = 1; i < fragments.length; i++) {
 			result.append(SyntaxConstants.NS_DELIM);
-			result.append(fragments[1].replaceAll("\\W", "_"));
+			result.append(fragments[i].replaceAll("\\W", "_"));
 		}
 		return result.toString();
 	}

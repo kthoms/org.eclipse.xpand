@@ -353,6 +353,8 @@ Set[my::Type]
         change the mapping. For instance, the JavaBeansStrategy maps getter
         and setter methods to simple properties, so we would use this strategy
         for the example above.</para>
+  
+ 
       </section>
 
       <section id="r10_metamodel_contributors">
@@ -491,9 +493,471 @@ Set[my::Type]
    ...
 &lt;/component&gt;</programlisting>
     </section>
+
+ <section id="metamodel_reference" xreflabel="Metamodel reference">
+ <title>Metamodel Reference</title>
+ <indexterm>
+ <primary>Metamodel</primary>
+ </indexterm>      
+ <para>
+ 
+ In the following, each of the built-in metamodels that come with 
+ <emphasis>Xpand</emphasis> will be documented. Furthermore, there will be some
+  guidelines on how to implement your own metamodel.
+  </para>
+  <section id="emf_metamodels" xreflabel="EMF metamodels">
+  <title>EMF Metamodels</title>
+  <para>
+  This section will describe the metamodels that can be used for EMF models. 
+  <emphasis role="strong">Please note that you have to execute one of the
+  setup utility classes, <classname>Setup</classname> or 
+  <classname>StandaloneSetup</classname>, in your workflow
+  before you can use one of the EMF metamodels</emphasis>
+  </para>
+  
+  <section id="emfregistry_metamodel" xreflabel="EMF registry metamodel">
+  <title>The EMF Registry Metamodel (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)</title>
+  <indexterm>
+  <primary>Metamodel</primary>
+  <secondary>EMF Registry</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>EmfRegistryMetaModel</primary>
+  </indexterm>
+  
+  <para>
+  This metamodel looks for the referenced metamodels in the global EMF model registry.
+  This means, when using this metamodel, only models that are registered in this global
+  EMF model registry will be accessible from within the metamodel.
+  </para>
+  
+  <para>
+  This metamodel provides the following configuration property:
+  </para>
+  
+              <table frame='all' id="properties_emfregistrymetamodel">
+            <title>Properties of <classname>EmfRegistryMetaModel</classname></title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='emfregistrymetamodel_property_name'/>
+                <colspec colname='emfregistrymetamodel_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                        useSingleGlobalResourceSet
+                        </entry>
+                        <entry>
+                        This boolean property determines the way resource sets are used.
+                        If set to <emphasis>true</emphasis>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
   </section>
 
-  <section id="r10_expressions_language" xreflabel="Expressions">
+  <section id="emf_metamodel" xreflabel="EMF metamodel">
+  <title>The EMF Metamodel (org.eclipse.xtend.typesystem.emf.EmfMetaModel)</title>
+  <indexterm>
+  <primary>Metamodel</primary>
+  <secondary>EMF</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>EmfMetaModel</primary>
+  </indexterm>
+  
+  <para>
+  This metamodel is a specialized version of the <xref linkend="emfregistry_metamodel"/>. 
+  In addition to the features of the former, it allows to specify an unregistered model in 
+  different ways that will be added to the metamodel. 
+  </para>
+  
+  <para>
+  This metamodel provides the following configuration properties:
+  </para>
+            <table frame='all' id="properties_emfmetamodel">
+            <title>Properties of <classname>EmfMetaModel</classname></title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='emfmetamodel_property_name'/>
+                <colspec colname='emfmetamodel_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                        useSingleGlobalResourceSet
+                        </entry>
+                        <entry>
+                        This boolean property determines the way resource sets are used.
+                        If set to <emphasis>true</emphasis>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </entry>
+                    </row>                
+                    <row>
+                        <entry>
+                        metaModelFile
+                        </entry>
+                        <entry>
+                        Sets the path to the Ecore file that will be added to the metamodel.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        metaModelDescriptor
+                        </entry>
+                        <entry>
+                        Adds a model to the metamodel by specifying the name of an EPackage descriptor class.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        metaModelPackage
+                        </entry>
+                        <entry>
+                        Adds a model to the metamodel by specifying the name of an EPackage.
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+  </section>
+  </section>
+  
+  <section id="uml_metamodels" xreflabel="UML metamodels">
+  <title>UML Metamodels</title>
+  <para>
+  <emphasis>Xpand</emphasis> also provides several metamodels that allow to use UML models in
+  conjunction with this model-to-text generation framework.
+  <emphasis role="strong">Please note that you have to execute the
+  setup utility class <classname>Setup</classname> in your workflow
+  before you can use one of the UML metamodels</emphasis>
+  </para>
+  
+  <section id="uml2_metamodel" xreflabel="UML2 metamodel">
+  <title>The UML2 Metamodel (org.eclipse.xtend.typesystem.uml2.UML2MetaModel)</title>
+  <indexterm>
+  <primary>Metamodel</primary>
+  <secondary>UML2</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>UML2MetaModel</primary>
+  </indexterm>
+  
+  <para>
+  This metamodel is a specialized version of the <emphasis><xref linkend="emf_metamodel"/></emphasis>.
+  It provides access to UML2 models, and it has the following configuration properties:
+  </para>
+
+            <table frame='all' id="properties_uml2metamodel">
+            <title>Properties of <classname>UML2MetaModel</classname></title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='uml2metamodel_property_name'/>
+                <colspec colname='uml2metamodel_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                        useSingleGlobalResourceSet
+                        </entry>
+                        <entry>
+                        This boolean property determines the way resource sets are used.
+                        If set to <emphasis>true</emphasis>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </entry>
+                    </row>                
+                    <row>
+                        <entry>
+                        modelFile
+                        </entry>
+                        <entry>
+                        Sets the path to the UML2 model file that will be added to the metamodel.
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>  
+  </section>
+  
+  <section id="uml2profile_metamodel" xreflabel="UML2 profile metamodel">
+  <title>The UML2 Profile Metamodel (org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel)</title>
+  <indexterm>
+  <primary>Metamodel</primary>
+  <secondary>UML2</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>ProfileMetaModel</primary>
+  </indexterm>
+  
+  <para>
+  This metamodel allows to apply UML profiles to UML2 models. It has the following
+  configuration properties
+  </para>
+
+            <table frame='all' id="properties_profilemetamodel">
+            <title>Properties of <classname>ProfileMetaModel</classname></title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='profilemetamodel_property_name'/>
+                <colspec colname='profilemetamodel_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                        useSingleGlobalResourceSet
+                        </entry>
+                        <entry>
+                        This boolean property determines the way resource sets are used.
+                        If set to <emphasis>true</emphasis>, all model resources will be
+                        stored in a single global resource set. Otherwise, a separate
+                        resource set will be used for each model resource.
+                        </entry>
+                    </row>                
+                    <row>
+                        <entry>
+                        modelFile
+                        </entry>
+                        <entry>
+                        Sets the path to the UML2 model file that will be added to the metamodel.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        profile
+                        </entry>
+                        <entry>
+                        Sets the path to the UML profile that will be applied to the UML2 model.
+                        </entry>
+                    </row>                    
+                </tbody>
+            </tgroup>
+        </table>  
+  </section>
+  
+  <section id="xmi_reader" xreflabel="XMI reader">
+  <title>The XMI reader (org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.XmiReader)</title>
+  <indexterm>
+  <primary>XMI reader</primary>
+  </indexterm>
+  <indexterm>
+  <primary>XMIReader</primary>
+  </indexterm>
+  
+  <para>
+  The XMI reader component is important when working with UML models. It allows to
+  read out a model stored in an XMI file and put its contents into a model slot.
+  </para>
+
+  <para>
+  The <classname>XMIReader</classname> component provides the following configurable
+  properties:
+  </para>
+            <table frame='all' id="properties_xmireader">
+            <title>Properties of <classname>XMIReader</classname></title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='xmireader_property_name'/>
+                <colspec colname='xmireader_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                        metaModelFile
+                        </entry>
+                        <entry>
+                        Sets the path to the Ecore file that will be added to the metamodel.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        metaModelDescriptor
+                        </entry>
+                        <entry>
+                        Adds a model to the metamodel by specifying the name of an EPackage descriptor class.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        metaModelPackage
+                        </entry>
+                        <entry>
+                        Adds a model to the metamodel by specifying the name of an EPackage.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                        outputSlot
+                        </entry>
+                        <entry>
+                        Sets the name of the model slot where the read model will be stored in.
+                        </entry>              
+                    </row>
+                    <row>
+                    <entry>
+                    firstElementOnly
+                    </entry>
+                    <entry>
+                    This boolean property determines if only the first model element
+                    of the XMI file will be used. If set to <emphasis>true</emphasis>,
+                    only the first model element will be used, all other elements will
+                    be ignored. Otherwise, all model elements in the XMI file will be used.
+                    </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>  
+  </section>
+  </section>
+  
+  <section id="java_metamodel" xreflabel="Java metamodel">
+  <title>The Java Metamodel (org.eclipse.internal.xtend.type.impl.java.JavaMetaModel)</title>
+  <indexterm>
+  <primary>Metamodel</primary>
+  <secondary>Java</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>JavaMetaModel</primary>
+  </indexterm>
+  
+  <para>
+  The Java metamodel allows normal Java classes as metatypes for your metamodel. The
+  <classname>JavaMetaClass</classname> uses the strategy pattern to define how the
+  elements are exactly mapped to the metamodel elements. There is a class called
+  <classname>org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel</classname>
+  that is preconfigured with a strategy that maps simple Java beans onto the
+  metamodel elements.
+  </para>
+  
+  <para>
+  The Java metamodel has no configurable properties.
+  </para>
+  </section>
+
+  <section id="xsd_metamodel" xreflabel="XSD metamodel">
+  <title>The XSD Metamodel (org.eclipse.xtend.typesystem.xsd.XSDMetaModel)</title>
+  <indexterm>
+  <primary>Metamodel</primary>
+  <secondary>XSD</secondary>
+  </indexterm>
+  <indexterm>
+  <primary>XSDMetaModel</primary>
+  </indexterm>
+  
+  <para>
+  The XSD metamodel provides access to models implemented in the XML Schema Definition
+  language. It has the following configuration properties:
+  </para>
+  
+            <table frame='all' id="properties_xsdmetamodel">
+            <title>Properties of <classname>XSDMetaModel</classname></title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='xsdmetamodel_property_name'/>
+                <colspec colname='xsdmetamodel_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                <row>
+                    <entry>
+                        id
+                    </entry>
+                    <entry>
+                        Sets the ID of the current model.
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        registerPackagesGlobally
+                    </entry>
+                    <entry>
+                        This boolean property determines if the model packages will be registered
+                        globally. If set to <emphasis>true</emphasis>, the model packages will be registered
+                        in the global registry. Otherwise, packages will not be registered.
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        savePackagesPath
+                    </entry>
+                    <entry>
+                        Sets the path where model packages will be saved (in XMI format).
+                    </entry>
+                </row>
+                </tbody>
+            </tgroup>
+        </table>  
+  </section>
+  
+  <section id="implementing_metamodels" xreflabel="Implementing your own metamodel">
+  <title>Implementing Your Own Metamodel</title>
+  <indexterm>
+  <primary>Metamodel</primary>
+  <secondary>Implementing metamodels</secondary>
+  </indexterm>
+  
+  <para>
+  The <emphasis>Xpand</emphasis> framework also allows you to integrate new metamodel
+  implementations. This section quickly outlines the steps that have to be taken in order
+  to implement a metamodel:
+  </para>
+  
+  <orderedlist>
+    <listitem>
+        <para>
+            Create a class that implements the <classname>MetaModel</classname> interface.
+        </para>        
+    </listitem>
+    
+    <listitem>
+        <para>
+            In order to be able to integrate your metamodel into the Eclipse UI, you
+            also have to provide a metamodel contributor class for your metamodel implementation
+            that implements either the <classname>MetaModelContributor</classname> or the
+            <classname>MetaModelContributor2</classname> interface. 
+        </para>
+    </listitem>
+    
+    <listitem>
+        <para>
+            Finally, you have to extend the 
+            <classname>org.eclipse.xtend.shared.ui.metaModelContributors</classname>
+            extension point in order to register your metamodel contributor with the
+            Eclipse UI.
+        </para>
+    </listitem>
+  </orderedlist>
+   </section>  
+  </section>
+  
+  </section><section id="r10_expressions_language" xreflabel="Expressions">
     <title>Expressions<indexterm>
         <primary>Expression</primary>
       </indexterm></title>
@@ -1296,8 +1760,7 @@ context Attribute if name.length &gt; 1 ERROR
                     </row>
                 </tbody>
             </tgroup>
-        </table>
-  
+        </table>  
   </section>
   </section>
 

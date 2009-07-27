@@ -6,6 +6,7 @@ Bundle-Version: 0.7.1.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.mwe.core;visibility:=reexport,
+ org.apache.commons.logging,
  org.antlr.runtime,
  org.eclipse.emf.common,
  com.ibm.icu;bundle-version="4.0.1"
@@ -32,4 +33,3 @@ Export-Package: org.eclipse.internal.xtend.check.codeassist,
  org.eclipse.xtend.typesystem
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-BuddyPolicy: dependent
-Import-Package: org.apache.commons.logging

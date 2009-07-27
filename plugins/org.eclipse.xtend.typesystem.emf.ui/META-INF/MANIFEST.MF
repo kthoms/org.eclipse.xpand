@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.core,
  org.eclipse.xtend.typesystem.emf,
  org.eclipse.xtend,
- org.eclipse.xtend.shared.ui
+ org.eclipse.xtend.shared.ui,
+ org.eclipse.emf.converter
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.xtend.typesystem.emf.ui
 Bundle-Activator: org.eclipse.xtend.typesystem.emf.ui.EmfToolsPlugin

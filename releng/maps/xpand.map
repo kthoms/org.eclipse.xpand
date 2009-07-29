@@ -1,0 +1,54 @@
+!***************  PROJECT CONTRIBUTION  ******************************************************** 
+
+!*** Special entries from eclipse
+
+plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
+fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
+
+!*** Project's plugins, features and fragments
+
+!*** 3rd Party
+plugin@org.antlr.runtime=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/org.antlr.runtime
+plugin@org.apache.commons.logging=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/org.apache.commons.logging
+
+!***DOCUMENTAION
+feature@org.eclipse.xpand.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/doc/org.eclipse.xpand.doc-feature
+plugin@org.eclipse.xpand.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/doc/org.eclipse.xpand.doc
+
+!***EXAMPLES
+feature@org.eclipse.xpand.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples-feature
+plugin@org.eclipse.xpand.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples
+plugin@org.eclipse.emf.generic.editor=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.emf.generic.editor
+
+!***TESTS
+feature@org.eclipse.xpand.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.tests-feature
+plugin@org.eclipse.xpand.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xpand.tests
+plugin@org.eclipse.xtend.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.tests
+plugin@org.eclipse.xtend.typesystem.emf.tests=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.typesystem.emf.tests
+plugin@org.eclipse.xtend.shared.ui.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.shared.ui.test
+
+!***FEATURES
+feature@org.eclipse.xtend.dependencies=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.dependencies-feature
+feature@org.eclipse.xtend=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend-feature
+feature@org.eclipse.xpand=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand-feature
+feature@org.eclipse.xpand.sdk=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.sdk-feature
+feature@org.eclipse.xpand.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.ui-feature
+feature@org.eclipse.xtend.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.ui-feature
+
+!***PLUGINS
+plugin@org.eclipse.xtend=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend
+plugin@org.eclipse.xpand=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand
+plugin@org.eclipse.xtend.typesystem.emf=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.emf
+plugin@org.eclipse.xtend.typesystem.uml2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.uml2
+plugin@org.eclipse.xpand.activities=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand.activities
+plugin@org.eclipse.xpand.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand.ui
+plugin@org.eclipse.xtend.check.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.check.ui
+plugin@org.eclipse.xtend.shared.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.shared.ui
+plugin@org.eclipse.xtend.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.ui
+plugin@org.eclipse.xpand.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand.ui
+plugin@org.eclipse.xtend.check.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.check.ui
+plugin@org.eclipse.xtend.shared.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.shared.ui
+plugin@org.eclipse.xtend.typesystem.emf.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.emf.ui
+plugin@org.eclipse.xtend.typesystem.uml2.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.uml2.ui
+plugin@org.eclipse.xtend.util.stdlib=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.util.stdlib
+

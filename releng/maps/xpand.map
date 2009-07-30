@@ -34,6 +34,7 @@ feature@org.eclipse.xpand=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/model
 feature@org.eclipse.xpand.sdk=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.sdk-feature
 feature@org.eclipse.xpand.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.ui-feature
 feature@org.eclipse.xtend.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.ui-feature
+feature@org.eclipse.xtend.typesystem.emf=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.typesystem.emf-feature
 
 !***PLUGINS
 plugin@org.eclipse.xtend=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend

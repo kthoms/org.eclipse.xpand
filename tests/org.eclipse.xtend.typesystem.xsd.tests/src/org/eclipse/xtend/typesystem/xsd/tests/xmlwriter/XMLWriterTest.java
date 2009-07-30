@@ -48,6 +48,13 @@ public class XMLWriterTest extends AbstractTestCase {
 		runWorkflow("XMLWriter-TestOption.oaw", "model", p);
 		assertFilesEqual("TestOption.xml", "XMLWriter-Expected-TestOption.xml");
 	}
+	
+	public void testDoctypeInfo() {
+		@SuppressWarnings("unchecked")
+		Map<String, String> p = createWFParams();
+		runWorkflow("XMLWriter-TestDoctypeInfo.oaw", "model", p);
+		assertFilesEqual("TestDoctypeInfo.xml", "XMLWriter-Expected-TestDoctypeInfo.xml");
+	}
 
 	public void testCreateRootElementECore() {
 		@SuppressWarnings("unchecked")

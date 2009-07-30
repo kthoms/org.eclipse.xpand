@@ -93,14 +93,19 @@ public abstract class AbstractTestCase extends TestCase {
 		try {
 			BufferedReader re = getReader(getSrcGenDir() + "/" + expectedFile);
 			BufferedReader rt = getReader(getSrcDir() + "/" + testFile);
-			int i = 1;
-			String se, st;
-			do {
-				se = re.readLine();
-				st = rt.readLine();
-				assertEquals("Line " + (i++) + " of " + expectedFile + " and "
-						+ testFile, se, st);
-			} while (se != null || st != null);
+			StringBuffer be = new StringBuffer();
+			StringBuffer bt = new StringBuffer();
+			String s;
+			while((s = re.readLine()) != null) {
+				be.append(s);
+				be.append("\n");
+			}
+			while((s = rt.readLine()) != null) {
+				bt.append(s);
+				bt.append("\n");
+			}
+			assertEquals("Expected: " + expectedFile + " Actual: " + testFile,
+					be.toString(), bt.toString());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

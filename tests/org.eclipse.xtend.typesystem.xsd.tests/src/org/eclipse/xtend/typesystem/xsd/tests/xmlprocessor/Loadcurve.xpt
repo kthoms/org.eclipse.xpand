@@ -1,5 +1,5 @@
-ÇDEFINE Root FOR StringÈ
-ÇFILE thisÈ
+«DEFINE Root FOR String»
+«FILE this»
 <?xml version="1.0" encoding="UTF-8"?>
 <LoadCurve><Name>MyLoadcurve</Name>
   <CreationDate>2001-12-31T12:00:00</CreationDate>
@@ -31,5 +31,5 @@
 
 6. Ctrl + . OR , : This is contextual and may be specific to Java editors: if you have error or warnings in current file in editor it will navigate to them.</MyText>
 </LoadCurve>
-ÇENDFILEÈ
-ÇENDDEFINEÈ
+«ENDFILE»
+«ENDDEFINE»

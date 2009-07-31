@@ -23,6 +23,8 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
+import org.eclipse.xtend.middleend.LanguageContributor;
+import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 
 
 /**
@@ -39,6 +41,11 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
     private String _outputSlot = WorkflowContext.DEFAULT_SLOT;
     
     private String _fileEncoding = null;
+    
+    public XtendComponent () {
+    	if (LanguageContributor.INSTANCE.getLanguageContributionByName(OldXtendRegistryFactory.LANGUAGE_NAME) == null)
+    		LanguageContributor.INSTANCE.addLanguageContribution (OldXtendRegistryFactory.class);
+	}
 
     public void setFileEncoding (String fileEncoding) {
         _fileEncoding = fileEncoding;

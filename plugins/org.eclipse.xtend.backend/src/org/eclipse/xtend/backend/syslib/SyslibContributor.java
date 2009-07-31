@@ -22,7 +22,8 @@ public final class SyslibContributor {
         classAsResource (StringOperations.class),
         classAsResource (CollectionOperations.class),
         classAsResource (FileIoOperations.class),
-        classAsResource (PrimitiveOperations.class)};
+        classAsResource (PrimitiveOperations.class),
+        classAsResource (ReflectionOperations.class)};
     
     public static String[] getSysLibResources () {
         return _sysLibResources;

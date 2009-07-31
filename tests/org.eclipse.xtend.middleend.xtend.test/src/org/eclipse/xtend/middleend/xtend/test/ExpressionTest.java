@@ -19,7 +19,11 @@ import java.util.Arrays;
 
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.middleend.LanguageContributor;
+import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
+import org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory;
+import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -77,5 +81,11 @@ public class ExpressionTest extends JavaXtendTest {
 		assertTrue (result2.getClass().equals(Person.class) && result2.getName().equals("Tester") && result2.getFirstName() == null ? true : false );
 		Person result3 = (Person) BackendFacade.invoke (_ctx, new QualifiedName ("testCreatePersonVar"), Arrays.asList ());
 		assertTrue (result3.getClass().equals(Person.class) && result3.getName().equals("Tester") && result3.getFirstName() == null ? true : false );
+	}
+	
+	@Test
+	public void testIsInstance() {
+		boolean result = (Boolean) BackendFacade.invoke (_ctx, new QualifiedName ("testIsInstance"), Arrays.asList (_person));
+		assertTrue(result);
 	}
 }

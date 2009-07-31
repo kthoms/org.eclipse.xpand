@@ -14,7 +14,7 @@ String testOperationCall(Person p, String param) : p.call(param);
 
 
 //	create extensions
-create Person testCreatePerson(): setName("Tester");
+create Person testCreatePerson(): this.setName("Tester");
 create Person testCreatePersonThis(): this.setName("Tester");
 create Person p testCreatePersonVar(): p.setName("Tester") -> p;
 
@@ -48,8 +48,46 @@ private String call (String param) : "called:"+param;
 List testTypeSelectPolymorphism (List p) : p.typeSelect(Person);
 List testTypeSelect (List p) : p.typeSelect(Employee);
 
-List[Person] testSelect (List[Person] p) : p.select(e|e.name.startsWith("D"));
-List[String] testCollect (List[Person] p) : p.collect(e|e.name);
+List[Person] testSelect (List[Person] p) : p.select (e|e.name.startsWith("D"));
+List[String] testCollect (List[Person] p) : p.collect (e|e.name);
+List[String] testCollect (List[Person] p) : p.name;
+
+List testToList (Collection c) : 									c.toList ();	
+Set testToSet (Collection c): 										c.toSet ();	
+Collection testFlatten (Collection c) : 							c.flatten ();	
+List[Integer] testReject () : 										{1, 2, 3, 4, 1, 5}.testReject ();
+List testReject (List c) : 											c.reject (e|e >= 3);
+Boolean testExists () :		 										{1, 2, 3, 4, 5}.testExists ();
+private Boolean testExists (List[Integer] c) :		 				c.exists (e| e < 5);
+Boolean testForAll (List[Integer] nums) : 							nums.forAll(i | i < 10);
+Boolean testForAll () : 											{1, 2, 3, 4, 5}.forAll(i | i < 10);
+Boolean testForAllFalse () : 										{1, 2, 3, 4, 5}.forAll(i | i < 3);
+private List[Integer] testSortBy (List[Integer] c) : 				c.sortBy (e|e);
+List[Integer] testUnion (List[Integer] c1, List[Integer] c2) : 		c1.union (c2);
+Set[Integer] testIntersect (List[Integer] c1, List[Integer] c2) : 	c1.intersect (c2);
+List[Integer] testWithout (List[Integer] c1, List[Integer] c2) : 	c1.without (c2);
+Set[AbstractField] testWithout2 (List[AbstractField] c1, List[AbstractField] c2) : 	c1.without (c2);
+List testAdd (List c, Object elem) : 								c.add (elem);
+List[Integer] testAddAll (List[Integer] c1, List[Integer] c2) : 	c1.addAll (c2);
+Boolean testContains (List[Integer] c, Integer elem) : 				c.contains (elem);
+Boolean testContainsAll (List[Integer] c1, List[Integer] c2) : 		c1.containsAll (c2);
+Boolean testIsEmpty (List[Integer] c) : 							c.isEmpty;
+List[Integer] testRemove (List[Integer] c, Integer elem) :			c.remove (elem);
+Integer testSize (List c) : 										c.size;
+List[Integer] testRemoveAll (List[Integer] c1, List[Integer] c2) : 	c1.removeAll (c2);
+
+Object testFirst (List[Integer] c) : 								c.first ();
+Object testLast (List[Integer] c) : 								c.last ();
+List[Integer] testWithoutFirst (List[Integer] c) : 					c.withoutFirst ();
+List[Integer] testWithoutLast (List[Integer] c) : 					c.withoutLast ();
+Collection[Integer] testReverse (List[Integer] c) : 				c.reverse ();
+Integer testIndexOf (List[Integer] c, Integer elem) : 				c.indexOf (elem);
+
+Object testCollectionsWithOperationParams (List[Field] fields) :	fields.without (fields.typeSelect(Identifier).union(fields.typeSelect(Version)).toList());
+List[String] testPolymorphicCollections (List fields) :				fields.typeSelect(Identifier).union(fields.typeSelect(Version)).display();
+String display (Field f) : "Field";
+String display (Version f) : "Version";
+String display (Identifier f) : "Identifier";
 
 
 //	AOP tests

@@ -26,4 +26,9 @@ public interface XtendLibNames {
     String DELETE_LINE_POSTPROCESS = "XpandPostprocess";
     
     String GLOBAL_VAR_VALUE = "XtendGlobalVar";
+    
+    String ADD = "XtendAdd";
+    String ADD_ALL = "XtendAddAll";
+    String REMOVE = "XtendRemove";
+    String REMOVE_ALL = "XtendRemoveAll";
 }

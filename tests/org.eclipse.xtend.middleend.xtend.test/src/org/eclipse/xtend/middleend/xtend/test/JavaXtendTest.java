@@ -14,10 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
-import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.middleend.LanguageContributor;
+import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
+import org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory;
+import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Before;
 
@@ -35,6 +38,9 @@ public abstract class JavaXtendTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		LanguageContributor.INSTANCE.addLanguageContribution (OldXtendRegistryFactory.class);
+		LanguageContributor.INSTANCE.addLanguageContribution (OldCheckRegistryFactory.class);
+		LanguageContributor.INSTANCE.addLanguageContribution (OldXpandRegistryFactory.class);
 		_mms = new ArrayList<MetaModel> ();
         _mms.add (new JavaBeansMetaModel ());
 		_ts = new CompositeTypesystem ();

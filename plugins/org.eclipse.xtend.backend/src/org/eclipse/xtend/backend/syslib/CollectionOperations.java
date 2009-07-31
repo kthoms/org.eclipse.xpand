@@ -346,6 +346,10 @@ public final class CollectionOperations extends AbstractExecutionContextAware {
         return result;
     }
     
+    public Long size (Collection<?> coll) {
+    	return new Long (coll.size());
+    }
+    
     ///////////////////////////////////
     // helpers
     ///////////////////////////////////

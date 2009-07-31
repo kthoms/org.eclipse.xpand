@@ -23,6 +23,9 @@ import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
+import org.eclipse.xtend.middleend.LanguageContributor;
+import org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory;
+import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 
 
 //TODO test this
@@ -40,6 +43,13 @@ public class CheckComponent extends AbstractExpressionsUsingWorkflowComponent {
     private boolean _warnIfNothingChecked = false;
     private String _emfAllChildrenSlot;
     private String _fileEncoding = null;
+    
+    public CheckComponent () {
+    	if (LanguageContributor.INSTANCE.getLanguageContributionByName (OldXtendRegistryFactory.LANGUAGE_NAME) == null)
+    		LanguageContributor.INSTANCE.addLanguageContribution (OldXtendRegistryFactory.class);
+    	if (LanguageContributor.INSTANCE.getLanguageContributionByName (OldCheckRegistryFactory.LANGUAGE_NAME) == null) 
+    		LanguageContributor.INSTANCE.addLanguageContribution(OldCheckRegistryFactory.class);
+    }
 
     public void setAbortOnError (boolean abortOnError) {
         _abortOnError = abortOnError;

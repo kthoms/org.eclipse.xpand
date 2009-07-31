@@ -39,7 +39,10 @@ import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
+import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
+import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
+import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 
 
 /**
@@ -68,6 +71,15 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
 	private String _ignoreList;
 	private boolean _defaultExcludes;
 	private boolean _useBase64;
+	
+	public XpandComponent () {
+    	if (LanguageContributor.INSTANCE.getLanguageContributionByName (OldXtendRegistryFactory.LANGUAGE_NAME) == null) {
+    		LanguageContributor.INSTANCE.addLanguageContribution (OldXtendRegistryFactory.class);
+    	}
+    	if (LanguageContributor.INSTANCE.getLanguageContributionByName (OldXpandRegistryFactory.LANGUAGE_NAME) == null) {
+    		LanguageContributor.INSTANCE.addLanguageContribution (OldXpandRegistryFactory.class);
+    	}		
+	}
     
     public List<PostProcessor> getBeautifier() {
         return _postprocessors;

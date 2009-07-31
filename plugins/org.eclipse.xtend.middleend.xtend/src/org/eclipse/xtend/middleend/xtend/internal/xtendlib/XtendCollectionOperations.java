@@ -11,12 +11,17 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xtend.internal.xtendlib;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.syslib.CollectionOperations;
 import org.eclipse.xtend.backend.syslib.StringOperations;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
+import org.eclipse.xtend.middleend.javaannotations.M2tNoFunction;
+import org.eclipse.xtend.middleend.javaannotations.M2tQualifiedName;
 
 
 /**
@@ -91,4 +96,43 @@ public final class XtendCollectionOperations extends AbstractExecutionContextAwa
 
         return result;
     }
+    
+    public Collection<?> flatten (Collection<?> c) {
+		final List<Object> result = new ArrayList<Object>();
+		flattenRec(result, c);
+		return result;
+	}
+
+    @M2tNoFunction
+	public void flattenRec(final List<Object> result, final Collection col) {
+		for (final Object element : col) {
+			if (element instanceof Collection) {
+				flattenRec(result, (Collection) element);
+			}
+			else {
+				result.add(element);
+			}
+		}
+	}
+    
+    public Collection<?> XtendAdd (Collection c, Object o) {
+        c.add (o);
+        return c;
+    }
+    
+    public Collection<?> XtendAddAll (Collection c1, Collection c2) {
+        c1.addAll (c2);
+        return c1;
+    }
+    
+    public Collection<?> XtendRemove (Collection<?> c, Object o) {
+        c.remove (o);
+        return c;
+    }
+
+    public Collection<?> XtendRemoveAll (Collection<?> c1, Collection<?> c2) {
+        c1.removeAll (c2);
+        return c1;
+    }
+
 }

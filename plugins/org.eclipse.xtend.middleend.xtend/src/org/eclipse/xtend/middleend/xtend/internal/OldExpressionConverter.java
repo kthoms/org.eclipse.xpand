@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase, André Arnold.
+Copyright (c) 2008, 2009 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -14,10 +14,12 @@ package org.eclipse.xtend.middleend.xtend.internal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.internal.xtend.expression.ast.BooleanLiteral;
 import org.eclipse.internal.xtend.expression.ast.BooleanOperation;
 import org.eclipse.internal.xtend.expression.ast.Case;
+import org.eclipse.internal.xtend.expression.ast.Cast;
 import org.eclipse.internal.xtend.expression.ast.ChainExpression;
 import org.eclipse.internal.xtend.expression.ast.CollectionExpression;
 import org.eclipse.internal.xtend.expression.ast.ConstructorCallExpression;
@@ -74,6 +76,7 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibNames;
+import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -163,7 +166,7 @@ public final class OldExpressionConverter {
         if (expr instanceof GlobalVarExpression)
             return convertGlobalVarExpression ((GlobalVarExpression) expr);
         if (expr instanceof LetExpression)
-            return convertLetExpression((LetExpression) expr);
+            return convertLetExpression ((LetExpression) expr);
         if (expr instanceof ChainExpression)
             return convertChainExpression ((ChainExpression) expr);
 
@@ -171,14 +174,17 @@ public final class OldExpressionConverter {
             return convertConstructorCallExpression ((ConstructorCallExpression) expr);
         
         if (expr instanceof IfExpression)
-            return convertIfExpression((IfExpression) expr);
+            return convertIfExpression ((IfExpression) expr);
         if (expr instanceof SwitchExpression)
             return convertSwitchExpression ((SwitchExpression) expr);
+        
+        if (expr instanceof Cast)
+        	return convertCast ((Cast) expr);
         
         throw new IllegalArgumentException ("unsupported expression type: " + expr.getClass().getName());
     }
 
-    private ExpressionBase convertOperationCall (OperationCall expr) {
+	private ExpressionBase convertOperationCall (OperationCall expr) {
         final SourcePos sourcePos = getSourcePos (expr);
         final String functionName = transformFunctionName (expr.getName().getValue());
         
@@ -194,12 +200,13 @@ public final class OldExpressionConverter {
             if (hasThis()) {
                 // if a function matches directly (i.e. without implicitly passing 'this' as a first parameter), that
                 //  has precedence in matching
-                if (hasMatchingOperationCall (functionName, paramTypes.toArray (new Type[0]))) 
+//                if (hasMatchingOperationCall (functionName, paramTypes.toArray (new Type[0]))) 
+                if (hasMatchingOperationCall (expr.getName().getValue(), paramTypes.toArray (new Type[0]))) 
                     return new InvocationOnObjectExpression (new QualifiedName (functionName), params, false, sourcePos);
                 else {
                     final ExpressionBase thisExpression = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
                     final Type thisType = (Type) _ctx.getVariable (ExecutionContext.IMPLICIT_VARIABLE).getValue();
-                    return createInvocationOnTargetExpression (functionName, thisExpression, thisType, params, paramTypes, true, sourcePos);
+                    return createInvocationOnTargetExpression (functionName, expr.getName().getValue(), thisExpression, thisType, params, paramTypes, true, sourcePos);
                 }
             }
             else 
@@ -208,7 +215,7 @@ public final class OldExpressionConverter {
         else if (isAdviceProceedCall(expr)) {
         	return new InvocationOnObjectExpression (new QualifiedName (AROUND_PROCEED), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos)), true, sourcePos);
         } else
-            return createInvocationOnTargetExpression (functionName, convert (expr.getTarget()), new OldTypeAnalyzer ().analyze (_ctx, expr.getTarget ()), params, paramTypes, true, sourcePos);
+            return createInvocationOnTargetExpression (functionName, expr.getName().getValue(), convert (expr.getTarget()), new OldTypeAnalyzer ().analyze (_ctx, expr.getTarget ()), params, paramTypes, true, sourcePos);
     }
 
 	private boolean isAdviceProceedCall(OperationCall expr) {
@@ -229,6 +236,18 @@ public final class OldExpressionConverter {
         return target.getOperation (functionName, CollectionHelper.withoutFirst (paramTypes)) != null;
     }
     
+    private boolean hasPotentiallyMatchingOperationCall (String functionName, Type[] paramTypes) {
+    	Set<? extends Operation> operations = paramTypes[0].getAllOperations();
+    	for (Type paramType : paramTypes) {
+			if (isObjectType(paramType)) {
+				for (Operation operation : operations) {
+					if (operation.getName().equals(functionName))
+						return true;
+				}
+			}
+		}
+    	return false;
+    }
     
     /**
      * transform built-in operator names from the old to the new special names
@@ -265,11 +284,19 @@ public final class OldExpressionConverter {
             return SysLibNames.SUBSTRING;
         if ("replaceAll".equals (functionName))
             return SysLibNames.REPLACE_ALL_REGEX;
+        if ("add".equals (functionName))
+        	return XtendLibNames.ADD;
+        if ("addAll".equals (functionName))
+        	return XtendLibNames.ADD_ALL;
+        if ("remove".equals (functionName))
+        	return XtendLibNames.REMOVE;
+        if ("removeAll".equals (functionName))
+        	return XtendLibNames.REMOVE_ALL;
         
         return functionName;
     }
     
-    private ExpressionBase createInvocationOnTargetExpression (String functionName, ExpressionBase targetExpression, Type targetType, List<ExpressionBase> params, List<Type> paramTypes, boolean isMethodStyle, SourcePos sourcePos) {
+    private ExpressionBase createInvocationOnTargetExpression (String functionName, String oldFunctionName, ExpressionBase targetExpression, Type targetType, List<ExpressionBase> params, List<Type> paramTypes, boolean isMethodStyle, SourcePos sourcePos) {
         final List<ExpressionBase> paramsWithoutFirst = params;
         final List<ExpressionBase> allParams = new ArrayList<ExpressionBase> ();
         allParams.add (targetExpression);
@@ -279,9 +306,13 @@ public final class OldExpressionConverter {
             paramTypes.add (0, targetType);
             final Type[] paramTypeArray = paramTypes.toArray(new Type[0]);
             
-            if (hasMatchingOperationCall (functionName, paramTypeArray)) 
+            if (hasMatchingOperationCall (oldFunctionName, paramTypeArray)) 
+//                if (hasMatchingOperationCall (functionName, paramTypeArray)) 
                 // check if there is a function that directly matches the collection
                 return new InvocationOnObjectExpression (new QualifiedName (functionName), allParams, true, sourcePos);
+            else if (hasPotentiallyMatchingOperationCall (oldFunctionName, paramTypeArray))
+                // if the static type of one of the other parameters is "Object", we do not know if a matching operation exists on the collection, so we do the logic at runtime
+                return new InvocationOnWhateverExpression (new QualifiedName (functionName), allParams, isMethodStyle, sourcePos);
             else
                 // otherwise, do a 'collect' and call the function on all elements of the collection
                 return new InvocationOnCollectionExpression (targetExpression, new QualifiedName (functionName), paramsWithoutFirst, sourcePos);
@@ -319,6 +350,10 @@ public final class OldExpressionConverter {
         
         return new org.eclipse.xtend.backend.expr.SwitchExpression (convert (expr.getSwitchExpr()), cases, convert (expr.getDefaultExpr()), getSourcePos(expr));
     }
+    
+    private ExpressionBase convertCast(Cast expr) {
+		return convert (expr.getTarget());
+	}
     
     private ExpressionBase convertListLiteral (ListLiteral expr) {
         final List<ExpressionBase> inner = new ArrayList<ExpressionBase>();

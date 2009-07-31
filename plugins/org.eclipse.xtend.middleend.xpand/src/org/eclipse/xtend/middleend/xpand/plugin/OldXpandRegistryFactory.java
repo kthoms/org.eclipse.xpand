@@ -9,7 +9,7 @@ Contributors:
     Arno Haase - initial API and implementation
     André Arnold
  */
-package org.eclipse.xtend.middleend.xpand.internal;
+package org.eclipse.xtend.middleend.xpand.plugin;
 
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEndFactory;
@@ -23,12 +23,14 @@ import org.eclipse.xtend.middleend.xpand.OldXpandRegistry;
  */
 public final class OldXpandRegistryFactory implements LanguageSpecificMiddleEndFactory {
 
-    public LanguageSpecificMiddleEnd create (Object specificData) {
+    public final static String LANGUAGE_NAME = "Xpand";
+
+	public LanguageSpecificMiddleEnd create (Object specificData) {
         return new OldXpandRegistry (specificData);
     }
 
     public String getName () {
-        return "Xpand";
+        return LANGUAGE_NAME;
     }
 
     public int getPriority () {

@@ -46,4 +46,11 @@ public final class MiddleEndFactory {
     public static MiddleEnd createFromExtensions (BackendTypesystem ts, Map<Class<?>, Object> specificParams) {
         return new MiddleEndImpl (ts, Activator.getInstance().getFreshMiddleEnds (specificParams));
     }
+    
+    public static boolean canCreateFromExtentions () {
+		if (Activator.getInstance() != null) 
+			return true;
+		else
+			return false;
+	}
 }

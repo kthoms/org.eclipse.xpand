@@ -35,25 +35,25 @@ public final class EObjectType extends AbstractType {
     private EObjectType () {
         super ("emf::EObject", EmfTypesystem.getUniqueIdentifier (EcorePackage.eINSTANCE.getEObject()));
 
-        register (new AbstractProperty (INSTANCE, EObject.class, "eContainer", true, false) {
+        register (new AbstractProperty (this, EObject.class, "eContainer", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContainer();
             }
         }, this);
-        register (new AbstractProperty (INSTANCE, java.util.List.class, "eContents", true, false) {
+        register (new AbstractProperty (this, java.util.List.class, "eContents", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContents();
             }
         }, CollectionType.INSTANCE);
-        register (new AbstractProperty (INSTANCE, EObject.class, "eRootContainer", true, false) {
+        register (new AbstractProperty (this, EObject.class, "eRootContainer", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return EcoreUtil.getRootContainer((EObject) o);
             }
         }, this);
-        register (new AbstractProperty (INSTANCE, java.util.Set.class, "eAllContents", true, false) {
+        register (new AbstractProperty (this, java.util.Set.class, "eAllContents", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 final Set<Object> result = new HashSet<Object>();

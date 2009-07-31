@@ -39,6 +39,10 @@ import org.junit.Test;
  */
 @SuppressWarnings("restriction")
 public class CheckTest extends JavaXtendTest {
+	
+	protected AbstractField _field;
+	protected AbstractField _version;
+	protected AbstractField _identifier;
 
 	@Before
 	@Override
@@ -46,6 +50,12 @@ public class CheckTest extends JavaXtendTest {
 		super.setUp();
 		_person.setName("xy");
 		_employee.setCompany(null);
+		_field = new Field();
+		_field.setName("field");
+		_version = new Version();
+		_version.setName("field");
+		_identifier = new Identifier();
+		_identifier.setName("field");
 	}
 
 	@Test
@@ -90,7 +100,7 @@ public class CheckTest extends JavaXtendTest {
 
 	@Test
 	public void testCheckComponent() {
-		List<?> model = Arrays.asList(_person, _employee);
+		List<?> model = Arrays.asList(_person, _employee, _field, _version, _identifier);
 		WorkflowContext ctx = new WorkflowContextDefaultImpl();
 		ctx.set("MODEL_SLOT", model);
 		Issues issues = new IssuesImpl();

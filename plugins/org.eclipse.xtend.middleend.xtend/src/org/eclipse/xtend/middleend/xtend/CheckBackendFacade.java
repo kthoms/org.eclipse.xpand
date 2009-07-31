@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase, André Arnold.
+Copyright (c) 2008, 2009 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -23,11 +23,13 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
+import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.xtend.CheckConverter;
 import org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory;
+import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 
@@ -78,6 +80,7 @@ public class CheckBackendFacade {
             ctx.registerMetaModel (mm);
         
         final Map<Class<?>, Object> result = new HashMap<Class<?>, Object> ();
+        result.put (OldXtendRegistryFactory.class, ctx);
         result.put (OldCheckRegistryFactory.class, ctx);
         return result;
     }
@@ -88,7 +91,17 @@ public class CheckBackendFacade {
         
         _checkFile = OldHelper.normalizeCheckResourceName (checkFileName);
         _mms = mms;
-        _middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
+    	if (LanguageContributor.INSTANCE.getLanguageContributionByName (OldXtendRegistryFactory.LANGUAGE_NAME) == null) {
+    		LanguageContributor.INSTANCE.addLanguageContribution (OldXtendRegistryFactory.class);
+    	}
+    	if (LanguageContributor.INSTANCE.getLanguageContributionByName (OldCheckRegistryFactory.LANGUAGE_NAME) == null) {
+    		LanguageContributor.INSTANCE.addLanguageContribution (OldCheckRegistryFactory.class);
+    	}
+        if (MiddleEndFactory.canCreateFromExtentions()) {
+            _middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
+        } else {
+        	_middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), LanguageContributor.INSTANCE.getFreshMiddleEnds (getSpecificParameters (fileEncoding, mms)));
+        }
     }
 
     public FunctionDefContext getFunctionDefContext () {

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase, André Arnold.
+Copyright (c) 2008, 2009 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -29,6 +29,7 @@ import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.xtend.internal.OldExpressionConverter;
@@ -36,6 +37,7 @@ import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendGlobalVarOperations;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
+import org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory;
 import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 import org.eclipse.xtend.typesystem.MetaModel;
 
@@ -153,6 +155,7 @@ public final class XtendBackendFacade {
         
         final Map<Class<?>, Object> result = new HashMap<Class<?>, Object> ();
         result.put (OldXtendRegistryFactory.class, ctx);
+        result.put (OldCheckRegistryFactory.class, ctx);
         return result;
     }
     
@@ -163,7 +166,11 @@ public final class XtendBackendFacade {
         
         _xtendFile = OldHelper.normalizeXtendResourceName (xtendFileName);
         _mms = mms;
-        _middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
+        if (MiddleEndFactory.canCreateFromExtentions()) {
+        	_middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), getSpecificParameters (fileEncoding, mms));
+        } else {
+        	_middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), LanguageContributor.INSTANCE.getFreshMiddleEnds (getSpecificParameters (fileEncoding, mms)));
+        }
     }
 
     public FunctionDefContext getFunctionDefContext () {

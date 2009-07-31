@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.xtend.middleend">
+<schema targetNamespace="org.eclipse.xtend.backend" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.xtend.middleend" id="MiddleEnd" name="Middle Enf"/>
+         <meta.schema plugin="org.eclipse.xtend.backend" id="MiddleEnd" name="Middle End"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -11,6 +11,11 @@
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="element_1" minOccurs="1" maxOccurs="unbounded"/>
@@ -93,13 +98,5 @@
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="copyright"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
 </schema>

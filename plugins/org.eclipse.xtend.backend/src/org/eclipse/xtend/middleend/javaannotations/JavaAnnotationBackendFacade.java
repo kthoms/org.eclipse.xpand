@@ -18,6 +18,7 @@ import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
@@ -118,15 +119,23 @@ public class JavaAnnotationBackendFacade {
 
 	private JavaAnnotationBackendFacade(String className, BackendTypesystem ts) {
 		_className = className;
-		_middleend = MiddleEndFactory.createFromExtensions(ts,
+		if (MiddleEndFactory.canCreateFromExtentions()) {
+			_middleend = MiddleEndFactory.createFromExtensions(ts,
 				getSpecificParameters());
+		} else {
+			_middleend = MiddleEndFactory.create(ts, LanguageContributor.INSTANCE.getFreshMiddleEnds(getSpecificParameters()));
+		}
 	}
 
 	private JavaAnnotationBackendFacade(String className, BackendTypesystem ts,
 			String adviceClass) {
 		_className = className;
-		_middleend = MiddleEndFactory.createFromExtensions(ts,
-				getSpecificParameters());
+		if (MiddleEndFactory.canCreateFromExtentions()) {
+			_middleend = MiddleEndFactory.createFromExtensions(ts,
+					getSpecificParameters());
+		} else {
+			_middleend = MiddleEndFactory.create(ts, LanguageContributor.INSTANCE.getFreshMiddleEnds(getSpecificParameters()));
+		}
 		_middleend.applyAdvice(adviceClass);
 	}
 

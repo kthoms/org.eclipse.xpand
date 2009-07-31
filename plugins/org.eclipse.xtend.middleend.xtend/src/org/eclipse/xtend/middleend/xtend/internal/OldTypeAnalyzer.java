@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 Arno Haase, André Arnold.
+Copyright (c) 2008, 2009 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import java.util.Set;
 import org.eclipse.internal.xtend.expression.ast.BooleanLiteral;
 import org.eclipse.internal.xtend.expression.ast.BooleanOperation;
 import org.eclipse.internal.xtend.expression.ast.Case;
+import org.eclipse.internal.xtend.expression.ast.Cast;
 import org.eclipse.internal.xtend.expression.ast.ChainExpression;
 import org.eclipse.internal.xtend.expression.ast.CollectionExpression;
 import org.eclipse.internal.xtend.expression.ast.ConstructorCallExpression;
@@ -139,11 +140,13 @@ public final class OldTypeAnalyzer {
             return analyzeIf (ctx, (IfExpression) expr);
         if (expr instanceof SwitchExpression)
             return analyzeSwitch (ctx, (SwitchExpression) expr);
+        if (expr instanceof Cast)
+        	return analyzeCast (ctx, (Cast) expr);
         
         throw new IllegalArgumentException ("unknown expression kind " + expr.getClass().getName());
     }
 
-    private Type analyzeListLiteral (ExecutionContext ctx, ListLiteral expr) {
+	private Type analyzeListLiteral (ExecutionContext ctx, ListLiteral expr) {
         Type innerType = null;
         
         for (Expression ele: expr.getElements()) {
@@ -271,6 +274,11 @@ public final class OldTypeAnalyzer {
         
         return result;
     }
+
+    private Type analyzeCast(ExecutionContext ctx, Cast expr) {
+    	//basically ignore the cast
+		return analyze (ctx, expr.getTarget());
+	}
     
     private Type getCommonSupertype (Type t1, Type t2) {
         if (t1.isAssignableFrom (t2))

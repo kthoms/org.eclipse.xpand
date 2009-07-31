@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.xtend.backend.MiddleEnd">
       <element_1
-            class="org.eclipse.xtend.middleend.xpand.internal.OldXpandRegistryFactory">
+            class="org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory">
       </element_1>
    </extension>
 

@@ -47,11 +47,12 @@ import org.eclipse.xtend.backend.syslib.InMemoryPostprocessor;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.syslib.UriBasedPostprocessor;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.xpand.internal.OldDefinitionConverter;
-import org.eclipse.xtend.middleend.xpand.internal.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
+import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
 import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
@@ -291,8 +292,12 @@ public final class XpandBackendFacade {
             outlets = new ArrayList<Outlet> ();
 
         _xpandFile = OldHelper.normalizeXpandResourceName (xpandFilename);
-        _middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
-        
+        if (MiddleEndFactory.canCreateFromExtentions ()) {
+        	_middleEnd = MiddleEndFactory.createFromExtensions (OldHelper.guessTypesystem (mms), createSpecificParameters (fileEncoding, mms, outlets));
+        } else {
+        	_middleEnd = MiddleEndFactory.create (OldHelper.guessTypesystem (mms), LanguageContributor.INSTANCE.getFreshMiddleEnds (createSpecificParameters (fileEncoding, mms, outlets)));
+        }
+    
         _fileEncoding = fileEncoding;
         _mms = mms;
         _outlets = outlets;

@@ -5,12 +5,12 @@
    <parent>
       <artifactId>m2t-xpand</artifactId>
       <groupId>org.eclipse.m2t.xpand</groupId>
-      <version>0.7.1</version>
+      <version>0.7.2</version>
    </parent>
 
    <groupId>org.eclipse.m2t.xpand</groupId>
    <artifactId>m2t-xpand-xtend-typesystem-xsd</artifactId>
-   <version>0.7.1</version>
+   <version>0.7.2</version>
    <name>Eclipse M2T XPand - XTend Typesystem XSD</name>
    <description />
 

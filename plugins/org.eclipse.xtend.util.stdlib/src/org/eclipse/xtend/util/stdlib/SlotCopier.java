@@ -79,6 +79,7 @@ public class SlotCopier extends AbstractWorkflowComponent2 {
 		return "slot '" + fromSlot + "' -> slot '" + toSlot + "'";
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor mon, Issues issues) {
 		Object content = ctx.get(fromSlot);
@@ -88,7 +89,7 @@ public class SlotCopier extends AbstractWorkflowComponent2 {
 		else {
 			if ((content instanceof List) && removeTopLevelList) {
 				log.info("copying first element of " + content + " [" + content.getClass().getName() + "]");
-				ctx.set(toSlot, ((List<?>) content).get(0));
+				ctx.set(toSlot, ((List) content).get(0));
 			}
 			else {
 				log.info("copying " + content + " [" + content.getClass().getName() + "]");

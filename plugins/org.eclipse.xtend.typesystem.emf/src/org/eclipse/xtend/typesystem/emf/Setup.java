@@ -43,7 +43,6 @@ public class Setup {
 		EcoreUtil2.getEPackageByClassName(clazz);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void addUriMap(final Mapping uriMap) {
 		final URI baseUri = URI.createURI(uriMap.getFrom());
 		final URI mappedUri = EcoreUtil2.getURI(uriMap.getTo());

@@ -148,7 +148,6 @@ public class XmiReader extends AbstractWorkflowComponent {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected File loadFile(final Issues issues) {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 		if (modelFile == null) {

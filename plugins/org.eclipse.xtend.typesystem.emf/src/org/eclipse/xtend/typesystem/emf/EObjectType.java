@@ -127,7 +127,6 @@ public class EObjectType extends AbstractTypeImpl {
 		return Collections.singleton(getTypeSystem().getObjectType());
 	}
 
-	@SuppressWarnings("unchecked")
 	public static StringBuffer toString(EObject x) {
 		if (x == null) {
 			return new StringBuffer("null");
@@ -155,7 +154,7 @@ public class EObjectType extends AbstractTypeImpl {
 	}
 
 	private static StringBuffer toString(Object o) {
-		if (o instanceof Collection) {
+		if (o instanceof Collection<?>) {
 			StringBuffer buff = new StringBuffer("{");
 			Iterator<?> iter = ((Collection<?>) o).iterator();
 			while (iter.hasNext()) {
@@ -177,7 +176,7 @@ public class EObjectType extends AbstractTypeImpl {
 	}
 
 	private static String shortString(Object o) {
-		if (o instanceof Collection) {
+		if (o instanceof Collection<?>) {
 			StringBuffer buff = new StringBuffer("{");
 			for (Object x : ((Collection<?>) o)) {
 				if (x instanceof EObject)

@@ -49,7 +49,6 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 public class XmiWriter extends AbstractWorkflowComponent {
 
 	// default save options.
-	@SuppressWarnings("unchecked")
 	private static final Map saveOptions = new HashMap();
 
 	private static final String COMPONENT_NAME = "XMI Writer";
@@ -131,7 +130,6 @@ public class XmiWriter extends AbstractWorkflowComponent {
 	 *      org.eclipse.emf.mwe.core.issues.Issues)
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		final Object slotContent = ctx.get(inputSlot);
 		if (slotContent == null) {

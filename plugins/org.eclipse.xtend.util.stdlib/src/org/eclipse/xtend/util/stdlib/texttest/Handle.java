@@ -55,7 +55,7 @@ public class Handle {
 		return lines;
 	}
 
-	private List loadContent() throws IOException {
+	private List<String> loadContent() throws IOException {
 		List<String> l = new ArrayList<String>();
 		BufferedReader br = new BufferedReader( new InputStreamReader( getFileIS(filename) ) );
 		while (br.ready()) l.add( br.readLine());

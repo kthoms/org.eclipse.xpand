@@ -1,7 +1,7 @@
 package org.eclipse.xtend.typesystem.uml2.profile;
 
 /*******************************************************************************
- * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
+ * Copyright (c) 2005 - 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@ package org.eclipse.xtend.typesystem.uml2.profile;
  *******************************************************************************/
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,8 +41,37 @@ import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.uml2.UML2MetaModelBase;
 import org.eclipse.xtend.typesystem.uml2.UML2Util2;
 
+/**
+ * The ProfileMetaModel maps Stereotypes defined in UML profiles to virtual
+ * types that extend the base UML metaclasses. Use this {@link MetaModel}
+ * implementation when using profiled UML models.
+ * 
+ * <h2>Workflow configuration</h2> Instantiate one ProfileMetaModel instance in
+ * your workflow and add one or more <tt>profile</tt> URIs.
+ * 
+ * <pre>
+ * &lt;bean id=&quot;mm_profile&quot; class=&quot;org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel&quot;&gt;
+ *   &lt;profile value=&quot;platform:/resource/yourproject/path/to/The.profile.uml&quot;/&gt;
+ *   &lt;profile value=&quot;platform:/resource/yourproject/path/to/Another.profile.uml&quot;/&gt;
+ * &lt;/bean&gt;
+ * ...
+ * &lt;component class=&quot;org.eclipse.xpand2.Generator&quot;&gt;
+ *    &lt;metaModel idRef=&quot;mm_profile&quot;/&gt;
+ *    ...
+ * &lt;/component&gt;
+ * </pre>
+ * 
+ * Use the ProfileMetaModel always as first metaModel registration for expression using workflow components (Generator, XtendComponent, etc.).
+ * It is <i>not necessary</i> to add an instance of {@link org.eclipse.xtend.typesystem.uml2.UML2MetaModel UML2MetaModel} or 
+ * {@link org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel EmfRegistryMetaModel} additionally, since the ProfileMetaModel delegates 
+ * to those metamodel implementations when it is not responsible for resolving a type.
+ * 
+ * @author karsten.thoms@itemis.de
+ * @author Moritz@Eysholdt.de
+ * 
+ */
 public class ProfileMetaModel implements MetaModel {
-	public Profile profile;
+	public List<Profile> profiles = new ArrayList<Profile>(1);
 
 	private TypeSystem typeSystem;
 
@@ -50,7 +80,8 @@ public class ProfileMetaModel implements MetaModel {
 		private final Cache<String, Type> typeForNameCache = new Cache<String, Type>() {
 			@Override
 			protected Type createNew(final String typeName) {
-				final NamedElement ele = getNamedElementRec(new NamedElement[] { profile }, typeName);
+				final NamedElement[] profilesAsNE = profiles.toArray(new NamedElement[0]);
+				final NamedElement ele = getNamedElementRec(profilesAsNE, typeName);
 				if (ele != null) {
 					final Type result = getTypeForEClassifier(ele.eClass());
 					return result;
@@ -108,18 +139,18 @@ public class ProfileMetaModel implements MetaModel {
 	public ProfileMetaModel() {
 	}
 
-	public ProfileMetaModel(final Profile profile) {
-		assert profile != null;
-		this.profile = profile;
+	public ProfileMetaModel(final Profile... profiles) {
+		assert profiles != null;
+		this.profiles = Arrays.asList(profiles);
 		init();
 	}
 
-	public void setProfile(final String profile) {
+	public void addProfile(final String profile) {
 		assert profile != null;
 		final Profile p = UML2Util2.loadProfile(profile);
 		if (p == null)
 			throw new ConfigurationException("Couldn't load profile from " + profile);
-		this.profile = p;
+		this.profiles.add(p);
 		init();
 	}
 
@@ -130,13 +161,17 @@ public class ProfileMetaModel implements MetaModel {
 	 * StereotypeType instances and all Enumerations to EnumType instances.
 	 */
 	private void init() {
-		if (stereoTypes != null || profile == null || typeSystem == null)
+		if (stereoTypes != null || profiles.isEmpty() || typeSystem == null)
 			return;
 		internalProfileMetaModel = new InternaleProfileMetaModel();
 		internalProfileMetaModel.setTypeSystem(typeSystem);
 
 		stereoTypes = new HashMap<String, Type>();
-		final List<org.eclipse.uml2.uml.Type> sts = getAllOwnedTypes(profile);
+		List<org.eclipse.uml2.uml.Type> sts = new ArrayList<org.eclipse.uml2.uml.Type>();
+		for (Profile p : profiles) {
+			sts.addAll(getAllOwnedTypes(p));
+			namespaces.add(normalizedName(p.getName()));
+		}
 		for (final Iterator<org.eclipse.uml2.uml.Type> iter = sts.iterator(); iter.hasNext();) {
 			final Object o = iter.next();
 			if (o instanceof Stereotype) {
@@ -152,7 +187,6 @@ public class ProfileMetaModel implements MetaModel {
 				stereoTypes.put(typeName, t);
 			}
 		}
-		namespaces.add(normalizedName(profile.getName()));
 	}
 
 	private List<org.eclipse.uml2.uml.Type> getAllOwnedTypes(final Package pck) {
@@ -213,7 +247,6 @@ public class ProfileMetaModel implements MetaModel {
 	 * with stereotypes defined in the uml-model. Here it is the user's
 	 * responsibility to maintain the type-compatibility of the literals.
 	 * 
-	 * @author Moritz@Eysholdt.de
 	 */
 	public Type getType(final Object obj) {
 		if (obj instanceof Element) {
@@ -230,13 +263,14 @@ public class ProfileMetaModel implements MetaModel {
 			List<Stereotype> stereotypes = element.getAppliedStereotypes();
 			// if no stereotype is found, the stereotype is skipped or an
 			// Exception is thrown
-			if (stereotypes.isEmpty())
+			if (stereotypes.isEmpty()) {
 				// collection will be empty if the required profile is not
 				// loaded
 				if (errorIfStereotypeMissing && !stereotypes.toString().equals("[]"))
 					throw new RuntimeException("Stereotype could not be loaded! Possible hint: '" + stereotypes);
 				else
 					return internalProfileMetaModel.getType(obj);
+			}
 
 			List<StereotypeType> types = new ArrayList<StereotypeType>(stereotypes.size());
 			// collect StereotypeTypes
@@ -278,7 +312,13 @@ public class ProfileMetaModel implements MetaModel {
 	}
 
 	public String getName() {
-		return profile.getName();
+		if (profiles.size()==1) {
+			return profiles.get(0).getName();
+		} else {
+			List<String> names = new ArrayList<String>(profiles.size());
+			for (Profile p : profiles) names.add(p.getName());
+			return names.toString();
+		}
 	}
 
 	/**

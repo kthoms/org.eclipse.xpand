@@ -56,7 +56,7 @@ public class Pair<T1, T2> implements Serializable, Cloneable {
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof Pair))
+		if (!(o instanceof Pair<?, ?>))
 			return false;
 
 		final Pair<?, ?> pair = (Pair<?, ?>) o;

@@ -32,7 +32,7 @@ public class SetTypeImpl extends CollectionTypeImpl {
 
     @Override
     public boolean isInstance(final Object o) {
-        return o instanceof Set;
+        return o instanceof Set<?>;
     }
 
     @Override

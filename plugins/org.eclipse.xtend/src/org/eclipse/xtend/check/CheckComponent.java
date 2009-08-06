@@ -159,6 +159,7 @@ public class CheckComponent extends AbstractExpressionsUsingWorkflowComponent {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private Collection<?> getExpressionResult(final ExecutionContext exeCtx, final WorkflowContext context,
 			final String expression2) {
 		final ExpressionFacade f = new ExpressionFacade(exeCtx);

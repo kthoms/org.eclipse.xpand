@@ -104,7 +104,7 @@ public class ForEachStatement extends StatementWithBody {
 		if (o == null)
 			o = new ArrayList<Object>();
 
-		if (!(o instanceof Collection))
+		if (!(o instanceof Collection<?>))
 			throw new EvaluationException("Collection expected!", getTarget(), ctx);
 		final Collection<?> col = (Collection<?>) o;
 		final String sep = (String) (getSeparator() != null ? getSeparator().evaluate(ctx) : null);

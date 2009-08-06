@@ -125,7 +125,7 @@ public class ExpressionElementAdapter implements ElementAdapter {
 	}
 
 	public boolean checkVariableHasMembers(final Object element) {
-		if (element instanceof Collection)
+		if (element instanceof Collection<?>)
 			return !((Collection<?>) element).isEmpty();
 		if (element instanceof Type) {
 			final Type t = (Type) element;
@@ -134,6 +134,7 @@ public class ExpressionElementAdapter implements ElementAdapter {
 		return context.getType(element).getAllProperties().size() > 0;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<NameValuePair> getVariables(final Object element) {
 		if (element instanceof ChainExpression || element instanceof Literal)
 			return Collections.EMPTY_LIST;
@@ -165,9 +166,9 @@ public class ExpressionElementAdapter implements ElementAdapter {
 		}
 		if (element instanceof FeatureCall)
 			return evaluateFeatureCall((FeatureCall) element);
-		if (element instanceof Collection) {
+		if (element instanceof Collection<?>) {
 			final List<NameValuePair> result = new ArrayList<NameValuePair>();
-			final Collection col = (Collection) element;
+			final Collection<?> col = (Collection<?>) element;
 			int i = 0;
 			for (final Object object : col) {
 				result.add(new NameValuePair("[" + i + "]", object));
@@ -209,7 +210,7 @@ public class ExpressionElementAdapter implements ElementAdapter {
 
 	private List<NameValuePair> getEvalResultProperties(final String prefix, final Object evaluate) {
 		final ArrayList<NameValuePair> result = new ArrayList<NameValuePair>();
-		if (evaluate instanceof Collection) {
+		if (evaluate instanceof Collection<?>) {
 			result.add(new NameValuePair(prefix, evaluate));
 			return result;
 		}

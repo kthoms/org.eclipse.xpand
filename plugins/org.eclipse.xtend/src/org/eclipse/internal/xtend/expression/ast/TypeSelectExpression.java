@@ -46,7 +46,8 @@ public class TypeSelectExpression extends FeatureCall {
         return super.toStringInternal() + "(" + typeLiteral + ")";
     }
 
-    @Override
+	@Override
+    @SuppressWarnings("unchecked")
     public Object evaluateInternal(final ExecutionContext ctx) {
         Object targetObj = null;
         if (getTarget() == null) {

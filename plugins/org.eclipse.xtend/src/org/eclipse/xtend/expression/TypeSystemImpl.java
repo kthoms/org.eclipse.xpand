@@ -134,6 +134,7 @@ public class TypeSystemImpl implements TypeSystem {
 	private final WeakCache<Object, Type> typeCache = new WeakCache<Object, Type>() {
 		
 		@Override
+		@SuppressWarnings("unchecked")
 		public Type get(Object key) {
 			if (key instanceof Collection)
 				return createNew(key);

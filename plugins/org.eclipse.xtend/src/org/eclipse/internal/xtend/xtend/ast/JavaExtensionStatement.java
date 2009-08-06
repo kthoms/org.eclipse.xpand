@@ -101,13 +101,13 @@ public class JavaExtensionStatement extends AbstractExtension {
 
 	public Method getJavaMethod(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         try {
-            Class clazz = null;
+            Class<?> clazz = null;
             clazz = ResourceLoaderFactory.createResourceLoader().loadClass(javaType.getValue());
             if (clazz == null) {
                 issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't find Java type "+javaType.getValue(), javaType));
                 return null;
             }
-            final Class[] paramTypes = new Class[javaParamTypes.size()];
+            final Class<?>[] paramTypes = new Class[javaParamTypes.size()];
             for (int i = 0, x = javaParamTypes.size(); i < x; i++) {
                 final Identifier javaParamType = javaParamTypes.get(i);
 

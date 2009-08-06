@@ -64,7 +64,7 @@ public class Triplet<T1, T2, T3> implements Serializable, Cloneable {
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof Triplet))
+		if (!(o instanceof Triplet<?, ?, ?>))
 			return false;
 
 		final Triplet<?, ?, ?> triplet = (Triplet<?, ?, ?>) o;

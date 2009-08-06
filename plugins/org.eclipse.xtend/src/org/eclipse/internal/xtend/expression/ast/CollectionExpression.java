@@ -94,13 +94,11 @@ public class CollectionExpression extends FeatureCall {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	private Object executeSortBy(Collection collection, final ExecutionContext ctx) {
 		List<Object> result = new ArrayList<Object>();
 		result.addAll(collection);
 		Collections.sort(result, new Comparator<Object>() {
 
-			@SuppressWarnings("unchecked")
 			public int compare(Object o1, Object o2) {
 				final Object a = closure.evaluate(ctx.cloneWithVariable(new Variable(getElementName(), o1)));
 				final Object b = closure.evaluate(ctx.cloneWithVariable(new Variable(getElementName(), o2)));
@@ -148,7 +146,6 @@ public class CollectionExpression extends FeatureCall {
 		return Boolean.TRUE;
 	}
 
-	@SuppressWarnings("unchecked")
 	private Object executeReject(final Collection collection, ExecutionContext ctx) {
 		final Collection resultCol = new ArrayList(collection);
 		for (final Iterator iter = collection.iterator(); iter.hasNext();) {
@@ -190,7 +187,6 @@ public class CollectionExpression extends FeatureCall {
 		return resultCol.iterator().next();
 	}
 
-	@SuppressWarnings("unchecked")
 	private Object executeCollect(final Collection collection, ExecutionContext ctx) {
 		final Collection<Object> resultCol = new ArrayList<Object>();
 		for (final Iterator iter = Collections.unmodifiableCollection(collection).iterator(); iter.hasNext();) {

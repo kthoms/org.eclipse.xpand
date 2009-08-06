@@ -86,7 +86,6 @@ public class JavaBeansStrategy implements JavaTypeStrategy {
 		}
 
 		Set<Class<?>> classSet = new HashSet<Class<?>>();
-		List<Method> methodList = new ArrayList<Method>();
 		
 		if (Modifier.isPublic(clazz.getModifiers())) {
             classSet.add(clazz);

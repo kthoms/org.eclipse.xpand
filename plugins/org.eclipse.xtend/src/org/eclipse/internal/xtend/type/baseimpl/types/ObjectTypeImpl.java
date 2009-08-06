@@ -112,8 +112,7 @@ public class ObjectTypeImpl extends BuiltinBaseType implements Type {
                                 + "or greater than the specified object.";
                     }
 
-                    @SuppressWarnings("unchecked")
-					@Override
+                    @Override
                     public Object evaluateInternal(final Object target, final Object[] params) {
                         if (target == null)
                             return params[0] == null ? new Long(0) : new Long(-1);
@@ -142,8 +141,7 @@ public class ObjectTypeImpl extends BuiltinBaseType implements Type {
         return new Object();
     }
 
-    @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public Set<Type> getSuperTypes() {
         return Collections.EMPTY_SET;
     }

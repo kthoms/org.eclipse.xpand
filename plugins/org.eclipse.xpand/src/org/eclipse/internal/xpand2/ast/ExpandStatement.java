@@ -127,7 +127,7 @@ public class ExpandStatement extends Statement {
         if (isForeach()) {
             targetObject = target.evaluate(ctx);
             if (targetObject != null) {
-                if (!(targetObject instanceof Collection))
+                if (!(targetObject instanceof Collection<?>))
                     throw new EvaluationException("Collection expected!", target, ctx);
 
                 final Collection<?> col = (Collection<?>) targetObject;

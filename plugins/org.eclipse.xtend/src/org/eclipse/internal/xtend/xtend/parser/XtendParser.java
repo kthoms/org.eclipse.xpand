@@ -27,6 +27,7 @@ import org.eclipse.internal.xtend.xtend.ast.Check;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+@SuppressWarnings({"unused","unchecked"})
 public class XtendParser extends Parser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "COMMENT", "LINE_COMMENT", "XPAND_TAG_OPEN", "XPAND_TAG_CLOSE", "'import'", "';'", "'extension'", "'reexport'", "'context'", "'#'", "'if'", "'ERROR'", "'WARNING'", "':'", "'around'", "'('", "','", "'*'", "')'", "'::'", "'private'", "'cached'", "'JAVA'", "'.'", "'create'", "'Collection'", "'List'", "'Set'", "'let'", "'='", "'->'", "'?'", "'then'", "'else'", "'switch'", "'{'", "'case'", "'default'", "'}'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'-'", "'/'", "'!'", "'GLOBALVAR'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'", "'['", "']'"
@@ -78,7 +79,7 @@ public class XtendParser extends Parser {
 
     // $ANTLR start file
     // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:43:1: file returns [ExtensionFile r] : (nsi= nsImport )* (exti= extImport )* (ext= extension | a= around | c= check )* EOF ;
-    public ExtensionFile file() throws RecognitionException {
+	public ExtensionFile file() throws RecognitionException {
         ExtensionFile r = null;
 
         ImportStatement nsi = null;
@@ -4013,7 +4014,7 @@ public class XtendParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA27_26 = input.LA(1);
+						int LA27_26 = input.LA(1);
 
                          
                         int index27_26 = input.index();

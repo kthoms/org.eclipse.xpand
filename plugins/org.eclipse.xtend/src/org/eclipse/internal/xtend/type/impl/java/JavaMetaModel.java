@@ -166,6 +166,7 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 	/**
 	 * @see org.eclipse.xtend.typesystem.MetaModel#getKnownTypes()
 	 */
+	@SuppressWarnings("unchecked")
 	public Set<Type> getKnownTypes() {
 		final Collection<Type> col = cache.getValues();
 		return (Set<Type>) (col instanceof Set ? col : new HashSet<Type>(col));

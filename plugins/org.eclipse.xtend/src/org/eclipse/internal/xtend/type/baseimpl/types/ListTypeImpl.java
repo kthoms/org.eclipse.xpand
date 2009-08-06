@@ -33,6 +33,7 @@ public class ListTypeImpl extends CollectionTypeImpl implements Type {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public boolean isInstance(final Object o) {
 		return o instanceof List;
 	}
@@ -61,6 +62,7 @@ public class ListTypeImpl extends CollectionTypeImpl implements Type {
 			}
 		}, new OperationImpl(this, "first", getInnerType(), new Type[0]) {
 			@Override
+			@SuppressWarnings("unchecked")
 			public Object evaluateInternal(final Object target, final Object[] params) {
 				if (target instanceof List) {
 					List<?> l = (List<?>) target;
@@ -71,6 +73,7 @@ public class ListTypeImpl extends CollectionTypeImpl implements Type {
 			}
 		}, new OperationImpl(this, "reverse", getTypeSystem().getCollectionType(getInnerType()), new Type[0]) {
 			@Override
+			@SuppressWarnings("unchecked")
 			public Object evaluateInternal(final Object target, final Object[] params) {
 				if (target instanceof List) {
 					List<?> l = new ArrayList ((List<?>) target);
@@ -81,6 +84,7 @@ public class ListTypeImpl extends CollectionTypeImpl implements Type {
 			}
 		}, new OperationImpl(this, "last", getInnerType(), new Type[0]) {
 			@Override
+			@SuppressWarnings("unchecked")
 			public Object evaluateInternal(final Object target, final Object[] params) {
 				if (target instanceof List) {
 					List<?> l = (List<?>) target;

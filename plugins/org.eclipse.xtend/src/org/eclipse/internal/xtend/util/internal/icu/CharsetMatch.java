@@ -35,6 +35,7 @@ import java.io.Reader;
  * @draft ICU 3.4
  * @provisional This API might change or be removed in a future release.
  */
+@SuppressWarnings("unchecked")
 public class CharsetMatch implements Comparable {
 
     

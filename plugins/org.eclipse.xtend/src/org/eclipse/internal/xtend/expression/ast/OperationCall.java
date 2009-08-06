@@ -110,7 +110,7 @@ public class OperationCall extends FeatureCall {
 			}
 		}
 
-		if (targetObj instanceof Collection) {
+		if (targetObj instanceof Collection<?>) {
 			final List<Object> result = new ArrayList<Object>();
 			final Collection<?> col = (Collection<?>) targetObj;
 			for (final Iterator<?> iter = col.iterator(); iter.hasNext();) {
@@ -119,7 +119,7 @@ public class OperationCall extends FeatureCall {
 				op = ctx.findOperation(getName().getValue(), element, evaluatedParams);
 				if (op != null) {
 					final Object r = evaluate(op, element, evaluatedParams, ctx);
-					if (r instanceof Collection) {
+					if (r instanceof Collection<?>) {
 						result.addAll((Collection<?>) r);
 					} else {
 						result.add(r);
@@ -138,7 +138,7 @@ public class OperationCall extends FeatureCall {
 							e.addStackElement(this, ctx);
 							throw e;
 						}
-						if (r instanceof Collection) {
+						if (r instanceof Collection<?>) {
 							result.addAll((Collection<?>) r);
 						} else {
 							result.add(r);

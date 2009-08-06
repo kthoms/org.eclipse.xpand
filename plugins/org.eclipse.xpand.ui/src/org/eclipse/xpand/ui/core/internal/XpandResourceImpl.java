@@ -17,8 +17,6 @@ import org.eclipse.core.resources.IStorage;
 import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xpand2.model.XpandResource;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.xpand.ui.XpandEditorPlugin;
 import org.eclipse.xpand.ui.core.IXpandResource;
 import org.eclipse.xpand.ui.core.internal.builder.XpandResourceParser;
 import org.eclipse.xpand2.XpandExecutionContext;

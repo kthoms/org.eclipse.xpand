@@ -37,7 +37,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.xpand.ui.XpandEditorPlugin;
 import org.eclipse.xpand.ui.core.IXpandResource;
 import org.eclipse.xpand.ui.internal.XpandLog;
 import org.eclipse.xpand2.XpandExecutionContext;

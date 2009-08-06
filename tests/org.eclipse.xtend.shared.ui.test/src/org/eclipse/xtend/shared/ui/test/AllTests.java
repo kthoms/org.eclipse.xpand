@@ -1,9 +1,9 @@
 package org.eclipse.xtend.shared.ui.test;
 
-import org.eclipse.xtend.shared.ui.test.core.AllPackageTests;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
+import org.eclipse.xtend.shared.ui.test.core.AllPackageTests;
 
 public class AllTests{
 

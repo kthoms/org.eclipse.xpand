@@ -16,12 +16,9 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IStorage;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Resource;
-import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandMarkerManager;
 
 public abstract class AbstractResource implements IXtendXpandResource {

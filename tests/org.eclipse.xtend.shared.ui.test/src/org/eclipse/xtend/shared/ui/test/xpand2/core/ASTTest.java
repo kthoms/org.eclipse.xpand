@@ -12,9 +12,9 @@
 package org.eclipse.xtend.shared.ui.test.xpand2.core;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.xpand2.XpandUtil;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.xpand.ui.core.IXpandResource;
+import org.eclipse.xpand2.XpandUtil;
 import org.eclipse.xtend.shared.ui.Activator;
 
 public class ASTTest extends XpandCoreTestBase {

@@ -394,6 +394,7 @@ public class AnalyzationTest extends TestCase {
 	/**
 	 * Import of an non-existent extension must lead to an error
 	 */
+	@SuppressWarnings("unchecked")
 	public void testBug174611() throws Exception {
 		// create the lists to initialize an ExtensionFile instance
 		// create an erraneous AbstractExtension Import

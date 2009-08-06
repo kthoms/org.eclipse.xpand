@@ -26,15 +26,15 @@ public class Bean {
 
     private int counter = 0;
 
-	private List childBeans = new ArrayList();
+	private List<Bean> childBeans = new ArrayList<Bean>();
 
     private Bean parentBean = null;
 
-    public List getChildBeans() {
+    public List<Bean> getChildBeans() {
         return childBeans;
     }
 
-    public void setChildBeans(final List childBeans) {
+    public void setChildBeans(final List<Bean> childBeans) {
         this.childBeans = childBeans;
     }
 

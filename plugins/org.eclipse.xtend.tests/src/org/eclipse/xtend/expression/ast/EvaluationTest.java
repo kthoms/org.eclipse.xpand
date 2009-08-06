@@ -20,7 +20,6 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.eclipse.internal.xtend.expression.ast.Expression;
-import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
@@ -183,9 +182,9 @@ public class EvaluationTest extends TestCase {
 //		assertEquals (AType.TEST, eval (getATypeName() + "::TEST"));
 //	}
 
-	private String getATypeName() {
-		return AType.class.getName().replaceAll("\\.", SyntaxConstants.NS_DELIM);
-	}
+//	private String getATypeName() {
+//		return AType.class.getName().replaceAll("\\.", SyntaxConstants.NS_DELIM);
+//	}
 
 	public final void testPath1() {
 	    assertEquals (Arrays.asList("A", "B", "C"), eval ("{'a','b','c'}.toUpperCase()"));

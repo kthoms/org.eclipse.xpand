@@ -28,6 +28,7 @@ import org.eclipse.xtend.expression.ExpressionFacade;
  * @author Arno Haase
  * @author Bernd Kolb
  */
+@SuppressWarnings("unchecked")
 public class CollectionFeaturesTest extends TestCase {
 	ExecutionContextImpl ec;
 

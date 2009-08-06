@@ -45,6 +45,7 @@ import java.util.Iterator;
  * @draft ICU 3.4
  * @provisional This API might change or be removed in a future release.
  */
+@SuppressWarnings("unchecked")
 public class CharsetDetector {
 
 //   Question: Should we have getters corresponding to the setters for inut text
@@ -200,7 +201,7 @@ public class CharsetDetector {
      * @draft ICU 3.4
      * @provisional This API might change or be removed in a future release.
      */
-    public CharsetMatch[] detectAll() {
+	public CharsetMatch[] detectAll() {
         CharsetRecognizer csr;
         int               i;
         int               detectResults;

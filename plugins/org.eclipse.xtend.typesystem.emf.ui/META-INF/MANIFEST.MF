@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtend,
  org.eclipse.xtend.shared.ui,
  org.eclipse.emf.converter
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.xtend.typesystem.emf.ui
 Bundle-Activator: org.eclipse.xtend.typesystem.emf.ui.EmfToolsPlugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

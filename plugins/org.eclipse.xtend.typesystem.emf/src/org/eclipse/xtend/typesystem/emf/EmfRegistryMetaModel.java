@@ -189,7 +189,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 			}
 			ENamedElement type = ele.iterator().next();
 			if (type instanceof EClassifier) {
-				return cache.get((EClassifier) type);
+				return cache.get(type);
 			}
 			return null;
 		}
@@ -207,16 +207,16 @@ public class EmfRegistryMetaModel implements MetaModel {
 			try {
 				packages.add(EPackage.Registry.INSTANCE.getEPackage(name));
 			} catch (Exception e) {
-				log.error(e);
+				log.error(e, e);
 			}
 		}
 		if (!resourceSets.isEmpty()) {
 			for (ResourceSet rs : resourceSets) {
-				for (String name : (Set<String>) rs.getPackageRegistry().keySet()) {
+				for (String name : rs.getPackageRegistry().keySet()) {
 					try {
 						packages.add(rs.getPackageRegistry().getEPackage(name));
 					} catch (Exception e) {
-						log.error(e);
+						log.error(e, e);
 					}
 				}
 			}
@@ -231,7 +231,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 	}
 
 	public Type getTypeForName(final String typeName) {
-		return (Type) typeForNameCache.get(typeName);
+		return typeForNameCache.get(typeName);
 	}
 
 	private Set<ENamedElement> getNamedElementRec(final ENamedElement[] elements, final String name) {
@@ -302,7 +302,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 		if (element == null) {
 			return getTypeSystem().getVoidType();
 		}
-		return (Type) cache.get(element);
+		return cache.get(element);
 	}
 
 	public Type getTypeForEClassifier(final EGenericType element) {
@@ -313,7 +313,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 		if (element.getETypeArguments().size() != 1)
 			throw new RuntimeException("Unexpected number of type arguments");
 
-		return (Type) cache.get(element);
+		return cache.get(element);
 	}
 
 	public Type getTypeForETypedElement(final ETypedElement typedElement) {

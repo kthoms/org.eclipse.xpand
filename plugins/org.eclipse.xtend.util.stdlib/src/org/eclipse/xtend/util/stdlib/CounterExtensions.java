@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Java helper class for Stdlib extension <tt>org::openarchitectureware::util::stdlib::counter</tt>.
+ * Java helper class for Stdlib extension <tt>org::eclipse::xtend::util::stdlib::counter</tt>.
  */
 public class CounterExtensions {
 	

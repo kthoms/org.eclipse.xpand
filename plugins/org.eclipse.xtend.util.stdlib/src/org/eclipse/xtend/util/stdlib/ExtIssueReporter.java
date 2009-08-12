@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
 /**
  * Java helper class for Stdlib extension
- * <tt>org::openarchitectureware::util::stdlib::issues</tt>.
+ * <tt>org::eclipse::xtend::util::stdlib::issues</tt>.
  */
 public class ExtIssueReporter extends AbstractWorkflowComponent2 {
 	private static final String ERROR_CONFIGURE = "You must run the org.eclipse.xtend.util.stdlib.ExtIssueReporter component before using the issue reporting utilities.";

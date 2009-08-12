@@ -14,7 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Java helper class for Stdlib extension <tt>org::openarchitectureware::util::stdlib::cloning</tt>.
+ * Java helper class for Stdlib extension <tt>org::eclipse::xtend::util::stdlib::cloning</tt>.
  * Contains extension functions for logging messages and errors.
  */
 public class IOExtensions {

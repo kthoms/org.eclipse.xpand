@@ -11,7 +11,6 @@ Contributors:
 package org.eclipse.xtend.middleend;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -47,7 +46,6 @@ public class LanguageSetup extends AbstractWorkflowComponent {
 		}
 	}
 
-	@Override
 	public void checkConfiguration(Issues issues) {
 		if (_middleEndFactories.isEmpty())
 			issues.addError ("No LanguageContributors defined");

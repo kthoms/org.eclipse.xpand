@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xpand.tests"
       label="%featureName"
-      version="0.7.2.qualifier"
+      version="0.8.0.qualifier"
       provider-name="%providerName">
 
    <description url="http://www.eclipse.org/modeling/m2t">

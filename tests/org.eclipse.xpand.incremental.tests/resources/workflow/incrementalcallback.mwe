@@ -1,0 +1,71 @@
+<workflow>
+	<!-- read new model -->
+	<component id="modelreader" class="org.eclipse.emf.mwe.utils.Reader"
+	    uri="temp/model.ecore"
+		firstElementOnly="true"
+		modelSlot="model"		
+	/>
+	<!-- read old model, copied from previous run. may not exist, so ignore missing model -->
+	<component id="newmodelreader" class="org.eclipse.emf.mwe.utils.Reader"
+	    uri="temp/oldmodel.ecore"
+		firstElementOnly="true"
+		ignoreMissingModel="true"
+		modelSlot="oldmodel"		
+	/>
+	
+	<!-- compute diff. snapshot is only for diagnostic purposes -->
+	<component id="compare" class="org.eclipse.xpand2.incremental.compare.EmfCompare"
+		oldModelSlot="oldmodel"
+		newModelSlot="model"
+		diffModelSlot="diff"
+		snapshotModelSlot="snapshot"
+	/>
+	<!-- write snapshot model for diagnostics -->
+	<component id="tracemodelwriter" class="org.eclipse.emf.mwe.utils.Writer"
+		modelSlot="snapshot"
+		uri="temp/diff.emfdiff"
+		ignoreEmptySlot="true"
+	/>	
+
+	<!-- read trace model, produced by previous run. may not exist, so ignore missing model -->
+	<component id="tracemodelreader" class="org.eclipse.emf.mwe.utils.Reader"
+	    uri="temp/trace.trace"
+		firstElementOnly="true"
+		ignoreMissingModel="true"
+		modelSlot="oldtrace"		
+	/>
+	
+	<component id="incremental" class="org.eclipse.xpand2.incremental.IncrementalGenerationCallback"
+			diffModelSlot="diff"
+			oldTraceModelSlot="oldtrace"
+			newTraceModelSlot="trace"
+	/>
+	
+	<!-- generate code -->
+	<component id="generator" class="org.eclipse.xpand2.Generator">
+		<expand value="templates::Test::Test FOR model" />
+		<outlet path="temp/" overwrite="true"/>
+		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel" />
+		<fileEncoding value="UTF-8" />
+		<vetoableCallback idRef="incremental" />
+	</component>
+	
+	<!-- clean obsolete files -->
+	<component id="cleaner" class="org.eclipse.xpand2.incremental.FileCleaner">
+		<oldTraceModelSlot value="oldtrace" />
+		<newTraceModelSlot value="trace" />
+		<outlet path="temp/" overwrite="true"/>
+	</component>
+	
+	<!-- write trace model -->
+	<component id="tracemodelwriter" class="org.eclipse.emf.mwe.utils.Writer"
+		modelSlot="trace"
+		uri="temp/trace.trace"
+	/>	
+	
+	<!-- make backup copy of model -->
+	<component id="copier" class="org.eclipse.emf.mwe.utils.FileCopy"
+		sourceFile="temp/model.ecore"
+		targetFile="temp/oldmodel.ecore"
+	/>
+</workflow>

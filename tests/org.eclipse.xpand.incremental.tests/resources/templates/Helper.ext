@@ -1,0 +1,3 @@
+typeName(ecore::EClassifier this) :
+	this.instanceTypeName == null ? this.name : this.instanceTypeName
+;

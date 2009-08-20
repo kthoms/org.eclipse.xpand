@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="incrementaltest"
+    nsURI="http://www.eclipse.org/m2t/xpand/incrementaltest.ecore" nsPrefix="incrementaltest">
+  <eClassifiers xsi:type="ecore:EClass" name="FirstClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeOne" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceToSecondClass"
+        eType="#//SecondClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecondClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeTwo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ThirdClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeThreeA" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeThreeB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnchangedClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassWithNewAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassWithRemovedAttribute">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="toBeRemoved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassWithNewSuperType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassWithRemovedSuperType" eSuperTypes="#//UnchangedClass"/>
+</ecore:EPackage>

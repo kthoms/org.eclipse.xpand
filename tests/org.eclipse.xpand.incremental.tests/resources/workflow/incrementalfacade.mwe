@@ -1,0 +1,18 @@
+<workflow>
+	<!-- create incremental generation broker and let it do all the loading and comparing -->
+	<component id="incremental" class="org.eclipse.xpand2.incremental.IncrementalGenerationFacade">
+			<newModelFile value="temp/model.ecore" />
+			<oldModelFile value="temp/oldmodel.ecore" />
+			<traceModelFile value="temp/trace.trace" />	
+			<outlet path="temp/" overwrite="true"/>
+	</component>
+	
+	<!-- generate code -->
+	<component id="generator" class="org.eclipse.xpand2.Generator">
+		<expand value="templates::Test::Test FOR model" />
+		<outlet path="temp/" overwrite="true"/>
+		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel" />
+		<fileEncoding value="UTF-8" />
+		<vetoableCallback idRef="incremental" />
+	</component>
+</workflow>

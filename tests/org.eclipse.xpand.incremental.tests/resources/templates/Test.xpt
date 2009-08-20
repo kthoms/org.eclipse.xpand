@@ -1,0 +1,33 @@
+«EXTENSION templates::Helper»
+
+«DEFINE Test FOR ecore::EPackage»
+	«EXPAND File FOREACH eClassifiers»
+«ENDDEFINE»
+
+«DEFINE File FOR ecore::EClass»
+	«FILE typeName() + ".java"»
+		// is interface: «interface»
+		public interface «typeName()» 
+		«IF !eSuperTypes.isEmpty»
+			extends «eSuperTypes.get(0)»
+		«ENDIF»
+		{
+			// attributes: «eAttributes.name»
+			// references: «eReferences.name»
+
+			«EXPAND Method FOREACH eStructuralFeatures»
+		}
+	«ENDFILE»
+	«IF defaultValue != null»
+		«REM»dummy«ENDREM»
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE Method FOR ecore::EAttribute»
+	«eAttributeType.typeName()» get«name.toFirstUpper()»();
+«ENDDEFINE»
+
+«DEFINE Method FOR ecore::EReference»
+	// is interface: «eReferenceType.interface»
+	«eReferenceType.typeName()» get«name.toFirstUpper()»();
+«ENDDEFINE»

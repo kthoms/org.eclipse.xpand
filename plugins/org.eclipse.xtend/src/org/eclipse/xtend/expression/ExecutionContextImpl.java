@@ -73,7 +73,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	protected NullEvaluationHandler nullEvaluationHandler;
 
-	protected Callback callback;
+	protected VetoableCallback callback;
 
 	public ExecutionContextImpl() {
 		this((Map<String, Variable>) null);
@@ -102,7 +102,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 	public ExecutionContextImpl(ResourceManager resourceManager, Resource resource, TypeSystemImpl typeSystem,
 			Map<String, Variable> variables, Map<String, Variable> globalVars, ProgressMonitor monitor,
 			ExceptionHandler exceptionHandler, List<Around> advices, NullEvaluationHandler neh2,
-			Map<Resource, Set<Extension>> extensionPerResourceMap, Callback callback,
+			Map<Resource, Set<Extension>> extensionPerResourceMap, VetoableCallback callback,
 			Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache,
 			Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
 		
@@ -134,7 +134,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 		this.callback = callback;
 	}
 
-	public Callback getCallback() {
+	public VetoableCallback getCallback() {
 		return callback;
 	}
 
@@ -551,7 +551,15 @@ public class ExecutionContextImpl implements ExecutionContext {
 		typeSystem.release();
 	}
 
+	/**
+	 * @deprecated Use {@link #setVetoableCallBack(VetoableCallback)}
+	 */
+	@Deprecated
 	public void setCallBack(Callback callback) {
+		this.callback = new VetoableCallbackAdapter(callback);
+	}
+
+	public void setVetoableCallBack(VetoableCallback callback) {
 		this.callback = callback;
 	}
 

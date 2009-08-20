@@ -17,17 +17,31 @@ import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
  * is notified before and after analyzation/evaluation of each AST node.
  * 
  * @author Sven Efftinge
- * @deprecated Use {@link VetoableCallback} instead
  */
-@Deprecated
-public interface Callback {
+public interface VetoableCallback {
 	/**
+	 * Called before an element is being processed.
+	 * 
 	 * @param ele
+	 *            The element being processed. Never null.
 	 * @param ctx
+	 *            The execution context in which processing occurs. Never null.
+	 * @return true if processing should continue normally, false if this
+	 *         element should be skipped.
 	 */
-	void pre(SyntaxElement ele, ExecutionContext ctx);
+	boolean pre(SyntaxElement ele, ExecutionContext ctx);
+
 	/**
-	 * @param expressionResult the result of the evaluation (an instance of {@link Type} in analyzation phase) if syntax element was an instance of {@link Expression}
+	 * Called after an element has been processed.
+	 * 
+	 * @param ele
+	 *            The element being processed. Never null.
+	 * @param ctx
+	 *            The execution context in which processing occurs. Never null.
+	 * @param expressionResult
+	 *            the result of the evaluation (an instance of {@link Type} in
+	 *            analyzation phase) if syntax element was an instance of
+	 *            {@link Expression}
 	 */
-	void post(Object expressionResult);
+	void post(SyntaxElement ele, ExecutionContext ctx, Object expressionResult);
 }

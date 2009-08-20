@@ -114,7 +114,9 @@ public class Template extends SyntaxElement implements XpandResource {
     	try {
 	        ctx = (XpandExecutionContext) ctx.cloneWithResource(this);
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if(!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 
 			checkDuplicateDefinitions(issues);
@@ -131,7 +133,7 @@ public class Template extends SyntaxElement implements XpandResource {
     }
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 	}

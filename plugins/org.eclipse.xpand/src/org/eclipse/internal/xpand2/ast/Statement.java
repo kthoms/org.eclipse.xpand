@@ -32,7 +32,9 @@ public abstract class Statement extends SyntaxElement implements XpandAnalyzable
 				return;
 
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if (!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 			ctx.getOutput().pushStatement(this, ctx);
 			ctx.preTask(this);
@@ -45,7 +47,7 @@ public abstract class Statement extends SyntaxElement implements XpandAnalyzable
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 	}
@@ -53,7 +55,9 @@ public abstract class Statement extends SyntaxElement implements XpandAnalyzable
 	public final void analyze(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if(!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 			analyzeInternal(ctx, issues);
 		}
@@ -67,7 +71,7 @@ public abstract class Statement extends SyntaxElement implements XpandAnalyzable
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 	}

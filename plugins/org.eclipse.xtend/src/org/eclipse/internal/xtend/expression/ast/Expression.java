@@ -43,7 +43,9 @@ public abstract class Expression extends SyntaxElement implements Analyzable, Ev
 				return null;
 
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if (!ctx.getCallback().pre(this, ctx)) {
+					return null;
+				}
 			}
 			evaluateInternal = evaluateInternal(ctx);
 			return evaluateInternal;
@@ -59,7 +61,7 @@ public abstract class Expression extends SyntaxElement implements Analyzable, Ev
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(evaluateInternal);
+				ctx.getCallback().post(this, ctx, evaluateInternal);
 			}
 		}
 	}
@@ -68,7 +70,9 @@ public abstract class Expression extends SyntaxElement implements Analyzable, Ev
 		Type val = null;
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if(!ctx.getCallback().pre(this, ctx)) {
+					return null;
+				}
 			}
 			val = analyzeInternal(ctx, issues);
 			return val;
@@ -79,7 +83,7 @@ public abstract class Expression extends SyntaxElement implements Analyzable, Ev
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(val);
+				ctx.getCallback().post(this, ctx, val);
 			}
 		}
 	}

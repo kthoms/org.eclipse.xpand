@@ -112,9 +112,17 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 		return result;
 	}
 
-	protected Callback callback;
+	protected VetoableCallback callback;
 
+	/**
+	 * @deprecated Use {@link #setVetoableCallback(VetoableCallback)} instead.
+	 */
+	@Deprecated
 	public void setCallback(Callback callback) {
+		this.callback = new VetoableCallbackAdapter(callback);
+	}
+
+	public void setVetoableCallback(VetoableCallback callback) {
 		this.callback = callback;
 	}
 

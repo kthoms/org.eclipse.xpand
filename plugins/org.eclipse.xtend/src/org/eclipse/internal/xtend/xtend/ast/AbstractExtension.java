@@ -96,7 +96,9 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if (!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 			final List<DeclaredParameter> params = getFormalParameters();
 			final Set<String> usedNames = new HashSet<String>();
@@ -129,7 +131,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 	}
@@ -149,7 +151,9 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 	public Object evaluate(final Object[] parameters, ExecutionContext ctx) {
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if(!ctx.getCallback().pre(this, ctx)) {
+					return null;
+				}
 			}
 			if (cached) {
 				final List<Object> l = Arrays.asList(parameters);
@@ -170,7 +174,7 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 		return null;

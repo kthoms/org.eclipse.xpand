@@ -124,7 +124,9 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 	public void analyze(XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if(!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 			final Type thisType = ctx.getTypeForName(getType().getValue());
 			if (thisType == null) {
@@ -158,7 +160,7 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 	}
@@ -166,7 +168,9 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 	public void evaluate(XpandExecutionContext ctx) {
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if (!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 			ctx = (XpandExecutionContext) ctx.cloneWithResource(getOwner());
 			for (int i = 0; i < getBody().length; i++) {
@@ -183,7 +187,7 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 	}

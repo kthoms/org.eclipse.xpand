@@ -90,7 +90,8 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 		try {
 			ctx = ctx.cloneWithResource(this);
 			if (ctx.getCallback() != null)
-				ctx.getCallback().pre(this, ctx);
+				if (!ctx.getCallback().pre(this, ctx))
+					return;
 
 			// try to load all declared imported extensions. Add error issues if
 			// the resource cannot be located
@@ -133,7 +134,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 		}
 		finally {
 			if (ctx.getCallback() != null)
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 		}
 
 	}

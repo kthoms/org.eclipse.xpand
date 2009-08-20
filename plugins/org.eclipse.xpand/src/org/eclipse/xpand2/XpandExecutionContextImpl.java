@@ -39,7 +39,6 @@ import org.eclipse.internal.xtend.util.Triplet;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.xpand2.output.Output;
-import org.eclipse.xtend.expression.Callback;
 import org.eclipse.xtend.expression.ExceptionHandler;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.NullEvaluationHandler;
@@ -48,6 +47,7 @@ import org.eclipse.xtend.expression.ResourceManager;
 import org.eclipse.xtend.expression.ResourceParser;
 import org.eclipse.xtend.expression.TypeSystemImpl;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.expression.VetoableCallback;
 import org.eclipse.xtend.typesystem.Callable;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.Type;
@@ -95,7 +95,7 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
 
     
     protected XpandExecutionContextImpl (ResourceManager resourceManager, Resource currentResource, TypeSystemImpl typeSystem, Map<String, Variable> vars, 
-            Map<String, Variable> globalVars, Output output, ProtectedRegionResolver protectedRegionResolver, ProgressMonitor monitor, ExceptionHandler exceptionHandler,List<Around> advices, NullEvaluationHandler nullEvaluationHandler, Map<Resource, Set<Extension>> allExtensionsPerResource, Callback callback, 
+            Map<String, Variable> globalVars, Output output, ProtectedRegionResolver protectedRegionResolver, ProgressMonitor monitor, ExceptionHandler exceptionHandler,List<Around> advices, NullEvaluationHandler nullEvaluationHandler, Map<Resource, Set<Extension>> allExtensionsPerResource, VetoableCallback callback, 
             Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache, Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
         super (resourceManager, currentResource, typeSystem, vars, globalVars, monitor, exceptionHandler,advices, nullEvaluationHandler,allExtensionsPerResource, callback,extensionsForNameAndTypesCache, extensionsReturnTypeCache);
         registerMetaModel(new XpandTypesMetaModel(this));

@@ -42,7 +42,8 @@ public class ImportStatement extends SyntaxElement {
 	public void analyze(ExecutionContext ctx, Set<AnalysationIssue> issues) {
 		try {
 			if (ctx.getCallback() != null)
-				ctx.getCallback().pre(this, ctx);
+				if (!ctx.getCallback().pre(this, ctx))
+					return;
 			final XtendFile xf = (XtendFile) ctx.getResourceManager().loadResource(this.getImportedId().getValue(),
 					XtendFile.FILE_EXTENSION);
 			if (xf == null) {
@@ -52,7 +53,7 @@ public class ImportStatement extends SyntaxElement {
 			}
 		} finally {
 			if (ctx.getCallback() != null)
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 		}
 	}
 

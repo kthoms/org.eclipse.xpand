@@ -296,7 +296,7 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 		}
 		executionContext.setResourceManager(getResourceManager());
 		if (callback != null) {
-			executionContext.setCallBack(callback);
+			executionContext.setVetoableCallBack(callback);
 		}
 
 		if (fileEncoding != null) {

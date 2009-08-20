@@ -54,7 +54,9 @@ public class Check extends SyntaxElement {
 	public final void analyze(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if (!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 			final Type toCheck = ctx.getTypeForName(type.getValue());
 			if (toCheck == null) {
@@ -111,7 +113,7 @@ public class Check extends SyntaxElement {
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this, ctx, null);
 			}
 		}
 	}
@@ -133,7 +135,9 @@ public class Check extends SyntaxElement {
 			boolean warnIfNothingChecked) {
 		try {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().pre(this, ctx);
+				if(!ctx.getCallback().pre(this, ctx)) {
+					return;
+				}
 			}
 			// get the type for which the check should be evaluated
 			final Type typeToCheck = ctx.getTypeForName(type.getValue());
@@ -230,7 +234,7 @@ public class Check extends SyntaxElement {
 		}
 		finally {
 			if (ctx.getCallback() != null) {
-				ctx.getCallback().post(null);
+				ctx.getCallback().post(this,ctx, null);
 			}
 		}
 	}

@@ -168,6 +168,7 @@ public class CollectionExpressionTest extends ExpressionTest {
 		assertEquals (2, result.size());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testAdd () {
 		List<Long> col = new ArrayList<Long>();
@@ -178,6 +179,7 @@ public class CollectionExpressionTest extends ExpressionTest {
 		assertEquals(6L, result.size());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testAddAll () {
 		List<Long> col1 = new ArrayList<Long>();
@@ -202,6 +204,7 @@ public class CollectionExpressionTest extends ExpressionTest {
 		assertFalse (result2);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testContainsAll () {
 		List<Long> col1 = new ArrayList<Long>();
@@ -232,6 +235,7 @@ public class CollectionExpressionTest extends ExpressionTest {
 		assertEquals(5L, it.next().longValue());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testIsEmpty () {
 		List<Long> col1 = new ArrayList<Long>();
@@ -244,6 +248,7 @@ public class CollectionExpressionTest extends ExpressionTest {
 		assertFalse (result2);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testRemove () {
 		List<Long> col = new ArrayList<Long>();
@@ -261,6 +266,7 @@ public class CollectionExpressionTest extends ExpressionTest {
 		assertEquals(5L, result.intValue());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testRemoveAll () {
 		List<Long> col1 = new ArrayList<Long>();
@@ -277,6 +283,81 @@ public class CollectionExpressionTest extends ExpressionTest {
 		assertFalse (result.contains(4L));
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testReverse () {
+		List result = (List)BackendFacade.invoke(_ctx, new QualifiedName ("testReverse"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 4L, 5L)));
+		assertEquals(5L, result.size());
+		assertEquals(5L, result.get(0));
+		assertEquals(4L, result.get(1));
+		assertEquals(3L, result.get(2));
+		assertEquals(2L, result.get(3));
+		assertEquals(1L, result.get(4));
+	}
+	
+	@Test
+	public void testIndexOf () {
+		Long result = (Long)BackendFacade.invoke(_ctx, new QualifiedName ("testIndexOf"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 4L, 5L), 3L));
+		assertEquals(2L, result.longValue());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testFirst () {
+		Long result = (Long)BackendFacade.invoke(_ctx, new QualifiedName ("testFirst"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 4L, 5L)));
+		assertEquals(1L, result.longValue());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testLast () {
+		Long result = (Long)BackendFacade.invoke(_ctx, new QualifiedName ("testLast"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 4L, 5L)));
+		assertEquals(5L, result.longValue());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testWithoutFirst () {
+		List result = (List)BackendFacade.invoke(_ctx, new QualifiedName ("testWithoutFirst"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 4L, 5L)));
+		assertEquals(4L, result.size());
+		assertEquals(2L, result.get(0));
+		assertEquals(3L, result.get(1));
+		assertEquals(4L, result.get(2));
+		assertEquals(5L, result.get(3));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testWithoutLast () {
+		List result = (List)BackendFacade.invoke(_ctx, new QualifiedName ("testWithoutLast"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 4L, 5L)));
+		assertEquals(4L, result.size());
+		assertEquals(1L, result.get(0));
+		assertEquals(2L, result.get(1));
+		assertEquals(3L, result.get(2));
+		assertEquals(4L, result.get(3));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testGet () {
+		Long result = (Long)BackendFacade.invoke(_ctx, new QualifiedName ("testGet"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 4L, 5L), 3L));
+		assertEquals(4L, result.longValue());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testToList () {
+		List result = (List)BackendFacade.invoke(_ctx, new QualifiedName ("testToList"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 3L, 4L, 5L)));
+		assertEquals(6L, result.size());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testToSet () {
+		Set result = (Set)BackendFacade.invoke(_ctx, new QualifiedName ("testToSet"), Arrays.asList (Arrays.asList(1L, 2L, 3L, 3L, 4L, 5L)));
+		assertEquals(5L, result.size());
+	}
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testPolymorhicCollections1 () {

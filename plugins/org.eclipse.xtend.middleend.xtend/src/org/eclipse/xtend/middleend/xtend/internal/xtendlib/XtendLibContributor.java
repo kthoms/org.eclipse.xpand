@@ -29,6 +29,7 @@ public class XtendLibContributor {
     private final DuplicateAwareNamedFunctionCollection _functions = new DuplicateAwareNamedFunctionCollection ();
 
     public XtendLibContributor (MiddleEnd middleEnd) {
+        registerExtensionClass (middleEnd, XtendBuiltinOperations.class);
         registerExtensionClass (middleEnd, XtendCollectionOperations.class);
         registerExtensionClass (middleEnd, XpandIsDeleteLine.class);
         registerExtensionClass (middleEnd, XtendGlobalVarOperations.class);

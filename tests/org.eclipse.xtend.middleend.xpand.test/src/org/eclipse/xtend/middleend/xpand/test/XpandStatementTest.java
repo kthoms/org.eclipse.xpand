@@ -135,10 +135,10 @@ public class XpandStatementTest {
 		
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::XpandStatements", "iso-8859-1", mms, outlets );
 		final Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("elements", Arrays.asList("one", "two" , "three"));
+		variables.put("elements", Arrays.asList("one", "two" , "three" , "four"));
 		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeachWithIterator FOR elements" + XpandTokens.RT, variables , null, null);
 		
-		assertEquals("\n\n\nfirst: one\n\n,\n\ntwo\n\n,\n\nlast: three\n\n\n", o.toString());
+		assertEquals("\n\n\nfirst: one 4\n\n,\n\ntwo 1 2\n\n,\n\nthree 2 3\n\n,\n\nlast: four\n\n\n", o.toString());
 	}
 	
 	@Test

@@ -153,7 +153,7 @@ public final class OldDefinitionConverter {
                 paramTypes.add (_typeConverter.convertToBackendType (pt));
             }
 
-            return new SourceDefinedFunction (new QualifiedName (def.getName()), paramNames, paramTypes, convertStatementSequence (def.getBody(), def, referencedDefinitions), false, null);
+            return new SourceDefinedFunction (new QualifiedName (def.getFileName().replaceAll("/", SyntaxConstants.NS_DELIM), def.getName()), paramNames, paramTypes, convertStatementSequence (def.getBody(), def, referencedDefinitions), false, null);
         }
         finally {
             _ctx = oldCtx;

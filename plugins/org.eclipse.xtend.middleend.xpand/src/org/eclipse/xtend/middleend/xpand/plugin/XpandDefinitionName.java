@@ -11,15 +11,27 @@ Contributors:
 */
 package org.eclipse.xtend.middleend.xpand.plugin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.internal.xpand2.model.AdvicedDefinition;
+import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
+import org.eclipse.internal.xpand2.model.XpandResource;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
+import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
+import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
 import org.eclipse.xpand2.XpandExecutionContext;
+import org.eclipse.xpand2.XpandExecutionContextImpl.DefinitionOperationAdapter;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.middleend.xpand.internal.XpandConverterUtil;
 import org.eclipse.xtend.middleend.xtend.internal.OldTypeAnalyzer;
+import org.eclipse.xtend.typesystem.Callable;
 import org.eclipse.xtend.typesystem.Type;
 
 
@@ -38,7 +50,7 @@ public final class XpandDefinitionName {
     
     public XpandDefinitionName (XpandDefinition def) {
         _canonicalTemplateFileName = def.getFileName();
-        _canonicalDefinitionName = _canonicalTemplateFileName.substring (0, _canonicalTemplateFileName.length() - 4) + "/" + def.getName();
+        _canonicalDefinitionName = _canonicalTemplateFileName.substring (0, _canonicalTemplateFileName.length() - 4).replaceAll("/", org.eclipse.xtend.backend.common.SyntaxConstants.NS_DELIM) + org.eclipse.xtend.backend.common.SyntaxConstants.NS_DELIM + def.getName();
     }
     
     /**
@@ -49,7 +61,7 @@ public final class XpandDefinitionName {
      *   is necessary to resolve relative references.
      */
     public XpandDefinitionName (String rawDefName, Type targetType, Type[] argTypes, XpandExecutionContext ctx) {
-        this (ctx.findDefinition(rawDefName, targetType, argTypes));
+        this (XpandConverterUtil.findDefinition(ctx, rawDefName, targetType, argTypes));
     }
 
     public XpandDefinitionName (String rawDefName, Expression target, List<Expression> args, XpandExecutionContext ctx) {
@@ -74,6 +86,8 @@ public final class XpandDefinitionName {
     public String getCanonicalDefinitionName () {
         return _canonicalDefinitionName;
     }
+    
+    
     
     public String getCanonicalTemplateFileName () {
         return _canonicalTemplateFileName;
@@ -114,4 +128,5 @@ public final class XpandDefinitionName {
             return false;
         return true;
     }
+
 }

@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.internal.xpand2.type.IteratorType;
 import org.eclipse.internal.xtend.expression.ast.BooleanLiteral;
 import org.eclipse.internal.xtend.expression.ast.BooleanOperation;
 import org.eclipse.internal.xtend.expression.ast.Case;
@@ -435,12 +436,25 @@ public final class OldExpressionConverter {
 //        }
 //        
 //        if (isObjectType (type))
+    	final String builtinPropName =  transformPropertyName (target, type, varName);
+    	if (builtinPropName != null)
+    		return new InvocationOnWhateverExpression(new QualifiedName (builtinPropName), Arrays.asList (target), true, sourcePos);
+    	else
             return new PropertyOnWhateverExpression (target, varName, sourcePos);
         
 //        return new PropertyOnObjectExpression (target, varName, sourcePos);
     }
     
-    private ExpressionBase convertConstructorCallExpression (ConstructorCallExpression expr) {
+    private String transformPropertyName (ExpressionBase target, Type type, String varName) {
+		// TODO Auto-generated method stub
+    	if (varName.equals("metaType"))
+    		return XtendLibNames.META_TYPE;
+    	if (varName.equals("elements") && type.isAssignableFrom(_ctx.getTypeForName(IteratorType.TYPE_NAME)))
+    		return XtendLibNames.ITERATOR_ELEMENTS;
+		return null;
+	}
+
+	private ExpressionBase convertConstructorCallExpression (ConstructorCallExpression expr) {
         final BackendType t = _typeConverter.convertToBackendType (expr.getType ());
         return new CreateUncachedExpression (t, getSourcePos(expr));
     }

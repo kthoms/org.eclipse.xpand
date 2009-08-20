@@ -31,11 +31,11 @@ element: «e»
 «DEFINE testForeachWithIterator FOR List[String]»
 «FOREACH this AS e ITERATOR it SEPARATOR ","»
 «IF it.firstIteration»
-first: «e»
+first: «e» «it.elements»
 «ELSEIF it.lastIteration»
 last: «e»
 «ELSE»
-«e»
+«e» «it.counter0» «it.counter1»
 «ENDIF»
 «ENDFOREACH»
 «ENDDEFINE»

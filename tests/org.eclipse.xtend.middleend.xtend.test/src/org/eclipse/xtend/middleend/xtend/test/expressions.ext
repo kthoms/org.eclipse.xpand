@@ -63,8 +63,8 @@ Boolean testForAll (List[Integer] nums) : 							nums.forAll(i | i < 10);
 Boolean testForAll () : 											{1, 2, 3, 4, 5}.forAll(i | i < 10);
 Boolean testForAllFalse () : 										{1, 2, 3, 4, 5}.forAll(i | i < 3);
 private List[Integer] testSortBy (List[Integer] c) : 				c.sortBy (e|e);
-List[Integer] testUnion (List[Integer] c1, List[Integer] c2) : 		c1.union (c2);
-Set[Integer] testIntersect (List[Integer] c1, List[Integer] c2) : 	c1.intersect (c2);
+List[Integer] testUnion (Collection[Integer] c1, Collection[Integer] c2) : 		c1.union (c2);
+Set[Integer] testIntersect (Collection[Integer] c1, Collection[Integer] c2) : 	c1.intersect (c2);
 List[Integer] testWithout (List[Integer] c1, List[Integer] c2) : 	c1.without (c2);
 Set[AbstractField] testWithout2 (List[AbstractField] c1, List[AbstractField] c2) : 	c1.without (c2);
 List testAdd (List c, Object elem) : 								c.add (elem);
@@ -82,6 +82,7 @@ List[Integer] testWithoutFirst (List[Integer] c) : 					c.withoutFirst ();
 List[Integer] testWithoutLast (List[Integer] c) : 					c.withoutLast ();
 Collection[Integer] testReverse (List[Integer] c) : 				c.reverse ();
 Integer testIndexOf (List[Integer] c, Integer elem) : 				c.indexOf (elem);
+Integer testGet (List[Integer] c, Integer idx) : 					c.get (idx);
 
 Object testCollectionsWithOperationParams (List[Field] fields) :	fields.without (fields.typeSelect(Identifier).union(fields.typeSelect(Version)).toList());
 List[String] testPolymorphicCollections (List fields) :				fields.typeSelect(Identifier).union(fields.typeSelect(Version)).display();

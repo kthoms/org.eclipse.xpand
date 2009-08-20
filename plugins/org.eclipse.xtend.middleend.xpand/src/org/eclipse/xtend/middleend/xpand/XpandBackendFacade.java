@@ -14,15 +14,21 @@ package org.eclipse.xtend.middleend.xpand;
 
 import java.io.File;
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.text.DateFormatter;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.Template;
@@ -72,6 +78,7 @@ public final class XpandBackendFacade {
     private final String _fileEncoding;
     private final Collection<MetaModel> _mms;
     private final Collection<Outlet> _outlets;
+    private static Log log = LogFactory.getLog(XpandBackendFacade.class);
     
     /**
      * This method executes Xpand code that is passed in as a string, script language style.<br>
@@ -123,7 +130,9 @@ public final class XpandBackendFacade {
 
     
     public Object executeStatement (String code, Map<String, Object> variables, List<String> advice, XpandProtectedRegionResolver resolver) {
-        if (variables == null)
+    	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
+    	log.info("XpandBackendFacade convert start: " + formatter.format(new Date()));
+    	if (variables == null)
             variables = new HashMap<String, Object> ();
         if (advice == null)
             advice = new ArrayList<String> ();
@@ -154,7 +163,10 @@ public final class XpandBackendFacade {
         registerOutlets (_middleEnd.getExecutionContext(), _outlets);
         registerProtectedRegionResolver(_middleEnd.getExecutionContext(), resolver);
         
-        return converted.evaluate (_middleEnd.getExecutionContext());
+    	log.info("XpandBackendFacade execute start: " + formatter.format(new Date()));
+    	Object o=converted.evaluate (_middleEnd.getExecutionContext());
+    	log.info("XpandBackendFacade execute start: " + formatter.format(new Date()));
+        return o;
     }
     
     public static void registerOutlets (ExecutionContext ctx, Collection<Outlet> outlets) {

@@ -97,6 +97,10 @@ public final class XtendCollectionOperations extends AbstractExecutionContextAwa
         return result;
     }
     
+    public long XpandIteratorElements (XtendIterator it) {
+    	return it.getElementCount();
+    }
+    
     public Collection<?> flatten (Collection<?> c) {
 		final List<Object> result = new ArrayList<Object>();
 		flattenRec(result, c);

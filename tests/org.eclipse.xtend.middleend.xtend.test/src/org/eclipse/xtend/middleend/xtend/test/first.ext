@@ -7,7 +7,7 @@ test2 (Object s): "Hallo, " + s + ": " + 3*(4+5) + " - " + other (99);
 
 testColl (Collection c): c.typeSelect (String).collect (e|"a " + e + " b");
 
-testPerson (Person p): p + " - " + p.firstName + " " + p.name + " - " + p.retrieveTheFullName() + " - " + p.getFirstName();
+testPerson (Person p): p.toString() + " - " + p.firstName + " " + p.name + " - " + p.retrieveTheFullName() + " - " + p.firstName /* is this intentional? p.getFirstName() */;
 
 toString (Person p): "[" + p.firstName + " " + p.name + "]";
 

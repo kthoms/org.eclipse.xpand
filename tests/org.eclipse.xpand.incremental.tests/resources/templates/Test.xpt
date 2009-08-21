@@ -4,6 +4,8 @@
 	«EXPAND File FOREACH eClassifiers»
 «ENDDEFINE»
 
+«DEFINE File FOR ecore::EClassifier»«ENDDEFINE»
+
 «DEFINE File FOR ecore::EClass»
 	«FILE typeName() + ".java"»
 		// is interface: «interface»
@@ -22,6 +24,8 @@
 		«REM»dummy«ENDREM»
 	«ENDIF»
 «ENDDEFINE»
+
+«DEFINE Method FOR ecore::EStructuralFeature»«ENDDEFINE»
 
 «DEFINE Method FOR ecore::EAttribute»
 	«eAttributeType.typeName()» get«name.toFirstUpper()»();

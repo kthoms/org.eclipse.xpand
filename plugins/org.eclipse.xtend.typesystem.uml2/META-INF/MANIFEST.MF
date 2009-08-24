@@ -10,9 +10,10 @@ Require-Bundle: org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.uml2.uml.resources;visibility:=reexport,
  org.eclipse.emf.mapping.ecore2xml;visibility:=reexport,
  org.eclipse.xtend,
- org.apache.commons.logging,
  org.eclipse.emf.mwe.core,
  org.eclipse.xtend.typesystem.emf
 Export-Package: org.eclipse.xtend.typesystem.uml2,
  org.eclipse.xtend.typesystem.uml2.profile
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.apache.commons.logging
+

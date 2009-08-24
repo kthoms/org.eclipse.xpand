@@ -23,10 +23,10 @@ Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.commo
  org.eclipse.xtend.middleend.internal;x-internal:=true,
  org.eclipse.xtend.middleend.javaannotations,
  org.eclipse.xtend.middleend.plugins
-Require-Bundle: org.apache.commons.logging,
- org.eclipse.emf.ecore,
+Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.osgi,
  org.eclipse.equinox.registry,
  org.eclipse.emf.mwe.core
 Eclipse-LazyStart: true
 Bundle-Activator: org.eclipse.xtend.middleend.internal.Activator
+Import-Package: org.apache.commons.logging

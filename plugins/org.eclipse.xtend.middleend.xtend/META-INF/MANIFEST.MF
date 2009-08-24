@@ -10,9 +10,10 @@ Export-Package: org.eclipse.xtend.middleend.xtend,
  org.eclipse.xtend.middleend.xtend.plugin
 Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.xtend,
- org.apache.commons.logging,
  org.eclipse.emf.mwe.core,
  org.eclipse.emf.ecore,
  org.eclipse.xtend.typesystem.emf,
  org.eclipse.xpand
 Bundle-ActivationPolicy: lazy
+Import-Package: org.apache.commons.logging
+

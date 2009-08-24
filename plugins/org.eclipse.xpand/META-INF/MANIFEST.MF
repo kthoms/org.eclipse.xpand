@@ -6,7 +6,6 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.xtend,
- org.apache.commons.logging,
  org.eclipse.emf.mwe.core,
  org.eclipse.jdt.core,
  org.eclipse.text,
@@ -23,3 +22,4 @@ Export-Package:
  org.eclipse.internal.xpand2.type,
  org.eclipse.xpand2.output
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.apache.commons.logging

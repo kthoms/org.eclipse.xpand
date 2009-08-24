@@ -4,6 +4,6 @@ Bundle-Name: %Bundle-Name.0 (Incubation)
 Bundle-SymbolicName: org.eclipse.xtend.backend.uml2types
 Bundle-Version: 0.7.0
 Require-Bundle: org.eclipse.xtend.backend,
- org.eclipse.uml2.uml,
- org.apache.commons.logging
+ org.eclipse.uml2.uml
 Bundle-Localization: plugin
+Import-Package: org.apache.commons.logging

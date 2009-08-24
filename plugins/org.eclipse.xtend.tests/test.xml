@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: test.xml,v 1.3 2009/03/04 15:15:08 pschonbac Exp $
+ * $Id: test.xml,v 1.4 2009/08/24 20:30:16 sefftinge Exp $
  */
 -->
 
@@ -44,7 +44,7 @@
     <ant target="core-test" antfile="${library-file}" dir="${eclipse-home}">
       <property name="data-dir" value="${emft-folder}"/>
       <property name="plugin-name" value="${plugin-name}"/>
-      <property name="classname" value="org.eclipse.xtend.AllAllTests"/>
+      <property name="classname" value="org.eclipse.xtend.tests.AllTests"/>
     </ant>
   </target>
 

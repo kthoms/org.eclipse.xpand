@@ -10,7 +10,7 @@ import junit.framework.TestSuite;
  */
 public class AllTests {
    public static Test suite() {
-      TestSuite suite = new TestSuite("Tests for org.eclipse.xtend.typesystem.xsd.tests.AllTests");
+      TestSuite suite = new TestSuite("Tests for org.eclipse.xtend.typesystem.xsd.tests");
       suite.addTestSuite(org.eclipse.xtend.typesystem.xsd.tests.compositetypes.CompositeTypesTest.class);
       suite.addTestSuite(org.eclipse.xtend.typesystem.xsd.tests.ecorebuilder.EcoreBuilderTest.class);
       suite.addTestSuite(org.eclipse.xtend.typesystem.xsd.tests.emap.EMapTest.class);

@@ -175,13 +175,21 @@ public class EclipseHelper {
 		maniContent.append("Bundle-SymbolicName: " + projectName + "; singleton:=true\n");
 		maniContent.append("Bundle-Version: 1.0.0\n");
 //		maniContent.append("Bundle-Localization: plugin\n");
+
+		// Add required bundles
 		maniContent.append("Require-Bundle: ");
 		for (String entry : requiredBundles) {
 			maniContent.append(" " + entry + ",\n");
 		}
-		maniContent.append(" org.eclipse.xpand,\n");
-		maniContent.append(" org.eclipse.xtend,\n");
-		maniContent.append(" org.eclipse.xtend.typesystem.emf\n");
+		maniContent.append(" com.ibm.icu;bundle-version=\"4.0.1\",\n");
+		maniContent.append(" org.antlr.runtime;bundle-version=\"3.0.0\",\n");
+		maniContent.append(" org.eclipse.core.runtime;bundle-version=\"3.5.0\",\n");
+		maniContent.append(" org.eclipse.emf.mwe.utils;bundle-version=\"0.7.0\",\n");
+		maniContent.append(" org.eclipse.emf.ecore.xmi;bundle-version=\"2.5.0\",\n");
+		maniContent.append(" org.eclipse.jface.text;bundle-version=\"3.5.0\",\n");
+		maniContent.append(" org.eclipse.xpand;bundle-version=\"0.7.0\",\n");
+		maniContent.append(" org.eclipse.xtend;bundle-version=\"0.7.0\",\n");
+		maniContent.append(" org.eclipse.xtend.typesystem.emf;bundle-version=\"0.7.0\"\n");
 		maniContent.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
 		
 		if (exportedPackages != null && !exportedPackages.isEmpty()) {

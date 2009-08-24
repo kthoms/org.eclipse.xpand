@@ -90,6 +90,8 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 		srcfolders.add("src");
 		srcfolders.add("src-gen");
 
+		refs.add("org.eclipse.jdt.core;bundle-version=\"3.5.0\"");
+		refs.add("org.apache.log4j;resolution:=optional");
 		final IProject p = EclipseHelper.createExtXptProject(projectName, srcfolders, Collections
 				.<IProject> emptyList(), refs, null, monitor, getShell());
 

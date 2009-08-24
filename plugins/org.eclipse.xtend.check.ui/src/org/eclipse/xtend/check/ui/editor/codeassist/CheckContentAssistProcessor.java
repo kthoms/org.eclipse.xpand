@@ -45,6 +45,7 @@ public class CheckContentAssistProcessor extends AbstractExtXptContentAssistProc
 		super(editor);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected ICompletionProposal[] internalComputeCompletionProposals(final ITextViewer viewer,
 			final int documentOffset) {

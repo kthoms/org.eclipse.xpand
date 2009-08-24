@@ -39,6 +39,7 @@ public class XpandResourceImpl extends AbstractResource implements IXpandResourc
 		return (XpandResource) getExtXptResource();
 	}
 
+	@Override
 	public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		try {
 			resource().analyze((XpandExecutionContext) ctx, issues);
@@ -71,6 +72,7 @@ public class XpandResourceImpl extends AbstractResource implements IXpandResourc
 		return parser.getFileExtension();
 	}
 
+	@Override
 	public boolean internalRefresh() {
 		Resource r = parser.parse(getUnderlyingStorage(), getFullyQualifiedName());
 		if (r == null)

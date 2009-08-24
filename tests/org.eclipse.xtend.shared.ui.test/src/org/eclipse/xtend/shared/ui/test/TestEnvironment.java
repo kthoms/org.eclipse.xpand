@@ -67,7 +67,7 @@ public class TestEnvironment {
 
 	private IWorkspace fWorkspace = null;
 
-	private Hashtable fProjects = null;
+	private Hashtable<String, IProject> fProjects = null;
 
 	private void addBuilderSpecs(final String projectName) {
 		try {
@@ -348,9 +348,9 @@ public class TestEnvironment {
 	public void close() {
 		try {
 			if (fProjects != null) {
-				final Enumeration projectNames = fProjects.keys();
+				final Enumeration<String> projectNames = fProjects.keys();
 				while (projectNames.hasMoreElements()) {
-					final String projectName = (String) projectNames.nextElement();
+					final String projectName = projectNames.nextElement();
 					getJavaProject(projectName).getJavaModel().close();
 				}
 			}
@@ -538,7 +538,7 @@ public class TestEnvironment {
 			}
 		}
 		try {
-			final ArrayList problems = new ArrayList();
+			final ArrayList<IMarker> problems = new ArrayList<IMarker>();
 			IMarker[] markers = resource.findMarkers(IModelMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
 			problems.addAll(Arrays.asList(markers));
 			markers = resource.findMarkers(IModelMarker.WARNING, true, IResource.DEPTH_INFINITE);
@@ -709,7 +709,7 @@ public class TestEnvironment {
 	public void openEmptyWorkspace() {
 		close();
 		openWorkspace();
-		fProjects = new Hashtable(10);
+		fProjects = new Hashtable<String,IProject>(10);
 		setup();
 	}
 
@@ -906,9 +906,9 @@ public class TestEnvironment {
 	 */
 	public void resetWorkspace() {
 		if (fProjects != null) {
-			final Enumeration projectNames = fProjects.keys();
+			final Enumeration<String> projectNames = fProjects.keys();
 			while (projectNames.hasMoreElements()) {
-				final String projectName = (String) projectNames.nextElement();
+				final String projectName = projectNames.nextElement();
 				removeProject(getProject(projectName).getFullPath());
 			}
 		}
@@ -1168,7 +1168,7 @@ public class TestEnvironment {
 					final IProject proj = createProject(projectName);
 					// Iterate over the project's children and import them
 					// recursively
-					for (final Iterator it2 = zipFileStructureProvider.getChildren(projectEntry).iterator(); it2
+					for (final Iterator<?> it2 = zipFileStructureProvider.getChildren(projectEntry).iterator(); it2
 							.hasNext();) {
 						final ZipEntry projectContent = (ZipEntry) it2.next();
 						// We use the ImportOperation to facilitate project

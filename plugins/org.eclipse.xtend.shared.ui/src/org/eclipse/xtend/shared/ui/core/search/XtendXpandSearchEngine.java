@@ -211,6 +211,7 @@ public class XtendXpandSearchEngine {
 		return searchmatches;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static <T extends SyntaxElement> Set<T> findRec(Object res, Class<T> clazz, Set<Object> visitedNodes) {
 		if (visitedNodes.contains(res)) {
 			return Collections.emptySet();
@@ -221,7 +222,7 @@ public class XtendXpandSearchEngine {
 			result.add((T) res);
 		}
 
-		Class instanceClass = res.getClass();
+		Class<?> instanceClass = res.getClass();
 		Method[] methods = instanceClass.getMethods();
 		for (Method method : methods) {
 			int mod = method.getModifiers();
@@ -233,7 +234,7 @@ public class XtendXpandSearchEngine {
 					Object invRes;
 					try {
 						invRes = method.invoke(res, new Object[] {});
-						if (invRes instanceof Collection) {
+						if (invRes instanceof Collection<?>) {
 							for (Object o : (Collection<?>) invRes) {
 								result.addAll(findRec(o, clazz, visitedNodes));
 							}

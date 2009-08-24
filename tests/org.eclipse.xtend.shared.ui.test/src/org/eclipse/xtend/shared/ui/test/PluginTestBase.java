@@ -63,12 +63,13 @@ public abstract class PluginTestBase  extends TestCase {
      * @param marker The marker instance
      * @return Readable description of the marker
      */
+	@SuppressWarnings("unchecked")
 	protected String getDescription (IMarker marker) {
     	try {
 	    	HashMap<String, Object> map = new HashMap<String, Object>();
 	    	map.put("resource",marker.getResource().getName());
 	    	map.put("type", marker.getType());
-	    	map.put("attributes", new HashMap(marker.getAttributes()).toString());
+	    	map.put("attributes", new HashMap<String,Object>(marker.getAttributes()).toString());
 	    	return map.toString();
     	} catch (CoreException e) {
     		throw new RuntimeException(e);

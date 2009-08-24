@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 public class AddAnnotationsAction extends AbstractCoreModelTransformerAction {
 
-    @SuppressWarnings("unchecked")
 	@Override
     public void transform(final Resource r) {
         final Iterator<EObject> iter = r.getAllContents();

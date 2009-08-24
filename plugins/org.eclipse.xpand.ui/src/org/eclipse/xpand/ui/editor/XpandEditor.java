@@ -59,6 +59,7 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 		super.createActions();
 		final ResourceBundle rb = new ResourceBundle() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public Enumeration getKeys() {
 				return new Vector().elements();

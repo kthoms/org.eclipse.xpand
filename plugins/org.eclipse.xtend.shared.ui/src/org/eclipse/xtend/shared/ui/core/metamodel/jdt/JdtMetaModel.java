@@ -147,7 +147,7 @@ public class JdtMetaModel implements MetaModel, IElementChangedListener {
 	}
 
 	public Set<? extends Type> getKnownTypes() {
-		final Set<Type> result = new HashSet(typeNameCache.getValues());
+		final Set<Type> result = new HashSet<Type>(typeNameCache.getValues());
 		result.remove(null);
 		return result;
 	}

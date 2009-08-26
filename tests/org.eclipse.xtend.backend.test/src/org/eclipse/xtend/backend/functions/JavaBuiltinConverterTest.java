@@ -51,7 +51,7 @@ public class JavaBuiltinConverterTest {
         checkEquals (5L, p[4]);
     }
     
-    @Test public void testType‰ForAdditionalBuiltin () {
+    @Test public void testTypeForAdditionalBuiltin () {
         checkEquals (LongType.INSTANCE, JavaBuiltinConverterFactory.getTypeForAdditionalBuiltin (Integer.class));
         checkEquals (LongType.INSTANCE, JavaBuiltinConverterFactory.getTypeForAdditionalBuiltin (Integer.TYPE));
         checkEquals (LongType.INSTANCE, JavaBuiltinConverterFactory.getTypeForAdditionalBuiltin (Short.class));

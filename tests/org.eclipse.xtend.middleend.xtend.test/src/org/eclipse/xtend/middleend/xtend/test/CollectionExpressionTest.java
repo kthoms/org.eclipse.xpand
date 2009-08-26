@@ -23,10 +23,12 @@ import java.util.Set;
 
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-public class CollectionExpressionTest extends ExpressionTest {
+public class CollectionExpressionTest extends JavaXtendTest {
 	
 	private Entity _entity;
 	
@@ -48,6 +50,14 @@ public class CollectionExpressionTest extends ExpressionTest {
 		_entity.addField (firstName);
 		_entity.addField (lastName);
 	}*/
+
+	@Before
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+		_bc = XtendBackendFacade.createForFile ("org::eclipse::xtend::middleend::xtend::test::expressions", "iso-8859-1", _mms);;
+		_ctx = BackendFacade.createExecutionContext (_bc.getFunctionDefContext(), _ts, true);
+	}
 
 	@SuppressWarnings("unchecked")
 	@Test

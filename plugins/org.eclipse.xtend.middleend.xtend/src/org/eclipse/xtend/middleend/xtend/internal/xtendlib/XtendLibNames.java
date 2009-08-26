@@ -33,8 +33,9 @@ public interface XtendLibNames {
     String REMOVE_ALL = "XtendRemoveAll";
     
     String META_TYPE = "XtendMetaType";
+    String STRING_REPLACE_FIRST = "XtendStringReplaceFirst";
+    
+    String UPTO = "XtendUpto";
     
     String ITERATOR_ELEMENTS = "XpandIteratorElements";
-    String ITERATOR_COUNTER_0 = "XpandIteratorCounter0";
-    String ITERATOR_COUNTER_1 = "XpandIteratorCounter1";
 }

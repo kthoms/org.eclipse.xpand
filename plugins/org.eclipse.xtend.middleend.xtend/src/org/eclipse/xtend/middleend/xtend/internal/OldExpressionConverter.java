@@ -293,7 +293,10 @@ public final class OldExpressionConverter {
         	return XtendLibNames.REMOVE;
         if ("removeAll".equals (functionName))
         	return XtendLibNames.REMOVE_ALL;
-        
+        if ("replaceFirst".equals(functionName))
+        	return XtendLibNames.STRING_REPLACE_FIRST;
+        if ("upTo".equals(functionName))
+        	return XtendLibNames.UPTO;
         return functionName;
     }
     

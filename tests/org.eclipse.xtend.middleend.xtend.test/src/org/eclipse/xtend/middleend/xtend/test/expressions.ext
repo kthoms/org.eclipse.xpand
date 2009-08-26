@@ -21,7 +21,7 @@ create Person p testCreatePersonVar(): p.setName("Tester") -> p;
 Person createPersonWithLet(): let p = new Person : p.setName("Tester")->p;
 
 
-//	opreators
+//	operators
 Boolean testNotEqualsNull (Person p) : p.name != null;
 Boolean testEqualsNull (Person p) : p.name == null;
 Boolean testLess (Integer x) :  x < 7;
@@ -52,6 +52,56 @@ List[Person] testSelect (List[Person] p) : p.select (e|e.name.startsWith("D"));
 List[String] testCollect (List[Person] p) : p.collect (e|e.name);
 List[String] testCollect (List[Person] p) : p.name;
 
+// -----------  BUILTIN TYPES  --------------------
+
+// String tests
+Integer testStringLength (String s) : s.length;
+String testStringToLowerCase (String s) : s.toLowerCase();
+String testStringOpPlus (String s1, String s2) : s1 + s2;
+List[String] testStringToCharList (String s) : s.toCharList();
+String testStringToFirstUpper (String s) : s.toFirstUpper();
+String testStringSubString (String s, Integer i1, Integer i2) : s.subString(i1, i2);
+String testStringTrim (String s) : s.trim();
+String testStringToFirstLower (String s) : s.toLowerCase();
+String testStringToUpperCase (String s) : s.toUpperCase();
+List[String] testStringSplit (String s, String regex) : s.split (regex);
+Boolean testStringStartsWith (String s1, String s2) : s1.startsWith (s2);
+Boolean testStringMatches (String s, String regex) : s.matches (regex);
+Integer testStringAsInteger (String s) : s.asInteger ();
+Boolean testStringContains (String s1, String s2) : s1.contains (s2);
+Boolean testStringEndsWith (String s1, String s2) : s1.endsWith (s2);
+String testStringReplaceFirst (String s1, String regex, String s2) : s1.replaceFirst (regex, s2);
+String testStringReplaceAll (String s1, String regex, String s2) : s1.replaceAll (regex, s2);
+
+//Integer
+Boolean testLess (Integer x, Integer y) :  x < y;
+Boolean testGreater (Integer x, Integer y) :  x > y;
+Boolean testLessEquals (Integer x, Integer y) :  x <= y;
+Boolean testGreaterEquals (Integer x, Integer y) :  x >= y;
+Boolean testEquals (Integer x, Integer y) : x == y;
+Integer testPlus (Integer x, Integer y) : x + y;
+Integer testMinus (Integer x, Integer y) : x - y;
+Integer testInvert (Integer x) : -x;
+Integer testMultiply (Integer x, Integer y) : x * y;
+Integer testDivide (Integer x, Integer y) : x / y;
+Integer testUpto (Integer x, Integer y) : x.upTo (y);
+Integer testUpto (Integer x, Integer y, Integer inc) : x.upTo (y, inc);
+
+//Real
+Boolean testLess (Real x, Real y) :  x < y;
+Boolean testGreater (Real x, Real y) :  x > y;
+Boolean testLessEquals (Real x, Real y) :  x <= y;
+Boolean testGreaterEquals (Real x, Real y) :  x >= y;
+Boolean testEquals (Real x, Real y) : x == y;
+Real testPlus (Real x, Real y) : x + y;
+Real testMinus (Real x, Real y) : x - y;
+Real testInvert (Real x) : -x;
+Real testMultiply (Real x, Real y) : x * y;
+Real testDivide (Real x, Real y) : x / y;
+
+//Xtend AopContext
+
+// Collection tests
 List testToList (Collection c) : 									c.toList ();	
 Set testToSet (Collection c): 										c.toSet ();	
 Collection testFlatten (Collection c) : 							c.flatten ();	
@@ -84,6 +134,8 @@ Collection[Integer] testReverse (List[Integer] c) : 				c.reverse ();
 Integer testIndexOf (List[Integer] c, Integer elem) : 				c.indexOf (elem);
 Integer testGet (List[Integer] c, Integer idx) : 					c.get (idx);
 
+
+//Polymorhism on collections
 Object testCollectionsWithOperationParams (List[Field] fields) :	fields.without (fields.typeSelect(Identifier).union(fields.typeSelect(Version)).toList());
 List[String] testPolymorphicCollections (List fields) :				fields.typeSelect(Identifier).union(fields.typeSelect(Version)).display();
 String display (Field f) : "Field";

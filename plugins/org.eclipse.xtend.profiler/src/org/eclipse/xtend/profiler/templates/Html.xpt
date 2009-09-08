@@ -1,17 +1,17 @@
-Â«IMPORT profilermodelÂ»
-Â«EXTENSION org::eclipse::xtend::profiler::templates::GProfÂ»
+«IMPORT profilermodel»
+«EXTENSION org::eclipse::xtend::profiler::templates::GProf»
 
-Â«DEFINE Main FOR ProfilingResultÂ»
-Â«FILE "results.html"-Â»
-Â«EXPAND StartOfDocumentÂ»
-Â«EXPAND FlatÂ»
-Â«EXPAND CallGraphÂ»
-Â«EXPAND RuntimeConfigurationÂ»
-Â«EXPAND EndOfDocumentÂ»
-Â«ENDFILEÂ»
-Â«ENDDEFINEÂ»
+«DEFINE Main FOR ProfilingResult»
+«FILE "results.html"-»
+«EXPAND StartOfDocument»
+«EXPAND Flat»
+«EXPAND CallGraph»
+«EXPAND RuntimeConfiguration»
+«EXPAND EndOfDocument»
+«ENDFILE»
+«ENDDEFINE»
 
-Â«DEFINE StartOfDocument FOR ProfilingResultÂ»
+«DEFINE StartOfDocument FOR ProfilingResult»
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
 <head>
 
@@ -132,14 +132,14 @@ the templates, checks, and/or expressions have been executed on.
 The following table shows the totals of different measured values.
 <a href="http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html#SEC5">Use these numbers</a> to get a first impression of the execution times. 
 </p>
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE EndOfDocument FOR ProfilingResultÂ»
+«DEFINE EndOfDocument FOR ProfilingResult»
 </body></html>
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
 
-Â«DEFINE Flat FOR ProfilingResultÂ»
+«DEFINE Flat FOR ProfilingResult»
 
 <table width="100%" cellspacing="0" cellpadding="0">
 <thead>
@@ -153,45 +153,45 @@ The following table shows the totals of different measured values.
 	<th>name</th>
 </tr>
 </thead>
-Â«flat_prepare()Â»
+«flat_prepare()»
 <tbody>
-Â«FOREACH getFlatProfileItems() AS i-Â»
+«FOREACH getFlatProfileItems() AS i-»
 <tr>
 <td class="number">
-Â«flat_percentTime(i)Â»
+«flat_percentTime(i)»
 </td>
 <td class="number">
-Â«flat_cumulativeSeconds(i)Â»
+«flat_cumulativeSeconds(i)»
 </td>
 <td class="number">
-Â«flat_selfSeconds(i)Â»
+«flat_selfSeconds(i)»
 </td>
 
-Â«IF i.CallCount>0Â»
+«IF i.CallCount>0»
 <td class="number">
-Â«flat_callCount(i)Â»
+«flat_callCount(i)»
 </td>
 <td class="number">
-Â«flat_selfMsPerCall(i)Â»
+«flat_selfMsPerCall(i)»
 </td>
 <td class="number">
-Â«flat_totalMsPerCall(i)Â»
+«flat_totalMsPerCall(i)»
 </td>
-Â«ELSE-Â»
+«ELSE-»
 <td colspan="3" />
-Â«ENDIF-Â»
+«ENDIF-»
 <td>
-<a name="Â«i.flatProfileAnchor()Â»" href="Â«i.callGraphURL()Â»" title="Show in call graph table">Â«i.ItemNameÂ»</a>
+<a name="«i.flatProfileAnchor()»" href="«i.callGraphURL()»" title="Show in call graph table">«i.ItemName»</a>
 </td>
 
 </tr>
-Â«ENDFOREACHÂ»
+«ENDFOREACH»
 </tbody>
 </table>
 
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE CallGraph FOR ProfilingResultÂ»
+«DEFINE CallGraph FOR ProfilingResult»
 <h2>Call Graph</h2>
 <p>
 The following table represents the 
@@ -213,17 +213,17 @@ called other functions that did use unusual amounts of time.
 	<th colspan="2">name</th>
 </tr>
 </thead>
-Â«FOREACH getCallGraphItems() AS i-Â»
+«FOREACH getCallGraphItems() AS i-»
 <tbody>
-Â«EXPAND CallGraphCallable(this) FOR i-Â»
+«EXPAND CallGraphCallable(this) FOR i-»
 <tr class="separator"><td colspan="8"/></tr>
 </tbody>
-Â«ENDFOREACHÂ»
+«ENDFOREACH»
 </table>
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
 
-Â«REMÂ»
+«REM»
 index % time    self  children    called     name
 -----------------------------------------------
                  0.00    0.00       1/3270        construct_vpath_list [79]
@@ -233,94 +233,94 @@ index % time    self  children    called     name
  [16]     6.0    0.01    0.01    3270         dir_file_exists_p [16]
                  0.00    0.01    3270/7633        find_directory [21]
                  0.00    0.00    3270/3270        dir_contents_file_exists_p [45]
-Â«ENDREMÂ»
-Â«DEFINE CallGraphCallable(ProfilingResult presult) FOR Item-Â»
-Â«IF invocations.isEmpty-Â»
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Item-»
+«IF invocations.isEmpty-»
 <tr>
 <td colspan="7"/>
 <td>&lt;spontaneous&gt;</td>
 </tr>
-Â«ELSE-Â»
-Â«cycleInvocation_prepare()-Â»
-Â«FOREACH invocations AS g-Â»
+«ELSE-»
+«cycleInvocation_prepare()-»
+«FOREACH invocations AS g-»
 <tr>
 <td colspan="2"/>
-Â«IF g.Invoker.isSameCycle(this)-Â»
+«IF g.Invoker.isSameCycle(this)-»
 <td colspan="2"/>
-Â«html_cycleInvocation_called(g)Â»
-Â«ELSE-Â»
-<td class="number">Â«cycleInvocation_selfSeconds(g)Â»</td>
-<td class="number">Â«cycleInvocation_childrenSeconds(g)Â»</td>
-Â«html_cycleInvocation_called(g)Â»
-Â«ENDIF-Â»
-<td><a href="Â«g.Invoker.callGraphURL()Â»" title="Show in call graph table">
-	Â«g.Invoker.Name-Â» Â«g.Invoker.idx(presult)Â»
+«html_cycleInvocation_called(g)»
+«ELSE-»
+<td class="number">«cycleInvocation_selfSeconds(g)»</td>
+<td class="number">«cycleInvocation_childrenSeconds(g)»</td>
+«html_cycleInvocation_called(g)»
+«ENDIF-»
+<td><a href="«g.Invoker.callGraphURL()»" title="Show in call graph table">
+	«g.Invoker.Name-» «g.Invoker.idx(presult)»
 </a></td>
 
 </tr>
-Â«ENDFOREACH-Â»
-Â«ENDIF-Â»
+«ENDFOREACH-»
+«ENDIF-»
 <tr class="emphasize">
-<td>Â«cycle_index(presult)Â»</td>
-<td class="number">Â«cycle_percentTime(presult)Â»</td>
-<td class="number">Â«cycle_selfSeconds()Â»</td>
-<td class="number">Â«cycle_childrenSeconds()Â»</td>
-Â«html_cycle_called()Â»
+<td>«cycle_index(presult)»</td>
+<td class="number">«cycle_percentTime(presult)»</td>
+<td class="number">«cycle_selfSeconds()»</td>
+<td class="number">«cycle_childrenSeconds()»</td>
+«html_cycle_called()»
 
-<td><a name="Â«callGraphAnchor()Â»" href="Â«flatProfileURL()Â»" title="Show in flat profile table">
-	Â«Name.xmlify()Â» Â«idx(presult)Â»
+<td><a name="«callGraphAnchor()»" href="«flatProfileURL()»" title="Show in flat profile table">
+	«Name.xmlify()» «idx(presult)»
 </a></td>
 
 </tr>
-Â«FOREACH Subroutines AS s-Â»
+«FOREACH Subroutines AS s-»
 <tr>
 <td colspan="2"/>
-Â«IF s.Subroutine.Cycle!=null && s.Subroutine.Cycle == Cycle-Â»
+«IF s.Subroutine.Cycle!=null && s.Subroutine.Cycle == Cycle-»
 <td colspan="2"/>
-Â«html_cycleSubroutine_called(s)Â»
-Â«ELSE-Â»
-<td class="number">Â«cycleSubroutine_selfSeconds(s)Â»</td>
-<td class="number">Â«cycleSubroutine_childrenSeconds(s)Â»</td>
-Â«html_cycleSubroutine_called(s)Â»
-Â«ENDIF-Â»
-<td><a href="Â«s.Subroutine.callGraphURL()Â»" title="Show in call graph table">
-	Â«s.Subroutine.Name.xmlify()Â»
+«html_cycleSubroutine_called(s)»
+«ELSE-»
+<td class="number">«cycleSubroutine_selfSeconds(s)»</td>
+<td class="number">«cycleSubroutine_childrenSeconds(s)»</td>
+«html_cycleSubroutine_called(s)»
+«ENDIF-»
+<td><a href="«s.Subroutine.callGraphURL()»" title="Show in call graph table">
+	«s.Subroutine.Name.xmlify()»
 </a></td>
 
 </tr>
-Â«ENDFOREACH-Â»
-Â«ENDDEFINEÂ»
+«ENDFOREACH-»
+«ENDDEFINE»
 
-Â«REMÂ»
+«REM»
 index % time    self  children    called     name
 -----------------------------------------------
 [3]     53.4    0.03    0.15       5+69      <cycle 2 as a whole> [3]
                 0.00    0.00      37             eval_makefile <cycle 2> [64]
-Â«ENDREMÂ»
-Â«DEFINE CallGraphCallable(ProfilingResult presult) FOR Cycle-Â»
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Cycle-»
 <tr class="emphasize">
-<td>Â«cycle_index(presult)Â»</td>
-<td class="number">Â«cycle_percentTime(presult)Â»</td>
-<td class="number">Â«cycle_selfSeconds()Â»</td>
-<td class="number">Â«cycle_childrenSeconds()Â»</td>
-Â«html_cycle_called()Â»
-<td>Â«cycle_name().xmlify()Â» Â«idx(presult)Â»</td>
+<td>«cycle_index(presult)»</td>
+<td class="number">«cycle_percentTime(presult)»</td>
+<td class="number">«cycle_selfSeconds()»</td>
+<td class="number">«cycle_childrenSeconds()»</td>
+«html_cycle_called()»
+<td>«cycle_name().xmlify()» «idx(presult)»</td>
 </tr>
 
-Â«FOREACH Items AS iÂ»
+«FOREACH Items AS i»
 <tr>
 <td colspan="2"/>
-<td class="number">Â«cycleSubroutine_selfSeconds(i)Â»</td>
-<td class="number">Â«cycleSubroutine_childrenSeconds(i)Â»</td>
-Â«html_cycleSubroutine_called(i)Â»
-<td><a href="Â«i.callGraphURL()Â»" title="Show in call graph table">
-	Â«i.Name.xmlify()Â» Â«i.idx(presult)Â»
+<td class="number">«cycleSubroutine_selfSeconds(i)»</td>
+<td class="number">«cycleSubroutine_childrenSeconds(i)»</td>
+«html_cycleSubroutine_called(i)»
+<td><a href="«i.callGraphURL()»" title="Show in call graph table">
+	«i.Name.xmlify()» «i.idx(presult)»
 </a></td>
 </tr>
-Â«ENDFOREACH-Â»
-Â«ENDDEFINEÂ»
+«ENDFOREACH-»
+«ENDDEFINE»
 
-Â«DEFINE RuntimeConfiguration FOR ProfilingResultÂ»
+«DEFINE RuntimeConfiguration FOR ProfilingResult»
 <h2>Runtime Configuration</h2>
 <p>
 The above results are measured against the system time may vary.
@@ -332,14 +332,14 @@ Unfortunately, this report will only provide the following values so far.
 	<tbody>
 	<tr>
 	<th>Used Memory</th>
-	<td>Â«totalMemory()Â»</td>
+	<td>«totalMemory()»</td>
 	<td>Please note that this value has been measured at the time of generating this report.</td>
 	</tr>
 	<tr>
 	<th>Max Heapsize</th>
-	<td>Â«maxMemory()Â»</td>
+	<td>«maxMemory()»</td>
 	<td/>
 	</tr>
 	</tbody>
 </table>
-Â«ENDDEFINEÂ»
+«ENDDEFINE»

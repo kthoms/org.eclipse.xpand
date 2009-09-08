@@ -1,76 +1,76 @@
-Â«IMPORT profilermodelÂ»
-Â«EXTENSION org::eclipse::xtend::profiler::templates::GProfÂ»
+«IMPORT profilermodel»
+«EXTENSION org::eclipse::xtend::profiler::templates::GProf»
 
-Â«DEFINE Main FOR ProfilingResultÂ»
-Â«FILE "results.txt"-Â»
-Â«EXPAND Flat-Â»
-Â«EXPAND CallGraph-Â»
-Â«EXPAND Cycles-Â»
-Â«ENDFILEÂ»
-Â«ENDDEFINEÂ»
+«DEFINE Main FOR ProfilingResult»
+«FILE "results.txt"-»
+«EXPAND Flat-»
+«EXPAND CallGraph-»
+«EXPAND Cycles-»
+«ENDFILE»
+«ENDDEFINE»
 
-Â«REMÂ»
+«REM»
 Simply dumps all found cycles in profiling result
-Â«ENDREMÂ»
-Â«DEFINE Cycles FOR ProfilingResultÂ»
-Found Â«Cycles.sizeÂ» cycle(s):
-Â«FOREACH Cycles AS c-Â»
+«ENDREM»
+«DEFINE Cycles FOR ProfilingResult»
+Found «Cycles.size» cycle(s):
+«FOREACH Cycles AS c-»
 ----------------------------------
-Â«FOREACH c.Items AS i-Â»
-Â«i.NameÂ»
-Â«ENDFOREACH-Â»
-Â«ENDFOREACH-Â»
+«FOREACH c.Items AS i-»
+«i.Name»
+«ENDFOREACH-»
+«ENDFOREACH-»
 ----------------------------------
-Â«formFeed()Â»
-Â«ENDDEFINEÂ»
+«formFeed()»
+«ENDDEFINE»
 
-Â«REMÂ»
+«REM»
 Dumps a flat profile similar to the output format of GNU gprof
 see http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html#SEC5
-Â«ENDREMÂ»
-Â«DEFINE Flat FOR ProfilingResult-Â»
+«ENDREM»
+«DEFINE Flat FOR ProfilingResult-»
 Flat profile:
 
   %   cumulative   self              self     total
  time   seconds   seconds    calls  ms/call  ms/call  name
-Â«flat_prepare()-Â»
-Â«FOREACH getFlatProfileItems() AS i-Â»
-Â«flat_percentTime(i)-Â»
-Â«" "+flat_cumulativeSeconds(i) -Â»
-Â«" "+flat_selfSeconds(i)-Â»
-Â«IF i.CallCount>0-Â»
-Â«" "+flat_callCount(i)-Â»
-Â«" "+flat_selfMsPerCall(i)-Â»
-Â«" "+flat_totalMsPerCall(i)-Â»
-Â«ELSE-Â»
-Â«"                           "-Â»
-Â«ENDIF-Â»
-Â«"  " + i.ItemNameÂ»
-Â«ENDFOREACH-Â»
-Â«formFeed()Â»
-Â«ENDDEFINEÂ»
+«flat_prepare()-»
+«FOREACH getFlatProfileItems() AS i-»
+«flat_percentTime(i)-»
+«" "+flat_cumulativeSeconds(i) -»
+«" "+flat_selfSeconds(i)-»
+«IF i.CallCount>0-»
+«" "+flat_callCount(i)-»
+«" "+flat_selfMsPerCall(i)-»
+«" "+flat_totalMsPerCall(i)-»
+«ELSE-»
+«"                           "-»
+«ENDIF-»
+«"  " + i.ItemName»
+«ENDFOREACH-»
+«formFeed()»
+«ENDDEFINE»
 
-Â«REMÂ»
+«REM»
 Dumps a call graph similar to the output format of GNU gprof
 see http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html#SEC10
 
 Please note that the format of cycles is slighty different in order
 to match the expectations of gprof2dot.py
 see http://code.google.com/p/jrfonseca/wiki/Gprof2Dot
-Â«ENDREMÂ»
-Â«DEFINE CallGraph FOR ProfilingResultÂ»
+«ENDREM»
+«DEFINE CallGraph FOR ProfilingResult»
 
 Call graph:
 
 index % time    self  children    called     name
-Â«FOREACH getCallGraphItems() AS i-Â»
-Â«EXPAND CallGraphCallable(this) FOR i-Â»
+«FOREACH getCallGraphItems() AS i-»
+«EXPAND CallGraphCallable(this) FOR i-»
 ----------------------------------
-Â«ENDFOREACHÂ»
-Â«formFeed()Â»
-Â«ENDDEFINEÂ»
+«ENDFOREACH»
+«formFeed()»
+«ENDDEFINE»
 
-Â«REMÂ»
+«REM»
 index % time    self  children    called     name
 -----------------------------------------------
                  0.00    0.00       1/3270        construct_vpath_list [79]
@@ -80,66 +80,66 @@ index % time    self  children    called     name
  [16]     6.0    0.01    0.01    3270         dir_file_exists_p [16]
                  0.00    0.01    3270/7633        find_directory [21]
                  0.00    0.00    3270/3270        dir_contents_file_exists_p [45]
-Â«ENDREMÂ»
-Â«DEFINE CallGraphCallable(ProfilingResult presult) FOR Item-Â»
-Â«IF invocations.isEmpty-Â»
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Item-»
+«IF invocations.isEmpty-»
                                                  <spontaneous>
-Â«ELSE-Â»
-Â«cycleInvocation_prepare()-Â»
-Â«FOREACH invocations AS g-Â»
-Â«IF g.Invoker.isSameCycle(this)-Â»
-Â«"                             " + cycleInvocation_called(g)-Â»
-Â«ELSE-Â»
-Â«"             " + cycleInvocation_selfSeconds(g)-Â»
-Â«" " + cycleInvocation_childrenSeconds(g)-Â»
-Â«" " + cycleInvocation_called(g)-Â»
-Â«ENDIF-Â»
-Â«"     " +g.Invoker.Name-Â»
-Â«" " + g.Invoker.idx(presult)Â»
-Â«ENDFOREACH-Â»
-Â«ENDIF-Â»
-Â«cycle_index(presult)-Â»
-Â«" " + cycle_percentTime(presult)-Â»
-Â«" " + cycle_selfSeconds()-Â»
-Â«" " + cycle_childrenSeconds()-Â»
-Â«" " + cycle_called()-Â»
-Â«" " + Name-Â»
-Â«" " + idx(presult)-Â»
+«ELSE-»
+«cycleInvocation_prepare()-»
+«FOREACH invocations AS g-»
+«IF g.Invoker.isSameCycle(this)-»
+«"                             " + cycleInvocation_called(g)-»
+«ELSE-»
+«"             " + cycleInvocation_selfSeconds(g)-»
+«" " + cycleInvocation_childrenSeconds(g)-»
+«" " + cycleInvocation_called(g)-»
+«ENDIF-»
+«"     " +g.Invoker.Name-»
+«" " + g.Invoker.idx(presult)»
+«ENDFOREACH-»
+«ENDIF-»
+«cycle_index(presult)-»
+«" " + cycle_percentTime(presult)-»
+«" " + cycle_selfSeconds()-»
+«" " + cycle_childrenSeconds()-»
+«" " + cycle_called()-»
+«" " + Name-»
+«" " + idx(presult)-»
 
-Â«FOREACH Subroutines AS s-Â»
-Â«IF s.Subroutine.Cycle!=null && s.Subroutine.Cycle == Cycle-Â»
-Â«"                             " + cycleSubroutine_called(s)-Â»
-Â«ELSE-Â»
-Â«"             " + cycleSubroutine_selfSeconds(s)-Â»
-Â«" " + cycleSubroutine_childrenSeconds(s)-Â»
-Â«" " + cycleSubroutine_called(s)-Â»
-Â«ENDIF-Â»
-Â«"     " + s.Subroutine.Name-Â»
-Â«" " + s.Subroutine.idx(presult)Â»
-Â«ENDFOREACH-Â»
-Â«ENDDEFINEÂ»
+«FOREACH Subroutines AS s-»
+«IF s.Subroutine.Cycle!=null && s.Subroutine.Cycle == Cycle-»
+«"                             " + cycleSubroutine_called(s)-»
+«ELSE-»
+«"             " + cycleSubroutine_selfSeconds(s)-»
+«" " + cycleSubroutine_childrenSeconds(s)-»
+«" " + cycleSubroutine_called(s)-»
+«ENDIF-»
+«"     " + s.Subroutine.Name-»
+«" " + s.Subroutine.idx(presult)»
+«ENDFOREACH-»
+«ENDDEFINE»
 
-Â«REMÂ»
+«REM»
 index % time    self  children    called     name
 -----------------------------------------------
 [3]     53.4    0.03    0.15       5+69      <cycle 2 as a whole> [3]
                 0.00    0.00      37             eval_makefile <cycle 2> [64]
-Â«ENDREMÂ»
-Â«DEFINE CallGraphCallable(ProfilingResult presult) FOR Cycle-Â»
-Â«cycle_index(presult)-Â»
-Â«" " + cycle_percentTime(presult)-Â»
-Â«" " + cycle_selfSeconds()-Â»
-Â«" " + cycle_childrenSeconds()-Â»
-Â«" " + cycle_called()-Â»
-Â«" " + cycle_name()-Â»
-Â«" " + idx(presult)-Â»
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Cycle-»
+«cycle_index(presult)-»
+«" " + cycle_percentTime(presult)-»
+«" " + cycle_selfSeconds()-»
+«" " + cycle_childrenSeconds()-»
+«" " + cycle_called()-»
+«" " + cycle_name()-»
+«" " + idx(presult)-»
 
-Â«FOREACH Items AS i-Â»
-Â«"             " + cycleSubroutine_selfSeconds(i)-Â»
-Â«" " + cycleSubroutine_childrenSeconds(i)-Â»
-Â«" " + cycleSubroutine_called(i)-Â»
-Â«"     " + i.Name-Â»
-Â«" " + i.idx(presult)-Â»
+«FOREACH Items AS i-»
+«"             " + cycleSubroutine_selfSeconds(i)-»
+«" " + cycleSubroutine_childrenSeconds(i)-»
+«" " + cycleSubroutine_called(i)-»
+«"     " + i.Name-»
+«" " + i.idx(presult)-»
 
-Â«ENDFOREACH-Â»
-Â«ENDDEFINEÂ»
+«ENDFOREACH-»
+«ENDDEFINE»

@@ -7,7 +7,7 @@
  *
  *******************************************************************************/
 
-package org.eclipse.xtend.util.stdlib.profiler;
+package org.eclipse.xtend.profiler;
 
 import junit.framework.TestCase;
 

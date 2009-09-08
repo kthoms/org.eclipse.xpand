@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.xtend.profiler
+Bundle-Version: 0.8.0.qualifier
+Require-Bundle: org.eclipse.xtend,
+ org.eclipse.emf.mwe.utils,
+ org.eclipse.xpand;resolution:=optional,
+ org.eclipse.emf.ecore.xmi
+LazyStart: true
+Export-Package: org.eclipse.xtend.profiler,
+ org.eclipse.xtend.profiler.profilermodel,
+ org.eclipse.xtend.profiler.templates
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName

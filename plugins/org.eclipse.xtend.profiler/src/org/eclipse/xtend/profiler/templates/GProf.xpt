@@ -1,0 +1,145 @@
+«IMPORT profilermodel»
+«EXTENSION org::eclipse::xtend::profiler::templates::GProf»
+
+«DEFINE Main FOR ProfilingResult»
+«FILE "results.txt"-»
+«EXPAND Flat-»
+«EXPAND CallGraph-»
+«EXPAND Cycles-»
+«ENDFILE»
+«ENDDEFINE»
+
+«REM»
+Simply dumps all found cycles in profiling result
+«ENDREM»
+«DEFINE Cycles FOR ProfilingResult»
+Found «Cycles.size» cycle(s):
+«FOREACH Cycles AS c-»
+----------------------------------
+«FOREACH c.Items AS i-»
+«i.Name»
+«ENDFOREACH-»
+«ENDFOREACH-»
+----------------------------------
+«formFeed()»
+«ENDDEFINE»
+
+«REM»
+Dumps a flat profile similar to the output format of GNU gprof
+see http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html#SEC5
+«ENDREM»
+«DEFINE Flat FOR ProfilingResult-»
+Flat profile:
+
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+«flat_prepare()-»
+«FOREACH getFlatProfileItems() AS i-»
+«flat_percentTime(i)-»
+«" "+flat_cumulativeSeconds(i) -»
+«" "+flat_selfSeconds(i)-»
+«IF i.CallCount>0-»
+«" "+flat_callCount(i)-»
+«" "+flat_selfMsPerCall(i)-»
+«" "+flat_totalMsPerCall(i)-»
+«ELSE-»
+«"                           "-»
+«ENDIF-»
+«"  " + i.ItemName»
+«ENDFOREACH-»
+«formFeed()»
+«ENDDEFINE»
+
+«REM»
+Dumps a call graph similar to the output format of GNU gprof
+see http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html#SEC10
+
+Please note that the format of cycles is slighty different in order
+to match the expectations of gprof2dot.py
+see http://code.google.com/p/jrfonseca/wiki/Gprof2Dot
+«ENDREM»
+«DEFINE CallGraph FOR ProfilingResult»
+
+Call graph:
+
+index % time    self  children    called     name
+«FOREACH getCallGraphItems() AS i-»
+«EXPAND CallGraphCallable(this) FOR i-»
+----------------------------------
+«ENDFOREACH»
+«formFeed()»
+«ENDDEFINE»
+
+«REM»
+index % time    self  children    called     name
+-----------------------------------------------
+                 0.00    0.00       1/3270        construct_vpath_list [79]
+                 0.00    0.00      15/3270        count_implicit_rule_limits [68]
+                 0.00    0.00      62/3270        selective_vpath_search [54]
+                 0.01    0.01    3192/3270        file_exists_p [18]
+ [16]     6.0    0.01    0.01    3270         dir_file_exists_p [16]
+                 0.00    0.01    3270/7633        find_directory [21]
+                 0.00    0.00    3270/3270        dir_contents_file_exists_p [45]
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Item-»
+«IF invocations.isEmpty-»
+                                                 <spontaneous>
+«ELSE-»
+«cycleInvocation_prepare()-»
+«FOREACH invocations AS g-»
+«IF g.Invoker.isSameCycle(this)-»
+«"                             " + cycleInvocation_called(g)-»
+«ELSE-»
+«"             " + cycleInvocation_selfSeconds(g)-»
+«" " + cycleInvocation_childrenSeconds(g)-»
+«" " + cycleInvocation_called(g)-»
+«ENDIF-»
+«"     " +g.Invoker.Name-»
+«" " + g.Invoker.idx(presult)»
+«ENDFOREACH-»
+«ENDIF-»
+«cycle_index(presult)-»
+«" " + cycle_percentTime(presult)-»
+«" " + cycle_selfSeconds()-»
+«" " + cycle_childrenSeconds()-»
+«" " + cycle_called()-»
+«" " + Name-»
+«" " + idx(presult)-»
+
+«FOREACH Subroutines AS s-»
+«IF s.Subroutine.Cycle!=null && s.Subroutine.Cycle == Cycle-»
+«"                             " + cycleSubroutine_called(s)-»
+«ELSE-»
+«"             " + cycleSubroutine_selfSeconds(s)-»
+«" " + cycleSubroutine_childrenSeconds(s)-»
+«" " + cycleSubroutine_called(s)-»
+«ENDIF-»
+«"     " + s.Subroutine.Name-»
+«" " + s.Subroutine.idx(presult)»
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«REM»
+index % time    self  children    called     name
+-----------------------------------------------
+[3]     53.4    0.03    0.15       5+69      <cycle 2 as a whole> [3]
+                0.00    0.00      37             eval_makefile <cycle 2> [64]
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Cycle-»
+«cycle_index(presult)-»
+«" " + cycle_percentTime(presult)-»
+«" " + cycle_selfSeconds()-»
+«" " + cycle_childrenSeconds()-»
+«" " + cycle_called()-»
+«" " + cycle_name()-»
+«" " + idx(presult)-»
+
+«FOREACH Items AS i-»
+«"             " + cycleSubroutine_selfSeconds(i)-»
+«" " + cycleSubroutine_childrenSeconds(i)-»
+«" " + cycleSubroutine_called(i)-»
+«"     " + i.Name-»
+«" " + i.idx(presult)-»
+
+«ENDFOREACH-»
+«ENDDEFINE»

@@ -1,0 +1,154 @@
+import profilermodel;
+
+toVoid(Object this):
+	"";
+
+getFlatProfileItems(ProfilingResult this):
+	Items.sortBy(e|-e.SelfTime);
+	
+cached getCallGraphItems(ProfilingResult this):
+	Items.union(Cycles).sortBy(e|e.Name).sortBy(e|-e.Time);
+	
+String idx(Callable item, ProfilingResult result):
+	"[" + (result.getCallGraphItems().indexOf(item) + 1) + "]";
+	
+Object global(Object this, String name):
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.setGlobal(java.lang.Object, java.lang.String);
+	
+Object global(String name):
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.getGlobal(java.lang.String);
+	
+Integer globalInt(String name):
+	(Integer)global(name);
+	
+Integer globalInt(Integer this, String name):
+	(Integer)this.global(name);		
+
+String format(String this, Object value):
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.format(java.lang.String, java.lang.Object);
+	
+String format(String this, Object v1, Object v2):
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.format(java.lang.String, java.lang.Object, java.lang.Object);
+
+String formFeed():
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.getFormFeed();
+	
+String totalMemory():
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.totalMemory();
+
+String maxMemory():
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.maxMemory();
+
+String n2ms(Integer nanoseconds):
+	"%.2f".format(nanoseconds / 1000000.0);
+
+String n2s(Integer nanoseconds):
+	"%.2f".format(nanoseconds / 1000000000.0);	
+	
+private String anchorFragment(String value):
+	JAVA org.eclipse.xtend.profiler.templates.Extensions.anchorFragment(java.lang.String);
+	
+String flatProfileAnchor(Item this):	
+	"flat_" + anchorFragment(Name);
+
+String callGraphAnchor(Item this):	
+	"callgraph_" + anchorFragment(Name);
+	
+String callGraphURL(Item this):
+	"#" + callGraphAnchor();
+	
+String flatProfileURL(Item this):
+	"#" + flatProfileAnchor();
+	
+String flat_prepare(ProfilingResult this):
+	"".format(0.global("cs"));
+	
+String flat_percentTime(ProfilingResult this, Item i):
+	"%6.2f".format(i.SelfTime * 100.0 / this.Time);
+	
+String flat_cumulativeSeconds(ProfilingResult this, Item i):
+	"%9s".format(n2s( (i.SelfTime + globalInt("cs")).globalInt("cs") ));
+	
+String flat_selfSeconds(ProfilingResult this, Item i):
+	"%8s".format(n2s(i.SelfTime));
+	
+String flat_callCount(ProfilingResult this, Item i):
+	"%8d".format(i.CallCount);
+	
+String flat_selfMsPerCall(ProfilingResult this, Item i):
+	"%8s".format(n2ms(i.SelfTime / i.CallCount));
+	
+String flat_totalMsPerCall(ProfilingResult this, Item i):
+	"%8s".format(n2ms(i.Time / i.CallCount));
+	
+String cycleInvocation_prepare(Item this):
+	global(Cycle==null ? SelfTime : Cycle.SelfTime, "selfTime") ->
+	global(Cycle==null ? OutboundChildTime : Cycle.OutboundChildTime, "childTime").toVoid();
+	
+String cycleInvocation_selfSeconds(Item this, CallGroup g):
+	"%7s".format( n2s(global("selfTime")/CallCount * g.Count) );
+
+String cycleInvocation_childrenSeconds(Item this, CallGroup g):
+	"%7s".format( n2s(global("childTime")/CallCount * g.Count) );
+
+String cycleInvocation_called(Item this, CallGroup g):
+	"%7d/%-7d".format(g.Count, CallCount);
+
+String cycle_index(Callable this, ProfilingResult presult):
+	"%-6s".format( idx(presult) );
+
+String cycle_percentTime(Callable this, ProfilingResult presult):
+	"%5.1f".format( Time*100.0/presult.Time );
+
+String cycle_selfSeconds(Callable this):
+	"%7s".format( n2s(SelfTime) );
+	
+String cycle_childrenSeconds(Callable this):
+	"%7s".format( n2s(OutboundChildTime) );
+
+String cycle_called(Item this):
+	"%7s        ".format( CallCount>0 ? ""+CallCount : "");
+
+String cycleSubroutine_called(Item this, CallGroup s):
+	"%7d/%-7d".format(s.Count, s.Subroutine.CallCount);
+
+String cycleSubroutine_selfSeconds(Item this, CallGroup s):
+	"%7s".format( n2s(s.Subroutine.SelfTime/s.Subroutine.CallCount*s.Count) );
+	
+String cycleSubroutine_childrenSeconds(Item this, CallGroup s):
+	"%7s".format( n2s(s.Subroutine.OutboundChildTime/s.Subroutine.CallCount*s.Count) );
+	
+String cycle_called(Cycle this):
+	"%7d+%-7d".format( CallCountInbound, CallCountReentrant );
+	
+String cycleSubroutine_selfSeconds(Cycle this, Item i):
+	"%7s".format( n2s(i.SelfTime/i.CallCount * i.getCallCountInCycle(this)) );
+
+String cycleSubroutine_childrenSeconds(Cycle this, Item i):
+	"%7s".format( n2s(i.OutboundChildTime/i.CallCount*i.getCallCountInCycle(this)) );
+	
+String cycleSubroutine_called(Cycle this, Item i):
+	"%7d        ".format( i.getCallCountInCycle(this) );
+	
+String cycle_name(Cycle this):
+	"<%s as a whole>".format(Name);
+	
+xmlify (String this) :
+	this.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+		.replaceAll("\\\"", "&quot;").replaceAll("\"", "&quot;").replaceAll("'", "&apos;");
+	
+String html_cycleInvocation_called(Item this, CallGroup g):
+	'<td class="number">%7d</td><td class="call">/</td><td>%7d</td>'.format(g.Count, CallCount);
+	
+String html_cycle_called(Item this):
+	CallCount>0 ? '<td class="number">%7s</td><td colspan="2"/>'.format(CallCount) : '<td colspan="3"/>';
+	
+String html_cycleSubroutine_called(Item this, CallGroup s):
+	'<td class="number">%7d</td><td class="call">/</td><td>%7d</td>'.format(s.Count, s.Subroutine.CallCount);
+
+String html_cycle_called(Cycle this):
+	'<td class="number">%7d</td><td class="call">+</td><td>%7d</td>'.format( CallCountInbound, CallCountReentrant );
+	
+String html_cycleSubroutine_called(Cycle this, Item i):
+	'<td colspan="2"/><td>%7d</td>'.format( i.getCallCountInCycle(this) );
+	

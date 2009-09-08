@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2009 itemis AG (http://www.itemis.eu) and others.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html"
+    modelDirectory="/org.eclipse.xtend.util.stdlib/src" editDirectory="" editorDirectory=""
+    modelPluginID="intmsglang.generator" modelName="Model" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" language="">
+  <foreignModel>model.ecore</foreignModel>
+  <genPackages prefix="Model" basePackage="org.eclipse.xtend.profiler"
+      disposableProviderFactory="true" ecorePackage="model.ecore#/">
+    <genClasses ecoreClass="model.ecore#//ProfilingResult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ProfilingResult/Items"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//ProfilingResult/Time"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ProfilingResult/Cycles"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//ProfilingResult/RootItems"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//CallGroup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//CallGroup/Invoker"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//CallGroup/Subroutine"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//CallGroup/Count"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//CallGroup/Time"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="model.ecore#//Callable">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Callable/Name"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Callable/Time"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Callable/ChildTime"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Callable/SelfTime"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Callable/OutboundChildTime"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Item">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Item/ItemName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Item/ItemTime"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Item/CallCount"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Item/Subroutines"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Item/invocations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Item/Cycle"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//Item/InboundInvocations"/>
+      <genOperations ecoreOperation="model.ecore#//Item/isSameCycle">
+        <genParameters ecoreParameter="model.ecore#//Item/isSameCycle/item"/>
+      </genOperations>
+      <genOperations ecoreOperation="model.ecore#//Item/getCallCountInCycle">
+        <genParameters ecoreParameter="model.ecore#//Item/getCallCountInCycle/cycle"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Cycle">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Cycle/Items"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Cycle/CallCountInbound"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Cycle/CallCountReentrant"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//Cycle/OutgoingCallGroups"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

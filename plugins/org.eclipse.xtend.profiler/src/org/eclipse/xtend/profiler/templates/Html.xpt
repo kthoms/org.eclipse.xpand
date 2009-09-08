@@ -1,0 +1,345 @@
+«IMPORT profilermodel»
+«EXTENSION org::eclipse::xtend::profiler::templates::GProf»
+
+«DEFINE Main FOR ProfilingResult»
+«FILE "results.html"-»
+«EXPAND StartOfDocument»
+«EXPAND Flat»
+«EXPAND CallGraph»
+«EXPAND RuntimeConfiguration»
+«EXPAND EndOfDocument»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE StartOfDocument FOR ProfilingResult»
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+
+<style type="text/css">
+
+body {
+	font-family:"Lucida Grande",arial,verdana,helvetica,sans-serif;
+	font-size:10pt;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	text-align:left;
+	color: #333333;
+}
+
+a {
+	color: #333333;
+	text-decoration: underline;
+}
+
+a:hover {
+	background-color: black;
+	color: white;
+	text-decoration: none;
+}
+
+* {
+	margin:0;
+	padding:0;
+}
+
+
+thead tr {
+	background:#91BAE5;
+	font-weight:bold;
+	line-height:10px;
+}
+
+
+
+thead th {
+	background:#000000 none repeat scroll 0 0;
+	border-right:1px solid #333333;
+	color:#FFFFFF;
+	font-size:10px;
+	padding:9px 6px;
+	text-align:center;
+}
+
+tr.emphasize {
+	font-weight:bold;
+	background-color: #F0F0F0
+}
+
+
+tbody tr:hover {
+	background: #91BAE5;
+}
+
+tr.separator {
+	background: #C0C0C0;
+	font-size: 2px;
+}
+
+tr.separator td {
+	padding:1px;
+}	
+
+tr.separator:hover {
+	background: #C0C0C0;
+}
+
+
+tbody tr:hover td {
+	border-right:1px solid #607B97;
+}
+
+tbody td {
+	border-right:1px solid #C0C0C0;
+	border-bottom:1px solid #C0C0C0;
+	padding:6px;
+	vertical-align:baseline;
+}
+
+td.number {
+	text-align:right;
+}
+
+td.call {
+	padding-left: 0.1em;
+	padding-right: 0.1em;
+	text-align: center;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+table {
+	margin-bottom: 1em;
+}	
+
+</style>
+</head>
+<body>
+<h1>Profiling Results</h1>
+<p>
+This profiler result is an adaption of the
+<a href="http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html">GNU gprof format</a>
+and has been produced with the <a href="">Xpand/Xtend profiler</a>.
+Please note that the measured results depend on the <a href="#runtime_configuration">runtime configuration</a> 
+the templates, checks, and/or expressions have been executed on.
+</p>
+<h2>Flat Profile</h2>
+<p>
+The following table shows the totals of different measured values.
+<a href="http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html#SEC5">Use these numbers</a> to get a first impression of the execution times. 
+</p>
+«ENDDEFINE»
+
+«DEFINE EndOfDocument FOR ProfilingResult»
+</body></html>
+«ENDDEFINE»
+
+
+«DEFINE Flat FOR ProfilingResult»
+
+<table width="100%" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+	<th>% time</th>
+	<th><abbr title="Cumulative seconds">cum.<br/>sec.</abbr></th>
+	<th><abbr title="self seconds">self sec.</abbr></th>
+	<th>calls</th>
+	<th>self ms/call</th>
+	<th>total ms/call</th>
+	<th>name</th>
+</tr>
+</thead>
+«flat_prepare()»
+<tbody>
+«FOREACH getFlatProfileItems() AS i-»
+<tr>
+<td class="number">
+«flat_percentTime(i)»
+</td>
+<td class="number">
+«flat_cumulativeSeconds(i)»
+</td>
+<td class="number">
+«flat_selfSeconds(i)»
+</td>
+
+«IF i.CallCount>0»
+<td class="number">
+«flat_callCount(i)»
+</td>
+<td class="number">
+«flat_selfMsPerCall(i)»
+</td>
+<td class="number">
+«flat_totalMsPerCall(i)»
+</td>
+«ELSE-»
+<td colspan="3" />
+«ENDIF-»
+<td>
+<a name="«i.flatProfileAnchor()»" href="«i.callGraphURL()»" title="Show in call graph table">«i.ItemName»</a>
+</td>
+
+</tr>
+«ENDFOREACH»
+</tbody>
+</table>
+
+«ENDDEFINE»
+
+«DEFINE CallGraph FOR ProfilingResult»
+<h2>Call Graph</h2>
+<p>
+The following table represents the 
+<a href="http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html#SEC6">
+call graph table similar to GProf</a>.
+The call graph shows how much time was spent in each function and its children.
+From this information, you can find functions that, 
+while they themselves may not have used much time, 
+called other functions that did use unusual amounts of time.    
+</p>
+<table width="100%" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+	<th>#</th>
+	<th>% time</th>
+	<th><abbr title="Seconds spend in this function iteself">self</abbr></th>
+	<th><abbr title="Seconds spend in calls from this function">children</abbr></th>
+	<th colspan="3">called</th>
+	<th colspan="2">name</th>
+</tr>
+</thead>
+«FOREACH getCallGraphItems() AS i-»
+<tbody>
+«EXPAND CallGraphCallable(this) FOR i-»
+<tr class="separator"><td colspan="8"/></tr>
+</tbody>
+«ENDFOREACH»
+</table>
+«ENDDEFINE»
+
+
+«REM»
+index % time    self  children    called     name
+-----------------------------------------------
+                 0.00    0.00       1/3270        construct_vpath_list [79]
+                 0.00    0.00      15/3270        count_implicit_rule_limits [68]
+                 0.00    0.00      62/3270        selective_vpath_search [54]
+                 0.01    0.01    3192/3270        file_exists_p [18]
+ [16]     6.0    0.01    0.01    3270         dir_file_exists_p [16]
+                 0.00    0.01    3270/7633        find_directory [21]
+                 0.00    0.00    3270/3270        dir_contents_file_exists_p [45]
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Item-»
+«IF invocations.isEmpty-»
+<tr>
+<td colspan="7"/>
+<td>&lt;spontaneous&gt;</td>
+</tr>
+«ELSE-»
+«cycleInvocation_prepare()-»
+«FOREACH invocations AS g-»
+<tr>
+<td colspan="2"/>
+«IF g.Invoker.isSameCycle(this)-»
+<td colspan="2"/>
+«html_cycleInvocation_called(g)»
+«ELSE-»
+<td class="number">«cycleInvocation_selfSeconds(g)»</td>
+<td class="number">«cycleInvocation_childrenSeconds(g)»</td>
+«html_cycleInvocation_called(g)»
+«ENDIF-»
+<td><a href="«g.Invoker.callGraphURL()»" title="Show in call graph table">
+	«g.Invoker.Name-» «g.Invoker.idx(presult)»
+</a></td>
+
+</tr>
+«ENDFOREACH-»
+«ENDIF-»
+<tr class="emphasize">
+<td>«cycle_index(presult)»</td>
+<td class="number">«cycle_percentTime(presult)»</td>
+<td class="number">«cycle_selfSeconds()»</td>
+<td class="number">«cycle_childrenSeconds()»</td>
+«html_cycle_called()»
+
+<td><a name="«callGraphAnchor()»" href="«flatProfileURL()»" title="Show in flat profile table">
+	«Name.xmlify()» «idx(presult)»
+</a></td>
+
+</tr>
+«FOREACH Subroutines AS s-»
+<tr>
+<td colspan="2"/>
+«IF s.Subroutine.Cycle!=null && s.Subroutine.Cycle == Cycle-»
+<td colspan="2"/>
+«html_cycleSubroutine_called(s)»
+«ELSE-»
+<td class="number">«cycleSubroutine_selfSeconds(s)»</td>
+<td class="number">«cycleSubroutine_childrenSeconds(s)»</td>
+«html_cycleSubroutine_called(s)»
+«ENDIF-»
+<td><a href="«s.Subroutine.callGraphURL()»" title="Show in call graph table">
+	«s.Subroutine.Name.xmlify()»
+</a></td>
+
+</tr>
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«REM»
+index % time    self  children    called     name
+-----------------------------------------------
+[3]     53.4    0.03    0.15       5+69      <cycle 2 as a whole> [3]
+                0.00    0.00      37             eval_makefile <cycle 2> [64]
+«ENDREM»
+«DEFINE CallGraphCallable(ProfilingResult presult) FOR Cycle-»
+<tr class="emphasize">
+<td>«cycle_index(presult)»</td>
+<td class="number">«cycle_percentTime(presult)»</td>
+<td class="number">«cycle_selfSeconds()»</td>
+<td class="number">«cycle_childrenSeconds()»</td>
+«html_cycle_called()»
+<td>«cycle_name().xmlify()» «idx(presult)»</td>
+</tr>
+
+«FOREACH Items AS i»
+<tr>
+<td colspan="2"/>
+<td class="number">«cycleSubroutine_selfSeconds(i)»</td>
+<td class="number">«cycleSubroutine_childrenSeconds(i)»</td>
+«html_cycleSubroutine_called(i)»
+<td><a href="«i.callGraphURL()»" title="Show in call graph table">
+	«i.Name.xmlify()» «i.idx(presult)»
+</a></td>
+</tr>
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«DEFINE RuntimeConfiguration FOR ProfilingResult»
+<h2>Runtime Configuration</h2>
+<p>
+The above results are measured against the system time may vary.
+Also, the runtime configuration and dimensions such as 
+processor clock or heap size greatly influence the execution time itself.
+Unfortunately, this report will only provide the following values so far.
+</p>
+<table>
+	<tbody>
+	<tr>
+	<th>Used Memory</th>
+	<td>«totalMemory()»</td>
+	<td>Please note that this value has been measured at the time of generating this report.</td>
+	</tr>
+	<tr>
+	<th>Max Heapsize</th>
+	<td>«maxMemory()»</td>
+	<td/>
+	</tr>
+	</tbody>
+</table>
+«ENDDEFINE»

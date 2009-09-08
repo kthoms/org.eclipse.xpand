@@ -1,0 +1,26 @@
+Flat profile:
+
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ms/call  ms/call  name
+100.00      3.00     3.00        1  3000.00  3000.00  a
+
+
+
+Call graph:
+
+index % time    self  children    called     name
+                                   1/1           a <cycle 1> [1]
+[1]    100.0    3.00    0.00       1         a <cycle 1> [1]
+                                   1/1           a <cycle 1> [1]
+----------------------------------
+[2]    100.0    3.00    0.00       0+1       <cycle 1 as a whole> [2]
+                3.00    0.00       1             a <cycle 1> [1]
+----------------------------------
+
+
+
+Found 1 cycle(s):
+----------------------------------
+a <cycle 1>
+----------------------------------
+

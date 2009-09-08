@@ -48,6 +48,10 @@ import org.eclipse.xtend.typesystem.emf.EmfMetaModel;
  * @author Heiko Behrens - Initial contribution and API
  */
 public class ProfilerTest extends TestCase implements VetoStrategy {
+	// needed for server-side build since encoding of project has been set to ISO-8859-1
+	// by convention whereas server ignores this and runs on UTF-8
+	private static final String FORCED_ENCODING = "ISO-8859-1";
+	
 	Profiler profiler = new Profiler();
 	Profiler.TimeProvider timeProvider = createStrictMock(Profiler.TimeProvider.class);
 	private String lastOutput;
@@ -81,7 +85,7 @@ public class ProfilerTest extends TestCase implements VetoStrategy {
 		InputStream is = url.openStream();
 		try {
 			BufferedReader reader = new BufferedReader(
-					new InputStreamReader(is));
+					new InputStreamReader(is, FORCED_ENCODING));
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
@@ -139,6 +143,7 @@ public class ProfilerTest extends TestCase implements VetoStrategy {
 		assertNotNull(modelPackage);
 		MetaModel mm = new EmfMetaModel(modelPackage);
 		result.registerMetaModel(mm);
+		result.setFileEncoding(FORCED_ENCODING);
 		return result;
 	}
 

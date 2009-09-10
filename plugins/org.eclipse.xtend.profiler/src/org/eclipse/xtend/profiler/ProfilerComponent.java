@@ -35,22 +35,22 @@ import org.eclipse.xtend.typesystem.Type;
  *		<resultSlot value="profilingResult" />
  *		
  *		<component class="org.eclipse.xtend.check.CheckComponent">
- *			<vetoableCallBack idRef="profiler" />
+ *			<vetoableCallback idRef="profiler" />
  *			...
  *		</component>
  *		<component class="org.eclipse.xtend.XtendComponent">
- *			<vetoableCallBack idRef="profiler" />
+ *			<vetoableCallback idRef="profiler" />
  *			...
  *		</component>
  *		<component class="org.eclipse.xpand2.Generator">
- *			<vetoableCallBack idRef="profiler" />
+ *			<vetoableCallback idRef="profiler" />
  *			...
  *		</component>
  *	</component>
  *	
- *	<component class="org.eclipse.xpand2.Generator">
+ *	<component class="org.eclipse.xpand2.Generator" fileEncoding="ISO-8859-1">
  *		<metaModel idRef="mm"/>
- *		<expand value="org::eclipse::xtend::util::stdlib::profiler::templates::Html::Main FOR profilingResult"/> 
+ *		<expand value="org::eclipse::xtend::profiler::templates::Html::Main FOR profilingResult"/> 
  *		<outlet overwrite="true" path="profiling"/>
  *	</component>
  * </code>

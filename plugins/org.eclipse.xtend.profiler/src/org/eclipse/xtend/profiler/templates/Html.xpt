@@ -122,8 +122,8 @@ table {
 <h1>Profiling Results</h1>
 <p>
 This profiler result is an adaption of the
-<a href="http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html">GNU gprof format</a>
-and has been produced with the <a href="">Xpand/Xtend profiler</a>.
+<a href="http://www.cs.utah.edu/dept/old/texinfo/as/gprof.html">GNU GProf format</a>
+and has been produced with the <a href="http://help.eclipse.org/galileo/topic/org.eclipse.xpand.doc/help/ch01.html">Xpand/Xtend profiler</a>.
 Please note that the measured results depend on the <a href="#runtime_configuration">runtime configuration</a> 
 the templates, checks, and/or expressions have been executed on.
 </p>
@@ -321,12 +321,15 @@ index % time    self  children    called     name
 «ENDDEFINE»
 
 «DEFINE RuntimeConfiguration FOR ProfilingResult»
-<h2>Runtime Configuration</h2>
+<h2>Runtime Configuration</h2><a name="runtime_configuration"></a>
 <p>
-The above results are measured against the system time may vary.
-Also, the runtime configuration and dimensions such as 
-processor clock or heap size greatly influence the execution time itself.
-Unfortunately, this report will only provide the following values so far.
+The above results are measured against the system time and may vary per execution.
+Since the runtime configuration and dimensions such as 
+processor clock or heap size greatly influence the execution time you also might consider
+improving the configuration to improve the results.
+This sections may give you some hints to do so.
+</p><p> 
+Unfortunately, this report will only provide the following values so far:
 </p>
 <table>
 	<tbody>

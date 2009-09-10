@@ -91,7 +91,9 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 		srcfolders.add("src-gen");
 
 		refs.add("org.eclipse.jdt.core;bundle-version=\"3.5.0\"");
+		refs.add("org.apache.commons.logging");
 		refs.add("org.apache.log4j;resolution:=optional");
+		refs.add("org.eclipse.xtend.profiler;resolution:=optional");
 		final IProject p = EclipseHelper.createExtXptProject(projectName, srcfolders, Collections
 				.<IProject> emptyList(), refs, null, monitor, getShell());
 
@@ -105,6 +107,8 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 					monitor);
 			EclipseHelper.createFile("src/template/Template.xpt", p, getContents("Template.xpt"), monitor);
 			EclipseHelper.createFile("src/workflow/generator.mwe", p, getContents("generator.mwe").replace(
+					"PROJECTNAME", projectName), monitor);
+			EclipseHelper.createFile("src/workflow/generatorWithProfiler.mwe", p, getContents("generatorWithProfiler.mwe").replace(
 					"PROJECTNAME", projectName), monitor);
 			EclipseHelper.createFile("src/Model.xmi", p, getContents("Model.xmi"), monitor);
 			EclipseHelper.createFile(".settings/org.eclipse.core.resources.prefs", p,

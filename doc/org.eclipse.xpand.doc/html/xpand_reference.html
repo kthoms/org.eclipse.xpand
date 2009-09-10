@@ -1,10 +1,10 @@
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Xpand Documentation</title><link href="book.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.75.1" name="generator"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" title="Xpand Documentation"><div class="titlepage"><div><div><h1 class="title"><a name="xpand_documentation"></a>Xpand Documentation</h1></div></div><hr></div><div class="chapter" title="Chapter&nbsp;1.&nbsp;Xpand / Xtend / Check Reference"><div class="titlepage"><div><div><h2 class="title"><a name="core_reference"></a>Chapter&nbsp;1.&nbsp;<span class="emphasis"><em>Xpand</em></span> / <span class="emphasis"><em>Xtend</em></span> /
+<html><head><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Xpand Documentation</title><link href="book.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.75.1" name="generator"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" title="Xpand Documentation"><div class="titlepage"><div><div><h1 class="title"><a name="xpand_documentation"></a>Xpand Documentation</h1></div></div><hr></div><div class="chapter" title="Chapter&nbsp;1.&nbsp;Xpand / Xtend / Check Reference"><div class="titlepage"><div><div><h2 class="title"><a name="core_reference"></a>Chapter&nbsp;1.&nbsp;<span class="emphasis"><em>Xpand</em></span> / <span class="emphasis"><em>Xtend</em></span> /
     <span class="emphasis"><em>Check</em></span> Reference</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#r10_introduction">Introduction</a></span></dt><dt><span class="section"><a href="#r10_typesystem">Type System  </a></span></dt><dd><dl><dt><span class="section"><a href="#r10_typesystem_types">Types</a></span></dt><dt><span class="section"><a href="#r10_builtintypes">Built-In Types</a></span></dt><dt><span class="section"><a href="#r10_metamodel_implementations">Metamodel Implementations (also known as
       Meta-Metamodels)</a></span></dt><dt><span class="section"><a href="#r10_using_different_metamodels">Using different Metamodel implementations (also known as
       Meta-Metamodels)</a></span></dt><dt><span class="section"><a href="#metamodel_reference">Metamodel Reference</a></span></dt></dl></dd><dt><span class="section"><a href="#r10_expressions_language">Expressions</a></span></dt><dd><dl><dt><span class="section"><a href="#r10_expressions_builtin">Literals and special operators for built-in types</a></span></dt><dt><span class="section"><a href="#r10_expressions_collection_operations">Special Collection operations</a></span></dt><dt><span class="section"><a href="#r10_expressions_if"><code class="methodname">if</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_switch"><code class="methodname">switch</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_chain">Chain expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_create"><code class="methodname">create</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_let"><code class="methodname">let</code> expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_globalvar">'GLOBALVAR' expression</a></span></dt><dt><span class="section"><a href="#r10_expressions_multidispatch">Multi methods (multiple dispatch)</a></span></dt><dt><span class="section"><a href="#r10_expressions_casting">Casting</a></span></dt></dl></dd><dt><span class="section"><a href="#Check_language"><span class="emphasis"><em>Check</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#Check_language_description">Description of the <span class="emphasis"><em>Check</em></span> language</a></span></dt><dt><span class="section"><a href="#check_checkcomponent">The workflow component <span class="emphasis"><em>CheckComponent</em></span></a></span></dt></dl></dd><dt><span class="section"><a href="#Xtend_language"><span class="emphasis"><em>Xtend</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#N107FA">Extend files</a></span></dt><dt><span class="section"><a href="#N10818">Comments</a></span></dt><dt><span class="section"><a href="#N10828">Import Statements</a></span></dt><dt><span class="section"><a href="#N10839">Extension Import Statement</a></span></dt><dt><span class="section"><a href="#N10853">Extensions</a></span></dt><dt><span class="section"><a href="#N108F5">Java Extensions</a></span></dt><dt><span class="section"><a href="#N1091D">Create Extensions (Model Transformation)</a></span></dt><dt><span class="section"><a href="#N10992">Calling Extensions From Java</a></span></dt><dt><span class="section"><a href="#N109D0">WorkflowComponent</a></span></dt><dt><span class="section"><a href="#N109E7">Aspect-Oriented Programming in <span class="emphasis"><em>Xtend</em></span> (since
       4.2)</a></span></dt></dl></dd><dt><span class="section"><a href="#xpand_reference_introduction"><span class="emphasis"><em>Xpand2</em></span></a></span></dt><dd><dl><dt><span class="section"><a href="#xpand_reference_template_files_and_ecoding">Template files and encoding</a></span></dt><dt><span class="section"><a href="#xpand_reference_general_structure_of_template_files">General structure of template files</a></span></dt><dt><span class="section"><a href="#xpand_reference_statements_of_the_expand_language">Statements of the <span class="emphasis"><em>Xpand</em></span> language</a></span></dt><dt><span class="section"><a href="#xpand_reference_aspect-oriented_programming_in_xpand">Aspect-Oriented Programming in
       <span class="emphasis"><em>Xpand</em></span></a></span></dt><dt><span class="section"><a href="#xpand_reference_generator_workflow_component">Generator Workflow Component</a></span></dt><dt><span class="section"><a href="#aop_template_introduction">Example for using Aspect-Oriented Programming in
-      <span class="emphasis"><em>Xpand</em></span></a></span></dt><dt><span class="section"><a href="#aop_template_the_problem">The Problem</a></span></dt><dt><span class="section"><a href="#aop_template_example">Example</a></span></dt><dt><span class="section"><a href="#aop_template_more_ao">More Aspect Orientation</a></span></dt></dl></dd></dl></div><div class="section" title="Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="r10_introduction"></a>Introduction</h2></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span> generator framework provides textual languages, that are useful in
+      <span class="emphasis"><em>Xpand</em></span></a></span></dt><dt><span class="section"><a href="#aop_template_the_problem">The Problem</a></span></dt><dt><span class="section"><a href="#aop_template_example">Example</a></span></dt><dt><span class="section"><a href="#aop_template_more_ao">More Aspect Orientation</a></span></dt></dl></dd><dt><span class="section"><a href="#r10_profiler">Profiler</a></span></dt></dl></div><div class="section" title="Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="r10_introduction"></a>Introduction</h2></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span> generator framework provides textual languages, that are useful in
       different contexts in the MDSD process (e.g. checks, extensions, code generation,
       model transformation). Each language (<span class="emphasis"><em>Check</em></span>,
       <span class="emphasis"><em>Xtend</em></span>, and <span class="emphasis"><em>Xpand</em></span>) is built up on a
@@ -968,33 +968,33 @@ my::Templ::extension(*) // templ def with any number of parameters
    setTarget( old.target.duplicate() );</pre><p>For more information about the <span class="emphasis"><em>Xtend</em></span>
         language please see the <span class="emphasis"><em><a class="xref" href="#Xtend_language" title="Xtend">Xtend</a></em></span> reference documentation.</p></div></div></div><div class="section" title="Xpand2"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xpand_reference_introduction"></a><span class="emphasis"><em>Xpand2</em></span></h2></div></div></div><p>The <span class="emphasis"><em>Xpand</em></span><a name="N10B42" class="indexterm"></a> language is used in templates to control the output generation.
     This documentation describes the general syntax and semantics of the
-    <span class="emphasis"><em>Xpand</em></span> language.</p><p>Typing the <span class="foreignphrase"><em class="foreignphrase">guillemets</em></span><a name="N10B4F" class="indexterm"></a> (&laquo; and &raquo;) used in the templates is supported by the Eclipse
+    <span class="emphasis"><em>Xpand</em></span> language.</p><p>Typing the <span class="foreignphrase"><em class="foreignphrase">guillemets</em></span><a name="N10B4F" class="indexterm"></a> (&iuml;&iquest;&frac12; and &iuml;&iquest;&frac12;) used in the templates is supported by the Eclipse
     editor: which provides keyboard shortcuts with <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>&lt;</strong></span> and <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>&gt;</strong></span>.</p><div class="section" title="Template files and encoding"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_template_files_and_ecoding"></a>Template files and encoding</h3></div></div></div><p>Templates are stored in files with the extension
       <code class="filename">.xpt</code><a name="N10B69" class="indexterm"></a>.<a name="N10B6F" class="indexterm"></a> Template files<a name="N10B73" class="indexterm"></a> must reside on the Java classpath of the generator
       process.</p><p>Almost all characters used in the standard syntax are part of
       <span class="emphasis"><em>ASCII</em></span> and should therefore be available in any
       encoding<a name="N10B7E" class="indexterm"></a>. The only limitation are the tag brackets
-      (<span class="emphasis"><em>guillemets</em></span>), for which the characters "&laquo;" (Unicode
-      <code class="varname">00AB</code>) and "&raquo;" (Unicode <code class="varname">00BB</code>) are
+      (<span class="emphasis"><em>guillemets</em></span>), for which the characters "&iuml;&iquest;&frac12;" (Unicode
+      <code class="varname">00AB</code>) and "&iuml;&iquest;&frac12;" (Unicode <code class="varname">00BB</code>) are
       used. So for reading templates, an encoding should be used that supports
       these characters (e.g. <code class="varname">ISO-8859-1</code> or
       <code class="varname">UTF-8</code>).</p><p>Names of properties, templates, namespaces etc. must only contain
-      letters, numbers and underscores.</p></div><div class="section" title="General structure of template files"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_general_structure_of_template_files"></a>General structure of template files</h3></div></div></div><p>Here is a first example of a template:</p><pre class="programlisting">&laquo;IMPORT meta::model&raquo;
-&laquo;EXTENSION my::ExtensionFile&raquo;
+      letters, numbers and underscores.</p></div><div class="section" title="General structure of template files"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_general_structure_of_template_files"></a>General structure of template files</h3></div></div></div><p>Here is a first example of a template:</p><pre class="programlisting">&iuml;&iquest;&frac12;IMPORT meta::model&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;EXTENSION my::ExtensionFile&iuml;&iquest;&frac12;
 
-&laquo;DEFINE javaClass FOR Entity&raquo;
-   &laquo;FILE fileName()&raquo;
-      package &laquo;javaPackage()&raquo;;
+&iuml;&iquest;&frac12;DEFINE javaClass FOR Entity&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;FILE fileName()&iuml;&iquest;&frac12;
+      package &iuml;&iquest;&frac12;javaPackage()&iuml;&iquest;&frac12;;
 
-      public class &laquo;name&raquo; {
+      public class &iuml;&iquest;&frac12;name&iuml;&iquest;&frac12; {
          // implementation
       }
-   &laquo;ENDFILE&raquo;
-&laquo;ENDDEFINE&raquo;</pre><p> A template file consists of any number of IMPORT
+   &iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;</pre><p> A template file consists of any number of IMPORT
       statements, followed by any number of EXTENSION statements, followed by
       one or more DEFINE blocks (called definitions).</p></div><div class="section" title="Statements of the Xpand language"><div class="titlepage"><div><div><h3 class="title"><a name="xpand_reference_statements_of_the_expand_language"></a>Statements of the <span class="emphasis"><em>Xpand</em></span> language</h3></div></div></div><div class="section" title="IMPORT"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_import"></a>IMPORT<a name="N10BA7" class="indexterm"></a></h4></div></div></div><p>If you are tired of always typing the fully qualified names of
         your types and definitions, you can import a namespace using the
-        IMPORT statement. </p><pre class="programlisting">&laquo;IMPORT meta::model&raquo;</pre><p>This
+        IMPORT statement. </p><pre class="programlisting">&iuml;&iquest;&frac12;IMPORT meta::model&iuml;&iquest;&frac12;</pre><p>This
         one imports the namespace <code class="varname">meta::model</code>. If your
         template contains such a statement, you can use the unqualified names
         of all types and template files contained in that namespace. This is
@@ -1008,16 +1008,16 @@ my::Templ::extension(*) // templ def with any number of parameters
         additional features of metaclasses. You do this by using the
         <span class="emphasis"><em>Xtend</em></span><a name="N10BC2" class="indexterm"></a> language. (See the corresponding reference
         documentation for details)</p><p>An EXTENSION import points to the <span class="emphasis"><em>Xtend</em></span>
-        file containing the required extensions: </p><pre class="programlisting">&laquo;EXTENSION my::ExtensionFile&raquo;</pre><p>
+        file containing the required extensions: </p><pre class="programlisting">&iuml;&iquest;&frac12;EXTENSION my::ExtensionFile&iuml;&iquest;&frac12;</pre><p>
         Note that extension files have to reside on the Java
         classpath<a name="N10BCE" class="indexterm"></a>, too. Therefore, they use the same namespace mechanism
         (and syntax) as types and template files.</p></div><div class="section" title="DEFINE"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_define"></a>DEFINE<a name="N10BD6" class="indexterm"></a></h4></div></div></div><p>The central concept of <span class="emphasis"><em>Xpand</em></span> is the
         <code class="code">DEFINE</code> block, also called a template. This is the
         smallest identifiable unit in a template file<a name="N10BE1" class="indexterm"></a>. The tag consists of a name, an optional
         comma-separated parameter list, as well as the name of the metamodel
-        class for which the template is defined. </p><pre class="programlisting">&laquo;DEFINE templateName(formalParameterList) FOR MetaClass&raquo;
+        class for which the template is defined. </p><pre class="programlisting">&iuml;&iquest;&frac12;DEFINE templateName(formalParameterList) FOR MetaClass&iuml;&iquest;&frac12;
    a sequence of statements
-&laquo;ENDDEFINE&raquo;</pre><p>To some extent, templates can be seen as special
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;</pre><p>To some extent, templates can be seen as special
         methods of the metaclass &acirc;&#128;&#147; there is always an implicit
         <span class="emphasis"><em>this</em></span> parameter which can be used to address the
         "underlying" model element; in our example above, this model element
@@ -1030,86 +1030,86 @@ my::Templ::extension(*) // templ def with any number of parameters
         the superclass. Vice versa, the template of the superclass would be
         used in case a subclass template is not available. Note that this not
         only works for the target type, but for all parameters. Technically,
-        the target type is handled as the first parameter.</p><p>So, let us assume you have the following metamodel: </p><div class="figure"><a name="N10C05"></a><p class="title"><b>Figure&nbsp;1.&nbsp;Sample metamodel</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/xPandReference/metamodelexample.gif" alt="Sample metamodel"></div></div></div><p><br class="figure-break"></p><p>Assume further, you would have a model which contains a
+        the target type is handled as the first parameter.</p><p>So, let us assume you have the following metamodel: </p><div class="figure"><a name="N10C05"></a><p class="title"><b>Figure&nbsp;1.&nbsp;Sample metamodel</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/XPand/metamodelexample.gif" alt="Sample metamodel"></div></div></div><p><br class="figure-break"></p><p>Assume further, you would have a model which contains a
         collection of <code class="classname">A</code>, <code class="classname">B</code> and
         <code class="classname">C</code> instances in the property
         <code class="methodname">listOfAs</code>. Then, you can write the following
-        template: </p><pre class="programlisting">&laquo;DEFINE someOtherDefine FOR SomeMetaClass&raquo;
-   &laquo;EXPAND implClass FOREACH listOfAs&raquo;
-&laquo;ENDDEFINE&raquo;
+        template: </p><pre class="programlisting">&iuml;&iquest;&frac12;DEFINE someOtherDefine FOR SomeMetaClass&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;EXPAND implClass FOREACH listOfAs&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;
 
-&laquo;DEFINE implClass FOR A&raquo;
+&iuml;&iquest;&frac12;DEFINE implClass FOR A&iuml;&iquest;&frac12;
    // this is the code generated for the superclass A
-&laquo;ENDDEFINE&raquo;
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;
 
-&laquo;DEFINE implClass FOR B&raquo;
+&iuml;&iquest;&frac12;DEFINE implClass FOR B&iuml;&iquest;&frac12;
    // this is the code generated for the subclass B
-&laquo;ENDDEFINE&raquo;
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;
 
-&laquo;DEFINE implClass FOR C&raquo;
+&iuml;&iquest;&frac12;DEFINE implClass FOR C&iuml;&iquest;&frac12;
    // this is the code generated for the subclass C
-&laquo;ENDDEFINE&raquo;</pre><p>So for each <code class="classname">B</code> in the list,
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;</pre><p>So for each <code class="classname">B</code> in the list,
         the template defined for <code class="classname">B</code> is executed, for
         each <code class="classname">C</code> in the collection the template defined
         for <span class="emphasis"><em><code class="classname">C</code></em></span> is invoked, and for
         all others (which are then instances of <code class="classname">A</code>) the
         default template is executed.</p></div><div class="section" title="FILE"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_file"></a>FILE<a name="N10C37" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">FILE</code> statement redirects the output
         generated from its body statements to the specified target.
-        </p><pre class="programlisting">&laquo;FILE expression [outletName]&raquo;
+        </p><pre class="programlisting">&iuml;&iquest;&frac12;FILE expression [outletName]&iuml;&iquest;&frac12;
    a sequence of statements
-&laquo;ENDFILE&raquo;</pre><p>The target is a file in the file system whose name
+&iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;</pre><p>The target is a file in the file system whose name
         is specified by the expression (relative to the specified target
         directory for that generator run). The expression for the target
         specification can be a concatenation (using the + operator).
         Additionally, you can specify an identifier (a legal Java identifier)
         for the name of the outlet<a name="N10C42" class="indexterm"></a>. (See the configuration section for a description of
         outlets).</p><p>The body of a <code class="varname">FILE</code> statement can contain any
-        other statements. Example: </p><pre class="programlisting">&laquo;FILE InterfaceName + ".java"&raquo;
-   package &laquo;InterfacePackageName&raquo;;
+        other statements. Example: </p><pre class="programlisting">&iuml;&iquest;&frac12;FILE InterfaceName + ".java"&iuml;&iquest;&frac12;
+   package &iuml;&iquest;&frac12;InterfacePackageName&iuml;&iquest;&frac12;;
 
    /* generated class! Do not modify! */
-   public interface &laquo;InterfaceName&raquo; {
-      &laquo;EXPAND Operation::InterfaceImplementation FOREACH  Operation&raquo;
+   public interface &iuml;&iquest;&frac12;InterfaceName&iuml;&iquest;&frac12; {
+      &iuml;&iquest;&frac12;EXPAND Operation::InterfaceImplementation FOREACH  Operation&iuml;&iquest;&frac12;
    }
-&laquo;ENDFILE&raquo;
+&iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;
 
 
-&laquo;FILE ImplName + ".java" MY_OUTLET&raquo;
-   package &laquo;ImplPackageName&raquo;;
+&iuml;&iquest;&frac12;FILE ImplName + ".java" MY_OUTLET&iuml;&iquest;&frac12;
+   package &iuml;&iquest;&frac12;ImplPackageName&iuml;&iquest;&frac12;;
 
-   public class &laquo;ImplName&raquo; extends &laquo;ImplBaseName&raquo;
-                           implements &laquo;InterfaceName&raquo; {
+   public class &iuml;&iquest;&frac12;ImplName&iuml;&iquest;&frac12; extends &iuml;&iquest;&frac12;ImplBaseName&iuml;&iquest;&frac12;
+                           implements &iuml;&iquest;&frac12;InterfaceName&iuml;&iquest;&frac12; {
    //TODO: implement it
    }
-&laquo;ENDFILE&raquo;</pre></div><div class="section" title="EXPAND"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expand"></a>EXPAND<a name="N10C51" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">EXPAND</code> statement "expands" another
+&iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;</pre></div><div class="section" title="EXPAND"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expand"></a>EXPAND<a name="N10C51" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">EXPAND</code> statement "expands" another
         <code class="varname">DEFINE</code> block (in a separate variable context),
         inserts its output at the current location and continues with the next
         statement. This is similar in concept to a subroutine call.
-        </p><pre class="programlisting">&laquo;EXPAND definitionName [(parameterList)]
-   [FOR expression | FOREACH expression [SEPARATOR expression] ]&raquo;</pre><p>The
+        </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND definitionName [(parameterList)]
+   [FOR expression | FOREACH expression [SEPARATOR expression] ]&iuml;&iquest;&frac12;</pre><p>The
         various alternative syntaxes are explained below.</p><div class="section" title="Names"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_names"></a>Names</h5></div></div></div><p>If the <span class="emphasis"><em>definitionName</em></span> is a simple
           unqualified name, the corresponding <code class="varname">DEFINE</code> block
           must be in the same template file.</p><p>If the called definition is not contained in the same template
           file, the name of the template file must be specified. As usual, the
-          double colon is used to delimit namespaces. </p><pre class="programlisting">&laquo;EXPAND TemplateFile::definitionName FOR myModelElement&raquo;</pre><p>Note
+          double colon is used to delimit namespaces. </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND TemplateFile::definitionName FOR myModelElement&iuml;&iquest;&frac12;</pre><p>Note
           that you would need to import the namespace<a name="N10C70" class="indexterm"></a> of the template file (if there is one). For instance,
           if the template file resides in the java package
           <code class="varname">my.templates</code>, there are two alternatives. You
-          could either write </p><pre class="programlisting">&laquo;IMPORT my::templates&raquo;
+          could either write </p><pre class="programlisting">&iuml;&iquest;&frac12;IMPORT my::templates&iuml;&iquest;&frac12;
 ...
-&laquo;EXPAND TemplateFile::definitionName FOR myModelElement&raquo;</pre><p> or
-          </p><pre class="programlisting">&laquo;EXPAND my::templates::TemplateFile::definitionName
-        FOR myModelElement&raquo;</pre></div></div><div class="section" title="FOR vs. FOREACH"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_for_vs_foreach"></a>FOR vs. FOREACH<a name="N10C82" class="indexterm"></a><a name="N10C85" class="indexterm"></a></h4></div></div></div><p>If <code class="varname">FOR</code> or <code class="varname">FOREACH</code> is
+&iuml;&iquest;&frac12;EXPAND TemplateFile::definitionName FOR myModelElement&iuml;&iquest;&frac12;</pre><p> or
+          </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND my::templates::TemplateFile::definitionName
+        FOR myModelElement&iuml;&iquest;&frac12;</pre></div></div><div class="section" title="FOR vs. FOREACH"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_for_vs_foreach"></a>FOR vs. FOREACH<a name="N10C82" class="indexterm"></a><a name="N10C85" class="indexterm"></a></h4></div></div></div><p>If <code class="varname">FOR</code> or <code class="varname">FOREACH</code> is
         omitted the other template is called <code class="varname">FOR this</code>.
-        </p><pre class="programlisting">&laquo;EXPAND TemplateFile::definitionName&raquo;</pre><p>
-        equals </p><pre class="programlisting">&laquo;EXPAND TemplateFile::definitionName FOR this&raquo;</pre><p>
+        </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND TemplateFile::definitionName&iuml;&iquest;&frac12;</pre><p>
+        equals </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND TemplateFile::definitionName FOR this&iuml;&iquest;&frac12;</pre><p>
         If <code class="varname">FOR</code> is specified, the definition is executed for
-        the result of the target expression. </p><pre class="programlisting">&laquo;EXPAND myDef FOR entity&raquo;</pre><p>If
+        the result of the target expression. </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND myDef FOR entity&iuml;&iquest;&frac12;</pre><p>If
         <code class="varname">FOREACH</code> is specified, the target expression must
         evaluate to a collection type<a name="N10CA2" class="indexterm"></a>. In this case, the specified definition is executed for
-        each element of that collection. </p><pre class="programlisting">&laquo;EXPAND myDef FOREACH entity.allAttributes&raquo;  </pre><div class="section" title="Specifying a Separator"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_specifying_a_separator"></a>Specifying a Separator<a name="N10CAC" class="indexterm"></a></h5></div></div></div><p>If a definition is to be expanded <code class="varname">FOREACH</code>
+        each element of that collection. </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND myDef FOREACH entity.allAttributes&iuml;&iquest;&frac12;  </pre><div class="section" title="Specifying a Separator"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_specifying_a_separator"></a>Specifying a Separator<a name="N10CAC" class="indexterm"></a></h5></div></div></div><p>If a definition is to be expanded <code class="varname">FOREACH</code>
           element of the target expression it is possible to specify a
-          <code class="varname">SEPARATOR</code> expression: </p><pre class="programlisting">&laquo;EXPAND paramTypeAndName FOREACH params SEPARATOR ','&raquo;</pre><p>The
+          <code class="varname">SEPARATOR</code> expression: </p><pre class="programlisting">&iuml;&iquest;&frac12;EXPAND paramTypeAndName FOREACH params SEPARATOR ','&iuml;&iquest;&frac12;</pre><p>The
           result of the separator expression<a name="N10CBA" class="indexterm"></a> will be written to the output between each evaluation
           of the target definition (not <span class="emphasis"><em>after</em></span> each one,
           but rather only in <span class="emphasis"><em>between</em></span> two elements. This
@@ -1121,19 +1121,19 @@ my::Templ::extension(*) // templ def with any number of parameters
         <code class="varname">FOREACH</code> block for each element of the target
         collection<a name="N10CD7" class="indexterm"></a> that results from the expression. The current element
         is bound to a variable with the specified name in the current context.
-        </p><pre class="programlisting">&laquo;FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]&raquo;
+        </p><pre class="programlisting">&iuml;&iquest;&frac12;FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]&iuml;&iquest;&frac12;
    a sequence of statements using variableName to access the
    current element of the iteration
-&laquo;ENDFOREACH&raquo;</pre><p>The body of a <code class="varname">FOREACH</code> block
+&iuml;&iquest;&frac12;ENDFOREACH&iuml;&iquest;&frac12;</pre><p>The body of a <code class="varname">FOREACH</code> block
         can contain any other statements; specifically
         <code class="varname">FOREACH</code> statements may be nested. If
         <code class="varname">ITERATOR</code><a name="N10CE6" class="indexterm"></a> name is specified, an object of the type
         <span class="emphasis"><em>xpand2::Iterator</em></span> (see API doc for details) is
         accessible using the specified name. The <code class="varname">SEPARATOR</code>
         expression works in the same way as the one for
-        <code class="varname">EXPAND</code>.</p><p>Example: </p><pre class="programlisting">&laquo;FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','&raquo;
-   &laquo;iter.counter1&raquo; : &laquo;c&raquo;
-&laquo;ENDFOREACH&raquo;</pre><p>The evaluation of the above statement results in
+        <code class="varname">EXPAND</code>.</p><p>Example: </p><pre class="programlisting">&iuml;&iquest;&frac12;FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;iter.counter1&iuml;&iquest;&frac12; : &iuml;&iquest;&frac12;c&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDFOREACH&iuml;&iquest;&frac12;</pre><p>The evaluation of the above statement results in
         the following text: </p><pre class="programlisting">1 : A,
 2 : B,
 3 : C</pre></div><div class="section" title="IF"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_if"></a>IF<a name="N10CFE" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">IF</code> statement supports conditional
@@ -1141,23 +1141,23 @@ my::Templ::extension(*) // templ def with any number of parameters
         block is optional. Every <code class="varname">IF</code> statement must be
         closed with an <code class="varname">ENDIF</code><a name="N10D14" class="indexterm"></a>. The body of an <code class="varname">IF</code> block can contain
         any other statement, specifically, <code class="varname">IF</code> statements
-        may be nested. </p><pre class="programlisting">&laquo;IF expression&raquo;
+        may be nested. </p><pre class="programlisting">&iuml;&iquest;&frac12;IF expression&iuml;&iquest;&frac12;
    a sequence of statements
-[ &laquo;ELSEIF expression&raquo; ]
+[ &iuml;&iquest;&frac12;ELSEIF expression&iuml;&iquest;&frac12; ]
    a sequence of statements ]
-[ &laquo;ELSE&raquo;
+[ &iuml;&iquest;&frac12;ELSE&iuml;&iquest;&frac12;
    a sequence of statements ]
-&laquo;ENDIF&raquo;</pre></div><div class="section" title="PROTECT"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_protect"></a>PROTECT<a name="N10D24" class="indexterm"></a></h4></div></div></div><p>Protected Regions<a name="N10D29" class="indexterm"></a> are used to mark sections in the generated code that
+&iuml;&iquest;&frac12;ENDIF&iuml;&iquest;&frac12;</pre></div><div class="section" title="PROTECT"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_protect"></a>PROTECT<a name="N10D24" class="indexterm"></a></h4></div></div></div><p>Protected Regions<a name="N10D29" class="indexterm"></a> are used to mark sections in the generated code that
         shall not be overridden again by the subsequent generator run. These
-        sections typically contain manually written code. </p><pre class="programlisting">&laquo;PROTECT CSTART expression CEND expression ID expression (DISABLE)?&raquo;
+        sections typically contain manually written code. </p><pre class="programlisting">&iuml;&iquest;&frac12;PROTECT CSTART expression CEND expression ID expression (DISABLE)?&iuml;&iquest;&frac12;
    a sequence of statements
-&laquo;ENDPROTECT&raquo;</pre><p> The values of CSTART<a name="N10D30" class="indexterm"></a> and CEND<a name="N10D34" class="indexterm"></a> expressions are used to enclose the protected regions
+&iuml;&iquest;&frac12;ENDPROTECT&iuml;&iquest;&frac12;</pre><p> The values of CSTART<a name="N10D30" class="indexterm"></a> and CEND<a name="N10D34" class="indexterm"></a> expressions are used to enclose the protected regions
         marker in the output. They should build valid comment beginning and
         end strings corresponding to the generated target language (e.g.
         <span class="emphasis"><em>"/*"</em></span> and <span class="emphasis"><em>"*/"</em></span> for Java). The
-        following is an example for Java: </p><pre class="programlisting">&laquo;PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueID&raquo;
+        following is an example for Java: </p><pre class="programlisting">&iuml;&iquest;&frac12;PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueID&iuml;&iquest;&frac12;
    here goes some content
-&laquo;ENDPROTECT&raquo;</pre><p>The ID is set by the <code class="varname">ID</code>
+&iuml;&iquest;&frac12;ENDPROTECT&iuml;&iquest;&frac12;</pre><p>The ID is set by the <code class="varname">ID</code>
         expression and must be globally unique (at least for one complete pass
         of the generator).</p><p>Generated target code looks like this: </p><pre class="programlisting">public class Person {
 /*PROTECTED REGION ID(Person) ENABLED START*/
@@ -1169,46 +1169,46 @@ my::Templ::extension(*) // templ def with any number of parameters
 }</pre><p> Protected regions are generated in enabled state<a name="N10D49" class="indexterm"></a> by default. Unless you manually disable<a name="N10D4F" class="indexterm"></a> them, by removing the <code class="varname">ENABLED</code>
         keyword, they will always be preserved.</p><p>If you want the generator to generate disabled protected
         regions, you need to add the <code class="varname">DISABLE</code> keyword inside
-        the declaration: </p><pre class="programlisting">&laquo;PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE&raquo;</pre></div><div class="section" title="LET"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_let"></a>LET<a name="N10D63" class="indexterm"></a></h4></div></div></div><p><code class="varname">LET</code> lets you specify local
-        variables:</p><pre class="programlisting">&laquo;LET expression AS variableName&raquo;
+        the declaration: </p><pre class="programlisting">&iuml;&iquest;&frac12;PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE&iuml;&iquest;&frac12;</pre></div><div class="section" title="LET"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_let"></a>LET<a name="N10D63" class="indexterm"></a></h4></div></div></div><p><code class="varname">LET</code> lets you specify local
+        variables:</p><pre class="programlisting">&iuml;&iquest;&frac12;LET expression AS variableName&iuml;&iquest;&frac12;
    a sequence of statements
-&laquo;ENDLET&raquo;</pre><p>During the expansion of the body of the
+&iuml;&iquest;&frac12;ENDLET&iuml;&iquest;&frac12;</pre><p>During the expansion of the body of the
         <code class="varname">LET</code><a name="N10D6F" class="indexterm"></a> block, the value of the expression is bound to the
         specified variable. Note that the expression will only be evaluated
         once, independent from the number of usages of the variable within the
-        <code class="varname">LET</code> block. Example: </p><pre class="programlisting">&laquo;LET packageName + "." + className AS fqn&raquo;
-   the fully qualified name is: &laquo;fqn&raquo;;
-&laquo;ENDLET&raquo;</pre></div><div class="section" title="ERROR"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_error"></a>ERROR<a name="N10D7C" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">ERROR</code> statement aborts the evaluation of
+        <code class="varname">LET</code> block. Example: </p><pre class="programlisting">&iuml;&iquest;&frac12;LET packageName + "." + className AS fqn&iuml;&iquest;&frac12;
+   the fully qualified name is: &iuml;&iquest;&frac12;fqn&iuml;&iquest;&frac12;;
+&iuml;&iquest;&frac12;ENDLET&iuml;&iquest;&frac12;</pre></div><div class="section" title="ERROR"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_error"></a>ERROR<a name="N10D7C" class="indexterm"></a></h4></div></div></div><p>The <code class="varname">ERROR</code> statement aborts the evaluation of
         the templates by throwing an
-        <code class="varname">XpandException</code><a name="N10D86" class="indexterm"></a> with the specified message. </p><pre class="programlisting">&laquo;ERROR expression&raquo;</pre><p>Note
+        <code class="varname">XpandException</code><a name="N10D86" class="indexterm"></a> with the specified message. </p><pre class="programlisting">&iuml;&iquest;&frac12;ERROR expression&iuml;&iquest;&frac12;</pre><p>Note
         that you should use this facility very sparingly, since it is better
         practice to check for invalid models using constraints on the
-        metamodel, and not in the templates.</p></div><div class="section" title="Comments"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_comments"></a>Comments<a name="N10D91" class="indexterm"></a></h4></div></div></div><p>Comments are only allowed outside of tags. </p><pre class="programlisting">&laquo;REM&raquo;
+        metamodel, and not in the templates.</p></div><div class="section" title="Comments"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_comments"></a>Comments<a name="N10D91" class="indexterm"></a></h4></div></div></div><p>Comments are only allowed outside of tags. </p><pre class="programlisting">&iuml;&iquest;&frac12;REM&iuml;&iquest;&frac12;
    text comment
-&laquo;ENDREM&raquo;</pre><p>Comments may not contain a REM<a name="N10D9B" class="indexterm"></a> tag, this implies that comments are not nestable. A
+&iuml;&iquest;&frac12;ENDREM&iuml;&iquest;&frac12;</pre><p>Comments may not contain a REM<a name="N10D9B" class="indexterm"></a> tag, this implies that comments are not nestable. A
         comment may not have a white space between the REM keyword and its
-        brackets. Example: </p><pre class="programlisting">&laquo;REM&raquo;&laquo;LET expression AS variableName&raquo;&laquo;ENDREM&raquo;
+        brackets. Example: </p><pre class="programlisting">&iuml;&iquest;&frac12;REM&iuml;&iquest;&frac12;&iuml;&iquest;&frac12;LET expression AS variableName&iuml;&iquest;&frac12;&iuml;&iquest;&frac12;ENDREM&iuml;&iquest;&frac12;
    a sequence of statements
-&laquo;REM&raquo;  &laquo;variableName.stuff&raquo;
-&laquo;ENDLET&raquo;&laquo;ENDREM&raquo;</pre></div><div class="section" title="Expression Statement"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expression_statement"></a>Expression Statement<a name="N10DA5" class="indexterm"></a></h4></div></div></div><p>Expressions support processing of the information provided by
+&iuml;&iquest;&frac12;REM&iuml;&iquest;&frac12;  &iuml;&iquest;&frac12;variableName.stuff&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDLET&iuml;&iquest;&frac12;&iuml;&iquest;&frac12;ENDREM&iuml;&iquest;&frac12;</pre></div><div class="section" title="Expression Statement"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_expression_statement"></a>Expression Statement<a name="N10DA5" class="indexterm"></a></h4></div></div></div><p>Expressions support processing of the information provided by
         the instantiated metamodel. <span class="emphasis"><em>Xpand</em></span> provides powerful expressions for
         selection, aggregation, and navigation. <span class="emphasis"><em>Xpand</em></span> uses the expressions
         sublanguage in almost any statement that we have seen so far. The
         expression statement just evaluates the contained expression and
         writes the result to the output (using the
         <code class="varname">toString()</code> method of
-        <code class="varname">java.lang.Object</code>). Example: </p><pre class="programlisting">public class &laquo;this.name&raquo; {</pre><p>
+        <code class="varname">java.lang.Object</code>). Example: </p><pre class="programlisting">public class &iuml;&iquest;&frac12;this.name&iuml;&iquest;&frac12; {</pre><p>
         All expressions defined by the oArchitectureWare expressions
         sublanguage are also available in <span class="emphasis"><em>Xpand</em></span>. You can invoke imported
         extensions. (See the <span class="emphasis"><em><a class="xref" href="#r10_expressions_language" title="Expressions">Expressions</a></em></span> and <span class="emphasis"><em><a class="xref" href="#Xtend_language" title="Xtend">Xtend</a> language reference</em></span> for more
         details).</p></div><div class="section" title="Controlling generation of whitespace"><div class="titlepage"><div><div><h4 class="title"><a name="xpand_reference_controlling_generation_of_white_space"></a>Controlling generation of whitespace</h4></div></div></div><p>If you want to omit the output of superfluous
         whitespace<a name="N10DCD" class="indexterm"></a> you can add a minus sign just before any closing
-        bracket. Example: </p><pre class="programlisting">&laquo;FILE InterfaceName + ".java"-&raquo;
-&laquo;IF hasPackage-&raquo;
-package &laquo;InterfacePackageName&raquo;;
-&laquo;ENDIF-&raquo;
+        bracket. Example: </p><pre class="programlisting">&iuml;&iquest;&frac12;FILE InterfaceName + ".java"-&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;IF hasPackage-&iuml;&iquest;&frac12;
+package &iuml;&iquest;&frac12;InterfacePackageName&iuml;&iquest;&frac12;;
+&iuml;&iquest;&frac12;ENDIF-&iuml;&iquest;&frac12;
 ...
-&laquo;ENDFILE&raquo;</pre><p>The generated file would start with two new lines
+&iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;</pre><p>The generated file would start with two new lines
         (one after the <code class="varname">FILE</code> and one after the
         <code class="varname">IF</code> statement) if the minus characters had not been
         set.</p><p>In general, this mechanism works as follows: If a statement (or
@@ -1220,9 +1220,9 @@ package &laquo;InterfacePackageName&raquo;;
       (<span class="emphasis"><em>e.g.</em></span> zip) a written generator and deliver it as a
       kind of black box. If you want to use such a generator but need to
       change some small generation stuff, you can make use of the
-      <code class="varname">AROUND</code><a name="N10DF2" class="indexterm"></a> aspects. </p><pre class="programlisting">&laquo;AROUND qualifiedDefinitionName(parameterList)? FOR type&raquo;
+      <code class="varname">AROUND</code><a name="N10DF2" class="indexterm"></a> aspects. </p><pre class="programlisting">&iuml;&iquest;&frac12;AROUND qualifiedDefinitionName(parameterList)? FOR type&iuml;&iquest;&frac12;
    a sequence of statements
-&laquo;ENDAROUND&raquo; </pre><p> <code class="varname">AROUND</code> lets you add templates
+&iuml;&iquest;&frac12;ENDAROUND&iuml;&iquest;&frac12; </pre><p> <code class="varname">AROUND</code> lets you add templates
       in an non-invasive way (you do not need to touch the generator
       templates). Because aspects are invasive, a template file containing
       <code class="varname">AROUND</code> aspects must be wrapped by configuration (see
@@ -1232,9 +1232,9 @@ package &laquo;InterfacePackageName&raquo;;
         is only one join point so far: a call to a definition.</p><p>You specify on which join points the contributed code should be
         executed by specifying something like a 'query' on all available join
         points. Such a query is called a <span class="emphasis"><em>point cut</em></span>.
-        </p><pre class="programlisting">&laquo;AROUND [pointcut]&raquo;
+        </p><pre class="programlisting">&iuml;&iquest;&frac12;AROUND [pointcut]&iuml;&iquest;&frac12;
    do stuff
-&laquo;ENDAROUND&raquo;</pre><p> A pointcut consists of a fully qualified name,
+&iuml;&iquest;&frac12;ENDAROUND&iuml;&iquest;&frac12;</pre><p> A pointcut consists of a fully qualified name,
         parameter types and the target type.</p><div class="section" title="Definition Name"><div class="titlepage"><div><div><h5 class="title"><a name="xpand_reference_definition_name"></a>Definition Name</h5></div></div></div><p>The definition name part of a point cut must match the fully
           qualified name of the join point definition. Such expressions are
           case sensitive. The asterisk character is used to specify
@@ -1330,16 +1330,16 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre></div></div>
 &lt;/component&gt;</pre><p>In the example there are two outlets
         configured. The first one has no name and is therefore handled as the
         default outlet. Default outlets are triggered by omitting an outlet
-        name: </p><pre class="programlisting">&laquo;FILE 'test/note.txt'&raquo;
+        name: </p><pre class="programlisting">&iuml;&iquest;&frac12;FILE 'test/note.txt'&iuml;&iquest;&frac12;
 # this goes to the default outlet
-&laquo;ENDFILE&raquo;</pre><p>The configured base path is
+&iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;</pre><p>The configured base path is
         '<code class="filename">main/src-gen</code>', so the file from above would go
         to '<code class="filename">main/src-gen/test/note.txt</code>'.</p><p>The second outlet has a <code class="varname">name</code> ('TO_SRC')
         specified. Additionally the flag <code class="varname">overwrite</code> is set
         to <code class="varname">false</code> (defaults to <code class="varname">true</code>). The
-        following <span class="emphasis"><em>Xpand</em></span> fragment </p><pre class="programlisting">&laquo;FILE 'test/note.txt' TO_SRC&raquo;
+        following <span class="emphasis"><em>Xpand</em></span> fragment </p><pre class="programlisting">&iuml;&iquest;&frac12;FILE 'test/note.txt' TO_SRC&iuml;&iquest;&frac12;
 # this goes to the TO_SRC outlet
-&laquo;ENDFILE&raquo;</pre><p>would cause the generator to write the contents to
+&iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;</pre><p>would cause the generator to write the contents to
         '<code class="filename">main/src/test/note.txt</code>' if the file does not
         already exist (the <code class="varname">overwrite</code> flag).</p><p>Another option called <code class="varname">append</code> (defaults to
         <code class="varname">false</code>) causes the generator to append the generated
@@ -1375,7 +1375,7 @@ public interface PostProcessor {
         you want to use protected regions<a name="N10F74" class="indexterm"></a>. </p><pre class="programlisting">&lt;prSrcPaths value="main/src"/&gt;
 &lt;prDefaultExcludes value="false"/&gt;
 &lt;prExcludes value="*.xml"/&gt;</pre><p>The
-        <span class="emphasis"><em>prSrcPaths</em></span> &nbsp;<a name="N10F7E" class="indexterm"></a>property points to a comma-separated list of
+        <span class="emphasis"><em>prSrcPaths</em></span> &iuml;&iquest;&frac12;<a name="N10F7E" class="indexterm"></a>property points to a comma-separated list of
         directories. The protected region resolver will scan these directories
         for files containing activated protected regions.</p><p>There are several file names which are excluded by default:
         </p><pre class="programlisting">RCS, SCCS, CVS, CVS.adm, RCSLOG, cvslog.*, tags, TAGS, .make.state, .nse_depinfo, *~, #*,
@@ -1480,36 +1480,36 @@ public interface PostProcessor {
         folder of the project, you can find the <code class="filename">Root.xpt</code>
         template file. Inside, you can find a template called
         <code class="classname">Impl</code> that generates the implementation of the
-        JavaBean.</p><pre class="programlisting">&laquo;DEFINE Entity FOR data::Entity&raquo;
-   &laquo;FILE baseClassFileName() &raquo;
-      // generated at &laquo;timestamp()&raquo;
-      public abstract class &laquo;baseClassName()&raquo; {
-         &laquo;EXPAND Impl&raquo;
+        JavaBean.</p><pre class="programlisting">&iuml;&iquest;&frac12;DEFINE Entity FOR data::Entity&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;FILE baseClassFileName() &iuml;&iquest;&frac12;
+      // generated at &iuml;&iquest;&frac12;timestamp()&iuml;&iquest;&frac12;
+      public abstract class &iuml;&iquest;&frac12;baseClassName()&iuml;&iquest;&frac12; {
+         &iuml;&iquest;&frac12;EXPAND Impl&iuml;&iquest;&frac12;
       }
-   &laquo;ENDFILE&raquo;
-&laquo;ENDDEFINE&raquo;
+   &iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;
 
-&laquo;DEFINE Impl FOR data::Entity&raquo;
-   &laquo;EXPAND GettersAndSetters&raquo;
-&laquo;ENDDEFINE&raquo;
+&iuml;&iquest;&frac12;DEFINE Impl FOR data::Entity&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;EXPAND GettersAndSetters&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;
 
-&laquo;DEFINE Impl FOR data::PersistentEntity&raquo;
-   &laquo;EXPAND GettersAndSetters&raquo;
+&iuml;&iquest;&frac12;DEFINE Impl FOR data::PersistentEntity&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;EXPAND GettersAndSetters&iuml;&iquest;&frac12;
     public void save() {
 
    }
-&laquo;ENDDEFINE&raquo;</pre><p>What we now want to do is as follows: Whenever the
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;</pre><p>What we now want to do is as follows: Whenever the
         <span class="emphasis"><em>Impl</em></span> template is executed, we want to run an
         additional template that generates additional code (for example, some
         kind of meta information for frameworks &acirc;&#128;&#147; the specific code is not
         important for the example here).</p><p>So, in our new project, we define the following template
-        file:</p><pre class="programlisting">&laquo;AROUND Impl FOR data::Entity&raquo;
-   &laquo;FOREACH attribute AS a&raquo;
-      public static final AttrInfo &laquo;a.name&raquo;Info = new AttrInfo(
-         "&laquo;a.name&raquo;", &laquo;a.type&raquo;.class );
-   &laquo;ENDFOREACH&raquo;
-   &laquo;targetDef.proceed()&raquo;
-&laquo;ENDAROUND&raquo;</pre><p>So, this new template wraps around the existing template called
+        file:</p><pre class="programlisting">&iuml;&iquest;&frac12;AROUND Impl FOR data::Entity&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;FOREACH attribute AS a&iuml;&iquest;&frac12;
+      public static final AttrInfo &iuml;&iquest;&frac12;a.name&iuml;&iquest;&frac12;Info = new AttrInfo(
+         "&iuml;&iquest;&frac12;a.name&iuml;&iquest;&frac12;", &iuml;&iquest;&frac12;a.type&iuml;&iquest;&frac12;.class );
+   &iuml;&iquest;&frac12;ENDFOREACH&iuml;&iquest;&frac12;
+   &iuml;&iquest;&frac12;targetDef.proceed()&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDAROUND&iuml;&iquest;&frac12;</pre><p>So, this new template wraps around the existing template called
         <code class="classname">Impl</code> It first generates additional code and
         then forwards the execution to the original template using
         <code class="methodname">targetDef.proceed()</code>. So, in effect, this is a
@@ -1575,7 +1575,48 @@ public interface PostProcessor {
       things:</p><pre class="programlisting">&lt;&lt;AROUND my::Template::definition(String s) FOR String&gt;&gt;
    log('invoking '+&lt;&lt;targetDef.name&gt;&gt;+' with '+this)
    &lt;&lt;targetDef.proceed()&gt;&gt;
-&lt;&lt;ENDAROUND&gt;&gt;</pre></div></div><div class="footnotes"><br><hr align="left" width="100"><div class="footnote"><p><sup>[<a href="#N10603" name="ftn.N10603" class="para">1</a>] </sup>since 4.1.2</p></div></div></div><div class="chapter" title="Chapter&nbsp;2.&nbsp;Built-in types API documentation"><div class="titlepage"><div><div><h2 class="title"><a name="builtin_api"></a>Chapter&nbsp;2.&nbsp;Built-in types API documentation</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#Object.html"><code class="classname">Object</code></a></span></dt><dt><span class="section"><a href="#String.html"><code class="classname">String</code></a></span></dt><dt><span class="section"><a href="#Integer.html"><code class="classname">Integer</code></a></span></dt><dt><span class="section"><a href="#Boolean.html"><code class="classname">Boolean</code></a></span></dt><dt><span class="section"><a href="#Real.html"><code class="classname">Real</code></a></span></dt><dt><span class="section"><a href="#Collection.html"><code class="classname">Collection</code></a></span></dt><dt><span class="section"><a href="#List.html"><code class="classname">List</code></a></span></dt><dt><span class="section"><a href="#Set.html"><code class="classname">Set</code></a></span></dt><dt><span class="section"><a href="#xpand2_Type.html"><code class="classname">xpand2::Type</code></a></span></dt><dt><span class="section"><a href="#xpand2_Feature.html"><code class="classname">xpand2::Feature</code></a></span></dt><dt><span class="section"><a href="#xpand2_Property.html"><code class="classname">xpand2::Property</code></a></span></dt><dt><span class="section"><a href="#xpand2_Operation.html"><code class="classname">xpand2::Operation</code></a></span></dt><dt><span class="section"><a href="#xpand2_StaticProperty.html"><code class="classname">xpand2::StaticProperty</code></a></span></dt><dt><span class="section"><a href="#Void.html"><code class="classname">Void</code></a></span></dt><dt><span class="section"><a href="#xtend_AdviceContext.html"><code class="classname">xtend::AdviceContext</code></a></span></dt><dt><span class="section"><a href="#xpand2_Definition.html"><code class="classname">xpand2::Definition</code></a></span></dt><dt><span class="section"><a href="#xpand2_Iterator.html"><code class="classname">xpand2::Iterator</code></a></span></dt></dl></div><div class="section" title="Object"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Object.html"></a><code class="classname">Object</code></h2></div></div></div><p>
+&lt;&lt;ENDAROUND&gt;&gt;</pre></div></div><div class="section" title="Profiler"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="r10_profiler"></a>Profiler</h2></div></div></div><p>The <span class="emphasis"><em>ProfilerComponent</em></span> allows you to measure the time each check, 
+    Xtend function or Xpand define needed to be executed in your workflow.
+    It does so by acting as a callback of the <span class="emphasis"><em>CheckComponent</em></span>, <span class="emphasis"><em>XtendComponent</em></span> and 
+    <span class="emphasis"><em>XpandComponent</em></span> where the time of each call will be stored in a profiling model.
+    From this data the profiler eventually derives execution times with and without children, 
+    callers/callees with the corresponding call counts and finally a 
+    call graph with respect to recursive calls.
+    A set of Xpand templates can transform the model to an HTML report or a text file in
+    the GNU GProf format.
+    </p><div class="figure"><a name="N110E8"></a><p class="title"><b>Figure&nbsp;2.&nbsp;Sample HTML output of the profiler</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/Xpand/profiler.png" width="513" alt="Sample HTML output of the profiler"></div></div></div><br class="figure-break"><p>Use the <span class="emphasis"><em>ProfilerComponent</em></span> to wrap other components inside a workflow.
+ 	Denote a <span class="emphasis"><em>resultSlot</em></span> where the profiler stores the model in the end.  
+ 	Then, refer to this component via <span class="emphasis"><em>idRef</em></span> as a callback.
+ 	As soon as the component-tag of the profiler closes, it stores the derived profiling model in the given slot. 
+ 	You are free to transform this model or you can re-use one of the templates that come with profiler.
+ 	</p><pre class="programlisting">
+&lt;component id="profiler" class="org.eclipse.xtend.profiler.ProfilerComponent"&gt;
+	&lt;resultSlot value="profilingResult" /&gt;
+	
+	&lt;component class="org.eclipse.xtend.check.CheckComponent"&gt;
+		&lt;vetoableCallback idRef="profiler" /&gt;
+		...
+	&lt;/component&gt;
+	&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
+		&lt;vetoableCallback idRef="profiler" /&gt;
+		...
+	&lt;/component&gt;
+	&lt;component class="org.eclipse.xpand2.Generator"&gt;
+		&lt;vetoableCallback idRef="profiler" /&gt;
+		...
+	&lt;/component&gt;
+&lt;/component&gt;
+
+&lt;component class="org.eclipse.xpand2.Generator" fileEncoding="ISO-8859-1"&gt;
+	&lt;metaModel idRef="mm"/&gt;
+	&lt;expand value="org::eclipse::xtend::profiler::templates::Html::Main FOR profilingResult"/&gt; 
+	&lt;outlet overwrite="true" path="profiling"/&gt;
+&lt;/component&gt;
+	</pre><p>Currently, there are two different templates available to render the profiling model
+	</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>org::eclipse::xtend::profiler::templates::Html::Main</p></li><li class="listitem"><p>org::eclipse::xtend::profiler::templates::GProf::Main</p></li></ul></div><p>
+	</p><p>The Xpand Wizard will produce a workflow called <span class="emphasis"><em>workflowWithProfiler.mwe</em></span> that
+	demonstrates the capabilities of the profiler. It puts the result in the folder <span class="emphasis"><em>profiling</em></span>.
+	</p></div><div class="footnotes"><br><hr align="left" width="100"><div class="footnote"><p><sup>[<a href="#N10603" name="ftn.N10603" class="para">1</a>] </sup>since 4.1.2</p></div></div></div><div class="chapter" title="Chapter&nbsp;2.&nbsp;Built-in types API documentation"><div class="titlepage"><div><div><h2 class="title"><a name="builtin_api"></a>Chapter&nbsp;2.&nbsp;Built-in types API documentation</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#Object.html"><code class="classname">Object</code></a></span></dt><dt><span class="section"><a href="#String.html"><code class="classname">String</code></a></span></dt><dt><span class="section"><a href="#Integer.html"><code class="classname">Integer</code></a></span></dt><dt><span class="section"><a href="#Boolean.html"><code class="classname">Boolean</code></a></span></dt><dt><span class="section"><a href="#Real.html"><code class="classname">Real</code></a></span></dt><dt><span class="section"><a href="#Collection.html"><code class="classname">Collection</code></a></span></dt><dt><span class="section"><a href="#List.html"><code class="classname">List</code></a></span></dt><dt><span class="section"><a href="#Set.html"><code class="classname">Set</code></a></span></dt><dt><span class="section"><a href="#xpand2_Type.html"><code class="classname">xpand2::Type</code></a></span></dt><dt><span class="section"><a href="#xpand2_Feature.html"><code class="classname">xpand2::Feature</code></a></span></dt><dt><span class="section"><a href="#xpand2_Property.html"><code class="classname">xpand2::Property</code></a></span></dt><dt><span class="section"><a href="#xpand2_Operation.html"><code class="classname">xpand2::Operation</code></a></span></dt><dt><span class="section"><a href="#xpand2_StaticProperty.html"><code class="classname">xpand2::StaticProperty</code></a></span></dt><dt><span class="section"><a href="#Void.html"><code class="classname">Void</code></a></span></dt><dt><span class="section"><a href="#xtend_AdviceContext.html"><code class="classname">xtend::AdviceContext</code></a></span></dt><dt><span class="section"><a href="#xpand2_Definition.html"><code class="classname">xpand2::Definition</code></a></span></dt><dt><span class="section"><a href="#xpand2_Iterator.html"><code class="classname">xpand2::Iterator</code></a></span></dt></dl></div><div class="section" title="Object"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="Object.html"></a><code class="classname">Object</code></h2></div></div></div><p>
 			Supertype: 
 none
 		</p><p>
@@ -2732,15 +2773,15 @@ none
     <code class="classname">choicepage.title</code> are elements or attributes defined
     in the XSD meta model. Their values are stored within the XML file and
     this templates inserts them into the generated (
-    <code class="filename">wizard.txt</code> ) file.</p><pre class="programlisting">&laquo;IMPORT metamodel&raquo;
+    <code class="filename">wizard.txt</code> ) file.</p><pre class="programlisting">&iuml;&iquest;&frac12;IMPORT metamodel&iuml;&iquest;&frac12;
 
-&laquo;DEFINE Root FOR metamodel::Wizard&raquo;
-&laquo;FILE "wizard.txt"&raquo;
-Name: &laquo;name&raquo;
-Welcometext: &laquo;welcometext&raquo;
-First Page Title: &laquo;choicepage.title&raquo;
-&laquo;ENDFILE&raquo;
-&laquo;ENDDEFINE&raquo;</pre></div><div class="section" title="Step 5: Create a Workflow"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xsd_tutorial_create_workflow"></a>Step 5: Create a Workflow</h2></div></div></div><p>The workflow ties together model, meta model and templates and
+&iuml;&iquest;&frac12;DEFINE Root FOR metamodel::Wizard&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;FILE "wizard.txt"&iuml;&iquest;&frac12;
+Name: &iuml;&iquest;&frac12;name&iuml;&iquest;&frac12;
+Welcometext: &iuml;&iquest;&frac12;welcometext&iuml;&iquest;&frac12;
+First Page Title: &iuml;&iquest;&frac12;choicepage.title&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDFILE&iuml;&iquest;&frac12;
+&iuml;&iquest;&frac12;ENDDEFINE&iuml;&iquest;&frac12;</pre></div><div class="section" title="Step 5: Create a Workflow"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="xsd_tutorial_create_workflow"></a>Step 5: Create a Workflow</h2></div></div></div><p>The workflow ties together model, meta model and templates and
     defines the process of how to generate code.</p><p>To create a new workflow file, switch to the Xpand/Xtend
     perspective, click on <span class="emphasis"><em>"File", "New" and "Workflow
     file"</em></span>. After specifying a folder and a filename an empty

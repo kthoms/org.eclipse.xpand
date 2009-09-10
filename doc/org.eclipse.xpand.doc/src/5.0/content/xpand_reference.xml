@@ -2902,12 +2902,12 @@ my::Templ::extension(*) // templ def with any number of parameters
 
             <mediaobject>
               <imageobject role="fo">
-                <imagedata fileref="images/xPandReference/metamodelexample.gif"
+                <imagedata fileref="images/XPand/metamodelexample.gif"
                            scale="80" />
               </imageobject>
 
               <imageobject role="html">
-                <imagedata fileref="images/xPandReference/metamodelexample.gif" />
+                <imagedata fileref="images/XPand/metamodelexample.gif" />
               </imageobject>
             </mediaobject>
           </figure></para>
@@ -3959,4 +3959,82 @@ public interface PostProcessor {
 &lt;&lt;ENDAROUND&gt;&gt;</programlisting>
     </section>
   </section>
+  
+  <section id="r10_profiler">
+    <title>Profiler</title>
+    
+    <para>The <emphasis>ProfilerComponent</emphasis> allows you to measure the time each check, 
+    Xtend function or Xpand define needed to be executed in your workflow.
+    It does so by acting as a callback of the <emphasis>CheckComponent</emphasis>, <emphasis>XtendComponent</emphasis> and 
+    <emphasis>XpandComponent</emphasis> where the time of each call will be stored in a profiling model.
+    From this data the profiler eventually derives execution times with and without children, 
+    callers/callees with the corresponding call counts and finally a 
+    call graph with respect to recursive calls.
+    A set of Xpand templates can transform the model to an HTML report or a text file in
+    the GNU GProf format.
+    </para>
+    
+    <figure>
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/Xpand/profiler.png"
+                       scale="30" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/Xpand/profiler.png" scale="95" />
+          </imageobject>
+        </mediaobject>
+        <title>Sample HTML output of the profiler</title>
+    </figure>
+    
+ 	<para>Use the <emphasis>ProfilerComponent</emphasis> to wrap other components inside a workflow.
+ 	Denote a <emphasis>resultSlot</emphasis> where the profiler stores the model in the end.  
+ 	Then, refer to this component via <emphasis>idRef</emphasis> as a callback.
+ 	As soon as the component-tag of the profiler closes, it stores the derived profiling model in the given slot. 
+ 	You are free to transform this model or you can re-use one of the templates that come with profiler.
+ 	</para>
+
+	<programlisting>
+&lt;component id="profiler" class="org.eclipse.xtend.profiler.ProfilerComponent"&gt;
+	&lt;resultSlot value="profilingResult" /&gt;
+	
+	&lt;component class="org.eclipse.xtend.check.CheckComponent"&gt;
+		&lt;vetoableCallback idRef="profiler" /&gt;
+		...
+	&lt;/component&gt;
+	&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
+		&lt;vetoableCallback idRef="profiler" /&gt;
+		...
+	&lt;/component&gt;
+	&lt;component class="org.eclipse.xpand2.Generator"&gt;
+		&lt;vetoableCallback idRef="profiler" /&gt;
+		...
+	&lt;/component&gt;
+&lt;/component&gt;
+
+&lt;component class="org.eclipse.xpand2.Generator" fileEncoding="ISO-8859-1"&gt;
+	&lt;metaModel idRef="mm"/&gt;
+	&lt;expand value="org::eclipse::xtend::profiler::templates::Html::Main FOR profilingResult"/&gt; 
+	&lt;outlet overwrite="true" path="profiling"/&gt;
+&lt;/component&gt;
+	</programlisting>
+	
+	<para>Currently, there are two different templates available to render the profiling model
+	<itemizedlist>
+        <listitem>
+           <para>org::eclipse::xtend::profiler::templates::Html::Main</para>
+        </listitem>
+        <listitem>
+           <para>org::eclipse::xtend::profiler::templates::GProf::Main</para>
+        </listitem>
+	</itemizedlist>
+	</para>
+	
+	<para>The Xpand Wizard will produce a workflow called <emphasis>workflowWithProfiler.mwe</emphasis> that
+	demonstrates the capabilities of the profiler. It puts the result in the folder <emphasis>profiling</emphasis>.
+	</para>
+
+  </section>
+  
 </chapter>

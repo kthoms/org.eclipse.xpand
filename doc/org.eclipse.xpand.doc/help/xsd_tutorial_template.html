@@ -10,27 +10,18 @@
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Step 4: Create a Template using Xpand</h1>
-<div class="section" title="Step 4: Create a Template using Xpand">
-<div class="titlepage">
-<div>
-<div>
-<h2 class="title" style="clear: both">
-<a name="xsd_tutorial_template"/>Step 4: Create a Template using Xpand</h2>
-</div>
-</div>
-</div>
 <p>Create an ordinary oAW Xpand file: Being in the Xpand/Xtend
     perspective, go to <span class="emphasis">
 <em>"File", "New", "xPand template"</em>
 </span>.
     The Xpand language itself is explained by several other oAW documents.
-    Having XSD meta model support activated like described in <a class="xref" href="xsd_tutorial_create_project.html" title="Step 1: Create a Project">the section called “Step 1: Create a Project”</a> , oAW scans and watches all it's
+    Having XSD meta model support activated like described in <a class="xref" href="xsd_tutorial_create_project.html" title="Step 1: Create a Project">the section called &#8220;Step 1: Create a Project&#8221;</a> , oAW scans and watches all it's
     projects for suitable meta models. Based on what is found, the Xpand
     editor provides meta model aware code completion.</p>
 <p>This example imports "<code class="classname">metamodel</code>" at the
     beginning, which refers to a file called
     <code class="filename">metamodel.xsd</code> that you have created within the
-    project's classpath in <a class="xref" href="xsd_tutorial_metamodel.html" title="Step 2: Define a Meta Model using XML Schema">the section called “Step 2: Define a Meta Model using XML Schema”</a> . The
+    project's classpath in <a class="xref" href="xsd_tutorial_metamodel.html" title="Step 2: Define a Meta Model using XML Schema">the section called &#8220;Step 2: Define a Meta Model using XML Schema&#8221;</a> . The
     define-block can be understood as a function named
     "<code class="methodname">Root</code>" which takes one object of type
     <code class="classname">metamodel::Wizard</code> as a parameter. This is the meta
@@ -42,15 +33,14 @@
     in the XSD meta model. Their values are stored within the XML file and
     this templates inserts them into the generated (
     <code class="filename">wizard.txt</code> ) file.</p>
-<pre class="programlisting">«IMPORT metamodel»
+<pre class="programlisting">�IMPORT metamodel�
 
-«DEFINE Root FOR metamodel::Wizard»
-«FILE "wizard.txt"»
-Name: «name»
-Welcometext: «welcometext»
-First Page Title: «choicepage.title»
-«ENDFILE»
-«ENDDEFINE»</pre>
-</div>
+�DEFINE Root FOR metamodel::Wizard�
+�FILE "wizard.txt"�
+Name: �name�
+Welcometext: �welcometext�
+First Page Title: �choicepage.title�
+�ENDFILE�
+�ENDDEFINE�</pre>
 </body>
 </html>

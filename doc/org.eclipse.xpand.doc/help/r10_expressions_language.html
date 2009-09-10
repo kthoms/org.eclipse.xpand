@@ -10,16 +10,6 @@
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">ExpressionsExpression</h1>
-<div class="section" title="Expressions">
-<div class="titlepage">
-<div>
-<div>
-<h2 class="title" style="clear: both">
-<a name="r10_expressions_language"/>Expressions<a name="N10448" class="indexterm"/>
-</h2>
-</div>
-</div>
-</div>
 <p>The expression sub-language<a name="N1044D" class="indexterm"/> is a syntactical mixture of Java and OCL<a name="N10451" class="indexterm"/>. This documentation provides a detailed description of each
     available expression. Let us start with some simple examples.</p>
 <p>Accessing a property:</p>
@@ -418,7 +408,7 @@ true || false // OR
         <code class="methodname">compareTo</code> method is used, otherwise
         <code class="methodname">toString()</code> is invoked and the the result is
         used.</p>
-<p>More Examples Ã¢&#128;&#147; all the following expressions return
+<p>More Examples â&#128;&#147; all the following expressions return
         <code class="varname">true</code>:</p>
 <pre class="programlisting">{'C','B','A'}.sortBy(e | e) == {'A','B','C'}
 {'AAA','BB','C'}.sortBy(e | e.length) == {'C','BB','AAA'}
@@ -659,15 +649,6 @@ ImplName(Class c) :
 </p>
 <p>The syntax for casts is very Java-like:</p>
 <pre class="programlisting">((String)unTypedList.get(0)).toUpperCase()</pre>
-</div>
-<div class="footnotes">
-<br/>
-<hr align="left" width="100"/>
-<div class="footnote">
-<p>
-<sup>[<a href="#N10603" name="ftn.N10603" class="para">1</a>] </sup>since 4.1.2</p>
-</div>
-</div>
 </div>
 </body>
 </html>

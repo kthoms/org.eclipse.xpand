@@ -12,6 +12,7 @@
 	-->
 	<property name="document.name" value="xpand_reference" />
 	<property name="src.dir" value="${basedir}/src/5.0/structure" />
+	<property name="images.dir" value="${basedir}/src/5.0/content/images" />
 	<property name="styles.dir" value="src/styles" />
 	<property name="xslt.dir" value="${styles.dir}/xslt" />
 	<property name="css.dir" value="${styles.dir}/css" />
@@ -87,6 +88,7 @@
 	<target name="init">
 		<mkdir dir="${download.dir}" />
 		<mkdir dir="${build.dir}" />
+		<delete file="${build.dir}/${document.name}.xml"/>
 	</target>
 
 	<target name="build-doc" depends="init, get-docbook-xsl, get-fop">
@@ -166,7 +168,7 @@
 	</target>
 
 	<target name="merge" depends="check-merge,get-xom" unless="isMerged">
-		<echo>Nerging article parts...</echo>
+		<echo>Merging article parts...</echo>
 		<xinclude in="${src.dir}/${document.name}.xml"
 		          out="${build.dir}/${document.name}.xml" />
 	</target>
@@ -178,8 +180,8 @@
 		        excludes="CVS"
 		        includeemptydirs="true" />
 
-		<copy todir="${basedir}/html">
-			<fileset dir="images/">
+		<copy todir="${basedir}/html/images">
+			<fileset dir="${images.dir}/">
 				<include name="*/**" />
 			</fileset>
 		</copy>
@@ -246,7 +248,7 @@
 		        excludes="CVS"
 		        includeemptydirs="true" />
 		<copy todir="${basedir}/help/images">
-			<fileset dir="images">
+			<fileset dir="${images.dir}">
 				<include name="**/*" />
 			</fileset>
 		</copy>

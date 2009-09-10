@@ -2870,8 +2870,8 @@ my::Templ::extension(*) // templ def with any number of parameters
         comma-separated parameter list, as well as the name of the metamodel
         class for which the template is defined. <programlisting>«DEFINE templateName(formalParameterList) FOR MetaClass»
    a sequence of statements
-«ENDDEFINE»</programlisting>To some extent, templates can be seen as special
-        methods of the metaclass â€“ there is always an implicit
+«ENDDEFINE»</programlisting>To some extend, templates can be seen as special
+        methods of the metaclass. There is always an implicit
         <emphasis>this</emphasis> parameter which can be used to address the
         "underlying" model element; in our example above, this model element
         is "<classname>MetaClass</classname>".</para>
@@ -3736,7 +3736,7 @@ public interface PostProcessor {
         </indexterm>This example shows how to use aspect-oriented programming
       techniques in <emphasis>Xpand</emphasis> templates. It is applicable to
       EMF based and <emphasis>Classic</emphasis> systems. However, we explain
-      the idea based on the <emphasis>emfExample</emphasis> â€“ hence you should
+      the idea based on the <emphasis>emfExample</emphasis>. Hence you should
       read that before.</para>
     </section>
 
@@ -3750,7 +3750,7 @@ public interface PostProcessor {
       nice generator that generates certain artifacts. The generator (or
       cartridge) might be a third party product, delivered in a single JAR
       file. Still you might want to adapt certain aspects of the generation
-      process â€“ <emphasis>without modifying the original
+      process <emphasis>without modifying the original
       generator</emphasis>.</para>
 
       <para><emphasis role="bold">Scenario 2:</emphasis> You are building a
@@ -3810,11 +3810,11 @@ public interface PostProcessor {
    }
 «ENDDEFINE»</programlisting>
 
-        <para>What we now want to do is as follows: Whenever the
+        <para>What we now want to accomplish is this: Whenever the
         <emphasis>Impl</emphasis> template is executed, we want to run an
         additional template that generates additional code (for example, some
-        kind of meta information for frameworks â€“ the specific code is not
-        important for the example here).</para>
+        kind of meta information for a given framework. The specific code at this
+        place is not important for the example here).</para>
 
         <para>So, in our new project, we define the following template
         file:</para>
@@ -3911,39 +3911,39 @@ public interface PostProcessor {
           <primary>AROUND</primary>
         </indexterm> construct is as follows:</para>
 
-      <programlisting language="Expand">&lt;&lt;AROUND fullyQualifiedDefinitionNameWithWildcards
-      (Paramlist (*)?) FOR TypeName&gt;&gt;
+      <programlisting language="Expand">«AROUND fullyQualifiedDefinitionNameWithWildcards
+      (Paramlist (*)?) FOR TypeName»
    do Stuff
-&lt;&lt;ENDAROUND&gt;&gt;</programlisting>
+«ENDAROUND»</programlisting>
 
       <para>Here are some examples:</para>
 
-      <programlisting>&lt;&lt;AROUND *(*) FOR Object&gt;&gt;</programlisting>
+      <programlisting>«AROUND *(*) FOR Object»</programlisting>
 
       <para>matches all templates</para>
 
-      <programlisting>&lt;&lt;AROUND *define(*) FOR Object&gt;&gt;</programlisting>
+      <programlisting>«AROUND *define(*) FOR Object»</programlisting>
 
       <para>matches all templates with <emphasis>define</emphasis> at the end
       of its name and any number of parameters</para>
 
-      <programlisting>&lt;&lt;AROUND org::eclipse::xpand2::* FOR Entity&gt;&gt;</programlisting>
+      <programlisting>«AROUND org::eclipse::xpand2::* FOR Entity»</programlisting>
 
       <para>matches all templates with namespace
       <emphasis>org::eclipse::xpand2::</emphasis> that do not have any parameters and
       whose type is Entity or a subclass</para>
 
-      <programlisting>&lt;&lt;AROUND *(String s) FOR Object&gt;&gt;</programlisting>
+      <programlisting>«AROUND *(String s) FOR Object»</programlisting>
 
       <para>matches all templates that have exactly one
       <classname>String</classname> parameter</para>
 
-      <programlisting>&lt;&lt;AROUND *(String s,*) FOR Object&gt;&gt;</programlisting>
+      <programlisting>«AROUND *(String s,*) FOR Object»</programlisting>
 
       <para>matches all templates that have at least one
       <classname>String</classname> parameter</para>
 
-      <programlisting>&lt;&lt;AROUND my::Template::definition(String s) FOR Entity&gt;&gt;</programlisting>
+      <programlisting>«AROUND my::Template::definition(String s) FOR Entity»</programlisting>
 
       <para>matches exactly this single definition</para>
 
@@ -3953,10 +3953,10 @@ public interface PostProcessor {
       call <methodname>proceed</methodname>, and also query a number of other
       things:</para>
 
-      <programlisting>&lt;&lt;AROUND my::Template::definition(String s) FOR String&gt;&gt;
-   log('invoking '+&lt;&lt;targetDef.name&gt;&gt;+' with '+this)
-   &lt;&lt;targetDef.proceed()&gt;&gt;
-&lt;&lt;ENDAROUND&gt;&gt;</programlisting>
+      <programlisting>«AROUND my::Template::definition(String s) FOR String»
+   log('invoking '+«targetDef.name»+' with '+this)
+   «targetDef.proceed()»
+«ENDAROUND»</programlisting>
     </section>
   </section>
   

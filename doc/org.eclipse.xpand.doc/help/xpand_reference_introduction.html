@@ -21,7 +21,7 @@
 <p>Typing the <span class="foreignphrase">
 <em class="foreignphrase">guillemets</em>
 </span>
-<a name="N10B4F" class="indexterm"/> (ï¿½ and ï¿½) used in the templates is supported by the Eclipse
+<a name="N10B4F" class="indexterm"/> (« and ») used in the templates is supported by the Eclipse
     editor: which provides keyboard shortcuts with <span class="keycap">
 <strong>Ctrl</strong>
 </span>+<span class="keycap">
@@ -51,8 +51,8 @@
       encoding<a name="N10B7E" class="indexterm"/>. The only limitation are the tag brackets
       (<span class="emphasis">
 <em>guillemets</em>
-</span>), for which the characters "ï¿½" (Unicode
-      <code class="varname">00AB</code>) and "ï¿½" (Unicode <code class="varname">00BB</code>) are
+</span>), for which the characters "«" (Unicode
+      <code class="varname">00AB</code>) and "»" (Unicode <code class="varname">00BB</code>) are
       used. So for reading templates, an encoding should be used that supports
       these characters (e.g. <code class="varname">ISO-8859-1</code> or
       <code class="varname">UTF-8</code>).</p>
@@ -69,18 +69,18 @@
 </div>
 </div>
 <p>Here is a first example of a template:</p>
-<pre class="programlisting">ï¿½IMPORT meta::modelï¿½
-ï¿½EXTENSION my::ExtensionFileï¿½
+<pre class="programlisting">«IMPORT meta::model»
+«EXTENSION my::ExtensionFile»
 
-ï¿½DEFINE javaClass FOR Entityï¿½
-   ï¿½FILE fileName()ï¿½
-      package ï¿½javaPackage()ï¿½;
+«DEFINE javaClass FOR Entity»
+   «FILE fileName()»
+      package «javaPackage()»;
 
-      public class ï¿½nameï¿½ {
+      public class «name» {
          // implementation
       }
-   ï¿½ENDFILEï¿½
-ï¿½ENDDEFINEï¿½</pre>
+   «ENDFILE»
+«ENDDEFINE»</pre>
 <p> A template file consists of any number of IMPORT
       statements, followed by any number of EXTENSION statements, followed by
       one or more DEFINE blocks (called definitions).</p>
@@ -109,7 +109,7 @@
 <p>If you are tired of always typing the fully qualified names of
         your types and definitions, you can import a namespace using the
         IMPORT statement. </p>
-<pre class="programlisting">ï¿½IMPORT meta::modelï¿½</pre>
+<pre class="programlisting">«IMPORT meta::model»</pre>
 <p>This
         one imports the namespace <code class="varname">meta::model</code>. If your
         template contains such a statement, you can use the unqualified names
@@ -144,7 +144,7 @@
 <em>Xtend</em>
 </span>
         file containing the required extensions: </p>
-<pre class="programlisting">ï¿½EXTENSION my::ExtensionFileï¿½</pre>
+<pre class="programlisting">«EXTENSION my::ExtensionFile»</pre>
 <p>
         Note that extension files have to reside on the Java
         classpath<a name="N10BCE" class="indexterm"/>, too. Therefore, they use the same namespace mechanism
@@ -167,9 +167,9 @@
         smallest identifiable unit in a template file<a name="N10BE1" class="indexterm"/>. The tag consists of a name, an optional
         comma-separated parameter list, as well as the name of the metamodel
         class for which the template is defined. </p>
-<pre class="programlisting">ï¿½DEFINE templateName(formalParameterList) FOR MetaClassï¿½
+<pre class="programlisting">«DEFINE templateName(formalParameterList) FOR MetaClass»
    a sequence of statements
-ï¿½ENDDEFINEï¿½</pre>
+«ENDDEFINE»</pre>
 <p>To some extent, templates can be seen as special
         methods of the metaclass â&#128;&#147; there is always an implicit
         <span class="emphasis">
@@ -211,21 +211,21 @@
         <code class="classname">C</code> instances in the property
         <code class="methodname">listOfAs</code>. Then, you can write the following
         template: </p>
-<pre class="programlisting">ï¿½DEFINE someOtherDefine FOR SomeMetaClassï¿½
-   ï¿½EXPAND implClass FOREACH listOfAsï¿½
-ï¿½ENDDEFINEï¿½
+<pre class="programlisting">«DEFINE someOtherDefine FOR SomeMetaClass»
+   «EXPAND implClass FOREACH listOfAs»
+«ENDDEFINE»
 
-ï¿½DEFINE implClass FOR Aï¿½
+«DEFINE implClass FOR A»
    // this is the code generated for the superclass A
-ï¿½ENDDEFINEï¿½
+«ENDDEFINE»
 
-ï¿½DEFINE implClass FOR Bï¿½
+«DEFINE implClass FOR B»
    // this is the code generated for the subclass B
-ï¿½ENDDEFINEï¿½
+«ENDDEFINE»
 
-ï¿½DEFINE implClass FOR Cï¿½
+«DEFINE implClass FOR C»
    // this is the code generated for the subclass C
-ï¿½ENDDEFINEï¿½</pre>
+«ENDDEFINE»</pre>
 <p>So for each <code class="classname">B</code> in the list,
         the template defined for <code class="classname">B</code> is executed, for
         each <code class="classname">C</code> in the collection the template defined
@@ -250,9 +250,9 @@
 <p>The <code class="varname">FILE</code> statement redirects the output
         generated from its body statements to the specified target.
         </p>
-<pre class="programlisting">ï¿½FILE expression [outletName]ï¿½
+<pre class="programlisting">«FILE expression [outletName]»
    a sequence of statements
-ï¿½ENDFILEï¿½</pre>
+«ENDFILE»</pre>
 <p>The target is a file in the file system whose name
         is specified by the expression (relative to the specified target
         directory for that generator run). The expression for the target
@@ -262,24 +262,24 @@
         outlets).</p>
 <p>The body of a <code class="varname">FILE</code> statement can contain any
         other statements. Example: </p>
-<pre class="programlisting">ï¿½FILE InterfaceName + ".java"ï¿½
-   package ï¿½InterfacePackageNameï¿½;
+<pre class="programlisting">«FILE InterfaceName + ".java"»
+   package «InterfacePackageName»;
 
    /* generated class! Do not modify! */
-   public interface ï¿½InterfaceNameï¿½ {
-      ï¿½EXPAND Operation::InterfaceImplementation FOREACH  Operationï¿½
+   public interface «InterfaceName» {
+      «EXPAND Operation::InterfaceImplementation FOREACH  Operation»
    }
-ï¿½ENDFILEï¿½
+«ENDFILE»
 
 
-ï¿½FILE ImplName + ".java" MY_OUTLETï¿½
-   package ï¿½ImplPackageNameï¿½;
+«FILE ImplName + ".java" MY_OUTLET»
+   package «ImplPackageName»;
 
-   public class ï¿½ImplNameï¿½ extends ï¿½ImplBaseNameï¿½
-                           implements ï¿½InterfaceNameï¿½ {
+   public class «ImplName» extends «ImplBaseName»
+                           implements «InterfaceName» {
    //TODO: implement it
    }
-ï¿½ENDFILEï¿½</pre>
+«ENDFILE»</pre>
 </div>
 <div class="section" title="EXPAND">
 <div class="titlepage">
@@ -296,8 +296,8 @@
         inserts its output at the current location and continues with the next
         statement. This is similar in concept to a subroutine call.
         </p>
-<pre class="programlisting">ï¿½EXPAND definitionName [(parameterList)]
-   [FOR expression | FOREACH expression [SEPARATOR expression] ]ï¿½</pre>
+<pre class="programlisting">«EXPAND definitionName [(parameterList)]
+   [FOR expression | FOREACH expression [SEPARATOR expression] ]»</pre>
 <p>The
         various alternative syntaxes are explained below.</p>
 <div class="section" title="Names">
@@ -317,19 +317,19 @@
 <p>If the called definition is not contained in the same template
           file, the name of the template file must be specified. As usual, the
           double colon is used to delimit namespaces. </p>
-<pre class="programlisting">ï¿½EXPAND TemplateFile::definitionName FOR myModelElementï¿½</pre>
+<pre class="programlisting">«EXPAND TemplateFile::definitionName FOR myModelElement»</pre>
 <p>Note
           that you would need to import the namespace<a name="N10C70" class="indexterm"/> of the template file (if there is one). For instance,
           if the template file resides in the java package
           <code class="varname">my.templates</code>, there are two alternatives. You
           could either write </p>
-<pre class="programlisting">ï¿½IMPORT my::templatesï¿½
+<pre class="programlisting">«IMPORT my::templates»
 ...
-ï¿½EXPAND TemplateFile::definitionName FOR myModelElementï¿½</pre>
+«EXPAND TemplateFile::definitionName FOR myModelElement»</pre>
 <p> or
           </p>
-<pre class="programlisting">ï¿½EXPAND my::templates::TemplateFile::definitionName
-        FOR myModelElementï¿½</pre>
+<pre class="programlisting">«EXPAND my::templates::TemplateFile::definitionName
+        FOR myModelElement»</pre>
 </div>
 </div>
 <div class="section" title="FOR vs. FOREACH">
@@ -346,19 +346,19 @@
 <p>If <code class="varname">FOR</code> or <code class="varname">FOREACH</code> is
         omitted the other template is called <code class="varname">FOR this</code>.
         </p>
-<pre class="programlisting">ï¿½EXPAND TemplateFile::definitionNameï¿½</pre>
+<pre class="programlisting">«EXPAND TemplateFile::definitionName»</pre>
 <p>
         equals </p>
-<pre class="programlisting">ï¿½EXPAND TemplateFile::definitionName FOR thisï¿½</pre>
+<pre class="programlisting">«EXPAND TemplateFile::definitionName FOR this»</pre>
 <p>
         If <code class="varname">FOR</code> is specified, the definition is executed for
         the result of the target expression. </p>
-<pre class="programlisting">ï¿½EXPAND myDef FOR entityï¿½</pre>
+<pre class="programlisting">«EXPAND myDef FOR entity»</pre>
 <p>If
         <code class="varname">FOREACH</code> is specified, the target expression must
         evaluate to a collection type<a name="N10CA2" class="indexterm"/>. In this case, the specified definition is executed for
         each element of that collection. </p>
-<pre class="programlisting">ï¿½EXPAND myDef FOREACH entity.allAttributesï¿½  </pre>
+<pre class="programlisting">«EXPAND myDef FOREACH entity.allAttributes»  </pre>
 <div class="section" title="Specifying a Separator">
 <div class="titlepage">
 <div>
@@ -372,7 +372,7 @@
 <p>If a definition is to be expanded <code class="varname">FOREACH</code>
           element of the target expression it is possible to specify a
           <code class="varname">SEPARATOR</code> expression: </p>
-<pre class="programlisting">ï¿½EXPAND paramTypeAndName FOREACH params SEPARATOR ','ï¿½</pre>
+<pre class="programlisting">«EXPAND paramTypeAndName FOREACH params SEPARATOR ','»</pre>
 <p>The
           result of the separator expression<a name="N10CBA" class="indexterm"/> will be written to the output between each evaluation
           of the target definition (not <span class="emphasis">
@@ -403,10 +403,10 @@
         collection<a name="N10CD7" class="indexterm"/> that results from the expression. The current element
         is bound to a variable with the specified name in the current context.
         </p>
-<pre class="programlisting">ï¿½FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]ï¿½
+<pre class="programlisting">«FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]»
    a sequence of statements using variableName to access the
    current element of the iteration
-ï¿½ENDFOREACHï¿½</pre>
+«ENDFOREACH»</pre>
 <p>The body of a <code class="varname">FOREACH</code> block
         can contain any other statements; specifically
         <code class="varname">FOREACH</code> statements may be nested. If
@@ -419,9 +419,9 @@
         expression works in the same way as the one for
         <code class="varname">EXPAND</code>.</p>
 <p>Example: </p>
-<pre class="programlisting">ï¿½FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','ï¿½
-   ï¿½iter.counter1ï¿½ : ï¿½cï¿½
-ï¿½ENDFOREACHï¿½</pre>
+<pre class="programlisting">«FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','»
+   «iter.counter1» : «c»
+«ENDFOREACH»</pre>
 <p>The evaluation of the above statement results in
         the following text: </p>
 <pre class="programlisting">1 : A,
@@ -446,13 +446,13 @@
 <a name="N10D14" class="indexterm"/>. The body of an <code class="varname">IF</code> block can contain
         any other statement, specifically, <code class="varname">IF</code> statements
         may be nested. </p>
-<pre class="programlisting">ï¿½IF expressionï¿½
+<pre class="programlisting">«IF expression»
    a sequence of statements
-[ ï¿½ELSEIF expressionï¿½ ]
+[ «ELSEIF expression» ]
    a sequence of statements ]
-[ ï¿½ELSEï¿½
+[ «ELSE»
    a sequence of statements ]
-ï¿½ENDIFï¿½</pre>
+«ENDIF»</pre>
 </div>
 <div class="section" title="PROTECT">
 <div class="titlepage">
@@ -467,9 +467,9 @@
 <p>Protected Regions<a name="N10D29" class="indexterm"/> are used to mark sections in the generated code that
         shall not be overridden again by the subsequent generator run. These
         sections typically contain manually written code. </p>
-<pre class="programlisting">ï¿½PROTECT CSTART expression CEND expression ID expression (DISABLE)?ï¿½
+<pre class="programlisting">«PROTECT CSTART expression CEND expression ID expression (DISABLE)?»
    a sequence of statements
-ï¿½ENDPROTECTï¿½</pre>
+«ENDPROTECT»</pre>
 <p> The values of CSTART<a name="N10D30" class="indexterm"/> and CEND<a name="N10D34" class="indexterm"/> expressions are used to enclose the protected regions
         marker in the output. They should build valid comment beginning and
         end strings corresponding to the generated target language (e.g.
@@ -479,9 +479,9 @@
 <em>"*/"</em>
 </span> for Java). The
         following is an example for Java: </p>
-<pre class="programlisting">ï¿½PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueIDï¿½
+<pre class="programlisting">«PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueID»
    here goes some content
-ï¿½ENDPROTECTï¿½</pre>
+«ENDPROTECT»</pre>
 <p>The ID is set by the <code class="varname">ID</code>
         expression and must be globally unique (at least for one complete pass
         of the generator).</p>
@@ -499,7 +499,7 @@
 <p>If you want the generator to generate disabled protected
         regions, you need to add the <code class="varname">DISABLE</code> keyword inside
         the declaration: </p>
-<pre class="programlisting">ï¿½PROTECT CSTART '/*' CEND '*/' ID this.name DISABLEï¿½</pre>
+<pre class="programlisting">«PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE»</pre>
 </div>
 <div class="section" title="LET">
 <div class="titlepage">
@@ -514,18 +514,18 @@
 <p>
 <code class="varname">LET</code> lets you specify local
         variables:</p>
-<pre class="programlisting">ï¿½LET expression AS variableNameï¿½
+<pre class="programlisting">«LET expression AS variableName»
    a sequence of statements
-ï¿½ENDLETï¿½</pre>
+«ENDLET»</pre>
 <p>During the expansion of the body of the
         <code class="varname">LET</code>
 <a name="N10D6F" class="indexterm"/> block, the value of the expression is bound to the
         specified variable. Note that the expression will only be evaluated
         once, independent from the number of usages of the variable within the
         <code class="varname">LET</code> block. Example: </p>
-<pre class="programlisting">ï¿½LET packageName + "." + className AS fqnï¿½
-   the fully qualified name is: ï¿½fqnï¿½;
-ï¿½ENDLETï¿½</pre>
+<pre class="programlisting">«LET packageName + "." + className AS fqn»
+   the fully qualified name is: «fqn»;
+«ENDLET»</pre>
 </div>
 <div class="section" title="ERROR">
 <div class="titlepage">
@@ -541,7 +541,7 @@
         the templates by throwing an
         <code class="varname">XpandException</code>
 <a name="N10D86" class="indexterm"/> with the specified message. </p>
-<pre class="programlisting">ï¿½ERROR expressionï¿½</pre>
+<pre class="programlisting">«ERROR expression»</pre>
 <p>Note
         that you should use this facility very sparingly, since it is better
         practice to check for invalid models using constraints on the
@@ -558,16 +558,16 @@
 </div>
 </div>
 <p>Comments are only allowed outside of tags. </p>
-<pre class="programlisting">ï¿½REMï¿½
+<pre class="programlisting">«REM»
    text comment
-ï¿½ENDREMï¿½</pre>
+«ENDREM»</pre>
 <p>Comments may not contain a REM<a name="N10D9B" class="indexterm"/> tag, this implies that comments are not nestable. A
         comment may not have a white space between the REM keyword and its
         brackets. Example: </p>
-<pre class="programlisting">ï¿½REMï¿½ï¿½LET expression AS variableNameï¿½ï¿½ENDREMï¿½
+<pre class="programlisting">«REM»«LET expression AS variableName»«ENDREM»
    a sequence of statements
-ï¿½REMï¿½  ï¿½variableName.stuffï¿½
-ï¿½ENDLETï¿½ï¿½ENDREMï¿½</pre>
+«REM»  «variableName.stuff»
+«ENDLET»«ENDREM»</pre>
 </div>
 <div class="section" title="Expression Statement">
 <div class="titlepage">
@@ -591,7 +591,7 @@
         writes the result to the output (using the
         <code class="varname">toString()</code> method of
         <code class="varname">java.lang.Object</code>). Example: </p>
-<pre class="programlisting">public class ï¿½this.nameï¿½ {</pre>
+<pre class="programlisting">public class «this.name» {</pre>
 <p>
         All expressions defined by the oArchitectureWare expressions
         sublanguage are also available in <span class="emphasis">
@@ -619,12 +619,12 @@
 <p>If you want to omit the output of superfluous
         whitespace<a name="N10DCD" class="indexterm"/> you can add a minus sign just before any closing
         bracket. Example: </p>
-<pre class="programlisting">ï¿½FILE InterfaceName + ".java"-ï¿½
-ï¿½IF hasPackage-ï¿½
-package ï¿½InterfacePackageNameï¿½;
-ï¿½ENDIF-ï¿½
+<pre class="programlisting">«FILE InterfaceName + ".java"-»
+«IF hasPackage-»
+package «InterfacePackageName»;
+«ENDIF-»
 ...
-ï¿½ENDFILEï¿½</pre>
+«ENDFILE»</pre>
 <p>The generated file would start with two new lines
         (one after the <code class="varname">FILE</code> and one after the
         <code class="varname">IF</code> statement) if the minus characters had not been
@@ -658,9 +658,9 @@ package ï¿½InterfacePackageNameï¿½;
       change some small generation stuff, you can make use of the
       <code class="varname">AROUND</code>
 <a name="N10DF2" class="indexterm"/> aspects. </p>
-<pre class="programlisting">ï¿½AROUND qualifiedDefinitionName(parameterList)? FOR typeï¿½
+<pre class="programlisting">«AROUND qualifiedDefinitionName(parameterList)? FOR type»
    a sequence of statements
-ï¿½ENDAROUNDï¿½ </pre>
+«ENDAROUND» </pre>
 <p> <code class="varname">AROUND</code> lets you add templates
       in an non-invasive way (you do not need to touch the generator
       templates). Because aspects are invasive, a template file containing
@@ -691,9 +691,9 @@ package ï¿½InterfacePackageNameï¿½;
 <em>point cut</em>
 </span>.
         </p>
-<pre class="programlisting">ï¿½AROUND [pointcut]ï¿½
+<pre class="programlisting">«AROUND [pointcut]»
    do stuff
-ï¿½ENDAROUNDï¿½</pre>
+«ENDAROUND»</pre>
 <p> A pointcut consists of a fully qualified name,
         parameter types and the target type.</p>
 <div class="section" title="Definition Name">
@@ -930,9 +930,9 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
         configured. The first one has no name and is therefore handled as the
         default outlet. Default outlets are triggered by omitting an outlet
         name: </p>
-<pre class="programlisting">ï¿½FILE 'test/note.txt'ï¿½
+<pre class="programlisting">«FILE 'test/note.txt'»
 # this goes to the default outlet
-ï¿½ENDFILEï¿½</pre>
+«ENDFILE»</pre>
 <p>The configured base path is
         '<code class="filename">main/src-gen</code>', so the file from above would go
         to '<code class="filename">main/src-gen/test/note.txt</code>'.</p>
@@ -942,9 +942,9 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
         following <span class="emphasis">
 <em>Xpand</em>
 </span> fragment </p>
-<pre class="programlisting">ï¿½FILE 'test/note.txt' TO_SRCï¿½
+<pre class="programlisting">«FILE 'test/note.txt' TO_SRC»
 # this goes to the TO_SRC outlet
-ï¿½ENDFILEï¿½</pre>
+«ENDFILE»</pre>
 <p>would cause the generator to write the contents to
         '<code class="filename">main/src/test/note.txt</code>' if the file does not
         already exist (the <code class="varname">overwrite</code> flag).</p>
@@ -1042,7 +1042,7 @@ public interface PostProcessor {
 <p>The
         <span class="emphasis">
 <em>prSrcPaths</em>
-</span> ï¿½<a name="N10F7E" class="indexterm"/>property points to a comma-separated list of
+</span>  <a name="N10F7E" class="indexterm"/>property points to a comma-separated list of
         directories. The protected region resolver will scan these directories
         for files containing activated protected regions.</p>
 <p>There are several file names which are excluded by default:
@@ -1297,25 +1297,25 @@ public interface PostProcessor {
         template file. Inside, you can find a template called
         <code class="classname">Impl</code> that generates the implementation of the
         JavaBean.</p>
-<pre class="programlisting">ï¿½DEFINE Entity FOR data::Entityï¿½
-   ï¿½FILE baseClassFileName() ï¿½
-      // generated at ï¿½timestamp()ï¿½
-      public abstract class ï¿½baseClassName()ï¿½ {
-         ï¿½EXPAND Implï¿½
+<pre class="programlisting">«DEFINE Entity FOR data::Entity»
+   «FILE baseClassFileName() »
+      // generated at «timestamp()»
+      public abstract class «baseClassName()» {
+         «EXPAND Impl»
       }
-   ï¿½ENDFILEï¿½
-ï¿½ENDDEFINEï¿½
+   «ENDFILE»
+«ENDDEFINE»
 
-ï¿½DEFINE Impl FOR data::Entityï¿½
-   ï¿½EXPAND GettersAndSettersï¿½
-ï¿½ENDDEFINEï¿½
+«DEFINE Impl FOR data::Entity»
+   «EXPAND GettersAndSetters»
+«ENDDEFINE»
 
-ï¿½DEFINE Impl FOR data::PersistentEntityï¿½
-   ï¿½EXPAND GettersAndSettersï¿½
+«DEFINE Impl FOR data::PersistentEntity»
+   «EXPAND GettersAndSetters»
     public void save() {
 
    }
-ï¿½ENDDEFINEï¿½</pre>
+«ENDDEFINE»</pre>
 <p>What we now want to do is as follows: Whenever the
         <span class="emphasis">
 <em>Impl</em>
@@ -1325,13 +1325,13 @@ public interface PostProcessor {
         important for the example here).</p>
 <p>So, in our new project, we define the following template
         file:</p>
-<pre class="programlisting">ï¿½AROUND Impl FOR data::Entityï¿½
-   ï¿½FOREACH attribute AS aï¿½
-      public static final AttrInfo ï¿½a.nameï¿½Info = new AttrInfo(
-         "ï¿½a.nameï¿½", ï¿½a.typeï¿½.class );
-   ï¿½ENDFOREACHï¿½
-   ï¿½targetDef.proceed()ï¿½
-ï¿½ENDAROUNDï¿½</pre>
+<pre class="programlisting">«AROUND Impl FOR data::Entity»
+   «FOREACH attribute AS a»
+      public static final AttrInfo «a.name»Info = new AttrInfo(
+         "«a.name»", «a.type».class );
+   «ENDFOREACH»
+   «targetDef.proceed()»
+«ENDAROUND»</pre>
 <p>So, this new template wraps around the existing template called
         <code class="classname">Impl</code> It first generates additional code and
         then forwards the execution to the original template using

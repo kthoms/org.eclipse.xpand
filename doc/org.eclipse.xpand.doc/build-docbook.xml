@@ -44,6 +44,11 @@
 	<property name="xom.dir" value="${download.dir}${file.separator}XOM" />
 	<property name="xom.url"
 	          value="http://www.cafeconleche.org/XOM/xom-1.2.1.zip" />
+	<property name="xcluder.url"
+	          value="http://internap.dl.sourceforge.net/sourceforge/xcluder/xcluder%200.9.2/xcluder-0.9.2.jar" />
+	<property name="xcluder.jar"
+	          value="${download.dir}${file.separator}xcluder.jar" />
+	
 	<property name="jai.dir" value="ENTER_JAI_DIRECTORY" />
 
 	<macrodef name="docbook2pdf">
@@ -67,21 +72,6 @@
 			     fofile="@{source}"
 			     outfile="@{target}"
 			     messagelevel="info" />
-		</sequential>
-	</macrodef>
-
-	<macrodef name="xinclude">
-		<attribute name="in" />
-		<attribute name="out" />
-		<sequential>
-			<java classname="nu.xom.samples.XIncludeDriver">
-				<classpath>
-                    <pathelement location="${xom.dir}${file.separator}xom-1.2.1.jar" />
-                    <pathelement location="${xom.dir}${file.separator}xom-samples.jar" />
-				</classpath>
-				<arg line="@{in}"/>
-				<redirector output="@{out}"/>
-			</java>
 		</sequential>
 	</macrodef>
 
@@ -131,7 +121,13 @@
 		</condition>
 	</target>
 
-	<target name="get-docbook-xsl"
+	<target name="check-xcluder">
+		<condition property="hasXcluder">
+			<available file="${xcluder.jar}" property="hasXcluderJar" />
+		</condition>
+	</target>
+
+		<target name="get-docbook-xsl"
 	        description="Downloads docbook xsl"
 	        depends="check-docbook"
 	        unless="hasDocbook">
@@ -161,16 +157,34 @@
 		<unzip src="${download.dir}${file.separator}xom.zip"
 		       dest="${download.dir}" />
 	</target>
+	
+	<target name="get-xcluder"
+    	description="Downloads Xcluder Task"
+    	depends="get-xom, check-xcluder"
+    	unless="hasXcluder">
+		<echo>Downloading Xcluder Task...</echo>
+		<get dest="${xcluder.jar}" src="${xcluder.url}" />
+	</target>	
 
 	<target name="check-merge">
 		<available file="${build.dir}/${document.name}.xml"
 		           property="isMerged" />
 	</target>
 
-	<target name="merge" depends="check-merge,get-xom" unless="isMerged">
+	<target name="merge" depends="check-merge,get-xcluder" unless="isMerged">
 		<echo>Merging article parts...</echo>
-		<xinclude in="${src.dir}/${document.name}.xml"
-		          out="${build.dir}/${document.name}.xml" />
+		<sequential>
+			<taskdef name="xinclude" classname="gr.abiss.xcluder.XOMXcluder">
+				<classpath>
+					<pathelement location="${xcluder.jar}" />
+					<pathelement location="${xom.dir}${file.separator}xom-1.2.1.jar" />
+				</classpath>
+			</taskdef>
+			<xinclude 
+				in="${src.dir}/${document.name}.xml"
+				out="${build.dir}/${document.name}.xml" 
+				encoding="ISO-8859-1"/>
+		</sequential>
 	</target>
 
 	<target name="docbook2html" depends="get-fop,get-docbook-xsl,merge">

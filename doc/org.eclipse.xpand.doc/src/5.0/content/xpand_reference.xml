@@ -1333,7 +1333,7 @@ true || false // OR
         <methodname>toString()</methodname> is invoked and the the result is
         used.</para>
 
-        <para>More Examples – all the following expressions return
+        <para>All the following expressions return
         <varname>true</varname>:</para>
 
         <programlisting>{'C','B','A'}.sortBy(e | e) == {'A','B','C'}

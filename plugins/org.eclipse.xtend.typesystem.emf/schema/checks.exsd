@@ -2,9 +2,9 @@
 <!-- Schema file written by PDE -->
 <schema targetNamespace="org.eclipse.xtend.typesystem.emf" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appinfo>
+      <appInfo>
          <meta.schema plugin="org.eclipse.xtend.typesystem.emf" id="checks" name="Checks"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          This extension point is used to register EValidators that execute Check files to validate Ecore models (EPackages). Having registered a Check file on an Ecore model, instances of that meta-model can be validated using the common EMF-API:
 
@@ -14,16 +14,15 @@ org.eclipse.emf.ecore.util.Diagnstician.INSTANCE.validate(rootModelObject)
 
 Already registered EValidators are nested by default. If you disable nesting make sure all other defining plug-ins are initialized before the overriding plug-in is started.
 
-To enable this extension point, make sure the plug-in is loaded, e.g. by calling &lt;code&gt;Activator.getDefault()&lt;/code&gt; explicitly. Otherwise the extensions will not be parsed and no EValidator will be registered.
-
+To enable this extension point, make sure the plug-in is loaded, e.g. by calling &lt;code&gt;org.eclipse.xtend.typesystem.emf.check.CheckRegistry.getInstance()&lt;/code&gt; explicitly. Otherwise the extensions will not be parsed and no EValidator will be registered.
       </documentation>
    </annotation>
 
    <element name="extension">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element />
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <sequence>
@@ -55,9 +54,9 @@ To enable this extension point, make sure the plug-in is loaded, e.g. by calling
 
    <element name="metaModel">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element labelAttribute="nsURI"/>
-         </appinfo>
+         </appInfo>
          <documentation>
             The Ecore model (EPackage) to be checked.
          </documentation>
@@ -105,9 +104,9 @@ To enable this extension point, make sure the plug-in is loaded, e.g. by calling
 
    <element name="referencedMetaModel">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element labelAttribute="nsURI"/>
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <attribute name="nsURI" type="string">
@@ -122,9 +121,9 @@ To enable this extension point, make sure the plug-in is loaded, e.g. by calling
 
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="examples"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          &lt;pre&gt;
 &lt;extension point=&quot;org.eclipse.xtend.typesystem.emf.checks&quot;&gt;
@@ -139,9 +138,9 @@ To enable this extension point, make sure the plug-in is loaded, e.g. by calling
 
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="copyright"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Copyright (c) 2008 itemis AG and others.
 

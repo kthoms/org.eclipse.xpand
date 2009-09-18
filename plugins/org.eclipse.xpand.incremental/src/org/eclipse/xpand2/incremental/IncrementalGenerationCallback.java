@@ -76,6 +76,7 @@ public class IncrementalGenerationCallback extends AbstractWorkflowComponent2 im
 		}		
 	}
 	
+	@Override
 	public void invokeInternal(WorkflowContext workflowContext, ProgressMonitor monitor, Issues issues) {
 		diffModel = (EObject) workflowContext.get(diffModelSlot);
 		if (diffModel == null) {

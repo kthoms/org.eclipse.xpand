@@ -1,37 +1,37 @@
-Â«EXTENSION templates::HelperÂ»
+«EXTENSION templates::Helper»
 
-Â«DEFINE Test FOR ecore::EPackageÂ»
-	Â«EXPAND File FOREACH eClassifiersÂ»
-Â«ENDDEFINEÂ»
+«DEFINE Test FOR ecore::EPackage»
+	«EXPAND File FOREACH eClassifiers»
+«ENDDEFINE»
 
-Â«DEFINE File FOR ecore::EClassifierÂ»Â«ENDDEFINEÂ»
+«DEFINE File FOR ecore::EClassifier»«ENDDEFINE»
 
-Â«DEFINE File FOR ecore::EClassÂ»
-	Â«FILE typeName() + ".java"Â»
-		// is interface: Â«interfaceÂ»
-		public interface Â«typeName()Â» 
-		Â«IF !eSuperTypes.isEmptyÂ»
-			extends Â«eSuperTypes.get(0)Â»
-		Â«ENDIFÂ»
+«DEFINE File FOR ecore::EClass»
+	«FILE typeName() + ".java"»
+		// is interface: «interface»
+		public interface «typeName()» 
+		«IF !eSuperTypes.isEmpty»
+			extends «eSuperTypes.get(0)»
+		«ENDIF»
 		{
-			// attributes: Â«eAttributes.nameÂ»
-			// references: Â«eReferences.nameÂ»
+			// attributes: «eAttributes.name»
+			// references: «eReferences.name»
 
-			Â«EXPAND Method FOREACH eStructuralFeaturesÂ»
+			«EXPAND Method FOREACH eStructuralFeatures»
 		}
-	Â«ENDFILEÂ»
-	Â«IF defaultValue != nullÂ»
-		Â«REMÂ»dummyÂ«ENDREMÂ»
-	Â«ENDIFÂ»
-Â«ENDDEFINEÂ»
+	«ENDFILE»
+	«IF defaultValue != null»
+		«REM»dummy«ENDREM»
+	«ENDIF»
+«ENDDEFINE»
 
-Â«DEFINE Method FOR ecore::EStructuralFeatureÂ»Â«ENDDEFINEÂ»
+«DEFINE Method FOR ecore::EStructuralFeature»«ENDDEFINE»
 
-Â«DEFINE Method FOR ecore::EAttributeÂ»
-	Â«eAttributeType.typeName()Â» getÂ«name.toFirstUpper()Â»();
-Â«ENDDEFINEÂ»
+«DEFINE Method FOR ecore::EAttribute»
+	«eAttributeType.typeName()» get«name.toFirstUpper()»();
+«ENDDEFINE»
 
-Â«DEFINE Method FOR ecore::EReferenceÂ»
-	// is interface: Â«eReferenceType.interfaceÂ»
-	Â«eReferenceType.typeName()Â» getÂ«name.toFirstUpper()Â»();
-Â«ENDDEFINEÂ»
+«DEFINE Method FOR ecore::EReference»
+	// is interface: «eReferenceType.interface»
+	«eReferenceType.typeName()» get«name.toFirstUpper()»();
+«ENDDEFINE»

@@ -27,6 +27,7 @@ public class CompareTests extends TestCase {
 	/**
 	 * Creates new worfkflow context and loads old and new models into slots.
 	 */
+	@Override
 	public void setUp() {
 		ctx = new WorkflowContextDefaultImpl();
 		loadModel("old");

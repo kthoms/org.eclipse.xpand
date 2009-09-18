@@ -37,6 +37,7 @@ public class TraceTests extends TestCase {
 	private Generator generator;
 	private IncrementalGenerationCallback incrementalGenerationBroker;
 
+	@Override
 	public void setUp() throws Exception {
 		ctx = new WorkflowContextDefaultImpl();
 

@@ -37,6 +37,7 @@ public abstract class AbstractIncrementalTests extends TestCase {
 	private static final String TRACE_TRACE = "trace.trace";
 	private static final String OLDMODEL_ECORE = "oldmodel.ecore";
 
+	@Override
 	public void setUp() {
 		// prepare temp dir
 		File tempDir = new File(TEMP_PATH);

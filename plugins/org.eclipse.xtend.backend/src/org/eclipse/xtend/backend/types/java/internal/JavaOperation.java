@@ -44,8 +44,8 @@ public final class JavaOperation extends AbstractFunction {
     private final List<ParameterConverter> _parameterConverters = new ArrayList<ParameterConverter>();
     private final JavaBuiltinConverter _returnValueConverter;
     
-    public JavaOperation (Method mtd, List<BackendType> parameterTypes, ExpressionBase guard) {
-        super (guard, parameterTypes, false);
+    public JavaOperation (Method mtd, List<BackendType> parameterTypes, BackendType returnType, ExpressionBase guard) {
+        super (guard, parameterTypes, returnType, false);
         
         _mtd = mtd;
         

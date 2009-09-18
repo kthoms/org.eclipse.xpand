@@ -111,8 +111,15 @@ public final class OldExtensionConverter {
     }
     
     private Function createExpressionExtension (ExpressionExtensionStatement extension) {
+    	BackendType returnType;
+		try {
+			returnType = _typeConverter.convertToBackendType(extension
+					.getReturnType());
+		} catch (UnsupportedOperationException e) {
+			returnType = null;
+		}
         return new SourceDefinedFunction (new QualifiedName (extension.getQualifiedName().replaceAll("/", SyntaxConstants.NS_DELIM)), extension.getParameterNames(), getParameterTypes (extension), // 
-                convertExpression (extension.getExpression(), extension.getParameterNames(), extension.getParameterTypes(), extension.getName ()), extension.isCached(), null);
+                returnType, convertExpression (extension.getExpression(), extension.getParameterNames(), extension.getParameterTypes(), extension.getName ()), extension.isCached(), null);
     }
     
     private Function createCreateExtension (CreateExtensionStatement extension) {
@@ -137,13 +144,27 @@ public final class OldExtensionConverter {
         final ExpressionBase body = new SequenceExpression (innerSeq, inner.getPos());
         final ExpressionBase createExpr = new CreateCachedExpression (_typeConverter.convertToBackendType(createdType), paramExprs, OldExpressionConverter.getSourcePos (extension, extension.getName()));
         final ExpressionBase createWrapper = new NewLocalVarDefExpression (createdVarName, createExpr, body, OldExpressionConverter.getSourcePos (extension, extension.getName ()));
-        
-        return new SourceDefinedFunction (new QualifiedName (extension.getQualifiedName()), extension.getParameterNames(), getParameterTypes(extension), createWrapper, true, null);
+
+    	BackendType returnType;
+		try {
+			returnType = _typeConverter.convertToBackendType(extension
+					.getReturnType());
+		} catch (UnsupportedOperationException e) {
+			returnType = null;
+		}
+
+        return new SourceDefinedFunction (new QualifiedName (extension.getQualifiedName()), extension.getParameterNames(), getParameterTypes(extension), returnType, createWrapper, true, null);
     }
     
     private Function createJavaExtension (JavaExtensionStatement extension) {
         final Method mtd = extension.getJavaMethod (_ctx, new HashSet<AnalysationIssue>());
-        return new JavaExtensionFunction (mtd, extension.isCached(), getParameterTypes(extension));
+        BackendType returnType;
+        try {
+        	returnType = _typeConverter.convertToBackendType (mtd.getReturnType ());
+        } catch (UnsupportedOperationException e) {
+        	returnType = null;
+        }
+        return new JavaExtensionFunction (mtd, extension.isCached(), getParameterTypes(extension), returnType);
     }
 }
 

@@ -13,8 +13,10 @@ package org.eclipse.xtend.backend.types.java.internal;
 import java.beans.PropertyDescriptor;
 
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
+import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
 
@@ -53,4 +55,10 @@ public final class JavaBeansProperty extends AbstractProperty {
             ErrorHandler.handle (e);
         }
     }
+
+	@Override
+	public BackendType getType(BackendTypesystem ts) {
+		// TODO Auto-generated method stub
+		return ts.findType (_pd.getPropertyType());
+	}
 }

@@ -13,9 +13,14 @@ package org.eclipse.xtend.middleend.xtend.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
+import org.eclipse.internal.xpand2.ast.Advice;
+import org.eclipse.internal.xpand2.type.DefinitionType;
 import org.eclipse.internal.xpand2.type.IteratorType;
 import org.eclipse.internal.xtend.expression.ast.BooleanLiteral;
 import org.eclipse.internal.xtend.expression.ast.BooleanOperation;
@@ -46,6 +51,7 @@ import org.eclipse.internal.xtend.type.baseimpl.types.ListTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.SetTypeImpl;
 import org.eclipse.internal.xtend.xtend.ast.Around;
+import org.eclipse.internal.xtend.xtend.types.AdviceContextType;
 import org.eclipse.xtend.backend.aop.AdviceParamType;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.aop.ExecutionPointcut;
@@ -187,7 +193,7 @@ public final class OldExpressionConverter {
 
 	private ExpressionBase convertOperationCall (OperationCall expr) {
         final SourcePos sourcePos = getSourcePos (expr);
-        final String functionName = transformFunctionName (expr.getName().getValue());
+        final String functionName = transformFunctionName (expr);
         
         final List<ExpressionBase> params = new ArrayList<ExpressionBase> ();
         for (Expression e: expr.getParams ()) 
@@ -213,17 +219,26 @@ public final class OldExpressionConverter {
             else 
                 return new InvocationOnObjectExpression (new QualifiedName (functionName), params, false, sourcePos);
         }
-        else if (isAdviceProceedCall(expr)) {
+        else if (isAdviceProceedCall(expr))
         	return new InvocationOnObjectExpression (new QualifiedName (AROUND_PROCEED), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos)), true, sourcePos);
-        } else
+        else if (isAdviceCtxLiteral(expr))
+        	return new InvocationOnObjectExpression (new QualifiedName (functionName), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos)), true, sourcePos);
+        else
             return createInvocationOnTargetExpression (functionName, expr.getName().getValue(), convert (expr.getTarget()), new OldTypeAnalyzer ().analyze (_ctx, expr.getTarget ()), params, paramTypes, true, sourcePos);
     }
 
 	private boolean isAdviceProceedCall(OperationCall expr) {
 		return expr.getName ().getValue ().equals (AROUND_PROCEED) && 
         		expr.getTarget () instanceof FeatureCall && 
-        		(((FeatureCall) expr.getTarget ()).getName ().getValue ().equals(Around.CONTEXT_PARAM_NAME) ||
-        		((FeatureCall) expr.getTarget ()).getName ().getValue ().equals(XPAND_AROUND_DEF));
+        		isAdviceCtxLiteral(expr);
+	}
+
+	private boolean isAdviceCtxLiteral(FeatureCall expr) {
+		if (expr.getTarget () instanceof FeatureCall) {
+			return (((FeatureCall) expr.getTarget ()).getName ().getValue ().equals(Around.CONTEXT_PARAM_NAME) ||
+				((FeatureCall) expr.getTarget ()).getName ().getValue ().equals(XPAND_AROUND_DEF));
+		}
+		return false;
 	}
     
     private boolean hasMatchingOperationCall (String functionName, Type[] paramTypes) {
@@ -253,7 +268,8 @@ public final class OldExpressionConverter {
     /**
      * transform built-in operator names from the old to the new special names
      */
-    private String transformFunctionName (String functionName) {
+    private String transformFunctionName (OperationCall expr) {
+    	final String functionName = expr.getName().getValue();
         if ("+".equals (functionName))
             return SysLibNames.OPERATOR_PLUS;
         if ("-".equals (functionName))
@@ -297,6 +313,23 @@ public final class OldExpressionConverter {
         	return XtendLibNames.STRING_REPLACE_FIRST;
         if ("upTo".equals(functionName))
         	return XtendLibNames.UPTO;
+        if ("getFeature".equals(functionName))
+        	return XtendLibNames.TYPE_GET_FEATURE;
+        if ("getProperty".equals(functionName))
+        	return XtendLibNames.TYPE_GET_PROPERTY;
+        if ("getOperation".equals(functionName))
+        	return XtendLibNames.TYPE_GET_OPERATION;
+        if ("getParameterTypes".equals(functionName))
+        	return XtendLibNames.OPREATION_GET_PARAMETER_TYPES;
+        if ("evaluate".equals(functionName))
+        	return XtendLibNames.OPERATION_EVALUATE;
+        if ("compareTo".equals(functionName))
+        	return XtendLibNames.COMPARE_TO;
+        
+        if ("toString".equals(functionName)) {
+        		if (expr.getTarget() instanceof FeatureCall && ((FeatureCall) expr.getTarget()).getName().getValue().equals(Advice.DEF_VAR_NAME))
+        	return XtendLibNames.DEFINITION_TOSTRING;
+        }
         return functionName;
     }
     
@@ -421,9 +454,17 @@ public final class OldExpressionConverter {
                 return createPropertyExpression (thisExpr, (Type) _ctx.getVisibleVariables().get (ExecutionContext.IMPLICIT_VARIABLE).getValue(), expr.getName().getValue(), sourcePos);
             }
             
+            if (expr instanceof FeatureCall && ((FeatureCall)expr).getName().getValue().equals(ExecutionContext.IMPLICIT_VARIABLE)) {
+                final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
+                return thisExpr;
+            }
+             
             throw new IllegalArgumentException ("feature call " + expr.toString() + " does not match any feature: " + sourcePos);
-        }
-        else {
+        } else if (isAdviceCtxLiteral(expr)) {
+            final Type t = new OldTypeAnalyzer ().analyze (_ctx,expr.getTarget());
+            return createAdvCtxPropertyExpression (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos), t, expr, sourcePos);
+//            return createPropertyExpression(convert (expr.getTarget()), t, expr.getName().getValue(), sourcePos);
+        } else {
             // evaluate the target and evaluate the property on the result
             final Type t = new OldTypeAnalyzer ().analyze (_ctx,expr.getTarget());
             return createPropertyExpression(convert (expr.getTarget()), t, expr.getName().getValue(), sourcePos);
@@ -447,17 +488,65 @@ public final class OldExpressionConverter {
         
 //        return new PropertyOnObjectExpression (target, varName, sourcePos);
     }
+
+    private ExpressionBase createAdvCtxPropertyExpression (ExpressionBase target, Type type, FeatureCall expr, SourcePos sourcePos) {
+	  	final String builtinPropName =  transformAdvCtxPropertyName (expr);
+	  	if (builtinPropName != null)
+	  		return new InvocationOnWhateverExpression(new QualifiedName (builtinPropName), Arrays.asList (target), true, sourcePos);
+	  	else
+	  		return new PropertyOnWhateverExpression (target, expr.getName().getValue(), sourcePos);
+    }
     
     private String transformPropertyName (ExpressionBase target, Type type, String varName) {
 		// TODO Auto-generated method stub
-    	if (varName.equals("metaType"))
-    		return XtendLibNames.META_TYPE;
-    	if (varName.equals("elements") && type.isAssignableFrom(_ctx.getTypeForName(IteratorType.TYPE_NAME)))
+    	if (varName.equals ("metaType"))
+    		return XtendLibNames.OBJECT_META_TYPE;
+    	if (varName.equals ("elements") && type.isAssignableFrom (_ctx.getTypeForName(IteratorType.TYPE_NAME)))
     		return XtendLibNames.ITERATOR_ELEMENTS;
-		return null;
+    	if (varName.equals ("allStaticProperties") && type.isAssignableFrom (_ctx.getTypeType()))
+    		return XtendLibNames.TYPE_ALL_STATIC_PROPERTIES;
+    	if (varName.equals ("allFeatures") && type.isAssignableFrom (_ctx.getTypeType()))
+    		return XtendLibNames.TYPE_ALL_FEATURES;
+    	if (varName.equals ("allOperations") && type.isAssignableFrom (_ctx.getTypeType()))
+    		return XtendLibNames.TYPE_ALL_OPERATIONS;
+    	if (varName.equals ("allProperties") && type.isAssignableFrom (_ctx.getTypeType()))
+    		return XtendLibNames.TYPE_ALL_PROPERTIES;
+    	if (varName.equals ("superTypes") && type.isAssignableFrom (_ctx.getTypeType()))
+    		return XtendLibNames.TYPE_SUPER_TYPES;
+    	if (varName.equals ("documentation") && type.isAssignableFrom (_ctx.getTypeType()))
+    		return XtendLibNames.TYPE_DOCUMENTATION;
+    	if (varName.equals ("returnType") && type.isAssignableFrom (_ctx.getFeatureType()))
+    		return XtendLibNames.FEATURE_RETURNTYPE;
+    	if (varName.equals ("owner") && type.isAssignableFrom (_ctx.getFeatureType()))
+    		return XtendLibNames.FEATURE_OWNER;
+    	if (varName.equals ("name"))
+    		return XtendLibNames.OPERATION_NAME;
+    	return null;
 	}
 
-	private ExpressionBase convertConstructorCallExpression (ConstructorCallExpression expr) {
+    private String transformAdvCtxPropertyName (FeatureCall expr) {
+    	final String varName = expr.getName().getValue();
+    	final Expression target = expr.getTarget();
+    	if ("paramTypes".equals(varName) && target instanceof FeatureCall && ((FeatureCall)target).getName().getValue().equals(Advice.DEF_VAR_NAME))
+    		return XtendLibNames.DEFINITION_PARAM_TYPES;
+       	if ("paramNames".equals(varName) && target instanceof FeatureCall && ((FeatureCall)target).getName().getValue().equals(Advice.DEF_VAR_NAME))
+    		return XtendLibNames.DEFINITION_PARAM_NAMES;
+    	if ("name".equals (varName) && target instanceof FeatureCall && ((FeatureCall)target).getName().getValue().equals(Advice.DEF_VAR_NAME))
+    		return XtendLibNames.DEFINITION_NAME;
+    	if ("paramTypes".equals (varName))
+    		return XtendLibNames.ADVICE_CTX_PARAM_TYPES;
+    	if ("targetType".equals(varName))
+    		return XtendLibNames.ADVICE_CTX_TARGET_TYPE;
+    	if ("paramNames".equals (varName))
+    		return XtendLibNames.ADVICE_CTX_PARAM_NAMES;
+    	if ("paramValues".equals (varName))
+    		return XtendLibNames.ADVICE_CTX_PARAM_VALUES;
+    	if ("name".equals (varName))
+    		return XtendLibNames.ADVICE_CTX_NAME;
+    	return null;
+    }
+    
+    private ExpressionBase convertConstructorCallExpression (ConstructorCallExpression expr) {
         final BackendType t = _typeConverter.convertToBackendType (expr.getType ());
         return new CreateUncachedExpression (t, getSourcePos(expr));
     }

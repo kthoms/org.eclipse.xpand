@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.AbstractProperty;
@@ -64,6 +65,11 @@ public final class EnumType extends AbstractType {
                 final EObject obj = (EObject) o;
                 return obj.eGet (obj.eClass ().getEStructuralFeature ("name"));
             }
+
+			@Override
+			public BackendType getType (BackendTypesystem ts) {
+				return StringType.INSTANCE;
+			}
         }, StringType.INSTANCE);
     }
 

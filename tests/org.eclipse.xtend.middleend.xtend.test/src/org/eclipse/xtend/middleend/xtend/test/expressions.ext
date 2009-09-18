@@ -54,6 +54,10 @@ List[String] testCollect (List[Person] p) : p.name;
 
 // -----------  BUILTIN TYPES  --------------------
 
+// Object tests
+xpand2::Type testMetaType (Object o) : o.metaType;
+Integer testCompareTo (Object o1, Object o2) : o1.compareTo(o2);
+
 // String tests
 Integer testStringLength (String s) : s.length;
 String testStringToLowerCase (String s) : s.toLowerCase();
@@ -98,6 +102,48 @@ Real testMinus (Real x, Real y) : x - y;
 Real testInvert (Real x) : -x;
 Real testMultiply (Real x, Real y) : x * y;
 Real testDivide (Real x, Real y) : x / y;
+
+//Type
+String testTypeName (Object o) : o.metaType.name;
+Set[xpand2::StaticProperty] testAllStaticProperties (Object o) : o.metaType.allStaticProperties.callAllStaticProperties();
+Set[String] testAllStaticPropertyNames (Object o) : o.metaType.allStaticProperties.name;
+private Set[xpand2::StaticProperty] callAllStaticProperties (Set[xpand2::StaticProperty] props) : props;
+String testDocumentation (Object o) : o.metaType.documentation;
+Set[xpand2::Feature] testAllFeatures (Object o) : o.metaType.allFeatures;
+Set[String] testAllFeatureNames (Object o) : o.metaType.allFeatures.name;
+Set[xpand2::Operation] testAllOperations (Object o) : o.metaType.allOperations;
+Set[xpand2::Property] testAllProperties (Object o) : o.metaType.allProperties;
+Set[String] testAllPropertyNames (Object o) : o.metaType.allProperties.name;
+Set[xpand2::Type] testSuperTypes (Object o) : o.metaType.superTypes;
+xpand2::StaticProperty testGetStaticProperty (Object o, String name) : o.metaType.getStaticProperty (name);
+xpand2::Feature testGetFeature (Object o, String name, List aList) : o.metaType.getFeature (name, aList);
+xpand2::Operation testGetOperation (Person p) : p.metaType.getOperation ("call", {"".metaType});
+Object testGetOperationLess (Person p1, Person p2) : p1.metaType.getOperation ("<", {Person}).evaluate (p1, {p2});
+xpand2::Property testGetProperty (Object o, String name) : o.metaType.getProperty (name);
+Boolean testIsInstance (Object o) : Person.isInstance(o);
+Object testNewInstance (Object o) : o.metaType.newInstance();
+Boolean testIsAssignableFrom (Object o1, Object o2) : o1.metaType.isAssignableFrom(o2.metaType);
+
+//Operation
+List[xpand2::Type] testGetParameterTypes (Person p) : p.metaType.getOperation("call", {"".metaType}).callGetParameterTypes();
+private List[xpand2::Type] callGetParameterTypes (xpand2::Operation op) : op.getParameterTypes();
+private xpand2::Type getFeatureReturnType (xpand2::Operation op) : op.returnType;
+xpand2::Type testEvaluate (Person p) : p.metaType.getOperation("call", {"".metaType}).evaluate(p, {"call"});
+
+
+//Feature
+String testOperationName (Person p) : p.metaType.getOperation("call", {"".metaType}).name;
+Set[String] testAllOperationNames (Person p) : p.metaType.allOperations.name;
+Set[String] testAllFeatureNames (Person p) : p.metaType.allFeatures.name;
+xpand2::Type testOperationReturnType (Person p) : p.metaType.getOperation("call", {"".metaType}).returnType;
+xpand2::Type testOperationOwner(Person p) : p.metaType.getOperation("call", {"".metaType}).owner;
+xpand2::Type testPropertyOwner(Person p) : p.metaType.getProperty("name").owner;
+xpand2::Type testFeatureOwner(Person p, List[xpand2::Type] paramTypes) : p.metaType.getFeature("name", paramTypes).owner;
+xpand2::Type testStaticPropertyOwner(Person p) : p.metaType.getOperation("call", {"".metaType}).owner;
+String testPropertyName (Person p) : p.metaType.getProperty("firstName").name;
+xpand2::Type testPropertyReturnType (Person p) : p.metaType.getProperty("name").returnType;
+xpand2::Type testFeatureReturnType (Person p, List[xpand2::Type] paramTypes) : p.metaType.getFeature("name", paramTypes).returnType;
+xpand2::Property testGetFeature (Object o, String name) : o.metaType.getProperty (name);
 
 //Xtend AopContext
 
@@ -147,5 +193,6 @@ String display (Identifier f) : "Identifier";
 
 String testSomeAdvicedFunction (String param) : param + " body";
 String testSomeAdvicedFunction (String param, Person p) : p.name + " " + param;
+String testSomeFunctionAdviceCtx (String param, Person p) : p.name + " " + param;
 String testAdviceSubPackageFunction (String param1, Integer param2) : testSomeFunction (param1, param2);
 String testOtherAdviceSubPackageFunction (String param1, Integer param2) : testSomeAdvicedFunction (param1, param2);

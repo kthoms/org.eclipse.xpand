@@ -94,17 +94,17 @@ public class JavaBeansTypeTest {
         checkProp (props.get ("r"), "r", type, false, true);
 
         final ExecutionContext ctx = createEmptyExecutionContext();
-        ((FunctionDefContextInternal) ctx.getFunctionDefContext()).register (new NamedFunction (new QualifiedName ("getZoom"), new AbstractFunction (null, Arrays.asList(type), false) {
+        ((FunctionDefContextInternal) ctx.getFunctionDefContext()).register (new NamedFunction (new QualifiedName ("getZoom"), new AbstractFunction (null, Arrays.asList(type), ObjectType.INSTANCE, false) {
             public Object invoke (ExecutionContext pCtx, Object[] params) {
                 return "zoom";
             }
         }), true);
-        ((FunctionDefContextInternal) ctx.getFunctionDefContext()).register (new NamedFunction (new QualifiedName ("getWithGuard"), new AbstractFunction (createLiteral(Boolean.TRUE), Arrays.asList(type), false) {
+        ((FunctionDefContextInternal) ctx.getFunctionDefContext()).register (new NamedFunction (new QualifiedName ("getWithGuard"), new AbstractFunction (createLiteral(Boolean.TRUE), Arrays.asList(type), ObjectType.INSTANCE, false) {
             public Object invoke (ExecutionContext pCtx, Object[] params) {
                 return "yxy";
             }
         }), true);
-        ((FunctionDefContextInternal) ctx.getFunctionDefContext()).register (new NamedFunction (new QualifiedName ("getPrivate"), new AbstractFunction (null, Arrays.asList(type), false) {
+        ((FunctionDefContextInternal) ctx.getFunctionDefContext()).register (new NamedFunction (new QualifiedName ("getPrivate"), new AbstractFunction (null, Arrays.asList(type), ObjectType.INSTANCE, false) {
             public Object invoke (ExecutionContext pCtx, Object[] params) {
                 return "asdf";
             }

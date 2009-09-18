@@ -14,6 +14,7 @@ package org.eclipse.xtend.middleend.xpand.test;
 public class Person {
     private String _name;
     private String _firstName;
+    public final static String A_STATIC_PROPERTY = "staticProperty";
     
     public String getName () {
         return _name;
@@ -35,4 +36,9 @@ public class Person {
     public Person getMother () { // to test for endless recursion during type initialization
         return null;
     }
+	
+	@Override
+	public String toString() {
+		return ("Person: " + _firstName + " " + _name);
+	}
 }

@@ -51,15 +51,15 @@ public final class JavaDefinedFunction extends AbstractFunction {
      *  shortcut constructor that attempts to derive the parameter types from the method's signature
      */
     public JavaDefinedFunction (Method mtd, ExpressionBase guard, BackendTypesystem ts) {
-        this (mtd, guessParameterTypes (mtd, ts), guard);
+        this (mtd, guessParameterTypes (mtd, ts), ts.findType (mtd.getReturnType()), guard);
     }
     
     
     /**
      * This constructor provides full control
      */
-    public JavaDefinedFunction (Method mtd, List<BackendType> parameterTypes, ExpressionBase guard) {
-        super (guard, parameterTypes, mtd.getAnnotation (M2tCached.class) != null);
+    public JavaDefinedFunction (Method mtd, List<BackendType> parameterTypes, BackendType returnType, ExpressionBase guard) {
+        super (guard, parameterTypes, returnType, mtd.getAnnotation (M2tCached.class) != null);
         
         _mtd = mtd;
         

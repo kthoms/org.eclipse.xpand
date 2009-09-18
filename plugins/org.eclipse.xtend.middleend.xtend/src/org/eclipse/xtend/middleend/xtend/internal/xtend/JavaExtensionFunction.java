@@ -28,8 +28,8 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
 final class JavaExtensionFunction extends AbstractFunction {
     private final Method _mtd;
 
-    public JavaExtensionFunction (Method mtd, boolean cached, List<? extends BackendType> paramTypes) {
-        super (null, paramTypes, cached);
+    public JavaExtensionFunction (Method mtd, boolean cached, List<? extends BackendType> paramTypes, BackendType returnType) {
+        super (null, paramTypes, returnType, cached);
         _mtd = mtd;
     }
     

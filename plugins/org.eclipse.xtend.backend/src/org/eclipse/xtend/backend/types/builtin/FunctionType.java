@@ -58,6 +58,11 @@ public final class FunctionType extends AbstractType {
             public void setFunctionDefContext (FunctionDefContext fdc) {
                 throw new UnsupportedOperationException ();
             }
+
+			@Override
+			public BackendType getReturnType() {
+                throw new UnsupportedOperationException ();
+			}
         });
     }
     

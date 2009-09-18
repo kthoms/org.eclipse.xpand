@@ -15,6 +15,7 @@ import org.eclipse.xtend.backend.common.FunctionDefContext;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public abstract class AbstractFunction implements Function {
+    protected final BackendType _returnType;
     private final ExpressionBase _guard;
     private final List<? extends BackendType> _parameterTypes;
     private final boolean _cached;
@@ -22,10 +23,11 @@ public abstract class AbstractFunction implements Function {
     private FunctionDefContext _fdc;
     
     
-    public AbstractFunction (ExpressionBase guard, List<? extends BackendType> parameterTypes, boolean cached) {
+    public AbstractFunction (ExpressionBase guard, List<? extends BackendType> parameterTypes, BackendType returnType, boolean cached) {
         _guard = guard;
         _parameterTypes = parameterTypes;
         _cached = cached;
+        _returnType = returnType;
     }
 
     public ExpressionBase getGuard () {
@@ -46,5 +48,9 @@ public abstract class AbstractFunction implements Function {
     
     public void setFunctionDefContext (FunctionDefContext fdc) {
         _fdc = fdc;
+    }
+    
+    public BackendType getReturnType () {
+    	return _returnType;
     }
 }

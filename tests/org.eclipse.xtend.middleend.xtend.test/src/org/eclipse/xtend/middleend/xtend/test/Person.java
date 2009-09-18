@@ -10,11 +10,14 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xtend.test;
 
+import org.eclipse.xtend.middleend.javaannotations.M2tNoFunction;
 
-public class Person {
+
+public class Person implements Comparable {
 
 	protected String _name;
     protected String _firstName;
+    public final static String A_STATIC_PROPERTY = "staticProperty";
     
     public String call(String param) {
     	return "called" + ":" + param;
@@ -41,6 +44,8 @@ public class Person {
         return null;
     }
 
+    
+    @M2tNoFunction
     @Override
 	public int hashCode() {
 		final int prime = 31;
@@ -51,6 +56,7 @@ public class Person {
 		return result;
 	}
 
+    @M2tNoFunction
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -71,5 +77,21 @@ public class Person {
 		} else if (!_name.equals(other._name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Person)
+			return _name.compareTo(((Person) o).getName());
+		return 0;
+	}
+	
+	public Object concat(Object o) {
+		return o;
+	}
+	
+	@Override
+	public String toString() {
+		return ("Person: " + _firstName + " " + _name);
 	}
 }

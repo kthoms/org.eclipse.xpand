@@ -21,6 +21,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.backend.types.builtin.ObjectType;
 
 
 /**
@@ -40,7 +41,7 @@ public abstract class NamedFunctionFactory extends AbstractFunction {
     }
 
     public NamedFunctionFactory (String name, boolean cached, FunctionDefContext fdc, BackendType... paramTypes) {
-        super (null, Arrays.asList (paramTypes), cached);
+        super (null, Arrays.asList (paramTypes), ObjectType.INSTANCE, cached);
         _name = name;
         setFunctionDefContext (fdc);
     }

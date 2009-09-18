@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
@@ -48,6 +49,11 @@ public final class TypeType extends AbstractType {
             protected Object getRaw (ExecutionContext ctx, Object o) {
                 return ((BackendType) o).getProperties (ctx);
             }
+
+			@Override
+			public BackendType getType (BackendTypesystem ts) {
+				return CollectionType.INSTANCE;
+			}
         }, CollectionType.INSTANCE);
         
         register (new AbstractProperty (this, java.util.List.class, "allOperations", true, false) {
@@ -58,7 +64,12 @@ public final class TypeType extends AbstractType {
                 result.addAll (ctx.getFunctionDefContext().getByFirstParameterType(t));
                 result.addAll (t.getBuiltinOperations());
                 return result;
-            } 
+            }
+
+			@Override
+			public BackendType getType (BackendTypesystem ts) {
+				return CollectionType.INSTANCE;
+			} 
         }, CollectionType.INSTANCE);
         
         register (new QualifiedName ("getProperty"), new Function () {
@@ -90,6 +101,11 @@ public final class TypeType extends AbstractType {
             public void setFunctionDefContext (FunctionDefContext fdc) {
                 throw new UnsupportedOperationException ();
             }
+
+			@Override
+			public BackendType getReturnType() {
+				return PropertyType.INSTANCE;
+			}
         });
     }
 

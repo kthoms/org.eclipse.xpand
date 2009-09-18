@@ -16,7 +16,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Methods marked with this annotation us fully qualified names.
+ * Methods marked with this annotation use fully qualified names.
  * 
  * @author aarnold
  *

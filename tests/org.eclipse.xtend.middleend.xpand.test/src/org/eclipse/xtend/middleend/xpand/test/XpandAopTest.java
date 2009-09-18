@@ -171,4 +171,37 @@ public class XpandAopTest extends AbstractXpandTest {
 			fail(e.getMessage());
 		}
 	}
+
+	@Test
+	public void testDefinitionType () throws Exception {
+		WorkflowContext ctx = new WorkflowContextDefaultImpl();
+		ctx.set("MODEL_SLOT", _person);
+		Issues issues = new IssuesImpl();
+	    Outlet out = new Outlet("out");
+	    Collection<Outlet> outlets = new ArrayList<Outlet>();
+	    outlets.add(out);
+	
+		XpandComponent xp = new XpandComponent();
+		xp.addMetaModel(_mms.get(0));
+		xp.addAdvice("org::eclipse::xtend::middleend::xpand::test::advices");
+		xp.setExpand("org::eclipse::xtend::middleend::xpand::test::XpandStatements::testDefinitionType(\"myOrg\", 1) FOR MODEL_SLOT");
+		xp.addOutlet(out);
+		try {
+			xp.invoke(ctx, new NullProgressMonitor(), issues);
+			File outFile = new File("out", "aopoutput5.txt");
+			assertTrue(outFile.exists());
+			BufferedReader r = new BufferedReader(new FileReader(outFile));
+			String line = null;
+			StringBuffer buf = new StringBuffer();
+			while ((line = r.readLine()) != null) {
+				buf.append(line+"\n");
+			}
+			assertEquals("\nDefinitionType: org::eclipse::xtend::middleend::xpand::test::XpandStatements::testDefinitionTypeDelegate paramTypes: String,Long targetType: org::eclipse::xtend::middleend::xpand::test::Person paramNames: [org, id] toString(): Person: Tester Testerossa proceed: \ntestDefinitionType org 12\n\n", buf.toString());
+			r.close();
+			outFile.delete();			
+		} catch (WorkflowInterruptedException e) {
+			fail(e.getMessage());
+		}
+	
+	}
 }

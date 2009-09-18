@@ -36,6 +36,7 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.testhelpers.CounterFunction;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
+import org.eclipse.xtend.backend.types.builtin.LongType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.Pair;
 import org.junit.Test;
@@ -179,7 +180,7 @@ public class AopTest {
         final FunctionDefContextInternal fdc = createFdc (ctx.getTypesystem(), CounterFunction.class);
         ctx.setFunctionDefContext (fdc);
 
-        fdc.register (new NamedFunction (new QualifiedName ("f"), new AbstractFunction (null, new ArrayList<BackendType> (), true) {
+        fdc.register (new NamedFunction (new QualifiedName ("f"), new AbstractFunction (null, new ArrayList<BackendType> (), LongType.INSTANCE, true) {
             public Object invoke (ExecutionContext localCtx, Object[] params) {
                 return _counter++; 
             }

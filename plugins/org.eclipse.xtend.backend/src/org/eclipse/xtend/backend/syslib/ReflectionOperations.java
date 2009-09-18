@@ -12,6 +12,7 @@ Contributors:
 package org.eclipse.xtend.backend.syslib;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
@@ -19,7 +20,9 @@ import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.StaticProperty;
+import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
+import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
 
 
 /**
@@ -61,6 +64,16 @@ public final class ReflectionOperations extends AbstractExecutionContextAware {
         return _ctx.getFunctionDefContext().getMatch (_ctx, name, allParamTypes);
     }
     
+    public List<String> getOperationParamNames (Function f) {
+    	//TODO throw an Exception instead?
+    	final List<String> paramNames = new LinkedList<String> ();
+    	return paramNames;
+    }
+    
+    public List<String> getOperationParamNames (SourceDefinedFunction f) {
+    	return f.getParamNames();
+    }
+
     //////////////////////////////////
     // operations on Property
     //////////////////////////////////

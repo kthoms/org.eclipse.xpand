@@ -48,4 +48,6 @@ public interface SysLibNames {
     
     String OPERATOR_NOT = "operatorNot";
     String OPERATOR_UNARY_MINUS = "operatorMinus";
+    
+    String OPERATION_PARAM_NAMES ="getOperationParamNames";
 }

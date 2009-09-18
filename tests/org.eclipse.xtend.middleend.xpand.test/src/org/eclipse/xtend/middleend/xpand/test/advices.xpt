@@ -9,3 +9,7 @@ pre2: *SomeAdviced* (String param1, *) «param1» («targetDef.proceed()-») post2
 «AROUND *SomeAdviced* (*) FOR String-»
 pre3: *SomeAdviced* (*) («targetDef.proceed()-») post3
 «ENDAROUND»
+
+«AROUND *testDefinitionTypeDelegate* (String org, Integer id) FOR Person»
+DefinitionType: «targetDef.name» paramTypes: «targetDef.paramTypes.toString(",")» targetType: «targetDef.targetType.name» paramNames: «targetDef.paramNames» toString(): «targetDef.toString()» proceed: «targetDef.proceed(this, {"org", 12})»
+«ENDAROUND»

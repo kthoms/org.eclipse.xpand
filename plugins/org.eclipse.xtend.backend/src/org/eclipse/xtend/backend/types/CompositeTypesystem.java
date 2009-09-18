@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.builtin.BooleanType;
@@ -202,6 +203,8 @@ public final class CompositeTypesystem implements BackendTypesystem {
             return DoubleType.INSTANCE;
 
         if (Function.class.isAssignableFrom(cls))
+            return FunctionType.INSTANCE;
+        if (NamedFunction.class.isAssignableFrom(cls))
             return FunctionType.INSTANCE;
         
         if (cls == Void.TYPE)

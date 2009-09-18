@@ -13,6 +13,7 @@ package org.eclipse.xtend.backend.types.builtin;
 import java.lang.reflect.Method;
 
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.util.ErrorHandler;
@@ -60,4 +61,9 @@ public final class BuiltinProperty extends AbstractProperty {
             ErrorHandler.handle(e);
         }
     }
+
+	@Override
+	public BackendType getType(BackendTypesystem ts) {
+		return ts.findType (getJavaClassForProperty (_getter, _setter));
+	}
 }

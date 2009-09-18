@@ -18,6 +18,7 @@ package org.eclipse.xtend.backend.common;
 public interface Property {
     String getName ();
     BackendType getOwner ();
+    BackendType getType (BackendTypesystem ts);
 
     Object get (ExecutionContext ctx, Object o);
     void set (ExecutionContext ctx, Object o, Object newValue);

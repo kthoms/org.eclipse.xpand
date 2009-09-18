@@ -31,6 +31,7 @@ import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.junit.Test;
 
@@ -83,7 +84,7 @@ public class InitClosureExpressionTest {
         final BackendTypesystem ts = new CompositeTypesystem ();
         
         final FunctionDefContextInternal fdc = createEmptyFdc (ts);
-        fdc.register (new NamedFunction (new QualifiedName ("myFunction"), new AbstractFunction (null, new ArrayList<BackendType> (), false) {
+        fdc.register (new NamedFunction (new QualifiedName ("myFunction"), new AbstractFunction (null, new ArrayList<BackendType> (), ObjectType.INSTANCE, false) {
             public Object invoke (ExecutionContext ctx, Object[] params) {
                 return "myResult";
             }

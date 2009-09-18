@@ -82,10 +82,4 @@ public class ExpressionTest extends JavaXtendTest {
 		Person result3 = (Person) BackendFacade.invoke (_ctx, new QualifiedName ("testCreatePersonVar"), Arrays.asList ());
 		assertTrue (result3.getClass().equals(Person.class) && result3.getName().equals("Tester") && result3.getFirstName() == null ? true : false );
 	}
-	
-	@Test
-	public void testIsInstance() {
-		boolean result = (Boolean) BackendFacade.invoke (_ctx, new QualifiedName ("testIsInstance"), Arrays.asList (_person));
-		assertTrue(result);
-	}
 }

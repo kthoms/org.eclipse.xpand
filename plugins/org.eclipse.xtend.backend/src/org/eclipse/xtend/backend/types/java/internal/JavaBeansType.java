@@ -71,7 +71,7 @@ public final class JavaBeansType extends AbstractType {
 				paramTypes.add(ts.getRootTypesystem().findType(cls));
 			}
 
-			register(new QualifiedName(mtd.getName()), new JavaOperation(mtd, paramTypes, null));
+			register(new QualifiedName(mtd.getName()), new JavaOperation(mtd, paramTypes, ts.findType (mtd.getReturnType()), null));
 		}
 
 		// static properties

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
@@ -74,6 +75,11 @@ public final class EClassType extends AbstractType {
                     public void setRaw (ExecutionContext ctx, Object o, Object newValue) {
                         ((EObject) o).eSet(feature, newValue);
                     }
+
+					@Override
+					public BackendType getType (BackendTypesystem ts) {
+						return t;
+					}
                 }, t);
             }
             else {
@@ -82,6 +88,11 @@ public final class EClassType extends AbstractType {
                     public Object getRaw (ExecutionContext ctx, Object o) {
                         return ((EObject) o).eGet(feature);
                     }
+
+					@Override
+					public BackendType getType (BackendTypesystem ts) {
+						return t;
+					}
                 }, t);
             }
         }
@@ -100,6 +111,8 @@ public final class EClassType extends AbstractType {
                 paramClasses[i++] = param.getEType().getInstanceClass();
             }
 
+            final BackendType returnType = ts.getTypeForEClassifier (op.getEType());
+            
             try {
                 final Method mtd = _cls.getInstanceClass().getMethod(op.getName(), paramClasses);
 
@@ -133,6 +146,11 @@ public final class EClassType extends AbstractType {
                     public void setFunctionDefContext (FunctionDefContext fdc) {
                         throw new UnsupportedOperationException ();
                     }
+
+					@Override
+					public BackendType getReturnType() {
+						return returnType;
+					}
 
                 });
             } catch (Exception e) {

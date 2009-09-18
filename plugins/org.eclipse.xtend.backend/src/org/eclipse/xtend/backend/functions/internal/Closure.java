@@ -32,7 +32,7 @@ public final class Closure extends AbstractFunction {
     private final ExpressionBase _def;
     
     public Closure (LocalVarContext lvcAtDefinitionTime, FunctionDefContext fdcAtDefinitionTime, List<String> paramNames, List<? extends BackendType> paramTypes, ExpressionBase def) {
-        super (null, paramTypes, false);
+        super (null, paramTypes, null, false);
         
         //freeze local variables at definition time so they will be available in a different context at evaluation time
         _lvcAtDefinitionTime = new LocalVarContext();
@@ -83,5 +83,10 @@ public final class Closure extends AbstractFunction {
     @Override
     public FunctionDefContext getFunctionDefContext () {
         return _fdcAtDefinitionTime;
+    }
+
+    @Override
+	public BackendType getReturnType () {
+        throw new UnsupportedOperationException ();
     }
 }

@@ -14,9 +14,11 @@ package org.eclipse.xtend.backend.types.internal;
 import java.util.Arrays;
 
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.backend.types.builtin.ObjectType;
 
 
 /**
@@ -63,4 +65,10 @@ public final class FunctionBackedProperty implements Property {
     public boolean isWritable () {
         return _setterName != null;
     }
+
+
+	@Override
+	public BackendType getType (BackendTypesystem ts) {
+		throw new UnsupportedOperationException();
+	}
 }

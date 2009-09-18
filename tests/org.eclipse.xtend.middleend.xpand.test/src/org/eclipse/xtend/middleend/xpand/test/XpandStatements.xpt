@@ -80,6 +80,11 @@ comment.
 «ENDFILE»
 «ENDDEFINE»
 
+«DEFINE testDefinitionType(String org, Integer id) FOR Person»
+«FILE "aopoutput5.txt"-»
+«EXPAND testDefinitionTypeDelegate(org, id) FOR this-»
+«ENDFILE»
+«ENDDEFINE»
 
 «DEFINE testSomeAdvicedDefinition FOR String-»
 «this-»
@@ -97,4 +102,6 @@ comment.
 «this-»
 «ENDDEFINE»
 
-
+«DEFINE testDefinitionTypeDelegate(String org, Integer id) FOR Person»
+testDefinitionType «org» «id»
+«ENDDEFINE»

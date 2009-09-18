@@ -35,6 +35,7 @@ import org.eclipse.xtend.backend.expr.OrExpression;
 import org.eclipse.xtend.backend.expr.SequenceExpression;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.syslib.SysLibNames;
+import org.eclipse.xtend.backend.types.builtin.BooleanType;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -85,7 +86,7 @@ public final class CheckConverter {
         
         final ExpressionBase body = new SequenceExpression (allChecks, exprConv.getSourcePos (extensionFile));
         
-        return new NamedFunction (ALL_CHECKS_FUNCTION_NAME, new SourceDefinedFunction (ALL_CHECKS_FUNCTION_NAME, paramNames, paramTypes, body, false, null));
+        return new NamedFunction (ALL_CHECKS_FUNCTION_NAME, new SourceDefinedFunction (ALL_CHECKS_FUNCTION_NAME, paramNames, paramTypes, BooleanType.INSTANCE, body, false, null));
     }
     
     

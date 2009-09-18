@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
@@ -51,7 +52,7 @@ public final class StereotypeType extends AbstractType {
         _stereoType = stereoType;
         
         for (StereotypeProperty stp: getProperties (this, stereoType, umlTs))
-            register (stp, stp.getType());
+            register (stp, stp.getType (umlTs));
     }
 
     
@@ -177,7 +178,7 @@ public final class StereotypeType extends AbstractType {
             throw new IllegalArgumentException("uml2 Element expected but was " + target.getClass().getName());
         }
         
-        private BackendType getType () {
+        public BackendType getType (BackendTypesystem ts) {
             return _type;
         }
         

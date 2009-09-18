@@ -26,7 +26,8 @@ public interface Function {
     boolean isCached ();
     
     /** returns the expression that guards this function - or null, if there is no guard.*/
-    ExpressionBase getGuard();
+    ExpressionBase getGuard ();
+    BackendType getReturnType ();
     
     FunctionDefContext getFunctionDefContext ();
     void setFunctionDefContext (FunctionDefContext fdc);

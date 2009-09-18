@@ -201,6 +201,11 @@ public abstract class AbstractType implements BackendType {
         public void setFunctionDefContext (FunctionDefContext fdc) {
             throw new UnsupportedOperationException ();
         }
+
+		@Override
+		public BackendType getReturnType() {
+            throw new UnsupportedOperationException ();
+		}
     }
     
     private class GetterOperation implements Function {
@@ -235,6 +240,11 @@ public abstract class AbstractType implements BackendType {
         public void setFunctionDefContext (FunctionDefContext fdc) {
             throw new UnsupportedOperationException ();
         }
+
+		@Override
+		public BackendType getReturnType() {
+            throw new UnsupportedOperationException ();
+		}
     }
     
     

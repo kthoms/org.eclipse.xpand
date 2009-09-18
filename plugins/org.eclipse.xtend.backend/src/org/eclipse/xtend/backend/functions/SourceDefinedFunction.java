@@ -31,8 +31,8 @@ public final class SourceDefinedFunction extends AbstractFunction {
     private final List<String> _paramNames;
     private final ExpressionBase _def;
 
-    public SourceDefinedFunction (QualifiedName name, List<String> paramNames, List<BackendType> paramTypes, ExpressionBase def, boolean cached, ExpressionBase guard) {
-        super (guard, paramTypes, cached);
+    public SourceDefinedFunction (QualifiedName name, List<String> paramNames, List<BackendType> paramTypes, BackendType returnType, ExpressionBase def, boolean cached, ExpressionBase guard) {
+        super (guard, paramTypes, returnType, cached);
         _name = name;
         _paramNames = paramNames;
         _def = def;
@@ -63,6 +63,10 @@ public final class SourceDefinedFunction extends AbstractFunction {
 
     public QualifiedName getName () {
         return _name;
+    }
+    
+    public List<String> getParamNames() {
+    	return _paramNames;
     }
     
     @Override

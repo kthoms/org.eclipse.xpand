@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
@@ -40,18 +41,33 @@ public final class EObjectType extends AbstractType {
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContainer();
             }
+
+			@Override
+			public BackendType getType (BackendTypesystem ts) {
+				return EObjectType.INSTANCE;
+			}
         }, this);
         register (new AbstractProperty (this, java.util.List.class, "eContents", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return ((EObject) o).eContents();
             }
+
+			@Override
+			public BackendType getType(BackendTypesystem ts) {
+				return CollectionType.INSTANCE;
+			}
         }, CollectionType.INSTANCE);
         register (new AbstractProperty (this, EObject.class, "eRootContainer", true, false) {
             @Override
             public Object getRaw (ExecutionContext ctx, Object o) {
                 return EcoreUtil.getRootContainer((EObject) o);
             }
+
+			@Override
+			public BackendType getType (BackendTypesystem ts) {
+				return EObjectType.INSTANCE;
+			}
         }, this);
         register (new AbstractProperty (this, java.util.Set.class, "eAllContents", true, false) {
             @Override
@@ -63,6 +79,11 @@ public final class EObjectType extends AbstractType {
 
                 return result;
             }
+
+			@Override
+			public BackendType getType (BackendTypesystem ts) {
+				return CollectionType.INSTANCE;
+			}
         }, CollectionType.INSTANCE);
     }
     

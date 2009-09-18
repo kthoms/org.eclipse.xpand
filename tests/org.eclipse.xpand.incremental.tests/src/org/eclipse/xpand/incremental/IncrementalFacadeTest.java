@@ -1,6 +1,6 @@
-package org.eclipse.xpand2.incremental;
+package org.eclipse.xpand.incremental;
 
-public class IncrementalFacadeTests extends AbstractIncrementalTests {
+public class IncrementalFacadeTest extends AbstractIncrementalTest {
 	@Override
 	public String getWorkflowFileName() {
 		return "resources/workflow/incrementalfacade.mwe";

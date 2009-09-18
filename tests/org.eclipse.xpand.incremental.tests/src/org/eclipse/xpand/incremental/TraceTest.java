@@ -8,7 +8,7 @@
  * Contributors:
  *     Achim Demelt - initial API and implementation
  *******************************************************************************/
-package org.eclipse.xpand2.incremental;
+package org.eclipse.xpand.incremental;
 
 import java.io.File;
 import java.util.Collection;
@@ -29,10 +29,11 @@ import org.eclipse.xpand.incremental.trace.InputElement;
 import org.eclipse.xpand.incremental.trace.OutputFile;
 import org.eclipse.xpand.incremental.trace.Trace;
 import org.eclipse.xpand2.Generator;
+import org.eclipse.xpand2.incremental.IncrementalGenerationCallback;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
-public class TraceTests extends TestCase {
+public class TraceTest extends TestCase {
 	private WorkflowContextDefaultImpl ctx;
 	private Generator generator;
 	private IncrementalGenerationCallback incrementalGenerationBroker;

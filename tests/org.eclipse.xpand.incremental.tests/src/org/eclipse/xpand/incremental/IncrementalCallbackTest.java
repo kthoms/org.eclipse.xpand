@@ -1,6 +1,6 @@
-package org.eclipse.xpand2.incremental;
+package org.eclipse.xpand.incremental;
 
-public class IncrementalCallbackTests extends AbstractIncrementalTests {
+public class IncrementalCallbackTest extends AbstractIncrementalTest {
 	@Override
 	public String getWorkflowFileName() {
 		return "resources/workflow/incrementalcallback.mwe";

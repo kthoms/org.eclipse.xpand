@@ -8,7 +8,7 @@
  * Contributors:
  *     Achim Demelt - initial API and implementation
  *******************************************************************************/
-package org.eclipse.xpand2.incremental;
+package org.eclipse.xpand.incremental;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +21,7 @@ import junit.framework.TestCase;
 import org.eclipse.emf.mwe.core.WorkflowFacade;
 import org.eclipse.emf.mwe.core.issues.Issues;
 
-public abstract class AbstractIncrementalTests extends TestCase {
+public abstract class AbstractIncrementalTest extends TestCase {
 	private static final String CLASS_WITH_REMOVED_SUPER_TYPE_JAVA = "ClassWithRemovedSuperType.java";
 	private static final String CLASS_WITH_NEW_SUPER_TYPE_JAVA = "ClassWithNewSuperType.java";
 	private static final String CLASS_WITH_REMOVED_ATTRIBUTE_JAVA = "ClassWithRemovedAttribute.java";

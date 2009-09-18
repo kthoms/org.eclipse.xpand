@@ -8,7 +8,7 @@
  * Contributors:
  *     Achim Demelt - initial API and implementation
  *******************************************************************************/
-package org.eclipse.xpand2.incremental;
+package org.eclipse.xpand.incremental;
 
 import junit.framework.TestCase;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe.utils.Reader;
 import org.eclipse.xpand2.incremental.compare.EmfCompare;
 
-public class CompareTests extends TestCase {
+public class CompareTest extends TestCase {
 	private WorkflowContext ctx;
 	
 	/**

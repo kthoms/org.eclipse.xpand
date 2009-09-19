@@ -76,7 +76,6 @@ public final class EClassType extends AbstractType {
                         ((EObject) o).eSet(feature, newValue);
                     }
 
-					@Override
 					public BackendType getType (BackendTypesystem ts) {
 						return t;
 					}
@@ -89,7 +88,6 @@ public final class EClassType extends AbstractType {
                         return ((EObject) o).eGet(feature);
                     }
 
-					@Override
 					public BackendType getType (BackendTypesystem ts) {
 						return t;
 					}
@@ -147,7 +145,6 @@ public final class EClassType extends AbstractType {
                         throw new UnsupportedOperationException ();
                     }
 
-					@Override
 					public BackendType getReturnType() {
 						return returnType;
 					}

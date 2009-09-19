@@ -79,7 +79,6 @@ public class Person implements Comparable {
 		return true;
 	}
 
-	@Override
 	public int compareTo(Object o) {
 		if (o instanceof Person)
 			return _name.compareTo(((Person) o).getName());

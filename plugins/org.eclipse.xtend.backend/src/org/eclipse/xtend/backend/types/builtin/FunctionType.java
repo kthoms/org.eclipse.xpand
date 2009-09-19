@@ -59,7 +59,6 @@ public final class FunctionType extends AbstractType {
                 throw new UnsupportedOperationException ();
             }
 
-			@Override
 			public BackendType getReturnType() {
                 throw new UnsupportedOperationException ();
 			}

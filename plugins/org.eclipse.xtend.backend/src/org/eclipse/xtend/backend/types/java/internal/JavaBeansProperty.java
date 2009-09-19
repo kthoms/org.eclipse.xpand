@@ -56,7 +56,6 @@ public final class JavaBeansProperty extends AbstractProperty {
         }
     }
 
-	@Override
 	public BackendType getType(BackendTypesystem ts) {
 		// TODO Auto-generated method stub
 		return ts.findType (_pd.getPropertyType());

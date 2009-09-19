@@ -66,8 +66,6 @@ public final class FunctionBackedProperty implements Property {
         return _setterName != null;
     }
 
-
-	@Override
 	public BackendType getType (BackendTypesystem ts) {
 		throw new UnsupportedOperationException();
 	}

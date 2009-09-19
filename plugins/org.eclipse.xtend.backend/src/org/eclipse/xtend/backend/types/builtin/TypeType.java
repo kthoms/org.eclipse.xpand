@@ -50,7 +50,6 @@ public final class TypeType extends AbstractType {
                 return ((BackendType) o).getProperties (ctx);
             }
 
-			@Override
 			public BackendType getType (BackendTypesystem ts) {
 				return CollectionType.INSTANCE;
 			}
@@ -66,7 +65,6 @@ public final class TypeType extends AbstractType {
                 return result;
             }
 
-			@Override
 			public BackendType getType (BackendTypesystem ts) {
 				return CollectionType.INSTANCE;
 			} 
@@ -102,7 +100,6 @@ public final class TypeType extends AbstractType {
                 throw new UnsupportedOperationException ();
             }
 
-			@Override
 			public BackendType getReturnType() {
 				return PropertyType.INSTANCE;
 			}

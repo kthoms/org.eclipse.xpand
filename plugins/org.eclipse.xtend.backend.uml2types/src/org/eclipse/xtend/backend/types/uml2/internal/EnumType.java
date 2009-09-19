@@ -66,7 +66,6 @@ public final class EnumType extends AbstractType {
                 return obj.eGet (obj.eClass ().getEStructuralFeature ("name"));
             }
 
-			@Override
 			public BackendType getType (BackendTypesystem ts) {
 				return StringType.INSTANCE;
 			}

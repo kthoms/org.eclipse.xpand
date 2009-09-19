@@ -42,7 +42,6 @@ public final class EObjectType extends AbstractType {
                 return ((EObject) o).eContainer();
             }
 
-			@Override
 			public BackendType getType (BackendTypesystem ts) {
 				return EObjectType.INSTANCE;
 			}
@@ -53,7 +52,6 @@ public final class EObjectType extends AbstractType {
                 return ((EObject) o).eContents();
             }
 
-			@Override
 			public BackendType getType(BackendTypesystem ts) {
 				return CollectionType.INSTANCE;
 			}
@@ -64,7 +62,6 @@ public final class EObjectType extends AbstractType {
                 return EcoreUtil.getRootContainer((EObject) o);
             }
 
-			@Override
 			public BackendType getType (BackendTypesystem ts) {
 				return EObjectType.INSTANCE;
 			}
@@ -80,7 +77,6 @@ public final class EObjectType extends AbstractType {
                 return result;
             }
 
-			@Override
 			public BackendType getType (BackendTypesystem ts) {
 				return CollectionType.INSTANCE;
 			}

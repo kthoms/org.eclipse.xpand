@@ -62,7 +62,6 @@ public final class BuiltinProperty extends AbstractProperty {
         }
     }
 
-	@Override
 	public BackendType getType(BackendTypesystem ts) {
 		return ts.findType (getJavaClassForProperty (_getter, _setter));
 	}

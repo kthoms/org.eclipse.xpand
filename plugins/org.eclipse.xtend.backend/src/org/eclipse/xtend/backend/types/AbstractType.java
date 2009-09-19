@@ -202,7 +202,6 @@ public abstract class AbstractType implements BackendType {
             throw new UnsupportedOperationException ();
         }
 
-		@Override
 		public BackendType getReturnType() {
             throw new UnsupportedOperationException ();
 		}
@@ -241,7 +240,6 @@ public abstract class AbstractType implements BackendType {
             throw new UnsupportedOperationException ();
         }
 
-		@Override
 		public BackendType getReturnType() {
             throw new UnsupportedOperationException ();
 		}

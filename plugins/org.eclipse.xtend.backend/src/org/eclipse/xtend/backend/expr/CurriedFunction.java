@@ -82,7 +82,6 @@ final class CurriedFunction implements Function {
         throw new UnsupportedOperationException ();
     }
 
-	@Override
 	public BackendType getReturnType() {
 		return _inner.getReturnType();
 	}

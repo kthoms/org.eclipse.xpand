@@ -131,7 +131,6 @@ public final class XpandBackendFacade {
     
     public Object executeStatement (String code, Map<String, Object> variables, List<String> advice, XpandProtectedRegionResolver resolver) {
     	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
-    	log.info("XpandBackendFacade convert start: " + formatter.format(new Date()));
     	if (variables == null)
             variables = new HashMap<String, Object> ();
         if (advice == null)
@@ -163,9 +162,7 @@ public final class XpandBackendFacade {
         registerOutlets (_middleEnd.getExecutionContext(), _outlets);
         registerProtectedRegionResolver(_middleEnd.getExecutionContext(), resolver);
         
-    	log.info("XpandBackendFacade execute start: " + formatter.format(new Date()));
     	Object o=converted.evaluate (_middleEnd.getExecutionContext());
-    	log.info("XpandBackendFacade execute start: " + formatter.format(new Date()));
         return o;
     }
     

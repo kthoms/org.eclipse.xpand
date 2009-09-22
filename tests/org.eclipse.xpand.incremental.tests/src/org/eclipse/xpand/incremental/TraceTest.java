@@ -62,6 +62,7 @@ public class TraceTest extends TestCase {
 		outputPath.mkdir();		
 		generator.addOutlet(new Outlet(outputPath.getAbsolutePath()));
 		generator.setExpand("resources::templates::Test::Test FOR model");
+		generator.setFileEncoding("ISO-8859-1");
 		incrementalGenerationBroker = new IncrementalGenerationCallback();
 		incrementalGenerationBroker.setDiffModelSlot("diffModel");
 		incrementalGenerationBroker.setOldTraceModelSlot("oldTraceModel");

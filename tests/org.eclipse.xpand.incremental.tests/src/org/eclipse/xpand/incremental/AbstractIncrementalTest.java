@@ -10,18 +10,23 @@
  *******************************************************************************/
 package org.eclipse.xpand.incremental;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import junit.framework.TestCase;
 
 import org.eclipse.emf.mwe.core.WorkflowFacade;
 import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.emf.mwe.core.resources.ResourceLoader;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 
 public abstract class AbstractIncrementalTest extends TestCase {
+
 	private static final String CLASS_WITH_REMOVED_SUPER_TYPE_JAVA = "ClassWithRemovedSuperType.java";
 	private static final String CLASS_WITH_NEW_SUPER_TYPE_JAVA = "ClassWithNewSuperType.java";
 	private static final String CLASS_WITH_REMOVED_ATTRIBUTE_JAVA = "ClassWithRemovedAttribute.java";
@@ -36,16 +41,20 @@ public abstract class AbstractIncrementalTest extends TestCase {
 	private static final String DIFF_EMFDIFF = "diff.emfdiff";
 	private static final String TRACE_TRACE = "trace.trace";
 	private static final String OLDMODEL_ECORE = "oldmodel.ecore";
+	private ResourceLoader oldResourceLoader;
 
 	@Override
 	public void setUp() {
+		oldResourceLoader = ResourceLoaderFactory.getCurrentThreadResourceLoader();
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(new ResourceLoaderImpl(getClass().getClassLoader()));
+		
 		// prepare temp dir
 		File tempDir = new File(TEMP_PATH);
 		if (!tempDir.exists() || tempDir.isFile()) {
 			tempDir.delete();
 			tempDir.mkdir();
 		}
-		
+
 		// clean results of previous tests
 		deleteFile(MODEL_ECORE);
 		deleteFile(OLDMODEL_ECORE);
@@ -61,23 +70,29 @@ public abstract class AbstractIncrementalTest extends TestCase {
 		deleteFile(CLASS_WITH_NEW_SUPER_TYPE_JAVA);
 		deleteFile(CLASS_WITH_REMOVED_SUPER_TYPE_JAVA);
 	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(oldResourceLoader);
+		super.tearDown();
+	}
 
 	public void testInitialGeneration() throws Exception {
 		// old.ecore is to be our initial model
-		copyFile(new File("resources/model/old.ecore"), new File(TEMP_PATH + MODEL_ECORE));
-	
+		copyFile("/model/old.ecore", new File(TEMP_PATH + MODEL_ECORE));
+
 		// now simply run workflow. remember date to check timestamps
 		WorkflowFacade workflow = new WorkflowFacade(getWorkflowFileName());
 		long timestamp = System.currentTimeMillis();
 		// have to wait a second because the filesystem may round down file modification timestamps
 		Thread.sleep(1000);
 		Issues issues = workflow.run();
-		
+
 		// we must have no errors, but a couple of warnings because
 		// we neither have an old model nor a trace model
 		assertFalse("Found errors in workflow: " + issues, issues.hasErrors());
 		assertTrue(issues.hasWarnings());
-		
+
 		// we must have created almost all files
 		assertFile(FIRST_CLASS_JAVA, true, timestamp);
 		assertFile(SECOND_CLASS_JAVA, true, timestamp);
@@ -97,21 +112,21 @@ public abstract class AbstractIncrementalTest extends TestCase {
 		File fourthClassFile = new File(TEMP_PATH + FOURTH_CLASS_JAVA);
 		assertFalse(fourthClassFile.exists());
 	}
-	
+
 	public void testIncrementalGeneration() throws Exception {
 		// first perform initial generation
 		testInitialGeneration();
-		
+
 		// now new.ecore is to become our updated model
-		copyFile(new File("resources/model/new.ecore"), new File(TEMP_PATH + MODEL_ECORE));
-	
+		copyFile("/model/new.ecore", new File(TEMP_PATH + MODEL_ECORE));
+
 		// now simply run workflow. remember date to check timestamps
 		WorkflowFacade workflow = new WorkflowFacade(getWorkflowFileName());
 		long timestamp = System.currentTimeMillis();
 		// have to wait a second because the filesystem may round down file modification timestamps
 		Thread.sleep(1000);
 		Issues issues = workflow.run();
-		
+
 		// we must have no errors and also no warnings this time
 		assertFalse("Found errors in workflow: " + issues, issues.hasErrors());
 		assertFalse("Found warnings in workflow: " + issues, issues.hasWarnings());
@@ -139,7 +154,7 @@ public abstract class AbstractIncrementalTest extends TestCase {
 		// as usual: model.ecore. this must remain unchanged
 		assertFile(MODEL_ECORE, false, timestamp);
 	}
-	
+
 	private void assertFile(String name, boolean newerThan, long timestamp) {
 		File f = new File(TEMP_PATH + name);
 		assertTrue("File " + name + " does not exist", f.exists());
@@ -148,12 +163,13 @@ public abstract class AbstractIncrementalTest extends TestCase {
 			// has passed between taking the timestamp and the file being written to disk...			
 			assertTrue("File " + name + " is written at " + f.lastModified() + ", but should be after " + timestamp,
 					timestamp <= f.lastModified());
-		} else {
+		}
+		else {
 			assertTrue("File " + name + " is written at " + f.lastModified() + ", but should be before " + timestamp,
 					timestamp > f.lastModified());
 		}
 	}
-	
+
 	private void deleteFile(String name) {
 		File f = new File(TEMP_PATH + name);
 		if (f.exists()) {
@@ -161,30 +177,33 @@ public abstract class AbstractIncrementalTest extends TestCase {
 			assertFalse(f.exists());
 		}
 	}
-	
-	public static void copyFile(File sourceFile, File destFile) throws IOException {
-		 if(!destFile.exists()) {
-		  destFile.createNewFile();
-		 }
 
-		 FileChannel source = null;
-		 FileChannel destination = null;
-		 try {
-		  source = new FileInputStream(sourceFile).getChannel();
-		  destination = new FileOutputStream(destFile).getChannel();
-		  destination.transferFrom(source, 0, source.size());
-		 }
-		 finally {
-		  if(source != null) {
-		   source.close();
-		  }
-		  if(destination != null) {
-		   destination.close();
-		  }
-		 }
+	public void copyFile(String classpathResourceURI, File destFile) throws IOException {
+		if (!destFile.exists()) {
+			destFile.createNewFile();
+		}
+
+		InputStream sourceStream = getClass().getClassLoader().getResourceAsStream(classpathResourceURI);
+		OutputStream destination = null;
+		try {
+			destination = new BufferedOutputStream(new FileOutputStream(destFile));
+			byte[] buffer = new byte[1024];
+			int readBytes = -1;
+			while ((readBytes = sourceStream.read(buffer)) != -1) {
+				destination.write(buffer, 0, readBytes);
+			}
+		}
+		finally {
+			if (sourceStream != null) {
+				sourceStream.close();
+			}
+			if (destination != null) {
+				destination.close();
+			}
+		}
 	}
-	
+
 	public abstract String getWorkflowFileName();
-	
+
 	public abstract boolean writesDiff();
 }

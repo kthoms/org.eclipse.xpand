@@ -43,7 +43,7 @@
 	
 	<!-- generate code -->
 	<component id="generator" class="org.eclipse.xpand2.Generator">
-		<expand value="templates::Test::Test FOR model" />
+		<expand value="resources::templates::Test::Test FOR model" />
 		<outlet path="temp/" overwrite="true"/>
 		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel" />
 		<fileEncoding value="ISO-8859-1" />

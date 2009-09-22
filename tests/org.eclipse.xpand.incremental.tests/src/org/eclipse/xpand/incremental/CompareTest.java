@@ -10,35 +10,32 @@
  *******************************************************************************/
 package org.eclipse.xpand.incremental;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import junit.framework.TestCase;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
+import org.eclipse.emf.mwe.core.resources.ResourceLoader;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 import org.eclipse.emf.mwe.utils.Reader;
-import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.xpand2.incremental.compare.EmfCompare;
 
 public class CompareTest extends TestCase {
 	private WorkflowContext ctx;
 	
-	private Map<String, URI> oldPlatformResourceMap;
+	private ResourceLoader oldResourceLoader;
 	
 	/**
 	 * Creates new worfkflow context and loads old and new models into slots.
 	 */
 	@Override
 	public void setUp() {
-		oldPlatformResourceMap = new HashMap<String, URI>(EcorePlugin.getPlatformResourceMap());
-		new StandaloneSetup().setPlatformUri(".");
+		oldResourceLoader = ResourceLoaderFactory.getCurrentThreadResourceLoader();
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(new ResourceLoaderImpl(getClass().getClassLoader()));
 		ctx = new WorkflowContextDefaultImpl();
 		loadModel("old");
 		loadModel("new");
@@ -46,8 +43,7 @@ public class CompareTest extends TestCase {
 	
 	@Override
 	protected void tearDown() throws Exception {
-		EcorePlugin.getPlatformResourceMap().clear();
-		EcorePlugin.getPlatformResourceMap().putAll(oldPlatformResourceMap);
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(oldResourceLoader);
 		super.tearDown();
 	}
 	

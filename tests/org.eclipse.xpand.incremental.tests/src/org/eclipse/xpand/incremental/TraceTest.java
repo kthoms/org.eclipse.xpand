@@ -12,24 +12,22 @@ package org.eclipse.xpand.incremental;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import junit.framework.TestCase;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
+import org.eclipse.emf.mwe.core.resources.ResourceLoader;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 import org.eclipse.emf.mwe.utils.Reader;
-import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.xpand.incremental.trace.InputElement;
 import org.eclipse.xpand.incremental.trace.OutputFile;
 import org.eclipse.xpand.incremental.trace.Trace;
@@ -42,12 +40,12 @@ public class TraceTest extends TestCase {
 	private WorkflowContextDefaultImpl ctx;
 	private Generator generator;
 	private IncrementalGenerationCallback incrementalGenerationBroker;
-	private Map<String, URI> oldPlatformResourceMap;
+	private ResourceLoader oldResourceLoader;
 
 	@Override
 	public void setUp() throws Exception {
-		oldPlatformResourceMap = new HashMap<String, URI>(EcorePlugin.getPlatformResourceMap());
-		new StandaloneSetup().setPlatformUri(".");
+		oldResourceLoader = ResourceLoaderFactory.getCurrentThreadResourceLoader();
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(new ResourceLoaderImpl(getClass().getClassLoader()));
 		ctx = new WorkflowContextDefaultImpl();
 
 		// load model
@@ -63,7 +61,7 @@ public class TraceTest extends TestCase {
 		outputPath.delete();
 		outputPath.mkdir();		
 		generator.addOutlet(new Outlet(outputPath.getAbsolutePath()));
-		generator.setExpand("templates::Test::Test FOR model");
+		generator.setExpand("resources::templates::Test::Test FOR model");
 		incrementalGenerationBroker = new IncrementalGenerationCallback();
 		incrementalGenerationBroker.setDiffModelSlot("diffModel");
 		incrementalGenerationBroker.setOldTraceModelSlot("oldTraceModel");
@@ -73,8 +71,7 @@ public class TraceTest extends TestCase {
 	
 	@Override
 	protected void tearDown() throws Exception {
-		EcorePlugin.getPlatformResourceMap().clear();
-		EcorePlugin.getPlatformResourceMap().putAll(oldPlatformResourceMap);
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(oldResourceLoader);
 		super.tearDown();
 	}
 	

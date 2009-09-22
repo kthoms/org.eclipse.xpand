@@ -1,4 +1,4 @@
-«EXTENSION templates::Helper»
+«EXTENSION resources::templates::Helper»
 
 «DEFINE Test FOR ecore::EPackage»
 	«EXPAND File FOREACH eClassifiers»

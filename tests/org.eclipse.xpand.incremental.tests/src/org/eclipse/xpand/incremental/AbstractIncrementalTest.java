@@ -79,7 +79,7 @@ public abstract class AbstractIncrementalTest extends TestCase {
 
 	public void testInitialGeneration() throws Exception {
 		// old.ecore is to be our initial model
-		copyFile("/model/old.ecore", new File(TEMP_PATH + MODEL_ECORE));
+		copyFile("/resources/model/old.ecore", new File(TEMP_PATH + MODEL_ECORE));
 
 		// now simply run workflow. remember date to check timestamps
 		WorkflowFacade workflow = new WorkflowFacade(getWorkflowFileName());
@@ -118,7 +118,7 @@ public abstract class AbstractIncrementalTest extends TestCase {
 		testInitialGeneration();
 
 		// now new.ecore is to become our updated model
-		copyFile("/model/new.ecore", new File(TEMP_PATH + MODEL_ECORE));
+		copyFile("/resources/model/new.ecore", new File(TEMP_PATH + MODEL_ECORE));
 
 		// now simply run workflow. remember date to check timestamps
 		WorkflowFacade workflow = new WorkflowFacade(getWorkflowFileName());

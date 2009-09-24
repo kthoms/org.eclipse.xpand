@@ -85,7 +85,7 @@ public final class AdvisedFunction {
 
         final ThisJoinPoint thisJoinPoint = new ThisJoinPoint (ctx.getStacktrace(), params) {
             @Override
-            public Object proceed (List<?> localParams) {
+            public Object proceedWithParams (List<?> localParams) {
                 return proceedInternal (ctx, indNextAdvice+1, localParams);
             }
         };

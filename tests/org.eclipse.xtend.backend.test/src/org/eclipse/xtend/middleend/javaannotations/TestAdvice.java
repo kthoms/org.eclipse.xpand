@@ -18,12 +18,12 @@ public class TestAdvice {
 
 	@M2tAroundAdvice (pointcut = @M2tPointcut (namePattern = "someFunction"))
 	public Object simpleAspect (ThisJoinPoint jp) {
-		return "pre " + jp.proceed (jp.getParameters ()) + " post";
+		return "pre " + jp.proceedWithParams (jp.getParameters ()) + " post";
 	}
 	
 	@M2tAroundAdvice (pointcut = @M2tPointcut (namePattern = "testJavaAnnAdv*", paramTypeNames = {"String", "String"}, hasVarArgs = true))
 	public Object paramAspect (ThisJoinPoint jp) {
 		List<?> params = jp.getParameters ();
-		return "pre2 " + jp.proceed (params) + " post2";
+		return "pre2 " + jp.proceedWithParams (params) + " post2";
 	}
 }

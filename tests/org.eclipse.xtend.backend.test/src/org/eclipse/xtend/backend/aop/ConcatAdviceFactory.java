@@ -20,6 +20,7 @@ import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.expr.ConcatExpression;
 import org.eclipse.xtend.backend.expr.InvocationOnObjectExpression;
+import org.eclipse.xtend.backend.expr.ListLiteralExpression;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 
@@ -37,5 +38,10 @@ class ConcatAdviceFactory {
 
     public static ExpressionBase createProceedExpression () {
         return new InvocationOnObjectExpression (new QualifiedName ("proceed"), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, null)), true, null);
+    }
+
+    public static ExpressionBase createParameterizedProceedExpression (List<ExpressionBase> params) {
+        ListLiteralExpression listExpr = new ListLiteralExpression(params, null);
+        return new InvocationOnObjectExpression (new QualifiedName ("proceed"), Arrays.asList(new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, null), listExpr), true, null);
     }
 }

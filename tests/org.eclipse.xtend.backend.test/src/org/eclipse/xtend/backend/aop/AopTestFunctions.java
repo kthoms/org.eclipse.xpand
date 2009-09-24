@@ -35,7 +35,15 @@ public class AopTestFunctions {
         return "f(Collection)";
     }
     
-    public String f(@SuppressWarnings("unused") List<?> l) {
+    public String f (@SuppressWarnings("unused") List<?> l) {
         return "f(List)";
+    }
+    
+    public String func (String s) {
+    	return s;
+    }
+
+    public String otherFunc (String s1, String s2) {
+    	return s1 + " " + s2;
     }
 }

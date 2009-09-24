@@ -196,8 +196,9 @@ public final class OldExpressionConverter {
         final String functionName = transformFunctionName (expr);
         
         final List<ExpressionBase> params = new ArrayList<ExpressionBase> ();
-        for (Expression e: expr.getParams ()) 
-            params.add (convert (e));
+        if (!isAdviceProceedCall(expr))
+	        for (Expression e: expr.getParams ()) 
+	            params.add (convert (e));
 
         final List<Type> paramTypes = new ArrayList<Type>();
         for (Expression e: expr.getParams())
@@ -219,8 +220,27 @@ public final class OldExpressionConverter {
             else 
                 return new InvocationOnObjectExpression (new QualifiedName (functionName), params, false, sourcePos);
         }
-        else if (isAdviceProceedCall(expr))
-        	return new InvocationOnObjectExpression (new QualifiedName (AROUND_PROCEED), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos)), true, sourcePos);
+        else if (isAdviceProceedCall(expr)) {
+        	if (expr.getParams ().length > 0) {
+                for (Expression e: expr.getParams ())
+                	if (e instanceof ListLiteral)
+                		for (Expression innerExpr : ((ListLiteral) e).getElements()) {
+                			params.add (convert (innerExpr));
+						}
+                	else
+                		params.add (convert (e));
+
+                if (((FeatureCall)expr.getTarget ()).getName ().getValue ().equals (Around.CONTEXT_PARAM_NAME)) {
+                	params.add(0, new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos));
+                	return new InvocationOnObjectExpression (new QualifiedName (AROUND_PROCEED), params, true, sourcePos);
+                }
+                else
+                	return new InvocationOnObjectExpression (new QualifiedName (AROUND_PROCEED), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos), new ListLiteralExpression (params, sourcePos)), true, sourcePos);
+                
+        	} else {
+        		return new InvocationOnObjectExpression (new QualifiedName (AROUND_PROCEED), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos)), true, sourcePos);
+        	}
+        } 
         else if (isAdviceCtxLiteral(expr))
         	return new InvocationOnObjectExpression (new QualifiedName (functionName), Arrays.asList (new LocalVarEvalExpression (SyntaxConstants.THIS_JOINPOINT, sourcePos)), true, sourcePos);
         else
@@ -454,7 +474,7 @@ public final class OldExpressionConverter {
                 return createPropertyExpression (thisExpr, (Type) _ctx.getVisibleVariables().get (ExecutionContext.IMPLICIT_VARIABLE).getValue(), expr.getName().getValue(), sourcePos);
             }
             
-            if (expr instanceof FeatureCall && ((FeatureCall)expr).getName().getValue().equals(ExecutionContext.IMPLICIT_VARIABLE)) {
+            if (expr instanceof FeatureCall && (expr).getName().getValue().equals(ExecutionContext.IMPLICIT_VARIABLE)) {
                 final ExpressionBase thisExpr = new LocalVarEvalExpression (org.eclipse.xtend.backend.common.SyntaxConstants.THIS, sourcePos);
                 return thisExpr;
             }

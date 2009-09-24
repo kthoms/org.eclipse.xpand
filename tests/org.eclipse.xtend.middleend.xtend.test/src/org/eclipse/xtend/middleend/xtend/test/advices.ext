@@ -8,4 +8,4 @@ around org::eclipse::xtend::middleend::xtend::test::sub::* (*) :
 	"before2 " + ctx.proceed() + " after2";
 
 around *AdviceCtx* (String s, *) : 
-	"before1 " + s + " " + ctx.proceed (ctx.paramValues) + " after1 " + "name: " + ctx.name + "  paramNames: " + ctx.paramNames.toString(",") + "  paramTypes: " + ctx.paramTypes.name.toString(",") + "  paramValues: " + ctx.paramValues.toString(",");
+	"before1 " + s + " " + ctx.proceed(ctx.paramValues) + " " + ctx.proceed ((List){"override"}.toList().addAll(ctx.paramValues.withoutFirst())) + " after1 " + "name: " + ctx.name + "  paramNames: " + ctx.paramNames.toString(",") + "  paramTypes: " + ctx.paramTypes.name.toString(",") + "  paramValues: " + ctx.paramValues.toString(",");

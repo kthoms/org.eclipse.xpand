@@ -96,7 +96,7 @@ public class AopTest extends JavaXtendTest {
 		vars.put("p", _person);
 		Object result = XtendBackendFacade.evaluateExpression ("testSomeFunctionAdviceCtx(param, p)", "org::eclipse::xtend::middleend::xtend::test::expressions", "iso-8859-1", mms, vars, new HashMap<String, Object>(), Arrays.asList("org::eclipse::xtend::middleend::xtend::test::advices"));
 
-		assertEquals ("before1 TestParam Testerossa TestParam after1 name: org::eclipse::xtend::middleend::xtend::test::expressions::testSomeFunctionAdviceCtx  paramNames: param,p  paramTypes: String,org::eclipse::xtend::middleend::xtend::test::Person  paramValues: TestParam,Person: Tester Testerossa", result.toString());
+		assertEquals ("before1 TestParam Testerossa TestParam Testerossa override after1 name: org::eclipse::xtend::middleend::xtend::test::expressions::testSomeFunctionAdviceCtx  paramNames: param,p  paramTypes: String,org::eclipse::xtend::middleend::xtend::test::Person  paramValues: TestParam,Person: Tester Testerossa", result.toString());
 	}
 		
 }

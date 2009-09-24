@@ -10,6 +10,7 @@ Contributors:
 */
 package org.eclipse.xtend.backend.aop;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.StacktraceEntry;
@@ -38,8 +39,15 @@ public abstract class ThisJoinPoint {
     }
     
     public Object proceed () {
-        return proceed (_params);
+        return proceedWithParams (_params);
     }
     
-    public abstract Object proceed (List<?> params); 
+    @SuppressWarnings("unchecked")
+	public Object proceed (List<?> params) {
+    	if (params.size() < _params.size())
+    		params.addAll((Collection) _params.subList(params.size(), _params.size()));
+        return proceedWithParams (params);
+    }
+
+    public abstract Object proceedWithParams (List<?> params); 
 }

@@ -30,6 +30,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.expr.ConcatExpression;
 import org.eclipse.xtend.backend.expr.InvocationOnObjectExpression;
+import org.eclipse.xtend.backend.expr.ListLiteralExpression;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
@@ -38,6 +39,7 @@ import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.LongType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
+import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.util.Pair;
 import org.junit.Test;
 
@@ -81,6 +83,13 @@ public class AopTest {
 
     private void registerAdvice (ExecutionContext ctx, String prefix, String postfix, boolean proceed, Pointcut pointCut, boolean cached) {
         final AroundAdvice newAdvice = new AroundAdvice (ConcatAdviceFactory.createConcatExpression (prefix, postfix, proceed), pointCut, cached);
+        newAdvice.setFunctionDefContext (createEmptyFdc (new CompositeTypesystem ()));
+        
+        ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (newAdvice));
+    }
+    
+    private void registerAdviceWithParams (ExecutionContext ctx, List<ExpressionBase> params, Pointcut pointCut, boolean cached) {
+        final AroundAdvice newAdvice = new AroundAdvice (ConcatAdviceFactory.createParameterizedProceedExpression(params), pointCut, cached);
         newAdvice.setFunctionDefContext (createEmptyFdc (new CompositeTypesystem ()));
         
         ctx.setAdviceContext (ctx.getAdviceContext().copyWithAdvice (newAdvice));
@@ -166,6 +175,42 @@ public class AopTest {
         
         assertEquals ("firstPre firstPost firstIn firstIn2 bothIn first", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("firstFunction"), Collections.emptyList()).toString());
         assertEquals ("secondPre secondPost secondIn secondIn2 bothIn second", ctx.getFunctionDefContext().invoke (ctx, new QualifiedName ("secondFunction"), Collections.emptyList()).toString());
+    }
+    
+    @Test
+    public void testParamOverriding () {
+        final ExecutionContext ctx = createEmptyExecutionContext();
+        
+        final FunctionDefContextInternal fdc = createFdc (ctx.getTypesystem(), AopTestFunctions.class);
+        ctx.setFunctionDefContext (fdc);
+        
+        List<Pair<String, AdviceParamType>> advParamType = new ArrayList<Pair<String, AdviceParamType>>();
+        advParamType.add(new Pair<String, AdviceParamType>("s", new AdviceParamType(StringType.INSTANCE, true)));
+
+        final Pointcut pointCut = new ExecutionPointcut ("func", advParamType, false, null);
+        List<ExpressionBase> advParams = new ArrayList<ExpressionBase>();
+        advParams.add(new LiteralExpression("override", null));
+        registerAdviceWithParams(ctx, advParams, pointCut, false);
+        
+        assertEquals("override", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName("func"), Arrays.asList("original")));
+    }
+    
+    @Test
+    public void testPartialParamOverriding () {
+        final ExecutionContext ctx = createEmptyExecutionContext();
+        
+        final FunctionDefContextInternal fdc = createFdc (ctx.getTypesystem(), AopTestFunctions.class);
+        ctx.setFunctionDefContext (fdc);
+        
+        List<Pair<String, AdviceParamType>> advParamType = new ArrayList<Pair<String, AdviceParamType>>();
+        advParamType.add(new Pair<String, AdviceParamType>("s", new AdviceParamType(StringType.INSTANCE, true)));
+
+        final Pointcut pointCut = new ExecutionPointcut ("otherFunc", advParamType, true, new AdviceParamType (ObjectType.INSTANCE, true));
+        List<ExpressionBase> advParams = new ArrayList<ExpressionBase>();
+        advParams.add(new LiteralExpression("override", null));
+        registerAdviceWithParams(ctx, advParams, pointCut, false);
+        
+        assertEquals("override original2", ctx.getFunctionDefContext().invoke(ctx, new QualifiedName("otherFunc"), Arrays.asList("original1", "original2")));
     }
 
     private long _counter = 0;

@@ -20,6 +20,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IStorage;
@@ -34,6 +35,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.converter.util.ConverterUtil;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -85,12 +87,31 @@ final class ProjectAnalyzer extends Job {
 		// load models
 		rs = ConverterUtil.createResourceSet();
 		mapping = new HashMap<IStorage, Resource>();
+		// TODO: ensure that the packages map contains the ePackages from reexported projects as well
 		packages = new HashMap<String, EPackage>();
 		loadMetamodelsForProject(project, rs, monitor);
-
+		
+		try {
+			IProject iProject = project.getProject();
+			IProject[] referencedProjects = iProject.getReferencedProjects();
+			for(IProject referencedProject: referencedProjects) {
+				ProjectAnalyzer otherProjectAnalyzer = EmfToolsPlugin.getDefault().getProjectAnalyzer(referencedProject);
+				if (otherProjectAnalyzer != null) {
+					EPackage.Registry registry = new EPackageRegistryImpl(rs.getPackageRegistry());
+					registry.putAll(otherProjectAnalyzer.packages);
+					rs.setPackageRegistry(registry);
+				}
+			}
+		} catch(CoreException ex) {
+			// do nothing
+		}
+		EPackage.Registry registry = new EPackageRegistryImpl(rs.getPackageRegistry());
+		registry.putAll(packages);
+		rs.setPackageRegistry(registry);
+		
 		// always add ecore
 		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
-
+		
 		// done. now trigger build for the project.
 		// only do this if it is an Xpand project
 		// do not build referencing projects. the EmfToolsPlugin will take care

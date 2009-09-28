@@ -20,11 +20,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IStorage;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -74,7 +72,7 @@ final class ProjectAnalyzer extends Job {
 	public ProjectAnalyzer(final IJavaProject project) {
 		super(Messages.ProjectAnalyzer_AnalysingPrompt + project.getProject().getProject().getName());
 		// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=268516
-		setRule(ResourcesPlugin.getWorkspace().getRoot());
+		setRule(project.getSchedulingRule());
 		this.project = project;
 	}
 
@@ -90,27 +88,12 @@ final class ProjectAnalyzer extends Job {
 		// TODO: ensure that the packages map contains the ePackages from reexported projects as well
 		packages = new HashMap<String, EPackage>();
 		loadMetamodelsForProject(project, rs, monitor);
+		// always add ecore
+		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 		
-		try {
-			IProject iProject = project.getProject();
-			IProject[] referencedProjects = iProject.getReferencedProjects();
-			for(IProject referencedProject: referencedProjects) {
-				ProjectAnalyzer otherProjectAnalyzer = EmfToolsPlugin.getDefault().getProjectAnalyzer(referencedProject);
-				if (otherProjectAnalyzer != null) {
-					EPackage.Registry registry = new EPackageRegistryImpl(rs.getPackageRegistry());
-					registry.putAll(otherProjectAnalyzer.packages);
-					rs.setPackageRegistry(registry);
-				}
-			}
-		} catch(CoreException ex) {
-			// do nothing
-		}
 		EPackage.Registry registry = new EPackageRegistryImpl(rs.getPackageRegistry());
 		registry.putAll(packages);
 		rs.setPackageRegistry(registry);
-		
-		// always add ecore
-		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
 		
 		// done. now trigger build for the project.
 		// only do this if it is an Xpand project

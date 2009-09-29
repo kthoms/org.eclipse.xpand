@@ -68,7 +68,8 @@ public class CheckEValidatorAdapter implements EValidator {
 		_checkFiles = new ArrayList<CheckFileWithContext>();
 	}
 
-	public CheckEValidatorAdapter(final EPackage ePackage, final EValidator existingValidator) {
+	public CheckEValidatorAdapter(final EPackage ePackage,
+			final EValidator existingValidator) {
 		this(ePackage);
 		if (existingValidator != null) {
 			_nestedValidator = existingValidator;
@@ -79,31 +80,35 @@ public class CheckEValidatorAdapter implements EValidator {
 		_checkFiles.add(checkFile);
 	}
 
-	public boolean validate(final EObject eObject, final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+	public boolean validate(final EObject eObject,
+			final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		return validate(eObject.eClass(), eObject, diagnostics, context);
 	}
 
-	public boolean validate(final EClass eClass, final EObject eObject, final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
+	public boolean validate(final EClass eClass, final EObject eObject,
+			final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final List<EObject> allElements = Collections.singletonList(eObject);
 		boolean isValid = runExtXptCheck(diagnostics, allElements);
 		if (_nestedValidator != null) {
-			isValid &= _nestedValidator.validate(eClass, eObject, diagnostics, context);
+			isValid &= _nestedValidator.validate(eClass, eObject, diagnostics,
+					context);
 		}
 		return isValid;
 	}
 
-	public boolean validate(final EDataType dataType, final Object value, final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
+	public boolean validate(final EDataType dataType, final Object value,
+			final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final List<?> allElements = Collections.singletonList(dataType);
 		boolean isValid = runExtXptCheck(diagnostics, allElements);
 		if (_nestedValidator != null) {
-			isValid &= _nestedValidator.validate(dataType, value, diagnostics, context);
+			isValid &= _nestedValidator.validate(dataType, value, diagnostics,
+					context);
 		}
 		return isValid;
 	}
 
-	public void setExternalResourceManager(final ResourceManager externalResourceManager) {
+	public void setExternalResourceManager(
+			final ResourceManager externalResourceManager) {
 		_externalResourceManager = externalResourceManager;
 	}
 
@@ -113,68 +118,84 @@ public class CheckEValidatorAdapter implements EValidator {
 		return new ResourceManagerDefaultImpl();
 	}
 
-	private ExecutionContext createExecutionContext(final CheckFileWithContext checkFile,
+	private ExecutionContext createExecutionContext(
+			final CheckFileWithContext checkFile,
 			final ResourceManager resourceManager) {
 		final Set<EPackage> allEPackages = new HashSet<EPackage>();
 		allEPackages.add(_ePackage);
 		for (final String nsURI : checkFile.getImportedEPackageNsUris()) {
 			try {
-				final EPackage importedEPackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+				final EPackage importedEPackage = EPackage.Registry.INSTANCE
+						.getEPackage(nsURI);
 				if (importedEPackage != null) {
 					allEPackages.add(importedEPackage);
 				}
-			}
-			catch (final Exception exc) {
+			} catch (final Exception exc) {
 				log.error(exc);
 			}
 		}
 		final TypeSystemImpl typeSystem = new TypeSystemImpl();
 		typeSystem.registerMetaModel(new EmfMetaModel() {
-			private final EPackage[] _allEPackages = allEPackages.toArray(new EPackage[allEPackages.size()]);
+			private final EPackage[] _allEPackages = allEPackages
+					.toArray(new EPackage[allEPackages.size()]);
 
 			@Override
 			protected EPackage[] allPackages() {
 				return _allEPackages;
 			}
 		});
-		final ExecutionContext executionContext = new ExecutionContextImpl(resourceManager, typeSystem, null);
+		final ExecutionContext executionContext = new ExecutionContextImpl(
+				resourceManager, typeSystem, null);
 		return executionContext;
 	}
 
-	private boolean runExtXptCheck(final DiagnosticChain diagnostics, final List<?> allElements) {
+	private boolean runExtXptCheck(final DiagnosticChain diagnostics,
+			final List<?> allElements) {
 		boolean isValid = true;
-		final ResourceLoader current = ResourceLoaderFactory.getCurrentThreadResourceLoader();
+		final ResourceLoader current = ResourceLoaderFactory
+				.getCurrentThreadResourceLoader();
 		try {
-			ResourceLoaderFactory.setCurrentThreadResourceLoader(new ResourceLoaderImpl(getClass().getClassLoader()));
+			ResourceLoaderFactory
+					.setCurrentThreadResourceLoader(new ResourceLoaderImpl(
+							getClass().getClassLoader()));
 			for (final CheckFileWithContext checkFile : _checkFiles) {
 				final Issues issues = new IssuesImpl();
 				final ResourceManager resourceManager = getResourceManager();
-				final ExtensionFile parsedCheckFile = (ExtensionFile) resourceManager.loadResource(checkFile
-						.getFileName(), CheckUtils.FILE_EXTENSION);
+				final ExtensionFile parsedCheckFile = (ExtensionFile) resourceManager
+						.loadResource(checkFile.getFileName(),
+								CheckUtils.FILE_EXTENSION);
 				if (parsedCheckFile == null)
-					throw new IllegalArgumentException("Couldn't find file " + checkFile.getFileName() + "."
-							+ CheckUtils.FILE_EXTENSION
-							+ ". Maybe it has been misspelled or it's not on the classpath?");
-				final ExecutionContext executionContext = createExecutionContext(checkFile, resourceManager);
-				runOawCheck(parsedCheckFile, allElements, diagnostics, executionContext);
+					throw new IllegalArgumentException(
+							"Couldn't find file "
+									+ checkFile.getFileName()
+									+ "."
+									+ CheckUtils.FILE_EXTENSION
+									+ ". Maybe it has been misspelled or it's not on the classpath?");
+				final ExecutionContext executionContext = createExecutionContext(
+						checkFile, resourceManager);
+				runOawCheck(parsedCheckFile, allElements, diagnostics,
+						executionContext);
 				isValid &= issues.hasErrors();
 			}
-		}
-		finally {
+		} finally {
 			ResourceLoaderFactory.setCurrentThreadResourceLoader(current);
 		}
 		return isValid;
 	}
 
-	private Issues runOawCheck(final ExtensionFile parsedCheckFile, final List<?> allElements,
-			final DiagnosticChain diagnostics, final ExecutionContext executionContext) {
+	private Issues runOawCheck(final ExtensionFile parsedCheckFile,
+			final List<?> allElements, final DiagnosticChain diagnostics,
+			final ExecutionContext executionContext) {
 		final Issues issues = new IssuesImpl();
-		parsedCheckFile.check(executionContext, allElements, issues, false);
-		addDiagnosticFromIssues(diagnostics, issues);
+		if (parsedCheckFile != null) {
+			parsedCheckFile.check(executionContext, allElements, issues, false);
+			addDiagnosticFromIssues(diagnostics, issues);
+		}
 		return issues;
 	}
 
-	private void addDiagnosticFromIssues(final DiagnosticChain allDiagnostics, final Issues issues) {
+	private void addDiagnosticFromIssues(final DiagnosticChain allDiagnostics,
+			final Issues issues) {
 		final MWEDiagnostic[] errors = issues.getErrors();
 		addDiagnostics(allDiagnostics, errors);
 
@@ -182,7 +203,8 @@ public class CheckEValidatorAdapter implements EValidator {
 		addDiagnostics(allDiagnostics, warnings);
 	}
 
-	private void addDiagnostics(final DiagnosticChain allDiagnostics, final MWEDiagnostic[] issues) {
+	private void addDiagnostics(final DiagnosticChain allDiagnostics,
+			final MWEDiagnostic[] issues) {
 		for (final MWEDiagnostic issue : issues) {
 			allDiagnostics.add(issue);
 		}

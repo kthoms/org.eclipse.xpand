@@ -10,13 +10,14 @@
  *******************************************************************************/
 package org.eclipse.internal.xpand2.model;
 
+import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.ISyntaxElement;
 import org.eclipse.xpand2.XpandExecutionContext;
 
-public interface XpandAdvice extends ISyntaxElement{
+public interface XpandAdvice extends ISyntaxElement, XpandDefinition {
 
     public boolean matches(XpandDefinition def, XpandExecutionContext ctx);
 
-    public void evaluate(XpandExecutionContext ctx);
+    DeclaredParameter[] getParams();
 
 }

@@ -185,17 +185,16 @@ public class StatementEvaluatorTest extends TestCase {
 		assertEquals("1A2B3C", result[2].trim());
 	}
 
+	@SuppressWarnings("cast")
 	public void testBug167428() throws Exception {
 		final XpandResource t = parse(tag("DEFINE test FOR String")
 				+ tag("EXPAND stuff FOREACH null") + tag("ENDDEFINE")
 				+ tag("DEFINE stuff FOR String") + "TEST" + tag("ENDDEFINE"));
 		
 		out = new OutputStringImpl();
-		XpandExecutionContext ctx = (XpandExecutionContext) createCtx(out)
-				.cloneWithVariable(new Variable("test", new Integer(1)));
-		ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable("this","X"));
+		XpandExecutionContext ctx = (XpandExecutionContext) createCtx(out);
 		t.getDefinitionsByName("test")[0]
-				.evaluate(ctx);
+				.evaluate(ctx,"X");
 		System.err.println(out.buff);
 	}
 

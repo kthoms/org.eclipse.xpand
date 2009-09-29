@@ -208,7 +208,7 @@ public class Template extends SyntaxElement implements XpandResource {
 				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate definition '"
 						+ def.getName() + "'", def));
 				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate definition '"
-						+ origDef.getName() + "'", origDef));
+						+ (origDef!=null?origDef.getName():"") + "'", origDef));
 			}
 		}
 	}

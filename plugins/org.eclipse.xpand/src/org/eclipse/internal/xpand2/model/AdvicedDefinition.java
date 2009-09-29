@@ -60,10 +60,10 @@ public class AdvicedDefinition implements XpandDefinition {
 		// not used, since a static analysis will never have AOP
 	}
 
-	public void evaluate(final XpandExecutionContext ctx) {
-		final XpandExecutionContext ctx1 = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(
-				Advice.DEF_VAR_NAME, new XpandDefinitionImpl(definition, ctx)));
-		advice.evaluate(ctx1);
+	public void evaluate(final XpandExecutionContext ctx, Object _this, Object...params) {
+		XpandExecutionContext ctx1 = (XpandExecutionContext) ctx.cloneWithoutVariables().cloneWithVariable(new Variable(
+				Advice.DEF_VAR_NAME, new XpandDefinitionImpl(definition, ctx, _this, params)));
+		advice.evaluate(ctx1, _this, params);
 	}
 
 	public int getLine() {

@@ -21,8 +21,6 @@ import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xpand2.model.XpandResource;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.EvaluationException;
-import org.eclipse.xtend.expression.ExecutionContext;
-import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
@@ -61,14 +59,7 @@ public class XpandFacade {
 			throw new EvaluationException("No Definition " + definitionName + getParamString(paramTypes) + " for "
 					+ targetType.getName() + " could be found!", null, ctx);
 
-		ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE,
-				targetObject));
-		for (int i = 0; i < paramList.size(); i++) {
-			final Variable v = new Variable(def.getParams()[i].getName().getValue(), paramList.get(i));
-			ctx = (XpandExecutionContext) ctx.cloneWithVariable(v);
-		}
-		ctx = (XpandExecutionContext) ctx.cloneWithResource(def.getOwner());
-		def.evaluate(ctx);
+		def.evaluate((XpandExecutionContext) ctx.cloneWithoutVariables(), targetObject, paramList.toArray());
 	}
 
 	private String getParamString(final Type[] paramTypes) {

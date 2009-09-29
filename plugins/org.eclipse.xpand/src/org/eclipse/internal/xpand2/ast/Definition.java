@@ -19,6 +19,7 @@ import org.eclipse.xtend.expression.ExecutionContext;
  * @author Sven Efftinge (http://www.efftinge.de)
  */
 public class Definition extends AbstractDefinition {
+	
 	public Definition(final Identifier name, final Identifier type, final DeclaredParameter[] params, final Statement[] body) {
 		super(name, type, params, body);
 	}

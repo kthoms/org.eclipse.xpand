@@ -165,14 +165,15 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 		}
 	}
 
-	public void evaluate(XpandExecutionContext ctx) {
+	public void evaluate(XpandExecutionContext ctx, Object _this, Object...params) {
 		try {
+			ctx = (XpandExecutionContext) ctx.cloneWithResource(getOwner());
+			ctx =  prepareDeclaredParameters(_this, ctx, params);
 			if (ctx.getCallback() != null) {
 				if (!ctx.getCallback().pre(this, ctx)) {
 					return;
 				}
 			}
-			ctx = (XpandExecutionContext) ctx.cloneWithResource(getOwner());
 			for (int i = 0; i < getBody().length; i++) {
 				Statement stmt = getBody()[i];
 				try {
@@ -190,6 +191,22 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 				ctx.getCallback().post(this, ctx, null);
 			}
 		}
+	}
+
+	protected XpandExecutionContext prepareDeclaredParameters(Object _this, XpandExecutionContext context, Object... params) {
+		if (_this != null) {
+		    context = (XpandExecutionContext) context.cloneWithVariable(new Variable(
+		            ExecutionContext.IMPLICIT_VARIABLE, _this));
+		}
+		if (params != null) {
+			DeclaredParameter[] params2 = getParams();
+		    for (int i = 0, x = params2.length; i < x;i++) {
+		        final Object o = params[i];
+		        final String name = params2[i].getName().getValue();
+		        context = (XpandExecutionContext) context.cloneWithVariable(new Variable(name, o));
+		    }
+		}
+		return context;
 	}
 
 	@Override

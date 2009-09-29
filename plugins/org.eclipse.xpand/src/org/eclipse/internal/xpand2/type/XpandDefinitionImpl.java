@@ -16,8 +16,6 @@ import java.util.List;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.xpand2.XpandExecutionContext;
-import org.eclipse.xtend.expression.ExecutionContext;
-import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.Type;
 
 public class XpandDefinitionImpl {
@@ -26,9 +24,15 @@ public class XpandDefinitionImpl {
 
     private final XpandExecutionContext ctx;
 
-    public XpandDefinitionImpl(final XpandDefinition def, final XpandExecutionContext ctx) {
+	private Object this1;
+
+	private Object[] params;
+
+    public XpandDefinitionImpl(final XpandDefinition def, final XpandExecutionContext ctx, Object this1, Object[] params) {
         this.def = def;
         this.ctx = ctx;
+        this.this1 = this1;
+        this.params = params;
     }
 
     public String getName() {
@@ -58,25 +62,11 @@ public class XpandDefinitionImpl {
     }
 
     public void proceed() {
-        def.evaluate(ctx);
+    	def.evaluate((XpandExecutionContext) ctx.cloneWithoutVariables(),this.this1,this.params);
     }
-
-    public void proceed(final Object target, final List<?> list) {
-        XpandExecutionContext context = ctx;
-        if (target != null) {
-            context = (XpandExecutionContext) context.cloneWithVariable(new Variable(
-                    ExecutionContext.IMPLICIT_VARIABLE, target));
-        }
-        if (list != null) {
-            final List<String> n = getParamNames();
-            for (int i = 0, x = list.size(); i < x;) {
-                final Object o = list.get(i);
-                if (o != null && n.size() >= i) {
-                    context = (XpandExecutionContext) context.cloneWithVariable(new Variable(n.get(i), o));
-                }
-            }
-        }
-        def.evaluate(context);
+    
+    public void proceed(Object _this, Object...params) {
+        def.evaluate((XpandExecutionContext) ctx.cloneWithoutVariables(),_this,params);
     }
 
     @Override

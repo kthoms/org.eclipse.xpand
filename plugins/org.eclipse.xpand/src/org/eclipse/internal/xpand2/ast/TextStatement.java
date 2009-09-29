@@ -39,7 +39,8 @@ public class TextStatement extends Statement {
         return deleteLine;
     }
 
-    public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
         // Nothing to check here
     }
 

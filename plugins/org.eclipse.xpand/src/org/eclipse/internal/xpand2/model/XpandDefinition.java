@@ -10,22 +10,23 @@
  *******************************************************************************/
 package org.eclipse.internal.xpand2.model;
 
-import org.eclipse.internal.xpand2.ast.XpandAnalyzable;
-import org.eclipse.internal.xpand2.ast.XpandEvaluatable;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.ISyntaxElement;
+import org.eclipse.xpand2.XpandExecutionContext;
 
-public interface XpandDefinition extends ISyntaxElement, XpandAnalyzable, XpandEvaluatable {
+public interface XpandDefinition extends ISyntaxElement {
 
-    XpandResource getOwner();
+	XpandResource getOwner();
 
-    DeclaredParameter[] getParams();
+	DeclaredParameter[] getParams();
 
-    String getTargetType();
+	String getTargetType();
 
-    String getName();
+	String getName();
 
 	String getQualifiedName();
 
 	public String getParamString(boolean typesOnly);
+
+	void evaluate(XpandExecutionContext ctx, Object _this, Object... params);
 }

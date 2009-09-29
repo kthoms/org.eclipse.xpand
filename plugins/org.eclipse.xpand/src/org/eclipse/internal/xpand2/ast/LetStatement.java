@@ -46,7 +46,8 @@ public class LetStatement extends StatementWithBody {
         return varValue;
     }
 
-    public void analyzeInternal(XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public void analyzeInternal(XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
         Type t = getVarValue().analyze(ctx, issues);
         if (t == null) {
             t = ctx.getObjectType();

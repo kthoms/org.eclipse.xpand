@@ -80,7 +80,8 @@ public class ExpandStatement extends Statement {
         return target;
     }
 
-    public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
         final Type[] paramTypes = new Type[getParameters().length];
         for (int i = 0; i < getParameters().length; i++) {
             paramTypes[i] = getParameters()[i].analyze(ctx, issues);
@@ -179,20 +180,10 @@ public class ExpandStatement extends Statement {
 			}
 			throw new EvaluationException(errorMsg, this, ctx);
 		}
-        // register variables
-        ctx = (XpandExecutionContext) ctx.cloneWithoutVariables();
-        ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(ExecutionContext.IMPLICIT_VARIABLE, targetObj));
-        for (int i = 0; i < def.getParams().length; i++) {
-            final String name = def.getParams()[i].getName().getValue();
-            final Object val = params[i];
-            ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(name, val));
-        }
-        if (def.getOwner() != null) {
-            ctx = (XpandExecutionContext) ctx.cloneWithResource(def.getOwner());
-        }
+        
         try {
             ProfileCollector.getInstance().enter(def.toString());
-            def.evaluate(ctx);
+            def.evaluate((XpandExecutionContext) ctx.cloneWithoutVariables(), targetObj, params);
         } catch (EvaluationException e) {
             e.addStackElement(this, ctx);
             throw e;

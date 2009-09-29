@@ -4,3 +4,4 @@
 «DEFINE test1 FOR String»«ENDDEFINE»
 «DEFINE test1(String s) FOR String»«ENDDEFINE»
 «DEFINE test1(String s, String s2) FOR String»«ENDDEFINE»
+«DEFINE testParamNames(String bar) FOR String»«bar»«ENDDEFINE»

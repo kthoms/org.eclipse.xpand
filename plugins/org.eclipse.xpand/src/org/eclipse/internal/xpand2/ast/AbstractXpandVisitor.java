@@ -19,10 +19,11 @@ import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 
 public class AbstractXpandVisitor extends AbstractVisitor{
 
+	@Override
 	public final Object visit(final ISyntaxElement ele) {
 		Object result = null;
 
-		if (result == null && ele instanceof Advice) {
+		if (ele instanceof Advice) {
 			result = visitAdvice((Advice) ele);
 		}
 		if (result == null && ele instanceof Definition) {

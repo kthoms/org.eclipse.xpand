@@ -35,9 +35,6 @@ import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.VetoStrategy;
-import org.eclipse.xtend.expression.Variable;
-import org.eclipse.xtend.profiler.CycleDetector;
-import org.eclipse.xtend.profiler.Profiler;
 import org.eclipse.xtend.profiler.profilermodel.Item;
 import org.eclipse.xtend.profiler.profilermodel.ModelFactory;
 import org.eclipse.xtend.profiler.profilermodel.ProfilingResult;
@@ -120,13 +117,10 @@ public class ProfilerTest extends TestCase implements VetoStrategy {
 		Outlet outlet = new Outlet(".");
 		outlet.addVetoStrategy(this);
 		out.addOutlet(outlet);
-		Variable varThis = new Variable("this", profilingResult);
 		XpandExecutionContext ctx = createCtx(out);
-		ctx = (XpandExecutionContext)ctx.cloneWithVariable(varThis);
-		
 		XpandDefinition def = template.getDefinitionsByName(defName)[0];
 		assertNotNull(def);
-		def.evaluate(ctx);
+		def.evaluate(ctx,profilingResult);
 		return this.lastOutput;
 	}
 

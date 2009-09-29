@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
+ *     QNX Software Systems - No lookup of EDataTypeTypes in getType(Object)
  *******************************************************************************/
 
 package org.eclipse.xtend.typesystem.emf;
@@ -264,16 +265,29 @@ public class EmfRegistryMetaModel implements MetaModel {
 			final EClass clazz = ((EObject) obj).eClass();
 			return getTypeForEClassifier(clazz);
 		}
+		
+		final Set<Type> types = getKnownTypes();
 		if (obj instanceof Enumerator) {
-			final Set<Type> types = getKnownTypes();
 			for (Type t : types) {
+				// check for EEnumType because the EDataTypeType for
+				// ecore::EEnumerator matches all enumerator instances
 				if (t instanceof EEnumType) {
 					if (t.isInstance(obj)) {
 						return t;
 					}
 				}
 			}
+		} else {
+			// some other non-enumerated EDataType
+			for (Type t : types) {
+				if (t instanceof EDataTypeType) {
+					if (t.isInstance(obj)) {
+						return t;
+					}
+				}
+			}
 		}
+		
 		return null;
 	}
 

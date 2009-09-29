@@ -7,10 +7,12 @@
  *
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
+ *     QNX Software Systems - EEnumTypes do not conform to Object
  *******************************************************************************/
 
 package org.eclipse.xtend.typesystem.emf;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.internal.xtend.type.baseimpl.StaticPropertyImpl;
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
+import org.eclipse.xtend.typesystem.Type;
 
 public class EEnumType extends AbstractTypeImpl {
 
@@ -53,5 +56,12 @@ public class EEnumType extends AbstractTypeImpl {
     public Object newInstance() {
         throw new UnsupportedOperationException("Enums are static!");
     }
+
+    @Override
+    protected Set<? extends Type> internalGetSuperTypes() {
+    	// must have Object.isAssignableFrom(<enum-type>) be true because
+    	// Object.isInstance(<literal-of-enum-type>) is true
+ 		return Collections.singleton(getTypeSystem().getObjectType());
+	}
 
 }

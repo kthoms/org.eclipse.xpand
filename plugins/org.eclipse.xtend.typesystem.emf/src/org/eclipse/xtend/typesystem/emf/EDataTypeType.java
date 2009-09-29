@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.
+ * Copyright (c) 2005-2009 Sven Efftinge (http://www.efftinge.de) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     Sven Efftinge (http://www.efftinge.de) - Initial API and implementation
+ *     QNX Software Systems - EDataTypeTypes do not conform to Object
  *
  * </copyright>
  */
@@ -45,8 +46,10 @@ public class EDataTypeType extends AbstractTypeImpl {
     }
 
     @Override
-    public Set<Type> getSuperTypes() {
-        return Collections.<Type>emptySet();
-    }
+    protected Set<? extends Type> internalGetSuperTypes() {
+    	// must have Object.isAssignableFrom(<data-type>) be true because
+    	// Object.isInstance(<value-of-data-type>) is true
+ 		return Collections.singleton(getTypeSystem().getObjectType());
+	}
 
 }

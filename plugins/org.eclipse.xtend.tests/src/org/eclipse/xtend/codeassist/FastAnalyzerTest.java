@@ -22,14 +22,14 @@ import org.eclipse.internal.xtend.expression.codeassist.ProposalFactory;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalFactoryDefaultImpl;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalImpl;
 import org.eclipse.internal.xtend.expression.codeassist.TypeProposalComputer;
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.codeassist.FastAnalyzer;
 import org.eclipse.internal.xtend.xtend.codeassist.Partition;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.typesystem.Callable;
 import org.eclipse.xtend.typesystem.Type;
 

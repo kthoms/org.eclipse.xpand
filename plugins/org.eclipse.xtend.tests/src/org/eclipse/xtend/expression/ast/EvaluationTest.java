@@ -20,14 +20,14 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.eclipse.internal.xtend.expression.ast.Expression;
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.Type1;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 
 /**
  * @author Sven Efftinge (http://www.efftinge.de)

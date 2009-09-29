@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.internal.xtend.type.baseimpl.FeatureImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaOperationImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaPropertyImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaTypeStrategy;
-import org.eclipse.internal.xtend.type.impl.java.TypeFinder;
 import org.eclipse.internal.xtend.util.StringHelper;
+import org.eclipse.xtend.type.impl.java.JavaOperationImpl;
+import org.eclipse.xtend.type.impl.java.JavaPropertyImpl;
+import org.eclipse.xtend.type.impl.java.JavaTypeStrategy;
+import org.eclipse.xtend.type.impl.java.TypeFinder;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
 

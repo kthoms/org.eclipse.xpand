@@ -16,12 +16,12 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 
 import test.Bean;
 

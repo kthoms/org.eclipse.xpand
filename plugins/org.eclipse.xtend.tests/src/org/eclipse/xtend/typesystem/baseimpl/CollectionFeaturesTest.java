@@ -18,10 +18,10 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.ExpressionFacade;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 
 /**
  * @author Sven Efftinge (http://www.efftinge.de)

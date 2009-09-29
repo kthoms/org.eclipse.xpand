@@ -9,18 +9,31 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.internal.xtend.type.impl.java;
+package org.eclipse.xtend.type.impl.java;
 
+import java.lang.reflect.Field;
+
+import org.eclipse.internal.xtend.type.baseimpl.StaticPropertyImpl;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
  */
-public interface TypeFinder {
-    public Type builtinAwareGetTypeForName(String typeName);
+public class JavaStaticPropertyImpl extends StaticPropertyImpl {
 
-    public Type builtinAwareGetType(Object obj);
+    private Field field;
 
-    public Type builtinAwareGetTypeForClass(Class<?> obj);
+    public JavaStaticPropertyImpl(final Type owner, final String name, final Type returnType, final Field field) {
+        super(owner, name, returnType);
+        this.field = field;
+    }
+
+    public Object get() {
+        try {
+            return field.get(null);
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

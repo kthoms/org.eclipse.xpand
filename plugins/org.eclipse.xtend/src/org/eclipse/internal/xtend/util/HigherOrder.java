@@ -13,10 +13,10 @@ package org.eclipse.internal.xtend.util;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.ExpressionFacade;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 
 public class HigherOrder {
    @SuppressWarnings("unchecked")

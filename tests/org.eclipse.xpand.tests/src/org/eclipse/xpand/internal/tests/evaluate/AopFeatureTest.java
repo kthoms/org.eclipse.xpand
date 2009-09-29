@@ -14,10 +14,10 @@ import junit.framework.TestCase;
 
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.XpandFacade;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.typesystem.Type;
 
 public class AopFeatureTest extends TestCase {

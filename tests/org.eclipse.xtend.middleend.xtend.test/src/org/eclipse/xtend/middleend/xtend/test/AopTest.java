@@ -18,8 +18,8 @@ import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Before;
 import org.junit.Test;

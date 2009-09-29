@@ -9,7 +9,7 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.internal.xtend.type.impl.java;
+package org.eclipse.xtend.type.impl.java;
 
 import java.lang.reflect.Modifier;
 import java.util.HashSet;

@@ -63,6 +63,7 @@ public class EnumTypeTest extends TestCase {
 		ec = new ExpressionFacade(ctx);
 	}
 
+	@SuppressWarnings("cast")
 	public final void testSimple() {
 		EObject obj = (EObject) ec.evaluate("test1::AClass.newInstance()");
 		assertNotNull(obj);

@@ -25,11 +25,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.internal.xpand2.codeassist.XpandTokens;
-import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.util.FileHelper;
 import org.eclipse.xtend.middleend.xpand.XpandBackendFacade;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Test;
 

@@ -18,9 +18,9 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.eclipse.internal.xtend.type.baseimpl.TypesComparator;
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeA;
 import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeB;

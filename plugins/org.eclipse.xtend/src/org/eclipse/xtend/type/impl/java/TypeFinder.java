@@ -9,15 +9,18 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.internal.xtend.type.impl.java;
+package org.eclipse.xtend.type.impl.java;
 
-import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
  */
-public interface JavaTypeStrategy {
-    public Feature[] getFeatures(TypeFinder typeFinder, Class<?> clazz, Type owner);
+public interface TypeFinder {
+    public Type builtinAwareGetTypeForName(String typeName);
+
+    public Type builtinAwareGetType(Object obj);
+
+    public Type builtinAwareGetTypeForClass(Class<?> obj);
 }

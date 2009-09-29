@@ -9,7 +9,7 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.internal.xtend.type.impl.java.beans;
+package org.eclipse.xtend.type.impl.java.beans;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -26,12 +26,12 @@ import java.util.Set;
 
 import org.eclipse.internal.xtend.type.baseimpl.FeatureImpl;
 import org.eclipse.internal.xtend.type.baseimpl.StaticPropertyImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaOperationImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaPropertyImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaStaticPropertyImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaTypeStrategy;
-import org.eclipse.internal.xtend.type.impl.java.TypeFinder;
 import org.eclipse.internal.xtend.util.StringHelper;
+import org.eclipse.xtend.type.impl.java.JavaOperationImpl;
+import org.eclipse.xtend.type.impl.java.JavaPropertyImpl;
+import org.eclipse.xtend.type.impl.java.JavaStaticPropertyImpl;
+import org.eclipse.xtend.type.impl.java.JavaTypeStrategy;
+import org.eclipse.xtend.type.impl.java.TypeFinder;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
 

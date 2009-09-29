@@ -14,13 +14,13 @@ package org.eclipse.xpand.internal.tests.analyze;
 import junit.framework.TestCase;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xpand.internal.tests.evaluate.OutputStringImpl;
 import org.eclipse.xpand.internal.tests.evaluate.StatementEvaluatorTest;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.XpandFacade;
 import org.eclipse.xtend.expression.AnalysationIssue;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 
 /**
  * *

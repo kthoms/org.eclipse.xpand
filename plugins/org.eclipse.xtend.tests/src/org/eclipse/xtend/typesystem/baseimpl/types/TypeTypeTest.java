@@ -12,10 +12,10 @@ package org.eclipse.xtend.typesystem.baseimpl.types;
 
 import junit.framework.TestCase;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.ExpressionFacade;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 
 public class TypeTypeTest extends TestCase {
 

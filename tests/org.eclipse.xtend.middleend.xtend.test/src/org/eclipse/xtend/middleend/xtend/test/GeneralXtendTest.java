@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Test;
 

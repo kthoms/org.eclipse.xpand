@@ -9,7 +9,7 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.internal.xtend.type.impl.java;
+package org.eclipse.xtend.type.impl.java;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,10 +18,10 @@ import java.util.Set;
 
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
-import org.eclipse.internal.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.xtend.expression.TypeNameUtil;
 import org.eclipse.xtend.expression.TypeSystem;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -101,7 +101,7 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 	};
 
 	/**
-	 * @see org.eclipse.internal.xtend.type.impl.java.TypeFinder#builtinAwareGetTypeForName(java.lang.String)
+	 * @see org.eclipse.xtend.type.impl.java.TypeFinder#builtinAwareGetTypeForName(java.lang.String)
 	 */
 	public Type builtinAwareGetTypeForName(final String typeName) {
 		Type type = typeSystem.getTypeForName(typeName);
@@ -122,7 +122,7 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 	}
 
 	/**
-	 * @see org.eclipse.internal.xtend.type.impl.java.TypeFinder#builtinAwareGetType(java.lang.Object)
+	 * @see org.eclipse.xtend.type.impl.java.TypeFinder#builtinAwareGetType(java.lang.Object)
 	 */
 	public Type builtinAwareGetType(final Object obj) {
 		Type type = typeSystem.getType(obj);
@@ -142,7 +142,7 @@ public class JavaMetaModel implements MetaModel, TypeFinder {
 	}
 
 	/**
-	 * @see org.eclipse.internal.xtend.type.impl.java.TypeFinder#builtinAwareGetTypeForClass(java.lang.Class)
+	 * @see org.eclipse.xtend.type.impl.java.TypeFinder#builtinAwareGetTypeForClass(java.lang.Class)
 	 */
 	public Type builtinAwareGetTypeForClass(final Class<?> clazz) {
 		Type type = typeSystem.getTypeForName(getName(clazz));

@@ -26,13 +26,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.core.WorkflowContext;
+import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
-import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.internal.xpand2.codeassist.XpandTokens;
-import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
@@ -42,6 +41,7 @@ import org.eclipse.xtend.backend.util.FileHelper;
 import org.eclipse.xtend.middleend.xpand.XpandBackendFacade;
 import org.eclipse.xtend.middleend.xpand.XpandComponent;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Test;
 

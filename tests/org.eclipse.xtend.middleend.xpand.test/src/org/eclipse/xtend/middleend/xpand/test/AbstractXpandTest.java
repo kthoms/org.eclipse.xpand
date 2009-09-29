@@ -13,9 +13,9 @@ package org.eclipse.xtend.middleend.xpand.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.middleend.xpand.XpandBackendFacade;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Before;
 

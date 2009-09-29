@@ -15,7 +15,6 @@ import java.util.Set;
 
 import junit.framework.Assert;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.xtend.XtendFacade;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.BackendType;
@@ -26,6 +25,7 @@ import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibNames;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.xtend.typesystem.Operation;
 import org.junit.Before;
 import org.junit.Test;

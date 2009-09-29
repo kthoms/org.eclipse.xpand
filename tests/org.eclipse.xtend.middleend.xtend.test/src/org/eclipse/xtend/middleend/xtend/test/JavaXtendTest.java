@@ -13,7 +13,6 @@ package org.eclipse.xtend.middleend.xtend.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.middleend.LanguageContributor;
@@ -21,6 +20,7 @@ import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory;
 import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Before;
 

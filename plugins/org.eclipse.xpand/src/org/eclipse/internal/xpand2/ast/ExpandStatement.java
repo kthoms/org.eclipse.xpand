@@ -37,195 +37,207 @@ import org.eclipse.xtend.typesystem.Type;
  */
 public class ExpandStatement extends Statement {
 
-    private boolean foreach = false;
+	private boolean foreach = false;
 
-    private Expression[] parameters = new Expression[0];
+	private Expression[] parameters = new Expression[0];
 
-    private Expression separator = null;
+	private Expression separator = null;
 
-    private Expression target = null;
+	private Expression target = null;
 
-    private Identifier definition;
+	private Identifier definition;
 
-    public ExpandStatement(final Identifier definition, final Expression target,
-            final Expression separator, final Expression[] parameters, final boolean foreach) {
-        this.definition = definition;
-        this.target = target;
-        this.separator = separator;
-        this.parameters = parameters != null ? parameters : new Expression[0];
-        this.foreach = foreach;
-    }
+	public ExpandStatement(final Identifier definition, final Expression target, final Expression separator,
+			final Expression[] parameters, final boolean foreach) {
+		this.definition = definition;
+		this.target = target;
+		this.separator = separator;
+		this.parameters = parameters != null ? parameters : new Expression[0];
+		this.foreach = foreach;
+	}
 
-    public Identifier getDefinition() {
-        return definition;
-    }
+	public Identifier getDefinition() {
+		return definition;
+	}
 
-    public boolean isForeach() {
-        return foreach;
-    }
+	public boolean isForeach() {
+		return foreach;
+	}
 
-    public Expression[] getParameters() {
-        return parameters;
-    }
+	public Expression[] getParameters() {
+		return parameters;
+	}
 
-    public List<Expression> getParametersAsList () {
-        return Arrays.asList(parameters);
-    }
-    
-    public Expression getSeparator() {
-        return separator;
-    }
+	public List<Expression> getParametersAsList() {
+		return Arrays.asList(parameters);
+	}
 
-    public Expression getTarget() {
-        return target;
-    }
+	public Expression getSeparator() {
+		return separator;
+	}
 
-    @Override
+	public Expression getTarget() {
+		return target;
+	}
+
+	@Override
 	public void analyzeInternal(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
-        final Type[] paramTypes = new Type[getParameters().length];
-        for (int i = 0; i < getParameters().length; i++) {
-            paramTypes[i] = getParameters()[i].analyze(ctx, issues);
+		final Type[] paramTypes = new Type[getParameters().length];
+		for (int i = 0; i < getParameters().length; i++) {
+			paramTypes[i] = getParameters()[i].analyze(ctx, issues);
+		}
+		Type targetType = null;
+		if (isForeach()) {
+			targetType = target.analyze(ctx, issues);
+			if (ctx.getCollectionType(ctx.getObjectType()).isAssignableFrom(targetType)) {
+				if (targetType instanceof ParameterizedType) {
+					targetType = ((ParameterizedType) targetType).getInnerType();
+				}
+				else {
+					targetType = ctx.getObjectType();
+				}
+			}
+			else {
+				issues.add(new AnalysationIssue(AnalysationIssue.INCOMPATIBLE_TYPES, "Collection type expected!",
+						target));
+				return;
+			}
+		}
+		else {
+			final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
+			if (var == null) {
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR,
+						"No implicit variable 'this' could be found!", target));
+				return;
+			}
+			targetType = (Type) var.getValue();
+			if (target != null) {
+				targetType = target.analyze(ctx, issues);
+			}
+		}
+		if (targetType == null || Arrays.asList(paramTypes).contains(null))
+			return;
+		final XpandDefinition def = ctx.findDefinition(getDefinition().getValue(), targetType, paramTypes);
+		if (def == null) {
+			issues.add(new AnalysationIssue(XpandCompilerIssue.DEFINITION_NOT_FOUND,
+					"Couldn't find definition " + getDefinition().getValue() + getParamTypeString(paramTypes)
+							+ " for type " + targetType.getName(), this));
+		}
+	}
 
-        }
-        Type targetType = null;
-        if (isForeach()) {
-            targetType = target.analyze(ctx, issues);
-            if (ctx.getCollectionType(ctx.getObjectType()).isAssignableFrom(targetType)) {
-                if (targetType instanceof ParameterizedType) {
-                    targetType = ((ParameterizedType) targetType).getInnerType();
-                } else {
-                    targetType = ctx.getObjectType();
-                }
-            } else {
-                issues.add(new AnalysationIssue(AnalysationIssue.INCOMPATIBLE_TYPES, "Collection type expected!", target));
-                return;
-            }
-        } else {
-            final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
-            if (var == null) {
-                issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "No implicit variable 'this' could be found!", target));
-                return;
-            }
-            targetType = (Type) var.getValue();
-            if (target != null) {
-                targetType = target.analyze(ctx, issues);
-            }
-        }
-        if (targetType == null || Arrays.asList(paramTypes).contains(null))
-            return;
-        final XpandDefinition def = ctx.findDefinition(getDefinition().getValue(), targetType, paramTypes);
-        if (def == null) {
-            issues.add(new AnalysationIssue(XpandCompilerIssue.DEFINITION_NOT_FOUND, "Couldn't find definition " + getDefinition().getValue()
-                    + getParamTypeString(paramTypes) + " for type " + targetType.getName(), this));
-        }
-    }
+	@Override
+	public void evaluateInternal(XpandExecutionContext ctx) {
+		final String defName = getDefinition().getValue();
+		final String sep = (String) (separator != null ? separator.evaluate(ctx) : null);
+		Object targetObject = null;
+		if (isForeach()) {
+			targetObject = target.evaluate(ctx);
+			if (targetObject != null) {
+				if (!(targetObject instanceof Collection<?>))
+					throw new EvaluationException("Collection expected!", target, ctx);
 
-    @Override
-    public void evaluateInternal(XpandExecutionContext ctx) {
-        final String defName = getDefinition().getValue();
-        final String sep = (String) (separator != null ? separator.evaluate(ctx) : null);
-        Object targetObject = null;
-        if (isForeach()) {
-            targetObject = target.evaluate(ctx);
-            if (targetObject != null) {
-                if (!(targetObject instanceof Collection<?>))
-                    throw new EvaluationException("Collection expected!", target, ctx);
-
-                final Collection<?> col = (Collection<?>) targetObject;
-                for (final Iterator<?> iter = col.iterator(); iter.hasNext();) {
-                    final Object targetObj = iter.next();
-                    final Object[] params = new Object[getParameters().length];
-                    for (int i = 0; i < getParameters().length; i++) {
-                    	params[i] = getParameters()[i].evaluate(ctx);
-                    }
-                    final Type[] paramTypes = new Type[params.length];
-                    for (int i = 0; i < params.length; i++) {
-                    	paramTypes[i] = ctx.getType(params[i]);
-                    }
+				final Collection<?> col = (Collection<?>) targetObject;
+				for (final Iterator<?> iter = col.iterator(); iter.hasNext();) {
+					final Object targetObj = iter.next();
+					final Object[] params = new Object[getParameters().length];
+					for (int i = 0; i < getParameters().length; i++) {
+						params[i] = getParameters()[i].evaluate(ctx);
+					}
+					final Type[] paramTypes = new Type[params.length];
+					for (int i = 0; i < params.length; i++) {
+						paramTypes[i] = ctx.getType(params[i]);
+					}
 					ctx.preTask(this);
 					invokeDefinition(defName, targetObj, params, paramTypes, ctx);
 					ctx.postTask(this);
-                    if (sep != null && iter.hasNext()) {
-                        ctx.getOutput().write(sep);
-                    }
-                }}
+					if (sep != null && iter.hasNext()) {
+						ctx.getOutput().write(sep);
+					}
+				}
+			}
 
-        } else {
-        	final Object[] params = new Object[getParameters().length];
-        	for (int i = 0; i < getParameters().length; i++) {
-        		params[i] = getParameters()[i].evaluate(ctx);
-        	}
-        	final Type[] paramTypes = new Type[params.length];
-        	for (int i = 0; i < params.length; i++) {
-        		paramTypes[i] = ctx.getType(params[i]);
-        	}
-            if (target != null) {
-                targetObject = target.evaluate(ctx);
-            } else {
-                final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
-                targetObject = var.getValue();
-            }
-            invokeDefinition(defName, targetObject, params, paramTypes, ctx);
-        }
-    }
+		}
+		else {
+			final Object[] params = new Object[getParameters().length];
+			for (int i = 0; i < getParameters().length; i++) {
+				params[i] = getParameters()[i].evaluate(ctx);
+			}
+			final Type[] paramTypes = new Type[params.length];
+			for (int i = 0; i < params.length; i++) {
+				paramTypes[i] = ctx.getType(params[i]);
+			}
+			if (target != null) {
+				targetObject = target.evaluate(ctx);
+			}
+			else {
+				final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
+				targetObject = var.getValue();
+			}
+			if (targetObject != null)
+				invokeDefinition(defName, targetObject, params, paramTypes, ctx);
+		}
+	}
 
-    private void invokeDefinition(final String defName, final Object targetObj, final Object[] params, final Type[] paramTypes,
-            XpandExecutionContext ctx) {
-        final Type t = ctx.getType(targetObj);
-        final XpandDefinition def = ctx.findDefinition(defName, t, paramTypes);
-        if (def == null) {
-			String errorMsg = "No Definition '" + defName + getParamTypeString(paramTypes) + " for " + t.getName() + "' found!";
+	private void invokeDefinition(final String defName, final Object targetObj, final Object[] params,
+			final Type[] paramTypes, XpandExecutionContext ctx) {
+		final Type t = ctx.getType(targetObj);
+		final XpandDefinition def = ctx.findDefinition(defName, t, paramTypes);
+		if (def == null) {
+			String errorMsg = "No Definition '" + defName + getParamTypeString(paramTypes) + " for " + t.getName()
+					+ "' found!";
 			if (t.getTypeSystem().getObjectType().equals(t)) {
 				errorMsg += " Maybe your forgot to configure the correct meta model in the workflow?";
 			}
 			throw new EvaluationException(errorMsg, this, ctx);
 		}
-        
-        try {
-            ProfileCollector.getInstance().enter(def.toString());
-            def.evaluate((XpandExecutionContext) ctx.cloneWithoutVariables(), targetObj, params);
-        } catch (EvaluationException e) {
-            e.addStackElement(this, ctx);
-            throw e;
-        }
-        finally {
-            ProfileCollector.getInstance().leave();
-        }
-    }
 
-    private String getParamTypeString(final Type[] paramTypes) {
-        if (paramTypes.length == 0)
-            return "";
-        final StringBuffer buff = new StringBuffer("(");
-        for (int i = 0; i < paramTypes.length; i++) {
-            final Type type = paramTypes[i];
-            buff.append(type.getName());
-            if (i + 1 < paramTypes.length) {
-                buff.append(", ");
-            }
-        }
-        return buff.append(")").toString();
-    }
+		try {
+			ProfileCollector.getInstance().enter(def.toString());
+			def.evaluate((XpandExecutionContext) ctx.cloneWithoutVariables(), targetObj, params);
+		}
+		catch (EvaluationException e) {
+			e.addStackElement(this, ctx);
+			throw e;
+		}
+		finally {
+			ProfileCollector.getInstance().leave();
+		}
+	}
 
-    private String getParamString(final Expression[] paramTypes) {
-        if (paramTypes.length == 0)
-            return "";
-        final StringBuffer buff = new StringBuffer("(");
-        for (int i = 0; i < paramTypes.length; i++) {
-            final Expression type = paramTypes[i];
-            buff.append(type);
-            if (i + 1 < paramTypes.length) {
-                buff.append(", ");
-            }
-        }
-        return buff.append(")").toString();
-    }
+	private String getParamTypeString(final Type[] paramTypes) {
+		if (paramTypes.length == 0)
+			return "";
+		final StringBuffer buff = new StringBuffer("(");
+		for (int i = 0; i < paramTypes.length; i++) {
+			final Type type = paramTypes[i];
+			buff.append(type.getName());
+			if (i + 1 < paramTypes.length) {
+				buff.append(", ");
+			}
+		}
+		return buff.append(")").toString();
+	}
 
-    @Override
-    public String toString() {
-        return "EXPAND " + definition + getParamString(getParameters()) + (target != null ? (isForeach() ? " FOREACH " : " FOR ") + target : "")
-                + (separator != null ? " SEPARATOR " + separator : "");
-    }
+	private String getParamString(final Expression[] paramTypes) {
+		if (paramTypes.length == 0)
+			return "";
+		final StringBuffer buff = new StringBuffer("(");
+		for (int i = 0; i < paramTypes.length; i++) {
+			final Expression type = paramTypes[i];
+			buff.append(type);
+			if (i + 1 < paramTypes.length) {
+				buff.append(", ");
+			}
+		}
+		return buff.append(")").toString();
+	}
+
+	@Override
+	public String toString() {
+		return "EXPAND " + definition + getParamString(getParameters())
+				+ (target != null ? (isForeach() ? " FOREACH " : " FOR ") + target : "")
+				+ (separator != null ? " SEPARATOR " + separator : "");
+	}
 
 	@Override
 	public String getNameString(ExecutionContext context) {

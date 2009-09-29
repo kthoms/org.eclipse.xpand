@@ -197,5 +197,27 @@ public class StatementEvaluatorTest extends TestCase {
 				.evaluate(ctx,"X");
 		System.err.println(out.buff);
 	}
+	
+	public void testExpandForeachNull() throws Exception {
+		final XpandResource t = parse(tag("DEFINE test FOR String")
+				+ tag("EXPAND stuff FOREACH null") + tag("ENDDEFINE")
+				+ tag("DEFINE stuff FOR String") + "TEST" + tag("ENDDEFINE"));
+		
+		out = new OutputStringImpl();
+		XpandExecutionContext ctx = createCtx(out);
+		t.getDefinitionsByName("test")[0].evaluate(ctx,"X");
+		assertEquals(0,out.buff.toString().length());
+	}
+	
+	public void testExpandForNull() throws Exception {
+		final XpandResource t = parse(tag("DEFINE test FOR String")
+				+ tag("EXPAND stuff FOR null") + tag("ENDDEFINE")
+				+ tag("DEFINE stuff FOR String") + "TEST" + tag("ENDDEFINE"));
+		
+		out = new OutputStringImpl();
+		XpandExecutionContext ctx = createCtx(out);
+		t.getDefinitionsByName("test")[0].evaluate(ctx,"X");
+		assertEquals(0,out.buff.toString().length());
+	}
 
 }

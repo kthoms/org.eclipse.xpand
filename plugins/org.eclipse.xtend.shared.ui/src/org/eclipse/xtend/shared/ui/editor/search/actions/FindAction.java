@@ -95,7 +95,7 @@ public abstract class FindAction extends SelectionDispatchAction {
 		IXtendXpandProject project = getXtendXpandProject();
 
 		ISearchQuery query = createSearchQuery(selectedText, project);
-		NewSearchUI.runQuery(query);
+		NewSearchUI.runQueryInBackground(query);
 	}
 
 	protected abstract ISearchQuery createSearchQuery(String selectedText, IXtendXpandProject project);

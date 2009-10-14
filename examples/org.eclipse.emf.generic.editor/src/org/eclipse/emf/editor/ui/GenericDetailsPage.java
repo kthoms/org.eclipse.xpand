@@ -55,7 +55,7 @@ import org.eclipse.ui.forms.widgets.Section;
  */
 public class GenericDetailsPage extends AbstractFormPart implements
 		ISelectionProvider, IDetailsPage {
-	private final class EStructuralfeatureComparator implements
+	private final static class EStructuralfeatureComparator implements
 			Comparator<EStructuralFeature> {
 		public int compare(EStructuralFeature o1, EStructuralFeature o2) {
 			return nullSafe(o1).compareTo(nullSafe(o2));
@@ -67,7 +67,7 @@ public class GenericDetailsPage extends AbstractFormPart implements
 		 */
 		private String nullSafe(EStructuralFeature o) {
 			String name = o.getName();
-			return name != null ? name : new String();
+			return name != null ? name : "";
 		}
 	}
 
@@ -108,7 +108,7 @@ public class GenericDetailsPage extends AbstractFormPart implements
 								// Reusing already implemented logic
 								IItemPropertyDescriptor desc = new ItemPropertyDescriptor(
 										editor.getAdapterFactory(), null,
-										feature.getName(), new String(),
+										feature.getName(), "",
 										feature, true);
 								if (desc.isPropertySet(input)) {
 									desc.resetPropertyValue(input);

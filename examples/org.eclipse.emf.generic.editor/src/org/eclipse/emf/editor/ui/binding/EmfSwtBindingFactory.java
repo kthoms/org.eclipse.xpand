@@ -137,7 +137,7 @@ public class EmfSwtBindingFactory {
 			retVal = combo.getCombo();
 		}
 		else {
-			Text t = toolkit.createText(parent, new String());
+			Text t = toolkit.createText(parent, "");
 			t.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TREE_BORDER);
 			List<?> proposals = proposalcreator.proposals(owner, feature);
 			if (proposals != null && !proposals.isEmpty()) {
@@ -152,9 +152,8 @@ public class EmfSwtBindingFactory {
 				field.setImage(requiredFieldIndicator.getImage());
 				field.setDescriptionText(requiredFieldIndicator.getDescription());
 				KeyStroke keyStroke = null;
-				String string = new String();
+				String string = "Ctrl+Space";
 				try {
-					string = "Ctrl+Space";
 					keyStroke = KeyStroke.getInstance(string);
 				}
 				catch (ParseException e) {

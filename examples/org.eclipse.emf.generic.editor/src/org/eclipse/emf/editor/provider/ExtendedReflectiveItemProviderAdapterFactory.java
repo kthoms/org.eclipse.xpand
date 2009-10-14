@@ -16,7 +16,6 @@ package org.eclipse.emf.editor.provider;
  *
  */
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,7 +24,6 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.emf.editor.EEPlugin;
 import org.eclipse.emf.editor.ValidationInfoAdapter;
-import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
@@ -41,15 +39,9 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItemProviderAdapterFactory {
 
-	private final ExtXptFacade facade;
-	private IFile file;
-
-	public ExtendedReflectiveItemProviderAdapterFactory(final DecoratingLabelProvider decoratingLabelProvider,
-			ExtXptFacade facade, IFile iFile) {
+	public ExtendedReflectiveItemProviderAdapterFactory(final DecoratingLabelProvider decoratingLabelProvider) {
 		super();
-		this.facade = facade;
 		reflectiveItemProviderAdapter = new ExtendedReflectiveItemProvider(this, decoratingLabelProvider);
-		this.file = iFile;
 	}
 
 	public final class ExtendedReflectiveItemProvider extends ReflectiveItemProvider {
@@ -83,7 +75,8 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 			if (severity == IMessageProvider.ERROR)
 				descriptors[IDecoration.BOTTOM_LEFT] = EEPlugin.getDefault().getImageDescriptor("/icons/error.gif");
 			if (severity == IMessageProvider.WARNING)
-				descriptors[IDecoration.BOTTOM_RIGHT] = EEPlugin.getDefault().getImageDescriptor("/icons/warning_co.gif");
+				descriptors[IDecoration.BOTTOM_RIGHT] = EEPlugin.getDefault().getImageDescriptor(
+						"/icons/warning_co.gif");
 			image = getImageManager().createImage(new DecorationOverlayIcon(image, descriptors));
 			return image;
 
@@ -102,8 +95,8 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 			Image im = ExtendedImageRegistry.getInstance().getImage(imURI);
 			if (im != null) {
 				if (object instanceof EObject) {
-					ValidationInfoAdapter find = ValidationInfoAdapter.find((EObject)object);
-					if (find!=null)
+					ValidationInfoAdapter find = ValidationInfoAdapter.find((EObject) object);
+					if (find != null)
 						im = annotateImage(im, find.getSeverity());
 				}
 				return im;

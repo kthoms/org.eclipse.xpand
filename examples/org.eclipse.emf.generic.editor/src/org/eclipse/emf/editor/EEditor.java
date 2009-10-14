@@ -117,7 +117,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 		ILabelDecorator decorator = PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator();
 
 		ExtendedReflectiveItemProviderAdapterFactory extendedReflectiveItemProviderAdapterFactory = new ExtendedReflectiveItemProviderAdapterFactory(
-				new DecoratingItemLabelProvider(customProvider, decorator), facade, getFile());
+				new DecoratingItemLabelProvider(customProvider, decorator));
 		caf.addAdapterFactory(extendedReflectiveItemProviderAdapterFactory);
 
 		// register item provider for details view
@@ -126,8 +126,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	}
 
 	/**
-	 * Model is already created by superclass. Provides a container for EMF's
-	 * TreeViewer (currentViewer)
+	 * Model is already created by superclass. Provides a container for EMF's TreeViewer (currentViewer)
 	 * 
 	 * @see org.eclipse.ui.part.MultiPageEditorPart#createPageContainer(org.eclipse.swt.widgets.Composite)
 	 */
@@ -235,13 +234,13 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 	 */
 	private void initInternal() {
 		project = getFile().getProject();
-		editingDomain.getResourceSet().setURIConverter(new ExtensibleURIConverterImpl(){
+		editingDomain.getResourceSet().setURIConverter(new ExtensibleURIConverterImpl() {
 			@Override
 			public URI normalize(URI uri) {
 				if (ClasspathUriResolver.isClasspathUri(uri)) {
-					URI result = new ClasspathUriResolver().resolve(project,uri);
+					URI result = new ClasspathUriResolver().resolve(project, uri);
 					if (ClasspathUriResolver.isClasspathUri(result))
-						throw new IllegalArgumentException("Couldn't find resource on classpath : "+result);
+						throw new IllegalArgumentException("Couldn't find resource on classpath : " + result);
 					result = super.normalize(result);
 					return result;
 				}
@@ -254,7 +253,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 			ComposedAdapterFactory caf = (ComposedAdapterFactory) editingDomain.getAdapterFactory();
 			rejectFactory(caf);
 		}
-		
+
 	}
 
 	@Override
@@ -296,6 +295,7 @@ public class EEditor extends EcoreEditor implements ChangeListener {
 				}
 				messageManager.update();
 				messageManager.setAutoUpdate(true);
+				currentViewer.refresh();
 			}
 		});
 	}

@@ -16,7 +16,6 @@
 package org.eclipse.emf.editor.ui.binding;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,7 +50,6 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 public class MultipleFeatureControl extends Composite {
 
 	private FeatureEditorDialog dialog;
-	private Collection<?> currentValue;
 	private final ILabelProvider labelProvider;
 	private ISelectionProvider inernalProvider = new InternalSelectionProvider();
 
@@ -68,7 +66,7 @@ public class MultipleFeatureControl extends Composite {
 		this.labelProvider = labelProvider;
 		toolkit.adapt(this);
 		setLayout(new GridLayout(2, false));
-		label = toolkit.createLabel(this, new String());
+		label = toolkit.createLabel(this, "");
 		label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(MouseEvent e) {
@@ -166,10 +164,6 @@ public class MultipleFeatureControl extends Composite {
 					buffy.append(", ");
 			}
 		label.setText(buffy.toString());
-	}
-
-	public Collection<?> getCurrentValue() {
-		return currentValue;
 	}
 
 	class InternalSelectionProvider implements ISelectionProvider {

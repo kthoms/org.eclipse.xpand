@@ -131,15 +131,13 @@ public class ExtendedLabelProvider implements IItemLabelProvider {
 
 	private boolean checkAccessable(URI iconURI) throws IOException {
 		URL url = new URL(iconURI.toString());
-		if (url != null) {
-			try {
-				InputStream in = url.openStream();// check readable
-				in.close();
-				return true;
-			}
-			catch (FileNotFoundException e) {
-				// ignore no feedback to user
-			}
+		try {
+			InputStream in = url.openStream();// check readable
+			in.close();
+			return true;
+		}
+		catch (FileNotFoundException e) {
+			// ignore no feedback to user
 		}
 		return false;
 	}

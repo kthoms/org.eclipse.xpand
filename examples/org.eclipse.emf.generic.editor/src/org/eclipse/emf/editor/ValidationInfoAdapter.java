@@ -91,7 +91,7 @@ public class ValidationInfoAdapter implements Adapter {
 		remove(obj);
 		TreeIterator<EObject> iterator = obj.eAllContents();
 		while (iterator.hasNext()) {
-			EObject eObject = (EObject) iterator.next();
+			EObject eObject =  iterator.next();
 			remove(eObject);
 		}
 	}
@@ -102,7 +102,7 @@ public class ValidationInfoAdapter implements Adapter {
 	public static void remove(EObject obj) {
 		Iterator<Adapter> iterator = obj.eAdapters().iterator();
 		while (iterator.hasNext()) {
-			Adapter adapter = (Adapter) iterator.next();
+			Adapter adapter = iterator.next();
 			if (adapter instanceof ValidationInfoAdapter)
 				iterator.remove();
 		}

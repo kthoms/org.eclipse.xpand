@@ -47,6 +47,7 @@ public class ExtXptFacade {
 	public static final String CHECK_EXT = "Checks";
 	public static final String STYLE_EXT = "ItemLabelProvider";
 	public static final String PROPOSAL_EXT = "Proposals";
+	private static final String XTEND_EXTENSION = "ext";
 
 	public ExtXptFacade(IProject project, ExecutionContext context) {
 		this.project = project;
@@ -55,8 +56,7 @@ public class ExtXptFacade {
 
 	public Object style(String extension, EObject object) {
 		String extendFile = path(object) + ExtXptFacade.STYLE_EXT;
-		Object retVal = evaluate(extendFile, extension, object);
-		return retVal;
+		return evaluate(extendFile, extension, object);
 	}
 
 	/**
@@ -67,24 +67,24 @@ public class ExtXptFacade {
 	 */
 	private Object evaluate(String extensionFile, String extensionName, Object... params) {
 		Object retVal = null;
-		try {
+		if (extensionFileExists(extensionFile)) {
 			XtendFacade facade = XtendFacade.create(context, extensionFile);
-			retVal = facade.call(extensionName, params);
-		}
-		catch (IllegalArgumentException e) {
-			// no extension specified
-		}
-		catch (EvaluationException e) {
-			EEPlugin.logError("Exception during extension evaluation", e);
-		}
-		catch (RuntimeException e) {
-			e.printStackTrace();
-			// extension file not found
-		}
-		catch (Throwable e) {
-			EEPlugin.logError("Exception during extension evaluation", new RuntimeException(e));
+			try {
+				if (facade.hasExtension(extensionName, params)) {
+					retVal = facade.call(extensionName, params);
+				}
+			}
+			catch (EvaluationException e) {
+				//Syntax error in file
+				//TODO show in editor header
+				//EEPlugin.logError("Exception during extension evaluation", e);
+			}
 		}
 		return retVal;
+	}
+
+	private boolean extensionFileExists(String resourceFQN) {
+		return context.getResourceManager().loadResource(resourceFQN, XTEND_EXTENSION) != null;
 	}
 
 	// TODO split method

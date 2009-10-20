@@ -18,13 +18,13 @@ package org.eclipse.emf.editor.ui.binding;
 import java.util.List;
 
 import org.eclipse.core.databinding.Binding;
-import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
+import org.eclipse.emf.databinding.edit.EditingDomainEObjectObservableValue;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -57,6 +57,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
+ * 
+ * Creates Control for an {@link EStructuralFeature}
+ * 
  * @author Dennis Huebner
  * 
  */
@@ -76,21 +79,13 @@ public class EmfSwtBindingFactory {
 		this.adapterFactory = adapterFactory;
 		this.edbc = new EMFDataBindingContext();
 		this.domain = domain;
-		this.proposalcreator = new ProposalCreator(domain, facade);
+		this.proposalcreator = new ProposalCreator(domain, facade, owner);
 		this.owner = owner;
 		this.parent = parent;
 		this.toolkit = toolkit;
 	}
 
-	public Control create(EObject eObject) {
-		Control retVal = null;
-		if (eObject instanceof EStructuralFeature) {
-			retVal = createForEStructuralFeature((EStructuralFeature) eObject);
-		}
-		return retVal;
-	}
-
-	private Control createForEStructuralFeature(EStructuralFeature feature) {
+	public Control create(EStructuralFeature feature) {
 		Control retVal = null;
 		if (feature.isMany()) {
 			retVal = bindList(feature);
@@ -102,15 +97,13 @@ public class EmfSwtBindingFactory {
 		return retVal;
 	}
 
-	private Control bindList(EStructuralFeature feature) {
-		IObservableList source = EMFEditObservables.observeList(domain, owner, feature);
-
-		List<?> choice = proposalcreator.proposals(owner, feature);
+	private Control bindList(final EStructuralFeature feature) {
+		IObservableValue source = new EditingDomainEObjectObservableValue(domain, owner, feature);
 		MultipleFeatureControl mfc = new MultipleFeatureControl(parent, toolkit, new AdapterFactoryLabelProvider(
-				adapterFactory), owner, feature, choice);
+				adapterFactory), owner, feature, proposalcreator);
 
-		IObservableList target = ViewersObservables.observeMultiSelection(mfc.getInternalSelectionProvider());
-		Binding binding = edbc.bindList(target, source, null, null);
+		IObservableValue target = new MultipleFeatureControlObservable(mfc);
+		Binding binding = edbc.bindValue(target, source);
 		binding.updateModelToTarget();
 		return mfc;
 	}
@@ -127,45 +120,47 @@ public class EmfSwtBindingFactory {
 			target = SWTObservables.observeSelection(b);
 			retVal = b;
 		}
-		else if (feature instanceof EReference || feature.getEType() instanceof EEnumImpl) {
-			ComboViewer combo = new ComboViewer(parent, SWT.READ_ONLY);
-			toolkit.adapt(combo.getCombo());
-			combo.setContentProvider(new ArrayContentProvider());
-			combo.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-			combo.setInput(proposalcreator.proposals(owner, feature));
-			target = ViewersObservables.observeSingleSelection(combo);
-			retVal = combo.getCombo();
-		}
 		else {
-			Text t = toolkit.createText(parent, "");
-			t.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TREE_BORDER);
-			List<?> proposals = proposalcreator.proposals(owner, feature);
-			if (proposals != null && !proposals.isEmpty()) {
-				// TODO prevent adding null to a list, for example a Collection
-				// Type
-				while (proposals.remove(null)) {
-					// clear null entries
-				}
-				ControlDecoration field = new ControlDecoration(t, SWT.BORDER);
-				FieldDecoration requiredFieldIndicator = FieldDecorationRegistry.getDefault().getFieldDecoration(
-						FieldDecorationRegistry.DEC_CONTENT_PROPOSAL);
-				field.setImage(requiredFieldIndicator.getImage());
-				field.setDescriptionText(requiredFieldIndicator.getDescription());
-				KeyStroke keyStroke = null;
-				String string = "Ctrl+Space";
-				try {
-					keyStroke = KeyStroke.getInstance(string);
-				}
-				catch (ParseException e) {
-					EEPlugin.getDefault().getLog().log(
-							new Status(IStatus.ERROR, EEPlugin.PLUGIN_ID, "Error while parse: " + string, e));
-				}
-				new ContentProposalAdapter(t, new TextContentAdapter(), new SimpleContentProposalProvider(proposals
-						.toArray(new String[] {})), keyStroke, null);
+			List<?> proposals = proposalcreator.proposals(feature);
+			if (feature instanceof EReference || feature.getEType() instanceof EEnumImpl) {
+				ComboViewer combo = new ComboViewer(parent, SWT.READ_ONLY);
+				toolkit.adapt(combo.getCombo());
+				combo.setContentProvider(new ArrayContentProvider());
+				combo.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				combo.setInput(proposals);
+				target = ViewersObservables.observeSingleSelection(combo);
+				retVal = combo.getCombo();
 			}
-			target = SWTObservables.observeText(t, SWT.Modify);
-			retVal = t;
+			else {
+				Text t = toolkit.createText(parent, "");
+				t.setData(FormToolkit.KEY_DRAW_BORDER, FormToolkit.TREE_BORDER);
+				if (proposals != null && !proposals.isEmpty()) {
+					// TODO prevent adding null to a list, for example a Collection
+					// Type
+					while (proposals.remove(null)) {
+						// clear null entries
+					}
+					ControlDecoration field = new ControlDecoration(t, SWT.BORDER);
+					FieldDecoration requiredFieldIndicator = FieldDecorationRegistry.getDefault().getFieldDecoration(
+							FieldDecorationRegistry.DEC_CONTENT_PROPOSAL);
+					field.setImage(requiredFieldIndicator.getImage());
+					field.setDescriptionText(requiredFieldIndicator.getDescription());
+					KeyStroke keyStroke = null;
+					String string = "Ctrl+Space";
+					try {
+						keyStroke = KeyStroke.getInstance(string);
+					}
+					catch (ParseException e) {
+						EEPlugin.getDefault().getLog().log(
+								new Status(IStatus.ERROR, EEPlugin.PLUGIN_ID, "Error while parse: " + string, e));
+					}
+					new ContentProposalAdapter(t, new TextContentAdapter(), new SimpleContentProposalProvider(proposals
+							.toArray(new String[] {})), keyStroke, null);
+				}
+				target = SWTObservables.observeText(t, SWT.Modify);
+				retVal = t;
 
+			}
 		}
 		edbc.bindValue(target, source, null, null);
 		return retVal;

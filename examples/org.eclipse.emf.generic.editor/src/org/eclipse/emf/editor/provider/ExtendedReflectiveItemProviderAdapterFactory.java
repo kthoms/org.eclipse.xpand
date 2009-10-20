@@ -46,7 +46,6 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 
 	public final class ExtendedReflectiveItemProvider extends ReflectiveItemProvider {
 		private final DecoratingLabelProvider labelProvider;
-
 		private ExtendedReflectiveItemProvider(AdapterFactory adapterFactory,
 				DecoratingLabelProvider decoratingLabelProvider) {
 			super(adapterFactory);

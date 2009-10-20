@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
+import org.eclipse.emf.editor.ui.ProposalCreator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -44,6 +45,9 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
+ * Widget that opens the {@link FeatureEditorDialog} to select some feature values.<br>
+ * Shows values comma separated as label.
+ * 
  * @author Dennis Huebner
  * 
  */
@@ -57,11 +61,10 @@ public class MultipleFeatureControl extends Composite {
 
 	private Button button;
 
-	// private IPropertyChangeListener propertyChangeListener;
 	private boolean beQueit;
 
 	public MultipleFeatureControl(final Composite parent, FormToolkit toolkit, final ILabelProvider labelProvider,
-			final Object object, final EStructuralFeature feature, final List<? extends Object> choiceOfValues) {
+			final Object object, final EStructuralFeature feature, final ProposalCreator proposalcreator) {
 		super(parent, SWT.NONE);
 		this.labelProvider = labelProvider;
 		toolkit.adapt(this);
@@ -82,8 +85,9 @@ public class MultipleFeatureControl extends Composite {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				List<?> oldValue = unwrapSelection();
+				//TODO (dennis) load choice of values in a runnable with status bar
 				dialog = new FeatureEditorDialog(parent.getShell(), labelProvider, object, feature.getEType(),
-						oldValue, "Display Name", choiceOfValues, false, feature.isOrdered());
+						oldValue, "Display Name", proposalcreator.proposals(feature), false, feature.isOrdered());
 				dialog.setBlockOnOpen(true);
 				if (dialog.open() == Window.OK) {
 					setSelection(new StructuredSelection(dialog.getResult().toArray()));
@@ -210,5 +214,13 @@ public class MultipleFeatureControl extends Composite {
 		finally {
 			beQueit = false;
 		}
+	}
+
+	public void setValue(Object newValue) {
+		setSelection(new StructuredSelection((List<?>)newValue));
+	}
+
+	public Object getValue() {
+		return ((StructuredSelection)getSelection()).toList();
 	}
 }

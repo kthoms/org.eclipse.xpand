@@ -40,51 +40,50 @@ import org.eclipse.emf.editor.extxpt.ExtXptFacade;
 public class ProposalCreator {
 	private EditingDomain domain;
 	private final ExtXptFacade facade;
+	private final EObject operatingObject;
 
-	public ProposalCreator(EditingDomain domain, ExtXptFacade facade) {
+	public ProposalCreator(EditingDomain domain, ExtXptFacade facade, EObject operatingObject) {
 		super();
 		this.domain = domain;
 		this.facade = facade;
+		this.operatingObject = operatingObject;
 	}
 
 	/**
+	 * Calculates possible values for given operating object.
 	 * 
-	 * @param source
 	 * @param feature
 	 * @return possible values
 	 */
-	public List<?> proposals(EObject source, EStructuralFeature feature) {
+	public List<?> proposals(EStructuralFeature feature) {
 
 		List<?> retVal = null;
 		// TODO Reference[] handle
 		if (feature instanceof EReference) {
 			retVal = findAllInstances(feature.getEType());
-		} else if (feature.getEType() instanceof EEnumImpl) {
+		}
+		else if (feature.getEType() instanceof EEnumImpl) {
 			EEnum eEnum = (EEnum) feature.getEType();
 			List<Enumerator> enumerators = new ArrayList<Enumerator>();
-			for (Iterator<?> iter = eEnum.getELiterals().iterator(); iter
-					.hasNext();) {
-				Enumerator instance = ((EEnumLiteral) iter.next())
-						.getInstance();
+			for (Iterator<?> iter = eEnum.getELiterals().iterator(); iter.hasNext();) {
+				Enumerator instance = ((EEnumLiteral) iter.next()).getInstance();
 				enumerators.add(instance);
 			}
 			retVal = enumerators;
 		}
-		return facade.proposals(feature, source, retVal);
+		return facade.proposals(feature, operatingObject, retVal);
 	}
 
 	private List<Object> findAllInstances(EClassifier type) {
 		List<Object> objects = new ArrayList<Object>();
-		TreeIterator<Object> allContents = EcoreUtil.getAllContents(domain
-				.getResourceSet().getResources(), true);
+		TreeIterator<Object> allContents = EcoreUtil.getAllContents(domain.getResourceSet().getResources(), true);
 		while (allContents.hasNext()) {
 			Object o = allContents.next();
 			if (type.isInstance(o))
 				objects.add(o);
 		}
-		for (TreeIterator<Object> iter = EcoreUtil.getAllContents(EcoreUtil
-				.getRootContainer(EcorePackage.eINSTANCE, true), false); iter
-				.hasNext();) {
+		for (TreeIterator<Object> iter = EcoreUtil.getAllContents(EcoreUtil.getRootContainer(EcorePackage.eINSTANCE,
+				true), false); iter.hasNext();) {
 			Object next = iter.next();
 			if ((type.isInstance(next)) && !objects.contains(next)) {
 				objects.add(next);

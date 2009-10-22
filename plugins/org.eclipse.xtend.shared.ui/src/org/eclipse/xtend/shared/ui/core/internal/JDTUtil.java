@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -58,10 +59,10 @@ public class JDTUtil {
 				IPackageFragmentRoot root = roots[i];
 				if (!root.isArchive()) {
 
-					IFolder rootFolder = null;
+					IContainer rootFolder = null;
 					IResource correspondingResource = root
 							.getCorrespondingResource();
-					if (correspondingResource instanceof IFolder) {
+					if (correspondingResource instanceof IContainer) {
 						rootFolder = (IFolder) correspondingResource;
 					} else if (root instanceof ExternalPackageFragmentRoot) {
 						IResource resource = ((ExternalPackageFragmentRoot) root)

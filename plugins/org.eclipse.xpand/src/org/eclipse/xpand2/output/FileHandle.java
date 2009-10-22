@@ -19,6 +19,7 @@ public interface FileHandle {
 
     public void setBuffer (CharSequence buffer);
 
+    @Deprecated
     public File getTargetFile();
 
     public boolean isAppend();

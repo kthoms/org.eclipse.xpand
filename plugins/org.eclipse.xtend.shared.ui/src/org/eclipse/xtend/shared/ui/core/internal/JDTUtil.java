@@ -16,7 +16,6 @@ import java.util.zip.ZipFile;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IStorage;
@@ -63,12 +62,12 @@ public class JDTUtil {
 					IResource correspondingResource = root
 							.getCorrespondingResource();
 					if (correspondingResource instanceof IContainer) {
-						rootFolder = (IFolder) correspondingResource;
+						rootFolder = (IContainer) correspondingResource;
 					} else if (root instanceof ExternalPackageFragmentRoot) {
 						IResource resource = ((ExternalPackageFragmentRoot) root)
 								.resource();
-						if (resource instanceof IFolder) {
-							rootFolder = (IFolder) resource;
+						if (resource instanceof IContainer) {
+							rootFolder = (IContainer) resource;
 							IStorage member = (IStorage) rootFolder.findMember(p);
 							if(member != null) {
 								return member;

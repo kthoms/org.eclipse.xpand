@@ -46,6 +46,8 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 
 	public final class ExtendedReflectiveItemProvider extends ReflectiveItemProvider {
 		private final DecoratingLabelProvider labelProvider;
+		private LocalResourceManager localResourceManager;
+
 		private ExtendedReflectiveItemProvider(AdapterFactory adapterFactory,
 				DecoratingLabelProvider decoratingLabelProvider) {
 			super(adapterFactory);
@@ -60,10 +62,6 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 		public String getText(Object object) {
 			String text = labelProvider.getText(object);
 			if (text == null) {
-				if (object instanceof EStructuralFeature) {
-					EStructuralFeature f = (EStructuralFeature) object;
-					text = super.getFeatureText(f);
-				}
 				text = super.getText(object);
 			}
 			return text;
@@ -82,8 +80,9 @@ public class ExtendedReflectiveItemProviderAdapterFactory extends ReflectiveItem
 		}
 
 		private org.eclipse.jface.resource.ResourceManager getImageManager() {
-
-			return new LocalResourceManager(JFaceResources.getResources());
+			if (localResourceManager == null)
+				localResourceManager = new LocalResourceManager(JFaceResources.getResources());
+			return localResourceManager;
 		}
 
 		@Override

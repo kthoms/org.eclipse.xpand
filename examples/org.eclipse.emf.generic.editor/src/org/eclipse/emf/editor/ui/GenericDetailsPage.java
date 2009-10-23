@@ -48,15 +48,12 @@ import org.eclipse.ui.forms.IFormPart;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Section;
 
-
 /**
  * @author Dennis Huebner
  * 
  */
-public class GenericDetailsPage extends AbstractFormPart implements
-		ISelectionProvider, IDetailsPage {
-	private final static class EStructuralfeatureComparator implements
-			Comparator<EStructuralFeature> {
+public class GenericDetailsPage extends AbstractFormPart implements ISelectionProvider, IDetailsPage {
+	private final static class EStructuralfeatureComparator implements Comparator<EStructuralFeature> {
 		public int compare(EStructuralFeature o1, EStructuralFeature o2) {
 			return nullSafe(o1).compareTo(nullSafe(o2));
 		}
@@ -71,20 +68,70 @@ public class GenericDetailsPage extends AbstractFormPart implements
 		}
 	}
 
-	private EObject input;
+	/**
+	 * @author Dennis Huebner - Initial contribution and API
+	 */
+	private final class ResetToDefaultRunnable implements Runnable {
+		public void run() {
+			if (getSelection() instanceof StructuredSelection) {
+				Object o = ((StructuredSelection) getSelection()).getFirstElement();
+				// just single selection is allowed (which has
+				// focus)
+				if (o instanceof EStructuralFeature) {
+					EStructuralFeature feature = (EStructuralFeature) o;
 
-	private Composite main;
+					// Reusing already implemented logic
+					IItemPropertyDescriptor desc = new ItemPropertyDescriptor(editor.getAdapterFactory(), null, feature
+							.getName(), "", feature, true);
+					if (desc.isPropertySet(input)) {
+						desc.resetPropertyValue(input);
+						if (feature.isMany()) {
+							// TODO work around for ListViewer in
+							// MultipleFeatureControl
+							Control locatedControl = locateControl(EcorePackage.Literals.ESTRUCTURAL_FEATURE.getName(),
+									feature);
+							if (locatedControl instanceof MultipleFeatureControl) {
+								MultipleFeatureControl mfc = (MultipleFeatureControl) locatedControl;
+								mfc.quietClearSelection();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	private EEditor editor;
+	private EmfSwtBindingFactory factory;
+	private EObject input;
+	private Composite main;
+	private ISelection partSelection = null;
+	private List<ISelectionChangedListener> selListeners = new ArrayList<ISelectionChangedListener>();
 
+	/**
+	 *	Constructor
+	 */
 	public GenericDetailsPage(EObject object, EEditor editor) {
 		this.input = object;
 		this.editor = editor;
 	}
 
+	public void addSelectionChangedListener(ISelectionChangedListener listener) {
+		this.selListeners.add(listener);
+	}
+
+	/**
+	 * 
+	 */
+	private void cleanUpMainComposite() {
+		for (Control child : main.getChildren()) {
+			child.dispose();
+		}
+	}
+
 	public void createContents(Composite parent) {
 		parent.setLayout(new FillLayout());
-		Section sec = getManagedForm().getToolkit().createSection(parent,
-				ExpandableComposite.TITLE_BAR);
+		Section sec = getManagedForm().getToolkit().createSection(parent, ExpandableComposite.TITLE_BAR);
 		sec.marginWidth = 10;
 		sec.marginHeight = 5;
 		sec.setText("Properties");
@@ -95,39 +142,7 @@ public class GenericDetailsPage extends AbstractFormPart implements
 		mm.add(new Action("Reset to default") {
 			@Override
 			public void run() {
-				main.getDisplay().syncExec(new Runnable() {
-					public void run() {
-						if (getSelection() instanceof StructuredSelection) {
-							Object o = ((StructuredSelection) getSelection())
-									.getFirstElement();
-							// just single selection is allowed (which has
-							// focus)
-							if (o instanceof EStructuralFeature) {
-								EStructuralFeature feature = (EStructuralFeature) o;
-
-								// Reusing already implemented logic
-								IItemPropertyDescriptor desc = new ItemPropertyDescriptor(
-										editor.getAdapterFactory(), null,
-										feature.getName(), "",
-										feature, true);
-								if (desc.isPropertySet(input)) {
-									desc.resetPropertyValue(input);
-									if (feature.isMany()) {
-										// TODO work around for ListViewer in
-										// MultipleFeatureControl
-										Control locatedControl = locateControl(
-												EcorePackage.Literals.ESTRUCTURAL_FEATURE
-														.getName(), feature);
-										if (locatedControl instanceof MultipleFeatureControl) {
-											MultipleFeatureControl mfc = (MultipleFeatureControl) locatedControl;
-											mfc.quietClearSelection();
-										}
-									}
-								}
-							}
-						}
-					}
-				});
+				main.getDisplay().syncExec(new ResetToDefaultRunnable());
 			}
 		});
 
@@ -150,48 +165,38 @@ public class GenericDetailsPage extends AbstractFormPart implements
 	private void createGenericPart(Menu menu) {
 		if (input != null) {
 			cleanUpMainComposite();
-			EList<EStructuralFeature> allStructuralFeatures = new BasicEList<EStructuralFeature>(
-					input.eClass().getEAllStructuralFeatures());
-			Collections.sort(allStructuralFeatures,
-					new EStructuralfeatureComparator());
+			EList<EStructuralFeature> allStructuralFeatures = new BasicEList<EStructuralFeature>(input.eClass()
+					.getEAllStructuralFeatures());
+			Collections.sort(allStructuralFeatures, new EStructuralfeatureComparator());
 
-			factory = new EmfSwtBindingFactory(editor.getAdapterFactory(),
-					editor.getEditingDomain(), input, main, getManagedForm()
-							.getToolkit(), editor.getExtXptFacade());
+			factory = new EmfSwtBindingFactory(editor.getAdapterFactory(), editor.getEditingDomain(), input, main,
+					getManagedForm().getToolkit(), editor.getExtXptFacade());
 			final IActionBars actionBars = editor.getActionBars();
 
-			final IAction ecoreCopy = actionBars
-					.getGlobalActionHandler(ActionFactory.COPY.getId());
-			final IAction ecoreCut = actionBars
-					.getGlobalActionHandler(ActionFactory.CUT.getId());
-			final IAction ecorePaste = actionBars
-					.getGlobalActionHandler(ActionFactory.PASTE.getId());
-			final IAction ecoreDelete = actionBars
-					.getGlobalActionHandler(ActionFactory.DELETE.getId());
+			final IAction ecoreCopy = actionBars.getGlobalActionHandler(ActionFactory.COPY.getId());
+			final IAction ecoreCut = actionBars.getGlobalActionHandler(ActionFactory.CUT.getId());
+			final IAction ecorePaste = actionBars.getGlobalActionHandler(ActionFactory.PASTE.getId());
+			final IAction ecoreDelete = actionBars.getGlobalActionHandler(ActionFactory.DELETE.getId());
 
 			for (final EStructuralFeature feature : allStructuralFeatures) {
 				// derived, unchangeable, container and containment features
 				// ignored
 				if (feature.isChangeable()
 						&& !feature.isDerived()
-						&& !(feature instanceof EReference && (((EReference) feature)
-								.isContainment() || ((EReference) feature)
+						&& !(feature instanceof EReference && (((EReference) feature).isContainment() || ((EReference) feature)
 								.isContainer()))) {
-					createLabel(editor.getExtendedReflectiveItemProvider()
-							.getTextForFeature(feature));
+					createLabel(editor.getExtendedReflectiveItemProvider().getTextForFeature(feature));
 
 					final Control contr = factory.create(feature);
 
 					contr.setMenu(menu);
 					contr.addFocusListener(new FocusAdapter() {
 						@Override
-						public void focusGained(
-								org.eclipse.swt.events.FocusEvent e) {
+						public void focusGained(org.eclipse.swt.events.FocusEvent e) {
 							// FIXME hook ecore's action contributor or create
 							// an own
 							if (contr instanceof Text) {
-								TextActionHandler textHandlerh = new TextActionHandler(
-										actionBars);
+								TextActionHandler textHandlerh = new TextActionHandler(actionBars);
 								Text t = (Text) contr;
 								textHandlerh.addText(t);
 
@@ -207,14 +212,10 @@ public class GenericDetailsPage extends AbstractFormPart implements
 
 						@Override
 						public void focusLost(FocusEvent e) {
-							actionBars.setGlobalActionHandler(
-									ActionFactory.COPY.getId(), ecoreCopy);
-							actionBars.setGlobalActionHandler(ActionFactory.CUT
-									.getId(), ecoreCut);
-							actionBars.setGlobalActionHandler(
-									ActionFactory.DELETE.getId(), ecoreDelete);
-							actionBars.setGlobalActionHandler(
-									ActionFactory.PASTE.getId(), ecorePaste);
+							actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(), ecoreCopy);
+							actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(), ecoreCut);
+							actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), ecoreDelete);
+							actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), ecorePaste);
 						}
 					});
 
@@ -222,15 +223,6 @@ public class GenericDetailsPage extends AbstractFormPart implements
 			}
 
 			getManagedForm().getToolkit().paintBordersFor(main);
-		}
-	}
-
-	/**
-	 * 
-	 */
-	private void cleanUpMainComposite() {
-		for (Control child : main.getChildren()) {
-			child.dispose();
 		}
 	}
 
@@ -256,14 +248,8 @@ public class GenericDetailsPage extends AbstractFormPart implements
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.forms.IFormPart#setFocus()
-	 */
-	@Override
-	public void setFocus() {
-		main.setFocus();
+	public ISelection getSelection() {
+		return partSelection;
 	}
 
 	public Control locateControl(String key, Object data) {
@@ -276,33 +262,29 @@ public class GenericDetailsPage extends AbstractFormPart implements
 		return null;
 	}
 
-	private List<ISelectionChangedListener> selListeners = new ArrayList<ISelectionChangedListener>();
-	private ISelection partSelection = null;
-	private EmfSwtBindingFactory factory;
-
-	public void addSelectionChangedListener(ISelectionChangedListener listener) {
-		this.selListeners.add(listener);
-	}
-
-	public ISelection getSelection() {
-		return partSelection;
-	}
-
-	public void removeSelectionChangedListener(
-			ISelectionChangedListener listener) {
+	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
 		this.selListeners.remove(listener);
-	}
-
-	public void setSelection(ISelection selection) {
-		partSelection = selection;
-		for (ISelectionChangedListener listener : selListeners) {
-			listener
-					.selectionChanged(new SelectionChangedEvent(this, selection));
-		}
 	}
 
 	public void selectionChanged(IFormPart part, ISelection selection) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.ui.forms.IFormPart#setFocus()
+	 */
+	@Override
+	public void setFocus() {
+		main.setFocus();
+	}
+
+	public void setSelection(ISelection selection) {
+		partSelection = selection;
+		for (ISelectionChangedListener listener : selListeners) {
+			listener.selectionChanged(new SelectionChangedEvent(this, selection));
+		}
 	}
 }

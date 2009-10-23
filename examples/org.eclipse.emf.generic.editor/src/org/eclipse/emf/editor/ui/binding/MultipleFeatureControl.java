@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
+import org.eclipse.emf.editor.ui.CachedLabelProvider;
 import org.eclipse.emf.editor.ui.ProposalCreator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -86,8 +87,9 @@ public class MultipleFeatureControl extends Composite {
 			public void widgetSelected(SelectionEvent e) {
 				List<?> oldValue = unwrapSelection();
 				//TODO (dennis) load choice of values in a runnable with status bar
-				dialog = new FeatureEditorDialog(parent.getShell(), labelProvider, object, feature.getEType(),
-						oldValue, "Display Name", proposalcreator.proposals(feature), false, feature.isOrdered());
+				dialog = new FeatureEditorDialog(parent.getShell(), new CachedLabelProvider(labelProvider), object,
+						feature.getEType(), oldValue, "Display Name", proposalcreator.proposals(feature), false,
+						feature.isOrdered());
 				dialog.setBlockOnOpen(true);
 				if (dialog.open() == Window.OK) {
 					setSelection(new StructuredSelection(dialog.getResult().toArray()));
@@ -217,10 +219,10 @@ public class MultipleFeatureControl extends Composite {
 	}
 
 	public void setValue(Object newValue) {
-		setSelection(new StructuredSelection((List<?>)newValue));
+		setSelection(new StructuredSelection((List<?>) newValue));
 	}
 
 	public Object getValue() {
-		return ((StructuredSelection)getSelection()).toList();
+		return ((StructuredSelection) getSelection()).toList();
 	}
 }

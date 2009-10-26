@@ -1,0 +1,5 @@
+plusOne(Integer i):
+	i + one();
+	
+one():
+	1;

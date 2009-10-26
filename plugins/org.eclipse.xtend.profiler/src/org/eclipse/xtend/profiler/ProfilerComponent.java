@@ -76,27 +76,35 @@ public class ProfilerComponent extends CompositeComponent implements VetoableCal
 	
 	private Profiler profiler;
 	
+	public ProfilingResult getProfilingResult() {
+		return profiler.getProfilingResult();
+	}
+	
 	@Override
 	public void checkConfiguration(Issues issues) throws ConfigurationException {
 		super.checkConfiguration(issues);
 		if(resultSlot==null)
 			issues.addError("resultSlot not specified");
 	}
-
+	
 	@Override
 	public void invoke(WorkflowContext ctx, ProgressMonitor monitor,
 			Issues issues) {
 
-		ProfilingResult profilingResult = ModelFactory.eINSTANCE.createProfilingResult();
-		profiler = new Profiler(profilingResult);
-
+		prepareProfiler();
 		super.invoke(ctx, monitor, issues);
-		
-		// TODO: mark component state as freezed -> no more callbacks allowed
-		CycleDetector detector = new CycleDetector(profilingResult);
-		detector.detectCycles();
+		finalizeProfiler();
+		ctx.set(resultSlot, profiler.getProfilingResult());
+	}
 
-		ctx.set(resultSlot, profilingResult);
+	public void finalizeProfiler() {
+		// TODO: mark component state as freezed -> no more callbacks allowed
+		CycleDetector detector = new CycleDetector(profiler.getProfilingResult());
+		detector.detectCycles();
+	}
+
+	public void prepareProfiler() {
+		profiler = new Profiler(ModelFactory.eINSTANCE.createProfilingResult());
 	}
 
 	public boolean pre(SyntaxElement ele, ExecutionContext ctx) {

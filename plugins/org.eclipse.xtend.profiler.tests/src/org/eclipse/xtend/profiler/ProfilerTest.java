@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.math.BigInteger;
 import java.net.URL;
 
 import junit.framework.TestCase;
@@ -35,6 +36,8 @@ import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.VetoStrategy;
+import org.eclipse.xtend.XtendFacade;
+import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.profiler.profilermodel.Item;
 import org.eclipse.xtend.profiler.profilermodel.ModelFactory;
 import org.eclipse.xtend.profiler.profilermodel.ProfilingResult;
@@ -267,4 +270,25 @@ public class ProfilerTest extends TestCase implements VetoStrategy {
 		this.lastOutput = handle.getBuffer().toString();
 		return true;
 	}
+	
+	public void testProfilerInUnitTest() throws Exception {
+		// manage execution context manually and wire profiler component
+		ExecutionContextImpl ctx = new ExecutionContextImpl();
+		ProfilerComponent profComponent = new ProfilerComponent();
+		profComponent.prepareProfiler();
+		ctx.setVetoableCallBack(profComponent);
+		
+		// use facade to execute template/extension
+		XtendFacade xtdf = XtendFacade.create(ctx, "org::eclipse::xtend::profiler::SimpleXtendFile");
+		Object result = xtdf.call("plusOne", 5);
+		assertEquals(BigInteger.valueOf(6), result);
+		
+		// finalizing profiling output
+		profComponent.finalizeProfiler();
+		
+		// work with profiling results, e.g. create report
+		String report = evaluateDefine(profComponent.getProfilingResult(), "GProf.xpt", "Main");
+		assertTrue(report.contains("XTD org::eclipse::xtend::profiler::SimpleXtendFile::plusOne(Integer) [1]"));
+	}
+
 }

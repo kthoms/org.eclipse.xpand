@@ -101,7 +101,6 @@ public class EmfSwtBindingFactory {
 		IObservableValue source = new EditingDomainEObjectObservableValue(domain, owner, feature);
 		MultipleFeatureControl mfc = new MultipleFeatureControl(parent, toolkit, new AdapterFactoryLabelProvider(
 				adapterFactory), owner, feature, proposalcreator);
-
 		IObservableValue target = new MultipleFeatureControlObservable(mfc);
 		Binding binding = edbc.bindValue(target, source);
 		binding.updateModelToTarget();

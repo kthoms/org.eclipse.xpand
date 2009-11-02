@@ -27,11 +27,12 @@ import org.eclipse.emf.editor.EEPlugin;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
+import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.xtend.XtendFacade;
 import org.eclipse.xtend.check.CheckUtils;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.expression.Resource;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
@@ -41,6 +42,33 @@ import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
  * 
  */
 public class ExtXptFacade {
+
+	/**
+	 * @author huebner - Initial contribution and API
+	 */
+	private final class ExtensionResource implements Resource {
+		private final String extensionFile;
+
+		private ExtensionResource(String extensionFile) {
+			this.extensionFile = extensionFile;
+		}
+
+		public String getFullyQualifiedName() {
+			return null;
+		}
+
+		public void setFullyQualifiedName(final String fqn) {
+
+		}
+
+		public String[] getImportedNamespaces() {
+			return null;
+		}
+
+		public String[] getImportedExtensions() {
+			return new String[] { extensionFile };
+		}
+	}
 
 	private IProject project;
 	private final ExecutionContext context;
@@ -65,13 +93,13 @@ public class ExtXptFacade {
 	 * @param params
 	 * @return
 	 */
-	private Object evaluate(String extensionFile, String extensionName, Object... params) {
+	private Object evaluate(final String extensionFile, String extensionName, Object... params) {
 		Object retVal = null;
 		if (extensionFileExists(extensionFile)) {
-			XtendFacade facade = XtendFacade.create(context, extensionFile);
 			try {
-				if (facade.hasExtension(extensionName, params)) {
-					retVal = facade.call(extensionName, params);
+				Extension extension = findExtension(extensionFile, extensionName, params);
+				if (extension != null) {
+					retVal = extension.evaluate(params, context);
 				}
 			}
 			catch (EvaluationException e) {
@@ -81,6 +109,11 @@ public class ExtXptFacade {
 			}
 		}
 		return retVal;
+	}
+
+	private Extension findExtension(String extensionFileName, String extensionName, Object... params) {
+		Resource extensionResource = new ExtensionResource(extensionFileName);
+		return context.cloneWithResource(extensionResource).getExtension(extensionName, params);
 	}
 
 	private boolean extensionFileExists(String resourceFQN) {
@@ -128,7 +161,7 @@ public class ExtXptFacade {
 					file.check(context, all, issuesImpl, false);
 				}
 				catch (IllegalArgumentException e) {
-					// no extension specified
+					// no extension specified ignore
 				}
 				catch (Exception e) {
 					EEPlugin.logError("Exception during check evaluation", e);

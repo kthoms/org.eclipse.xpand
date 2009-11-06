@@ -12,7 +12,7 @@
  * @return Property value, if defined, else <tt>null</tt>.
  */
 String getProperty(String key) :
-   internalGetProperty(key).toString()
+   internalGetProperty(key)
 ;
 
 

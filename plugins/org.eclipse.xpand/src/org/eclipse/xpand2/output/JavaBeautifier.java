@@ -37,7 +37,7 @@ import org.eclipse.text.edits.TextEdit;
  * @author Sven Efftinge (http://www.efftinge.de) (initial)
  * @author Bernd Kolb
  * @author Peter Friese
- * @author Markus V?lter
+ * @author Markus Voelter
  * @author Michael Leopoldseder
  * @author Karsten Thoms
  * @since 4.0
@@ -53,7 +53,7 @@ public class JavaBeautifier implements PostProcessor {
 	/**
 	 * Path to the config file for the formatter. See
 	 * http://www.peterfriese.de/index.php/2007/05/28/formatting-your-code-using-the-eclipse-code-formatter/
-	 * for more infor on creating the config file.
+	 * for more information on creating the config file.
 	 */
 	private String configFile;
 
@@ -174,11 +174,11 @@ public class JavaBeautifier implements PostProcessor {
 	}
 
 	 /**
-	  * Searches for the given filename as a ressource and returns a stream on it. Throws an IOException, if the file
+	  * Searches for the given filename as a resource and returns a stream on it. Throws an IOException, if the file
 	  * cannot be found.
 	  * 
 	  * @param filename
-	  *				   The name of the file to be searched in the ressources.
+	  *				   The name of the file to be searched in the resources.
 	  * @return InputStream for subsequent reading
 	  * @throws IOException
 	  */
@@ -202,7 +202,12 @@ public class JavaBeautifier implements PostProcessor {
 	 *            configuration file for the formatter
 	 */
 	public void setConfigFile(String configFile) {
-		this.configFile = configFile;
+		if (configFile==null || "".equals(configFile.trim())) {
+			log.debug("Empty value for 'configValue' was set. Default settings will be used for formatting.");
+			this.configFile = null;
+		} else {
+			this.configFile = configFile;
+		}
 	}
 
 	/**

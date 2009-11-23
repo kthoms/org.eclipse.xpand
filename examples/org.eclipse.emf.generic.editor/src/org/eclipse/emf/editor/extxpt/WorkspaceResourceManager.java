@@ -34,9 +34,12 @@ public class WorkspaceResourceManager implements ResourceManager {
 	}
 
 	public Resource loadResource(String fullyQualifiedName, String extension) {
-		IXtendXpandResource extxptResource = project.findExtXptResource(fullyQualifiedName, extension);
-		if (extxptResource != null)
-			return extxptResource.getExtXptResource();
+		//is not a XtendXpand project
+		if (project != null) {
+			IXtendXpandResource extxptResource = project.findExtXptResource(fullyQualifiedName, extension);
+			if (extxptResource != null)
+				return extxptResource.getExtXptResource();
+		}
 		return null;
 	}
 

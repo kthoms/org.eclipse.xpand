@@ -117,8 +117,8 @@ public class ForEachStatement extends StatementWithBody {
 			final Object element = iter.next();
 			ctx = (XpandExecutionContext) ctx.cloneWithVariable(new Variable(getVariable().getValue(), element));
 			ctx.preTask(this);
-			for (int i = 0; i < getBody().length; i++) {
-				getBody()[i].evaluate(ctx);
+			for (Statement stmt : getBody()) {
+				stmt.evaluate(ctx);
 			}
 			ctx.postTask(this);
 			if (sep != null && iter.hasNext()) {

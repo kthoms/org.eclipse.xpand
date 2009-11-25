@@ -49,7 +49,7 @@ public class Template extends SyntaxElement implements XpandResource {
     }
     
 	public List<String> getImportedExtensionsAsList() {
-        final List<String> result = new ArrayList<String>();
+        final List<String> result = new ArrayList<String>(extensions.length);
 		for (ImportDeclaration ext : extensions) {
             result.add(ext.getImportString().getValue());
         }

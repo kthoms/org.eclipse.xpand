@@ -96,7 +96,7 @@ public abstract class AbstractDefinition extends SyntaxElement implements XpandD
 	public String getParamString(boolean typesOnly) {
 		if (params == null || params.length == 0)
 			return wildParams ? "(*)" : "";
-		final StringBuffer buff = new StringBuffer("(");
+		final StringBuilder buff = new StringBuilder("(");
 		for (int i = 0; i < params.length; i++) {
 			final DeclaredParameter p = params[i];
 			buff.append(p.getType().getValue());

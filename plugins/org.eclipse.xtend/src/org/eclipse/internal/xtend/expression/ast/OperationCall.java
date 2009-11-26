@@ -82,7 +82,7 @@ public class OperationCall extends FeatureCall {
 				}
 			}
 
-			// implicite
+			// implicit
 			final Variable var = ctx.getVariable(ExecutionContext.IMPLICIT_VARIABLE);
 			if (var == null)
 				throw new EvaluationException("Couldn't find extension '" + getName().getValue() + getParamTypes(evaluatedParams, ctx) + "'!", this, ctx);

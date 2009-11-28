@@ -22,8 +22,8 @@ public class FileHandleImpl implements FileHandle {
 	private final Log log =
 			LogFactory.getLog(getClass());
 
-	private StringBuffer buffer =
-			new StringBuffer();
+	private StringBuilder buffer =
+			new StringBuilder(4096);
 
 	private File targetFile =
 			null;
@@ -48,7 +48,7 @@ public class FileHandleImpl implements FileHandle {
 
 	public void setBuffer(final CharSequence buffer) {
 		this.buffer =
-				new StringBuffer(buffer);
+				new StringBuilder(buffer);
 	}
 
 	public File getTargetFile() {

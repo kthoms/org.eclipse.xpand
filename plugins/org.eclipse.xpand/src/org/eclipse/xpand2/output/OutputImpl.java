@@ -11,6 +11,7 @@
 
 package org.eclipse.xpand2.output;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -30,12 +31,12 @@ import org.eclipse.xpand2.XpandExecutionContext;
 public class OutputImpl implements Output {
 
 	private boolean automaticHyphenation = false;
-
+	
 	public void setAutomaticHyphens(final boolean automaticHyphenation) {
 		this.automaticHyphenation = automaticHyphenation;
 	}
 
-	protected Stack<FileHandle> fileHandles = new Stack<FileHandle>();
+	private static ThreadLocal<Stack<FileHandle>> fileHandles = new ThreadLocal<Stack<FileHandle>>();
 
 	private final Map<String, Outlet> outlets = new HashMap<String, Outlet>();
 
@@ -55,7 +56,7 @@ public class OutputImpl implements Output {
 	}
 
 	protected FileHandle current() {
-		return fileHandles.isEmpty() ? null : fileHandles.peek();
+		return getFileHandles().isEmpty() ? null : getFileHandles().peek();
 	}
 
 	/**
@@ -72,28 +73,45 @@ public class OutputImpl implements Output {
 			if (deleteLine) {
 				final String temp = trimUntilNewline(bytes);
 				removeWSAfterLastNewline(current().getBuffer());
-				((StringBuffer) current().getBuffer()).append(temp);
+				try {
+					((Appendable) current().getBuffer()).append(temp);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
 			}
 			else {
-				((StringBuffer) current().getBuffer()).append(bytes);
+				try {
+					((Appendable) current().getBuffer()).append(bytes);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
 			}
 		}
 		deleteLine = false;
 	}
 
 	public void removeWSAfterLastNewline(final CharSequence cs) {
-		final StringBuffer buffer = (StringBuffer) cs;
-		int i = buffer.length();
+		int i = cs.length();
 		boolean wsOnly = true;
 		for (; i > 0 && wsOnly; i--) {
-			final char c = buffer.charAt(i - 1);
+			final char c = cs.charAt(i - 1);
 			wsOnly = Character.isWhitespace(c);
 			if (wsOnly && isNewLine(c)) {
-				buffer.delete(i, buffer.length());
+				deleteFromCharSequence(cs, i, cs.length());
 				return;
 			}
 		}
 		return;
+	}
+	
+	private void deleteFromCharSequence (CharSequence cs, int start, int end) {
+		if (cs instanceof StringBuilder) {
+			((StringBuilder)cs).delete(start, end);
+		} else if (cs instanceof StringBuffer) {
+			((StringBuffer)cs).delete(start, end);
+		} else {
+			throw new IllegalArgumentException("Unsupported CharSequence type "+cs.getClass().getName());
+		}
 	}
 
 	protected boolean isNewLine(final char c) {
@@ -144,11 +162,11 @@ public class OutputImpl implements Output {
 		final Outlet actualOutlet = raw.getFirst();
 		final String actualPath = raw.getSecond();
 
-		fileHandles.push(actualOutlet.createFileHandle(actualPath));
+		getFileHandles().push(actualOutlet.createFileHandle(actualPath));
 	}
 
 	public void closeFile() {
-		final FileHandle fi = fileHandles.pop();
+		final FileHandle fi = getFileHandles().pop();
 		fi.writeAndClose();
 	}
 
@@ -167,6 +185,15 @@ public class OutputImpl implements Output {
 	public SyntaxElement popStatement() {
 		final SyntaxElement se = s.pop();
 		return se;
+	}
+	
+	protected Stack<FileHandle> getFileHandles() {
+		Stack<FileHandle> result = fileHandles.get();
+		if (result == null) {
+			result = new Stack<FileHandle>();
+			fileHandles.set(result);
+		}
+		return result;
 	}
 
 }

@@ -410,23 +410,21 @@ public class ExecutionContextImpl implements ExecutionContext {
 	private final TypesComparator typesComparator = new TypesComparator();
 
 	private Extension advise(Extension element) {
-		if (!getExtensionAdvices().isEmpty()) {
-			for (Around a : getExtensionAdvices()) {
-				if (a.nameMatches(element.getQualifiedName())) {
-					List<Type> paramTypes = a.getParamTypes(this);
-					List<Type> extPTypes = element.getParameterTypes();
-					int diff = extPTypes.size() - paramTypes.size();
-					if (diff >= 0) {
-						if (diff > 0 && a.isWildparams()) { // fill wildcard
-							// params with
-							// Object types
-							for (int i = 0; i < diff; i++) {
-								paramTypes.add(getObjectType());
-							}
+		for (Around a : getExtensionAdvices()) {
+			if (a.nameMatches(element.getQualifiedName())) {
+				List<Type> paramTypes = a.getParamTypes(this);
+				List<Type> extPTypes = element.getParameterTypes();
+				int diff = extPTypes.size() - paramTypes.size();
+				if (diff >= 0) {
+					if (diff > 0 && a.isWildparams()) { // fill wildcard
+						// params with
+						// Object types
+						for (int i = 0; i < diff; i++) {
+							paramTypes.add(getObjectType());
 						}
-						if (typesComparator.compare(paramTypes, extPTypes) >= 0) {
-							element = new ExtensionAdvisor(a, element);
-						}
+					}
+					if (typesComparator.compare(paramTypes, extPTypes) >= 0) {
+						element = new ExtensionAdvisor(a, element);
 					}
 				}
 			}

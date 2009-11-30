@@ -63,7 +63,7 @@ public class ExtensionAnalyzationTest extends TestCase {
 		file.analyze(ec, issues);
 		dumpIssues();
 
-		assertEquals(2, issues.size());
+		assertEquals(1, issues.size());
 		final ExpressionExtensionStatement ext = (ExpressionExtensionStatement) file.getExtensions().get(3);
 
 		assertEquals(ec.getListType(ec.getBooleanType()), ext.getReturnType(new Type[] { ec.getBooleanType() }, ec,
@@ -132,7 +132,7 @@ public class ExtensionAnalyzationTest extends TestCase {
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		file.analyze(ec, issues);
 		assertEquals(0, issues.size());
-		final Extension ext = (Extension) file.getExtensions().get(0);
+		final Extension ext = file.getExtensions().get(0);
 		assertEquals("List", ext.getReturnType(null, ec, null).getName());
 	}
 
@@ -141,7 +141,7 @@ public class ExtensionAnalyzationTest extends TestCase {
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		file.analyze(ec, issues);
 		assertEquals(0, issues.size());
-		final Extension ext = (Extension) file.getExtensions().get(0);
+		final Extension ext = file.getExtensions().get(0);
 		assertEquals("List", ext.getReturnType(null, ec, null).getName());
 	}
 

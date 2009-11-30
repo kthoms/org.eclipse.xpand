@@ -25,6 +25,7 @@ import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.expression.IExecutionContextAware;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
@@ -63,7 +64,7 @@ public class JavaExtensionStatement extends AbstractExtension {
         try {
             final Method method = getJavaMethod(ctx, issues);
             if (method == null) {
-                final StringBuffer b = new StringBuffer();
+                final StringBuilder b = new StringBuilder();
                 for (final Iterator<AnalysationIssue> iter = issues.iterator(); iter.hasNext();) {
                     final AnalysationIssue element = iter.next();
                     b.append(element.toString()).append("\n");
@@ -71,7 +72,15 @@ public class JavaExtensionStatement extends AbstractExtension {
                 throw new EvaluationException(javaMethodToString() + " not found, problems were: \n" + b, this, ctx);
             }
             convertTypesToMethodSignature(ctx, method, parameters);
-            return method.invoke(null, parameters);
+            if (Modifier.isStatic(method.getModifiers())) {
+                return method.invoke(null, parameters);
+            } else {
+            	Object instance = method.getDeclaringClass().newInstance();
+            	if (IExecutionContextAware.class.isAssignableFrom(method.getDeclaringClass())) {
+            		((IExecutionContextAware)instance).setExecutionContext(ctx);
+            	}
+            	return method.invoke(instance, parameters);
+            }
         } catch (final InvocationTargetException ite) {
             throw new RuntimeException(ite.getCause());
         } catch (final Exception e) {
@@ -118,9 +127,6 @@ public class JavaExtensionStatement extends AbstractExtension {
                 }
             }
             final Method m = clazz.getMethod(javaMethod.getValue(), paramTypes);
-            if (!Modifier.isStatic(m.getModifiers())) {
-                issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue() + " must be static!", javaMethod));
-            }
 
             if (!Modifier.isPublic(m.getModifiers())) {
                 issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue() + " must be public!", javaMethod));

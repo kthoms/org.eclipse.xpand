@@ -29,6 +29,7 @@ public class AllTests {
       suite.addTestSuite(org.eclipse.xtend.expression.PolymorphismTest.class);
       suite.addTestSuite(org.eclipse.xtend.expression.ResourceManagerDefaultImplTest.class);
       suite.addTestSuite(org.eclipse.xtend.expression.TypeNameUtilTest.class);
+      suite.addTestSuite(org.eclipse.xtend.expression.JavaExtensionInvocationTest.class);
       suite.addTestSuite(org.eclipse.xtend.ExtensionAnalyzationTest.class);
       suite.addTestSuite(org.eclipse.xtend.ExtensionEvaluationTest.class);
       suite.addTestSuite(org.eclipse.xtend.JavaExtensionTypeConversionTest.class);

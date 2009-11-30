@@ -100,7 +100,7 @@ final class ProjectAnalyzer extends Job {
 		// do not build referencing projects. the EmfToolsPlugin will take care
 		// of this
 		if (Activator.getExtXptModelManager().findProject(project.getProject()) != null) {
-			new BuildJob(project.getProject()).schedule();
+			new BuildJob(project.getProject(), null).schedule();
 		}
 
 		return Status.OK_STATUS;

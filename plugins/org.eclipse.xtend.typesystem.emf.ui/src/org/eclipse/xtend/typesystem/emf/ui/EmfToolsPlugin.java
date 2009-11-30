@@ -28,6 +28,7 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EPackage;
@@ -210,18 +211,16 @@ public class EmfToolsPlugin extends AbstractUIPlugin {
 		if (projectAnalyzer == null)
 			return new EPackage[0];
 		// wait if analyzation is currently executed
-		while (projectAnalyzer.getState() == Job.RUNNING || projectAnalyzer.getState() == Job.WAITING) {
-			try {
-				Thread.sleep(500l);
-				if (EmfToolsPlugin.trace) {
-					System.out.println("Waiting 500ms for ProjectAnalyzer of project " + project.getProject().getName()
-							+ " to finish.");
-				}
-			}
-			catch (final InterruptedException e) {
-				EmfToolsLog.logError(e);
-			}
+		try {
+			Job.getJobManager().join(BuildJob.FAMILY, new NullProgressMonitor());
 		}
+		catch (OperationCanceledException e) {
+			EmfToolsLog.logError(e);
+		}
+		catch (InterruptedException e) {
+			EmfToolsLog.logError(e);
+		}
+
 		final Map<String, EPackage> packages = new HashMap<String, EPackage>(projectAnalyzer.getNamedEPackageMap());
 		try {
 			for (final IProject p : project.getProject().getReferencedProjects()) {

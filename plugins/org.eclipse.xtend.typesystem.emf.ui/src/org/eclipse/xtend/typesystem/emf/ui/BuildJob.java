@@ -17,15 +17,21 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandBuilder;
 
 public class BuildJob extends Job {
+	public static final String FAMILY = "Xtend/Xpand Build";
 	private final IProject project;
 
 	public BuildJob(final IProject project) {
+		this(project, ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
+	}
+	
+	public BuildJob(final IProject project, final ISchedulingRule rule) {
 		super(Messages.BuildJob_JobName + project.getName());
-		setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
+		setRule(rule);
 		this.project = project;
 	}
 
@@ -45,5 +51,9 @@ public class BuildJob extends Job {
 			}
 		}
 		return Status.OK_STATUS;
+	}
+	
+	public static String getFamily() {
+		return FAMILY;
 	}
 }

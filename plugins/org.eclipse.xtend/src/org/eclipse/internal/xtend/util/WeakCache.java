@@ -20,10 +20,11 @@ public abstract class WeakCache<K, V> {
 	private final WeakHashMap<K, V> internal = new WeakHashMap<K, V>();
 
 	public V get(final K key) {
-		if (internal.containsKey(key))
-			return internal.get(key);
-		final V r = createNew(key);
-		internal.put(key, r);
+		V r = internal.get(key);
+		if (r == null) {
+			r = createNew(key);
+			internal.put(key, r);
+		}
 		return r;
 	}
 

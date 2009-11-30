@@ -59,7 +59,7 @@ import org.eclipse.xtend.typesystem.Type;
  */
 public class XpandExecutionContextImpl extends ExecutionContextImpl implements XpandExecutionContext {
 
-    private final Log log = LogFactory.getLog(getClass());
+    private static final Log log = LogFactory.getLog(XpandExecutionContextImpl.class);
 
     protected final Output output;
     

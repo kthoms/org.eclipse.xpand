@@ -281,7 +281,7 @@ public final class XpandBackendFacade {
         final XpandExecutionContextImpl ctx = new XpandExecutionContextImpl (output, null);
         for (MetaModel mm: mms)
             ctx.registerMetaModel (mm);
-        ctx.setFileEncoding (fileEncoding);
+        ctx.getResourceManager().setFileEncoding (fileEncoding);
 
         return ctx;
     }

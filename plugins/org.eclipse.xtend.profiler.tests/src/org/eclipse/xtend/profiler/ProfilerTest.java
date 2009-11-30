@@ -140,7 +140,7 @@ public class ProfilerTest extends TestCase implements VetoStrategy {
 		assertNotNull(modelPackage);
 		MetaModel mm = new EmfMetaModel(modelPackage);
 		result.registerMetaModel(mm);
-		result.setFileEncoding(FORCED_ENCODING);
+		result.getResourceManager().setFileEncoding(FORCED_ENCODING);
 		return result;
 	}
 

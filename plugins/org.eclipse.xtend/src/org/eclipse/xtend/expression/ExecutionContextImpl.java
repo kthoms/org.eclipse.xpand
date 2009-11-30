@@ -120,7 +120,9 @@ public class ExecutionContextImpl implements ExecutionContext {
 		this.resourceManager = resourceManager;
 		this.currentResource = resource;
 		this.typeSystem = typeSystem;
-		this.variables.putAll(variables);
+		if (variables != null) {
+			this.variables.putAll(variables);
+		}
 		if (globalVars != null) {
 			this.globalVars.putAll(globalVars);
 		}
@@ -236,6 +238,10 @@ public class ExecutionContextImpl implements ExecutionContext {
 				extensionsForNameAndTypesCache, extensionsReturnTypeCache);
 	}
 
+	/**
+	 * @deprecated Use getResourceManager().setFileEncoding() instead
+	 */
+	@Deprecated
 	public void setFileEncoding(final String encoding) {
 		if (resourceManager != null) {
 			resourceManager.setFileEncoding(encoding);

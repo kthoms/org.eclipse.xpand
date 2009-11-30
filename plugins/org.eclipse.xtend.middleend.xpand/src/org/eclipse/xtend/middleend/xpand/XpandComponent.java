@@ -164,7 +164,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         XpandExecutionContextImpl executionContext = new XpandExecutionContextImpl (getOutput(), null, getGlobalVars (wfContext), null, getNullEvaluationHandler());
         
         if (_fileEncoding != null) 
-            executionContext.setFileEncoding (_fileEncoding);
+            executionContext.getResourceManager().setFileEncoding (_fileEncoding);
         
         final String code = XpandTokens.LT + "EXPAND " + _expand + XpandTokens.RT;
         final String filename = new String( _expand.substring(0, _expand.lastIndexOf(XpandUtil.NS_DELIM)));

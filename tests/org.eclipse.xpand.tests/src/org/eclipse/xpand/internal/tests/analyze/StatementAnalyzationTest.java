@@ -38,7 +38,7 @@ public class StatementAnalyzationTest extends TestCase {
         execCtx.registerMetaModel(new JavaMetaModel("JavaBeans", new JavaBeansStrategy()));
 
         // ADDED encoding
-        execCtx.setFileEncoding("ISO-8859-1");
+        execCtx.getResourceManager().setFileEncoding("ISO-8859-1");
     }
 
     public final void testAnalyzation() {

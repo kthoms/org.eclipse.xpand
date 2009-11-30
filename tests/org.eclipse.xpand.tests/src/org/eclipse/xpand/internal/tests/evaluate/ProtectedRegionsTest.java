@@ -39,7 +39,7 @@ public class ProtectedRegionsTest extends TestCase {
 
         OutputStringImpl out = new OutputStringImpl();
         XpandExecutionContextImpl execCtx = new XpandExecutionContextImpl(out, prs);
-        execCtx.setFileEncoding("iso-8859-1");
+        execCtx.getResourceManager().setFileEncoding("iso-8859-1");
 
         XpandFacade.create(execCtx).evaluate(id, "nixAloa", new Object[0]);
         String[] result = out.buff.toString().trim().split(",");
@@ -48,7 +48,7 @@ public class ProtectedRegionsTest extends TestCase {
 
         out = new OutputStringImpl();
         execCtx = new XpandExecutionContextImpl (out, prs);
-        execCtx.setFileEncoding("iso-8859-1");
+        execCtx.getResourceManager().setFileEncoding("iso-8859-1");
         XpandFacade.create(execCtx).evaluate(id, "aloa", new Object[0]);
         result = out.buff.toString().trim().split(",");
         assertEquals("/*PROTECTED REGION ID(aloa) ENABLED START*/ECHT/*PROTECTED REGION END*/", result[0].trim());

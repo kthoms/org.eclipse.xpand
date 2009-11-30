@@ -51,7 +51,7 @@ public class StatementEvaluatorTest extends TestCase {
 	private XpandExecutionContextImpl createCtx(Output out) {
 		final XpandExecutionContextImpl result = new XpandExecutionContextImpl(
 				out, null);
-		result.setFileEncoding("iso-8859-1");
+		result.getResourceManager().setFileEncoding("iso-8859-1");
 		return result;
 	}
 

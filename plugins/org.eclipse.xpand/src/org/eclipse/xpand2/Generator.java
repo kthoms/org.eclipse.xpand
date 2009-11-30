@@ -39,6 +39,7 @@ import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
+import org.eclipse.xtend.expression.ResourceManager;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.MetaModel;
 
@@ -289,19 +290,17 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 			prs.setFileEncoding(fileEncoding);
 		}
 
-		XpandExecutionContextImpl executionContext = new XpandExecutionContextImpl(out, prs, getGlobalVars(ctx),
-				exceptionHandler, getNullEvaluationHandler());
-		if (monitor != null) {
-			executionContext.setMonitor(monitor);
-		}
-		executionContext.setResourceManager(getResourceManager());
-		if (callback != null) {
-			executionContext.setVetoableCallBack(callback);
-		}
-
-		if (fileEncoding != null) {
-			executionContext.setFileEncoding(fileEncoding);
-		}
+		ResourceManager resourceManager = getResourceManager();
+		
+		XpandExecutionContextImpl executionContext = new XpandExecutionContextImpl(
+				resourceManager, 
+				out, 
+				prs, 
+				getGlobalVars(ctx),
+				monitor,
+				exceptionHandler, 
+				getNullEvaluationHandler(),
+				callback);
 
 		for (final MetaModel mm : metaModels) {
 			executionContext.registerMetaModel(mm);
@@ -360,7 +359,7 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 		}
 	}
 
-	private final List<Outlet> outlets = new ArrayList<Outlet>();
+	private final List<Outlet> outlets = new ArrayList<Outlet>(2);
 
 	/**
 	 * Adds an outlet.

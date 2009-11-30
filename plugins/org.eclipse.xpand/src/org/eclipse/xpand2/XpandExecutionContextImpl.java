@@ -70,12 +70,50 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
     public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs) {
         this (output, prs, null, null, null);
     }
+    public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs, String fileEncoding) {
+        this (output, prs, null, null, null);
+        resourceManager.setFileEncoding(fileEncoding);
+    }
     
     public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs, Map<String, Variable> globalVars, ExceptionHandler exceptionHandler, NullEvaluationHandler nullEvaluationHandler) {
         this(new TypeSystemImpl(), output, prs, globalVars, exceptionHandler, nullEvaluationHandler);
     }
 
-    protected XpandExecutionContextImpl(final TypeSystemImpl ts, Output output, ProtectedRegionResolver prs, Map<String, Variable> globalVars, ExceptionHandler exceptionHandler, NullEvaluationHandler nullEvaluationHandler) {
+    public XpandExecutionContextImpl(
+    		ResourceManager resourceManager,
+    		Output output,
+    		ProtectedRegionResolver prs,
+    		Map<String, Variable> globalVars,
+    		ProgressMonitor monitor,
+    		ExceptionHandler exceptionHandler,
+    		NullEvaluationHandler nullEvaluationHandler,
+    		VetoableCallback callback) {
+        this(
+        	resourceManager,
+        	/*Resource*/ null,
+        	new TypeSystemImpl(),
+        	/*Map<String, Variable> vars*/ null,
+        	globalVars,
+        	output,
+        	prs,
+        	monitor,
+        	exceptionHandler,
+        	/*List<Around>*/ null,
+        	nullEvaluationHandler,
+        	/*Map<Resource, Set<Extension>> allExtensionsPerResource*/ null,
+        	callback,
+        	/*Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache*/ null,
+        	/*Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache*/ null
+        	);
+    }
+
+    protected XpandExecutionContextImpl(
+		    final TypeSystemImpl ts,
+		    Output output,
+		    ProtectedRegionResolver prs,
+		    Map<String, Variable> globalVars,
+		    ExceptionHandler exceptionHandler,
+		    NullEvaluationHandler nullEvaluationHandler) {
     	super(ts, globalVars);
         registerMetaModel(new XpandTypesMetaModel(this));
         registerParser(resourceManager);
@@ -85,26 +123,50 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
         this.nullEvaluationHandler = nullEvaluationHandler;
     }
 
-	private void registerParser(ResourceManager resourceManager) {
+    protected XpandExecutionContextImpl (
+    		ResourceManager resourceManager, 
+    		Resource currentResource, 
+    		TypeSystemImpl typeSystem, 
+    		Map<String, Variable> vars, 
+            Map<String, Variable> globalVars, 
+            Output output, 
+            ProtectedRegionResolver protectedRegionResolver, 
+            ProgressMonitor monitor, 
+            ExceptionHandler exceptionHandler,
+            List<Around> advices,
+            NullEvaluationHandler nullEvaluationHandler,
+            Map<Resource, Set<Extension>> allExtensionsPerResource,
+            VetoableCallback callback, 
+            Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache,
+            Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
+        super (
+        	resourceManager, 
+        	currentResource, 
+        	typeSystem, 
+        	vars, 
+        	globalVars,
+        	monitor,
+        	exceptionHandler,
+        	advices,
+        	nullEvaluationHandler,
+        	allExtensionsPerResource,
+        	callback,
+        	extensionsForNameAndTypesCache,
+        	extensionsReturnTypeCache);
+        registerMetaModel(new XpandTypesMetaModel(this));
+        registerParser(resourceManager);
+        this.output = output;
+        this.protectedRegionResolver = protectedRegionResolver;
+        this.exceptionHandler = exceptionHandler;
+    }
+
+    private void registerParser(ResourceManager resourceManager) {
 		resourceManager.registerParser(XpandUtil.TEMPLATE_EXTENSION, new ResourceParser() {
 
 			public Resource parse(Reader in, String fileName) {
 				return XpandParseFacade.file(in, fileName);
 			}});
 	}
-
-    
-    protected XpandExecutionContextImpl (ResourceManager resourceManager, Resource currentResource, TypeSystemImpl typeSystem, Map<String, Variable> vars, 
-            Map<String, Variable> globalVars, Output output, ProtectedRegionResolver protectedRegionResolver, ProgressMonitor monitor, ExceptionHandler exceptionHandler,List<Around> advices, NullEvaluationHandler nullEvaluationHandler, Map<Resource, Set<Extension>> allExtensionsPerResource, VetoableCallback callback, 
-            Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache, Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
-        super (resourceManager, currentResource, typeSystem, vars, globalVars, monitor, exceptionHandler,advices, nullEvaluationHandler,allExtensionsPerResource, callback,extensionsForNameAndTypesCache, extensionsReturnTypeCache);
-        registerMetaModel(new XpandTypesMetaModel(this));
-        this.output = output;
-        this.protectedRegionResolver = protectedRegionResolver;
-        this.exceptionHandler = exceptionHandler;
-    }
-
-    
 
     @Override
     public ExecutionContextImpl cloneContext() {
@@ -291,13 +353,11 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
 
     }
 
-    @Override
-    public void setFileEncoding(final String fileEncoding) {
-        resourceManager.setFileEncoding(fileEncoding); //TODO: make this immutable - the entire context should be immutable!
-    }
-
+    /**
+     * @deprecated Context must be immutable, use the existing constructors
+     */
+    @Deprecated
 	public void setResourceManager(ResourceManager resourceManager) {
-		registerParser(resourceManager);
-		this.resourceManager = resourceManager;
+        throw new UnsupportedOperationException("Context must be immutable, use the existing constructors");
 	}
 }

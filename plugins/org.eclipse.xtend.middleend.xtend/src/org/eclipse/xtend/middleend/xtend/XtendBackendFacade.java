@@ -149,7 +149,7 @@ public final class XtendBackendFacade {
         fileEncoding = OldHelper.normalizedFileEncoding (fileEncoding);
 
         final ExecutionContextImpl ctx = new ExecutionContextImpl ();
-        ctx.setFileEncoding (fileEncoding);
+        ctx.getResourceManager().setFileEncoding (fileEncoding);
         for (MetaModel mm: mms)
             ctx.registerMetaModel (mm);
         

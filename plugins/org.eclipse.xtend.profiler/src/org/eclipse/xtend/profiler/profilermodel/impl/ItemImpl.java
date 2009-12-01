@@ -218,6 +218,7 @@ public class ItemImpl extends CallableImpl implements Item {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	public long getChildTime() {
 		long result = 0;
 		for (CallGroup sub : getSubroutines()) {

@@ -26,7 +26,7 @@ import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
 
-public class JdtTypeImpl extends AbstractTypeImpl implements Type {
+public class JdtTypeImpl extends AbstractTypeImpl {
 	private IType type;
 
 	private Set<Type> superTypes = null;

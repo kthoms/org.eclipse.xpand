@@ -12,10 +12,9 @@
 package org.eclipse.xtend.shared.ui.core.metamodel.jdt;
 
 import org.eclipse.internal.xtend.type.baseimpl.OperationImpl;
-import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.Type;
 
-public class JdtOperationImpl extends OperationImpl implements Operation {
+public class JdtOperationImpl extends OperationImpl {
 
     public JdtOperationImpl(final Type owner, final String name, final Type type, final Type[] parameterTypes) {
         super(owner, name, type, parameterTypes);

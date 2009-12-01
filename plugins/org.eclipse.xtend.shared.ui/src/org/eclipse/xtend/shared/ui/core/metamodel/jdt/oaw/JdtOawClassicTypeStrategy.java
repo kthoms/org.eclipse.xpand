@@ -56,7 +56,7 @@ public class JdtOawClassicTypeStrategy implements JdtTypeStrategy {
     };
 
     public boolean isAssignable(final IType toAssigTo, final IType assignable) {
-        return ((ITypeHierarchy) cache.get(assignable)).contains(toAssigTo);
+        return (cache.get(assignable)).contains(toAssigTo);
     }
 
     public boolean isGetter(final IMethod method) {

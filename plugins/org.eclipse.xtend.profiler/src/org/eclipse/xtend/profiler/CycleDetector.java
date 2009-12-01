@@ -42,7 +42,7 @@ public class CycleDetector {
 		setLowLink(item, getIndex(item));
 		stack.add(0, item);
 		for (CallGroup group : item.getSubroutines()) {
-			Item sub = (Item)group.getSubroutine();
+			Item sub = group.getSubroutine();
 			if (!hasBeenVisited(sub)) {
 				tarjan(sub);
 				setLowLinkIfSmaller(item, getLowLink(sub));

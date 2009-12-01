@@ -251,6 +251,7 @@ public abstract class AbstractExtXptContentOutlinePage extends
 		private ViewerComparator fSourcePositonComparator = new ViewerComparator() {
 			// this "sorter" has the role not to sort anything, so outline
 			// elements are displayed in the order they appear
+			@Override
 			public int compare(Viewer viewer, Object e1, Object e2) {
 				return 0;
 			}
@@ -274,6 +275,7 @@ public abstract class AbstractExtXptContentOutlinePage extends
 		}
 
 		// if the action is triggered
+		@Override
 		public void run() {
 			valueChanged(isChecked(), true);
 		}

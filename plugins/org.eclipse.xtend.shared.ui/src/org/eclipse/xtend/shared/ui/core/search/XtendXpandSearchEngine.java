@@ -81,7 +81,7 @@ public class XtendXpandSearchEngine {
 						}
 					}
 				}
-				;
+				
 			}
 
 			// there is no visitor api or something similar so far, so we have
@@ -162,7 +162,7 @@ public class XtendXpandSearchEngine {
 						}
 					}
 				}
-				;
+				
 			}
 			if (res.getExtXptResource() instanceof Template) {
 				Template tpl = (Template) res.getExtXptResource();
@@ -175,7 +175,7 @@ public class XtendXpandSearchEngine {
 						}
 					}
 				}
-				;
+				
 			}
 		}
 		try {

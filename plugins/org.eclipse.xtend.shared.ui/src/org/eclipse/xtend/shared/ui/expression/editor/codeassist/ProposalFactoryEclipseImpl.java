@@ -13,7 +13,6 @@ package org.eclipse.xtend.shared.ui.expression.editor.codeassist;
 import java.util.List;
 
 import org.eclipse.internal.xtend.expression.codeassist.AbstractProposalFactory;
-import org.eclipse.internal.xtend.expression.codeassist.ProposalFactory;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.swt.graphics.Image;

@@ -32,6 +32,8 @@ import org.eclipse.jdt.internal.core.ExternalPackageFragmentRoot;
 import org.eclipse.jdt.internal.core.JarPackageFragmentRoot;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
+@SuppressWarnings("restriction")
+// Discouraged access: ExternalPackageFragmentRoot, JarPackageFragmentRoot
 public class JDTUtil {
 
 	private static final Pattern patternNamespace = Pattern.compile("::");
@@ -48,7 +50,6 @@ public class JDTUtil {
 	 *            - file extension (i.e. 'ext')
 	 * @return
 	 */
-	@SuppressWarnings("restriction")
 	public static IStorage findStorage(IJavaProject project, ResourceID id,
 			boolean searchJars) {
 		IPath p = path(id);
@@ -92,7 +93,6 @@ public class JDTUtil {
 		return null;
 	}
 
-	@SuppressWarnings("restriction")
 	public static IStorage loadFromJar(ResourceID id, IPackageFragmentRoot root)
 			throws JavaModelException {
 		if (root instanceof JarPackageFragmentRoot) {
@@ -105,7 +105,7 @@ public class JDTUtil {
 				return null;
 			}
 			ZipEntry entry = zipFile.getEntry(id.toFileName());
-			if (entry != null && zipFile != null) {
+			if (entry != null) {
 				return new ZipEntryStorage(zipFile, entry);
 			}
 		}

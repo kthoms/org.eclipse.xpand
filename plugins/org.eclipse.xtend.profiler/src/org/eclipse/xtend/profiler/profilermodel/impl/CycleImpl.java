@@ -141,6 +141,7 @@ public class CycleImpl extends CallableImpl implements Cycle {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public String getName() {
 		int index = ((ProfilingResult)eContainer()).getCycles().indexOf(this) + 1;
 		return "cycle " + index;
@@ -151,7 +152,7 @@ public class CycleImpl extends CallableImpl implements Cycle {
 		long result = 0;
 		for (Item i : getItems()) {
 			result += i.getSelfTime() + i.getOutboundChildTime();
-		};
+		}
 		return result;
 	}
 	
@@ -181,7 +182,7 @@ public class CycleImpl extends CallableImpl implements Cycle {
 		for(CallGroup sub : getOutgoingCallGroups())
 			result += sub.getTime();
 		return result;
-	};
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

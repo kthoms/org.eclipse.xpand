@@ -12,10 +12,9 @@
 package org.eclipse.xtend.shared.ui.core.metamodel.jdt;
 
 import org.eclipse.internal.xtend.type.baseimpl.PropertyImpl;
-import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.Type;
 
-public class JdtPropertyImpl extends PropertyImpl implements Property {
+public class JdtPropertyImpl extends PropertyImpl {
 
     public JdtPropertyImpl(final Type owner, final String name, final Type returnType) {
         super(owner, name, returnType);

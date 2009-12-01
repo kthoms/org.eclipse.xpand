@@ -59,7 +59,7 @@ public class XtendXpandModelManager implements IModelManager {
         final IJavaProject ele = JavaCore.create(res.getProject());
         try {
             if (ele != null && res.getProject().isAccessible() && res.getProject().isNatureEnabled(XtendXpandNature.NATURE_ID))
-                return (IXtendXpandProject) projects.get(ele);
+                return projects.get(ele);
         } catch (final CoreException e) {
             XtendLog.logError(e);
         }

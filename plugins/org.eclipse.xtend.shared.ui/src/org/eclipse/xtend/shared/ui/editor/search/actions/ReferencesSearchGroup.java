@@ -20,7 +20,6 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.search.ui.IContextMenuConstants;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchSite;

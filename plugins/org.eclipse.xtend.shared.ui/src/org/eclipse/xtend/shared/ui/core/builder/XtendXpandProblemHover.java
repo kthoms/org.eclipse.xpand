@@ -98,7 +98,7 @@ public class XtendXpandProblemHover implements IAnnotationHover, ITextHover {
 				splitInfo("- " + e.next() + "\n");
 			}
 		} else if (messages.size() == 1)
-			splitInfo((String) messages.get(0));
+			splitInfo(messages.get(0));
 		return buffer.toString();
 	}
 

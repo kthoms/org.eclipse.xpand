@@ -67,5 +67,5 @@ public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecuti
 
 		public void registerParser(final String template_extension, final ResourceParser parser) {
 		}
-	};
+	}
 }

@@ -21,7 +21,7 @@ public class AnalysationIssue {
 
 	private enum AnalysationIssueSeverity {
 		WARNING, ERROR
-	};
+	}
 
 	public final static class AnalysationIssueType {
 		String name;

@@ -15,7 +15,7 @@ public abstract class AbstractExpressionVisitor extends AbstractVisitor {
 	@Override
 	public final Object visit(final ISyntaxElement ele) {
 		Object result = null;
-		if (result == null && ele instanceof BooleanOperation) {
+		if (ele instanceof BooleanOperation) {
 			result = visitBooleanOperation((BooleanOperation) ele);
 		}
 		if (result == null && ele instanceof Cast) {

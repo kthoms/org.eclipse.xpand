@@ -266,7 +266,7 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 	}
 
 	protected void invokeInternal2(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
-	};
+	}
 
 	protected boolean exceptionsOnNullEvaluation = false;
 

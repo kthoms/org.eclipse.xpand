@@ -76,7 +76,7 @@ public abstract class AbstractTypeImpl implements Type {
 
         @Override
         protected Property createNew(String name) {
-            return PolymorphicResolver.getProperty(getAllFeatures(), (String) name, AbstractTypeImpl.this);
+            return PolymorphicResolver.getProperty(getAllFeatures(), name, AbstractTypeImpl.this);
         }
     };
 
@@ -108,12 +108,12 @@ public abstract class AbstractTypeImpl implements Type {
         @Override
         protected Operation createNew(Pair<String,List<Type>> arg0) {
             return PolymorphicResolver.getOperation(getAllFeatures(), arg0.getFirst(),
-                    AbstractTypeImpl.this, (List<? extends Type>) arg0.getSecond());
+                    AbstractTypeImpl.this, arg0.getSecond());
         }
     };
 
 	public Operation getOperation(final String name, final Type[] parameterTypes) {
-        return (Operation) operationsCache.get(new Pair<String,List<Type>>(name, Arrays.asList(parameterTypes != null ? parameterTypes
+        return operationsCache.get(new Pair<String,List<Type>>(name, Arrays.asList(parameterTypes != null ? parameterTypes
                 : new Type[0])));
     }
 

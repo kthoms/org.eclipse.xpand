@@ -14,6 +14,6 @@ package org.eclipse.xtend.expression;
  * @since 0.8.0-M4
  */
 public interface IExecutionContextAware {
+	
 	void setExecutionContext (ExecutionContext ctx);
-	ExecutionContext getExecutionContext ();
 }

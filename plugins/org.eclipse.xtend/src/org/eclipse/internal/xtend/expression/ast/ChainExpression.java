@@ -39,7 +39,8 @@ public class ChainExpression extends Expression {
         return getNext().evaluate(ctx);
     }
 
-    public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         getFirst().analyze(ctx, issues);
         return getNext()!=null ? getNext().analyze(ctx, issues) : null;
     }

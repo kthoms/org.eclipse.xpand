@@ -189,7 +189,7 @@ public class ExpressionFactory {
 		if (l == null)
 			return new ArrayList<T>();
 		for (Iterator<T> iter = l.iterator(); iter.hasNext();) {
-			Object x = (Object) iter.next();
+			Object x = iter.next();
 			if (x==null)
 				iter.remove();
 		}

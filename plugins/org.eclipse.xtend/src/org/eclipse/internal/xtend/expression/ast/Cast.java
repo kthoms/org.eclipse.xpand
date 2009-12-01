@@ -48,7 +48,8 @@ public class Cast extends Expression {
         return getTarget().evaluate(ctx);
     }
 
-    public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         final Type t = getTarget().analyze(ctx, issues);
 
         final Type toCast = findType(getType(), ctx, issues);

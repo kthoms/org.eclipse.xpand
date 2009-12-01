@@ -26,13 +26,13 @@ public class TraceStore {
 	public void add(TraceElement t) {
 		traces.add(t);
 		for (Iterator iter = t.getSources().iterator(); iter.hasNext();) {
-			Object source = (Object) iter.next();
+			Object source = iter.next();
 			tracesBySource.add( source , t);
 		}
 		if ( t instanceof M2MTraceElement ) {
 			M2MTraceElement m2m = (M2MTraceElement)t;
 			for (Iterator iter = m2m.getTargets().iterator(); iter.hasNext();) {
-				Object target = (Object) iter.next();
+				Object target = iter.next();
 				tracesByTarget.add( target , t);
 			}
 		}

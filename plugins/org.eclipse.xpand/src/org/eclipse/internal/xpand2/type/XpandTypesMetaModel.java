@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.internal.xpand2.type;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -73,7 +72,7 @@ public class XpandTypesMetaModel implements MetaModel {
 	 * @see org.eclipse.xtend.typesystem.MetaModel#getKnownTypes()
 	 */
 	public Set<? extends Type> getKnownTypes() {
-		return Collections.unmodifiableSet((Set<? extends Type>) types.values());
+		return new HashSet<AbstractTypeImpl>(types.values());
 	}
 
 	/**

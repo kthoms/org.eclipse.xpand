@@ -32,7 +32,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Arno Haase
  */
 @SuppressWarnings("unchecked")
-public class StringTypeImpl extends BuiltinBaseType implements Type {
+public class StringTypeImpl extends BuiltinBaseType {
 	final Log log = LogFactory.getLog(getClass());
 
 	public StringTypeImpl(final TypeSystem ts, final String name) {

@@ -27,7 +27,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Arno Haase
  * @author Heiko Behrens
  */
-public final class IntegerTypeImpl extends BuiltinBaseType implements Type {
+public final class IntegerTypeImpl extends BuiltinBaseType {
 
     public IntegerTypeImpl(final TypeSystem ts, final String name) {
         super(ts, name);

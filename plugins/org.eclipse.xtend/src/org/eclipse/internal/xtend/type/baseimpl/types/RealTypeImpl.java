@@ -24,7 +24,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
  */
-public class RealTypeImpl extends BuiltinBaseType implements Type {
+public class RealTypeImpl extends BuiltinBaseType {
 
     public RealTypeImpl(final TypeSystem ts, final String name) {
         super(ts, name);

@@ -26,7 +26,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Arno Haase
  */
 @SuppressWarnings("unchecked")
-public class ObjectTypeImpl extends BuiltinBaseType implements Type {
+public class ObjectTypeImpl extends BuiltinBaseType {
 
     public ObjectTypeImpl(final TypeSystem ts, final String name) {
         super(ts, name);
@@ -126,7 +126,7 @@ public class ObjectTypeImpl extends BuiltinBaseType implements Type {
                             final String s1 = (String) op.evaluate(target, null);
                             op = ts.findOperation("toString", params[0], null);
                             final String s2 = (String) op.evaluate(params[0], null);
-                            ;
+                            
                             return new Long(s1.compareTo(s2));
                         }
                     }

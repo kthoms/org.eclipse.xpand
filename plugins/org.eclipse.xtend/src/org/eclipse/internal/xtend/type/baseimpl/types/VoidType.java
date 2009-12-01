@@ -23,7 +23,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
  */
-public class VoidType extends AbstractTypeImpl implements Type {
+public class VoidType extends AbstractTypeImpl {
 
     public VoidType(final TypeSystem ts, final String name) {
         super(ts, name);

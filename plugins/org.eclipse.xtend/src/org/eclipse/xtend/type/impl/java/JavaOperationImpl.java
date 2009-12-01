@@ -15,14 +15,13 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import org.eclipse.internal.xtend.type.baseimpl.OperationImpl;
-import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
  * @author Sven Efftinge
  * @author Arno Haase
  */
-public class JavaOperationImpl extends OperationImpl implements Operation {
+public class JavaOperationImpl extends OperationImpl {
 
     private Method method;
 

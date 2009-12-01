@@ -15,14 +15,13 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import org.eclipse.internal.xtend.type.baseimpl.PropertyImpl;
-import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
  * @author Sven Efftinge
  * @author Arno Haase
  */
-public class JavaPropertyImpl extends PropertyImpl implements Property {
+public class JavaPropertyImpl extends PropertyImpl {
 
     private Method readMethod;
 

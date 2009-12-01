@@ -26,7 +26,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Arno Haase
  */
-public class ListTypeImpl extends CollectionTypeImpl implements Type {
+public class ListTypeImpl extends CollectionTypeImpl {
 
 	public ListTypeImpl(final Type innerType, final TypeSystem ts, final String name) {
 		super(innerType, ts, name);

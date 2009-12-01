@@ -21,7 +21,7 @@ import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.Type;
 
-public final class OperationTypeImpl extends FeatureTypeImpl implements Type {
+public final class OperationTypeImpl extends FeatureTypeImpl {
 
     public OperationTypeImpl(final TypeSystem ts, final String name) {
         super(ts, name);

@@ -19,7 +19,7 @@ import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
 
-public final class BooleanTypeImpl extends BuiltinBaseType implements Type {
+public final class BooleanTypeImpl extends BuiltinBaseType {
 	public BooleanTypeImpl(final TypeSystem ts, final String name) {
 		super(ts, name);
 	}

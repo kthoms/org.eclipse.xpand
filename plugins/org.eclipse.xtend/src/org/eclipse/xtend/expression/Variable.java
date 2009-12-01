@@ -71,7 +71,8 @@ public class Variable {
         return true;
     }
 
-    public String toString () {
+    @Override
+	public String toString () {
         return "Variable [" + name + "="+ value + "]";
     }
 }

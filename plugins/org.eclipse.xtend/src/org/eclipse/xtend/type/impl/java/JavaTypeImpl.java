@@ -25,7 +25,7 @@ import org.eclipse.xtend.typesystem.Type;
  * @author Sven Efftinge
  * @author Arno Haase
  */
-public class JavaTypeImpl extends AbstractTypeImpl implements Type {
+public class JavaTypeImpl extends AbstractTypeImpl {
 
     private final static Log log = LogFactory.getLog(JavaTypeImpl.class);
 

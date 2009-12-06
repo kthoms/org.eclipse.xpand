@@ -19,11 +19,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.WeakHashMap;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
-import org.eclipse.internal.xtend.type.baseimpl.types.*;
-import org.eclipse.internal.xtend.util.Cache;
+import org.eclipse.internal.xtend.type.baseimpl.types.BooleanTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.FeatureTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.IntegerTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.ListTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.OperationTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.PropertyTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.RealTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.SetTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.StaticPropertyTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.StringTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.TypeTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.VoidType;
+import org.eclipse.internal.xtend.util.WeakCache;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.ParameterizedType;
@@ -296,11 +308,7 @@ public final class BuiltinMetaModel implements MetaModel {
 		return new SetTypeImpl(innerType, getTypeSystem(), BuiltinMetaModel.SET);
 	}
 
-	private final Cache<Object, Type> typeCache = new Cache<Object, Type>() {
-		{
-			this.internal = new WeakHashMap<Object, Type>();
-		}
-
+	private final WeakCache<Object, Type> typeCache = new WeakCache<Object, Type>() {
 		@SuppressWarnings("unchecked")
 		@Override
 		protected Type createNew(Object obj) {

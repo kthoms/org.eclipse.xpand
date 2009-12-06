@@ -80,14 +80,16 @@
    <includes
          id="org.eclipse.xpand.examples"
          version="0.0.0"/>
- <includes
+
+   <includes
          id="org.eclipse.xpand.examples.source"
          version="0.0.0"/>
 
    <includes
          id="org.eclipse.xpand.incremental"
          version="0.0.0"/>
- <includes
+
+   <includes
          id="org.eclipse.xpand.incremental.source"
          version="0.0.0"/>
 
@@ -97,6 +99,13 @@
 
    <plugin
          id="org.eclipse.xtend.util.stdlib"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xpand.support.cdt"
          download-size="0"
          install-size="0"
          version="0.0.0"

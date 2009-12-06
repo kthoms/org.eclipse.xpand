@@ -68,7 +68,8 @@ public class IfExpression extends Expression {
         }
     }
 
-    public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         final Type conditionType = getCondition().analyze(ctx, issues);
         if (conditionType != null && !conditionType.equals(ctx.getBooleanType())) {
             issues.add(new AnalysationIssue(AnalysationIssue.INCOMPATIBLE_TYPES, "Boolean expected", getCondition()));

@@ -57,7 +57,8 @@ public class LetExpression extends Expression {
         return targetExpression.evaluate(ctx);
     }
 
-    public Type analyzeInternal(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public Type analyzeInternal(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         final Type t = varExpression.analyze(ctx, issues);
         if (t == null)
             return null;

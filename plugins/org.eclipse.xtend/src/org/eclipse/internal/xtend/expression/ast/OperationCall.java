@@ -151,7 +151,7 @@ public class OperationCall extends FeatureCall {
 			return result;
 		}
 
-		if (targetObj != null && f == null && op == null)
+		if (targetObj != null ) /* f and obj can only be null here */
 			throw new EvaluationException("Couldn't find operation '" + getName().getValue() + getParamTypes(evaluatedParams, ctx) + "' for "
 					+ ctx.getType(targetObj).getName() + ".", this, ctx);
 		return ctx.handleNullEvaluation(this);

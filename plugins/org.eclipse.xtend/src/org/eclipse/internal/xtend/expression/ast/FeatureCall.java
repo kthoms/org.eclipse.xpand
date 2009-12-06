@@ -211,7 +211,7 @@ public class FeatureCall extends Expression {
 			if (p != null)
 				return p.getReturnType();
 
-			if (p == null && targetType instanceof ParameterizedType) {
+			if (targetType instanceof ParameterizedType) {
 				final Type innerType = ((ParameterizedType) targetType)
 						.getInnerType();
 				p = innerType.getProperty(getName().getValue());
@@ -245,7 +245,7 @@ public class FeatureCall extends Expression {
 
 		issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND,
 				"Couldn't find property '" + getName().getValue()
-						+ "' for type '" + targetType.getName() + "'"
+						+ "' for type '" + (targetType!=null ? targetType.getName() : "UNKNOWN") + "'"
 						+ additionalMsg, this));
 		return null;
 

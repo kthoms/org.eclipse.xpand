@@ -41,7 +41,8 @@ public class XtendResourceImpl extends AbstractResource implements IXtendResourc
         return (XtendFile) getExtXptResource();
     }
 
-    public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
     	try {
     		resource().analyze(ctx, issues);
     	} catch (Exception e) {
@@ -65,6 +66,7 @@ public class XtendResourceImpl extends AbstractResource implements IXtendResourc
 		return parser.getFileExtension();
 	}
 
+	@Override
 	public boolean internalRefresh() {
 		Resource r = parser.parse(getUnderlyingStorage(),getFullyQualifiedName());
 		if (r==null) {
@@ -75,6 +77,11 @@ public class XtendResourceImpl extends AbstractResource implements IXtendResourc
 	}
 
 	public List<Around> getArounds() {
-		return Collections.EMPTY_LIST; // arounds are only used at runtime
+		return Collections.emptyList(); // arounds are only used at runtime
+	}
+	
+	@Override
+	public String toString() {
+		return getFullyQualifiedName();
 	}
 }

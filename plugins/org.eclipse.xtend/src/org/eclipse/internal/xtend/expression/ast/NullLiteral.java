@@ -32,7 +32,8 @@ public class NullLiteral extends Literal {
         return null;
     }
 
-    public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         return ctx.getVoidType();
     }
 

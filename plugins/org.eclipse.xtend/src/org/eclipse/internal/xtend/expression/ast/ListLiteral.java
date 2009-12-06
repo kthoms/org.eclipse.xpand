@@ -51,7 +51,8 @@ public class ListLiteral extends Expression {
         return col;
     }
 
-    public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public Type analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         Type t = null;
         for (int i = 0; i < elements.length; i++) {
             final Expression element = elements[i];

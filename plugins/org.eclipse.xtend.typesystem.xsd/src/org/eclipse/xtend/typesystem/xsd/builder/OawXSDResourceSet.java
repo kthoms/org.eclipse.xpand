@@ -84,7 +84,7 @@ public class OawXSDResourceSet extends ResourceSetImpl implements XSDManager {
 	public List<EPackage> getPackages() {
 		ArrayList<EPackage> l = new ArrayList<EPackage>();
 		for (Resource r : getResources())
-			if (r instanceof Resource) {
+			if (r instanceof OawXSDResource) {
 				OawXSDResource x = (OawXSDResource) r;
 				if (x.isEcorePackageGenerated())
 					l.add(x.getEPackage());

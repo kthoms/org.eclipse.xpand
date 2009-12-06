@@ -16,23 +16,22 @@ import java.util.Map;
 
 public abstract class DoubleKeyCache<K1, K2, V> {
 
-	protected abstract V createNew(K1 key1, K2 key2);
+    protected abstract V createNew(K1 key1, K2 key2);
 
-	private final Map<Pair<K1, K2>, V> internal = new HashMap<Pair<K1, K2>, V>();
+    private final Map <Pair <K1, K2>, V> internal = new HashMap <Pair <K1, K2>, V>();
 
-	public V get(K1 key1, K2 key2) {
-		final Pair<K1, K2> key = new Pair<K1, K2>(key1, key2);
+    public V get (K1 key1, K2 key2) {
+        final Pair<K1, K2> key = new Pair <K1, K2> (key1, key2);
+        
+        if (internal.containsKey (key))
+            return internal.get (key);
+        final V r = createNew (key1, key2);
+        internal.put(key, r);
+        return r;
+    }
 
-		V r = internal.get(key);
-		if (r == null) {
-			r = createNew(key1, key2);
-			internal.put(key, r);
-		}
-		return r;
-	}
-
-	public Collection<V> getValues() {
-		return internal.values();
-	}
+    public Collection<V> getValues() {
+        return internal.values();
+    }
 
 }

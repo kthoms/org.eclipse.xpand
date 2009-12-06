@@ -16,22 +16,22 @@ import java.util.Map;
 
 public abstract class TripleKeyCache<K1, K2, K3, V> {
 
-	protected abstract V createNew(K1 key1, K2 key2, K3 key3);
+    protected abstract V createNew(K1 key1, K2 key2, K3 key3);
 
-	private final Map<Triplet<K1, K2, K3>, V> internal = new HashMap<Triplet<K1, K2, K3>, V>();
+    private final Map <Triplet <K1, K2, K3>, V> internal = new HashMap <Triplet <K1, K2, K3>, V>();
 
-	public V get(K1 key1, K2 key2, K3 key3) {
-		final Triplet<K1, K2, K3> key = new Triplet<K1, K2, K3>(key1, key2, key3);
+    public V get (K1 key1, K2 key2, K3 key3) {
+        final Triplet <K1, K2, K3> key = new Triplet <K1, K2, K3> (key1, key2, key3);
+        
+        if (internal.containsKey (key))
+            return internal.get (key);
+        final V r = createNew (key1, key2, key3);
+        internal.put(key, r);
+        return r;
+    }
 
-		V r = internal.get(key);
-		if (r == null) {
-			r = createNew(key1, key2, key3);
-			internal.put(key, r);
-		}
-		return r;
-	}
-
-	public Collection<V> getValues() {
-		return internal.values();
-	}
+    public Collection<V> getValues() {
+        return internal.values();
+    }
 }
+

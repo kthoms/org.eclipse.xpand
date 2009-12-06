@@ -21,11 +21,10 @@ public abstract class Cache<K, V> {
 	protected Map<K, V> internal = new HashMap<K, V>();
 
 	public V get(final K key) {
-		V r = internal.get(key);
-		if (r == null) {
-			r = createNew(key);
-			internal.put(key, r);
-		}
+		if (internal.containsKey(key))
+			return internal.get(key);
+		final V r = createNew(key);
+		internal.put(key, r);
 		return r;
 	}
 

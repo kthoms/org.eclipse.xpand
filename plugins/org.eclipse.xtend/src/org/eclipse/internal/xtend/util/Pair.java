@@ -49,10 +49,12 @@ public class Pair<T1, T2> implements Serializable, Cloneable {
 		_second = second;
 	}
 
+	@Override
 	public String toString() {
 		return "Pair [" + _first + ", " + _second + "]";
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -69,6 +71,7 @@ public class Pair<T1, T2> implements Serializable, Cloneable {
 		return true;
 	}
 
+	@Override
 	public int hashCode() {
 		int result;
 		result = (_first != null ? _first.hashCode() : 0);
@@ -76,6 +79,7 @@ public class Pair<T1, T2> implements Serializable, Cloneable {
 		return result;
 	}
 
+	@Override
 	public Object clone() {
 		try {
 			return super.clone();

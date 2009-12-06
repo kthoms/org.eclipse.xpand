@@ -544,7 +544,7 @@ public class TestEnvironment {
 			markers = resource.findMarkers(IModelMarker.WARNING, true, IResource.DEPTH_INFINITE);
 			problems.addAll(Arrays.asList(markers));
 
-			return (IMarker[]) problems.toArray(new IMarker[problems.size()]);
+			return problems.toArray(new IMarker[problems.size()]);
 		}
 		catch (final CoreException e) {
 			// ignore
@@ -608,14 +608,14 @@ public class TestEnvironment {
 	 * Returns the core project.
 	 */
 	public IProject getProject(final String projectName) {
-		return (IProject) fProjects.get(projectName);
+		return fProjects.get(projectName);
 	}
 
 	/**
 	 * Returns the core project.
 	 */
 	public IProject getProject(final IPath projectPath) {
-		return (IProject) fProjects.get(projectPath.lastSegment());
+		return fProjects.get(projectPath.lastSegment());
 	}
 
 	/**
@@ -841,7 +841,7 @@ public class TestEnvironment {
 		}
 		final IProject project = getProject(projectPath);
 		try {
-			project.refreshLocal(IProject.DEPTH_INFINITE, new NullProgressMonitor());
+			project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 			project.delete(true, true, null);
 		}
 		catch (final CoreException ignore) {

@@ -31,7 +31,6 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.ExpressionFacade;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.typesystem.Callable;
-import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Property;
@@ -338,7 +337,7 @@ public class ExpressionProposalComputer implements ProposalComputer {
 					}
 				}
 			}
-			if (proposal != null && !factory.isDuplicate(nameCache, (Feature) f)) {
+			if (proposal != null && !factory.isDuplicate(nameCache, f)) {
 				factory.addToCache(nameCache, f);
 				result.add(proposal);
 			}
@@ -490,7 +489,8 @@ public class ExpressionProposalComputer implements ProposalComputer {
 			return false;
 		}
 
-    private final static boolean isOpposite(final CommonToken left, final CommonToken right) {
+    @SuppressWarnings("null")
+	private final static boolean isOpposite(final CommonToken left, final CommonToken right) {
         final String temp = blockTokens.get(left.getText());
         if (temp==null)
         	return false;

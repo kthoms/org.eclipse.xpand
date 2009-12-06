@@ -18,7 +18,7 @@ import org.eclipse.xtend.typesystem.Property;
 import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
 
-public class ProposalFactoryDefaultImpl extends AbstractProposalFactory implements ProposalFactory {
+public class ProposalFactoryDefaultImpl extends AbstractProposalFactory {
 
 	public Object createPropertyProposal(final Property p, final String prefix, final boolean onCollection) {
 		return new ProposalImpl(prefix, p.getName(), p.toString(), p);

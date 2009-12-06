@@ -119,7 +119,7 @@ public class ProfileMetaModel implements MetaModel {
 			return null;
 		}
 
-	};
+	}
 
 	private InternaleProfileMetaModel internalProfileMetaModel;
 

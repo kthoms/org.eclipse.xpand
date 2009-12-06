@@ -40,7 +40,7 @@ import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
-import org.eclipse.xtend.typesystem.emf.EmfMetaModel;
+import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
 public class StereotypeType extends AbstractTypeImpl {
 
@@ -121,7 +121,7 @@ public class StereotypeType extends AbstractTypeImpl {
 													final EList eList = (EList) value;
 													final Collection<Object> values = new ArrayList<Object>();
 													for (Iterator iterator = eList.iterator(); iterator.hasNext();) {
-														final Object dynObject = (Object) iterator.next();
+														final Object dynObject = iterator.next();
 														final Object dynValue = getDynamicValue(dynObject);
 														if(dynValue != null){
 															values.add(dynValue);
@@ -227,7 +227,7 @@ public class StereotypeType extends AbstractTypeImpl {
         if (object instanceof NamedElement) {
             return normalizedName(((NamedElement) object).getQualifiedName());
         } else if (object instanceof EClassifier) {
-            return EmfMetaModel.getFullyQualifiedName((EClassifier) object);
+            return EmfRegistryMetaModel.getFullyQualifiedName((EClassifier) object);
         }
         if (log.isWarnEnabled()) {
             log.warn("Cannot resolve names for " + object.getClass().getName());

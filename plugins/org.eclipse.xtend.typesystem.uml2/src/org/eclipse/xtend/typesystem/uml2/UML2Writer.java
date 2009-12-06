@@ -97,6 +97,7 @@ public class UML2Writer extends AbstractWorkflowComponent {
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	protected void invokeInternal(final WorkflowContext ctx,
 			final ProgressMonitor monitor, final Issues issues) {

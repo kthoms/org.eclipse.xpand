@@ -28,9 +28,10 @@ import java.util.Stack;
 public class ProfileCollector {
     private ProfileCollector () {}
     private static final ThreadLocal<ProfileCollector> _instance = new ThreadLocal<ProfileCollector>() {
-        protected ProfileCollector initialValue() {
+        @Override
+		protected ProfileCollector initialValue() {
             return new ProfileCollector();
-        };
+        }
     };
     
     private PrintWriter _out;

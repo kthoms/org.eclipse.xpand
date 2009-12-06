@@ -35,7 +35,8 @@ public class CheckResourceImpl extends AbstractResource {
         return (XtendFile) getExtXptResource();
     }
 
-    public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    @Override
+	public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
         try {
         	resource().analyze(ctx, issues);
         } catch (Exception e) {
@@ -47,6 +48,7 @@ public class CheckResourceImpl extends AbstractResource {
 		return parser.getFileExtension();
 	}
 
+	@Override
 	public boolean internalRefresh() {
 		Resource o = parser.parse(getUnderlyingStorage(),getFullyQualifiedName());
 		if (o==null)

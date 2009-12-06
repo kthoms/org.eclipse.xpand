@@ -72,7 +72,7 @@ public class ProfilingExtensions {
 	        }
 	        return (Element) r.getContents().get(0);
 		}
-	};
+	}
 	
 	/**
 	 * Applies a profile to a Model.

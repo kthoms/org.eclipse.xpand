@@ -57,10 +57,12 @@ public class Triplet<T1, T2, T3> implements Serializable, Cloneable {
 		_third = third;
 	}
 
+	@Override
 	public String toString() {
 		return "Triplet [" + _first + ", " + _second + ", " + _third + "]";
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
@@ -79,6 +81,7 @@ public class Triplet<T1, T2, T3> implements Serializable, Cloneable {
 		return true;
 	}
 
+	@Override
 	public int hashCode() {
 		int result;
 		result = (_first != null ? _first.hashCode() : 0);
@@ -87,6 +90,7 @@ public class Triplet<T1, T2, T3> implements Serializable, Cloneable {
 		return result;
 	}
 
+	@Override
 	public Object clone() {
 		try {
 			return super.clone();

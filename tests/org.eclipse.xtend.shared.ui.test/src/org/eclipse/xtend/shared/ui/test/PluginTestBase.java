@@ -21,11 +21,13 @@ import org.eclipse.core.runtime.IPath;
 public abstract class PluginTestBase  extends TestCase {
     protected TestEnvironment env;
 
-    public void setUp() throws Exception {
+    @Override
+	public void setUp() throws Exception {
         env = new TestEnvironment();
     }
 
-    public void tearDown() throws Exception {
+    @Override
+	public void tearDown() throws Exception {
         env.resetWorkspace();
     }
     

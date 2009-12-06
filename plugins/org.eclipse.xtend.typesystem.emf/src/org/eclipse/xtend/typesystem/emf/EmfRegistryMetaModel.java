@@ -211,14 +211,12 @@ public class EmfRegistryMetaModel implements MetaModel {
 				log.error(e, e);
 			}
 		}
-		if (!resourceSets.isEmpty()) {
-			for (ResourceSet rs : resourceSets) {
-				for (String name : rs.getPackageRegistry().keySet()) {
-					try {
-						packages.add(rs.getPackageRegistry().getEPackage(name));
-					} catch (Exception e) {
-						log.error(e, e);
-					}
+		for (ResourceSet rs : resourceSets) {
+			for (String name : rs.getPackageRegistry().keySet()) {
+				try {
+					packages.add(rs.getPackageRegistry().getEPackage(name));
+				} catch (Exception e) {
+					log.error(e, e);
 				}
 			}
 		}
@@ -291,25 +289,30 @@ public class EmfRegistryMetaModel implements MetaModel {
 		return null;
 	}
 
+	private Set<Type> knownTypes = null;
 	public Set<Type> getKnownTypes() {
-		final Set<Type> result = new HashSet<Type>();
-		result.add(eobjectType);
-		for (EPackage pack : allPackages()) {
-			for (final Iterator<EObject> iter = pack.eAllContents(); iter.hasNext();) {
-				final Object obj = iter.next();
-				if (obj instanceof EClassifier) {
-					try {
-						Type t = getTypeForEClassifier((EClassifier) obj);
-						if (t != null)
-							result.add(t);
-					} catch (RuntimeException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+		if (knownTypes == null) {
+			final Set<Type> result = new HashSet<Type>();
+			result.add(eobjectType);
+			for (EPackage pack : allPackages()) {
+				for (final Iterator<EObject> iter = pack.eAllContents(); iter.hasNext();) {
+					final Object obj = iter.next();
+					if (obj instanceof EClassifier) {
+						try {
+							Type t = getTypeForEClassifier((EClassifier) obj);
+							if (t != null)
+								result.add(t);
+						} catch (RuntimeException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}
+			knownTypes = result;
+			return result;
 		}
-		return result;
+		return knownTypes;
 	}
 
 	public Type getTypeForEClassifier(final EClassifier element) {

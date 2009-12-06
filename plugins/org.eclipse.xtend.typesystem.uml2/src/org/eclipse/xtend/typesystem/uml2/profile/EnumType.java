@@ -22,13 +22,12 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
-import org.eclipse.xtend.typesystem.Type;
 
 /**
  * Represents an enumeration within a profile.
  * @since 4.1
  */
-public class EnumType extends AbstractTypeImpl implements Type {
+public class EnumType extends AbstractTypeImpl {
 	/** The Enumeration represented by this. */
     private Enumeration enumeration;
 

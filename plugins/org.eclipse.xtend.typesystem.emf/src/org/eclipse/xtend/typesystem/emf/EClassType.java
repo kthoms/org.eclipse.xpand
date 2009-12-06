@@ -90,7 +90,7 @@ public class EClassType extends AbstractTypeImpl {
 			final Type[] paramTypes = new Type[emfParams.size()];
 			boolean errors = false;
 			for (int i = 0, x = emfParams.size(); i < x; i++) {
-				final EParameter param = (EParameter) emfParams.get(i);
+				final EParameter param = emfParams.get(i);
 				paramTypes[i] = emfMetaModel.getTypeForETypedElement(param);
 				if (paramTypes[i] == null) {
 					log.warn("Couldn't resolve type for " + getTypeName(param.getEType()));
@@ -110,7 +110,7 @@ public class EClassType extends AbstractTypeImpl {
 					protected Object evaluateInternal(final Object target, final Object[] params) {
 						final Class<?>[] paramClasses = new Class<?>[emfParams.size()];
 						for (int i = 0, x = emfParams.size(); i < x; i++) {
-							final EParameter param = (EParameter) emfParams.get(i);
+							final EParameter param = emfParams.get(i);
 							if (param.isMany()) {
 								paramClasses[i] = EList.class;
 							}

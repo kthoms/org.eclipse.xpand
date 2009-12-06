@@ -13,9 +13,8 @@ package org.eclipse.xtend.typesystem.emf;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.mwe.core.ConfigurationException;
-import org.eclipse.xtend.typesystem.MetaModel;
 
-public class EmfMetaModel extends EmfRegistryMetaModel implements MetaModel {
+public class EmfMetaModel extends EmfRegistryMetaModel {
 	private EPackage metamodel;
 
 	public EmfMetaModel() {

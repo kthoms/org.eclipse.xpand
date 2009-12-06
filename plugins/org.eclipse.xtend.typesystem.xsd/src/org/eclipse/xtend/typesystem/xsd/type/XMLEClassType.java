@@ -12,7 +12,6 @@ package org.eclipse.xtend.typesystem.xsd.type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -66,6 +65,7 @@ public class XMLEClassType extends EClassType {
 			}
 		}
 
+		@Override
 		protected Object evaluateInternal(final Object target,
 				final Object[] params) {
 			try {
@@ -94,12 +94,13 @@ public class XMLEClassType extends EClassType {
 		this.model = model;
 	}
 
+	@Override
 	public Feature[] getContributedFeatures() {
 		ArrayList<Feature> r = new ArrayList<Feature>(Arrays.asList(super
 				.getContributedFeatures()));
 
 		// setter
-		for (EStructuralFeature f : (List<EStructuralFeature>) clazz
+		for (EStructuralFeature f : clazz
 				.getEStructuralFeatures()) {
 			if (f.isChangeable() && !f.isMany()
 					&& f.getEType() instanceof EDataType) {

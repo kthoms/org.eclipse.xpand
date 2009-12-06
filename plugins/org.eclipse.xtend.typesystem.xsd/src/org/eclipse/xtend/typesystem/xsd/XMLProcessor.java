@@ -86,6 +86,7 @@ public class XMLProcessor extends AbstractWorkflowComponent {
 		}
 	}
 
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}

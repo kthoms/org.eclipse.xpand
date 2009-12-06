@@ -87,6 +87,7 @@ public class XSDManagerView implements XSDManager {
 		manager.remove(uri);
 	}
 
+	@Override
 	public String toString() {
 		ArrayList<String> i = new ArrayList<String>();
 		for (EPackage pkg : getPackages()) {

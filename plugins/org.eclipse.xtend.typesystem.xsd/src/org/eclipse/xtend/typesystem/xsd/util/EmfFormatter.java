@@ -90,7 +90,7 @@ public class EmfFormatter {
 		if (o instanceof Collection) {
 			buf.append("[");
 			for (Iterator i = ((Collection) o).iterator(); i.hasNext();) {
-				Object item = (Object) i.next();
+				Object item = i.next();
 				buf.append(EcoreUtil.getURI((EObject) item));
 				if (i.hasNext())
 					buf.append(", ");

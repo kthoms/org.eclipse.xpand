@@ -24,6 +24,7 @@ import org.eclipse.xtend.typesystem.xsd.tests.AbstractTestCase;
  */
 public class XMLReaderTest extends AbstractTestCase {
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		Iterator<String> i = EPackage.Registry.INSTANCE.keySet().iterator();

@@ -27,6 +27,7 @@ public class XMLFeatureMapTypeImpl extends EFeatureMapTypeImpl {
 		super(model, name, owner);
 	}
 
+	@Override
 	protected List<EStructuralFeature> getMapFeatures() {
 		List<EStructuralFeature> r = new ArrayList<EStructuralFeature>();
 		XMLTypePackage p = XMLTypePackage.eINSTANCE;

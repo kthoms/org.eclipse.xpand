@@ -40,6 +40,7 @@ public class EcoreBuilderTest extends AbstractTestCase {
 		return (OawXSDResource) r;
 	}
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		resourceSet = new OawXSDResourceSet();

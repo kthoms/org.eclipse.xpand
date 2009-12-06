@@ -62,12 +62,14 @@ public class OawXMLResource extends XMLResourceImpl {
 		private String defaultNamespace;
 		private Map<String, String> namespaceMap;
 
+		@Override
 		public void reset() {
 			defaultNamespace = null;
 			namespaceMap = null;
 			super.reset();
 		}
 
+		@Override
 		public void prepare(XMLResource resource, XMLHelper helper,
 				Map<?, ?> options) {
 			super.prepare(resource, helper, options);
@@ -82,12 +84,14 @@ public class OawXMLResource extends XMLResourceImpl {
 			namespaceMap = (nsm instanceof Map) ? nsm : null;
 		}
 
+		@Override
 		public void startDocument() {
 			super.startDocument();
 			if (defaultNamespace != null)
 				super.handleXMLNSAttribute("xmlns", defaultNamespace);
 		}
 
+		@Override
 		protected void handleXMLNSAttribute(String attrib, String value) {
 			String resolved = value;
 			if (namespaceMap != null) {
@@ -104,6 +108,7 @@ public class OawXMLResource extends XMLResourceImpl {
 			super.handleXMLNSAttribute(attrib, resolved);
 		}
 
+		@Override
 		protected EcoreBuilder createEcoreBuilder(Map<?, ?> options,
 				ExtendedMetaData extendedMetaData) {
 			return new OawEcoreBuilder(metaModel.getXsdManager());
@@ -123,6 +128,7 @@ public class OawXMLResource extends XMLResourceImpl {
 		
 //		private URI baseURI;
 
+		@Override
 		public URI resolve(URI uri) {
 			return XSDUtil.resolve(OawXMLResource.this.getURIConverter(), baseURI, uri.toString());
 			// URI u = super.resolve(uri);
@@ -136,6 +142,7 @@ public class OawXMLResource extends XMLResourceImpl {
 			// return u;
 		}
 
+		@Override
 		public void setBaseURI(URI uri) {
 //			baseURI = uri;
 			super.setBaseURI(uri);
@@ -155,6 +162,7 @@ public class OawXMLResource extends XMLResourceImpl {
 			super(helper);
 		}
 
+		@Override
 		protected DefaultHandler makeDefaultHandler() {
 			return new OawSAXXMLHandler(resource, helper, options);
 		}
@@ -219,6 +227,7 @@ public class OawXMLResource extends XMLResourceImpl {
 			docroot.eSet(ref, obj);
 		}
 
+		@Override
 		protected Object writeTopObject(EObject top) {
 			tryCreateDocumentRoot(top);
 			return super.writeTopObject(top);
@@ -235,10 +244,12 @@ public class OawXMLResource extends XMLResourceImpl {
 		setOptions();
 	}
 
+	@Override
 	protected XMLLoad createXMLLoad() {
 		return new OawXMLLoadImpl(createXMLHelper());
 	}
 
+	@Override
 	protected XMLSave createXMLSave() {
 		return new OawXMLSaveImpl(createXMLHelper());
 	}

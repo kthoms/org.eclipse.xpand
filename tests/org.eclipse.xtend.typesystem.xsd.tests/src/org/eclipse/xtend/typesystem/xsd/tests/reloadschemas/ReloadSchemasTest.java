@@ -61,7 +61,7 @@ public class ReloadSchemasTest extends AbstractTestCase {
 		for (EReference ref : obj.eClass().getEAllReferences()) {
 			Object o = obj.eGet(ref);
 			if (obj instanceof EPackage
-					&& !allowedPackages.contains((EPackage) obj))
+					&& !allowedPackages.contains(obj))
 				fail2(Msg.create("Supplied object is a forbidden package:")
 						.pkg((EPackage) obj));
 			/*

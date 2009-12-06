@@ -82,6 +82,7 @@ public class XMLReader extends AbstractXMLWorkflowComponent {
 		return "Loading XML file " + uri;
 	}
 
+	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,
 			Issues issues) {
 		XMLReaderImpl reader = new XMLReaderImpl(resourceSet, getMetaModel());
@@ -103,6 +104,7 @@ public class XMLReader extends AbstractXMLWorkflowComponent {
 		this.useDocumentRoot = returnDocumentRoot;
 	}
 
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}

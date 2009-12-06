@@ -29,7 +29,7 @@ public class EMapEntryType extends AbstractTypeImpl {
 
 	public static boolean isEMapEntry(ETypedElement element) {
 		EClassifier t = element.getEType();
-		return element != null && element.eContainer() instanceof EClass
+		return element.eContainer() instanceof EClass
 				&& t != null && t.getInstanceClass() != null
 				&& Map.Entry.class.isAssignableFrom(t.getInstanceClass())
 				&& !element.isMany();
@@ -60,6 +60,7 @@ public class EMapEntryType extends AbstractTypeImpl {
 		}
 	}
 
+	@Override
 	public Feature[] getContributedFeatures() {
 		return new Feature[] { new PropertyImpl(this, "value", valueType) {
 			@SuppressWarnings("unchecked")
@@ -74,6 +75,7 @@ public class EMapEntryType extends AbstractTypeImpl {
 				return ent.getKey();
 			}
 		}, new OperationImpl(this, "setValue", valueType, valueType) {
+			@Override
 			@SuppressWarnings("unchecked")
 			protected Object evaluateInternal(Object target, Object[] params) {
 				Map.Entry ent = (Map.Entry) target;

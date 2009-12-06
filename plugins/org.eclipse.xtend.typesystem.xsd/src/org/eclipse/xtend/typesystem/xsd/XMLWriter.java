@@ -143,7 +143,7 @@ public class XMLWriter extends AbstractXMLWorkflowComponent {
 
 	private static final String COMPONENT_NAME = "XML Writer";
 
-	protected DoctypeInfo doctypeInfo;;
+	protected DoctypeInfo doctypeInfo;
 
 	protected Log log = XSDLog.getLog(getClass());
 
@@ -175,6 +175,7 @@ public class XMLWriter extends AbstractXMLWorkflowComponent {
 		super.checkConfiguration(issues);
 	}
 
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}
@@ -196,6 +197,7 @@ public class XMLWriter extends AbstractXMLWorkflowComponent {
 		return "Writing " + ((uri == null) ? "XML files..." : uri.toString());
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,
 			Issues issues) {

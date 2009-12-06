@@ -75,7 +75,7 @@ public class Uml2MetamodelContributor implements MetamodelContributor {
 				for (Iterator<IResource> iter = models.keySet().iterator(); iter.hasNext();) {
 					IFile f = (IFile) iter.next();
 					if (project.isOnClasspath(f) || isOnProjectsClasspath(f,jps)) {
-                  Profile profile = (Profile) models.get(f);
+                  Profile profile = models.get(f);
 						result.put(profile, new ProfileMetaModel(profile));
 						resources.add(f);
 					}
@@ -94,7 +94,7 @@ public class Uml2MetamodelContributor implements MetamodelContributor {
 
 	private boolean isOnProjectsClasspath(IFile f, Set<IJavaProject> jps) {
 		for (Iterator<IJavaProject> iter = jps.iterator(); iter.hasNext();) {
-			IJavaProject element = (IJavaProject) iter.next();
+			IJavaProject element = iter.next();
 			if (element.isOnClasspath(f)) {
 				return true;
 			}

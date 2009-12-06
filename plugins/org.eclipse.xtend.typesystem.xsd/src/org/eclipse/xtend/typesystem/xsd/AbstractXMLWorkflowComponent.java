@@ -32,6 +32,7 @@ public abstract class AbstractXMLWorkflowComponent extends
 		this.allMetaModels.add(metaModel);
 	}
 
+	@Override
 	public void checkConfiguration(Issues issues) {
 		if (xsdMetaModel == null)
 			issues.addError(this, "An XSDMetaModel needs to be specified");

@@ -27,6 +27,7 @@ public class EFeatureMapEntryTypeImpl extends AbstractTypeImpl {
 		this.model = model;
 	}
 
+	@Override
 	public Feature[] getContributedFeatures() {
 		return new Feature[] {
 				new PropertyImpl(this, "value", getTypeSystem().getObjectType()) {

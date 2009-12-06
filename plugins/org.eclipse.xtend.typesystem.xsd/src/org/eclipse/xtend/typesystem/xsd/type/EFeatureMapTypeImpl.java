@@ -126,6 +126,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		this.model = model;
 	}
 
+	@Override
 	public Feature[] getContributedFeatures() {
 		List<Feature> features = new ArrayList<Feature>();
 		for (final EStructuralFeature feature : getMapFeatures()) {
@@ -144,6 +145,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		features.add(new OperationImpl(this, "add", getTypeSystem()
 				.getBooleanType(), model.getEFeatureType(), getTypeSystem()
 				.getObjectType()) {
+			@Override
 			protected Object evaluateInternal(Object target, Object[] params) {
 				FeatureMap map = (FeatureMap) target;
 				EStructuralFeature f = (EStructuralFeature) params[0];
@@ -153,6 +155,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		features.add(new OperationImpl(this, "set", getTypeSystem()
 				.getVoidType(), model.getEFeatureType(), getTypeSystem()
 				.getObjectType()) {
+			@Override
 			protected Object evaluateInternal(Object target, Object[] params) {
 				FeatureMap map = (FeatureMap) target;
 				EStructuralFeature f = (EStructuralFeature) params[0];
@@ -162,6 +165,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		});
 		features.add(new OperationImpl(this, "unset", getTypeSystem()
 				.getVoidType(), model.getEFeatureType()) {
+			@Override
 			protected Object evaluateInternal(Object target, Object[] params) {
 				FeatureMap map = (FeatureMap) target;
 				EStructuralFeature f = (EStructuralFeature) params[0];
@@ -171,6 +175,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		});
 		features.add(new OperationImpl(this, "isSet", getTypeSystem()
 				.getBooleanType(), model.getEFeatureType()) {
+			@Override
 			protected Object evaluateInternal(Object target, Object[] params) {
 				FeatureMap map = (FeatureMap) target;
 				EStructuralFeature f = (EStructuralFeature) params[0];
@@ -180,6 +185,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		features.add(new OperationImpl(this, "list", getTypeSystem()
 				.getListType(getTypeSystem().getObjectType()), model
 				.getEFeatureType()) {
+			@Override
 			protected Object evaluateInternal(Object target, Object[] params) {
 				FeatureMap map = (FeatureMap) target;
 				EStructuralFeature f = (EStructuralFeature) params[0];
@@ -189,6 +195,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		features.add(new OperationImpl(this, "addAll", getTypeSystem()
 				.getBooleanType(), model.getEFeatureType(), getTypeSystem()
 				.getCollectionType(getTypeSystem().getObjectType())) {
+			@Override
 			@SuppressWarnings("unchecked")
 			protected Object evaluateInternal(Object target, Object[] params) {
 				FeatureMap map = (FeatureMap) target;
@@ -202,6 +209,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		features.add(new OperationImpl(this, "addFrom", getTypeSystem()
 				.getVoidType(), model.getEobjectType()) {
 
+			@Override
 			protected Object evaluateInternal(Object target, Object[] params) {
 				FeatureMap map = (FeatureMap) target;
 				EStructuralFeature.Setting s = (EStructuralFeature.Setting) map;
@@ -246,6 +254,7 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		return Collections.EMPTY_LIST;
 	}
 
+	@Override
 	protected Set<? extends Type> internalGetSuperTypes() {
 		Type f = model.getEFeatureMapEntryType();
 		return Collections.singleton(getTypeSystem().getListType(f));

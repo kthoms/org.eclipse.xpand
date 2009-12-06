@@ -52,6 +52,7 @@ public class OawXSDEcoreBuilder extends XSDEcoreBuilder {
 		typeToTypeObjectMap.putAll(b.typeToTypeObjectMap);
 	}
 
+	@Override
 	public void generate(XSDSchema xsdSchema) {
 		super.generate(xsdSchema);
 	}
@@ -67,6 +68,7 @@ public class OawXSDEcoreBuilder extends XSDEcoreBuilder {
 		return null;
 	}
 
+	@Override
 	protected String getEcoreAttribute(
 			XSDConcreteComponent xsdConcreteComponent, String attribute) {
 		String r = super.getEcoreAttribute(xsdConcreteComponent, attribute);
@@ -75,6 +77,7 @@ public class OawXSDEcoreBuilder extends XSDEcoreBuilder {
 		return getCustomAttribute(xsdConcreteComponent, attribute);
 	}
 
+	@Override
 	public EPackage getEPackage(XSDNamedComponent xsdNamedComponent) {
 		XSDSchema containingXSDSchema = xsdNamedComponent.getSchema();
 		String targetNamespace = containingXSDSchema == null ? xsdNamedComponent
@@ -96,6 +99,7 @@ public class OawXSDEcoreBuilder extends XSDEcoreBuilder {
 		return true;
 	}
 
+	@Override
 	protected String validName(String name, int casing, String prefix) {
 		List<String> parsedName = parseName(name, '_');
 		StringBuffer result = new StringBuffer();
@@ -148,6 +152,7 @@ public class OawXSDEcoreBuilder extends XSDEcoreBuilder {
 				" from ").schemaDeep(rootSchema));
 	}
 
+	@Override
 	protected void resolveNameConflict(
 			Map<String, ? extends ENamedElement> map,
 			ENamedElement namedElement, String suffix) {

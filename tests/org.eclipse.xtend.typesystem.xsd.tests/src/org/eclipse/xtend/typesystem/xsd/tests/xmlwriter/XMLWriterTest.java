@@ -19,6 +19,7 @@ import org.eclipse.xtend.typesystem.xsd.tests.AbstractTestCase;
  * @author Moritz Eysholdt - Initial contribution
  */
 public class XMLWriterTest extends AbstractTestCase {
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		Iterator<String> i = EPackage.Registry.INSTANCE.keySet().iterator();

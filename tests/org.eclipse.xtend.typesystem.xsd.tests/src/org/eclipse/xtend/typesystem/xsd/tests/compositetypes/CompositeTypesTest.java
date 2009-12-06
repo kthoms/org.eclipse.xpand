@@ -75,6 +75,7 @@ public class CompositeTypesTest extends AbstractTestCase {
 			printDiag(pref + "  ", d);
 	}
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		String xsd = getSrcDir() + "/CompositeTypes.xsd";

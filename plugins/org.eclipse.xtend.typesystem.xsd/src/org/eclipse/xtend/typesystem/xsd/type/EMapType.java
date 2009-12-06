@@ -58,11 +58,13 @@ public class EMapType extends AbstractTypeImpl {
 		elementType = model.getEMapEntryType(innerType);
 	}
 
+	@Override
 	public Feature[] getContributedFeatures() {
 		Type keyType = elementType.getKeyType();
 		Type valueType = elementType.getValueType();
 		return new Feature[] {
 				new OperationImpl(this, "put", valueType, keyType, valueType) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -70,6 +72,7 @@ public class EMapType extends AbstractTypeImpl {
 					}
 				},
 				new OperationImpl(this, "put", valueType, elementType) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -80,6 +83,7 @@ public class EMapType extends AbstractTypeImpl {
 				new OperationImpl(this, "putAll",
 						getTypeSystem().getVoidType(), getTypeSystem()
 								.getCollectionType(elementType)) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -91,6 +95,7 @@ public class EMapType extends AbstractTypeImpl {
 					}
 				},
 				new OperationImpl(this, "get", valueType, keyType) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -99,6 +104,7 @@ public class EMapType extends AbstractTypeImpl {
 				},
 				new OperationImpl(this, "indexOfKey", getTypeSystem()
 						.getIntegerType(), keyType) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -107,6 +113,7 @@ public class EMapType extends AbstractTypeImpl {
 				},
 				new OperationImpl(this, "containsKey", getTypeSystem()
 						.getBooleanType(), keyType) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -115,6 +122,7 @@ public class EMapType extends AbstractTypeImpl {
 				},
 				new OperationImpl(this, "containsValue", getTypeSystem()
 						.getBooleanType(), valueType) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -122,6 +130,7 @@ public class EMapType extends AbstractTypeImpl {
 					}
 				},
 				new OperationImpl(this, "removeKey", valueType, keyType) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -130,6 +139,7 @@ public class EMapType extends AbstractTypeImpl {
 				},
 				new OperationImpl(this, "keySet", getTypeSystem().getSetType(
 						keyType)) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -138,6 +148,7 @@ public class EMapType extends AbstractTypeImpl {
 				},
 				new OperationImpl(this, "values", getTypeSystem()
 						.getCollectionType(valueType)) {
+					@Override
 					@SuppressWarnings("unchecked")
 					protected Object evaluateInternal(Object t, Object[] params) {
 						EMap map = (EMap) t;
@@ -147,6 +158,7 @@ public class EMapType extends AbstractTypeImpl {
 
 	}
 
+	@Override
 	public Set<? extends Type> getSuperTypes() {
 		return Collections.singleton(getTypeSystem().getListType(elementType));
 	}

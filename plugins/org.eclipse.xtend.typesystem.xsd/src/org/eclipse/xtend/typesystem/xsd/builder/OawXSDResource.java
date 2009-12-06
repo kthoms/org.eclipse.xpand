@@ -39,6 +39,7 @@ import org.xml.sax.InputSource;
 public class OawXSDResource extends XSDResourceImpl {
 
 	public static class OawXSDResourceFactory extends ResourceFactoryImpl {
+		@Override
 		public Resource createResource(URI uri) {
 			return new OawXSDResource(uri);
 		}
@@ -92,6 +93,7 @@ public class OawXSDResource extends XSDResourceImpl {
 			r.collectPackages(pkgs,res);
 	}
 
+	@Override
 	protected void doLoad(InputSource inputSource, Map<?, ?> options)
 			throws IOException {
 		super.doLoad(inputSource, options);
@@ -103,6 +105,7 @@ public class OawXSDResource extends XSDResourceImpl {
 		logResDiagnostics();
 	}
 
+	@Override
 	protected void doUnload() {
 		log.info(Msg.create("Unloading ").schema(getSchema()));
 		unloadReferrencingDirectives();
@@ -149,6 +152,7 @@ public class OawXSDResource extends XSDResourceImpl {
 		return ePackage;
 	}
 
+	@Override
 	public OawXSDResourceSet getResourceSet() {
 		return (OawXSDResourceSet) super.getResourceSet();
 	}

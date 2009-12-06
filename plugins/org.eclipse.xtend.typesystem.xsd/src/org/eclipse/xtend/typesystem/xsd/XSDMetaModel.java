@@ -70,12 +70,14 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 	}
 
 	private Cache<EClassifier, EMapType> eMapCache = new Cache<EClassifier, EMapType>() {
+		@Override
 		protected EMapType createNew(EClassifier c) {
 			return new EMapType(XSDMetaModel.this, EMAP, c);
 		}
 	};
 
 	private Cache<EClass, XMLFeatureMapTypeImpl> featueMapCache = new Cache<EClass, XMLFeatureMapTypeImpl>() {
+		@Override
 		protected XMLFeatureMapTypeImpl createNew(EClass c) {
 			return new XMLFeatureMapTypeImpl(XSDMetaModel.this, EFEATURE_MAP, c);
 		}
@@ -90,6 +92,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 	protected Log log = XSDLog.getLog(getClass());
 
 	private Cache<EClassifier, EMapEntryType> mapEntryCache = new Cache<EClassifier, EMapEntryType>() {
+		@Override
 		protected EMapEntryType createNew(EClassifier arg0) {
 			return new EMapEntryType(getTypeSystem(), EMAP_ENTRY, arg0);
 		}
@@ -98,6 +101,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 	private QNameType qnameType;
 
 	private Cache<EClassType, XMLEClassType> xmlClassCache = new Cache<EClassType, XMLEClassType>() {
+		@Override
 		protected XMLEClassType createNew(EClassType arg0) {
 			try {
 				// this is due to a lack of accessibility of the
@@ -137,6 +141,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 		saveNewPackages();
 	}
 
+	@Override
 	public EPackage[] allPackages() {
 		Collection<EPackage> pkgs = new ArrayList<EPackage>(xsdManager
 				.getPackages());
@@ -171,6 +176,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 		return eMapCache.get(innerType);
 	}
 
+	@Override
 	public Set<Type> getKnownTypes() {
 		Set<Type> r = super.getKnownTypes();
 		// log.info("getKnownTypes() -> " + r);
@@ -184,6 +190,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 		return qnameType;
 	}
 
+	@Override
 	public Type getType(Object obj) {
 		Type r = null;
 		if (obj instanceof FeatureMap) {
@@ -209,6 +216,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 		return r;
 	}
 
+	@Override
 	public Type getTypeForEClassifier(EClassifier element) {
 		Type r = super.getTypeForEClassifier(element);
 		if (r == null || r instanceof EDataTypeType)
@@ -219,6 +227,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 		return r;
 	}
 
+	@Override
 	public Type getTypeForETypedElement(final ETypedElement typedElement) {
 		EClassifier c = typedElement.getEType();
 		if (c == null)
@@ -249,6 +258,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 		}
 	}
 
+	@Override
 	public Type getTypeForName(String typeName) {
 		// TODO: make sure type-package is loaded instead of checking manually
 		Type r;
@@ -376,6 +386,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 		saveNewPackages();
 	}
 
+	@Override
 	public String toString() {
 		return getClass().getSimpleName() + "-" + xsdManager;
 	}

@@ -25,6 +25,7 @@ public class EFeatureType extends AbstractTypeImpl {
 		super(typeSystem, name);
 	}
 
+	@Override
 	public Feature[] getContributedFeatures() {
 		return new Feature[] {
 				new PropertyImpl(this, "name", getTypeSystem().getStringType()) {
@@ -35,6 +36,7 @@ public class EFeatureType extends AbstractTypeImpl {
 				},
 				new OperationImpl(this, "toString", getTypeSystem()
 						.getStringType()) {
+					@Override
 					protected Object evaluateInternal(Object target,
 							Object[] params) {
 						EStructuralFeature f = (EStructuralFeature) target;

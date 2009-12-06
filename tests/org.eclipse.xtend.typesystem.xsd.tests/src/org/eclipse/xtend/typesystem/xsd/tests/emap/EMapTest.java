@@ -24,6 +24,7 @@ public class EMapTest extends AbstractTestCase {
 
 	private ExpressionFacade ec;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		String file = getSrcDir() + "/EMap.ecore";

@@ -48,6 +48,7 @@ public class XSDResolver extends AdapterImpl implements
 		return null;
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == XSDSchemaLocationResolver.class
 				|| type == XSDSchemaLocator.class;

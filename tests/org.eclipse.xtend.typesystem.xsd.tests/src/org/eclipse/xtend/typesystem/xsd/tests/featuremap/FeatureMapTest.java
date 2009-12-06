@@ -38,6 +38,7 @@ public class FeatureMapTest extends AbstractTestCase {
 		return o;
 	}
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		String xsd = getSrcDir() + "/FeatureMap.xsd";

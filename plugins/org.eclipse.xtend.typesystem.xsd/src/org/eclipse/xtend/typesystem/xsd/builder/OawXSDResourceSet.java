@@ -216,6 +216,7 @@ public class OawXSDResourceSet extends ResourceSetImpl implements XSDManager {
 		getResources().remove(r);
 	}
 
+	@Override
 	public String toString() {
 		ArrayList<String> i = new ArrayList<String>();
 		for (EPackage pkg : getPackages()) {

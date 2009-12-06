@@ -21,10 +21,12 @@ public class XSDResolverFactory extends AdapterFactoryImpl {
 
 	protected XSDResolver resolver = new XSDResolver();
 
+	@Override
 	public Adapter adaptNew(Notifier target, Object type) {
 		return resolver;
 	}
 
+	@Override
 	public boolean isFactoryForType(Object type) {
 		return resolver.isAdapterForType(type);
 	}

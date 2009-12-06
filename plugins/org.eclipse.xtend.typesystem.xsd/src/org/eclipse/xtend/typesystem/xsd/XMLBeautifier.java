@@ -87,7 +87,7 @@ public class XMLBeautifier implements PostProcessor {
 
 		try {
 			r.load(is, loadOptions);
-			EObject o = (EObject) r.getContents().get(0);
+			EObject o = r.getContents().get(0);
 
 			formater.beautifyMixedContent(0, o);
 

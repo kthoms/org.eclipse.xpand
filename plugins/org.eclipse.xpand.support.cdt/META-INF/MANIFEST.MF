@@ -11,8 +11,10 @@ Import-Package: org.apache.commons.logging,
  org.eclipse.cdt.core.parser,
  org.eclipse.cdt.internal.formatter
 Require-Bundle: org.eclipse.xpand,
- org.eclipse.text,
+ org.eclipse.text;visibility:=reexport,
  org.eclipse.equinox.common,
- org.eclipse.emf.mwe.core
+ org.eclipse.emf.mwe.core,
+ org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.core.runtime;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

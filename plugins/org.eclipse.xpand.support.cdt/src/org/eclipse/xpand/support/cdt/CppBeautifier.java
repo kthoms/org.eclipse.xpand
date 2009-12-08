@@ -14,11 +14,11 @@ package org.eclipse.xpand.support.cdt;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -44,7 +44,7 @@ import org.eclipse.xpand2.output.JavaBeautifier;
 import org.eclipse.xpand2.output.PostProcessor;
 
 /**
- * An XPand post processor for C/C++ code formatting based on cdt's code
+ * An Xpand post processor for C/C++ code formatting based on cdt's code
  * formatter.
  * 
  * Is uses some internal cdt classes to do its job, but this was he only way to
@@ -60,14 +60,21 @@ import org.eclipse.xpand2.output.PostProcessor;
  * 
  * 
  * @author DaWeber@harmanbecker.com
+ * @author Karsten Thoms karsten.thoms@itemis.de
  */
 @SuppressWarnings("restriction")
 public class CppBeautifier implements PostProcessor {
-	private static final String DEFAULT_CDT_OPTIONS = "org/eclipse/xpand/adapter/cdt/cdtformat-default.xml";
+	private static final String DEFAULT_CDT_OPTIONS = "cdtformat-default.xml";
 	private String configFile = DEFAULT_CDT_OPTIONS;
 
 	/** Logger instance. */
 	private final Log log = LogFactory.getLog(getClass());
+	
+	private DefaultCodeFormatterOptions formatterOptions;
+	
+	public CppBeautifier () {
+		formatterOptions = getCodeFormatterSettings();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -100,19 +107,19 @@ public class CppBeautifier implements PostProcessor {
 	 * org.openarchitectureware.xpand2.output.PostProcessor#beforeWriteAndClose
 	 * (org.openarchitectureware.xpand2.output.FileHandle)
 	 */
-	@SuppressWarnings("unchecked")
 	public void beforeWriteAndClose(final FileHandle fileHandle) {
-		Map options = createFormatterOptions();
+		final DefaultCodeFormatterOptions settings = getCodeFormatterSettings();
 		String source = fileHandle.getBuffer().toString();
 		try {
 			CodeFormatterVisitor codeFormatter = new CodeFormatterVisitor(
-					createCodeFormatterSettings(options), 0, source.length());
-			IASTTranslationUnit ast = createTranslationUnit(options, source);
+					settings, 0, source.length());
+			IASTTranslationUnit ast = createTranslationUnit(settings.getMap(), source);
 			IDocument document = new Document(source);
 			codeFormatter.format(source, ast).apply(document);
-			fileHandle.setBuffer(new StringBuffer(document.get()));
+			fileHandle.setBuffer(document.get());
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage());
+			log.debug(e);
 		}
 	}
 
@@ -129,28 +136,32 @@ public class CppBeautifier implements PostProcessor {
 	 */
 	public void setConfigFile(final String configFile) {
 		this.configFile = configFile;
+		this.formatterOptions = null;
+		this.formatterOptions = getCodeFormatterSettings();
 	}
 
 	/**
 	 * @param options
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	private DefaultCodeFormatterOptions createCodeFormatterSettings(Map options) {
-		DefaultCodeFormatterOptions defaultSettings = DefaultCodeFormatterOptions
-				.getDefaultSettings();
-		defaultSettings.set(options);
-		defaultSettings.line_separator = "\n";
-		return defaultSettings;
-	}
-
-	/**
-	 * @return A map of formatter options. Either loaded from a given
-	 *         configuration file, or using built-in default values.
-	 */
-	@SuppressWarnings("unchecked")
-	private Map createFormatterOptions() {
-		return readConfig(getConfigFile());
+	private DefaultCodeFormatterOptions getCodeFormatterSettings() {
+		if (formatterOptions == null) {
+			formatterOptions = DefaultCodeFormatterOptions
+					.getDefaultSettings();
+			formatterOptions.line_separator = System.getProperty("line.separator");
+		
+			Properties config = readConfig(getConfigFile());
+			if (config != null) {
+				Map<String,String> options = new HashMap<String,String>();
+				for (Object key : config.keySet()) {
+					options.put(key.toString(), config.getProperty(key.toString()));
+				}
+				formatterOptions.set(options);
+			} else {
+				log.warn("Using default settings.");
+			}
+		}
+		return formatterOptions;
 	}
 
 	/**
@@ -185,15 +196,13 @@ public class CppBeautifier implements PostProcessor {
 	}
 
 	/**
-	 * Return a Java Properties file representing the options that are in the
+	 * Return a Java Properties instance representing the options that are in the
 	 * specified configuration file. In order to use this, simply export a
 	 * formatter configuration to a file.
 	 * 
 	 * This code is mainly copied from {@link JavaBeautifier}, it might make
 	 * sense to factor this out to somewhere else so that more formatters can
 	 * make use of this.
-	 * 
-	 * @todo replace this copy'n'pasted code
 	 * 
 	 * @see JavaBeautifier
 	 */
@@ -202,12 +211,12 @@ public class CppBeautifier implements PostProcessor {
 		BufferedReader reader = null;
 
 		try {
-			File file = loadFile(filename);
+			InputStream is = getConfig(filename);
 			final Properties formatterOptions = new Properties();
 			if (filename.endsWith(".xml")) {
 				Pattern pattern = Pattern
 						.compile("<setting id=\"([^\"]*)\" value=\"([^\"]*)\"\\/>");
-				reader = new BufferedReader(new FileReader(file));
+				reader = new BufferedReader(new InputStreamReader(is));
 				for (String line = reader.readLine(); line != null; line = reader
 						.readLine()) {
 					Matcher matcher = pattern.matcher(line);
@@ -217,7 +226,7 @@ public class CppBeautifier implements PostProcessor {
 					}
 				}
 			} else {
-				stream = new BufferedInputStream(new FileInputStream(file));
+				stream = new BufferedInputStream(is);
 				formatterOptions.load(stream);
 			}
 			return formatterOptions;
@@ -244,30 +253,28 @@ public class CppBeautifier implements PostProcessor {
 	}
 
 	/**
-	 * This is also stolen from {@link JavaBeautifier}, as it is required by
-	 * readConfig.
-	 * 
-	 * @todo replace this copy'n'pasted code
-	 * 
 	 * @param filename
 	 *            Path to a formatter configuration file
 	 * @return a corresponding File instance if the file can be located
 	 * @throws IOException
 	 *             If the file could not be found
 	 */
-	private File loadFile(final String filename) throws IOException {
-		final URL url = ResourceLoaderFactory.createResourceLoader()
+	private InputStream getConfig(final String filename) throws IOException {
+		URL url = ResourceLoaderFactory.createResourceLoader()
 				.getResource(filename);
-		if ((url == null) || (url.getFile() == null)) {
+		if (url == null) {
+			url = CppBeautifier.class.getResource(filename);
+		}
+		if (url == null) {
 			throw new IOException("Could not find config file [" + filename
 					+ "]");
 		}
-		final File file = new File(url.getFile());
-		if (!file.exists()) {
+		InputStream is = url.openStream();
+		if (is == null) {
 			throw new IOException("Config file [" + filename
 					+ "] does not exist.");
 		}
-		return file;
+		return is;
 	}
 
 }

@@ -40,29 +40,27 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.xpand2.output.FileHandle;
-import org.eclipse.xpand2.output.JavaBeautifier;
 import org.eclipse.xpand2.output.PostProcessor;
 
 /**
  * An Xpand post processor for C/C++ code formatting based on cdt's code
  * formatter.
  * 
- * Is uses some internal cdt classes to do its job, but this was he only way to
+ * It uses some internal CDT classes to do its job, but this was the only way to
  * get this to work outside an Eclipse runtime. Use it like this (from an MWE
  * workflow):
  * 
  * <pre>
- *    &lt;postprocessor class=&quot;org.eclipse.xpand.adapter.cdt.CppBeautifier&quot; configFile=&quot;myCFormatterOptions.xml&quot;/&gt;
+ *    &lt;postprocessor class=&quot;org.eclipse.xpand.support.cdt.CppBeautifier&quot; configFile=&quot;myCFormatterOptions.xml&quot;/&gt;
  * </pre>
  * 
- * In order to create a configuration file, use cdt's preferences to set
+ * In order to create a configuration file, use CDT's preferences to set
  * formatter options and then export that configuration to a file.
  * 
  * 
  * @author DaWeber@harmanbecker.com
  * @author Karsten Thoms karsten.thoms@itemis.de
  */
-@SuppressWarnings("restriction")
 public class CppBeautifier implements PostProcessor {
 	private static final String DEFAULT_CDT_OPTIONS = "cdtformat-default.xml";
 	private String configFile = DEFAULT_CDT_OPTIONS;
@@ -73,6 +71,7 @@ public class CppBeautifier implements PostProcessor {
 	private DefaultCodeFormatterOptions formatterOptions;
 	
 	public CppBeautifier () {
+		// Initialize with default settings
 		formatterOptions = getCodeFormatterSettings();
 	}
 
@@ -170,8 +169,7 @@ public class CppBeautifier implements PostProcessor {
 	 * @return
 	 * @throws CoreException
 	 */
-	@SuppressWarnings("unchecked")
-	private IASTTranslationUnit createTranslationUnit(Map options, String source)
+	private IASTTranslationUnit createTranslationUnit(Map<?, ?> options, String source)
 			throws CoreException {
 		return getLanguage(options).getASTTranslationUnit(
 				new CodeReader(source.toCharArray()), new ScannerInfo(), null,
@@ -182,11 +180,10 @@ public class CppBeautifier implements PostProcessor {
 	 * Determines the language to be used based on the given options.
 	 * 
 	 * @param options
-	 *            cdt formatter options
+	 *            CDT formatter options
 	 * @return a suitable ILanguage. GPPLanguage as default.
 	 */
-	@SuppressWarnings("unchecked")
-	private ILanguage getLanguage(Map options) {
+	private ILanguage getLanguage(Map<?, ?> options) {
 		ILanguage language = (ILanguage) options
 				.get(DefaultCodeFormatterConstants.FORMATTER_LANGUAGE);
 		if (language == null) {

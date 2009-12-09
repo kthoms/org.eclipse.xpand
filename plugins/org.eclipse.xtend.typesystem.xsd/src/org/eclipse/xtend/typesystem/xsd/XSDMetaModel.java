@@ -34,9 +34,9 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.internal.xtend.util.Cache;
+import org.eclipse.xtend.type.impl.java.JavaTypeImpl;
 import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.emf.EClassType;
-import org.eclipse.xtend.typesystem.emf.EDataTypeType;
 import org.eclipse.xtend.typesystem.emf.EcoreUtil2;
 import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 import org.eclipse.xtend.typesystem.xsd.builder.OawXSDResourceSet;
@@ -219,7 +219,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 	@Override
 	public Type getTypeForEClassifier(EClassifier element) {
 		Type r = super.getTypeForEClassifier(element);
-		if (r == null || r instanceof EDataTypeType)
+		if (r == null || r instanceof JavaTypeImpl)
 			r = XMLTypeMapper.instance().get(this, element, getTypeSystem());
 		else if (r instanceof EClassType)
 			r = xmlClassCache.get((EClassType) r);

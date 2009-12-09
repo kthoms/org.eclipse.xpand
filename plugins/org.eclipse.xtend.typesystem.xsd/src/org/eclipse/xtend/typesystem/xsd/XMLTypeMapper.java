@@ -16,8 +16,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.Type;
-import org.eclipse.xtend.typesystem.emf.EDataTypeType;
-import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
 /**
  * @author Moritz Eysholdt - Initial contribution and API
@@ -237,7 +235,7 @@ public class XMLTypeMapper {
 			case DURATION:
 			case UNHANDLED:
 				if (classifier instanceof EDataType)
-					return new EDataTypeType(mm, EmfRegistryMetaModel.getFullyQualifiedName(classifier), (EDataType) classifier);
+					return typesystem.getTypeForName(classifier.getInstanceClassName().replace(".", "::"));
 		}
 		return typesystem.getObjectType();
 	}

@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.xsd.XSDPackage;
-import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.expression.TypeSystemImpl;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.xsd.XMLTypeMapper;
 import org.eclipse.xtend.typesystem.xsd.XSDMetaModel;
 import org.eclipse.xtend.typesystem.xsd.XMLTypeMapper.BasicType;
@@ -73,7 +73,8 @@ public class TypeMapperTest extends AbstractTestCase {
 
 		XMLTypeMapper mapper = XMLTypeMapper.instance();
 		XSDMetaModel mm = new XSDMetaModel();
-		TypeSystem typesystem = new TypeSystemImpl();
+		TypeSystemImpl typesystem = new TypeSystemImpl();
+		typesystem.registerMetaModel(new JavaBeansMetaModel());
 		for (EDataType d : getAllDataTypes())
 			if (!(d instanceof EEnum))
 				assertNotNull("Testing " + d.getEPackage().getName() + "::"

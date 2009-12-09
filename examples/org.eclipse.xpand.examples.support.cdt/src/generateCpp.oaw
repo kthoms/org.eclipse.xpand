@@ -1,0 +1,39 @@
+<workflow>
+
+   <bean id="mm_emf" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
+   
+   <!--  Use c++ beautifier with default options -->
+   <component class="org.eclipse.xpand2.Generator">
+      <metaModel idRef="mm_emf"/>
+      <expand value='templates::CppClass::Start FOR "DefaultFormat"'/>
+      <outlet path='src-gen'>
+      	<postprocessor class="org.eclipse.xpand.support.cdt.CppBeautifier"/>
+      </outlet>
+   </component>
+
+   <!--  Use c++ beautifier with a custom set of options -->
+   <component class="org.eclipse.xpand2.Generator">
+      <metaModel idRef="mm_emf"/>
+      <expand value='templates::CppClass::Start FOR "CustomFormat"'/>
+      <outlet path='src-gen'>
+      	<postprocessor class="org.eclipse.xpand.support.cdt.CppBeautifier" configFile="custom.xml"/>
+      </outlet>
+   </component>
+
+   <!--  Don't beautify anything (compare the result of this to the other two :)) -->
+   <component class="org.eclipse.xpand2.Generator">
+      <metaModel idRef="mm_emf"/>
+      <expand value='templates::CppClass::Start FOR "Unformatted"'/>
+      <outlet path='src-gen'/>
+      <fileEncoding value="ISO-8859-1"/>
+   </component>
+
+   <!--  Use c++ beautifier with invalid file name, this will fall back to default settings -->
+   <component class="org.eclipse.xpand2.Generator">
+      <metaModel idRef="mm_emf"/>
+      <expand value='templates::CppClass::Start FOR "InternalDefaultFormat"'/>
+      <outlet path='src-gen'>
+      	<postprocessor class="org.eclipse.xpand.support.cdt.CppBeautifier" configFile="foobar"/>
+      </outlet>
+   </component>
+</workflow>

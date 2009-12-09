@@ -1,0 +1,17 @@
+«DEFINE Start FOR Object»
+«FILE this+".hpp"»
+
+            // comment
+   #include "blah.hpp"
+   class
+«this»{ public:
+         // constructor
+   «this»();
+// destructor
+          ~«this»();
+
+          private:
+          int m;
+   };
+«ENDFILE»
+«ENDDEFINE»

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xpand CDT Support Example
+Bundle-SymbolicName: org.eclipse.xpand.examples.support.cdt
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.xpand;bundle-version="0.8.0",
+ org.eclipse.xpand.support.cdt;bundle-version="0.8.0",
+ org.eclipse.emf.mwe.core;bundle-version="0.8.0",
+ org.eclipse.emf.mwe.utils;bundle-version="0.8.0",
+ org.apache.log4j,
+ org.apache.commons.logging;bundle-version="1.0.4",
+ org.eclipse.xtend;bundle-version="0.8.0",
+ org.eclipse.xtend.typesystem.emf;bundle-version="0.8.0",
+ org.eclipse.cdt.core;bundle-version="5.1.1";resolution:=optional,
+ org.antlr.runtime;bundle-version="3.0.0",
+ com.ibm.icu;bundle-version="4.0.1"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

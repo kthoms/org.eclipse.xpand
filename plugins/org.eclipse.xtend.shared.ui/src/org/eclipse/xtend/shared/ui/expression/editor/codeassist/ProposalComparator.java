@@ -14,13 +14,8 @@ import java.util.Comparator;
 
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
-public class ProposalComparator implements Comparator {
-
-    public int compare(final Object o1, final Object o2) {
-        final ICompletionProposal p1 = (ICompletionProposal) o1;
-        final ICompletionProposal p2 = (ICompletionProposal) o2;
-
-        return p1.getDisplayString().compareTo(p2.getDisplayString());
-    }
-
+public class ProposalComparator implements Comparator<ICompletionProposal> {
+	public int compare(final ICompletionProposal p1, final ICompletionProposal p2) {
+		return p1.getDisplayString().compareTo(p2.getDisplayString());
+	}
 }

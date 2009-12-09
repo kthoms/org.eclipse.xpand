@@ -11,12 +11,12 @@ Require-Bundle: org.junit,
  org.eclipse.emf.mwe.utils,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.xpand,
- org.eclipse.xpand.examples.xsd.m2t.minimal,
- org.eclipse.xpand.examples.xsd.m2m.ecore2xsd,
- org.eclipse.xpand.examples.xsd.m2m.news2xhtml,
- org.eclipse.xpand.examples.xsd.m2m.xml2svg,
- org.eclipse.xpand.examples.xsd.m2t.genmodel,
- org.eclipse.xpand.examples.xsd.m2t.xml2javawizard
+ org.eclipse.xpand.examples.xsd.m2t.minimal;resolution:=optional,
+ org.eclipse.xpand.examples.xsd.m2m.ecore2xsd;resolution:=optional,
+ org.eclipse.xpand.examples.xsd.m2m.news2xhtml;resolution:=optional,
+ org.eclipse.xpand.examples.xsd.m2m.xml2svg;resolution:=optional,
+ org.eclipse.xpand.examples.xsd.m2t.genmodel;resolution:=optional,
+ org.eclipse.xpand.examples.xsd.m2t.xml2javawizard;resolution:=optional
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

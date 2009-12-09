@@ -101,7 +101,8 @@ public class EmfRegistryMetaModel implements MetaModel {
 					}
 				}
 				EDataType dataType = (EDataType) ele;
-				return new EDataTypeType(EmfRegistryMetaModel.this, getFullyQualifiedName(dataType), dataType);
+				// fall back to qualified Java name for EDatatypes (i.e. you'll have to register the JavaBeansMetamodel in order to work with custom EDatatypes)
+				return typeSystem.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
 			}
 			return null;
 		}
@@ -274,16 +275,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 						return t;
 					}
 				}
-			}
-		} else {
-			// some other non-enumerated EDataType
-			for (Type t : types) {
-				if (t instanceof EDataTypeType) {
-					if (t.isInstance(obj)) {
-						return t;
-					}
-				}
-			}
+			}	
 		}
 		
 		return null;

@@ -11,12 +11,15 @@
 
 package org.eclipse.xtend.typesystem.emf;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
@@ -28,6 +31,7 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.ExpressionFacade;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Property;
@@ -135,17 +139,17 @@ public class EmfMetaModelTest extends TestCase {
 		}
 		Object params[] = { l };
 		op2.evaluate(aObject, params);
-		
+
 		List<Object> theList = (List<Object>) aObject.eGet(attr);
 		assertEquals(5, theList.size());
-		
+
 		final List<Object> yetAnotherList = (List<Object>) listType.newInstance();
 		for (int i = 0; i < 2; i++) {
 			yetAnotherList.add(aClassType.newInstance());
 		}
 		Object params2[] = { yetAnotherList };
 		op2.evaluate(aObject, params2);
-		
+
 		List<Object> anotherList = (List<Object>) aObject.eGet(attr);
 		assertEquals(2, anotherList.size());
 
@@ -217,6 +221,49 @@ public class EmfMetaModelTest extends TestCase {
 		final EmfRegistryMetaModel mm = new EmfRegistryMetaModel();
 		ctx.registerMetaModel(mm);
 		assertNotNull(ctx.getTypeForName("ecore::EOperation"));
+	}
+
+	public final void testCustomDataType() {
+		EcoreFactory f = EcoreFactory.eINSTANCE;
+		final EPackage pack = f.createEPackage();
+		pack.setName("test");
+
+		EClass clazz = f.createEClass();
+		clazz.setName("AClass");
+		pack.getEClassifiers().add(clazz);
+
+		EDataType dtype = f.createEDataType();
+		dtype.setName("MyCustomDataType");
+		dtype.setInstanceClass(MyCustomDataType.class);
+		pack.getEClassifiers().add(dtype);
+
+		EAttribute attr = f.createEAttribute();
+		attr.setName("aProp");
+		attr.setEType(dtype);
+		clazz.getEStructuralFeatures().add(attr);
+
+		final ExecutionContextImpl ctx = new ExecutionContextImpl();
+		final EmfRegistryMetaModel mm = new EmfRegistryMetaModel() {
+			@Override
+			protected EPackage[] allPackages() {
+				return new EPackage[] { pack };
+			}
+		};
+		final JavaBeansMetaModel jbmm = new JavaBeansMetaModel();
+
+		ctx.registerMetaModel(mm);
+		ctx.registerMetaModel(jbmm);
+
+		ExpressionFacade facade = new ExpressionFacade(ctx);
+
+		EObject myEObject = pack.getEFactoryInstance().create(clazz);
+
+		MyCustomDataType myCustomValue = new MyCustomDataType();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("foo", myEObject);
+		map.put("val", myCustomValue);
+		facade.evaluate("foo.setAProp(val)", map);
+		assertSame(myCustomValue, myEObject.eGet(attr));
 	}
 
 }

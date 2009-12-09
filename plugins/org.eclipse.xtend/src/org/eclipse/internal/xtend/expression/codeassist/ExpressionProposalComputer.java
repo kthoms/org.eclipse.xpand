@@ -491,8 +491,6 @@ public class ExpressionProposalComputer implements ProposalComputer {
 
 	private final static boolean isOpposite(final CommonToken left, final CommonToken right) {
         final String temp = blockTokens.get(left.getText());
-        if (temp==null)
-        	return false;
         return temp != null && right.getText().equals(temp);
     }
 

@@ -31,7 +31,7 @@ public class PluginExtensionFactory extends ExtensionFactory {
     @Override
     public JavaExtensionStatement createJavaExtension(Identifier name, Identifier type, List<DeclaredParameter> params, 
     		Identifier javaType, Identifier javaMethod, List<Identifier> javaParamTypes, Identifier cached, Identifier priv) {
-        return (JavaExtensionStatement) handle(new PluginJavaExtensionStatement(jp,
+        return handle(new PluginJavaExtensionStatement(jp,
                 name, nonNull(params), type, javaType, javaMethod, nonNull(javaParamTypes), cached != null,
                 priv != null));
     }

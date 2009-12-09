@@ -115,7 +115,7 @@ public class ReloadSchemasTest extends AbstractTestCase {
 			fail2(Msg.create("Supplied object is forbidden schema"));
 		for (EReference ref : obj.eClass().getEAllReferences()) {
 			Object o = obj.eGet(ref);
-			if (o instanceof Collection)
+			if (o instanceof Collection<?>)
 				for (Object p : (Collection<?>) o)
 					assertNoReferencesToSchema(obj, ref, p, schema);
 			else

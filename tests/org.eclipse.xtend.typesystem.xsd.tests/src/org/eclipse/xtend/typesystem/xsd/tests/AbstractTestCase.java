@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.impl.URIConverterImpl;
+import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
@@ -49,6 +49,7 @@ import org.eclipse.xtend.typesystem.xsd.util.XSDLog;
 /**
  * @author Moritz Eysholdt - Initial contribution
  */
+@SuppressWarnings("restriction")
 public abstract class AbstractTestCase extends TestCase {
 
 	final static String SEPARATOR = "**************************************************************************************";
@@ -80,12 +81,11 @@ public abstract class AbstractTestCase extends TestCase {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	protected BufferedReader getReader(String uri) throws IOException {
 		URI u = EcoreUtil2.getURI(uri);
 		if (u.isRelative())
 			u = URI.createFileURI(u.toString());
-		InputStream in = new URIConverterImpl().createInputStream(u);
+		InputStream in = new ExtensibleURIConverterImpl().createInputStream(u);
 		return new BufferedReader(new InputStreamReader(in));
 	}
 

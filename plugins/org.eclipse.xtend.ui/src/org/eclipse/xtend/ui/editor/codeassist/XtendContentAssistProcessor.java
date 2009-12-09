@@ -28,7 +28,6 @@ import org.eclipse.internal.xtend.xtend.codeassist.FastAnalyzer;
 import org.eclipse.internal.xtend.xtend.codeassist.Partition;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 import org.eclipse.ui.IEditorPart;
@@ -44,7 +43,7 @@ import org.eclipse.xtend.ui.core.IXtendResource;
 /**
  * @author Sven Efftinge (http://www.efftinge.de)
  */
-public class XtendContentAssistProcessor extends AbstractExtXptContentAssistProcessor implements IContentAssistProcessor {
+public class XtendContentAssistProcessor extends AbstractExtXptContentAssistProcessor {
 
 	public XtendContentAssistProcessor(final IEditorPart editor) {
 		super(editor);

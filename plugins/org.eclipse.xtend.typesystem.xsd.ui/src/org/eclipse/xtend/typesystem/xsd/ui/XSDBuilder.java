@@ -64,6 +64,7 @@ public class XSDBuilder extends IncrementalProjectBuilder {
 
 //	private Log log = XSDLog.getLog(getClass());
 
+	@Override
 	@SuppressWarnings("unchecked")
 	protected IProject[] build(int kind, Map args, IProgressMonitor monitor)
 			throws CoreException {
@@ -84,6 +85,7 @@ public class XSDBuilder extends IncrementalProjectBuilder {
 		return null;
 	}
 
+	@Override
 	protected void clean(IProgressMonitor monitor) throws CoreException {
 		XSDManager man = XSDToolsPlugin.getDefault().getXSDStore()
 				.getXSDManager(getProject());
@@ -125,6 +127,7 @@ public class XSDBuilder extends IncrementalProjectBuilder {
 		return !res.isDerived() && fe != null && fe.toLowerCase().equals("xsd");
 	}
 
+	@Override
 	protected void startupOnInitialize() {
 		forgetLastBuiltState();
 	}

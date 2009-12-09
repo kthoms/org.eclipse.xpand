@@ -98,6 +98,7 @@ public class XSDToolsPlugin extends AbstractUIPlugin {
 		return store;
 	}
 
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		traceLog(getClass().getName() + " started");
@@ -106,6 +107,7 @@ public class XSDToolsPlugin extends AbstractUIPlugin {
 		builderConfigurator.start();
 	}
 
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		builderConfigurator.stop();
 		plugin = null;

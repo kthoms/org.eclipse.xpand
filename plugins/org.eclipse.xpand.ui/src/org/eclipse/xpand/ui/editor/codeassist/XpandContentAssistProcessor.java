@@ -116,8 +116,13 @@ public class XpandContentAssistProcessor extends AbstractExtXptContentAssistProc
 				proposals.add(new org.eclipse.jface.text.contentassist.CompletionProposal(XpandTokens.LT
 						+ XpandTokens.RT, documentOffset, 0, 1));
 			}
-			Collections.sort(proposals, new ProposalComparator());
-			return proposals.toArray(new ICompletionProposal[proposals.size()]);
+			// TODO refactor code that methods return List<ICompletionProposals> and not List<Object>
+			List<ICompletionProposal> _proposals = new ArrayList<ICompletionProposal>(proposals.size());
+			for (Object o : proposals) {
+				_proposals.add((ICompletionProposal) o);
+			}
+			Collections.sort(_proposals, new ProposalComparator());
+			return _proposals.toArray(new ICompletionProposal[proposals.size()]);
 		} catch (final Exception e) {
 			XpandLog.logError(e);
 		}

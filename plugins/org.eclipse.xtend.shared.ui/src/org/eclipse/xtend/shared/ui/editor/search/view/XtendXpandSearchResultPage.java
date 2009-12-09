@@ -56,6 +56,7 @@ import com.ibm.icu.text.MessageFormat;
  * 
  * @author Peter Friese
  */
+@SuppressWarnings("restriction")
 public class XtendXpandSearchResultPage extends AbstractTextSearchViewPage implements IAdaptable {
 
 	public static class DecoratorIgnoringViewerSorter extends ViewerComparator {
@@ -94,9 +95,6 @@ public class XtendXpandSearchResultPage extends AbstractTextSearchViewPage imple
 			return getComparator().compare(name1, name2);
 		}
 	}
-
-	@SuppressWarnings("unused")
-	private static final String KEY_SORTING = "org.eclipse.search.resultpage.sorting"; //$NON-NLS-1$
 
 	private ActionGroup actionGroup;
 	private XtendXpandTableContentProvider contentProvider;
@@ -209,7 +207,6 @@ public class XtendXpandSearchResultPage extends AbstractTextSearchViewPage imple
 		mgr.appendToGroup(IContextMenuConstants.GROUP_VIEWER_SETUP, sortMenu);
 	}
 
-	@SuppressWarnings("restriction")
 	@Override
 	public void setViewPart(ISearchResultViewPart part) {
 		super.setViewPart(part);

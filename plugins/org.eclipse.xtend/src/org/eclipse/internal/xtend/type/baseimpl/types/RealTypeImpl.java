@@ -149,7 +149,17 @@ public class RealTypeImpl extends BuiltinBaseType {
                             return Boolean.FALSE;
                         return new Boolean(((Comparable<Double>) toDouble(target)).compareTo(toDouble(params[0])) <= 0);
                     }
-                } };
+                },
+                new OperationImpl(this, "toInteger", getTypeSystem().getIntegerType(), new Type[0]) {
+                @Override
+                public Object evaluateInternal(final Object target, final Object[] params) {
+                    if (target == null)
+                        return null;
+                    return ((Number)target).longValue();
+                }
+            }
+        
+        };
     }
 
     @Override

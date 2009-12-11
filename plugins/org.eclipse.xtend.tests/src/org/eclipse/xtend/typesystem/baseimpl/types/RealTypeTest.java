@@ -41,4 +41,9 @@ public class RealTypeTest extends TestCase {
     	assertNotNull(result);
     	assertTrue(result.booleanValue());
     }
+    public void test_toInteger() {
+    	Long result = (Long) ef.evaluate("1.1.toInteger()");
+    	assertNotNull(result);
+    	assertEquals(new Long(1), result);
+    }
 }

@@ -198,12 +198,17 @@ public class EmfRegistryMetaModel implements MetaModel {
 
 	};
 
+	private EPackage[] _allPackages;
 	/**
 	 * returns the managed packages. Uses the global EPackage Registry.
 	 * 
 	 * @return
 	 */
 	protected EPackage[] allPackages() {
+		if (_allPackages!=null) {
+			return _allPackages;
+		}
+		
 		Set<EPackage> packages = new HashSet<EPackage>();
 		for (String name : new HashSet<String>(EPackage.Registry.INSTANCE.keySet())) {
 			try {
@@ -221,7 +226,8 @@ public class EmfRegistryMetaModel implements MetaModel {
 				}
 			}
 		}
-		return packages.toArray(new EPackage[packages.size()]);
+		_allPackages = packages.toArray(new EPackage[packages.size()]);
+		return _allPackages;
 	}
 
 	private final Set<ResourceSet> resourceSets = new HashSet<ResourceSet>();

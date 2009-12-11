@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -40,7 +41,6 @@ import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
-import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
 public class StereotypeType extends AbstractTypeImpl {
 
@@ -227,7 +227,7 @@ public class StereotypeType extends AbstractTypeImpl {
         if (object instanceof NamedElement) {
             return normalizedName(((NamedElement) object).getQualifiedName());
         } else if (object instanceof EClassifier) {
-            return EmfRegistryMetaModel.getFullyQualifiedName((EClassifier) object);
+            return getFullyQualifiedName((EClassifier) object);
         }
         if (log.isWarnEnabled()) {
             log.warn("Cannot resolve names for " + object.getClass().getName());
@@ -235,7 +235,20 @@ public class StereotypeType extends AbstractTypeImpl {
         return null;
     }
 
-	@Override
+	private String getFullyQualifiedName(final ENamedElement ele) {
+		return getFqnRec(ele.eContainer(), ele.getName());
+	}
+
+	private String getFqnRec(final EObject ele, final String suffix) {
+		if (ele == null || !(ele instanceof ENamedElement)) {
+			return suffix;
+		}
+		else {
+			return getFqnRec(ele.eContainer(), ((ENamedElement) ele).getName() + SyntaxConstants.NS_DELIM + suffix);
+		}
+	}
+
+    @Override
 	protected boolean internalIsAssignableFrom(Type t) {
 		if (super.internalIsAssignableFrom(t)) {
 			return true;

@@ -39,6 +39,7 @@ import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
 import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.xtend.expression.TypeSystem;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -49,7 +50,10 @@ public class EmfRegistryMetaModel implements MetaModel {
 	TypeSystem typeSystem;
 
 	private EObjectType eobjectType = null;
-
+	
+	// Used to resolve Java based datatypes.
+	private JavaBeansMetaModel internalJbmm = new JavaBeansMetaModel();
+	
 	public EObjectType getEobjectType() {
 		return eobjectType;
 	}
@@ -109,8 +113,13 @@ public class EmfRegistryMetaModel implements MetaModel {
 					}
 				}
 				EDataType dataType = (EDataType) ele;
-				// fall back to qualified Java name for EDatatypes (i.e. you'll have to register the JavaBeansMetamodel in order to work with custom EDatatypes)
-				return typeSystem.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
+				// fall back to qualified Java name for EDatatypes
+				Type t = internalJbmm.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
+				if (t == null) {
+					// for primitives
+					t = typeSystem.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
+				}
+				return t;
 			}
 			return null;
 		}
@@ -137,6 +146,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 
 	public void setTypeSystem(final TypeSystem typeSystem) {
 		this.typeSystem = typeSystem;
+		this.internalJbmm.setTypeSystem(typeSystem);
 		if (eobjectType == null) {
 			eobjectType = new EObjectType(getTypeSystem());
 		}
@@ -191,7 +201,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 					classifiers = classifiers && element instanceof EClassifier;
 				}
 				if (classifiers) {
-					System.err.println("Multiple types (" + ele.size() + ") with name " + typeName + " found!");
+					log.warn("Multiple types (" + ele.size() + ") with name " + typeName + " found!");
 				}
 			}
 			if (ele.isEmpty()) {

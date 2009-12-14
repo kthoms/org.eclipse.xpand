@@ -78,6 +78,8 @@ public class JavaBeansStrategy implements JavaTypeStrategy {
 			final PropertyDescriptor pd = pdArr[i];
 			final Method m = pd.getReadMethod() != null ? pd.getReadMethod() : pd.getWriteMethod();
 			if (m != null && clazz.equals(m.getDeclaringClass())) {
+				if (pd.getReadMethod() != null)
+					usedMethods.add(pd.getReadMethod());
 				// Problem: pd.getPropertyType() does not allow to get information about generics. When having a generic collection as property type
 				// the property type is just of the collection interface, e.g. java.util.List
 				result.add(new JavaPropertyImpl(t, pd.getName(), typeFinder.builtinAwareGetTypeForClass(pd

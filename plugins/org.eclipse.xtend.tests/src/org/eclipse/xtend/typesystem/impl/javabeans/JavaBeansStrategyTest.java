@@ -72,7 +72,7 @@ public class JavaBeansStrategyTest extends TestCase {
     	Type javaBeansMetaType = ec.getTypeForName(JavaBeansMetaType.class.getName().replaceAll("\\.", "::"));
     	Type string = ec.getTypeForName(String.class.getName().replaceAll("\\.", "::"));
     	assertNotNull(string);
-    	assertNotNull(javaBeansMetaType.getOperation("getMyProp", null));
+    	assertNull(javaBeansMetaType.getOperation("getMyProp", null));
     	assertNotNull(javaBeansMetaType.getOperation("setMyProp", new Type[]{string}));
     }
 }

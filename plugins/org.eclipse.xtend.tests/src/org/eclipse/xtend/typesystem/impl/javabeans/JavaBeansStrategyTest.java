@@ -24,23 +24,34 @@ import org.eclipse.xtend.typesystem.StaticProperty;
 import org.eclipse.xtend.typesystem.Type;
 
 public class JavaBeansStrategyTest extends TestCase {
-    public final void testLowerCase() {
-        final ExecutionContextImpl ec = new ExecutionContextImpl();
-        final JavaBeansStrategy strategy = new JavaBeansStrategy();
-        ec.registerMetaModel(new JavaMetaModel("javaMM", strategy));
+	
+	private ExecutionContextImpl ec;
+	private JavaBeansStrategy strategy;
 
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		ec = new ExecutionContextImpl();
+        strategy = new JavaBeansStrategy();
+        ec.registerMetaModel(new JavaMetaModel("javaMM", strategy));
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		ec = null;
+		strategy = null;
+		super.tearDown();
+	}
+	
+    public final void testLowerCase() {
         final Type mt = ec.getTypeForName(JavaBeansMetaType.class.getName().replaceAll("\\.", "::"));
         assertNotNull(mt);
 
         final Property prop = mt.getProperty("myProp");
         assertNotNull(prop);
     }
-    
-    public final void testFinalStaticField() {
-        final ExecutionContextImpl ec = new ExecutionContextImpl();
-        final JavaBeansStrategy strategy = new JavaBeansStrategy();
-        ec.registerMetaModel(new JavaMetaModel("javaMM", strategy));
 
+    public final void testFinalStaticField() {
         final Type mt = ec.getTypeForName(MyMetaTypeInterface.class.getName().replaceAll("\\.", "::"));
         assertNotNull(mt);
 
@@ -49,9 +60,6 @@ public class JavaBeansStrategyTest extends TestCase {
     }
     
     public final void testFinalStaticField2() {
-        final ExecutionContextImpl ec = new ExecutionContextImpl();
-        final JavaBeansStrategy strategy = new JavaBeansStrategy();
-        ec.registerMetaModel(new JavaMetaModel("javaMM", strategy));
         final ExpressionFacade ef = new ExpressionFacade(ec);
         String typeName = MyMetaTypeInterface.class.getName().replaceAll("\\.", "::");
         String expr = "switch(x) { case "+typeName+"::FOO : true case "+typeName+"::BAR : false default : null }";
@@ -60,4 +68,11 @@ public class JavaBeansStrategyTest extends TestCase {
         assertNull(ef.evaluate(expr, Collections.singletonMap("x", "x")));
     }
 
+    public void testGetterAndSetterForProperty() {
+    	Type javaBeansMetaType = ec.getTypeForName(JavaBeansMetaType.class.getName().replaceAll("\\.", "::"));
+    	Type string = ec.getTypeForName(String.class.getName().replaceAll("\\.", "::"));
+    	assertNotNull(string);
+    	assertNotNull(javaBeansMetaType.getOperation("getMyProp", null));
+    	assertNotNull(javaBeansMetaType.getOperation("setMyProp", new Type[]{string}));
+    }
 }

@@ -78,7 +78,8 @@ public class JdtTypeImpl extends AbstractTypeImpl {
 						} else if (type == null) {
 							XtendLog.logInfo("Couldn't resolve return type of " + method.toString());
 						}
-					} else if (strategy.isOperation(method)) {
+					} 
+					if (strategy.isGetter(method) || strategy.isOperation(method)) {
 						final String[] paramSigns = method.getParameterTypes();
 						final Type[] params = new Type[paramSigns.length];
 						boolean unkownType = false;

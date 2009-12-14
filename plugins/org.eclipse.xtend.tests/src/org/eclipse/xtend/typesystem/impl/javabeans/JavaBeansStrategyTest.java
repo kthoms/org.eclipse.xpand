@@ -58,8 +58,6 @@ public class JavaBeansStrategyTest extends TestCase {
         assertEquals(true, ef.evaluate(expr, Collections.singletonMap("x", "f")));
         assertEquals(false, ef.evaluate(expr, Collections.singletonMap("x", "b")));
         assertNull(ef.evaluate(expr, Collections.singletonMap("x", "x")));
-
-        
-    }    
+    }
 
 }

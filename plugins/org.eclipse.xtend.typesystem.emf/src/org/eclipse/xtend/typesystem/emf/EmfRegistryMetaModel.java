@@ -113,13 +113,17 @@ public class EmfRegistryMetaModel implements MetaModel {
 					}
 				}
 				EDataType dataType = (EDataType) ele;
-				// fall back to qualified Java name for EDatatypes
-				Type t = internalJbmm.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
-				if (t == null) {
-					// for primitives
-					t = typeSystem.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
+				if (dataType.getInstanceClassName()!=null) {
+					// fall back to qualified Java name for EDatatypes
+					Type t = internalJbmm.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
+					if (t == null) {
+						// for primitives
+						t = typeSystem.getTypeForName(dataType.getInstanceClassName().replace(".", "::"));
+					}
+					return t;
+				} else {
+					return typeSystem.getObjectType();
 				}
-				return t;
 			}
 			return null;
 		}

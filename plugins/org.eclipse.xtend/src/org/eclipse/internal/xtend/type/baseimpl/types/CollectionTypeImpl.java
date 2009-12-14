@@ -350,4 +350,24 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 		}
 		return s;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+
+		if (obj == null)
+			return false;
+
+		if (getClass() != obj.getClass())
+			return false;
+		
+		CollectionTypeImpl other = (CollectionTypeImpl) obj;
+		
+		if (!innerType.equals(other.innerType)) {
+			return false;
+		}
+		
+		return true;
+	}
 }

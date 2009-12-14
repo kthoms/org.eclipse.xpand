@@ -218,5 +218,17 @@ public class CollectionTypeTest extends TestCase {
 		assertEquals(expectedResult, feature.getReturnType());
 		assertTrue(feature.getReturnType().isAssignableFrom(expectedResult));
 	}
+	
+	public final void testEqualsReturnType() {
+		Type innerType1 = ec.getBooleanType();
+		Type innerType2 = ec.getStringType();
+		
+		Type collType1 = ec.getCollectionType(innerType1);
+		Type collType1_1 = ec.getCollectionType(innerType1);
+		Type collType2 = ec.getCollectionType(innerType2);
+		
+		assertEquals (collType1, collType1_1);
+		assertTrue(!collType1.equals(collType2));
+	}
 
 }

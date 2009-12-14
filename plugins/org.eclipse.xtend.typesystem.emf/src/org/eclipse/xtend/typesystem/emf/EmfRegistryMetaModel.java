@@ -40,6 +40,7 @@ import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
 import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
+import org.eclipse.xtend.type.impl.java.JavaTypeImpl;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -326,7 +327,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 					if (obj instanceof EClassifier) {
 						try {
 							Type t = getTypeForEClassifier((EClassifier) obj);
-							if (t != null)
+							if (t != null && !(t instanceof JavaTypeImpl))
 								result.add(t);
 						}
 						catch (RuntimeException e) {
@@ -350,7 +351,13 @@ public class EmfRegistryMetaModel implements MetaModel {
 	}
 
 	public Type getTypeForEClassifier(final EGenericType element) {
-		EClassifier baseType = element.getEClassifier();
+		EClassifier baseType = null;
+		if (element.getEClassifier() != null) {
+			baseType = element.getEClassifier();;
+		} else {
+			baseType = element.getERawType();
+		}
+		
 		if ((baseType == null) || !listTypes.contains(baseType))
 			return getTypeForEClassifier(baseType);
 
@@ -368,13 +375,16 @@ public class EmfRegistryMetaModel implements MetaModel {
 		if (typedElement.getEType() instanceof EDataType) {
 			if (typedElement.getEGenericType() != null) {
 				t = getTypeForEClassifier(typedElement.getEGenericType());
-			}
-			else {
+			} else {
 				t = getTypeForEClassifier(typedElement.getEType());
 			}
 		}
 		else {
-			t = getTypeSystem().getTypeForName(getFullyQualifiedName(typedElement.getEType()));
+			if (typedElement.getEGenericType() != null) {
+				t = getTypeForEClassifier(typedElement.getEGenericType());
+			} else {
+				t = getTypeSystem().getTypeForName(getFullyQualifiedName(typedElement.getEType()));
+			}
 		}
 		if (typedElement.isMany())
 			return new EmfListType(t, typeSystem, BuiltinMetaModel.LIST);

@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.internal.xtend.expression.codeassist.AbstractProposalFactory;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xpand2.XpandUtil;
 import org.eclipse.xtend.expression.TypeNameUtil;
@@ -33,7 +34,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 		this.offset = offset;
 	}
 
-	public Object createCollectionSpecificOperationProposal(final String insertString, final String displayString,
+	public ICompletionProposal createCollectionSpecificOperationProposal(final String insertString, final String displayString,
 			final String prefix, final int cursor, final int marked) {
 		final String displayStr = displayString;
 		final String insertStr = insertString;
@@ -42,7 +43,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 				displayStr, null, null);
 	}
 
-	public Object createPropertyProposal(final Property p, final String prefix, final boolean onOperation) {
+	public ICompletionProposal createPropertyProposal(final Property p, final String prefix, final boolean onOperation) {
 		final String returnType = computeReturnType(p.getReturnType(), onOperation);
 		final String displayStr = p.getName() + " " + returnType + " - "
 				+ TypeNameUtil.getSimpleName(p.getOwner().getName());
@@ -56,7 +57,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 	 * @see ProposalFactory#createStaticPropertyProposal(StaticProperty, String,
 	 *      boolean)
 	 */
-	public Object createStaticPropertyProposal(final StaticProperty p, final String prefix, final boolean onOperation) {
+	public ICompletionProposal createStaticPropertyProposal(final StaticProperty p, final String prefix, final boolean onOperation) {
 		final String returnType = computeReturnType(p.getReturnType(), onOperation);
 		final String displayStr = p.getName() + " " + returnType + " - "
 				+ TypeNameUtil.getSimpleName(p.getOwner().getName());
@@ -97,7 +98,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 		}
 	}
 
-	public Object createOperationProposal(final Operation p, final String prefix, final boolean onOperation) {
+	public ICompletionProposal createOperationProposal(final Operation p, final String prefix, final boolean onOperation) {
 		final String returnType = computeReturnType(p.getReturnType(), onOperation);
 		final String displayStr = p.getName() + toParamString(p.getParameterTypes()) + " " + returnType + " - "
 				+ TypeNameUtil.getSimpleName(p.getOwner().getName());
@@ -111,7 +112,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 				null);
 	}
 
-	public Object createExtensionProposal(final Extension p, final String prefix) {
+	public ICompletionProposal createExtensionProposal(final Extension p, final String prefix) {
 		final String displayStr = p.getName() + toParamString(p, false);
 		final String insertStr = p.getName() + "()";
 		int x = insertStr.length();
@@ -123,7 +124,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 				null);
 	}
 
-	public Object createExtensionOnMemberPositionProposal(final Extension p, final String prefix,
+	public ICompletionProposal createExtensionOnMemberPositionProposal(final Extension p, final String prefix,
 			final boolean onOperation) {
 		final String displayStr = p.getName() + toParamString(p, true) + " - "
 				+ (p.getFormalParameters().get(0)).getType();
@@ -162,7 +163,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 		return b.toString();
 	}
 
-	public Object createVariableProposal(final String name, final Type t, final String prefix) {
+	public ICompletionProposal createVariableProposal(final String name, final Type t, final String prefix) {
 		final String displayStr = name + " " + computeReturnType(t, false);
 		final String insertStr = name;
 		final Image img = EditorImages.getImage(EditorImages.VARIABLE);
@@ -170,7 +171,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 				displayStr, null, null);
 	}
 
-	public Object createTypeProposal(final String insertString, final Type type, final String prefix) {
+	public ICompletionProposal createTypeProposal(final String insertString, final Type type, final String prefix) {
 		String displayStr = TypeNameUtil.getSimpleName(type.getName());
 		final String packName = TypeNameUtil.withoutLastSegment(type.getName());
 		if (packName != null) {
@@ -183,37 +184,37 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 				displayStr, null, null);
 	}
 
-	public Object createExtensionImportProposal(final String insertStr, final String displayStr, final String prefix,
+	public ICompletionProposal createExtensionImportProposal(final String insertStr, final String displayStr, final String prefix,
 			final int cursor, final int marked) {
 		final Image img = EditorImages.getImage(EditorImages.EXT_IMPORT);
 		return new CompletionProposal(insertStr, offset - prefix.length(), prefix.length(), insertStr.length(), img,
 				displayStr, null, null);
 	}
 
-	public Object createNamespaceProposal(final String insertStr, final String displayStr, final String prefix) {
+	public ICompletionProposal createNamespaceProposal(final String insertStr, final String displayStr, final String prefix) {
 		final Image img = EditorImages.getImage(EditorImages.PACKAGE);
 		return new CompletionProposal(insertStr, offset - prefix.length(), prefix.length(), insertStr.length(), img,
 				displayStr, null, null);
 	}
 
-	public Object createDefinitionProposal(final String insertStr, final String displayStr, final String prefix) {
+	public ICompletionProposal createDefinitionProposal(final String insertStr, final String displayStr, final String prefix) {
 		final Image img = EditorImages.getImage(EditorImages.XPAND_DEFINE);
 		return new CompletionProposal(insertStr, offset - prefix.length(), prefix.length(), insertStr.length(), img,
 				displayStr, null, null);
 	}
 
-	public Object createStatementProposal(final String insertStr, final String displayStr, final String prefix,
+	public ICompletionProposal createStatementProposal(final String insertStr, final String displayStr, final String prefix,
 			final int cursor, final int marked) {
 		final Image img = EditorImages.getImage(EditorImages.EXT_IMPORT);
 		return new CompletionProposal(insertStr, offset - prefix.length(), prefix.length(), insertStr.length(), img,
 				displayStr, null, null);
 	}
 
-	public Object createStatementProposal(final String insertString, final String displayString, final String prefix) {
+	public ICompletionProposal createStatementProposal(final String insertString, final String displayString, final String prefix) {
 		throw new UnsupportedOperationException();
 	}
 
-	public Object createKeywordProposal(final String insertString, final String displayString, final String prefix) {
+	public ICompletionProposal createKeywordProposal(final String insertString, final String displayString, final String prefix) {
 		throw new UnsupportedOperationException();
 	}
 }

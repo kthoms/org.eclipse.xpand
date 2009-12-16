@@ -12,6 +12,7 @@
 package org.eclipse.xpand.ui.editor.codeassist;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtend.shared.ui.expression.editor.EditorImages;
 import org.eclipse.xtend.shared.ui.expression.editor.codeassist.ProposalFactoryEclipseImpl;
@@ -24,7 +25,7 @@ public class XpandProposalFactoryEclipseImpl extends ProposalFactoryEclipseImpl 
     }
 
     @Override
-    public Object createStatementProposal(final String insertString, final String displayString, final String prefix,
+    public ICompletionProposal createStatementProposal(final String insertString, final String displayString, final String prefix,
             final int cursor, final int marked) {
         final Image img = EditorImages.getImage(EditorImages.STATEMENT);
         return new TextSelectingProposal(insertString, offset, prefix.length(), cursor, marked, img, displayString,
@@ -32,12 +33,12 @@ public class XpandProposalFactoryEclipseImpl extends ProposalFactoryEclipseImpl 
     }
 
     @Override
-    public Object createStatementProposal(final String insertString, final String displayString, final String prefix) {
+    public ICompletionProposal createStatementProposal(final String insertString, final String displayString, final String prefix) {
         return createStatementProposal(insertString, displayString, prefix, insertString.length(), 0);
     }
 
     @Override
-    public Object createKeywordProposal(final String insertString, final String displayString, final String prefix) {
+    public ICompletionProposal createKeywordProposal(final String insertString, final String displayString, final String prefix) {
         return new CompletionProposal(insertString, offset - prefix.length(), prefix.length(), insertString.length(), null, displayString, null, null);
     }
     

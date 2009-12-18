@@ -33,4 +33,5 @@ Export-Package: org.eclipse.internal.xtend.check.codeassist,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-BuddyPolicy: dependent
 Import-Package: com.ibm.icu.text,
+ org.apache.commons.lang.builder,
  org.apache.commons.logging

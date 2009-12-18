@@ -11,6 +11,8 @@
 
 package org.eclipse.xtend.expression;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 
 /**
@@ -33,6 +35,16 @@ public class AnalysationIssue {
 		@Override
 		public String toString() {
 			return name;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+	    	return EqualsBuilder.reflectionEquals(this, obj);
+		}
+		
+		@Override
+		public int hashCode() {
+			return new HashCodeBuilder().append(name).toHashCode();
 		}
 	}
 
@@ -106,4 +118,32 @@ public class AnalysationIssue {
     public String toString() {
         return "[" + analysationIssueType.name + "] - " + message + " : " + element;
     }
+    
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+		AnalysationIssue rhs = (AnalysationIssue) obj;
+		return new EqualsBuilder()
+			.append(analysationIssueType, rhs.analysationIssueType)
+			.append(element, rhs.element)
+			.append(message, rhs.message)
+			.isEquals();
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+		.append(analysationIssueType)
+		.append(element)
+		.append(message)
+		.toHashCode();
+	}
 }

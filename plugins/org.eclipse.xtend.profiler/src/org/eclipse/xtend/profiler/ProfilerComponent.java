@@ -30,30 +30,30 @@ import org.eclipse.xtend.typesystem.Type;
  * to this via idref as a callback. In the end a profiling model will be stored
  * in the resultslot and can be used with one of the templates.
  * 
- * <code>
- * 	<component id="profiler" class="org.eclipse.xtend.profiler.ProfilerComponent">
- *		<resultSlot value="profilingResult" />
+ * <pre><code>
+ * 	&lt;component id="profiler" class="org.eclipse.xtend.profiler.ProfilerComponent"&gt;
+ *		&lt;resultSlot value="profilingResult" /&gt;
  *		
- *		<component class="org.eclipse.xtend.check.CheckComponent">
- *			<vetoableCallback idRef="profiler" />
+ *		&lt;component class="org.eclipse.xtend.check.CheckComponent"&gt;
+ *			&lt;vetoableCallback idRef="profiler" /&gt;
  *			...
- *		</component>
- *		<component class="org.eclipse.xtend.XtendComponent">
- *			<vetoableCallback idRef="profiler" />
+ *		&lt;/component&gt;
+ *		&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
+ *			&lt;vetoableCallback idRef="profiler" /&gt;
  *			...
- *		</component>
- *		<component class="org.eclipse.xpand2.Generator">
- *			<vetoableCallback idRef="profiler" />
+ *		&lt;/component&gt;
+ *		&lt;component class="org.eclipse.xpand2.Generator"&gt;
+ *			&lt;vetoableCallback idRef="profiler" /&gt;
  *			...
- *		</component>
- *	</component>
+ *		&lt;/component&gt;
+ *	&lt;/component&gt;
  *	
- *	<component class="org.eclipse.xpand2.Generator" fileEncoding="ISO-8859-1">
- *		<metaModel idRef="mm"/>
- *		<expand value="org::eclipse::xtend::profiler::templates::Html::Main FOR profilingResult"/> 
- *		<outlet overwrite="true" path="profiling"/>
- *	</component>
- * </code>
+ *	&lt;component class="org.eclipse.xpand2.Generator" fileEncoding="ISO-8859-1"&gt;
+ *		&lt;metaModel idRef="mm"/&gt;
+ *		&lt;expand value="org::eclipse::xtend::profiler::templates::Html::Main FOR profilingResult"/&gt; 
+ *		&lt;outlet overwrite="true" path="profiling"/&gt;
+ *	&lt;/component&gt;
+ * </code></pre>
  * 
  * @author Heiko Behrens - Initial contribution and API
  *

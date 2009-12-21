@@ -36,34 +36,34 @@ public class AnalysationIssue {
 		public String toString() {
 			return name;
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
-	    	return EqualsBuilder.reflectionEquals(this, obj);
+			return EqualsBuilder.reflectionEquals(this, obj);
 		}
-		
+
 		@Override
 		public int hashCode() {
 			return new HashCodeBuilder().append(name).toHashCode();
 		}
 	}
 
-    public final static AnalysationIssueType INCOMPATIBLE_TYPES = new AnalysationIssueType("Incompatible types");
+	public final static AnalysationIssueType INCOMPATIBLE_TYPES = new AnalysationIssueType("Incompatible types");
 
-    public final static AnalysationIssueType UNNECESSARY_CAST = new AnalysationIssueType("Unnecessary cast");
+	public final static AnalysationIssueType UNNECESSARY_CAST = new AnalysationIssueType("Unnecessary cast");
 
-    public final static AnalysationIssueType FEATURE_NOT_FOUND = new AnalysationIssueType("Callable not found");
+	public final static AnalysationIssueType FEATURE_NOT_FOUND = new AnalysationIssueType("Callable not found");
 
-    public static final AnalysationIssueType TYPE_NOT_FOUND = new AnalysationIssueType("AnalysationIssueType not found");
+	public static final AnalysationIssueType TYPE_NOT_FOUND = new AnalysationIssueType("AnalysationIssueType not found");
 
-    public static final AnalysationIssueType INTERNAL_ERROR = new AnalysationIssueType("Internal error");
+	public static final AnalysationIssueType INTERNAL_ERROR = new AnalysationIssueType("Internal error");
 
 	public static final AnalysationIssueType JAVA_TYPE_NOT_FOUND = new AnalysationIssueType(
 			"Java AnalysationIssueType not found");
 
-    public static final AnalysationIssueType SYNTAX_ERROR = new AnalysationIssueType("Syntax error");
+	public static final AnalysationIssueType SYNTAX_ERROR = new AnalysationIssueType("Syntax error");
 
-    public static final AnalysationIssueType RESOURCE_NOT_FOUND = new AnalysationIssueType("Resource not found");
+	public static final AnalysationIssueType RESOURCE_NOT_FOUND = new AnalysationIssueType("Resource not found");
 
 	private final AnalysationIssueType analysationIssueType;
 
@@ -83,28 +83,28 @@ public class AnalysationIssue {
 		if (analysationIssueType == null || message == null || message.length() == 0 || element == null)
 			throw new IllegalArgumentException();
 
-        this.analysationIssueType = analysationIssueType;
-        this.message = message;
-        this.element = element;
+		this.analysationIssueType = analysationIssueType;
+		this.message = message;
+		this.element = element;
 		if (warning) {
 			severity = AnalysationIssueSeverity.WARNING;
 		}
 		else {
 			severity = AnalysationIssueSeverity.ERROR;
 		}
-    }
+	}
 
-    public SyntaxElement getElement() {
-        return element;
-    }
+	public SyntaxElement getElement() {
+		return element;
+	}
 
-    public String getMessage() {
-        return message;
-    }
+	public String getMessage() {
+		return message;
+	}
 
-    public AnalysationIssueType getType() {
-        return analysationIssueType;
-    }
+	public AnalysationIssueType getType() {
+		return analysationIssueType;
+	}
 
 	public boolean isError() {
 		return severity == AnalysationIssueSeverity.ERROR;
@@ -114,11 +114,18 @@ public class AnalysationIssue {
 		return severity == AnalysationIssueSeverity.WARNING;
 	}
 
-    @Override
-    public String toString() {
-        return "[" + analysationIssueType.name + "] - " + message + " : " + element;
-    }
-    
+	@Override
+	public String toString() {
+		return new StringBuilder()
+			.append("[")
+			.append(analysationIssueType.name)
+			.append("] - ")
+			.append(message)
+			.append(" : ")
+			.append(element)
+			.toString();
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -131,19 +138,12 @@ public class AnalysationIssue {
 			return false;
 		}
 		AnalysationIssue rhs = (AnalysationIssue) obj;
-		return new EqualsBuilder()
-			.append(analysationIssueType, rhs.analysationIssueType)
-			.append(element, rhs.element)
-			.append(message, rhs.message)
-			.isEquals();
+		return new EqualsBuilder().append(analysationIssueType, rhs.analysationIssueType).append(element, rhs.element)
+				.append(message, rhs.message).isEquals();
 	}
-	
+
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder()
-		.append(analysationIssueType)
-		.append(element)
-		.append(message)
-		.toHashCode();
+		return new HashCodeBuilder().append(analysationIssueType).append(element).append(message).toHashCode();
 	}
 }

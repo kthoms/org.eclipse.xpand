@@ -40,11 +40,11 @@ public class Template extends SyntaxElement implements XpandResource {
 
     private String fullyQualifiedName;
 
-    private ImportDeclaration[] extensions;
+    private ExtensionImportDeclaration[] extensions;
 
     private Advice[] advices;
 
-    public ImportDeclaration[] getExtensions() {
+    public ExtensionImportDeclaration[] getExtensions() {
         return extensions;
     }
     
@@ -64,7 +64,7 @@ public class Template extends SyntaxElement implements XpandResource {
         this.fullyQualifiedName = fullyQualifiedName;
     }
 
-	public Template(final ImportDeclaration[] imports, final ImportDeclaration[] extensions,
+	public Template(final ImportDeclaration[] imports, final ExtensionImportDeclaration[] extensions,
 			final Definition[] definitions, final Advice[] advices) {
         this.imports = imports;
         this.extensions = extensions;
@@ -110,8 +110,9 @@ public class Template extends SyntaxElement implements XpandResource {
     
     private String[] commonPrefixes = null;
 
-    public void analyze(XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    public void analyze(XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {    	
     	try {
+        	Set<AnalysationIssue> issuesFromThisResource = new HashSet<AnalysationIssue>();
 	        ctx = (XpandExecutionContext) ctx.cloneWithResource(this);
 			if (ctx.getCallback() != null) {
 				if(!ctx.getCallback().pre(this, ctx)) {
@@ -119,18 +120,36 @@ public class Template extends SyntaxElement implements XpandResource {
 				}
 			}
 
-			checkDuplicateDefinitions(issues);
+			for (ExtensionImportDeclaration extension : extensions) {
+        		extension.analyze(ctx, issuesFromThisResource);
+	        }
+
+			checkDuplicateDefinitions(issuesFromThisResource);
 	        for (int i = 0; i < definitions.length; i++) {
-	            definitions[i].analyze(ctx, issues);
+        		definitions[i].analyze(ctx, issuesFromThisResource);
 	        }
 
 	        for (int i = 0; i < advices.length; i++) {
-	            advices[i].analyze(ctx, issues);
+        		advices[i].analyze(ctx, issuesFromThisResource);
 	        }
-    	}
-		catch (RuntimeException ex) {
+	    	// filter all the 'Error parsing resource' issues that arised from a broken import
+			Set<AnalysationIssue> issuesToRemove = new HashSet<AnalysationIssue>();
+			for (AnalysationIssue issue : issuesFromThisResource) {
+				if (issue.getType().equals(AnalysationIssue.RESOURCE_NOT_FOUND)) {
+					ImportDeclaration importStmt = (ImportDeclaration) issue.getElement();
+					for (AnalysationIssue issue2 : issuesFromThisResource) {
+						if (issue2.getType().equals(AnalysationIssue.INTERNAL_ERROR) && issue2.getMessage().matches("Error parsing extensions.*"+importStmt.getImportString()+"$")) {
+							issuesToRemove.add(issue2);
+						}
+					}
+				}
+			}
+			issuesFromThisResource.removeAll(issuesToRemove);
+			issues.addAll(issuesFromThisResource);
+	        
+    	} catch (RuntimeException ex) {
 			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, ex.getMessage(), this));
-    }
+    	}
 		finally {
 			if (ctx.getCallback() != null) {
 				ctx.getCallback().post(this, ctx, null);

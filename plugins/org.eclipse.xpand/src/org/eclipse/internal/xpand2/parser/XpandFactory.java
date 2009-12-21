@@ -19,6 +19,7 @@ import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.ErrorStatement;
 import org.eclipse.internal.xpand2.ast.ExpandStatement;
 import org.eclipse.internal.xpand2.ast.ExpressionStatement;
+import org.eclipse.internal.xpand2.ast.ExtensionImportDeclaration;
 import org.eclipse.internal.xpand2.ast.FileStatement;
 import org.eclipse.internal.xpand2.ast.ForEachStatement;
 import org.eclipse.internal.xpand2.ast.IfStatement;
@@ -51,8 +52,8 @@ public class XpandFactory extends ExpressionFactory {
 			final List<SyntaxElement> defines, final List<SyntaxElement> advices) {
 		final ImportDeclaration[] i = check(imports).toArray(
 				new ImportDeclaration[check(imports).size()]);
-		final ImportDeclaration[] ext = check(extensions).toArray(
-				new ImportDeclaration[check(extensions).size()]);
+		final ExtensionImportDeclaration[] ext = check(extensions).toArray(
+				new ExtensionImportDeclaration[check(extensions).size()]);
 
 		final Definition[] d = check(defines).toArray(
 				new Definition[check(defines).size()]);
@@ -147,6 +148,10 @@ public class XpandFactory extends ExpressionFactory {
 
 	public ImportDeclaration createImportDeclaration(final Identifier namespace) {
 		return handle(new ImportDeclaration(namespace));
+	}
+
+	public ExtensionImportDeclaration createExtensionImportDeclaration(final Identifier namespace) {
+		return handle(new ExtensionImportDeclaration(namespace));
 	}
 
 	public Advice createAround(final Identifier n,

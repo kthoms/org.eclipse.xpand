@@ -196,7 +196,7 @@ public class OperationCall extends FeatureCall {
 			if (var != null) {
 				targetType = (Type) var.getValue();
 			} else {
-				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find extensions : " + toString(), this));
+				issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "Couldn't find extension : " + toString(), this));
 			}
 		} else {
 			targetType = getTarget().analyze(ctx, issues);
@@ -212,8 +212,10 @@ public class OperationCall extends FeatureCall {
 		Type rt = getExtensionsReturnType(ctx, issues, paramTypes, targetType);
 		if (rt != null)
 			return rt;
-		else if (issueSize < issues.size())
+		else if (issueSize < issues.size()) {
+			// Internal error was added, most probably broken extension
 			return null;
+		}
 		String additionalMsg = "";
 		if (targetType instanceof ParameterizedType) {
 			final Type innerType = ((ParameterizedType) targetType).getInnerType();
@@ -243,40 +245,30 @@ public class OperationCall extends FeatureCall {
 
 	private Type getExtensionsReturnType(final ExecutionContext ctx, final Set<AnalysationIssue> issues, final Type[] paramTypes,
 			final Type targetType) {
+		Type returnType = null;
 		final Type[] pts = new Type[paramTypes.length + 1];
+		final Set<AnalysationIssue> internalIssues = new HashSet<AnalysationIssue>();
 		pts[0] = targetType;
 		System.arraycopy(paramTypes, 0, pts, 1, paramTypes.length);
 		Extension f = null;
 		try {
 			f = ctx.getExtensionForTypes(getName().getValue(), pts);
 		} catch (final Exception e) {
-			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
+			internalIssues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
 		}
 		if (f != null) {
-			final Set<AnalysationIssue> temp = new HashSet<AnalysationIssue>();
-			final Type rt = ctx.getReturnType(f, pts, temp);
-			if (rt == null) {
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "couldn't resolve return type for extension " + f + "! Errors : "
-						+ temp.toString(), this));
-			}
-			return rt;
+			returnType = ctx.getReturnType(f, pts, internalIssues);
 		} else if (getTarget() == null) { // try without implicite this
 			try {
 				f = ctx.getExtensionForTypes(getName().getValue(), paramTypes);
 			} catch (final Exception e) {
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
+				internalIssues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Error parsing extensions : " + e.getMessage(), this));
 			}
 			if (f != null) {
-				final Set<AnalysationIssue> temp = new HashSet<AnalysationIssue>();
-				final Type rt = ctx.getReturnType(f, pts, temp);
-				if (rt == null) {
-					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "couldn't resolve return type for extension " + f
-							+ "! Errors : " + temp.toString(), this));
-				}
-				return rt;
+				returnType = ctx.getReturnType(f, pts, internalIssues);
 			}
 		}
-		return null;
+		return returnType;
 	}
 
 	private String getParamsString(final Type[] paramTypes) {

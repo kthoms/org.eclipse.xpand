@@ -45,7 +45,7 @@ template returns [Template t]
 @init{List imports = new ArrayList(),extensions = new ArrayList(), defines = new ArrayList(), advices = new ArrayList();} :
 	LG
 		(COMMENT TEXT)*
-		((imp=anImport {imports.add(imp);}  | imp=anExtensionImport {extensions.add(imp);}) TEXT (COMMENT TEXT)*)*
+		((imp=anImport {imports.add(imp);}  | extimp=anExtensionImport {extensions.add(extimp);}) TEXT (COMMENT TEXT)*)*
 		((d=define {defines.add(d);}| a=around{advices.add(a);}) TEXT (COMMENT TEXT)* )*
 	 {t = factory.createTemplate(imports,extensions,defines,advices);}
 	|
@@ -55,8 +55,8 @@ anImport returns [ImportDeclaration imp] :
 	'IMPORT' id=simpleType {$imp = factory.createImportDeclaration(id);}
 ;
 
-anExtensionImport returns [ImportDeclaration imp]:
-	'EXTENSION' id=simpleType {imp = factory.createImportDeclaration(id);}
+anExtensionImport returns [ExtensionImportDeclaration imp]:
+	'EXTENSION' id=simpleType {imp = factory.createExtensionImportDeclaration(id);}
 ;
 
 around returns [Advice a] :

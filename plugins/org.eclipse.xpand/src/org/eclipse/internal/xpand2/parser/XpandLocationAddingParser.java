@@ -70,7 +70,7 @@ public class XpandLocationAddingParser extends XpandParser {
 	}
 
 	@Override
-	public ImportDeclaration anExtensionImport() throws RecognitionException {
+	public ExtensionImportDeclaration anExtensionImport() throws RecognitionException {
 		return addLocation(start(), super.anExtensionImport(), end());
 	}
 

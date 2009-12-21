@@ -16,7 +16,8 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IStorage;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.NamespaceImportStatement;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -214,9 +215,9 @@ public abstract class AbstractExtXptContentOutlinePage extends
 	protected abstract OutlineElement[] getChildren(Object parentElement);
 
 	protected List<OutlineElement> toOutlineElementsForNamespaceImports(
-			List<ImportStatement> imports) {
+			List<NamespaceImportStatement> imports) {
 		List<OutlineElement> l = new ArrayList<OutlineElement>();
-		for (ImportStatement s : imports) {
+		for (NamespaceImportStatement s : imports) {
 			l.add(new OutlineElement(s.getImportedId().getValue(),
 					s.getStart(), s.getEnd() - s.getStart(), EditorImages
 							.getImage(EditorImages.NS_IMPORT),
@@ -226,9 +227,9 @@ public abstract class AbstractExtXptContentOutlinePage extends
 	}
 
 	protected List<OutlineElement> toOutlineElementsForExtensionImports(
-			List<ImportStatement> imports) {
+			List<ExtensionImportStatement> imports) {
 		List<OutlineElement> l = new ArrayList<OutlineElement>();
-		for (ImportStatement s : imports) {
+		for (ExtensionImportStatement s : imports) {
 			l.add(new OutlineElement(s.getImportedId().getValue(),
 					s.getStart(), s.getEnd() - s.getStart(), EditorImages
 							.getImage(EditorImages.EXT_IMPORT),

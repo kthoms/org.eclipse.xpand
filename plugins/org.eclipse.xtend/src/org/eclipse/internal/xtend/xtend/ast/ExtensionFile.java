@@ -29,9 +29,9 @@ import org.eclipse.xtend.expression.ResourceManager;
 
 public class ExtensionFile extends SyntaxElement implements XtendFile {
 
-    private List<ImportStatement> nsImports;
+    private List<NamespaceImportStatement> nsImports;
 
-    private List<ImportStatement> extImports;
+    private List<ExtensionImportStatement> extImports;
 
     private List<Extension> extensions;
 
@@ -43,7 +43,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 		return checks;
 	}
 
-    public ExtensionFile(final List<ImportStatement> nsImports, final List<ImportStatement> extImports,
+    public ExtensionFile(final List<NamespaceImportStatement> nsImports, final List<ExtensionImportStatement> extImports,
             final List<Extension> extensions, final List<Around> arounds, final List<Check> checks) {
         this.nsImports = nsImports;
         this.extImports = extImports;
@@ -66,17 +66,17 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
         return extensions;
     }
 
-    public List<ImportStatement> getExtImports() {
+    public List<ExtensionImportStatement> getExtImports() {
         return extImports;
     }
 
-    public List<ImportStatement> getNsImports() {
+    public List<NamespaceImportStatement> getNsImports() {
         return nsImports;
     }
 
     public String[] getImportedNamespaces() {
         final List<String> namespaces = new ArrayList<String>();
-        for (ImportStatement nsImport : nsImports) {
+        for (NamespaceImportStatement nsImport : nsImports) {
             namespaces.add(nsImport.getImportedId().getValue());
         }
         return namespaces.toArray(new String[namespaces.size()]);
@@ -96,7 +96,10 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 			// try to load all declared imported extensions. Add error issues if
 			// the resource cannot be located
 			// by the ResourceManager
-			for (ImportStatement imp : extImports) {
+			for (ExtensionImportStatement imp : extImports) {
+				imp.analyze(ctx, issues);
+			}
+			for (NamespaceImportStatement imp : nsImports) {
 				imp.analyze(ctx, issues);
 			}
 
@@ -151,7 +154,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 
     public String[] getImportedExtensions() {
         final List<String> namespaces = new ArrayList<String>();
-        for (ImportStatement extImport : extImports) {
+        for (ExtensionImportStatement extImport : extImports) {
             namespaces.add(extImport.getImportedId().getValue());
         }
         return getImportedExtensionsAsList().toArray(new String[namespaces.size()]);
@@ -159,7 +162,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
     
     public List<String> getImportedExtensionsAsList () {
         final List<String> namespaces = new ArrayList<String>();
-        for (ImportStatement extImport : extImports) {
+        for (ExtensionImportStatement extImport : extImports) {
             namespaces.add(extImport.getImportedId().getValue());
         }
         return namespaces;
@@ -181,7 +184,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
                 result.add(ext);
             }
         }
-        for (ImportStatement imp : extImports) {
+        for (ExtensionImportStatement imp : extImports) {
             if (imp.isExported()) {
                 final XtendFile xf = (XtendFile) rm.loadResource(imp.getImportedId().getValue(),
                         XtendFile.FILE_EXTENSION);

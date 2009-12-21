@@ -25,8 +25,9 @@ import org.eclipse.internal.xtend.xtend.ast.CreateExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.ExpressionExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
 import org.eclipse.internal.xtend.xtend.ast.JavaExtensionStatement;
+import org.eclipse.internal.xtend.xtend.ast.NamespaceImportStatement;
 import org.eclipse.internal.xtend.xtend.parser.XtendLexer;
 import org.eclipse.internal.xtend.xtend.parser.XtendLocationAddingParser;
 import org.eclipse.xtend.XtendFacade;
@@ -63,7 +64,7 @@ public class ExtensionParserTest extends TestCase {
 				+ "/* \n" + " * Meine Funktion \n" + " */ \n"
 				+ "trueFunc() :true; \n");
 		assertEquals(1, file.getNsImports().size());
-		final ImportStatement imp = file.getNsImports().get(0);
+		final NamespaceImportStatement imp = file.getNsImports().get(0);
 		assertEquals("org::oaw", imp.getImportedId().getValue());
 		assertTrue(file.getExtImports().isEmpty());
 		assertEquals(1, file.getExtensions().size());
@@ -90,11 +91,11 @@ public class ExtensionParserTest extends TestCase {
 				+ "Void dump(String s) : JAVA de.DefaultImpl.doStuff(java.util.Collection,java.util.Set) ; \n");
 		assertEquals(2, file.getNsImports().size());
 
-		final ImportStatement imp = file.getNsImports().get(1);
+		final NamespaceImportStatement imp = file.getNsImports().get(1);
 		assertEquals("org::oaw2", imp.getImportedId().getValue());
 		assertEquals(1, file.getExtImports().size());
 
-		final ImportStatement extImp = file.getExtImports().get(0);
+		final ExtensionImportStatement extImp = file.getExtImports().get(0);
 		assertEquals("test::TestExtension", extImp.getImportedId().getValue());
 
 		assertEquals(3, file.getExtensions().size());
@@ -103,7 +104,7 @@ public class ExtensionParserTest extends TestCase {
 		assertNotNull(ext1.getJavaType());
 		assertEquals("dump", ext1.getName());
 		assertTrue(ext1.isPrivate());
-		final DeclaredParameter param = (DeclaredParameter) ext1
+		final DeclaredParameter param = ext1
 				.getFormalParameters().get(0);
 		assertEquals("obj", param.getName().getValue());
 		assertEquals("Object", param.getType().getValue());

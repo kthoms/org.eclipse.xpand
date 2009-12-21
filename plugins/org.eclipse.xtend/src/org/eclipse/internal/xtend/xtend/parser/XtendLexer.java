@@ -1,4 +1,4 @@
-// $ANTLR 3.0 /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g 2008-11-24 17:55:04
+// $ANTLR 3.0.1 src/org/eclipse/internal/xtend/xtend/parser/Xtend.g 2009-12-21 22:01:25
  	
 package org.eclipse.internal.xtend.xtend.parser; 
 	
@@ -90,18 +90,19 @@ public class XtendLexer extends Lexer {
     public static final int T52=52;
     public static final int XPAND_TAG_CLOSE=17;
     public static final int T30=30;
-    public XtendLexer() {;} 
+    public XtendLexer() {} 
     public XtendLexer(CharStream input) {
         super(input);
     }
-    public String getGrammarFileName() { return "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g"; }
+    @Override
+	public String getGrammarFileName() { return "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g"; }
 
     // $ANTLR start T18
-    public void mT18() throws RecognitionException {
+    public final void mT18() throws RecognitionException {
         try {
             int _type = T18;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:13:7: ( 'import' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:13:7: 'import'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:13:5: ( 'import' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:13:7: 'import'
             {
             match("import"); 
 
@@ -116,11 +117,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T18
 
     // $ANTLR start T19
-    public void mT19() throws RecognitionException {
+    public final void mT19() throws RecognitionException {
         try {
             int _type = T19;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:14:7: ( ';' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:14:7: ';'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:14:5: ( ';' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:14:7: ';'
             {
             match(';'); 
 
@@ -134,11 +135,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T19
 
     // $ANTLR start T20
-    public void mT20() throws RecognitionException {
+    public final void mT20() throws RecognitionException {
         try {
             int _type = T20;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:15:7: ( 'extension' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:15:7: 'extension'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:15:5: ( 'extension' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:15:7: 'extension'
             {
             match("extension"); 
 
@@ -153,11 +154,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T20
 
     // $ANTLR start T21
-    public void mT21() throws RecognitionException {
+    public final void mT21() throws RecognitionException {
         try {
             int _type = T21;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:16:7: ( 'reexport' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:16:7: 'reexport'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:16:5: ( 'reexport' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:16:7: 'reexport'
             {
             match("reexport"); 
 
@@ -172,11 +173,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T21
 
     // $ANTLR start T22
-    public void mT22() throws RecognitionException {
+    public final void mT22() throws RecognitionException {
         try {
             int _type = T22;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:17:7: ( 'context' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:17:7: 'context'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:17:5: ( 'context' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:17:7: 'context'
             {
             match("context"); 
 
@@ -191,11 +192,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T22
 
     // $ANTLR start T23
-    public void mT23() throws RecognitionException {
+    public final void mT23() throws RecognitionException {
         try {
             int _type = T23;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:18:7: ( '#' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:18:7: '#'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:18:5: ( '#' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:18:7: '#'
             {
             match('#'); 
 
@@ -209,11 +210,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T23
 
     // $ANTLR start T24
-    public void mT24() throws RecognitionException {
+    public final void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:19:7: ( 'if' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:19:7: 'if'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:19:5: ( 'if' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:19:7: 'if'
             {
             match("if"); 
 
@@ -228,11 +229,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T24
 
     // $ANTLR start T25
-    public void mT25() throws RecognitionException {
+    public final void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:20:7: ( 'ERROR' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:20:7: 'ERROR'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:20:5: ( 'ERROR' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:20:7: 'ERROR'
             {
             match("ERROR"); 
 
@@ -247,11 +248,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T25
 
     // $ANTLR start T26
-    public void mT26() throws RecognitionException {
+    public final void mT26() throws RecognitionException {
         try {
             int _type = T26;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:21:7: ( 'WARNING' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:21:7: 'WARNING'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:21:5: ( 'WARNING' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:21:7: 'WARNING'
             {
             match("WARNING"); 
 
@@ -266,11 +267,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T26
 
     // $ANTLR start T27
-    public void mT27() throws RecognitionException {
+    public final void mT27() throws RecognitionException {
         try {
             int _type = T27;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:22:7: ( ':' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:22:7: ':'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:22:5: ( ':' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:22:7: ':'
             {
             match(':'); 
 
@@ -284,11 +285,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T27
 
     // $ANTLR start T28
-    public void mT28() throws RecognitionException {
+    public final void mT28() throws RecognitionException {
         try {
             int _type = T28;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:23:7: ( 'around' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:23:7: 'around'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:23:5: ( 'around' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:23:7: 'around'
             {
             match("around"); 
 
@@ -303,11 +304,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T28
 
     // $ANTLR start T29
-    public void mT29() throws RecognitionException {
+    public final void mT29() throws RecognitionException {
         try {
             int _type = T29;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:24:7: ( '(' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:24:7: '('
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:24:5: ( '(' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:24:7: '('
             {
             match('('); 
 
@@ -321,11 +322,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T29
 
     // $ANTLR start T30
-    public void mT30() throws RecognitionException {
+    public final void mT30() throws RecognitionException {
         try {
             int _type = T30;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:25:7: ( ',' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:25:7: ','
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:25:5: ( ',' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:25:7: ','
             {
             match(','); 
 
@@ -339,11 +340,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T30
 
     // $ANTLR start T31
-    public void mT31() throws RecognitionException {
+    public final void mT31() throws RecognitionException {
         try {
             int _type = T31;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:26:7: ( '*' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:26:7: '*'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:26:5: ( '*' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:26:7: '*'
             {
             match('*'); 
 
@@ -357,11 +358,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T31
 
     // $ANTLR start T32
-    public void mT32() throws RecognitionException {
+    public final void mT32() throws RecognitionException {
         try {
             int _type = T32;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:27:7: ( ')' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:27:7: ')'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:27:5: ( ')' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:27:7: ')'
             {
             match(')'); 
 
@@ -375,11 +376,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T32
 
     // $ANTLR start T33
-    public void mT33() throws RecognitionException {
+    public final void mT33() throws RecognitionException {
         try {
             int _type = T33;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:28:7: ( '::' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:28:7: '::'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:28:5: ( '::' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:28:7: '::'
             {
             match("::"); 
 
@@ -394,11 +395,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T33
 
     // $ANTLR start T34
-    public void mT34() throws RecognitionException {
+    public final void mT34() throws RecognitionException {
         try {
             int _type = T34;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:29:7: ( 'private' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:29:7: 'private'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:29:5: ( 'private' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:29:7: 'private'
             {
             match("private"); 
 
@@ -413,11 +414,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T34
 
     // $ANTLR start T35
-    public void mT35() throws RecognitionException {
+    public final void mT35() throws RecognitionException {
         try {
             int _type = T35;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:30:7: ( 'cached' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:30:7: 'cached'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:30:5: ( 'cached' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:30:7: 'cached'
             {
             match("cached"); 
 
@@ -432,11 +433,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T35
 
     // $ANTLR start T36
-    public void mT36() throws RecognitionException {
+    public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:31:7: ( 'JAVA' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:31:7: 'JAVA'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:31:5: ( 'JAVA' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:31:7: 'JAVA'
             {
             match("JAVA"); 
 
@@ -451,11 +452,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T36
 
     // $ANTLR start T37
-    public void mT37() throws RecognitionException {
+    public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:32:7: ( '.' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:32:7: '.'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:32:5: ( '.' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:32:7: '.'
             {
             match('.'); 
 
@@ -469,11 +470,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T37
 
     // $ANTLR start T38
-    public void mT38() throws RecognitionException {
+    public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:33:7: ( 'create' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:33:7: 'create'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:33:5: ( 'create' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:33:7: 'create'
             {
             match("create"); 
 
@@ -488,11 +489,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T38
 
     // $ANTLR start T39
-    public void mT39() throws RecognitionException {
+    public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:34:7: ( 'Collection' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:34:7: 'Collection'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:34:5: ( 'Collection' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:34:7: 'Collection'
             {
             match("Collection"); 
 
@@ -507,11 +508,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T39
 
     // $ANTLR start T40
-    public void mT40() throws RecognitionException {
+    public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:35:7: ( 'List' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:35:7: 'List'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:35:5: ( 'List' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:35:7: 'List'
             {
             match("List"); 
 
@@ -526,11 +527,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T40
 
     // $ANTLR start T41
-    public void mT41() throws RecognitionException {
+    public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:36:7: ( 'Set' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:36:7: 'Set'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:36:5: ( 'Set' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:36:7: 'Set'
             {
             match("Set"); 
 
@@ -545,11 +546,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T41
 
     // $ANTLR start T42
-    public void mT42() throws RecognitionException {
+    public final void mT42() throws RecognitionException {
         try {
             int _type = T42;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:37:7: ( 'let' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:37:7: 'let'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:37:5: ( 'let' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:37:7: 'let'
             {
             match("let"); 
 
@@ -564,11 +565,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T42
 
     // $ANTLR start T43
-    public void mT43() throws RecognitionException {
+    public final void mT43() throws RecognitionException {
         try {
             int _type = T43;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:38:7: ( '=' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:38:7: '='
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:38:5: ( '=' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:38:7: '='
             {
             match('='); 
 
@@ -582,11 +583,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T43
 
     // $ANTLR start T44
-    public void mT44() throws RecognitionException {
+    public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:39:7: ( '->' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:39:7: '->'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:39:5: ( '->' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:39:7: '->'
             {
             match("->"); 
 
@@ -601,11 +602,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T44
 
     // $ANTLR start T45
-    public void mT45() throws RecognitionException {
+    public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:40:7: ( '?' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:40:7: '?'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:40:5: ( '?' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:40:7: '?'
             {
             match('?'); 
 
@@ -619,11 +620,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T45
 
     // $ANTLR start T46
-    public void mT46() throws RecognitionException {
+    public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:41:7: ( 'then' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:41:7: 'then'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:41:5: ( 'then' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:41:7: 'then'
             {
             match("then"); 
 
@@ -638,11 +639,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T46
 
     // $ANTLR start T47
-    public void mT47() throws RecognitionException {
+    public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:42:7: ( 'else' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:42:7: 'else'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:42:5: ( 'else' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:42:7: 'else'
             {
             match("else"); 
 
@@ -657,11 +658,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T47
 
     // $ANTLR start T48
-    public void mT48() throws RecognitionException {
+    public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:43:7: ( 'switch' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:43:7: 'switch'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:43:5: ( 'switch' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:43:7: 'switch'
             {
             match("switch"); 
 
@@ -676,11 +677,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T48
 
     // $ANTLR start T49
-    public void mT49() throws RecognitionException {
+    public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:44:7: ( '{' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:44:7: '{'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:44:5: ( '{' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:44:7: '{'
             {
             match('{'); 
 
@@ -694,11 +695,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T49
 
     // $ANTLR start T50
-    public void mT50() throws RecognitionException {
+    public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:7: ( 'case' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:7: 'case'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:5: ( 'case' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:7: 'case'
             {
             match("case"); 
 
@@ -713,11 +714,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T50
 
     // $ANTLR start T51
-    public void mT51() throws RecognitionException {
+    public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:7: ( 'default' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:7: 'default'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:5: ( 'default' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:7: 'default'
             {
             match("default"); 
 
@@ -732,11 +733,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T51
 
     // $ANTLR start T52
-    public void mT52() throws RecognitionException {
+    public final void mT52() throws RecognitionException {
         try {
             int _type = T52;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:7: ( '}' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:7: '}'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:5: ( '}' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:7: '}'
             {
             match('}'); 
 
@@ -750,11 +751,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T52
 
     // $ANTLR start T53
-    public void mT53() throws RecognitionException {
+    public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:48:7: ( '||' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:48:7: '||'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:48:5: ( '||' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:48:7: '||'
             {
             match("||"); 
 
@@ -769,11 +770,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T53
 
     // $ANTLR start T54
-    public void mT54() throws RecognitionException {
+    public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:49:7: ( '&&' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:49:7: '&&'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:49:5: ( '&&' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:49:7: '&&'
             {
             match("&&"); 
 
@@ -788,11 +789,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T54
 
     // $ANTLR start T55
-    public void mT55() throws RecognitionException {
+    public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:50:7: ( 'implies' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:50:7: 'implies'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:50:5: ( 'implies' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:50:7: 'implies'
             {
             match("implies"); 
 
@@ -807,11 +808,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T55
 
     // $ANTLR start T56
-    public void mT56() throws RecognitionException {
+    public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:51:7: ( '==' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:51:7: '=='
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:51:5: ( '==' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:51:7: '=='
             {
             match("=="); 
 
@@ -826,11 +827,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T56
 
     // $ANTLR start T57
-    public void mT57() throws RecognitionException {
+    public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:7: ( '!=' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:7: '!='
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:5: ( '!=' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:7: '!='
             {
             match("!="); 
 
@@ -845,11 +846,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T57
 
     // $ANTLR start T58
-    public void mT58() throws RecognitionException {
+    public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:7: ( '>=' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:7: '>='
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:5: ( '>=' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:7: '>='
             {
             match(">="); 
 
@@ -864,11 +865,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T58
 
     // $ANTLR start T59
-    public void mT59() throws RecognitionException {
+    public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:54:7: ( '<=' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:54:7: '<='
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:54:5: ( '<=' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:54:7: '<='
             {
             match("<="); 
 
@@ -883,11 +884,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T59
 
     // $ANTLR start T60
-    public void mT60() throws RecognitionException {
+    public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:55:7: ( '>' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:55:7: '>'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:55:5: ( '>' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:55:7: '>'
             {
             match('>'); 
 
@@ -901,11 +902,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T60
 
     // $ANTLR start T61
-    public void mT61() throws RecognitionException {
+    public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:7: ( '<' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:7: '<'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:5: ( '<' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:7: '<'
             {
             match('<'); 
 
@@ -919,11 +920,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T61
 
     // $ANTLR start T62
-    public void mT62() throws RecognitionException {
+    public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:7: ( '+' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:7: '+'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:5: ( '+' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:7: '+'
             {
             match('+'); 
 
@@ -937,11 +938,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T62
 
     // $ANTLR start T63
-    public void mT63() throws RecognitionException {
+    public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:58:7: ( '-' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:58:7: '-'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:58:5: ( '-' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:58:7: '-'
             {
             match('-'); 
 
@@ -955,11 +956,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T63
 
     // $ANTLR start T64
-    public void mT64() throws RecognitionException {
+    public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:59:7: ( '/' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:59:7: '/'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:59:5: ( '/' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:59:7: '/'
             {
             match('/'); 
 
@@ -973,11 +974,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T64
 
     // $ANTLR start T65
-    public void mT65() throws RecognitionException {
+    public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:7: ( '!' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:7: '!'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:5: ( '!' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:7: '!'
             {
             match('!'); 
 
@@ -991,11 +992,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T65
 
     // $ANTLR start T66
-    public void mT66() throws RecognitionException {
+    public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:7: ( 'GLOBALVAR' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:7: 'GLOBALVAR'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:5: ( 'GLOBALVAR' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:7: 'GLOBALVAR'
             {
             match("GLOBALVAR"); 
 
@@ -1010,11 +1011,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T66
 
     // $ANTLR start T67
-    public void mT67() throws RecognitionException {
+    public final void mT67() throws RecognitionException {
         try {
             int _type = T67;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:62:7: ( 'new' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:62:7: 'new'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:62:5: ( 'new' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:62:7: 'new'
             {
             match("new"); 
 
@@ -1029,11 +1030,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T67
 
     // $ANTLR start T68
-    public void mT68() throws RecognitionException {
+    public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:63:7: ( 'false' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:63:7: 'false'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:63:5: ( 'false' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:63:7: 'false'
             {
             match("false"); 
 
@@ -1048,11 +1049,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T68
 
     // $ANTLR start T69
-    public void mT69() throws RecognitionException {
+    public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:64:7: ( 'true' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:64:7: 'true'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:64:5: ( 'true' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:64:7: 'true'
             {
             match("true"); 
 
@@ -1067,11 +1068,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T69
 
     // $ANTLR start T70
-    public void mT70() throws RecognitionException {
+    public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:65:7: ( 'null' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:65:7: 'null'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:65:5: ( 'null' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:65:7: 'null'
             {
             match("null"); 
 
@@ -1086,11 +1087,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T70
 
     // $ANTLR start T71
-    public void mT71() throws RecognitionException {
+    public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:7: ( 'typeSelect' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:7: 'typeSelect'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:5: ( 'typeSelect' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:7: 'typeSelect'
             {
             match("typeSelect"); 
 
@@ -1105,11 +1106,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T71
 
     // $ANTLR start T72
-    public void mT72() throws RecognitionException {
+    public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:7: ( 'collect' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:7: 'collect'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:5: ( 'collect' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:7: 'collect'
             {
             match("collect"); 
 
@@ -1124,11 +1125,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T72
 
     // $ANTLR start T73
-    public void mT73() throws RecognitionException {
+    public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:68:7: ( 'select' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:68:7: 'select'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:68:5: ( 'select' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:68:7: 'select'
             {
             match("select"); 
 
@@ -1143,11 +1144,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T73
 
     // $ANTLR start T74
-    public void mT74() throws RecognitionException {
+    public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:69:7: ( 'selectFirst' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:69:7: 'selectFirst'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:69:5: ( 'selectFirst' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:69:7: 'selectFirst'
             {
             match("selectFirst"); 
 
@@ -1162,11 +1163,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T74
 
     // $ANTLR start T75
-    public void mT75() throws RecognitionException {
+    public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:70:7: ( 'reject' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:70:7: 'reject'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:70:5: ( 'reject' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:70:7: 'reject'
             {
             match("reject"); 
 
@@ -1181,11 +1182,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T75
 
     // $ANTLR start T76
-    public void mT76() throws RecognitionException {
+    public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:71:7: ( 'exists' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:71:7: 'exists'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:71:5: ( 'exists' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:71:7: 'exists'
             {
             match("exists"); 
 
@@ -1200,11 +1201,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T76
 
     // $ANTLR start T77
-    public void mT77() throws RecognitionException {
+    public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:72:7: ( 'notExists' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:72:7: 'notExists'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:72:5: ( 'notExists' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:72:7: 'notExists'
             {
             match("notExists"); 
 
@@ -1219,11 +1220,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T77
 
     // $ANTLR start T78
-    public void mT78() throws RecognitionException {
+    public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:7: ( 'sortBy' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:7: 'sortBy'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:5: ( 'sortBy' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:7: 'sortBy'
             {
             match("sortBy"); 
 
@@ -1238,11 +1239,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T78
 
     // $ANTLR start T79
-    public void mT79() throws RecognitionException {
+    public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:74:7: ( 'forAll' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:74:7: 'forAll'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:74:5: ( 'forAll' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:74:7: 'forAll'
             {
             match("forAll"); 
 
@@ -1257,11 +1258,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T79
 
     // $ANTLR start T80
-    public void mT80() throws RecognitionException {
+    public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:7: ( '|' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:7: '|'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:5: ( '|' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:7: '|'
             {
             match('|'); 
 
@@ -1275,11 +1276,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T80
 
     // $ANTLR start T81
-    public void mT81() throws RecognitionException {
+    public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:76:7: ( '[' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:76:7: '['
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:76:5: ( '[' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:76:7: '['
             {
             match('['); 
 
@@ -1293,11 +1294,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T81
 
     // $ANTLR start T82
-    public void mT82() throws RecognitionException {
+    public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:77:7: ( ']' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:77:7: ']'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:77:5: ( ']' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:77:7: ']'
             {
             match(']'); 
 
@@ -1311,13 +1312,13 @@ public class XtendLexer extends Lexer {
     // $ANTLR end T82
 
     // $ANTLR start IntLiteral
-    public void mIntLiteral() throws RecognitionException {
+    public final void mIntLiteral() throws RecognitionException {
         try {
             int _type = IntLiteral;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:14: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:12: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:14: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1335,17 +1336,17 @@ public class XtendLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:15: '0'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:15: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:21: '1' .. '9' ( '0' .. '9' )*
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:21: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:30: ( '0' .. '9' )*
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:30: ( '0' .. '9' )*
                     loop1:
                     do {
                         int alt1=2;
@@ -1358,7 +1359,7 @@ public class XtendLexer extends Lexer {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:30: '0' .. '9'
+                    	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:284:30: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1387,10 +1388,10 @@ public class XtendLexer extends Lexer {
     // $ANTLR end IntLiteral
 
     // $ANTLR start StringLiteral
-    public void mStringLiteral() throws RecognitionException {
+    public final void mStringLiteral() throws RecognitionException {
         try {
             int _type = StringLiteral;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:8: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\'' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1408,10 +1409,10 @@ public class XtendLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
                     {
                     match('\"'); 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -1427,14 +1428,14 @@ public class XtendLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:14: EscapeSequence
+                    	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:14: EscapeSequence
                     	    {
                     	    mEscapeSequence(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:31: ~ ( '\\\\' | '\"' )
+                    	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:287:31: ~ ( '\\\\' | '\"' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1460,10 +1461,10 @@ public class XtendLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:8: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\''
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:8: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )* '\\''
                     {
                     match('\''); 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:13: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )*
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:13: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1479,14 +1480,14 @@ public class XtendLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:15: EscapeSequence
+                    	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:15: EscapeSequence
                     	    {
                     	    mEscapeSequence(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:32: ~ ( '\\'' | '\\\\' )
+                    	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:288:32: ~ ( '\\'' | '\\\\' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1521,9 +1522,9 @@ public class XtendLexer extends Lexer {
     // $ANTLR end StringLiteral
 
     // $ANTLR start EscapeSequence
-    public void mEscapeSequence() throws RecognitionException {
+    public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:293:9: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:293:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
             int alt6=3;
             int LA6_0 = input.LA(1);
 
@@ -1574,7 +1575,7 @@ public class XtendLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:293:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:293:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1591,14 +1592,14 @@ public class XtendLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:294:9: UnicodeEscape
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:294:9: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:295:9: OctalEscape
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:295:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -1613,9 +1614,9 @@ public class XtendLexer extends Lexer {
     // $ANTLR end EscapeSequence
 
     // $ANTLR start OctalEscape
-    public void mOctalEscape() throws RecognitionException {
+    public final void mOctalEscape() throws RecognitionException {
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:9: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt7=3;
             int LA7_0 = input.LA(1);
 
@@ -1661,25 +1662,25 @@ public class XtendLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:14: ( '0' .. '3' )
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:15: '0' .. '3'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:14: ( '0' .. '3' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:25: ( '0' .. '7' )
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:26: '0' .. '7'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:25: ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:36: ( '0' .. '7' )
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:37: '0' .. '7'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:36: ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:300:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -1689,18 +1690,18 @@ public class XtendLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:14: ( '0' .. '7' )
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:15: '0' .. '7'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:14: ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:25: ( '0' .. '7' )
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:26: '0' .. '7'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:25: ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:301:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -1710,11 +1711,11 @@ public class XtendLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:302:9: '\\\\' ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:302:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:302:14: ( '0' .. '7' )
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:302:15: '0' .. '7'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:302:14: ( '0' .. '7' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:302:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -1732,10 +1733,10 @@ public class XtendLexer extends Lexer {
     // $ANTLR end OctalEscape
 
     // $ANTLR start UnicodeEscape
-    public void mUnicodeEscape() throws RecognitionException {
+    public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:307:9: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:307:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:307:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:307:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
             match('u'); 
@@ -1753,10 +1754,10 @@ public class XtendLexer extends Lexer {
     // $ANTLR end UnicodeEscape
 
     // $ANTLR start HexDigit
-    public void mHexDigit() throws RecognitionException {
+    public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:310:12: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:310:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:310:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:310:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -1778,13 +1779,13 @@ public class XtendLexer extends Lexer {
     // $ANTLR end HexDigit
 
     // $ANTLR start Identifier
-    public void mIdentifier() throws RecognitionException {
+    public final void mIdentifier() throws RecognitionException {
         try {
             int _type = Identifier;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:9: ( ( '^' )? Letter ( Letter | JavaIDDigit )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:9: ( '^' )? Letter ( Letter | JavaIDDigit )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:5: ( ( '^' )? Letter ( Letter | JavaIDDigit )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:9: ( '^' )? Letter ( Letter | JavaIDDigit )*
             {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:9: ( '^' )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:9: ( '^' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1793,7 +1794,7 @@ public class XtendLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:10: '^'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:10: '^'
                     {
                     match('^'); 
 
@@ -1803,7 +1804,7 @@ public class XtendLexer extends Lexer {
             }
 
             mLetter(); 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:23: ( Letter | JavaIDDigit )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:313:23: ( Letter | JavaIDDigit )*
             loop9:
             do {
                 int alt9=2;
@@ -1816,7 +1817,7 @@ public class XtendLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
             	    {
             	    if ( input.LA(1)=='$'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
             	        input.consume();
@@ -1848,10 +1849,10 @@ public class XtendLexer extends Lexer {
     // $ANTLR end Identifier
 
     // $ANTLR start Letter
-    public void mLetter() throws RecognitionException {
+    public final void mLetter() throws RecognitionException {
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:318:8: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:318:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
             {
             if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
                 input.consume();
@@ -1873,10 +1874,10 @@ public class XtendLexer extends Lexer {
     // $ANTLR end Letter
 
     // $ANTLR start JavaIDDigit
-    public void mJavaIDDigit() throws RecognitionException {
+    public final void mJavaIDDigit() throws RecognitionException {
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:335:8: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:335:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='\u0660' && input.LA(1)<='\u0669')||(input.LA(1)>='\u06F0' && input.LA(1)<='\u06F9')||(input.LA(1)>='\u0966' && input.LA(1)<='\u096F')||(input.LA(1)>='\u09E6' && input.LA(1)<='\u09EF')||(input.LA(1)>='\u0A66' && input.LA(1)<='\u0A6F')||(input.LA(1)>='\u0AE6' && input.LA(1)<='\u0AEF')||(input.LA(1)>='\u0B66' && input.LA(1)<='\u0B6F')||(input.LA(1)>='\u0BE7' && input.LA(1)<='\u0BEF')||(input.LA(1)>='\u0C66' && input.LA(1)<='\u0C6F')||(input.LA(1)>='\u0CE6' && input.LA(1)<='\u0CEF')||(input.LA(1)>='\u0D66' && input.LA(1)<='\u0D6F')||(input.LA(1)>='\u0E50' && input.LA(1)<='\u0E59')||(input.LA(1)>='\u0ED0' && input.LA(1)<='\u0ED9')||(input.LA(1)>='\u1040' && input.LA(1)<='\u1049') ) {
                 input.consume();
@@ -1898,11 +1899,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end JavaIDDigit
 
     // $ANTLR start WS
-    public void mWS() throws RecognitionException {
+    public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:352:8: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:352:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:352:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:352:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -1926,15 +1927,15 @@ public class XtendLexer extends Lexer {
     // $ANTLR end WS
 
     // $ANTLR start COMMENT
-    public void mCOMMENT() throws RecognitionException {
+    public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:9: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:14: ( options {greedy=false; } : . )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:14: ( options {greedy=false; } : . )*
             loop10:
             do {
                 int alt10=2;
@@ -1959,7 +1960,7 @@ public class XtendLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:42: .
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:356:42: .
             	    {
             	    matchAny(); 
 
@@ -1985,15 +1986,15 @@ public class XtendLexer extends Lexer {
     // $ANTLR end COMMENT
 
     // $ANTLR start LINE_COMMENT
-    public void mLINE_COMMENT() throws RecognitionException {
+    public final void mLINE_COMMENT() throws RecognitionException {
         try {
             int _type = LINE_COMMENT;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:7: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF ) )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:7: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF ) )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:7: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' | EOF )
             {
             match("//"); 
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:12: (~ ( '\\n' | '\\r' ) )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:12: (~ ( '\\n' | '\\r' ) )*
             loop11:
             do {
                 int alt11=2;
@@ -2006,7 +2007,7 @@ public class XtendLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:12: ~ ( '\\n' | '\\r' )
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2027,7 +2028,7 @@ public class XtendLexer extends Lexer {
                 }
             } while (true);
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:26: ( ( '\\r' )? '\\n' | EOF )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:26: ( ( '\\r' )? '\\n' | EOF )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2038,9 +2039,9 @@ public class XtendLexer extends Lexer {
                 alt13=2;}
             switch (alt13) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:27: ( '\\r' )? '\\n'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:27: ( '\\r' )? '\\n'
                     {
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:27: ( '\\r' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:27: ( '\\r' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -2049,7 +2050,7 @@ public class XtendLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:27: '\\r'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:27: '\\r'
                             {
                             match('\r'); 
 
@@ -2063,7 +2064,7 @@ public class XtendLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:38: EOF
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:360:38: EOF
                     {
                     match(EOF); 
 
@@ -2084,11 +2085,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end LINE_COMMENT
 
     // $ANTLR start XPAND_TAG_OPEN
-    public void mXPAND_TAG_OPEN() throws RecognitionException {
+    public final void mXPAND_TAG_OPEN() throws RecognitionException {
         try {
             int _type = XPAND_TAG_OPEN;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:365:4: ( '\\u00AB' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:365:4: '\\u00AB'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:365:2: ( '\\u00AB' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:365:4: '\\u00AB'
             {
             match('\u00AB'); 
 
@@ -2102,11 +2103,11 @@ public class XtendLexer extends Lexer {
     // $ANTLR end XPAND_TAG_OPEN
 
     // $ANTLR start XPAND_TAG_CLOSE
-    public void mXPAND_TAG_CLOSE() throws RecognitionException {
+    public final void mXPAND_TAG_CLOSE() throws RecognitionException {
         try {
             int _type = XPAND_TAG_CLOSE;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:367:4: ( '\\u00BB' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:367:4: '\\u00BB'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:367:2: ( '\\u00BB' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:367:4: '\\u00BB'
             {
             match('\u00BB'); 
 
@@ -2119,8 +2120,9 @@ public class XtendLexer extends Lexer {
     }
     // $ANTLR end XPAND_TAG_CLOSE
 
-    public void mTokens() throws RecognitionException {
-        // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:10: ( T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | IntLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT | XPAND_TAG_OPEN | XPAND_TAG_CLOSE )
+    @Override
+	public void mTokens() throws RecognitionException {
+        // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:8: ( T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | IntLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT | XPAND_TAG_OPEN | XPAND_TAG_CLOSE )
         int alt14=73;
         int LA14_0 = input.LA(1);
 
@@ -3569,511 +3571,511 @@ public class XtendLexer extends Lexer {
         }
         switch (alt14) {
             case 1 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:10: T18
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:10: T18
                 {
                 mT18(); 
 
                 }
                 break;
             case 2 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:14: T19
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:14: T19
                 {
                 mT19(); 
 
                 }
                 break;
             case 3 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:18: T20
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:18: T20
                 {
                 mT20(); 
 
                 }
                 break;
             case 4 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:22: T21
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:22: T21
                 {
                 mT21(); 
 
                 }
                 break;
             case 5 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:26: T22
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:26: T22
                 {
                 mT22(); 
 
                 }
                 break;
             case 6 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:30: T23
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:30: T23
                 {
                 mT23(); 
 
                 }
                 break;
             case 7 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:34: T24
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:34: T24
                 {
                 mT24(); 
 
                 }
                 break;
             case 8 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:38: T25
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:38: T25
                 {
                 mT25(); 
 
                 }
                 break;
             case 9 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:42: T26
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:42: T26
                 {
                 mT26(); 
 
                 }
                 break;
             case 10 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:46: T27
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:46: T27
                 {
                 mT27(); 
 
                 }
                 break;
             case 11 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:50: T28
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:50: T28
                 {
                 mT28(); 
 
                 }
                 break;
             case 12 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:54: T29
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:54: T29
                 {
                 mT29(); 
 
                 }
                 break;
             case 13 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:58: T30
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:58: T30
                 {
                 mT30(); 
 
                 }
                 break;
             case 14 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:62: T31
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:62: T31
                 {
                 mT31(); 
 
                 }
                 break;
             case 15 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:66: T32
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:66: T32
                 {
                 mT32(); 
 
                 }
                 break;
             case 16 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:70: T33
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:70: T33
                 {
                 mT33(); 
 
                 }
                 break;
             case 17 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:74: T34
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:74: T34
                 {
                 mT34(); 
 
                 }
                 break;
             case 18 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:78: T35
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:78: T35
                 {
                 mT35(); 
 
                 }
                 break;
             case 19 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:82: T36
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:82: T36
                 {
                 mT36(); 
 
                 }
                 break;
             case 20 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:86: T37
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:86: T37
                 {
                 mT37(); 
 
                 }
                 break;
             case 21 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:90: T38
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:90: T38
                 {
                 mT38(); 
 
                 }
                 break;
             case 22 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:94: T39
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:94: T39
                 {
                 mT39(); 
 
                 }
                 break;
             case 23 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:98: T40
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:98: T40
                 {
                 mT40(); 
 
                 }
                 break;
             case 24 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:102: T41
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:102: T41
                 {
                 mT41(); 
 
                 }
                 break;
             case 25 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:106: T42
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:106: T42
                 {
                 mT42(); 
 
                 }
                 break;
             case 26 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:110: T43
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:110: T43
                 {
                 mT43(); 
 
                 }
                 break;
             case 27 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:114: T44
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:114: T44
                 {
                 mT44(); 
 
                 }
                 break;
             case 28 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:118: T45
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:118: T45
                 {
                 mT45(); 
 
                 }
                 break;
             case 29 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:122: T46
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:122: T46
                 {
                 mT46(); 
 
                 }
                 break;
             case 30 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:126: T47
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:126: T47
                 {
                 mT47(); 
 
                 }
                 break;
             case 31 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:130: T48
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:130: T48
                 {
                 mT48(); 
 
                 }
                 break;
             case 32 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:134: T49
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:134: T49
                 {
                 mT49(); 
 
                 }
                 break;
             case 33 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:138: T50
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:138: T50
                 {
                 mT50(); 
 
                 }
                 break;
             case 34 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:142: T51
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:142: T51
                 {
                 mT51(); 
 
                 }
                 break;
             case 35 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:146: T52
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:146: T52
                 {
                 mT52(); 
 
                 }
                 break;
             case 36 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:150: T53
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:150: T53
                 {
                 mT53(); 
 
                 }
                 break;
             case 37 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:154: T54
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:154: T54
                 {
                 mT54(); 
 
                 }
                 break;
             case 38 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:158: T55
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:158: T55
                 {
                 mT55(); 
 
                 }
                 break;
             case 39 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:162: T56
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:162: T56
                 {
                 mT56(); 
 
                 }
                 break;
             case 40 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:166: T57
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:166: T57
                 {
                 mT57(); 
 
                 }
                 break;
             case 41 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:170: T58
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:170: T58
                 {
                 mT58(); 
 
                 }
                 break;
             case 42 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:174: T59
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:174: T59
                 {
                 mT59(); 
 
                 }
                 break;
             case 43 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:178: T60
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:178: T60
                 {
                 mT60(); 
 
                 }
                 break;
             case 44 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:182: T61
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:182: T61
                 {
                 mT61(); 
 
                 }
                 break;
             case 45 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:186: T62
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:186: T62
                 {
                 mT62(); 
 
                 }
                 break;
             case 46 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:190: T63
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:190: T63
                 {
                 mT63(); 
 
                 }
                 break;
             case 47 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:194: T64
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:194: T64
                 {
                 mT64(); 
 
                 }
                 break;
             case 48 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:198: T65
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:198: T65
                 {
                 mT65(); 
 
                 }
                 break;
             case 49 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:202: T66
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:202: T66
                 {
                 mT66(); 
 
                 }
                 break;
             case 50 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:206: T67
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:206: T67
                 {
                 mT67(); 
 
                 }
                 break;
             case 51 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:210: T68
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:210: T68
                 {
                 mT68(); 
 
                 }
                 break;
             case 52 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:214: T69
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:214: T69
                 {
                 mT69(); 
 
                 }
                 break;
             case 53 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:218: T70
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:218: T70
                 {
                 mT70(); 
 
                 }
                 break;
             case 54 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:222: T71
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:222: T71
                 {
                 mT71(); 
 
                 }
                 break;
             case 55 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:226: T72
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:226: T72
                 {
                 mT72(); 
 
                 }
                 break;
             case 56 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:230: T73
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:230: T73
                 {
                 mT73(); 
 
                 }
                 break;
             case 57 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:234: T74
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:234: T74
                 {
                 mT74(); 
 
                 }
                 break;
             case 58 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:238: T75
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:238: T75
                 {
                 mT75(); 
 
                 }
                 break;
             case 59 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:242: T76
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:242: T76
                 {
                 mT76(); 
 
                 }
                 break;
             case 60 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:246: T77
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:246: T77
                 {
                 mT77(); 
 
                 }
                 break;
             case 61 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:250: T78
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:250: T78
                 {
                 mT78(); 
 
                 }
                 break;
             case 62 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:254: T79
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:254: T79
                 {
                 mT79(); 
 
                 }
                 break;
             case 63 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:258: T80
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:258: T80
                 {
                 mT80(); 
 
                 }
                 break;
             case 64 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:262: T81
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:262: T81
                 {
                 mT81(); 
 
                 }
                 break;
             case 65 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:266: T82
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:266: T82
                 {
                 mT82(); 
 
                 }
                 break;
             case 66 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:270: IntLiteral
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:270: IntLiteral
                 {
                 mIntLiteral(); 
 
                 }
                 break;
             case 67 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:281: StringLiteral
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:281: StringLiteral
                 {
                 mStringLiteral(); 
 
                 }
                 break;
             case 68 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:295: Identifier
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:295: Identifier
                 {
                 mIdentifier(); 
 
                 }
                 break;
             case 69 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:306: WS
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:306: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 70 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:309: COMMENT
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:309: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 71 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:317: LINE_COMMENT
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:317: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
                 }
                 break;
             case 72 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:330: XPAND_TAG_OPEN
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:330: XPAND_TAG_OPEN
                 {
                 mXPAND_TAG_OPEN(); 
 
                 }
                 break;
             case 73 :
-                // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:345: XPAND_TAG_CLOSE
+                // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:1:345: XPAND_TAG_CLOSE
                 {
                 mXPAND_TAG_CLOSE(); 
 

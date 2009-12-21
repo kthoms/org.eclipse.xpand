@@ -12,6 +12,7 @@
 package org.eclipse.xtend.ui.core.internal;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import org.eclipse.core.resources.IStorage;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Resource;
@@ -28,7 +30,6 @@ import org.eclipse.xtend.ui.core.IXtendResource;
 import org.eclipse.xtend.ui.core.internal.builder.XtendResourceParser;
 
 public class XtendResourceImpl extends AbstractResource implements IXtendResource {
-
     private XtendResourceParser parser;
 
 	public XtendResourceImpl(final XtendFile tpl, final IStorage res, XtendResourceParser parser) {
@@ -43,11 +44,27 @@ public class XtendResourceImpl extends AbstractResource implements IXtendResourc
 
     @Override
 	public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+    	Set<AnalysationIssue> issuesFromThisResource = new HashSet<AnalysationIssue>();
     	try {
-    		resource().analyze(ctx, issues);
+    		resource().analyze(ctx, issuesFromThisResource);
     	} catch (Exception e) {
     		// ignore
-    	}
+    	} 
+    	// remove tons of annoying errors
+    	// filter all the 'Error parsing resource' issues that arised from a broken import
+		Set<AnalysationIssue> issuesToRemove = new HashSet<AnalysationIssue>();
+		for (AnalysationIssue issue : issuesFromThisResource) {
+			if (issue.getType().equals(AnalysationIssue.RESOURCE_NOT_FOUND)) {
+				ExtensionImportStatement importStmt = (ExtensionImportStatement) issue.getElement();
+				for (AnalysationIssue issue2 : issuesFromThisResource) {
+					if (issue2.getType().equals(AnalysationIssue.INTERNAL_ERROR) && issue2.getMessage().matches("Error parsing extensions.*"+importStmt.getImportedId()+"$")) {
+						issuesToRemove.add(issue2);
+					}
+				}
+			}
+		}
+		issuesFromThisResource.removeAll(issuesToRemove);
+		issues.addAll(issuesFromThisResource);
     }
 
     public List<Extension> getExtensions() {

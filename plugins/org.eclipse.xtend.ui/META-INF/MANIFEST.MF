@@ -18,7 +18,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xpand,
  org.eclipse.emf.mwe.ui,
  org.eclipse.debug.core,
- org.eclipse.xtend.shared.ui
+ org.eclipse.xtend.shared.ui,
+ org.apache.commons.lang
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.xtend.ui.XtendEditorPlugin
 Export-Package: org.eclipse.xtend.ui,

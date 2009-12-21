@@ -13,7 +13,7 @@ package org.eclipse.xtend.middleend.xtend;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.check.CheckUtils;
@@ -27,7 +27,6 @@ import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtend.CheckConverter;
 import org.eclipse.xtend.middleend.xtend.internal.xtend.OldExtensionConverter;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
-import org.eclipse.xtend.typesystem.emf.check.CheckFileWithContext;
 
 public class OldCheckRegistry implements LanguageSpecificMiddleEnd {
 
@@ -98,7 +97,7 @@ public class OldCheckRegistry implements LanguageSpecificMiddleEnd {
 				result.getPublicFunctions().add(f);
 		}
 
-		for (ImportStatement imp : checkFile.getExtImports())
+		for (ExtensionImportStatement imp : checkFile.getExtImports())
 			result.getImports().add(
 					new ImportedResource(OldHelper
 							.normalizeXtendResourceName(imp.getImportedId()

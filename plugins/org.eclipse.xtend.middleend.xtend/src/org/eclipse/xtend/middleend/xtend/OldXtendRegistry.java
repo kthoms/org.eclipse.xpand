@@ -15,7 +15,7 @@ import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -39,7 +39,6 @@ import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
 public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
     private final ExecutionContext _ctx;
     
-    @SuppressWarnings("unused")
     private MiddleEnd _middleEnd;
     
     private BackendTypesystem _ts;
@@ -107,7 +106,7 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
                 result.getPublicFunctions().add (f);
         }
         
-        for (ImportStatement imp: extensionFile.getExtImports())
+        for (ExtensionImportStatement imp: extensionFile.getExtImports())
             result.getImports().add (new ImportedResource (OldHelper.normalizeXtendResourceName (imp.getImportedId().getValue()), imp.isExported()));
 
         for (Around a: extensionFile.getArounds())

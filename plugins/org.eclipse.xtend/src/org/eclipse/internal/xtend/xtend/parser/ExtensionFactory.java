@@ -23,8 +23,9 @@ import org.eclipse.internal.xtend.xtend.ast.CreateExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.ExpressionExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
 import org.eclipse.internal.xtend.xtend.ast.JavaExtensionStatement;
+import org.eclipse.internal.xtend.xtend.ast.NamespaceImportStatement;
 
 public class ExtensionFactory extends ExpressionFactory {
 
@@ -36,19 +37,19 @@ public class ExtensionFactory extends ExpressionFactory {
 		super(string);
 	}
 
-	public ExtensionFile createExtensionFile(final List<ImportStatement> nsimports,
-			final List<ImportStatement> extimports, final List<Extension> extensions, final List<Around> arounds,
+	public ExtensionFile createExtensionFile(final List<NamespaceImportStatement> nsimports,
+			final List<ExtensionImportStatement> extimports, final List<Extension> extensions, final List<Around> arounds,
 			final List<Check> checks) {
 		return (ExtensionFile) handle(new ExtensionFile(nonNull(nsimports), nonNull(extimports), nonNull(extensions),
 				nonNull(arounds), nonNull(checks)));
 	}
 
-	public ImportStatement createNsImport(final Identifier t) {
-		return handle(new ImportStatement(t, false));
+	public NamespaceImportStatement createNsImport(final Identifier t) {
+		return handle(new NamespaceImportStatement(t));
 	}
 
-	public ImportStatement createExtensionFileImport(final Identifier t, final Identifier exported) {
-		return handle(new ImportStatement(t, exported != null));
+	public ExtensionImportStatement createExtensionFileImport(final Identifier t, final Identifier exported) {
+		return handle(new ExtensionImportStatement(t, exported != null));
 	}
 
 	public JavaExtensionStatement createJavaExtension(final Identifier name, final Identifier type,

@@ -24,7 +24,8 @@ import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Check;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.NamespaceImportStatement;
 
 public class XtendLocationAddingParser extends XtendParser {
 
@@ -113,7 +114,7 @@ public class XtendLocationAddingParser extends XtendParser {
 	}
 
 	@Override
-	public ImportStatement extImport() throws RecognitionException {
+	public ExtensionImportStatement extImport() throws RecognitionException {
 		return addLocation(start(), super.extImport(), end());
 	}
 
@@ -164,7 +165,7 @@ public class XtendLocationAddingParser extends XtendParser {
 	}
 
 	@Override
-	public ImportStatement nsImport() throws RecognitionException {
+	public NamespaceImportStatement nsImport() throws RecognitionException {
 		return addLocation(start(), super.nsImport(), end());
 	}
 

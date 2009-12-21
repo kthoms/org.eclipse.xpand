@@ -26,7 +26,7 @@ import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SwitchExpression;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
 import org.eclipse.internal.xtend.xtend.parser.ParseFacade;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -398,8 +398,8 @@ public class AnalyzationTest extends TestCase {
 	public void testBug174611() throws Exception {
 		// create the lists to initialize an ExtensionFile instance
 		// create an erraneous AbstractExtension Import
-		List<ImportStatement> importStatements = new ArrayList<ImportStatement>();
-		importStatements.add(new ImportStatement(new Identifier(
+		List<ExtensionImportStatement> importStatements = new ArrayList<ExtensionImportStatement>();
+		importStatements.add(new ExtensionImportStatement(new Identifier(
 				"nonsense_import"), false));
 
 		ExtensionFile extensionFile = new ExtensionFile(Collections.EMPTY_LIST,

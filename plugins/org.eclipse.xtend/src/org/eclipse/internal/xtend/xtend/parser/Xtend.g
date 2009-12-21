@@ -49,11 +49,11 @@ file  returns [ExtensionFile r]
 	 { $r = factory.createExtensionFile(nsimports,extimports,extensions,arounds,checks);}
 ;
 
-nsImport  returns [ImportStatement r]:
+nsImport  returns [NamespaceImportStatement r]:
 	'import' t=type {$r = factory.createNsImport(t);} ';' 
 ;
 
-extImport  returns [ImportStatement r]:
+extImport  returns [ExtensionImportStatement r]:
 	'extension' t=type (exported='reexport')? ';' { $r = factory.createExtensionFileImport(t,id(exported));}
 ;
 

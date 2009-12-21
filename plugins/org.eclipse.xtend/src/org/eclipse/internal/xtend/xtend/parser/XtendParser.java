@@ -1,4 +1,4 @@
-// $ANTLR 3.0 /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g 2008-11-24 17:55:03
+// $ANTLR 3.0.1 src/org/eclipse/internal/xtend/xtend/parser/Xtend.g 2009-12-21 22:01:24
  	
 package org.eclipse.internal.xtend.xtend.parser; 
 	
@@ -26,8 +26,9 @@ import org.eclipse.internal.xtend.xtend.ast.Around;
 import org.eclipse.internal.xtend.xtend.ast.Check;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
-import org.eclipse.internal.xtend.xtend.ast.ImportStatement;
-@SuppressWarnings({"unused","unchecked"})
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
+import org.eclipse.internal.xtend.xtend.ast.NamespaceImportStatement;
+@SuppressWarnings({"unchecked", "unused", "null"})
 public class XtendParser extends Parser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "COMMENT", "LINE_COMMENT", "XPAND_TAG_OPEN", "XPAND_TAG_CLOSE", "'import'", "';'", "'extension'", "'reexport'", "'context'", "'#'", "'if'", "'ERROR'", "'WARNING'", "':'", "'around'", "'('", "','", "'*'", "')'", "'::'", "'private'", "'cached'", "'JAVA'", "'.'", "'create'", "'Collection'", "'List'", "'Set'", "'let'", "'='", "'->'", "'?'", "'then'", "'else'", "'switch'", "'{'", "'case'", "'default'", "'}'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'-'", "'/'", "'!'", "'GLOBALVAR'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'", "'['", "']'"
@@ -54,8 +55,10 @@ public class XtendParser extends Parser {
          }
         
 
-    public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g"; }
+    @Override
+	public String[] getTokenNames() { return tokenNames; }
+    @Override
+	public String getGrammarFileName() { return "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g"; }
 
 
     	private ExtensionFactory factory;
@@ -78,13 +81,13 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start file
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:43:1: file returns [ExtensionFile r] : (nsi= nsImport )* (exti= extImport )* (ext= extension | a= around | c= check )* EOF ;
-	public ExtensionFile file() throws RecognitionException {
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:43:1: file returns [ExtensionFile r] : (nsi= nsImport )* (exti= extImport )* (ext= extension | a= around | c= check )* EOF ;
+    public ExtensionFile file() throws RecognitionException {
         ExtensionFile r = null;
 
-        ImportStatement nsi = null;
+        NamespaceImportStatement nsi = null;
 
-        ImportStatement exti = null;
+        ExtensionImportStatement exti = null;
 
         Extension ext = null;
 
@@ -95,10 +98,10 @@ public class XtendParser extends Parser {
 
         List nsimports = new ArrayList(), extimports = new ArrayList(), extensions = new ArrayList(), arounds = new ArrayList(), checks = new ArrayList();
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:2: ( (nsi= nsImport )* (exti= extImport )* (ext= extension | a= around | c= check )* EOF )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:2: (nsi= nsImport )* (exti= extImport )* (ext= extension | a= around | c= check )* EOF
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:44:155: ( (nsi= nsImport )* (exti= extImport )* (ext= extension | a= around | c= check )* EOF )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:2: (nsi= nsImport )* (exti= extImport )* (ext= extension | a= around | c= check )* EOF
             {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:2: (nsi= nsImport )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:2: (nsi= nsImport )*
             loop1:
             do {
                 int alt1=2;
@@ -111,7 +114,7 @@ public class XtendParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:3: nsi= nsImport
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:45:3: nsi= nsImport
             	    {
             	    pushFollow(FOLLOW_nsImport_in_file51);
             	    nsi=nsImport();
@@ -129,7 +132,7 @@ public class XtendParser extends Parser {
                 }
             } while (true);
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:2: (exti= extImport )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:2: (exti= extImport )*
             loop2:
             do {
                 int alt2=2;
@@ -142,7 +145,7 @@ public class XtendParser extends Parser {
 
                 switch (alt2) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:3: exti= extImport
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:46:3: exti= extImport
             	    {
             	    pushFollow(FOLLOW_extImport_in_file61);
             	    exti=extImport();
@@ -160,7 +163,7 @@ public class XtendParser extends Parser {
                 }
             } while (true);
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:2: (ext= extension | a= around | c= check )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:2: (ext= extension | a= around | c= check )*
             loop3:
             do {
                 int alt3=4;
@@ -191,7 +194,7 @@ public class XtendParser extends Parser {
 
                 switch (alt3) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:3: ext= extension
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:3: ext= extension
             	    {
             	    pushFollow(FOLLOW_extension_in_file71);
             	    ext=extension();
@@ -204,7 +207,7 @@ public class XtendParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:42: a= around
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:42: a= around
             	    {
             	    pushFollow(FOLLOW_around_in_file81);
             	    a=around();
@@ -217,7 +220,7 @@ public class XtendParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:73: c= check
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:47:73: c= check
             	    {
             	    pushFollow(FOLLOW_check_in_file91);
             	    c=check();
@@ -255,16 +258,16 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start nsImport
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:1: nsImport returns [ImportStatement r] : 'import' t= type ';' ;
-    public ImportStatement nsImport() throws RecognitionException {
-        ImportStatement r = null;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:1: nsImport returns [NamespaceImportStatement r] : 'import' t= type ';' ;
+    public NamespaceImportStatement nsImport() throws RecognitionException {
+        NamespaceImportStatement r = null;
 
         Identifier t = null;
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:2: ( 'import' t= type ';' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:2: 'import' t= type ';'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:47: ( 'import' t= type ';' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:2: 'import' t= type ';'
             {
             match(input,18,FOLLOW_18_in_nsImport117); if (failed) return r;
             pushFollow(FOLLOW_type_in_nsImport121);
@@ -291,24 +294,24 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start extImport
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:1: extImport returns [ImportStatement r] : 'extension' t= type (exported= 'reexport' )? ';' ;
-    public ImportStatement extImport() throws RecognitionException {
-        ImportStatement r = null;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:1: extImport returns [ExtensionImportStatement r] : 'extension' t= type (exported= 'reexport' )? ';' ;
+    public ExtensionImportStatement extImport() throws RecognitionException {
+        ExtensionImportStatement r = null;
 
         Token exported=null;
         Identifier t = null;
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:2: ( 'extension' t= type (exported= 'reexport' )? ';' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:2: 'extension' t= type (exported= 'reexport' )? ';'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:48: ( 'extension' t= type (exported= 'reexport' )? ';' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:2: 'extension' t= type (exported= 'reexport' )? ';'
             {
             match(input,20,FOLLOW_20_in_extImport140); if (failed) return r;
             pushFollow(FOLLOW_type_in_extImport144);
             t=type();
             _fsp--;
             if (failed) return r;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:21: (exported= 'reexport' )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:21: (exported= 'reexport' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -317,9 +320,9 @@ public class XtendParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:22: exported= 'reexport'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:22: exported= 'reexport'
                     {
-                    exported=(Token)input.LT(1);
+                    exported=input.LT(1);
                     match(input,21,FOLLOW_21_in_extImport149); if (failed) return r;
 
                     }
@@ -347,7 +350,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start check
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:1: check returns [Check ext] : 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';' ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:1: check returns [Check ext] : 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';' ;
     public Check check() throws RecognitionException {
         Check ext = null;
 
@@ -364,15 +367,15 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:2: ( 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:2: 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:26: ( 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:2: 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';'
             {
             match(input,22,FOLLOW_22_in_check168); if (failed) return ext;
             pushFollow(FOLLOW_type_in_check172);
             t=type();
             _fsp--;
             if (failed) return ext;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:18: ( '#' f= identifier )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:18: ( '#' f= identifier )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -381,7 +384,7 @@ public class XtendParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:19: '#' f= identifier
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:19: '#' f= identifier
                     {
                     match(input,23,FOLLOW_23_in_check174); if (failed) return ext;
                     pushFollow(FOLLOW_identifier_in_check177);
@@ -394,7 +397,7 @@ public class XtendParser extends Parser {
 
             }
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:37: ( 'if' guard= expression )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:37: ( 'if' guard= expression )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -403,7 +406,7 @@ public class XtendParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:38: 'if' guard= expression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:38: 'if' guard= expression
                     {
                     match(input,24,FOLLOW_24_in_check182); if (failed) return ext;
                     pushFollow(FOLLOW_expression_in_check186);
@@ -416,7 +419,7 @@ public class XtendParser extends Parser {
 
             }
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:62: (sev1= 'ERROR' | 'WARNING' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:62: (sev1= 'ERROR' | 'WARNING' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -435,15 +438,15 @@ public class XtendParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:63: sev1= 'ERROR'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:63: sev1= 'ERROR'
                     {
-                    sev1=(Token)input.LT(1);
+                    sev1=input.LT(1);
                     match(input,25,FOLLOW_25_in_check193); if (failed) return ext;
 
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:76: 'WARNING'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:76: 'WARNING'
                     {
                     match(input,26,FOLLOW_26_in_check195); if (failed) return ext;
 
@@ -481,7 +484,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start around
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:1: around returns [Around r] : 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';' ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:1: around returns [Around r] : 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';' ;
     public Around around() throws RecognitionException {
         Around r = null;
 
@@ -494,8 +497,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:5: ( 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:5: 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:28: ( 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:5: 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';'
             {
             match(input,28,FOLLOW_28_in_around230); if (failed) return r;
             pushFollow(FOLLOW_pointcut_in_around234);
@@ -503,7 +506,7 @@ public class XtendParser extends Parser {
             _fsp--;
             if (failed) return r;
             match(input,29,FOLLOW_29_in_around236); if (failed) return r;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:30: (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:30: (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )?
             int alt10=3;
             int LA10_0 = input.LA(1);
 
@@ -515,13 +518,13 @@ public class XtendParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:31: p= declaredParameterList ( ( ',' )? wildparams= '*' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:31: p= declaredParameterList ( ( ',' )? wildparams= '*' )?
                     {
                     pushFollow(FOLLOW_declaredParameterList_in_around241);
                     p=declaredParameterList();
                     _fsp--;
                     if (failed) return r;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:55: ( ( ',' )? wildparams= '*' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:55: ( ( ',' )? wildparams= '*' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -530,9 +533,9 @@ public class XtendParser extends Parser {
                     }
                     switch (alt9) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:56: ( ',' )? wildparams= '*'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:56: ( ',' )? wildparams= '*'
                             {
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:56: ( ',' )?
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:56: ( ',' )?
                             int alt8=2;
                             int LA8_0 = input.LA(1);
 
@@ -541,7 +544,7 @@ public class XtendParser extends Parser {
                             }
                             switch (alt8) {
                                 case 1 :
-                                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:56: ','
+                                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:56: ','
                                     {
                                     match(input,30,FOLLOW_30_in_around244); if (failed) return r;
 
@@ -550,7 +553,7 @@ public class XtendParser extends Parser {
 
                             }
 
-                            wildparams=(Token)input.LT(1);
+                            wildparams=input.LT(1);
                             match(input,31,FOLLOW_31_in_around249); if (failed) return r;
 
                             }
@@ -562,9 +565,9 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:80: wildparams= '*'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:80: wildparams= '*'
                     {
-                    wildparams=(Token)input.LT(1);
+                    wildparams=input.LT(1);
                     match(input,31,FOLLOW_31_in_around257); if (failed) return r;
 
                     }
@@ -598,7 +601,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start pointcut
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:72:1: pointcut returns [Identifier r] : (a= '*' | b= identifier ) (a1= '*' | b1= identifier | c1= '::' )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:72:1: pointcut returns [Identifier r] : (a= '*' | b= identifier ) (a1= '*' | b1= identifier | c1= '::' )* ;
     public Identifier pointcut() throws RecognitionException {
         Identifier r = null;
 
@@ -611,10 +614,10 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:2: ( (a= '*' | b= identifier ) (a1= '*' | b1= identifier | c1= '::' )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:2: (a= '*' | b= identifier ) (a1= '*' | b1= identifier | c1= '::' )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:72:34: ( (a= '*' | b= identifier ) (a1= '*' | b1= identifier | c1= '::' )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:2: (a= '*' | b= identifier ) (a1= '*' | b1= identifier | c1= '::' )*
             {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:2: (a= '*' | b= identifier )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:2: (a= '*' | b= identifier )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -633,9 +636,9 @@ public class XtendParser extends Parser {
             }
             switch (alt11) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:4: a= '*'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:4: a= '*'
                     {
-                    a=(Token)input.LT(1);
+                    a=input.LT(1);
                     match(input,31,FOLLOW_31_in_pointcut302); if (failed) return r;
                     if ( backtracking==0 ) {
                       r = id(a);
@@ -644,7 +647,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:74:4: b= identifier
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:74:4: b= identifier
                     {
                     pushFollow(FOLLOW_identifier_in_pointcut311);
                     b=identifier();
@@ -659,7 +662,7 @@ public class XtendParser extends Parser {
 
             }
 
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:4: (a1= '*' | b1= identifier | c1= '::' )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:4: (a1= '*' | b1= identifier | c1= '::' )*
             loop12:
             do {
                 int alt12=4;
@@ -684,9 +687,9 @@ public class XtendParser extends Parser {
 
                 switch (alt12) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:6: a1= '*'
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:6: a1= '*'
             	    {
-            	    a1=(Token)input.LT(1);
+            	    a1=input.LT(1);
             	    match(input,31,FOLLOW_31_in_pointcut322); if (failed) return r;
             	    if ( backtracking==0 ) {
             	      if (r!=null)r.append(id(a1));
@@ -695,7 +698,7 @@ public class XtendParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:76:6: b1= identifier
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:76:6: b1= identifier
             	    {
             	    pushFollow(FOLLOW_identifier_in_pointcut333);
             	    b1=identifier();
@@ -708,9 +711,9 @@ public class XtendParser extends Parser {
             	    }
             	    break;
             	case 3 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:77:6: c1= '::'
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:77:6: c1= '::'
             	    {
-            	    c1=(Token)input.LT(1);
+            	    c1=input.LT(1);
             	    match(input,33,FOLLOW_33_in_pointcut344); if (failed) return r;
             	    if ( backtracking==0 ) {
             	      if (r!=null)r.append(id(c1));
@@ -740,7 +743,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start extension
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:82:1: extension returns [Extension r] : ( (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' ) | (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';' );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:82:1: extension returns [Extension r] : ( (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' ) | (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';' );
     public Extension extension() throws RecognitionException {
         Extension r = null;
 
@@ -766,7 +769,7 @@ public class XtendParser extends Parser {
 
         List<Identifier> javaParamTypes=new ArrayList<Identifier>();
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:2: ( (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' ) | (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:82:102: ( (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' ) | (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';' )
             int alt23=2;
             switch ( input.LA(1) ) {
             case 34:
@@ -812,9 +815,9 @@ public class XtendParser extends Parser {
 
             switch (alt23) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:2: (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:2: (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' )
                     {
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:2: (priv= 'private' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:2: (priv= 'private' )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -823,9 +826,9 @@ public class XtendParser extends Parser {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:3: priv= 'private'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:3: priv= 'private'
                             {
-                            priv=(Token)input.LT(1);
+                            priv=input.LT(1);
                             match(input,34,FOLLOW_34_in_extension372); if (failed) return r;
 
                             }
@@ -833,7 +836,7 @@ public class XtendParser extends Parser {
 
                     }
 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:20: (cached= 'cached' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:20: (cached= 'cached' )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -842,9 +845,9 @@ public class XtendParser extends Parser {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:21: cached= 'cached'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:21: cached= 'cached'
                             {
-                            cached=(Token)input.LT(1);
+                            cached=input.LT(1);
                             match(input,35,FOLLOW_35_in_extension379); if (failed) return r;
 
                             }
@@ -852,7 +855,7 @@ public class XtendParser extends Parser {
 
                     }
 
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:39: (rType= type )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:39: (rType= type )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -868,7 +871,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:40: rType= type
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:40: rType= type
                             {
                             pushFollow(FOLLOW_type_in_extension386);
                             rType=type();
@@ -885,7 +888,7 @@ public class XtendParser extends Parser {
                     _fsp--;
                     if (failed) return r;
                     match(input,29,FOLLOW_29_in_extension394); if (failed) return r;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:73: (params= declaredParameterList )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:73: (params= declaredParameterList )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -894,7 +897,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:74: params= declaredParameterList
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:74: params= declaredParameterList
                             {
                             pushFollow(FOLLOW_declaredParameterList_in_extension399);
                             params=declaredParameterList();
@@ -908,7 +911,7 @@ public class XtendParser extends Parser {
 
                     match(input,32,FOLLOW_32_in_extension403); if (failed) return r;
                     match(input,27,FOLLOW_27_in_extension405); if (failed) return r;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:2: ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' )
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:2: ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' )
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -927,7 +930,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:4: 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:4: 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';'
                             {
                             match(input,36,FOLLOW_36_in_extension412); if (failed) return r;
                             pushFollow(FOLLOW_javaType_in_extension416);
@@ -940,7 +943,7 @@ public class XtendParser extends Parser {
                             _fsp--;
                             if (failed) return r;
                             match(input,29,FOLLOW_29_in_extension424); if (failed) return r;
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:43: (pt= javaType ( ',' pt= javaType )* )?
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:43: (pt= javaType ( ',' pt= javaType )* )?
                             int alt18=2;
                             int LA18_0 = input.LA(1);
 
@@ -949,7 +952,7 @@ public class XtendParser extends Parser {
                             }
                             switch (alt18) {
                                 case 1 :
-                                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:44: pt= javaType ( ',' pt= javaType )*
+                                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:44: pt= javaType ( ',' pt= javaType )*
                                     {
                                     pushFollow(FOLLOW_javaType_in_extension428);
                                     pt=javaType();
@@ -958,7 +961,7 @@ public class XtendParser extends Parser {
                                     if ( backtracking==0 ) {
                                       javaParamTypes.add(pt);
                                     }
-                                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:81: ( ',' pt= javaType )*
+                                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:81: ( ',' pt= javaType )*
                                     loop17:
                                     do {
                                         int alt17=2;
@@ -971,7 +974,7 @@ public class XtendParser extends Parser {
 
                                         switch (alt17) {
                                     	case 1 :
-                                    	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:82: ',' pt= javaType
+                                    	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:82: ',' pt= javaType
                                     	    {
                                     	    match(input,30,FOLLOW_30_in_extension432); if (failed) return r;
                                     	    pushFollow(FOLLOW_javaType_in_extension436);
@@ -1005,7 +1008,7 @@ public class XtendParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:87:4: expr= expression ';'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:87:4: expr= expression ';'
                             {
                             pushFollow(FOLLOW_expression_in_extension456);
                             expr=expression();
@@ -1025,9 +1028,9 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:3: (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:3: (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';'
                     {
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:3: (priv= 'private' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:3: (priv= 'private' )?
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -1036,9 +1039,9 @@ public class XtendParser extends Parser {
                     }
                     switch (alt20) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:4: priv= 'private'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:4: priv= 'private'
                             {
-                            priv=(Token)input.LT(1);
+                            priv=input.LT(1);
                             match(input,34,FOLLOW_34_in_extension472); if (failed) return r;
 
                             }
@@ -1046,13 +1049,13 @@ public class XtendParser extends Parser {
 
                     }
 
-                    create=(Token)input.LT(1);
+                    create=input.LT(1);
                     match(input,38,FOLLOW_38_in_extension478); if (failed) return r;
                     pushFollow(FOLLOW_type_in_extension482);
                     rType=type();
                     _fsp--;
                     if (failed) return r;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:48: (rtn= identifier )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:48: (rtn= identifier )?
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
@@ -1065,7 +1068,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt21) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:49: rtn= identifier
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:49: rtn= identifier
                             {
                             pushFollow(FOLLOW_identifier_in_extension487);
                             rtn=identifier();
@@ -1082,7 +1085,7 @@ public class XtendParser extends Parser {
                     _fsp--;
                     if (failed) return r;
                     match(input,29,FOLLOW_29_in_extension495); if (failed) return r;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:86: (params= declaredParameterList )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:86: (params= declaredParameterList )?
                     int alt22=2;
                     int LA22_0 = input.LA(1);
 
@@ -1091,7 +1094,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt22) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:87: params= declaredParameterList
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:87: params= declaredParameterList
                             {
                             pushFollow(FOLLOW_declaredParameterList_in_extension500);
                             params=declaredParameterList();
@@ -1131,7 +1134,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start javaType
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:97:1: javaType returns [Identifier r] : i= identifier (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:97:1: javaType returns [Identifier r] : i= identifier (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )* ;
     public Identifier javaType() throws RecognitionException {
         Identifier r = null;
 
@@ -1145,8 +1148,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:98:2: (i= identifier (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:98:2: i= identifier (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:97:34: (i= identifier (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:98:2: i= identifier (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )*
             {
             pushFollow(FOLLOW_identifier_in_javaType536);
             i=identifier();
@@ -1155,7 +1158,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               r = i;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:2: (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:2: (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )*
             loop25:
             do {
                 int alt25=2;
@@ -1183,14 +1186,14 @@ public class XtendParser extends Parser {
 
                 switch (alt25) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:3: d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' )
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:3: d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' )
             	    {
-            	    d=(Token)input.LT(1);
+            	    d=input.LT(1);
             	    match(input,37,FOLLOW_37_in_javaType545); if (failed) return r;
             	    if ( backtracking==0 ) {
             	      if (r!=null)r.append(id(d));
             	    }
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:41: (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' )
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:41: (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' )
             	    int alt24=4;
             	    switch ( input.LA(1) ) {
             	    case Identifier:
@@ -1223,7 +1226,7 @@ public class XtendParser extends Parser {
 
             	    switch (alt24) {
             	        case 1 :
-            	            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:42: i1= identifier
+            	            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:42: i1= identifier
             	            {
             	            pushFollow(FOLLOW_identifier_in_javaType551);
             	            i1=identifier();
@@ -1236,9 +1239,9 @@ public class XtendParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:86: i2= 'Collection'
+            	            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:86: i2= 'Collection'
             	            {
-            	            i2=(Token)input.LT(1);
+            	            i2=input.LT(1);
             	            match(input,39,FOLLOW_39_in_javaType557); if (failed) return r;
             	            if ( backtracking==0 ) {
             	              r.append(id(i2));
@@ -1247,9 +1250,9 @@ public class XtendParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:100:2: i3= 'List'
+            	            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:100:2: i3= 'List'
             	            {
-            	            i3=(Token)input.LT(1);
+            	            i3=input.LT(1);
             	            match(input,40,FOLLOW_40_in_javaType566); if (failed) return r;
             	            if ( backtracking==0 ) {
             	              if (r!=null)r.append(id(i3));
@@ -1258,9 +1261,9 @@ public class XtendParser extends Parser {
             	            }
             	            break;
             	        case 4 :
-            	            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:100:46: i4= 'Set'
+            	            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:100:46: i4= 'Set'
             	            {
-            	            i4=(Token)input.LT(1);
+            	            i4=input.LT(1);
             	            match(input,41,FOLLOW_41_in_javaType572); if (failed) return r;
             	            if ( backtracking==0 ) {
             	              if (r!=null)r.append(id(i4));
@@ -1296,7 +1299,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start expression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:106:1: expression returns [Expression e] : x= letExpression ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:106:1: expression returns [Expression e] : x= letExpression ;
     public Expression expression() throws RecognitionException {
         Expression e = null;
 
@@ -1304,8 +1307,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:107:2: (x= letExpression )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:107:2: x= letExpression
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:106:34: (x= letExpression )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:107:2: x= letExpression
             {
             pushFollow(FOLLOW_letExpression_in_expression594);
             x=letExpression();
@@ -1330,7 +1333,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start letExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:110:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:110:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );
     public Expression letExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1344,7 +1347,7 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:111:4: ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:110:39: ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -1363,7 +1366,7 @@ public class XtendParser extends Parser {
             }
             switch (alt26) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:111:4: 'let' v= identifier '=' varExpr= castedExpression ':' target= expression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:111:4: 'let' v= identifier '=' varExpr= castedExpression ':' target= expression
                     {
                     match(input,42,FOLLOW_42_in_letExpression613); if (failed) return e;
                     pushFollow(FOLLOW_identifier_in_letExpression617);
@@ -1387,7 +1390,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:113:4: x= castedExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:113:4: x= castedExpression
                     {
                     pushFollow(FOLLOW_castedExpression_in_letExpression642);
                     x=castedExpression();
@@ -1414,7 +1417,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start castedExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:116:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:116:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );
     public Expression castedExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1424,12 +1427,12 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:5: ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:116:41: ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression )
             int alt27=2;
             alt27 = dfa27.predict(input);
             switch (alt27) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:5: ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:5: ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression
                     {
                     match(input,29,FOLLOW_29_in_castedExpression673); if (failed) return e;
                     pushFollow(FOLLOW_type_in_castedExpression677);
@@ -1448,7 +1451,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:119:4: x= chainExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:119:4: x= chainExpression
                     {
                     pushFollow(FOLLOW_chainExpression_in_castedExpression692);
                     x=chainExpression();
@@ -1475,7 +1478,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start chainExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:123:1: chainExpression returns [Expression e] : x= ifExpression ( '->' right= ifExpression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:123:1: chainExpression returns [Expression e] : x= ifExpression ( '->' right= ifExpression )* ;
     public Expression chainExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1485,8 +1488,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:2: (x= ifExpression ( '->' right= ifExpression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:2: x= ifExpression ( '->' right= ifExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:123:41: (x= ifExpression ( '->' right= ifExpression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:2: x= ifExpression ( '->' right= ifExpression )*
             {
             pushFollow(FOLLOW_ifExpression_in_chainExpression712);
             x=ifExpression();
@@ -1495,7 +1498,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:25: ( '->' right= ifExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:25: ( '->' right= ifExpression )*
             loop28:
             do {
                 int alt28=2;
@@ -1508,7 +1511,7 @@ public class XtendParser extends Parser {
 
                 switch (alt28) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:27: '->' right= ifExpression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:27: '->' right= ifExpression
             	    {
             	    match(input,44,FOLLOW_44_in_chainExpression718); if (failed) return e;
             	    pushFollow(FOLLOW_ifExpression_in_chainExpression722);
@@ -1543,7 +1546,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start ifExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:127:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:127:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );
     public Expression ifExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1557,7 +1560,7 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:2: (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:127:38: (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? )
             int alt31=2;
             int LA31_0 = input.LA(1);
 
@@ -1576,7 +1579,7 @@ public class XtendParser extends Parser {
             }
             switch (alt31) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:2: x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:2: x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
                     {
                     pushFollow(FOLLOW_switchExpression_in_ifExpression743);
                     x=switchExpression();
@@ -1585,7 +1588,7 @@ public class XtendParser extends Parser {
                     if ( backtracking==0 ) {
                       e =x;
                     }
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:28: ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:28: ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
                     int alt29=2;
                     int LA29_0 = input.LA(1);
 
@@ -1594,7 +1597,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt29) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:29: '?' thenPart= switchExpression ':' elsePart= switchExpression
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:29: '?' thenPart= switchExpression ':' elsePart= switchExpression
                             {
                             match(input,45,FOLLOW_45_in_ifExpression747); if (failed) return e;
                             pushFollow(FOLLOW_switchExpression_in_ifExpression751);
@@ -1619,7 +1622,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:3: 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:3: 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )?
                     {
                     match(input,24,FOLLOW_24_in_ifExpression765); if (failed) return e;
                     pushFollow(FOLLOW_switchExpression_in_ifExpression769);
@@ -1631,7 +1634,7 @@ public class XtendParser extends Parser {
                     thenPart=switchExpression();
                     _fsp--;
                     if (failed) return e;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:68: ( 'else' elsePart= expression )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:68: ( 'else' elsePart= expression )?
                     int alt30=2;
                     int LA30_0 = input.LA(1);
 
@@ -1640,7 +1643,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt30) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:69: 'else' elsePart= expression
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:69: 'else' elsePart= expression
                             {
                             match(input,47,FOLLOW_47_in_ifExpression778); if (failed) return e;
                             pushFollow(FOLLOW_expression_in_ifExpression782);
@@ -1674,7 +1677,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start switchExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:133:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:133:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );
     public Expression switchExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1691,7 +1694,7 @@ public class XtendParser extends Parser {
 
         List cases = new ArrayList();
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:4: ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:133:85: ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression )
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -1710,10 +1713,10 @@ public class XtendParser extends Parser {
             }
             switch (alt34) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:4: 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:4: 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}'
                     {
                     match(input,48,FOLLOW_48_in_switchExpression809); if (failed) return e;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:13: ( '(' pred= orExpression ')' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:13: ( '(' pred= orExpression ')' )?
                     int alt32=2;
                     int LA32_0 = input.LA(1);
 
@@ -1722,7 +1725,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt32) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:14: '(' pred= orExpression ')'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:14: '(' pred= orExpression ')'
                             {
                             match(input,29,FOLLOW_29_in_switchExpression812); if (failed) return e;
                             pushFollow(FOLLOW_orExpression_in_switchExpression818);
@@ -1737,7 +1740,7 @@ public class XtendParser extends Parser {
                     }
 
                     match(input,49,FOLLOW_49_in_switchExpression827); if (failed) return e;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:136:4: ( 'case' c= orExpression ':' v= orExpression )*
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:136:4: ( 'case' c= orExpression ':' v= orExpression )*
                     loop33:
                     do {
                         int alt33=2;
@@ -1750,7 +1753,7 @@ public class XtendParser extends Parser {
 
                         switch (alt33) {
                     	case 1 :
-                    	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:137:6: 'case' c= orExpression ':' v= orExpression
+                    	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:137:6: 'case' c= orExpression ':' v= orExpression
                     	    {
                     	    match(input,50,FOLLOW_50_in_switchExpression840); if (failed) return e;
                     	    pushFollow(FOLLOW_orExpression_in_switchExpression844);
@@ -1788,7 +1791,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:143:4: x= orExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:143:4: x= orExpression
                     {
                     pushFollow(FOLLOW_orExpression_in_switchExpression895);
                     x=orExpression();
@@ -1815,7 +1818,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start orExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:146:1: orExpression returns [Expression e] : x= andExpression (name= '||' r= andExpression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:146:1: orExpression returns [Expression e] : x= andExpression (name= '||' r= andExpression )* ;
     public Expression orExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1826,8 +1829,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:4: (x= andExpression (name= '||' r= andExpression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:4: x= andExpression (name= '||' r= andExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:146:37: (x= andExpression (name= '||' r= andExpression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:4: x= andExpression (name= '||' r= andExpression )*
             {
             pushFollow(FOLLOW_andExpression_in_orExpression915);
             x=andExpression();
@@ -1836,7 +1839,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:28: (name= '||' r= andExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:28: (name= '||' r= andExpression )*
             loop35:
             do {
                 int alt35=2;
@@ -1849,9 +1852,9 @@ public class XtendParser extends Parser {
 
                 switch (alt35) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:29: name= '||' r= andExpression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:29: name= '||' r= andExpression
             	    {
-            	    name=(Token)input.LT(1);
+            	    name=input.LT(1);
             	    match(input,53,FOLLOW_53_in_orExpression922); if (failed) return e;
             	    pushFollow(FOLLOW_andExpression_in_orExpression926);
             	    r=andExpression();
@@ -1885,7 +1888,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start andExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:150:1: andExpression returns [Expression e] : x= impliesExpression (name= '&&' r= impliesExpression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:150:1: andExpression returns [Expression e] : x= impliesExpression (name= '&&' r= impliesExpression )* ;
     public Expression andExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1896,8 +1899,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:2: (x= impliesExpression (name= '&&' r= impliesExpression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:2: x= impliesExpression (name= '&&' r= impliesExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:150:39: (x= impliesExpression (name= '&&' r= impliesExpression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:2: x= impliesExpression (name= '&&' r= impliesExpression )*
             {
             pushFollow(FOLLOW_impliesExpression_in_andExpression949);
             x=impliesExpression();
@@ -1906,7 +1909,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:30: (name= '&&' r= impliesExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:30: (name= '&&' r= impliesExpression )*
             loop36:
             do {
                 int alt36=2;
@@ -1919,9 +1922,9 @@ public class XtendParser extends Parser {
 
                 switch (alt36) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:31: name= '&&' r= impliesExpression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:31: name= '&&' r= impliesExpression
             	    {
-            	    name=(Token)input.LT(1);
+            	    name=input.LT(1);
             	    match(input,54,FOLLOW_54_in_andExpression956); if (failed) return e;
             	    pushFollow(FOLLOW_impliesExpression_in_andExpression960);
             	    r=impliesExpression();
@@ -1955,7 +1958,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start impliesExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:154:1: impliesExpression returns [Expression e] : x= relationalExpression (name= 'implies' r= relationalExpression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:154:1: impliesExpression returns [Expression e] : x= relationalExpression (name= 'implies' r= relationalExpression )* ;
     public Expression impliesExpression() throws RecognitionException {
         Expression e = null;
 
@@ -1966,8 +1969,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:2: (x= relationalExpression (name= 'implies' r= relationalExpression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:2: x= relationalExpression (name= 'implies' r= relationalExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:154:42: (x= relationalExpression (name= 'implies' r= relationalExpression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:2: x= relationalExpression (name= 'implies' r= relationalExpression )*
             {
             pushFollow(FOLLOW_relationalExpression_in_impliesExpression982);
             x=relationalExpression();
@@ -1976,7 +1979,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:33: (name= 'implies' r= relationalExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:33: (name= 'implies' r= relationalExpression )*
             loop37:
             do {
                 int alt37=2;
@@ -1989,9 +1992,9 @@ public class XtendParser extends Parser {
 
                 switch (alt37) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:34: name= 'implies' r= relationalExpression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:34: name= 'implies' r= relationalExpression
             	    {
-            	    name=(Token)input.LT(1);
+            	    name=input.LT(1);
             	    match(input,55,FOLLOW_55_in_impliesExpression989); if (failed) return e;
             	    pushFollow(FOLLOW_relationalExpression_in_impliesExpression993);
             	    r=relationalExpression();
@@ -2025,7 +2028,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start relationalExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:159:1: relationalExpression returns [Expression e] : x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:159:1: relationalExpression returns [Expression e] : x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* ;
     public Expression relationalExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2036,8 +2039,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:160:2: (x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:160:2: x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:159:45: (x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:160:2: x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
             {
             pushFollow(FOLLOW_additiveExpression_in_relationalExpression1017);
             x=additiveExpression();
@@ -2046,7 +2049,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:161:2: (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:161:2: (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
             loop38:
             do {
                 int alt38=2;
@@ -2059,9 +2062,9 @@ public class XtendParser extends Parser {
 
                 switch (alt38) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:161:3: name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:161:3: name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression
             	    {
-            	    name=(Token)input.LT(1);
+            	    name=input.LT(1);
             	    if ( (input.LA(1)>=56 && input.LA(1)<=61) ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
@@ -2105,7 +2108,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start additiveExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:165:1: additiveExpression returns [Expression e] : x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:165:1: additiveExpression returns [Expression e] : x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* ;
     public Expression additiveExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2116,8 +2119,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:166:2: (x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:166:2: x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:165:43: (x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:166:2: x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )*
             {
             pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1072);
             x=multiplicativeExpression();
@@ -2126,7 +2129,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:167:4: (name= ( '+' | '-' ) r= multiplicativeExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:167:4: (name= ( '+' | '-' ) r= multiplicativeExpression )*
             loop39:
             do {
                 int alt39=2;
@@ -2139,9 +2142,9 @@ public class XtendParser extends Parser {
 
                 switch (alt39) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:167:5: name= ( '+' | '-' ) r= multiplicativeExpression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:167:5: name= ( '+' | '-' ) r= multiplicativeExpression
             	    {
-            	    name=(Token)input.LT(1);
+            	    name=input.LT(1);
             	    if ( (input.LA(1)>=62 && input.LA(1)<=63) ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
@@ -2185,7 +2188,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start multiplicativeExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:170:1: multiplicativeExpression returns [Expression e] : x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:170:1: multiplicativeExpression returns [Expression e] : x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* ;
     public Expression multiplicativeExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2196,8 +2199,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:171:2: (x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:171:2: x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:170:48: (x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:171:2: x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )*
             {
             pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1110);
             x=unaryExpression();
@@ -2206,7 +2209,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:172:2: (name= ( '*' | '/' ) r= unaryExpression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:172:2: (name= ( '*' | '/' ) r= unaryExpression )*
             loop40:
             do {
                 int alt40=2;
@@ -2219,9 +2222,9 @@ public class XtendParser extends Parser {
 
                 switch (alt40) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:172:3: name= ( '*' | '/' ) r= unaryExpression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:172:3: name= ( '*' | '/' ) r= unaryExpression
             	    {
-            	    name=(Token)input.LT(1);
+            	    name=input.LT(1);
             	    if ( input.LA(1)==31||input.LA(1)==64 ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
@@ -2265,7 +2268,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start unaryExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:176:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:176:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );
     public Expression unaryExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2274,7 +2277,7 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:177:2: (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:176:40: (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression )
             int alt41=3;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -2323,7 +2326,7 @@ public class XtendParser extends Parser {
 
             switch (alt41) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:177:2: x= infixExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:177:2: x= infixExpression
                     {
                     pushFollow(FOLLOW_infixExpression_in_unaryExpression1149);
                     x=infixExpression();
@@ -2336,9 +2339,9 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:178:3: name= '!' x= infixExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:178:3: name= '!' x= infixExpression
                     {
-                    name=(Token)input.LT(1);
+                    name=input.LT(1);
                     match(input,65,FOLLOW_65_in_unaryExpression1157); if (failed) return e;
                     pushFollow(FOLLOW_infixExpression_in_unaryExpression1161);
                     x=infixExpression();
@@ -2351,9 +2354,9 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:179:3: name= '-' x= infixExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:179:3: name= '-' x= infixExpression
                     {
-                    name=(Token)input.LT(1);
+                    name=input.LT(1);
                     match(input,63,FOLLOW_63_in_unaryExpression1169); if (failed) return e;
                     pushFollow(FOLLOW_infixExpression_in_unaryExpression1173);
                     x=infixExpression();
@@ -2380,7 +2383,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start infixExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:182:1: infixExpression returns [Expression e] : x= primaryExpression ( '.' op= featureCall )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:182:1: infixExpression returns [Expression e] : x= primaryExpression ( '.' op= featureCall )* ;
     public Expression infixExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2390,8 +2393,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:2: (x= primaryExpression ( '.' op= featureCall )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:2: x= primaryExpression ( '.' op= featureCall )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:182:40: (x= primaryExpression ( '.' op= featureCall )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:2: x= primaryExpression ( '.' op= featureCall )*
             {
             pushFollow(FOLLOW_primaryExpression_in_infixExpression1191);
             x=primaryExpression();
@@ -2400,7 +2403,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               e =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:30: ( '.' op= featureCall )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:30: ( '.' op= featureCall )*
             loop42:
             do {
                 int alt42=2;
@@ -2413,7 +2416,7 @@ public class XtendParser extends Parser {
 
                 switch (alt42) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:32: '.' op= featureCall
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:32: '.' op= featureCall
             	    {
             	    match(input,37,FOLLOW_37_in_infixExpression1197); if (failed) return e;
             	    pushFollow(FOLLOW_featureCall_in_infixExpression1201);
@@ -2448,7 +2451,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start primaryExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:186:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:186:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );
     public Expression primaryExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2457,7 +2460,7 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:187:4: (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:186:44: (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression )
             int alt43=9;
             switch ( input.LA(1) ) {
             case StringLiteral:
@@ -2528,9 +2531,9 @@ public class XtendParser extends Parser {
 
             switch (alt43) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:187:4: c= StringLiteral
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:187:4: c= StringLiteral
                     {
-                    c=(Token)input.LT(1);
+                    c=input.LT(1);
                     match(input,StringLiteral,FOLLOW_StringLiteral_in_primaryExpression1227); if (failed) return e;
                     if ( backtracking==0 ) {
                        e = factory.createStringLiteral(id(c));
@@ -2539,7 +2542,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:188:5: x= featureCall
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:188:5: x= featureCall
                     {
                     pushFollow(FOLLOW_featureCall_in_primaryExpression1238);
                     x=featureCall();
@@ -2552,7 +2555,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:189:5: x= booleanLiteral
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:189:5: x= booleanLiteral
                     {
                     pushFollow(FOLLOW_booleanLiteral_in_primaryExpression1248);
                     x=booleanLiteral();
@@ -2565,7 +2568,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:190:5: x= numberLiteral
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:190:5: x= numberLiteral
                     {
                     pushFollow(FOLLOW_numberLiteral_in_primaryExpression1258);
                     x=numberLiteral();
@@ -2578,7 +2581,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:191:5: x= nullLiteral
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:191:5: x= nullLiteral
                     {
                     pushFollow(FOLLOW_nullLiteral_in_primaryExpression1268);
                     x=nullLiteral();
@@ -2591,7 +2594,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:192:5: x= listLiteral
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:192:5: x= listLiteral
                     {
                     pushFollow(FOLLOW_listLiteral_in_primaryExpression1278);
                     x=listLiteral();
@@ -2604,7 +2607,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:193:5: x= constructorCall
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:193:5: x= constructorCall
                     {
                     pushFollow(FOLLOW_constructorCall_in_primaryExpression1288);
                     x=constructorCall();
@@ -2617,7 +2620,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:194:5: x= globalVarExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:194:5: x= globalVarExpression
                     {
                     pushFollow(FOLLOW_globalVarExpression_in_primaryExpression1298);
                     x=globalVarExpression();
@@ -2630,7 +2633,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:195:5: x= paranthesizedExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:195:5: x= paranthesizedExpression
                     {
                     pushFollow(FOLLOW_paranthesizedExpression_in_primaryExpression1308);
                     x=paranthesizedExpression();
@@ -2657,7 +2660,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start paranthesizedExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:198:1: paranthesizedExpression returns [Expression e] : '(' x= expression ')' ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:198:1: paranthesizedExpression returns [Expression e] : '(' x= expression ')' ;
     public Expression paranthesizedExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2665,8 +2668,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:199:5: ( '(' x= expression ')' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:199:5: '(' x= expression ')'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:198:48: ( '(' x= expression ')' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:199:5: '(' x= expression ')'
             {
             match(input,29,FOLLOW_29_in_paranthesizedExpression1327); if (failed) return e;
             pushFollow(FOLLOW_expression_in_paranthesizedExpression1331);
@@ -2693,7 +2696,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start globalVarExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:202:1: globalVarExpression returns [GlobalVarExpression e] : 'GLOBALVAR' name= identifier ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:202:1: globalVarExpression returns [GlobalVarExpression e] : 'GLOBALVAR' name= identifier ;
     public GlobalVarExpression globalVarExpression() throws RecognitionException {
         GlobalVarExpression e = null;
 
@@ -2701,8 +2704,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:203:5: ( 'GLOBALVAR' name= identifier )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:203:5: 'GLOBALVAR' name= identifier
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:202:54: ( 'GLOBALVAR' name= identifier )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:203:5: 'GLOBALVAR' name= identifier
             {
             match(input,66,FOLLOW_66_in_globalVarExpression1353); if (failed) return e;
             pushFollow(FOLLOW_identifier_in_globalVarExpression1357);
@@ -2728,7 +2731,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start featureCall
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:205:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:205:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );
     public FeatureCall featureCall() throws RecognitionException {
         FeatureCall e = null;
 
@@ -2742,7 +2745,7 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:2: (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:205:38: (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression )
             int alt45=3;
             switch ( input.LA(1) ) {
             case Identifier:
@@ -2794,14 +2797,14 @@ public class XtendParser extends Parser {
 
             switch (alt45) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:2: id1= identifier '(' (l= parameterList )? ')'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:2: id1= identifier '(' (l= parameterList )? ')'
                     {
                     pushFollow(FOLLOW_identifier_in_featureCall1375);
                     id1=identifier();
                     _fsp--;
                     if (failed) return e;
                     match(input,29,FOLLOW_29_in_featureCall1377); if (failed) return e;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:21: (l= parameterList )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:21: (l= parameterList )?
                     int alt44=2;
                     int LA44_0 = input.LA(1);
 
@@ -2810,7 +2813,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt44) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:22: l= parameterList
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:22: l= parameterList
                             {
                             pushFollow(FOLLOW_parameterList_in_featureCall1382);
                             l=parameterList();
@@ -2830,7 +2833,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:207:5: t= type
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:207:5: t= type
                     {
                     pushFollow(FOLLOW_type_in_featureCall1396);
                     t=type();
@@ -2843,7 +2846,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:208:5: x= collectionExpression
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:208:5: x= collectionExpression
                     {
                     pushFollow(FOLLOW_collectionExpression_in_featureCall1407);
                     x=collectionExpression();
@@ -2870,7 +2873,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start listLiteral
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:211:1: listLiteral returns [Expression e] : '{' (l= parameterList )? '}' ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:211:1: listLiteral returns [Expression e] : '{' (l= parameterList )? '}' ;
     public Expression listLiteral() throws RecognitionException {
         Expression e = null;
 
@@ -2878,11 +2881,11 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:2: ( '{' (l= parameterList )? '}' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:2: '{' (l= parameterList )? '}'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:211:37: ( '{' (l= parameterList )? '}' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:2: '{' (l= parameterList )? '}'
             {
             match(input,49,FOLLOW_49_in_listLiteral1424); if (failed) return e;
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:6: (l= parameterList )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:6: (l= parameterList )?
             int alt46=2;
             int LA46_0 = input.LA(1);
 
@@ -2891,7 +2894,7 @@ public class XtendParser extends Parser {
             }
             switch (alt46) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:7: l= parameterList
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:7: l= parameterList
                     {
                     pushFollow(FOLLOW_parameterList_in_listLiteral1429);
                     l=parameterList();
@@ -2923,7 +2926,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start constructorCall
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:215:1: constructorCall returns [Expression e] : 'new' t= simpleType ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:215:1: constructorCall returns [Expression e] : 'new' t= simpleType ;
     public Expression constructorCall() throws RecognitionException {
         Expression e = null;
 
@@ -2931,8 +2934,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:216:2: ( 'new' t= simpleType )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:216:2: 'new' t= simpleType
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:215:41: ( 'new' t= simpleType )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:216:2: 'new' t= simpleType
             {
             match(input,67,FOLLOW_67_in_constructorCall1450); if (failed) return e;
             pushFollow(FOLLOW_simpleType_in_constructorCall1454);
@@ -2958,13 +2961,13 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start booleanLiteral
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:220:1: booleanLiteral returns [Expression e=factory.createBooleanLiteral(id(input.LT(1)))] : ( 'false' | 'true' );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:220:1: booleanLiteral returns [Expression e=factory.createBooleanLiteral(id(input.LT(1)))] : ( 'false' | 'true' );
     public Expression booleanLiteral() throws RecognitionException {
         Expression e = factory.createBooleanLiteral(id(input.LT(1)));
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:221:2: ( 'false' | 'true' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:220:86: ( 'false' | 'true' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:
             {
             if ( (input.LA(1)>=68 && input.LA(1)<=69) ) {
                 input.consume();
@@ -2993,13 +2996,13 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start nullLiteral
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:224:1: nullLiteral returns [Expression e=factory.createNullLiteral(id(input.LT(1)))] : 'null' ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:224:1: nullLiteral returns [Expression e=factory.createNullLiteral(id(input.LT(1)))] : 'null' ;
     public Expression nullLiteral() throws RecognitionException {
         Expression e = factory.createNullLiteral(id(input.LT(1)));
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:225:2: ( 'null' )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:225:2: 'null'
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:224:80: ( 'null' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:225:2: 'null'
             {
             match(input,70,FOLLOW_70_in_nullLiteral1489); if (failed) return e;
 
@@ -3018,7 +3021,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start numberLiteral
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:228:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:228:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );
     public Expression numberLiteral() throws RecognitionException {
         Expression e = null;
 
@@ -3027,7 +3030,7 @@ public class XtendParser extends Parser {
         Token c=null;
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:229:4: (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:228:39: (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral )
             int alt47=2;
             int LA47_0 = input.LA(1);
 
@@ -3071,9 +3074,9 @@ public class XtendParser extends Parser {
             }
             switch (alt47) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:229:4: a= IntLiteral
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:229:4: a= IntLiteral
                     {
-                    a=(Token)input.LT(1);
+                    a=input.LT(1);
                     match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1508); if (failed) return e;
                     if ( backtracking==0 ) {
                       e =factory.createIntegerLiteral(id(a));
@@ -3082,13 +3085,13 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:230:4: a= IntLiteral b= '.' c= IntLiteral
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:230:4: a= IntLiteral b= '.' c= IntLiteral
                     {
-                    a=(Token)input.LT(1);
+                    a=input.LT(1);
                     match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1517); if (failed) return e;
-                    b=(Token)input.LT(1);
+                    b=input.LT(1);
                     match(input,37,FOLLOW_37_in_numberLiteral1521); if (failed) return e;
-                    c=(Token)input.LT(1);
+                    c=input.LT(1);
                     match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1525); if (failed) return e;
                     if ( backtracking==0 ) {
                       e =factory.createRealLiteral(id(a).append(id(b)).append(id(c)));
@@ -3111,7 +3114,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start collectionExpression
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:233:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:233:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );
     public FeatureCall collectionExpression() throws RecognitionException {
         FeatureCall e = null;
 
@@ -3124,7 +3127,7 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:234:3: (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:233:47: (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' )
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -3143,9 +3146,9 @@ public class XtendParser extends Parser {
             }
             switch (alt49) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:234:3: name= 'typeSelect' '(' t= type ')'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:234:3: name= 'typeSelect' '(' t= type ')'
                     {
-                    name=(Token)input.LT(1);
+                    name=input.LT(1);
                     match(input,71,FOLLOW_71_in_collectionExpression1545); if (failed) return e;
                     match(input,29,FOLLOW_29_in_collectionExpression1549); if (failed) return e;
                     pushFollow(FOLLOW_type_in_collectionExpression1553);
@@ -3160,9 +3163,9 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:237:5: name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:237:5: name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')'
                     {
-                    name=(Token)input.LT(1);
+                    name=input.LT(1);
                     if ( (input.LA(1)>=72 && input.LA(1)<=79) ) {
                         input.consume();
                         errorRecovery=false;failed=false;
@@ -3175,7 +3178,7 @@ public class XtendParser extends Parser {
                     }
 
                     match(input,29,FOLLOW_29_in_collectionExpression1618); if (failed) return e;
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:244:19: (var= identifier '|' )?
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:244:19: (var= identifier '|' )?
                     int alt48=2;
                     int LA48_0 = input.LA(1);
 
@@ -3188,7 +3191,7 @@ public class XtendParser extends Parser {
                     }
                     switch (alt48) {
                         case 1 :
-                            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:244:20: var= identifier '|'
+                            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:244:20: var= identifier '|'
                             {
                             pushFollow(FOLLOW_identifier_in_collectionExpression1623);
                             var=identifier();
@@ -3227,7 +3230,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start declaredParameterList
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:250:1: declaredParameterList returns [List<DeclaredParameter> l = new ArrayList<DeclaredParameter>()] : dp= declaredParameter ( ',' dp1= declaredParameter )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:250:1: declaredParameterList returns [List<DeclaredParameter> l = new ArrayList<DeclaredParameter>()] : dp= declaredParameter ( ',' dp1= declaredParameter )* ;
     public List<DeclaredParameter> declaredParameterList() throws RecognitionException {
         List<DeclaredParameter> l =  new ArrayList<DeclaredParameter>();
 
@@ -3237,8 +3240,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:2: (dp= declaredParameter ( ',' dp1= declaredParameter )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:2: dp= declaredParameter ( ',' dp1= declaredParameter )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:250:97: (dp= declaredParameter ( ',' dp1= declaredParameter )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:2: dp= declaredParameter ( ',' dp1= declaredParameter )*
             {
             pushFollow(FOLLOW_declaredParameter_in_declaredParameterList1657);
             dp=declaredParameter();
@@ -3247,7 +3250,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               l.add(dp);
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:36: ( ',' dp1= declaredParameter )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:36: ( ',' dp1= declaredParameter )*
             loop50:
             do {
                 int alt50=2;
@@ -3266,7 +3269,7 @@ public class XtendParser extends Parser {
 
                 switch (alt50) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:37: ',' dp1= declaredParameter
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:37: ',' dp1= declaredParameter
             	    {
             	    match(input,30,FOLLOW_30_in_declaredParameterList1661); if (failed) return l;
             	    pushFollow(FOLLOW_declaredParameter_in_declaredParameterList1665);
@@ -3301,7 +3304,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start declaredParameter
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:254:1: declaredParameter returns [DeclaredParameter dp] : t= type name= identifier ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:254:1: declaredParameter returns [DeclaredParameter dp] : t= type name= identifier ;
     public DeclaredParameter declaredParameter() throws RecognitionException {
         DeclaredParameter dp = null;
 
@@ -3311,8 +3314,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:255:2: (t= type name= identifier )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:255:2: t= type name= identifier
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:254:50: (t= type name= identifier )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:255:2: t= type name= identifier
             {
             pushFollow(FOLLOW_type_in_declaredParameter1685);
             t=type();
@@ -3341,7 +3344,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start parameterList
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:258:1: parameterList returns [List<Expression> list = new ArrayList<Expression>()] : a= expression ( ',' b= expression )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:258:1: parameterList returns [List<Expression> list = new ArrayList<Expression>()] : a= expression ( ',' b= expression )* ;
     public List<Expression> parameterList() throws RecognitionException {
         List<Expression> list =  new ArrayList<Expression>();
 
@@ -3351,8 +3354,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:5: (a= expression ( ',' b= expression )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:5: a= expression ( ',' b= expression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:258:78: (a= expression ( ',' b= expression )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:5: a= expression ( ',' b= expression )*
             {
             pushFollow(FOLLOW_expression_in_parameterList1711);
             a=expression();
@@ -3361,7 +3364,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               list.add(a);
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:34: ( ',' b= expression )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:34: ( ',' b= expression )*
             loop51:
             do {
                 int alt51=2;
@@ -3374,7 +3377,7 @@ public class XtendParser extends Parser {
 
                 switch (alt51) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:35: ',' b= expression
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:35: ',' b= expression
             	    {
             	    match(input,30,FOLLOW_30_in_parameterList1716); if (failed) return list;
             	    pushFollow(FOLLOW_expression_in_parameterList1720);
@@ -3409,7 +3412,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start type
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:264:1: type returns [Identifier id] : (a= collectionType | b= simpleType );
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:264:1: type returns [Identifier id] : (a= collectionType | b= simpleType );
     public Identifier type() throws RecognitionException {
         Identifier id = null;
 
@@ -3419,7 +3422,7 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:265:2: (a= collectionType | b= simpleType )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:264:30: (a= collectionType | b= simpleType )
             int alt52=2;
             int LA52_0 = input.LA(1);
 
@@ -3438,7 +3441,7 @@ public class XtendParser extends Parser {
             }
             switch (alt52) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:265:2: a= collectionType
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:265:2: a= collectionType
                     {
                     pushFollow(FOLLOW_collectionType_in_type1746);
                     a=collectionType();
@@ -3451,7 +3454,7 @@ public class XtendParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:266:2: b= simpleType
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:266:2: b= simpleType
                     {
                     pushFollow(FOLLOW_simpleType_in_type1756);
                     b=simpleType();
@@ -3478,7 +3481,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start collectionType
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:269:1: collectionType returns [Identifier id ] : cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:269:1: collectionType returns [Identifier id ] : cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? ;
     public Identifier collectionType() throws RecognitionException {
         Identifier id = null;
 
@@ -3489,10 +3492,10 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:270:3: (cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:270:3: cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:269:42: (cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:270:3: cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )?
             {
-            cl=(Token)input.LT(1);
+            cl=input.LT(1);
             if ( (input.LA(1)>=39 && input.LA(1)<=41) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
@@ -3507,7 +3510,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               id = id(cl);
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:271:3: (b= '[' id1= simpleType c= ']' )?
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:271:3: (b= '[' id1= simpleType c= ']' )?
             int alt53=2;
             int LA53_0 = input.LA(1);
 
@@ -3516,15 +3519,15 @@ public class XtendParser extends Parser {
             }
             switch (alt53) {
                 case 1 :
-                    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:271:4: b= '[' id1= simpleType c= ']'
+                    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:271:4: b= '[' id1= simpleType c= ']'
                     {
-                    b=(Token)input.LT(1);
+                    b=input.LT(1);
                     match(input,81,FOLLOW_81_in_collectionType1799); if (failed) return id;
                     pushFollow(FOLLOW_simpleType_in_collectionType1803);
                     id1=simpleType();
                     _fsp--;
                     if (failed) return id;
-                    c=(Token)input.LT(1);
+                    c=input.LT(1);
                     match(input,82,FOLLOW_82_in_collectionType1807); if (failed) return id;
                     if ( backtracking==0 ) {
                        id.append(id(b));id.append(id1);id.append(id(c));
@@ -3551,7 +3554,7 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start simpleType
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:274:1: simpleType returns [Identifier id] : x= identifier (d= '::' end= identifier )* ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:274:1: simpleType returns [Identifier id] : x= identifier (d= '::' end= identifier )* ;
     public Identifier simpleType() throws RecognitionException {
         Identifier id = null;
 
@@ -3562,8 +3565,8 @@ public class XtendParser extends Parser {
 
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:275:2: (x= identifier (d= '::' end= identifier )* )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:275:2: x= identifier (d= '::' end= identifier )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:274:36: (x= identifier (d= '::' end= identifier )* )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:275:2: x= identifier (d= '::' end= identifier )*
             {
             pushFollow(FOLLOW_identifier_in_simpleType1827);
             x=identifier();
@@ -3572,7 +3575,7 @@ public class XtendParser extends Parser {
             if ( backtracking==0 ) {
               id =x;
             }
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:276:2: (d= '::' end= identifier )*
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:276:2: (d= '::' end= identifier )*
             loop54:
             do {
                 int alt54=2;
@@ -3585,9 +3588,9 @@ public class XtendParser extends Parser {
 
                 switch (alt54) {
             	case 1 :
-            	    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:276:3: d= '::' end= identifier
+            	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:276:3: d= '::' end= identifier
             	    {
-            	    d=(Token)input.LT(1);
+            	    d=input.LT(1);
             	    match(input,33,FOLLOW_33_in_simpleType1835); if (failed) return id;
             	    pushFollow(FOLLOW_identifier_in_simpleType1839);
             	    end=identifier();
@@ -3621,17 +3624,17 @@ public class XtendParser extends Parser {
 
 
     // $ANTLR start identifier
-    // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:279:1: identifier returns [Identifier r] : x= Identifier ;
+    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:279:1: identifier returns [Identifier r] : x= Identifier ;
     public Identifier identifier() throws RecognitionException {
         Identifier r = null;
 
         Token x=null;
 
         try {
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:280:4: (x= Identifier )
-            // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:280:4: x= Identifier
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:279:35: (x= Identifier )
+            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:280:4: x= Identifier
             {
-            x=(Token)input.LT(1);
+            x=input.LT(1);
             match(input,Identifier,FOLLOW_Identifier_in_identifier1862); if (failed) return r;
             if ( backtracking==0 ) {
               r =id(x);
@@ -3652,8 +3655,8 @@ public class XtendParser extends Parser {
 
     // $ANTLR start synpred1
     public void synpred1_fragment() throws RecognitionException {   
-        // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:5: ( '(' type ')' castedExpression )
-        // /Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:6: '(' type ')' castedExpression
+        // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:5: ( '(' type ')' castedExpression )
+        // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:6: '(' type ')' castedExpression
         {
         match(input,29,FOLLOW_29_in_synpred1662); if (failed) return ;
         pushFollow(FOLLOW_type_in_synpred1664);
@@ -3670,7 +3673,7 @@ public class XtendParser extends Parser {
     }
     // $ANTLR end synpred1
 
-    public final boolean synpred1() {
+    public boolean synpred1() {
         backtracking++;
         int start = input.mark();
         try {
@@ -3797,10 +3800,12 @@ public class XtendParser extends Parser {
             this.special = DFA27_special;
             this.transition = DFA27_transition;
         }
-        public String getDescription() {
+        @Override
+		public String getDescription() {
             return "116:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );";
         }
-        public int specialStateTransition(int s, IntStream input) throws NoViableAltException {
+        @Override
+		public int specialStateTransition(int s, IntStream input) throws NoViableAltException {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
@@ -4014,7 +4019,7 @@ public class XtendParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-						int LA27_26 = input.LA(1);
+                        int LA27_26 = input.LA(1);
 
                          
                         int index27_26 = input.index();

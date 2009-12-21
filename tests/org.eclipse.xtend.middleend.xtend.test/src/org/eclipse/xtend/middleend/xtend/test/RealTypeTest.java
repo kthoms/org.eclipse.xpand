@@ -89,4 +89,11 @@ public class RealTypeTest extends JavaXtendTest {
 		assertEquals(2.0, result.doubleValue(), 0.01);
 	}
 
+//  TODO Add toInteger() method for Real type
+//  see https://bugs.eclipse.org/bugs/show_bug.cgi?id=297613
+//	@Test
+//	public void testToInteger () {
+//		Number result = (Number)BackendFacade.invoke(_ctx, new QualifiedName ("testToInteger"), Arrays.asList (4.3));
+//		assertEquals(new Long(4), result);
+//	}
 }

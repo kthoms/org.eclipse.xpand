@@ -319,13 +319,13 @@ public class ExecutionContextImpl implements ExecutionContext {
 				for (final String extension : extensions) {
 					final Object o = resourceManager.loadResource(extension, XtendFile.FILE_EXTENSION);
 					final XtendFile extFile = (XtendFile) o;
-					if (extFile == null)
-						throw new RuntimeException("Unable to load extension file : " + extension);
-					ctx = cloneWithResource(extFile);
-					final List<Extension> extensionList = extFile.getPublicExtensions(resourceManager, ctx);
-					for (final Extension element : extensionList) {
-						element.init(ctx);
-						allExtensions.add(advise(element));
+					if (extFile != null) {
+						ctx = cloneWithResource(extFile);
+						final List<Extension> extensionList = extFile.getPublicExtensions(resourceManager, ctx);
+						for (final Extension element : extensionList) {
+							element.init(ctx);
+							allExtensions.add(advise(element));
+						}
 					}
 				}
 			}

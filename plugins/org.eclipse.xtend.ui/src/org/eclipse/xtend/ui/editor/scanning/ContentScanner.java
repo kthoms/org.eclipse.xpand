@@ -26,9 +26,6 @@ public class ContentScanner extends AbstractXtendRuleBasedScanner {
         final IRule[] rules = new IRule[2];
         // Add generic whitespace rule.
         rules[0] = new WhitespaceRule(new WhitespaceDetector());
-//        rules[1] = new MultiLineRule("'", "'", string,'\\',true);
-//        rules[2] = new MultiLineRule("\"", "\"", string,'\\',true);
-//        rules[1] = new XtendKeywordRule(keyword, XtendTokens.allKeywords());
         rules[1] = new KeywordRule(keyword, XtendTokens.allKeywords());
 
         setRules(rules);

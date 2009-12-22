@@ -234,11 +234,10 @@ public class EcoreUtil2 {
 	 *            The file's path
 	 * @return The URI representing the file
 	 */
-	@SuppressWarnings("null")
 	public static URI getURI(final String file) {
 		// try to load the resource specified by 'file'
 		final URL url = ResourceLoaderFactory.createResourceLoader().getResource(file);
-		URI uri;
+		URI uri = null;
 
 		try {
 			// if the ResourceLoader cannot locate this file create a URI from
@@ -264,7 +263,9 @@ public class EcoreUtil2 {
 			}
 		}
 		catch (IllegalArgumentException e) {
-			uri = URI.createFileURI(url.getFile());
+			if (url != null) {
+				uri = URI.createFileURI(url.getFile());
+			}
 		}
 
 		return uri;

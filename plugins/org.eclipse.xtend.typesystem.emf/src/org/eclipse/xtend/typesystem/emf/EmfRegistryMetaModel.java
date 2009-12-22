@@ -353,7 +353,7 @@ public class EmfRegistryMetaModel implements MetaModel {
 	public Type getTypeForEClassifier(final EGenericType element) {
 		EClassifier baseType = null;
 		if (element.getEClassifier() != null) {
-			baseType = element.getEClassifier();;
+			baseType = element.getEClassifier();
 		} else {
 			baseType = element.getERawType();
 		}

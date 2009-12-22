@@ -234,6 +234,7 @@ public class EcoreUtil2 {
 	 *            The file's path
 	 * @return The URI representing the file
 	 */
+	@SuppressWarnings("null")
 	public static URI getURI(final String file) {
 		// try to load the resource specified by 'file'
 		final URL url = ResourceLoaderFactory.createResourceLoader().getResource(file);

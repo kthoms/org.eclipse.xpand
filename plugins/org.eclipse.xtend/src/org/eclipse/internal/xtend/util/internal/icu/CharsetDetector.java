@@ -45,7 +45,7 @@ import java.util.Iterator;
  * @draft ICU 3.4
  * @provisional This API might change or be removed in a future release.
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked","cast"})
 public class CharsetDetector {
 
 //   Question: Should we have getters corresponding to the setters for inut text

@@ -21,6 +21,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.math.BigInteger;
 import java.net.URL;
+import java.util.Locale;
 
 import junit.framework.TestCase;
 
@@ -55,6 +56,19 @@ public class ProfilerTest extends TestCase implements VetoStrategy {
 	Profiler profiler = new Profiler();
 	Profiler.TimeProvider timeProvider = createStrictMock(Profiler.TimeProvider.class);
 	private String lastOutput;
+	private Locale defaultLocale;
+	
+	@Override
+	protected void setUp() throws Exception {
+		// the expected test results are locale specific
+		defaultLocale = Locale.getDefault();
+		Locale.setDefault(Locale.ENGLISH);
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		Locale.setDefault(defaultLocale);
+	}
 	
 	private void expectTimingCalls(int calls) {
 		IExpectationSetters<Long> expect = expect(timeProvider.getNanoSeconds());

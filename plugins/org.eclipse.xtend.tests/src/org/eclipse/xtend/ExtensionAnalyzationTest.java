@@ -28,6 +28,8 @@ import org.eclipse.xtend.type.impl.java.JavaMetaModel;
 import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeA;
+import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeB;
+import org.eclipse.xtend.typesystem.javabeansimpl.test.TypeC;
 
 public class ExtensionAnalyzationTest extends TestCase {
 	private Set<AnalysationIssue> issues;
@@ -146,13 +148,17 @@ public class ExtensionAnalyzationTest extends TestCase {
 	}
 
 	public final void testAmbigous() {
-		final ExtensionFile file = parse("import " + TypeA.class.getPackage().getName().replaceAll("\\.", "::") + ";"
-				+ "doStuff(TypeA this) : true; " + "doStuff(TypeC this) : false;" + "bla(TypeB this) : this.doStuff();");
+		final ExtensionFile file = parse(""
+				+ "doStuff("+TypeA.class.getName().replaceAll("\\.", "::")+" this) : true; " 
+				+ "doStuff("+TypeC.class.getName().replaceAll("\\.", "::")+" this) : false;" 
+				+ "bla("+TypeB.class.getName().replaceAll("\\.", "::")+" this) : this.doStuff();");
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		file.analyze(ec, issues);
 		assertEquals(1, issues.size());
 		System.out.println(issues);
 	}
+	
+	// TODO Add test for import of Java packages as namespaces
 
 	public void testReexport() throws Exception {
 		final ExtensionFile file = parse("extension org::eclipse::xtend::Reexporting; foo(String this) : doStuff(); ");

@@ -37,15 +37,6 @@ public class AnalysationIssue {
 			return name;
 		}
 
-		@Override
-		public boolean equals(Object obj) {
-			return EqualsBuilder.reflectionEquals(this, obj);
-		}
-
-		@Override
-		public int hashCode() {
-			return new HashCodeBuilder().append(name).toHashCode();
-		}
 	}
 
 	public final static AnalysationIssueType INCOMPATIBLE_TYPES = new AnalysationIssueType("Incompatible types");

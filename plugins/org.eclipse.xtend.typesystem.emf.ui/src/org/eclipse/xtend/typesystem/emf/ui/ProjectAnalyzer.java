@@ -110,6 +110,8 @@ final class ProjectAnalyzer extends Job {
 			final IProgressMonitor monitor) {
 		try {
 			final String ext = Messages.ProjectAnalyzer_2;
+			if (!javaProject.exists())
+				return;
 			for (final IPackageFragmentRoot root : javaProject.getPackageFragmentRoots()) {
 				if (!root.isArchive()) {
 					IResource rootResource = null;

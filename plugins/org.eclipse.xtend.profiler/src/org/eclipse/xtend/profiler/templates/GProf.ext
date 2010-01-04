@@ -43,7 +43,7 @@ String n2ms(Integer nanoseconds):
 	"%.2f".format(nanoseconds / 1000000.0);
 
 String n2s(Integer nanoseconds):
-	"%.2f".format(nanoseconds / 1000000000.0);	
+	"%.2f".format(nanoseconds / 1000000000.0);
 	
 private String anchorFragment(String value):
 	JAVA org.eclipse.xtend.profiler.templates.Extensions.anchorFragment(java.lang.String);

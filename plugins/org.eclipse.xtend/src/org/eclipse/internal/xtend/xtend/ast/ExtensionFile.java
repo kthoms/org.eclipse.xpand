@@ -99,9 +99,6 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 			for (ExtensionImportStatement imp : extImports) {
 				imp.analyze(ctx, issues);
 			}
-			for (NamespaceImportStatement imp : nsImports) {
-				imp.analyze(ctx, issues);
-			}
 
 			for (Extension ext : extensions) {
 				try {
@@ -133,7 +130,12 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 					ctx.handleRuntimeException(ex, this, null);
 				}
 			}
-
+			
+			// Namespaces can only be checked at last, since all used types
+			// must be accessed first
+			for (NamespaceImportStatement imp : nsImports) {
+				imp.analyze(ctx, issues);
+			}
 		}
 		finally {
 			if (ctx.getCallback() != null)

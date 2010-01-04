@@ -13,6 +13,8 @@ import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
+import org.eclipse.xtend.expression.TypeNameUtil;
+import org.eclipse.xtend.typesystem.Type;
 
 /**
  * @author Karsten Thoms - Initial contribution and API
@@ -34,8 +36,19 @@ public class NamespaceImportStatement extends SyntaxElement {
 			if (ctx.getCallback() != null)
 				if (!ctx.getCallback().pre(this, ctx))
 					return;
+			boolean knownNamespace = false;
 			if (!ctx.getNamespaces().contains(importedId.getValue())) {
-				final String msg = "Namespace " + this.getImportedId().getValue() + " not found.";
+				for (Type t : ctx.getAllTypes()) {
+					if (importedId.getValue().equals(TypeNameUtil.withoutLastSegment(t.getName()))) {
+						knownNamespace = true;
+						break;
+					}
+				}
+			} else {
+				knownNamespace = true;
+			}
+			if (!knownNamespace) {
+				final String msg = "Namespace " + this.getImportedId().getValue() + " is unknown or unused.";
 				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this));
 			}
 		}

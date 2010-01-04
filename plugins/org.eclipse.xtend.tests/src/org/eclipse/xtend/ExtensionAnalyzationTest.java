@@ -155,11 +155,50 @@ public class ExtensionAnalyzationTest extends TestCase {
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		file.analyze(ec, issues);
 		assertEquals(1, issues.size());
-		System.out.println(issues);
 	}
 	
-	// TODO Add test for import of Java packages as namespaces
+	/**
+	 * Tests the import statement with a Java package name from a used type.
+	 * It is expected that no issues arise.
+	 */
+	public final void testNamespaceImport_Success() {
+		final ExtensionFile file = parse(""
+				+ "import "+TypeA.class.getPackage().getName().replaceAll("\\.", "::")+"; "
+				+ "doStuff(TypeA this) : true; " 
+				);
+		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
+		file.analyze(ec, issues);
+		assertEquals(0, issues.size());
+	}
 
+	/**
+	 * Test the import statement with an invalid namespace.
+	 * It is expected that this results in an analyzation issue.
+	 */
+	public final void testNamespaceImport_InvalidImport() {
+		final ExtensionFile file = parse(""
+				+ "import x::y; "
+				+ "doStuff("+TypeA.class.getName().replaceAll("\\.", "::")+" this) : true; " 
+				);
+		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
+		file.analyze(ec, issues);
+		assertEquals(1, issues.size());
+	}
+
+	/**
+	 * Test the import statement with an unused namespace.
+	 * It is expected that this results in an analyzation issue.
+	 */
+	public final void testNamespaceImport_Unused() {
+		final ExtensionFile file = parse(""
+				+ "import "+TypeA.class.getPackage().getName().replaceAll("\\.", "::")+"; "
+				);
+		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
+		file.analyze(ec, issues);
+		assertEquals(1, issues.size());
+	}
+
+	
 	public void testReexport() throws Exception {
 		final ExtensionFile file = parse("extension org::eclipse::xtend::Reexporting; foo(String this) : doStuff(); ");
 		file.analyze(ec, issues);

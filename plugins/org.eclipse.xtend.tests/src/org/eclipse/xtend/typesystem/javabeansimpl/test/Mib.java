@@ -29,7 +29,8 @@ public class Mib {
         return name;
     }
     
-    public String toString () {
+    @Override
+	public String toString () {
     	return this.name;
     }
 

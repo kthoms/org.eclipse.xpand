@@ -50,6 +50,7 @@ public class TypeA {
 		this.arrayOfCs = arrayOfCs;
 	}
 
+	@Override
 	public String toString () {
     	return getClass().getSimpleName()+"(name="+name+",typeBs=" + typeBs+",arrayOfCs="+arrayOfCs+")";
     }

@@ -24,6 +24,7 @@ public class EnumTest extends TestCase {
 	private ExecutionContextImpl ctx;
 	private ExpressionFacade ec;
 
+	@Override
 	protected void setUp() throws Exception {
         mm = new JavaMetaModel ();
         mm.setTypeStrategy(new JavaBeansStrategy ());

@@ -8,8 +8,6 @@
 package org.eclipse.xtend.expression;
 
 import java.io.StringReader;
-import java.util.HashSet;
-import java.util.Set;
 
 import junit.framework.TestCase;
 
@@ -27,7 +25,6 @@ public class JavaExtensionInvocationTest extends TestCase {
     ExecutionContextImpl ec;
 
     private ExpressionFacade ef;
-    private Set<AnalysationIssue> issues = new HashSet<AnalysationIssue>();
 
     @Override
     protected void setUp() throws Exception {

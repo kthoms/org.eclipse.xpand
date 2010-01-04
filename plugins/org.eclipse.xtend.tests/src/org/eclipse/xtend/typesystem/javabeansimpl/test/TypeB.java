@@ -40,9 +40,9 @@ public class TypeB extends TypeA implements TypeC {
     public OAWTypeD getOAWTypeD () { return new OAWTypeD(); }
 
     public boolean isPrimitiveTypeFlag () { return true; }
-    public void setPrimitiveTypeFlag (boolean flag) {};
+    public void setPrimitiveTypeFlag (boolean flag) {}
     public boolean getIsPrimitiveTypeFlag () { return true; }
     
     public Boolean isWrapperTypeFlag () { return Boolean.TRUE; } 
-    public void setWrapperTypeFlag (Boolean flag) {};
+    public void setWrapperTypeFlag (Boolean flag) {}
 }

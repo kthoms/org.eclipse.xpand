@@ -26,7 +26,7 @@ public class ResourceManagerDefaultImplTest extends TestCase {
 		public Reader _createReader(InputStream in) {
 			return super.createReader(in);
 		}
-	};
+	}
 
 	private TestResourcManager resMgr = new TestResourcManager();
 

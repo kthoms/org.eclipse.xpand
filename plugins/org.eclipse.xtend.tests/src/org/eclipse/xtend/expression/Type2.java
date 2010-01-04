@@ -30,7 +30,8 @@ public class Type2 extends Type1 implements Type3 {
         return TYPE2_STRING_STRING;
     }
     
-    public String getTest() {
+    @Override
+	public String getTest() {
     	return "bar";
     }
 }

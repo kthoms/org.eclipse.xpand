@@ -87,7 +87,7 @@ public class GenericFileFilterTest extends TestCase {
 			new GenericFileFilter("test*.xml", false);
 			fail ("IllegalArgumentException expected.");
 		} catch (IllegalArgumentException e) {
-			; // OK
+			 // OK
 		}
 	}
 
@@ -100,7 +100,7 @@ public class GenericFileFilterTest extends TestCase {
 			new GenericFileFilter("*.test*.xml", false);
 			fail ("IllegalArgumentException expected.");
 		} catch (IllegalArgumentException e) {
-			; // OK
+			 // OK
 		}
 	}
 }

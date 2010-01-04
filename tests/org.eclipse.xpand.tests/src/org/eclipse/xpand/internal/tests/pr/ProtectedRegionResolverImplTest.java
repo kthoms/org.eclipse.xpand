@@ -154,7 +154,7 @@ public class ProtectedRegionResolverImplTest extends TestCase {
 			prResolver.setSrcPathes(dir1.getAbsolutePath());
 			fail("IllegalArgumentException expected.");
 		} catch (IllegalArgumentException e) {
-			; // OK 
+			 // OK 
 		}
 	}
 	

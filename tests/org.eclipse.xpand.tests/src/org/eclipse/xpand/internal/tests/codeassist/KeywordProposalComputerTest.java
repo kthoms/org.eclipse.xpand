@@ -24,6 +24,7 @@ public class KeywordProposalComputerTest extends TestCase {
 	private KeywordProposalComputer kpc;
     private ProposalFactoryDefaultImpl f;
 	
+	@Override
 	public void setUp () throws Exception {
 		kpc = new KeywordProposalComputer();
         f = new ProposalFactoryDefaultImpl();

@@ -20,6 +20,7 @@ import org.eclipse.xpand2.output.Outlet;
 public class GeneratorTest extends TestCase {
 	private Generator generator;
 	
+	@Override
 	public void setUp () throws Exception {
 		generator = new Generator();
 	}

@@ -32,6 +32,7 @@ public class GeneratorAdviceTest extends TestCase {
 	    }
 	}
 	
+	@Override
 	public void setUp () {
 		generator = new GeneratorTestImpl();
 		issues = new IssuesImpl();

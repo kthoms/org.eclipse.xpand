@@ -18,27 +18,13 @@ public class Extensions {
 	}
 	
 	public static String format(String format, Object param1) {
-		// Numbers must be formatted with '.' as decimal separator, 
-		// therefore set current Locale temporarely to English
-		Locale currentLocale = Locale.getDefault();
-		try {
-			Locale.setDefault(Locale.ENGLISH);
-			return String.format(format, param1);
-		} finally {
-			Locale.setDefault(currentLocale);
-		}
+		// Numbers must be formatted with '.' as decimal separator, therefore use English locale for formatting
+		return String.format(Locale.ENGLISH, format, param1);
 	}
 
 	public static String format(String format, Object param1, Object param2) {
-		// Numbers must be formatted with '.' as decimal separator, 
-		// therefore set current Locale temporarely to English
-		Locale currentLocale = Locale.getDefault();
-		try {
-			Locale.setDefault(Locale.ENGLISH);
-			return String.format(format, param1, param2);
-		} finally {
-			Locale.setDefault(currentLocale);
-		}
+		// Numbers must be formatted with '.' as decimal separator, therefore use English locale for formatting
+		return String.format(Locale.ENGLISH, format, param1, param2);
 	}
 	
 	public static String getFormFeed() {
@@ -50,17 +36,9 @@ public class Extensions {
 		return value.replaceAll("[^a-zA-Z_-]", "_");
 	}
 	
-	
 	private static String bytesToMb(long bytes) {
-		// Numbers must be formatted with '.' as decimal separator, 
-		// therefore set current Locale temporarely to English
-		Locale currentLocale = Locale.getDefault();
-		try {
-			Locale.setDefault(Locale.ENGLISH);
-			return String.format("%d MB", bytes / (1024 * 1024));
-		} finally {
-			Locale.setDefault(currentLocale);
-		}
+		// Numbers must be formatted with '.' as decimal separator, therefore use English locale for formatting
+		return String.format(Locale.ENGLISH, "%d MB", bytes / (1024 * 1024));
 	}
 	
 	public static String totalMemory() {

@@ -21,7 +21,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.math.BigInteger;
 import java.net.URL;
-import java.util.Locale;
 
 import junit.framework.TestCase;
 

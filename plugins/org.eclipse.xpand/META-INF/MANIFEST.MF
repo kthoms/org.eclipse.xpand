@@ -6,9 +6,9 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.xtend,
- org.eclipse.emf.mwe.core,
- org.eclipse.jdt.core,
- org.eclipse.text,
+ org.eclipse.emf.mwe.core;resolution:=optional,
+ org.eclipse.jdt.core;resolution:=optional,
+ org.eclipse.text;resolution:=optional,
  org.antlr.runtime
 Export-Package: 
  org.eclipse.xpand2,

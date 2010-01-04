@@ -1,6 +1,7 @@
 package org.eclipse.xtend.profiler.templates;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Extensions {
@@ -17,11 +18,27 @@ public class Extensions {
 	}
 	
 	public static String format(String format, Object param1) {
-		return String.format(format, param1);
+		// Numbers must be formatted with '.' as decimal separator, 
+		// therefore set current Locale temporarely to English
+		Locale currentLocale = Locale.getDefault();
+		try {
+			Locale.setDefault(Locale.ENGLISH);
+			return String.format(format, param1);
+		} finally {
+			Locale.setDefault(currentLocale);
+		}
 	}
 
 	public static String format(String format, Object param1, Object param2) {
-		return String.format(format, param1, param2);
+		// Numbers must be formatted with '.' as decimal separator, 
+		// therefore set current Locale temporarely to English
+		Locale currentLocale = Locale.getDefault();
+		try {
+			Locale.setDefault(Locale.ENGLISH);
+			return String.format(format, param1, param2);
+		} finally {
+			Locale.setDefault(currentLocale);
+		}
 	}
 	
 	public static String getFormFeed() {
@@ -35,7 +52,15 @@ public class Extensions {
 	
 	
 	private static String bytesToMb(long bytes) {
-		return String.format("%d MB", bytes / (1024 * 1024));
+		// Numbers must be formatted with '.' as decimal separator, 
+		// therefore set current Locale temporarely to English
+		Locale currentLocale = Locale.getDefault();
+		try {
+			Locale.setDefault(Locale.ENGLISH);
+			return String.format("%d MB", bytes / (1024 * 1024));
+		} finally {
+			Locale.setDefault(currentLocale);
+		}
 	}
 	
 	public static String totalMemory() {

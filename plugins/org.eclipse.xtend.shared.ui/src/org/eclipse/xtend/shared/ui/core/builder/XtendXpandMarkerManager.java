@@ -41,7 +41,7 @@ public class XtendXpandMarkerManager {
     public static void addMarker(final IFile file, final AnalysationIssue issue) {
         try {
             final IMarker marker = file.createMarker(getMARKER_TYPE());
-            final int severity = IMarker.SEVERITY_ERROR;
+            final int severity = issue.isError() ? IMarker.SEVERITY_ERROR : IMarker.SEVERITY_WARNING;
             int start = -1, end = -1;
             if (issue.getElement() != null) {
                 start = issue.getElement().getStart();

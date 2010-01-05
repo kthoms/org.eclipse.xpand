@@ -99,7 +99,7 @@ public class Template extends SyntaxElement implements XpandResource {
 		});
         return l.toArray(new AbstractDefinition[l.size()]);
     }
-
+    
     public ImportDeclaration[] getImports() {
         return imports;
     }
@@ -132,6 +132,11 @@ public class Template extends SyntaxElement implements XpandResource {
 	        for (int i = 0; i < advices.length; i++) {
         		advices[i].analyze(ctx, issuesFromThisResource);
 	        }
+	        
+	        for (ImportDeclaration importDeclaration : imports) {
+	        	importDeclaration.analyze(ctx, issuesFromThisResource);
+	        }
+	        
 	    	// filter all the 'Error parsing resource' issues that arised from a broken import
 			Set<AnalysationIssue> issuesToRemove = new HashSet<AnalysationIssue>();
 			for (AnalysationIssue issue : issuesFromThisResource) {

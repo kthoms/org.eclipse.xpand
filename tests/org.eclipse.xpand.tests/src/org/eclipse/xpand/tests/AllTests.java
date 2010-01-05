@@ -12,6 +12,7 @@ public class AllTests {
    public static Test suite() {
       TestSuite suite = new TestSuite("Tests for org.eclipse.xpand.tests");
       suite.addTestSuite(org.eclipse.xpand.internal.tests.analyze.StatementAnalyzationTest.class);
+      suite.addTestSuite(org.eclipse.xpand.internal.tests.ast.ImportDeclarationTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.codeassist.FastAnalyzerTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.codeassist.KeywordProposalComputerTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.codeassist.StatementProposalComputerTest.class);

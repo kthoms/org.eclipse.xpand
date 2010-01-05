@@ -62,5 +62,6 @@ public class ImportDeclarationTest extends AbstractXpandASTTest {
 		Template t1 = parse("«IMPORT java::math»«DEFINE SomeDef FOR Object»«ENDDEFINE»","nofile");
 		t1.analyze(execCtx, issues);
 		assertEquals(1, issues.size());
+		assertTrue(issues.iterator().next().isWarning());
 	}
 }

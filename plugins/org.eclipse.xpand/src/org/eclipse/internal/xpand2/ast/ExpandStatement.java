@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.internal.xpand2.XpandUtil;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
@@ -47,7 +48,7 @@ public class ExpandStatement extends Statement {
 
 	private Identifier definition;
 	
-	private XpandDefinition targetDefinition;
+	private String targetNamespace;
 
 	public ExpandStatement(final Identifier definition, final Expression target, final Expression separator,
 			final Expression[] parameters, final boolean foreach) {
@@ -83,12 +84,13 @@ public class ExpandStatement extends Statement {
 	}
 	
 	/**
-	 * Retrieves the invoked XpandDefinition. This method requires that either analyzeInternal() or evaluateInternal()
+	 * Retrieves the namespace of the target definition(s).  
+	 * This method requires that either analyzeInternal() or evaluateInternal()
 	 * was invoked before, otherwise result will be null.
 	 * @since 0.8.0 M5
 	 */
-	public XpandDefinition getTargetDefinition () {
-		return targetDefinition;
+	public String getTargetNamespace () {
+		return targetNamespace;
 	}
 
 	@Override
@@ -129,11 +131,12 @@ public class ExpandStatement extends Statement {
 		if (targetType == null || Arrays.asList(paramTypes).contains(null))
 			return;
 		final XpandDefinition def = ctx.findDefinition(getDefinition().getValue(), targetType, paramTypes);
-		targetDefinition = def;
 		if (def == null) {
 			issues.add(new AnalysationIssue(XpandCompilerIssue.DEFINITION_NOT_FOUND,
 					"Couldn't find definition " + getDefinition().getValue() + getParamTypeString(paramTypes)
 							+ " for type " + targetType.getName(), this));
+		} else {
+			targetNamespace = XpandUtil.withoutLastSegment(def.getOwner().getFullyQualifiedName());
 		}
 	}
 
@@ -194,7 +197,6 @@ public class ExpandStatement extends Statement {
 			final Type[] paramTypes, XpandExecutionContext ctx) {
 		final Type t = ctx.getType(targetObj);
 		final XpandDefinition def = ctx.findDefinition(defName, t, paramTypes);
-		targetDefinition = def;
 		if (def == null) {
 			String errorMsg = "No Definition '" + defName + getParamTypeString(paramTypes) + " for " + t.getName()
 					+ "' found!";
@@ -203,6 +205,7 @@ public class ExpandStatement extends Statement {
 			}
 			throw new EvaluationException(errorMsg, this, ctx);
 		}
+		targetNamespace = XpandUtil.withoutLastSegment(def.getOwner().getFullyQualifiedName());
 
 		try {
 			ProfileCollector.getInstance().enter(def.toString());

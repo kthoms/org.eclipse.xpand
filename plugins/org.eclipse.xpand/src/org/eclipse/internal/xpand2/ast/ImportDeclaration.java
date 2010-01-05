@@ -15,8 +15,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.internal.xpand2.XpandTokens;
-import org.eclipse.internal.xpand2.XpandUtil;
-import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.xpand2.XpandExecutionContext;
@@ -60,21 +58,19 @@ public class ImportDeclaration extends SyntaxElement implements XpandAnalyzable 
 			}
 			if (!knownNamespace) {
 				Template tpl = (Template) ctx.currentResource();
-		    	final Set<XpandDefinition> calledDefs = new HashSet<XpandDefinition>();
+		    	final Set<String> targetNamespaces = new HashSet<String>();
 		    	for (AbstractDefinition def : tpl.getAllDefinitions()) {
 		    		def.accept(new AbstractXpandVisitor() {
 		    			@Override
 		    			protected Object visitExpandStatement(ExpandStatement node) {
-		    				XpandDefinition targetDefinition = node.getTargetDefinition();
-		    				if (targetDefinition != null) {
-		    					calledDefs.add(targetDefinition);
+		    				if (node.getTargetNamespace() != null) {
+		    					targetNamespaces.add(node.getTargetNamespace());
 		    				}
 		    				return super.visitExpandStatement(node);
 		    			}
 		    		});
 		    	}
-				for (XpandDefinition calledDef : calledDefs) {
-					final String namespace = XpandUtil.withoutLastSegment(calledDef.getOwner().getFullyQualifiedName()); 
+				for (String namespace : targetNamespaces) {
 					if (importString.getValue().equals(namespace)) {
 						knownNamespace = true;
 						break;
@@ -83,7 +79,7 @@ public class ImportDeclaration extends SyntaxElement implements XpandAnalyzable 
 			}
 			if (!knownNamespace) {
 				final String msg = "Namespace " + this.importString.getValue() + " is unknown or unused.";
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this));
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this, true));
 			}
 		}
 		finally {

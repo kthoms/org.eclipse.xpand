@@ -183,6 +183,7 @@ public class ExtensionAnalyzationTest extends TestCase {
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		file.analyze(ec, issues);
 		assertEquals(1, issues.size());
+		assertTrue(issues.iterator().next().isWarning());
 	}
 
 	/**
@@ -196,6 +197,7 @@ public class ExtensionAnalyzationTest extends TestCase {
 		ec = (ExecutionContextImpl) ec.cloneWithResource(file);
 		file.analyze(ec, issues);
 		assertEquals(1, issues.size());
+		assertTrue(issues.iterator().next().isWarning());
 	}
 
 	

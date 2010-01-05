@@ -49,7 +49,7 @@ public class NamespaceImportStatement extends SyntaxElement {
 			}
 			if (!knownNamespace) {
 				final String msg = "Namespace " + this.getImportedId().getValue() + " is unknown or unused.";
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this));
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this, true));
 			}
 		}
 		finally {

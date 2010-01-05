@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalComputer;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalFactory;
 import org.eclipse.xtend.expression.ExecutionContext;

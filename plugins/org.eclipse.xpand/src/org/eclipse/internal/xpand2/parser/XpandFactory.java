@@ -14,6 +14,7 @@ package org.eclipse.internal.xpand2.parser;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xpand2.ast.Advice;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.ErrorStatement;
@@ -29,7 +30,6 @@ import org.eclipse.internal.xpand2.ast.ProtectStatement;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.Template;
 import org.eclipse.internal.xpand2.ast.TextStatement;
-import org.eclipse.internal.xpand2.codeassist.XpandTokens;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.Identifier;

@@ -16,11 +16,11 @@ import java.util.Stack;
 
 import junit.framework.TestCase;
 
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xpand2.ast.Advice;
 import org.eclipse.internal.xpand2.codeassist.FastAnalyzer;
 import org.eclipse.internal.xpand2.codeassist.LazyVar;
 import org.eclipse.internal.xpand2.codeassist.StackElement;
-import org.eclipse.internal.xpand2.codeassist.XpandTokens;
 import org.eclipse.internal.xpand2.type.DefinitionType;
 import org.eclipse.xtend.expression.ExecutionContext;
 

@@ -14,7 +14,7 @@ package org.eclipse.xpand.ui.editor.scanning;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.internal.xpand2.codeassist.XpandTokens;
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IRule;
 import org.eclipse.jface.text.rules.IToken;

@@ -22,6 +22,7 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xpand2.ast.Advice;
 import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;

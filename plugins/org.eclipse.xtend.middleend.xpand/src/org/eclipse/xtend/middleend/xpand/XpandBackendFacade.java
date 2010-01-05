@@ -29,10 +29,10 @@ import javax.swing.text.DateFormatter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.Template;
-import org.eclipse.internal.xpand2.codeassist.XpandTokens;
 import org.eclipse.internal.xpand2.parser.XpandParseFacade;
 import org.eclipse.xpand2.XpandExecutionContext;
 import org.eclipse.xpand2.XpandExecutionContextImpl;

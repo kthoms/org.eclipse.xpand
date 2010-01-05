@@ -16,8 +16,8 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xpand2.codeassist.StatementProposalComputer;
-import org.eclipse.internal.xpand2.codeassist.XpandTokens;
 import org.eclipse.internal.xtend.expression.codeassist.Proposal;
 import org.eclipse.internal.xtend.expression.codeassist.ProposalFactoryDefaultImpl;
 

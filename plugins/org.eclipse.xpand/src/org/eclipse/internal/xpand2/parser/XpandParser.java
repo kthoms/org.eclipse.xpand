@@ -36,7 +36,7 @@ import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.GlobalVarExpression;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
-@SuppressWarnings({"unchecked", "unused", "null"})
+@SuppressWarnings({"unchecked", "unused"})
 public class XpandParser extends Parser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LG", "COMMENT", "TEXT", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "ML_COMMENT", "LINE_COMMENT", "RG", "VOCAB", "'IMPORT'", "'EXTENSION'", "'AROUND'", "'('", "','", "'*'", "')'", "'FOR'", "'ENDAROUND'", "'::'", "'DEFINE'", "'ENDDEFINE'", "'-'", "'ERROR'", "'EXPAND'", "'FOREACH'", "'SEPARATOR'", "'FILE'", "'ENDFILE'", "'AS'", "'ITERATOR'", "'ENDFOREACH'", "'IF'", "'ENDIF'", "'ELSEIF'", "'ELSE'", "'LET'", "'ENDLET'", "'PROTECT'", "'CSTART'", "'CEND'", "'ID'", "'DISABLE'", "'ENDPROTECT'", "'let'", "'='", "':'", "'->'", "'?'", "'if'", "'then'", "'else'", "'switch'", "'{'", "'case'", "'default'", "'}'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'/'", "'!'", "'.'", "'GLOBALVAR'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'", "'Collection'", "'List'", "'Set'", "'['", "']'"

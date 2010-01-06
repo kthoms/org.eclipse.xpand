@@ -50,7 +50,6 @@ import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 import org.eclipse.xtend.shared.ui.core.preferences.PreferenceConstants;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
-@SuppressWarnings("restriction")
 public class XtendXpandBuilder extends IncrementalProjectBuilder {
 
 	class XtendXpandDeltaVisitor implements IResourceDeltaVisitor, IResourceVisitor {

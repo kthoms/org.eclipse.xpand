@@ -23,13 +23,14 @@ import junit.framework.TestCase;
 
 public class NoChangesVetoStrategyTest extends TestCase {
 	public void testHasChanges() throws Exception {
-		File f = new File("./temp.txt");
+		File f = new File(System.getProperty("java.io.tmpdir"), "./temp.txt");
 		if (f.exists()) {
 			f.delete();
 		}
 		FileOutputStream out = new FileOutputStream(f);
 		out.write("Foo bar".getBytes());
 		out.close();
+		f.deleteOnExit();
 		
 		Outlet outlet = new Outlet();
 		outlet.addPostprocessor(new 

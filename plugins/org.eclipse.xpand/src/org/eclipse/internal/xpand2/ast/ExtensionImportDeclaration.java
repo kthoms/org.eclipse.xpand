@@ -17,13 +17,14 @@ import org.eclipse.xtend.expression.AnalysationIssue;
 
 /**
  * @author Karsten Thoms - Initial contribution and API
- * @since 0.8.0-M5
+ * @since 0.8.0 M5
  */
-public class ExtensionImportDeclaration extends ImportDeclaration implements XpandAnalyzable {
+public class ExtensionImportDeclaration extends ImportDeclaration {
 	public ExtensionImportDeclaration(final Identifier importString) {
 		super(importString);
 	}
 
+	@Override
 	public void analyze(XpandExecutionContext ctx, Set<AnalysationIssue> issues) {
 		try {
 			if (ctx.getCallback() != null)

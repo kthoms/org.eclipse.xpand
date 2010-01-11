@@ -86,10 +86,10 @@ String cycleInvocation_prepare(Item this):
 	global(Cycle==null ? OutboundChildTime : Cycle.OutboundChildTime, "childTime").toVoid();
 	
 String cycleInvocation_selfSeconds(Item this, CallGroup g):
-	"%7s".format( n2s(global("selfTime")/CallCount * g.Count) );
+	"%7s".format( n2s(globalInt("selfTime")/CallCount * g.Count) );
 
 String cycleInvocation_childrenSeconds(Item this, CallGroup g):
-	"%7s".format( n2s(global("childTime")/CallCount * g.Count) );
+	"%7s".format( n2s(globalInt("childTime")/CallCount * g.Count) );
 
 String cycleInvocation_called(Item this, CallGroup g):
 	"%7d/%-7d".format(g.Count, CallCount);

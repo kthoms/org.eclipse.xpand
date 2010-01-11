@@ -10,6 +10,7 @@ package org.eclipse.xtend.profiler;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
@@ -22,6 +23,7 @@ import org.eclipse.internal.xtend.xtend.ast.Check;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.VetoableCallback;
 import org.eclipse.xtend.profiler.profilermodel.ModelFactory;
+import org.eclipse.xtend.profiler.profilermodel.ModelPackage;
 import org.eclipse.xtend.profiler.profilermodel.ProfilingResult;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -59,6 +61,10 @@ import org.eclipse.xtend.typesystem.Type;
  *
  */
 public class ProfilerComponent extends CompositeComponent implements VetoableCallback {
+
+	static {
+		Registry.INSTANCE.put(ModelPackage.eNS_URI, ModelPackage.eINSTANCE);
+	}
 
 	public ProfilerComponent() {
 		super("Profiler");

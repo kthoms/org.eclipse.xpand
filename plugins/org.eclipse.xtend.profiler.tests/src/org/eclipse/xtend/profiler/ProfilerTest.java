@@ -42,7 +42,9 @@ import org.eclipse.xtend.profiler.profilermodel.Item;
 import org.eclipse.xtend.profiler.profilermodel.ModelFactory;
 import org.eclipse.xtend.profiler.profilermodel.ProfilingResult;
 import org.eclipse.xtend.typesystem.MetaModel;
+import org.eclipse.xtend.typesystem.Type;
 import org.eclipse.xtend.typesystem.emf.EmfMetaModel;
+import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 
 /**
  * @author Heiko Behrens - Initial contribution and API
@@ -289,6 +291,16 @@ public class ProfilerTest extends TestCase implements VetoStrategy {
 		// work with profiling results, e.g. create report
 		String report = evaluateDefine(profComponent.getProfilingResult(), "GProf.xpt", "Main");
 		assertTrue(report.contains("XTD org::eclipse::xtend::profiler::SimpleXtendFile::plusOne(Integer) [1]"));
+	}
+	
+	public void testProfilerPackageRegistered() throws Exception {
+		// invoke static initializer
+		assertNotNull(new ProfilerComponent());
+		
+		EmfRegistryMetaModel mm = new EmfRegistryMetaModel();
+		mm.setTypeSystem(null);
+		Type type = mm.getTypeForName("profilermodel::ProfilingResult");
+		assertNotNull(type);
 	}
 
 }

@@ -26,7 +26,7 @@ package org.eclipse.xtend.middleend.xtend.internal.xtendlib;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public class XpandIsDeleteLine {
-    public static final String MARKER_FOR_IS_DELETE_LINE = "MARKER_FOR_XPAND_ISDELETELINE_\ufa92Ä\u9988\u7123ä\u9881\u5499\u9284\u9934ÄÖÜß\ufa92Ä\u9988\u7123ä\u9882\u5499\u9284\u9934_ENDMARKER";
+    public static final String MARKER_FOR_IS_DELETE_LINE = "MARKER_FOR_XPAND_ISDELETELINE_59&21?%5&6<#_ENDMARKER";
 
     private boolean _isInScope = false;
     private boolean _hasDeleteLine = false;

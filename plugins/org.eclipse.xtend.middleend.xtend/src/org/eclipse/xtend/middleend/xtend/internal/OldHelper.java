@@ -11,17 +11,24 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xtend.internal;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.xtend.XtendFile;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.xpand2.XpandUtil;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
+import org.eclipse.xtend.backend.types.uml2.UmlTypesystem;
+//import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
 import org.eclipse.xtend.check.CheckUtils;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
+import org.eclipse.xtend.typesystem.uml2.UML2MetaModel;
+import org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel;
+//import org.eclipse.xtend.typesystem.xsd.XSDMetaModel;
 
 
 /**
@@ -32,16 +39,32 @@ import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 public final class OldHelper {
     public static BackendTypesystem guessTypesystem (Collection<MetaModel> mms) {
         boolean hasEmf = false;
+        boolean hasUml2 = false;
+        boolean hasXsd = false;
+        Collection<Profile> umlProfiles = new ArrayList<Profile> ();
+
+        final CompositeTypesystem result = new CompositeTypesystem ();
         
         for (MetaModel mm: mms) {
             if (mm instanceof EmfRegistryMetaModel)
                 hasEmf = true;
+            if (mm instanceof UML2MetaModel) 
+            	hasUml2 = true;
+            if (mm instanceof ProfileMetaModel) {
+            	ProfileMetaModel profileMM = (ProfileMetaModel) mm;
+            	umlProfiles.addAll (profileMM.profiles);
+            }
+//            if (mm instanceof XSDMetaModel)
+//            	hasXsd = true;
         }
         
-        final CompositeTypesystem result = new CompositeTypesystem ();
         if (hasEmf)
             result.register (new EmfTypesystem ());
-        //TODO register uml mm
+        if (hasUml2)
+        	result.register (new UmlTypesystem (umlProfiles, false));
+//        if (hasXsd)
+//        	result.register (new XsdTypesystem ());
+        
         //TODO replace this by adding "asBackendType" to the frontend types
         
         return result;

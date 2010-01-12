@@ -13,7 +13,10 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.emf.mwe.core,
  org.eclipse.emf.ecore,
  org.eclipse.xtend.typesystem.emf,
- org.eclipse.xpand
+ org.eclipse.xpand,
+ org.eclipse.xtend.backend.uml2types;resolution:=optional,
+ org.eclipse.xtend.typesystem.uml2;resolution:=optional,
+ org.eclipse.uml2;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.commons.logging
 

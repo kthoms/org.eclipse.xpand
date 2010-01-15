@@ -248,6 +248,10 @@ public final class XpandBackendFacade {
         public void writeAndClose () {
             throw new UnsupportedOperationException ();
         }
+
+		public String getAbsolutePath() {
+			return getTargetFile().getAbsolutePath();
+		}
     }
     
     private static class UriBasedPpAdapter implements UriBasedPostprocessor {

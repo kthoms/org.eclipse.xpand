@@ -20,7 +20,13 @@ public interface FileHandle {
     public void setBuffer (CharSequence buffer);
 
     @Deprecated
+    /**
+     * @deprecated in order to support other storage systems as well. Might throw exception if used with a non java.io based persistence layer. 
+     * Use #getAbsolutePath instead.
+     */
     public File getTargetFile();
+    
+    public String getAbsolutePath();
 
     public boolean isAppend();
 

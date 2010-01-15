@@ -64,7 +64,7 @@ public class JavaBeautifier implements PostProcessor {
 	 * extension '.java'.
 	 */
 	public void beforeWriteAndClose(final FileHandle info) {
-		if (info.getTargetFile() != null && info.getTargetFile().getAbsolutePath().endsWith(".java")) {
+		if (info.getAbsolutePath() != null && info.getAbsolutePath().endsWith(".java")) {
 
 			IDocument doc = new Document(info.getBuffer().toString());
 			TextEdit edit = getCodeFormatter().format(CodeFormatter.K_COMPILATION_UNIT, doc.get(), 0,
@@ -81,7 +81,7 @@ public class JavaBeautifier implements PostProcessor {
 					log.warn("Error during code formatting. Bad location (" + e.getMessage() + ").");
 				}
 			} else {
-				log.warn("File " + info.getTargetFile()
+				log.warn("File " + info.getAbsolutePath()
 						+ " could not be formatted. Make sure your template produces legal Java code!");
 			}
 		}

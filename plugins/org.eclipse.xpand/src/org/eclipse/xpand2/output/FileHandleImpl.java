@@ -51,8 +51,13 @@ public class FileHandleImpl implements FileHandle {
 				new StringBuilder(buffer);
 	}
 
+	@SuppressWarnings("deprecation")
 	public File getTargetFile() {
 		return targetFile;
+	}
+	
+	public String getAbsolutePath() {
+		return getTargetFile().getAbsolutePath();
 	}
 
 	public boolean isAppend() {
@@ -126,4 +131,5 @@ public class FileHandleImpl implements FileHandle {
 		}
 		return buffer.toString().getBytes();
 	}
+
 }

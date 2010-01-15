@@ -59,7 +59,7 @@ public class XmlBeautifier implements PostProcessor {
 	}
 
 	public void beforeWriteAndClose(final FileHandle info) {
-		if (isXmlFile(info.getTargetFile().getAbsolutePath())) {
+		if (isXmlFile(info.getAbsolutePath())) {
 			try {
 				// TODO this is only a heuristic, but it should work for most cases. This really is the beginning of reimplementing
 				// the XML parser just because we do RAM rather then file based beautification...

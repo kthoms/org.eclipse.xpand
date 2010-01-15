@@ -75,13 +75,13 @@ public class FileInfoLogger implements PostProcessor {
             }
         } catch (IOException e) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug(handle.getTargetFile().getName() + ": " + e.getMessage());
+                LOG.debug(handle.getAbsolutePath() + ": " + e.getMessage());
             }
         }
     }
 
 	private String getLogMessage(FileHandle handle, int lines) {
-		return MessageFormat.format(messagePattern, handle.getTargetFile().getPath(), handle.getTargetFile().getName(), lines,  loc , files);
+		return MessageFormat.format(messagePattern, handle.getAbsolutePath(), handle.getAbsolutePath(), lines,  loc , files);
 	}
 
 	public void setMessagePattern(String messagePattern) {

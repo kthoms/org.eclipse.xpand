@@ -61,7 +61,7 @@ public class XMLBeautifier implements PostProcessor {
 	}
 
 	public void beforeWriteAndClose(FileHandle impl) {
-		String fn = impl.getTargetFile().getAbsolutePath();
+		String fn = impl.getAbsolutePath();
 		boolean isXML = isXmlFile(fn);
 		URI u = URI.createFileURI(fn);
 

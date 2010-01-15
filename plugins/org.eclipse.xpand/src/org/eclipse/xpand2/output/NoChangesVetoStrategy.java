@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.xpand2.output;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -26,9 +27,10 @@ public class NoChangesVetoStrategy implements VetoStrategy {
 	}
 
 	public boolean hasChanges(FileHandle h) {
-		if (h.getTargetFile().exists()) {
+		File f = new File(h.getAbsolutePath());
+		if (f.exists()) {
 			try {
-				InputStream oldIs = new FileInputStream(h.getTargetFile());
+				InputStream oldIs = new FileInputStream(f);
 				byte[] bytes = getBytes(h);
 				try {
 					byte[] lbuffer = new byte[bytes.length];
@@ -46,8 +48,8 @@ public class NoChangesVetoStrategy implements VetoStrategy {
 					oldIs.close();
 				}
 			} catch (Exception e) {
-				log.error("Couldn't compare content of file "+h.getTargetFile().getAbsolutePath(), e);
-				log.error("File "+h.getTargetFile().getAbsolutePath()+" will not be overwritten");
+				log.error("Couldn't compare content of file "+h.getAbsolutePath(), e);
+				log.error("File "+h.getAbsolutePath()+" will not be overwritten");
 				return false;
 			}
 		}

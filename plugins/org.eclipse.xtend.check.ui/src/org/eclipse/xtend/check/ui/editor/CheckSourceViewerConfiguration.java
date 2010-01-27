@@ -118,4 +118,14 @@ public class CheckSourceViewerConfiguration extends AbstractXtendXpandSourceView
 		return new XtendXpandProblemHover(sourceViewer);
 	}
 
+	@Override
+	public void refresh() {
+		if (commentScanner != null) {
+			commentScanner.initialize();
+		}
+		if (contentScanner != null) {
+			contentScanner.initialize();
+		}
+	}
+
 }

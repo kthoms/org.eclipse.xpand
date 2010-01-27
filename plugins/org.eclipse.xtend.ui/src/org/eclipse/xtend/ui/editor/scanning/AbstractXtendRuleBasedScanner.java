@@ -16,8 +16,10 @@ import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.editor.preferences.UiPreferenceConstants;
 import org.eclipse.xtend.ui.XtendEditorPlugin;
-import org.eclipse.xtend.ui.editor.PreferencesConstants;
 import org.eclipse.xtend.ui.editor.color.ColorProvider;
 
 public abstract class AbstractXtendRuleBasedScanner extends RuleBasedScanner {
@@ -32,25 +34,39 @@ public abstract class AbstractXtendRuleBasedScanner extends RuleBasedScanner {
 
     public AbstractXtendRuleBasedScanner() {
         super();
-        setTokens();
+        initialize();
         setDefaultReturnToken(other);
     }
 
-    protected synchronized void setTokens() {
-        final IPreferenceStore aPreferenceStore = XtendEditorPlugin.getDefault().getPreferenceStore();
-        final ColorProvider provider = XtendEditorPlugin.getColorProvider();
+	public synchronized void initialize() {
+		final IPreferenceStore aPreferenceStore = Activator.getDefault().getPreferenceStore();
 
-        keyword = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_KEYWORDS)), null, SWT.BOLD));
+		if (keyword == null) {
+			keyword = new Token(null);
+		}
+		keyword.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.KEYWORDS));
 
-        string = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_STRING))));
+		if (string == null) {
+			string = new Token(null);
+		}
+		string.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.STRING));
 
-        comment = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_COMMENT))));
+		if (comment == null) {
+			comment = new Token(null);
+		}
+		comment.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.COMMENT));
 
-        other = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_OTHER))));
-    }
+		if (other == null) {
+			other = new Token(null);
+		}
+		other.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.OTHER));
+	}
+
+	private TextAttribute getAttribute(IPreferenceStore store, String name) {
+		final ColorProvider provider = XtendEditorPlugin.getColorProvider();
+		Color fgColor = provider.getColor(PreferenceConverter.getColor(store, name + UiPreferenceConstants.FGCOLOR));
+		int textStyle = store.getInt(name + UiPreferenceConstants.FONTSTYLE) & (SWT.BOLD | SWT.ITALIC);
+		return new TextAttribute(fgColor, null, textStyle);
+	}
 
 }

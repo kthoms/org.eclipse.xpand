@@ -21,7 +21,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.editors.text.templates.ContributionContextTypeRegistry;
 import org.eclipse.ui.editors.text.templates.ContributionTemplateStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xpand.ui.editor.PreferencesConstants;
 import org.eclipse.xpand.ui.editor.color.ColorProvider;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.osgi.framework.BundleContext;
@@ -48,7 +47,6 @@ public class XpandEditorPlugin extends AbstractUIPlugin {
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 		Activator.getDefault();
-		PreferencesConstants.initializeDefaultValues(getPreferenceStore());
 	}
 
 	/**

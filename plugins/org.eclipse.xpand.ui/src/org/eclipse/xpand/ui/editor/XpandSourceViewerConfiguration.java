@@ -109,4 +109,16 @@ public class XpandSourceViewerConfiguration extends AbstractXtendXpandSourceView
 		return new XtendXpandProblemHover(sourceViewer);
 	}
 
+	@Override
+	public void refresh() {
+		if (commentScanner != null) {
+			commentScanner.initialize();
+		}
+		if (contentScanner != null) {
+			contentScanner.initialize();
+		}
+		if (tagScanner != null) {
+			tagScanner.initialize();
+		}
+	}
 }

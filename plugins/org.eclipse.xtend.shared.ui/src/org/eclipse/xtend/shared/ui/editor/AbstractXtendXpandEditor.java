@@ -29,6 +29,8 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelExtension2;
 import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.IPostSelectionProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -40,8 +42,10 @@ import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.editor.navigation.OpenAction;
 import org.eclipse.xtend.shared.ui.editor.outlineview.AbstractExtXptContentOutlinePage;
+import org.eclipse.xtend.shared.ui.editor.preferences.UiPreferenceConstants;
 import org.eclipse.xtend.shared.ui.editor.search.actions.SearchActionGroup;
 
 public abstract class AbstractXtendXpandEditor extends TextEditor {
@@ -53,6 +57,8 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	private BreakpointActionGroup bpActionGroup;
 
 	private ISelectionChangedListener selectionChangedListener;
+
+   private IPropertyChangeListener preferencesChangedListener;
 
 	/**
 	 * @see org.eclipse.ui.texteditor.AbstractDecoratedTextEditor#createPartControl(org.eclipse.swt.widgets.Composite)
@@ -66,6 +72,20 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 			}
 		};
 		installSelectionChangedListener();
+		
+      preferencesChangedListener = new IPropertyChangeListener() {
+
+         public void propertyChange(PropertyChangeEvent event)
+         {
+            if(event.getProperty().startsWith(UiPreferenceConstants.PREFIX))
+            {
+               AbstractXtendXpandSourceViewerConfiguration config = (AbstractXtendXpandSourceViewerConfiguration) getSourceViewerConfiguration();
+               config.refresh();
+               getSourceViewer().invalidateTextPresentation();
+            }
+         }
+      };
+      Activator.getDefault().getPreferenceStore().addPropertyChangeListener(preferencesChangedListener);
 	}
 
 	private void installSelectionChangedListener() {
@@ -86,6 +106,9 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	public void dispose() {
 		super.dispose();
 		uninstallSelectionChangedListener();
+		if (preferencesChangedListener != null) {
+			Activator.getDefault().getPreferenceStore().removePropertyChangeListener(preferencesChangedListener);
+		}
 	}
 
 	private void uninstallSelectionChangedListener() {
@@ -140,7 +163,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		bpActionGroup.fillContextMenu(menu);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(final Class aRequired) {
 		if (IContentOutlinePage.class.equals(aRequired)) {
@@ -162,7 +185,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		super.createActions();
 		final ResourceBundle rb = new ResourceBundle() {
 
-			@SuppressWarnings("unchecked")
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			@Override
 			public Enumeration getKeys() {
 				return new Vector().elements();

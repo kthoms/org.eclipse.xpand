@@ -16,10 +16,11 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.rules.Token;
-import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.xpand.ui.XpandEditorPlugin;
-import org.eclipse.xpand.ui.editor.PreferencesConstants;
 import org.eclipse.xpand.ui.editor.color.ColorProvider;
+import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.editor.preferences.UiPreferenceConstants;
 
 public abstract class AbstractXpandRuleBasedScanner extends RuleBasedScanner {
 
@@ -39,32 +40,55 @@ public abstract class AbstractXpandRuleBasedScanner extends RuleBasedScanner {
 
     public AbstractXpandRuleBasedScanner() {
         super();
-        setTokens();
+        initialize();
         setDefaultReturnToken(other);
     }
 
-    protected synchronized void setTokens() {
-        final IPreferenceStore aPreferenceStore = XpandEditorPlugin.getDefault().getPreferenceStore();
-        final ColorProvider provider = XpandEditorPlugin.getColorProvider();
-        terminals = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_TERMINALS))));
+	public synchronized void initialize() {
+		final IPreferenceStore aPreferenceStore = Activator.getDefault().getPreferenceStore();
 
-        keyword = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_KEYWORDS)), null, SWT.BOLD));
+		if (terminals == null) {
+			terminals = new Token(null);
+		}
+		terminals.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.TERMINALS));
 
-        string = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_STRING))));
+		if (keyword == null) {
+			keyword = new Token(null);
 
-        define = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_DEFINE)), null, SWT.BOLD));
+		}
+		keyword.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.KEYWORDS));
 
-        text = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_TEXT))));
-        comment = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_COMMENT))));
+		if (string == null) {
+			string = new Token(null);
+		}
+		string.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.STRING));
 
-        other = new Token(new TextAttribute(provider.getColor(PreferenceConverter.getColor(aPreferenceStore,
-                PreferencesConstants.HIGHLIGHT_OTHER))));
-    }
+		if (define == null) {
+			define = new Token(null);
+		}
+		define.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.DEFINE));
+
+		if (text == null) {
+			text = new Token(null);
+		}
+		text.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.TEXT));
+
+		if (comment == null) {
+			comment = new Token(null);
+		}
+		comment.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.COMMENT));
+
+		if (other == null) {
+			other = new Token(null);
+		}
+		other.setData(getAttribute(aPreferenceStore, UiPreferenceConstants.OTHER));
+	}
+
+	private TextAttribute getAttribute(IPreferenceStore store, String name) {
+		final ColorProvider provider = XpandEditorPlugin.getColorProvider();
+		Color fgColor = provider.getColor(PreferenceConverter.getColor(store, name + UiPreferenceConstants.FGCOLOR));
+		int textStyle = store.getInt(name + UiPreferenceConstants.FONTSTYLE);
+		return new TextAttribute(fgColor, null, textStyle);
+	}
 
 }

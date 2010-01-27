@@ -43,6 +43,12 @@
             id="org.eclipse.xtend.shared.ui.properties.MetamodelContributorsPropertyPage"
             name="%preference.page.metamodel.contributors.name">
       </page>
+      <page
+            category="org.eclipse.xtend.shared.ui.properties.MetamodelContributorsPropertyPage"
+            class="org.eclipse.xtend.shared.ui.editor.preferences.UiPreferencePage"
+            id="org.eclipse.xtend.shared.ui.properties.EditorConfigurationPage"
+            name="%preference.page.ui.preferences">
+      </page>
    </extension>
    
    <extension
@@ -151,5 +157,11 @@
 			searchResultClass="org.eclipse.xtend.shared.ui.editor.search.query.XtendXpandSearchResult"
 			class="org.eclipse.xtend.shared.ui.editor.search.view.XtendXpandSearchResultPage">
 		</viewPage>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.xtend.shared.ui.editor.preferences.PreferenceInitializer">
+      </initializer>
    </extension>
 </plugin>

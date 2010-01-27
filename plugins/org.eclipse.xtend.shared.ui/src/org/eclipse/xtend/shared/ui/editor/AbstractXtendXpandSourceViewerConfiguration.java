@@ -99,4 +99,8 @@ public abstract class AbstractXtendXpandSourceViewerConfiguration extends TextSo
 	public IReconciler getReconciler(ISourceViewer sourceViewer) {
 		return null; // we don't want spell checking
 	}
+
+	public void refresh() {
+		/* No-op */
+	}
 }

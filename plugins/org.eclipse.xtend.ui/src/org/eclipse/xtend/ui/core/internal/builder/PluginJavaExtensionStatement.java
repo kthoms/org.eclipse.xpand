@@ -94,9 +94,9 @@ public class PluginJavaExtensionStatement extends JavaExtensionStatement {
                 XtendLog.logError(e);
                 return;
             }
-            if (!(Flags.isPublic(f) && Flags.isStatic(f))) {
+            if (!(Flags.isPublic(f) )) {
                 issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, "The method "
-                        + javaMethod.getValue() + " is not public static.", javaMethod));
+                        + javaMethod.getValue() + " is not public.", javaMethod));
             }
         }
     }

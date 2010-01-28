@@ -12,9 +12,11 @@
 
 package org.eclipse.xtend.typesystem.emf;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -40,7 +42,6 @@ import org.eclipse.internal.xtend.type.baseimpl.BuiltinMetaModel;
 import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
-import org.eclipse.xtend.type.impl.java.JavaTypeImpl;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Type;
 
@@ -321,19 +322,24 @@ public class EmfRegistryMetaModel implements MetaModel {
 		if (knownTypes == null) {
 			final Set<Type> result = new HashSet<Type>();
 			result.add(eobjectType);
-			for (EPackage pack : allPackages()) {
-				for (final Iterator<EObject> iter = pack.eAllContents(); iter.hasNext();) {
-					final Object obj = iter.next();
-					if (obj instanceof EClassifier) {
-						try {
-							Type t = getTypeForEClassifier((EClassifier) obj);
-							if (t != null && !(t instanceof JavaTypeImpl))
-								result.add(t);
-						}
-						catch (RuntimeException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+			List<EObject> waiting = new LinkedList<EObject>();
+			waiting.addAll(Arrays.asList(allPackages()));
+			while (!waiting.isEmpty()) {
+				EObject elem = waiting.remove(0);
+				if (elem instanceof EPackage) {
+					EPackage pkg = (EPackage) elem;
+					waiting.addAll(pkg.getESubpackages());
+					waiting.addAll(pkg.getEClassifiers());
+				}
+				else if (elem instanceof EClassifier) {
+					EClassifier cls = (EClassifier) elem;
+					try {
+						Type t = getTypeForEClassifier(cls);
+						if (t != null)
+							result.add(t);
+					}
+					catch (RuntimeException e) {
+						log.error(e.getMessage(),e);
 					}
 				}
 			}

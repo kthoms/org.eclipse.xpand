@@ -30,10 +30,10 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
  */
 public class GenericHyperlink implements IHyperlink {
 
-	private final String identifierString;
-	private final IRegion region;
-	private final IWorkbenchPage workbenchPage;
-	private final SearchMatch searchMatch;
+	protected final String identifierString;
+	protected final IRegion region;
+	protected final IWorkbenchPage workbenchPage;
+	protected final SearchMatch searchMatch;
 
 	/**
 	 * Creates a new Generic hyperlink.

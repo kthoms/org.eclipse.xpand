@@ -55,7 +55,8 @@ public class Messages extends NLS {
 	public static String XtendXpandProjectWizard_ProjectCreationMessage;
 	public static String XtendXpandProjectWizardPage_DefaultFileName;
 	public static String XtendXpandProjectWizardPage_Description;
-	public static String XtendXpandProjectWizardPage_Error;
+	public static String XtendXpandProjectWizardPage_ProjectName_Error;
+	public static String XtendXpandProjectWizardPage_NoMMSelected_Error;
 	public static String XtendXpandProjectWizardPage_Name;
 	public static String XtendXpandProjectWizardPage_ProjectLabel;
 	public static String XtendXpandProjectWizardPage_SampleLabel;

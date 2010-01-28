@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="resourceContributor" name="%extension-point.resource.contributor.name" schema="schema/resourceContributor.exsd"/>
    <extension-point id="metamodelContributor" name="%extension-point.metamodel.contributor.name" schema="schema/metamodelContributor.exsd"/>
+   <extension-point id="storageFinder" name="%extension-point.storage.finder.name" schema="schema/storageFinder.exsd"/>
    
    <extension
          id="xtendXPandNature"
@@ -157,6 +158,12 @@
 			searchResultClass="org.eclipse.xtend.shared.ui.editor.search.query.XtendXpandSearchResult"
 			class="org.eclipse.xtend.shared.ui.editor.search.view.XtendXpandSearchResultPage">
 		</viewPage>
+   </extension>
+   <extension
+         point="org.eclipse.xtend.shared.ui.storageFinder">
+      <storageFinder
+            class="org.eclipse.xtend.shared.ui.core.internal.JDTStorageFinder">
+      </storageFinder>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">

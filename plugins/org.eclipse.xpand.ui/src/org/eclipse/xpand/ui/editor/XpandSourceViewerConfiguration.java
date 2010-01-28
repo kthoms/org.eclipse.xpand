@@ -16,6 +16,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.jface.text.hyperlink.IHyperlinkDetector;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
@@ -107,6 +108,11 @@ public class XpandSourceViewerConfiguration extends AbstractXtendXpandSourceView
 	@Override
 	public ITextHover getTextHover(final ISourceViewer sourceViewer, final String contentType) {
 		return new XtendXpandProblemHover(sourceViewer);
+	}
+	
+	@Override
+	public IHyperlinkDetector[] getHyperlinkDetectors(ISourceViewer sourceViewer) {
+		return new IHyperlinkDetector[] { new XpandHyperlinkDetector(getEditor()) };
 	}
 
 	@Override

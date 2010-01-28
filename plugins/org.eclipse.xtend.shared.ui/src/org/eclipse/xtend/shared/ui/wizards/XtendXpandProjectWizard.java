@@ -33,6 +33,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 import org.eclipse.xtend.shared.ui.Messages;
+import org.eclipse.xtend.shared.ui.core.preferences.PreferenceConstants;
 import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
@@ -54,11 +55,13 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 	@Override
 	public boolean performFinish() {
 		final String name = page.getProjectName();
-		final boolean genExample = page.isCreateExample();
+		final boolean genExample = page.isCreateExample(); 
+		final boolean projectSpecific = page.isProjectSpecificMM();
+		final boolean workspaceDefault = page.isUseWorkspaceDefinedMM();
 		final IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(final IProgressMonitor monitor) throws InvocationTargetException {
 				try {
-					doFinish(name, genExample, monitor);
+					doFinish(name, genExample, projectSpecific, workspaceDefault, monitor);
 				}
 				finally {
 					monitor.done();
@@ -80,7 +83,7 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 		return true;
 	}
 
-	void doFinish(final String name, final boolean genExample, final IProgressMonitor monitor) {
+	void doFinish(final String name, final boolean genExamle, final boolean projectSpecific, final boolean workspaceDefaults, final IProgressMonitor monitor) {
 		final String projectName = name;
 		monitor.beginTask(Messages.XtendXpandProjectWizard_ProjectCreationMessage + name, 2);
 
@@ -98,7 +101,11 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 
 		if (p == null)
 			return;
-		if (genExample) {
+		
+		EclipseHelper.createFile(".settings/org.eclipse.core.resources.prefs", p,
+				"eclipse.preferences.version=1\nencoding/<project>=ISO-8859-1\n", monitor);
+		
+		if (genExamle) {
 			EclipseHelper.createFile("src/metamodel/Checks.chk", p, getContents("Checks.chk"), monitor);
 			EclipseHelper.createFile("src/metamodel/Extensions.ext", p, getContents("Extensions.ext"), monitor);
 			EclipseHelper.createFile("src/metamodel/metamodel.ecore", p, getContents("metamodel.ecore"), monitor);
@@ -110,12 +117,19 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 			EclipseHelper.createFile("src/workflow/generatorWithProfiler.mwe", p, getContents("generatorWithProfiler.mwe").replace(
 					"PROJECTNAME", projectName), monitor);
 			EclipseHelper.createFile("src/Model.xmi", p, getContents("Model.xmi"), monitor);
-			EclipseHelper.createFile(".settings/org.eclipse.core.resources.prefs", p,
-					"eclipse.preferences.version=1\nencoding/<project>=ISO-8859-1\n", monitor);
+			
 		}
+		
+		else if (projectSpecific) {
+			EclipseHelper.createFile(".settings/org.eclipse.xtend.shared.ui.prefs", p,
+					"eclipse.preferences.version=1\n"+PreferenceConstants.PROJECT_SPECIFIC_METAMODEL+"=true\n"
+					+PreferenceConstants.METAMODELCONTRIBUTORS+"=" + page.getStoreString(), monitor);
+		}
+		
 		monitor.worked(1);
 	}
 
+	
 	private String getContents(final String resource) {
 		try {
 			final InputStream inputStream = getClass().getClassLoader().getResourceAsStream(

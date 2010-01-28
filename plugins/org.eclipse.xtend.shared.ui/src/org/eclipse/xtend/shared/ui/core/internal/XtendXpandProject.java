@@ -259,8 +259,8 @@ public class XtendXpandProject implements IXtendXpandProject {
 		if (!projects.add(this))
 			return null;
 
-		// search the resource using JDT
-		IStorage storage = JDTUtil.findStorage(project, new ResourceID(fqn, extension), searchJars);
+		// search the resource. ResourceFinder can be registered using the extension point org.eclipse.xtend.shared.ui.storageFinder
+		IStorage storage = Activator.findStorage(project, new ResourceID(fqn, extension), searchJars);
 
 		// Found in this project?
 		if (storage != null && (searchJars || (storage instanceof IFile))) {

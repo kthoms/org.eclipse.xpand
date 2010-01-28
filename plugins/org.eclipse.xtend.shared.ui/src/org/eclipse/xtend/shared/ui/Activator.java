@@ -12,6 +12,9 @@
 package org.eclipse.xtend.shared.ui;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -42,6 +46,7 @@ import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.shared.ui.core.IModelManager;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandNature;
+import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 import org.eclipse.xtend.shared.ui.core.internal.XtendXpandModelManager;
 import org.eclipse.xtend.shared.ui.core.metamodel.Contributor;
 import org.eclipse.xtend.shared.ui.core.metamodel.MetamodelContributorRegistry;
@@ -56,6 +61,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	private static final String RESOURCE_CONTRIBUTOR_ID = "org.eclipse.xtend.shared.ui.resourceContributor";
+	private static final String STORAGE_FINDER_ID = "org.eclipse.xtend.shared.ui.storageFinder";
 	
 	public static final String PLUGIN_ID = "org.eclipse.xtend.shared.ui"; 	
 
@@ -67,6 +73,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	private static HashMap<String, ResourceContributor> contributors;
+	private static List<StorageFinder> storageFinder;
 
 	private IModelManager modelManager;
 
@@ -187,6 +194,53 @@ public class Activator extends AbstractUIPlugin {
 			}
 		}
 		return contrs.toArray(new ResourceContributor[contrs.size()]);
+	}
+	
+	public static List<StorageFinder> getRegisteredStorageFinder() {
+		if (storageFinder == null) {
+			storageFinder = new ArrayList<StorageFinder>();
+			final IExtensionRegistry registry = Platform.getExtensionRegistry();
+			final IExtensionPoint point = registry.getExtensionPoint(Activator.STORAGE_FINDER_ID);
+			if (point != null) {
+				final IExtension[] extensions = point.getExtensions();
+				for (int i = 0; i < extensions.length; i++) {
+					final IExtension extension = extensions[i];
+					final IConfigurationElement[] configs = extension.getConfigurationElements();
+					for (int j = 0; j < configs.length; j++) {
+						final IConfigurationElement element = configs[j];
+						try {
+							storageFinder.add((StorageFinder) element.createExecutableExtension("class"));
+						} catch (final CoreException e) {
+							XtendLog.logError(e);
+						}
+					}
+				}
+			}
+			Collections.sort(storageFinder, new Comparator<StorageFinder>(){
+				public int compare(StorageFinder stoFinder1, StorageFinder stoFinder2){
+					if (stoFinder1 == null)
+						return 1;
+					if (stoFinder2 == null)
+						return -1;
+					if (stoFinder1.getPriority() == stoFinder2. getPriority())
+						return 0;
+					return stoFinder1.getPriority() >= stoFinder2.getPriority() ? -1: 1;
+				}
+			});
+		}
+		return storageFinder;
+	}
+	
+	public static IStorage findStorage(IJavaProject project, ResourceID id, boolean searchJars){
+		List<StorageFinder> stoFinders = getRegisteredStorageFinder();
+		IStorage storage = null;
+		if (stoFinders != null)
+			for (StorageFinder stoFinder: stoFinders) {
+				storage = stoFinder.findStorage(project, id, searchJars);
+				if (storage != null)
+					return storage;
+			}
+		return storage;
 	}
 
 	public static IModelManager getExtXptModelManager() {

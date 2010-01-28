@@ -309,7 +309,7 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		} else {
 			prefStore.setValue(PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY, analyzerCombobox.getSelectionIndex());
 		}
-		prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS, createStoreString());
+		prefStore.setValue(PreferenceConstants.METAMODELCONTRIBUTORS, createStoreString(checkboxTableViewer.getCheckedElements()));
 		try {
 			((ScopedPreferenceStore) prefStore).save();
 		}
@@ -363,11 +363,8 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 		return super.performOk();
 	}
 
-	/**
-	 * @return
-	 */
-	private String createStoreString() {
-		final Object[] checkedElements = checkboxTableViewer.getCheckedElements();
+
+	public static String createStoreString(final Object[] checkedElements) {
 		String result = "";
 		for (int i = 0; i < checkedElements.length; i++) {
 			final Object object = checkedElements[i];

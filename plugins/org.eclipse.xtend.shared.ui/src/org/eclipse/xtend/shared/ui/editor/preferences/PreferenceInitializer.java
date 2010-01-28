@@ -22,17 +22,17 @@ import org.eclipse.xtend.shared.ui.Activator;
  */
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
 
-	private static final RGB DEFAULT_KEYWORD_FGCOLOR = new RGB(127, 0, 85); 
+	private static final RGB DEFAULT_KEYWORD_FGCOLOR = new RGB(127, 0, 85);
 
-	private static final RGB DEFAULT_TERMINAL_FGCOLOR = new RGB(163, 163, 163); 
+	private static final RGB DEFAULT_TERMINAL_FGCOLOR = new RGB(163, 163, 163);
 
-	private static final RGB DEFAULT_STRING_FGCOLOR = new RGB(42, 0, 255); 
+	private static final RGB DEFAULT_STRING_FGCOLOR = new RGB(42, 0, 255);
 
-	private static final RGB DEFAULT_COMMENT_FGCOLOR = new RGB(63, 127, 95); 
+	private static final RGB DEFAULT_COMMENT_FGCOLOR = new RGB(63, 127, 95);
 
-	private static final RGB DEFAULT_OTHER_FGCOLOR = new RGB(45, 45, 45); 
+	private static final RGB DEFAULT_OTHER_FGCOLOR = new RGB(0, 0, 0);
 
-	private static final RGB DEFAULT_TEXT_FGCOLOR = new RGB(0, 0, 0);
+	private static final RGB DEFAULT_TEXT_FGCOLOR = new RGB(42, 0, 255);
 
 	/*
 	 * (non-Javadoc)
@@ -43,13 +43,13 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 
-		configure(store, KEYWORDS, DEFAULT_KEYWORD_FGCOLOR, 0);
-		configure(store, DEFINE, DEFAULT_KEYWORD_FGCOLOR, SWT.BOLD);
+		configure(store, KEYWORDS, DEFAULT_KEYWORD_FGCOLOR, SWT.BOLD);
+		configure(store, DEFINE, DEFAULT_KEYWORD_FGCOLOR, SWT.BOLD | SWT.UNDERLINE_SINGLE);
 		configure(store, TERMINALS, DEFAULT_TERMINAL_FGCOLOR, 0);
 		configure(store, STRING, DEFAULT_STRING_FGCOLOR, 0);
 		configure(store, COMMENT, DEFAULT_COMMENT_FGCOLOR, 0);
 		configure(store, OTHER, DEFAULT_OTHER_FGCOLOR, 0);
-		configure(store, TEXT, DEFAULT_TEXT_FGCOLOR, SWT.BOLD);
+		configure(store, TEXT, DEFAULT_TEXT_FGCOLOR, 0);
 	}
 
 	private void configure(IPreferenceStore store, String element, RGB fgColor, int style) {

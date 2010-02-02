@@ -27,12 +27,14 @@ import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.util.Pair;
 import org.eclipse.xtend.typesystem.MetaModel;
 
-public abstract class AbstractExpressionsUsingWorkflowComponent extends AbstractWorkflowComponent2 {
+public abstract class AbstractExpressionsUsingWorkflowComponent extends
+		AbstractWorkflowComponent2 {
 	protected final Log log = LogFactory.getLog(getClass());
 
 	protected final List<MetaModel> metaModels = new ArrayList<MetaModel>();
 
 	private List<GlobalVarDef> globalVarDefs = new ArrayList<GlobalVarDef>();
+	private List<GlobalVar> globalVars = new ArrayList<GlobalVar>();
 
 	protected final List<String> _advice = new ArrayList<String>();
 
@@ -92,21 +94,51 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 		globalVarDefs.add(def);
 	}
 
+	public void addGlobalVar(GlobalVar var) {
+		globalVars.add(var);
+	}
+
+	public static class GlobalVar {
+		private String name;
+		private Object value;
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public void setValue(Object value) {
+			this.value = value;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public Object getValue() {
+			return value;
+		}
+	}
+
 	protected Map<String, Variable> getGlobalVars(WorkflowContext ctx) {
 		final Map<String, Variable> result = new HashMap<String, Variable>();
+		if (!globalVarDefs.isEmpty()) {
+			ExecutionContextImpl ec = new ExecutionContextImpl();
+			for (String slot : ctx.getSlotNames()) {
+				ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(
+						slot, ctx.get(slot)));
+			}
+			for (MetaModel mm : metaModels) {
+				ec.registerMetaModel(mm);
+			}
 
-		ExecutionContextImpl ec = new ExecutionContextImpl();
-		for (String slot : ctx.getSlotNames()) {
-			ec = (ExecutionContextImpl) ec.cloneWithVariable(new Variable(slot, ctx.get(slot)));
+			final ExpressionFacade ef = new ExpressionFacade(ec);
+			for (GlobalVarDef def : globalVarDefs) {
+				final Object value = ef.evaluate(def.getValue());
+				result.put(def.getName(), new Variable(def.getName(), value));
+			}
 		}
-		for (MetaModel mm : metaModels) {
-			ec.registerMetaModel(mm);
-		}
-
-		final ExpressionFacade ef = new ExpressionFacade(ec);
-		for (GlobalVarDef def : globalVarDefs) {
-			final Object value = ef.evaluate(def.getValue());
-			result.put(def.getName(), new Variable(def.getName(), value));
+		for (GlobalVar gv : globalVars) {
+			result.put(gv.getName(), new Variable(gv.getName(), gv.getValue()));
 		}
 
 		return result;
@@ -128,9 +160,11 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 
 	protected ExecutionContextImpl getExecutionContext(final WorkflowContext ctx) {
 
-		final ExecutionContextImpl executionContext = new ExecutionContextImpl(getResourceManager(), null,
-				new TypeSystemImpl(), new HashMap<String, Variable>(), getGlobalVars(ctx), null, exceptionHandler,
-				null, getNullEvaluationHandler(), null, callback, null, null);
+		final ExecutionContextImpl executionContext = new ExecutionContextImpl(
+				getResourceManager(), null, new TypeSystemImpl(),
+				new HashMap<String, Variable>(), getGlobalVars(ctx), null,
+				exceptionHandler, null, getNullEvaluationHandler(), null,
+				callback, null, null);
 		for (MetaModel mm : metaModels) {
 			executionContext.registerMetaModel(mm);
 		}
@@ -146,7 +180,8 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 	@Override
 	protected void checkConfigurationInternal(Issues issues) {
 		if (metaModels.isEmpty()) {
-			issues.addWarning("no metamodels specified (use 'metaModel' property)!");
+			issues
+					.addWarning("no metamodels specified (use 'metaModel' property)!");
 		}
 	}
 
@@ -185,31 +220,39 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 	}
 
 	@Override
-	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, final Issues issues) {
+	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,
+			final Issues issues) {
 		try {
 			if (exceptionHandler == null) {
 				exceptionHandler = new ExceptionHandler() {
-					public void handleRuntimeException(RuntimeException ex, SyntaxElement element,
-							ExecutionContext ctx, Map<String, Object> additionalContextInfo) {
-						issues.addError(AbstractExpressionsUsingWorkflowComponent.this, ex.getMessage(), element);
+					public void handleRuntimeException(RuntimeException ex,
+							SyntaxElement element, ExecutionContext ctx,
+							Map<String, Object> additionalContextInfo) {
+						issues.addError(
+								AbstractExpressionsUsingWorkflowComponent.this,
+								ex.getMessage(), element);
 						throw ex;
 					}
 				};
 			}
 			invokeInternal2(ctx, monitor, issues);
-		}
-		catch (EvaluationException e) {
-			log.error("Error in Component" + (getId() == null ? " " : " " + getId()) + " of type "
-					+ getClass().getName() + ": \n\t" + "" + toString(e, debugExpressions));
+		} catch (EvaluationException e) {
+			log.error("Error in Component"
+					+ (getId() == null ? " " : " " + getId()) + " of type "
+					+ getClass().getName() + ": \n\t" + ""
+					+ toString(e, debugExpressions));
 			throw new WorkflowInterruptedException(e.getMessage());
 		}
 	}
 
 	public String toString(EvaluationException ex, List<Debug> debugEntries) {
-		StringBuffer result = new StringBuffer("EvaluationException : " + ex.getMessage() + "\n");
+		StringBuffer result = new StringBuffer("EvaluationException : "
+				+ ex.getMessage() + "\n");
 		int widest = 0;
-		for (Pair<SyntaxElement, ExecutionContext> ele : ex.getXtendStackTrace()) {
-			int temp = EvaluationException.getLocationString(ele.getFirst()).length();
+		for (Pair<SyntaxElement, ExecutionContext> ele : ex
+				.getXtendStackTrace()) {
+			int temp = EvaluationException.getLocationString(ele.getFirst())
+					.length();
 			if (temp > widest) {
 				widest = temp;
 			}
@@ -220,31 +263,40 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 		}
 
 		for (int i = 0, x = ex.getXtendStackTrace().size(); i < x; i++) {
-			Pair<SyntaxElement, ExecutionContext> ele = ex.getXtendStackTrace().get(i);
-			StringBuffer msg = new StringBuffer(EvaluationException.getLocationString(ele.getFirst()));
+			Pair<SyntaxElement, ExecutionContext> ele = ex.getXtendStackTrace()
+					.get(i);
+			StringBuffer msg = new StringBuffer(EvaluationException
+					.getLocationString(ele.getFirst()));
 			for (int j = msg.length(); j < widest; j++) {
 				msg.append(" ");
 			}
-			if (debugEntries.size() > i && debugEntries.get(i).getExpression() != null) {
+			if (debugEntries.size() > i
+					&& debugEntries.get(i).getExpression() != null) {
 				Debug d = debugEntries.get(i);
 				try {
-					msg.append(" -- debug '").append(d.getExpression()).append("' = ");
-					msg.append(new ExpressionFacade(ele.getSecond()).evaluate("let x = " + d.getExpression()
-							+ " : x!=null ? x.toString() : 'null'"));
-				}
-				catch (Exception e) {
+					msg.append(" -- debug '").append(d.getExpression()).append(
+							"' = ");
+					msg.append(new ExpressionFacade(ele.getSecond())
+							.evaluate("let x = " + d.getExpression()
+									+ " : x!=null ? x.toString() : 'null'"));
+				} catch (Exception e) {
 					msg.append("Exception : ").append(e.getMessage());
 				}
 				msg.append("\n");
 			}
-			if (dumpContext || debugEntries.size() > i && debugEntries.get(i).isDumpContext()) {
+			if (dumpContext || debugEntries.size() > i
+					&& debugEntries.get(i).isDumpContext()) {
 				ExpressionFacade f = new ExpressionFacade(ele.getSecond());
 				msg.append(" -- context dump : ");
 
-				Iterator<String> iter = ele.getSecond().getVisibleVariables().keySet().iterator();
+				Iterator<String> iter = ele.getSecond().getVisibleVariables()
+						.keySet().iterator();
 				while (iter.hasNext()) {
 					String v = iter.next();
-					msg.append(v).append(" = ").append(f.evaluate(v + "!=null?" + v + ".toString():'null'"));
+					msg.append(v).append(" = ").append(
+							f
+									.evaluate(v + "!=null?" + v
+											+ ".toString():'null'"));
 					if (iter.hasNext()) {
 						msg.append(", \n");
 					}
@@ -265,7 +317,8 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends Abstract
 		return result.toString();
 	}
 
-	protected void invokeInternal2(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
+	protected void invokeInternal2(WorkflowContext ctx,
+			ProgressMonitor monitor, Issues issues) {
 	}
 
 	protected boolean exceptionsOnNullEvaluation = false;

@@ -36,7 +36,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
  * <td>advices</td>
  * <td>0..n</td>
  * <td>String</td>
- * <td>Comma seperated list of qualified aspect templates</td>
+ * <td>Comma separated list of qualified aspect templates</td>
  * </tr>
  * 
  * <tr>
@@ -51,7 +51,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
  * <td>extensionAdvice</td>
  * <td>0..n</td>
  * <td>String</td>
- * <td>Comma seperated list of qualified aspect extensions</td>
+ * <td>Comma separated list of qualified aspect extensions</td>
  * </tr>
  * </table>
  */

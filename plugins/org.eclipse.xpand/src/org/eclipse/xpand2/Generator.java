@@ -148,7 +148,7 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 	}
 
 	/**
-	 * Returns the list of beatifiers that will be applied to the generated
+	 * Returns the list of beautifiers that will be applied to the generated
 	 * output.
 	 * 
 	 * @return list of beautifiers
@@ -158,10 +158,10 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 	}
 
 	/**
-	 * Sets the list of beatifiers that will be applied to the generated output.
+	 * Sets the list of beautifiers that will be applied to the generated output.
 	 * 
 	 * @param beautifiers
-	 *            list of beautifiera
+	 *            list of beautifiers
 	 */
 	public void setBeautifier(final List<?> beautifiers) {
 		beautifier = beautifiers;

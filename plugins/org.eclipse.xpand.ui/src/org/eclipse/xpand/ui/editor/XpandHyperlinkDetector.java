@@ -10,15 +10,18 @@
  ******************************************************************************/
 package org.eclipse.xpand.ui.editor;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.internal.xpand2.XpandUtil;
 import org.eclipse.internal.xpand2.ast.AbstractDefinition;
-import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.ExpandStatement;
 import org.eclipse.internal.xpand2.ast.Template;
+import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;
 import org.eclipse.internal.xtend.expression.ast.OperationCall;
+import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Region;
 import org.eclipse.ui.IEditorPart;
@@ -59,19 +62,37 @@ public class XpandHyperlinkDetector extends AbstractHyperlinkDetector {
 			
 			if (statement != null) {
 				List<AbstractDefinition> defmatches = XtendXpandSearchEngine.findDefinitionsByNameInResourceAndImports(project, statement.getDefinition().getValue(), xpandResource);
+
+				ExecutionContext ctx = Activator.getExecutionContext(
+						getXtendXpandProject().getProject()).cloneWithResource(statement.getContainingDefinition().getOwner());
+				Type expandTargetType = null;
+				if (statement.getTarget() == null) 
+					expandTargetType = ctx.getTypeForName(statement.getContainingDefinition().getType().getValue());
+				else
+					if (statement.getTarget().equals(ExecutionContext.IMPLICIT_VARIABLE))
+						expandTargetType = ctx.getTypeForName(statement.getContainingDefinition().getType().getValue());
+					else
+						expandTargetType = statement.getTarget().analyze(ctx, new HashSet<AnalysationIssue>());
+
+				if (expandTargetType == null) 
+					expandTargetType = ctx.getTypeForName(statement.getContainingDefinition().getType().getValue());
+				Type[] statementTypes = new Type[statement.getParameters().length];
+				for (int i = 0; i<statementTypes.length; i++) {
+					statementTypes[i] = statement.getParameters()[i].analyze(ctx, new HashSet<AnalysationIssue>());
+					if (statementTypes[i] == null) statementTypes[i] = ctx.getObjectType();
+				}
 				
-			boolean[] isAssignable = isDefinitionAssignableFromExpandStatement(defmatches.toArray(new Definition[defmatches.size()]) ,statement);
-				for (int i =0; i< isAssignable.length; i++) {
-					if (isAssignable[i]) {
+				for (AbstractDefinition definition : defmatches) {
+					if (isDefinitionAssignableFromExpandStatement(definition, statementTypes, expandTargetType, ctx)) {
 						SearchMatch match = new SearchMatch(
-								defmatches.get(i).getDefName().getStart(), 
-								defmatches.get(i).getDefName().getEnd() - defmatches.get(i).getDefName().getStart(),
-								getXXResourceByName(defmatches.get(i).getFileName(), XpandUtil.TEMPLATE_EXTENSION).getUnderlyingStorage());
+								definition.getDefName().getStart(), 
+								definition.getDefName().getEnd() - definition.getDefName().getStart(),
+								getXXResourceByName(definition.getFileName(), XpandUtil.TEMPLATE_EXTENSION).getUnderlyingStorage());
 						GenericHyperlink genericHyperlink = new GenericHyperlink(
 								getWorkbenchPage(), 
 								match,
 								new Region(statement.getDefinition().getStart(), statement.getDefinition().getEnd()-statement.getDefinition().getStart()),
-								computeHyperlinkLabel(hyperlinkedWord, defmatches.get(i).getTargetType(), defmatches.get(i).getParamsAsList(), getXXResourceByName(defmatches.get(i).getFileName(), XpandUtil.TEMPLATE_EXTENSION))
+								computeHyperlinkLabel(hyperlinkedWord, definition.getTargetType(), definition.getParamsAsList(), getXXResourceByName(definition.getFileName(), XpandUtil.TEMPLATE_EXTENSION))
 						);
 						links.add(genericHyperlink);
 					}
@@ -86,8 +107,9 @@ public class XpandHyperlinkDetector extends AbstractHyperlinkDetector {
 			return links;
 	}
 	
+	
 	/**
-	 * Determines for an array of definitions, iff the definition can be called from an expand statement or not.
+	 * Determines for a definitions, iff the definition can be called from an expand statement or not.
 	 * Therefore the target type of the expand statement and all types of the parameters of the expand statement are computed.
 	 * If no type can be computered, the type is set to <code>ObjectType</code>.
 	 * 
@@ -96,42 +118,24 @@ public class XpandHyperlinkDetector extends AbstractHyperlinkDetector {
 	 *  @param definition 
 	 *  			The definitions to check
 	 */
-	private boolean[] isDefinitionAssignableFromExpandStatement(AbstractDefinition[] definition, ExpandStatement expandStatement) {
-		boolean[] isAssignable = new boolean[definition.length];
-
-		ExecutionContext ctx = Activator.getExecutionContext(
-				getXtendXpandProject().getProject()).cloneWithResource(expandStatement.getContainingDefinition().getOwner());
-		Type expandTargetType = expandStatement.getTarget().analyze(ctx, new HashSet<AnalysationIssue>());
-		if (expandTargetType == null) 
-			expandTargetType = ctx.getObjectType();
-		Type[] statementTypes = new Type[expandStatement.getParameters().length];
-		for (int i = 0; i<statementTypes.length; i++) {
-			statementTypes[i] = expandStatement.getParameters()[i].analyze(ctx, new HashSet<AnalysationIssue>());
-			if (statementTypes[i] == null) statementTypes[i] = ctx.getObjectType();
+	private boolean isDefinitionAssignableFromExpandStatement(AbstractDefinition definition, Type[] statementTypes, 
+			Type statementType, ExecutionContext ctx) {
+		
+		Type defineType = ctx.getTypeForName(definition.getType().getValue());
+		if (defineType == null) 
+			defineType = ctx.getObjectType();
+		if (!statementType.isAssignableFrom(defineType))  
+			return false;
+		
+		List<Type> definitionTypes = new ArrayList<Type>();
+		for (DeclaredParameter param : definition.getParams()) {
+			Type paramType = ctx.getTypeForName(param.getType().getValue());
+			if (paramType != null)
+				definitionTypes.add(paramType);
+			else
+				definitionTypes.add(ctx.getObjectType());
 		}
-		for(int i = 0;i<definition.length;i++){
-			if (definition[i].getParams().length != statementTypes.length)  
-				isAssignable[i] = false;
-			else 
-			{
-				Type defineType = ctx.getTypeForName(definition[i].getType().getValue());
-				if (defineType == null) defineType = ctx.getObjectType();
-				if (!expandTargetType.isAssignableFrom(defineType)) 
-				{
-					isAssignable[i] = false;
-					break;
-				}
-				boolean flag = true;
-				for (int j =0; j<definition[i].getParams().length; j++){
-					Type definitionType = ctx.getTypeForName(definition[i].getParams()[j].getType().getValue());
-					if (definitionType == null) definitionType = ctx.getObjectType();
-					if (!statementTypes[j].isAssignableFrom(definitionType))
-						flag = false;
-				}
-				isAssignable[i] = flag;
-			}
-		}
-		return isAssignable;
+		return PolymorphicResolver.typesComparator.compare(definitionTypes, Arrays.asList(statementTypes)) >=0;
 	}
 		
 }

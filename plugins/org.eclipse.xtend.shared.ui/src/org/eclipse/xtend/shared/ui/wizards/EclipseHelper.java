@@ -201,6 +201,8 @@ public class EclipseHelper {
 		}
 
 		IFolder metaInf = project.getFolder("META-INF");
+		if (metaInf.exists())
+			metaInf.delete(false, progressMonitor);
 		metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
 		createFile("MANIFEST.MF", metaInf, maniContent.toString(), progressMonitor);
 	}

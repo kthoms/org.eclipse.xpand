@@ -13,8 +13,6 @@ package org.eclipse.xtend.backend.expr;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
@@ -27,8 +25,6 @@ import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFac
 import org.eclipse.xtend.backend.functions.java.internal.ParameterConverter;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 import org.eclipse.xtend.middleend.javaannotations.ExecutionContextAware;
-
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 public class MethodInvocationExpression extends ExpressionBase {
 
@@ -114,7 +110,7 @@ public class MethodInvocationExpression extends ExpressionBase {
 			}
 
 			ErrorHandler.handle("could not invoke method " + _mtd
-					+ " with parameters " + Arrays.asList(params)
+					+ " with parameters " + params
 					+ " of types " + paramTypes, e);
 			return null; // to make the compiler happy - this is never executed
 		}

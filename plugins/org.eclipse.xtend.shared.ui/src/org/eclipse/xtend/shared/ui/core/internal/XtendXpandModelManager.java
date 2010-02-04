@@ -15,7 +15,10 @@ import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -33,9 +36,21 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
 
 public class XtendXpandModelManager implements IModelManager {
 
-    public XtendXpandModelManager() {
+	public XtendXpandModelManager() {
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		workspace.addResourceChangeListener(resourceListener);
+	}
 
-    }
+	/**
+	 * Remove projects from cache, iff they are removed in workspace. 
+	 */
+	private final IResourceChangeListener resourceListener = new IResourceChangeListener() {
+
+		public void resourceChanged(IResourceChangeEvent event) {
+			if (event.getType() == IResourceChangeEvent.PRE_DELETE)
+				removeProject(event.getResource());
+		}	
+	};
 
     public final Cache<IJavaProject, XtendXpandProject> projects = new Cache<IJavaProject, XtendXpandProject>() {
         @Override
@@ -66,6 +81,18 @@ public class XtendXpandModelManager implements IModelManager {
         return null;
     }
 
+    /**
+     * Remove project from cache
+     * 
+     * @param res 
+     * 			The project deleted
+     */
+    private void removeProject(final IResource res) {
+        if (res != null) {
+        	projects.getValues().remove(findProject(res));
+        }
+    }
+    
     public void analyze(final IProgressMonitor monitor) {
         monitor.beginTask(Messages.XtendXpandModelManager_AnalyzingPrompt, computeAmoutOfWork());
         for (final Iterator<?> iter = projects.getValues().iterator(); iter.hasNext();) {

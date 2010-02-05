@@ -12,6 +12,7 @@ Contributors:
 package org.eclipse.xtend.middleend.xtend.internal;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +33,7 @@ import org.eclipse.internal.xtend.type.baseimpl.types.SetTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.StaticPropertyTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.StringTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.TypeTypeImpl;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
@@ -49,6 +51,7 @@ import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.builtin.TypeType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
+import org.eclipse.xtend.backend.types.uml2.UmlTypesystem;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.type.impl.java.JavaTypeImpl;
 import org.eclipse.xtend.typesystem.Type;
@@ -56,6 +59,9 @@ import org.eclipse.xtend.typesystem.emf.EClassType;
 import org.eclipse.xtend.typesystem.emf.EDataTypeType;
 import org.eclipse.xtend.typesystem.emf.EEnumType;
 import org.eclipse.xtend.typesystem.emf.EObjectType;
+import org.eclipse.xtend.typesystem.uml2.profile.EnumType;
+import org.eclipse.xtend.typesystem.uml2.profile.MultipleStereotypeType;
+import org.eclipse.xtend.typesystem.uml2.profile.StereotypeType;
 
 
 /**
@@ -66,6 +72,7 @@ import org.eclipse.xtend.typesystem.emf.EObjectType;
 public final class TypeToBackendType {
     private final BackendTypesystem _backendTypes;
     private final EmfTypesystem _emfTypes;
+    private final UmlTypesystem _umlTypes;
     private final ExecutionContext _ctx;
     
     public TypeToBackendType (BackendTypesystem backendTypes, ExecutionContext ctx) {
@@ -73,12 +80,16 @@ public final class TypeToBackendType {
         _ctx = ctx;
         
         EmfTypesystem ets = null;
+        UmlTypesystem uts = null;
         for (BackendTypesystem bts: ((CompositeTypesystem) _backendTypes).getInner()) {
             if (bts instanceof EmfTypesystem)
                 ets = (EmfTypesystem) bts;
+            if (bts instanceof UmlTypesystem)
+            	uts = (UmlTypesystem) bts;
         }
         
         _emfTypes = ets;
+        _umlTypes = uts;
     }
     
     public BackendType convertToBackendType (Identifier typeName) {
@@ -107,6 +118,12 @@ public final class TypeToBackendType {
     }
     
     public BackendType convertToBackendType (Type t) {
+    	if (t instanceof StereotypeType)
+    		return convertStereotypeType (t);
+    	if (t instanceof MultipleStereotypeType)
+    		return convertMultipleStereotypeType (t);
+    	if (t instanceof EnumType)
+    		return convertEnumType (t);
         if (t instanceof EClassType)
             return convertEClassType (t);
         if (t instanceof EDataTypeType)
@@ -152,7 +169,33 @@ public final class TypeToBackendType {
             throw new IllegalArgumentException ("unable to convert type 'null'");
     }
     
-    private BackendType convertJavaType (Type t) {
+    private BackendType convertEnumType(Type t) {
+    	if (t instanceof EnumType) 
+    		return _umlTypes.findType(((EnumType)t).getEnumeration());
+    	return null;
+	}
+
+	private BackendType convertMultipleStereotypeType(Type t) {
+		if (t instanceof StereotypeType) {
+			List<StereotypeType> stTypes = ((MultipleStereotypeType)t).getStereotypes();
+			List<Stereotype> st = new ArrayList<Stereotype> ();
+			for (StereotypeType stType : stTypes) {
+				st.add(stType.getStereoType());
+			}
+			return _umlTypes.findType(st);
+		}
+		return null;
+	}
+
+	private BackendType convertStereotypeType(Type t) {
+		if (t instanceof StereotypeType) {
+			Stereotype st = ((StereotypeType)t).getStereoType();
+			return _umlTypes.findType (st);
+		}
+		return null;
+	}
+
+	private BackendType convertJavaType (Type t) {
         final Class<?> cls = (Class<?>) getField (t, "clazz");
         return _backendTypes.findType(cls);
     }

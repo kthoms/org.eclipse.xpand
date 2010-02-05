@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Backend Plug-in (Incubation)
 Bundle-SymbolicName: org.eclipse.xtend.backend;singleton:=true
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
  org.eclipse.xtend.backend.aop,
  org.eclipse.xtend.backend.aop.internal;x-internal:=true,

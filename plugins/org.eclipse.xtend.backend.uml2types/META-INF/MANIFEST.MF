@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name.0 (Incubation)
+Bundle-Name: Xtend Backend UML2 types (Incubation)
 Bundle-SymbolicName: org.eclipse.xtend.backend.uml2types
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.uml2.uml
 Bundle-Localization: plugin

@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xtend.middleend.xtend"
       label="%featureName"
-      version="0.7.0.qualifier"
+      version="0.8.0.qualifier"
       provider-name="%providerName">
 
    <description url="http://www.eclipse.org/modeling/m2t">
@@ -22,13 +22,13 @@
    </url>
 
    <requires>
+      <import plugin="org.eclipse.xtend.backend"/>
       <import plugin="org.eclipse.xtend"/>
-      <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.emf.mwe.core"/>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.xtend.backend"/>
       <import plugin="org.eclipse.xtend.typesystem.emf"/>
       <import plugin="org.eclipse.xpand"/>
+      <import plugin="com.springsource.org.apache.commons.logging"/>
    </requires>
 
    <plugin

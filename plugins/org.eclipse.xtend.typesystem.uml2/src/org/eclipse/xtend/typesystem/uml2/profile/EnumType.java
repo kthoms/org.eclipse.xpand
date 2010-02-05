@@ -83,4 +83,9 @@ public class EnumType extends AbstractTypeImpl {
     public Object newInstance() {
         throw new UnsupportedOperationException();
     }
+    
+    public Enumeration getEnumeration () {
+    	return enumeration;
+    }
+    
 }

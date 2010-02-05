@@ -82,5 +82,8 @@ public final class MultipleStereotypeType extends StereotypeType {
 		return false;
 	}
 
+	public List<StereotypeType> getStereotypes () {
+		return stereotypes;
+	}
 	
 }

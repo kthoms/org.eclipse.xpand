@@ -222,6 +222,10 @@ public class StereotypeType extends AbstractTypeImpl {
         }
         return Collections.unmodifiableSet(superTypes);
     }
+    
+    public Stereotype getStereoType () {
+    	return stereoType;
+    }
 
     private String getFullName(Object object) {
         if (object instanceof NamedElement) {

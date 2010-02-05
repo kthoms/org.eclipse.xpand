@@ -3579,7 +3579,7 @@ public interface PostProcessor {
           </indexterm>. <programlisting>&lt;prSrcPaths value="main/src"/&gt;
 &lt;prDefaultExcludes value="false"/&gt;
 &lt;prExcludes value="*.xml"/&gt;</programlisting>The
-        <emphasis>prSrcPaths</emphasis>  <indexterm>
+        <emphasis>prSrcPaths</emphasis><indexterm>
             <primary>prSrcPaths</primary>
           </indexterm>property points to a comma-separated list of
         directories. The protected region resolver will scan these directories

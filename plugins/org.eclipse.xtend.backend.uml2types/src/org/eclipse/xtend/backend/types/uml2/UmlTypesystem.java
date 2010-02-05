@@ -150,10 +150,14 @@ public final class UmlTypesystem implements BackendTypesystem {
             
             // if that doesn't work, try to get the type of the containing enumeration
             return _rootTs.findType (el.getEnumeration());
-        } 
+        }
+        else if (o instanceof Enumeration)
+        	return _rootTs.findType(o);
         else if (o instanceof Element) 
             return getTypeByStereotype ((Element) o);                
-        
+        else if (o instanceof List<?>)
+        	return getTypeByStereotypeList((List<?>)o);
+        	
         return null;
     }
 
@@ -180,6 +184,22 @@ public final class UmlTypesystem implements BackendTypesystem {
             case 1: return stTypes.get(0);
             default: return new MultipleStereotypeType (stTypes);
         }
+    }
+    
+    private BackendType getTypeByStereotypeList (List<?> stereotypes) {
+        final List<BackendType> stTypes = new ArrayList<BackendType>();
+        for (Object o: stereotypes) {
+        	if (o instanceof Stereotype) {
+	            BackendType stType = findType (o);
+	            if (stType != null) {
+	                stTypes.add (stType);
+	            }
+	        }
+	    }
+        if (stereotypes.size() > 0)
+        	return new MultipleStereotypeType(stTypes);
+        
+        return null;
     }
 
     public BackendType getTypeForEClassifier (EClassifier eClassifier) {

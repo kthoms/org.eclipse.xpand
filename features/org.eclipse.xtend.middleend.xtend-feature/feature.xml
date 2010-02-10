@@ -28,7 +28,6 @@
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.xtend.typesystem.emf"/>
       <import plugin="org.eclipse.xpand"/>
-      <import plugin="com.springsource.org.apache.commons.logging"/>
    </requires>
 
    <plugin

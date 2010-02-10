@@ -5,4 +5,5 @@
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/builtin_api.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterTutorial.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterReference.xml" />
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/incrementalGeneration.xml" />
 </book>

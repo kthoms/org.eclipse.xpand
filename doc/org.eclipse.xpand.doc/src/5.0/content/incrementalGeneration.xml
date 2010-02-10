@@ -1,0 +1,388 @@
+<!-- ***************************************************************************
+ * Copyright (c) 2009 - 2010 eXXcellent solutions gmbh and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ ******************************************************************************/
+
+@author Achim Demelt - Initial contribution
+ 
+-->
+
+<chapter id="incrementalGeneration">
+  <title>Incremental Generation</title>
+
+  <para>
+    As projects become larger, so typically do their models. However, the larger
+    the models are, the longer the code generation process takes. In a mature
+    project, a developer typically changes only a small part of a large model.
+    Performing a full code generation process for the whole model slows down the
+    development cycle considerably due to various factors:
+    
+    <itemizedlist>
+      <listitem>
+        The whole model must be traversed, and each statement in the Xpand
+        templates must be executed. The larger the model is and the more Xpand
+        templates you have, the higher the negative impact is.
+      </listitem>
+      <listitem>
+        All generated files are written to disk. The I/O operation itself is
+        one major contributor to the overall elapsed time. What's more, files
+        are typically post-processed by beautifiers, which is another time
+        consuming operation. If you are working with protected regions, the
+        impact is even more dramatic.
+      </listitem>
+      <listitem>
+        Since every file has a new timestamp after code generation, typically
+        a compiler will pick up these new files and start compilation, which
+        adds more CPU and I/O cycles to the process.
+      </listitem>
+    </itemizedlist>
+    
+    Considering that for a small change in the model only a fraction of the
+    generated files actually do change their contents, performing a full
+    generation is obviously a waste of time.
+  </para>
+  
+  <para>
+    Beginning with the Helios release train (Eclipse 3.6, Xpand 0.8), Xpand
+    now ships with an incremental generation facility. This works very similar
+    to the incremental Java compiler in Eclipse. It detects which parts of a
+    model have changed since the last generation process. It then
+    determines which files need to be generated due to that change and which
+    are unaffected by it. Only the former are the regenerated, while the
+    latter remain untouched.
+  </para>
+  
+  <para>
+    The following sections explain how this incremental generation feature
+    works and how you can use it.
+  </para>
+
+  <section id="incrementalGeneration_background">
+    <title>Technical Background</title>
+    
+    <para>
+      The key to incremental generation lies in knowing which element in a model
+      was used to generate which file. This information can easily be computed
+      during generation, by tracking which parts of the model are
+      accessed in the context of any given
+      <code>«FILE»</code> statement. A callback for the
+      Xpand generator does this job and builds up a so-called
+      <emphasis>trace model</emphasis> on-the-fly.
+    </para>
+    
+    <para>
+      The second important information is the actual change that has occurred
+      in a model. There are basically two ways to compute this. One is to
+      attach a change listener when editing the model and capture the change
+      as it happens. The other way is to keep a backup copy of the model and
+      compare the old version with the current version to compute the change.
+      See <xref linkend="incrementalGeneration_performance" />
+      for pros and cons of each of the two ways. In either
+      case, the result is a so-called <emphasis>diff model</emphasis>.
+    </para>
+        
+    <para>
+      When we know which parts of a model have changed, and we also know which
+      files have been produced based upon these parts of the model, we can then
+      skip the generation of all other files, thus performing incremental
+      generation.
+    </para>    
+  </section>
+
+  <section id="incrementalGeneration_usage">
+    <title>Using Incremental Generation</title>
+
+    <section id="incrementalGeneration_usage_facade">
+      <title>The Incremental Generation Facade</title>
+      
+      <para>
+        The easiest way to benefit from incremental generation is to use the
+        <emphasis>IncrementalGenerationFacade</emphasis> workflow component:
+      </para>
+
+<programlisting>
+&lt;workflow&gt;
+  &lt;component id="incremental"
+      class="org.eclipse.xpand2.incremental.IncrementalGenerationFacade"&gt;
+    &lt;newModelFile value="path/to/your/model.file" /&gt;
+    &lt;oldModelFile value="path/to/backup/model.file" /&gt;
+    &lt;traceModelFile value="path/to/store/trace/model.trace" /&gt; 
+    &lt;outlet path="path/to/your/outlet/" overwrite="true"/&gt;
+  &lt;/component&gt;
+
+  &lt;component id="generator" class="org.eclipse.xpand2.Generator"&gt;
+    &lt;expand value="your::template::Root FOR model" /&gt;
+    &lt;outlet path="temp/" overwrite="true"/&gt;
+    &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel" /&gt;
+    &lt;vetoableCallback idRef="incremental" /&gt;
+  &lt;/component&gt;
+&lt;/workflow&gt;
+</programlisting>
+    
+      <para>
+        The <emphasis>IncrementalGenerationFacade</emphasis> takes four
+        parameters:
+        
+        <itemizedlist>
+          <listitem>
+            <para>
+              The <emphasis>newModelFile</emphasis> is the file
+              path where the model to generate is stored. This file is stored
+              in a model slot named <emphasis>model</emphasis>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The <emphasis>oldModelFile</emphasis> is the file
+              path where a copy of the previous state of the model is stored.
+              The model is automatically copied to this location after the
+              generation process and kept between generator invocations.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The <emphasis>traceModelFile</emphasis> is the file
+              path where the <emphasis>trace model</emphasis> of the generation
+              process is stored between generator invocations.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              A regular <emphasis>outlet</emphasis> list that must match the
+              one given for the regular generator invocation.
+            </para>
+          </listitem>
+        </itemizedlist>
+        
+        The <emphasis>IncrementalGenerationFacade</emphasis> component must then
+        be passed as a <emphasis>vetoableCallback</emphasis> parameter to the
+        invocation of the Xpand <emphasis>Generator</emphasis>.
+      </para>
+
+      <para>
+        With the simple workflow given above, you should be able to observe
+        that for any given change in the model, only the files affected by
+        that change are regenerated, while all others remain untouched. Even
+        deleting elements will result in specific (previously generated) files
+        being deleted from the hard disk.
+      </para>
+      
+      <para>
+        Note that you have to use file paths for all models because they
+        are physically copied on the hard disk. Passing locations that
+        can only be resolved from the classpath is not possible.
+      </para>
+    </section>
+
+    <section id="incrementalGeneration_usage_callback">
+      <title>The Incremental Generation Callback</title>
+      
+      <para>
+        While the <emphasis>IncrementalGenerationFacade</emphasis> is easy
+        to use, it is rather restricted in its capabilities and fixed in the
+        operations it performs. Using the
+        <emphasis>IncrementalGenerationCallback</emphasis> gives you more
+        control over the steps involved. A typical workflow for incremental
+        generation needs to perform the following tasks:
+        
+        <orderedlist>
+          <listitem>
+            <para>
+              Read the (current) model into a slot.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Read the previous state of the model into another slot. This
+              may, of course, not exist, e.g. for the very first invocation.
+              Full generation must be performed in this case.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Compute the changes between the two versions of the model
+              (if possible) and
+              put that <emphasis>diff model</emphasis> into a slot.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Read the <emphasis>trace model</emphasis> computed during the
+              previous generator invocation and put it into a slot.
+              As with the old state of the model, this may not exist, which
+              also leads to full generation.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Initialize the <emphasis>IncrementalGenerationCallback</emphasis>
+              with the <emphasis>diff model</emphasis> and the
+              <emphasis>trace model</emphasis>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Run the Xpand <emphasis>Generator</emphasis> component with
+              the <emphasis>IncrementalGenerationCallback</emphasis>.              
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Clean obsolete files, i.e. files that need to be deleted because
+              the corresponding elements in the model have been deleted.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Write the new <emphasis>trace model</emphasis> computed during
+              code generation to the hard disk so that it is available
+              for the next generation process.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              Make a backup copy of the model so that it can be compared with
+              the next version upon subsequent generator invocation.
+            </para>
+          </listitem>
+        </orderedlist>
+      </para>
+
+      <para>
+        This is a sample workflow that performs all these steps:
+      </para>
+      
+<programlisting>
+&lt;workflow&gt;
+  &lt;!-- read new model --&gt;
+  &lt;component id="modelreader" class="org.eclipse.emf.mwe.utils.Reader"
+    uri="model/my.model"
+    firstElementOnly="true"
+    modelSlot="model"               
+  /&gt;
+  &lt;!-- read old model, copied from previous run. may not exist, so ignore missing model --&gt;
+  &lt;component id="oldmodelreader" class="org.eclipse.emf.mwe.utils.Reader"
+    uri="temp/old.model"
+    firstElementOnly="true"
+    ignoreMissingModel="true"
+    modelSlot="oldmodel"            
+  /&gt;
+  
+  &lt;!-- compute diff. --&gt;
+  &lt;component id="compare" class="org.eclipse.xpand2.incremental.compare.EmfCompare"
+    oldModelSlot="oldmodel"
+    newModelSlot="model"
+    diffModelSlot="diff"
+  /&gt;
+
+  &lt;!-- read trace model, produced by previous run. may not exist, so ignore missing model --&gt;
+  &lt;component id="tracemodelreader" class="org.eclipse.emf.mwe.utils.Reader"
+    uri="temp/trace.trace"
+    firstElementOnly="true"
+    ignoreMissingModel="true"
+    modelSlot="oldtrace"            
+  /&gt;
+
+  &lt;!-- this is the actual incremental generation callback --&gt;
+  &lt;component id="incremental"
+      class="org.eclipse.xpand2.incremental.IncrementalGenerationCallback"
+    diffModelSlot="diff"
+    oldTraceModelSlot="oldtrace"
+    newTraceModelSlot="trace"
+  /&gt;
+  
+  &lt;!-- generate code --&gt;
+  &lt;component id="generator" class="org.eclipse.xpand2.Generator"&gt;
+    &lt;expand value="resources::templates::Test::Test FOR model" /&gt;
+    &lt;outlet path="somewhere/" overwrite="true"/&gt;
+    &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel" /&gt;
+    &lt;vetoableCallback idRef="incremental" /&gt;
+  &lt;/component&gt;
+  
+  &lt;!-- clean obsolete files --&gt;
+  &lt;component id="cleaner" class="org.eclipse.xpand2.incremental.FileCleaner"&gt;
+    &lt;oldTraceModelSlot value="oldtrace" /&gt;
+    &lt;newTraceModelSlot value="trace" /&gt;
+    &lt;outlet path="somewhere/" overwrite="true"/&gt;
+  &lt;/component&gt;
+  
+  &lt;!-- write trace model --&gt;
+  &lt;component id="tracemodelwriter" class="org.eclipse.emf.mwe.utils.Writer"
+    modelSlot="trace"
+    uri="temp/trace.trace"
+  /&gt;      
+  
+  &lt;!-- make backup copy of model --&gt;
+  &lt;component id="copier" class="org.eclipse.emf.mwe.utils.FileCopy"
+    sourceFile="model/my.model"
+    targetFile="temp/old.model"
+  /&gt;
+&lt;/workflow&gt;
+</programlisting>
+
+    </section>
+    
+  </section>
+
+  <section id="incrementalGeneration_notes">
+    <title>Additional Notes</title>
+    
+    <section id="incrementalGeneration_limitations">
+      <title>Limitations</title>
+      <para>
+        The incremental generation process can only be used with EMF-based models.
+        That's because all intermediate artifacts
+        (<emphasis>diff model</emphasis> and <emphasis>trace model</emphasis>)
+        which reference the original models are also stored as EMF models. It is
+        therefore not possible to refer to other model formats. Moreover, you
+        should make sure that your model has stable IDs for the individual
+        model elements so that the model comparison doesn't run into any
+        ambiguities.
+      </para>
+      
+      <para>
+      	Also note that at the moment, Xpand cannot track access to model elements
+      	from JAVA extensions. This can lead to cases where a change in a specific
+      	model element should trigger a specific (set of)
+      	file(s) to be regenerated, but it actually doesn't.
+      	That's because Xpand didn't know about the
+      	model element being accessed during the original file generation,
+      	so it has no indication that a regeneration is required. For that reason
+      	you should try to access your model as much as possible from Xpand or
+      	Xtend, and only resort to JAVA code when it is unavoidable.      	
+      </para>      
+    </section>
+    
+    <section id="incrementalGeneration_performance">
+      <title>Performance Considerations</title>
+      <para>
+        The main performance benefits of incremental generation come from
+        <emphasis>not</emphasis> doing things that are not necessary. Given
+        the workflow from <xref linkend="incrementalGeneration_usage_callback" />,
+        it may seem counterproductive to first
+        perform a costly model comparison operation before it can even be
+        determined whether a file has to be generated or not.
+      </para>
+      
+      <para>
+        While it is true that model comparison is a very expensive operation,
+        it turns out that it still outweighs the costs of unnecessarily
+        generating files, even if no postprocessing or subsequent compiler
+        invocation is involved.
+      </para>
+      
+      <para>
+        That said, it is definitely preferrable to do without a model comparison
+        and rather capture the changes to the model on-the-fly. So whenever
+        you are working in a controlled environment, you may want to consider a
+        customized integration of the generator invocation with the
+        model editors.
+      </para>
+    </section>
+
+  </section>
+</chapter>

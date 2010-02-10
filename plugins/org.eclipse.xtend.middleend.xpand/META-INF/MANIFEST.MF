@@ -14,4 +14,5 @@ Require-Bundle: org.eclipse.xpand,
  org.eclipse.emf.mwe.core
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.commons.logging
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -27,6 +27,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.osgi,
  org.eclipse.equinox.registry,
  org.eclipse.emf.mwe.core
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.xtend.middleend.internal.Activator
 Import-Package: org.apache.commons.logging
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

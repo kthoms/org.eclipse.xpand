@@ -37,4 +37,12 @@
          id="org.eclipse.xtend.backend.uml2types.source"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.xtend.middleend.xpand"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.xtend.middleend.xtend"
+         version="0.0.0"/>
+
 </feature>

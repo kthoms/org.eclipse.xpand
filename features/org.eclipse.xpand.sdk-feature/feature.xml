@@ -93,6 +93,10 @@
          id="org.eclipse.xpand.incremental.source"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.xtend.backend.sdk"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.xtend.util.stdlib"/>
    </requires>

@@ -72,7 +72,7 @@ final class ProjectAnalyzer extends Job {
 	public ProjectAnalyzer(final IJavaProject project) {
 		super(Messages.ProjectAnalyzer_AnalysingPrompt + project.getProject().getProject().getName());
 		// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=268516
-		setRule(project.getSchedulingRule());
+		setRule(project.getProject().getWorkspace().getRoot());
 		this.project = project;
 	}
 

@@ -21,30 +21,8 @@
       <update label="%updateSiteName" url="http://download.eclipse.org/modeling/m2t/updates/"/>
    </url>
 
-   <includes
-         id="org.eclipse.xtend.typesystem.uml2"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.xtend.typesystem.uml2.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.xtend.typesystem.xsd"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.xtend.typesystem.xsd.source"
-         version="0.0.0"/>
-
    <requires>
-      <import feature="org.eclipse.xpand" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.text"/>
-      <import plugin="org.eclipse.equinox.common"/>
-      <import plugin="org.eclipse.emf.mwe.core"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.apache.commons.logging"/>
+      <import feature="org.eclipse.xpand.sdk" version="0.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

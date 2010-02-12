@@ -29,4 +29,8 @@
          id="org.eclipse.xpand.support"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.xtend.backend.sdk"
+         version="0.0.0"/>
+
 </feature>

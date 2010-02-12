@@ -27,10 +27,12 @@
 
    <includes
          id="org.eclipse.xpand.support"
-         version="0.0.0"/>
+         version="0.0.0"
+         optional="true"/>
 
    <includes
          id="org.eclipse.xtend.backend.sdk"
-         version="0.0.0"/>
+         version="0.0.0"
+         optional="true"/>
 
 </feature>

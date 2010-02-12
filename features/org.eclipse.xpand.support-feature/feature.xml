@@ -23,6 +23,7 @@
 
    <requires>
       <import feature="org.eclipse.xpand.sdk" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.cdt.core"/>
    </requires>
 
    <plugin

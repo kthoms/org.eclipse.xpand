@@ -33,25 +33,25 @@
 </entry>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N1106E"/>
+<topic href="help/xpand_reference_introduction.html#N1106D"/>
 <entry keyword="Workflow">
-<topic href="help/xpand_reference_introduction.html#N11070"/>
+<topic href="help/xpand_reference_introduction.html#N1106F"/>
 </entry>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N10FF9"/>
+<topic href="help/xpand_reference_introduction.html#N10FF8"/>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N10FFB"/>
+<topic href="help/xpand_reference_introduction.html#N10FFA"/>
 </entry>
 </entry>
 <entry keyword="AROUND">
 <topic href="help/xpand_reference_introduction.html#N10DF3"/>
 </entry>
 <entry keyword="AROUND">
-<topic href="help/xpand_reference_introduction.html#N1103F"/>
+<topic href="help/xpand_reference_introduction.html#N1103E"/>
 </entry>
 <entry keyword="AROUND">
-<topic href="help/xpand_reference_introduction.html#N1109A"/>
+<topic href="help/xpand_reference_introduction.html#N11099"/>
 </entry>
 <entry keyword="Aspect-Oriented Programming">
 <topic href="help/Xtend_language.html#N109EE"/>
@@ -402,7 +402,7 @@
 <topic href="help/Xtend_language.html#N109C1"/>
 </entry>
 <entry keyword="join point">
-<topic href="help/xpand_reference_introduction.html#N11033"/>
+<topic href="help/xpand_reference_introduction.html#N11032"/>
 </entry>
 <entry keyword="Join point">
 <topic href="help/Xtend_language.html#N10A1D"/>
@@ -510,7 +510,7 @@
 <topic href="help/xpand_reference_introduction.html#N10DDF"/>
 </entry>
 <entry keyword="NoChangesVetoStrategy">
-<topic href="help/xpand_reference_introduction.html#N10FD9"/>
+<topic href="help/xpand_reference_introduction.html#N10FD8"/>
 </entry>
 <entry keyword="OCL">
 <topic href="help/r10_expressions_language.html#N10452"/>
@@ -573,7 +573,7 @@
 </entry>
 </entry>
 <entry keyword="prSrcPaths">
-<topic href="help/xpand_reference_introduction.html#N10F7F"/>
+<topic href="help/xpand_reference_introduction.html#N10F7E"/>
 </entry>
 <entry keyword="Real type">
 <topic href="help/r10_typesystem.html#N10138"/>
@@ -684,7 +684,7 @@
 <topic href="help/r10_typesystem.html#N10326"/>
 </entry>
 <entry keyword="VetoStrategy">
-<topic href="help/xpand_reference_introduction.html#N10F96"/>
+<topic href="help/xpand_reference_introduction.html#N10F95"/>
 </entry>
 <entry keyword="Weaving advices">
 <topic href="help/Xtend_language.html#N109FB"/>

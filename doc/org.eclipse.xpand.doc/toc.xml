@@ -144,7 +144,7 @@
 <topic href="help/xpand_reference_introduction.html#xpand_reference_xmlbeautifier" label="XmlBeautifier"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_protected_region_configuration" label="Protected Region Configuration"/>
-<topic href="help/xpand_reference_introduction.html#N10F92" label="VetoStrategy"/>
+<topic href="help/xpand_reference_introduction.html#N10F91" label="VetoStrategy"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#aop_template_introduction" label="Example for using Aspect-Oriented Programming in Xpand"/>
 <topic href="help/xpand_reference_introduction.html#aop_template_the_problem" label="The Problem"/>
@@ -197,5 +197,16 @@
 </topic>
 <topic href="help/xsd_reference_xsd2ecore.html" label="Behind the scenes: Transforming XSD to Ecore"/>
 <topic href="help/xsd_reference_declare_xsd.html" label="How to declare XML Schemas"/>
+</topic>
+<topic href="help/incrementalGeneration.html" label="Incremental Generation">
+<topic href="help/incrementalGeneration.html#incrementalGeneration_background" label="Technical Background"/>
+<topic href="help/incrementalGeneration_usage.html" label="Using Incremental Generation">
+<topic href="help/incrementalGeneration_usage.html#incrementalGeneration_usage_facade" label="The Incremental Generation Facade"/>
+<topic href="help/incrementalGeneration_usage.html#incrementalGeneration_usage_callback" label="The Incremental Generation Callback"/>
+</topic>
+<topic href="help/incrementalGeneration_notes.html" label="Additional Notes">
+<topic href="help/incrementalGeneration_notes.html#incrementalGeneration_limitations" label="Limitations"/>
+<topic href="help/incrementalGeneration_notes.html#incrementalGeneration_performance" label="Performance Considerations"/>
+</topic>
 </topic>
 </toc>

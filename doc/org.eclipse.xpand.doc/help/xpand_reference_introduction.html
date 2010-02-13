@@ -170,8 +170,8 @@
 <pre class="programlisting">«DEFINE templateName(formalParameterList) FOR MetaClass»
    a sequence of statements
 «ENDDEFINE»</pre>
-<p>To some extent, templates can be seen as special
-        methods of the metaclass â&#128;&#147; there is always an implicit
+<p>To some extend, templates can be seen as special
+        methods of the metaclass. There is always an implicit
         <span class="emphasis">
 <em>this</em>
 </span> parameter which can be used to address the
@@ -1042,7 +1042,8 @@ public interface PostProcessor {
 <p>The
         <span class="emphasis">
 <em>prSrcPaths</em>
-</span>  <a name="N10F7E" class="indexterm"/>property points to a comma-separated list of
+</span>
+<a name="N10F7D" class="indexterm"/>property points to a comma-separated list of
         directories. The protected region resolver will scan these directories
         for files containing activated protected regions.</p>
 <p>There are several file names which are excluded by default:
@@ -1073,7 +1074,7 @@ public interface PostProcessor {
 <div>
 <div>
 <h4 class="title">
-<a name="N10F92"/>VetoStrategy<a name="N10F95" class="indexterm"/>
+<a name="N10F91"/>VetoStrategy<a name="N10F94" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -1160,7 +1161,7 @@ public interface PostProcessor {
 <p>One <code class="classname">VetoStrategy</code> is already provided.
         The
         <code class="classname">org.eclipse.xpand2.output.NoChangesVetoStrategy</code>
-        <a name="N10FD8" class="indexterm"/>is a simple implementation that will compare the
+        <a name="N10FD7" class="indexterm"/>is a simple implementation that will compare the
         produced output, after it has been postprocessed, with the target
         file. If the content is identical the strategy vetoes the file
         writing. This strategy is effective, but has two severe
@@ -1207,7 +1208,7 @@ public interface PostProcessor {
 </div>
 </div>
 <p>
-<a name="N10FF8" class="indexterm"/>This example shows how to use aspect-oriented programming
+<a name="N10FF7" class="indexterm"/>This example shows how to use aspect-oriented programming
       techniques in <span class="emphasis">
 <em>Xpand</em>
 </span> templates. It is applicable to
@@ -1216,7 +1217,7 @@ public interface PostProcessor {
 </span> systems. However, we explain
       the idea based on the <span class="emphasis">
 <em>emfExample</em>
-</span> â&#128;&#147; hence you should
+</span>. Hence you should
       read that before.</p>
 </div>
 <div class="section" title="The Problem">
@@ -1237,7 +1238,7 @@ public interface PostProcessor {
       nice generator that generates certain artifacts. The generator (or
       cartridge) might be a third party product, delivered in a single JAR
       file. Still you might want to adapt certain aspects of the generation
-      process â&#128;&#147; <span class="emphasis">
+      process <span class="emphasis">
 <em>without modifying the original
       generator</em>
 </span>.</p>
@@ -1280,7 +1281,7 @@ public interface PostProcessor {
 </div>
 </div>
 </div>
-<p>An AOP system always needs to define a join point<a name="N11032" class="indexterm"/> model; this is, you have to define, at which locations
+<p>An AOP system always needs to define a join point<a name="N11031" class="indexterm"/> model; this is, you have to define, at which locations
         of a (template) program you can add additional (template) code. In
         <span class="emphasis">
 <em>Xpand</em>
@@ -1291,7 +1292,7 @@ public interface PostProcessor {
         <span class="emphasis">
 <em>AROUND</em>
 </span>
-<a name="N1103E" class="indexterm"/> previously existing templates. If you take a look at
+<a name="N1103D" class="indexterm"/> previously existing templates. If you take a look at
         the <code class="classname">org.eclipse.demo.emf.datamodel.generator</code> source
         folder of the project, you can find the <code class="filename">Root.xpt</code>
         template file. Inside, you can find a template called
@@ -1316,13 +1317,13 @@ public interface PostProcessor {
 
    }
 «ENDDEFINE»</pre>
-<p>What we now want to do is as follows: Whenever the
+<p>What we now want to accomplish is this: Whenever the
         <span class="emphasis">
 <em>Impl</em>
 </span> template is executed, we want to run an
         additional template that generates additional code (for example, some
-        kind of meta information for frameworks â&#128;&#147; the specific code is not
-        important for the example here).</p>
+        kind of meta information for a given framework. The specific code at this
+        place is not important for the example here).</p>
 <p>So, in our new project, we define the following template
         file:</p>
 <pre class="programlisting">«AROUND Impl FOR data::Entity»
@@ -1346,7 +1347,7 @@ public interface PostProcessor {
 <div>
 <div>
 <h4 class="title">
-<a name="aop_template_example_workflow_file"/>Workflow File<a name="N1106D" class="indexterm"/>
+<a name="aop_template_example_workflow_file"/>Workflow File<a name="N1106C" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -1432,42 +1433,42 @@ public interface PostProcessor {
       <span class="emphasis">
 <em>AROUND</em>
 </span>
-<a name="N11099" class="indexterm"/> construct is as follows:</p>
-<pre class="programlisting">&lt;&lt;AROUND fullyQualifiedDefinitionNameWithWildcards
-      (Paramlist (*)?) FOR TypeName&gt;&gt;
+<a name="N11098" class="indexterm"/> construct is as follows:</p>
+<pre class="programlisting">«AROUND fullyQualifiedDefinitionNameWithWildcards
+      (Paramlist (*)?) FOR TypeName»
    do Stuff
-&lt;&lt;ENDAROUND&gt;&gt;</pre>
+«ENDAROUND»</pre>
 <p>Here are some examples:</p>
-<pre class="programlisting">&lt;&lt;AROUND *(*) FOR Object&gt;&gt;</pre>
+<pre class="programlisting">«AROUND *(*) FOR Object»</pre>
 <p>matches all templates</p>
-<pre class="programlisting">&lt;&lt;AROUND *define(*) FOR Object&gt;&gt;</pre>
+<pre class="programlisting">«AROUND *define(*) FOR Object»</pre>
 <p>matches all templates with <span class="emphasis">
 <em>define</em>
 </span> at the end
       of its name and any number of parameters</p>
-<pre class="programlisting">&lt;&lt;AROUND org::eclipse::xpand2::* FOR Entity&gt;&gt;</pre>
+<pre class="programlisting">«AROUND org::eclipse::xpand2::* FOR Entity»</pre>
 <p>matches all templates with namespace
       <span class="emphasis">
 <em>org::eclipse::xpand2::</em>
 </span> that do not have any parameters and
       whose type is Entity or a subclass</p>
-<pre class="programlisting">&lt;&lt;AROUND *(String s) FOR Object&gt;&gt;</pre>
+<pre class="programlisting">«AROUND *(String s) FOR Object»</pre>
 <p>matches all templates that have exactly one
       <code class="classname">String</code> parameter</p>
-<pre class="programlisting">&lt;&lt;AROUND *(String s,*) FOR Object&gt;&gt;</pre>
+<pre class="programlisting">«AROUND *(String s,*) FOR Object»</pre>
 <p>matches all templates that have at least one
       <code class="classname">String</code> parameter</p>
-<pre class="programlisting">&lt;&lt;AROUND my::Template::definition(String s) FOR Entity&gt;&gt;</pre>
+<pre class="programlisting">«AROUND my::Template::definition(String s) FOR Entity»</pre>
 <p>matches exactly this single definition</p>
 <p>Inside an <code class="varname">AROUND</code>, there is the variable
       <code class="varname">targetDef</code>, which has the type
       <code class="classname">xpand2::Definition</code>. On this variable, you can
       call <code class="methodname">proceed</code>, and also query a number of other
       things:</p>
-<pre class="programlisting">&lt;&lt;AROUND my::Template::definition(String s) FOR String&gt;&gt;
-   log('invoking '+&lt;&lt;targetDef.name&gt;&gt;+' with '+this)
-   &lt;&lt;targetDef.proceed()&gt;&gt;
-&lt;&lt;ENDAROUND&gt;&gt;</pre>
+<pre class="programlisting">«AROUND my::Template::definition(String s) FOR String»
+   log('invoking '+«targetDef.name»+' with '+this)
+   «targetDef.proceed()»
+«ENDAROUND»</pre>
 </div>
 </body>
 </html>

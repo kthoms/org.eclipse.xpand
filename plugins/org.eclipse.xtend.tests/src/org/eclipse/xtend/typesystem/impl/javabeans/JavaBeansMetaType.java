@@ -11,6 +11,18 @@
 package org.eclipse.xtend.typesystem.impl.javabeans;
 
 public class JavaBeansMetaType {
+	class InnerJavaBeansMetaType {
+		private String innerProp;
+
+		public void setInnerProp(String innerProp) {
+			this.innerProp = innerProp;
+		}
+
+		public String getInnerProp() {
+			return innerProp;
+		}
+		
+	}
     private String myProp;
 
     public String getMyProp() {

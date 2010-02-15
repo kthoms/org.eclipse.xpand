@@ -41,7 +41,7 @@ import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
  * @since 4.0
  */
 public class TypeNameUtil {
-	private static final String QUALIFIEDNAME_STRING = "(?:[^\\s.:()\\[\\]{}+\\-*/&|%$!\\\"\'=?]+::)*[^\\s.:()\\[\\]{}+\\-*/&|%$!\"'=?]+";
+	private static final String QUALIFIEDNAME_STRING = "(?:[^\\s.:()\\[\\]{}+\\-*/&|%$!\\\"\'=?]+::)*[^\\s.:()\\[\\]{}+\\-*/&|%!\"'=?]+";
 	/**
 	 * This pattern is used to find the type name within possible query strings
 	 */

@@ -22,6 +22,7 @@ public class TypeNameUtilTest extends TestCase {
 
         assertEquals("de::test::Bla", TypeNameUtil.getTypeName("de::test::Bla"));
         assertEquals("de::test::Bla", TypeNameUtil.getTypeName("MM!de::test::Bla"));
+        assertEquals("de::test::Bla$Bli", TypeNameUtil.getTypeName("de::test::Bla$Bli"));
         assertEquals("de::test::Bla", TypeNameUtil.getTypeName("List[de::test::Bla]"));
         assertEquals("Bla", TypeNameUtil.getTypeName("List[Bla]"));
         assertEquals("List", TypeNameUtil.getTypeName("List"));
@@ -29,7 +30,7 @@ public class TypeNameUtilTest extends TestCase {
 
     public final void testGetCollectionTypeName() {
         assertEquals(null, TypeNameUtil.getCollectionTypeName("de::test::Bla"));
-        assertEquals(null, TypeNameUtil.getCollectionTypeName("de::test::Bla"));
+        assertEquals(null, TypeNameUtil.getCollectionTypeName("de::test::Bla$Bli"));
         assertEquals("List", TypeNameUtil.getCollectionTypeName("List[de::test::Bla]"));
         assertEquals("Set", TypeNameUtil.getCollectionTypeName("Set[de::test::Bla]"));
         assertEquals("List", TypeNameUtil.getCollectionTypeName("List[Bla]"));
@@ -38,11 +39,13 @@ public class TypeNameUtilTest extends TestCase {
     public final void testWithoutLastSegment () {
         assertEquals("de::test", TypeNameUtil.withoutLastSegment("de::test::Bla"));
         assertEquals(null, TypeNameUtil.withoutLastSegment("Bla"));
+        assertEquals(null, TypeNameUtil.withoutLastSegment("Bla$Bli"));
     }
 
     public final void testGetLastSegment () {
         assertEquals("Bla", TypeNameUtil.getLastSegment("de::test::Bla"));
         assertEquals("Bla", TypeNameUtil.getLastSegment("Bla"));
+        assertEquals("Bla$Bli", TypeNameUtil.getLastSegment("Bla$Bli"));
     }
 
     public final void testGetSimpleName () {

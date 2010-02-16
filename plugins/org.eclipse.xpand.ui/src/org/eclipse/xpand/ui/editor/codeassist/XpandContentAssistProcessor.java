@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xpand2.codeassist.ExpandProposalComputer;
 import org.eclipse.internal.xpand2.codeassist.FastAnalyzer;
 import org.eclipse.internal.xpand2.codeassist.KeywordProposalComputer;
 import org.eclipse.internal.xpand2.codeassist.NamespaceProposalComputer;
 import org.eclipse.internal.xpand2.codeassist.StatementProposalComputer;
 import org.eclipse.internal.xpand2.codeassist.XpandPartition;
-import org.eclipse.internal.xpand2.codeassist.XpandTokens;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xtend.expression.codeassist.ExpressionProposalComputer;
 import org.eclipse.internal.xtend.expression.codeassist.ExtensionImportProposalComputer;
@@ -75,6 +75,10 @@ public class XpandContentAssistProcessor extends AbstractExtXptContentAssistProc
 
 			// Shortcut: No proposals within comments
 			if (p == Partition.COMMENT) {
+				return new ICompletionProposal[0];
+			}
+			// Shortcut: No proposals within static text
+			if (p == Partition.DEFAULT && txt.endsWith(".")) {
 				return new ICompletionProposal[0];
 			}
 

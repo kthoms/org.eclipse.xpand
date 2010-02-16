@@ -281,11 +281,11 @@ public class FastAnalyzer {
 	}
 
 	public final static Partition computePartition(final String str) {
-		if (!isInTag(str))
-			return Partition.DEFAULT;
-
 		if (isInComment(str))
 			return Partition.COMMENT;
+		
+		if (!isInTag(str))
+			return Partition.DEFAULT;
 
 		if (isInExpand(str))
 			return XpandPartition.EXPAND_STATEMENT;
@@ -322,6 +322,7 @@ public class FastAnalyzer {
 							result.add(definition);
 						}
 					}
+					
 					return extensions.toArray(new XpandDefinition[extensions.size()]);
 				}
 

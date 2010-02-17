@@ -38,11 +38,11 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.xtend.middleend.xpand"
+         id="org.eclipse.xtend.backend.xsdtypes"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.xtend.middleend.xtend"
+         id="org.eclipse.xtend.backend.xsdtypes.source"
          version="0.0.0"/>
 
 </feature>

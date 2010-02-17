@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.xtend.backend.xsdtypes_feature"
+      id="org.eclipse.xtend.backend.xsdtypes"
       label="%featureName"
       version="0.8.0.qualifier"
       provider-name="%providerName">

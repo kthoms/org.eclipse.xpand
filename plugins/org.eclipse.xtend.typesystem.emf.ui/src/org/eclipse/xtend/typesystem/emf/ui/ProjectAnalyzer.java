@@ -123,7 +123,7 @@ final class ProjectAnalyzer extends Job {
 					}
 					if (rootResource != null) {
 						try {
-							if (!rootResource.exists())
+							if (!rootResource.exists() || !rootResource.isAccessible())
 								rootResource.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 							rootResource.accept(new IResourceVisitor() {
 								public boolean visit(final IResource resource) throws CoreException {

@@ -13,6 +13,8 @@ package org.eclipse.internal.xtend.expression.ast;
 
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.Analyzable;
@@ -27,6 +29,8 @@ import org.eclipse.xtend.typesystem.Type;
  */
 public abstract class Expression extends SyntaxElement implements Analyzable, Evaluatable {
 
+    private Log logger = LogFactory.getLog(getClass());
+	
 	protected Type findType(final Identifier type, final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		final Type toCast = ctx.getTypeForName(type.getValue());
 		if (toCast == null) {
@@ -55,6 +59,8 @@ public abstract class Expression extends SyntaxElement implements Analyzable, Ev
 			return null;
 		}
 		catch (final RuntimeException ex) {
+			logger.error(ex.getCause());
+        	logger.debug(ex.getCause(), ex.getCause());
 			EvaluationException evalex = new EvaluationException(ex.getMessage(), this, ctx);
 			ctx.handleRuntimeException(evalex, this, null);
 			return null;

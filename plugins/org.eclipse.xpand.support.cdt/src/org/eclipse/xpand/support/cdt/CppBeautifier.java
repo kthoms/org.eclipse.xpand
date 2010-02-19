@@ -61,6 +61,7 @@ import org.eclipse.xpand2.output.PostProcessor;
  * @author DaWeber@harmanbecker.com
  * @author Karsten Thoms karsten.thoms@itemis.de
  */
+@SuppressWarnings("restriction")
 public class CppBeautifier implements PostProcessor {
 	private static final String DEFAULT_CDT_OPTIONS = "cdtformat-default.xml";
 	private String configFile = DEFAULT_CDT_OPTIONS;

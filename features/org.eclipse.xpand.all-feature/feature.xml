@@ -35,4 +35,14 @@
          version="0.0.0"
          optional="true"/>
 
+   <includes
+         id="org.eclipse.xtend.middleend.xpand"
+         version="0.0.0"
+         optional="true"/>
+
+   <includes
+         id="org.eclipse.xtend.middleend.xtend"
+         version="0.0.0"
+         optional="true"/>
+
 </feature>

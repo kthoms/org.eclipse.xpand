@@ -40,7 +40,14 @@ public class ExtensionImportDeclaration extends ImportDeclaration {
 			} else {
 				Set<AnalysationIssue> tempIssues = new HashSet<AnalysationIssue>();
 				xf.analyze(ctx, tempIssues);
-				if (!tempIssues.isEmpty()) {
+				boolean noErrors = true;
+				for (AnalysationIssue issue : tempIssues){
+					if (issue.isError()){
+						noErrors = false;
+						break;
+					}
+				}
+				if (!noErrors) {
 					final String msg = "Imported extension resource " + this.getImportString().getValue()
 					+ " has errors.";
 					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this));

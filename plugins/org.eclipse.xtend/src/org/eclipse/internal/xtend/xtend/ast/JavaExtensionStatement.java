@@ -40,6 +40,8 @@ public class JavaExtensionStatement extends AbstractExtension {
     protected Identifier javaMethod;
 
     protected List<Identifier> javaParamTypes;
+    
+    private Method method = null;
 
     public JavaExtensionStatement(final Identifier name,
             final List<DeclaredParameter> formalParameters, final Identifier returnType, final Identifier javaType,
@@ -109,7 +111,10 @@ public class JavaExtensionStatement extends AbstractExtension {
     }
 
 	public Method getJavaMethod(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-        try {
+		if (method != null) {
+			return method;
+			}
+		try {
             Class<?> clazz = null;
             clazz = ResourceLoaderFactory.createResourceLoader().loadClass(javaType.getValue());
             if (clazz == null) {
@@ -131,11 +136,11 @@ public class JavaExtensionStatement extends AbstractExtension {
             if (!Modifier.isPublic(m.getModifiers())) {
                 issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue() + " must be public!", javaMethod));
             }
-            return m;
+            method = m;
         } catch (final NoSuchMethodException e) {
             issues.add(new AnalysationIssue(AnalysationIssue.FEATURE_NOT_FOUND, javaMethod.getValue(), javaMethod));
         }
-        return null;
+        return method;
     }
 
     @Override

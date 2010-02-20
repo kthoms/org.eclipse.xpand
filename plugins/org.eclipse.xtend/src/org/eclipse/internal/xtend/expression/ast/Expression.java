@@ -24,13 +24,11 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
+ * @author Sven Efftinge - Initial contribution and API
  * @author Bernd Kolb
- * 
  */
 public abstract class Expression extends SyntaxElement implements Analyzable, Evaluatable {
 
-    private Log logger = LogFactory.getLog(getClass());
-	
 	protected Type findType(final Identifier type, final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
 		final Type toCast = ctx.getTypeForName(type.getValue());
 		if (toCast == null) {
@@ -59,10 +57,7 @@ public abstract class Expression extends SyntaxElement implements Analyzable, Ev
 			return null;
 		}
 		catch (final RuntimeException ex) {
-			logger.error(ex.getCause());
-        	logger.debug(ex.getCause(), ex.getCause());
-			EvaluationException evalex = new EvaluationException(ex.getMessage(), this, ctx);
-			ctx.handleRuntimeException(evalex, this, null);
+			ctx.handleRuntimeException(new EvaluationException(ex, this, ctx), this, null);
 			return null;
 		}
 		finally {

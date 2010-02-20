@@ -84,7 +84,7 @@ public class JavaExtensionStatement extends AbstractExtension {
             	return method.invoke(instance, parameters);
             }
         } catch (final InvocationTargetException ite) {
-            throw new RuntimeException(ite.getCause());
+            throw new EvaluationException(ite.getCause(), this, ctx);
         } catch (final Exception e) {
             throw new EvaluationException(e, this, ctx);
         }

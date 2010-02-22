@@ -114,6 +114,8 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 			EclipseHelper.createFile("src/template/Template.xpt", p, getContents("Template.xpt"), monitor);
 			EclipseHelper.createFile("src/workflow/generator.mwe", p, getContents("generator.mwe").replace(
 					"PROJECTNAME", projectName), monitor);
+			EclipseHelper.createFile("src/workflow/generatorWithBackend.mwe", p, getContents("generatorWithBackend.mwe").replace(
+					"PROJECTNAME", projectName), monitor);
 			EclipseHelper.createFile("src/workflow/generatorWithProfiler.mwe", p, getContents("generatorWithProfiler.mwe").replace(
 					"PROJECTNAME", projectName), monitor);
 			EclipseHelper.createFile("src/Model.xmi", p, getContents("Model.xmi"), monitor);

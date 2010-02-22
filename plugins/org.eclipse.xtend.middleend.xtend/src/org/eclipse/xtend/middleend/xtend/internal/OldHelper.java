@@ -22,13 +22,14 @@ import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.uml2.UmlTypesystem;
-//import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
+import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
 import org.eclipse.xtend.check.CheckUtils;
 import org.eclipse.xtend.typesystem.MetaModel;
+import org.eclipse.xtend.typesystem.emf.EmfMetaModel;
 import org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel;
 import org.eclipse.xtend.typesystem.uml2.UML2MetaModel;
 import org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel;
-//import org.eclipse.xtend.typesystem.xsd.XSDMetaModel;
+import org.eclipse.xtend.typesystem.xsd.XSDMetaModel;
 
 
 /**
@@ -37,33 +38,56 @@ import org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel;
  * @author André Arnold
  */
 public final class OldHelper {
-    public static BackendTypesystem guessTypesystem (Collection<MetaModel> mms) {
+    @SuppressWarnings("unchecked")
+	public static BackendTypesystem guessTypesystem (Collection<MetaModel> mms) {
         boolean hasEmf = false;
         boolean hasUml2 = false;
         boolean hasXsd = false;
+        Class<EmfMetaModel> emfOldXtendTypesClass = null;
+        Class<UML2MetaModel> umlOldXtendTypesClass = null;
+        Class<XSDMetaModel> xsdOldXtendTypesClass = null;
+        
         Collection<Profile> umlProfiles = new ArrayList<Profile> ();
 
         final CompositeTypesystem result = new CompositeTypesystem ();
         
-        for (MetaModel mm: mms) {
+        try {
+        	emfOldXtendTypesClass = (Class<EmfMetaModel>) Class.forName("org.eclipse.xtend.typesystem.emf.EmfMetaModel");
+		}
+		catch (ClassNotFoundException e) {
+		}
+        
+        try {
+        	umlOldXtendTypesClass = (Class<UML2MetaModel>) Class.forName("org.eclipse.xtend.typesystem.uml2.UML2MetaModel");
+		}
+		catch (ClassNotFoundException e) {
+		}
+        
+        try {
+        	xsdOldXtendTypesClass = (Class<XSDMetaModel>) Class.forName("org.eclipse.xtend.typesystem.xsd.XSDMetaModel");
+		}
+		catch (ClassNotFoundException e) {
+		}
+
+		for (MetaModel mm: mms) {
             if (mm instanceof EmfRegistryMetaModel)
                 hasEmf = true;
-            if (mm instanceof UML2MetaModel) 
+            if (umlOldXtendTypesClass != null && mm instanceof UML2MetaModel) 
             	hasUml2 = true;
-            if (mm instanceof ProfileMetaModel) {
+            if (umlOldXtendTypesClass != null && mm instanceof ProfileMetaModel) {
             	ProfileMetaModel profileMM = (ProfileMetaModel) mm;
             	umlProfiles.addAll (profileMM.profiles);
             }
-//            if (mm instanceof XSDMetaModel)
-//            	hasXsd = true;
+            if (xsdOldXtendTypesClass != null && mm instanceof XSDMetaModel)
+            	hasXsd = true;
         }
         
         if (hasEmf)
             result.register (new EmfTypesystem ());
-        if (hasUml2)
+        if (umlOldXtendTypesClass != null && hasUml2)
         	result.register (new UmlTypesystem (umlProfiles, false));
-//        if (hasXsd)
-//        	result.register (new XsdTypesystem ());
+        if (xsdOldXtendTypesClass != null && hasXsd)
+        	result.register (new XsdTypesystem ());
         
         //TODO replace this by adding "asBackendType" to the frontend types
         

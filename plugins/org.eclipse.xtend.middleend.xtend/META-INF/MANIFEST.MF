@@ -16,7 +16,9 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.xpand,
  org.eclipse.xtend.backend.uml2types;resolution:=optional,
  org.eclipse.xtend.typesystem.uml2;resolution:=optional,
- org.eclipse.uml2;resolution:=optional
+ org.eclipse.uml2;resolution:=optional,
+ org.eclipse.xtend.backend.xsdtypes;resolution:=optional,
+ org.eclipse.xtend.typesystem.xsd;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

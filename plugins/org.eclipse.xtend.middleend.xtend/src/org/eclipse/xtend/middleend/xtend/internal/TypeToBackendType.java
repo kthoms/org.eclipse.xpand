@@ -72,25 +72,71 @@ import org.eclipse.xtend.typesystem.uml2.profile.StereotypeType;
 public final class TypeToBackendType {
     private final BackendTypesystem _backendTypes;
     private final EmfTypesystem _emfTypes;
-    private final UmlTypesystem _umlTypes;
+    private UmlTypesystem _umlTypes = null;
     private final ExecutionContext _ctx;
+    private Class _emfOldXtendTypesClass;
+    private Class _umlOldXtendTypesClass;
+    private Class _xsdOldXtendTypesClass;
+    private Class _emfTypesClass = null;
+    private Class _umlTypesClass = null;
+    private Class _xsdTypesClass = null;
+    private boolean _hasEmfOldXtendTypes;
+    private boolean _hasUmlOldXtendTypes;
+    private boolean _hasXsdOldXtendTypes;
     
     public TypeToBackendType (BackendTypesystem backendTypes, ExecutionContext ctx) {
         _backendTypes = backendTypes;
         _ctx = ctx;
         
-        EmfTypesystem ets = null;
+        
+        try {
+        	_umlTypesClass = Class.forName("org.eclipse.xtend.backend.types.uml2.UmlTypesystem");
+		}
+		catch (ClassNotFoundException e) {
+		}
+        try {
+        	_xsdTypesClass = Class.forName("org.eclipse.xtend.backend.types.xsd.XsdTypesystem");
+		}
+		catch (ClassNotFoundException e) {
+		}
+
+		EmfTypesystem ets = null;
         UmlTypesystem uts = null;
         for (BackendTypesystem bts: ((CompositeTypesystem) _backendTypes).getInner()) {
             if (bts instanceof EmfTypesystem)
                 ets = (EmfTypesystem) bts;
-            if (bts instanceof UmlTypesystem)
+            if (_umlTypesClass != null && bts instanceof UmlTypesystem)
             	uts = (UmlTypesystem) bts;
         }
         
-        _emfTypes = ets;
-        _umlTypes = uts;
-    }
+       	_emfTypes = ets;
+        if (_umlTypesClass != null) 
+        	_umlTypes = uts;
+        
+        try {
+        	_emfOldXtendTypesClass = Class.forName("org.eclipse.xtend.typesystem.emf.EmfMetaModel");
+        	_hasEmfOldXtendTypes = true;
+		}
+		catch (ClassNotFoundException e) {
+			_hasEmfOldXtendTypes = false;
+		}
+        
+        try {
+        	_umlOldXtendTypesClass = Class.forName("org.eclipse.xtend.typesystem.uml2.UML2MetaModel");
+        	_hasUmlOldXtendTypes = true;
+		}
+		catch (ClassNotFoundException e) {
+			_hasUmlOldXtendTypes = false;
+		}
+        
+        try {
+        	_xsdOldXtendTypesClass = Class.forName("org.eclipse.xtend.typesystem.xsd.XSDMetaModel");
+        	_hasXsdOldXtendTypes = true;
+		}
+		catch (ClassNotFoundException e) {
+			_hasXsdOldXtendTypes = false;
+		}
+	}
     
     public BackendType convertToBackendType (Identifier typeName) {
         return convertToBackendType (Arrays.asList (typeName.getValue().split (SyntaxConstants.NS_DELIM)));
@@ -118,21 +164,25 @@ public final class TypeToBackendType {
     }
     
     public BackendType convertToBackendType (Type t) {
-    	if (t instanceof StereotypeType)
-    		return convertStereotypeType (t);
-    	if (t instanceof MultipleStereotypeType)
-    		return convertMultipleStereotypeType (t);
-    	if (t instanceof EnumType)
-    		return convertEnumType (t);
-        if (t instanceof EClassType)
-            return convertEClassType (t);
-        if (t instanceof EDataTypeType)
-            return convertEDataTypeType (t);
-        if (t instanceof EEnumType)
-            return convertEEnumType (t);
-        if (t instanceof EObjectType)
-            return org.eclipse.xtend.backend.types.emf.EObjectType.INSTANCE;
-        
+    	if (_hasUmlOldXtendTypes) {
+	    	if (t instanceof StereotypeType)
+	    		return convertStereotypeType (t);
+	    	if (t instanceof MultipleStereotypeType)
+	    		return convertMultipleStereotypeType (t);
+	    	if (t instanceof EnumType)
+	    		return convertEnumType (t);
+    	}
+//    	if (_hasEmfOldXtendTypes) {
+	        if (t instanceof EClassType)
+	            return convertEClassType (t);
+	        if (t instanceof EDataTypeType)
+	            return convertEDataTypeType (t);
+	        if (t instanceof EEnumType)
+	            return convertEEnumType (t);
+	        if (t instanceof EObjectType)
+	            return org.eclipse.xtend.backend.types.emf.EObjectType.INSTANCE;
+//    	}
+    	
         if (t instanceof JavaTypeImpl)
             return convertJavaType (t);
         

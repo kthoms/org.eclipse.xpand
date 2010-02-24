@@ -237,6 +237,8 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends
 			}
 			invokeInternal2(ctx, monitor, issues);
 		} catch (EvaluationException e) {
+			if (e.getCause() != null)
+				log.error(e.getMessage(), e.getCause());
 			log.error("Error in Component"
 					+ (getId() == null ? " " : " " + getId()) + " of type "
 					+ getClass().getName() + ": \n\t" + ""

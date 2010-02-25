@@ -13,8 +13,6 @@ package org.eclipse.internal.xtend.expression.ast;
 
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.Analyzable;

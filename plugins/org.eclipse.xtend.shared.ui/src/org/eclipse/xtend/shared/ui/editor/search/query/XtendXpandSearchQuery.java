@@ -63,7 +63,7 @@ public abstract class XtendXpandSearchQuery implements ISearchQuery {
 	 * {@inheritDoc}
 	 */
 	public boolean canRunInBackground() {
-		return false;
+		return true;
 	}
 
 	/**

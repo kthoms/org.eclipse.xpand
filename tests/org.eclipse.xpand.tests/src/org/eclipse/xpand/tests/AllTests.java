@@ -24,7 +24,6 @@ public class AllTests {
       suite.addTestSuite(org.eclipse.xpand.internal.tests.impl.NameUtilTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.output.NoChangesVetoStrategyTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.output.OutputImplTest.class);
-      suite.addTestSuite(org.eclipse.xpand.internal.tests.output.XmlBeautifierTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.parser.StatementParserTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.parser.XpandLexerTest.class);
       suite.addTestSuite(org.eclipse.xpand.internal.tests.pr.ProtectedRegionResolverImplTest.class);

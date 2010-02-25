@@ -1575,6 +1575,21 @@ ImplName(Class c) :
 
       <programlisting>((String)unTypedList.get(0)).toUpperCase()</programlisting>
     </section>
+    
+    <section>
+        <title>Xpand keywords and metamodel properties<indexterm>
+            <primary>Keyword</primary>
+            <secondary>Property</secondary>
+          </indexterm></title>
+
+        <para>In some cases a metamodel property have the same name like a
+        <emphasis>Xpand</emphasis> or <emphasis>Xtend</emphasis> keyword. This will cause a name conflict and the keyword will rule the property.
+        To access a property you have to put a '^' in front of it. 
+		Example:
+		<programlisting>private String foo(Import ^import) : ^import.name;
+  		</programlisting>
+		</para>
+      </section>
   </section>
 
   <section id="Check_language" xreflabel="Check language">
@@ -1783,7 +1798,7 @@ context Attribute if name.length &gt; 1 ERROR
         <primary>Metamodel</primary>
 
         <secondary>(non-invasive) extension</secondary>
-      </indexterm> based on either Java methods or<emphasis>Xtend</emphasis>  expressions. Those
+      </indexterm> based on either Java methods or <emphasis>Xtend</emphasis>  expressions. Those
     libraries can be referenced from all other textual languages, that are
     based on the expressions framework.</para>
 
@@ -2064,6 +2079,7 @@ create target::Class duplicate(source::Class):
    // implementation....
 ;</programlisting>
       </section>
+      
     </section>
 
     <section>

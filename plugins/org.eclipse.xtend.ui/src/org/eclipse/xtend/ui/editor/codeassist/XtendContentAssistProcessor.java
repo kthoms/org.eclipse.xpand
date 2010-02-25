@@ -37,7 +37,6 @@ import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
 import org.eclipse.xtend.shared.ui.expression.editor.codeassist.AbstractExtXptContentAssistProcessor;
 import org.eclipse.xtend.shared.ui.expression.editor.codeassist.ProposalComparator;
-import org.eclipse.xtend.shared.ui.expression.editor.codeassist.ProposalFactoryEclipseImpl;
 import org.eclipse.xtend.ui.core.IXtendResource;
 
 /**
@@ -60,7 +59,7 @@ public class XtendContentAssistProcessor extends AbstractExtXptContentAssistProc
 			extensions = ((IXtendResource) res).getExtensions();
 		}
 		final Partition p = FastAnalyzer.computePartition(part);
-		final ProposalFactory factory = new ProposalFactoryEclipseImpl(documentOffset);
+		final ProposalFactory factory = new XtendProposalFactoryEclipseImpl(documentOffset);
 		List<? extends ICompletionProposal> proposals = new ArrayList<ICompletionProposal>();
 		if (p == Partition.EXPRESSION) {
 			ctx = FastAnalyzer.computeExecutionContext(part, ctx, extensions);

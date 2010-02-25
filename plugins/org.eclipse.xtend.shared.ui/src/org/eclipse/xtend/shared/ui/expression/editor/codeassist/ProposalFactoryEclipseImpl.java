@@ -67,7 +67,7 @@ public class ProposalFactoryEclipseImpl extends AbstractProposalFactory {
 				displayStr, null, null);
 	}
 
-	private String computeReturnType(Type returnType, final boolean onOperation) {
+	protected String computeReturnType(Type returnType, final boolean onOperation) {
 		if (returnType == null) {
 			return "unknown";
 		}

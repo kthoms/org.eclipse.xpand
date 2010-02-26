@@ -1,6 +1,6 @@
 import org::eclipse::xtend::middleend::xtend::test;
 
-extension org::eclipse::xtend::middleend::xtend::test::imported reexport;
+extension org::eclipse::xtend::middleend::xtend::test::imported;
 
 test (Object s): test2 (s);
 test2 (Object s): "Hallo, " + s + ": " + 3*(4+5) + " - " + other (99);
@@ -11,4 +11,5 @@ testPerson (Person p): p.toString() + " - " + p.firstName + " " + p.name + " - "
 
 toString (Person p): "[" + p.firstName + " " + p.name + "]";
 
-
+testImport (String s): other(s);
+testReexport (Integer i): reexp(i);

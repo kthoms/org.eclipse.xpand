@@ -199,4 +199,18 @@ public class GeneralXpandTest extends AbstractXpandTest {
 		r.close();
     }
     
+    @Test
+    public void testReexport() throws Exception {
+        final List<MetaModel> mms = new ArrayList<MetaModel> ();
+        mms.add (new JavaBeansMetaModel ());
+		
+        XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::aTemplate", "iso-8859-1", mms, null );
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("element", 4L);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::aTemplate::testReexport FOR element" + XpandTokens.RT, variables , null, null);
+		
+		assertEquals("\nResult from reexp: " + 16L +
+				"\n", o.toString());
+    }
+    
 }

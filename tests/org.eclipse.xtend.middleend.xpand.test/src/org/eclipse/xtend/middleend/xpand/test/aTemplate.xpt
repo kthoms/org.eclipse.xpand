@@ -15,3 +15,7 @@ Hello, «this»: «test(this)»
   Name: «this» 
 «ENDDEFINE»
 
+«DEFINE testReexport FOR Integer»
+Result from reexp: «reexp(this)»
+«ENDDEFINE»
+

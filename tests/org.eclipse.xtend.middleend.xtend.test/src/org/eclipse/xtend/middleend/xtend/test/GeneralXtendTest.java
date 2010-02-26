@@ -66,4 +66,20 @@ public class GeneralXtendTest {
         assertEquals (7L, XtendBackendFacade.evaluateExpression ("1 + 2 + \"asdf\".length", null, null));
         assertEquals (33L, XtendBackendFacade.evaluateExpression ("1 + 2 + test(\"Arno\").length", "org::eclipse::xtend::middleend::xpand::test::first", null, mms, null));
     }
+    
+    @Test 
+    public void testImport() throws Exception {
+        final List<MetaModel> mms = new ArrayList<MetaModel> ();
+        mms.add (new JavaBeansMetaModel ());
+    	
+        assertEquals("imported " + "imported Extension" + "!", XtendBackendFacade.invokeXtendFunction ("org::eclipse::xtend::middleend::xtend::test::first", null, mms, new QualifiedName ("testImport"), "imported Extension").toString());
+    }
+    
+    @Test 
+    public void testReexport() throws Exception {
+        final List<MetaModel> mms = new ArrayList<MetaModel> ();
+        mms.add (new JavaBeansMetaModel ());
+    	
+        assertEquals(16L, XtendBackendFacade.invokeXtendFunction ("org::eclipse::xtend::middleend::xtend::test::first", null, mms, new QualifiedName ("testReexport"), 4L));
+    }
 }

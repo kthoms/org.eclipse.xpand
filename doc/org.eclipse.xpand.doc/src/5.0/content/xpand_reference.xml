@@ -1582,13 +1582,15 @@ ImplName(Class c) :
             <secondary>Property</secondary>
           </indexterm></title>
 
-        <para>In some cases a metamodel property have the same name like a
-        <emphasis>Xpand</emphasis> or <emphasis>Xtend</emphasis> keyword. This will cause a name conflict and the keyword will rule the property.
-        To access a property you have to put a '^' in front of it. 
-		Example:
+        <para>When the name of a metamodel property conflicts with an 
+        <emphasis>Xpand</emphasis> or <emphasis>Xtend</emphasis>
+keyword, the conflict is resolved in favour of the keyword. To refer to
+the metamodel property in these cases, its name must be preceded
+by a '^' character.</para>
+		<para>Example:</para>
 		<programlisting>private String foo(Import ^import) : ^import.name;
   		</programlisting>
-		</para>
+		
       </section>
   </section>
 

@@ -171,13 +171,15 @@ public final class MiddleEndImpl implements MiddleEnd {
         for (ImportedResource candidate: parseResource (curResource).getImports()) {
             final String candidateName = candidate.getResourceName();
             
-            if (! candidate.isReexported())
-                continue;
+//            if (! candidate.isReexported())
+//                continue;
             
             if (visited.contains (candidateName))
                 continue;
             
-            result.add (candidateName);
+            if (candidate.isReexported())
+            	result.add (candidateName);
+            
             collectReexportedResources (result, visited, candidateName);
         }
     }

@@ -18,6 +18,7 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.TextStatement;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.util.Pair;
@@ -28,7 +29,7 @@ import org.eclipse.xpand2.XpandExecutionContext;
  * 
  * @author Sven Efftinge (http://www.efftinge.de) *
  */
-public class OutputImpl implements Output {
+public class OutputImpl implements Output, InsertionPointSupport {
 
 	private boolean automaticHyphenation = false;
 	
@@ -37,6 +38,7 @@ public class OutputImpl implements Output {
 	}
 
 	private static ThreadLocal<Stack<FileHandle>> fileHandles = new ThreadLocal<Stack<FileHandle>>();
+	// private static ThreadLocal<>
 
 	private final Map<String, Outlet> outlets = new HashMap<String, Outlet>();
 
@@ -194,6 +196,30 @@ public class OutputImpl implements Output {
 			fileHandles.set(result);
 		}
 		return result;
+	}
+	public void activateInsertionPoint(Statement stmt) {
+		if (current() != null) {
+			if (!(current() instanceof InsertionPointSupport)) {
+				throw new IllegalStateException ("Current handle does not implement InsertionPointSupport.");
+			}
+			((InsertionPointSupport)current()).activateInsertionPoint(stmt);
+		}
+	}
+
+	public void deactivateInsertionPoint(Statement stmt) {
+		if (current() != null) {
+			if (!(current() instanceof InsertionPointSupport)) {
+				throw new IllegalStateException ("Current handle does not implement InsertionPointSupport.");
+			}
+			((InsertionPointSupport)current()).deactivateInsertionPoint(stmt);
+		}
+	}
+
+	public void registerInsertionPoint(Statement stmt) {
+		if (!(current() instanceof InsertionPointSupport)) {
+			throw new IllegalStateException ("Current handle does not implement InsertionPointSupport.");
+		}
+		((InsertionPointSupport)current()).registerInsertionPoint(stmt);
 	}
 
 }

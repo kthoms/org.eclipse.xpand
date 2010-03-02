@@ -121,8 +121,9 @@ errorStatement returns [ErrorStatement e] :
 expandStatement returns [ExpandStatement e] :
   'EXPAND' t=definitionName ('(' pl=parameterList ')')? (('FOR' expr=expression)
   | (fe='FOREACH' expr=expression ('SEPARATOR' sep=expression)?))?
+  (onFileClose='ONFILECLOSE')?
   
-  {e = factory.createExpandStatement(t,pl,expr,fe!=null,sep);}
+  {e = factory.createExpandStatement(t,pl,expr,fe!=null,sep,onFileClose!=null);}
 ;
 
 definitionName returns [Identifier id] :

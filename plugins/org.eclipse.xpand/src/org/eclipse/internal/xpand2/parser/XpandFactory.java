@@ -139,11 +139,11 @@ public class XpandFactory extends ExpressionFactory {
 
 	public ExpandStatement createExpandStatement(final Identifier definition,
 			final List<Expression> parameters, final Expression target,
-			final boolean foreach, final Expression sep) {
+			final boolean foreach, final Expression sep, final boolean onFileClose) {
 		final Expression[] params = check(parameters).toArray(
 				new Expression[check(parameters).size()]);
 		return handle(new ExpandStatement(definition, target, sep, params,
-				foreach));
+				foreach, onFileClose));
 	}
 
 	public ImportDeclaration createImportDeclaration(final Identifier namespace) {

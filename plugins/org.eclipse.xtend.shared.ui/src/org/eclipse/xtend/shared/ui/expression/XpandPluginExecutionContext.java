@@ -40,7 +40,7 @@ public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecuti
 			ProtectedRegionResolver prs, ProgressMonitor monitor, IXtendXpandProject xp,
 			Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
 		super(resourceManager, currentResource, typeSystem, vars, globalVars, output, prs, monitor, null, null, null,
-				null, null, null, extensionsReturnTypeCache);
+				null, null, null, extensionsReturnTypeCache, null);
 		this.project = xp;
 	}
 

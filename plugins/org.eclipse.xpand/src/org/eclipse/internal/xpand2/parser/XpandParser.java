@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 src/org/eclipse/internal/xpand2/parser/Xpand.g 2009-12-21 07:23:30
+// $ANTLR 3.0.1 src/org/eclipse/internal/xpand2/parser/Xpand.g 2010-02-12 18:22:32
  	
 package org.eclipse.internal.xpand2.parser; 
 	
@@ -36,10 +36,11 @@ import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.GlobalVarExpression;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
-@SuppressWarnings({"unchecked", "unused"})
+
+@SuppressWarnings ({"unused","unchecked"})
 public class XpandParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LG", "COMMENT", "TEXT", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "ML_COMMENT", "LINE_COMMENT", "RG", "VOCAB", "'IMPORT'", "'EXTENSION'", "'AROUND'", "'('", "','", "'*'", "')'", "'FOR'", "'ENDAROUND'", "'::'", "'DEFINE'", "'ENDDEFINE'", "'-'", "'ERROR'", "'EXPAND'", "'FOREACH'", "'SEPARATOR'", "'FILE'", "'ENDFILE'", "'AS'", "'ITERATOR'", "'ENDFOREACH'", "'IF'", "'ENDIF'", "'ELSEIF'", "'ELSE'", "'LET'", "'ENDLET'", "'PROTECT'", "'CSTART'", "'CEND'", "'ID'", "'DISABLE'", "'ENDPROTECT'", "'let'", "'='", "':'", "'->'", "'?'", "'if'", "'then'", "'else'", "'switch'", "'{'", "'case'", "'default'", "'}'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'/'", "'!'", "'.'", "'GLOBALVAR'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'", "'Collection'", "'List'", "'Set'", "'['", "']'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "LG", "COMMENT", "TEXT", "StringLiteral", "IntLiteral", "Identifier", "EscapeSequence", "UnicodeEscape", "OctalEscape", "HexDigit", "Letter", "JavaIDDigit", "WS", "ML_COMMENT", "LINE_COMMENT", "RG", "VOCAB", "'IMPORT'", "'EXTENSION'", "'AROUND'", "'('", "','", "'*'", "')'", "'FOR'", "'ENDAROUND'", "'::'", "'DEFINE'", "'ENDDEFINE'", "'-'", "'ERROR'", "'EXPAND'", "'FOREACH'", "'SEPARATOR'", "'ONFILECLOSE'", "'FILE'", "'ENDFILE'", "'AS'", "'ITERATOR'", "'ENDFOREACH'", "'IF'", "'ENDIF'", "'ELSEIF'", "'ELSE'", "'LET'", "'ENDLET'", "'PROTECT'", "'CSTART'", "'CEND'", "'ID'", "'DISABLE'", "'ENDPROTECT'", "'let'", "'='", "':'", "'->'", "'?'", "'if'", "'then'", "'else'", "'switch'", "'{'", "'case'", "'default'", "'}'", "'||'", "'&&'", "'implies'", "'=='", "'!='", "'>='", "'<='", "'>'", "'<'", "'+'", "'/'", "'!'", "'.'", "'GLOBALVAR'", "'new'", "'false'", "'true'", "'null'", "'typeSelect'", "'collect'", "'select'", "'selectFirst'", "'reject'", "'exists'", "'notExists'", "'sortBy'", "'forAll'", "'|'", "'Collection'", "'List'", "'Set'", "'['", "']'"
     };
     public static final int IntLiteral=8;
     public static final int Identifier=9;
@@ -94,7 +95,7 @@ public class XpandParser extends Parser {
 
     // $ANTLR start template
     // src/org/eclipse/internal/xpand2/parser/Xpand.g:44:1: template returns [Template t] : ( LG ( COMMENT TEXT )* ( (imp= anImport | extimp= anExtensionImport ) TEXT ( COMMENT TEXT )* )* ( (d= define | a= around ) TEXT ( COMMENT TEXT )* )* | );
-	public Template template() throws RecognitionException {
+    public Template template() throws RecognitionException {
         Template t = null;
 
         ImportDeclaration imp = null;
@@ -487,7 +488,7 @@ public class XpandParser extends Parser {
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
-                    if ( (LA10_0==Identifier||(LA10_0>=96 && LA10_0<=98)) ) {
+                    if ( (LA10_0==Identifier||(LA10_0>=97 && LA10_0<=99)) ) {
                         alt10=1;
                     }
                     else if ( (LA10_0==26) ) {
@@ -820,7 +821,7 @@ public class XpandParser extends Parser {
                 int alt15=2;
                 int LA15_0 = input.LA(1);
 
-                if ( ((LA15_0>=StringLiteral && LA15_0<=Identifier)||LA15_0==24||(LA15_0>=33 && LA15_0<=36)||LA15_0==38||LA15_0==43||LA15_0==47||LA15_0==49||LA15_0==55||LA15_0==60||(LA15_0>=63 && LA15_0<=64)||LA15_0==79||(LA15_0>=81 && LA15_0<=94)||(LA15_0>=96 && LA15_0<=98)) ) {
+                if ( ((LA15_0>=StringLiteral && LA15_0<=Identifier)||LA15_0==24||(LA15_0>=33 && LA15_0<=36)||LA15_0==39||LA15_0==44||LA15_0==48||LA15_0==50||LA15_0==56||LA15_0==61||(LA15_0>=64 && LA15_0<=65)||LA15_0==80||(LA15_0>=82 && LA15_0<=95)||(LA15_0>=97 && LA15_0<=99)) ) {
                     alt15=1;
                 }
 
@@ -896,12 +897,11 @@ public class XpandParser extends Parser {
             case 33:
             case 34:
             case 35:
-            case 55:
-            case 60:
-            case 63:
+            case 56:
+            case 61:
             case 64:
-            case 79:
-            case 81:
+            case 65:
+            case 80:
             case 82:
             case 83:
             case 84:
@@ -915,14 +915,15 @@ public class XpandParser extends Parser {
             case 92:
             case 93:
             case 94:
-            case 96:
+            case 95:
             case 97:
             case 98:
+            case 99:
                 {
                 alt16=1;
                 }
                 break;
-            case 38:
+            case 39:
                 {
                 alt16=2;
                 }
@@ -932,17 +933,17 @@ public class XpandParser extends Parser {
                 alt16=3;
                 }
                 break;
-            case 43:
+            case 44:
                 {
                 alt16=4;
                 }
                 break;
-            case 47:
+            case 48:
                 {
                 alt16=5;
                 }
                 break;
-            case 49:
+            case 50:
                 {
                 alt16=6;
                 }
@@ -1051,7 +1052,7 @@ public class XpandParser extends Parser {
     // $ANTLR start textSequence
     // src/org/eclipse/internal/xpand2/parser/Xpand.g:102:1: textSequence returns [List<Statement> s=new ArrayList<Statement>();] : t= text ( COMMENT t1= text )* ;
     public List<Statement> textSequence() throws RecognitionException {
-        List<Statement> s = new ArrayList<Statement>();
+        List<Statement> s = new ArrayList<Statement>();;
 
         Statement t = null;
 
@@ -1198,12 +1199,11 @@ public class XpandParser extends Parser {
             case Identifier:
             case 24:
             case 33:
-            case 55:
-            case 60:
-            case 63:
+            case 56:
+            case 61:
             case 64:
-            case 79:
-            case 81:
+            case 65:
+            case 80:
             case 82:
             case 83:
             case 84:
@@ -1217,9 +1217,10 @@ public class XpandParser extends Parser {
             case 92:
             case 93:
             case 94:
-            case 96:
+            case 95:
             case 97:
             case 98:
+            case 99:
                 {
                 alt19=3;
                 }
@@ -1322,11 +1323,12 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start expandStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:121:1: expandStatement returns [ExpandStatement e] : 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:121:1: expandStatement returns [ExpandStatement e] : 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? (onFileClose= 'ONFILECLOSE' )? ;
     public ExpandStatement expandStatement() throws RecognitionException {
         ExpandStatement e = null;
 
         Token fe=null;
+        Token onFileClose=null;
         Identifier t = null;
 
         List<Expression> pl = null;
@@ -1337,8 +1339,8 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:121:45: ( 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:122:3: 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )?
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:121:45: ( 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? (onFileClose= 'ONFILECLOSE' )? )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:122:3: 'EXPAND' t= definitionName ( '(' pl= parameterList ')' )? ( ( 'FOR' expr= expression ) | (fe= 'FOREACH' expr= expression ( 'SEPARATOR' sep= expression )? ) )? (onFileClose= 'ONFILECLOSE' )?
             {
             match(input,35,FOLLOW_35_in_expandStatement579); if (failed) return e;
             pushFollow(FOLLOW_definitionName_in_expandStatement583);
@@ -1439,8 +1441,27 @@ public class XpandParser extends Parser {
 
             }
 
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:124:3: (onFileClose= 'ONFILECLOSE' )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
+
+            if ( (LA23_0==38) ) {
+                alt23=1;
+            }
+            switch (alt23) {
+                case 1 :
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:124:4: onFileClose= 'ONFILECLOSE'
+                    {
+                    onFileClose=input.LT(1);
+                    match(input,38,FOLLOW_38_in_expandStatement635); if (failed) return e;
+
+                    }
+                    break;
+
+            }
+
             if ( backtracking==0 ) {
-              e = factory.createExpandStatement(t,pl,expr,fe!=null,sep);
+              e = factory.createExpandStatement(t,pl,expr,fe!=null,sep,onFileClose!=null);
             }
 
             }
@@ -1458,7 +1479,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start definitionName
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:128:1: definitionName returns [Identifier id] : id1= simpleType ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:129:1: definitionName returns [Identifier id] : id1= simpleType ;
     public Identifier definitionName() throws RecognitionException {
         Identifier id = null;
 
@@ -1466,10 +1487,10 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:128:40: (id1= simpleType )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:129:2: id1= simpleType
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:129:40: (id1= simpleType )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:130:2: id1= simpleType
             {
-            pushFollow(FOLLOW_simpleType_in_definitionName653);
+            pushFollow(FOLLOW_simpleType_in_definitionName662);
             id1=simpleType();
             _fsp--;
             if (failed) return id;
@@ -1492,7 +1513,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start expressionStmt
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:132:1: expressionStmt returns [ExpressionStatement es] : e= expression ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:133:1: expressionStmt returns [ExpressionStatement es] : e= expression ;
     public ExpressionStatement expressionStmt() throws RecognitionException {
         ExpressionStatement es = null;
 
@@ -1500,10 +1521,10 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:132:49: (e= expression )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:133:2: e= expression
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:133:49: (e= expression )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:134:2: e= expression
             {
-            pushFollow(FOLLOW_expression_in_expressionStmt671);
+            pushFollow(FOLLOW_expression_in_expressionStmt680);
             e=expression();
             _fsp--;
             if (failed) return es;
@@ -1526,7 +1547,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start fileStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:136:1: fileStatement returns [FileStatement f] : 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:137:1: fileStatement returns [FileStatement f] : 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' ;
     public FileStatement fileStatement() throws RecognitionException {
         FileStatement f = null;
 
@@ -1538,26 +1559,26 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:136:41: ( 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:137:2: 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:137:41: ( 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:138:2: 'FILE' e= expression (option= identifier )? s= sequence 'ENDFILE'
             {
-            match(input,38,FOLLOW_38_in_fileStatement687); if (failed) return f;
-            pushFollow(FOLLOW_expression_in_fileStatement691);
+            match(input,39,FOLLOW_39_in_fileStatement696); if (failed) return f;
+            pushFollow(FOLLOW_expression_in_fileStatement700);
             e=expression();
             _fsp--;
             if (failed) return f;
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:137:22: (option= identifier )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:138:22: (option= identifier )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA23_0==Identifier) ) {
-                alt23=1;
+            if ( (LA24_0==Identifier) ) {
+                alt24=1;
             }
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:137:23: option= identifier
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:138:23: option= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_fileStatement696);
+                    pushFollow(FOLLOW_identifier_in_fileStatement705);
                     option=identifier();
                     _fsp--;
                     if (failed) return f;
@@ -1567,11 +1588,11 @@ public class XpandParser extends Parser {
 
             }
 
-            pushFollow(FOLLOW_sequence_in_fileStatement704);
+            pushFollow(FOLLOW_sequence_in_fileStatement713);
             s=sequence();
             _fsp--;
             if (failed) return f;
-            match(input,39,FOLLOW_39_in_fileStatement708); if (failed) return f;
+            match(input,40,FOLLOW_40_in_fileStatement717); if (failed) return f;
             if ( backtracking==0 ) {
               f = factory.createFileStatement(e,option,s);
             }
@@ -1591,7 +1612,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start foreachStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:143:1: foreachStatement returns [ForEachStatement f] : 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:144:1: foreachStatement returns [ForEachStatement f] : 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' ;
     public ForEachStatement foreachStatement() throws RecognitionException {
         ForEachStatement f = null;
 
@@ -1607,32 +1628,32 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:143:46: ( 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:144:3: 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:144:46: ( 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:145:3: 'FOREACH' e= expression 'AS' v= identifier ( 'ITERATOR' iter= identifier )? ( 'SEPARATOR' sep= expression )? s= sequence 'ENDFOREACH'
             {
-            match(input,36,FOLLOW_36_in_foreachStatement726); if (failed) return f;
-            pushFollow(FOLLOW_expression_in_foreachStatement730);
+            match(input,36,FOLLOW_36_in_foreachStatement735); if (failed) return f;
+            pushFollow(FOLLOW_expression_in_foreachStatement739);
             e=expression();
             _fsp--;
             if (failed) return f;
-            match(input,40,FOLLOW_40_in_foreachStatement732); if (failed) return f;
-            pushFollow(FOLLOW_identifier_in_foreachStatement736);
+            match(input,41,FOLLOW_41_in_foreachStatement741); if (failed) return f;
+            pushFollow(FOLLOW_identifier_in_foreachStatement745);
             v=identifier();
             _fsp--;
             if (failed) return f;
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:144:44: ( 'ITERATOR' iter= identifier )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:145:44: ( 'ITERATOR' iter= identifier )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==41) ) {
-                alt24=1;
+            if ( (LA25_0==42) ) {
+                alt25=1;
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:144:45: 'ITERATOR' iter= identifier
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:145:45: 'ITERATOR' iter= identifier
                     {
-                    match(input,41,FOLLOW_41_in_foreachStatement739); if (failed) return f;
-                    pushFollow(FOLLOW_identifier_in_foreachStatement743);
+                    match(input,42,FOLLOW_42_in_foreachStatement748); if (failed) return f;
+                    pushFollow(FOLLOW_identifier_in_foreachStatement752);
                     iter=identifier();
                     _fsp--;
                     if (failed) return f;
@@ -1642,19 +1663,19 @@ public class XpandParser extends Parser {
 
             }
 
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:144:74: ( 'SEPARATOR' sep= expression )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:145:74: ( 'SEPARATOR' sep= expression )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA25_0==37) ) {
-                alt25=1;
+            if ( (LA26_0==37) ) {
+                alt26=1;
             }
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:144:75: 'SEPARATOR' sep= expression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:145:75: 'SEPARATOR' sep= expression
                     {
-                    match(input,37,FOLLOW_37_in_foreachStatement748); if (failed) return f;
-                    pushFollow(FOLLOW_expression_in_foreachStatement752);
+                    match(input,37,FOLLOW_37_in_foreachStatement757); if (failed) return f;
+                    pushFollow(FOLLOW_expression_in_foreachStatement761);
                     sep=expression();
                     _fsp--;
                     if (failed) return f;
@@ -1664,11 +1685,11 @@ public class XpandParser extends Parser {
 
             }
 
-            pushFollow(FOLLOW_sequence_in_foreachStatement762);
+            pushFollow(FOLLOW_sequence_in_foreachStatement771);
             s=sequence();
             _fsp--;
             if (failed) return f;
-            match(input,42,FOLLOW_42_in_foreachStatement767); if (failed) return f;
+            match(input,43,FOLLOW_43_in_foreachStatement776); if (failed) return f;
             if ( backtracking==0 ) {
               f = factory.createForEachStatement(e,v,sep,iter,s);
             }
@@ -1688,7 +1709,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start ifStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:150:1: ifStatement returns [IfStatement i] : 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:151:1: ifStatement returns [IfStatement i] : 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' ;
     public IfStatement ifStatement() throws RecognitionException {
         IfStatement i = null;
 
@@ -1703,15 +1724,15 @@ public class XpandParser extends Parser {
 
         IfStatement temp = null;
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:150:68: ( 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:151:6: 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:151:68: ( 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:152:6: 'IF' e= expression s= sequence (elif= elseIfStatement )* (el= elseStatement )? 'ENDIF'
             {
-            match(input,43,FOLLOW_43_in_ifStatement793); if (failed) return i;
-            pushFollow(FOLLOW_expression_in_ifStatement797);
+            match(input,44,FOLLOW_44_in_ifStatement802); if (failed) return i;
+            pushFollow(FOLLOW_expression_in_ifStatement806);
             e=expression();
             _fsp--;
             if (failed) return i;
-            pushFollow(FOLLOW_sequence_in_ifStatement803);
+            pushFollow(FOLLOW_sequence_in_ifStatement812);
             s=sequence();
             _fsp--;
             if (failed) return i;
@@ -1719,22 +1740,22 @@ public class XpandParser extends Parser {
               i = factory.createIfStatement(e,s);
               		 temp = i;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:155:3: (elif= elseIfStatement )*
-            loop26:
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:156:3: (elif= elseIfStatement )*
+            loop27:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA26_0==45) ) {
-                    alt26=1;
+                if ( (LA27_0==46) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt27) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:155:4: elif= elseIfStatement
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:156:4: elif= elseIfStatement
             	    {
-            	    pushFollow(FOLLOW_elseIfStatement_in_ifStatement815);
+            	    pushFollow(FOLLOW_elseIfStatement_in_ifStatement824);
             	    elif=elseIfStatement();
             	    _fsp--;
             	    if (failed) return i;
@@ -1747,22 +1768,22 @@ public class XpandParser extends Parser {
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop27;
                 }
             } while (true);
 
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:157:3: (el= elseStatement )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:158:3: (el= elseStatement )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==46) ) {
-                alt27=1;
+            if ( (LA28_0==47) ) {
+                alt28=1;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:157:4: el= elseStatement
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:158:4: el= elseStatement
                     {
-                    pushFollow(FOLLOW_elseStatement_in_ifStatement826);
+                    pushFollow(FOLLOW_elseStatement_in_ifStatement835);
                     el=elseStatement();
                     _fsp--;
                     if (failed) return i;
@@ -1776,7 +1797,7 @@ public class XpandParser extends Parser {
 
             }
 
-            match(input,44,FOLLOW_44_in_ifStatement838); if (failed) return i;
+            match(input,45,FOLLOW_45_in_ifStatement847); if (failed) return i;
 
             }
 
@@ -1793,7 +1814,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start elseIfStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:162:1: elseIfStatement returns [IfStatement i] : 'ELSEIF' e= expression s= sequence ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:163:1: elseIfStatement returns [IfStatement i] : 'ELSEIF' e= expression s= sequence ;
     public IfStatement elseIfStatement() throws RecognitionException {
         IfStatement i = null;
 
@@ -1803,15 +1824,15 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:162:41: ( 'ELSEIF' e= expression s= sequence )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:163:2: 'ELSEIF' e= expression s= sequence
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:163:41: ( 'ELSEIF' e= expression s= sequence )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:164:2: 'ELSEIF' e= expression s= sequence
             {
-            match(input,45,FOLLOW_45_in_elseIfStatement852); if (failed) return i;
-            pushFollow(FOLLOW_expression_in_elseIfStatement856);
+            match(input,46,FOLLOW_46_in_elseIfStatement861); if (failed) return i;
+            pushFollow(FOLLOW_expression_in_elseIfStatement865);
             e=expression();
             _fsp--;
             if (failed) return i;
-            pushFollow(FOLLOW_sequence_in_elseIfStatement862);
+            pushFollow(FOLLOW_sequence_in_elseIfStatement871);
             s=sequence();
             _fsp--;
             if (failed) return i;
@@ -1834,7 +1855,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start elseStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:168:1: elseStatement returns [IfStatement i] : 'ELSE' s= sequence ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:169:1: elseStatement returns [IfStatement i] : 'ELSE' s= sequence ;
     public IfStatement elseStatement() throws RecognitionException {
         IfStatement i = null;
 
@@ -1842,11 +1863,11 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:168:39: ( 'ELSE' s= sequence )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:169:2: 'ELSE' s= sequence
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:169:39: ( 'ELSE' s= sequence )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:170:2: 'ELSE' s= sequence
             {
-            match(input,46,FOLLOW_46_in_elseStatement883); if (failed) return i;
-            pushFollow(FOLLOW_sequence_in_elseStatement889);
+            match(input,47,FOLLOW_47_in_elseStatement892); if (failed) return i;
+            pushFollow(FOLLOW_sequence_in_elseStatement898);
             s=sequence();
             _fsp--;
             if (failed) return i;
@@ -1869,7 +1890,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start letStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:174:1: letStatement returns [LetStatement l] : 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:175:1: letStatement returns [LetStatement l] : 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' ;
     public LetStatement letStatement() throws RecognitionException {
         LetStatement l = null;
 
@@ -1881,24 +1902,24 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:174:39: ( 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:175:3: 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:175:39: ( 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:176:3: 'LET' e= expression 'AS' v= identifier s= sequence 'ENDLET'
             {
-            match(input,47,FOLLOW_47_in_letStatement910); if (failed) return l;
-            pushFollow(FOLLOW_expression_in_letStatement914);
+            match(input,48,FOLLOW_48_in_letStatement919); if (failed) return l;
+            pushFollow(FOLLOW_expression_in_letStatement923);
             e=expression();
             _fsp--;
             if (failed) return l;
-            match(input,40,FOLLOW_40_in_letStatement916); if (failed) return l;
-            pushFollow(FOLLOW_identifier_in_letStatement920);
+            match(input,41,FOLLOW_41_in_letStatement925); if (failed) return l;
+            pushFollow(FOLLOW_identifier_in_letStatement929);
             v=identifier();
             _fsp--;
             if (failed) return l;
-            pushFollow(FOLLOW_sequence_in_letStatement928);
+            pushFollow(FOLLOW_sequence_in_letStatement937);
             s=sequence();
             _fsp--;
             if (failed) return l;
-            match(input,48,FOLLOW_48_in_letStatement933); if (failed) return l;
+            match(input,49,FOLLOW_49_in_letStatement942); if (failed) return l;
             if ( backtracking==0 ) {
               l = factory.createLetStatement(e,v,s);
             }
@@ -1918,7 +1939,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start protectStatement
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:181:1: protectStatement returns [ProtectStatement l] : 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:182:1: protectStatement returns [ProtectStatement l] : 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' ;
     public ProtectStatement protectStatement() throws RecognitionException {
         ProtectStatement l = null;
 
@@ -1933,49 +1954,49 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:181:47: ( 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:182:2: 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:182:47: ( 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:183:2: 'PROTECT' 'CSTART' startC= expression 'CEND' endC= expression 'ID' id= expression (disabled= 'DISABLE' )? s= sequence 'ENDPROTECT'
             {
-            match(input,49,FOLLOW_49_in_protectStatement952); if (failed) return l;
-            match(input,50,FOLLOW_50_in_protectStatement957); if (failed) return l;
-            pushFollow(FOLLOW_expression_in_protectStatement961);
+            match(input,50,FOLLOW_50_in_protectStatement961); if (failed) return l;
+            match(input,51,FOLLOW_51_in_protectStatement966); if (failed) return l;
+            pushFollow(FOLLOW_expression_in_protectStatement970);
             startC=expression();
             _fsp--;
             if (failed) return l;
-            match(input,51,FOLLOW_51_in_protectStatement966); if (failed) return l;
-            pushFollow(FOLLOW_expression_in_protectStatement970);
+            match(input,52,FOLLOW_52_in_protectStatement975); if (failed) return l;
+            pushFollow(FOLLOW_expression_in_protectStatement979);
             endC=expression();
             _fsp--;
             if (failed) return l;
-            match(input,52,FOLLOW_52_in_protectStatement983); if (failed) return l;
-            pushFollow(FOLLOW_expression_in_protectStatement987);
+            match(input,53,FOLLOW_53_in_protectStatement992); if (failed) return l;
+            pushFollow(FOLLOW_expression_in_protectStatement996);
             id=expression();
             _fsp--;
             if (failed) return l;
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:185:30: (disabled= 'DISABLE' )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:186:30: (disabled= 'DISABLE' )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA28_0==53) ) {
-                alt28=1;
+            if ( (LA29_0==54) ) {
+                alt29=1;
             }
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:185:31: disabled= 'DISABLE'
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:186:31: disabled= 'DISABLE'
                     {
                     disabled=input.LT(1);
-                    match(input,53,FOLLOW_53_in_protectStatement992); if (failed) return l;
+                    match(input,54,FOLLOW_54_in_protectStatement1001); if (failed) return l;
 
                     }
                     break;
 
             }
 
-            pushFollow(FOLLOW_sequence_in_protectStatement1001);
+            pushFollow(FOLLOW_sequence_in_protectStatement1010);
             s=sequence();
             _fsp--;
             if (failed) return l;
-            match(input,54,FOLLOW_54_in_protectStatement1005); if (failed) return l;
+            match(input,55,FOLLOW_55_in_protectStatement1014); if (failed) return l;
             if ( backtracking==0 ) {
               l = factory.createProtectStatement(startC,endC,id,disabled!=null,s);
             }
@@ -1995,7 +2016,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start expression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:194:1: expression returns [Expression e] : x= letExpression ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:195:1: expression returns [Expression e] : x= letExpression ;
     public Expression expression() throws RecognitionException {
         Expression e = null;
 
@@ -2003,10 +2024,10 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:194:34: (x= letExpression )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:195:2: x= letExpression
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:195:34: (x= letExpression )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:196:2: x= letExpression
             {
-            pushFollow(FOLLOW_letExpression_in_expression1027);
+            pushFollow(FOLLOW_letExpression_in_expression1036);
             x=letExpression();
             _fsp--;
             if (failed) return e;
@@ -2029,7 +2050,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start letExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:198:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:199:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );
     public Expression letExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2043,39 +2064,39 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:198:39: ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression )
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:199:39: ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression )
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA29_0==55) ) {
-                alt29=1;
+            if ( (LA30_0==56) ) {
+                alt30=1;
             }
-            else if ( ((LA29_0>=StringLiteral && LA29_0<=Identifier)||LA29_0==24||LA29_0==33||LA29_0==60||(LA29_0>=63 && LA29_0<=64)||LA29_0==79||(LA29_0>=81 && LA29_0<=94)||(LA29_0>=96 && LA29_0<=98)) ) {
-                alt29=2;
+            else if ( ((LA30_0>=StringLiteral && LA30_0<=Identifier)||LA30_0==24||LA30_0==33||LA30_0==61||(LA30_0>=64 && LA30_0<=65)||LA30_0==80||(LA30_0>=82 && LA30_0<=95)||(LA30_0>=97 && LA30_0<=99)) ) {
+                alt30=2;
             }
             else {
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("198:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );", 29, 0, input);
+                    new NoViableAltException("199:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );", 30, 0, input);
 
                 throw nvae;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:199:4: 'let' v= identifier '=' varExpr= castedExpression ':' target= expression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:200:4: 'let' v= identifier '=' varExpr= castedExpression ':' target= expression
                     {
-                    match(input,55,FOLLOW_55_in_letExpression1046); if (failed) return e;
-                    pushFollow(FOLLOW_identifier_in_letExpression1050);
+                    match(input,56,FOLLOW_56_in_letExpression1055); if (failed) return e;
+                    pushFollow(FOLLOW_identifier_in_letExpression1059);
                     v=identifier();
                     _fsp--;
                     if (failed) return e;
-                    match(input,56,FOLLOW_56_in_letExpression1052); if (failed) return e;
-                    pushFollow(FOLLOW_castedExpression_in_letExpression1056);
+                    match(input,57,FOLLOW_57_in_letExpression1061); if (failed) return e;
+                    pushFollow(FOLLOW_castedExpression_in_letExpression1065);
                     varExpr=castedExpression();
                     _fsp--;
                     if (failed) return e;
-                    match(input,57,FOLLOW_57_in_letExpression1058); if (failed) return e;
-                    pushFollow(FOLLOW_expression_in_letExpression1062);
+                    match(input,58,FOLLOW_58_in_letExpression1067); if (failed) return e;
+                    pushFollow(FOLLOW_expression_in_letExpression1071);
                     target=expression();
                     _fsp--;
                     if (failed) return e;
@@ -2086,9 +2107,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:201:4: x= castedExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:202:4: x= castedExpression
                     {
-                    pushFollow(FOLLOW_castedExpression_in_letExpression1075);
+                    pushFollow(FOLLOW_castedExpression_in_letExpression1084);
                     x=castedExpression();
                     _fsp--;
                     if (failed) return e;
@@ -2113,7 +2134,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start castedExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:204:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:205:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );
     public Expression castedExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2123,20 +2144,20 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:204:41: ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression )
-            int alt30=2;
-            alt30 = dfa30.predict(input);
-            switch (alt30) {
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:205:41: ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression )
+            int alt31=2;
+            alt31 = dfa31.predict(input);
+            switch (alt31) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:205:5: ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:206:5: ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression
                     {
-                    match(input,24,FOLLOW_24_in_castedExpression1106); if (failed) return e;
-                    pushFollow(FOLLOW_type_in_castedExpression1110);
+                    match(input,24,FOLLOW_24_in_castedExpression1115); if (failed) return e;
+                    pushFollow(FOLLOW_type_in_castedExpression1119);
                     t=type();
                     _fsp--;
                     if (failed) return e;
-                    match(input,27,FOLLOW_27_in_castedExpression1112); if (failed) return e;
-                    pushFollow(FOLLOW_chainExpression_in_castedExpression1116);
+                    match(input,27,FOLLOW_27_in_castedExpression1121); if (failed) return e;
+                    pushFollow(FOLLOW_chainExpression_in_castedExpression1125);
                     x=chainExpression();
                     _fsp--;
                     if (failed) return e;
@@ -2147,9 +2168,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:207:4: x= chainExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:208:4: x= chainExpression
                     {
-                    pushFollow(FOLLOW_chainExpression_in_castedExpression1125);
+                    pushFollow(FOLLOW_chainExpression_in_castedExpression1134);
                     x=chainExpression();
                     _fsp--;
                     if (failed) return e;
@@ -2174,7 +2195,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start chainExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:211:1: chainExpression returns [Expression e] : x= ifExpression ( '->' right= ifExpression )* ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:212:1: chainExpression returns [Expression e] : x= ifExpression ( '->' right= ifExpression )* ;
     public Expression chainExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2184,33 +2205,33 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:211:41: (x= ifExpression ( '->' right= ifExpression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:212:2: x= ifExpression ( '->' right= ifExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:212:41: (x= ifExpression ( '->' right= ifExpression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:213:2: x= ifExpression ( '->' right= ifExpression )*
             {
-            pushFollow(FOLLOW_ifExpression_in_chainExpression1145);
+            pushFollow(FOLLOW_ifExpression_in_chainExpression1154);
             x=ifExpression();
             _fsp--;
             if (failed) return e;
             if ( backtracking==0 ) {
               e =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:212:25: ( '->' right= ifExpression )*
-            loop31:
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:213:25: ( '->' right= ifExpression )*
+            loop32:
             do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
+                int alt32=2;
+                int LA32_0 = input.LA(1);
 
-                if ( (LA31_0==58) ) {
-                    alt31=1;
+                if ( (LA32_0==59) ) {
+                    alt32=1;
                 }
 
 
-                switch (alt31) {
+                switch (alt32) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:212:27: '->' right= ifExpression
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:213:27: '->' right= ifExpression
             	    {
-            	    match(input,58,FOLLOW_58_in_chainExpression1151); if (failed) return e;
-            	    pushFollow(FOLLOW_ifExpression_in_chainExpression1155);
+            	    match(input,59,FOLLOW_59_in_chainExpression1160); if (failed) return e;
+            	    pushFollow(FOLLOW_ifExpression_in_chainExpression1164);
             	    right=ifExpression();
             	    _fsp--;
             	    if (failed) return e;
@@ -2222,7 +2243,7 @@ public class XpandParser extends Parser {
             	    break;
 
             	default :
-            	    break loop31;
+            	    break loop32;
                 }
             } while (true);
 
@@ -2242,7 +2263,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start ifExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:215:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:216:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );
     public Expression ifExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2256,52 +2277,52 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:215:38: (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? )
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:216:38: (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? )
+            int alt35=2;
+            int LA35_0 = input.LA(1);
 
-            if ( ((LA34_0>=StringLiteral && LA34_0<=Identifier)||LA34_0==24||LA34_0==33||(LA34_0>=63 && LA34_0<=64)||LA34_0==79||(LA34_0>=81 && LA34_0<=94)||(LA34_0>=96 && LA34_0<=98)) ) {
-                alt34=1;
+            if ( ((LA35_0>=StringLiteral && LA35_0<=Identifier)||LA35_0==24||LA35_0==33||(LA35_0>=64 && LA35_0<=65)||LA35_0==80||(LA35_0>=82 && LA35_0<=95)||(LA35_0>=97 && LA35_0<=99)) ) {
+                alt35=1;
             }
-            else if ( (LA34_0==60) ) {
-                alt34=2;
+            else if ( (LA35_0==61) ) {
+                alt35=2;
             }
             else {
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("215:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );", 34, 0, input);
+                    new NoViableAltException("216:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );", 35, 0, input);
 
                 throw nvae;
             }
-            switch (alt34) {
+            switch (alt35) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:216:2: x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:217:2: x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
                     {
-                    pushFollow(FOLLOW_switchExpression_in_ifExpression1176);
+                    pushFollow(FOLLOW_switchExpression_in_ifExpression1185);
                     x=switchExpression();
                     _fsp--;
                     if (failed) return e;
                     if ( backtracking==0 ) {
                       e =x;
                     }
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:216:28: ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
-                    int alt32=2;
-                    int LA32_0 = input.LA(1);
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:217:28: ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
+                    int alt33=2;
+                    int LA33_0 = input.LA(1);
 
-                    if ( (LA32_0==59) ) {
-                        alt32=1;
+                    if ( (LA33_0==60) ) {
+                        alt33=1;
                     }
-                    switch (alt32) {
+                    switch (alt33) {
                         case 1 :
-                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:216:29: '?' thenPart= switchExpression ':' elsePart= switchExpression
+                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:217:29: '?' thenPart= switchExpression ':' elsePart= switchExpression
                             {
-                            match(input,59,FOLLOW_59_in_ifExpression1180); if (failed) return e;
-                            pushFollow(FOLLOW_switchExpression_in_ifExpression1184);
+                            match(input,60,FOLLOW_60_in_ifExpression1189); if (failed) return e;
+                            pushFollow(FOLLOW_switchExpression_in_ifExpression1193);
                             thenPart=switchExpression();
                             _fsp--;
                             if (failed) return e;
-                            match(input,57,FOLLOW_57_in_ifExpression1186); if (failed) return e;
-                            pushFollow(FOLLOW_switchExpression_in_ifExpression1190);
+                            match(input,58,FOLLOW_58_in_ifExpression1195); if (failed) return e;
+                            pushFollow(FOLLOW_switchExpression_in_ifExpression1199);
                             elsePart=switchExpression();
                             _fsp--;
                             if (failed) return e;
@@ -2318,31 +2339,31 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:217:3: 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )?
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:218:3: 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )?
                     {
-                    match(input,60,FOLLOW_60_in_ifExpression1198); if (failed) return e;
-                    pushFollow(FOLLOW_switchExpression_in_ifExpression1202);
+                    match(input,61,FOLLOW_61_in_ifExpression1207); if (failed) return e;
+                    pushFollow(FOLLOW_switchExpression_in_ifExpression1211);
                     condition=switchExpression();
                     _fsp--;
                     if (failed) return e;
-                    match(input,61,FOLLOW_61_in_ifExpression1204); if (failed) return e;
-                    pushFollow(FOLLOW_switchExpression_in_ifExpression1208);
+                    match(input,62,FOLLOW_62_in_ifExpression1213); if (failed) return e;
+                    pushFollow(FOLLOW_switchExpression_in_ifExpression1217);
                     thenPart=switchExpression();
                     _fsp--;
                     if (failed) return e;
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:217:68: ( 'else' elsePart= expression )?
-                    int alt33=2;
-                    int LA33_0 = input.LA(1);
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:218:68: ( 'else' elsePart= expression )?
+                    int alt34=2;
+                    int LA34_0 = input.LA(1);
 
-                    if ( (LA33_0==62) ) {
-                        alt33=1;
+                    if ( (LA34_0==63) ) {
+                        alt34=1;
                     }
-                    switch (alt33) {
+                    switch (alt34) {
                         case 1 :
-                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:217:69: 'else' elsePart= expression
+                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:218:69: 'else' elsePart= expression
                             {
-                            match(input,62,FOLLOW_62_in_ifExpression1211); if (failed) return e;
-                            pushFollow(FOLLOW_expression_in_ifExpression1215);
+                            match(input,63,FOLLOW_63_in_ifExpression1220); if (failed) return e;
+                            pushFollow(FOLLOW_expression_in_ifExpression1224);
                             elsePart=expression();
                             _fsp--;
                             if (failed) return e;
@@ -2373,7 +2394,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start switchExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:221:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:222:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );
     public Expression switchExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2390,74 +2411,74 @@ public class XpandParser extends Parser {
 
         List cases = new ArrayList();
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:221:85: ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression )
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:222:85: ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression )
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA37_0==63) ) {
-                alt37=1;
+            if ( (LA38_0==64) ) {
+                alt38=1;
             }
-            else if ( ((LA37_0>=StringLiteral && LA37_0<=Identifier)||LA37_0==24||LA37_0==33||LA37_0==64||LA37_0==79||(LA37_0>=81 && LA37_0<=94)||(LA37_0>=96 && LA37_0<=98)) ) {
-                alt37=2;
+            else if ( ((LA38_0>=StringLiteral && LA38_0<=Identifier)||LA38_0==24||LA38_0==33||LA38_0==65||LA38_0==80||(LA38_0>=82 && LA38_0<=95)||(LA38_0>=97 && LA38_0<=99)) ) {
+                alt38=2;
             }
             else {
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("221:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );", 37, 0, input);
+                    new NoViableAltException("222:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );", 38, 0, input);
 
                 throw nvae;
             }
-            switch (alt37) {
+            switch (alt38) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:222:4: 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}'
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:223:4: 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}'
                     {
-                    match(input,63,FOLLOW_63_in_switchExpression1242); if (failed) return e;
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:222:13: ( '(' pred= orExpression ')' )?
-                    int alt35=2;
-                    int LA35_0 = input.LA(1);
+                    match(input,64,FOLLOW_64_in_switchExpression1251); if (failed) return e;
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:223:13: ( '(' pred= orExpression ')' )?
+                    int alt36=2;
+                    int LA36_0 = input.LA(1);
 
-                    if ( (LA35_0==24) ) {
-                        alt35=1;
+                    if ( (LA36_0==24) ) {
+                        alt36=1;
                     }
-                    switch (alt35) {
+                    switch (alt36) {
                         case 1 :
-                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:222:14: '(' pred= orExpression ')'
+                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:223:14: '(' pred= orExpression ')'
                             {
-                            match(input,24,FOLLOW_24_in_switchExpression1245); if (failed) return e;
-                            pushFollow(FOLLOW_orExpression_in_switchExpression1251);
+                            match(input,24,FOLLOW_24_in_switchExpression1254); if (failed) return e;
+                            pushFollow(FOLLOW_orExpression_in_switchExpression1260);
                             pred=orExpression();
                             _fsp--;
                             if (failed) return e;
-                            match(input,27,FOLLOW_27_in_switchExpression1253); if (failed) return e;
+                            match(input,27,FOLLOW_27_in_switchExpression1262); if (failed) return e;
 
                             }
                             break;
 
                     }
 
-                    match(input,64,FOLLOW_64_in_switchExpression1260); if (failed) return e;
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:224:4: ( 'case' c= orExpression ':' v= orExpression )*
-                    loop36:
+                    match(input,65,FOLLOW_65_in_switchExpression1269); if (failed) return e;
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:225:4: ( 'case' c= orExpression ':' v= orExpression )*
+                    loop37:
                     do {
-                        int alt36=2;
-                        int LA36_0 = input.LA(1);
+                        int alt37=2;
+                        int LA37_0 = input.LA(1);
 
-                        if ( (LA36_0==65) ) {
-                            alt36=1;
+                        if ( (LA37_0==66) ) {
+                            alt37=1;
                         }
 
 
-                        switch (alt36) {
+                        switch (alt37) {
                     	case 1 :
-                    	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:225:6: 'case' c= orExpression ':' v= orExpression
+                    	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:226:6: 'case' c= orExpression ':' v= orExpression
                     	    {
-                    	    match(input,65,FOLLOW_65_in_switchExpression1273); if (failed) return e;
-                    	    pushFollow(FOLLOW_orExpression_in_switchExpression1277);
+                    	    match(input,66,FOLLOW_66_in_switchExpression1282); if (failed) return e;
+                    	    pushFollow(FOLLOW_orExpression_in_switchExpression1286);
                     	    c=orExpression();
                     	    _fsp--;
                     	    if (failed) return e;
-                    	    match(input,57,FOLLOW_57_in_switchExpression1280); if (failed) return e;
-                    	    pushFollow(FOLLOW_orExpression_in_switchExpression1285);
+                    	    match(input,58,FOLLOW_58_in_switchExpression1289); if (failed) return e;
+                    	    pushFollow(FOLLOW_orExpression_in_switchExpression1294);
                     	    v=orExpression();
                     	    _fsp--;
                     	    if (failed) return e;
@@ -2469,17 +2490,17 @@ public class XpandParser extends Parser {
                     	    break;
 
                     	default :
-                    	    break loop36;
+                    	    break loop37;
                         }
                     } while (true);
 
-                    match(input,66,FOLLOW_66_in_switchExpression1303); if (failed) return e;
-                    match(input,57,FOLLOW_57_in_switchExpression1305); if (failed) return e;
-                    pushFollow(FOLLOW_orExpression_in_switchExpression1311);
+                    match(input,67,FOLLOW_67_in_switchExpression1312); if (failed) return e;
+                    match(input,58,FOLLOW_58_in_switchExpression1314); if (failed) return e;
+                    pushFollow(FOLLOW_orExpression_in_switchExpression1320);
                     def=orExpression();
                     _fsp--;
                     if (failed) return e;
-                    match(input,67,FOLLOW_67_in_switchExpression1316); if (failed) return e;
+                    match(input,68,FOLLOW_68_in_switchExpression1325); if (failed) return e;
                     if ( backtracking==0 ) {
                       e = factory.createSwitchExpression(pred,cases,def);
                     }
@@ -2487,9 +2508,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:231:4: x= orExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:232:4: x= orExpression
                     {
-                    pushFollow(FOLLOW_orExpression_in_switchExpression1328);
+                    pushFollow(FOLLOW_orExpression_in_switchExpression1337);
                     x=orExpression();
                     _fsp--;
                     if (failed) return e;
@@ -2514,7 +2535,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start orExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:234:1: orExpression returns [Expression e] : x= andExpression (name= '||' r= andExpression )* ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:235:1: orExpression returns [Expression e] : x= andExpression (name= '||' r= andExpression )* ;
     public Expression orExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2525,87 +2546,17 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:234:37: (x= andExpression (name= '||' r= andExpression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:235:4: x= andExpression (name= '||' r= andExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:235:37: (x= andExpression (name= '||' r= andExpression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:236:4: x= andExpression (name= '||' r= andExpression )*
             {
-            pushFollow(FOLLOW_andExpression_in_orExpression1348);
+            pushFollow(FOLLOW_andExpression_in_orExpression1357);
             x=andExpression();
             _fsp--;
             if (failed) return e;
             if ( backtracking==0 ) {
               e =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:235:28: (name= '||' r= andExpression )*
-            loop38:
-            do {
-                int alt38=2;
-                int LA38_0 = input.LA(1);
-
-                if ( (LA38_0==68) ) {
-                    alt38=1;
-                }
-
-
-                switch (alt38) {
-            	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:235:29: name= '||' r= andExpression
-            	    {
-            	    name=input.LT(1);
-            	    match(input,68,FOLLOW_68_in_orExpression1355); if (failed) return e;
-            	    pushFollow(FOLLOW_andExpression_in_orExpression1359);
-            	    r=andExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
-            	      e = factory.createBooleanOperation(id(name),e,r);
-            	    }
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop38;
-                }
-            } while (true);
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return e;
-    }
-    // $ANTLR end orExpression
-
-
-    // $ANTLR start andExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:238:1: andExpression returns [Expression e] : x= impliesExpression (name= '&&' r= impliesExpression )* ;
-    public Expression andExpression() throws RecognitionException {
-        Expression e = null;
-
-        Token name=null;
-        Expression x = null;
-
-        Expression r = null;
-
-
-        try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:238:39: (x= impliesExpression (name= '&&' r= impliesExpression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:239:2: x= impliesExpression (name= '&&' r= impliesExpression )*
-            {
-            pushFollow(FOLLOW_impliesExpression_in_andExpression1382);
-            x=impliesExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
-              e =x;
-            }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:239:30: (name= '&&' r= impliesExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:236:28: (name= '||' r= andExpression )*
             loop39:
             do {
                 int alt39=2;
@@ -2618,12 +2569,12 @@ public class XpandParser extends Parser {
 
                 switch (alt39) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:239:31: name= '&&' r= impliesExpression
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:236:29: name= '||' r= andExpression
             	    {
             	    name=input.LT(1);
-            	    match(input,69,FOLLOW_69_in_andExpression1389); if (failed) return e;
-            	    pushFollow(FOLLOW_impliesExpression_in_andExpression1393);
-            	    r=impliesExpression();
+            	    match(input,69,FOLLOW_69_in_orExpression1364); if (failed) return e;
+            	    pushFollow(FOLLOW_andExpression_in_orExpression1368);
+            	    r=andExpression();
             	    _fsp--;
             	    if (failed) return e;
             	    if ( backtracking==0 ) {
@@ -2650,12 +2601,12 @@ public class XpandParser extends Parser {
         }
         return e;
     }
-    // $ANTLR end andExpression
+    // $ANTLR end orExpression
 
 
-    // $ANTLR start impliesExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:242:1: impliesExpression returns [Expression e] : x= relationalExpression (name= 'implies' r= relationalExpression )* ;
-    public Expression impliesExpression() throws RecognitionException {
+    // $ANTLR start andExpression
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:239:1: andExpression returns [Expression e] : x= impliesExpression (name= '&&' r= impliesExpression )* ;
+    public Expression andExpression() throws RecognitionException {
         Expression e = null;
 
         Token name=null;
@@ -2665,17 +2616,17 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:242:42: (x= relationalExpression (name= 'implies' r= relationalExpression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:243:2: x= relationalExpression (name= 'implies' r= relationalExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:239:39: (x= impliesExpression (name= '&&' r= impliesExpression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:240:2: x= impliesExpression (name= '&&' r= impliesExpression )*
             {
-            pushFollow(FOLLOW_relationalExpression_in_impliesExpression1415);
-            x=relationalExpression();
+            pushFollow(FOLLOW_impliesExpression_in_andExpression1391);
+            x=impliesExpression();
             _fsp--;
             if (failed) return e;
             if ( backtracking==0 ) {
               e =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:243:33: (name= 'implies' r= relationalExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:240:30: (name= '&&' r= impliesExpression )*
             loop40:
             do {
                 int alt40=2;
@@ -2688,12 +2639,12 @@ public class XpandParser extends Parser {
 
                 switch (alt40) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:243:34: name= 'implies' r= relationalExpression
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:240:31: name= '&&' r= impliesExpression
             	    {
             	    name=input.LT(1);
-            	    match(input,70,FOLLOW_70_in_impliesExpression1422); if (failed) return e;
-            	    pushFollow(FOLLOW_relationalExpression_in_impliesExpression1426);
-            	    r=relationalExpression();
+            	    match(input,70,FOLLOW_70_in_andExpression1398); if (failed) return e;
+            	    pushFollow(FOLLOW_impliesExpression_in_andExpression1402);
+            	    r=impliesExpression();
             	    _fsp--;
             	    if (failed) return e;
             	    if ( backtracking==0 ) {
@@ -2720,12 +2671,12 @@ public class XpandParser extends Parser {
         }
         return e;
     }
-    // $ANTLR end impliesExpression
+    // $ANTLR end andExpression
 
 
-    // $ANTLR start relationalExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:247:1: relationalExpression returns [Expression e] : x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* ;
-    public Expression relationalExpression() throws RecognitionException {
+    // $ANTLR start impliesExpression
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:243:1: impliesExpression returns [Expression e] : x= relationalExpression (name= 'implies' r= relationalExpression )* ;
+    public Expression impliesExpression() throws RecognitionException {
         Expression e = null;
 
         Token name=null;
@@ -2735,49 +2686,39 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:247:45: (x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:248:2: x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:243:42: (x= relationalExpression (name= 'implies' r= relationalExpression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:244:2: x= relationalExpression (name= 'implies' r= relationalExpression )*
             {
-            pushFollow(FOLLOW_additiveExpression_in_relationalExpression1450);
-            x=additiveExpression();
+            pushFollow(FOLLOW_relationalExpression_in_impliesExpression1424);
+            x=relationalExpression();
             _fsp--;
             if (failed) return e;
             if ( backtracking==0 ) {
               e =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:249:2: (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:244:33: (name= 'implies' r= relationalExpression )*
             loop41:
             do {
                 int alt41=2;
                 int LA41_0 = input.LA(1);
 
-                if ( ((LA41_0>=71 && LA41_0<=76)) ) {
+                if ( (LA41_0==71) ) {
                     alt41=1;
                 }
 
 
                 switch (alt41) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:249:3: name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:244:34: name= 'implies' r= relationalExpression
             	    {
             	    name=input.LT(1);
-            	    if ( (input.LA(1)>=71 && input.LA(1)<=76) ) {
-            	        input.consume();
-            	        errorRecovery=false;failed=false;
-            	    }
-            	    else {
-            	        if (backtracking>0) {failed=true; return e;}
-            	        MismatchedSetException mse =
-            	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1458);    throw mse;
-            	    }
-
-            	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression1484);
-            	    r=additiveExpression();
+            	    match(input,71,FOLLOW_71_in_impliesExpression1431); if (failed) return e;
+            	    pushFollow(FOLLOW_relationalExpression_in_impliesExpression1435);
+            	    r=relationalExpression();
             	    _fsp--;
             	    if (failed) return e;
             	    if ( backtracking==0 ) {
-            	      e = factory.createBinaryOperation(id(name),e,r);
+            	      e = factory.createBooleanOperation(id(name),e,r);
             	    }
 
             	    }
@@ -2800,12 +2741,12 @@ public class XpandParser extends Parser {
         }
         return e;
     }
-    // $ANTLR end relationalExpression
+    // $ANTLR end impliesExpression
 
 
-    // $ANTLR start additiveExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:253:1: additiveExpression returns [Expression e] : x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* ;
-    public Expression additiveExpression() throws RecognitionException {
+    // $ANTLR start relationalExpression
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:248:1: relationalExpression returns [Expression e] : x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* ;
+    public Expression relationalExpression() throws RecognitionException {
         Expression e = null;
 
         Token name=null;
@@ -2815,42 +2756,33 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:253:43: (x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:254:2: x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:248:45: (x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:249:2: x= additiveExpression (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
             {
-            pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1505);
-            x=multiplicativeExpression();
+            pushFollow(FOLLOW_additiveExpression_in_relationalExpression1459);
+            x=additiveExpression();
             _fsp--;
             if (failed) return e;
             if ( backtracking==0 ) {
               e =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:255:4: (name= ( '+' | '-' ) r= multiplicativeExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:250:2: (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
             loop42:
             do {
                 int alt42=2;
                 int LA42_0 = input.LA(1);
 
-                if ( (LA42_0==33) ) {
-                    int LA42_2 = input.LA(2);
-
-                    if ( ((LA42_2>=StringLiteral && LA42_2<=Identifier)||LA42_2==24||LA42_2==33||LA42_2==64||LA42_2==79||(LA42_2>=81 && LA42_2<=94)||(LA42_2>=96 && LA42_2<=98)) ) {
-                        alt42=1;
-                    }
-
-
-                }
-                else if ( (LA42_0==77) ) {
+                if ( ((LA42_0>=72 && LA42_0<=77)) ) {
                     alt42=1;
                 }
 
 
                 switch (alt42) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:255:5: name= ( '+' | '-' ) r= multiplicativeExpression
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:250:3: name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression
             	    {
             	    name=input.LT(1);
-            	    if ( input.LA(1)==33||input.LA(1)==77 ) {
+            	    if ( (input.LA(1)>=72 && input.LA(1)<=77) ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
             	    }
@@ -2858,11 +2790,11 @@ public class XpandParser extends Parser {
             	        if (backtracking>0) {failed=true; return e;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_additiveExpression1515);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1467);    throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1524);
-            	    r=multiplicativeExpression();
+            	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression1493);
+            	    r=additiveExpression();
             	    _fsp--;
             	    if (failed) return e;
             	    if ( backtracking==0 ) {
@@ -2889,12 +2821,12 @@ public class XpandParser extends Parser {
         }
         return e;
     }
-    // $ANTLR end additiveExpression
+    // $ANTLR end relationalExpression
 
 
-    // $ANTLR start multiplicativeExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:258:1: multiplicativeExpression returns [Expression e] : x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* ;
-    public Expression multiplicativeExpression() throws RecognitionException {
+    // $ANTLR start additiveExpression
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:254:1: additiveExpression returns [Expression e] : x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* ;
+    public Expression additiveExpression() throws RecognitionException {
         Expression e = null;
 
         Token name=null;
@@ -2904,33 +2836,42 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:258:48: (x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:259:2: x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:254:43: (x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:255:2: x= multiplicativeExpression (name= ( '+' | '-' ) r= multiplicativeExpression )*
             {
-            pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1543);
-            x=unaryExpression();
+            pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1514);
+            x=multiplicativeExpression();
             _fsp--;
             if (failed) return e;
             if ( backtracking==0 ) {
               e =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:260:2: (name= ( '*' | '/' ) r= unaryExpression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:256:4: (name= ( '+' | '-' ) r= multiplicativeExpression )*
             loop43:
             do {
                 int alt43=2;
                 int LA43_0 = input.LA(1);
 
-                if ( (LA43_0==26||LA43_0==78) ) {
+                if ( (LA43_0==33) ) {
+                    int LA43_2 = input.LA(2);
+
+                    if ( ((LA43_2>=StringLiteral && LA43_2<=Identifier)||LA43_2==24||LA43_2==33||LA43_2==65||LA43_2==80||(LA43_2>=82 && LA43_2<=95)||(LA43_2>=97 && LA43_2<=99)) ) {
+                        alt43=1;
+                    }
+
+
+                }
+                else if ( (LA43_0==78) ) {
                     alt43=1;
                 }
 
 
                 switch (alt43) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:260:3: name= ( '*' | '/' ) r= unaryExpression
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:256:5: name= ( '+' | '-' ) r= multiplicativeExpression
             	    {
             	    name=input.LT(1);
-            	    if ( input.LA(1)==26||input.LA(1)==78 ) {
+            	    if ( input.LA(1)==33||input.LA(1)==78 ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
             	    }
@@ -2938,11 +2879,11 @@ public class XpandParser extends Parser {
             	        if (backtracking>0) {failed=true; return e;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_multiplicativeExpression1551);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_additiveExpression1524);    throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1561);
-            	    r=unaryExpression();
+            	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1533);
+            	    r=multiplicativeExpression();
             	    _fsp--;
             	    if (failed) return e;
             	    if ( backtracking==0 ) {
@@ -2969,11 +2910,91 @@ public class XpandParser extends Parser {
         }
         return e;
     }
+    // $ANTLR end additiveExpression
+
+
+    // $ANTLR start multiplicativeExpression
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:259:1: multiplicativeExpression returns [Expression e] : x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* ;
+    public Expression multiplicativeExpression() throws RecognitionException {
+        Expression e = null;
+
+        Token name=null;
+        Expression x = null;
+
+        Expression r = null;
+
+
+        try {
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:259:48: (x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:260:2: x= unaryExpression (name= ( '*' | '/' ) r= unaryExpression )*
+            {
+            pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1552);
+            x=unaryExpression();
+            _fsp--;
+            if (failed) return e;
+            if ( backtracking==0 ) {
+              e =x;
+            }
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:261:2: (name= ( '*' | '/' ) r= unaryExpression )*
+            loop44:
+            do {
+                int alt44=2;
+                int LA44_0 = input.LA(1);
+
+                if ( (LA44_0==26||LA44_0==79) ) {
+                    alt44=1;
+                }
+
+
+                switch (alt44) {
+            	case 1 :
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:261:3: name= ( '*' | '/' ) r= unaryExpression
+            	    {
+            	    name=input.LT(1);
+            	    if ( input.LA(1)==26||input.LA(1)==79 ) {
+            	        input.consume();
+            	        errorRecovery=false;failed=false;
+            	    }
+            	    else {
+            	        if (backtracking>0) {failed=true; return e;}
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_multiplicativeExpression1560);    throw mse;
+            	    }
+
+            	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1570);
+            	    r=unaryExpression();
+            	    _fsp--;
+            	    if (failed) return e;
+            	    if ( backtracking==0 ) {
+            	      e = factory.createBinaryOperation(id(name),e,r);
+            	    }
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop44;
+                }
+            } while (true);
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return e;
+    }
     // $ANTLR end multiplicativeExpression
 
 
     // $ANTLR start unaryExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:264:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:265:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );
     public Expression unaryExpression() throws RecognitionException {
         Expression e = null;
 
@@ -2982,15 +3003,14 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:264:40: (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression )
-            int alt44=3;
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:265:40: (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression )
+            int alt45=3;
             switch ( input.LA(1) ) {
             case StringLiteral:
             case IntLiteral:
             case Identifier:
             case 24:
-            case 64:
-            case 81:
+            case 65:
             case 82:
             case 83:
             case 84:
@@ -3004,36 +3024,37 @@ public class XpandParser extends Parser {
             case 92:
             case 93:
             case 94:
-            case 96:
+            case 95:
             case 97:
             case 98:
+            case 99:
                 {
-                alt44=1;
+                alt45=1;
                 }
                 break;
-            case 79:
+            case 80:
                 {
-                alt44=2;
+                alt45=2;
                 }
                 break;
             case 33:
                 {
-                alt44=3;
+                alt45=3;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("264:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );", 44, 0, input);
+                    new NoViableAltException("265:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );", 45, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt44) {
+            switch (alt45) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:265:2: x= infixExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:266:2: x= infixExpression
                     {
-                    pushFollow(FOLLOW_infixExpression_in_unaryExpression1582);
+                    pushFollow(FOLLOW_infixExpression_in_unaryExpression1591);
                     x=infixExpression();
                     _fsp--;
                     if (failed) return e;
@@ -3044,11 +3065,11 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:266:3: name= '!' x= infixExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:267:3: name= '!' x= infixExpression
                     {
                     name=input.LT(1);
-                    match(input,79,FOLLOW_79_in_unaryExpression1590); if (failed) return e;
-                    pushFollow(FOLLOW_infixExpression_in_unaryExpression1594);
+                    match(input,80,FOLLOW_80_in_unaryExpression1599); if (failed) return e;
+                    pushFollow(FOLLOW_infixExpression_in_unaryExpression1603);
                     x=infixExpression();
                     _fsp--;
                     if (failed) return e;
@@ -3059,11 +3080,11 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:267:3: name= '-' x= infixExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:268:3: name= '-' x= infixExpression
                     {
                     name=input.LT(1);
-                    match(input,33,FOLLOW_33_in_unaryExpression1602); if (failed) return e;
-                    pushFollow(FOLLOW_infixExpression_in_unaryExpression1606);
+                    match(input,33,FOLLOW_33_in_unaryExpression1611); if (failed) return e;
+                    pushFollow(FOLLOW_infixExpression_in_unaryExpression1615);
                     x=infixExpression();
                     _fsp--;
                     if (failed) return e;
@@ -3088,7 +3109,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start infixExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:270:1: infixExpression returns [Expression e] : x= primaryExpression ( '.' op= featureCall )* ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:271:1: infixExpression returns [Expression e] : x= primaryExpression ( '.' op= featureCall )* ;
     public Expression infixExpression() throws RecognitionException {
         Expression e = null;
 
@@ -3098,33 +3119,33 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:270:40: (x= primaryExpression ( '.' op= featureCall )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:271:2: x= primaryExpression ( '.' op= featureCall )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:271:40: (x= primaryExpression ( '.' op= featureCall )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:272:2: x= primaryExpression ( '.' op= featureCall )*
             {
-            pushFollow(FOLLOW_primaryExpression_in_infixExpression1624);
+            pushFollow(FOLLOW_primaryExpression_in_infixExpression1633);
             x=primaryExpression();
             _fsp--;
             if (failed) return e;
             if ( backtracking==0 ) {
               e =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:271:30: ( '.' op= featureCall )*
-            loop45:
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:272:30: ( '.' op= featureCall )*
+            loop46:
             do {
-                int alt45=2;
-                int LA45_0 = input.LA(1);
+                int alt46=2;
+                int LA46_0 = input.LA(1);
 
-                if ( (LA45_0==80) ) {
-                    alt45=1;
+                if ( (LA46_0==81) ) {
+                    alt46=1;
                 }
 
 
-                switch (alt45) {
+                switch (alt46) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:271:32: '.' op= featureCall
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:272:32: '.' op= featureCall
             	    {
-            	    match(input,80,FOLLOW_80_in_infixExpression1630); if (failed) return e;
-            	    pushFollow(FOLLOW_featureCall_in_infixExpression1634);
+            	    match(input,81,FOLLOW_81_in_infixExpression1639); if (failed) return e;
+            	    pushFollow(FOLLOW_featureCall_in_infixExpression1643);
             	    op=featureCall();
             	    _fsp--;
             	    if (failed) return e;
@@ -3136,7 +3157,7 @@ public class XpandParser extends Parser {
             	    break;
 
             	default :
-            	    break loop45;
+            	    break loop46;
                 }
             } while (true);
 
@@ -3156,7 +3177,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start primaryExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:274:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:275:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );
     public Expression primaryExpression() throws RecognitionException {
         Expression e = null;
 
@@ -3165,16 +3186,15 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:274:44: (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression )
-            int alt46=9;
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:275:44: (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression )
+            int alt47=9;
             switch ( input.LA(1) ) {
             case StringLiteral:
                 {
-                alt46=1;
+                alt47=1;
                 }
                 break;
             case Identifier:
-            case 86:
             case 87:
             case 88:
             case 89:
@@ -3183,63 +3203,64 @@ public class XpandParser extends Parser {
             case 92:
             case 93:
             case 94:
-            case 96:
+            case 95:
             case 97:
             case 98:
+            case 99:
                 {
-                alt46=2;
+                alt47=2;
                 }
                 break;
-            case 83:
             case 84:
+            case 85:
                 {
-                alt46=3;
+                alt47=3;
                 }
                 break;
             case IntLiteral:
                 {
-                alt46=4;
+                alt47=4;
                 }
                 break;
-            case 85:
+            case 86:
                 {
-                alt46=5;
+                alt47=5;
                 }
                 break;
-            case 64:
+            case 65:
                 {
-                alt46=6;
+                alt47=6;
+                }
+                break;
+            case 83:
+                {
+                alt47=7;
                 }
                 break;
             case 82:
                 {
-                alt46=7;
-                }
-                break;
-            case 81:
-                {
-                alt46=8;
+                alt47=8;
                 }
                 break;
             case 24:
                 {
-                alt46=9;
+                alt47=9;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("274:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );", 46, 0, input);
+                    new NoViableAltException("275:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );", 47, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt46) {
+            switch (alt47) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:275:4: c= StringLiteral
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:276:4: c= StringLiteral
                     {
                     c=input.LT(1);
-                    match(input,StringLiteral,FOLLOW_StringLiteral_in_primaryExpression1660); if (failed) return e;
+                    match(input,StringLiteral,FOLLOW_StringLiteral_in_primaryExpression1669); if (failed) return e;
                     if ( backtracking==0 ) {
                        e = factory.createStringLiteral(id(c));
                     }
@@ -3247,9 +3268,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:276:5: x= featureCall
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:277:5: x= featureCall
                     {
-                    pushFollow(FOLLOW_featureCall_in_primaryExpression1671);
+                    pushFollow(FOLLOW_featureCall_in_primaryExpression1680);
                     x=featureCall();
                     _fsp--;
                     if (failed) return e;
@@ -3260,9 +3281,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:277:5: x= booleanLiteral
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:278:5: x= booleanLiteral
                     {
-                    pushFollow(FOLLOW_booleanLiteral_in_primaryExpression1681);
+                    pushFollow(FOLLOW_booleanLiteral_in_primaryExpression1690);
                     x=booleanLiteral();
                     _fsp--;
                     if (failed) return e;
@@ -3273,9 +3294,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:278:5: x= numberLiteral
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:279:5: x= numberLiteral
                     {
-                    pushFollow(FOLLOW_numberLiteral_in_primaryExpression1691);
+                    pushFollow(FOLLOW_numberLiteral_in_primaryExpression1700);
                     x=numberLiteral();
                     _fsp--;
                     if (failed) return e;
@@ -3286,9 +3307,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:279:5: x= nullLiteral
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:280:5: x= nullLiteral
                     {
-                    pushFollow(FOLLOW_nullLiteral_in_primaryExpression1701);
+                    pushFollow(FOLLOW_nullLiteral_in_primaryExpression1710);
                     x=nullLiteral();
                     _fsp--;
                     if (failed) return e;
@@ -3299,9 +3320,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:280:5: x= listLiteral
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:281:5: x= listLiteral
                     {
-                    pushFollow(FOLLOW_listLiteral_in_primaryExpression1711);
+                    pushFollow(FOLLOW_listLiteral_in_primaryExpression1720);
                     x=listLiteral();
                     _fsp--;
                     if (failed) return e;
@@ -3312,9 +3333,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:281:5: x= constructorCall
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:282:5: x= constructorCall
                     {
-                    pushFollow(FOLLOW_constructorCall_in_primaryExpression1721);
+                    pushFollow(FOLLOW_constructorCall_in_primaryExpression1730);
                     x=constructorCall();
                     _fsp--;
                     if (failed) return e;
@@ -3325,9 +3346,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:282:5: x= globalVarExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:283:5: x= globalVarExpression
                     {
-                    pushFollow(FOLLOW_globalVarExpression_in_primaryExpression1731);
+                    pushFollow(FOLLOW_globalVarExpression_in_primaryExpression1740);
                     x=globalVarExpression();
                     _fsp--;
                     if (failed) return e;
@@ -3338,9 +3359,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:283:5: x= paranthesizedExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:284:5: x= paranthesizedExpression
                     {
-                    pushFollow(FOLLOW_paranthesizedExpression_in_primaryExpression1741);
+                    pushFollow(FOLLOW_paranthesizedExpression_in_primaryExpression1750);
                     x=paranthesizedExpression();
                     _fsp--;
                     if (failed) return e;
@@ -3365,7 +3386,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start paranthesizedExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:286:1: paranthesizedExpression returns [Expression e] : '(' x= expression ')' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:287:1: paranthesizedExpression returns [Expression e] : '(' x= expression ')' ;
     public Expression paranthesizedExpression() throws RecognitionException {
         Expression e = null;
 
@@ -3373,15 +3394,15 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:286:48: ( '(' x= expression ')' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:287:5: '(' x= expression ')'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:287:48: ( '(' x= expression ')' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:288:5: '(' x= expression ')'
             {
-            match(input,24,FOLLOW_24_in_paranthesizedExpression1760); if (failed) return e;
-            pushFollow(FOLLOW_expression_in_paranthesizedExpression1764);
+            match(input,24,FOLLOW_24_in_paranthesizedExpression1769); if (failed) return e;
+            pushFollow(FOLLOW_expression_in_paranthesizedExpression1773);
             x=expression();
             _fsp--;
             if (failed) return e;
-            match(input,27,FOLLOW_27_in_paranthesizedExpression1766); if (failed) return e;
+            match(input,27,FOLLOW_27_in_paranthesizedExpression1775); if (failed) return e;
             if ( backtracking==0 ) {
               e =factory.createParanthesizedExpression(x);
             }
@@ -3401,7 +3422,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start globalVarExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:290:1: globalVarExpression returns [GlobalVarExpression e] : 'GLOBALVAR' name= identifier ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:291:1: globalVarExpression returns [GlobalVarExpression e] : 'GLOBALVAR' name= identifier ;
     public GlobalVarExpression globalVarExpression() throws RecognitionException {
         GlobalVarExpression e = null;
 
@@ -3409,11 +3430,11 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:290:54: ( 'GLOBALVAR' name= identifier )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:291:5: 'GLOBALVAR' name= identifier
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:291:54: ( 'GLOBALVAR' name= identifier )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:292:5: 'GLOBALVAR' name= identifier
             {
-            match(input,81,FOLLOW_81_in_globalVarExpression1786); if (failed) return e;
-            pushFollow(FOLLOW_identifier_in_globalVarExpression1790);
+            match(input,82,FOLLOW_82_in_globalVarExpression1795); if (failed) return e;
+            pushFollow(FOLLOW_identifier_in_globalVarExpression1799);
             name=identifier();
             _fsp--;
             if (failed) return e;
@@ -3436,7 +3457,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start featureCall
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:293:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:294:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );
     public FeatureCall featureCall() throws RecognitionException {
         FeatureCall e = null;
 
@@ -3450,36 +3471,35 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:293:38: (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression )
-            int alt48=3;
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:294:38: (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression )
+            int alt49=3;
             switch ( input.LA(1) ) {
             case Identifier:
                 {
-                int LA48_1 = input.LA(2);
+                int LA49_1 = input.LA(2);
 
-                if ( (LA48_1==EOF||LA48_1==TEXT||LA48_1==Identifier||(LA48_1>=25 && LA48_1<=27)||LA48_1==30||LA48_1==33||LA48_1==37||LA48_1==40||(LA48_1>=51 && LA48_1<=53)||(LA48_1>=57 && LA48_1<=59)||(LA48_1>=61 && LA48_1<=62)||(LA48_1>=65 && LA48_1<=78)||LA48_1==80) ) {
-                    alt48=2;
+                if ( (LA49_1==EOF||LA49_1==TEXT||LA49_1==Identifier||(LA49_1>=25 && LA49_1<=27)||LA49_1==30||LA49_1==33||(LA49_1>=37 && LA49_1<=38)||LA49_1==41||(LA49_1>=52 && LA49_1<=54)||(LA49_1>=58 && LA49_1<=60)||(LA49_1>=62 && LA49_1<=63)||(LA49_1>=66 && LA49_1<=79)||LA49_1==81) ) {
+                    alt49=2;
                 }
-                else if ( (LA48_1==24) ) {
-                    alt48=1;
+                else if ( (LA49_1==24) ) {
+                    alt49=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return e;}
                     NoViableAltException nvae =
-                        new NoViableAltException("293:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );", 48, 1, input);
+                        new NoViableAltException("294:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );", 49, 1, input);
 
                     throw nvae;
                 }
                 }
                 break;
-            case 96:
             case 97:
             case 98:
+            case 99:
                 {
-                alt48=2;
+                alt49=2;
                 }
                 break;
-            case 86:
             case 87:
             case 88:
             case 89:
@@ -3488,39 +3508,40 @@ public class XpandParser extends Parser {
             case 92:
             case 93:
             case 94:
+            case 95:
                 {
-                alt48=3;
+                alt49=3;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("293:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );", 48, 0, input);
+                    new NoViableAltException("294:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );", 49, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt48) {
+            switch (alt49) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:294:2: id1= identifier '(' (l= parameterList )? ')'
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:295:2: id1= identifier '(' (l= parameterList )? ')'
                     {
-                    pushFollow(FOLLOW_identifier_in_featureCall1808);
+                    pushFollow(FOLLOW_identifier_in_featureCall1817);
                     id1=identifier();
                     _fsp--;
                     if (failed) return e;
-                    match(input,24,FOLLOW_24_in_featureCall1810); if (failed) return e;
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:294:21: (l= parameterList )?
-                    int alt47=2;
-                    int LA47_0 = input.LA(1);
+                    match(input,24,FOLLOW_24_in_featureCall1819); if (failed) return e;
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:295:21: (l= parameterList )?
+                    int alt48=2;
+                    int LA48_0 = input.LA(1);
 
-                    if ( ((LA47_0>=StringLiteral && LA47_0<=Identifier)||LA47_0==24||LA47_0==33||LA47_0==55||LA47_0==60||(LA47_0>=63 && LA47_0<=64)||LA47_0==79||(LA47_0>=81 && LA47_0<=94)||(LA47_0>=96 && LA47_0<=98)) ) {
-                        alt47=1;
+                    if ( ((LA48_0>=StringLiteral && LA48_0<=Identifier)||LA48_0==24||LA48_0==33||LA48_0==56||LA48_0==61||(LA48_0>=64 && LA48_0<=65)||LA48_0==80||(LA48_0>=82 && LA48_0<=95)||(LA48_0>=97 && LA48_0<=99)) ) {
+                        alt48=1;
                     }
-                    switch (alt47) {
+                    switch (alt48) {
                         case 1 :
-                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:294:22: l= parameterList
+                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:295:22: l= parameterList
                             {
-                            pushFollow(FOLLOW_parameterList_in_featureCall1815);
+                            pushFollow(FOLLOW_parameterList_in_featureCall1824);
                             l=parameterList();
                             _fsp--;
                             if (failed) return e;
@@ -3530,7 +3551,7 @@ public class XpandParser extends Parser {
 
                     }
 
-                    match(input,27,FOLLOW_27_in_featureCall1819); if (failed) return e;
+                    match(input,27,FOLLOW_27_in_featureCall1828); if (failed) return e;
                     if ( backtracking==0 ) {
                       e = factory.createOperationCall(id1,l);
                     }
@@ -3538,9 +3559,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:295:5: t= type
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:296:5: t= type
                     {
-                    pushFollow(FOLLOW_type_in_featureCall1829);
+                    pushFollow(FOLLOW_type_in_featureCall1838);
                     t=type();
                     _fsp--;
                     if (failed) return e;
@@ -3551,9 +3572,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:296:5: x= collectionExpression
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:297:5: x= collectionExpression
                     {
-                    pushFollow(FOLLOW_collectionExpression_in_featureCall1840);
+                    pushFollow(FOLLOW_collectionExpression_in_featureCall1849);
                     x=collectionExpression();
                     _fsp--;
                     if (failed) return e;
@@ -3578,7 +3599,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start listLiteral
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:299:1: listLiteral returns [Expression e] : '{' (l= parameterList )? '}' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:300:1: listLiteral returns [Expression e] : '{' (l= parameterList )? '}' ;
     public Expression listLiteral() throws RecognitionException {
         Expression e = null;
 
@@ -3586,22 +3607,22 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:299:37: ( '{' (l= parameterList )? '}' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:300:2: '{' (l= parameterList )? '}'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:300:37: ( '{' (l= parameterList )? '}' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:301:2: '{' (l= parameterList )? '}'
             {
-            match(input,64,FOLLOW_64_in_listLiteral1857); if (failed) return e;
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:300:6: (l= parameterList )?
-            int alt49=2;
-            int LA49_0 = input.LA(1);
+            match(input,65,FOLLOW_65_in_listLiteral1866); if (failed) return e;
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:301:6: (l= parameterList )?
+            int alt50=2;
+            int LA50_0 = input.LA(1);
 
-            if ( ((LA49_0>=StringLiteral && LA49_0<=Identifier)||LA49_0==24||LA49_0==33||LA49_0==55||LA49_0==60||(LA49_0>=63 && LA49_0<=64)||LA49_0==79||(LA49_0>=81 && LA49_0<=94)||(LA49_0>=96 && LA49_0<=98)) ) {
-                alt49=1;
+            if ( ((LA50_0>=StringLiteral && LA50_0<=Identifier)||LA50_0==24||LA50_0==33||LA50_0==56||LA50_0==61||(LA50_0>=64 && LA50_0<=65)||LA50_0==80||(LA50_0>=82 && LA50_0<=95)||(LA50_0>=97 && LA50_0<=99)) ) {
+                alt50=1;
             }
-            switch (alt49) {
+            switch (alt50) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:300:7: l= parameterList
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:301:7: l= parameterList
                     {
-                    pushFollow(FOLLOW_parameterList_in_listLiteral1862);
+                    pushFollow(FOLLOW_parameterList_in_listLiteral1871);
                     l=parameterList();
                     _fsp--;
                     if (failed) return e;
@@ -3611,7 +3632,7 @@ public class XpandParser extends Parser {
 
             }
 
-            match(input,67,FOLLOW_67_in_listLiteral1866); if (failed) return e;
+            match(input,68,FOLLOW_68_in_listLiteral1875); if (failed) return e;
             if ( backtracking==0 ) {
               e =factory.createListLiteral(l);
             }
@@ -3631,7 +3652,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start constructorCall
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:303:1: constructorCall returns [Expression e] : 'new' t= simpleType ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:304:1: constructorCall returns [Expression e] : 'new' t= simpleType ;
     public Expression constructorCall() throws RecognitionException {
         Expression e = null;
 
@@ -3639,11 +3660,11 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:303:41: ( 'new' t= simpleType )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:304:2: 'new' t= simpleType
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:304:41: ( 'new' t= simpleType )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:305:2: 'new' t= simpleType
             {
-            match(input,82,FOLLOW_82_in_constructorCall1883); if (failed) return e;
-            pushFollow(FOLLOW_simpleType_in_constructorCall1887);
+            match(input,83,FOLLOW_83_in_constructorCall1892); if (failed) return e;
+            pushFollow(FOLLOW_simpleType_in_constructorCall1896);
             t=simpleType();
             _fsp--;
             if (failed) return e;
@@ -3666,15 +3687,15 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start booleanLiteral
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:308:1: booleanLiteral returns [Expression e=factory.createBooleanLiteral(id(input.LT(1)))] : ( 'false' | 'true' );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:309:1: booleanLiteral returns [Expression e=factory.createBooleanLiteral(id(input.LT(1)))] : ( 'false' | 'true' );
     public Expression booleanLiteral() throws RecognitionException {
         Expression e = factory.createBooleanLiteral(id(input.LT(1)));
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:308:86: ( 'false' | 'true' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:309:86: ( 'false' | 'true' )
             // src/org/eclipse/internal/xpand2/parser/Xpand.g:
             {
-            if ( (input.LA(1)>=83 && input.LA(1)<=84) ) {
+            if ( (input.LA(1)>=84 && input.LA(1)<=85) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -3701,15 +3722,15 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start nullLiteral
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:312:1: nullLiteral returns [Expression e=factory.createNullLiteral(id(input.LT(1)))] : 'null' ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:313:1: nullLiteral returns [Expression e=factory.createNullLiteral(id(input.LT(1)))] : 'null' ;
     public Expression nullLiteral() throws RecognitionException {
         Expression e = factory.createNullLiteral(id(input.LT(1)));
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:312:80: ( 'null' )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:313:2: 'null'
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:313:80: ( 'null' )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:314:2: 'null'
             {
-            match(input,85,FOLLOW_85_in_nullLiteral1922); if (failed) return e;
+            match(input,86,FOLLOW_86_in_nullLiteral1931); if (failed) return e;
 
             }
 
@@ -3726,7 +3747,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start numberLiteral
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:316:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:317:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );
     public Expression numberLiteral() throws RecognitionException {
         Expression e = null;
 
@@ -3735,37 +3756,37 @@ public class XpandParser extends Parser {
         Token c=null;
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:316:39: (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral )
-            int alt50=2;
-            int LA50_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:317:39: (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral )
+            int alt51=2;
+            int LA51_0 = input.LA(1);
 
-            if ( (LA50_0==IntLiteral) ) {
-                int LA50_1 = input.LA(2);
+            if ( (LA51_0==IntLiteral) ) {
+                int LA51_1 = input.LA(2);
 
-                if ( (LA50_1==80) ) {
-                    int LA50_2 = input.LA(3);
+                if ( (LA51_1==81) ) {
+                    int LA51_2 = input.LA(3);
 
-                    if ( (LA50_2==IntLiteral) ) {
-                        alt50=2;
+                    if ( (LA51_2==IntLiteral) ) {
+                        alt51=2;
                     }
-                    else if ( (LA50_2==Identifier||(LA50_2>=86 && LA50_2<=94)||(LA50_2>=96 && LA50_2<=98)) ) {
-                        alt50=1;
+                    else if ( (LA51_2==Identifier||(LA51_2>=87 && LA51_2<=95)||(LA51_2>=97 && LA51_2<=99)) ) {
+                        alt51=1;
                     }
                     else {
                         if (backtracking>0) {failed=true; return e;}
                         NoViableAltException nvae =
-                            new NoViableAltException("316:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 50, 2, input);
+                            new NoViableAltException("317:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 51, 2, input);
 
                         throw nvae;
                     }
                 }
-                else if ( (LA50_1==EOF||LA50_1==TEXT||LA50_1==Identifier||(LA50_1>=25 && LA50_1<=27)||LA50_1==33||LA50_1==37||LA50_1==40||(LA50_1>=51 && LA50_1<=53)||(LA50_1>=57 && LA50_1<=59)||(LA50_1>=61 && LA50_1<=62)||(LA50_1>=65 && LA50_1<=78)) ) {
-                    alt50=1;
+                else if ( (LA51_1==EOF||LA51_1==TEXT||LA51_1==Identifier||(LA51_1>=25 && LA51_1<=27)||LA51_1==33||(LA51_1>=37 && LA51_1<=38)||LA51_1==41||(LA51_1>=52 && LA51_1<=54)||(LA51_1>=58 && LA51_1<=60)||(LA51_1>=62 && LA51_1<=63)||(LA51_1>=66 && LA51_1<=79)) ) {
+                    alt51=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return e;}
                     NoViableAltException nvae =
-                        new NoViableAltException("316:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 50, 1, input);
+                        new NoViableAltException("317:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 51, 1, input);
 
                     throw nvae;
                 }
@@ -3773,16 +3794,16 @@ public class XpandParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("316:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 50, 0, input);
+                    new NoViableAltException("317:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 51, 0, input);
 
                 throw nvae;
             }
-            switch (alt50) {
+            switch (alt51) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:317:4: a= IntLiteral
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:318:4: a= IntLiteral
                     {
                     a=input.LT(1);
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1941); if (failed) return e;
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1950); if (failed) return e;
                     if ( backtracking==0 ) {
                       e =factory.createIntegerLiteral(id(a));
                     }
@@ -3790,14 +3811,14 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:318:4: a= IntLiteral b= '.' c= IntLiteral
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:319:4: a= IntLiteral b= '.' c= IntLiteral
                     {
                     a=input.LT(1);
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1950); if (failed) return e;
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1959); if (failed) return e;
                     b=input.LT(1);
-                    match(input,80,FOLLOW_80_in_numberLiteral1954); if (failed) return e;
+                    match(input,81,FOLLOW_81_in_numberLiteral1963); if (failed) return e;
                     c=input.LT(1);
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1958); if (failed) return e;
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1967); if (failed) return e;
                     if ( backtracking==0 ) {
                       e =factory.createRealLiteral(id(a).append(id(b)).append(id(c)));
                     }
@@ -3819,7 +3840,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start collectionExpression
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:321:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:322:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );
     public FeatureCall collectionExpression() throws RecognitionException {
         FeatureCall e = null;
 
@@ -3832,35 +3853,35 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:321:47: (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' )
-            int alt52=2;
-            int LA52_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:322:47: (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' )
+            int alt53=2;
+            int LA53_0 = input.LA(1);
 
-            if ( (LA52_0==86) ) {
-                alt52=1;
+            if ( (LA53_0==87) ) {
+                alt53=1;
             }
-            else if ( ((LA52_0>=87 && LA52_0<=94)) ) {
-                alt52=2;
+            else if ( ((LA53_0>=88 && LA53_0<=95)) ) {
+                alt53=2;
             }
             else {
                 if (backtracking>0) {failed=true; return e;}
                 NoViableAltException nvae =
-                    new NoViableAltException("321:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );", 52, 0, input);
+                    new NoViableAltException("322:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );", 53, 0, input);
 
                 throw nvae;
             }
-            switch (alt52) {
+            switch (alt53) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:322:3: name= 'typeSelect' '(' t= type ')'
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:323:3: name= 'typeSelect' '(' t= type ')'
                     {
                     name=input.LT(1);
-                    match(input,86,FOLLOW_86_in_collectionExpression1978); if (failed) return e;
-                    match(input,24,FOLLOW_24_in_collectionExpression1982); if (failed) return e;
-                    pushFollow(FOLLOW_type_in_collectionExpression1986);
+                    match(input,87,FOLLOW_87_in_collectionExpression1987); if (failed) return e;
+                    match(input,24,FOLLOW_24_in_collectionExpression1991); if (failed) return e;
+                    pushFollow(FOLLOW_type_in_collectionExpression1995);
                     t=type();
                     _fsp--;
                     if (failed) return e;
-                    match(input,27,FOLLOW_27_in_collectionExpression1988); if (failed) return e;
+                    match(input,27,FOLLOW_27_in_collectionExpression1997); if (failed) return e;
                     if ( backtracking==0 ) {
                        e = factory.createTypeSelectExpression(id(name),t);
                     }
@@ -3868,10 +3889,10 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:325:5: name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')'
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:326:5: name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')'
                     {
                     name=input.LT(1);
-                    if ( (input.LA(1)>=87 && input.LA(1)<=94) ) {
+                    if ( (input.LA(1)>=88 && input.LA(1)<=95) ) {
                         input.consume();
                         errorRecovery=false;failed=false;
                     }
@@ -3879,41 +3900,41 @@ public class XpandParser extends Parser {
                         if (backtracking>0) {failed=true; return e;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_collectionExpression2001);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_collectionExpression2010);    throw mse;
                     }
 
-                    match(input,24,FOLLOW_24_in_collectionExpression2051); if (failed) return e;
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:332:19: (var= identifier '|' )?
-                    int alt51=2;
-                    int LA51_0 = input.LA(1);
+                    match(input,24,FOLLOW_24_in_collectionExpression2060); if (failed) return e;
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:333:19: (var= identifier '|' )?
+                    int alt52=2;
+                    int LA52_0 = input.LA(1);
 
-                    if ( (LA51_0==Identifier) ) {
-                        int LA51_1 = input.LA(2);
+                    if ( (LA52_0==Identifier) ) {
+                        int LA52_1 = input.LA(2);
 
-                        if ( (LA51_1==95) ) {
-                            alt51=1;
+                        if ( (LA52_1==96) ) {
+                            alt52=1;
                         }
                     }
-                    switch (alt51) {
+                    switch (alt52) {
                         case 1 :
-                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:332:20: var= identifier '|'
+                            // src/org/eclipse/internal/xpand2/parser/Xpand.g:333:20: var= identifier '|'
                             {
-                            pushFollow(FOLLOW_identifier_in_collectionExpression2056);
+                            pushFollow(FOLLOW_identifier_in_collectionExpression2065);
                             var=identifier();
                             _fsp--;
                             if (failed) return e;
-                            match(input,95,FOLLOW_95_in_collectionExpression2058); if (failed) return e;
+                            match(input,96,FOLLOW_96_in_collectionExpression2067); if (failed) return e;
 
                             }
                             break;
 
                     }
 
-                    pushFollow(FOLLOW_expression_in_collectionExpression2064);
+                    pushFollow(FOLLOW_expression_in_collectionExpression2073);
                     x=expression();
                     _fsp--;
                     if (failed) return e;
-                    match(input,27,FOLLOW_27_in_collectionExpression2066); if (failed) return e;
+                    match(input,27,FOLLOW_27_in_collectionExpression2075); if (failed) return e;
                     if ( backtracking==0 ) {
                        e = factory.createCollectionExpression(id(name),var,x);
                     }
@@ -3935,7 +3956,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start declaredParameterList
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:338:1: declaredParameterList returns [List<DeclaredParameter> l = new ArrayList<DeclaredParameter>()] : dp= declaredParameter ( ',' dp1= declaredParameter )* ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:339:1: declaredParameterList returns [List<DeclaredParameter> l = new ArrayList<DeclaredParameter>()] : dp= declaredParameter ( ',' dp1= declaredParameter )* ;
     public List<DeclaredParameter> declaredParameterList() throws RecognitionException {
         List<DeclaredParameter> l =  new ArrayList<DeclaredParameter>();
 
@@ -3945,39 +3966,39 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:338:97: (dp= declaredParameter ( ',' dp1= declaredParameter )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:339:2: dp= declaredParameter ( ',' dp1= declaredParameter )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:339:97: (dp= declaredParameter ( ',' dp1= declaredParameter )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:340:2: dp= declaredParameter ( ',' dp1= declaredParameter )*
             {
-            pushFollow(FOLLOW_declaredParameter_in_declaredParameterList2090);
+            pushFollow(FOLLOW_declaredParameter_in_declaredParameterList2099);
             dp=declaredParameter();
             _fsp--;
             if (failed) return l;
             if ( backtracking==0 ) {
               l.add(dp);
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:339:36: ( ',' dp1= declaredParameter )*
-            loop53:
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:340:36: ( ',' dp1= declaredParameter )*
+            loop54:
             do {
-                int alt53=2;
-                int LA53_0 = input.LA(1);
+                int alt54=2;
+                int LA54_0 = input.LA(1);
 
-                if ( (LA53_0==25) ) {
-                    int LA53_1 = input.LA(2);
+                if ( (LA54_0==25) ) {
+                    int LA54_1 = input.LA(2);
 
-                    if ( (LA53_1==Identifier||(LA53_1>=96 && LA53_1<=98)) ) {
-                        alt53=1;
+                    if ( (LA54_1==Identifier||(LA54_1>=97 && LA54_1<=99)) ) {
+                        alt54=1;
                     }
 
 
                 }
 
 
-                switch (alt53) {
+                switch (alt54) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:339:37: ',' dp1= declaredParameter
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:340:37: ',' dp1= declaredParameter
             	    {
-            	    match(input,25,FOLLOW_25_in_declaredParameterList2094); if (failed) return l;
-            	    pushFollow(FOLLOW_declaredParameter_in_declaredParameterList2098);
+            	    match(input,25,FOLLOW_25_in_declaredParameterList2103); if (failed) return l;
+            	    pushFollow(FOLLOW_declaredParameter_in_declaredParameterList2107);
             	    dp1=declaredParameter();
             	    _fsp--;
             	    if (failed) return l;
@@ -3989,7 +4010,7 @@ public class XpandParser extends Parser {
             	    break;
 
             	default :
-            	    break loop53;
+            	    break loop54;
                 }
             } while (true);
 
@@ -4009,7 +4030,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start declaredParameter
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:342:1: declaredParameter returns [DeclaredParameter dp] : t= type name= identifier ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:343:1: declaredParameter returns [DeclaredParameter dp] : t= type name= identifier ;
     public DeclaredParameter declaredParameter() throws RecognitionException {
         DeclaredParameter dp = null;
 
@@ -4019,14 +4040,14 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:342:50: (t= type name= identifier )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:343:2: t= type name= identifier
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:343:50: (t= type name= identifier )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:344:2: t= type name= identifier
             {
-            pushFollow(FOLLOW_type_in_declaredParameter2118);
+            pushFollow(FOLLOW_type_in_declaredParameter2127);
             t=type();
             _fsp--;
             if (failed) return dp;
-            pushFollow(FOLLOW_identifier_in_declaredParameter2122);
+            pushFollow(FOLLOW_identifier_in_declaredParameter2131);
             name=identifier();
             _fsp--;
             if (failed) return dp;
@@ -4049,7 +4070,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start parameterList
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:346:1: parameterList returns [List<Expression> list = new ArrayList<Expression>()] : a= expression ( ',' b= expression )* ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:347:1: parameterList returns [List<Expression> list = new ArrayList<Expression>()] : a= expression ( ',' b= expression )* ;
     public List<Expression> parameterList() throws RecognitionException {
         List<Expression> list =  new ArrayList<Expression>();
 
@@ -4059,33 +4080,33 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:346:78: (a= expression ( ',' b= expression )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:347:5: a= expression ( ',' b= expression )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:347:78: (a= expression ( ',' b= expression )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:348:5: a= expression ( ',' b= expression )*
             {
-            pushFollow(FOLLOW_expression_in_parameterList2144);
+            pushFollow(FOLLOW_expression_in_parameterList2153);
             a=expression();
             _fsp--;
             if (failed) return list;
             if ( backtracking==0 ) {
               list.add(a);
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:347:34: ( ',' b= expression )*
-            loop54:
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:348:34: ( ',' b= expression )*
+            loop55:
             do {
-                int alt54=2;
-                int LA54_0 = input.LA(1);
+                int alt55=2;
+                int LA55_0 = input.LA(1);
 
-                if ( (LA54_0==25) ) {
-                    alt54=1;
+                if ( (LA55_0==25) ) {
+                    alt55=1;
                 }
 
 
-                switch (alt54) {
+                switch (alt55) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:347:35: ',' b= expression
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:348:35: ',' b= expression
             	    {
-            	    match(input,25,FOLLOW_25_in_parameterList2149); if (failed) return list;
-            	    pushFollow(FOLLOW_expression_in_parameterList2153);
+            	    match(input,25,FOLLOW_25_in_parameterList2158); if (failed) return list;
+            	    pushFollow(FOLLOW_expression_in_parameterList2162);
             	    b=expression();
             	    _fsp--;
             	    if (failed) return list;
@@ -4097,7 +4118,7 @@ public class XpandParser extends Parser {
             	    break;
 
             	default :
-            	    break loop54;
+            	    break loop55;
                 }
             } while (true);
 
@@ -4117,7 +4138,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start type
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:352:1: type returns [Identifier id] : (a= collectionType | b= simpleType );
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:353:1: type returns [Identifier id] : (a= collectionType | b= simpleType );
     public Identifier type() throws RecognitionException {
         Identifier id = null;
 
@@ -4127,28 +4148,28 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:352:30: (a= collectionType | b= simpleType )
-            int alt55=2;
-            int LA55_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:353:30: (a= collectionType | b= simpleType )
+            int alt56=2;
+            int LA56_0 = input.LA(1);
 
-            if ( ((LA55_0>=96 && LA55_0<=98)) ) {
-                alt55=1;
+            if ( ((LA56_0>=97 && LA56_0<=99)) ) {
+                alt56=1;
             }
-            else if ( (LA55_0==Identifier) ) {
-                alt55=2;
+            else if ( (LA56_0==Identifier) ) {
+                alt56=2;
             }
             else {
                 if (backtracking>0) {failed=true; return id;}
                 NoViableAltException nvae =
-                    new NoViableAltException("352:1: type returns [Identifier id] : (a= collectionType | b= simpleType );", 55, 0, input);
+                    new NoViableAltException("353:1: type returns [Identifier id] : (a= collectionType | b= simpleType );", 56, 0, input);
 
                 throw nvae;
             }
-            switch (alt55) {
+            switch (alt56) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:353:2: a= collectionType
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:354:2: a= collectionType
                     {
-                    pushFollow(FOLLOW_collectionType_in_type2179);
+                    pushFollow(FOLLOW_collectionType_in_type2188);
                     a=collectionType();
                     _fsp--;
                     if (failed) return id;
@@ -4159,9 +4180,9 @@ public class XpandParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:354:2: b= simpleType
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:355:2: b= simpleType
                     {
-                    pushFollow(FOLLOW_simpleType_in_type2189);
+                    pushFollow(FOLLOW_simpleType_in_type2198);
                     b=simpleType();
                     _fsp--;
                     if (failed) return id;
@@ -4186,7 +4207,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start collectionType
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:357:1: collectionType returns [Identifier id ] : cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:358:1: collectionType returns [Identifier id ] : cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? ;
     public Identifier collectionType() throws RecognitionException {
         Identifier id = null;
 
@@ -4197,11 +4218,11 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:357:42: (cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:358:3: cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )?
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:358:42: (cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )? )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:359:3: cl= ( 'Collection' | 'List' | 'Set' ) (b= '[' id1= simpleType c= ']' )?
             {
             cl=input.LT(1);
-            if ( (input.LA(1)>=96 && input.LA(1)<=98) ) {
+            if ( (input.LA(1)>=97 && input.LA(1)<=99) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -4209,31 +4230,31 @@ public class XpandParser extends Parser {
                 if (backtracking>0) {failed=true; return id;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_collectionType2211);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_collectionType2220);    throw mse;
             }
 
             if ( backtracking==0 ) {
               id = id(cl);
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:359:3: (b= '[' id1= simpleType c= ']' )?
-            int alt56=2;
-            int LA56_0 = input.LA(1);
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:360:3: (b= '[' id1= simpleType c= ']' )?
+            int alt57=2;
+            int LA57_0 = input.LA(1);
 
-            if ( (LA56_0==99) ) {
-                alt56=1;
+            if ( (LA57_0==100) ) {
+                alt57=1;
             }
-            switch (alt56) {
+            switch (alt57) {
                 case 1 :
-                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:359:4: b= '[' id1= simpleType c= ']'
+                    // src/org/eclipse/internal/xpand2/parser/Xpand.g:360:4: b= '[' id1= simpleType c= ']'
                     {
                     b=input.LT(1);
-                    match(input,99,FOLLOW_99_in_collectionType2232); if (failed) return id;
-                    pushFollow(FOLLOW_simpleType_in_collectionType2236);
+                    match(input,100,FOLLOW_100_in_collectionType2241); if (failed) return id;
+                    pushFollow(FOLLOW_simpleType_in_collectionType2245);
                     id1=simpleType();
                     _fsp--;
                     if (failed) return id;
                     c=input.LT(1);
-                    match(input,100,FOLLOW_100_in_collectionType2240); if (failed) return id;
+                    match(input,101,FOLLOW_101_in_collectionType2249); if (failed) return id;
                     if ( backtracking==0 ) {
                        id.append(id(b));id.append(id1);id.append(id(c));
                     }
@@ -4259,7 +4280,7 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start simpleType
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:362:1: simpleType returns [Identifier id] : x= identifier (d= '::' end= identifier )* ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:363:1: simpleType returns [Identifier id] : x= identifier (d= '::' end= identifier )* ;
     public Identifier simpleType() throws RecognitionException {
         Identifier id = null;
 
@@ -4270,34 +4291,34 @@ public class XpandParser extends Parser {
 
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:362:36: (x= identifier (d= '::' end= identifier )* )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:363:2: x= identifier (d= '::' end= identifier )*
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:363:36: (x= identifier (d= '::' end= identifier )* )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:364:2: x= identifier (d= '::' end= identifier )*
             {
-            pushFollow(FOLLOW_identifier_in_simpleType2260);
+            pushFollow(FOLLOW_identifier_in_simpleType2269);
             x=identifier();
             _fsp--;
             if (failed) return id;
             if ( backtracking==0 ) {
               id =x;
             }
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:364:2: (d= '::' end= identifier )*
-            loop57:
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:365:2: (d= '::' end= identifier )*
+            loop58:
             do {
-                int alt57=2;
-                int LA57_0 = input.LA(1);
+                int alt58=2;
+                int LA58_0 = input.LA(1);
 
-                if ( (LA57_0==30) ) {
-                    alt57=1;
+                if ( (LA58_0==30) ) {
+                    alt58=1;
                 }
 
 
-                switch (alt57) {
+                switch (alt58) {
             	case 1 :
-            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:364:3: d= '::' end= identifier
+            	    // src/org/eclipse/internal/xpand2/parser/Xpand.g:365:3: d= '::' end= identifier
             	    {
             	    d=input.LT(1);
-            	    match(input,30,FOLLOW_30_in_simpleType2268); if (failed) return id;
-            	    pushFollow(FOLLOW_identifier_in_simpleType2272);
+            	    match(input,30,FOLLOW_30_in_simpleType2277); if (failed) return id;
+            	    pushFollow(FOLLOW_identifier_in_simpleType2281);
             	    end=identifier();
             	    _fsp--;
             	    if (failed) return id;
@@ -4309,7 +4330,7 @@ public class XpandParser extends Parser {
             	    break;
 
             	default :
-            	    break loop57;
+            	    break loop58;
                 }
             } while (true);
 
@@ -4329,18 +4350,18 @@ public class XpandParser extends Parser {
 
 
     // $ANTLR start identifier
-    // src/org/eclipse/internal/xpand2/parser/Xpand.g:367:1: identifier returns [Identifier r] : x= Identifier ;
+    // src/org/eclipse/internal/xpand2/parser/Xpand.g:368:1: identifier returns [Identifier r] : x= Identifier ;
     public Identifier identifier() throws RecognitionException {
         Identifier r = null;
 
         Token x=null;
 
         try {
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:367:35: (x= Identifier )
-            // src/org/eclipse/internal/xpand2/parser/Xpand.g:368:4: x= Identifier
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:368:35: (x= Identifier )
+            // src/org/eclipse/internal/xpand2/parser/Xpand.g:369:4: x= Identifier
             {
             x=input.LT(1);
-            match(input,Identifier,FOLLOW_Identifier_in_identifier2295); if (failed) return r;
+            match(input,Identifier,FOLLOW_Identifier_in_identifier2304); if (failed) return r;
             if ( backtracking==0 ) {
               r =id(x);
             }
@@ -4360,16 +4381,16 @@ public class XpandParser extends Parser {
 
     // $ANTLR start synpred1
     public void synpred1_fragment() throws RecognitionException {   
-        // src/org/eclipse/internal/xpand2/parser/Xpand.g:205:5: ( '(' type ')' castedExpression )
-        // src/org/eclipse/internal/xpand2/parser/Xpand.g:205:6: '(' type ')' castedExpression
+        // src/org/eclipse/internal/xpand2/parser/Xpand.g:206:5: ( '(' type ')' castedExpression )
+        // src/org/eclipse/internal/xpand2/parser/Xpand.g:206:6: '(' type ')' castedExpression
         {
-        match(input,24,FOLLOW_24_in_synpred11095); if (failed) return ;
-        pushFollow(FOLLOW_type_in_synpred11097);
+        match(input,24,FOLLOW_24_in_synpred11104); if (failed) return ;
+        pushFollow(FOLLOW_type_in_synpred11106);
         type();
         _fsp--;
         if (failed) return ;
-        match(input,27,FOLLOW_27_in_synpred11099); if (failed) return ;
-        pushFollow(FOLLOW_castedExpression_in_synpred11101);
+        match(input,27,FOLLOW_27_in_synpred11108); if (failed) return ;
+        pushFollow(FOLLOW_castedExpression_in_synpred11110);
         castedExpression();
         _fsp--;
         if (failed) return ;
@@ -4394,194 +4415,194 @@ public class XpandParser extends Parser {
     }
 
 
-    protected DFA30 dfa30 = new DFA30(this);
-    static final String DFA30_eotS =
+    protected DFA31 dfa31 = new DFA31(this);
+    static final String DFA31_eotS =
         "\67\uffff";
-    static final String DFA30_eofS =
+    static final String DFA31_eofS =
         "\6\uffff\1\2\60\uffff";
-    static final String DFA30_minS =
-        "\2\7\1\uffff\1\32\1\30\1\11\1\6\1\11\1\36\2\uffff\1\0\13\uffff\1"+
-        "\6\1\uffff\1\32\1\11\1\32\3\0\2\30\4\0\2\11\1\0\1\36\1\11\3\0\2"+
+    static final String DFA31_minS =
+        "\2\7\1\uffff\1\30\1\32\1\11\1\6\1\11\1\32\2\uffff\1\0\13\uffff\1"+
+        "\6\1\uffff\1\36\3\0\2\30\4\0\2\11\1\0\1\11\1\32\1\11\3\0\1\36\2"+
         "\33\1\11\1\0\1\11\1\36\1\33\1\11\1\33\1\36";
-    static final String DFA30_maxS =
-        "\2\142\1\uffff\1\143\1\120\1\11\1\142\1\11\1\144\2\uffff\1\0\13"+
-        "\uffff\1\142\1\uffff\1\120\1\11\1\120\3\0\2\30\4\0\2\11\1\0\1\144"+
-        "\1\142\3\0\1\143\1\36\1\11\1\0\1\11\1\144\1\36\1\11\1\33\1\144";
-    static final String DFA30_acceptS =
+    static final String DFA31_maxS =
+        "\2\143\1\uffff\1\121\1\144\1\11\1\143\1\11\1\121\2\uffff\1\0\13"+
+        "\uffff\1\143\1\uffff\1\145\3\0\2\30\4\0\2\11\1\0\1\11\1\121\1\143"+
+        "\3\0\1\145\1\144\1\36\1\11\1\0\1\11\1\145\1\36\1\11\1\33\1\145";
+    static final String DFA31_acceptS =
         "\2\uffff\1\2\6\uffff\2\1\1\uffff\13\1\1\uffff\1\1\36\uffff";
-    static final String DFA30_specialS =
-        "\6\uffff\1\0\4\uffff\1\7\20\uffff\1\10\1\11\1\13\2\uffff\1\12\1"+
-        "\14\1\5\1\15\2\uffff\1\2\2\uffff\1\3\1\6\1\4\3\uffff\1\1\6\uffff}>";
-    static final String[] DFA30_transitionS = {
-            "\3\2\16\uffff\1\1\10\uffff\1\2\32\uffff\1\2\2\uffff\2\2\16\uffff"+
+    static final String DFA31_specialS =
+        "\6\uffff\1\1\4\uffff\1\15\16\uffff\1\10\1\13\1\6\2\uffff\1\14\1"+
+        "\5\1\11\1\3\2\uffff\1\2\3\uffff\1\4\1\0\1\12\4\uffff\1\7\6\uffff}>";
+    static final String[] DFA31_transitionS = {
+            "\3\2\16\uffff\1\1\10\uffff\1\2\33\uffff\1\2\2\uffff\2\2\16\uffff"+
             "\1\2\1\uffff\16\2\1\uffff\3\2",
-            "\2\2\1\4\16\uffff\1\2\10\uffff\1\2\25\uffff\1\2\4\uffff\1\2"+
-            "\2\uffff\2\2\16\uffff\1\2\1\uffff\16\2\1\uffff\3\3",
+            "\2\2\1\3\16\uffff\1\2\10\uffff\1\2\26\uffff\1\2\4\uffff\1\2"+
+            "\2\uffff\2\2\16\uffff\1\2\1\uffff\16\2\1\uffff\3\4",
             "",
-            "\1\2\1\6\5\uffff\1\2\30\uffff\2\2\10\uffff\13\2\1\uffff\1\2"+
-            "\22\uffff\1\5",
-            "\1\2\1\uffff\1\2\1\6\2\uffff\1\7\2\uffff\1\2\30\uffff\2\2\10"+
+            "\1\2\1\uffff\1\2\1\6\2\uffff\1\5\2\uffff\1\2\31\uffff\2\2\10"+
             "\uffff\13\2\1\uffff\1\2",
+            "\1\2\1\6\5\uffff\1\2\31\uffff\2\2\10\uffff\13\2\1\uffff\1\2"+
+            "\22\uffff\1\7",
             "\1\10",
-            "\1\2\1\12\1\20\1\13\16\uffff\1\25\3\2\5\uffff\1\27\3\uffff\1"+
+            "\1\2\1\12\1\20\1\13\16\uffff\1\25\3\2\5\uffff\1\27\3\uffff\2"+
             "\2\2\uffff\1\2\12\uffff\3\2\3\uffff\3\2\1\30\2\uffff\1\11\1"+
             "\22\2\uffff\14\2\1\26\1\2\1\24\1\23\2\17\1\21\1\15\10\16\1\uffff"+
             "\3\14",
             "\1\31",
-            "\1\32\105\uffff\1\33",
-            "",
-            "",
-            "\1\uffff",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\2\1\34\1\42\1\35\16\uffff\1\47\10\uffff\1\2\36\uffff\1\44"+
-            "\16\uffff\1\2\1\uffff\1\46\1\45\2\41\1\43\1\37\10\40\1\uffff"+
-            "\3\36",
-            "",
-            "\1\2\1\6\2\uffff\1\7\2\uffff\1\2\30\uffff\2\2\10\uffff\13\2"+
+            "\1\2\1\6\2\uffff\1\5\2\uffff\1\2\31\uffff\2\2\10\uffff\13\2"+
             "\1\uffff\1\2",
+            "",
+            "",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\2\1\32\1\40\1\33\16\uffff\1\45\10\uffff\1\2\37\uffff\1\42"+
+            "\16\uffff\1\2\1\uffff\1\44\1\43\2\37\1\41\1\35\10\36\1\uffff"+
+            "\3\34",
+            "",
+            "\1\46\106\uffff\1\47",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
             "\1\50",
-            "\1\2\1\6\5\uffff\1\2\30\uffff\2\2\10\uffff\13\2\1\uffff\1\2",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
             "\1\51",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
             "\1\52",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
             "\1\53",
+            "\1\uffff",
             "\1\54",
-            "\1\uffff",
-            "\1\32\105\uffff\1\33",
-            "\1\56\126\uffff\3\55",
-            "\1\uffff",
+            "\1\2\1\6\5\uffff\1\2\31\uffff\2\2\10\uffff\13\2\1\uffff\1\2",
+            "\1\56\127\uffff\3\55",
             "\1\uffff",
             "\1\uffff",
-            "\1\60\107\uffff\1\57",
+            "\1\uffff",
+            "\1\46\106\uffff\1\47",
+            "\1\60\110\uffff\1\57",
             "\1\60\2\uffff\1\61",
             "\1\62",
             "\1\uffff",
             "\1\63",
-            "\1\64\105\uffff\1\65",
+            "\1\64\106\uffff\1\65",
             "\1\60\2\uffff\1\61",
             "\1\66",
             "\1\60",
-            "\1\64\105\uffff\1\65"
+            "\1\64\106\uffff\1\65"
     };
 
-    static final short[] DFA30_eot = DFA.unpackEncodedString(DFA30_eotS);
-    static final short[] DFA30_eof = DFA.unpackEncodedString(DFA30_eofS);
-    static final char[] DFA30_min = DFA.unpackEncodedStringToUnsignedChars(DFA30_minS);
-    static final char[] DFA30_max = DFA.unpackEncodedStringToUnsignedChars(DFA30_maxS);
-    static final short[] DFA30_accept = DFA.unpackEncodedString(DFA30_acceptS);
-    static final short[] DFA30_special = DFA.unpackEncodedString(DFA30_specialS);
-    static final short[][] DFA30_transition;
+    static final short[] DFA31_eot = DFA.unpackEncodedString(DFA31_eotS);
+    static final short[] DFA31_eof = DFA.unpackEncodedString(DFA31_eofS);
+    static final char[] DFA31_min = DFA.unpackEncodedStringToUnsignedChars(DFA31_minS);
+    static final char[] DFA31_max = DFA.unpackEncodedStringToUnsignedChars(DFA31_maxS);
+    static final short[] DFA31_accept = DFA.unpackEncodedString(DFA31_acceptS);
+    static final short[] DFA31_special = DFA.unpackEncodedString(DFA31_specialS);
+    static final short[][] DFA31_transition;
 
     static {
-        int numStates = DFA30_transitionS.length;
-        DFA30_transition = new short[numStates][];
+        int numStates = DFA31_transitionS.length;
+        DFA31_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA30_transition[i] = DFA.unpackEncodedString(DFA30_transitionS[i]);
+            DFA31_transition[i] = DFA.unpackEncodedString(DFA31_transitionS[i]);
         }
     }
 
-    class DFA30 extends DFA {
+    class DFA31 extends DFA {
 
-        public DFA30(BaseRecognizer recognizer) {
+        public DFA31(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 30;
-            this.eot = DFA30_eot;
-            this.eof = DFA30_eof;
-            this.min = DFA30_min;
-            this.max = DFA30_max;
-            this.accept = DFA30_accept;
-            this.special = DFA30_special;
-            this.transition = DFA30_transition;
+            this.decisionNumber = 31;
+            this.eot = DFA31_eot;
+            this.eof = DFA31_eof;
+            this.min = DFA31_min;
+            this.max = DFA31_max;
+            this.accept = DFA31_accept;
+            this.special = DFA31_special;
+            this.transition = DFA31_transition;
         }
         @Override
 		public String getDescription() {
-            return "204:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );";
+            return "205:1: castedExpression returns [Expression e] : ( ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression | x= chainExpression );";
         }
         @Override
 		public int specialStateTransition(int s, IntStream input) throws NoViableAltException {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA30_6 = input.LA(1);
+                        int LA31_42 = input.LA(1);
 
                          
-                        int index30_6 = input.index();
+                        int index31_42 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA30_6==63) && (synpred1())) {s = 9;}
+                        if ( (synpred1()) ) {s = 24;}
 
-                        else if ( (LA30_6==StringLiteral) && (synpred1())) {s = 10;}
-
-                        else if ( (LA30_6==Identifier) ) {s = 11;}
-
-                        else if ( ((LA30_6>=96 && LA30_6<=98)) && (synpred1())) {s = 12;}
-
-                        else if ( (LA30_6==86) && (synpred1())) {s = 13;}
-
-                        else if ( ((LA30_6>=87 && LA30_6<=94)) && (synpred1())) {s = 14;}
-
-                        else if ( ((LA30_6>=83 && LA30_6<=84)) && (synpred1())) {s = 15;}
-
-                        else if ( (LA30_6==IntLiteral) && (synpred1())) {s = 16;}
-
-                        else if ( (LA30_6==85) && (synpred1())) {s = 17;}
-
-                        else if ( (LA30_6==64) && (synpred1())) {s = 18;}
-
-                        else if ( (LA30_6==82) && (synpred1())) {s = 19;}
-
-                        else if ( (LA30_6==81) && (synpred1())) {s = 20;}
-
-                        else if ( (LA30_6==24) && (synpred1())) {s = 21;}
-
-                        else if ( (LA30_6==79) && (synpred1())) {s = 22;}
-
-                        else if ( (LA30_6==33) ) {s = 23;}
-
-                        else if ( (LA30_6==60) && (synpred1())) {s = 24;}
-
-                        else if ( (LA30_6==EOF||LA30_6==TEXT||(LA30_6>=25 && LA30_6<=27)||LA30_6==37||LA30_6==40||(LA30_6>=51 && LA30_6<=53)||(LA30_6>=57 && LA30_6<=59)||(LA30_6>=67 && LA30_6<=78)||LA30_6==80) ) {s = 2;}
+                        else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_6);
+                        input.seek(index31_42);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA30_48 = input.LA(1);
+                        int LA31_6 = input.LA(1);
 
                          
-                        int index30_48 = input.index();
+                        int index31_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred1()) ) {s = 24;}
+                        if ( (LA31_6==64) && (synpred1())) {s = 9;}
 
-                        else if ( (true) ) {s = 2;}
+                        else if ( (LA31_6==StringLiteral) && (synpred1())) {s = 10;}
+
+                        else if ( (LA31_6==Identifier) ) {s = 11;}
+
+                        else if ( ((LA31_6>=97 && LA31_6<=99)) && (synpred1())) {s = 12;}
+
+                        else if ( (LA31_6==87) && (synpred1())) {s = 13;}
+
+                        else if ( ((LA31_6>=88 && LA31_6<=95)) && (synpred1())) {s = 14;}
+
+                        else if ( ((LA31_6>=84 && LA31_6<=85)) && (synpred1())) {s = 15;}
+
+                        else if ( (LA31_6==IntLiteral) && (synpred1())) {s = 16;}
+
+                        else if ( (LA31_6==86) && (synpred1())) {s = 17;}
+
+                        else if ( (LA31_6==65) && (synpred1())) {s = 18;}
+
+                        else if ( (LA31_6==83) && (synpred1())) {s = 19;}
+
+                        else if ( (LA31_6==82) && (synpred1())) {s = 20;}
+
+                        else if ( (LA31_6==24) && (synpred1())) {s = 21;}
+
+                        else if ( (LA31_6==80) && (synpred1())) {s = 22;}
+
+                        else if ( (LA31_6==33) ) {s = 23;}
+
+                        else if ( (LA31_6==61) && (synpred1())) {s = 24;}
+
+                        else if ( (LA31_6==EOF||LA31_6==TEXT||(LA31_6>=25 && LA31_6<=27)||(LA31_6>=37 && LA31_6<=38)||LA31_6==41||(LA31_6>=52 && LA31_6<=54)||(LA31_6>=58 && LA31_6<=60)||(LA31_6>=68 && LA31_6<=79)||LA31_6==81) ) {s = 2;}
 
                          
-                        input.seek(index30_48);
+                        input.seek(index31_6);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA30_39 = input.LA(1);
+                        int LA31_37 = input.LA(1);
 
                          
-                        int index30_39 = input.index();
+                        int index31_37 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4589,14 +4610,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_39);
+                        input.seek(index31_37);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA30_42 = input.LA(1);
+                        int LA31_34 = input.LA(1);
 
                          
-                        int index30_42 = input.index();
+                        int index31_34 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4604,14 +4625,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_42);
+                        input.seek(index31_34);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA30_44 = input.LA(1);
+                        int LA31_41 = input.LA(1);
 
                          
-                        int index30_44 = input.index();
+                        int index31_41 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4619,14 +4640,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_44);
+                        input.seek(index31_41);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA30_35 = input.LA(1);
+                        int LA31_32 = input.LA(1);
 
                          
-                        int index30_35 = input.index();
+                        int index31_32 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4634,14 +4655,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_35);
+                        input.seek(index31_32);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA30_43 = input.LA(1);
+                        int LA31_28 = input.LA(1);
 
                          
-                        int index30_43 = input.index();
+                        int index31_28 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4649,14 +4670,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_43);
+                        input.seek(index31_28);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA30_11 = input.LA(1);
+                        int LA31_48 = input.LA(1);
 
                          
-                        int index30_11 = input.index();
+                        int index31_48 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4664,14 +4685,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_11);
+                        input.seek(index31_48);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA30_28 = input.LA(1);
+                        int LA31_26 = input.LA(1);
 
                          
-                        int index30_28 = input.index();
+                        int index31_26 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4679,14 +4700,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_28);
+                        input.seek(index31_26);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA30_29 = input.LA(1);
+                        int LA31_33 = input.LA(1);
 
                          
-                        int index30_29 = input.index();
+                        int index31_33 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4694,14 +4715,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_29);
+                        input.seek(index31_33);
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        int LA30_33 = input.LA(1);
+                        int LA31_43 = input.LA(1);
 
                          
-                        int index30_33 = input.index();
+                        int index31_43 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4709,14 +4730,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_33);
+                        input.seek(index31_43);
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA30_30 = input.LA(1);
+                        int LA31_27 = input.LA(1);
 
                          
-                        int index30_30 = input.index();
+                        int index31_27 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4724,14 +4745,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_30);
+                        input.seek(index31_27);
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA30_34 = input.LA(1);
+                        int LA31_31 = input.LA(1);
 
                          
-                        int index30_34 = input.index();
+                        int index31_31 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4739,14 +4760,14 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_34);
+                        input.seek(index31_31);
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
-                        int LA30_36 = input.LA(1);
+                        int LA31_11 = input.LA(1);
 
                          
-                        int index30_36 = input.index();
+                        int index31_11 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred1()) ) {s = 24;}
@@ -4754,13 +4775,13 @@ public class XpandParser extends Parser {
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index30_36);
+                        input.seek(index31_11);
                         if ( s>=0 ) return s;
                         break;
             }
             if (backtracking>0) {failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 30, _s, input);
+                new NoViableAltException(getDescription(), 31, _s, input);
             error(nvae);
             throw nvae;
         }
@@ -4786,13 +4807,13 @@ public class XpandParser extends Parser {
     public static final BitSet FOLLOW_simpleType_in_anExtensionImport160 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_23_in_around178 = new BitSet(new long[]{0x0000000004000200L});
     public static final BitSet FOLLOW_pointcut_in_around182 = new BitSet(new long[]{0x0000000011000000L});
-    public static final BitSet FOLLOW_24_in_around188 = new BitSet(new long[]{0x0000000004000200L,0x0000000700000000L});
+    public static final BitSet FOLLOW_24_in_around188 = new BitSet(new long[]{0x0000000004000200L,0x0000000E00000000L});
     public static final BitSet FOLLOW_declaredParameterList_in_around193 = new BitSet(new long[]{0x000000000A000000L});
     public static final BitSet FOLLOW_25_in_around196 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_26_in_around200 = new BitSet(new long[]{0x0000000008000000L});
     public static final BitSet FOLLOW_26_in_around209 = new BitSet(new long[]{0x0000000008000000L});
     public static final BitSet FOLLOW_27_in_around213 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_around217 = new BitSet(new long[]{0x0000000000000200L,0x0000000700000000L});
+    public static final BitSet FOLLOW_28_in_around217 = new BitSet(new long[]{0x0000000000000200L,0x0000000E00000000L});
     public static final BitSet FOLLOW_type_in_around221 = new BitSet(new long[]{0x0000000200000040L});
     public static final BitSet FOLLOW_sequence_in_around229 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_29_in_around234 = new BitSet(new long[]{0x0000000000000002L});
@@ -4803,16 +4824,16 @@ public class XpandParser extends Parser {
     public static final BitSet FOLLOW_30_in_pointcut283 = new BitSet(new long[]{0x0000000044000202L});
     public static final BitSet FOLLOW_31_in_define303 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_identifier_in_define307 = new BitSet(new long[]{0x0000000011000000L});
-    public static final BitSet FOLLOW_24_in_define310 = new BitSet(new long[]{0x0000000000000200L,0x0000000700000000L});
+    public static final BitSet FOLLOW_24_in_define310 = new BitSet(new long[]{0x0000000000000200L,0x0000000E00000000L});
     public static final BitSet FOLLOW_declaredParameterList_in_define314 = new BitSet(new long[]{0x0000000008000000L});
     public static final BitSet FOLLOW_27_in_define316 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_define320 = new BitSet(new long[]{0x0000000000000200L,0x0000000700000000L});
+    public static final BitSet FOLLOW_28_in_define320 = new BitSet(new long[]{0x0000000000000200L,0x0000000E00000000L});
     public static final BitSet FOLLOW_type_in_define324 = new BitSet(new long[]{0x0000000200000040L});
     public static final BitSet FOLLOW_sequence_in_define332 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_define338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_textSequence_in_sequence361 = new BitSet(new long[]{0x9082885E01000382L,0x000000077FFE8001L});
+    public static final BitSet FOLLOW_textSequence_in_sequence361 = new BitSet(new long[]{0x2105109E01000382L,0x0000000EFFFD0003L});
     public static final BitSet FOLLOW_statement_in_sequence370 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_textSequence_in_sequence379 = new BitSet(new long[]{0x9082885E01000382L,0x000000077FFE8001L});
+    public static final BitSet FOLLOW_textSequence_in_sequence379 = new BitSet(new long[]{0x2105109E01000382L,0x0000000EFFFD0003L});
     public static final BitSet FOLLOW_simpleStatement_in_statement409 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_fileStatement_in_statement417 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_foreachStatement_in_statement425 = new BitSet(new long[]{0x0000000000000002L});
@@ -4827,192 +4848,193 @@ public class XpandParser extends Parser {
     public static final BitSet FOLLOW_errorStatement_in_simpleStatement525 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_expandStatement_in_simpleStatement533 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_expressionStmt_in_simpleStatement541 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_errorStatement558 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
+    public static final BitSet FOLLOW_34_in_errorStatement558 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
     public static final BitSet FOLLOW_expression_in_errorStatement562 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_35_in_expandStatement579 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_definitionName_in_expandStatement583 = new BitSet(new long[]{0x0000001011000002L});
-    public static final BitSet FOLLOW_24_in_expandStatement586 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
+    public static final BitSet FOLLOW_definitionName_in_expandStatement583 = new BitSet(new long[]{0x0000005011000002L});
+    public static final BitSet FOLLOW_24_in_expandStatement586 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
     public static final BitSet FOLLOW_parameterList_in_expandStatement590 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_expandStatement592 = new BitSet(new long[]{0x0000001010000002L});
-    public static final BitSet FOLLOW_28_in_expandStatement598 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_expandStatement602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_expandStatement612 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_expandStatement616 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_expandStatement619 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_expandStatement623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_simpleType_in_definitionName653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_expressionStmt671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_fileStatement687 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_fileStatement691 = new BitSet(new long[]{0x0000000200000240L});
-    public static final BitSet FOLLOW_identifier_in_fileStatement696 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_sequence_in_fileStatement704 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_fileStatement708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_foreachStatement726 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_foreachStatement730 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_foreachStatement732 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_identifier_in_foreachStatement736 = new BitSet(new long[]{0x0000022200000040L});
-    public static final BitSet FOLLOW_41_in_foreachStatement739 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_identifier_in_foreachStatement743 = new BitSet(new long[]{0x0000002200000040L});
-    public static final BitSet FOLLOW_37_in_foreachStatement748 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_foreachStatement752 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_sequence_in_foreachStatement762 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_foreachStatement767 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_ifStatement793 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_ifStatement797 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_sequence_in_ifStatement803 = new BitSet(new long[]{0x0000700000000000L});
-    public static final BitSet FOLLOW_elseIfStatement_in_ifStatement815 = new BitSet(new long[]{0x0000700000000000L});
-    public static final BitSet FOLLOW_elseStatement_in_ifStatement826 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_44_in_ifStatement838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_elseIfStatement852 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_elseIfStatement856 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_sequence_in_elseIfStatement862 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_elseStatement883 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_sequence_in_elseStatement889 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_letStatement910 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_letStatement914 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_letStatement916 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_identifier_in_letStatement920 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_sequence_in_letStatement928 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_letStatement933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_protectStatement952 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_protectStatement957 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_protectStatement961 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_51_in_protectStatement966 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
+    public static final BitSet FOLLOW_27_in_expandStatement592 = new BitSet(new long[]{0x0000005010000002L});
+    public static final BitSet FOLLOW_28_in_expandStatement598 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_expandStatement602 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_36_in_expandStatement612 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_expandStatement616 = new BitSet(new long[]{0x0000006000000002L});
+    public static final BitSet FOLLOW_37_in_expandStatement619 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_expandStatement623 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_38_in_expandStatement635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_simpleType_in_definitionName662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_expressionStmt680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_fileStatement696 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_fileStatement700 = new BitSet(new long[]{0x0000000200000240L});
+    public static final BitSet FOLLOW_identifier_in_fileStatement705 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_sequence_in_fileStatement713 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_fileStatement717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_foreachStatement735 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_foreachStatement739 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_foreachStatement741 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_identifier_in_foreachStatement745 = new BitSet(new long[]{0x0000042200000040L});
+    public static final BitSet FOLLOW_42_in_foreachStatement748 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_identifier_in_foreachStatement752 = new BitSet(new long[]{0x0000002200000040L});
+    public static final BitSet FOLLOW_37_in_foreachStatement757 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_foreachStatement761 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_sequence_in_foreachStatement771 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_foreachStatement776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ifStatement802 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_ifStatement806 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_sequence_in_ifStatement812 = new BitSet(new long[]{0x0000E00000000000L});
+    public static final BitSet FOLLOW_elseIfStatement_in_ifStatement824 = new BitSet(new long[]{0x0000E00000000000L});
+    public static final BitSet FOLLOW_elseStatement_in_ifStatement835 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_45_in_ifStatement847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_elseIfStatement861 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_elseIfStatement865 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_sequence_in_elseIfStatement871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_elseStatement892 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_sequence_in_elseStatement898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_letStatement919 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_letStatement923 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_letStatement925 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_identifier_in_letStatement929 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_sequence_in_letStatement937 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_letStatement942 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_protectStatement961 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_protectStatement966 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
     public static final BitSet FOLLOW_expression_in_protectStatement970 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_protectStatement983 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_protectStatement987 = new BitSet(new long[]{0x0020000200000040L});
-    public static final BitSet FOLLOW_53_in_protectStatement992 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_sequence_in_protectStatement1001 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_protectStatement1005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_letExpression_in_expression1027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_letExpression1046 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_identifier_in_letExpression1050 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_letExpression1052 = new BitSet(new long[]{0x9000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_castedExpression_in_letExpression1056 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_57_in_letExpression1058 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_letExpression1062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_castedExpression_in_letExpression1075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_castedExpression1106 = new BitSet(new long[]{0x0000000000000200L,0x0000000700000000L});
-    public static final BitSet FOLLOW_type_in_castedExpression1110 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_castedExpression1112 = new BitSet(new long[]{0x9000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_chainExpression_in_castedExpression1116 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_protectStatement975 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_protectStatement979 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_protectStatement992 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_protectStatement996 = new BitSet(new long[]{0x0040000200000040L});
+    public static final BitSet FOLLOW_54_in_protectStatement1001 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_sequence_in_protectStatement1010 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_55_in_protectStatement1014 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_letExpression_in_expression1036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_letExpression1055 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_identifier_in_letExpression1059 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_57_in_letExpression1061 = new BitSet(new long[]{0x2000000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_castedExpression_in_letExpression1065 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_letExpression1067 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_letExpression1071 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_castedExpression_in_letExpression1084 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_castedExpression1115 = new BitSet(new long[]{0x0000000000000200L,0x0000000E00000000L});
+    public static final BitSet FOLLOW_type_in_castedExpression1119 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_castedExpression1121 = new BitSet(new long[]{0x2000000201000380L,0x0000000EFFFD0003L});
     public static final BitSet FOLLOW_chainExpression_in_castedExpression1125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ifExpression_in_chainExpression1145 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_58_in_chainExpression1151 = new BitSet(new long[]{0x9000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_ifExpression_in_chainExpression1155 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_switchExpression_in_ifExpression1176 = new BitSet(new long[]{0x0800000000000002L});
-    public static final BitSet FOLLOW_59_in_ifExpression1180 = new BitSet(new long[]{0x8000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_switchExpression_in_ifExpression1184 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_57_in_ifExpression1186 = new BitSet(new long[]{0x8000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_switchExpression_in_ifExpression1190 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_ifExpression1198 = new BitSet(new long[]{0x8000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_switchExpression_in_ifExpression1202 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_ifExpression1204 = new BitSet(new long[]{0x8000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_switchExpression_in_ifExpression1208 = new BitSet(new long[]{0x4000000000000002L});
-    public static final BitSet FOLLOW_62_in_ifExpression1211 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_ifExpression1215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_switchExpression1242 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_24_in_switchExpression1245 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_orExpression_in_switchExpression1251 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_switchExpression1253 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_switchExpression1260 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000006L});
-    public static final BitSet FOLLOW_65_in_switchExpression1273 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_orExpression_in_switchExpression1277 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_57_in_switchExpression1280 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_orExpression_in_switchExpression1285 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000006L});
-    public static final BitSet FOLLOW_66_in_switchExpression1303 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_57_in_switchExpression1305 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_orExpression_in_switchExpression1311 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_switchExpression1316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_orExpression_in_switchExpression1328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpression_in_orExpression1348 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_orExpression1355 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_andExpression_in_orExpression1359 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_impliesExpression_in_andExpression1382 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_andExpression1389 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_impliesExpression_in_andExpression1393 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_relationalExpression_in_impliesExpression1415 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
-    public static final BitSet FOLLOW_70_in_impliesExpression1422 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_relationalExpression_in_impliesExpression1426 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
-    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression1450 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001F80L});
-    public static final BitSet FOLLOW_set_in_relationalExpression1458 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression1484 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001F80L});
-    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1505 = new BitSet(new long[]{0x0000000200000002L,0x0000000000002000L});
-    public static final BitSet FOLLOW_set_in_additiveExpression1515 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1524 = new BitSet(new long[]{0x0000000200000002L,0x0000000000002000L});
-    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1543 = new BitSet(new long[]{0x0000000004000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_set_in_multiplicativeExpression1551 = new BitSet(new long[]{0x0000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1561 = new BitSet(new long[]{0x0000000004000002L,0x0000000000004000L});
-    public static final BitSet FOLLOW_infixExpression_in_unaryExpression1582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_unaryExpression1590 = new BitSet(new long[]{0x0000000001000380L,0x000000077FFE0001L});
-    public static final BitSet FOLLOW_infixExpression_in_unaryExpression1594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_unaryExpression1602 = new BitSet(new long[]{0x0000000001000380L,0x000000077FFE0001L});
-    public static final BitSet FOLLOW_infixExpression_in_unaryExpression1606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primaryExpression_in_infixExpression1624 = new BitSet(new long[]{0x0000000000000002L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_infixExpression1630 = new BitSet(new long[]{0x0000000000000200L,0x000000077FC00000L});
-    public static final BitSet FOLLOW_featureCall_in_infixExpression1634 = new BitSet(new long[]{0x0000000000000002L,0x0000000000010000L});
-    public static final BitSet FOLLOW_StringLiteral_in_primaryExpression1660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_featureCall_in_primaryExpression1671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_booleanLiteral_in_primaryExpression1681 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_numberLiteral_in_primaryExpression1691 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_nullLiteral_in_primaryExpression1701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_listLiteral_in_primaryExpression1711 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_constructorCall_in_primaryExpression1721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_globalVarExpression_in_primaryExpression1731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_paranthesizedExpression_in_primaryExpression1741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_paranthesizedExpression1760 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_paranthesizedExpression1764 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_paranthesizedExpression1766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_globalVarExpression1786 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_identifier_in_globalVarExpression1790 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_featureCall1808 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_featureCall1810 = new BitSet(new long[]{0x9080000209000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_parameterList_in_featureCall1815 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_featureCall1819 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_featureCall1829 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_collectionExpression_in_featureCall1840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_listLiteral1857 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8009L});
-    public static final BitSet FOLLOW_parameterList_in_listLiteral1862 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_67_in_listLiteral1866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_constructorCall1883 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_simpleType_in_constructorCall1887 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_chainExpression_in_castedExpression1134 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ifExpression_in_chainExpression1154 = new BitSet(new long[]{0x0800000000000002L});
+    public static final BitSet FOLLOW_59_in_chainExpression1160 = new BitSet(new long[]{0x2000000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_ifExpression_in_chainExpression1164 = new BitSet(new long[]{0x0800000000000002L});
+    public static final BitSet FOLLOW_switchExpression_in_ifExpression1185 = new BitSet(new long[]{0x1000000000000002L});
+    public static final BitSet FOLLOW_60_in_ifExpression1189 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_switchExpression_in_ifExpression1193 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_ifExpression1195 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_switchExpression_in_ifExpression1199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_ifExpression1207 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_switchExpression_in_ifExpression1211 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_ifExpression1213 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_switchExpression_in_ifExpression1217 = new BitSet(new long[]{0x8000000000000002L});
+    public static final BitSet FOLLOW_63_in_ifExpression1220 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_ifExpression1224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_switchExpression1251 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_switchExpression1254 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_orExpression_in_switchExpression1260 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_switchExpression1262 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_switchExpression1269 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000CL});
+    public static final BitSet FOLLOW_66_in_switchExpression1282 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_orExpression_in_switchExpression1286 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_switchExpression1289 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_orExpression_in_switchExpression1294 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000CL});
+    public static final BitSet FOLLOW_67_in_switchExpression1312 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_switchExpression1314 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_orExpression_in_switchExpression1320 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_switchExpression1325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_orExpression_in_switchExpression1337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpression_in_orExpression1357 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_69_in_orExpression1364 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_andExpression_in_orExpression1368 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_impliesExpression_in_andExpression1391 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_andExpression1398 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_impliesExpression_in_andExpression1402 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
+    public static final BitSet FOLLOW_relationalExpression_in_impliesExpression1424 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000080L});
+    public static final BitSet FOLLOW_71_in_impliesExpression1431 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_relationalExpression_in_impliesExpression1435 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000080L});
+    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression1459 = new BitSet(new long[]{0x0000000000000002L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_set_in_relationalExpression1467 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_additiveExpression_in_relationalExpression1493 = new BitSet(new long[]{0x0000000000000002L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1514 = new BitSet(new long[]{0x0000000200000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_set_in_additiveExpression1524 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_multiplicativeExpression_in_additiveExpression1533 = new BitSet(new long[]{0x0000000200000002L,0x0000000000004000L});
+    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1552 = new BitSet(new long[]{0x0000000004000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_set_in_multiplicativeExpression1560 = new BitSet(new long[]{0x0000000201000380L,0x0000000EFFFD0002L});
+    public static final BitSet FOLLOW_unaryExpression_in_multiplicativeExpression1570 = new BitSet(new long[]{0x0000000004000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_infixExpression_in_unaryExpression1591 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_unaryExpression1599 = new BitSet(new long[]{0x0000000001000380L,0x0000000EFFFC0002L});
+    public static final BitSet FOLLOW_infixExpression_in_unaryExpression1603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_unaryExpression1611 = new BitSet(new long[]{0x0000000001000380L,0x0000000EFFFC0002L});
+    public static final BitSet FOLLOW_infixExpression_in_unaryExpression1615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primaryExpression_in_infixExpression1633 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020000L});
+    public static final BitSet FOLLOW_81_in_infixExpression1639 = new BitSet(new long[]{0x0000000000000200L,0x0000000EFF800000L});
+    public static final BitSet FOLLOW_featureCall_in_infixExpression1643 = new BitSet(new long[]{0x0000000000000002L,0x0000000000020000L});
+    public static final BitSet FOLLOW_StringLiteral_in_primaryExpression1669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_featureCall_in_primaryExpression1680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_booleanLiteral_in_primaryExpression1690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_numberLiteral_in_primaryExpression1700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_nullLiteral_in_primaryExpression1710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_listLiteral_in_primaryExpression1720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_constructorCall_in_primaryExpression1730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_globalVarExpression_in_primaryExpression1740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_paranthesizedExpression_in_primaryExpression1750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_paranthesizedExpression1769 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_paranthesizedExpression1773 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_paranthesizedExpression1775 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_globalVarExpression1795 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_identifier_in_globalVarExpression1799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_featureCall1817 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_featureCall1819 = new BitSet(new long[]{0x2100000209000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_parameterList_in_featureCall1824 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_featureCall1828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_featureCall1838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_collectionExpression_in_featureCall1849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_listLiteral1866 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0013L});
+    public static final BitSet FOLLOW_parameterList_in_listLiteral1871 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_listLiteral1875 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_83_in_constructorCall1892 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_simpleType_in_constructorCall1896 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_booleanLiteral0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_nullLiteral1922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IntLiteral_in_numberLiteral1941 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IntLiteral_in_numberLiteral1950 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_numberLiteral1954 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_IntLiteral_in_numberLiteral1958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_86_in_collectionExpression1978 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_collectionExpression1982 = new BitSet(new long[]{0x0000000000000200L,0x0000000700000000L});
-    public static final BitSet FOLLOW_type_in_collectionExpression1986 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_collectionExpression1988 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_collectionExpression2001 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_collectionExpression2051 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_identifier_in_collectionExpression2056 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_95_in_collectionExpression2058 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_expression_in_collectionExpression2064 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_collectionExpression2066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaredParameter_in_declaredParameterList2090 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_25_in_declaredParameterList2094 = new BitSet(new long[]{0x0000000000000200L,0x0000000700000000L});
-    public static final BitSet FOLLOW_declaredParameter_in_declaredParameterList2098 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_type_in_declaredParameter2118 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_identifier_in_declaredParameter2122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_parameterList2144 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_25_in_parameterList2149 = new BitSet(new long[]{0x9080000201000380L,0x000000077FFE8001L});
+    public static final BitSet FOLLOW_86_in_nullLiteral1931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IntLiteral_in_numberLiteral1950 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IntLiteral_in_numberLiteral1959 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_81_in_numberLiteral1963 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_IntLiteral_in_numberLiteral1967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_collectionExpression1987 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_collectionExpression1991 = new BitSet(new long[]{0x0000000000000200L,0x0000000E00000000L});
+    public static final BitSet FOLLOW_type_in_collectionExpression1995 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_collectionExpression1997 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_collectionExpression2010 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_collectionExpression2060 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_identifier_in_collectionExpression2065 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_96_in_collectionExpression2067 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_collectionExpression2073 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_collectionExpression2075 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaredParameter_in_declaredParameterList2099 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_25_in_declaredParameterList2103 = new BitSet(new long[]{0x0000000000000200L,0x0000000E00000000L});
+    public static final BitSet FOLLOW_declaredParameter_in_declaredParameterList2107 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_type_in_declaredParameter2127 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_identifier_in_declaredParameter2131 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_expression_in_parameterList2153 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_collectionType_in_type2179 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_simpleType_in_type2189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_collectionType2211 = new BitSet(new long[]{0x0000000000000002L,0x0000000800000000L});
-    public static final BitSet FOLLOW_99_in_collectionType2232 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_simpleType_in_collectionType2236 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_100_in_collectionType2240 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_simpleType2260 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_30_in_simpleType2268 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_identifier_in_simpleType2272 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_Identifier_in_identifier2295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_synpred11095 = new BitSet(new long[]{0x0000000000000200L,0x0000000700000000L});
-    public static final BitSet FOLLOW_type_in_synpred11097 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_synpred11099 = new BitSet(new long[]{0x9000000201000380L,0x000000077FFE8001L});
-    public static final BitSet FOLLOW_castedExpression_in_synpred11101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_parameterList2158 = new BitSet(new long[]{0x2100000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_expression_in_parameterList2162 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_collectionType_in_type2188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_simpleType_in_type2198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_collectionType2220 = new BitSet(new long[]{0x0000000000000002L,0x0000001000000000L});
+    public static final BitSet FOLLOW_100_in_collectionType2241 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_simpleType_in_collectionType2245 = new BitSet(new long[]{0x0000000000000000L,0x0000002000000000L});
+    public static final BitSet FOLLOW_101_in_collectionType2249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_simpleType2269 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_30_in_simpleType2277 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_identifier_in_simpleType2281 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_Identifier_in_identifier2304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_synpred11104 = new BitSet(new long[]{0x0000000000000200L,0x0000000E00000000L});
+    public static final BitSet FOLLOW_type_in_synpred11106 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_synpred11108 = new BitSet(new long[]{0x2000000201000380L,0x0000000EFFFD0003L});
+    public static final BitSet FOLLOW_castedExpression_in_synpred11110 = new BitSet(new long[]{0x0000000000000002L});
 
 }

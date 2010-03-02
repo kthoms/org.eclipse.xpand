@@ -13,6 +13,7 @@ package org.eclipse.xpand2;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.internal.xpand2.NoSuchTemplateException;
 import org.eclipse.internal.xpand2.XpandUtil;
+import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.model.AdvicedDefinition;
 import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
@@ -67,7 +69,9 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
     
     private List<XpandAdvice> registeredAdvices = new ArrayList<XpandAdvice>();
     
-    public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs) {
+    private List<Pair<XpandExecutionContextImpl,Statement>> deferredStatements = null; 
+    
+	public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs) {
         this (output, prs, null, null, null);
     }
     public XpandExecutionContextImpl(Output output, ProtectedRegionResolver prs, String fileEncoding) {
@@ -103,7 +107,8 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
         	/*Map<Resource, Set<Extension>> allExtensionsPerResource*/ null,
         	callback,
         	/*Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache*/ null,
-        	/*Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache*/ null
+        	/*Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache*/ null,
+        	/*List<Pair<XpandExecutionContextImpl,Statement>> deferredStatements*/ null
         	);
     }
 
@@ -138,7 +143,8 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
             Map<Resource, Set<Extension>> allExtensionsPerResource,
             VetoableCallback callback, 
             Cache<Triplet<Resource,String,List<Type>>,Extension> extensionsForNameAndTypesCache,
-            Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
+            Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache,
+            List<Pair<XpandExecutionContextImpl,Statement>> deferredStatements) {
         super (
         	resourceManager, 
         	currentResource, 
@@ -158,6 +164,7 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
         this.output = output;
         this.protectedRegionResolver = protectedRegionResolver;
         this.exceptionHandler = exceptionHandler;
+        this.deferredStatements = deferredStatements;
     }
 
     private void registerParser(ResourceManager resourceManager) {
@@ -171,11 +178,24 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
     @Override
     public ExecutionContextImpl cloneContext() {
         final XpandExecutionContextImpl result = new XpandExecutionContextImpl (resourceManager, currentResource(), typeSystem, getVisibleVariables(), getGlobalVariables(), output, 
-                protectedRegionResolver, getMonitor(), exceptionHandler,registeredExtensionAdvices, nullEvaluationHandler,allExtensionsPerResource, callback,this.extensionsForNameAndTypesCache, this.extensionsReturnTypeCache);
+                protectedRegionResolver, getMonitor(), exceptionHandler,registeredExtensionAdvices, nullEvaluationHandler,allExtensionsPerResource, callback,this.extensionsForNameAndTypesCache, 
+                this.extensionsReturnTypeCache, this.deferredStatements);
         result.registeredAdvices.addAll(registeredAdvices); //todo: [aha] before I refactored, there was an assignment in this place. Is this modification correct?
         return result;
     }
     
+    public XpandExecutionContextImpl cloneWithStatement(Statement stmt) {
+        final XpandExecutionContextImpl result = new XpandExecutionContextImpl (resourceManager, currentResource(), typeSystem, getVisibleVariables(), getGlobalVariables(), output, 
+                protectedRegionResolver, getMonitor(), exceptionHandler,registeredExtensionAdvices, nullEvaluationHandler,allExtensionsPerResource, callback,this.extensionsForNameAndTypesCache, 
+                this.extensionsReturnTypeCache, this.deferredStatements);
+        result.registeredAdvices.addAll(registeredAdvices); //todo: [aha] before I refactored, there was an assignment in this place. Is this modification correct?
+        if (deferredStatements==null) {
+        	deferredStatements = new ArrayList<Pair<XpandExecutionContextImpl,Statement>>();
+        }
+        deferredStatements.add(new Pair(this, stmt));
+        return result;
+    }
+
     public List<XpandDefinition> getAllDefinitions() {
         XpandResource tpl = null;
             tpl = (XpandResource) currentResource();
@@ -359,5 +379,10 @@ public class XpandExecutionContextImpl extends ExecutionContextImpl implements X
     @Deprecated
 	public void setResourceManager(ResourceManager resourceManager) {
         throw new UnsupportedOperationException("Context must be immutable, use the existing constructors");
+	}
+
+    @SuppressWarnings("unchecked")
+	public List<Pair<XpandExecutionContextImpl, Statement>> getDeferredStatements() {
+		return (List<Pair<XpandExecutionContextImpl, Statement>>) (deferredStatements != null ? deferredStatements : Collections.emptyList());
 	}
 }

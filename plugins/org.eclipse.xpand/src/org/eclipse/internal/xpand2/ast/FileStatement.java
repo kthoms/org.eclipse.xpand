@@ -17,7 +17,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
+import org.eclipse.internal.xtend.util.Pair;
 import org.eclipse.xpand2.XpandExecutionContext;
+import org.eclipse.xpand2.XpandExecutionContextImpl;
+import org.eclipse.xpand2.output.InsertionPointSupport;
 import org.eclipse.xpand2.output.VetoException;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.EvaluationException;
@@ -81,6 +84,15 @@ public class FileStatement extends StatementWithBody {
 			ctx.getOutput().openFile(fileName, outletName);
 			for (int i = 0; i < body.length; i++) {
 				body[i].evaluate(ctx);
+			}
+			for (Pair<XpandExecutionContextImpl,Statement> deferredStatement : ((XpandExecutionContextImpl)ctx).getDeferredStatements()) {
+				Statement stmt = deferredStatement.getSecond();
+				if (!(ctx.getOutput() instanceof InsertionPointSupport)) {
+					throw new IllegalStateException ("Output does not support insertion points.");
+				}
+				((InsertionPointSupport)ctx.getOutput()).activateInsertionPoint(stmt);
+				stmt.evaluate(deferredStatement.getFirst());
+				((InsertionPointSupport)ctx.getOutput()).deactivateInsertionPoint(stmt);
 			}
 			ctx.getOutput().closeFile();
 		} catch (VetoException e) {

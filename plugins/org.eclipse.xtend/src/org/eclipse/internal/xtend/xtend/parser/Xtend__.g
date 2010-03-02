@@ -76,16 +76,16 @@ T80 : '|' ;
 T81 : '[' ;
 T82 : ']' ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 284
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 284
 IntLiteral : ('0' | '1'..'9' '0'..'9'*) ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 286
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 286
 StringLiteral
     :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
     |  '\'' ( EscapeSequence | ~('\''|'\\') )* '\''
     ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 291
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 291
 fragment
 EscapeSequence
     :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
@@ -93,7 +93,7 @@ EscapeSequence
     |   OctalEscape
     ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 298
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 298
 fragment
 OctalEscape
     :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
@@ -101,21 +101,21 @@ OctalEscape
     |   '\\' ('0'..'7')
     ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 305
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 305
 fragment
 UnicodeEscape
     :   '\\' 'u' HexDigit HexDigit HexDigit HexDigit
     ;
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 309
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 309
 fragment
 HexDigit : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 312
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 312
 Identifier 
     :   ('^')? Letter (Letter|JavaIDDigit)*
     ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 316
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 316
 fragment
 Letter
     :  '\u0024' |
@@ -133,7 +133,7 @@ Letter
        '\uf900'..'\ufaff'
     ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 333
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 333
 fragment
 JavaIDDigit
     :  '\u0030'..'\u0039' |
@@ -153,24 +153,24 @@ JavaIDDigit
        '\u1040'..'\u1049'
    ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 352
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 352
 WS  :  (' '|'\r'|'\t'|'\u000C'|'\n') {$channel=HIDDEN;}
     ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 355
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 355
 COMMENT
     :   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
     ;
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 359
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 359
 LINE_COMMENT
     : '//' ~('\n'|'\r')* ('\r'? '\n'|EOF) {$channel=HIDDEN;}
     ;
     
 
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 364
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 364
 XPAND_TAG_OPEN 
 	: '\u00AB';
-// $ANTLR src "/Users/huebner/Entwicklung/workspace-oaw5/org.eclipse.xtend/bin/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 366
+// $ANTLR src "src/org/eclipse/internal/xtend/xtend/parser/Xtend.g" 366
 XPAND_TAG_CLOSE
 	: '\u00BB';	

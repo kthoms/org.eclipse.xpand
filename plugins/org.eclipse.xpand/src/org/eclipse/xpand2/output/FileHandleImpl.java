@@ -14,17 +14,24 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.internal.xpand2.ast.Statement;
 
-public class FileHandleImpl implements FileHandle {
+public class FileHandleImpl implements FileHandle, InsertionPointSupport {
 	private final Log log =
 			LogFactory.getLog(getClass());
 
-	private StringBuilder buffer =
-			new StringBuilder(4096);
-
+	private List<CharSequence> buffers = new ArrayList<CharSequence>();
+	private Map<Statement, CharSequence> namedBuffers = new HashMap<Statement, CharSequence>();
+	private CharSequence currentNamedBuffer = null;
+	private CharSequence currentUnnamedBuffer;
+	
 	private File targetFile =
 			null;
 
@@ -36,6 +43,8 @@ public class FileHandleImpl implements FileHandle {
 				outlet;
 		targetFile =
 				f.getAbsoluteFile();
+		buffers.add(new StringBuilder(4096));
+		currentUnnamedBuffer = buffers.get(0);
 	}
 
 	public Outlet getOutlet() {
@@ -43,12 +52,29 @@ public class FileHandleImpl implements FileHandle {
 	}
 
 	public CharSequence getBuffer() {
-		return buffer;
+		return currentNamedBuffer!=null ? currentNamedBuffer : currentUnnamedBuffer;
 	}
 
-	public void setBuffer(final CharSequence buffer) {
-		this.buffer =
-				new StringBuilder(buffer);
+	public void setBuffer(final CharSequence newBuffer) {
+		if (currentNamedBuffer != null) {
+			int idx = buffers.indexOf(currentNamedBuffer);
+			while (idx>=0) {
+				buffers.add(idx, newBuffer);
+				buffers.remove(idx+1);
+				idx = buffers.indexOf(currentNamedBuffer);
+			}
+			for (Statement key : namedBuffers.keySet()) {
+				if (namedBuffers.get(key)==currentNamedBuffer) {
+					namedBuffers.put(key, newBuffer);
+				}
+			}
+			currentNamedBuffer = newBuffer;
+		} else {
+			int idx = buffers.indexOf(currentUnnamedBuffer);
+			buffers.add(idx, newBuffer);
+			buffers.remove(idx+1);
+			currentUnnamedBuffer = newBuffer;
+		}
 	}
 
 	@SuppressWarnings("deprecation")
@@ -121,6 +147,16 @@ public class FileHandleImpl implements FileHandle {
 	}
 
 	public byte[] getBytes() {
+		CharSequence buffer = null;
+		if (buffers.size()==1) {
+			buffer = buffers.get(0);
+		} else {
+			StringBuilder tmp = new StringBuilder();
+			for (CharSequence cs : buffers) {
+				tmp.append(cs);
+			}
+			buffer = tmp;
+		}
 		if (getFileEncoding() != null) {
 			try {
 				return buffer.toString().getBytes(getFileEncoding());
@@ -132,4 +168,37 @@ public class FileHandleImpl implements FileHandle {
 		return buffer.toString().getBytes();
 	}
 
+	public void activateInsertionPoint(Statement stmt) {
+		CharSequence buffer = namedBuffers.get(stmt);
+		if (buffer == null) {
+			throw new IllegalStateException ("Unknown insertion point "+stmt+".");
+		}
+		currentNamedBuffer = buffer;
+	}
+
+	public void deactivateInsertionPoint(Statement stmt) {
+		if (currentNamedBuffer == null) {
+			throw new IllegalStateException ("Insertion point for "+stmt+" was not activated.");
+		}
+		CharSequence buffer = namedBuffers.get(stmt);
+		if (buffer == null) {
+			throw new IllegalStateException ("Unknown insertion point "+stmt+".");
+		}
+		if (buffer != currentNamedBuffer) {
+			throw new IllegalStateException ("Insertion point "+stmt+" is not the active one!");
+		}
+		currentNamedBuffer = null;
+	}
+
+	public void registerInsertionPoint(Statement stmt) {
+		CharSequence namedBuffer = namedBuffers.get(stmt);
+		if (namedBuffer == null) {
+			namedBuffer = new StringBuilder();
+			namedBuffers.put(stmt, namedBuffer);
+		}
+		
+		buffers.add(namedBuffer);
+		currentUnnamedBuffer = new StringBuilder();
+		buffers.add(currentUnnamedBuffer);
+	}
 }

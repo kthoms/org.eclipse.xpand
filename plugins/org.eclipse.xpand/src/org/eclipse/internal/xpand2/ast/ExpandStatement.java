@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.internal.xpand2.XpandTokens;
 import org.eclipse.internal.xpand2.XpandUtil;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xtend.expression.ast.Expression;
@@ -24,6 +25,8 @@ import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.util.ProfileCollector;
 import org.eclipse.xpand2.XpandCompilerIssue;
 import org.eclipse.xpand2.XpandExecutionContext;
+import org.eclipse.xpand2.XpandExecutionContextImpl;
+import org.eclipse.xpand2.output.InsertionPointSupport;
 import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -32,9 +35,9 @@ import org.eclipse.xtend.typesystem.ParameterizedType;
 import org.eclipse.xtend.typesystem.Type;
 
 /**
- * *
  * 
- * @author Sven Efftinge (http://www.efftinge.de) *
+ * @author Sven Efftinge (http://www.efftinge.de)
+ * @author Karsten Thoms
  */
 public class ExpandStatement extends Statement {
 
@@ -48,15 +51,20 @@ public class ExpandStatement extends Statement {
 
 	private Identifier definition;
 	
+	private boolean onFileClose = false;
+	
+	private boolean deferredToFileClose = false;
+
 	private String targetNamespace;
 
 	public ExpandStatement(final Identifier definition, final Expression target, final Expression separator,
-			final Expression[] parameters, final boolean foreach) {
+			final Expression[] parameters, final boolean foreach, final boolean onFileClose) {
 		this.definition = definition;
 		this.target = target;
 		this.separator = separator;
 		this.parameters = parameters != null ? parameters : new Expression[0];
 		this.foreach = foreach;
+		this.onFileClose = onFileClose;
 	}
 
 	public Identifier getDefinition() {
@@ -81,6 +89,10 @@ public class ExpandStatement extends Statement {
 
 	public Expression getTarget() {
 		return target;
+	}
+	
+	public boolean isOnFileClose() {
+		return onFileClose;
 	}
 	
 	/**
@@ -144,6 +156,17 @@ public class ExpandStatement extends Statement {
 	public void evaluateInternal(XpandExecutionContext ctx) {
 		final String defName = getDefinition().getValue();
 		final String sep = (String) (separator != null ? separator.evaluate(ctx) : null);
+		
+		if (onFileClose && !deferredToFileClose) {
+			if (!(ctx.getOutput() instanceof InsertionPointSupport)) {
+				throw new EvaluationException("Output implementation must implement InsertionPointSupport when using "+XpandTokens.ONFILECLOSE, this, ctx);
+			}
+			ctx = ((XpandExecutionContextImpl)ctx).cloneWithStatement(this);
+			((InsertionPointSupport)ctx.getOutput()).registerInsertionPoint(this);
+			deferredToFileClose = true;
+			return;
+		}
+		
 		Object targetObject = null;
 		if (isForeach()) {
 			targetObject = target.evaluate(ctx);
@@ -166,7 +189,16 @@ public class ExpandStatement extends Statement {
 					invokeDefinition(defName, targetObj, params, paramTypes, ctx);
 					ctx.postTask(this);
 					if (sep != null && iter.hasNext()) {
-						ctx.getOutput().write(sep);
+						if (onFileClose && ctx.getOutput() instanceof InsertionPointSupport) {
+							((InsertionPointSupport)ctx.getOutput()).activateInsertionPoint(this);
+						}
+						try {
+							ctx.getOutput().write(sep);
+						} finally {
+							if (onFileClose && ctx.getOutput() instanceof InsertionPointSupport) {
+								((InsertionPointSupport)ctx.getOutput()).deactivateInsertionPoint(this);
+							}
+						}
 					}
 				}
 			}
@@ -252,12 +284,13 @@ public class ExpandStatement extends Statement {
 	public String toString() {
 		return "EXPAND " + definition + getParamString(getParameters())
 				+ (target != null ? (isForeach() ? " FOREACH " : " FOR ") + target : "")
-				+ (separator != null ? " SEPARATOR " + separator : "");
+				+ (separator != null ? " SEPARATOR " + separator : "")
+				+ (onFileClose ? " ONFILECLOSE " : "");
 	}
 
 	@Override
 	public String getNameString(ExecutionContext context) {
-		return "EXPAND";
+		return XpandTokens.EXPAND;
 	}
 
 }

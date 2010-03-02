@@ -11,8 +11,15 @@
 
 package org.eclipse.xpand.internal.tests.evaluate;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.xpand2.XpandExecutionContext;
+import org.eclipse.xpand2.output.InsertionPointSupport;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 
@@ -21,15 +28,28 @@ import org.eclipse.xpand2.output.Output;
  * 
  * @author Sven Efftinge (http://www.efftinge.de) *
  */
-public class OutputStringImpl implements Output {
-    StringBuffer buff = new StringBuffer();
+public class OutputStringImpl implements Output, InsertionPointSupport {
+	private List<CharSequence> buffers = new ArrayList<CharSequence>();
+	private Map<Statement, CharSequence> namedBuffers = new HashMap<Statement, CharSequence>();
+	private CharSequence currentNamedBuffer = null;
+	private CharSequence currentUnnamedBuffer;
+    private StringBuffer buff = new StringBuffer();
+
+    public OutputStringImpl () {
+		buffers.add(new StringBuilder(4096));
+		currentUnnamedBuffer = buffers.get(0);
+    }
+    
+	private StringBuilder getCurrentBuffer() {
+		return (StringBuilder) (currentNamedBuffer!=null ? currentNamedBuffer : currentUnnamedBuffer);
+	}
 
     public void write(final byte[] bytes) {
-        buff.append(new String(bytes));
+        getCurrentBuffer().append(new String(bytes));
     }
 
     public void write(final String string) {
-        buff.append(string);
+    	getCurrentBuffer().append(string);
     }
 
     private SyntaxElement curr = null;
@@ -44,7 +64,11 @@ public class OutputStringImpl implements Output {
 
     @Override
     public String toString() {
-        return buff.toString();
+    	StringBuilder result = new StringBuilder();
+    	for (CharSequence buffer : buffers) {
+    		result.append(buffer);
+    	}
+        return result.toString();
     }
 
     public void openFile(final String path, final String fileMode) {
@@ -69,8 +93,39 @@ public class OutputStringImpl implements Output {
 	public Outlet getOutlet(String name) {
 		throw new UnsupportedOperationException("This implementation does not support outlets");
 	}
-	
-	
-    
+
+	public void activateInsertionPoint(Statement stmt) {
+		CharSequence buffer = namedBuffers.get(stmt);
+		if (buffer == null) {
+			throw new IllegalStateException ("Unknown insertion point "+stmt+".");
+		}
+		currentNamedBuffer = buffer;
+	}
+
+	public void deactivateInsertionPoint(Statement stmt) {
+		if (currentNamedBuffer == null) {
+			throw new IllegalStateException ("Insertion point for "+stmt+" was not activated.");
+		}
+		CharSequence buffer = namedBuffers.get(stmt);
+		if (buffer == null) {
+			throw new IllegalStateException ("Unknown insertion point "+stmt+".");
+		}
+		if (buffer != currentNamedBuffer) {
+			throw new IllegalStateException ("Insertion point "+stmt+" is not the active one!");
+		}
+		currentNamedBuffer = null;
+	}
+
+	public void registerInsertionPoint(Statement stmt) {
+		CharSequence namedBuffer = namedBuffers.get(stmt);
+		if (namedBuffer == null) {
+			namedBuffer = new StringBuilder();
+			namedBuffers.put(stmt, namedBuffer);
+		}
+		
+		buffers.add(namedBuffer);
+		currentUnnamedBuffer = new StringBuilder();
+		buffers.add(currentUnnamedBuffer);
+	}    
     
 }

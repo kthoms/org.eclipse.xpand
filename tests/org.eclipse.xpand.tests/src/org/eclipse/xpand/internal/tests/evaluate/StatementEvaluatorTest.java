@@ -73,7 +73,7 @@ public class StatementEvaluatorTest extends TestCase {
 				+ SyntaxConstants.NS_DELIM + "EvaluateStart::start";
 
 		XpandFacade.create(execCtx).evaluate(id, "test", new Object[0]);
-		System.out.println(out.buff.toString());
+		System.out.println(out.toString());
 	}
 
 	public final void testIf() throws Exception {
@@ -92,17 +92,17 @@ public class StatementEvaluatorTest extends TestCase {
 		final XpandExecutionContext ctx = (XpandExecutionContext) createCtx(out)
 				.cloneWithVariable(new Variable("test", new Integer(1)));
 		ifSt.evaluate(ctx);
-		assertEquals("if", out.buff.toString());
+		assertEquals("if", out.toString());
 
 		out = new OutputStringImpl();
 		ifSt.evaluate((XpandExecutionContextImpl) createCtx(out)
 				.cloneWithVariable(new Variable("test", new Integer(2))));
-		assertEquals("elseif", out.buff.toString());
+		assertEquals("elseif", out.toString());
 
 		out = new OutputStringImpl();
 		ifSt.evaluate((XpandExecutionContextImpl) createCtx(out)
 				.cloneWithVariable(new Variable("test", new Integer(3))));
-		assertEquals("else", out.buff.toString());
+		assertEquals("else", out.toString());
 	}
 
 	public final void testForeach() throws Exception {
@@ -119,25 +119,25 @@ public class StatementEvaluatorTest extends TestCase {
 		out = new OutputStringImpl();
 		foreachSt.evaluate((XpandExecutionContextImpl) createCtx(out)
 				.cloneWithVariable(new Variable("tests", tests)));
-		assertEquals("", out.buff.toString());
+		assertEquals("", out.toString());
 
 		tests.add("hallo");
 		out = new OutputStringImpl();
 		foreachSt.evaluate((XpandExecutionContextImpl) createCtx(out)
 				.cloneWithVariable(new Variable("tests", tests)));
-		assertEquals("hallo", out.buff.toString());
+		assertEquals("hallo", out.toString());
 
 		tests.add("Du");
 		out = new OutputStringImpl();
 		foreachSt.evaluate((XpandExecutionContextImpl) createCtx(out)
 				.cloneWithVariable(new Variable("tests", tests)));
-		assertEquals("hallo,Du", out.buff.toString());
+		assertEquals("hallo,Du", out.toString());
 
 		tests.add("da");
 		out = new OutputStringImpl();
 		foreachSt.evaluate((XpandExecutionContextImpl) createCtx(out)
 				.cloneWithVariable(new Variable("tests", tests)));
-		assertEquals("hallo,Du,da", out.buff.toString());
+		assertEquals("hallo,Du,da", out.toString());
 	}
 
 	public final void testComment() throws Exception {
@@ -162,7 +162,7 @@ public class StatementEvaluatorTest extends TestCase {
 				+ SyntaxConstants.NS_DELIM + "MultiParams::test";
 		XpandFacade.create(execCtx)
 				.evaluate(id, "A", new Object[] { "B", "C" });
-		assertEquals("ABC1", out.buff.toString());
+		assertEquals("ABC1", out.toString());
 	}
 
 	public final void testMultiParams2() throws Exception {
@@ -171,7 +171,7 @@ public class StatementEvaluatorTest extends TestCase {
 				+ SyntaxConstants.NS_DELIM + "MultiParams::test";
 		XpandFacade.create(execCtx).evaluate(id, "A",
 				new Object[] { "B", new Integer(1) });
-		assertEquals("AB12", out.buff.toString());
+		assertEquals("AB12", out.toString());
 	}
 
 	public final void testForeach2() throws Exception {
@@ -179,7 +179,7 @@ public class StatementEvaluatorTest extends TestCase {
 				SyntaxConstants.NS_DELIM)
 				+ SyntaxConstants.NS_DELIM + "Foreach::test";
 		XpandFacade.create(execCtx).evaluate(id, "ABC", new Object[0]);
-		final String[] result = out.buff.toString().trim().split(",");
+		final String[] result = out.toString().trim().split(",");
 		assertEquals("ABC", result[0].trim());
 		assertEquals("AABCBABCC", result[1].trim());
 		assertEquals("1A2B3C", result[2].trim());
@@ -195,7 +195,7 @@ public class StatementEvaluatorTest extends TestCase {
 		XpandExecutionContext ctx = (XpandExecutionContext) createCtx(out);
 		t.getDefinitionsByName("test")[0]
 				.evaluate(ctx,"X");
-		System.err.println(out.buff);
+		System.err.println(out);
 	}
 	
 	public void testExpandForeachNull() throws Exception {
@@ -206,7 +206,7 @@ public class StatementEvaluatorTest extends TestCase {
 		out = new OutputStringImpl();
 		XpandExecutionContext ctx = createCtx(out);
 		t.getDefinitionsByName("test")[0].evaluate(ctx,"X");
-		assertEquals(0,out.buff.toString().length());
+		assertEquals(0,out.toString().length());
 	}
 	
 	public void testExpandForNull() throws Exception {
@@ -217,7 +217,25 @@ public class StatementEvaluatorTest extends TestCase {
 		out = new OutputStringImpl();
 		XpandExecutionContext ctx = createCtx(out);
 		t.getDefinitionsByName("test")[0].evaluate(ctx,"X");
-		assertEquals(0,out.buff.toString().length());
+		assertEquals(0,out.toString().length());
 	}
 
+	public void testExpandOnFileClose () throws Exception {
+		final XpandResource t = parse(
+				  tag("DEFINE test FOR String")
+				+ tag("LET (List[String]) {} AS LazyEvaluatedElements")
+				+ tag("FILE 'out.txt'")
+				+ tag("EXPAND LazyEval FOREACH LazyEvaluatedElements ONFILECLOSE")
+				+ tag("LazyEvaluatedElements.add('Hello ')->''")
+				+ tag("LazyEvaluatedElements.add('World!')->''")
+				+ tag("ENDFILE")
+				+ tag("ENDLET")
+				+ tag("ENDDEFINE")
+				+ tag("DEFINE LazyEval FOR String") + tag("this") + tag("ENDDEFINE"));
+		
+		out = new OutputStringImpl();
+		XpandExecutionContext ctx = createCtx(out);
+		t.getDefinitionsByName("test")[0].evaluate(ctx,"X");
+		assertEquals("Hello World!",out.toString());
+	}
 }

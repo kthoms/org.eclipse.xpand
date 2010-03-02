@@ -42,45 +42,45 @@ public class AopFeatureTest extends TestCase {
     public final void test_test1_Object() {
         final XpandDefinition def = execCtx.findDefinition(prefix() + "Adviced::test1", execCtx.getObjectType(), null);
         def.evaluate(execCtx,"foo");
-        assertEquals("12", out.buff.toString());
+        assertEquals("12", out.toString());
     }
 
     public final void test_test2_Object() {
         final XpandDefinition def = execCtx.findDefinition(prefix() + "Adviced::test2", execCtx.getObjectType(), null);
         def.evaluate(execCtx, "foo");
-        assertEquals("13", out.buff.toString());
+        assertEquals("13", out.toString());
     }
 
     public final void test_te2st_Object() {
         final XpandDefinition def = execCtx.findDefinition(prefix() + "Adviced::te2st", execCtx.getObjectType(), null);
         def.evaluate(execCtx,"foo");
-        assertEquals("14", out.buff.toString());
+        assertEquals("14", out.toString());
     }
 
     public final void test_test1_String() {
         final XpandDefinition def = execCtx.findDefinition(prefix() + "Adviced::test1", execCtx.getStringType(), null);
         def.evaluate(execCtx,"foo");
-        assertEquals("1258", out.buff.toString());
+        assertEquals("1258", out.toString());
     }
 
     public final void test_test1_StringParam_String() {
         final XpandDefinition def = execCtx.findDefinition(prefix() + "Adviced::test1", execCtx.getStringType(),
                 new Type[] { execCtx.getStringType() });
         def.evaluate(execCtx,"foo","bar");
-        assertEquals("678", out.buff.toString());
+        assertEquals("678", out.toString());
     }
 
     public final void test_test1_StringParams_String() {
         final XpandDefinition def = execCtx.findDefinition(prefix() + "Adviced::test1", execCtx.getStringType(),
                 new Type[] { execCtx.getStringType(), execCtx.getStringType() });
         def.evaluate(execCtx,"Foo","bar","baz");
-        assertEquals("78", out.buff.toString());
+        assertEquals("78", out.toString());
     }
     
     public final void test_testParamNames_StringParam_String() {
     	XpandFacade xpandFacade = XpandFacade.create(execCtx);
     	xpandFacade.evaluate(prefix() + "Adviced::testParamNames", "foo","bar");
-    	assertEquals("barbar", out.buff.toString());
+    	assertEquals("barbar", out.toString());
     }
 
     private String prefix() {

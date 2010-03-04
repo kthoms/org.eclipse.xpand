@@ -1,25 +1,27 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <chapter id="core_reference" xreflabel="Core reference">
   <title><emphasis>Xpand</emphasis> / <emphasis>Xtend</emphasis> /
-    <emphasis>Check</emphasis> Reference</title>
-  
+  <emphasis>Check</emphasis> Reference</title>
+
   <section id="r10_introduction">
     <title>Introduction</title>
-    
-    <para>The <emphasis>Xpand</emphasis> generator framework provides textual languages, that are useful in
-      different contexts in the MDSD process (e.g. checks, extensions, code generation,
-      model transformation). Each language (<emphasis>Check</emphasis>,
-      <emphasis>Xtend</emphasis>, and <emphasis>Xpand</emphasis>) is built up on a
-      common expression language and type system. Therefore, they can operate on the same
-      models, metamodels and meta-metamodels and you do not need to learn the syntax again
-      and again, because it is always the same.</para>
-    
-    <para>The expressions framework provides a uniform abstraction layer over different
-      meta-meta-models (e.g. EMF Ecore, Eclipse UML, JavaBeans, XML Schema etc.).
-      Additionally, it offers a powerful, statically typed expressions language, which
-      is used in the various textual languages.</para>
+
+    <para>The <emphasis>Xpand</emphasis> generator framework provides textual
+    languages, that are useful in different contexts in the MDSD process (e.g.
+    checks, extensions, code generation, model transformation). Each language
+    (<emphasis>Check</emphasis>, <emphasis>Xtend</emphasis>, and
+    <emphasis>Xpand</emphasis>) is built up on a common expression language
+    and type system. Therefore, they can operate on the same models,
+    metamodels and meta-metamodels and you do not need to learn the syntax
+    again and again, because it is always the same.</para>
+
+    <para>The expressions framework provides a uniform abstraction layer over
+    different meta-meta-models (e.g. EMF Ecore, Eclipse UML, JavaBeans, XML
+    Schema etc.). Additionally, it offers a powerful, statically typed
+    expressions language, which is used in the various textual
+    languages.</para>
   </section>
-  
+
   <section id="r10_typesystem">
     <title>Type System <indexterm>
         <primary>Type</primary>
@@ -43,8 +45,8 @@
     concrete syntax for executable expressions, using the type system.</para>
 
     <para>The Java API described here is located in the
-    <package>org.eclipse.xpand.type</package> package and is a part of
-    the subproject <package>core.expressions</package>.</para>
+    <package>org.eclipse.xpand.type</package> package and is a part of the
+    subproject <package>core.expressions</package>.</para>
 
     <section id="r10_typesystem_types">
       <title>Types</title>
@@ -113,15 +115,15 @@ Set[my::Type]
         responsible for mapping the features. There are three different kinds
         of features: <itemizedlist>
             <listitem>
-               <para>Properties</para> 
+              <para>Properties</para>
             </listitem>
 
             <listitem>
-               <para>Operations</para> 
+              <para>Operations</para>
             </listitem>
 
             <listitem>
-               <para>Static properties</para> 
+              <para>Static properties</para>
             </listitem>
           </itemizedlist></para>
 
@@ -199,33 +201,36 @@ Set[my::Type]
         <classname>Integer</classname>, <classname>Real</classname>.
         <itemizedlist>
             <listitem>
-              <para><classname>String</classname><indexterm><primary>String
-            type</primary></indexterm>: A rich and convenient
-        <classname>String</classname> library is especially important
-        for code generation. The type system supports the '+' operator
-        for concatenation, the usual
-        <classname>java.lang.String</classname> operations
-        (<methodname>length()</methodname>, etc.) and some special
-        operations (like <methodname>toFirstUpper()</methodname>,
-        <methodname>toFirstLower()</methodname>, regular expressions,
-        etc. often needed in code generation templates).</para>
+              <para><classname>String</classname><indexterm>
+                  <primary>String type</primary>
+                </indexterm>: A rich and convenient
+              <classname>String</classname> library is especially important
+              for code generation. The type system supports the '+' operator
+              for concatenation, the usual
+              <classname>java.lang.String</classname> operations
+              (<methodname>length()</methodname>, etc.) and some special
+              operations (like <methodname>toFirstUpper()</methodname>,
+              <methodname>toFirstLower()</methodname>, regular expressions,
+              etc. often needed in code generation templates).</para>
             </listitem>
 
             <listitem>
-          <para><classname>Boolean</classname><indexterm><primary>Boolean
-            type</primary></indexterm>: <classname>Boolean</classname>
-        offers the usual operators (Java syntax): &amp;&amp;, ||, !,
-        etc.</para></listitem>
+              <para><classname>Boolean</classname><indexterm>
+                  <primary>Boolean type</primary>
+                </indexterm>: <classname>Boolean</classname> offers the usual
+              operators (Java syntax): &amp;&amp;, ||, !, etc.</para>
+            </listitem>
 
             <listitem>
-               <para><classname>Integer</classname><indexterm><primary>Integer
-            type</primary></indexterm> and
-        <classname>Real</classname><indexterm><primary>Real
-            type</primary></indexterm>: <classname>Integer</classname>
-        and <classname>Real</classname> offer the usual compare
-        operators (&lt;,&gt;,&lt;=,&gt;=) and simple arithmetics
-        (+,-,*,/). Note that <emphasis><classname>Integer</classname>
-          extends <classname>Real</classname>!</emphasis></para>
+              <para><classname>Integer</classname><indexterm>
+                  <primary>Integer type</primary>
+                </indexterm> and <classname>Real</classname><indexterm>
+                  <primary>Real type</primary>
+                </indexterm>: <classname>Integer</classname> and
+              <classname>Real</classname> offer the usual compare operators
+              (&lt;,&gt;,&lt;=,&gt;=) and simple arithmetics (+,-,*,/). Note
+              that <emphasis><classname>Integer</classname> extends
+              <classname>Real</classname>!</emphasis></para>
             </listitem>
           </itemizedlist></para>
       </section>
@@ -296,7 +301,8 @@ Set[my::Type]
       order to register your own metatypes (e.g. <classname>Entity</classname>
       or <classname>State</classname>), you need to register a respective
       metamodel implementation with the type system. Within a metamodel
-      implementation the <emphasis>Xpand</emphasis> type system elements (Type, Property, <indexterm>
+      implementation the <emphasis>Xpand</emphasis> type system elements
+      (Type, Property, <indexterm>
           <primary>property</primary>
         </indexterm> Operation) <indexterm>
           <primary>Operation</primary>
@@ -339,22 +345,21 @@ Set[my::Type]
         <programlisting>myattr.name.toFirstUpper()</programlisting>
 
         <para>and <varname>myattr</varname> is the name of a local variable
-        pointing to an instance of <classname>Attribute</classname>. The <emphasis>Xpand</emphasis>
-        type system asks the metamodel implementations, if they 'know' a type
-        for the instance of Attribute. If you have the
-        <classname>JavaMetaModel</classname> registered it will return an
-        <classname>xpand2::Type</classname> which maps to the underlying Java
-        class. When the type is asked if it knows a property
+        pointing to an instance of <classname>Attribute</classname>. The
+        <emphasis>Xpand</emphasis> type system asks the metamodel
+        implementations, if they 'know' a type for the instance of Attribute.
+        If you have the <classname>JavaMetaModel</classname> registered it
+        will return an <classname>xpand2::Type</classname> which maps to the
+        underlying Java class. When the type is asked if it knows a property
         '<varname>name</varname>', it will inspect the Java class using the
         Java reflection API.</para>
 
-        <para>The JavaMetaModel implementation shipped with <emphasis>Xpand</emphasis> can be
-        configured with a strategy [GOF95-Pattern] in order to control or
-        change the mapping. For instance, the JavaBeansStrategy maps getter
-        and setter methods to simple properties, so we would use this strategy
-        for the example above.</para>
-  
- 
+        <para>The JavaMetaModel implementation shipped with
+        <emphasis>Xpand</emphasis> can be configured with a strategy
+        [GOF95-Pattern] in order to control or change the mapping. For
+        instance, the JavaBeansStrategy maps getter and setter methods to
+        simple properties, so we would use this strategy for the example
+        above.</para>
       </section>
 
       <section id="r10_metamodel_contributors">
@@ -367,8 +372,9 @@ Set[my::Type]
         called <classname>MetamodelContributor</classname> extension for the
         plugins to work with. If you just use one of the standard metamodel
         implementations (EMF, UML2 or Java) you don't have to worry about it,
-        since <emphasis>Xpand</emphasis> is shipped with respective MetamodelContributors (see the
-        corresponding docs for details). If you need to implement your own
+        since <emphasis>Xpand</emphasis> is shipped with respective
+        MetamodelContributors (see the corresponding docs for details). If you
+        need to implement your own
         <classname>MetamodelContributor</classname><indexterm>
             <primary>MetamodelContributor</primary>
           </indexterm> you should have a look at the Eclipse plug-in reference
@@ -378,8 +384,8 @@ Set[my::Type]
       <section id="r10_metamodel_workflow">
         <title>Configuring Metamodel implementations with the workflow</title>
 
-        <para>You need to configure your <emphasis>Xpand</emphasis> language components with the
-        respective metamodel implementations.</para>
+        <para>You need to configure your <emphasis>Xpand</emphasis> language
+        components with the respective metamodel implementations.</para>
 
         <para>A possible configuration of the <classname>Xpand2</classname>
         generator component looks like this:</para>
@@ -403,9 +409,9 @@ Set[my::Type]
         <filename>core.emftools</filename> project). It points to the
         generated <classname>EPackages</classname> interface. The second meta
         model is configured using the Ecore file. You do no need to have a
-        generated Ecore model for <emphasis>Xpand</emphasis> in order to work. The
-        <classname>EmfMetaModel</classname> works with dynamic EMF models just
-        as it works with generated EMF models.</para>
+        generated Ecore model for <emphasis>Xpand</emphasis> in order to work.
+        The <classname>EmfMetaModel</classname> works with dynamic EMF models
+        just as it works with generated EMF models.</para>
       </section>
     </section>
 
@@ -415,8 +421,9 @@ Set[my::Type]
 
       <para>With Xpad you can work on different kinds of Model representations
       at the same time in a transparent manner. One can work with EMF models,
-      XML DOM models, and simple JavaBeans in the same <emphasis>Xpand</emphasis> template. You
-      just need to configure the respective MetaModel implementations.</para>
+      XML DOM models, and simple JavaBeans in the same
+      <emphasis>Xpand</emphasis> template. You just need to configure the
+      respective MetaModel implementations.</para>
 
       <para>If you want to do so you need to know how the type lookup works.
       Let us assume that we have an EMF metamodel <indexterm>
@@ -434,8 +441,8 @@ Set[my::Type]
 &lt;/component&gt;
 </programlisting>
 
-      <para>When the runtime needs to access a property of a given object,
-      it asks the metamodels in the configured order. Let us assume that our
+      <para>When the runtime needs to access a property of a given object, it
+      asks the metamodels in the configured order. Let us assume that our
       model element is an instance of the Java type
       <classname>org.eclipse.emf.ecore.EObject</classname> and it is a dynamic
       instance of an EMF EClass <classname>MyType</classname>.</para>
@@ -446,23 +453,23 @@ Set[my::Type]
           </indexterm>
 
           <listitem>
-             <para>Built-Ins (always the first one)</para> 
+            <para>Built-Ins (always the first one)</para>
           </listitem>
 
           <listitem>
-             <para>JavaMetaModel</para> 
+            <para>JavaMetaModel</para>
           </listitem>
 
           <listitem>
-             <para>EMFMetaModel - metamodel.ecore</para> 
+            <para>EMFMetaModel - metamodel.ecore</para>
           </listitem>
         </orderedlist></para>
 
       <para>The first one will return the type <classname>Object</classname>
       (not <classname>java.lang.Object</classname> but
-      <classname>Object</classname> of <emphasis>Xpand</emphasis>). At this point the type
-      <classname>Object</classname> best fits the request, so it will act as
-      the desired type.</para>
+      <classname>Object</classname> of <emphasis>Xpand</emphasis>). At this
+      point the type <classname>Object</classname> best fits the request, so
+      it will act as the desired type.</para>
 
       <para>The second metamodel returns a type called
       <classname>org::eclipse::emf::ecore::EObject</classname> The type system
@@ -494,470 +501,491 @@ Set[my::Type]
 &lt;/component&gt;</programlisting>
     </section>
 
- <section id="metamodel_reference" xreflabel="Metamodel reference">
- <title>Metamodel Reference</title>
- <indexterm>
- <primary>Metamodel</primary>
- </indexterm>      
- <para>
- 
- In the following, each of the built-in metamodels that come with 
- <emphasis>Xpand</emphasis> will be documented. Furthermore, there will be some
-  guidelines on how to implement your own metamodel.
-  </para>
-  <section id="emf_metamodels" xreflabel="EMF metamodels">
-  <title>EMF Metamodels</title>
-  <para>
-  This section will describe the metamodels that can be used for EMF models. 
-  <emphasis role="strong">Please note that you have to execute one of the
-  setup utility classes, <classname>Setup</classname> or 
-  <classname>StandaloneSetup</classname>, in your workflow
-  before you can use one of the EMF metamodels</emphasis>
-  </para>
-  
-  <section id="emfregistry_metamodel" xreflabel="EMF registry metamodel">
-  <title>The EMF Registry Metamodel (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)</title>
-  <indexterm>
-  <primary>Metamodel</primary>
-  <secondary>EMF Registry</secondary>
-  </indexterm>
-  <indexterm>
-  <primary>EmfRegistryMetaModel</primary>
-  </indexterm>
-  
-  <para>
-  This metamodel looks for the referenced metamodels in the global EMF model registry.
-  This means, when using this metamodel, only models that are registered in this global
-  EMF model registry will be accessible from within the metamodel.
-  </para>
-  
-  <para>
-  This metamodel provides the following configuration property:
-  </para>
-  
-              <table frame='all' id="properties_emfregistrymetamodel">
-            <title>Properties of <classname>EmfRegistryMetaModel</classname></title>
-            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='emfregistrymetamodel_property_name'/>
-                <colspec colname='emfregistrymetamodel_property_description'/>
-                <thead>
-                    <row>
-                        <entry>Name of property</entry>
-                        <entry>Description</entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>
-                        useSingleGlobalResourceSet
-                        </entry>
-                        <entry>
-                        This boolean property determines the way resource sets are used.
-                        If set to <emphasis>true</emphasis>, all model resources will be
-                        stored in a single global resource set. Otherwise, a separate
-                        resource set will be used for each model resource.
-                        </entry>
-                    </row>
-                </tbody>
-            </tgroup>
-        </table>
-  </section>
+    <section id="metamodel_reference" xreflabel="Metamodel reference">
+      <title>Metamodel Reference</title>
 
-  <section id="emf_metamodel" xreflabel="EMF metamodel">
-  <title>The EMF Metamodel (org.eclipse.xtend.typesystem.emf.EmfMetaModel)</title>
-  <indexterm>
-  <primary>Metamodel</primary>
-  <secondary>EMF</secondary>
-  </indexterm>
-  <indexterm>
-  <primary>EmfMetaModel</primary>
-  </indexterm>
-  
-  <para>
-  This metamodel is a specialized version of the <xref linkend="emfregistry_metamodel"/>. 
-  In addition to the features of the former, it allows to specify an unregistered model in 
-  different ways that will be added to the metamodel. 
-  </para>
-  
-  <para>
-  This metamodel provides the following configuration properties:
-  </para>
-            <table frame='all' id="properties_emfmetamodel">
+      <indexterm>
+        <primary>Metamodel</primary>
+      </indexterm>
+
+      <para>In the following, each of the built-in metamodels that come with
+      <emphasis>Xpand</emphasis> will be documented. Furthermore, there will
+      be some guidelines on how to implement your own metamodel.</para>
+
+      <section id="emf_metamodels" xreflabel="EMF metamodels">
+        <title>EMF Metamodels</title>
+
+        <para>This section will describe the metamodels that can be used for
+        EMF models. <emphasis role="strong">Please note that you have to
+        execute one of the setup utility classes, <classname>Setup</classname>
+        or <classname>StandaloneSetup</classname>, in your workflow before you
+        can use one of the EMF metamodels</emphasis></para>
+
+        <section id="emfregistry_metamodel" xreflabel="EMF registry metamodel">
+          <title>The EMF Registry Metamodel
+          (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)</title>
+
+          <indexterm>
+            <primary>Metamodel</primary>
+
+            <secondary>EMF Registry</secondary>
+          </indexterm>
+
+          <indexterm>
+            <primary>EmfRegistryMetaModel</primary>
+          </indexterm>
+
+          <para>This metamodel looks for the referenced metamodels in the
+          global EMF model registry. This means, when using this metamodel,
+          only models that are registered in this global EMF model registry
+          will be accessible from within the metamodel.</para>
+
+          <para>This metamodel provides the following configuration
+          property:</para>
+
+          <table frame="all" id="properties_emfregistrymetamodel">
+            <title>Properties of
+            <classname>EmfRegistryMetaModel</classname></title>
+
+            <tgroup align="left" cols="2" colsep="1" rowsep="1">
+              <colspec colname="emfregistrymetamodel_property_name" />
+
+              <colspec colname="emfregistrymetamodel_property_description" />
+
+              <thead>
+                <row>
+                  <entry>Name of property</entry>
+
+                  <entry>Description</entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry>useSingleGlobalResourceSet</entry>
+
+                  <entry>This boolean property determines the way resource
+                  sets are used. If set to <emphasis>true</emphasis>, all
+                  model resources will be stored in a single global resource
+                  set. Otherwise, a separate resource set will be used for
+                  each model resource.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </section>
+
+        <section id="emf_metamodel" xreflabel="EMF metamodel">
+          <title>The EMF Metamodel
+          (org.eclipse.xtend.typesystem.emf.EmfMetaModel)</title>
+
+          <indexterm>
+            <primary>Metamodel</primary>
+
+            <secondary>EMF</secondary>
+          </indexterm>
+
+          <indexterm>
+            <primary>EmfMetaModel</primary>
+          </indexterm>
+
+          <para>This metamodel is a specialized version of the <xref
+          linkend="emfregistry_metamodel" />. In addition to the features of
+          the former, it allows to specify an unregistered model in different
+          ways that will be added to the metamodel.</para>
+
+          <para>This metamodel provides the following configuration
+          properties:</para>
+
+          <table frame="all" id="properties_emfmetamodel">
             <title>Properties of <classname>EmfMetaModel</classname></title>
-            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='emfmetamodel_property_name'/>
-                <colspec colname='emfmetamodel_property_description'/>
-                <thead>
-                    <row>
-                        <entry>Name of property</entry>
-                        <entry>Description</entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>
-                        useSingleGlobalResourceSet
-                        </entry>
-                        <entry>
-                        This boolean property determines the way resource sets are used.
-                        If set to <emphasis>true</emphasis>, all model resources will be
-                        stored in a single global resource set. Otherwise, a separate
-                        resource set will be used for each model resource.
-                        </entry>
-                    </row>                
-                    <row>
-                        <entry>
-                        metaModelFile
-                        </entry>
-                        <entry>
-                        Sets the path to the Ecore file that will be added to the metamodel.
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        metaModelDescriptor
-                        </entry>
-                        <entry>
-                        Adds a model to the metamodel by specifying the name of an EPackage descriptor class.
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        metaModelPackage
-                        </entry>
-                        <entry>
-                        Adds a model to the metamodel by specifying the name of an EPackage.
-                        </entry>
-                    </row>
-                </tbody>
-            </tgroup>
-        </table>
-  </section>
-  </section>
-  
-  <section id="uml_metamodels" xreflabel="UML metamodels">
-  <title>UML Metamodels</title>
-  <para>
-  <emphasis>Xpand</emphasis> also provides several metamodels that allow to use UML models in
-  conjunction with this model-to-text generation framework.
-  <emphasis role="strong">Please note that you have to execute the
-  setup utility class <classname>Setup</classname> in your workflow
-  before you can use one of the UML metamodels</emphasis>
-  </para>
-  
-  <section id="uml2_metamodel" xreflabel="UML2 metamodel">
-  <title>The UML2 Metamodel (org.eclipse.xtend.typesystem.uml2.UML2MetaModel)</title>
-  <indexterm>
-  <primary>Metamodel</primary>
-  <secondary>UML2</secondary>
-  </indexterm>
-  <indexterm>
-  <primary>UML2MetaModel</primary>
-  </indexterm>
-  
-  <para>
-  This metamodel is a specialized version of the <emphasis><xref linkend="emf_metamodel"/></emphasis>.
-  It provides access to UML2 models, and it has the following configuration properties:
-  </para>
 
-            <table frame='all' id="properties_uml2metamodel">
+            <tgroup align="left" cols="2" colsep="1" rowsep="1">
+              <colspec colname="emfmetamodel_property_name" />
+
+              <colspec colname="emfmetamodel_property_description" />
+
+              <thead>
+                <row>
+                  <entry>Name of property</entry>
+
+                  <entry>Description</entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry>useSingleGlobalResourceSet</entry>
+
+                  <entry>This boolean property determines the way resource
+                  sets are used. If set to <emphasis>true</emphasis>, all
+                  model resources will be stored in a single global resource
+                  set. Otherwise, a separate resource set will be used for
+                  each model resource.</entry>
+                </row>
+
+                <row>
+                  <entry>metaModelFile</entry>
+
+                  <entry>Sets the path to the Ecore file that will be added to
+                  the metamodel.</entry>
+                </row>
+
+                <row>
+                  <entry>metaModelDescriptor</entry>
+
+                  <entry>Adds a model to the metamodel by specifying the name
+                  of an EPackage descriptor class.</entry>
+                </row>
+
+                <row>
+                  <entry>metaModelPackage</entry>
+
+                  <entry>Adds a model to the metamodel by specifying the name
+                  of an EPackage.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </section>
+      </section>
+
+      <section id="uml_metamodels" xreflabel="UML metamodels">
+        <title>UML Metamodels</title>
+
+        <para><emphasis>Xpand</emphasis> also provides several metamodels that
+        allow to use UML models in conjunction with this model-to-text
+        generation framework. <emphasis role="strong">Please note that you
+        have to execute the setup utility class <classname>Setup</classname>
+        in your workflow before you can use one of the UML
+        metamodels</emphasis></para>
+
+        <section id="uml2_metamodel" xreflabel="UML2 metamodel">
+          <title>The UML2 Metamodel
+          (org.eclipse.xtend.typesystem.uml2.UML2MetaModel)</title>
+
+          <indexterm>
+            <primary>Metamodel</primary>
+
+            <secondary>UML2</secondary>
+          </indexterm>
+
+          <indexterm>
+            <primary>UML2MetaModel</primary>
+          </indexterm>
+
+          <para>This metamodel is a specialized version of the <emphasis><xref
+          linkend="emf_metamodel" /></emphasis>. It provides access to UML2
+          models, and it has the following configuration properties:</para>
+
+          <table frame="all" id="properties_uml2metamodel">
             <title>Properties of <classname>UML2MetaModel</classname></title>
-            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='uml2metamodel_property_name'/>
-                <colspec colname='uml2metamodel_property_description'/>
-                <thead>
-                    <row>
-                        <entry>Name of property</entry>
-                        <entry>Description</entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>
-                        useSingleGlobalResourceSet
-                        </entry>
-                        <entry>
-                        This boolean property determines the way resource sets are used.
-                        If set to <emphasis>true</emphasis>, all model resources will be
-                        stored in a single global resource set. Otherwise, a separate
-                        resource set will be used for each model resource.
-                        </entry>
-                    </row>                
-                    <row>
-                        <entry>
-                        modelFile
-                        </entry>
-                        <entry>
-                        Sets the path to the UML2 model file that will be added to the metamodel.
-                        </entry>
-                    </row>
-                </tbody>
-            </tgroup>
-        </table>  
-  </section>
-  
-  <section id="uml2profile_metamodel" xreflabel="UML2 profile metamodel">
-  <title>The UML2 Profile Metamodel (org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel)</title>
-  <indexterm>
-  <primary>Metamodel</primary>
-  <secondary>UML2</secondary>
-  </indexterm>
-  <indexterm>
-  <primary>ProfileMetaModel</primary>
-  </indexterm>
-  
-  <para>
-  This metamodel allows to apply UML profiles to UML2 models. It has the following
-  configuration properties
-  </para>
 
-            <table frame='all' id="properties_profilemetamodel">
-            <title>Properties of <classname>ProfileMetaModel</classname></title>
-            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='profilemetamodel_property_name'/>
-                <colspec colname='profilemetamodel_property_description'/>
-                <thead>
-                    <row>
-                        <entry>Name of property</entry>
-                        <entry>Description</entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>
-                        useSingleGlobalResourceSet
-                        </entry>
-                        <entry>
-                        This boolean property determines the way resource sets are used.
-                        If set to <emphasis>true</emphasis>, all model resources will be
-                        stored in a single global resource set. Otherwise, a separate
-                        resource set will be used for each model resource.
-                        </entry>
-                    </row>                
-                    <row>
-                        <entry>
-                        modelFile
-                        </entry>
-                        <entry>
-                        Sets the path to the UML2 model file that will be added to the metamodel.
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        profile
-                        </entry>
-                        <entry>
-                        Sets the path to the UML profile that will be applied to the UML2 model.
-                        </entry>
-                    </row>                    
-                </tbody>
-            </tgroup>
-        </table>  
-  </section>
-  
-  <section id="xmi_reader" xreflabel="XMI reader">
-  <title>The XMI reader (org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.XmiReader)</title>
-  <indexterm>
-  <primary>XMI reader</primary>
-  </indexterm>
-  <indexterm>
-  <primary>XMIReader</primary>
-  </indexterm>
-  
-  <para>
-  The XMI reader component is important when working with UML models. It allows to
-  read out a model stored in an XMI file and put its contents into a model slot.
-  </para>
+            <tgroup align="left" cols="2" colsep="1" rowsep="1">
+              <colspec colname="uml2metamodel_property_name" />
 
-  <para>
-  The <classname>XMIReader</classname> component provides the following configurable
-  properties:
-  </para>
-            <table frame='all' id="properties_xmireader">
+              <colspec colname="uml2metamodel_property_description" />
+
+              <thead>
+                <row>
+                  <entry>Name of property</entry>
+
+                  <entry>Description</entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry>useSingleGlobalResourceSet</entry>
+
+                  <entry>This boolean property determines the way resource
+                  sets are used. If set to <emphasis>true</emphasis>, all
+                  model resources will be stored in a single global resource
+                  set. Otherwise, a separate resource set will be used for
+                  each model resource.</entry>
+                </row>
+
+                <row>
+                  <entry>modelFile</entry>
+
+                  <entry>Sets the path to the UML2 model file that will be
+                  added to the metamodel.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </section>
+
+        <section id="uml2profile_metamodel" xreflabel="UML2 profile metamodel">
+          <title>The UML2 Profile Metamodel
+          (org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel)</title>
+
+          <indexterm>
+            <primary>Metamodel</primary>
+
+            <secondary>UML2</secondary>
+          </indexterm>
+
+          <indexterm>
+            <primary>ProfileMetaModel</primary>
+          </indexterm>
+
+          <para>This metamodel allows to apply UML profiles to UML2 models. It
+          has the following configuration properties</para>
+
+          <table frame="all" id="properties_profilemetamodel">
+            <title>Properties of
+            <classname>ProfileMetaModel</classname></title>
+
+            <tgroup align="left" cols="2" colsep="1" rowsep="1">
+              <colspec colname="profilemetamodel_property_name" />
+
+              <colspec colname="profilemetamodel_property_description" />
+
+              <thead>
+                <row>
+                  <entry>Name of property</entry>
+
+                  <entry>Description</entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry>useSingleGlobalResourceSet</entry>
+
+                  <entry>This boolean property determines the way resource
+                  sets are used. If set to <emphasis>true</emphasis>, all
+                  model resources will be stored in a single global resource
+                  set. Otherwise, a separate resource set will be used for
+                  each model resource.</entry>
+                </row>
+
+                <row>
+                  <entry>modelFile</entry>
+
+                  <entry>Sets the path to the UML2 model file that will be
+                  added to the metamodel.</entry>
+                </row>
+
+                <row>
+                  <entry>profile</entry>
+
+                  <entry>Sets the path to the UML profile that will be applied
+                  to the UML2 model.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+        </section>
+
+        <section id="xmi_reader" xreflabel="XMI reader">
+          <title>The XMI reader
+          (org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.XmiReader)</title>
+
+          <indexterm>
+            <primary>XMI reader</primary>
+          </indexterm>
+
+          <indexterm>
+            <primary>XMIReader</primary>
+          </indexterm>
+
+          <para>The XMI reader component is important when working with UML
+          models. It allows to read out a model stored in an XMI file and put
+          its contents into a model slot.</para>
+
+          <para>The <classname>XMIReader</classname> component provides the
+          following configurable properties:</para>
+
+          <table frame="all" id="properties_xmireader">
             <title>Properties of <classname>XMIReader</classname></title>
-            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='xmireader_property_name'/>
-                <colspec colname='xmireader_property_description'/>
-                <thead>
-                    <row>
-                        <entry>Name of property</entry>
-                        <entry>Description</entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>
-                        metaModelFile
-                        </entry>
-                        <entry>
-                        Sets the path to the Ecore file that will be added to the metamodel.
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        metaModelDescriptor
-                        </entry>
-                        <entry>
-                        Adds a model to the metamodel by specifying the name of an EPackage descriptor class.
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        metaModelPackage
-                        </entry>
-                        <entry>
-                        Adds a model to the metamodel by specifying the name of an EPackage.
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        outputSlot
-                        </entry>
-                        <entry>
-                        Sets the name of the model slot where the read model will be stored in.
-                        </entry>              
-                    </row>
-                    <row>
-                    <entry>
-                    firstElementOnly
-                    </entry>
-                    <entry>
-                    This boolean property determines if only the first model element
-                    of the XMI file will be used. If set to <emphasis>true</emphasis>,
-                    only the first model element will be used, all other elements will
-                    be ignored. Otherwise, all model elements in the XMI file will be used.
-                    </entry>
-                    </row>
-                </tbody>
+
+            <tgroup align="left" cols="2" colsep="1" rowsep="1">
+              <colspec colname="xmireader_property_name" />
+
+              <colspec colname="xmireader_property_description" />
+
+              <thead>
+                <row>
+                  <entry>Name of property</entry>
+
+                  <entry>Description</entry>
+                </row>
+              </thead>
+
+              <tbody>
+                <row>
+                  <entry>metaModelFile</entry>
+
+                  <entry>Sets the path to the Ecore file that will be added to
+                  the metamodel.</entry>
+                </row>
+
+                <row>
+                  <entry>metaModelDescriptor</entry>
+
+                  <entry>Adds a model to the metamodel by specifying the name
+                  of an EPackage descriptor class.</entry>
+                </row>
+
+                <row>
+                  <entry>metaModelPackage</entry>
+
+                  <entry>Adds a model to the metamodel by specifying the name
+                  of an EPackage.</entry>
+                </row>
+
+                <row>
+                  <entry>outputSlot</entry>
+
+                  <entry>Sets the name of the model slot where the read model
+                  will be stored in.</entry>
+                </row>
+
+                <row>
+                  <entry>firstElementOnly</entry>
+
+                  <entry>This boolean property determines if only the first
+                  model element of the XMI file will be used. If set to
+                  <emphasis>true</emphasis>, only the first model element will
+                  be used, all other elements will be ignored. Otherwise, all
+                  model elements in the XMI file will be used.</entry>
+                </row>
+              </tbody>
             </tgroup>
-        </table>  
-  </section>
-  </section>
-  
-  <section id="java_metamodel" xreflabel="Java metamodel">
-  <title>The Java Metamodel (org.eclipse.internal.xtend.type.impl.java.JavaMetaModel)</title>
-  <indexterm>
-  <primary>Metamodel</primary>
-  <secondary>Java</secondary>
-  </indexterm>
-  <indexterm>
-  <primary>JavaMetaModel</primary>
-  </indexterm>
-  
-  <para>
-  The Java metamodel allows normal Java classes as metatypes for your metamodel. The
-  <classname>JavaMetaClass</classname> uses the strategy pattern to define how the
-  elements are exactly mapped to the metamodel elements. There is a class called
-  <classname>org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel</classname>
-  that is preconfigured with a strategy that maps simple Java beans onto the
-  metamodel elements.
-  </para>
-  
-  <para>
-  The Java metamodel has no configurable properties.
-  </para>
+          </table>
+        </section>
+      </section>
+
+      <section id="java_metamodel" xreflabel="Java metamodel">
+        <title>The Java Metamodel
+        (org.eclipse.internal.xtend.type.impl.java.JavaMetaModel)</title>
+
+        <indexterm>
+          <primary>Metamodel</primary>
+
+          <secondary>Java</secondary>
+        </indexterm>
+
+        <indexterm>
+          <primary>JavaMetaModel</primary>
+        </indexterm>
+
+        <para>The Java metamodel allows normal Java classes as metatypes for
+        your metamodel. The <classname>JavaMetaClass</classname> uses the
+        strategy pattern to define how the elements are exactly mapped to the
+        metamodel elements. There is a class called
+        <classname>org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel</classname>
+        that is preconfigured with a strategy that maps simple Java beans onto
+        the metamodel elements.</para>
+
+        <para>The Java metamodel has no configurable properties.</para>
+      </section>
+
+      <section id="xsd_metamodel" xreflabel="XSD metamodel">
+        <title>The XSD Metamodel
+        (org.eclipse.xtend.typesystem.xsd.XSDMetaModel)</title>
+
+        <indexterm>
+          <primary>Metamodel</primary>
+
+          <secondary>XSD</secondary>
+        </indexterm>
+
+        <indexterm>
+          <primary>XSDMetaModel</primary>
+        </indexterm>
+
+        <para>The XSD metamodel provides access to models implemented in the
+        XML Schema Definition language. It has the following configuration
+        properties:</para>
+
+        <table frame="all" id="properties_xsdmetamodel">
+          <title>Properties of <classname>XSDMetaModel</classname></title>
+
+          <tgroup align="left" cols="2" colsep="1" rowsep="1">
+            <colspec colname="xsdmetamodel_property_name" />
+
+            <colspec colname="xsdmetamodel_property_description" />
+
+            <thead>
+              <row>
+                <entry>Name of property</entry>
+
+                <entry>Description</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>id</entry>
+
+                <entry>Sets the ID of the current model.</entry>
+              </row>
+
+              <row>
+                <entry>registerPackagesGlobally</entry>
+
+                <entry>This boolean property determines if the model packages
+                will be registered globally. If set to
+                <emphasis>true</emphasis>, the model packages will be
+                registered in the global registry. Otherwise, packages will
+                not be registered.</entry>
+              </row>
+
+              <row>
+                <entry>savePackagesPath</entry>
+
+                <entry>Sets the path where model packages will be saved (in
+                XMI format).</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </section>
+
+      <section id="implementing_metamodels"
+               xreflabel="Implementing your own metamodel">
+        <title>Implementing Your Own Metamodel</title>
+
+        <indexterm>
+          <primary>Metamodel</primary>
+
+          <secondary>Implementing metamodels</secondary>
+        </indexterm>
+
+        <para>The <emphasis>Xpand</emphasis> framework also allows you to
+        integrate new metamodel implementations. This section quickly outlines
+        the steps that have to be taken in order to implement a
+        metamodel:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Create a class that implements the
+            <classname>MetaModel</classname> interface.</para>
+          </listitem>
+
+          <listitem>
+            <para>In order to be able to integrate your metamodel into the
+            Eclipse UI, you also have to provide a metamodel contributor class
+            for your metamodel implementation that implements either the
+            <classname>MetaModelContributor</classname> or the
+            <classname>MetaModelContributor2</classname> interface.</para>
+          </listitem>
+
+          <listitem>
+            <para>Finally, you have to extend the
+            <classname>org.eclipse.xtend.shared.ui.metaModelContributors</classname>
+            extension point in order to register your metamodel contributor
+            with the Eclipse UI.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
   </section>
 
-  <section id="xsd_metamodel" xreflabel="XSD metamodel">
-  <title>The XSD Metamodel (org.eclipse.xtend.typesystem.xsd.XSDMetaModel)</title>
-  <indexterm>
-  <primary>Metamodel</primary>
-  <secondary>XSD</secondary>
-  </indexterm>
-  <indexterm>
-  <primary>XSDMetaModel</primary>
-  </indexterm>
-  
-  <para>
-  The XSD metamodel provides access to models implemented in the XML Schema Definition
-  language. It has the following configuration properties:
-  </para>
-  
-            <table frame='all' id="properties_xsdmetamodel">
-            <title>Properties of <classname>XSDMetaModel</classname></title>
-            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='xsdmetamodel_property_name'/>
-                <colspec colname='xsdmetamodel_property_description'/>
-                <thead>
-                    <row>
-                        <entry>Name of property</entry>
-                        <entry>Description</entry>
-                    </row>
-                </thead>
-                <tbody>
-                <row>
-                    <entry>
-                        id
-                    </entry>
-                    <entry>
-                        Sets the ID of the current model.
-                    </entry>
-                </row>
-                <row>
-                    <entry>
-                        registerPackagesGlobally
-                    </entry>
-                    <entry>
-                        This boolean property determines if the model packages will be registered
-                        globally. If set to <emphasis>true</emphasis>, the model packages will be registered
-                        in the global registry. Otherwise, packages will not be registered.
-                    </entry>
-                </row>
-                <row>
-                    <entry>
-                        savePackagesPath
-                    </entry>
-                    <entry>
-                        Sets the path where model packages will be saved (in XMI format).
-                    </entry>
-                </row>
-                </tbody>
-            </tgroup>
-        </table>  
-  </section>
-  
-  <section id="implementing_metamodels" xreflabel="Implementing your own metamodel">
-  <title>Implementing Your Own Metamodel</title>
-  <indexterm>
-  <primary>Metamodel</primary>
-  <secondary>Implementing metamodels</secondary>
-  </indexterm>
-  
-  <para>
-  The <emphasis>Xpand</emphasis> framework also allows you to integrate new metamodel
-  implementations. This section quickly outlines the steps that have to be taken in order
-  to implement a metamodel:
-  </para>
-  
-  <orderedlist>
-    <listitem>
-        <para>
-            Create a class that implements the <classname>MetaModel</classname> interface.
-        </para>        
-    </listitem>
-    
-    <listitem>
-        <para>
-            In order to be able to integrate your metamodel into the Eclipse UI, you
-            also have to provide a metamodel contributor class for your metamodel implementation
-            that implements either the <classname>MetaModelContributor</classname> or the
-            <classname>MetaModelContributor2</classname> interface. 
-        </para>
-    </listitem>
-    
-    <listitem>
-        <para>
-            Finally, you have to extend the 
-            <classname>org.eclipse.xtend.shared.ui.metaModelContributors</classname>
-            extension point in order to register your metamodel contributor with the
-            Eclipse UI.
-        </para>
-    </listitem>
-  </orderedlist>
-   </section>  
-  </section>
-  
-  </section><section id="r10_expressions_language" xreflabel="Expressions">
+  <section id="r10_expressions_language" xreflabel="Expressions">
     <title>Expressions<indexterm>
         <primary>Expression</primary>
       </indexterm></title>
@@ -1136,10 +1164,10 @@ true || false // OR
     <section id="r10_expressions_collection_operations">
       <title>Special Collection operations</title>
 
-      <para>Like OCL, the <emphasis>Xpand</emphasis> expression sub-language defines several special
-      operations on collections. However, those operations are not members of
-      the type system, therefore you cannot use them in a reflective
-      manner.</para>
+      <para>Like OCL, the <emphasis>Xpand</emphasis> expression sub-language
+      defines several special operations on collections. However, those
+      operations are not members of the type system, therefore you cannot use
+      them in a reflective manner.</para>
 
       <section id="r10_expressions_collection_select">
         <title><methodname>select<indexterm>
@@ -1327,8 +1355,9 @@ true || false // OR
 
         <para>In the example the list of entities is sorted by the name of the
         entities. Note that there is no such <classname>Comparable</classname>
-        type in <emphasis>Xpand</emphasis>. If the values returned from the expression are instances
-        of <classname>java.util.Comparable</classname> the
+        type in <emphasis>Xpand</emphasis>. If the values returned from the
+        expression are instances of
+        <classname>java.util.Comparable</classname> the
         <methodname>compareTo</methodname> method is used, otherwise
         <methodname>toString()</methodname> is invoked and the the result is
         used.</para>
@@ -1362,7 +1391,7 @@ true || false // OR
       <para>Example:</para>
 
       <programlisting>name != null ? name : 'unknown'</programlisting>
-      
+
       <para>Alternatively, you also could write:</para>
 
       <programlisting>
@@ -1575,210 +1604,212 @@ ImplName(Class c) :
 
       <programlisting>((String)unTypedList.get(0)).toUpperCase()</programlisting>
     </section>
-    
-    <section>
-        <title>Xpand keywords and metamodel properties<indexterm>
-            <primary>Keyword</primary>
-            <secondary>Property</secondary>
-          </indexterm></title>
 
-        <para>When the name of a metamodel property conflicts with an 
-        <emphasis>Xpand</emphasis> or <emphasis>Xtend</emphasis>
-keyword, the conflict is resolved in favour of the keyword. To refer to
-the metamodel property in these cases, its name must be preceded
-by a '^' character.</para>
-		<para>Example:</para>
-		<programlisting>private String foo(Import ^import) : ^import.name;
-  		</programlisting>
-		
-      </section>
+    <section>
+      <title>Xpand keywords and metamodel properties<indexterm>
+          <primary>Keyword</primary>
+
+          <secondary>Property</secondary>
+        </indexterm></title>
+
+      <para>When the name of a metamodel property conflicts with an
+      <emphasis>Xpand</emphasis> or <emphasis>Xtend</emphasis> keyword, the
+      conflict is resolved in favour of the keyword. To refer to the metamodel
+      property in these cases, its name must be preceded by a '^'
+      character.</para>
+
+      <para>Example:</para>
+
+      <programlisting>private String foo(Import ^import) : ^import.name;
+</programlisting>
+    </section>
   </section>
 
   <section id="Check_language" xreflabel="Check language">
     <title><emphasis>Check</emphasis></title>
-  <section id="Check_language_description" xreflabel="Description of the Check language">
-    <title>Description of the <emphasis>Check</emphasis> language</title>
 
-    <para><emphasis>Xpand</emphasis> also provides a language to specify constraints
-    <indexterm>
-        <primary>Constraint</primary>
-      </indexterm> that the model has to fulfill in order to be correct. This
-    language is very easy to understand and use. Basically, it is built around
-    the expression syntax that has been discussed in detail in the previous
-    section. Constraints specified in the <emphasis>Check</emphasis>
-    <indexterm>
-        <primary>Check</primary>
+    <section id="Check_language_description"
+             xreflabel="Description of the Check language">
+      <title>Description of the <emphasis>Check</emphasis> language</title>
 
-        <secondary>Language</secondary>
-      </indexterm> language have to be stored in files with the file extension
-    <filename>.chk</filename> <indexterm>
-        <primary>.chk</primary>
-      </indexterm><indexterm>
-        <primary>Check</primary>
+      <para><emphasis>Xpand</emphasis> also provides a language to specify
+      constraints <indexterm>
+          <primary>Constraint</primary>
+        </indexterm> that the model has to fulfill in order to be correct.
+      This language is very easy to understand and use. Basically, it is built
+      around the expression syntax that has been discussed in detail in the
+      previous section. Constraints specified in the
+      <emphasis>Check</emphasis> <indexterm>
+          <primary>Check</primary>
 
-        <secondary>File extension</secondary>
-      </indexterm>. Furthermore, these files have to be on the Java classpath,
-    of course, in order to be found. Let us look at an example, in order to
-    understand, what these constraints look like and what they
-    do:<programlisting language="check">import data;
+          <secondary>Language</secondary>
+        </indexterm> language have to be stored in files with the file
+      extension <filename>.chk</filename> <indexterm>
+          <primary>.chk</primary>
+        </indexterm><indexterm>
+          <primary>Check</primary>
+
+          <secondary>File extension</secondary>
+        </indexterm>. Furthermore, these files have to be on the Java
+      classpath, of course, in order to be found. Let us look at an example,
+      in order to understand, what these constraints look like and what they
+      do:<programlisting language="check">import data;
 context Attribute ERROR
   "Names have to be more than one character long." :
   name.length &gt; 1;</programlisting>Now, let us look at the example line by
-    line:<orderedlist>
-        <listitem>
-          <para>First, the metamodel has to be imported.</para>
-        </listitem>
+      line:<orderedlist>
+          <listitem>
+            <para>First, the metamodel has to be imported.</para>
+          </listitem>
 
-        <listitem>
-          <para>Then, the context is specified for which the constraint
-          applies. In other words, after the <code>context</code> keyword, we
-          put the name of the metaclass that is going to be checked by the
-          constraint. Then, there follows either <code>ERROR</code> or
-          <code>WARNING</code>, These keywords specify what kind of action
-          will be taken in case the constraint fails:<table frame="all">
-              <title>Types of action for <emphasis>Check</emphasis>
-              constraints</title>
+          <listitem>
+            <para>Then, the context is specified for which the constraint
+            applies. In other words, after the <code>context</code> keyword,
+            we put the name of the metaclass that is going to be checked by
+            the constraint. Then, there follows either <code>ERROR</code> or
+            <code>WARNING</code>, These keywords specify what kind of action
+            will be taken in case the constraint fails:<table frame="all">
+                <title>Types of action for <emphasis>Check</emphasis>
+                constraints</title>
 
-              <tgroup cols="2" colsep="1" rowsep="1">
-                <colspec colnum="2" colwidth="7*" />
+                <tgroup cols="2" colsep="1" rowsep="1">
+                  <colspec colnum="2" colwidth="7*" />
 
-                <tbody>
-                  <row>
-                    <entry><code>WARNING</code></entry>
+                  <tbody>
+                    <row>
+                      <entry><code>WARNING</code></entry>
 
-                    <entry>If the constraint fails, the specified message is
-                    printed, but the workflow execution is not
-                    stopped.</entry>
-                  </row>
+                      <entry>If the constraint fails, the specified message is
+                      printed, but the workflow execution is not
+                      stopped.</entry>
+                    </row>
 
-                  <row>
-                    <entry><code>ERROR</code></entry>
+                    <row>
+                      <entry><code>ERROR</code></entry>
 
-                    <entry>If the constraint fails, the specified message is
-                    printed and all further processing is stopped.</entry>
-                  </row>
-                </tbody>
-              </tgroup>
-            </table></para>
-        </listitem>
+                      <entry>If the constraint fails, the specified message is
+                      printed and all further processing is stopped.</entry>
+                    </row>
+                  </tbody>
+                </tgroup>
+              </table></para>
+          </listitem>
 
-        <listitem>
-          <para>Now, the message that is put in case that the constraint fails
-          is specified as a string. It is possible to include the value of
-          attributes or the return value of functions into the message in
-          order to make the message more clear. For example, it would be
-          possible to improve the above example by rewriting it like
-          this:</para>
+          <listitem>
+            <para>Now, the message that is put in case that the constraint
+            fails is specified as a string. It is possible to include the
+            value of attributes or the return value of functions into the
+            message in order to make the message more clear. For example, it
+            would be possible to improve the above example by rewriting it
+            like this:</para>
 
-          <programlisting language="check">import data;
+            <programlisting language="check">import data;
 context Attribute ERROR
   "Name of '" + name + "too short. Names have to be more than one character long." :
   name.length &gt; 1;</programlisting>
-        </listitem>
+          </listitem>
 
-        <listitem>
-          <para>Finally, there is the condition itself, which is specified by
-          an expression, which has been discussed in detail in the previous
-          section. If this expression is <varname>true</varname>, the
-          constraint is fulfilled.</para>
-        </listitem>
-      </orderedlist></para>
+          <listitem>
+            <para>Finally, there is the condition itself, which is specified
+            by an expression, which has been discussed in detail in the
+            previous section. If this expression is <varname>true</varname>,
+            the constraint is fulfilled.</para>
+          </listitem>
+        </orderedlist></para>
 
-    <para><important>
-        <para>Please always keep in mind that the message that is associated
-        with the constraint is printed, if the condition of the constraint is
-        <varname>false</varname>! Thus, if the specified constraint condition
-        is <varname>true</varname>, nothing will be printed out and the
-        constraint will be fulfilled.</para>
-      </important></para>
+      <para><important>
+          <para>Please always keep in mind that the message that is associated
+          with the constraint is printed, if the condition of the constraint
+          is <varname>false</varname>! Thus, if the specified constraint
+          condition is <varname>true</varname>, nothing will be printed out
+          and the constraint will be fulfilled.</para>
+        </important></para>
 
-    <section id="Guard_conditions" xreflabel="Guard Conditions">
-      <title>Guard Conditions</title>
+      <section id="Guard_conditions" xreflabel="Guard Conditions">
+        <title>Guard Conditions</title>
 
-      <para>The <emphasis>Check</emphasis> language of <emphasis>Xpand</emphasis> also provides so
-      called <indexterm>
-          <primary>Guard conditions</primary>
-        </indexterm>. These conditions allow to apply a check constraint only to
-      model elements that meet certain criteria. Specifying such a guard
-      condition is done by adding an <emphasis>if</emphasis> clause to the
-      check constraint. The <emphasis>if</emphasis> clause has to be added
-      after the <emphasis>context</emphasis> clause as demonstrated by the
-      following example: <programlisting language="check">import data;
+        <para>The <emphasis>Check</emphasis> language of
+        <emphasis>Xpand</emphasis> also provides so called <indexterm>
+            <primary>Guard conditions</primary>
+          </indexterm>. These conditions allow to apply a check constraint
+        only to model elements that meet certain criteria. Specifying such a
+        guard condition is done by adding an <emphasis>if</emphasis> clause to
+        the check constraint. The <emphasis>if</emphasis> clause has to be
+        added after the <emphasis>context</emphasis> clause as demonstrated by
+        the following example: <programlisting language="check">import data;
 context Attribute if name.length &gt; 1 ERROR
   "Attribute names have to start with an 'a'" :
   name.startsWith("a");</programlisting></para>
+      </section>
     </section>
-  </section>
-  
-  <section id="check_checkcomponent" xreflabel="The workflow component CheckComponent">
-  <title>The workflow component <emphasis>CheckComponent</emphasis></title>
-  
-  <para>
-  The workflow component <emphasis>CheckComponent</emphasis> allows to integrate model 
-  validation constraints using the <emphasis>Check</emphasis> into a modeling workflow 
-  using MWE.
-  </para>
-  
-  <para>
-  This component provides the following configuration properties:
-  </para>
-  
-            <table frame='all' id="properties_checkcomponent">
-            <title>Properties</title>
-            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
-                <colspec colname='checkcomponent_property_name'/>
-                <colspec colname='checkcomponent_property_description'/>
-                <thead>
-                    <row>
-                        <entry>Name of property</entry>
-                        <entry>Description</entry>
-                    </row>
-                </thead>
-                <tbody>
-                    <row>
-                        <entry>
-                        checkFile
-                        </entry>
-                        <entry>
-                        This property allows to add files containing constraints written
-                        in the <emphasis>Check</emphasis> language to the validation
-                        component. <emphasis role="strong">This property only works
-                        in conjunction with EMF based models.</emphasis>
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                       expression
-                        </entry>
-                        <entry>
-                        This property allows to set a check expression for the validation
-                        component. <emphasis role="strong">This property only works
-                        in conjunction with non-EMF based models.</emphasis>
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        abortOnError
-                        </entry>
-                        <entry>
-                        This boolean property determines if the workflow will be aborted
-                        or not if one of the validation constraints fails.
-                        </entry>
-                    </row>
-                    <row>
-                        <entry>
-                        warnIfNothingChecked
-                        </entry>
-                        <entry>
-                        If this boolean property will be set to <emphasis>true</emphasis>,
-                        a warning will be generated if there were no validation checks. Otherwise,
-                        no warning will be issued.
-                        </entry>
-                    </row>
-                </tbody>
-            </tgroup>
-        </table>  
-  </section>
+
+    <section id="check_checkcomponent"
+             xreflabel="The workflow component CheckComponent">
+      <title>The workflow component
+      <emphasis>CheckComponent</emphasis></title>
+
+      <para>The workflow component <emphasis>CheckComponent</emphasis> allows
+      to integrate model validation constraints using the
+      <emphasis>Check</emphasis> into a modeling workflow using MWE.</para>
+
+      <para>This component provides the following configuration
+      properties:</para>
+
+      <table frame="all" id="properties_checkcomponent">
+        <title>Properties</title>
+
+        <tgroup align="left" cols="2" colsep="1" rowsep="1">
+          <colspec colname="checkcomponent_property_name" />
+
+          <colspec colname="checkcomponent_property_description" />
+
+          <thead>
+            <row>
+              <entry>Name of property</entry>
+
+              <entry>Description</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>checkFile</entry>
+
+              <entry>This property allows to add files containing constraints
+              written in the <emphasis>Check</emphasis> language to the
+              validation component. <emphasis role="strong">This property only
+              works in conjunction with EMF based models.</emphasis></entry>
+            </row>
+
+            <row>
+              <entry>expression</entry>
+
+              <entry>This property allows to set a check expression for the
+              validation component. <emphasis role="strong">This property only
+              works in conjunction with non-EMF based
+              models.</emphasis></entry>
+            </row>
+
+            <row>
+              <entry>abortOnError</entry>
+
+              <entry>This boolean property determines if the workflow will be
+              aborted or not if one of the validation constraints
+              fails.</entry>
+            </row>
+
+            <row>
+              <entry>warnIfNothingChecked</entry>
+
+              <entry>If this boolean property will be set to
+              <emphasis>true</emphasis>, a warning will be generated if there
+              were no validation checks. Otherwise, no warning will be
+              issued.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
   </section>
 
   <section id="Xtend_language" xreflabel="Xtend">
@@ -1792,20 +1823,20 @@ context Attribute if name.length &gt; 1 ERROR
 
     <para>Like the expressions sublanguage that summarizes the syntax of
     expressions for all the other textual languages delivered with the
-    <emphasis>Xpand</emphasis> framework, there is another commonly used language
-    called <emphasis>Xtend</emphasis>.</para>
+    <emphasis>Xpand</emphasis> framework, there is another commonly used
+    language called <emphasis>Xtend</emphasis>.</para>
 
     <para>This language provides the possibility to define rich libraries of
     independent operations and non-invasive metamodel extensions<indexterm>
         <primary>Metamodel</primary>
 
         <secondary>(non-invasive) extension</secondary>
-      </indexterm> based on either Java methods or <emphasis>Xtend</emphasis>  expressions. Those
-    libraries can be referenced from all other textual languages, that are
-    based on the expressions framework.</para>
+      </indexterm> based on either Java methods or <emphasis>Xtend</emphasis>
+    expressions. Those libraries can be referenced from all other textual
+    languages, that are based on the expressions framework.</para>
 
     <section>
-      <title>Extend files</title>
+      <title>Xtend files</title>
 
       <indexterm>
         <primary>*.ext</primary>
@@ -1815,9 +1846,9 @@ context Attribute if name.length &gt; 1 ERROR
           <primary>Xtend</primary>
 
           <secondary>File extension</secondary>
-        </indexterm>An extend file must reside in the Java class path of the
-      used execution context. Additionally it is file extension must be
-      <filename>*.ext</filename>. Let us have a look at an extend file.</para>
+        </indexterm>An Xtend file must reside in the Java class path of the
+      used execution context. File extension must be
+      <filename>*.ext</filename>. Let us have a look at an Xend file.</para>
 
       <programlisting>import my::metamodel;extension other::ExtensionFile;
 
@@ -1895,7 +1926,7 @@ String aJavaExtension(String param) : JAVA
         <primary>Extension</primary>
       </indexterm>
 
-      <para>You can import another extend file using the extension statement.
+      <para>You can import another Xtend file using the extension statement.
       The syntax is:</para>
 
       <programlisting>extension fully::qualified::ExtensionFileName;</programlisting>
@@ -1978,15 +2009,17 @@ String aJavaExtension(String param) : JAVA
 
         <programlisting>asList('text')</programlisting>
 
-        <para>has the static type List[String]. This means you can call</para>
+        <para>has the static type <classname>List[String]</classname>. This
+        means you can call</para>
 
         <programlisting>asList('text').get(0).toUpperCase()</programlisting>
 
         <para>The expression is statically type safe, because its return type
         is derived automatically.</para>
 
-        <para>There is always a return value, whether you specify it or not,
-        even if you specify explicitly '<classname>Void</classname>'.</para>
+        <para>There is <emphasis>always</emphasis> a return value, whether you
+        specify it or not, even if you specify explicitly
+        '<classname>Void</classname>'.</para>
 
         <para>See the following example.</para>
 
@@ -2081,7 +2114,6 @@ create target::Class duplicate(source::Class):
    // implementation....
 ;</programlisting>
       </section>
-      
     </section>
 
     <section>
@@ -2097,16 +2129,13 @@ create target::Class duplicate(source::Class):
         </indexterm>:</para>
 
       <programlisting>Void myJavaExtension(String param) :
-   JAVA my.Type.staticMethod(java.lang.String)
+   JAVA my.Type.someMethod(java.lang.String)
 ;</programlisting>
 
-      <para>The signature is the same as for any other extension. The
-      implementation is redirected to a public static method in a Java
-      class.</para>
+      <para>The signature is the same as for any other extension. Its syntax
+      is:</para>
 
-      <para>Its syntax is:</para>
-
-      <programlisting>JAVA fully.qualified.Type.staticMethod(my.ParamType1,
+      <programlisting>JAVA fully.qualified.Type.someMethod(my.ParamType1,
                                        my.ParamType2,
                                        ...)
 ;</programlisting>
@@ -2138,8 +2167,38 @@ public class Helper {
       <programlisting>dump('Hello world!')
 'Hello World'.dump()</programlisting>
 
-      <para>both result are invoking the Java method void dump(String
-      aString)</para>
+      <para>both result are invoking the Java method <methodname>void
+      dump(String aString)</methodname></para>
+
+      <section>
+        <title>static vs non-static invocation</title>
+
+        <para>The implementation of a Java extension is redirected to a public
+        method in a Java class. If the method is not declared static it is
+        required that the Java class has a default constructor. Xtend will
+        instantiate the class for each invocation.</para>
+      </section>
+
+      <section>
+        <title>IExecutionContextAware<indexterm>
+            <primary>IExecutionContextAware</primary>
+          </indexterm></title>
+
+        <para>It is possible with a Java Extension to gain access to the
+        ExecutionContext<indexterm>
+            <primary>ExecutionContext</primary>
+          </indexterm>, which enables to retrieve detailed runtime information
+        on invocation. To use the current ExecutionContext in a Java extension
+        the class must implement
+        org.eclipse.xtend.expression.IExecutionContextAware </para>
+
+        <para><programlisting>public interface IExecutionContextAware {
+  void setExecutionContext (ExecutionContext ctx);
+}
+</programlisting></para>
+
+        <para>The invoked method must not be static.</para>
+      </section>
     </section>
 
     <section>
@@ -2436,8 +2495,8 @@ readMyProp(MyBeanMetaClass jb) :
     </section>
 
     <section>
-      <title>Aspect-Oriented Programming in <emphasis>Xtend</emphasis> (since
-      4.2)<indexterm>
+      <title>Aspect-Oriented Programming in
+      <emphasis>Xtend</emphasis><indexterm>
           <primary>Aspect-Oriented Programming</primary>
         </indexterm><indexterm>
           <primary>AOP</primary>
@@ -2598,7 +2657,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>This example uses Eclipse EMF as the basis <indexterm>
             <primary>Model-to-model transformation</primary>
-          </indexterm>for model-to-model transformations. <!-- It builds on the
+          </indexterm>for model-to-model transformations.<!-- It builds on the
         <emphasis>emfExample</emphasis> documented elsewhere. Please read and
         install the <emphasis>emfExample</emphasis> first.</para>
 
@@ -2640,21 +2699,24 @@ my::Templ::extension(*) // templ def with any number of parameters
         <classname>test::Trafo::duplicate(rootElement)</classname> means to
         invoke: <itemizedlist>
             <listitem>
-          <para>the <classname>duplicate</classname> function taking the
-        contents of the <classname>rootElement</classname> slot as a
-        parameter</para>
-        </listitem>
-
-            <listitem>
-               <para>the function can be found in the
-        <filename>Trafo.ext</filename> file</para>
+              <para>the <classname>duplicate</classname> function taking the
+              contents of the <classname>rootElement</classname> slot as a
+              parameter</para>
             </listitem>
 
             <listitem>
-          <para>and that in turn is in the classpath, in the
-        <package>test</package>. <remark><author><firstname>Rainer</firstname><surname>Klute</surname></author>
-          I hope this is what is meant here. The former text was broken
-          XML.</remark></para>
+              <para>the function can be found in the
+              <filename>Trafo.ext</filename> file</para>
+            </listitem>
+
+            <listitem>
+              <para>and that in turn is in the classpath, in the
+              <package>test</package>. <remark><author>
+                  <firstname>Rainer</firstname>
+
+                  <surname>Klute</surname>
+                </author> I hope this is what is meant here. The former text
+              was broken XML.</remark></para>
             </listitem>
           </itemizedlist></para>
       </section>
@@ -2759,13 +2821,13 @@ my::Templ::extension(*) // templ def with any number of parameters
         <primary>Xpand</primary>
 
         <secondary>Language</secondary>
-      </indexterm> language is used in templates to control the output generation.
-    This documentation describes the general syntax and semantics of the
-    <emphasis>Xpand</emphasis> language.</para>
+      </indexterm> language is used in templates to control the output
+    generation. This documentation describes the general syntax and semantics
+    of the <emphasis>Xpand</emphasis> language.</para>
 
     <para>Typing the <foreignphrase>guillemets</foreignphrase><indexterm>
         <primary>Guillemet</primary>
-      </indexterm> (« and ») used in the templates is supported by the Eclipse
+      </indexterm> (Â« and Â») used in the templates is supported by the Eclipse
     editor: which provides keyboard shortcuts with <keycombo action="simul">
         <keycap>Ctrl</keycap>
 
@@ -2785,8 +2847,8 @@ my::Templ::extension(*) // templ def with any number of parameters
 
           <secondary>.xpt</secondary>
         </indexterm>.<indexterm>
-        <primary>.xpt</primary>
-      </indexterm> Template files<indexterm>
+          <primary>.xpt</primary>
+        </indexterm> Template files<indexterm>
           <primary>Template</primary>
 
           <secondary>File</secondary>
@@ -2798,8 +2860,8 @@ my::Templ::extension(*) // templ def with any number of parameters
       encoding<indexterm>
           <primary>Encoding</primary>
         </indexterm>. The only limitation are the tag brackets
-      (<emphasis>guillemets</emphasis>), for which the characters "«" (Unicode
-      <varname>00AB</varname>) and "»" (Unicode <varname>00BB</varname>) are
+      (<emphasis>guillemets</emphasis>), for which the characters "Â«" (Unicode
+      <varname>00AB</varname>) and "Â»" (Unicode <varname>00BB</varname>) are
       used. So for reading templates, an encoding should be used that supports
       these characters (e.g. <varname>ISO-8859-1</varname> or
       <varname>UTF-8</varname>).</para>
@@ -2811,18 +2873,18 @@ my::Templ::extension(*) // templ def with any number of parameters
     <section id="xpand_reference_general_structure_of_template_files">
       <title>General structure of template files</title>
 
-      <para>Here is a first example of a template:<programlisting>«IMPORT meta::model»
-«EXTENSION my::ExtensionFile»
+      <para>Here is a first example of a template:<programlisting>Â«IMPORT meta::modelÂ»
+Â«EXTENSION my::ExtensionFileÂ»
 
-«DEFINE javaClass FOR Entity»
-   «FILE fileName()»
-      package «javaPackage()»;
+Â«DEFINE javaClass FOR EntityÂ»
+   Â«FILE fileName()Â»
+      package Â«javaPackage()Â»;
 
-      public class «name» {
+      public class Â«nameÂ» {
          // implementation
       }
-   «ENDFILE»
-«ENDDEFINE»</programlisting> A template file consists of any number of IMPORT
+   Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»</programlisting> A template file consists of any number of IMPORT
       statements, followed by any number of EXTENSION statements, followed by
       one or more DEFINE blocks (called definitions).</para>
     </section>
@@ -2837,7 +2899,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>If you are tired of always typing the fully qualified names of
         your types and definitions, you can import a namespace using the
-        IMPORT statement. <programlisting>«IMPORT meta::model»</programlisting>This
+        IMPORT statement. <programlisting>Â«IMPORT meta::modelÂ»</programlisting>This
         one imports the namespace <varname>meta::model</varname>. If your
         template contains such a statement, you can use the unqualified names
         of all types and template files contained in that namespace. This is
@@ -2865,7 +2927,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         documentation for details)</para>
 
         <para>An EXTENSION import points to the <emphasis>Xtend</emphasis>
-        file containing the required extensions: <programlisting>«EXTENSION my::ExtensionFile»</programlisting>
+        file containing the required extensions: <programlisting>Â«EXTENSION my::ExtensionFileÂ»</programlisting>
         Note that extension files have to reside on the Java
         classpath<indexterm>
             <primary>Classpath</primary>
@@ -2886,9 +2948,9 @@ my::Templ::extension(*) // templ def with any number of parameters
             <secondary>File</secondary>
           </indexterm>. The tag consists of a name, an optional
         comma-separated parameter list, as well as the name of the metamodel
-        class for which the template is defined. <programlisting>«DEFINE templateName(formalParameterList) FOR MetaClass»
+        class for which the template is defined. <programlisting>Â«DEFINE templateName(formalParameterList) FOR MetaClassÂ»
    a sequence of statements
-«ENDDEFINE»</programlisting>To some extend, templates can be seen as special
+Â«ENDDEFINEÂ»</programlisting>To some extend, templates can be seen as special
         methods of the metaclass. There is always an implicit
         <emphasis>this</emphasis> parameter which can be used to address the
         "underlying" model element; in our example above, this model element
@@ -2934,21 +2996,21 @@ my::Templ::extension(*) // templ def with any number of parameters
         collection of <classname>A</classname>, <classname>B</classname> and
         <classname>C</classname> instances in the property
         <methodname>listOfAs</methodname>. Then, you can write the following
-        template: <programlisting>«DEFINE someOtherDefine FOR SomeMetaClass»
-   «EXPAND implClass FOREACH listOfAs»
-«ENDDEFINE»
+        template: <programlisting>Â«DEFINE someOtherDefine FOR SomeMetaClassÂ»
+   Â«EXPAND implClass FOREACH listOfAsÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE implClass FOR A»
+Â«DEFINE implClass FOR AÂ»
    // this is the code generated for the superclass A
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE implClass FOR B»
+Â«DEFINE implClass FOR BÂ»
    // this is the code generated for the subclass B
-«ENDDEFINE»
+Â«ENDDEFINEÂ»
 
-«DEFINE implClass FOR C»
+Â«DEFINE implClass FOR CÂ»
    // this is the code generated for the subclass C
-«ENDDEFINE»</programlisting>So for each <classname>B</classname> in the list,
+Â«ENDDEFINEÂ»</programlisting>So for each <classname>B</classname> in the list,
         the template defined for <classname>B</classname> is executed, for
         each <classname>C</classname> in the collection the template defined
         for <emphasis><classname>C</classname></emphasis> is invoked, and for
@@ -2963,9 +3025,9 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>The <varname>FILE</varname> statement redirects the output
         generated from its body statements to the specified target.
-        <programlisting>«FILE expression [outletName]»
+        <programlisting>Â«FILE expression [outletName]Â»
    a sequence of statements
-«ENDFILE»</programlisting>The target is a file in the file system whose name
+Â«ENDFILEÂ»</programlisting>The target is a file in the file system whose name
         is specified by the expression (relative to the specified target
         directory for that generator run). The expression for the target
         specification can be a concatenation (using the + operator).
@@ -2976,24 +3038,24 @@ my::Templ::extension(*) // templ def with any number of parameters
         outlets).</para>
 
         <para>The body of a <varname>FILE</varname> statement can contain any
-        other statements. Example: <programlisting>«FILE InterfaceName + ".java"»
-   package «InterfacePackageName»;
+        other statements. Example: <programlisting>Â«FILE InterfaceName + ".java"Â»
+   package Â«InterfacePackageNameÂ»;
 
    /* generated class! Do not modify! */
-   public interface «InterfaceName» {
-      «EXPAND Operation::InterfaceImplementation FOREACH  Operation»
+   public interface Â«InterfaceNameÂ» {
+      Â«EXPAND Operation::InterfaceImplementation FOREACH  OperationÂ»
    }
-«ENDFILE»
+Â«ENDFILEÂ»
 
 
-«FILE ImplName + ".java" MY_OUTLET»
-   package «ImplPackageName»;
+Â«FILE ImplName + ".java" MY_OUTLETÂ»
+   package Â«ImplPackageNameÂ»;
 
-   public class «ImplName» extends «ImplBaseName»
-                           implements «InterfaceName» {
+   public class Â«ImplNameÂ» extends Â«ImplBaseNameÂ»
+                           implements Â«InterfaceNameÂ» {
    //TODO: implement it
    }
-«ENDFILE»</programlisting></para>
+Â«ENDFILEÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_expand">
@@ -3005,8 +3067,8 @@ my::Templ::extension(*) // templ def with any number of parameters
         <varname>DEFINE</varname> block (in a separate variable context),
         inserts its output at the current location and continues with the next
         statement. This is similar in concept to a subroutine call.
-        <programlisting>«EXPAND definitionName [(parameterList)]
-   [FOR expression | FOREACH expression [SEPARATOR expression] ]»</programlisting>The
+        <programlisting>Â«EXPAND definitionName [(parameterList)]
+   [FOR expression | FOREACH expression [SEPARATOR expression] ] [ONFILECLOSE]Â»</programlisting>The
         various alternative syntaxes are explained below.</para>
 
         <section id="xpand_reference_names">
@@ -3018,7 +3080,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
           <para>If the called definition is not contained in the same template
           file, the name of the template file must be specified. As usual, the
-          double colon is used to delimit namespaces. <programlisting>«EXPAND TemplateFile::definitionName FOR myModelElement»</programlisting>Note
+          double colon is used to delimit namespaces. <programlisting>Â«EXPAND TemplateFile::definitionName FOR myModelElementÂ»</programlisting>Note
           that you would need to import the namespace<indexterm>
               <primary>Namespace</primary>
 
@@ -3026,11 +3088,77 @@ my::Templ::extension(*) // templ def with any number of parameters
             </indexterm> of the template file (if there is one). For instance,
           if the template file resides in the java package
           <varname>my.templates</varname>, there are two alternatives. You
-          could either write <programlisting>«IMPORT my::templates»
+          could either write <programlisting>Â«IMPORT my::templatesÂ»
 ...
-«EXPAND TemplateFile::definitionName FOR myModelElement»</programlisting> or
-          <programlisting>«EXPAND my::templates::TemplateFile::definitionName
-        FOR myModelElement»</programlisting></para>
+Â«EXPAND TemplateFile::definitionName FOR myModelElementÂ»</programlisting> or
+          <programlisting>Â«EXPAND my::templates::TemplateFile::definitionName
+        FOR myModelElementÂ»</programlisting></para>
+        </section>
+
+        <section>
+          <title>Lazy evaluation</title>
+
+          <para>Appending the <indexterm>
+              <primary>ONFILECLOSE</primary>
+            </indexterm>ONFILECLOSE statement defers evaluation of the
+          expanded definition until the current file is closed with ENDFILE.
+          This is of use when the state required to create the text is
+          collected during the evaluation of the processed
+          definition.<programlisting>Â«FILE ...Â»
+...
+Â«EXPAND LazyEvaluatedDefinition FOREACH myCollection ONFILECLOSEÂ»
+...
+Â«ENDFILEÂ» Â«REMÂ»Now 'LazyEvaluatedDefinition' is calledÂ«ENDFILEÂ»</programlisting></para>
+
+          <para>A typical example for usage of the ONFILECLOSE statement is
+          when you want to create a list of imports in a Java class, but the
+          types that are used should be added when they are used in the
+          templates later.</para>
+
+          <para>The state, usually a collection, that is used for the lazy
+          expanded evaluation must be valid until the file is closed. This can
+          be achieved in two ways:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Span a LET statement around the FILE statement that bounds
+              an empty collection</para>
+
+              <para><programlisting>Â«LET (List[MyType]) {} AS importedTypesÂ»
+Â«FILE ...Â»
+...
+Â«EXPAND ImportStatement FOREACH importedTypes ONFILECLOSEÂ»
+...
+Â«importedTypes.add(someType) -&gt; ""-Â»
+...
+Â«ENDFILEÂ»
+Â«ENDLETÂ»</programlisting></para>
+            </listitem>
+
+            <listitem>
+              <para>Use a <emphasis>create</emphasis> Extension which returns
+              an empty collection and append elements to it. Since it is a
+              create extension the empty collection will be returned on first
+              call and for each subsequent call a reference to this collection
+              will be returned and not a new collection created.</para>
+
+              <para>some/path/InsertionPoints.ext:</para>
+
+              <para><programlisting>create List[Type] importedTypes (SomeType context) : (List[Type]) {}; </programlisting></para>
+
+              <para>In Xpand use this as follows:</para>
+
+              <para><programlisting>Â«EXTENSION some::path::InsertionPointsÂ»
+Â«FILE ...Â»
+...
+Â«EXPAND ImportStatement FOREACH importedTypes() ONFILECLOSEÂ»
+...
+Â«importedTypes().add(someType) -&gt; ""-Â»
+...
+Â«ENDFILEÂ»
+Â«ENDLETÂ»</programlisting></para>
+            </listitem>
+          </itemizedlist>
         </section>
       </section>
 
@@ -3043,15 +3171,15 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>If <varname>FOR</varname> or <varname>FOREACH</varname> is
         omitted the other template is called <varname>FOR this</varname>.
-        <programlisting>«EXPAND TemplateFile::definitionName»</programlisting>
-        equals <programlisting>«EXPAND TemplateFile::definitionName FOR this»</programlisting>
+        <programlisting>Â«EXPAND TemplateFile::definitionNameÂ»</programlisting>
+        equals <programlisting>Â«EXPAND TemplateFile::definitionName FOR thisÂ»</programlisting>
         If <varname>FOR</varname> is specified, the definition is executed for
-        the result of the target expression. <programlisting>«EXPAND myDef FOR entity»</programlisting>If
+        the result of the target expression. <programlisting>Â«EXPAND myDef FOR entityÂ»</programlisting>If
         <varname>FOREACH</varname> is specified, the target expression must
         evaluate to a collection type<indexterm>
             <primary>collection type</primary>
           </indexterm>. In this case, the specified definition is executed for
-        each element of that collection. <programlisting>«EXPAND myDef FOREACH entity.allAttributes»  </programlisting></para>
+        each element of that collection. <programlisting>Â«EXPAND myDef FOREACH entity.allAttributesÂ»  </programlisting></para>
 
         <section id="xpand_reference_specifying_a_separator">
           <title>Specifying a Separator<indexterm>
@@ -3060,7 +3188,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
           <para>If a definition is to be expanded <varname>FOREACH</varname>
           element of the target expression it is possible to specify a
-          <varname>SEPARATOR</varname> expression: <programlisting>«EXPAND paramTypeAndName FOREACH params SEPARATOR ','»</programlisting>The
+          <varname>SEPARATOR</varname> expression: <programlisting>Â«EXPAND paramTypeAndName FOREACH params SEPARATOR ','Â»</programlisting>The
           result of the separator expression<indexterm>
               <primary>Expression</primary>
 
@@ -3087,10 +3215,10 @@ my::Templ::extension(*) // templ def with any number of parameters
             <primary>Collection</primary>
           </indexterm> that results from the expression. The current element
         is bound to a variable with the specified name in the current context.
-        <programlisting>«FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]»
+        <programlisting>Â«FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]Â»
    a sequence of statements using variableName to access the
    current element of the iteration
-«ENDFOREACH»</programlisting>The body of a <varname>FOREACH</varname> block
+Â«ENDFOREACHÂ»</programlisting>The body of a <varname>FOREACH</varname> block
         can contain any other statements; specifically
         <varname>FOREACH</varname> statements may be nested. If
         <varname>ITERATOR</varname><indexterm>
@@ -3101,9 +3229,9 @@ my::Templ::extension(*) // templ def with any number of parameters
         expression works in the same way as the one for
         <varname>EXPAND</varname>.</para>
 
-        <para>Example: <programlisting>«FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','»
-   «iter.counter1» : «c»
-«ENDFOREACH»</programlisting>The evaluation of the above statement results in
+        <para>Example: <programlisting>Â«FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','Â»
+   Â«iter.counter1Â» : Â«cÂ»
+Â«ENDFOREACHÂ»</programlisting>The evaluation of the above statement results in
         the following text: <programlisting>1 : A,
 2 : B,
 3 : C</programlisting></para>
@@ -3123,13 +3251,13 @@ my::Templ::extension(*) // templ def with any number of parameters
             <primary>ENDIF</primary>
           </indexterm>. The body of an <varname>IF</varname> block can contain
         any other statement, specifically, <varname>IF</varname> statements
-        may be nested. <programlisting>«IF expression»
+        may be nested. <programlisting>Â«IF expressionÂ»
    a sequence of statements
-[ «ELSEIF expression» ]
+[ Â«ELSEIF expressionÂ» ]
    a sequence of statements ]
-[ «ELSE»
+[ Â«ELSEÂ»
    a sequence of statements ]
-«ENDIF»</programlisting></para>
+Â«ENDIFÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_protect">
@@ -3141,9 +3269,9 @@ my::Templ::extension(*) // templ def with any number of parameters
             <primary>Protected region</primary>
           </indexterm> are used to mark sections in the generated code that
         shall not be overridden again by the subsequent generator run. These
-        sections typically contain manually written code. <programlisting>«PROTECT CSTART expression CEND expression ID expression (DISABLE)?»
+        sections typically contain manually written code. <programlisting>Â«PROTECT CSTART expression CEND expression ID expression (DISABLE)?Â»
    a sequence of statements
-«ENDPROTECT»</programlisting> The values of CSTART<indexterm>
+Â«ENDPROTECTÂ»</programlisting> The values of CSTART<indexterm>
             <primary>CSTART</primary>
           </indexterm> and CEND<indexterm>
             <primary>CEND</primary>
@@ -3151,9 +3279,9 @@ my::Templ::extension(*) // templ def with any number of parameters
         marker in the output. They should build valid comment beginning and
         end strings corresponding to the generated target language (e.g.
         <emphasis>"/*"</emphasis> and <emphasis>"*/"</emphasis> for Java). The
-        following is an example for Java: <programlisting>«PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueID»
+        following is an example for Java: <programlisting>Â«PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueIDÂ»
    here goes some content
-«ENDPROTECT»</programlisting>The ID is set by the <varname>ID</varname>
+Â«ENDPROTECTÂ»</programlisting>The ID is set by the <varname>ID</varname>
         expression and must be globally unique (at least for one complete pass
         of the generator).</para>
 
@@ -3177,7 +3305,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
         <para>If you want the generator to generate disabled protected
         regions, you need to add the <varname>DISABLE</varname> keyword inside
-        the declaration: <programlisting>«PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE»</programlisting></para>
+        the declaration: <programlisting>Â«PROTECT CSTART '/*' CEND '*/' ID this.name DISABLEÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_let">
@@ -3186,17 +3314,17 @@ my::Templ::extension(*) // templ def with any number of parameters
           </indexterm></title>
 
         <para><varname>LET</varname> lets you specify local
-        variables:<programlisting>«LET expression AS variableName»
+        variables:<programlisting>Â«LET expression AS variableNameÂ»
    a sequence of statements
-«ENDLET»</programlisting>During the expansion of the body of the
+Â«ENDLETÂ»</programlisting>During the expansion of the body of the
         <varname>LET</varname><indexterm>
             <primary>LET</primary>
           </indexterm> block, the value of the expression is bound to the
         specified variable. Note that the expression will only be evaluated
         once, independent from the number of usages of the variable within the
-        <varname>LET</varname> block. Example: <programlisting>«LET packageName + "." + className AS fqn»
-   the fully qualified name is: «fqn»;
-«ENDLET»</programlisting></para>
+        <varname>LET</varname> block. Example: <programlisting>Â«LET packageName + "." + className AS fqnÂ»
+   the fully qualified name is: Â«fqnÂ»;
+Â«ENDLETÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_error">
@@ -3208,7 +3336,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         the templates by throwing an
         <varname>XpandException</varname><indexterm>
             <primary>XpandException</primary>
-          </indexterm> with the specified message. <programlisting>«ERROR expression»</programlisting>Note
+          </indexterm> with the specified message. <programlisting>Â«ERROR expressionÂ»</programlisting>Note
         that you should use this facility very sparingly, since it is better
         practice to check for invalid models using constraints on the
         metamodel, and not in the templates.</para>
@@ -3221,16 +3349,16 @@ my::Templ::extension(*) // templ def with any number of parameters
             <secondary>Comments</secondary>
           </indexterm></title>
 
-        <para>Comments are only allowed outside of tags. <programlisting>«REM»
+        <para>Comments are only allowed outside of tags. <programlisting>Â«REMÂ»
    text comment
-«ENDREM»</programlisting>Comments may not contain a REM<indexterm>
+Â«ENDREMÂ»</programlisting>Comments may not contain a REM<indexterm>
             <primary>REM</primary>
           </indexterm> tag, this implies that comments are not nestable. A
         comment may not have a white space between the REM keyword and its
-        brackets. Example: <programlisting>«REM»«LET expression AS variableName»«ENDREM»
+        brackets. Example: <programlisting>Â«REMÂ»Â«LET expression AS variableNameÂ»Â«ENDREMÂ»
    a sequence of statements
-«REM»  «variableName.stuff»
-«ENDLET»«ENDREM»</programlisting></para>
+Â«REMÂ»  Â«variableName.stuffÂ»
+Â«ENDLETÂ»Â«ENDREMÂ»</programlisting></para>
       </section>
 
       <section id="xpand_reference_expression_statement">
@@ -3241,16 +3369,16 @@ my::Templ::extension(*) // templ def with any number of parameters
           </indexterm></title>
 
         <para>Expressions support processing of the information provided by
-        the instantiated metamodel. <emphasis>Xpand</emphasis> provides powerful expressions for
-        selection, aggregation, and navigation. <emphasis>Xpand</emphasis> uses the expressions
-        sublanguage in almost any statement that we have seen so far. The
-        expression statement just evaluates the contained expression and
-        writes the result to the output (using the
-        <varname>toString()</varname> method of
-        <varname>java.lang.Object</varname>). Example: <programlisting>public class «this.name» {</programlisting>
+        the instantiated metamodel. <emphasis>Xpand</emphasis> provides
+        powerful expressions for selection, aggregation, and navigation.
+        <emphasis>Xpand</emphasis> uses the expressions sublanguage in almost
+        any statement that we have seen so far. The expression statement just
+        evaluates the contained expression and writes the result to the output
+        (using the <varname>toString()</varname> method of
+        <varname>java.lang.Object</varname>). Example: <programlisting>public class Â«this.nameÂ» {</programlisting>
         All expressions defined by the oArchitectureWare expressions
-        sublanguage are also available in <emphasis>Xpand</emphasis>. You can invoke imported
-        extensions. (See the <emphasis><xref
+        sublanguage are also available in <emphasis>Xpand</emphasis>. You can
+        invoke imported extensions. (See the <emphasis><xref
         linkend="r10_expressions_language" /></emphasis> and <emphasis><xref
         linkend="Xtend_language" /> language reference</emphasis> for more
         details).</para>
@@ -3265,12 +3393,12 @@ my::Templ::extension(*) // templ def with any number of parameters
 
             <secondary>Omit</secondary>
           </indexterm> you can add a minus sign just before any closing
-        bracket. Example: <programlisting>«FILE InterfaceName + ".java"-»
-«IF hasPackage-»
-package «InterfacePackageName»;
-«ENDIF-»
+        bracket. Example: <programlisting>Â«FILE InterfaceName + ".java"-Â»
+Â«IF hasPackage-Â»
+package Â«InterfacePackageNameÂ»;
+Â«ENDIF-Â»
 ...
-«ENDFILE»</programlisting>The generated file would start with two new lines
+Â«ENDFILEÂ»</programlisting>The generated file would start with two new lines
         (one after the <varname>FILE</varname> and one after the
         <varname>IF</varname> statement) if the minus characters had not been
         set.</para>
@@ -3297,9 +3425,9 @@ package «InterfacePackageName»;
       change some small generation stuff, you can make use of the
       <varname>AROUND</varname><indexterm>
           <primary>AROUND</primary>
-        </indexterm> aspects. <programlisting>«AROUND qualifiedDefinitionName(parameterList)? FOR type»
+        </indexterm> aspects. <programlisting>Â«AROUND qualifiedDefinitionName(parameterList)? FOR typeÂ»
    a sequence of statements
-«ENDAROUND» </programlisting> <varname>AROUND</varname> lets you add templates
+Â«ENDAROUNDÂ» </programlisting> <varname>AROUND</varname> lets you add templates
       in an non-invasive way (you do not need to touch the generator
       templates). Because aspects are invasive, a template file containing
       <varname>AROUND</varname> aspects must be wrapped by configuration (see
@@ -3328,9 +3456,9 @@ package «InterfacePackageName»;
         <para>You specify on which join points the contributed code should be
         executed by specifying something like a 'query' on all available join
         points. Such a query is called a <emphasis>point cut</emphasis>.
-        <programlisting>«AROUND [pointcut]»
+        <programlisting>Â«AROUND [pointcut]Â»
    do stuff
-«ENDAROUND»</programlisting> A pointcut consists of a fully qualified name,
+Â«ENDAROUNDÂ»</programlisting> A pointcut consists of a fully qualified name,
         parameter types and the target type.</para>
 
         <section id="xpand_reference_definition_name">
@@ -3438,20 +3566,19 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         <title>Main configuration</title>
 
         <para>The first thing to note is that the qualified Java name of the
-        component is
-        <varname>org.eclipse.xpand2.Generator</varname>.</para>
+        component is <varname>org.eclipse.xpand2.Generator</varname>.</para>
       </section>
 
       <section id="xpand_reference_encoding">
         <title>Encoding</title>
 
-        <para>For <emphasis>Xpand</emphasis>, it is important to have the file
+        <para>For <emphasis>Xpand</emphasis> it is important to have the file
         encoding<indexterm>
             <primary>File encoding</primary>
           </indexterm> in mind because of the
         <foreignphrase>guillemet</foreignphrase> characters <indexterm>
             <primary>Guillemet</primary>
-          </indexterm> used to delimit keywords and property access. The
+          </indexterm> Â« Â» used to delimit keywords and property access. The
         <varname>fileEncoding</varname> property<indexterm>
             <primary>Generator</primary>
 
@@ -3459,7 +3586,18 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
           </indexterm> specifies the file encoding to use for reading the
         templates, reading the protected regions and writing the generated
         files. This property defaults to the default file encoding of your
-        JVM.</para>
+        JVM. </para>
+
+        <para>In a team that uses different operating systems or locales it is
+        a good idea to set the file encoding fixed for the Xpand project and
+        share the settings. Typical encodings used are UTF-8 or ISO-8859-1,
+        but any encoding having guillemet brackets is fine also.<footnote>
+            <para>On Mac OSX the default encoding is MacRoman, which is not a
+            good choice, since other operating systems are not aware of this
+            encoding. It is recommended to set the encoding to some more
+            common encoding, e.g. UTF-8, maybe even for the whole
+            workspace.</para>
+          </footnote></para>
       </section>
 
       <section id="xpand_reference_metamodel">
@@ -3476,7 +3614,8 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         <emphasis><xref linkend="r10_expressions_language" /></emphasis>) used
         by <emphasis>Xpand2</emphasis>. In the example above we configured the
         Ecore metamodel using the <emphasis>EMFMetaModel</emphasis>
-        implementation shipped with the core part of the <emphasis>Xpand</emphasis> release.</para>
+        implementation shipped with the core part of the
+        <emphasis>Xpand</emphasis> release.</para>
 
         <para>A mandatory configuration is the <varname>expand</varname>
         property. It expects a syntax similar to that of the
@@ -3514,18 +3653,18 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
 &lt;/component&gt;</programlisting>In the example there are two outlets
         configured. The first one has no name and is therefore handled as the
         default outlet. Default outlets are triggered by omitting an outlet
-        name: <programlisting>«FILE 'test/note.txt'»
+        name: <programlisting>Â«FILE 'test/note.txt'Â»
 # this goes to the default outlet
-«ENDFILE»</programlisting>The configured base path is
+Â«ENDFILEÂ»</programlisting>The configured base path is
         '<filename>main/src-gen</filename>', so the file from above would go
         to '<filename>main/src-gen/test/note.txt</filename>'.</para>
 
         <para>The second outlet has a <varname>name</varname> ('TO_SRC')
         specified. Additionally the flag <varname>overwrite</varname> is set
         to <varname>false</varname> (defaults to <varname>true</varname>). The
-        following <emphasis>Xpand</emphasis> fragment <programlisting>«FILE 'test/note.txt' TO_SRC»
+        following <emphasis>Xpand</emphasis> fragment <programlisting>Â«FILE 'test/note.txt' TO_SRCÂ»
 # this goes to the TO_SRC outlet
-«ENDFILE»</programlisting>would cause the generator to write the contents to
+Â«ENDFILEÂ»</programlisting>would cause the generator to write the contents to
         '<filename>main/src/test/note.txt</filename>' if the file does not
         already exist (the <varname>overwrite</varname> flag).</para>
 
@@ -3544,12 +3683,12 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         important that generated code looks good, because developers should be
         able to understand it. On the other hand template files should look
         good, too. It is thus best practice to write nice looking template
-        files and not to care how the generated code looks â€“ and then you run
-        a beautifier over the generated code to fix that problem. Of course,
-        if a beautifier is not available, or if white space has syntactical
-        meaning (as in Python), you would have to write your templates with
-        that in mind (using the minus character before closing brackets as
-        described in a preceding section).</para>
+        files and not to care how the generated code looks Ã¢Â€Â“ and then you
+        run a beautifier over the generated code to fix that problem. Of
+        course, if a beautifier is not available, or if white space has
+        syntactical meaning (as in Python), you would have to write your
+        templates with that in mind (using the minus character before closing
+        brackets as described in a preceding section).</para>
 
         <para>The <emphasis>Xpand</emphasis> workflow component can be
         configured with multiple beautifiers:<programlisting>&lt;beautifier
@@ -3627,12 +3766,12 @@ public interface PostProcessor {
             <primary>VetoStrategy</primary>
           </indexterm></title>
 
-        <para>The <emphasis>Xpand</emphasis> engine will generate code for each processed
-        <property>FILE</property> statement. This implies that files are
-        written that might not have changed to the previous generator run.
-        Normally it does not matter that files are rewritten. There are at
-        least two good reasons when it is better to avoid rewriting of
-        files:</para>
+        <para>The <emphasis>Xpand</emphasis> engine will generate code for
+        each processed <property>FILE</property> statement. This implies that
+        files are written that might not have changed to the previous
+        generator run. Normally it does not matter that files are rewritten.
+        There are at least two good reasons when it is better to avoid
+        rewriting of files:</para>
 
         <orderedlist>
           <listitem>
@@ -3664,11 +3803,9 @@ public interface PostProcessor {
 
         <para>To achieve this it is possible to add Veto Strategies to the
         generator, which are implementations of interface
-        <classname>org.eclipse.xpand2.output.VetoStrategy</classname>
-        or
-        <classname>org.eclipse.xpand2.output.VetoStrategy2</classname>.
-        Use <classname>VetoStrategy2</classname> if you implement your
-        own.</para>
+        <classname>org.eclipse.xpand2.output.VetoStrategy</classname> or
+        <classname>org.eclipse.xpand2.output.VetoStrategy2</classname>. Use
+        <classname>VetoStrategy2</classname> if you implement your own.</para>
 
         <para><classname>VetoStrategy2</classname> declares two
         methods:</para>
@@ -3679,7 +3816,7 @@ public interface PostProcessor {
             (FileHandle)</methodname></para>
 
             <para>This method will be called before a file is being opened and
-            generated. Return true to suppress the file creation. </para>
+            generated. Return true to suppress the file creation.</para>
           </listitem>
 
           <listitem>
@@ -3723,7 +3860,7 @@ public interface PostProcessor {
 
           <listitem>
             <para>The existing file must be read into memory. This also costs
-            time and memory. </para>
+            time and memory.</para>
           </listitem>
         </orderedlist>
 
@@ -3784,8 +3921,8 @@ public interface PostProcessor {
 
       <para>To illustrate the idea of extending a generator without "touching"
       it, let us create a new project called
-      <classname>org.eclipse.demo.emf.datamodel.generator-aop</classname>. The idea
-      is that it will "extend" the original
+      <classname>org.eclipse.demo.emf.datamodel.generator-aop</classname>. The
+      idea is that it will "extend" the original
       <classname>org.eclipse.demo.emf.datamodel.generator</classname> project
       introduced in the <emphasis>emfExample</emphasis>. So this new projects
       needs to have a project dependency to the former one.</para>
@@ -3797,53 +3934,53 @@ public interface PostProcessor {
             <primary>join point</primary>
           </indexterm> model; this is, you have to define, at which locations
         of a (template) program you can add additional (template) code. In
-        <emphasis>Xpand</emphasis>, the join points are simply templates (i.e. <emphasis>DEFINE ..
-        ENDDEFINE</emphasis>) blocks. An "aspect template" can be declared
-        <emphasis>AROUND</emphasis><indexterm>
+        <emphasis>Xpand</emphasis>, the join points are simply templates (i.e.
+        <emphasis>DEFINE .. ENDDEFINE</emphasis>) blocks. An "aspect template"
+        can be declared <emphasis>AROUND</emphasis><indexterm>
             <primary>AROUND</primary>
           </indexterm> previously existing templates. If you take a look at
-        the <classname>org.eclipse.demo.emf.datamodel.generator</classname> source
-        folder of the project, you can find the <filename>Root.xpt</filename>
-        template file. Inside, you can find a template called
-        <classname>Impl</classname> that generates the implementation of the
-        JavaBean.</para>
+        the <classname>org.eclipse.demo.emf.datamodel.generator</classname>
+        source folder of the project, you can find the
+        <filename>Root.xpt</filename> template file. Inside, you can find a
+        template called <classname>Impl</classname> that generates the
+        implementation of the JavaBean.</para>
 
-        <programlisting language="Xpand">«DEFINE Entity FOR data::Entity»
-   «FILE baseClassFileName() »
-      // generated at «timestamp()»
-      public abstract class «baseClassName()» {
-         «EXPAND Impl»
+        <programlisting language="Xpand">Â«DEFINE Entity FOR data::EntityÂ»
+   Â«FILE baseClassFileName() Â»
+      // generated at Â«timestamp()Â»
+      public abstract class Â«baseClassName()Â» {
+         Â«EXPAND ImplÂ»
       }
-   «ENDFILE»
-«ENDDEFINE»
+   Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE Impl FOR data::Entity»
-   «EXPAND GettersAndSetters»
-«ENDDEFINE»
+Â«DEFINE Impl FOR data::EntityÂ»
+   Â«EXPAND GettersAndSettersÂ»
+Â«ENDDEFINEÂ»
 
-«DEFINE Impl FOR data::PersistentEntity»
-   «EXPAND GettersAndSetters»
+Â«DEFINE Impl FOR data::PersistentEntityÂ»
+   Â«EXPAND GettersAndSettersÂ»
     public void save() {
 
    }
-«ENDDEFINE»</programlisting>
+Â«ENDDEFINEÂ»</programlisting>
 
         <para>What we now want to accomplish is this: Whenever the
         <emphasis>Impl</emphasis> template is executed, we want to run an
         additional template that generates additional code (for example, some
-        kind of meta information for a given framework. The specific code at this
-        place is not important for the example here).</para>
+        kind of meta information for a given framework. The specific code at
+        this place is not important for the example here).</para>
 
         <para>So, in our new project, we define the following template
         file:</para>
 
-        <programlisting language="Xpand">«AROUND Impl FOR data::Entity»
-   «FOREACH attribute AS a»
-      public static final AttrInfo «a.name»Info = new AttrInfo(
-         "«a.name»", «a.type».class );
-   «ENDFOREACH»
-   «targetDef.proceed()»
-«ENDAROUND»</programlisting>
+        <programlisting language="Xpand">Â«AROUND Impl FOR data::EntityÂ»
+   Â«FOREACH attribute AS aÂ»
+      public static final AttrInfo Â«a.nameÂ»Info = new AttrInfo(
+         "Â«a.nameÂ»", Â«a.typeÂ».class );
+   Â«ENDFOREACHÂ»
+   Â«targetDef.proceed()Â»
+Â«ENDAROUNDÂ»</programlisting>
 
         <para>So, this new template wraps around the existing template called
         <classname>Impl</classname> It first generates additional code and
@@ -3929,39 +4066,39 @@ public interface PostProcessor {
           <primary>AROUND</primary>
         </indexterm> construct is as follows:</para>
 
-      <programlisting language="Expand">«AROUND fullyQualifiedDefinitionNameWithWildcards
-      (Paramlist (*)?) FOR TypeName»
+      <programlisting language="Expand">Â«AROUND fullyQualifiedDefinitionNameWithWildcards
+      (Paramlist (*)?) FOR TypeNameÂ»
    do Stuff
-«ENDAROUND»</programlisting>
+Â«ENDAROUNDÂ»</programlisting>
 
       <para>Here are some examples:</para>
 
-      <programlisting>«AROUND *(*) FOR Object»</programlisting>
+      <programlisting>Â«AROUND *(*) FOR ObjectÂ»</programlisting>
 
       <para>matches all templates</para>
 
-      <programlisting>«AROUND *define(*) FOR Object»</programlisting>
+      <programlisting>Â«AROUND *define(*) FOR ObjectÂ»</programlisting>
 
       <para>matches all templates with <emphasis>define</emphasis> at the end
       of its name and any number of parameters</para>
 
-      <programlisting>«AROUND org::eclipse::xpand2::* FOR Entity»</programlisting>
+      <programlisting>Â«AROUND org::eclipse::xpand2::* FOR EntityÂ»</programlisting>
 
       <para>matches all templates with namespace
-      <emphasis>org::eclipse::xpand2::</emphasis> that do not have any parameters and
-      whose type is Entity or a subclass</para>
+      <emphasis>org::eclipse::xpand2::</emphasis> that do not have any
+      parameters and whose type is Entity or a subclass</para>
 
-      <programlisting>«AROUND *(String s) FOR Object»</programlisting>
+      <programlisting>Â«AROUND *(String s) FOR ObjectÂ»</programlisting>
 
       <para>matches all templates that have exactly one
       <classname>String</classname> parameter</para>
 
-      <programlisting>«AROUND *(String s,*) FOR Object»</programlisting>
+      <programlisting>Â«AROUND *(String s,*) FOR ObjectÂ»</programlisting>
 
       <para>matches all templates that have at least one
       <classname>String</classname> parameter</para>
 
-      <programlisting>«AROUND my::Template::definition(String s) FOR Entity»</programlisting>
+      <programlisting>Â«AROUND my::Template::definition(String s) FOR EntityÂ»</programlisting>
 
       <para>matches exactly this single definition</para>
 
@@ -3971,49 +4108,50 @@ public interface PostProcessor {
       call <methodname>proceed</methodname>, and also query a number of other
       things:</para>
 
-      <programlisting>«AROUND my::Template::definition(String s) FOR String»
-   log('invoking '+«targetDef.name»+' with '+this)
-   «targetDef.proceed()»
-«ENDAROUND»</programlisting>
+      <programlisting>Â«AROUND my::Template::definition(String s) FOR StringÂ»
+   log('invoking '+Â«targetDef.nameÂ»+' with '+this)
+   Â«targetDef.proceed()Â»
+Â«ENDAROUNDÂ»</programlisting>
     </section>
   </section>
-  
+
   <section id="r10_profiler">
     <title>Profiler</title>
-    
-    <para>The <emphasis>ProfilerComponent</emphasis> allows you to measure the time each check, 
-    Xtend function or Xpand define needed to be executed in your workflow.
-    It does so by acting as a callback of the <emphasis>CheckComponent</emphasis>, <emphasis>XtendComponent</emphasis> and 
-    <emphasis>XpandComponent</emphasis> where the time of each call will be stored in a profiling model.
-    From this data the profiler eventually derives execution times with and without children, 
-    callers/callees with the corresponding call counts and finally a 
-    call graph with respect to recursive calls.
-    A set of Xpand templates can transform the model to an HTML report or a text file in
-    the GNU GProf format.
-    </para>
-    
+
+    <para>The <emphasis>ProfilerComponent</emphasis> allows you to measure the
+    time each check, Xtend function or Xpand define needed to be executed in
+    your workflow. It does so by acting as a callback of the
+    <emphasis>CheckComponent</emphasis>, <emphasis>XtendComponent</emphasis>
+    and <emphasis>XpandComponent</emphasis> where the time of each call will
+    be stored in a profiling model. From this data the profiler eventually
+    derives execution times with and without children, callers/callees with
+    the corresponding call counts and finally a call graph with respect to
+    recursive calls. A set of Xpand templates can transform the model to an
+    HTML report or a text file in the GNU GProf format.</para>
+
     <figure>
-        <mediaobject>
-          <imageobject role="fo">
-            <imagedata fileref="images/Xpand/profiler.png"
-                       scale="30" />
-          </imageobject>
+      <mediaobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/Xpand/profiler.png" scale="30" />
+        </imageobject>
 
-          <imageobject role="html">
-            <imagedata fileref="images/Xpand/profiler.png" scale="95" />
-          </imageobject>
-        </mediaobject>
-        <title>Sample HTML output of the profiler</title>
+        <imageobject role="html">
+          <imagedata fileref="images/Xpand/profiler.png" scale="95" />
+        </imageobject>
+      </mediaobject>
+
+      <title>Sample HTML output of the profiler</title>
     </figure>
-    
- 	<para>Use the <emphasis>ProfilerComponent</emphasis> to wrap other components inside a workflow.
- 	Denote a <emphasis>resultSlot</emphasis> where the profiler stores the model in the end.  
- 	Then, refer to this component via <emphasis>idRef</emphasis> as a callback.
- 	As soon as the component-tag of the profiler closes, it stores the derived profiling model in the given slot. 
- 	You are free to transform this model or you can re-use one of the templates that come with profiler.
- 	</para>
 
-	<programlisting>
+    <para>Use the <emphasis>ProfilerComponent</emphasis> to wrap other
+    components inside a workflow. Denote a <emphasis>resultSlot</emphasis>
+    where the profiler stores the model in the end. Then, refer to this
+    component via <emphasis>idRef</emphasis> as a callback. As soon as the
+    component-tag of the profiler closes, it stores the derived profiling
+    model in the given slot. You are free to transform this model or you can
+    re-use one of the templates that come with profiler.</para>
+
+    <programlisting>
 &lt;component id="profiler" class="org.eclipse.xtend.profiler.ProfilerComponent"&gt;
 	&lt;resultSlot value="profilingResult" /&gt;
 	
@@ -4037,22 +4175,21 @@ public interface PostProcessor {
 	&lt;outlet overwrite="true" path="profiling"/&gt;
 &lt;/component&gt;
 	</programlisting>
-	
-	<para>Currently, there are two different templates available to render the profiling model
-	<itemizedlist>
-        <listitem>
-           <para>org::eclipse::xtend::profiler::templates::Html::Main</para>
-        </listitem>
-        <listitem>
-           <para>org::eclipse::xtend::profiler::templates::GProf::Main</para>
-        </listitem>
-	</itemizedlist>
-	</para>
-	
-	<para>The Xpand Wizard will produce a workflow called <emphasis>workflowWithProfiler.mwe</emphasis> that
-	demonstrates the capabilities of the profiler. It puts the result in the folder <emphasis>profiling</emphasis>.
-	</para>
 
+    <para>Currently, there are two different templates available to render the
+    profiling model <itemizedlist>
+        <listitem>
+          <para>org::eclipse::xtend::profiler::templates::Html::Main</para>
+        </listitem>
+
+        <listitem>
+          <para>org::eclipse::xtend::profiler::templates::GProf::Main</para>
+        </listitem>
+      </itemizedlist></para>
+
+    <para>The Xpand Wizard will produce a workflow called
+    <emphasis>workflowWithProfiler.mwe</emphasis> that demonstrates the
+    capabilities of the profiler. It puts the result in the folder
+    <emphasis>profiling</emphasis>.</para>
   </section>
-  
 </chapter>

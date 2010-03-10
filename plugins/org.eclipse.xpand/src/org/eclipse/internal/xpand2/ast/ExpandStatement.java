@@ -99,7 +99,7 @@ public class ExpandStatement extends Statement {
 	 * Retrieves the namespace of the target definition(s).  
 	 * This method requires that either analyzeInternal() or evaluateInternal()
 	 * was invoked before, otherwise result will be null.
-	 * @since 0.8.0 M5
+	 * @since 1.0.0 M5
 	 */
 	public String getTargetNamespace () {
 		return targetNamespace;

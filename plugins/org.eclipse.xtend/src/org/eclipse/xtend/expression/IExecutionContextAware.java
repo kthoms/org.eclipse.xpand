@@ -11,7 +11,7 @@ package org.eclipse.xtend.expression;
  * Implementors of this interface can retrieve an ExecutionContext.
  * 
  * @author Karsten Thoms - Initial contribution and API
- * @since 0.8.0-M4
+ * @since 1.0.0-M4
  */
 public interface IExecutionContextAware {
 	

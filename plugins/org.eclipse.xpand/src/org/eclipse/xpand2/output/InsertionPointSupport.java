@@ -12,7 +12,7 @@ import org.eclipse.internal.xpand2.ast.Statement;
 
 /**
  * @author Karsten Thoms - Initial contribution and API
- * @since 0.8.0 M5
+ * @since 1.0.0 M5
  */
 public interface InsertionPointSupport {
 	void registerInsertionPoint (Statement stmt);

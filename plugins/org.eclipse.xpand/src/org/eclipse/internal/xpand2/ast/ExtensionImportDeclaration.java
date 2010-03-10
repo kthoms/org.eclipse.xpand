@@ -17,7 +17,7 @@ import org.eclipse.xtend.expression.AnalysationIssue;
 
 /**
  * @author Karsten Thoms - Initial contribution and API
- * @since 0.8.0 M5
+ * @since 1.0.0 M5
  */
 public class ExtensionImportDeclaration extends ImportDeclaration {
 	public ExtensionImportDeclaration(final Identifier importString) {

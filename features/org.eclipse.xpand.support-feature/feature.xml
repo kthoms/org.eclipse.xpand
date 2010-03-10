@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xpand.support"
       label="%featureName"
-      version="0.8.0.qualifier"
+      version="1.0.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -22,7 +22,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.xpand.sdk" version="0.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.xpand.sdk" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.cdt.core"/>
    </requires>
 

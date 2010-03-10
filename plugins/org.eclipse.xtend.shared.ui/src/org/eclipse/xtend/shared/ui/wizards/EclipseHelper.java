@@ -190,9 +190,9 @@ public class EclipseHelper {
 		maniContent.append(" org.eclipse.xpand;bundle-version=\"0.7.0\",\n");
 		maniContent.append(" org.eclipse.xtend;bundle-version=\"0.7.0\",\n");
 		maniContent.append(" org.eclipse.xtend.typesystem.emf;bundle-version=\"0.7.0\",\n");
-		maniContent.append(" org.eclipse.xtend.backend;bundle-version=\"0.8.0\";resolution:=optional,\n");
-		maniContent.append(" org.eclipse.xtend.middleend.xpand;bundle-version=\"0.8.0\";resolution:=optional,\n");
-		maniContent.append(" org.eclipse.xtend.middleend.xtend;bundle-version=\"0.8.0\";resolution:=optional\n");
+		maniContent.append(" org.eclipse.xtend.backend;bundle-version=\"1.0.0\";resolution:=optional,\n");
+		maniContent.append(" org.eclipse.xtend.middleend.xpand;bundle-version=\"1.0.0\";resolution:=optional,\n");
+		maniContent.append(" org.eclipse.xtend.middleend.xtend;bundle-version=\"1.0.0\";resolution:=optional\n");
 		maniContent.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
 		
 		if (exportedPackages != null && !exportedPackages.isEmpty()) {

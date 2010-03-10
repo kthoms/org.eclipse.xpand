@@ -13,7 +13,7 @@ package org.eclipse.internal.xpand2;
 
 /**
  * Constants interface containing all Xpand keywords.
- * @since 0.8.0 M5
+ * @since 1.0.0 M5
  */
 public interface XpandTokens {
 

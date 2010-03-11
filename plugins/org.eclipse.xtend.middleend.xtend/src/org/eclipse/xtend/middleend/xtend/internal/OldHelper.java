@@ -77,6 +77,7 @@ public final class OldHelper {
             if (umlOldXtendTypesClass != null && mm instanceof ProfileMetaModel) {
             	ProfileMetaModel profileMM = (ProfileMetaModel) mm;
             	umlProfiles.addAll (profileMM.profiles);
+            	hasUml2 = true;
             }
             if (xsdOldXtendTypesClass != null && mm instanceof XSDMetaModel)
             	hasXsd = true;
@@ -84,10 +85,16 @@ public final class OldHelper {
         
         if (hasEmf)
             result.register (new EmfTypesystem ());
-        if (umlOldXtendTypesClass != null && hasUml2)
+        if (umlOldXtendTypesClass != null && hasUml2) {
+        	if (!hasEmf)
+        		result.register (new EmfTypesystem ());
         	result.register (new UmlTypesystem (umlProfiles, false));
-        if (xsdOldXtendTypesClass != null && hasXsd)
+        }
+        if (xsdOldXtendTypesClass != null && hasXsd) {
+        	if (!hasEmf)
+        		result.register (new EmfTypesystem ());
         	result.register (new XsdTypesystem ());
+        }
         
         //TODO replace this by adding "asBackendType" to the frontend types
         

@@ -22,7 +22,7 @@
    </url>
 
    <includes
-         id="org.eclipse.xtend.dependencies"
+         id="org.eclipse.xtend"
          version="0.0.0"/>
 
    <requires>

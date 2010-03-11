@@ -24,6 +24,9 @@
    <includes
          id="org.eclipse.xtend.dependencies"
          version="0.0.0"/>
+   <includes
+         id="org.eclipse.xtend.typesystem.emf"
+         version="0.0.0"/>
 
    <requires>
       <import plugin="org.eclipse.emf.mwe.core"/>

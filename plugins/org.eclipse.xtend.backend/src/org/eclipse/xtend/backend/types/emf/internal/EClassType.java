@@ -150,6 +150,9 @@ public final class EClassType extends AbstractType {
 					}
 
                 });
+            } catch (NoSuchMethodException nsme) {
+            	//might be a delegated validation method
+            	
             } catch (Exception e) {
                 ErrorHandler.handle (e);
             }

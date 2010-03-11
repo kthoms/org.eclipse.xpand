@@ -101,4 +101,11 @@ public class CollectionFeaturesTest extends TestCase {
 		assertEquals(Boolean.FALSE, ef.evaluate("vals.forAll(s| s == \"3\")", Collections.singletonMap("vals", vals)));
 	}
 
+	public final void testEquals() {
+		assertEquals(Boolean.TRUE, ef.evaluate("{}=={}"));
+		assertEquals(Boolean.FALSE, ef.evaluate("{}=={1}"));
+		assertEquals(ef.evaluate("{'test',123}"), ef.evaluate("{'test',123}"));
+		assertEquals(Boolean.TRUE,ef.evaluate("{'test',123}=={'test',123}"));
+	}
+
 }

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtend Backend UML2 types (Incubation)
+Bundle-Name: Xtend Backend UML2 types
 Bundle-SymbolicName: org.eclipse.xtend.backend.uml2types
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.xtend.backend,
@@ -9,3 +9,4 @@ Bundle-Localization: plugin
 Import-Package: org.apache.commons.logging
 Export-Package: org.eclipse.xtend.backend.types.uml2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project

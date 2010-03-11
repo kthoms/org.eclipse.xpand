@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtend Middleend Plug-in (Incubation)
+Bundle-Name: Xtend Middleend
 Bundle-SymbolicName: org.eclipse.xtend.middleend.xtend;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: org.eclipse.xtend.middleend.xtend,
@@ -22,3 +22,4 @@ Require-Bundle: org.eclipse.xtend.backend,
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project

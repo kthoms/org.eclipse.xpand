@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Backend Plug-in 
+Bundle-Name: Xtend Backend
 Bundle-SymbolicName: org.eclipse.xtend.backend;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.common",
@@ -31,3 +31,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.xtend.middleend.internal.Activator
 Import-Package: org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project

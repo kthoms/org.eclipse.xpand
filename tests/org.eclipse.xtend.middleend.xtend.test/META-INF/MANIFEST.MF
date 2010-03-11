@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtend Middleend Test Plug-in
+Bundle-Name: Xtend Middleend Tests
 Bundle-SymbolicName: org.eclipse.xtend.middleend.xtend.test
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.xtend,
  org.eclipse.xpand,
@@ -13,3 +13,4 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.emf.common
 Import-Package: org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project

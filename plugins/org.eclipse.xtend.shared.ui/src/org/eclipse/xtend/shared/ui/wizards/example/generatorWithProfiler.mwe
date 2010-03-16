@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <workflow>
-	<property name="model" value="my.generator.project/src/Model.xmi" />
+	<property name="model" value="PROJECTNAME/src/Model.xmi" />
 	<property name="src-gen" value="src-gen" />
 	<property name="profiling-gen" value="profiling" />
 	

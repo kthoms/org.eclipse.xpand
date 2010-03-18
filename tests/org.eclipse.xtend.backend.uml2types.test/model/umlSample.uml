@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:simpleEntityprofile="http:///schemas/simpleEntityprofile/_hXw4wAA9Ed-XDv9nb4RcQQ/1" xmlns:simpleEntityprofile_1="http:///schemas/simpleEntityprofile/_6nlsUAA_Ed-XDv9nb4RcQQ/2" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/simpleEntityprofile/_hXw4wAA9Ed-XDv9nb4RcQQ/1 simpleEntity.profile.uml#_hXxf0AA9Ed-XDv9nb4RcQQ http:///schemas/simpleEntityprofile/_6nlsUAA_Ed-XDv9nb4RcQQ/2 simpleEntity.profile.uml#_6nmTYAA_Ed-XDv9nb4RcQQ">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="simpleUml">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="test">
+      <packagedElement xmi:type="uml:Class" xmi:id="_Y8mN0AA-Ed-XDv9nb4RcQQ" name="Customer">
+        <ownedAttribute xmi:id="_j0ouYAA-Ed-XDv9nb4RcQQ" name="contractAccounts" visibility="public" type="_edGB8AA-Ed-XDv9nb4RcQQ" aggregation="composite" association="_j01isAA-Ed-XDv9nb4RcQQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j0ouYQA-Ed-XDv9nb4RcQQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_j0ouYgA-Ed-XDv9nb4RcQQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_e7yzsACMEd-67rI0szkUSA" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_x1jvAACMEd-67rI0szkUSA" name="version">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_D09T0ACNEd-67rI0szkUSA" name="firstName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_LF_RcACNEd-67rI0szkUSA" name="lastName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_a86G0ACNEd-67rI0szkUSA" name="customerNumber">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_edGB8AA-Ed-XDv9nb4RcQQ" name="ContractAccount">
+        <ownedAttribute xmi:id="_rwl74ACMEd-67rI0szkUSA" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_8PYCgACMEd-67rI0szkUSA" name="version">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Q0fFUACNEd-67rI0szkUSA" name="acountNumber">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_0FXZAACNEd-67rI0szkUSA" name="contracts" type="_ubzIcACNEd-67rI0szkUSA" aggregation="composite" association="_0FetwACNEd-67rI0szkUSA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0FXZAQCNEd-67rI0szkUSA" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0FXZAgCNEd-67rI0szkUSA" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_j01isAA-Ed-XDv9nb4RcQQ" name="A_&lt;customer>_&lt;contractAccount>" memberEnd="_j01isQA-Ed-XDv9nb4RcQQ _j0ouYAA-Ed-XDv9nb4RcQQ">
+        <ownedEnd xmi:id="_j01isQA-Ed-XDv9nb4RcQQ" name="customer" type="_Y8mN0AA-Ed-XDv9nb4RcQQ" association="_j01isAA-Ed-XDv9nb4RcQQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_j01isgA-Ed-XDv9nb4RcQQ" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_j01iswA-Ed-XDv9nb4RcQQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ubzIcACNEd-67rI0szkUSA" name="Contract">
+        <ownedAttribute xmi:id="_6xmngACNEd-67rI0szkUSA" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ANJqMACOEd-67rI0szkUSA" name="version">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_GXWioACOEd-67rI0szkUSA" name="contractNumber">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Lf6X4ACOEd-67rI0szkUSA" name="kind">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_0FetwACNEd-67rI0szkUSA" name="A_&lt;contractAccount>_&lt;contract>" memberEnd="_0FetwQCNEd-67rI0szkUSA _0FXZAACNEd-67rI0szkUSA">
+        <ownedEnd xmi:id="_0FetwQCNEd-67rI0szkUSA" name="contractAccount" type="_edGB8AA-Ed-XDv9nb4RcQQ" association="_0FetwACNEd-67rI0szkUSA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0FetwgCNEd-67rI0szkUSA" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0FetwwCNEd-67rI0szkUSA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <profileApplication xmi:id="_qTQ64ACPEd-67rI0szkUSA">
+        <eAnnotations xmi:id="_qTQ64QCPEd-67rI0szkUSA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="simpleEntity.profile.uml#_6nmTYAA_Ed-XDv9nb4RcQQ"/>
+        </eAnnotations>
+        <appliedProfile href="simpleEntity.profile.uml#_j4TNwAA7Ed-XDv9nb4RcQQ"/>
+      </profileApplication>
+    </packagedElement>
+  </uml:Model>
+  <simpleEntityprofile:Reference xmi:id="_-nHc8AA_Ed-XDv9nb4RcQQ"/>
+  <simpleEntityprofile:Reference xmi:id="_fS3sYACLEd-67rI0szkUSA"/>
+  <simpleEntityprofile:Reference xmi:id="_ncZYQACLEd-67rI0szkUSA"/>
+  <simpleEntityprofile:Reference xmi:id="_qrNdoACLEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Field xmi:id="_S2ICYACMEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:SimpleEntity xmi:id="_o73NoACQEd-67rI0szkUSA" base_Class="_Y8mN0AA-Ed-XDv9nb4RcQQ"/>
+  <simpleEntityprofile_1:SimpleEntity xmi:id="_pYDaYACQEd-67rI0szkUSA" base_Class="_edGB8AA-Ed-XDv9nb4RcQQ"/>
+  <simpleEntityprofile_1:SimpleEntity xmi:id="_p00O4ACQEd-67rI0szkUSA" base_Class="_ubzIcACNEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Identifier xmi:id="_qU-VoACQEd-67rI0szkUSA" base_Property="_e7yzsACMEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Version xmi:id="_q5mFoACQEd-67rI0szkUSA" base_Property="_x1jvAACMEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Field xmi:id="_rdOXIACQEd-67rI0szkUSA" base_Property="_D09T0ACNEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Field xmi:id="_r9TlYACQEd-67rI0szkUSA" base_Property="_LF_RcACNEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Field xmi:id="_sard4ACQEd-67rI0szkUSA" base_Property="_a86G0ACNEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Identifier xmi:id="_s-zeoACQEd-67rI0szkUSA" base_Property="_rwl74ACMEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Version xmi:id="_tlo1IACQEd-67rI0szkUSA" base_Property="_8PYCgACMEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Field xmi:id="_uVF8IACQEd-67rI0szkUSA" base_Property="_Q0fFUACNEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Reference xmi:id="_z7j1YACQEd-67rI0szkUSA" base_Property="_j01isQA-Ed-XDv9nb4RcQQ"/>
+  <simpleEntityprofile_1:Identifier xmi:id="_1xFzoACQEd-67rI0szkUSA" base_Property="_6xmngACNEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Version xmi:id="_2vHiIACQEd-67rI0szkUSA" base_Property="_ANJqMACOEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Field xmi:id="_4PUJkACQEd-67rI0szkUSA" base_Property="_GXWioACOEd-67rI0szkUSA"/>
+  <simpleEntityprofile_1:Field xmi:id="_5fjCYACQEd-67rI0szkUSA" base_Property="_Lf6X4ACOEd-67rI0szkUSA"/>
+</xmi:XMI>

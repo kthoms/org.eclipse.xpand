@@ -14,6 +14,7 @@ package org.eclipse.xtend.backend.types.uml2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.builtin.BooleanType;
@@ -52,7 +54,10 @@ import org.eclipse.xtend.backend.types.uml2.internal.StereotypeType;
  * @author André Arnold
  */
 public final class UmlTypesystem implements BackendTypesystem {
-    private BackendTypesystem _rootTs;
+
+    public static final String UNIQUE_REPRESENTATION_PREFIX = "{uml}";
+
+	private BackendTypesystem _rootTs;
 
     private final EmfTypesystem _emfTypesystem = new EmfTypesystem ();
     
@@ -151,8 +156,6 @@ public final class UmlTypesystem implements BackendTypesystem {
             // if that doesn't work, try to get the type of the containing enumeration
             return _rootTs.findType (el.getEnumeration());
         }
-        else if (o instanceof Enumeration)
-        	return _rootTs.findType(o);
         else if (o instanceof Element) 
             return getTypeByStereotype ((Element) o);                
         else if (o instanceof List<?>)
@@ -174,7 +177,8 @@ public final class UmlTypesystem implements BackendTypesystem {
         
         final List<BackendType> stTypes = new ArrayList<BackendType>();
         for (Stereotype st: stereotypes) {
-            BackendType stType = findType (st);
+//            BackendType stType = findType (st);
+        	BackendType stType = _stereotypeTypes.get (getFullName(st));
             if (stType != null) {
                 stTypes.add (stType);
             }
@@ -220,6 +224,40 @@ public final class UmlTypesystem implements BackendTypesystem {
     }
 
     public BackendType findType (String uniqueRepresentation) {
-        throw new UnsupportedOperationException ("TODO"); //TODO implement findByUniqueRepresentation
+        if (! uniqueRepresentation.startsWith (UNIQUE_REPRESENTATION_PREFIX))
+            return null;
+        
+        uniqueRepresentation = uniqueRepresentation.substring (UNIQUE_REPRESENTATION_PREFIX.length());
+        BackendType bt = _stereotypeTypes.get(uniqueRepresentation);        
+        if (bt != null)
+        	return bt;
+        
+        //TODO look up BackendTypes for UML itself
+        String umlNsUri = UMLFactory.eINSTANCE.getEPackage().getNsURI();
+        String emfUniqueRepresentation = EmfTypesystem.UNIQUE_REPRESENTATION_PREFIX + "{" + umlNsUri + "}" +  uniqueRepresentation.substring(uniqueRepresentation.indexOf("::") + 2);
+        bt = _emfTypesystem.findType(emfUniqueRepresentation);
+        if (bt != null)
+        	return bt;
+        
+        return null;
+    }
+
+    public static String getUniqueIdentifier (NamedElement cls) {
+    	List<Stereotype> stereoTypes = cls.getAppliedStereotypes();
+    	if (stereoTypes.size() > 1) {
+    		StringBuffer typeNames = new StringBuffer ();
+    		for (Iterator<Stereotype> stIt = stereoTypes.iterator(); stIt.hasNext();) {
+				Stereotype stereotype = stIt.next();
+				typeNames.append (stereotype.getQualifiedName());
+				if (stIt.hasNext())
+					typeNames.append(",");
+			}
+    		return UNIQUE_REPRESENTATION_PREFIX + typeNames.toString();
+    	}
+    	else if (stereoTypes.size() == 1)
+    		return UNIQUE_REPRESENTATION_PREFIX + cls.getAppliedStereotypes().get(0).getQualifiedName();
+    	else
+    		return UNIQUE_REPRESENTATION_PREFIX + cls.getQualifiedName();
+    	
     }
 }

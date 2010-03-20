@@ -128,6 +128,11 @@ public final class CompositeTypesystem implements BackendTypesystem {
         if (t2.isAssignableFrom(t1))
             return t1;
         
+        if (t1.getClass().getName().endsWith("EnumType") && t2.getClass().getName().endsWith("EClassType"))
+        	return t1;
+        if (t2.getClass().getName().endsWith("EnumType") && t1.getClass().getName().endsWith("EClassType"))
+        	return t2;
+        
         throw new IllegalArgumentException ("no unique best match for types " + t1 + " and " + t2);
     }
     
@@ -144,7 +149,7 @@ public final class CompositeTypesystem implements BackendTypesystem {
     }
 
     public BackendType findType (Object o) {
-        return _typeByInstanceCache.get (o);
+    	return _typeByInstanceCache.get (o);
     }
 
     public BackendType findType (Class<?> cls) {
@@ -219,6 +224,7 @@ public final class CompositeTypesystem implements BackendTypesystem {
 
         return null;
     }
+    
 }
 
 

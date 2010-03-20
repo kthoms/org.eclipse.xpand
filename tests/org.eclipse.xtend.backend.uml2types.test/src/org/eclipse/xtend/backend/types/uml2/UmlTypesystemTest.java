@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -78,6 +79,37 @@ public class UmlTypesystemTest {
 		assertEquals ("simpleEntity::SimpleEntity", entityType.getName ());
 	}
 	
+	/**
+	 * Check whether Enumerations are correctly resolved. Enumerations defined
+	 * in a Profile should resolve to EnumType while Enumerations defined in a
+	 * UML model should resolve to an EClassType.
+	 */
+	@Test
+	public void testFindEnumType () {
+		CompositeTypesystem cts = new CompositeTypesystem ();
+		cts.register (new EmfTypesystem ());
+		cts.register (new UmlTypesystem (_profiles, false));
+
+		Model m = createModel ("testModel");
+		org.eclipse.uml2.uml.Package p = createPackage (m, "test");
+		org.eclipse.uml2.uml.Property attr = createSimpleEntityWithEnum (p,
+				"TestEntity", false);
+
+		org.eclipse.uml2.uml.Enumeration testEnum = createEnumeration (p,
+				"MyTestEnum", Arrays.asList ("FIRST", "SECOND"));
+		// This will be cached by the CompositeTypesystem
+		BackendType enumClassType = cts.findType (testEnum);
+		assertTrue (enumClassType instanceof EClassType);
+		assertEquals ("uml::Enumeration", enumClassType.getName ());
+
+		// Even though CompositeTypesystem cached the BackendType for the
+		// Enumeration this must now resolve to an EnumType
+		BackendType enumType = cts.findType (attr.getType ());
+
+		assertTrue (enumType instanceof EnumType);
+		assertEquals ("simpleEntity::GeneratorKind", enumType.getName ());
+	}
+	
 	@Test
 	public void testFindByName () {
 		CompositeTypesystem cts = new CompositeTypesystem ();
@@ -120,6 +152,16 @@ public class UmlTypesystemTest {
 		Stereotype st = _simpleEntityProfile.getOwnedStereotype ("SimpleEntity");
 		class_.applyStereotype (st);
 		return class_;
+	}
+	
+	private org.eclipse.uml2.uml.Property createSimpleEntityWithEnum (Package package_,
+			String name, boolean isAbstract) {
+		org.eclipse.uml2.uml.Class class_ = package_.createOwnedClass (name,
+				isAbstract);
+		Stereotype st = _simpleEntityProfile.getOwnedStereotype ("SimpleEntity");
+		class_.applyStereotype (st);
+		org.eclipse.uml2.uml.Property attr = st.getAttribute ("idGenerator", st.getProfile ().getOwnedType ("simpleEntity::GeneratorKind"));
+		return attr;
 	}
 	
 	private org.eclipse.uml2.uml.Enumeration createEnumeration (Package pkg, String name, List<String> literals) {

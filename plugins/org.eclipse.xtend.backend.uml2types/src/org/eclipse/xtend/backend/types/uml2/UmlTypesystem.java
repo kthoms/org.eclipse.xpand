@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -38,6 +39,7 @@ import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.uml2.internal.EnumType;
 import org.eclipse.xtend.backend.types.uml2.internal.MultipleStereotypeType;
 import org.eclipse.xtend.backend.types.uml2.internal.StereotypeType;
+import org.omg.CORBA._PolicyStub;
 
 
 /**
@@ -171,6 +173,10 @@ public final class UmlTypesystem implements BackendTypesystem {
             //collection will be empty if the required profile is not loaded
             if (_errorIfStereotypeIsMissing && !stereotypes.toString ().equals ("[]"))
                 throw new RuntimeException("Stereotype could not be loaded! Possible hint: '" + stereotypes);
+            else if (element.getOwner() instanceof Profile && element instanceof Enumeration) {
+            		Enumeration e = (Enumeration) element;
+            		return _stereotypeTypes.get (getFullName (e));
+            }
             else
                 return null;
         }

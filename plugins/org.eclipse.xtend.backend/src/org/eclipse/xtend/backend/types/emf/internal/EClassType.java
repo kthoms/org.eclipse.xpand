@@ -32,6 +32,7 @@ import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
+import org.eclipse.xtend.backend.types.builtin.ListType;
 import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.util.CollectionHelper;
@@ -102,14 +103,14 @@ public final class EClassType extends AbstractType {
             
             int i=0;
             final List<BackendType> paramTypes = new ArrayList<BackendType>();
-            paramTypes.add (ts.getTypeForETypedElement (op));
+            paramTypes.add (this);
             
             for (EParameter param: op.getEParameters()) {
                 paramTypes.add (ts.getTypeForETypedElement(param));
                 paramClasses[i++] = param.getEType().getInstanceClass();
             }
 
-            final BackendType returnType = ts.getTypeForEClassifier (op.getEType());
+            final BackendType returnType = op.isMany() ? ListType.INSTANCE : ts.getTypeForEClassifier (op.getEType());
             
             try {
                 final Method mtd = _cls.getInstanceClass().getMethod(op.getName(), paramClasses);

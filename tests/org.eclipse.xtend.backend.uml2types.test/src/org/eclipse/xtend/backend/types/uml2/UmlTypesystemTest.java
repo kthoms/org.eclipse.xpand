@@ -8,18 +8,25 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.common.Function;
+import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.backend.types.builtin.ListType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.emf.internal.EClassType;
 import org.eclipse.xtend.backend.types.uml2.internal.EnumType;
 import org.eclipse.xtend.backend.types.uml2.internal.StereotypeType;
+import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.typesystem.uml2.UML2Util2;
 import org.junit.Before;
 import org.junit.Test;
@@ -124,6 +131,37 @@ public class UmlTypesystemTest {
 		assertTrue (entityType instanceof StereotypeType);
 		assertEquals ("simpleEntity::SimpleEntity", entityType.getName ());
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testClassOperations () {
+		CompositeTypesystem cts = new CompositeTypesystem ();
+		cts.register (new EmfTypesystem ());
+		cts.register (new UmlTypesystem (_profiles, false));
+
+		Model m = createModel ("testModel");
+		org.eclipse.uml2.uml.Package pkg = createPackage (m, "test");
+		org.eclipse.uml2.uml.Class c = createClass (pkg, "TestClass", false);
+		BackendType pkgType = cts.findType (pkg);
+		BackendType elemType = cts.findType (UmlTypesystem.UNIQUE_REPRESENTATION_PREFIX + "uml::Element");
+
+		MiddleEnd me = MiddleEndFactory.create (cts, null);
+		FunctionDefContextInternal fdc = (FunctionDefContextInternal) me.createEmptyFdc ();
+		
+		ExecutionContext ctx = me.getExecutionContext ();
+		List<BackendType> pTypes = new ArrayList<BackendType> ();
+		pTypes.add (pkgType);
+		Function f = fdc.getMatch (ctx, new QualifiedName("allOwnedElements"), pTypes);
+		assertTrue (f != null);
+		assertTrue (f.getReturnType ().isAssignableFrom (ListType.INSTANCE));
+		Function f2 = fdc.getMatch (ctx, new QualifiedName("getModel"), pTypes);
+		assertTrue (f2 != null);
+		assertTrue (f2.getReturnType ().isAssignableFrom (cts.findType (m)));
+		
+		
+	}
+
 
 	private Model createModel (String name) {
 		Model model = UMLFactory.eINSTANCE.createModel ();

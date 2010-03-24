@@ -88,7 +88,12 @@ public abstract class AbstractType implements BackendType {
     }
     
     public final Collection<? extends NamedFunction> getBuiltinOperations () {
-        return _builtinOperations;
+    	Collection<NamedFunction> result = new ArrayList<NamedFunction> ();
+    	for (BackendType t : _superTypes) {
+			result.addAll (t.getBuiltinOperations ());
+		}
+    	result.addAll (_builtinOperations);
+        return result;
     }
 
     public String getName () {

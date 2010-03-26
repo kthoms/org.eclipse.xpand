@@ -499,6 +499,11 @@ Set[my::Type]
 
    ...
 &lt;/component&gt;</programlisting>
+	<para>The order of the metamodels is importand for the work within the Xpand-editors.
+	The metamodels to work with can be configured inside the <emphasis>Xtend/Xpand</emphasis>
+	-properties dialog. The <emphasis>Activated metamodel contributors</emphasis> table is a 
+	ordered list. The more specific metamodels have to be placed at the top of the list. 
+	</para>
     </section>
 
     <section id="metamodel_reference" xreflabel="Metamodel reference">

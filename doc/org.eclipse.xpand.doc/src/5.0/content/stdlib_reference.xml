@@ -482,11 +482,11 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
           <listitem>
             <para><code>element</code> - The model element</para>
           </listitem>
-          
-          <listitem>          
+
+          <listitem>
             <para><code>name</code> - Property name</para>
           </listitem>
-          
+
           <listitem>
             <para><code>element</code> - The property value</para>
           </listitem>
@@ -506,8 +506,8 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
           <listitem>
             <para><code>element</code> - The model element</para>
           </listitem>
-          
-          <listitem>          
+
+          <listitem>
             <para><code>name</code> - Property name</para>
           </listitem>
         </itemizedlist>
@@ -559,8 +559,8 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
           <listitem>
             <para><code>object</code> - A context objectt</para>
           </listitem>
-          
-          <listitem>          
+
+          <listitem>
             <para><code>message</code> - A message</para>
           </listitem>
         </itemizedlist>
@@ -596,8 +596,8 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
           <listitem>
             <para><code>object</code> - A context object</para>
           </listitem>
-          
-          <listitem>        		
+
+          <listitem>
             <para><code>message</code> - A message</para>
           </listitem>
         </itemizedlist>
@@ -612,7 +612,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
         <classname>org.eclipse.xtend.util.stdlib.ExtIssueReporter</classname>
         is configured in the workflow before calling the extensions. The
         purpose of this component is make the workflow's Issues instance
-        available for the extensions. </para>
+        available for the extensions.</para>
 
         <para>The <classname>ExtIssueReporter</classname> component does not
         have any properties.</para>
@@ -660,7 +660,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</program
       of an element, seperated by a dot (e.g. java.lang.String). In order for
       this to work, model elements are expected to have a name attribute of
       type EString.<footnote>
-          <para> It is intended that the uml2ecore utility can add such a name
+          <para>It is intended that the uml2ecore utility can add such a name
           attribute to every meta class automatically.</para>
         </footnote></para>
 
@@ -734,9 +734,9 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</program
           <listitem>
             <para><code>candidates</code> - A collection of model
             elements</para>
-		</listitem>
-		
-		<listitem>
+          </listitem>
+
+          <listitem>
             <para><code>name</code> - The searched element name</para>
           </listitem>
         </itemizedlist>
@@ -745,6 +745,809 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</program
         element with that name is contained in the candidates
         collection.</para>
       </section>
+    </section>
+
+    <section>
+      <title>Globalvar extensions</title>
+
+      <para>Sometimes you might want to share information within a
+      transformation process. One alternative is the use of GLOBALVAR
+      expressions, but this needs that the variables are configured in the
+      workflow. The Globalvar extensions help to store and retrieve objects
+      within a transformation process.</para>
+
+      <para><emphasis>Extension:</emphasis><classname>
+      org::openarchitectureware::util::stdlib::globalvar</classname></para>
+
+      <section>
+        <title>Example</title>
+
+        <para>Usage in Xtend:</para>
+
+        <programlisting>import metamodel; 
+extension org::openarchitectureware::util::stdlib::io; 
+extension org::openarchitectureware::util::stdlib::globalvar;
+
+demo (Model this) : 
+  globalvarExtensionsDemo1() -&gt; 
+  globalvarExtensionsDemo2() 
+;
+
+globalvarExtensionsDemo1 () : 
+    "Storing global var...".info() -&gt; 
+    storeGlobalVar("msg", "oAW is cool stuff!"); 
+    
+globalvarExtensionsDemo2 () : 
+    ("Getting message from global var: "+getGlobalVar("msg")).info();</programlisting>
+
+        <para>Console output:</para>
+
+        <programlisting>INFO IOExtensions Storing global var...
+INFO IOExtensions Getting message from global var: oAW is cool stuff!</programlisting>
+
+        <para>This a simple example storing a string, but of course you can
+        store the result of any expression this way.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Cloning extensions</title>
+
+      <para>The cloning utilities help you to clone a model element and all
+      its children. The <code>clone(Object)</code> function clones a single
+      object and its children, whereas the <code>clone(List)</code> clones a
+      list of elements. The semantics of cloning is as follows:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>the object passed in as a parameter is duplicated</para>
+        </listitem>
+
+        <listitem>
+          <para>all objects referenced via containment references are also
+          duplicated, recursively</para>
+        </listitem>
+
+        <listitem>
+          <para>the values of the attributes are duplicated</para>
+        </listitem>
+
+        <listitem>
+          <para>non-containing references to other objects are copied while
+          the target is not cloned (a reference to the original is created in
+          the new object)</para>
+        </listitem>
+      </itemizedlist>
+
+      <para><emphasis>Extension:</emphasis>
+      <classname>org::eclipse::xtend::util::stdlib::cloning</classname></para>
+
+      <section>
+        <title>Object clone (Object original)</title>
+
+        <para>Clones an object.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>original</code> - The object that should be
+            cloned.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> The cloned object.</para>
+      </section>
+
+      <section>
+        <title>List clone (List l)</title>
+
+        <para>Clones a list of objects.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>l</code> - Source list.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> The list of cloned objects.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Cross references extensions</title>
+
+      <para>Sometimes there is the need to find objects that reference a
+      specific object. This extension helps to solve this recurring task. This
+      extension can only be used for EMF based models.</para>
+
+      <para><emphasis>Extension:
+      </emphasis><classname>org::eclipse::xtend::util::stdlib::crossref</classname></para>
+
+      <section>
+        <title>List[EObject] getReferencingObjects(EObject target)</title>
+
+        <para>Retrieves objects that reference a given object.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>target</code> - The target object.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> A list of objects referencing the
+        target.</para>
+      </section>
+
+      <section>
+        <title>Example</title>
+
+        <para>Usage in Xtend:</para>
+
+        <programlisting>extension org::openarchitectureware::util::stdlib::crossref; 
+crossRefDemo (Model this) : 
+    eAllContents.typeSelect(Datatype).dumpCrossReferences(); 
+    
+dumpCrossReferences (Datatype this) : 
+    ("Number of cross references to datatype "+name+":" 
+    + getReferencingObjects().size) 
+    .info() 
+    ;</programlisting>
+
+        <para>Console output:</para>
+
+        <programlisting>INFO IOExtensions Number of cross references to datatype Integer:1 
+INFO IOExtensions Number of cross references to datatype String:4</programlisting>
+      </section>
+    </section>
+
+    <section>
+      <title>UID extensions</title>
+
+      <para>Often it is required to create and retrieve unique identifiers for
+      objects through the transformation process. The UID extensions provide a
+      simple mechanism for this task. Unique identifiers are calculated from
+      the current system time plus an internal counter. The extensions
+      therefore only guarantee that the identifier stays the same within one
+      workflow execution, but will change through different runs. If you need
+      to have unique identifiers that stay the same over every generation run
+      (e.g. for Protected Regions Ids) then you need another mechanism.</para>
+
+      <para>If you are loading the model that assigns IDs to EObject (only for
+      EMF based models) the xmlId() function will be useful. Especially when
+      using UML2 models this function will return a unique and non-changing
+      identifier for objects.</para>
+
+      <para><emphasis>Extension:</emphasis>
+      <classname>org::openarchitectureware::util::stdlib::uid</classname></para>
+
+      <section>
+        <title>cached String uid( Object o )</title>
+
+        <para>Retrieves an unique identifier for an object. Creates a new one
+        on first access.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>o</code> - A model element or other object.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> The UID for this object</para>
+      </section>
+
+      <section>
+        <title>String createUID( Object o )</title>
+
+        <para>Creates a unique identifier for an object.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>o</code> - A model element or other object.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> A newly created UID for this
+        object.</para>
+      </section>
+
+      <section>
+        <title>String xmlId (ecore::EObject o)</title>
+
+        <para>Retrieves an object's identifier. The object must be read from a
+        XMLResource.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>o</code> - An object.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> The object's id. Returns null if
+        the object was not load from a XMLResource.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Mixin extensions</title>
+
+      <para>These utilities help with mixin models. Mixin models are typically
+      simple models that provide additional information about model elements
+      in a source model of a transformation. They can be seen as
+      annotations.</para>
+
+      <para>These utilities expect that the mixin models have a very specific
+      structure: A root element, and then any subtree, where the elements have
+      a name attribute. Here's an example:</para>
+
+      <figure>
+        <title>Mixin model example</title>
+
+        <screenshot>
+          <screeninfo>A mixin model example</screeninfo>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/stdlib/mixinmodel.png" scale="80" />
+            </imageobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>The mixin elements are
+      <classname>ControllingServiceRefSpec</classname> and
+      <classname>BundleSpec</classname>. They are owned by the root element,
+      <classname>Cbd2OsgiMixin</classname>. The name is expected to contain
+      the qualified name of the element the annotation refers to. Once the
+      model is set up like this, and made available to a transformation using
+      the workflow's GLOBALVAR facilities, you can then use the extension
+      functions.</para>
+
+      <para>Extension: org::eclipse::xtend::util::stdlib::mixin</para>
+
+      <section>
+        <title>Object getMandatoryMixin( Object mixinModel, Object ctx,
+        oaw::Type t )</title>
+
+        <para>Returns the corresponding mixin element for the context object;
+        the mixin must be of type t and its name attribute must correspond to
+        the qualified name of the context. If none is found, a workflow ERROR
+        is raised and a null object is returned (so you can call additional
+        operations on it without getting a null evaluation error).</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>mixinModel</code> - The root element of the mixin
+            model.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>ctx</code> - The context object.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>t</code> - The type of the mixin model element.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> The mixin model element
+        corresponding to ctx.</para>
+      </section>
+
+      <section>
+        <title>Object getOptionalMixin( Object mixinModel, Object ctx,
+        oaw::Type t )</title>
+
+        <para>Same as getMandatoryMixin(), but does not raise an error in case
+        nothing is found.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Tracing extensions</title>
+
+      <para>The tracing extensions allow to create trace paths during your
+      model transformations. This is done by creating a trace model which
+      holds references from source to target elements. Traces must be added
+      explicitly to the transformation code.</para>
+
+      <para><emphasis>Extension:</emphasis>
+      <classname>org::openarchitectureware::util::stdlib::tracing</classname></para>
+
+      <section>
+        <title>Void createTrace( Object from, Object to, String kind, String
+        backKind )</title>
+
+        <para>Creates a trace between two elements.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>from</code> - Source element.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>to</code> - Target element.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>kind</code> - Name for the trace from source to
+            target.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>backkind</code> - Name for the trace from target back
+            to source.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> Nothing.</para>
+      </section>
+
+      <section>
+        <title>Void createTrace( Object from, Object to, String kind)</title>
+
+        <para>Creates a trace between two elements.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>from</code> - Source element.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>to</code> - Target element.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>kind</code> - Name for the trace from source to
+            target.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> Nothing.</para>
+      </section>
+
+      <section>
+        <title>Void clearTrace()</title>
+
+        <para>Clears all traces.</para>
+
+        <para><emphasis>Parameters: </emphasis> none</para>
+
+        <para><emphasis>Returns:</emphasis> Nothing.</para>
+      </section>
+
+      <section>
+        <title>Object getSingleTraceTarget( Object from, String kind )</title>
+
+        <para>Finds the target of a trace. This function will report an error
+        if no trace for the source element to the target of the specified kind
+        can be found.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>from</code> - Source element.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>kind</code> - Trace kind name.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> The target element of that
+        trace.</para>
+      </section>
+
+      <section>
+        <title>Boolean hasTrace( Object from, String kind )</title>
+
+        <para>Proves if a trace of a specific kind exists for some
+        element.</para>
+
+        <para><emphasis>Parameters: </emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para><code>from</code> - Source element.</para>
+          </listitem>
+
+          <listitem>
+            <para><code>kind</code> - Trace kind name.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><emphasis>Returns:</emphasis> true, if a trace of that kind
+        exists for the element.</para>
+      </section>
+    </section>
+  </section>
+
+  <section>
+    <title>Stdlib workflow components</title>
+
+    <para>Besides the extensions described in the previous section Xpand's
+    Stdlib provides some workflow components.</para>
+
+    <section>
+      <title>SystemCommand</title>
+
+      <para>This component executes a system command<indexterm>
+          <primary>SystemCommand</primary>
+        </indexterm>.</para>
+
+      <table>
+        <title>Workflow component
+        org.eclipse.xtend.util.stdlib.SystemCommand</title>
+
+        <tgroup cols="4">
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="3*" />
+
+          <thead>
+            <row>
+              <entry align="center">Property</entry>
+
+              <entry align="center">Type</entry>
+
+              <entry align="center">Mandatory</entry>
+
+              <entry align="center">Description</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>command</entry>
+
+              <entry>String</entry>
+
+              <entry>yes</entry>
+
+              <entry>The command to execute.</entry>
+            </row>
+
+            <row>
+              <entry>directory</entry>
+
+              <entry>String</entry>
+
+              <entry>no</entry>
+
+              <entry>Execution directory.</entry>
+            </row>
+
+            <row>
+              <entry>arg</entry>
+
+              <entry>String</entry>
+
+              <entry>no</entry>
+
+              <entry>(multiple) command arguments</entry>
+            </row>
+
+            <row>
+              <entry>env</entry>
+
+              <entry>String</entry>
+
+              <entry>no</entry>
+
+              <entry>(multiple) additional environment entries. Format:
+              [key],[value]</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para><emphasis role="bold">Example:</emphasis></para>
+
+      <programlisting>&lt;component class="org.eclipse.xtend.util.stdlib.SystemCommand"&gt;
+  &lt;directory value="src-gen"/&gt;
+  &lt;command value="sh"/&gt;
+  &lt;arg value="processdot.sh"/&gt;
+&lt;/component&gt;</programlisting>
+
+      <para><emphasis role="bold">Console output:</emphasis></para>
+
+      <programlisting>1639 INFO  - Running command '[sh, processdot.sh]' in directory [absolutepath] ...
+1667 INFO  - processing shape_box.dot ...
+2597 INFO  - processing shape_polygon.dot ...
+...
+3564 INFO  - Execution of command was successful.</programlisting>
+
+      <para>Windows tip:</para>
+
+      <para>When executing a command on windows this is typically done with
+      the cmd as command value. It is important that the command terminates,
+      therefore the argument /c must be appended as arg value.<footnote>
+          <para>See <ulink
+          url="http://www.ss64.com/nt/cmd.html">http://www.ss64.com/nt/cmd.html</ulink>,
+          <ulink
+          url="http://www.java-forum.org/de/viewtopic.php?p=469059">http://www.java-forum.org/de/viewtopic.php?p=469059</ulink></para>
+        </footnote></para>
+    </section>
+
+    <section>
+      <title>SlotCopier<indexterm>
+          <primary>SlotCopier</primary>
+        </indexterm></title>
+
+      <para>This component copies an element from one slot to another. The
+      slot content is not cloned.</para>
+
+      <para><table>
+          <title>Workflow component
+          org.eclipse.xtend.util.stdlib.SlotCopier</title>
+
+          <tgroup cols="4">
+            <colspec colwidth="1*" />
+
+            <colspec colwidth="1*" />
+
+            <colspec colwidth="1*" />
+
+            <colspec colwidth="3*" />
+
+            <thead>
+              <row>
+                <entry align="center">Property</entry>
+
+                <entry align="center">Type</entry>
+
+                <entry align="center">Mandatory</entry>
+
+                <entry align="center">Description</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>fromSlot</entry>
+
+                <entry>String</entry>
+
+                <entry>yes</entry>
+
+                <entry>Source slot name.</entry>
+              </row>
+
+              <row>
+                <entry>toSlot</entry>
+
+                <entry>String</entry>
+
+                <entry>yes</entry>
+
+                <entry>Destination slot name.</entry>
+              </row>
+
+              <row>
+                <entry>removeTopLevelList</entry>
+
+                <entry>boolean</entry>
+
+                <entry>no</entry>
+
+                <entry>If true the source slot must contain a list and the top
+                level list is removed (i.e. the first element from the list is
+                copied to the destination slot), otherwise it is not
+                removed.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table><emphasis role="bold">Example:</emphasis></para>
+
+      <programlisting>&lt;component class="org.eclipse.xtend.util.stdlib.SlotCopier"&gt;
+    &lt;fromSlot value="model"/&gt;
+    &lt;toSlot value="target"/&gt;
+&lt;/component&gt;</programlisting>
+
+      <para><emphasis role="bold">Console output:</emphasis></para>
+
+      <programlisting>INFO SlotCopier copying org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1fdbef 
+  (eClass: org.eclipse.emf.ecore.impl.EClassImpl@fc5b01 (name: Model) (instanceClassName: null) 
+  (abstract: false, interface: false)) 
+  [org.eclipse.emf.ecore.impl.DynamicEObjectImpl]</programlisting>
+    </section>
+
+    <section>
+      <title>SlotListAdder<indexterm>
+          <primary>SlotListAdder</primary>
+        </indexterm></title>
+
+      <para>This component copies an element from one slot to a list contained
+      in another slot.</para>
+
+      <table>
+        <title>Workflow component
+        org.eclipse.xtend.util.stdlib.SlotListAdder</title>
+
+        <tgroup cols="4">
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="3*" />
+
+          <thead>
+            <row>
+              <entry align="center">Property</entry>
+
+              <entry align="center">Type</entry>
+
+              <entry align="center">Mandatory</entry>
+
+              <entry align="center">Description</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>modelSlot</entry>
+
+              <entry>String</entry>
+
+              <entry>yes</entry>
+
+              <entry>Source slot name.</entry>
+            </row>
+
+            <row>
+              <entry>listSlot</entry>
+
+              <entry>String</entry>
+
+              <entry>yes</entry>
+
+              <entry>Target slot name. This slot contains a list of
+              elements.</entry>
+            </row>
+
+            <row>
+              <entry>uniqueNames</entry>
+
+              <entry>boolean</entry>
+
+              <entry>no</entry>
+
+              <entry>If true, names have to be unique, otherwise not. Requires
+              that modelSlot contains an EObject.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para><emphasis role="bold">Example:</emphasis></para>
+
+      <para>This example adds the content of slot 'model' to the slot
+      'targetList'. The slot 'targetList' does not contain anything at the
+      time of execution.</para>
+
+      <programlisting>&lt;component class="org.eclipse.xtend.util.stdlib.SlotListAdder"&gt;
+    &lt;modelSlot value="model"/&gt;
+    &lt;listSlot value="targetList"/&gt;
+&lt;/component&gt;</programlisting>
+
+      <para><emphasis role="bold">Console output:</emphasis></para>
+
+      <programlisting>INFO CompositeComponent SlotListAdder: adding contents of slot 'model' to the list of stuff in 'targetList' 
+...
+...
+INFO WorkflowRunner workflow completed in 1503ms! 
+WARN WorkflowRunner 'targetList' is empty, creating a new list. [org.eclipse.xtend.util.stdlib.SlotListAdder@7536e7]</programlisting>
+
+      <para>Note that the warn messages will appear after the workflow
+      finished, since they are reported as a workflow warn issue.</para>
+    </section>
+
+    <section>
+      <title>SlotPrinter<indexterm>
+          <primary>SlotPrinter</primary>
+        </indexterm></title>
+
+      <para>This component prints a workflow context slot content to the log.
+      This can be useful for debugging purposes.</para>
+
+      <table>
+        <title>Workflow component
+        org.eclipse.xtend.util.stdlib.SlotPrinter</title>
+
+        <tgroup cols="4">
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="1*" />
+
+          <colspec colwidth="3*" />
+
+          <thead>
+            <row>
+              <entry align="center">Property</entry>
+
+              <entry align="center">Type</entry>
+
+              <entry align="center">Mandatory</entry>
+
+              <entry align="center">Description</entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry>slotName</entry>
+
+              <entry>String</entry>
+
+              <entry>yes</entry>
+
+              <entry>The name of a slot whose content should be
+              dumped.</entry>
+            </row>
+
+            <row>
+              <entry>message</entry>
+
+              <entry>String</entry>
+
+              <entry>no</entry>
+
+              <entry>An optional message that will be prefixed to the log
+              output.</entry>
+            </row>
+
+            <row>
+              <entry>level</entry>
+
+              <entry>String</entry>
+
+              <entry>no</entry>
+
+              <entry>The log level for the message. Valid values are TRACE,
+              DEBUG, INFO, WARN.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para><emphasis role="bold">Example:</emphasis></para>
+
+      <programlisting>&lt;component class="org.eclipse.xtend.util.stdlib.SlotPrinter"&gt;
+    &lt;slotName value="model"/&gt;
+    &lt;message value="DUMP"/&gt;
+    &lt;level value="INFO"/&gt;
+&lt;/component&gt;</programlisting>
+
+      <para><emphasis role="bold">Console output:</emphasis></para>
+
+      <programlisting>INFO SlotPrinter DUMP: (slot: model)org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d22ddb 
+  (eClass: org.eclipse.emf.ecore.impl.EClassImpl@fe0ce9 (name: Model) (instanceClassName: null) 
+  (abstract: false, interface: false))</programlisting>
     </section>
   </section>
 </chapter>

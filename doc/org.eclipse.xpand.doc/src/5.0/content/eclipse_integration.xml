@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="eclipse_integration">
+  <title>Xpand Eclipse Integration</title>
+
+  <section id="eclipse_integration_introduction">
+    <title>Introduction</title>
+
+    <para>This document describes the various functionalities that the Xpand
+    plugins contribute to the Eclipse installation. It is intended as user
+    instruction for the work with Eclipse. You need to read other
+    documentation to understand the Xpand framework itself.</para>
+  </section>
+
+  <section id="eclipse_integration_installation">
+    <title>Installation</title>
+
+    <para>It is assumed that you already have installed the Xpand core and the
+    Xpand UI feature from the update site as described in the
+    <emphasis>Installation documentation</emphasis>.</para>
+  </section>
+
+  <section id="eclipse_integration_overview">
+    <title>Overview</title>
+
+    <para>The Xpand UI plugins provide editors for the different languages and
+    a launch shortcut to start workflow files. Let us first have a look at the
+    different Xpand specific files.</para>
+  </section>
+
+  <section id="eclipse_integration_file_decorations">
+    <title>File decorations</title>
+
+    <para>When you open Eclipse and import a project into the workspace you
+    can see several file decorating images.</para>
+
+    <informaltable frame="none" rowsep="1">
+      <tgroup cols="3">
+        <colspec align="left" colname="c1" colwidth="1*" />
+
+        <colspec colname="c2" colwidth="2*" />
+
+        <tbody>
+          <row valign="top">
+            <entry align="left" nameend="c2" namest="c1"><para>There are
+            specific images for</para> <itemizedlist>
+                <listitem>
+                  <para>Workflow files (<filename>.mwe</filename>
+                  extension)</para>
+                </listitem>
+
+                <listitem>
+                  <para><emphasis>Xpand2</emphasis> templates (<filename>.xpt
+                  </filename>extension)</para>
+                </listitem>
+
+                <listitem>
+                  <para>Extension files (<filename>.ext</filename>
+                  extension)</para>
+                </listitem>
+
+                <listitem>
+                  <para><emphasis>Check</emphasis> constraints
+                  (<filename>.chk</filename> extension)</para>
+                </listitem>
+              </itemizedlist></entry>
+
+            <entry align="left" nameend="c2" namest="c1"><mediaobject>
+                <imageobject role="fo">
+                  <imagedata fileref="images/eclipse_integration/fileImages.png"
+                             scale="80" />
+                </imageobject>
+
+                <imageobject role="html">
+                  <imagedata fileref="images/eclipse_integration/fileImages.png"
+                             scale="" />
+                </imageobject>
+              </mediaobject></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+
+  <section id="eclipse_integration_editors">
+    <title>Editors</title>
+
+    <para>When you double-click on one of the above mentioned file types,
+    special editors will open that provide appropriate syntax coloring.</para>
+
+    <section id="eclipse_integration_editors_syntax_coloring">
+      <title>Syntax coloring</title>
+
+      <para>Here are examples for the <emphasis>Xpand</emphasis> editor:
+      <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse_integration/xpandCodeHighlighting.jpg"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse_integration/xpandCodeHighlighting.jpg" />
+          </imageobject>
+        </mediaobject></para>
+
+      <para>for the Extensions editor: <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse_integration/xtendCodeHighlighting.jpg"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse_integration/xtendCodeHighlighting.jpg" />
+          </imageobject>
+        </mediaobject></para>
+
+      <para>and for <emphasis>Check</emphasis> editor: <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse_integration/checkCodeHighlighting.jpg"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse_integration/checkCodeHighlighting.jpg" />
+          </imageobject>
+        </mediaobject></para>
+    </section>
+
+    <section id="eclipse_integration_editors_code_completion">
+      <title>Code completion</title>
+
+      <para>The Editors provide extensive code completion support by pressing
+      <keycap>Ctrl + Space</keycap> similar to what is known from the Java
+      editor. Available types, properties, and operation, as well as
+      extensions from <filename>.ext</filename> files will be found. The
+      <emphasis>Xpand</emphasis> editor provides additionally support for the
+      <emphasis>Xpand</emphasis> language statements. <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse_integration/codeCompletion.jpg"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse_integration/codeCompletion.jpg" />
+          </imageobject>
+        </mediaobject></para>
+    </section>
+
+    <section id="eclipse_integration_editors_xpand_tag_delimiter">
+      <title><emphasis>Xpand</emphasis> tag delimiter creation support</title>
+
+      <para>In the <emphasis>Xpand</emphasis> editor there is an additional
+      keystroke available to create the opening and closing tag brackets, the
+      <foreignphrase>guillemets</foreignphrase> ("«" and "»"). <variablelist>
+          <varlistentry>
+            <term><keycap>Ctrl + &lt;</keycap></term>
+
+            <listitem>
+              <para>creates "«"</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><keycap>Ctrl + &gt;</keycap></term>
+
+            <listitem>
+              <para>creates "»"</para>
+            </listitem>
+          </varlistentry>
+        </variablelist></para>
+    </section>
+  </section>
+
+  <section id="eclipse_integration_preference_pages">
+    <title>Preference pages</title>
+
+    <section id="eclipse_integration_preference_pages_meta_model_contributors">
+      <title>Metamodel contributors</title>
+
+      <para>Xpand supports several types of meta-metamodels.</para>
+
+      <para>From older versions, the classic UML metamodels may be known.
+      Currently also JavaBeans metamodels and EMF based metamodels are
+      supported out of the box.</para>
+
+      <para>Additional metamodel contributors can be registered through an
+      extension point.</para>
+
+      <para>The editors need to know with what kind of metamodels you are
+      working. Therefore, one can configure the metamodel contributors on
+      workspace and on project level.</para>
+    </section>
+
+    <section id="eclipse_integration_preference_pages_global_preferences">
+      <title>Global preferences</title>
+
+      <para>If you work always with the same type of metamodels, you can
+      specify the metamodel contributors in the global preference page. It is
+      available under Windows --&gt; Preferences in the
+      <emphasis>openArchitectureWare</emphasis> section.</para>
+    </section>
+
+    <section id="eclipse_integration_preference_pages_preferences_per_project">
+      <title>Preferences per project</title>
+
+      <para>In the project property page there is also an
+      <emphasis>openArchitectureWare</emphasis> section available.</para>
+
+      <para>Therein you can enable the openArchitectureWare nature (see below)
+      and set project specific metamodel contributor settings. <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse_integration/projectProperties.png"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse_integration/projectProperties.png" />
+          </imageobject>
+        </mediaobject></para>
+    </section>
+  </section>
+
+  <section id="eclipse_integration_xpand_nature_builder">
+    <title>Xpand Nature and Xpand Builder</title>
+
+    <para>You have seen in the last screenshot that you can switch the
+    <emphasis>Xpand</emphasis> nature on. If you do so, you enable analyzer
+    support for all Xpand specific file types in that project.</para>
+
+    <section id="eclipse_integration_xpand_nature_builder_problem_markers">
+      <title>Problem markers</title>
+
+      <para>During the build process, all found problems are marked in the
+      editors as well as listed in the <emphasis>Problems</emphasis> view.
+      <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/eclipse_integration/problemDisplay.jpg"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/eclipse_integration/problemDisplay.jpg" />
+          </imageobject>
+        </mediaobject></para>
+
+      <para>In the current implementation analyzes take place when
+      <emphasis>Eclipse</emphasis> runs an incremental or full build. That
+      means, problem markers are actualized when a file is saved, for
+      instance. If you are in doubt about the actuality of problem markers,
+      you should clean your project and let it rebuild again.</para>
+
+      <para>Note that if you change signatures of e.g. extensions the
+      referencing artifacts (Xpand templates, etc.) are not analyzed
+      automatically.</para>
+    </section>
+  </section>
+
+  <section id="eclipse_integration_running_a_workflow"
+           xreflabel="Running a workflow">
+    <title>Running a workflow</title>
+
+    <para>You can start a workflow by right clicking on a workflow file
+    <filename>(*.mwe)</filename> and selecting <menuchoice>
+        <guimenu>Run As</guimenu>
+
+        <guimenuitem>MWE workflow</guimenuitem>
+      </menuchoice>. <mediaobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/eclipse_integration/workflowStart.png"
+                     scale="80" />
+        </imageobject>
+
+        <imageobject role="html">
+          <imagedata fileref="images/eclipse_integration/workflowStart.png" />
+        </imageobject>
+      </mediaobject></para>
+
+    <para>Because it is a normal launch configuration, you could run or even
+    debug it using the normal Eclipse functionality.</para>
+  </section>
+</chapter>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: xml
+sgml-omittag:nil
+sgml-shorttag:nil
+sgml-namecase-general:nil
+sgml-general-insert-case:lower
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

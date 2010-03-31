@@ -3558,7 +3558,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
    &lt;outlet path='main/src-gen'/&gt;
    &lt;outlet name='TO_SRC' path='main/src' overwrite='false'/&gt;
    &lt;beautifier class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
-   &lt;beautifier class="org.eclipse.xpand2.output.XmlBeautifier"/&gt;
+   &lt;beautifier class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/&gt;
 
    &lt;!-- protected regions configuration --&gt;
    &lt;prSrcPaths value="main/src"/&gt;
@@ -3688,7 +3688,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         important that generated code looks good, because developers should be
         able to understand it. On the other hand template files should look
         good, too. It is thus best practice to write nice looking template
-        files and not to care how the generated code looks â and then you
+        files and not to care how the generated code looks - and then you
         run a beautifier over the generated code to fix that problem. Of
         course, if a beautifier is not available, or if white space has
         syntactical meaning (as in Python), you would have to write your
@@ -3699,7 +3699,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         configured with multiple beautifiers:<programlisting>&lt;beautifier
    class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
 &lt;beautifier
-   class="org.eclipse.xpand2.output.XMLBeautifier"/&gt;</programlisting>These
+   class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/&gt;</programlisting>These
         are the two beautifiers delivered with <emphasis>Xpand</emphasis>. If
         you want to use your own beautifier, you would just need to implement
         the <classname>PostProcessor</classname> Java interface<indexterm>

@@ -34,15 +34,15 @@
     can see several file decorating images.</para>
 
     <informaltable frame="none" rowsep="1">
-      <tgroup cols="3">
-        <colspec align="left" colname="c1" colwidth="1*" />
+      <tgroup cols="2">
+        <colspec colwidth="" />
 
-        <colspec colname="c2" colwidth="2*" />
+        <colspec align="left" colwidth="" />
 
         <tbody>
           <row valign="top">
-            <entry align="left" nameend="c2" namest="c1"><para>There are
-            specific images for</para> <itemizedlist>
+            <entry align="left"><para>There are specific images for:</para>
+            <itemizedlist>
                 <listitem>
                   <para>Workflow files (<filename>.mwe</filename>
                   extension)</para>
@@ -64,7 +64,7 @@
                 </listitem>
               </itemizedlist></entry>
 
-            <entry align="left" nameend="c2" namest="c1"><mediaobject>
+            <entry><mediaobject>
                 <imageobject role="fo">
                   <imagedata fileref="images/eclipse_integration/fileImages.png"
                              scale="80" />
@@ -266,7 +266,7 @@
       </menuchoice>. <mediaobject>
         <imageobject role="fo">
           <imagedata fileref="images/eclipse_integration/workflowStart.png"
-                     scale="80" />
+                     scale="60" />
         </imageobject>
 
         <imageobject role="html">

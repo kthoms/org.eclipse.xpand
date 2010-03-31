@@ -191,7 +191,8 @@ create Entity this duplicate(Entity old):
         <programlisting language="xpand">«EXTENSION org::eclipse::xtend::util::stdlib::io» 
 ... 
 «DEFINE javaClass FOR Entity» 
-  «REM»The following expression will dump the feature names without producing output as side effect«ENDREM» 
+  «REM»The following expression will dump the feature names without producing output 
+  as side effect«ENDREM» 
   «features.name.info() -&gt; ""»</programlisting>
 
         <para>This will produce this output on the console:</para>
@@ -645,7 +646,8 @@ issuesExtensionsDemo () :
         <programlisting>INFO WorkflowRunner running workflow: workflow/generator.oaw 
 ... 
 ... 
-INFO CompositeComponent ExtIssueReporter: setting up issue logging from within .ext and .xpt files 
+INFO CompositeComponent ExtIssueReporter: setting up issue logging from 
+   within .ext and .xpt files 
 INFO WorkflowRunner workflow completed in 1101ms! 
 WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</programlisting>
       </section>
@@ -1368,8 +1370,8 @@ INFO IOExtensions Number of cross references to datatype String:4</programlistin
       <para><emphasis role="bold">Console output:</emphasis></para>
 
       <programlisting>INFO SlotCopier copying org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1fdbef 
-  (eClass: org.eclipse.emf.ecore.impl.EClassImpl@fc5b01 (name: Model) (instanceClassName: null) 
-  (abstract: false, interface: false)) 
+  (eClass: org.eclipse.emf.ecore.impl.EClassImpl@fc5b01 
+  (name: Model) (instanceClassName: null) (abstract: false, interface: false)) 
   [org.eclipse.emf.ecore.impl.DynamicEObjectImpl]</programlisting>
     </section>
 
@@ -1455,11 +1457,13 @@ INFO IOExtensions Number of cross references to datatype String:4</programlistin
 
       <para><emphasis role="bold">Console output:</emphasis></para>
 
-      <programlisting>INFO CompositeComponent SlotListAdder: adding contents of slot 'model' to the list of stuff in 'targetList' 
+      <programlisting>INFO CompositeComponent SlotListAdder: adding contents of slot 'model' to the list of 
+   stuff in 'targetList' 
 ...
 ...
 INFO WorkflowRunner workflow completed in 1503ms! 
-WARN WorkflowRunner 'targetList' is empty, creating a new list. [org.eclipse.xtend.util.stdlib.SlotListAdder@7536e7]</programlisting>
+WARN WorkflowRunner 'targetList' is empty, creating a new list. 
+   [org.eclipse.xtend.util.stdlib.SlotListAdder@7536e7]</programlisting>
 
       <para>Note that the warn messages will appear after the workflow
       finished, since they are reported as a workflow warn issue.</para>

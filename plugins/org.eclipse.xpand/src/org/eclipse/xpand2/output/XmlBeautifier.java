@@ -28,7 +28,7 @@ public class XmlBeautifier implements PostProcessor {
 	private final Log log = LogFactory.getLog(getClass());
 
 	public void beforeWriteAndClose(final FileHandle info) {
-		log.error("Use the XmlBeautifier from XSD Feature: org.eclipse.xtend.typesystem.xsd.XmlBeautifier instead.");
+		log.error("Use the XmlBeautifier from XSD Feature: org.eclipse.xtend.typesystem.xsd.XMLBeautifier instead.");
 	}
 
 	public void afterClose(final FileHandle impl) {

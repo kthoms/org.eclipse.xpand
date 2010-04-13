@@ -138,15 +138,14 @@ public final class UmlTypesystem implements BackendTypesystem {
     }
     
     public BackendType findType (Object o) {
-        if (! (o instanceof Type))
-            return _emfTypesystem.findType (o);
-
-        if (((Type) o).getName() != null) {
-            final BackendType umlPrimitive = _uml2Primitives.get (((Type) o).getName().toLowerCase());
-            if (umlPrimitive != null)
-                return umlPrimitive;
+        if (! (o instanceof Type)) {
+            if (o instanceof Element){
+            	BackendType stType = getTypeByStereotype ((Element) o);
+                if (stType != null)
+                	return stType; 
+            }
         }
-        
+	        
         if (o instanceof EnumerationLiteral) {
             final EnumerationLiteral el = (EnumerationLiteral) o;
             
@@ -158,12 +157,13 @@ public final class UmlTypesystem implements BackendTypesystem {
             // if that doesn't work, try to get the type of the containing enumeration
             return _rootTs.findType (el.getEnumeration());
         }
-        else if (o instanceof Element) 
-            return getTypeByStereotype ((Element) o);                
-        else if (o instanceof List<?>)
-        	return getTypeByStereotypeList((List<?>)o);
-        	
-        return null;
+        else if (o instanceof Element){
+        	BackendType stType = getTypeByStereotype ((Element) o);
+            if (stType != null)
+            	return stType; 
+        }
+        
+        return _emfTypesystem.findType (o);
     }
 
     private BackendType getTypeByStereotype (Element element) {
@@ -265,5 +265,14 @@ public final class UmlTypesystem implements BackendTypesystem {
     	else
     		return UNIQUE_REPRESENTATION_PREFIX + cls.getQualifiedName();
     	
+    }
+    
+    public BackendType getTypeForStereotypeProperty (Type t) {
+    	if (t.getName() != null) {
+            final BackendType umlPrimitive = _uml2Primitives.get (t.getName().toLowerCase());
+            if (umlPrimitive != null)
+                return umlPrimitive;
+        }
+    	return findType(t);
     }
 }

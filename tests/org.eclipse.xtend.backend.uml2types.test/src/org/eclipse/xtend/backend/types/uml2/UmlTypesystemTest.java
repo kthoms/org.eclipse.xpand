@@ -8,18 +8,20 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
-import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.backend.types.builtin.BooleanType;
 import org.eclipse.xtend.backend.types.builtin.ListType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.emf.internal.EClassType;
@@ -81,11 +83,26 @@ public class UmlTypesystemTest {
 
 		Model m = createModel ("testModel");
 		org.eclipse.uml2.uml.Package p = createPackage (m, "test");
-		BackendType entityType = cts.findType (createSimpleEntity (p, "TestEntity", false));
+		org.eclipse.uml2.uml.Class entity = createSimpleEntity (p, "TestEntity", false);
+
+		MiddleEnd me = MiddleEndFactory.create (cts, null);
+		FunctionDefContextInternal fdc = (FunctionDefContextInternal) me.createEmptyFdc ();
+		
+		ExecutionContext ctx = me.getExecutionContext ();
+		
+		BackendType entityType = cts.findType (entity);
 		assertTrue (entityType instanceof StereotypeType);
 		assertEquals ("simpleEntity::SimpleEntity", entityType.getName ());
+		EList attr = entity.getOwnedAttributes ();
+		org.eclipse.uml2.uml.Property aField = (org.eclipse.uml2.uml.Property) attr.get (0);
+		BackendType fieldType = cts.findType (aField);
+		assertTrue (fieldType instanceof StereotypeType);
+		assertEquals ("simpleEntity::Field", fieldType.getName ());
+		org.eclipse.xtend.backend.common.Property stp = (org.eclipse.xtend.backend.common.Property)fieldType.getProperties (ctx). get("isLazy");
+		BackendType stpType = stp.getType (cts);
+		assertTrue (stpType instanceof BooleanType);
 	}
-	
+		
 	/**
 	 * Check whether Enumerations are correctly resolved. Enumerations defined
 	 * in a Profile should resolve to EnumType while Enumerations defined in a
@@ -189,6 +206,10 @@ public class UmlTypesystemTest {
 				isAbstract);
 		Stereotype st = _simpleEntityProfile.getOwnedStereotype ("SimpleEntity");
 		class_.applyStereotype (st);
+		EList<Package> pkgs = package_.getModel ().getImportedPackages ();
+		PrimitiveType stringType = (PrimitiveType) package_.createOwnedPrimitiveType("string");
+		org.eclipse.uml2.uml.Property field = class_.createOwnedAttribute ("someField", stringType);
+		field.applyStereotype (_simpleEntityProfile.getOwnedStereotype ("Field"));
 		return class_;
 	}
 	

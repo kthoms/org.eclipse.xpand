@@ -71,7 +71,7 @@ public final class StereotypeType extends AbstractType {
                 continue;
             }
             
-            final BackendType backendType = (attrib.isMultivalued()) ? CollectionType.INSTANCE : umlTs.findType (umlType);
+            final BackendType backendType = (attrib.isMultivalued()) ? CollectionType.INSTANCE : umlTs.getTypeForStereotypeProperty (umlType);
             result.add (new StereotypeProperty (attrib.getName (), backendType));
         }
         

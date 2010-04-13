@@ -37,6 +37,7 @@ import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.builtin.TypeType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
+import org.eclipse.xtend.backend.types.emf.internal.EClassType;
 import org.eclipse.xtend.backend.types.java.internal.GlobalJavaBeansTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
 import org.eclipse.xtend.backend.util.IdentityCache;
@@ -133,6 +134,16 @@ public final class CompositeTypesystem implements BackendTypesystem {
         if (t2.getClass().getName().endsWith("EnumType") && t1.getClass().getName().endsWith("EClassType"))
         	return t2;
         
+        if (t1.getClass().getName().endsWith("StereotypeType") && t2.getClass().getName().endsWith("EClassType"))
+        	return t1;
+        if (t2.getClass().getName().endsWith("StereotypeType") && t1.getClass().getName().endsWith("EClassType"))
+        	return t2;
+        
+        if (t1.getClass().equals(EClassType.class) && ((EClassType)t1).getName().endsWith("uml::PrimitiveType"))
+        	return t2;
+        if (t2.getClass().equals(EClassType.class) && ((EClassType)t2).getName().endsWith("uml::PrimitiveType"))
+        	return t1;
+
         throw new IllegalArgumentException ("no unique best match for types " + t1 + " and " + t2);
     }
     

@@ -60,6 +60,7 @@ public class ExpressionExtensionStatement extends AbstractExtensionDefinition {
 
 	@Override
 	public void analyzeInternal(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		checkForAmbiguousDefinitions(ctx, issues);
 		if (expression != null) {
 			expression.analyze(ctx, issues);
 		}

@@ -382,10 +382,10 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 			final String otherName = ext.getName();
 			if (name.equals(otherName) && (!getFileName().equals(ext.getFileName()) || getLine() != ext.getLine())) {
 				if (getParameterTypes().equals(ext.getParameterTypes())) {
-					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Ambiguous definition: "
-							+ toOutlineString(), this, true));
-					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Ambiguous definition: "
-							+ ext.toOutlineString(), (AbstractExtension) ext, true));
+					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate extension definition: "
+							+ toOutlineString(), this, false, start));
+					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate extension definition: "
+							+ ext.toOutlineString(), (AbstractExtension) ext, false, ext.getStart()));
 				}
 			}
 		}

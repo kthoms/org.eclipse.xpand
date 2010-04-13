@@ -55,6 +55,7 @@ public class CreateExtensionStatement extends AbstractExtensionDefinition {
 
 	@Override
 	public void analyzeInternal(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
+		checkForAmbiguousDefinitions(ctx, issues);
 		final Type t = ctx.getTypeForName(returnType.getValue());
 		if (t == null) {
 			issues.add(new AnalysationIssue(AnalysationIssue.TYPE_NOT_FOUND, "Couldn't resolve type " + returnType

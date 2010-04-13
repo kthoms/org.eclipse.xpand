@@ -229,10 +229,10 @@ public class Template extends SyntaxElement implements XpandResource {
 						break;
 					}
 				}
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate definition '"
-						+ def.getName() + "'", def));
-				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate definition '"
-						+ (origDef!=null?origDef.getName():"") + "'", origDef));
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate DEFINE definition '"
+						+ def.getName() + "'", def, false, def.getStart()));
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Duplicate DEFINE definition '"
+						+ (origDef!=null?origDef.getName():"") + "'", origDef, false, origDef.getStart()));
 			}
 		}
 	}

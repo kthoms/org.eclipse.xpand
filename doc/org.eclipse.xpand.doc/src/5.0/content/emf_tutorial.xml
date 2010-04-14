@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="getting_started">
+  <title>Getting Started</title>
+
+  <para>This example uses Eclipse EMF<indexterm>
+      <primary>EMF</primary>
+    </indexterm> as the basis for code generation. A large amount of available
+  third-party tools makes EMF a good basis. Specifically, better tools for
+  building EMF metamodels are available already (Xtext, GMF, etc.). To get a
+  deeper understanding of EMF we recommend that you first read the EMF
+  tutorial at <itemizedlist>
+      <listitem>
+        <para><ulink
+        url="http://www-128.ibm.com/developerworks/library/os-ecemf1/"></ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://www-128.ibm.com/developerworks/library/os-ecemf2/"></ulink></para>
+      </listitem>
+
+      <listitem>
+        <para><ulink
+        url="http://www-128.ibm.com/developerworks/library/os-ecemf3/"></ulink></para>
+      </listitem>
+    </itemizedlist> You can also run this tutorial without a complete
+  understanding of EMF, but the tutorial might seem unnecessarily complex to
+  you.</para>
+
+  <section id="emf_tutorial_installing">
+    <title>Installing the pre-built tutorial</title>
+
+    <para>Before you can go through the tutorial and execute the examples, you
+    need to have Xpand installed. Please consider <ulink
+    url="http://www.eclipse.org/modeling/m2t/downloads/?project=xpand"></ulink>
+    for details.</para>
+  </section>
+
+  <section id="emf_tutorial_overview">
+    <title>Tutorial overview</title>
+
+    <para>The purpose of this tutorial is to illustrate code generation with
+    Xpand from EMF models. The process we are going to go through, will start
+    by defining a metamodel (using EMF tooling), coming up with some example
+    data, writing code generation templates, running the generator and finally
+    adding some constraint checks.</para>
+
+    <para>The actual content of the example is rather trivial – we will
+    generate Java classes following the JavaBean conventions. The model will
+    contain entities (such as <type>Person</type> or <type>Vehicle</type>)
+    including some attributes and relationships among them – a rather typical
+    data model. From these entities in the model, we want to generate the
+    Beans for implementation in Java. In a real setting, we might also want to
+    generate persistence mappings, etc. We will not do this for this simple
+    introduction.</para>
+  </section>
+
+  <section id="emf_tutorial_define_metamodel">
+    <title>Defining an EMF metamodel</title>
+
+    <para>To illustrate the metamodel, before we deal with the intricacies of
+    EMF, here is the metamodel in UML: <figure
+        id="emf_tutorial_sample_metamodel">
+        <title>Sample metamodel</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/getting_started/metamodel.gif"
+                       scale="70" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/getting_started/metamodel.gif" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <section id="emf_tutorial_creating_emf_project">
+      <title>Creating an EMF project</title>
+
+      <para>Create an EMF project as depicted below:</para>
+
+      <figure id="emf_tutorial_create_emf_project">
+        <title>Create EMF project</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/getting_started/create_emf_project.png"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/getting_started/create_emf_project.png" />
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>It is important that you create an EMF projec<indexterm>
+          <primary>EMF project</primary>
+        </indexterm>t, not just a simple or a Java project. Name it
+      <filename>xpand.demo.emf.datamodel</filename>.</para>
+    </section>
+
+    <section id="emf_tutorial_defining_metamodel">
+      <title>Defining the (meta)model</title>
+
+      <para>Create a new source folder <filename
+      class="directory">metamodel</filename> in that project. Then, create a
+      new Ecore model in that source folder named
+      <filename>data.ecore</filename>. Use <type>EPackage</type> as the model
+      object. <figure id="emf_tutorial_create_ecore_model">
+          <title>Create new Ecore model</title>
+
+          <mediaobject>
+            <imageobject role="fo">
+              <imagedata fileref="images/getting_started/create_ecore_model.png"
+                         scale="80" />
+            </imageobject>
+
+            <imageobject role="html">
+              <imagedata fileref="images/emf_tutorial/create_ecore_model.png" />
+            </imageobject>
+          </mediaobject>
+        </figure>This opens the Ecore Editor. You will see a root package with
+      name <varname>null</varname>. Open the Properties View (context menu).
+      Set the following properties for the package: <itemizedlist>
+          <listitem>
+            <para>Name: data</para>
+          </listitem>
+
+          <listitem>
+            <para>Ns prefix: data</para>
+          </listitem>
+
+          <listitem>
+            <para>Ns URI: http://www.xpand.org/xpand.demo.emf.datamodel</para>
+          </listitem>
+        </itemizedlist> <figure id="emf_tutorial_adjust_namespace_settings">
+          <title>Adjust namespace settings</title>
+
+          <mediaobject>
+            <imageobject role="fo">
+              <imagedata fileref="images/emf_tutorial/create_ecore_model_adjust_namespace.png"
+                         scale="50" />
+            </imageobject>
+
+            <imageobject role="html">
+              <imagedata fileref="images/emf_tutorial/create_ecore_model_adjust_namespace.png" />
+            </imageobject>
+          </mediaobject>
+        </figure></para>
+
+      <para>Create the following Ecore model.<footnote>
+          <para>To add children, right-click on the element to which you want
+          to add these children and select the type of the child from the
+          list. To configure the properties, open the properties dialog by
+          selecting <guimenu>Show Properties View</guimenu> at the bottom of
+          any of the context menus. Note that this is not an EMF tutorial. For
+          more details on how to build EMF (meta-)models, please refer to the
+          EMF documentation.</para>
+        </footnote>Make sure you set the following properties
+      <emphasis>exactly</emphasis> as described next:</para>
+
+      <para>Within the <package>data</package> package, create these
+      <classname>EClass</classname> elements with their attributes:<footnote>
+          <para>Attributes are children of type
+          <classname>EAttribute</classname>. Please fill in the
+          <property>Name</property> and the <property>EType</property>
+          properties.</para>
+        </footnote><informaltable frame="bottom"
+          id="emf_tutorial_metamodel_attributes">
+          <tgroup align="left" cols="3" colsep="1" rowsep="1">
+            <colspec colname="c1" />
+
+            <colspec colname="c2" />
+
+            <colspec colname="c3" />
+
+            <thead>
+              <row>
+                <entry>EClass name</entry>
+
+                <entry>EAttribute name</entry>
+
+                <entry>EAttribute EType</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>DataModel</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>name</entry>
+
+                <entry>EString</entry>
+              </row>
+
+              <row>
+                <entry>Entity</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>name</entry>
+
+                <entry>EString</entry>
+              </row>
+
+              <row>
+                <entry>Attribute</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>name</entry>
+
+                <entry>EString</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>type</entry>
+
+                <entry>EString</entry>
+              </row>
+
+              <row>
+                <entry>EntityReference</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>name</entry>
+
+                <entry>EString</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>toMany</entry>
+
+                <entry>EBoolean</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable></para>
+
+      <para>Now, it is time to create references between the model elements.
+      Add children of type <classname>EReferences</classname> as
+      follows:<footnote>
+          <para>Note: there are a couple of <emphasis>-1's</emphasis> ...
+          don't miss the minus! Also, the containment flag is essential. If
+          containment is <literal>true</literal> you will be able to create
+          children of the referenced type, otherwise you can only reference
+          them.</para>
+        </footnote></para>
+
+      <para><informaltable frame="bottom"
+          id="emf_tutorial_metamodel_references" pgwide="1">
+          <tgroup align="left" cols="4" colsep="1" rowsep="1">
+            <colspec colname="c1" colwidth="1*" />
+
+            <colspec colname="c2" colwidth="1*" />
+
+            <colspec colname="c3" colwidth="1*" />
+
+            <colspec colname="c4" colwidth="1*" />
+
+            <thead>
+              <row>
+                <entry>EClass</entry>
+
+                <entry>EReference name</entry>
+
+                <entry>EReference attribute name</entry>
+
+                <entry>EReference attribute value</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <!-- DataModel::entity -->
+
+              <row>
+                <entry>DataModel</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>entity</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>EType</entry>
+
+                <entry>Entity</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>containment</entry>
+
+                <entry>true</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Lowerbound</entry>
+
+                <entry>0</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Upperbound</entry>
+
+                <entry>-1</entry>
+              </row>
+
+              <!-- Entity::attribute -->
+
+              <row>
+                <entry>Entity</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>attribute</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>EType</entry>
+
+                <entry>Attribute</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>containment</entry>
+
+                <entry>true</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Lowerbound</entry>
+
+                <entry>1</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Upperbound</entry>
+
+                <entry>-1</entry>
+              </row>
+
+              <!-- Entity::reference -->
+
+              <row>
+                <entry>Entity</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>reference</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>EType</entry>
+
+                <entry>EntityReference</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>containment</entry>
+
+                <entry>true</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Lowerbound</entry>
+
+                <entry>0</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Upperbound</entry>
+
+                <entry>-1</entry>
+              </row>
+
+              <!-- EntityReference::target -->
+
+              <row>
+                <entry>EntityReference</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry>target</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>EType</entry>
+
+                <entry>Entity</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>containment</entry>
+
+                <entry>false</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Lowerbound</entry>
+
+                <entry>1</entry>
+              </row>
+
+              <row>
+                <entry></entry>
+
+                <entry></entry>
+
+                <entry>Upperbound</entry>
+
+                <entry>1</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable></para>
+
+      <para><figure id="emf_tutorial_metamodel_structure">
+          <title>Metamodel structure</title>
+
+          <mediaobject>
+            <imageobject role="fo">
+              <imagedata fileref="images/emf_tutorial/create_ecore_model_mm_structure.png"
+                         scale="80" />
+            </imageobject>
+
+            <imageobject role="html">
+              <imagedata fileref="images/emf_tutorial/create_ecore_model_mm_structure.png" />
+            </imageobject>
+          </mediaobject>
+        </figure></para>
+
+      <para>EMF saves the model we created above in its own dialect of
+      XMI<indexterm>
+          <primary>XMI</primary>
+        </indexterm>. To avoid any ambiguities, here is the complete XMI
+      source for the metamodel. It goes into the file
+      <filename>data.ecore</filename>: <programlisting>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="data"
+    nsURI="http://www.xpand.org/xpand.demo.emf.datamodel" nsPrefix="data"&gt;
+  &lt;eClassifiers xsi:type="ecore:EClass" name="DataModel"&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EReference" name="entity" upperBound="-1"
+        eType="#//Entity" containment="true"/&gt;
+  &lt;/eClassifiers&gt;
+  &lt;eClassifiers xsi:type="ecore:EClass" name="Entity"&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+        upperBound="-1" eType="#//Attribute" containment="true"/&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EReference" name="reference" upperBound="-1"
+        eType="#//EntityReference" containment="true"/&gt;
+  &lt;/eClassifiers&gt;
+  &lt;eClassifiers xsi:type="ecore:EClass" name="Attribute"&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EAttribute" name="type"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/&gt;
+  &lt;/eClassifiers&gt;
+  &lt;eClassifiers xsi:type="ecore:EClass" name="EntityReference"&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EAttribute" name="toMany"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/&gt;
+    &lt;eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//Entity"/&gt;
+  &lt;/eClassifiers&gt;
+&lt;/ecore:EPackage&gt;
+</programlisting></para>
+    </section>
+  </section>
+
+  <section id="emf_tutorial_generate_emf_tooling">
+    <title>Generating the EMF tooling</title>
+
+    <para>In addition to providing the Ecore meta-metamodel<indexterm>
+        <primary>meta-metamodel</primary>
+      </indexterm>, EMF also comes with support for building (more or less
+    usable) editors. These are generated automatically from the metamodel we
+    just defined. In order to define example models (which we will do below)
+    we have to generate these editors. Also, we have to generate the
+    implementation classes for our metamodel. To generate all these things, we
+    have to define a markup model that contains a number of specifics to
+    control the generation of the various artifacts. This markup model is
+    called <emphasis>genmodel</emphasis><indexterm>
+        <primary>Genmodel</primary>
+      </indexterm>.</para>
+
+    <para>So we have to define the <emphasis>genmodel</emphasis> first. Select
+    the <filename>data.ecore</filename> model in the explorer and right mouse
+    click to <menuchoice>
+        <guimenu>New</guimenu>
+
+        <guisubmenu>Other</guisubmenu>
+
+        <guisubmenu>Eclipse Modelling Framework</guisubmenu>
+
+        <guimenuitem>EMF Generator Model</guimenuitem>
+      </menuchoice>. Follow the following five steps; note that they are also
+    illustrated in the next figure. <orderedlist>
+        <listitem>
+          <para>Select EMF Generator Model</para>
+        </listitem>
+
+        <listitem>
+          <para>Define the name</para>
+        </listitem>
+
+        <listitem>
+          <para>Select the folder</para>
+        </listitem>
+
+        <listitem>
+          <para>Select Ecore model as source</para>
+        </listitem>
+
+        <listitem>
+          <para>Press the <emphasis>Load</emphasis> button and then
+          <emphasis>Finish</emphasis></para>
+        </listitem>
+      </orderedlist> <figure id="emf_tutorial_creating_genmodel">
+        <title>Creating the genmodel</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_step_all_admonitions.png"
+                       scale="70" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_step_all_admonitions.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>As a consequence, you will get the finished EMF
+    <emphasis>genmodel</emphasis>. It is a kind of "wrapper" around the
+    original metamodel, thus, it has the same structure, but the model
+    elements have different properties. As of now, you do not have to change
+    any of these. <figure id="emf_tutorial_structure_genmodel">
+        <title>Structure of the genmodel</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_gm_structure.png"
+                       scale="60" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_gm_structure.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>You can now generate the other projects. <figure
+        id="emf_tutorial_creating_editing_projects">
+        <title>Generate editing projects</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_generate_all.png"
+                       scale="60" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_generate_all.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>You now have all the generated additional projects. <figure
+        id="emf_tutorial_generated_projects">
+        <title>Generated projects</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_generated_projects.png"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/create_ecore_genmodel_generated_projects.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>We will not look any deeper at these additional projects for now.
+    However, there is one important thing to point out: The generator also
+    generated the implementation classes for the metamodel. If you take a look
+    into <filename class="directory">xpand.demo.emf.datamodel/src</filename>
+    folder, you can find classes (actually, interfaces at the top level) that
+    represent the concepts defined in your metamodel. These can be used to
+    access the model. For some more details on how to use the EMF model APIs
+    as well as the reflective cousins, take a look at <ulink
+    url="http://voelterblog.blogspot.com/2005/12/codeblogck-emf_10.html"></ulink>.</para>
+  </section>
+
+  <section id="emf_tutorial_setting_generator_project">
+    <title>Setting up the generator project</title>
+
+    <para>In order to make it a bit less painless to work with Eclipse EMF (we
+    would have to export the plugins, restart Eclipse, etc. etc.), we start
+    another Eclipse in the IDE. This instance is called the <emphasis>Runtime
+    Workbench</emphasis>. Therefore select the
+    <filename>xpand.demo.emf.datamodel.edit</filename> project and choose from
+    the context menu <menuchoice>
+        <guimenu>Run As</guimenu>
+
+        <guimenuitem>Eclipse Application</guimenuitem>
+      </menuchoice>. <figure id="emf_tutorial_launch_runtime_platform">
+        <title>Launch runtime platform</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/runas_eclipseapplication.png"
+                       scale="40" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/runas_eclipseapplication.png"
+                       scale="60" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>If you are using a Mac or *nix you should now open the workspace
+    preference page and change the default encoding<indexterm>
+        <primary>Encoding</primary>
+      </indexterm> to ISO-8859-1.<footnote>
+        <para><menuchoice>
+            <guimenu>Window</guimenu>
+
+            <guisubmenu>Preferences</guisubmenu>
+
+            <guisubmenu>General</guisubmenu>
+
+            <guisubmenu>Workspace</guisubmenu>
+
+            <guimenuitem>Text file encoding</guimenuitem>
+          </menuchoice>. This is necessary to have the
+        <foreignphrase>guillemet</foreignphrase> brackets available.</para>
+      </footnote>Import the <filename>xpand.demo.emf.datamodel</filename>
+    project from your original workspace.<footnote>
+        <para><menuchoice>
+            <guimenu>File</guimenu>
+
+            <guisubmenu>Import</guisubmenu>
+
+            <guisubmenu>General</guisubmenu>
+
+            <guimenuitem>Existing Project into Workspace</guimenuitem>
+          </menuchoice></para>
+      </footnote> Note that importing the project does not physically move the
+    files,<footnote>
+        <para>Unless you checked the option "Copy projects into
+        workspace"</para>
+      </footnote> so you can have the project be part of both workspaces at
+    the same time.</para>
+
+    <para>Create a new Xpand Project<footnote>
+        <para><menuchoice>
+            <guimenu>File</guimenu>
+
+            <guisubmenu>New</guisubmenu>
+
+            <guisubmenu>Project</guisubmenu>
+
+            <guisubmenu>Xpand</guisubmenu>
+
+            <guimenuitem>Xpand Project</guimenuitem>
+          </menuchoice></para>
+      </footnote> called <filename
+    class="directory">xpand.demo.emf.datamodel.generator</filename>. Do not
+    choose the option "Generate a simple example". <figure
+        id="emf_tutorial_create_new_oaw_project">
+        <title>Create new Xpand project</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/create_new_xpand_project.png"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/create_new_xpand_project.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>Your Xpand project will already be configured for use of EMF models.
+    You can check this in the project properties dialog: <figure
+        id="emf_tutorial_project_properties">
+        <title>Project properties</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/create_new_xpand_project_step2.png"
+                       scale="70" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/create_new_xpand_project_step2.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+  </section>
+
+  <section id="emf_tutorial_defining_sample_model">
+    <title>Defining an Example Data Model</title>
+
+    <para>Select the <filename class="directory">src</filename> folder and
+    then choose <menuchoice>
+        <guimenu>New</guimenu>
+
+        <guisubmenu>Other</guisubmenu>
+
+        <guisubmenu>Example EMF Model Creation Wizards</guisubmenu>
+
+        <guimenuitem>Data Model</guimenuitem>
+      </menuchoice>. Create a new data model, call it
+    <filename>example.data</filename>. On the last page of the wizard, select
+    <emphasis>Model</emphasis> as model object. <figure
+        id="emf_tutorial_create_sample_data_model">
+        <title>Create a sample data model</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/create_data_model.png"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/create_data_model.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>Next, populate this very model as following. Please note that in the
+    case of attributes you have to define a type as well (i.e. String), not
+    just a name. <figure id="emf_tutorial_sample_data_model">
+        <title>Sample data model</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/emf_tutorial/sample_datamodel.png"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/emf_tutorial/sample_datamodel.png" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>Again, to avoid any typos here is the XMI for
+    <filename>example.data</filename>:</para>
+
+    <programlisting language="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;data:DataModel
+  xmi:version="2.0"
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:data="http://www.xpand.org/xpand.demo.emf.datamodel"&gt;
+  &lt;entity name="Person"&gt;
+    &lt;attribute name="name" type="String"/&gt;
+    &lt;reference name="cars" toMany="true" target="//@entity.1"/&gt;
+  &lt;/entity&gt;
+  &lt;entity name="Vehicle"&gt;
+    &lt;attribute name="plate" type="String"/&gt;
+  &lt;/entity&gt;
+&lt;/data:DataModel&gt;
+</programlisting>
+  </section>
+
+  <section id="emf_tutorial_dynamic_emf">
+    <title>Using Dynamic EMF</title>
+
+    <para>Instead of generating editors and metaclasses, you can also use
+    dynamic EMF<indexterm>
+        <primary>Dynamic EMF</primary>
+      </indexterm>. This works by selecting, in the opened metamodel, the root
+    class of the model you want to create (here:
+    <emphasis>DataModel</emphasis>) and then selecting <menuchoice>
+        <guimenuitem>Create Dynamic Instance</guimenuitem>
+      </menuchoice> from the context menu. This opens an editor that can
+    dynamically edit the respective instance. The created file by default has
+    an <filename>.xmi</filename> extension.</para>
+
+    <para>Note that Xpand can work completely with dynamic models, there is no
+    reason to generate code. However, if you want to programmatically work
+    with the model, the generated metaclasses (not the editors!) are really
+    helpful. Please also keep in mind: in subsequent parts of the tutorial,
+    you will specify the <emphasis>metaModelPackage</emphasis><indexterm>
+        <primary>EmfMetaModel</primary>
+
+        <secondary>metaModelPackage</secondary>
+      </indexterm> in various component configurations in the workflow file,
+    like this:</para>
+
+    <programlisting language="xml">&lt;metaModel id="mm"
+  class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"&gt;
+  &lt;metaModelPackage value="data.DataPackage"/&gt;
+&lt;/metaModel&gt;
+</programlisting>
+
+    <para>In case of dynamic EMF, there has no metamodel package been
+    generated. So, you have to specify the metamodel file instead, that is,
+    the <filename>.ecore</filename> file you just created. Note that the
+    <filename>.ecore</filename> file has to be in the classpath to make this
+    work.</para>
+
+    <programlisting language="xml">&lt;metaModel id="mm"
+  class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"&gt;
+  &lt;metaModelFile value="data.ecore"/&gt;
+&lt;/metaModel&gt;</programlisting>
+  </section>
+
+  <section id="emf_tutorial_generating_code">
+    <title>Generating code from the example model</title>
+
+    <section id="emf_tutorial_the_workflow_definition">
+      <title>The workflow definition</title>
+
+      <para>To run the Xpand generator, you have to define a workflow. It
+      controls which steps (loading models, checking them, generating code)
+      the generator executes. For details on how workflow files work, please
+      take a look at the <emphasis>Modeling Workflow Engine Reference
+      Documentation</emphasis>.</para>
+
+      <para>Create a <filename>workflow.mwe</filename> and a
+      <filename>workflow.properties</filename> in the <filename
+      class="directory">src</filename> folder. The contents of these files is
+      shown below:</para>
+
+      <programlisting language="xml">&lt;workflow&gt;
+  &lt;property file="workflow.properties"/&gt;
+
+  &lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" &gt;
+    &lt;platformUri value=".."/&gt;
+    &lt;registerGeneratedEPackage value="data.DataPackage"/&gt;
+  &lt;/bean&gt;
+
+  &lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
+    &lt;uri value="platform:/resource/${modelFile}" /&gt;
+    &lt;modelSlot value="model" /&gt;
+  &lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+      <para><code>workflow.properties</code>:<programlisting
+      language="properties">modelFile=platform:/resource/xpand.demo.emf.datamodel/src/example.data
+srcGenPath=src-gen
+fileEncoding=ISO-8859-1</programlisting>The workflow tries to load stuff from
+      the classpath; so, for example, the
+      <classname>data.DataPackage</classname> class is resolved from the
+      classpath, as is the model file specified in the properties
+      (<filename>modelFile=example.data</filename>)</para>
+
+      <para>This instantiates the example model and stores in a workflow slot
+      named model. Note that in the <emphasis>metamodelPackage</emphasis>
+      slot, you have to specify the EMF package object (here:
+      <classname>data.DataPackage</classname>), not the Java package (which
+      would be <package>data</package> here).</para>
+    </section>
+
+    <section id="emf_tutorial_running_the_workflow">
+      <title>Running the workflow</title>
+
+      <para>Before you actually run the workflow, make sure your metamodel can
+      be found on the classpath. In our case, this can be achieved by adding
+      the <filename>xpand.demo.emf.datamodel</filename> project to the plug-in
+      dependencies of <filename>xpand.demo.emf.datamodel.generator</filename>.
+      To do this, double click the file
+      <filename>xpand.demo.emf.datamodel.generator/META-INF/MANIFEST.MF</filename>.
+      The manifest editor will appear. Go to the
+      <guimenu>Dependencies</guimenu> tab and click on
+      <guimenu>Add...</guimenu> to add a few new dependencies. </para>
+
+      <itemizedlist>
+        <listitem>
+          <para><filename>xpand.demo.emf.datamodel</filename></para>
+        </listitem>
+
+        <listitem>
+          <para><filename>org.eclipse.emf.mwe.utils</filename></para>
+        </listitem>
+
+        <listitem>
+          <para><filename>org.eclipse.emf.ecore.xmi</filename></para>
+        </listitem>
+
+        <listitem>
+          <para><filename>org.eclipse.jface.text</filename></para>
+        </listitem>
+
+        <listitem>
+          <para><filename>org.antlr.runtime</filename></para>
+        </listitem>
+
+        <listitem>
+          <para><filename>com.ibm.icu</filename></para>
+        </listitem>
+
+        <listitem>
+          <para><filename>org.eclipse.jdt.core</filename></para>
+        </listitem>
+      </itemizedlist>
+
+      <para><figure id="emf_tutorial_add_metamodel_dependency">
+          <title>Add metamodel dependency</title>
+
+          <mediaobject>
+            <imageobject role="fo">
+              <imagedata fileref="images/emf_tutorial/add_metamodel_to_classpath.png"
+                         scale="80" />
+            </imageobject>
+
+            <imageobject role="html">
+              <imagedata fileref="images/emf_tutorial/add_metamodel_to_classpath.png" />
+            </imageobject>
+          </mediaobject>
+        </figure>Do not forget to save the manifest file!</para>
+
+      <para>Now, you can run the workflow from within Eclipse: <figure
+          id="emf_tutorial_run_workflow">
+          <title></title>
+
+          <mediaobject>
+            <imageobject role="fo">
+              <imagedata fileref="images/emf_tutorial/run_workflow.png"
+                         scale="60" />
+            </imageobject>
+
+            <imageobject role="html">
+              <imagedata fileref="images/emf_tutorial/run_workflow.png" 
+                         scale="80" />
+            </imageobject>
+          </mediaobject>
+        </figure></para>
+
+      <para>The following should be the output:</para>
+
+      <screen>INFO: --------------------------------------------------------------------------------------
+INFO: EMF Modeling Workflow Engine 0.7.2, Build v200908120417
+INFO: (c) 2005-2009 openarchitectureware.org and contributors
+INFO: --------------------------------------------------------------------------------------
+INFO: running workflow: ../xpand.demo.emf.datamodel.generator/src/workflow.mwe
+INFO: 
+14.04.2010 15:49:18 org.eclipse.emf.mwe.utils.StandaloneSetup setPlatformUri
+INFO: Registering platform uri '..'
+14.04.2010 15:49:18 org.eclipse.emf.mwe.utils.StandaloneSetup addRegisterGeneratedEPackage
+INFO: Adding generated EPackage 'data.DataPackage'
+14.04.2010 15:49:18 org.eclipse.emf.mwe.core.container.CompositeComponent internalInvoke
+INFO: Reader: Loading model from platform:/resource/xpand.demo.emf.datamodel.generator/src/example.data
+14.04.2010 15:49:19 org.eclipse.emf.mwe.core.WorkflowRunner executeWorkflow
+INFO: workflow completed in 116ms!</screen>
+    </section>
+
+    <section id="emf_tutorial_templates">
+      <title>Templates</title>
+
+      <para>No code is generated yet. This is not surprising, since we did not
+      yet add any templates. Let us change this. Create a package
+      <package>templates</package> in the <filename
+      class="directory">src</filename>folder and within the package a file
+      called <filename>Root.xpt</filename>.</para>
+
+      <para>The <filename>Root.xpt</filename> looks as follows. By the way, if
+      you need to type the <foreignphrase>guillemets</foreignphrase>
+      <indexterm>
+          <primary>Guillemet</primary>
+        </indexterm>(« and »), the editor provides keyboard shortcuts with
+      <keycombo action="simul">
+          <keycap>Ctrl</keycap>
+
+          <keycap>&lt;</keycap>
+        </keycombo> and <keycombo action="simul">
+          <keycap>Ctrl</keycap>
+
+          <keycap>&gt;</keycap>
+        </keycombo>.</para>
+
+      <programlisting language="xpand">«DEFINE Root FOR data::DataModel»
+  «EXPAND Entity FOREACH entity»
+«ENDDEFINE»
+
+«DEFINE Entity FOR data::Entity»
+  «FILE name + ".java"»
+    public class «name» {
+      «FOREACH attribute AS a»
+        // bad practice
+        private «a.type» «a.name»;
+      «ENDFOREACH»
+    }
+  «ENDFILE»
+«ENDDEFINE» </programlisting>
+
+      <para>We have to extend the <filename>workflow.mwe</filename> file, in
+      order to use the template just written:</para>
+
+      <programlisting language="xml">&lt;workflow&gt;
+  &lt;property file="workflow.properties"/&gt;
+
+  ..
+
+  &lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
+    &lt;uri value="platform:/resource/${modelFile}" /&gt;
+    ..
+&lt;/workflow&gt;</programlisting>
+
+      <para>First, we clean up the directory where we want to put the
+      generated code.</para>
+
+      <programlisting language="xml">&lt;component class="org.eclipse.emf.mwe.utils.DirectoryCleaner"&gt;
+  &lt;directory value="${srcGenPath}" /&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>Then, we start the generator component. Its configuration is
+      slightly involved.</para>
+
+      <programlisting language="xml">&lt;component class="org.eclipse.xpand2.Generator"&gt;</programlisting>
+
+      <para>First of all, you have to define the metamodel. In our case, we
+      use the <classname>EmfMetaModel</classname><indexterm>
+          <primary>EmfMetaModel</primary>
+        </indexterm> since we want to work with EMF models. Also, you have to
+      specific the class name of the EMF package that represents that
+      metamodel. It has to be on the classpath.</para>
+
+      <programlisting language="xml">  &lt;metaModel id="mm"
+   class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"&gt;
+  &lt;/metaModel&gt;</programlisting>
+
+      <para>Then, you have to define the <emphasis>entry statement</emphasis>
+      for <emphasis>Xpand</emphasis>. Knowing that the model slot contains an
+      instance of <classname>data.DataModel</classname> (the XmiReader had put
+      the first element of the model into that slot, and we know from the data
+      that it is a <classname>DataModel</classname>), we can write the
+      following statement. Again, notice that model refers to a slot name
+      here!</para>
+
+      <programlisting language="xml">   &lt;expand value="templates::Root::Root FOR model"/&gt;</programlisting>
+
+      <para>We then specify where the generator should put the generated code
+      and that this generated code should be processed by a code
+      beautifier:</para>
+
+      <programlisting language="xml">   &lt;outlet path="${srcGenPath}/"&gt;
+      &lt;postprocessor
+        class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
+    &lt;/outlet&gt;</programlisting>
+
+      <para>Now, we are almost done.</para>
+
+      <programlisting language="xml"> &lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+      <para>You also need to add the <emphasis>srcGenPath</emphasis> to the
+      <filename>workflow.properties</filename> file.</para>
+
+      <programlisting language="properties">modelFile=example.data
+srcGenPath=src-gen</programlisting>
+    </section>
+
+    <section id="emf_tutorial_running_the_generator_again">
+      <title>Running the generator again</title>
+
+      <para>So, if you restart the generator now, you should get a file
+      generated that looks like this:</para>
+
+      <programlisting language="java">public class Person {
+  // bad practice
+  public String lastName;
+}</programlisting>
+    </section>
+  </section>
+
+  <section id="emf_tutorial_checking_contraints_with_check">
+    <title>Checking Constraints with the <emphasis>Check</emphasis>
+    Language</title>
+
+    <para>An alternative to checking constraints with pure Java, is the
+    declarative constraint checking language
+    <emphasis>Check</emphasis><indexterm>
+        <primary>Check</primary>
+
+        <secondary>Language</secondary>
+      </indexterm>. For details of this language take a look at the
+    <emphasis><xref linkend="Check_language" /></emphasis> reference. We will
+    provide a simple example here.</para>
+
+    <section id="emf_tutorial_defining_the_constraint">
+      <title>Defining the constraint</title>
+
+      <para>We start by defining the constraint<indexterm>
+          <primary>Constraint</primary>
+        </indexterm> itself. We create a new file called
+      <filename>checks.chk</filename> in the <filename
+      class="directory">src</filename> folder of our project. It is important
+      that this file resides in the classpath! The file has the following
+      content:</para>
+
+      <programlisting language="check">import data;
+context Attribute ERROR
+   "Names must be more than one char long" :
+   name.length &gt; 1;</programlisting>
+
+      <para>This constraint says that for the metaclass
+      <classname>data::Attribute</classname>, we require that the name be more
+      than one characters long. If this expression evaluates to false, the
+      error message given before the colon will be reported. A checks file can
+      contain any number of such constraints. They will be evaluated for all
+      instances of the respective metaclass.</para>
+
+      <para>To show a somewhat more involved constraint example, this one
+      ensures that the names of the attributes have to be unique:</para>
+
+      <programlisting language="check">context Entity ERROR
+  "Names of Entity attributes must be unique":
+  attribute.forAll(a1| attribute.notExists(a2| a1 != a2 &amp;&amp; a1.name == a2.name ) );</programlisting>
+    </section>
+
+    <section id="emf_tutorial_integration_into_the_workflow_file">
+      <title>Integration into the workflow file</title>
+
+      <para>The following piece of XML is the workflow file we have already
+      used above.</para>
+
+      <programlisting language="xml">&lt;workflow&gt;
+  &lt;property file="workflow.properties"/&gt;
+
+  ..
+
+  &lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
+    &lt;uri value="platform:/resource/${modelFile}" /&gt;
+    ..
+  &lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+      <para>After reading the model, we add an additional component, namely
+      the <emphasis>CheckComponent</emphasis>.</para>
+
+      <programlisting language="xml">&lt;component
+    class="org.eclipse.xtend.check.CheckComponent"&gt;</programlisting>
+
+      <para>As with the code generator, we have to explain to the checker what
+      meta-meta-model and which metamodel we use.</para>
+
+      <programlisting language="xml">  &lt;metaModel id="mm"
+   class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"&gt;
+  &lt;/metaModel&gt;</programlisting>
+
+      <para>We then have to provide the checks file. The component tries to
+      load the file by appending <filename>.chk</filename> to the name and
+      searching the classpath – that is why it has to be located in the
+      classpath.</para>
+
+      <programlisting language="xml">   &lt;checkFile value="checks"/&gt;</programlisting>
+
+      <para>Finally, we have to tell the engine on which model or part of the
+      model the checks should work. In general, you can use the
+      <code>&lt;expressionvalue="..."/&gt;</code> element to define an
+      arbitrary expression on slot contents. For our purpose, where we want to
+      use the complete EMF data structure in the model slot, we can use the
+      shortcut <emphasis>emfAllChildrenSlot</emphasis> property, which returns
+      the complete subtree below the content element of a specific slot,
+      including the slot content element itself.</para>
+
+      <programlisting language="xml">   &lt;emfAllChildrenSlot value="model"/&gt;
+  &lt;/component&gt;</programlisting>
+
+      <para>Running the workflow produces an error in case the length of the
+      name is not greater than one. Again, it makes sense to add the
+      <code>skipOnError="true"</code> to those subsequent component
+      invocations that need to be skipped in case the constraint check found
+      errors (typically code generators or transformers).</para>
+    </section>
+  </section>
+
+  <section id="emf_tutorial_extensions">
+    <title>Extensions</title>
+
+    <para>It is often the case that you need additional properties in the
+    templates; these properties should not be added to the metaclasses
+    directly, since they are often specific to the specific code generation
+    target and thus should not "pollute" the metamodel.</para>
+
+    <para>It is possible to define such extensions<indexterm>
+        <primary>Extension</primary>
+      </indexterm> external to the metaclasses. For details see the
+    <emphasis>Xtend Language Documentation</emphasis>, we provide an simple
+    example here.</para>
+
+    <section id="emf_tutorial_expression_extensions">
+      <title>Expression Extensions</title>
+
+      <para>Assume we wanted to change the <emphasis>Attribute</emphasis>s
+      part of the template as follows:</para>
+
+      <programlisting language="xpand">«FOREACH attribute AS a»
+  private «a.type» «a.name»;
+
+  public void «a.setterName()»( «a.type» value ) {
+    this.«a.name» = value;
+  }
+
+  public «a.type» «a.getterName()»() {
+    return this.«a.name»;
+  }
+«ENDFOREACH»</programlisting>
+
+      <para>To make this work, we need to define the
+      <methodname>setterName()</methodname> and
+      <methodname>getterName()</methodname> operations. We do this by writing
+      a so-called extension file; we call it <filename>java.ext</filename>. It
+      must have the <filename>.ext</filename> suffix to be recognized by
+      Xpand; the <emphasis>Java</emphasis> name is because it contains
+      Java-generation specific properties. We put this file directly into the
+      <filename class="directory">templates</filename> directory under
+      <filename class="directory">src</filename>, i.e. directly next to the
+      <filename>Root.xpt</filename> file. The extension file looks as
+      follows:</para>
+
+      <para>First, we have to import the data metamodel; otherwise we would
+      not be able to use the <emphasis>Attribute</emphasis> metaclass.</para>
+
+      <programlisting language="xtend">import data;</programlisting>
+
+      <para>We can then define the two new operations
+      <methodname>setterName</methodname> and
+      <methodname>getterName</methodname>. Note that they take the type on
+      which they are called as their first parameter, a kind of "explicitly
+      this". After the colon we use an expression that returns the
+      to-be-defined value.</para>
+
+      <programlisting language="xtend">String setterName(Attribute ele) :
+  'set'+ele.name.toFirstUpper();
+
+String getterName(Attribute ele) :
+  'get'+ele.name.toFirstUpper();</programlisting>
+
+      <para>To make these extensions work, we have to add the following line
+      to the beginning of the <filename>Root.xpt</filename> template
+      file:</para>
+
+      <programlisting language="xtend">«EXTENSION templates::java»</programlisting>
+    </section>
+
+    <section id="emf_tutorial_java_extensions">
+      <title>Java Extensions<indexterm>
+          <primary>Java extension</primary>
+        </indexterm></title>
+
+      <para>In case you cannot express the "business logic" for the expression
+      with the expression language, you can fall back to Java. Take a look at
+      the following extension definition file. It is called
+      <filename>util.ext</filename> and is located in <filename
+      class="directory">src/datamodel/generator/util</filename>:</para>
+
+      <programlisting language="xtend">String timestamp() :
+  JAVA datamodel.generator.util.TemplateUtils.timestamp();</programlisting>
+
+      <para>Here, we define an extension that is independent of a specific
+      model element, since it does not have a formal parameter! The
+      implementation of the extension is delegated to a static operation of a
+      Java class. Here is its implementation:</para>
+
+      <programlisting language="xtend">public class TemplateUtils {
+  public static String timestamp() {
+    return String.valueOf( System.currentTimeMillis() );
+  }
+}</programlisting>
+
+      <para>This element can be used independent of any model element – it is
+      available globally.</para>
+
+      <para>Sometimes, it is necessary to access extensions not just from
+      templates and other Xtend files but also from Java code. The following
+      example is of this kind: We want to define properties that derive the
+      name of the implementation class from the entity name itself. The best
+      practice for this use case is to implement the derived property as a
+      Java method, as above. The following piece of code declares properties
+      for <classname>Entity</classname>:</para>
+
+      <programlisting language="xtend">package datamodel;
+
+import data.Entity;
+
+public class EntityHelper {
+
+  public static String className( Entity e ) {
+    return e.getName()+"Implementation";
+  }
+
+  public static String classFileName( Entity e ) {
+    return className(e)+".java";
+  }
+
+}</programlisting>
+
+      <para>In addition, to access the properties from the template files, we
+      define an extension that uses the helper methods. The
+      <filename>helper.ext</filename> file is located right next to the helper
+      class shown above, i.e. in the <package>datamodel</package>
+      package:</para>
+
+      <programlisting language="xtend">import data;
+
+String className( Entity e ) :
+   JAVA datamodel.EntityHelper.className(data.Entity);
+
+String classFileName( Entity e ) :
+   JAVA datamodel.EntityHelper.classFileName(data.Entity);</programlisting>
+
+      <para>In addition to these new properties being accessible from Java
+      code by invoking <code>EntityHelper.className(someEntity)</code>, we can
+      now write the following template:</para>
+
+      <programlisting language="xpand">«EXTENSION templates::java»
+«EXTENSION datamodel::generator::util::util»
+«EXTENSION datamodel::helper»
+
+«DEFINE Root FOR data::DataModel»
+  «EXPAND Entity FOREACH entity»
+«ENDDEFINE»
+
+«DEFINE Entity FOR data::Entity»
+  «FILE classFileName()»
+    // generated at «timestamp()»
+    public abstract class «className()» {
+      «FOREACH attribute AS a»
+        private «a.type» «a.name»;
+        public void «a.setterName()»( «a.type» value ) {
+          this.«a.name» = value;
+        }
+
+        public «a.type» «a.getterName()»() {
+          return this.«a.name»;
+        }
+      «ENDFOREACH»
+    }
+  «ENDFILE»
+«ENDDEFINE»</programlisting>
+
+      <para>For completeness, the following illustration shows the resulting
+      directory and file structure. <figure
+          id="emf_tutorial_what_happened_so_far">
+          <title>What has happened so far</title>
+
+          <mediaobject>
+            <imageobject role="fo">
+              <imagedata fileref="images/emf_tutorial/generator_structure_so_far.png"
+                         scale="80" />
+            </imageobject>
+
+            <imageobject role="html">
+              <imagedata fileref="images/emf_tutorial/generator_structure_so_far.png" />
+            </imageobject>
+          </mediaobject>
+        </figure></para>
+    </section>
+  </section>
+</chapter>

@@ -11,6 +11,7 @@
 package org.eclipse.xtend.shared.ui.core.metamodel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,8 +70,9 @@ public class MetamodelContributorRegistry {
 	}
 
 	public static List<? extends MetamodelContributor> getActiveMetamodelContributors(final IJavaProject project) {
-		final ScopedPreferenceStore scopedPreferenceStore = new ScopedPreferenceStore(new InstanceScope(), Activator
-				.getId());
+		if (Activator.getDefault() == null)
+			return Collections.emptyList();
+		final ScopedPreferenceStore scopedPreferenceStore = new ScopedPreferenceStore(new InstanceScope(), Activator.getId());
 		final IScopeContext[] scopes = { new ProjectScope(project.getProject()), new InstanceScope() };
 		scopedPreferenceStore.setSearchContexts(scopes);
 		fixMetamodelContributorPreferences(scopedPreferenceStore);

@@ -63,6 +63,8 @@ public class AnalysationIssue {
 	private final SyntaxElement element;
 
 	private final AnalysationIssueSeverity severity;
+	
+	private int onLine;
 
 	public AnalysationIssue(final AnalysationIssueType analysationIssueType, final String message,
 			final SyntaxElement element) {
@@ -84,6 +86,23 @@ public class AnalysationIssue {
 			severity = AnalysationIssueSeverity.ERROR;
 		}
 	}
+	
+	public AnalysationIssue(final AnalysationIssueType analysationIssueType, final String message,
+			final SyntaxElement element, boolean warning, int onLine) {
+		if (analysationIssueType == null || message == null || message.length() == 0 || element == null)
+			throw new IllegalArgumentException();
+
+		this.analysationIssueType = analysationIssueType;
+		this.message = message;
+		this.element = element;
+		if (warning) {
+			severity = AnalysationIssueSeverity.WARNING;
+		}
+		else {
+			severity = AnalysationIssueSeverity.ERROR;
+		}
+		this.onLine = onLine;
+	}
 
 	public SyntaxElement getElement() {
 		return element;
@@ -103,6 +122,10 @@ public class AnalysationIssue {
 
 	public boolean isWarning() {
 		return severity == AnalysationIssueSeverity.WARNING;
+	}
+	
+	public int getOnLine() {
+		return onLine;
 	}
 
 	@Override
@@ -130,11 +153,11 @@ public class AnalysationIssue {
 		}
 		AnalysationIssue rhs = (AnalysationIssue) obj;
 		return new EqualsBuilder().append(analysationIssueType, rhs.analysationIssueType).append(element, rhs.element)
-				.append(message, rhs.message).isEquals();
+				.append(message, rhs.message).append(onLine,rhs.getOnLine()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(analysationIssueType).append(element).append(message).toHashCode();
+		return new HashCodeBuilder().append(analysationIssueType).append(element).append(message).append(onLine).toHashCode();
 	}
 }

@@ -91,7 +91,7 @@ public class Advice extends AbstractDefinition implements XpandAdvice {
 	@Override
 	public String toString() {
 		if (_stringRepresentation == null) {
-			_stringRepresentation = getOwner().getFullyQualifiedName() + ": " + getName() + getParamString(false)
+			_stringRepresentation = getName() + getParamString(false)
 					+ " : " + getType().getValue();
 		}
 

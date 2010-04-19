@@ -49,7 +49,7 @@ List testTypeSelectPolymorphism (List p) : p.typeSelect(Person);
 List testTypeSelect (List p) : p.typeSelect(Employee);
 
 List[Person] testSelect (List[Person] p) : p.select (e|e.name.startsWith("D"));
-List[String] testCollect (List[Person] p) : p.collect (e|e.name);
+// List[String] testCollect (List[Person] p) : p.collect (e|e.name);
 List[String] testCollect (List[Person] p) : p.name;
 
 // -----------  BUILTIN TYPES  --------------------
@@ -120,7 +120,7 @@ xpand2::Feature testGetFeature (Object o, String name, List aList) : o.metaType.
 xpand2::Operation testGetOperation (Person p) : p.metaType.getOperation ("call", {"".metaType});
 Object testGetOperationLess (Person p1, Person p2) : p1.metaType.getOperation ("<", {Person}).evaluate (p1, {p2});
 xpand2::Property testGetProperty (Object o, String name) : o.metaType.getProperty (name);
-Boolean testIsInstance (Object o) : Person.isInstance(o);
+// Boolean testIsInstance (Object o) : Person.isInstance(o);
 Object testNewInstance (Object o) : o.metaType.newInstance();
 Boolean testIsAssignableFrom (Object o1, Object o2) : o1.metaType.isAssignableFrom(o2.metaType);
 

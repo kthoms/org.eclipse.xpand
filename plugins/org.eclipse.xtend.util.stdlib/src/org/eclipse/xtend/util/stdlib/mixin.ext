@@ -42,9 +42,6 @@ private Collection all( Object container, xpand2::Type t ):
 	
 private createEmpty( xpand2::Type t ): t.newInstance();
 
-Object getOptionalMixin( Object mixinModel, Object ctx, xpand2::Type t ):
-	getMixin( mixinModel, ctx, t );
-
 private Object getMixin( Object mixinModel, Object ctx, xpand2::Type t ):
 	mixinModel.getEAllContents().selectFirst(e | t.isInstance(e) && e.getName() == ctx.qualifiedName() );
 	

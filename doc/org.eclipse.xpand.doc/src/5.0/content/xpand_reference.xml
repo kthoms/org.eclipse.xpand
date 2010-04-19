@@ -499,11 +499,13 @@ Set[my::Type]
 
    ...
 &lt;/component&gt;</programlisting>
-	<para>The order of the metamodels is importand for the work within the Xpand-editors.
-	The metamodels to work with can be configured inside the <emphasis>Xtend/Xpand</emphasis>
-	-properties dialog. The <emphasis>Activated metamodel contributors</emphasis> table is a 
-	ordered list. The more specific metamodels have to be placed at the top of the list. 
-	</para>
+
+      <para>The order of the metamodels is importand for the work within the
+      Xpand-editors. The metamodels to work with can be configured inside the
+      <emphasis>Xtend/Xpand</emphasis> -properties dialog. The
+      <emphasis>Activated metamodel contributors</emphasis> table is a ordered
+      list. The more specific metamodels have to be placed at the top of the
+      list.</para>
     </section>
 
     <section id="metamodel_reference" xreflabel="Metamodel reference">
@@ -1127,8 +1129,7 @@ true || false // OR
 57278
 // real literals
 3.0
-0.75
-</programlisting>
+0.75</programlisting>
 
         <para>Additionally, we have the common arithmetic operators:</para>
 
@@ -1147,8 +1148,7 @@ true || false // OR
         <programlisting>4 &gt; 5 // greater than
 4 &lt; 5 // smaller than
 4 &gt;= 23 // greater equals than
-4 &lt;= 12 // smaller equals than
-</programlisting>
+4 &lt;= 12 // smaller equals than</programlisting>
       </section>
 
       <section id="r10_expressions_builtin_collections">
@@ -1240,13 +1240,12 @@ true || false // OR
         <para>As shown in the previous section, the
         <methodname>select</methodname> and <methodname>reject</methodname>
         operations always result in a sub-collection of the original
-        collection. Sometimes one wants to specify a collection which is
-        derived from another collection, but which contains objects that are
-        not in the original collection (it is not a sub-collection). In such
-        cases, we can use a <methodname>collect</methodname> operation. The
-        <methodname>collect</methodname> operation uses the same syntax as the
-        <methodname>select</methodname> and <methodname>reject</methodname>
-        and is written like this:</para>
+        collection. Sometimes one wants to apply an operation on all elements
+        of the collection and collect the results of the evaluation in a list.
+        In such cases, we can use a <methodname>collect</methodname>
+        operation. The <methodname>collect</methodname> operation uses the
+        same syntax as the <methodname>select</methodname> and
+        <methodname>reject</methodname> and is written like this:</para>
 
         <programlisting>collection.collect(v | expression-with-v)</programlisting>
 
@@ -1256,7 +1255,9 @@ true || false // OR
         collected in a list. When an iteration is finished the list with all
         results is returned. Example:</para>
 
-        <programlisting>namedElements.collect(ne | ne.name) // returns a list of strings </programlisting>
+        <programlisting>namedElements.collect(ne | ne.name) // returns a list of strings
+namedElements.collect(ne | ne.name.length &gt; 3) // returns a list of boolean
+</programlisting>
       </section>
 
       <section id="r10_expressions_collection_collect_shorthand">
@@ -2195,7 +2196,7 @@ public class Helper {
           </indexterm>, which enables to retrieve detailed runtime information
         on invocation. To use the current ExecutionContext in a Java extension
         the class must implement
-        org.eclipse.xtend.expression.IExecutionContextAware </para>
+        org.eclipse.xtend.expression.IExecutionContextAware</para>
 
         <para><programlisting>public interface IExecutionContextAware {
   void setExecutionContext (ExecutionContext ctx);
@@ -3591,7 +3592,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
           </indexterm> specifies the file encoding to use for reading the
         templates, reading the protected regions and writing the generated
         files. This property defaults to the default file encoding of your
-        JVM. </para>
+        JVM.</para>
 
         <para>In a team that uses different operating systems or locales it is
         a good idea to set the file encoding fixed for the Xpand project and
@@ -3688,12 +3689,12 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         important that generated code looks good, because developers should be
         able to understand it. On the other hand template files should look
         good, too. It is thus best practice to write nice looking template
-        files and not to care how the generated code looks - and then you
-        run a beautifier over the generated code to fix that problem. Of
-        course, if a beautifier is not available, or if white space has
-        syntactical meaning (as in Python), you would have to write your
-        templates with that in mind (using the minus character before closing
-        brackets as described in a preceding section).</para>
+        files and not to care how the generated code looks - and then you run
+        a beautifier over the generated code to fix that problem. Of course,
+        if a beautifier is not available, or if white space has syntactical
+        meaning (as in Python), you would have to write your templates with
+        that in mind (using the minus character before closing brackets as
+        described in a preceding section).</para>
 
         <para>The <emphasis>Xpand</emphasis> workflow component can be
         configured with multiple beautifiers:<programlisting>&lt;beautifier

@@ -1,764 +1,839 @@
 <index>
 <entry keyword=".chk">
-<topic href="help/Check_language.html#N1072A"/>
+<topic href="help/Check_language.html#N10C8F"/>
 </entry>
 <entry keyword=".xpt">
-<topic href="help/xpand_reference_introduction.html#N10B70"/>
+<topic href="help/xpand_reference_introduction.html#N110EE"/>
 </entry>
 <entry keyword="*.ext">
-<topic href="help/Xtend_language.html#N107FE"/>
+<topic href="help/Xtend_language.html#N10D61"/>
 </entry>
 <entry keyword="Advice">
-<topic href="help/Xtend_language.html#N10A06"/>
+<topic href="help/Xtend_language.html#N10F84"/>
 </entry>
 <entry keyword="AdviceContext">
-<topic href="help/Xtend_language.html#N10A4C"/>
+<topic href="help/Xtend_language.html#N10FCA"/>
 </entry>
 <entry keyword="AOP">
-<topic href="help/Xtend_language.html#N109F1"/>
+<topic href="help/Xtend_language.html#N10F6F"/>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N10DE9"/>
+<topic href="help/xpand_reference_introduction.html#N1138D"/>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N10E07"/>
+<topic href="help/xpand_reference_introduction.html#N113AB"/>
 <entry keyword="Join point">
-<topic href="help/xpand_reference_introduction.html#N10E09"/>
+<topic href="help/xpand_reference_introduction.html#N113AD"/>
 </entry>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N10E10"/>
+<topic href="help/xpand_reference_introduction.html#N113B4"/>
 <entry keyword="Point cut">
-<topic href="help/xpand_reference_introduction.html#N10E12"/>
+<topic href="help/xpand_reference_introduction.html#N113B6"/>
 </entry>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N1106D"/>
+<topic href="help/xpand_reference_introduction.html#N11616"/>
 <entry keyword="Workflow">
-<topic href="help/xpand_reference_introduction.html#N1106F"/>
+<topic href="help/xpand_reference_introduction.html#N11618"/>
 </entry>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N10FF8"/>
+<topic href="help/xpand_reference_introduction.html#N115A1"/>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N10FFA"/>
+<topic href="help/xpand_reference_introduction.html#N115A3"/>
 </entry>
 </entry>
 <entry keyword="AROUND">
-<topic href="help/xpand_reference_introduction.html#N10DF3"/>
+<topic href="help/xpand_reference_introduction.html#N11397"/>
 </entry>
 <entry keyword="AROUND">
-<topic href="help/xpand_reference_introduction.html#N1103E"/>
+<topic href="help/xpand_reference_introduction.html#N115E7"/>
 </entry>
 <entry keyword="AROUND">
-<topic href="help/xpand_reference_introduction.html#N11099"/>
+<topic href="help/xpand_reference_introduction.html#N11642"/>
 </entry>
 <entry keyword="Aspect-Oriented Programming">
-<topic href="help/Xtend_language.html#N109EE"/>
+<topic href="help/Xtend_language.html#N10F6C"/>
 </entry>
 <entry keyword="Beautifier">
-<topic href="help/xpand_reference_introduction.html#N10F2D"/>
+<topic href="help/xpand_reference_introduction.html#N114D6"/>
 </entry>
 <entry keyword="Boolean type">
-<topic href="help/r10_typesystem.html#N10127"/>
+<topic href="help/r10_typesystem.html#N10673"/>
 </entry>
 <entry keyword="Built-in type">
-<topic href="help/r10_typesystem.html#N100C8"/>
+<topic href="help/r10_typesystem.html#N10614"/>
 </entry>
 <entry keyword="Built-in type">
-<topic href="help/r10_typesystem.html#N1014D"/>
+<topic href="help/r10_typesystem.html#N10699"/>
 <entry keyword="Collection types">
-<topic href="help/r10_typesystem.html#N1014F"/>
+<topic href="help/r10_typesystem.html#N1069B"/>
 </entry>
 </entry>
 <entry keyword="Built-in type">
-<topic href="help/r10_typesystem.html#N100D6"/>
+<topic href="help/r10_typesystem.html#N10622"/>
 <entry keyword="Object">
-<topic href="help/r10_typesystem.html#N100D8"/>
+<topic href="help/r10_typesystem.html#N10624"/>
 </entry>
 </entry>
 <entry keyword="Built-in type">
-<topic href="help/r10_expressions_language.html#N10476"/>
+<topic href="help/r10_expressions_language.html#N109C7"/>
 <entry keyword="Object">
-<topic href="help/r10_expressions_language.html#N10478"/>
+<topic href="help/r10_expressions_language.html#N109C9"/>
 </entry>
 </entry>
 <entry keyword="Built-in type">
-<topic href="help/r10_typesystem.html#N100F8"/>
+<topic href="help/r10_typesystem.html#N10644"/>
 <entry keyword="Simple type">
-<topic href="help/r10_typesystem.html#N100FA"/>
+<topic href="help/r10_typesystem.html#N10646"/>
 </entry>
 </entry>
 <entry keyword="Built-in type">
-<topic href="help/r10_typesystem.html#N100EA"/>
+<topic href="help/r10_typesystem.html#N10636"/>
 <entry keyword="Void">
-<topic href="help/r10_typesystem.html#N100EC"/>
+<topic href="help/r10_typesystem.html#N10638"/>
 </entry>
 </entry>
 <entry keyword="Built-in type">
-<topic href="help/r10_expressions_language.html#N1047D"/>
+<topic href="help/r10_expressions_language.html#N109CE"/>
 <entry keyword="Void">
-<topic href="help/r10_expressions_language.html#N1047F"/>
+<topic href="help/r10_expressions_language.html#N109D0"/>
 </entry>
 </entry>
 <entry keyword="cached">
-<topic href="help/Xtend_language.html#N108D8"/>
+<topic href="help/Xtend_language.html#N10E41"/>
 </entry>
 <entry keyword="Casting">
-<topic href="help/r10_expressions_language.html#N106FD"/>
+<topic href="help/r10_expressions_language.html#N10C4E"/>
 </entry>
 <entry keyword="CEND">
-<topic href="help/xpand_reference_introduction.html#N10D35"/>
+<topic href="help/xpand_reference_introduction.html#N112D9"/>
 </entry>
 <entry keyword="Check">
-<topic href="help/Check_language.html#N1072D"/>
+<topic href="help/Check_language.html#N10C92"/>
 <entry keyword="File extension">
-<topic href="help/Check_language.html#N1072F"/>
+<topic href="help/Check_language.html#N10C94"/>
 </entry>
 </entry>
 <entry keyword="Check">
-<topic href="help/Check_language.html#N10721"/>
+<topic href="help/emf_tutorial_checking_contraints_with_check.html#N10462"/>
 <entry keyword="Language">
-<topic href="help/Check_language.html#N10723"/>
+<topic href="help/emf_tutorial_checking_contraints_with_check.html#N10464"/>
+</entry>
+</entry>
+<entry keyword="Check">
+<topic href="help/Check_language.html#N10C86"/>
+<entry keyword="Language">
+<topic href="help/Check_language.html#N10C88"/>
 </entry>
 </entry>
 <entry keyword="Classpath">
-<topic href="help/xpand_reference_introduction.html#N10BCF"/>
+<topic href="help/xpand_reference_introduction.html#N1114D"/>
 </entry>
 <entry keyword="collect">
-<topic href="help/r10_expressions_language.html#N10559"/>
+<topic href="help/r10_expressions_language.html#N10AAA"/>
 </entry>
 <entry keyword="collect">
-<topic href="help/r10_expressions_language.html#N10584"/>
+<topic href="help/r10_expressions_language.html#N10AD5"/>
 </entry>
 <entry keyword="Collection">
-<topic href="help/r10_typesystem.html#N10156"/>
+<topic href="help/r10_typesystem.html#N106A2"/>
 </entry>
 <entry keyword="Collection">
-<topic href="help/xpand_reference_introduction.html#N10CD8"/>
+<topic href="help/xpand_reference_introduction.html#N1127C"/>
 </entry>
 <entry keyword="collection type">
-<topic href="help/xpand_reference_introduction.html#N10CA3"/>
+<topic href="help/xpand_reference_introduction.html#N11247"/>
 </entry>
 <entry keyword="Collection type">
-<topic href="help/r10_typesystem.html#N10083"/>
+<topic href="help/r10_typesystem.html#N105CF"/>
 </entry>
 <entry keyword="Constraint">
-<topic href="help/Check_language.html#N1071A"/>
+<topic href="help/emf_tutorial_checking_contraints_with_check.html#N10472"/>
+</entry>
+<entry keyword="Constraint">
+<topic href="help/Check_language.html#N10C7F"/>
 </entry>
 <entry keyword="create">
-<topic href="help/Xtend_language.html#N10932"/>
+<topic href="help/Xtend_language.html#N10EB1"/>
 </entry>
 <entry keyword="Create extension">
-<topic href="help/Xtend_language.html#N10AD7"/>
+<topic href="help/Xtend_language.html#N11055"/>
 </entry>
 <entry keyword="CSTART">
-<topic href="help/xpand_reference_introduction.html#N10D31"/>
+<topic href="help/xpand_reference_introduction.html#N112D5"/>
 </entry>
 <entry keyword="DEFINE">
-<topic href="help/xpand_reference_introduction.html#N10BD7"/>
+<topic href="help/xpand_reference_introduction.html#N11155"/>
+</entry>
+<entry keyword="Dynamic EMF">
+<topic href="help/emf_tutorial_dynamic_emf.html#N1032D"/>
 </entry>
 <entry keyword="EClassifiers">
-<topic href="help/r10_typesystem.html#N10072"/>
+<topic href="help/r10_typesystem.html#N105BE"/>
 </entry>
 <entry keyword="ELSEIF">
-<topic href="help/xpand_reference_introduction.html#N10D09"/>
+<topic href="help/xpand_reference_introduction.html#N112AD"/>
+</entry>
+<entry keyword="EMF">
+<topic href="help/getting_started.html#N10012"/>
 </entry>
 <entry keyword="EmfMetaModel">
-<topic href="help/r10_typesystem.html#N10064"/>
+<topic href="help/emf_tutorial_generating_code.html#N10421"/>
 </entry>
 <entry keyword="EmfMetaModel">
-<topic href="help/r10_typesystem.html#N102D3"/>
+<topic href="help/r10_typesystem.html#N105B0"/>
+</entry>
+<entry keyword="EmfMetaModel">
+<topic href="help/r10_typesystem.html#N10826"/>
+</entry>
+<entry keyword="EmfMetaModel">
+<topic href="help/emf_tutorial_dynamic_emf.html#N1033F"/>
+<entry keyword="metaModelPackage">
+<topic href="help/emf_tutorial_dynamic_emf.html#N10341"/>
+</entry>
 </entry>
 <entry keyword="EMF metamodel">
-<topic href="help/r10_typesystem.html#N10225"/>
+<topic href="help/r10_typesystem.html#N10771"/>
+</entry>
+<entry keyword="EMF project">
+<topic href="help/emf_tutorial_define_metamodel.html#N10065"/>
 </entry>
 <entry keyword="EmfRegistryMetaModel">
-<topic href="help/r10_typesystem.html#N102A3"/>
+<topic href="help/r10_typesystem.html#N107F6"/>
 </entry>
 <entry keyword="Encoding">
-<topic href="help/xpand_reference_introduction.html#N10B7F"/>
+<topic href="help/emf_tutorial_setting_generator_project.html#N1028C"/>
+</entry>
+<entry keyword="Encoding">
+<topic href="help/xpand_reference_introduction.html#N110FD"/>
 </entry>
 <entry keyword="ENDIF">
-<topic href="help/xpand_reference_introduction.html#N10D15"/>
+<topic href="help/xpand_reference_introduction.html#N112B9"/>
 </entry>
 <entry keyword="Enumeration">
-<topic href="help/r10_expressions_language.html#N104B0"/>
+<topic href="help/r10_expressions_language.html#N10A01"/>
 <entry keyword="Literal">
-<topic href="help/r10_expressions_language.html#N104B2"/>
+<topic href="help/r10_expressions_language.html#N10A03"/>
 </entry>
 </entry>
 <entry keyword="EPackages">
-<topic href="help/r10_typesystem.html#N1006E"/>
+<topic href="help/r10_typesystem.html#N105BA"/>
 </entry>
 <entry keyword="ERROR">
-<topic href="help/xpand_reference_introduction.html#N10D7D"/>
+<topic href="help/xpand_reference_introduction.html#N11321"/>
+</entry>
+<entry keyword="ExecutionContext">
+<topic href="help/Xtend_language.html#N10E94"/>
 </entry>
 <entry keyword="exists">
-<topic href="help/r10_expressions_language.html#N105DA"/>
+<topic href="help/r10_expressions_language.html#N10B2B"/>
 </entry>
 <entry keyword="EXPAND">
-<topic href="help/xpand_reference_introduction.html#N10C52"/>
+<topic href="help/xpand_reference_introduction.html#N111D0"/>
 </entry>
 <entry keyword="EXPAND">
-<topic href="help/xpand_reference_introduction.html#N10EC8"/>
+<topic href="help/xpand_reference_introduction.html#N11471"/>
 </entry>
 <entry keyword="Expression">
-<topic href="help/r10_expressions_language.html#N10449"/>
+<topic href="help/r10_expressions_language.html#N1099A"/>
 </entry>
 <entry keyword="Expression">
-<topic href="help/Xtend_language.html#N10946"/>
+<topic href="help/Xtend_language.html#N10EC5"/>
 <entry keyword="cached">
-<topic href="help/Xtend_language.html#N10948"/>
+<topic href="help/Xtend_language.html#N10EC7"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/Xtend_language.html#N1099F"/>
+<topic href="help/Xtend_language.html#N10F1E"/>
 <entry keyword="call">
-<topic href="help/Xtend_language.html#N109A1"/>
+<topic href="help/Xtend_language.html#N10F20"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/r10_expressions_language.html#N1066D"/>
+<topic href="help/r10_expressions_language.html#N10BBE"/>
 <entry keyword="chain">
-<topic href="help/r10_expressions_language.html#N1066F"/>
+<topic href="help/r10_expressions_language.html#N10BC0"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/r10_expressions_language.html#N10688"/>
+<topic href="help/r10_expressions_language.html#N10BD9"/>
 <entry keyword="create">
-<topic href="help/r10_expressions_language.html#N1068A"/>
+<topic href="help/r10_expressions_language.html#N10BDB"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/Xtend_language.html#N10B15"/>
+<topic href="help/Xtend_language.html#N11093"/>
 <entry keyword="create">
-<topic href="help/Xtend_language.html#N10B17"/>
+<topic href="help/Xtend_language.html#N11095"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/r10_expressions_language.html#N10635"/>
+<topic href="help/r10_expressions_language.html#N10B86"/>
 <entry keyword="if">
-<topic href="help/r10_expressions_language.html#N10637"/>
+<topic href="help/r10_expressions_language.html#N10B88"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/r10_expressions_language.html#N1069A"/>
+<topic href="help/r10_expressions_language.html#N10BEB"/>
 <entry keyword="let">
-<topic href="help/r10_expressions_language.html#N1069C"/>
+<topic href="help/r10_expressions_language.html#N10BED"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/xpand_reference_introduction.html#N10CBB"/>
+<topic href="help/xpand_reference_introduction.html#N1125F"/>
 <entry keyword="separator">
-<topic href="help/xpand_reference_introduction.html#N10CBD"/>
+<topic href="help/xpand_reference_introduction.html#N11261"/>
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/r10_expressions_language.html#N1064F"/>
+<topic href="help/r10_expressions_language.html#N10BA0"/>
 <entry keyword="switch">
-<topic href="help/r10_expressions_language.html#N10651"/>
+<topic href="help/r10_expressions_language.html#N10BA2"/>
 </entry>
 </entry>
 <entry keyword="Expression language">
-<topic href="help/r10_expressions_language.html#N1044E"/>
+<topic href="help/r10_expressions_language.html#N1099F"/>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N1083D"/>
+<topic href="help/emf_tutorial_extensions.html#N104C0"/>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N108CE"/>
+<topic href="help/Xtend_language.html#N10DA0"/>
+</entry>
+<entry keyword="Extension">
+<topic href="help/Xtend_language.html#N10E37"/>
 <entry keyword="caching">
-<topic href="help/Xtend_language.html#N108D0"/>
+<topic href="help/Xtend_language.html#N10E39"/>
 </entry>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N1092D"/>
+<topic href="help/Xtend_language.html#N10EAC"/>
 <entry keyword="create">
-<topic href="help/Xtend_language.html#N1092F"/>
+<topic href="help/Xtend_language.html#N10EAE"/>
 </entry>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N10AD2"/>
+<topic href="help/Xtend_language.html#N11050"/>
 <entry keyword="create">
-<topic href="help/Xtend_language.html#N10AD4"/>
+<topic href="help/Xtend_language.html#N11052"/>
 </entry>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N10862"/>
+<topic href="help/Xtend_language.html#N10DC5"/>
 <entry keyword="invocation">
-<topic href="help/Xtend_language.html#N10864"/>
+<topic href="help/Xtend_language.html#N10DC7"/>
 </entry>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N108FE"/>
+<topic href="help/Xtend_language.html#N10E67"/>
 <entry keyword="Java">
-<topic href="help/Xtend_language.html#N10900"/>
+<topic href="help/Xtend_language.html#N10E69"/>
 </entry>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N108E9"/>
+<topic href="help/Xtend_language.html#N10E52"/>
 <entry keyword="private">
-<topic href="help/Xtend_language.html#N108EB"/>
+<topic href="help/Xtend_language.html#N10E54"/>
 </entry>
 </entry>
 <entry keyword="Extension">
-<topic href="help/Xtend_language.html#N108C1"/>
+<topic href="help/Xtend_language.html#N10E2A"/>
 <entry keyword="recursion">
-<topic href="help/Xtend_language.html#N108C3"/>
+<topic href="help/Xtend_language.html#N10E2C"/>
 </entry>
 </entry>
 <entry keyword="EXTENSION">
-<topic href="help/xpand_reference_introduction.html#N10BBA"/>
+<topic href="help/xpand_reference_introduction.html#N11138"/>
 </entry>
 <entry keyword="FILE">
-<topic href="help/xpand_reference_introduction.html#N10C38"/>
+<topic href="help/xpand_reference_introduction.html#N111B6"/>
 </entry>
 <entry keyword="File encoding">
-<topic href="help/xpand_reference_introduction.html#N10E8C"/>
+<topic href="help/xpand_reference_introduction.html#N11430"/>
 </entry>
 <entry keyword="File extension">
-<topic href="help/xpand_reference_introduction.html#N10B6A"/>
+<topic href="help/xpand_reference_introduction.html#N110E8"/>
 <entry keyword=".xpt">
-<topic href="help/xpand_reference_introduction.html#N10B6C"/>
+<topic href="help/xpand_reference_introduction.html#N110EA"/>
 </entry>
 </entry>
 <entry keyword="FOR">
-<topic href="help/xpand_reference_introduction.html#N10C83"/>
+<topic href="help/xpand_reference_introduction.html#N11227"/>
 </entry>
 <entry keyword="forAll">
-<topic href="help/r10_expressions_language.html#N105A8"/>
+<topic href="help/r10_expressions_language.html#N10AF9"/>
 </entry>
 <entry keyword="FOREACH">
-<topic href="help/xpand_reference_introduction.html#N10C86"/>
+<topic href="help/xpand_reference_introduction.html#N1122A"/>
 </entry>
 <entry keyword="Generator">
-<topic href="help/xpand_reference_introduction.html#N10E9A"/>
+<topic href="help/xpand_reference_introduction.html#N1143E"/>
 <entry keyword="fileEncoding property">
-<topic href="help/xpand_reference_introduction.html#N10E9C"/>
+<topic href="help/xpand_reference_introduction.html#N11440"/>
 </entry>
 </entry>
 <entry keyword="Generator">
-<topic href="help/xpand_reference_introduction.html#N10EA8"/>
+<topic href="help/xpand_reference_introduction.html#N11451"/>
 <entry keyword="Metamodel configuration">
-<topic href="help/xpand_reference_introduction.html#N10EAA"/>
+<topic href="help/xpand_reference_introduction.html#N11453"/>
 </entry>
 </entry>
 <entry keyword="Generator">
-<topic href="help/xpand_reference_introduction.html#N10E70"/>
+<topic href="help/xpand_reference_introduction.html#N11414"/>
 <entry keyword="Workflow component">
-<topic href="help/xpand_reference_introduction.html#N10E72"/>
+<topic href="help/xpand_reference_introduction.html#N11416"/>
 </entry>
+</entry>
+<entry keyword="Genmodel">
+<topic href="help/emf_tutorial_generate_emf_tooling.html#N101F3"/>
 </entry>
 <entry keyword="GLOBALVAR">
-<topic href="help/r10_expressions_language.html#N106B3"/>
+<topic href="help/r10_expressions_language.html#N10C04"/>
 </entry>
 <entry keyword="Global variables">
-<topic href="help/r10_expressions_language.html#N106C6"/>
+<topic href="help/r10_expressions_language.html#N10C17"/>
 </entry>
 <entry keyword="Guard conditions">
-<topic href="help/Check_language.html#N10785"/>
+<topic href="help/Check_language.html#N10CEA"/>
 </entry>
 <entry keyword="Guillemet">
-<topic href="help/xpand_reference_introduction.html#N10B50"/>
+<topic href="help/emf_tutorial_generating_code.html#N103F6"/>
 </entry>
 <entry keyword="Guillemet">
-<topic href="help/xpand_reference_introduction.html#N10E93"/>
+<topic href="help/xpand_reference_introduction.html#N110CE"/>
+</entry>
+<entry keyword="Guillemet">
+<topic href="help/xpand_reference_introduction.html#N11437"/>
+</entry>
+<entry keyword="IExecutionContextAware">
+<topic href="help/Xtend_language.html#N10E8F"/>
 </entry>
 <entry keyword="IF">
-<topic href="help/xpand_reference_introduction.html#N10CFF"/>
+<topic href="help/xpand_reference_introduction.html#N112A3"/>
 </entry>
 <entry keyword="import">
-<topic href="help/Xtend_language.html#N1082E"/>
+<topic href="help/Xtend_language.html#N10D91"/>
 </entry>
 <entry keyword="IMPORT">
-<topic href="help/xpand_reference_introduction.html#N10BA8"/>
+<topic href="help/xpand_reference_introduction.html#N11126"/>
 </entry>
 <entry keyword="Integer type">
-<topic href="help/r10_typesystem.html#N10132"/>
+<topic href="help/r10_typesystem.html#N1067E"/>
 </entry>
 <entry keyword="ITERATOR">
-<topic href="help/xpand_reference_introduction.html#N10CE7"/>
+<topic href="help/xpand_reference_introduction.html#N1128B"/>
 </entry>
 <entry keyword="JavaBeansMetaModel">
-<topic href="help/Xtend_language.html#N109AF"/>
+<topic href="help/Xtend_language.html#N10F2E"/>
 </entry>
 <entry keyword="JavaBeansStrategy">
-<topic href="help/Xtend_language.html#N109C7"/>
+<topic href="help/Xtend_language.html#N10F46"/>
 </entry>
 <entry keyword="JavaBeautifier">
-<topic href="help/xpand_reference_introduction.html#N10F53"/>
+<topic href="help/xpand_reference_introduction.html#N114FC"/>
 </entry>
 <entry keyword="Java extension">
-<topic href="help/Xtend_language.html#N108FB"/>
+<topic href="help/emf_tutorial_extensions.html#N1050E"/>
+</entry>
+<entry keyword="Java extension">
+<topic href="help/Xtend_language.html#N10E64"/>
 </entry>
 <entry keyword="JavaMetaModel">
-<topic href="help/r10_typesystem.html#N101B5"/>
+<topic href="help/r10_typesystem.html#N10701"/>
 </entry>
 <entry keyword="JavaMetaModel">
-<topic href="help/r10_typesystem.html#N103DA"/>
+<topic href="help/r10_typesystem.html#N1092B"/>
 </entry>
 <entry keyword="JavaMetaModel">
-<topic href="help/Xtend_language.html#N109C1"/>
+<topic href="help/Xtend_language.html#N10F40"/>
 </entry>
 <entry keyword="join point">
-<topic href="help/xpand_reference_introduction.html#N11032"/>
+<topic href="help/xpand_reference_introduction.html#N115DB"/>
 </entry>
 <entry keyword="Join point">
-<topic href="help/Xtend_language.html#N10A1D"/>
+<topic href="help/Xtend_language.html#N10F9B"/>
 </entry>
 <entry keyword="Join point">
-<topic href="help/Xtend_language.html#N10A68"/>
+<topic href="help/Xtend_language.html#N10FE6"/>
 </entry>
 <entry keyword="Join point">
-<topic href="help/xpand_reference_introduction.html#N10E04"/>
+<topic href="help/xpand_reference_introduction.html#N113A8"/>
+</entry>
+<entry keyword="Keyword">
+<topic href="help/r10_expressions_language.html#N10C5C"/>
+<entry keyword="Property">
+<topic href="help/r10_expressions_language.html#N10C5E"/>
+</entry>
 </entry>
 <entry keyword="LET">
-<topic href="help/xpand_reference_introduction.html#N10D64"/>
+<topic href="help/xpand_reference_introduction.html#N11308"/>
 </entry>
 <entry keyword="LET">
-<topic href="help/xpand_reference_introduction.html#N10D70"/>
+<topic href="help/xpand_reference_introduction.html#N11314"/>
 </entry>
 <entry keyword="List">
-<topic href="help/r10_typesystem.html#N1015F"/>
+<topic href="help/r10_typesystem.html#N106AB"/>
 </entry>
 <entry keyword="Literals">
-<topic href="help/r10_expressions_language.html#N1046C"/>
+<topic href="help/r10_expressions_language.html#N109BD"/>
+</entry>
+<entry keyword="meta-metamodel">
+<topic href="help/emf_tutorial_generate_emf_tooling.html#N101ED"/>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N101E2"/>
+<topic href="help/r10_typesystem.html#N1072E"/>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N1023A"/>
+<topic href="help/r10_typesystem.html#N10786"/>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N10280"/>
+<topic href="help/r10_typesystem.html#N107D4"/>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/Xtend_language.html#N107F2"/>
+<topic href="help/Xtend_language.html#N10D55"/>
 <entry keyword="(non-invasive) extension">
-<topic href="help/Xtend_language.html#N107F4"/>
+<topic href="help/Xtend_language.html#N10D57"/>
 </entry>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N102CE"/>
+<topic href="help/r10_typesystem.html#N10821"/>
 <entry keyword="EMF">
-<topic href="help/r10_typesystem.html#N102D0"/>
+<topic href="help/r10_typesystem.html#N10823"/>
 </entry>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N1029E"/>
+<topic href="help/r10_typesystem.html#N107F1"/>
 <entry keyword="EMF Registry">
-<topic href="help/r10_typesystem.html#N102A0"/>
+<topic href="help/r10_typesystem.html#N107F3"/>
 </entry>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N10424"/>
+<topic href="help/r10_typesystem.html#N10975"/>
 <entry keyword="Implementing metamodels">
-<topic href="help/r10_typesystem.html#N10426"/>
+<topic href="help/r10_typesystem.html#N10977"/>
 </entry>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N103D5"/>
+<topic href="help/r10_typesystem.html#N10926"/>
 <entry keyword="Java">
-<topic href="help/r10_typesystem.html#N103D7"/>
+<topic href="help/r10_typesystem.html#N10928"/>
 </entry>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N10321"/>
+<topic href="help/r10_typesystem.html#N10872"/>
 <entry keyword="UML2">
-<topic href="help/r10_typesystem.html#N10323"/>
+<topic href="help/r10_typesystem.html#N10874"/>
 </entry>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N10358"/>
+<topic href="help/r10_typesystem.html#N108A9"/>
 <entry keyword="UML2">
-<topic href="help/r10_typesystem.html#N1035A"/>
+<topic href="help/r10_typesystem.html#N108AB"/>
 </entry>
 </entry>
 <entry keyword="Metamodel">
-<topic href="help/r10_typesystem.html#N103EC"/>
+<topic href="help/r10_typesystem.html#N1093D"/>
 <entry keyword="XSD">
-<topic href="help/r10_typesystem.html#N103EE"/>
+<topic href="help/r10_typesystem.html#N1093F"/>
 </entry>
 </entry>
 <entry keyword="MetaModel">
-<topic href="help/r10_typesystem.html#N1005E"/>
+<topic href="help/r10_typesystem.html#N105AA"/>
 </entry>
 <entry keyword="MetamodelContributor">
-<topic href="help/r10_typesystem.html#N101EE"/>
+<topic href="help/r10_typesystem.html#N1073A"/>
 </entry>
 <entry keyword="Metamodel implementation">
-<topic href="help/r10_typesystem.html#N10191"/>
+<topic href="help/r10_typesystem.html#N106DD"/>
 </entry>
 <entry keyword="Model-to-model transformation">
-<topic href="help/Xtend_language.html#N10A81"/>
+<topic href="help/Xtend_language.html#N10FFF"/>
 </entry>
 <entry keyword="Model transformation">
-<topic href="help/Xtend_language.html#N10926"/>
+<topic href="help/Xtend_language.html#N10EA5"/>
 </entry>
 <entry keyword="Multiple dispatching">
-<topic href="help/r10_expressions_language.html#N106E3"/>
+<topic href="help/r10_expressions_language.html#N10C34"/>
 </entry>
 <entry keyword="Namespace">
-<topic href="help/xpand_reference_introduction.html#N10C71"/>
+<topic href="help/xpand_reference_introduction.html#N111EF"/>
 <entry keyword="Import">
-<topic href="help/xpand_reference_introduction.html#N10C73"/>
+<topic href="help/xpand_reference_introduction.html#N111F1"/>
 </entry>
 </entry>
 <entry keyword="Newline">
-<topic href="help/xpand_reference_introduction.html#N10DDF"/>
+<topic href="help/xpand_reference_introduction.html#N11383"/>
 </entry>
 <entry keyword="NoChangesVetoStrategy">
-<topic href="help/xpand_reference_introduction.html#N10FD8"/>
+<topic href="help/xpand_reference_introduction.html#N11581"/>
 </entry>
 <entry keyword="OCL">
-<topic href="help/r10_expressions_language.html#N10452"/>
+<topic href="help/r10_expressions_language.html#N109A3"/>
+</entry>
+<entry keyword="ONFILECLOSE">
+<topic href="help/xpand_reference_introduction.html#N11202"/>
 </entry>
 <entry keyword="Operation">
-<topic href="help/r10_typesystem.html#N101A3"/>
+<topic href="help/r10_typesystem.html#N106EF"/>
 </entry>
 <entry keyword="Outlet">
-<topic href="help/xpand_reference_introduction.html#N10C43"/>
+<topic href="help/xpand_reference_introduction.html#N111C1"/>
 </entry>
 <entry keyword="Outlet">
-<topic href="help/xpand_reference_introduction.html#N10EF1"/>
+<topic href="help/xpand_reference_introduction.html#N1149A"/>
 </entry>
 <entry keyword="Point cut">
-<topic href="help/Xtend_language.html#N10A21"/>
+<topic href="help/Xtend_language.html#N10F9F"/>
 </entry>
 <entry keyword="Point cut">
-<topic href="help/xpand_reference_introduction.html#N10E0D"/>
+<topic href="help/xpand_reference_introduction.html#N113B1"/>
 </entry>
 <entry keyword="Polymorphism">
-<topic href="help/Xtend_language.html#N1089A"/>
+<topic href="help/Xtend_language.html#N10E03"/>
 </entry>
 <entry keyword="Polymorphism">
-<topic href="help/xpand_reference_introduction.html#N10BF7"/>
+<topic href="help/xpand_reference_introduction.html#N11175"/>
 </entry>
 <entry keyword="PostProcessor">
-<topic href="help/xpand_reference_introduction.html#N10F40"/>
+<topic href="help/xpand_reference_introduction.html#N114E9"/>
 </entry>
 <entry keyword="private">
-<topic href="help/Xtend_language.html#N108F0"/>
+<topic href="help/Xtend_language.html#N10E59"/>
 </entry>
 <entry keyword="proceed">
-<topic href="help/Xtend_language.html#N10A52"/>
+<topic href="help/Xtend_language.html#N10FD0"/>
 </entry>
 <entry keyword="ProfileMetaModel">
-<topic href="help/r10_typesystem.html#N1035D"/>
+<topic href="help/r10_typesystem.html#N108AE"/>
 </entry>
 <entry keyword="property">
-<topic href="help/r10_typesystem.html#N1019F"/>
+<topic href="help/r10_typesystem.html#N106EB"/>
 </entry>
 <entry keyword="PROTECT">
-<topic href="help/xpand_reference_introduction.html#N10D25"/>
+<topic href="help/xpand_reference_introduction.html#N112C9"/>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N10D2A"/>
+<topic href="help/xpand_reference_introduction.html#N112CE"/>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N10F75"/>
+<topic href="help/xpand_reference_introduction.html#N1151E"/>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N10D50"/>
+<topic href="help/xpand_reference_introduction.html#N112F4"/>
 <entry keyword="Disable">
-<topic href="help/xpand_reference_introduction.html#N10D52"/>
+<topic href="help/xpand_reference_introduction.html#N112F6"/>
 </entry>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N10D4A"/>
+<topic href="help/xpand_reference_introduction.html#N112EE"/>
 <entry keyword="Enable">
-<topic href="help/xpand_reference_introduction.html#N10D4C"/>
+<topic href="help/xpand_reference_introduction.html#N112F0"/>
 </entry>
 </entry>
 <entry keyword="prSrcPaths">
-<topic href="help/xpand_reference_introduction.html#N10F7E"/>
+<topic href="help/xpand_reference_introduction.html#N11527"/>
 </entry>
 <entry keyword="Real type">
-<topic href="help/r10_typesystem.html#N10138"/>
+<topic href="help/r10_typesystem.html#N10684"/>
 </entry>
 <entry keyword="Recursive extensions">
-<topic href="help/Xtend_language.html#N108BE"/>
+<topic href="help/Xtend_language.html#N10E27"/>
 </entry>
 <entry keyword="Reexport">
-<topic href="help/Xtend_language.html#N1084E"/>
+<topic href="help/Xtend_language.html#N10DB1"/>
 </entry>
 <entry keyword="reject">
-<topic href="help/r10_expressions_language.html#N10537"/>
+<topic href="help/r10_expressions_language.html#N10A88"/>
 </entry>
 <entry keyword="REM">
-<topic href="help/xpand_reference_introduction.html#N10D9C"/>
+<topic href="help/xpand_reference_introduction.html#N11340"/>
 </entry>
 <entry keyword="Return type">
-<topic href="help/Xtend_language.html#N1087D"/>
+<topic href="help/Xtend_language.html#N10DE0"/>
 </entry>
 <entry keyword="select">
-<topic href="help/r10_expressions_language.html#N10505"/>
+<topic href="help/r10_expressions_language.html#N10A56"/>
 </entry>
 <entry keyword="SEPARATOR">
-<topic href="help/xpand_reference_introduction.html#N10CAD"/>
+<topic href="help/xpand_reference_introduction.html#N11251"/>
 </entry>
 <entry keyword="Set type">
-<topic href="help/r10_typesystem.html#N10165"/>
+<topic href="help/r10_typesystem.html#N106B1"/>
+</entry>
+<entry keyword="SlotCopier">
+<topic href="help/ch04s03.html#N12685"/>
+</entry>
+<entry keyword="SlotListAdder">
+<topic href="help/ch04s03.html#N126D0"/>
+</entry>
+<entry keyword="SlotPrinter">
+<topic href="help/ch04s03.html#N1271F"/>
 </entry>
 <entry keyword="sortBy">
-<topic href="help/r10_expressions_language.html#N1060C"/>
+<topic href="help/r10_expressions_language.html#N10B5D"/>
 </entry>
 <entry keyword="String type">
-<topic href="help/r10_typesystem.html#N10110"/>
+<topic href="help/r10_typesystem.html#N1065C"/>
+</entry>
+<entry keyword="SystemCommand">
+<topic href="help/ch04s03.html#N12624"/>
 </entry>
 <entry keyword="Template">
-<topic href="help/xpand_reference_introduction.html#N10B74"/>
+<topic href="help/xpand_reference_introduction.html#N110F2"/>
 <entry keyword="File">
-<topic href="help/xpand_reference_introduction.html#N10B76"/>
+<topic href="help/xpand_reference_introduction.html#N110F4"/>
 </entry>
 </entry>
 <entry keyword="Template">
-<topic href="help/xpand_reference_introduction.html#N10BE2"/>
+<topic href="help/xpand_reference_introduction.html#N11160"/>
 <entry keyword="File">
-<topic href="help/xpand_reference_introduction.html#N10BE4"/>
+<topic href="help/xpand_reference_introduction.html#N11162"/>
 </entry>
 </entry>
 <entry keyword="Template">
-<topic href="help/xpand_reference_introduction.html#N10BFB"/>
+<topic href="help/xpand_reference_introduction.html#N11179"/>
 <entry keyword="Polymorphism">
-<topic href="help/xpand_reference_introduction.html#N10BFD"/>
+<topic href="help/xpand_reference_introduction.html#N1117B"/>
 </entry>
 </entry>
 <entry keyword="Transformation">
-<topic href="help/Xtend_language.html#N10AE4"/>
+<topic href="help/Xtend_language.html#N11062"/>
 </entry>
 <entry keyword="Type">
-<topic href="help/r10_typesystem.html#N1002D"/>
+<topic href="help/r10_typesystem.html#N10579"/>
 <entry keyword="Data type">
-<topic href="help/r10_typesystem.html#N1002F"/>
+<topic href="help/r10_typesystem.html#N1057B"/>
 </entry>
 </entry>
 <entry keyword="Type">
-<topic href="help/r10_typesystem.html#N100B5"/>
+<topic href="help/r10_typesystem.html#N10601"/>
 <entry keyword="Operation">
-<topic href="help/r10_typesystem.html#N100B7"/>
+<topic href="help/r10_typesystem.html#N10603"/>
 </entry>
 </entry>
 <entry keyword="Type">
-<topic href="help/Xtend_language.html#N10A39"/>
+<topic href="help/Xtend_language.html#N10FB7"/>
 <entry keyword="Parameter">
-<topic href="help/Xtend_language.html#N10A3B"/>
+<topic href="help/Xtend_language.html#N10FB9"/>
 </entry>
 </entry>
 <entry keyword="Type">
-<topic href="help/r10_typesystem.html#N10033"/>
+<topic href="help/r10_typesystem.html#N1057F"/>
 <entry keyword="Parameterized type">
-<topic href="help/r10_typesystem.html#N10035"/>
+<topic href="help/r10_typesystem.html#N10581"/>
 </entry>
 </entry>
 <entry keyword="Type">
-<topic href="help/r10_typesystem.html#N100AD"/>
+<topic href="help/r10_typesystem.html#N105F9"/>
 <entry keyword="Property">
-<topic href="help/r10_typesystem.html#N100AF"/>
+<topic href="help/r10_typesystem.html#N105FB"/>
 </entry>
 </entry>
 <entry keyword="Type">
-<topic href="help/r10_typesystem.html#N100BE"/>
+<topic href="help/r10_typesystem.html#N1060A"/>
 <entry keyword="Static property">
-<topic href="help/r10_typesystem.html#N100C0"/>
+<topic href="help/r10_typesystem.html#N1060C"/>
 </entry>
 </entry>
 <entry keyword="Type">
-<topic href="help/r10_expressions_language.html#N104AA"/>
+<topic href="help/r10_expressions_language.html#N109FB"/>
 <entry keyword="Static property">
-<topic href="help/r10_expressions_language.html#N104AC"/>
+<topic href="help/r10_expressions_language.html#N109FD"/>
 </entry>
 </entry>
 <entry keyword="Type inference">
-<topic href="help/Xtend_language.html#N10878"/>
+<topic href="help/Xtend_language.html#N10DDB"/>
 </entry>
 <entry keyword="typeSelect">
-<topic href="help/r10_expressions_language.html#N10524"/>
+<topic href="help/r10_expressions_language.html#N10A75"/>
 </entry>
 <entry keyword="typeSelect">
-<topic href="help/xpand_reference_introduction.html#N10EDE"/>
+<topic href="help/xpand_reference_introduction.html#N11487"/>
 </entry>
 <entry keyword="UML2MetaModel">
-<topic href="help/r10_typesystem.html#N10326"/>
+<topic href="help/r10_typesystem.html#N10877"/>
 </entry>
 <entry keyword="VetoStrategy">
-<topic href="help/xpand_reference_introduction.html#N10F95"/>
+<topic href="help/xpand_reference_introduction.html#N1153E"/>
 </entry>
 <entry keyword="Weaving advices">
-<topic href="help/Xtend_language.html#N109FB"/>
+<topic href="help/Xtend_language.html#N10F79"/>
 </entry>
 <entry keyword="Whitespace">
-<topic href="help/xpand_reference_introduction.html#N10DCE"/>
+<topic href="help/xpand_reference_introduction.html#N11372"/>
 <entry keyword="Omit">
-<topic href="help/xpand_reference_introduction.html#N10DD0"/>
+<topic href="help/xpand_reference_introduction.html#N11374"/>
 </entry>
 </entry>
 <entry keyword="WorkflowComponent">
-<topic href="help/Xtend_language.html#N109D4"/>
+<topic href="help/Xtend_language.html#N10F53"/>
+</entry>
+<entry keyword="XMI">
+<topic href="help/emf_tutorial_define_metamodel.html#N101DE"/>
 </entry>
 <entry keyword="XMIReader">
-<topic href="help/r10_typesystem.html#N10393"/>
+<topic href="help/r10_typesystem.html#N108E4"/>
 </entry>
 <entry keyword="XMI reader">
-<topic href="help/r10_typesystem.html#N10390"/>
+<topic href="help/r10_typesystem.html#N108E1"/>
 </entry>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N10D92"/>
+<topic href="help/xpand_reference_introduction.html#N11336"/>
 <entry keyword="Comments">
-<topic href="help/xpand_reference_introduction.html#N10D94"/>
+<topic href="help/xpand_reference_introduction.html#N11338"/>
 </entry>
 </entry>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N10DA6"/>
+<topic href="help/xpand_reference_introduction.html#N1134A"/>
 <entry keyword="Expression statements">
-<topic href="help/xpand_reference_introduction.html#N10DA8"/>
+<topic href="help/xpand_reference_introduction.html#N1134C"/>
 </entry>
 </entry>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N10B43"/>
+<topic href="help/xpand_reference_introduction.html#N110C1"/>
 <entry keyword="Language">
-<topic href="help/xpand_reference_introduction.html#N10B45"/>
+<topic href="help/xpand_reference_introduction.html#N110C3"/>
 </entry>
 </entry>
 <entry keyword="XpandException">
-<topic href="help/xpand_reference_introduction.html#N10D87"/>
+<topic href="help/xpand_reference_introduction.html#N1132B"/>
 </entry>
 <entry keyword="XSDMetaModel">
-<topic href="help/r10_typesystem.html#N103F1"/>
+<topic href="help/r10_typesystem.html#N10942"/>
 </entry>
 <entry keyword="Xtend">
-<topic href="help/xpand_reference_introduction.html#N10BC3"/>
+<topic href="help/xpand_reference_introduction.html#N11141"/>
 </entry>
 <entry keyword="Xtend">
-<topic href="help/Xtend_language.html#N1081C"/>
+<topic href="help/Xtend_language.html#N10D7F"/>
 <entry keyword="Comments">
-<topic href="help/Xtend_language.html#N1081E"/>
+<topic href="help/Xtend_language.html#N10D81"/>
 </entry>
 </entry>
 <entry keyword="Xtend">
-<topic href="help/Xtend_language.html#N10802"/>
+<topic href="help/Xtend_language.html#N10D65"/>
 <entry keyword="File extension">
-<topic href="help/Xtend_language.html#N10804"/>
+<topic href="help/Xtend_language.html#N10D67"/>
 </entry>
 </entry>
 <entry keyword="Xtend">
-<topic href="help/Xtend_language.html#N107E3"/>
+<topic href="help/Xtend_language.html#N10D46"/>
 <entry keyword="Language">
-<topic href="help/Xtend_language.html#N107E5"/>
+<topic href="help/Xtend_language.html#N10D48"/>
 </entry>
 </entry>
 <entry keyword="XtendComponent">
-<topic href="help/Xtend_language.html#N109DF"/>
+<topic href="help/Xtend_language.html#N10F5E"/>
 </entry>
 <entry keyword="XtendComponent">
-<topic href="help/Xtend_language.html#N10A6E"/>
+<topic href="help/Xtend_language.html#N10FEC"/>
 <entry keyword="Advices">
-<topic href="help/Xtend_language.html#N10A70"/>
+<topic href="help/Xtend_language.html#N10FEE"/>
 </entry>
 </entry>
 <entry keyword="XtendFacade">
-<topic href="help/Xtend_language.html#N10998"/>
+<topic href="help/Xtend_language.html#N10F17"/>
 </entry>
 </index>

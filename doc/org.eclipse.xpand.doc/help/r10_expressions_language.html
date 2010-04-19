@@ -10,7 +10,7 @@
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">ExpressionsExpression</h1>
-<p>The expression sub-language<a name="N1044D" class="indexterm"/> is a syntactical mixture of Java and OCL<a name="N10451" class="indexterm"/>. This documentation provides a detailed description of each
+<p>The expression sub-language<a name="N1099E" class="indexterm"/> is a syntactical mixture of Java and OCL<a name="N109A2" class="indexterm"/>. This documentation provides a detailed description of each
     available expression. Let us start with some simple examples.</p>
 <p>Accessing a property:</p>
 <pre class="programlisting">myModelElement.name</pre>
@@ -29,14 +29,14 @@
 </div>
 </div>
 </div>
-<p>There are several literals<a name="N1046B" class="indexterm"/> for built-in types:</p>
+<p>There are several literals<a name="N109BC" class="indexterm"/> for built-in types:</p>
 <div class="section" title="Object">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
 <a name="r10_expressions_builtin_object"/>
-<code class="classname">Object</code> <a name="N10475" class="indexterm"/> <a name="N1047C" class="indexterm"/>
+<code class="classname">Object</code> <a name="N109C6" class="indexterm"/> <a name="N109CD" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -87,7 +87,7 @@ my::special::Type // evaluates to the type 'my::special::Type'</pre>
 </div>
 </div>
 </div>
-<p>The literal for static properties<a name="N104A9" class="indexterm"/> (aka enum literals<a name="N104AF" class="indexterm"/>) is correlative to type literals:</p>
+<p>The literal for static properties<a name="N109FA" class="indexterm"/> (aka enum literals<a name="N10A00" class="indexterm"/>) is correlative to type literals:</p>
 <pre class="programlisting">my::Color::RED</pre>
 </div>
 <div class="section" title="String">
@@ -147,8 +147,7 @@ true || false // OR
 57278
 // real literals
 3.0
-0.75
-</pre>
+0.75</pre>
 <p>Additionally, we have the common arithmetic operators:</p>
 <pre class="programlisting">3 + 4  // addition
 4 - 5  // subtraction
@@ -163,8 +162,7 @@ true || false // OR
 <pre class="programlisting">4 &gt; 5 // greater than
 4 &lt; 5 // smaller than
 4 &gt;= 23 // greater equals than
-4 &lt;= 12 // smaller equals than
-</pre>
+4 &lt;= 12 // smaller equals than</pre>
 </div>
 <div class="section" title="Collections">
 <div class="titlepage">
@@ -194,17 +192,17 @@ true || false // OR
 </div>
 <p>Like OCL, the <span class="emphasis">
 <em>Xpand</em>
-</span> expression sub-language defines several special
-      operations on collections. However, those operations are not members of
-      the type system, therefore you cannot use them in a reflective
-      manner.</p>
+</span> expression sub-language
+      defines several special operations on collections. However, those
+      operations are not members of the type system, therefore you cannot use
+      them in a reflective manner.</p>
 <div class="section" title="select">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
 <a name="r10_expressions_collection_select"/>
-<code class="methodname">select<a name="N10504" class="indexterm"/>
+<code class="methodname">select<a name="N10A55" class="indexterm"/>
 </code>
 </h4>
 </div>
@@ -231,7 +229,7 @@ true || false // OR
 <div>
 <h4 class="title">
 <a name="r10_expressions_collection_typeselect"/>
-<code class="methodname">typeSelect</code> <a name="N10523" class="indexterm"/>
+<code class="methodname">typeSelect</code> <a name="N10A74" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -251,7 +249,7 @@ true || false // OR
 <div>
 <h4 class="title">
 <a name="r10_expressions_collection_reject"/>
-<code class="methodname">reject<a name="N10536" class="indexterm"/>
+<code class="methodname">reject<a name="N10A87" class="indexterm"/>
 </code>
 </h4>
 </div>
@@ -273,7 +271,7 @@ true || false // OR
 <div>
 <h4 class="title">
 <a name="r10_expressions_collection_collect"/>
-<code class="methodname">collect<a name="N10558" class="indexterm"/>
+<code class="methodname">collect<a name="N10AA9" class="indexterm"/>
 </code>
 </h4>
 </div>
@@ -282,13 +280,12 @@ true || false // OR
 <p>As shown in the previous section, the
         <code class="methodname">select</code> and <code class="methodname">reject</code>
         operations always result in a sub-collection of the original
-        collection. Sometimes one wants to specify a collection which is
-        derived from another collection, but which contains objects that are
-        not in the original collection (it is not a sub-collection). In such
-        cases, we can use a <code class="methodname">collect</code> operation. The
-        <code class="methodname">collect</code> operation uses the same syntax as the
-        <code class="methodname">select</code> and <code class="methodname">reject</code>
-        and is written like this:</p>
+        collection. Sometimes one wants to apply an operation on all elements
+        of the collection and collect the results of the evaluation in a list.
+        In such cases, we can use a <code class="methodname">collect</code>
+        operation. The <code class="methodname">collect</code> operation uses the
+        same syntax as the <code class="methodname">select</code> and
+        <code class="methodname">reject</code> and is written like this:</p>
 <pre class="programlisting">collection.collect(v | expression-with-v)</pre>
 <p>
 <code class="methodname">collect</code> again iterates over the target
@@ -296,7 +293,9 @@ true || false // OR
         contrast to <code class="methodname">select</code>, the evaluation result is
         collected in a list. When an iteration is finished the list with all
         results is returned. Example:</p>
-<pre class="programlisting">namedElements.collect(ne | ne.name) // returns a list of strings </pre>
+<pre class="programlisting">namedElements.collect(ne | ne.name) // returns a list of strings
+namedElements.collect(ne | ne.name.length &gt; 3) // returns a list of boolean
+</pre>
 </div>
 <div class="section" title="Shorthand for collect (and more than that)">
 <div class="titlepage">
@@ -309,7 +308,7 @@ true || false // OR
 </div>
 </div>
 <p>As navigation through many objects is very common, there is a
-        shorthand notation for collect <a name="N10583" class="indexterm"/>that makes the expressions more readable. Instead
+        shorthand notation for collect <a name="N10AD4" class="indexterm"/>that makes the expressions more readable. Instead
         of</p>
 <pre class="programlisting">self.employee.collect(e | e.birthdate) </pre>
 <p>one can also write:</p>
@@ -338,7 +337,7 @@ true || false // OR
 </div>
 <p>Often a boolean expression has to be evaluated for all elements
         in a collection. The <code class="methodname">forAll</code>
-<a name="N105A7" class="indexterm"/> operation allows specifying a Boolean expression, which
+<a name="N10AF8" class="indexterm"/> operation allows specifying a Boolean expression, which
         must be <code class="varname">true</code>for all objects in a collection in
         order for the <code class="methodname">forAll</code> operation to return
         <code class="varname">true</code>:</p>
@@ -360,7 +359,7 @@ true || false // OR
 <div>
 <h4 class="title">
 <a name="r10_expressions_collection_exists"/>
-<code class="methodname">exists<a name="N105D9" class="indexterm"/>
+<code class="methodname">exists<a name="N10B2A" class="indexterm"/>
 </code>
 </h4>
 </div>
@@ -388,13 +387,13 @@ true || false // OR
 <h4 class="title">
 <a name="r10_expressions_collection_sortby"/>
 <code class="methodname">sortBy</code>
-<sup>[<a href="#ftn.N10603" name="N10603" class="footnote">1</a>]</sup>
+<sup>[<a href="#ftn.N10B54" name="N10B54" class="footnote">8</a>]</sup>
 </h4>
 </div>
 </div>
 </div>
 <p>If you want to sort a list of elements, you can use the higher
-        order function <code class="methodname">sortBy</code> <a name="N1060B" class="indexterm"/>. The list you invoke the
+        order function <code class="methodname">sortBy</code> <a name="N10B5C" class="indexterm"/>. The list you invoke the
         <code class="methodname">sortBy</code> operation on, is sorted by the results
         of the given expression.</p>
 <p>Example:</p>
@@ -403,8 +402,9 @@ true || false // OR
         entities. Note that there is no such <code class="classname">Comparable</code>
         type in <span class="emphasis">
 <em>Xpand</em>
-</span>. If the values returned from the expression are instances
-        of <code class="classname">java.util.Comparable</code> the
+</span>. If the values returned from the
+        expression are instances of
+        <code class="classname">java.util.Comparable</code> the
         <code class="methodname">compareTo</code> method is used, otherwise
         <code class="methodname">toString()</code> is invoked and the the result is
         used.</p>
@@ -427,7 +427,7 @@ true || false // OR
 </div>
 </div>
 </div>
-<a name="N10634" class="indexterm"/>
+<a name="N10B85" class="indexterm"/>
 <p>There are two different forms of conditional expressions. The
       first one is the so-called <span class="emphasis">
 <em>if expression</em>
@@ -454,7 +454,7 @@ true || false // OR
 </div>
 </div>
 </div>
-<a name="N1064E" class="indexterm"/>
+<a name="N10B9F" class="indexterm"/>
 <p>The other one is called <span class="emphasis">
 <em>switch expression</em>
 </span>.
@@ -488,7 +488,7 @@ true || false // OR
 </div>
 </div>
 </div>
-<a name="N1066C" class="indexterm"/>
+<a name="N10BBD" class="indexterm"/>
 <p>Expressions and functional languages should be free of side
       effects as far as possible. But sometimes there you need invocations
       that do have side effects. In some cases expressions even don not have a
@@ -515,7 +515,7 @@ pers</pre>
 </div>
 </div>
 </div>
-<a name="N10687" class="indexterm"/>
+<a name="N10BD8" class="indexterm"/>
 <p>The <code class="methodname">create</code> expression is used to
       instantiate new objects of a given type:</p>
 <pre class="programlisting">new TypeName</pre>
@@ -530,7 +530,7 @@ pers</pre>
 </div>
 </div>
 </div>
-<a name="N10699" class="indexterm"/>
+<a name="N10BEA" class="indexterm"/>
 <p>The <code class="methodname">let</code> expression lets you define local
       variables. Syntax is as follows:</p>
 <pre class="programlisting">let v = expression : expression-with-v </pre>
@@ -553,7 +553,7 @@ pers</pre>
 </div>
 <p>Sometimes you don't want to pass everything down the call stack by
       parameter. Therefore, we have the <code class="methodname">GLOBALVAR</code>
-      <a name="N106B2" class="indexterm"/> expression. There are two things you need to do, to use
+      <a name="N10C03" class="indexterm"/> expression. There are two things you need to do, to use
       global variables.</p>
 <div class="section" title="Using GLOBALVARS to configure workflows">
 <div class="titlepage">
@@ -573,7 +573,7 @@ pers</pre>
         <span class="emphasis">
 <em>Xtend</em>
 </span>) can be configured with global variables.
-        <a name="N106C5" class="indexterm"/> Here is an example:</p>
+        <a name="N10C16" class="indexterm"/> Here is an example:</p>
 <pre class="programlisting">&lt;workflow&gt;
    .... stuff
    &lt;component class="org.eclipse.xpand2.Generator"&gt;
@@ -606,7 +606,7 @@ ImplName(Class c) :
 </div>
 </div>
 </div>
-<p>The expressions language supports multiple dispatching <a name="N106E2" class="indexterm"/>. This means that when there is a bunch of overloaded
+<p>The expressions language supports multiple dispatching <a name="N10C33" class="indexterm"/>. This means that when there is a bunch of overloaded
       operations, the decision which operation has to be resolved is based on
       the dynamic type of all parameters (the implicit
       '<code class="varname">this</code>' included).</p>
@@ -633,7 +633,7 @@ ImplName(Class c) :
 <div>
 <div>
 <h3 class="title">
-<a name="r10_expressions_casting"/>Casting<a name="N106FC" class="indexterm"/>
+<a name="r10_expressions_casting"/>Casting<a name="N10C4D" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -649,6 +649,29 @@ ImplName(Class c) :
 </p>
 <p>The syntax for casts is very Java-like:</p>
 <pre class="programlisting">((String)unTypedList.get(0)).toUpperCase()</pre>
+</div>
+<div class="section" title="Xpand keywords and metamodel properties">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="N10C58"/>Xpand keywords and metamodel properties<a name="N10C5B" class="indexterm"/>
+</h3>
+</div>
+</div>
+</div>
+<p>When the name of a metamodel property conflicts with an
+      <span class="emphasis">
+<em>Xpand</em>
+</span> or <span class="emphasis">
+<em>Xtend</em>
+</span> keyword, the
+      conflict is resolved in favour of the keyword. To refer to the metamodel
+      property in these cases, its name must be preceded by a '^'
+      character.</p>
+<p>Example:</p>
+<pre class="programlisting">private String foo(Import ^import) : ^import.name;
+</pre>
 </div>
 </body>
 </html>

@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.types.builtin.BooleanType;
 import org.eclipse.xtend.backend.types.builtin.DoubleType;
 import org.eclipse.xtend.backend.types.builtin.LongType;
@@ -177,6 +178,8 @@ public final class UmlTypesystem implements BackendTypesystem {
             		Enumeration e = (Enumeration) element;
             		return _stereotypeTypes.get (getFullName (e));
             }
+            else if (element instanceof Stereotype)
+            	return _stereotypeTypes.get (getFullName ((Stereotype) element));
             else
                 return null;
         }
@@ -249,21 +252,22 @@ public final class UmlTypesystem implements BackendTypesystem {
     }
 
     public static String getUniqueIdentifier (NamedElement cls) {
-    	List<Stereotype> stereoTypes = cls.getAppliedStereotypes();
-    	if (stereoTypes.size() > 1) {
-    		StringBuffer typeNames = new StringBuffer ();
-    		for (Iterator<Stereotype> stIt = stereoTypes.iterator(); stIt.hasNext();) {
-				Stereotype stereotype = stIt.next();
-				typeNames.append (stereotype.getQualifiedName());
-				if (stIt.hasNext())
-					typeNames.append(",");
-			}
-    		return UNIQUE_REPRESENTATION_PREFIX + typeNames.toString();
+    	if (!cls.getQualifiedName ().startsWith ("uml::")) {
+	    	List<Stereotype> stereoTypes = cls.getAppliedStereotypes();
+	    	if (stereoTypes.size() > 1) {
+	    		StringBuffer typeNames = new StringBuffer ();
+	    		for (Iterator<Stereotype> stIt = stereoTypes.iterator(); stIt.hasNext();) {
+					Stereotype stereotype = stIt.next();
+					typeNames.append (stereotype.getQualifiedName());
+					if (stIt.hasNext())
+						typeNames.append(",");
+				}
+	    		return UNIQUE_REPRESENTATION_PREFIX + typeNames.toString();
+	    	}
+	    	else if (stereoTypes.size() == 1)
+	    		return UNIQUE_REPRESENTATION_PREFIX + cls.getAppliedStereotypes().get(0).getQualifiedName();
     	}
-    	else if (stereoTypes.size() == 1)
-    		return UNIQUE_REPRESENTATION_PREFIX + cls.getAppliedStereotypes().get(0).getQualifiedName();
-    	else
-    		return UNIQUE_REPRESENTATION_PREFIX + cls.getQualifiedName();
+    	return UNIQUE_REPRESENTATION_PREFIX + cls.getQualifiedName();
     	
     }
     

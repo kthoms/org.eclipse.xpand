@@ -240,7 +240,7 @@ public final class TypeToBackendType {
 	private BackendType convertStereotypeType(Type t) {
 		if (t instanceof StereotypeType) {
 			Stereotype st = ((StereotypeType)t).getStereoType();
-			return _umlTypes.findType (st);
+			return _umlTypes.findType (UmlTypesystem.getUniqueIdentifier(st));
 		}
 		return null;
 	}

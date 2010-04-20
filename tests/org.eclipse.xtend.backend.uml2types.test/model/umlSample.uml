@@ -71,6 +71,13 @@
         <appliedProfile href="simpleEntity.profile.uml#_j4TNwAA7Ed-XDv9nb4RcQQ"/>
       </profileApplication>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3NiTQEisEd-h3ohAT3KLJw" name="TestEntity"/>
+    <profileApplication xmi:id="_5uChIEisEd-h3ohAT3KLJw">
+      <eAnnotations xmi:id="_5uWDIEisEd-h3ohAT3KLJw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="simpleEntity.profile.uml#_ZEkwoDMsEd-SyY5teY_r-g"/>
+      </eAnnotations>
+      <appliedProfile href="simpleEntity.profile.uml#_j4TNwAA7Ed-XDv9nb4RcQQ"/>
+    </profileApplication>
   </uml:Model>
   <simpleEntityprofile:Reference xmi:id="_-nHc8AA_Ed-XDv9nb4RcQQ"/>
   <simpleEntityprofile:Reference xmi:id="_fS3sYACLEd-67rI0szkUSA"/>
@@ -93,4 +100,5 @@
   <simpleEntity:Version xmi:id="_2vHiIACQEd-67rI0szkUSA" base_Property="_ANJqMACOEd-67rI0szkUSA"/>
   <simpleEntity:Field xmi:id="_4PUJkACQEd-67rI0szkUSA" base_Property="_GXWioACOEd-67rI0szkUSA"/>
   <simpleEntity:Field xmi:id="_5fjCYACQEd-67rI0szkUSA" base_Property="_Lf6X4ACOEd-67rI0szkUSA"/>
+  <simpleEntity:SimpleEntity xmi:id="_CN4bQEitEd-h3ohAT3KLJw" base_Class="_3NiTQEisEd-h3ohAT3KLJw"/>
 </xmi:XMI>

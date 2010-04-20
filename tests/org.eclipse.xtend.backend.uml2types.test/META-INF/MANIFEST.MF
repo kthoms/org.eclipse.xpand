@@ -16,4 +16,6 @@ Require-Bundle: org.eclipse.xtend.backend,
  org.eclipse.emf.importer.ecore;bundle-version="2.4.0",
  org.eclipse.uml2.uml.ecore.importer;bundle-version="2.4.0",
  org.eclipse.emf.importer;bundle-version="2.6.0",
- org.eclipse.xtend.typesystem.uml2;bundle-version="1.0.0"
+ org.eclipse.xtend.typesystem.uml2;bundle-version="1.0.0",
+ org.eclipse.emf.mwe.core;bundle-version="1.0.0",
+ org.eclipse.emf.mwe.utils;bundle-version="1.0.0"

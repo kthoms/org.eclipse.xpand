@@ -85,9 +85,14 @@ public final class StereotypeType extends AbstractType {
 
         final List<BackendType> result = new ArrayList<BackendType>();
         
-        for (Classifier classifier : all) 
-            result.add (umlTs.getTypeForEClassifier (classifier.eClass()));
-
+        for (Classifier classifier : all) {
+        	BackendType bt = umlTs.findType (UmlTypesystem.getUniqueIdentifier (classifier));
+        	if (bt != null)
+        		result.add (bt);
+        	else
+        		result.add (umlTs.getTypeForEClassifier (classifier.eClass()));
+        }
+        
         return result;
     }
     

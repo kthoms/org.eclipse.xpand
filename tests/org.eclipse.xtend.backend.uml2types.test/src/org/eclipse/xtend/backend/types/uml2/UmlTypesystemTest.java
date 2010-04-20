@@ -9,6 +9,13 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.mwe.core.WorkflowContext;
+import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
+import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.emf.mwe.core.issues.IssuesImpl;
+import org.eclipse.emf.mwe.utils.Reader;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PrimitiveType;
@@ -23,13 +30,16 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.backend.types.builtin.BooleanType;
 import org.eclipse.xtend.backend.types.builtin.ListType;
+import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.emf.internal.EClassType;
 import org.eclipse.xtend.backend.types.uml2.internal.EnumType;
 import org.eclipse.xtend.backend.types.uml2.internal.StereotypeType;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
+import org.eclipse.xtend.typesystem.uml2.Setup;
 import org.eclipse.xtend.typesystem.uml2.UML2Util2;
+import org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -93,6 +103,7 @@ public class UmlTypesystemTest {
 		BackendType entityType = cts.findType (entity);
 		assertTrue (entityType instanceof StereotypeType);
 		assertEquals ("simpleEntity::SimpleEntity", entityType.getName ());
+
 		EList attr = entity.getOwnedAttributes ();
 		org.eclipse.uml2.uml.Property aField = (org.eclipse.uml2.uml.Property) attr.get (0);
 		BackendType fieldType = cts.findType (aField);
@@ -101,6 +112,59 @@ public class UmlTypesystemTest {
 		org.eclipse.xtend.backend.common.Property stp = (org.eclipse.xtend.backend.common.Property)fieldType.getProperties (ctx). get("isLazy");
 		BackendType stpType = stp.getType (cts);
 		assertTrue (stpType instanceof BooleanType);
+		
+		BackendType fieldSuperType = fieldType.getSuperTypes ().iterator ().next ();
+		assertTrue (fieldSuperType instanceof EClassType);
+		assertEquals ("uml::Property", fieldSuperType.getName ());
+
+		boolean hasStructuralFeatureSuperType = false;
+		boolean hasConnectableElementSuperType = false;
+		boolean hasDeploymentTargetSuperType = false;
+		
+		for (BackendType fieldSuperSuperType : fieldSuperType.getSuperTypes ()) {
+			if (fieldSuperSuperType.getName ().equals ("uml::StructuralFeature")) {
+				assertTrue (fieldSuperSuperType instanceof EClassType);
+				hasStructuralFeatureSuperType = true;
+			}
+			if (fieldSuperSuperType.getName ().equals ("uml::ConnectableElement")) {
+				assertTrue (fieldSuperSuperType instanceof EClassType);
+				hasConnectableElementSuperType = true;
+			}
+			if (fieldSuperSuperType.getName ().equals ("uml::DeploymentTarget")) {
+				assertTrue (fieldSuperSuperType instanceof EClassType);
+				hasDeploymentTargetSuperType = true;
+			}
+			if (fieldSuperSuperType.getName ().equals ("emf::EObject"))
+				assertTrue (fieldSuperSuperType instanceof EObjectType);
+		}
+		assertTrue (hasStructuralFeatureSuperType);
+		assertTrue (hasConnectableElementSuperType);
+		assertTrue (hasDeploymentTargetSuperType);
+	}
+	
+	public void testFindForModel () {
+		CompositeTypesystem cts = new CompositeTypesystem ();
+		cts.register (new EmfTypesystem ());
+		cts.register (new UmlTypesystem (_profiles, false));
+
+		WorkflowContext ctx = new WorkflowContextDefaultImpl();
+		ctx.set("MODEL_SLOT", "world");
+		Issues issues = new IssuesImpl();
+//		StandaloneSetup setup = new StandaloneSetup ();
+		
+		Setup umlSetup = new Setup();
+		umlSetup.setStandardUML2Setup (true);
+		
+		
+		ResourceSet rs = new ResourceSetImpl();
+		Object o = Reader.load (rs, "model/umlSample.uml", true);
+		ProfileMetaModel profMM = new ProfileMetaModel ();
+		profMM.addProfile ("model/simpleEntity.profile.uml");
+		Model m = (Model)o;
+		org.eclipse.uml2.uml.Package pkg = (org.eclipse.uml2.uml.Package) m.getPackagedElement ("test");
+		Object c = m.getPackagedElement ("TestEntity");
+		BackendType custType = cts.findType (c);
+		assertTrue (custType instanceof StereotypeType);
 	}
 		
 	/**

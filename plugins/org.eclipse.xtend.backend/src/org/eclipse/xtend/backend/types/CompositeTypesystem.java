@@ -134,11 +134,6 @@ public final class CompositeTypesystem implements BackendTypesystem {
         if (t2.getClass().getName().endsWith("EnumType") && t1.getClass().getName().endsWith("EClassType"))
         	return t2;
         
-        if (t1.getClass().getName().endsWith("StereotypeType") && t2.getClass().getName().endsWith("EClassType"))
-        	return t1;
-        if (t2.getClass().getName().endsWith("StereotypeType") && t1.getClass().getName().endsWith("EClassType"))
-        	return t2;
-        
         if (t1.getClass().equals(EClassType.class) && ((EClassType)t1).getName().endsWith("uml::PrimitiveType"))
         	return t2;
         if (t2.getClass().equals(EClassType.class) && ((EClassType)t2).getName().endsWith("uml::PrimitiveType"))

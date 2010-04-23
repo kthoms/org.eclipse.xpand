@@ -23,7 +23,9 @@ import java.util.Set;
 import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xpand2.model.XpandResource;
+import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
+import org.eclipse.internal.xtend.xtend.ast.ExtensionImportStatement;
 import org.eclipse.xpand2.XpandExecutionContext;
 import org.eclipse.xpand2.XpandUtil;
 import org.eclipse.xtend.expression.AnalysationIssue;
@@ -125,6 +127,16 @@ public class Template extends SyntaxElement implements XpandResource {
 	        }
 
 			checkDuplicateDefinitions(issuesFromThisResource);
+			
+			//add error marker for duplicate extension imports
+			Set<Identifier> uniqueNames = new HashSet<Identifier>();
+			for (ExtensionImportDeclaration imp : extensions) {
+				if (uniqueNames.contains(imp.getImportString())) {
+					final String msg = "Duplicate extension importing: " + imp.getImportString();
+					issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, msg, imp));
+				}					
+				uniqueNames.add(imp.getImportString());
+			}
 	        for (int i = 0; i < definitions.length; i++) {
         		definitions[i].analyze(ctx, issuesFromThisResource);
 	        }

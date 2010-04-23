@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.internal.xtend.expression.ast.Identifier;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.xtend.expression.AnalysationIssue;
@@ -99,7 +100,17 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 			for (ExtensionImportStatement imp : extImports) {
 				imp.analyze(ctx, issues);
 			}
-
+			
+			//add error marker for duplicate extension imports
+			Set<Identifier> uniqueNames = new HashSet<Identifier>();
+			for (ExtensionImportStatement imp : extImports) {
+				if (uniqueNames.contains(imp.getImportedId())) {
+					final String msg = "Duplicate extension importing: " + imp.getImportedId().getValue();
+					issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, msg, imp));
+				}					
+				uniqueNames.add(imp.getImportedId());
+			}
+			
 			for (Extension ext : extensions) {
 				try {
 					ext.analyze(ctx, issues);

@@ -19,8 +19,8 @@ import org.apache.commons.logging.LogFactory;
  * 
  * @author Sven Efftinge (http://www.efftinge.de)
  * @author Bernd Kolb
- * @deprecated Use the XmlBeautifier from XSD Feature instead. 
- * @see org.eclipse.xtend.typesystem.xsd.XmlBeautifier
+ * @deprecated Use the XMLBeautifier from XSD Feature instead. 
+ * @see org.eclipse.xtend.typesystem.xsd.XMLBeautifier
  */
 @Deprecated
 public class XmlBeautifier implements PostProcessor {

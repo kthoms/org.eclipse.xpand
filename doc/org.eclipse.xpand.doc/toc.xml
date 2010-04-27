@@ -311,6 +311,16 @@
 </topic>
 </topic>
 <topic href="help/Tutorials.html" label="III. Tutorials">
+<topic href="help/uml_adapter.html" label="UML2 Adapter">
+<topic href="help/uml_adapter.html#uml_adapter_introduction" label="Introduction"/>
+<topic href="help/uml_adapter_installation.html" label="Installation"/>
+<topic href="help/uml_adapter_eclipse_setup.html" label="Setting up Eclipse">
+<topic href="help/uml_adapter_eclipse_setup.html#uml_adapter_setup_profiles" label="Profiles in Eclipse"/>
+</topic>
+<topic href="help/uml_adapter_runtime_configuration.html" label="Runtime Configuration">
+<topic href="help/uml_adapter_runtime_configuration.html#uml_adapter_runtime_workflow" label="Workflow"/>
+</topic>
+</topic>
 <topic href="help/xsd_tutorial.html" label="XSD Tutorial">
 <topic href="help/xsd_tutorial.html#xsd_tutorial_setup" label="Setup"/>
 <topic href="help/xsd_tutorial_overview.html" label="Overview"/>

@@ -45,7 +45,7 @@
 	<property name="xom.url"
 	          value="http://www.cafeconleche.org/XOM/xom-1.2.1.zip" />
 	<property name="xcluder.url"
-	          value="http://internap.dl.sourceforge.net/sourceforge/xcluder/xcluder%200.9.2/xcluder-0.9.2.jar" />
+	          value="http://downloads.sourceforge.net/project/xcluder/xcluder/xcluder 0.9.2/xcluder-0.9.2.jar" />
 	<property name="xcluder.jar"
 	          value="${download.dir}${file.separator}xcluder.jar" />
 	
@@ -300,6 +300,9 @@
 			</fileset>
 		</delete>
         <delete file="${basedir}/${document.name}.html"/>
+	</target>
+	
+	<target name="develop-documentation" depends="clean, clean-artifacts">
 	</target>
 
 </project>

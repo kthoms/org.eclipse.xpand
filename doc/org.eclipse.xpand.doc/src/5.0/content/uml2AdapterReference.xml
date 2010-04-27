@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="uml_adapter">
+  <title>UML2 Adapter</title>
+
+  <section id="uml_adapter_introduction">
+    <title>Introduction</title>
+
+    <para>The UML2 adapter for Xpand is available since version of
+    <emphasis>openArchitectureWare</emphasis> 4.1. It is based upon the UML2
+    2.0 framework of Eclipse and provides a type mapping from the UML 2.1
+    metamodel implementation to the Xpand type system. Hence one can access
+    the whole UML2 metamodel from <emphasis>Check</emphasis>,
+    <emphasis>Xtend</emphasis>, and <emphasis>Xpand</emphasis>. Additionally,
+    and more important, the adapter dynamically maps stereotypes applied to
+    model elements to Xpand types and tagged values to Xpand properties. You
+    do not have to implement additional Java classes anymore. Just export your
+    models and applied profiles. That's all!</para>
+  </section>
+
+  <section id="uml_adapter_installation">
+    <title>Installation</title>
+
+    <para>First you need to install the UML2 feature from eclipse.org:</para>
+
+    <para><ulink
+    url="http://download.eclipse.org/modeling/mdt/updates/releases/"></ulink></para>
+
+    <para>The Xpand uml2adapter is available from the Xpand update
+    site:</para>
+
+    <para><ulink
+    url="http://download.eclipse.org/modeling/m2t/updates/releases/"></ulink></para>
+
+    <para>(Go to the home page of the project and find the current location if
+    either of the sites do not work)</para>
+
+    <para>Restart your Eclipse workbench when Eclipse asks you to do
+    so.</para>
+  </section>
+
+  <section id="uml_adapter_eclipse_setup">
+    <title>Setting up Eclipse</title>
+
+    <para>You need to configure your project (or the whole workspace) to use
+    the UML2Adapter.</para>
+
+    <para>Right-click on the project and choose
+    '<emphasis>properties</emphasis>' from the pop-up menu. Therein open the
+    '<emphasis>Xtend/Xpand</emphasis>' tab, activate the checkboxes
+    <emphasis>Enable project specific settings</emphasis> and add the
+    <emphasis>UML2 profiles</emphasis> metamodel contributor. Use the
+    <emphasis>Up</emphasis>-button to push the UML2 profiles contributor to
+    the first position. </para>
+
+    <section id="uml_adapter_setup_profiles">
+      <title>Profiles in Eclipse</title>
+
+      <para>If you want Eclipse to register your specific profile in order to
+      provide static type checking and code completion in the editors, the
+      profiles (*.profile.uml or *.profile.uml2) need to be on the classpath
+      of the project (e.g. are contained in a <filename>src</filename>
+      folder)</para>
+    </section>
+  </section>
+
+  <section id="uml_adapter_runtime_configuration">
+    <title>Runtime Configuration</title>
+
+    <para>At runtime, you just need the
+    <filename>org.eclipse.xtend.typesystem.uml2-1.0.0.jar</filename> (or
+    later). You can use the dependency mechanism of Eclipse from the PDE, or
+    copy or reference the respective JAR file directly. It does not matter,
+    you just have to take care that it is on the classpath.</para>
+
+    <section id="uml_adapter_runtime_workflow">
+      <title>Workflow</title>
+
+      <para>If you have written some <emphasis>Check</emphasis>,
+      <emphasis>Xtend</emphasis> or <emphasis>Xpand</emphasis> files and now
+      want to execute them, you have to provide the right
+      configuration.</para>
+
+      <para>You need to configure the UML2 metamodel and a profile metamodel
+      <emphasis>for each profile</emphasis> you used directly. A typical
+      configuration looks like this:</para>
+
+      <programlisting language="xml">&lt;workflow&gt;
+	 &lt;bean class="org.eclipse.xtend.typesystem.uml2.Setup" standardUML2Setup="true" /&gt;
+	 &lt;component class="org.eclipse.xtend.typesystem.emf.XmiReader"&gt;
+			...
+	 &lt;/component&gt;
+	 &lt;component class="org.eclipse.xpand2.Generator"&gt;
+			&lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
+			&lt;metaModel class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
+				 &lt;profile value="myProfile.profile.uml2"/&gt;
+			&lt;/metaModel&gt;
+			...
+	 &lt;/component&gt;
+&lt;workflow&gt;</programlisting>
+
+      <para><emphasis>Note the bean configuration in the second line. It
+      statically configures the XmiReader to use the right factories for *.uml
+      and *.uml2 files. This is very important.</emphasis></para>
+
+      <para>If you are invoking several Xpand components, you should use the
+      <varname>id</varname> / <varname>idRef</varname> mechanism:</para>
+
+      <programlisting language="xml">&lt;workflow&gt;
+	 &lt;bean class="org.eclipse.xtend.typesystem.uml2.Setup" standardUML2Setup="true" /&gt;
+	 &lt;component class="org.eclipse.xtend.typesystem.emf.XmiReader"&gt;
+			...
+	 &lt;/component&gt;
+		 &lt;component class="org.eclipse.xpand2.Generator"&gt;
+			&lt;metaModel id="uml"
+				 class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
+			&lt;metaModel id="profile" 
+				 class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
+				 &lt;profile value="myProfile.profile.uml2"/&gt;
+			&lt;/metaModel&gt;
+			...
+	 &lt;/component&gt;
+	 &lt;component class="oaw.xpand2.Generator"&gt;
+			&lt;metaModel idRef="uml"/&gt;
+			&lt;metaModel idRef="profile"/&gt;
+			...
+	 &lt;/component&gt;</programlisting>
+    </section>
+  </section>
+</chapter>

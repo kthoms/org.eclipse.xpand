@@ -149,6 +149,7 @@ public class EclipseHelper {
 				file.setContents(stream, true, true, progressMonitor);
 			} else {
 				file.create(stream, true, progressMonitor);
+				file.setCharset(ResourcesPlugin.getEncoding(), progressMonitor);
 			}
 			stream.close();
 		} catch (Exception e) {

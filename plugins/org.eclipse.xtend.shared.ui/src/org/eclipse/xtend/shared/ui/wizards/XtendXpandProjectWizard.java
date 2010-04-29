@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
@@ -102,8 +103,9 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 		if (p == null)
 			return;
 		
+		String encoding = ResourcesPlugin.getEncoding();
 		EclipseHelper.createFile(".settings/org.eclipse.core.resources.prefs", p,
-				"eclipse.preferences.version=1\nencoding/<project>=ISO-8859-1\n", monitor);
+				"eclipse.preferences.version=1\nencoding/<project>="+encoding+"\n", monitor);
 		
 		if (genExamle) {
 			EclipseHelper.createFile("src/metamodel/Checks.chk", p, getContents("Checks.chk"), monitor);

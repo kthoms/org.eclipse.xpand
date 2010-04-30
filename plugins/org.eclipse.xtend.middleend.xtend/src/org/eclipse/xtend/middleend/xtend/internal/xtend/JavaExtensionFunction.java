@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.util.ErrorHandler;
@@ -39,6 +40,11 @@ final class JavaExtensionFunction extends AbstractFunction {
 
     public Object invoke (ExecutionContext ctx, Object[] params) {
         try {
+        	for (int i = 0; i < params.length; i++) {
+				if (params[i] instanceof EfficientLazyString) {
+					params[i] = params[i].toString();
+				}
+			}
             return _mtd.invoke (null, params);
         } catch (Exception e) {
             ErrorHandler.handle(e);

@@ -1,6 +1,7 @@
 import org::eclipse::xtend::middleend::xtend::test;
 
 extension org::eclipse::xtend::middleend::xtend::test::sub::subpackage;
+extension org::eclipse::xtend::util::stdlib::properties;
 
 //	function dispatch
 String testMultiDispatch(Person p) : "Person";
@@ -43,6 +44,7 @@ String testSwitch (String name) :
 
 private String call (String param) : "called:"+param;
 
+Boolean testImplies (String param) : true implies true;
 
 //	Collections
 List testTypeSelectPolymorphism (List p) : p.typeSelect(Person);
@@ -196,3 +198,7 @@ String testSomeAdvicedFunction (String param, Person p) : p.name + " " + param;
 String testSomeFunctionAdviceCtx (String param, Person p) : p.name + " " + param;
 String testAdviceSubPackageFunction (String param1, Integer param2) : testSomeFunction (param1, param2);
 String testOtherAdviceSubPackageFunction (String param1, Integer param2) : testSomeAdvicedFunction (param1, param2);
+
+// function from xtend stdlib
+String testStdLibGetProperty (String propertyName) : getProperty("" + propertyName);
+

@@ -94,7 +94,7 @@ public class XtendComponent extends AbstractExpressionsUsingWorkflowComponent {
     private boolean extensionFileExists() {
         InputStream is = null;
         try {
-            is = ResourceLoaderFactory.createResourceLoader().getResourceAsStream (_extensionFile.replace (SyntaxConstants.NS_DELIM, "/") + XtendFile.FILE_EXTENSION);
+            is = ResourceLoaderFactory.createResourceLoader().getResourceAsStream (_extensionFile.replace (SyntaxConstants.NS_DELIM, "/") + "." +XtendFile.FILE_EXTENSION);
         }
         catch (Exception exc) {
             // do nothing - an exception just means that the extension file does not exist 

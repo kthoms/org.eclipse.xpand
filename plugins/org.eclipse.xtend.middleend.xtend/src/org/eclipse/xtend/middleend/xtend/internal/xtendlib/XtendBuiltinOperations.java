@@ -186,21 +186,21 @@ public class XtendBuiltinOperations extends AbstractExecutionContextAware {
 		return "";
 	}
 
-	public Object XtendTypeGetProperty (BackendType target, String propertyName) {
+	public Object XtendTypeGetProperty (BackendType target, CharSequence propertyName) {
 		final QualifiedName xtendNameFunc = new QualifiedName (XtendLibNames.OPERATION_NAME);
 		for (Property prop : target.getProperties (_ctx).values()) {
 			final String name = (String) _ctx.getFunctionDefContext().invoke(_ctx, xtendNameFunc, Arrays.asList(prop));
-			if (propertyName.equals(name))
+			if (propertyName.toString().equals(name))
 				return prop;
 		}
 		for (BackendType superType : XtendTypeSuperTypes(target)) {
 			for (Property prop : superType.getProperties (_ctx).values()) {
 				final String name = (String) _ctx.getFunctionDefContext().invoke(_ctx, xtendNameFunc, Arrays.asList(prop));
-				if (propertyName.equals(name))
+				if (propertyName.toString().equals(name))
 					return prop;
 			}
 		}
-		NamedFunction builtinFunc = XtendTypeGetOperation(target, propertyName, new ArrayList<BackendType>());
+		NamedFunction builtinFunc = XtendTypeGetOperation(target, propertyName.toString(), new ArrayList<BackendType>());
 		if (isXtendOperation(target, builtinFunc))
 			return builtinFunc;
 		return null;

@@ -13,14 +13,11 @@ package org.eclipse.xtend.middleend.xtend.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 import org.eclipse.internal.xpand2.ast.Advice;
-import org.eclipse.internal.xpand2.type.DefinitionType;
 import org.eclipse.internal.xpand2.type.IteratorType;
 import org.eclipse.internal.xtend.expression.ast.BooleanLiteral;
 import org.eclipse.internal.xtend.expression.ast.BooleanOperation;
@@ -47,11 +44,13 @@ import org.eclipse.internal.xtend.expression.ast.SwitchExpression;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.expression.ast.TypeSelectExpression;
 import org.eclipse.internal.xtend.type.baseimpl.types.CollectionTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.FeatureTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ListTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.OperationTypeImpl;
 import org.eclipse.internal.xtend.type.baseimpl.types.SetTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.TypeTypeImpl;
 import org.eclipse.internal.xtend.xtend.ast.Around;
-import org.eclipse.internal.xtend.xtend.types.AdviceContextType;
 import org.eclipse.xtend.backend.aop.AdviceParamType;
 import org.eclipse.xtend.backend.aop.AroundAdvice;
 import org.eclipse.xtend.backend.aop.ExecutionPointcut;
@@ -79,6 +78,7 @@ import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.Pair;
+import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.expression.Variable;
@@ -290,6 +290,7 @@ public final class OldExpressionConverter {
      */
     private String transformFunctionName (OperationCall expr) {
     	final String functionName = expr.getName().getValue();
+    	final Type targetType = expr.analyze(_ctx, new HashSet<AnalysationIssue>());
         if ("+".equals (functionName))
             return SysLibNames.OPERATOR_PLUS;
         if ("-".equals (functionName))
@@ -333,11 +334,14 @@ public final class OldExpressionConverter {
         	return XtendLibNames.STRING_REPLACE_FIRST;
         if ("upTo".equals(functionName))
         	return XtendLibNames.UPTO;
-        if ("getFeature".equals(functionName))
+        if ("getFeature".equals(functionName) && 
+        		(targetType.isAssignableFrom (_ctx.getFeatureType()) || targetType.isAssignableFrom (_ctx.getTypeType())) )
         	return XtendLibNames.TYPE_GET_FEATURE;
-        if ("getProperty".equals(functionName))
+        if ("getProperty".equals(functionName) && 
+        		targetType.isAssignableFrom (_ctx.getTypeType()))
         	return XtendLibNames.TYPE_GET_PROPERTY;
-        if ("getOperation".equals(functionName))
+        if ("getOperation".equals(functionName) && 
+        		(targetType.isAssignableFrom (_ctx.getOperationType()) || targetType.isAssignableFrom (_ctx.getTypeType())))
         	return XtendLibNames.TYPE_GET_OPERATION;
         if ("getParameterTypes".equals(functionName))
         	return XtendLibNames.OPREATION_GET_PARAMETER_TYPES;

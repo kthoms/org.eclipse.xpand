@@ -28,4 +28,4 @@ String createUID( Object o ): JAVA org.eclipse.xtend.util.stdlib.UIDHelper.creat
  * @return The object's id. Returns null if the object was not load from a XMLResource.
  */
 String xmlId (ecore::EObject o) : JAVA org.eclipse.xtend.util.stdlib.EmfUtils.getID( org.eclipse.emf.ecore.EObject );
- 
+String xmlId (emf::EObject o) : JAVA org.eclipse.xtend.util.stdlib.EmfUtils.getID( org.eclipse.emf.ecore.EObject );

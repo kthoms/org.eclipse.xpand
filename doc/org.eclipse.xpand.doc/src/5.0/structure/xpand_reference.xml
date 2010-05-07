@@ -14,6 +14,8 @@
 		</part>
 		<part id="Tutorials">
 		<title>Tutorials</title>
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/uml2AdapterReference.xml" />
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/uml2Example.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterTutorial.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterReference.xml" />
 		</part>

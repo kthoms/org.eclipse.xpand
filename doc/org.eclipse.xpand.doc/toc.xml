@@ -321,6 +321,22 @@
 <topic href="help/uml_adapter_runtime_configuration.html#uml_adapter_runtime_workflow" label="Workflow"/>
 </topic>
 </topic>
+<topic href="help/uml2example.html" label="UML2 Example">
+<topic href="help/uml2example.html#uml2example_setup_eclipse" label="Setting up Eclipse"/>
+<topic href="help/uml2example_setup_project.html" label="Setting up the project"/>
+<topic href="help/uml2example_create_model.html" label="Creating a UML2 Model">
+<topic href="help/uml2example_create_model.html#uml2example_modelling" label="Modelling the content"/>
+</topic>
+<topic href="help/uml2example_codegen.html" label="Code generation">
+<topic href="help/uml2example_codegen.html#uml2example_codegen_templates" label="Defining the templates"/>
+<topic href="help/uml2example_codegen.html#uml2example_codegen_workflow" label="Defining the workflow"/>
+</topic>
+<topic href="help/uml2example_profiles.html" label="Profile Support">
+<topic href="help/uml2example_profiles.html#uml2example_profiles_define" label="Defining a Profile"/>
+<topic href="help/uml2example_profiles.html#uml2example_profile_apply" label="Applying the Profile"/>
+<topic href="help/uml2example_profiles.html#uml2example_profiles_codegen" label="Generating Code"/>
+</topic>
+</topic>
 <topic href="help/xsd_tutorial.html" label="XSD Tutorial">
 <topic href="help/xsd_tutorial.html#xsd_tutorial_setup" label="Setup"/>
 <topic href="help/xsd_tutorial_overview.html" label="Overview"/>

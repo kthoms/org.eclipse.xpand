@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="uml2example">
+  <title>UML2 Example</title>
+
+  <section id="uml2example_setup_eclipse">
+    <title>Setting up Eclipse</title>
+
+    <para>Before you can use Xpand with Eclipse UML2<indexterm>
+        <primary>UML2</primary>
+      </indexterm>, you first have to install the UML2 plugins into your
+    Eclipse installation. (You need at least the 'UML2 End-User' Features.
+    Downloadable from the Eclipse-Update site. Work with: Helios update site,
+    and then browse to <emphasis>Modeling</emphasis> and select at least the
+    <emphasis>UML2 Extender SDK</emphasis>)</para>
+  </section>
+
+  <section id="uml2example_setup_project">
+    <title>Setting up the project</title>
+
+    <para>Create a new Xpand plugin project named
+    <emphasis>xpand.uml2.generator</emphasis>. You have to add the following
+    dependencies to the manifest file: <itemizedlist>
+        <listitem>
+          <para><classname>org.eclipse.xtend.typesystem.uml2</classname></para>
+        </listitem>
+      </itemizedlist></para>
+
+    <para>To tell the Xpand Eclipse plugins that this project is a UML2
+    specific one, you need to specify that in the Xpand preferences. Open the
+    project properties, select the Xtend/Xpand tab and select the UML2
+    profiles metamodel. <figure id="uml2example_metamodel_config">
+        <title>Configure UML2 profiles metamodel</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/uml2_example/props.gif" scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/uml2_example/props.gif" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <para>Note that if you want to transform an UML2 model into a normal EMF
+    model, you need to add the <emphasis>UML2 profiles</emphasis> and the
+    <emphasis>EMF Metamodels</emphasis> metamodel contributor<indexterm>
+        <primary>Metamodel contributor</primary>
+      </indexterm>. The order of profiles is important! The UML2 profiles
+    entry must be first in the list.</para>
+  </section>
+
+  <section id="uml2example_create_model">
+    <title>Creating a UML2 Model</title>
+
+    <para>You start by defining a UML2 model, i.e. an instance of the UML2
+    metamodel. In the new Java project, in the source folder, you create a
+    UML2 model that you should call <filename>example.uml</filename>.</para>
+
+    <figure id="uml2example_create_model_1">
+      <title>Creating a new UML2 model</title>
+
+      <mediaobject>
+        <imageobject role="fo">
+          <imagedata fileref="images/uml2_example/createUMLModel.gif"
+                     scale="80" />
+        </imageobject>
+
+        <imageobject role="html">
+          <imagedata fileref="images/uml2_example/createUMLModel.gif" />
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>You then have to select the model object. Make sure its a
+    <emphasis>Model</emphasis>, not a <emphasis>Profile</emphasis>. <figure
+        id="uml2example_select_modelobject">
+        <title>Selecting the Model object</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/uml2_example/modelobject.gif"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/uml2_example/modelobject.gif" />
+          </imageobject>
+        </mediaobject>
+      </figure></para>
+
+    <section id="uml2example_modelling">
+      <title>Modelling the content</title>
+
+      <para>You should then build a model that looks somewhat like this:
+      <figure id="uml2example_examplemodel">
+          <title>Example model</title>
+
+          <mediaobject>
+            <imageobject role="fo">
+              <imagedata fileref="images/uml2_example/exampleModel.gif"
+                         scale="80" />
+            </imageobject>
+
+            <imageobject role="html">
+              <imagedata fileref="images/uml2_example/exampleModel.gif" />
+            </imageobject>
+          </mediaobject>
+        </figure></para>
+
+      <para>By the way, if you rename the <filename>.uml</filename> file to
+      <filename>.ecore</filename>, you can edit the model using the ecore
+      editors. To inspect the model, they provide a somewhat better view, so
+      you might try!</para>
+    </section>
+  </section>
+
+  <section id="uml2example_codegen">
+    <title>Code generation</title>
+
+    <section id="uml2example_codegen_templates">
+      <title>Defining the templates</title>
+
+      <para>Inside the source folder of our project, create a
+      <filename>templates</filename> package. Inside that package folder,
+      create a template file <filename>Root.xpt</filename> that has the
+      following content. First, we define the entry template that is called
+      <classname>Root</classname>. Since we expect a UML model element to be
+      the top element to the model, we define it for
+      <classname>uml::Model</classname>. Note the use of the
+      <classname>uml</classname> Namespace prefix, as defined in the UML2
+      metamodel. Inside that template, we iterate over all owned elements of
+      type <classname>uml::Package</classname> in the model and expand a
+      template for the packages defined in it.</para>
+
+      <programlisting language="Xpand">«DEFINE Root FOR uml::Model»
+  «EXPAND PackageRoot FOREACH allOwnedElements().typeSelect(uml::Package)»
+«ENDDEFINE»
+</programlisting>
+
+      <para>In the package template, we again iterate over all owned elements
+      and call a template that handles classes. Although we only have classes
+      in that package we could not rely on this in general. The package may
+      contain any other packageable element, so we need to filter classes
+      using <methodname>typeSelect()</methodname>.</para>
+
+      <programlisting language="Xpand">«DEFINE PackageRoot FOR uml::Package»
+  «EXPAND ClassRoot FOREACH ownedType.typeSelect(uml::Class)»
+«ENDDEFINE»  
+</programlisting>
+
+      <para>This template handles classes. It opens a file that has the same
+      name as the class, suffixed by <filename>.java</filename>. Into that
+      file, we generate an empty class body.</para>
+
+      <programlisting language="Xpand">«DEFINE ClassRoot FOR uml::Class»
+  «FILE name+".java"»
+    public class «name» {}
+  «ENDFILE»
+«ENDDEFINE»</programlisting>
+    </section>
+
+    <section id="uml2example_codegen_workflow">
+      <title>Defining the workflow</title>
+
+      <para>In order to generate code, we need a workflow definition. Here is
+      the workflow file; you should put it into the source folder. The file
+      should be generally understandable if you read the oAW Tutorial
+      chapter.</para>
+
+      <programlisting language="xml">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
+&lt;workflow&gt;
+</programlisting>
+
+      <para>You need to setup the UML2 stuff (registering URI maps, Factories,
+      etc.). This can be done declaring a bean in before of the
+      <classname>XmiReader</classname><indexterm>
+          <primary>XmiReader</primary>
+        </indexterm> component:</para>
+
+      <programlisting language="xml">&lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" &gt;
+  &lt;platformUri value=".."/&gt;
+&lt;/bean&gt;
+
+&lt;!-- load model and store it in slot 'model' --&gt;
+&lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
+  &lt;uri value="platform:/resource/xpand.uml2.generator/example.uml" /&gt;
+  &lt;modelSlot value="model" /&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>The <classname>XmiReader</classname> reads the model and stores
+      the content (a list containing the model element) in a slot named
+      '<varname>model</varname>'. As usual, you might want to clean the target
+      directory<indexterm>
+          <primary>DirectoryCleaner</primary>
+        </indexterm>.</para>
+
+      <programlisting language="xml">&lt;component id="dirCleaner"
+  class="org.eclipse.emf.mwe.utils.DirectoryCleaner"
+  directory="src-gen"/&gt;</programlisting>
+
+      <para>and in the generator we also configure the UML2
+      metamodel<indexterm>
+          <primary>UML2MetaModel</primary>
+        </indexterm>.</para>
+
+      <programlisting language="xml"> &lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
+	  &lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
+	  &lt;expand value="templates::Root::Root FOR model"/&gt;
+	  &lt;fileEncoding value="ISO-8859-1"/&gt;
+	  &lt;outlet path="src-gen"&gt;
+	   &lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
+	  &lt;/outlet&gt;
+	&lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+      <para>If you run the workflow (by right clicking on the
+      <filename>.mwe</filename> file and select <menuchoice>
+          <guiicon>Run As</guiicon>
+
+          <guimenuitem>MWE workflow</guimenuitem>
+        </menuchoice>) the two Java classes should be generated.</para>
+    </section>
+  </section>
+
+  <section id="uml2example_profiles">
+    <title>Profile Support</title>
+
+    <para>Xpand is shipped with a special <emphasis>UML2 profiles</emphasis>
+    metamodel implementation. The implementation maps Stereotypes<indexterm>
+        <primary>Stereotype</primary>
+      </indexterm> to Types and Tagged Values<indexterm>
+        <primary>Tagged value</primary>
+      </indexterm> to simple properties. It also supports
+    Enumerations<indexterm>
+        <primary>Enumeration (UML2)</primary>
+      </indexterm> defined in the profile and Stereotype hierarchies.</para>
+
+    <section id="uml2example_profiles_define">
+      <title>Defining a Profile</title>
+
+      <para>To define a profile, you can use a variety of UML2-based modelling
+      tools. Assuming they do actually correctly create profile definitions
+      (which is not always the case, as we had to learn painfully), creating a
+      profile and exporting it correctly is straight forward.</para>
+
+      <para>In this section, we explain the "manual way", which is good for
+      explaining what happens, but completely useless for practical use. You
+      do not want to build models of realistic sizes using the mechanisms
+      explained below.</para>
+
+      <para>You start be creating a new UML2 file (as shown above). In the
+      example we will call it <filename>test.profile.uml</filename>. The root
+      element, however, will be a <emphasis>Profile</emphasis>, not a
+      <emphasis>Package</emphasis>. Don't forget to actually assign a name to
+      the profile! It should be <literal>test</literal>, too.</para>
+
+      <para>The created <emphasis>Profile</emphasis> we call
+      <literal>test</literal>. In our case, we want to make the stereotype be
+      applicable to UML classes – they are defined as part of the UML2
+      metamodel. So we have to import that metamodel first. So what you do is
+      to select your profile object, and then go to the UML2 Editor menu (in
+      the Eclipse menu bar) and select <emphasis>Profile -&gt; Reference
+      Metaclass</emphasis>. Select <classname>uml::Class</classname>. Then,
+      add a stereotype to your profile (right mouse click on the profile -&gt;
+      <emphasis>New Child</emphasis> -&gt; <emphasis>Owned
+      Stereotype</emphasis> -&gt; <emphasis>Stereotype</emphasis> Now you can
+      define your stereotype: select <emphasis>Stereotype -&gt; Create
+      Extension</emphasis> from the UML2 Editor menu. Select
+      <classname>uml::Class</classname>. This should lead to the following
+      model. Save it and you are done with the profile definition.</para>
+
+      <figure id="uml2example_profile">
+        <title>Modelling a Profile</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/uml2_example/profile.gif" scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/uml2_example/profile.gif" />
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+
+    <section id="uml2example_profile_apply">
+      <title>Applying the Profile</title>
+
+      <para>To make any use of the profile, we have to apply it to some kind
+      of model. To do that, we copy the <filename>example.uml</filename> model
+      to a <filename>example-profiled.uml</filename>. We then open that file
+      and load a resource, namely the profile we just defined. This then looks
+      somewhat like this:</para>
+
+      <figure id="uml2example_profileApp1">
+        <title>Loading the Profile</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/uml2_example/profileApp1.gif"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/uml2_example/profileApp1.gif" />
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>Now, to make the following stuff work, you first have to select
+      the profile and select the <emphasis>Profile -&gt; Define</emphasis>
+      operation from the UML2 Editor menu. This creates all kinds of
+      additional model elements, about which you should not care for the
+      moment.</para>
+
+      <para>Now, finally, you can select your <literal>cars</literal> package
+      (the one from the example model) and select <emphasis>Package -&gt;
+      Apply Profile</emphasis> from the UML2 Editor menu. Select your test
+      profile to be applied.</para>
+
+      <para>For the purpose of this example, you should now apply the test
+      stereotype to the <classname>PersonCar</classname> class. Select the
+      class, and the select <emphasis>Element -&gt; Apply
+      Stereotype</emphasis> from the UML2 Editor menu. This should result in
+      the following model:</para>
+
+      <figure id="uml2example_profileApp2">
+        <title>Defining the Profile</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata fileref="images/uml2_example/profileApp2.gif"
+                       scale="80" />
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata fileref="images/uml2_example/profileApp2.gif" />
+          </imageobject>
+        </mediaobject>
+      </figure>
+    </section>
+
+    <section id="uml2example_profiles_codegen">
+      <title>Generating Code</title>
+
+      <para>Note that all the stuff above was not in any way related to Xpand,
+      it was just the "bare bones" means of creating and applying a profile to
+      a UML2 model. Having an UML2 tool capable of storing models as EMF UML2
+      XMI<indexterm>
+          <primary>EMF UML2 XMI</primary>
+        </indexterm> would make the creation of the model far more easier.
+      Since we cannot assume which UML2 tool you are using this tutorial shows
+      you this way, which would always work without further tooling
+      installed.</para>
+
+      <para>There are two things we have to change: The workflow
+      (specifically, the configuration of the generator component) needs to
+      know about the profile, and the template needs to generate different
+      code if a class has the test stereotype applied. Let us look at the
+      second aspect first. Here is the modified template (in
+      <filename>RootWithProfile.xpt</filename>):</para>
+
+      <programlisting language="Xpand">«DEFINE Root FOR uml::Model»
+  «EXPAND PackageRoot FOREACH allOwnedElements().typeSelect(uml::Package)»
+«ENDDEFINE»
+ 
+«DEFINE PackageRoot FOR uml::Package»
+  «EXPAND ClassRoot FOREACH ownedType.typeSelect(uml::Class)»
+«ENDDEFINE»  
+    
+«DEFINE ClassRoot FOR uml::Class»
+  «FILE name+".java"»  
+    public class «name» {}
+  «ENDFILE»
+«ENDDEFINE» 
+
+«DEFINE ClassRoot FOR test::test»
+  «FILE name+".java"»  
+    public class «name» {} // stereotyped
+  «ENDFILE»
+«ENDDEFINE»  </programlisting>
+
+      <para>As you can see, <emphasis role="bold">the stereotype acts just
+      like a type</emphasis>, and even the polymorphic dispatch between the
+      base type (<classname>uml::Class</classname>) and the stereotype
+      works!</para>
+
+      <para>Adapting the workflow file is also straight forward
+      (<filename>workflowWithProfile.oaw</filename>). Here is the modified
+      model component with the new model
+      <filename>example-profiled.uml</filename>:</para>
+
+      <programlisting language="xml">&lt;!-- load model and store it in slot 'model' --&gt;
+&lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
+  &lt;uri value="platform:/resource/xpand.uml2.generator/example-profiled.uml" /&gt;
+  &lt;modelSlot value="model" /&gt;
+&lt;/component&gt;</programlisting>
+
+      <para>And here is the modified generator component:</para>
+
+      <programlisting language="xml">&lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
+  &lt;metaModel class="oaw.uml2.UML2MetaModel"/&gt;
+  &lt;metaModel id="profile"
+    class="oaw.uml2.profile.ProfileMetaModel"&gt;
+    &lt;profile value="test.profile.uml"/&gt;
+  &lt;/metaModel&gt;
+  &lt;expand
+    value="templates::RootWithProfile::Root FOR model"/&gt;
+  &lt;outlet path="src-gen"&gt;
+      &lt;postprocessor class="oaw.xpand2.output.JavaBeautifier"/&gt;
+  &lt;/outlet&gt;
+&lt;/component&gt;
+
+&lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
+  &lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
+  &lt;metaModel id="profile"
+    class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
+    &lt;profile value="test.profile.uml"/&gt;
+  &lt;/metaModel&gt;
+  &lt;expand value="templates::Root::Root FOR model"/&gt;
+  &lt;fileEncoding value="ISO-8859-1"/&gt;
+  &lt;outlet path="src-gen"&gt;
+   &lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
+  &lt;/outlet&gt;
+&lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+      <para>The only thing, we have to do is to add a new metamodel that
+      references the profile we just created.</para>
+    </section>
+  </section>
+</chapter>

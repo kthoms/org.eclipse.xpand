@@ -1578,7 +1578,7 @@ ImplName(Class c) :
 
       <para>Here is a Java example:</para>
 
-      <programlisting language="xtend">class MyClass {
+      <programlisting language="xtend">class MyType {
    boolean equals(Object o) {
       if (o instanceof MyClass) {
          return equals((MyClass)o);

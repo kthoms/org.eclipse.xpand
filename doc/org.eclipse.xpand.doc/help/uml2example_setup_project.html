@@ -13,8 +13,32 @@
 <p>Create a new Xpand plugin project named
     <span class="emphasis">
 <em>xpand.uml2.generator</em>
-</span>. You have to add the following
-    dependencies to the manifest file: </p>
+</span>. To tell the Xpand Eclipse
+    plugins that this project is a UML2 specific one, you need to configure
+    the Meta Model contributors. You need to add the <span class="emphasis">
+<em>UML2
+    profiles</em>
+</span> and the <span class="emphasis">
+<em>EMF Metamodels</em>
+</span> metamodel
+    contributor<a name="N1293B" class="indexterm"/>. The order of profiles is important! The UML2 profiles
+    entry must be first in the list.</p>
+<div class="figure">
+<a name="uml2example_metamodel_config"/>
+<p class="title">
+<b>Figure 1. Configure UML2 profiles metamodel</b>
+</p>
+<div class="figure-contents">
+<div class="mediaobject">
+<img src="images/uml2_example/wizard.png" alt="Configure UML2 profiles metamodel"/>
+</div>
+</div>
+</div>
+<p>
+<br class="figure-break"/>
+</p>
+<p>You have to add the following dependencies to the manifest file:
+    </p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
@@ -24,31 +48,5 @@
 </li>
 </ul>
 </div>
-<p>To tell the Xpand Eclipse plugins that this project is a UML2
-    specific one, you need to specify that in the Xpand preferences. Open the
-    project properties, select the Xtend/Xpand tab and select the UML2
-    profiles metamodel. </p>
-<div class="figure">
-<a name="uml2example_metamodel_config"/>
-<p class="title">
-<b>Figure 1. Configure UML2 profiles metamodel</b>
-</p>
-<div class="figure-contents">
-<div class="mediaobject">
-<img src="images/uml2_example/props.gif" alt="Configure UML2 profiles metamodel"/>
-</div>
-</div>
-</div>
-<p>
-<br class="figure-break"/>
-</p>
-<p>Note that if you want to transform an UML2 model into a normal EMF
-    model, you need to add the <span class="emphasis">
-<em>UML2 profiles</em>
-</span> and the
-    <span class="emphasis">
-<em>EMF Metamodels</em>
-</span> metamodel contributor<a name="N12952" class="indexterm"/>. The order of profiles is important! The UML2 profiles
-    entry must be first in the list.</p>
 </body>
 </html>

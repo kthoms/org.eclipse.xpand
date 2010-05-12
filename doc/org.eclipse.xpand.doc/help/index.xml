@@ -168,7 +168,7 @@
 <topic href="help/xpand_reference_introduction.html#N11155"/>
 </entry>
 <entry keyword="DirectoryCleaner">
-<topic href="help/uml2example_codegen.html#N129EB"/>
+<topic href="help/uml2example_codegen.html#N129ED"/>
 </entry>
 <entry keyword="Dynamic EMF">
 <topic href="help/emf_tutorial_dynamic_emf.html#N1032D"/>
@@ -207,7 +207,7 @@
 <topic href="help/r10_typesystem.html#N107F6"/>
 </entry>
 <entry keyword="EMF UML2 XMI">
-<topic href="help/uml2example_profiles.html#N12A9F"/>
+<topic href="help/uml2example_profiles.html#N12AA1"/>
 </entry>
 <entry keyword="Encoding">
 <topic href="help/emf_tutorial_setting_generator_project.html#N1028C"/>
@@ -225,7 +225,7 @@
 </entry>
 </entry>
 <entry keyword="Enumeration (UML2)">
-<topic href="help/uml2example_profiles.html#N12A17"/>
+<topic href="help/uml2example_profiles.html#N12A19"/>
 </entry>
 <entry keyword="EPackages">
 <topic href="help/r10_typesystem.html#N105BA"/>
@@ -555,7 +555,7 @@
 <topic href="help/r10_typesystem.html#N1073A"/>
 </entry>
 <entry keyword="Metamodel contributor">
-<topic href="help/uml2example_setup_project.html#N12953"/>
+<topic href="help/uml2example_setup_project.html#N1293C"/>
 </entry>
 <entry keyword="Metamodel implementation">
 <topic href="help/r10_typesystem.html#N106DD"/>
@@ -687,7 +687,7 @@
 <topic href="help/r10_expressions_language.html#N10B5D"/>
 </entry>
 <entry keyword="Stereotype">
-<topic href="help/uml2example_profiles.html#N12A0F"/>
+<topic href="help/uml2example_profiles.html#N12A11"/>
 </entry>
 <entry keyword="String type">
 <topic href="help/r10_typesystem.html#N1065C"/>
@@ -696,7 +696,7 @@
 <topic href="help/ch04s03.html#N12624"/>
 </entry>
 <entry keyword="Tagged value">
-<topic href="help/uml2example_profiles.html#N12A13"/>
+<topic href="help/uml2example_profiles.html#N12A15"/>
 </entry>
 <entry keyword="Template">
 <topic href="help/xpand_reference_introduction.html#N110F2"/>
@@ -777,7 +777,7 @@
 <topic href="help/r10_typesystem.html#N10877"/>
 </entry>
 <entry keyword="UML2MetaModel">
-<topic href="help/uml2example_codegen.html#N129F4"/>
+<topic href="help/uml2example_codegen.html#N129F6"/>
 </entry>
 <entry keyword="VetoStrategy">
 <topic href="help/xpand_reference_introduction.html#N1153E"/>
@@ -798,7 +798,7 @@
 <topic href="help/emf_tutorial_define_metamodel.html#N101DE"/>
 </entry>
 <entry keyword="XmiReader">
-<topic href="help/uml2example_codegen.html#N129DC"/>
+<topic href="help/uml2example_codegen.html#N129DE"/>
 </entry>
 <entry keyword="XMIReader">
 <topic href="help/r10_typesystem.html#N108E4"/>

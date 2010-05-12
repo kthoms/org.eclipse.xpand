@@ -63,7 +63,7 @@
 </div>
 <p>In order to generate code, we need a workflow definition. Here is
       the workflow file; you should put it into the source folder. The file
-      should be generally understandable if you read the oAW Tutorial
+      should be generally understandable if you read the Getting Started
       chapter.</p>
 <pre class="programlisting">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
 &lt;workflow&gt;
@@ -71,26 +71,26 @@
 <p>You need to setup the UML2 stuff (registering URI maps, Factories,
       etc.). This can be done declaring a bean in before of the
       <code class="classname">XmiReader</code>
-<a name="N129DB" class="indexterm"/> component:</p>
+<a name="N129DD" class="indexterm"/> component:</p>
 <pre class="programlisting">&lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" &gt;
   &lt;platformUri value=".."/&gt;
 &lt;/bean&gt;
 
 &lt;!-- load model and store it in slot 'model' --&gt;
 &lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
-  &lt;uri value="platform:/resource/xpand.uml2.generator/example.uml" /&gt;
+  &lt;uri value="platform:/resource/xpand.uml2.generator/src/example.uml" /&gt;
   &lt;modelSlot value="model" /&gt;
 &lt;/component&gt;</pre>
 <p>The <code class="classname">XmiReader</code> reads the model and stores
       the content (a list containing the model element) in a slot named
       '<code class="varname">model</code>'. As usual, you might want to clean the target
-      directory<a name="N129EA" class="indexterm"/>.</p>
+      directory<a name="N129EC" class="indexterm"/>.</p>
 <pre class="programlisting">&lt;component id="dirCleaner"
   class="org.eclipse.emf.mwe.utils.DirectoryCleaner"
   directory="src-gen"/&gt;</pre>
 <p>and in the generator we also configure the UML2
-      metamodel<a name="N129F3" class="indexterm"/>.</p>
-<pre class="programlisting"> &lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
+      metamodel<a name="N129F5" class="indexterm"/>.</p>
+<pre class="programlisting"> &lt;component id="generator" class="org.eclipse.xpand2.Generator" skipOnErrors="true"&gt;
 	  &lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
 	  &lt;expand value="templates::Root::Root FOR model"/&gt;
 	  &lt;fileEncoding value="ISO-8859-1"/&gt;

@@ -13,8 +13,8 @@
 <p>Xpand is shipped with a special <span class="emphasis">
 <em>UML2 profiles</em>
 </span>
-    metamodel implementation. The implementation maps Stereotypes<a name="N12A0E" class="indexterm"/> to Types and Tagged Values<a name="N12A12" class="indexterm"/> to simple properties. It also supports
-    Enumerations<a name="N12A16" class="indexterm"/> defined in the profile and Stereotype hierarchies.</p>
+    metamodel implementation. The implementation maps Stereotypes<a name="N12A10" class="indexterm"/> to Types and Tagged Values<a name="N12A14" class="indexterm"/> to simple properties. It also supports
+    Enumerations<a name="N12A18" class="indexterm"/> defined in the profile and Stereotype hierarchies.</p>
 <div class="section" title="Defining a Profile">
 <div class="titlepage">
 <div>
@@ -59,9 +59,9 @@
 <em>Owned
       Stereotype</em>
 </span> -&gt; <span class="emphasis">
-<em>Stereotype</em>
-</span> Now you can
-      define your stereotype: select <span class="emphasis">
+<em>Stereotype).</em>
+</span> Now you
+      can define your stereotype: select <span class="emphasis">
 <em>Stereotype -&gt; Create
       Extension</em>
 </span> from the UML2 Editor menu. Select
@@ -74,7 +74,7 @@
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
-<img src="images/uml2_example/profile.gif" alt="Modelling a Profile"/>
+<img src="images/uml2_example/profile.png" alt="Modelling a Profile"/>
 </div>
 </div>
 </div>
@@ -133,7 +133,7 @@
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
-<img src="images/uml2_example/profileApp2.gif" alt="Defining the Profile"/>
+<img src="images/uml2_example/profileApp2.png" alt="Defining the Profile"/>
 </div>
 </div>
 </div>
@@ -151,7 +151,7 @@
 <p>Note that all the stuff above was not in any way related to Xpand,
       it was just the "bare bones" means of creating and applying a profile to
       a UML2 model. Having an UML2 tool capable of storing models as EMF UML2
-      XMI<a name="N12A9E" class="indexterm"/> would make the creation of the model far more easier.
+      XMI<a name="N12AA0" class="indexterm"/> would make the creation of the model far more easier.
       Since we cannot assume which UML2 tool you are using this tutorial shows
       you this way, which would always work without further tooling
       installed.</p>
@@ -189,32 +189,28 @@
 <p>Adapting the workflow file is also straight forward
       (<code class="filename">workflowWithProfile.oaw</code>). Here is the modified
       model component with the new model
-      <code class="filename">example-profiled.uml</code>:</p>
-<pre class="programlisting">&lt;!-- load model and store it in slot 'model' --&gt;
+      <code class="filename">example-profiled.uml</code> and a extended setup:</p>
+<pre class="programlisting">&lt;?xml version="1.0"?&gt;
+&lt;workflow&gt;
+ &lt;!-- set up EMF for standalone execution --&gt;
+ &lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri=".." /&gt;
+
+ &lt;!-- prepare for performing uml --&gt;
+ &lt;bean class="org.eclipse.xtend.typesystem.uml2.Setup" standardUML2Setup="true" /&gt;
+    
+ &lt;!--UML2 Profile - Metamodell--&gt;
+ &lt;bean id="mm_profile" class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
+  &lt;profile value="platform:/resource/xpand.uml2.generator/src/test.profile.uml"/&gt;
+ &lt;/bean&gt;
+
+&lt;!-- load model and store it in slot 'model' --&gt;
 &lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
-  &lt;uri value="platform:/resource/xpand.uml2.generator/example-profiled.uml" /&gt;
+  &lt;uri value="platform:/resource/xpand.uml2.generator/src/example-profiled.uml" /&gt;
   &lt;modelSlot value="model" /&gt;
 &lt;/component&gt;</pre>
 <p>And here is the modified generator component:</p>
-<pre class="programlisting">&lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
-  &lt;metaModel class="oaw.uml2.UML2MetaModel"/&gt;
-  &lt;metaModel id="profile"
-    class="oaw.uml2.profile.ProfileMetaModel"&gt;
-    &lt;profile value="test.profile.uml"/&gt;
-  &lt;/metaModel&gt;
-  &lt;expand
-    value="templates::RootWithProfile::Root FOR model"/&gt;
-  &lt;outlet path="src-gen"&gt;
-      &lt;postprocessor class="oaw.xpand2.output.JavaBeautifier"/&gt;
-  &lt;/outlet&gt;
-&lt;/component&gt;
-
-&lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
-  &lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
-  &lt;metaModel id="profile"
-    class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
-    &lt;profile value="test.profile.uml"/&gt;
-  &lt;/metaModel&gt;
+<pre class="programlisting">&lt;component id="generator" class="org.eclipse.xpand2.Generator" skipOnErrors="true"&gt;
+  &lt;metaModel idRef="mm_profile"/&gt;
   &lt;expand value="templates::Root::Root FOR model"/&gt;
   &lt;fileEncoding value="ISO-8859-1"/&gt;
   &lt;outlet path="src-gen"&gt;

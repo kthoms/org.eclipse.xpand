@@ -18,73 +18,75 @@
     <title>Setting up the project</title>
 
     <para>Create a new Xpand plugin project named
-    <emphasis>xpand.uml2.generator</emphasis>. You have to add the following
-    dependencies to the manifest file: <itemizedlist>
-        <listitem>
-          <para><classname>org.eclipse.xtend.typesystem.uml2</classname></para>
-        </listitem>
-      </itemizedlist></para>
+    <emphasis>xpand.uml2.generator</emphasis>. To tell the Xpand Eclipse
+    plugins that this project is a UML2 specific one, you need to configure
+    the Meta Model contributors. You need to add the <emphasis>UML2
+    profiles</emphasis> and the <emphasis>EMF Metamodels</emphasis> metamodel
+    contributor<indexterm>
+        <primary>Metamodel contributor</primary>
+      </indexterm>. The order of profiles is important! The UML2 profiles
+    entry must be first in the list.</para>
 
-    <para>To tell the Xpand Eclipse plugins that this project is a UML2
-    specific one, you need to specify that in the Xpand preferences. Open the
-    project properties, select the Xtend/Xpand tab and select the UML2
-    profiles metamodel. <figure id="uml2example_metamodel_config">
+    <para><figure id="uml2example_metamodel_config">
         <title>Configure UML2 profiles metamodel</title>
 
         <mediaobject>
           <imageobject role="fo">
-            <imagedata fileref="images/uml2_example/props.gif" scale="80" />
+            <imagedata fileref="images/uml2_example/wizard.png" scale="60" />
           </imageobject>
 
           <imageobject role="html">
-            <imagedata fileref="images/uml2_example/props.gif" />
+            <imagedata fileref="images/uml2_example/wizard.png" />
           </imageobject>
         </mediaobject>
       </figure></para>
 
-    <para>Note that if you want to transform an UML2 model into a normal EMF
-    model, you need to add the <emphasis>UML2 profiles</emphasis> and the
-    <emphasis>EMF Metamodels</emphasis> metamodel contributor<indexterm>
-        <primary>Metamodel contributor</primary>
-      </indexterm>. The order of profiles is important! The UML2 profiles
-    entry must be first in the list.</para>
+    <para>You have to add the following dependencies to the manifest file:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para><classname>org.eclipse.xtend.typesystem.uml2</classname></para>
+      </listitem>
+    </itemizedlist>
   </section>
 
   <section id="uml2example_create_model">
     <title>Creating a UML2 Model</title>
 
     <para>You start by defining a UML2 model, i.e. an instance of the UML2
-    metamodel. In the new Java project, in the source folder, you create a
-    UML2 model that you should call <filename>example.uml</filename>.</para>
+    metamodel. Inside the project, in the source folder, you create a UML2
+    model that you should call <filename>example.uml</filename> (after
+    pressig<emphasis> Next&gt;</emphasis>).</para>
 
     <figure id="uml2example_create_model_1">
       <title>Creating a new UML2 model</title>
 
       <mediaobject>
         <imageobject role="fo">
-          <imagedata fileref="images/uml2_example/createUMLModel.gif"
-                     scale="80" />
+          <imagedata fileref="images/uml2_example/createUMLModel.png"
+                     scale="60" />
         </imageobject>
 
         <imageobject role="html">
-          <imagedata fileref="images/uml2_example/createUMLModel.gif" />
+          <imagedata fileref="images/uml2_example/createUMLModel.png" />
         </imageobject>
       </mediaobject>
     </figure>
 
-    <para>You then have to select the model object. Make sure its a
-    <emphasis>Model</emphasis>, not a <emphasis>Profile</emphasis>. <figure
-        id="uml2example_select_modelobject">
+    <para>On the last page of the wizard you have to select the model object.
+    Make sure its a <emphasis>Model</emphasis>, not a
+    <emphasis>Profile</emphasis>. <figure id="uml2example_select_modelobject">
         <title>Selecting the Model object</title>
 
         <mediaobject>
           <imageobject role="fo">
-            <imagedata fileref="images/uml2_example/modelobject.gif"
-                       scale="80" />
+            <imagedata fileref="images/uml2_example/modelobject.png"
+                       scale="60" />
           </imageobject>
 
           <imageobject role="html">
-            <imagedata fileref="images/uml2_example/modelobject.gif" />
+            <imagedata fileref="images/uml2_example/modelobject.png" />
           </imageobject>
         </mediaobject>
       </figure></para>
@@ -98,12 +100,12 @@
 
           <mediaobject>
             <imageobject role="fo">
-              <imagedata fileref="images/uml2_example/exampleModel.gif"
-                         scale="80" />
+              <imagedata fileref="images/uml2_example/exampleModel.png"
+                         scale="60" />
             </imageobject>
 
             <imageobject role="html">
-              <imagedata fileref="images/uml2_example/exampleModel.gif" />
+              <imagedata fileref="images/uml2_example/exampleModel.png" />
             </imageobject>
           </mediaobject>
         </figure></para>
@@ -165,7 +167,7 @@
 
       <para>In order to generate code, we need a workflow definition. Here is
       the workflow file; you should put it into the source folder. The file
-      should be generally understandable if you read the oAW Tutorial
+      should be generally understandable if you read the Getting Started
       chapter.</para>
 
       <programlisting language="xml">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
@@ -184,7 +186,7 @@
 
 &lt;!-- load model and store it in slot 'model' --&gt;
 &lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
-  &lt;uri value="platform:/resource/xpand.uml2.generator/example.uml" /&gt;
+  &lt;uri value="platform:/resource/xpand.uml2.generator/src/example.uml" /&gt;
   &lt;modelSlot value="model" /&gt;
 &lt;/component&gt;</programlisting>
 
@@ -204,7 +206,7 @@
           <primary>UML2MetaModel</primary>
         </indexterm>.</para>
 
-      <programlisting language="xml"> &lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
+      <programlisting language="xml"> &lt;component id="generator" class="org.eclipse.xpand2.Generator" skipOnErrors="true"&gt;
 	  &lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
 	  &lt;expand value="templates::Root::Root FOR model"/&gt;
 	  &lt;fileEncoding value="ISO-8859-1"/&gt;
@@ -264,8 +266,8 @@
       Metaclass</emphasis>. Select <classname>uml::Class</classname>. Then,
       add a stereotype to your profile (right mouse click on the profile -&gt;
       <emphasis>New Child</emphasis> -&gt; <emphasis>Owned
-      Stereotype</emphasis> -&gt; <emphasis>Stereotype</emphasis> Now you can
-      define your stereotype: select <emphasis>Stereotype -&gt; Create
+      Stereotype</emphasis> -&gt; <emphasis>Stereotype).</emphasis> Now you
+      can define your stereotype: select <emphasis>Stereotype -&gt; Create
       Extension</emphasis> from the UML2 Editor menu. Select
       <classname>uml::Class</classname>. This should lead to the following
       model. Save it and you are done with the profile definition.</para>
@@ -275,11 +277,11 @@
 
         <mediaobject>
           <imageobject role="fo">
-            <imagedata fileref="images/uml2_example/profile.gif" scale="80" />
+            <imagedata fileref="images/uml2_example/profile.png" scale="60" />
           </imageobject>
 
           <imageobject role="html">
-            <imagedata fileref="images/uml2_example/profile.gif" />
+            <imagedata fileref="images/uml2_example/profile.png" />
           </imageobject>
         </mediaobject>
       </figure>
@@ -300,7 +302,7 @@
         <mediaobject>
           <imageobject role="fo">
             <imagedata fileref="images/uml2_example/profileApp1.gif"
-                       scale="80" />
+                       scale="60" />
           </imageobject>
 
           <imageobject role="html">
@@ -331,12 +333,12 @@
 
         <mediaobject>
           <imageobject role="fo">
-            <imagedata fileref="images/uml2_example/profileApp2.gif"
-                       scale="80" />
+            <imagedata fileref="images/uml2_example/profileApp2.png"
+                       scale="60" />
           </imageobject>
 
           <imageobject role="html">
-            <imagedata fileref="images/uml2_example/profileApp2.gif" />
+            <imagedata fileref="images/uml2_example/profileApp2.png" />
           </imageobject>
         </mediaobject>
       </figure>
@@ -390,35 +392,31 @@
       <para>Adapting the workflow file is also straight forward
       (<filename>workflowWithProfile.oaw</filename>). Here is the modified
       model component with the new model
-      <filename>example-profiled.uml</filename>:</para>
+      <filename>example-profiled.uml</filename> and a extended setup:</para>
 
-      <programlisting language="xml">&lt;!-- load model and store it in slot 'model' --&gt;
+      <programlisting language="xml">&lt;?xml version="1.0"?&gt;
+&lt;workflow&gt;
+ &lt;!-- set up EMF for standalone execution --&gt;
+ &lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri=".." /&gt;
+
+ &lt;!-- prepare for performing uml --&gt;
+ &lt;bean class="org.eclipse.xtend.typesystem.uml2.Setup" standardUML2Setup="true" /&gt;
+    
+ &lt;!--UML2 Profile - Metamodell--&gt;
+ &lt;bean id="mm_profile" class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
+  &lt;profile value="platform:/resource/xpand.uml2.generator/src/test.profile.uml"/&gt;
+ &lt;/bean&gt;
+
+&lt;!-- load model and store it in slot 'model' --&gt;
 &lt;component class="org.eclipse.emf.mwe.utils.Reader"&gt;
-  &lt;uri value="platform:/resource/xpand.uml2.generator/example-profiled.uml" /&gt;
+  &lt;uri value="platform:/resource/xpand.uml2.generator/src/example-profiled.uml" /&gt;
   &lt;modelSlot value="model" /&gt;
 &lt;/component&gt;</programlisting>
 
       <para>And here is the modified generator component:</para>
 
-      <programlisting language="xml">&lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
-  &lt;metaModel class="oaw.uml2.UML2MetaModel"/&gt;
-  &lt;metaModel id="profile"
-    class="oaw.uml2.profile.ProfileMetaModel"&gt;
-    &lt;profile value="test.profile.uml"/&gt;
-  &lt;/metaModel&gt;
-  &lt;expand
-    value="templates::RootWithProfile::Root FOR model"/&gt;
-  &lt;outlet path="src-gen"&gt;
-      &lt;postprocessor class="oaw.xpand2.output.JavaBeautifier"/&gt;
-  &lt;/outlet&gt;
-&lt;/component&gt;
-
-&lt;component id="generator" class="oaw.xpand2.Generator" skipOnErrors="true"&gt;
-  &lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
-  &lt;metaModel id="profile"
-    class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
-    &lt;profile value="test.profile.uml"/&gt;
-  &lt;/metaModel&gt;
+      <programlisting language="xml">&lt;component id="generator" class="org.eclipse.xpand2.Generator" skipOnErrors="true"&gt;
+  &lt;metaModel idRef="mm_profile"/&gt;
   &lt;expand value="templates::Root::Root FOR model"/&gt;
   &lt;fileEncoding value="ISO-8859-1"/&gt;
   &lt;outlet path="src-gen"&gt;

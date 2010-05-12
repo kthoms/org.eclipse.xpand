@@ -102,5 +102,13 @@ public class IfStatement extends StatementWithBody {
             }
         }
     }
-
+    
+	@Override
+	public void setContainingDefinition(AbstractDefinition definition) {
+		super.setContainingDefinition(definition);
+		if (elseIf != null) {
+			elseIf.setContainingDefinition(definition);
+		}
+	}
+	
 }

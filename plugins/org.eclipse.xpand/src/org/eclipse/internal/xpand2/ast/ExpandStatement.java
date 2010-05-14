@@ -166,6 +166,8 @@ public class ExpandStatement extends Statement {
 			deferredToFileClose = true;
 			return;
 		}
+		// reset here, otherwise we would need a try-finally block
+		deferredToFileClose = false;
 		
 		Object targetObject = null;
 		if (isForeach()) {

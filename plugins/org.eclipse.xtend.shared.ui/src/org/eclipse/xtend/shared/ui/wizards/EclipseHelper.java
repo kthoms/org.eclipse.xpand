@@ -164,7 +164,7 @@ public class EclipseHelper {
 		StringBuilder bpContent = new StringBuilder("source.. = src/,\\\n");
 		bpContent.append("           src-gen\n");
 		bpContent.append("bin.includes = META-INF/,.\n");
-		createFile("build.properties", project, bpContent.toString(), progressMonitor);
+		createFile("build.properties", project, bpContent.toString(), new NullProgressMonitor());
 	}
 
 	private static void createManifest(final String projectName, final Set<String> requiredBundles,
@@ -208,7 +208,7 @@ public class EclipseHelper {
 		if (metaInf.exists())
 			metaInf.delete(false, progressMonitor);
 		metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
-		createFile("MANIFEST.MF", metaInf, maniContent.toString(), progressMonitor);
+		createFile("MANIFEST.MF", metaInf, maniContent.toString(), new NullProgressMonitor());
 	}
 
 	/**

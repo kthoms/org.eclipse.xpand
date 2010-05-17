@@ -26,6 +26,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -86,7 +88,8 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 
 	void doFinish(final String name, final boolean genExamle, final boolean projectSpecific, final boolean workspaceDefaults, final IProgressMonitor monitor) {
 		final String projectName = name;
-		monitor.beginTask(Messages.XtendXpandProjectWizard_ProjectCreationMessage + name, 2);
+		int ticks = (genExamle == true) ? 15 :6;
+		monitor.beginTask(Messages.XtendXpandProjectWizard_ProjectCreationMessage + name, ticks);
 
 		final Set<String> refs = new HashSet<String>();
 		final List<String> srcfolders = new ArrayList<String>();
@@ -98,38 +101,50 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 		refs.add("org.apache.log4j;resolution:=optional");
 		refs.add("org.eclipse.xtend.profiler;resolution:=optional");
 		final IProject p = EclipseHelper.createExtXptProject(projectName, srcfolders, Collections
-				.<IProject> emptyList(), refs, null, monitor, getShell());
+				.<IProject> emptyList(), refs, null, new SubProgressMonitor(monitor, 3), getShell());
 
 		if (p == null)
 			return;
 		
 		String encoding = ResourcesPlugin.getEncoding();
 		EclipseHelper.createFile(".settings/org.eclipse.core.resources.prefs", p,
-				"eclipse.preferences.version=1\nencoding/<project>="+encoding+"\n", monitor);
+				"eclipse.preferences.version=1\nencoding/<project>="+encoding+"\n", new NullProgressMonitor());
+		monitor.worked(1);
 		
 		if (genExamle) {
 			EclipseHelper.createFile(".settings/org.eclipse.xtend.shared.ui.prefs", p,
-					"metamodelContributor=org.eclipse.xtend.typesystem.emf.ui.EmfMetamodelContributor\nproject.specific.metamodel=true\n", monitor);
-			EclipseHelper.createFile("src/metamodel/Checks.chk", p, getContents("Checks.chk"), monitor);
-			EclipseHelper.createFile("src/metamodel/Extensions.ext", p, getContents("Extensions.ext"), monitor);
-			EclipseHelper.createFile("src/metamodel/metamodel.ecore", p, getContents("metamodel.ecore"), monitor);
+					"metamodelContributor=org.eclipse.xtend.typesystem.emf.ui.EmfMetamodelContributor\nproject.specific.metamodel=true\n", new NullProgressMonitor());
+			monitor.worked(1);
+			EclipseHelper.createFile("src/metamodel/Checks.chk", p, getContents("Checks.chk"), new NullProgressMonitor());
+			monitor.worked(1);
+			EclipseHelper.createFile("src/metamodel/Extensions.ext", p, getContents("Extensions.ext"), new NullProgressMonitor());
+			monitor.worked(1);
+			EclipseHelper.createFile("src/metamodel/metamodel.ecore", p, getContents("metamodel.ecore"), new NullProgressMonitor());
+			monitor.worked(1);
 			EclipseHelper.createFile("src/template/GeneratorExtensions.ext", p, getContents("GeneratorExtensions.ext"),
-					monitor);
-			EclipseHelper.createFile("src/template/Template.xpt", p, getContents("Template.xpt"), monitor);
+					new NullProgressMonitor());
+			monitor.worked(1);
+			EclipseHelper.createFile("src/template/Template.xpt", p, getContents("Template.xpt"), new NullProgressMonitor());
+			monitor.worked(1);
 			EclipseHelper.createFile("src/workflow/generator.mwe", p, getContents("generator.mwe").replace(
-					"PROJECTNAME", projectName), monitor);
+					"PROJECTNAME", projectName), new NullProgressMonitor());
+			monitor.worked(1);
 			EclipseHelper.createFile("src/workflow/generatorWithBackend.mwe", p, getContents("generatorWithBackend.mwe").replace(
-					"PROJECTNAME", projectName), monitor);
+					"PROJECTNAME", projectName), new NullProgressMonitor());
+			monitor.worked(1);
 			EclipseHelper.createFile("src/workflow/generatorWithProfiler.mwe", p, getContents("generatorWithProfiler.mwe").replace(
-					"PROJECTNAME", projectName), monitor);
-			EclipseHelper.createFile("src/Model.xmi", p, getContents("Model.xmi"), monitor);
+					"PROJECTNAME", projectName), new NullProgressMonitor());
+			monitor.worked(1);
+			EclipseHelper.createFile("src/Model.xmi", p, getContents("Model.xmi"), new NullProgressMonitor());
+			monitor.worked(1);
 			
 		}
 		
 		else if (projectSpecific) {
 			EclipseHelper.createFile(".settings/org.eclipse.xtend.shared.ui.prefs", p,
 					"eclipse.preferences.version=1\n"+PreferenceConstants.PROJECT_SPECIFIC_METAMODEL+"=true\n"
-					+PreferenceConstants.METAMODELCONTRIBUTORS+"=" + page.getStoreString(), monitor);
+					+PreferenceConstants.METAMODELCONTRIBUTORS+"=" + page.getStoreString(), new NullProgressMonitor());
+			monitor.worked(1);
 		}
 		
 		monitor.worked(1);

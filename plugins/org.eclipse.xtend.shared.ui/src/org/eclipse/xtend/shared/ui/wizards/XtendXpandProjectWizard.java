@@ -108,6 +108,8 @@ public class XtendXpandProjectWizard extends Wizard implements INewWizard, IExec
 				"eclipse.preferences.version=1\nencoding/<project>="+encoding+"\n", monitor);
 		
 		if (genExamle) {
+			EclipseHelper.createFile(".settings/org.eclipse.xtend.shared.ui.prefs", p,
+					"metamodelContributor=org.eclipse.xtend.typesystem.emf.ui.EmfMetamodelContributor\nproject.specific.metamodel=true\n", monitor);
 			EclipseHelper.createFile("src/metamodel/Checks.chk", p, getContents("Checks.chk"), monitor);
 			EclipseHelper.createFile("src/metamodel/Extensions.ext", p, getContents("Extensions.ext"), monitor);
 			EclipseHelper.createFile("src/metamodel/metamodel.ecore", p, getContents("metamodel.ecore"), monitor);

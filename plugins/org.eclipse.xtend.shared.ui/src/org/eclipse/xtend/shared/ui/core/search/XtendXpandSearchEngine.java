@@ -169,8 +169,8 @@ public class XtendXpandSearchEngine {
 			Set<OperationCall> ops = findRec(res.getExtXptResource(), OperationCall.class, new HashSet<Object>());
 			for (OperationCall expr : ops) {
 				if (expr.getName().getValue().equals(identifier)) {
-					matches.add(new SearchMatch(expr.getName().getStart(), expr.getName().getEnd() - expr.getStart()
-							- 1, res.getUnderlyingStorage()));
+					matches.add(new SearchMatch(expr.getName().getStart() + 1, expr.getName().getEnd() - expr.getStart()
+						, res.getUnderlyingStorage()));
 				}
 			}
 		}
@@ -198,7 +198,7 @@ public class XtendXpandSearchEngine {
 						AbstractExtension ae = (AbstractExtension) ext;
 						if (ext.getName().equals(identifier)) {
 							Identifier id = ae.getNameIdentifier();
-							matches.add(new SearchMatch(id.getStart(), id.getEnd() - id.getStart() + 1 /*
+							matches.add(new SearchMatch(id.getStart()+1, id.getEnd() - id.getStart() + 1 /*
 																										 * sorry
 																										 * for
 																										 * the

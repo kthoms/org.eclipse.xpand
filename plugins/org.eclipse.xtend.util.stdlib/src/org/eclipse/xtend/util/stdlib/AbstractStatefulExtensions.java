@@ -45,10 +45,14 @@ public class AbstractStatefulExtensions<T> implements IExecutionContextAware {
 		Map<String, Variable> vars = exeCtx.getGlobalVariables();
 		Variable variable = vars.get(getClass().getName());
 		if (variable == null) {
-			variable = new Variable(getClass().getName(), new HashMap<Object, Integer>());
+			variable = new Variable(getClass().getName(), newMap());
 			vars.put(getKey(), variable);
 		}
 		return (Map<Object, T>) variable.getValue();
+	}
+
+	protected Map<Object, T> newMap() {
+		return new HashMap<Object, T>();
 	}
 
 	protected String getKey() {

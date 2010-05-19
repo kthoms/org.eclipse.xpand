@@ -1,61 +1,32 @@
-// ****************************************************************************
-// *** openArchitectureWare stdlib extensions: globalvar
-// *** ------------------------------------------------------------------------
-// *** This library contains functions to work with counters.
-// ****************************************************************************
-
+/*******************************************************************************
+ * Copyright (c) 2010 itemis AG (http://www.itemis.eu) and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *******************************************************************************/
+ 
 /**
- * Increments a counter.
- * @param o A key for this counter. If this function is called with a Null argument 
- *          an anonymous counter is used. If no counter was registered for the key
- *          a new counter instance will be created and initialized with 0. 
- * @return The incremented counter. 
+ * see JavaDoc 
  */
 int counterInc(Object o) :
-   internalCounterInc(o);
-   
-/**
- * Decrements a counter.
- * @param o A key for this counter. If this function is called with a Null argument 
- *          an anonymous counter is used. If no counter was registered for the key
- *          a new counter instance will be created and initialized with 0.
- * @return The decremented counter. 
- */
-int counterDec(Object o) :
-   internalCounterDec(o);
-
-/**
- * Resets a counter.
- * @param o A key for this counter. If this function is called with a Null argument 
- *          the anonymous counter is resetted. If no counter was registered for the key
- *          a new counter instance will be created and initialized with 0.
- * @return Always 0. 
- */
-int counterReset(Object o) :
-   internalCounterReset(o) -> 0;
-
-/**
- * Retrieves the current state of a counter.
- * @param o A key for this counter. If this function is called with a Null argument 
- *          the anonymous counter is used. 
- * @return Current counter value. 
- */
-int counterGet(Object o) :
-   internalCounterGet(o);
-
-
-// -------------------------------- INTERNAL --------------------------------   
-
-
-private Void internalCounterReset(Object o) :
-   JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterReset(java.lang.Object);
-
-private Object internalCounterInc(Object o) :
    JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterInc(java.lang.Object);
    
-private Object internalCounterDec(Object o) :
+/**
+ * see JavaDoc 
+ */
+int counterDec(Object o) :
    JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterDec(java.lang.Object);
 
-private Object internalCounterGet(Object o) :
+/**
+ * see JavaDoc 
+ */
+int counterReset(Object o) :
+   JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterReset(java.lang.Object);
+
+/**
+ * see JavaDoc 
+ */
+int counterGet(Object o) :
    JAVA org.eclipse.xtend.util.stdlib.CounterExtensions.counterGet(java.lang.Object);
-   
+

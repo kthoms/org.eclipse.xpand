@@ -54,7 +54,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 
 	private final Map<String, Variable> variables = new HashMap<String, Variable>();
 
-	private final Map<String, Variable> globalVars = new HashMap<String, Variable>();
+	private Map<String, Variable> globalVars;
 
 	private ProgressMonitor monitor;
 
@@ -124,7 +124,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 			this.variables.putAll(variables);
 		}
 		if (globalVars != null) {
-			this.globalVars.putAll(globalVars);
+			this.globalVars = globalVars;
 		}
 		this.monitor = monitor;
 		this.exceptionHandler = exceptionHandler;
@@ -257,7 +257,7 @@ public class ExecutionContextImpl implements ExecutionContext {
 	}
 
 	public Map<String, Variable> getGlobalVariables() {
-		return Collections.unmodifiableMap(globalVars);
+		return globalVars;
 	}
 
 	public ExecutionContext cloneWithVariable(final Variable v) {

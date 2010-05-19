@@ -10,48 +10,66 @@
  *******************************************************************************/
 package org.eclipse.xtend.util.stdlib;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * Java helper class for Stdlib extension <tt>org::eclipse::xtend::util::stdlib::counter</tt>.
+ * A Counter (integer) associated to any object.
  */
-public class CounterExtensions {
+public class CounterExtensions extends AbstractStatefulExtensions<Integer> {
+
+	/**
+	 * resets the counter to '0'.
+	 * 
+	 * @param o The context object for this counter.  
+	 * @return 0 
+	 */
+	public int counterReset(Object o) {
+		return counterSet(o,0);
+	}
+
+	/**
+	 * Increments the counter.
+	 * 
+	 * @param o The context object for this counter.  
+	 * @return the incremented counter. 
+	 */
+	public int counterInc(Object o) {
+		return counterSet(o,counterGet(o)+1);
+	}
+
+	/**
+	 * Decrements the counter
+	 * 
+	 * @param o - context object  
+	 * @return the decremented counter. 
+	 */
+	public int counterDec(Object o) {
+		return counterSet(o,counterGet(o)-1);
+	}
 	
-	private static int globalCounter = 0;
-	private static Map<Object,Integer> vars = new HashMap<Object,Integer>();
+	/**
+	 * Sets the counter
+	 * 
+	 * @param o - context object 
+	 * @param value - the counter value to be set
+	 */
+	public int counterSet(Object o, int value) {
+		set(o, value);
+		return value;
+	}
+
+	/**
+	 * Returns the counter. 
+	 * 
+	 * @param o - context object 
+	 */
+	public int counterGet(Object o) {
+		return get(o);
+	}
 	
-	public static int counterReset(Object o) {
-		if ( o == null ) {
-			globalCounter = 0;
-		}
-		vars.put(o, new Integer(0));
+	@Override
+	protected Integer getDefault(Object o) {
 		return 0;
 	}
-	
-	public static int counterInc(Object o){
-		if ( o == null ) return globalCounter++;
-		Integer count = vars.get(o);
-		if ( count == null ) count = new Integer(0);
-		int i = count.intValue()+1;
-		vars.put(o, new Integer(i));
-		return i;
-	}
-	
-	public static int counterDec(Object o){
-		if ( o == null ) return globalCounter--;
-		Integer count = vars.get(o);
-		if ( count == null ) count = new Integer(0);
-		int i = count.intValue()-1;
-		vars.put(o, new Integer(i));
-		return i;
-	}
-	
-	public static int counterGet(Object o){
-		if ( o == null ) return globalCounter++;
-		Integer count = vars.get(o);
-		if ( count == null ) count = new Integer(0);
-		return count;
-	}
+
 
 }

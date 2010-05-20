@@ -131,7 +131,7 @@ public class XsdTypesystem implements BackendTypesystem {
 			return getEMapEntryType(null);
 		if (cls.isAssignableFrom(QName.class))
 			return getQNameType();
-		return _rootTs.findType(cls);
+		return _emfTypesystem.findType(cls);
 	}
 
 	public BackendType findType(String uniqueRepresentation) {
@@ -156,7 +156,7 @@ public class XsdTypesystem implements BackendTypesystem {
 			return getEMapEntryType(null);
 		if (QNAME.equals (uniqueRepresentation))
 			return getQNameType();
-		return _rootTs.findType (uniqueRepresentation);
+		return _emfTypesystem.findType (uniqueRepresentation);
 	}
 
 	public BackendTypesystem getRootTypesystem () {
@@ -165,11 +165,6 @@ public class XsdTypesystem implements BackendTypesystem {
 
 	public void setRootTypesystem (BackendTypesystem ts) {
 		_rootTs = ts;
-	}
-
-	public BackendType getTypeForEClassifier (EClass cls) {
-		// TODO Auto-generated method stub
-		return _emfTypesystem.getTypeForEClassifier(cls);
 	}
 	
 	public EFeatureMapEntryType getEFeatureMapEntryType() {
@@ -205,6 +200,10 @@ public class XsdTypesystem implements BackendTypesystem {
 	}
 
 	public BackendType getTypeForEClassifier (EClassifier cls) {
+        final BackendType cached = _cache.get (cls);
+        if (cached != null)
+            return cached;
+
         if (cls instanceof EClass) {
             final XMLEClassType result = new XMLEClassType ((EClass) cls, this);
             

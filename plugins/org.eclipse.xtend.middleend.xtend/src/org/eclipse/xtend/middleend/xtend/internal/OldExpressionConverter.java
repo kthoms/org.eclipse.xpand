@@ -408,8 +408,11 @@ public final class OldExpressionConverter {
         final List<Pair<ExpressionBase, ExpressionBase>> cases = new ArrayList<Pair<ExpressionBase,ExpressionBase>>();
         for (Case c: expr.getCases())
             cases.add (new Pair<ExpressionBase, ExpressionBase> (convert (c.getCondition()), convert (c.getThenPart())));
-        
-        return new org.eclipse.xtend.backend.expr.SwitchExpression (convert (expr.getSwitchExpr()), cases, convert (expr.getDefaultExpr()), getSourcePos(expr));
+        Expression switchExpr = expr.getSwitchExpr();
+        ExpressionBase convertedSwitchExpr = null;
+        if (switchExpr != null)
+        	convertedSwitchExpr = convert (switchExpr);
+        return new org.eclipse.xtend.backend.expr.SwitchExpression (convertedSwitchExpr, cases, convert (expr.getDefaultExpr()), getSourcePos(expr));
     }
     
     private ExpressionBase convertCast(Cast expr) {

@@ -123,7 +123,9 @@ public class ExecutionContextImpl implements ExecutionContext {
 		if (variables != null) {
 			this.variables.putAll(variables);
 		}
-		if (globalVars != null) {
+		if (globalVars == null) {
+			this.globalVars = new HashMap<String, Variable>();
+		} else {
 			this.globalVars = globalVars;
 		}
 		this.monitor = monitor;

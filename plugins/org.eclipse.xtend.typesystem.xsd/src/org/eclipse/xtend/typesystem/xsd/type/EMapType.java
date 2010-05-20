@@ -47,6 +47,7 @@ public class EMapType extends AbstractTypeImpl {
 	}
 
 	private EMapEntryType elementType;
+	private EClassifier innerType;
 
 	// private EmfRegistryMetaModel model;
 	// private Type valueType;
@@ -55,6 +56,7 @@ public class EMapType extends AbstractTypeImpl {
 			final EClassifier innerType) {
 		super(model.getTypeSystem(), name);
 		// this.model = model;
+		this.innerType = innerType; 
 		elementType = model.getEMapEntryType(innerType);
 	}
 
@@ -161,6 +163,10 @@ public class EMapType extends AbstractTypeImpl {
 	@Override
 	public Set<? extends Type> getSuperTypes() {
 		return Collections.singleton(getTypeSystem().getListType(elementType));
+	}
+
+	public EClassifier getInnerType() {
+		return innerType;
 	}
 
 	public boolean isInstance(Object o) {

@@ -41,6 +41,7 @@ public class EMapEntryType extends AbstractTypeImpl {
 
 	private Type keyType;
 	private Type valueType;
+	private EClassifier emfType;
 
 	public EMapEntryType(TypeSystem typeSystem, String name,
 			EClassifier innerType) {
@@ -49,6 +50,7 @@ public class EMapEntryType extends AbstractTypeImpl {
 	}
 
 	private void determineTypes(EClassifier emfType) {
+		this.emfType = emfType;
 		EClass str2str = EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY;
 		if (emfType instanceof EClass
 				&& str2str.isSuperTypeOf((EClass) emfType)) {
@@ -92,6 +94,10 @@ public class EMapEntryType extends AbstractTypeImpl {
 
 	public Type getValueType() {
 		return valueType;
+	}
+
+	public EClassifier getEmfType() {
+		return emfType;
 	}
 
 	public boolean isInstance(Object o) {

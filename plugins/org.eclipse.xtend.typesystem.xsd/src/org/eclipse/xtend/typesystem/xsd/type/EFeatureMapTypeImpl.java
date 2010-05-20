@@ -268,4 +268,9 @@ public class EFeatureMapTypeImpl extends AbstractTypeImpl {
 		throw new UnsupportedOperationException(
 				"Feature maps can not be instantiated outside EObjects");
 	}
+
+	public EClass getOwner() {
+		return owner;
+	}
+	
 }

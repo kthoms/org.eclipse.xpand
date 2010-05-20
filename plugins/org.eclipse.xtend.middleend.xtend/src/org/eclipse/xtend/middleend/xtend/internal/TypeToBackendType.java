@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
@@ -52,6 +53,7 @@ import org.eclipse.xtend.backend.types.builtin.TypeType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.uml2.UmlTypesystem;
+import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.type.impl.java.JavaTypeImpl;
 import org.eclipse.xtend.typesystem.Type;
@@ -62,6 +64,13 @@ import org.eclipse.xtend.typesystem.emf.EObjectType;
 import org.eclipse.xtend.typesystem.uml2.profile.EnumType;
 import org.eclipse.xtend.typesystem.uml2.profile.MultipleStereotypeType;
 import org.eclipse.xtend.typesystem.uml2.profile.StereotypeType;
+import org.eclipse.xtend.typesystem.xsd.type.EFeatureMapEntryTypeImpl;
+import org.eclipse.xtend.typesystem.xsd.type.EFeatureMapTypeImpl;
+import org.eclipse.xtend.typesystem.xsd.type.EFeatureType;
+import org.eclipse.xtend.typesystem.xsd.type.EMapEntryType;
+import org.eclipse.xtend.typesystem.xsd.type.EMapType;
+import org.eclipse.xtend.typesystem.xsd.type.QNameType;
+import org.eclipse.xtend.typesystem.xsd.type.XMLEClassType;
 
 
 /**
@@ -73,6 +82,7 @@ public final class TypeToBackendType {
     private final BackendTypesystem _backendTypes;
     private final EmfTypesystem _emfTypes;
     private UmlTypesystem _umlTypes = null;
+    private XsdTypesystem _xsdTypes = null;
     private final ExecutionContext _ctx;
     private Class _emfOldXtendTypesClass;
     private Class _umlOldXtendTypesClass;
@@ -102,16 +112,21 @@ public final class TypeToBackendType {
 
 		EmfTypesystem ets = null;
         UmlTypesystem uts = null;
+        XsdTypesystem xts = null;
         for (BackendTypesystem bts: ((CompositeTypesystem) _backendTypes).getInner()) {
             if (bts instanceof EmfTypesystem)
                 ets = (EmfTypesystem) bts;
             if (_umlTypesClass != null && bts instanceof UmlTypesystem)
             	uts = (UmlTypesystem) bts;
+            if (_xsdTypesClass != null && bts instanceof XsdTypesystem)
+            	xts = (XsdTypesystem) bts;
         }
         
        	_emfTypes = ets;
         if (_umlTypesClass != null) 
         	_umlTypes = uts;
+        if (_xsdTypesClass != null)
+        	_xsdTypes = xts;
         
         try {
         	_emfOldXtendTypesClass = Class.forName("org.eclipse.xtend.typesystem.emf.EmfMetaModel");
@@ -172,16 +187,32 @@ public final class TypeToBackendType {
 	    	if (t instanceof EnumType)
 	    		return convertEnumType (t);
     	}
-//    	if (_hasEmfOldXtendTypes) {
-	        if (t instanceof EClassType)
-	            return convertEClassType (t);
-	        if (t instanceof EDataTypeType)
-	            return convertEDataTypeType (t);
-	        if (t instanceof EEnumType)
-	            return convertEEnumType (t);
-	        if (t instanceof EObjectType)
-	            return org.eclipse.xtend.backend.types.emf.EObjectType.INSTANCE;
-//    	}
+    	
+    	if (_hasXsdOldXtendTypes) {
+    		if (t instanceof QNameType)
+    			return _xsdTypes.getQNameType();
+    		if (t instanceof XMLEClassType)
+    			return convertXMLEClassType (t);
+    		if (t instanceof EFeatureMapTypeImpl)
+    			return convertEFeatureMapType (t);
+    		if (t instanceof EFeatureMapEntryTypeImpl)
+    			return _xsdTypes.getEFeatureMapEntryType ();
+    		if (t instanceof EFeatureType)
+    			return _xsdTypes.getEFeatureType ();
+    		if (t instanceof EMapType)
+    			return convertEMapType (t);
+    		if (t instanceof EMapEntryType)
+    			return convertEMapEntryType (t);
+    	}
+
+	    if (t instanceof EClassType)
+	        return convertEClassType (t);
+	    if (t instanceof EDataTypeType)
+	        return convertEDataTypeType (t);
+	    if (t instanceof EEnumType)
+	        return convertEEnumType (t);
+	    if (t instanceof EObjectType)
+	        return org.eclipse.xtend.backend.types.emf.EObjectType.INSTANCE;
     	
         if (t instanceof JavaTypeImpl)
             return convertJavaType (t);
@@ -218,8 +249,8 @@ public final class TypeToBackendType {
         else
             throw new IllegalArgumentException ("unable to convert type 'null'");
     }
-    
-    private BackendType convertEnumType(Type t) {
+
+	private BackendType convertEnumType(Type t) {
     	if (t instanceof EnumType) 
     		return _umlTypes.findType(((EnumType)t).getEnumeration());
     	return null;
@@ -264,6 +295,35 @@ public final class TypeToBackendType {
         final EEnum eClass = (EEnum) getField(t, "eEnum");
         return _emfTypes.getTypeForEClassifier(eClass);
     }
+    
+    private BackendType convertXMLEClassType (Type t) {
+    	final EClass eClass = (EClass) getField (t, "clazz");
+		return _xsdTypes.getTypeForEClassifier (eClass);
+	}
+    
+    private BackendType convertEFeatureMapType(Type t) {
+    	if (t instanceof EFeatureMapTypeImpl) {
+    		final EClass eClass = ((EFeatureMapTypeImpl) t).getOwner();
+    		return _xsdTypes.getEFeatureMapType (eClass);
+    	}
+    	return null;
+	}
+
+	private BackendType convertEMapType(Type t) {
+		if (t instanceof EMapType) {
+			EClassifier innerType = ((EMapType) t).getInnerType ();
+			return _xsdTypes.getEMapType (innerType);
+		}
+		return null;
+	}
+
+	private BackendType convertEMapEntryType(Type t) {
+		if (t instanceof EMapEntryType) {
+			EClassifier emfType = ((EMapEntryType) t).getEmfType ();
+			return _xsdTypes.getEMapEntryType (emfType);
+		}
+		return null;
+	}
     
     private Object getField (Object o, String fieldName) {
         try {

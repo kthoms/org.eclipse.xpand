@@ -138,6 +138,11 @@ public final class CompositeTypesystem implements BackendTypesystem {
         	return t2;
         if (t2.getClass().equals(EClassType.class) && ((EClassType)t2).getName().endsWith("uml::PrimitiveType"))
         	return t1;
+        
+        if (ListType.INSTANCE.isAssignableFrom(t1))
+        	return t2;
+        if (ListType.INSTANCE.isAssignableFrom(t2))
+        	return t1;
 
         throw new IllegalArgumentException ("no unique best match for types " + t1 + " and " + t2);
     }

@@ -58,16 +58,9 @@ public class XMLReaderImpl {
 		return reader.readXML(file, useDocRoot);
 	}
 
-	public static EObject read(String file, String metaModelID,
-			boolean useDocRoot) {
-		log.info(Msg.create("Reading XML file ").uri(file).txt(
-				". XSDMetaModel-ID '").txt(metaModelID).txt("'"));
-		XSDMetaModel mm = XSDMetaModel.getInstance(metaModelID);
-		if (mm == null)
-			throw new WorkflowInterruptedException("No XSDMetaModel with ID '"
-					+ metaModelID + "' could be found.");
-
-		XMLReaderImpl reader = new XMLReaderImpl(new ResourceSetImpl(), mm);
+	public static EObject read(String file, XSDMetaModel metaModel, boolean useDocRoot) {
+		log.info(Msg.create("Reading XML file ").uri(file).txt(". XSDMetaModel-ID '").txt(metaModel.getID()).txt("'"));
+		XMLReaderImpl reader = new XMLReaderImpl(new ResourceSetImpl(), metaModel);
 		return reader.readXML(file, useDocRoot);
 	}
 

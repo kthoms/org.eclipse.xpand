@@ -49,7 +49,7 @@ public class FeatureMapTest extends AbstractTestCase {
 		ExecutionContextImpl ctx = new ExecutionContextImpl();
 		ctx.registerMetaModel(mm);
 		ec = new ExpressionFacade(ctx);
-		EObject oxml = XMLReaderImpl.read(xml, "mm", false);
+		EObject oxml = XMLReaderImpl.read(xml, mm, false);
 		ec = ec.cloneWithVariable(new Variable("xml", oxml));
 	}
 

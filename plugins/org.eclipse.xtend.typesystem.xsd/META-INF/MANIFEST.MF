@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.eclipse.xtend.typesystem.xsd
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.xsd;visibility:=reexport,
  org.eclipse.xtend,
+ org.eclipse.xtend.util.stdlib,
  org.eclipse.xtend.typesystem.emf;visibility:=reexport,
  org.eclipse.emf.mwe.utils,
  org.eclipse.emf.ecore.xmi,

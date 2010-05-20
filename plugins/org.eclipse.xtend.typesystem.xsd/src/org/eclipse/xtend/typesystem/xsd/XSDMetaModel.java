@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import javax.xml.namespace.QName;
@@ -27,8 +26,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -63,12 +62,6 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 	private final static String EMAP = "EMap";
 	private final static String EMAP_ENTRY = "EMapEntry";
 
-	private static Map<String, XSDMetaModel> mmRegistry = new HashMap<String, XSDMetaModel>();
-
-	public static XSDMetaModel getInstance(String id) {
-		return mmRegistry.get(id);
-	}
-
 	private Cache<EClassifier, EMapType> eMapCache = new Cache<EClassifier, EMapType>() {
 		@Override
 		protected EMapType createNew(EClassifier c) {
@@ -90,6 +83,8 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 	private boolean registerPackagesGlobally = false;
 
 	protected Log log = XSDLog.getLog(getClass());
+	
+	protected String id;
 
 	private Cache<EClassifier, EMapEntryType> mapEntryCache = new Cache<EClassifier, EMapEntryType>() {
 		@Override
@@ -243,13 +238,7 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 			return getEMapEntryType(typedElement.getEType());
 
 		// TODO: Handle EGenericTypes, like EmfRegistryMetaModel does.
-		Type t = null;
-		if (typedElement.getEType() instanceof EClassifier) {
-			t = getTypeForEClassifier(typedElement.getEType());
-		} else {
-			t = getTypeSystem().getTypeForName(
-					getFullyQualifiedName(typedElement.getEType()));
-		}
+		Type t = getTypeForEClassifier(typedElement.getEType());
 		if (typedElement.isMany()) {
 			// TODO: use EmfListType
 			return getTypeSystem().getListType(t);
@@ -324,7 +313,11 @@ public class XSDMetaModel extends EmfRegistryMetaModel {
 	}
 
 	public void setId(String id) {
-		mmRegistry.put(id, this);
+		this.id = id;
+	}
+	
+	public String getID() {
+		return id;
 	}
 
 	// public void loadFromStream(InputStream stream, URI uri) throws

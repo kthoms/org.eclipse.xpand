@@ -55,7 +55,7 @@ public class OpenAction extends SelectionDispatchAction {
 	 * @param selection
 	 * @return
 	 */
-	private boolean checkEnabled(ITextSelection selection) {
+	protected boolean checkEnabled(ITextSelection selection) {
 		if (selection == null || selection.isEmpty()) {
 			return false;
 		}
@@ -81,5 +81,49 @@ public class OpenAction extends SelectionDispatchAction {
 			hyperlinks[0].open();
 		}
 
+	}
+	
+	/**
+	 * Given a ITextSelection (i.e. the current cursor position),
+	 * analyse the region around this location in order to find the word under
+	 * the cursor.
+	 * 
+	 * @param textViewer
+	 *            The underlying text viewer.
+	 * @param offset
+	 *            The cursor location.
+	 * @return The document region defining the hyperlinked word.
+	 */
+	protected IRegion getHyperlinkRegion(ITextSelection selection) {
+		int offset = selection.getOffset();
+		String currDoc = editor.getDocumentProvider().getDocument(editor.getEditorInput()).get();
+
+		// special handling if cursor is located at end of document
+		if (offset == currDoc.length()) {
+			return null;
+		}
+
+		// find word start
+		int start = offset;
+		while (start > -1 && WordDetector.isWordPart(currDoc.charAt(start))) {
+			start--;
+		}
+
+		// find word end
+		start++;
+		int end = offset;
+		while (end < currDoc.length() && WordDetector.isWordPart(currDoc.charAt(end))) {
+			end++;
+		}
+
+		if (start < 0) {
+			start = 0;
+		}
+
+		if (end < start) {
+			end = start;
+		}
+
+		return new Region(start, end - start);
 	}
 }

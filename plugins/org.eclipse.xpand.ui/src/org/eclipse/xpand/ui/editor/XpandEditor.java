@@ -15,7 +15,9 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import org.eclipse.internal.xpand2.codeassist.XpandTokens;
+import org.eclipse.internal.xpand2.XpandTokens;
+import org.eclipse.jdt.ui.actions.IJavaEditorActionDefinitionIds;
+import org.eclipse.jdt.ui.actions.JdtActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.actions.ActionContext;
@@ -80,6 +82,11 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 
 		// refactoring
 		contextMenuRefactoringGroup = new RefactorActionGroup(this, ITextEditorActionConstants.GROUP_EDIT);
+		
+		// hyperlinking and F3 support
+		XpandOpenAction openAction = new XpandOpenAction(this);
+		openAction.setActionDefinitionId(IJavaEditorActionDefinitionIds.OPEN_EDITOR);
+		setAction(JdtActionConstants.OPEN, openAction);
 	}
 
 	public ActionGroup getActionGroup() {

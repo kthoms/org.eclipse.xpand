@@ -207,7 +207,7 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		setAction("ContentAssistTip", a);
 
 		// hyperlinking and F3 support
-		final OpenAction openAction = new OpenAction(this);
+		OpenAction openAction = new OpenAction(this);
 		openAction.setActionDefinitionId(IJavaEditorActionDefinitionIds.OPEN_EDITOR);
 		setAction(JdtActionConstants.OPEN, openAction);
 

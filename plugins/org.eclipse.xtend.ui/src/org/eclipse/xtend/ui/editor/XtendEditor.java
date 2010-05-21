@@ -12,6 +12,9 @@
 
 package org.eclipse.xtend.ui.editor;
 
+
+import org.eclipse.jdt.ui.actions.IJavaEditorActionDefinitionIds;
+import org.eclipse.jdt.ui.actions.JdtActionConstants;
 import org.eclipse.xtend.shared.ui.editor.AbstractXtendXpandEditor;
 import org.eclipse.xtend.shared.ui.editor.outlineview.AbstractExtXptContentOutlinePage;
 import org.eclipse.xtend.ui.editor.outline.XtendContentOutlinePage;
@@ -27,5 +30,15 @@ public class XtendEditor extends AbstractXtendXpandEditor {
     protected AbstractExtXptContentOutlinePage createOutlinePage() {
         return new XtendContentOutlinePage(this);
     }
+    
+    @Override
+	protected void createActions() {
+		super.createActions();
+		
+		// hyperlinking and F3 support
+		XtendOpenAction openAction = new XtendOpenAction(this);
+		openAction.setActionDefinitionId(IJavaEditorActionDefinitionIds.OPEN_EDITOR);
+		setAction(JdtActionConstants.OPEN, openAction);
+	}
 
 }

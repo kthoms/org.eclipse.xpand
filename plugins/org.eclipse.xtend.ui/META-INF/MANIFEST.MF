@@ -33,3 +33,4 @@ Export-Package: org.eclipse.xtend.ui,
  org.eclipse.xtend.ui.editor.scanning,
  org.eclipse.xtend.ui.wizard
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.eclipse.jdt.ui.actions

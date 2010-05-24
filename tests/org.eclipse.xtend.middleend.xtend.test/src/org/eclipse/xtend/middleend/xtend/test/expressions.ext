@@ -202,3 +202,6 @@ String testOtherAdviceSubPackageFunction (String param1, Integer param2) : testS
 // function from xtend stdlib
 String testStdLibGetProperty (String propertyName) : getProperty("" + propertyName);
 
+String testThisParameter (String this) : getThisParam("that") + getThisParam("first", "second") + getThisParam(getNullString(), "last");
+private String getThisParam (String p1, String p2) : p1 != null ? p1 + p2 : "NULL" + p2;
+private String getNullString() : null;

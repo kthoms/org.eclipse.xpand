@@ -18,6 +18,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.common.SyntaxConstants;
 
 
 /**
@@ -41,6 +42,10 @@ public final class InvocationOnObjectExpression extends ExpressionBase {
     @Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final List<Object> params = new ArrayList<Object> ();
+        boolean firstParamIsThis = false;
+        if (_params.size() > 0 && _params.get(0) instanceof LocalVarEvalExpression)
+        	if (((LocalVarEvalExpression)_params.get(0)).getLocalVarName().equals(SyntaxConstants.THIS))
+        		firstParamIsThis = true;
         for (ExpressionBase expr: _params)
         	params.add (expr.evaluate(ctx));
         
@@ -53,6 +58,6 @@ public final class InvocationOnObjectExpression extends ExpressionBase {
             return null;
         }
         
-        return ctx.getFunctionDefContext().invoke (ctx, _functionName, params);
+        return ctx.getFunctionDefContext().invoke (ctx, _functionName, params, firstParamIsThis);
     }
 }

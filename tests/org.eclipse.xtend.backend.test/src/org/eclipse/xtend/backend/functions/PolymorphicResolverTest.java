@@ -51,7 +51,7 @@ public class PolymorphicResolverTest {
     
     private Collection<Function> getCandidates (Object... params) {
         final FunctionDefContextImpl fdc = (FunctionDefContextImpl) createEmptyFdc (new CompositeTypesystem ());
-        return new PolymorphicResolver (new QualifiedName ("operatorPlus")).getBestFitCandidates (fdc.findFunctionCandidates (new QualifiedName ("operatorPlus"), fdc.typesForParameters(createEmptyExecutionContext().getTypesystem(), Arrays.asList (params))));
+        return new PolymorphicResolver (new QualifiedName ("operatorPlus")).getBestFitCandidates (fdc.findFunctionCandidates (new QualifiedName ("operatorPlus"), fdc.typesForParameters(createEmptyExecutionContext().getTypesystem(), Arrays.asList (params)), false));
     }
     
     //TODO test resolution with guards

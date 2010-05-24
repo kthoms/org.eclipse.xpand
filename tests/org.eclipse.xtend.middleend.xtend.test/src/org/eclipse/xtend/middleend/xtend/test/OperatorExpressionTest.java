@@ -17,10 +17,20 @@ import java.util.Arrays;
 
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
+import org.junit.Before;
 import org.junit.Test;
 
-public class OperatorExpressionTest extends ExpressionTest {
+public class OperatorExpressionTest extends JavaXtendTest {
 	
+
+	@Before
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+		_bc = XtendBackendFacade.createForFile ("org::eclipse::xtend::middleend::xtend::test::expressions", "iso-8859-1", _mms);;
+		_ctx = BackendFacade.createExecutionContext (_bc.getFunctionDefContext(), _ts, true);
+	}
 	
 	@Test
 	public void testEqualsNull () {

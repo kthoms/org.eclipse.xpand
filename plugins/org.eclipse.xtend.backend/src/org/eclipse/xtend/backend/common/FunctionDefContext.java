@@ -25,6 +25,7 @@ import java.util.List;
  */
 public interface FunctionDefContext {
     Object invoke (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params);
+    Object invoke (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params, boolean firstParamIsThis);
     
     /**
      * for reflection. This method returns all functions, both those separately registered and those "built into" the

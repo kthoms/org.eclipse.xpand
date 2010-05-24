@@ -19,6 +19,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.syslib.CollectionOperations;
 
 
@@ -52,6 +53,10 @@ public final class InvocationOnWhateverExpression extends ExpressionBase {
     @Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final List<Object> params = new ArrayList<Object> ();
+        boolean firstParamIsThis = false;
+        if (_params.size() > 0 && _params.get(0) instanceof LocalVarEvalExpression)
+        	if (((LocalVarEvalExpression)_params.get(0)).getLocalVarName().equals(SyntaxConstants.THIS))
+        		firstParamIsThis = true;
         for (ExpressionBase expr: _params)
         	params.add (expr.evaluate(ctx));
 
@@ -63,7 +68,7 @@ public final class InvocationOnWhateverExpression extends ExpressionBase {
         if (params.get (0) instanceof Collection<?>) {
             // check if this is a function on Collection itself
             if (ctx.getFunctionDefContext().hasMatch (ctx, _functionName, params))
-                return ctx.getFunctionDefContext().invoke (ctx, _functionName, params);
+                return ctx.getFunctionDefContext().invoke (ctx, _functionName, params, firstParamIsThis);
 
             final Collection<?> coll = (Collection<?>) params.get (0);
             
@@ -72,13 +77,13 @@ public final class InvocationOnWhateverExpression extends ExpressionBase {
             for (Object o: coll) {
                 params.set (0, o);
                 
-                CollectionOperations.addFlattened (result, ctx.getFunctionDefContext().invoke (ctx, _functionName, params));
+                CollectionOperations.addFlattened (result, ctx.getFunctionDefContext().invoke (ctx, _functionName, params, firstParamIsThis));
             }
             
             return result;
 
         }
         else 
-            return ctx.getFunctionDefContext().invoke (ctx, _functionName, params);
+            return ctx.getFunctionDefContext().invoke (ctx, _functionName, params, firstParamIsThis);
     }
 }

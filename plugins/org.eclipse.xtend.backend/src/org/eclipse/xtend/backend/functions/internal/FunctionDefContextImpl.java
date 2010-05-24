@@ -21,11 +21,15 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.backend.common.SyntaxConstants;
+import org.eclipse.xtend.backend.expr.LiteralExpression;
+import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.functions.DuplicateAwareFunctionCollection;
 import org.eclipse.xtend.backend.functions.DuplicateAwareNamedFunctionCollection;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.backend.util.Cache;
+import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.DoubleKeyCache;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 import org.eclipse.xtend.backend.util.StringHelper;
@@ -133,7 +137,11 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     }
     
     public Object invoke (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params) {
-    	final Collection<Function> candidates = findFunctionCandidates (functionName, typesForParameters (ctx.getTypesystem(), params));
+    	return invoke(ctx, functionName, params, false);
+    }
+    
+    public Object invoke (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params, boolean firstParamIsThis) {
+    	final Collection<Function> candidates = findFunctionCandidates (functionName, typesForParameters (ctx.getTypesystem(), params), firstParamIsThis);
     	
     	Function f = null;
     	try {
@@ -150,8 +158,9 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     	} else {
     		name = functionName;
     	}
-			
-    	return ctx.getAdviceContext().getAdvice (name, f).evaluate(ctx, params);
+		if (firstParamIsThis && f.getParameterTypes().size() != params.size())
+	    	return ctx.getAdviceContext().getAdvice (name, f).evaluate (ctx, CollectionHelper.withoutFirst (params));
+    	return ctx.getAdviceContext().getAdvice (name, f).evaluate (ctx, params);
     }
 
     /**
@@ -168,9 +177,13 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     /**
      * is public only for testing purposes
      */
-    public Collection<Function> findFunctionCandidates (QualifiedName functionName, List<BackendType> paramTypes) {
+    public Collection<Function> findFunctionCandidates (QualifiedName functionName, List<BackendType> paramTypes, boolean firstParamIsThis) {
         try {
-            return _byParamTypes.get (functionName, paramTypes);
+        	Collection<Function> candidates = _byParamTypes.get (functionName, paramTypes);
+        	if (candidates.isEmpty() && firstParamIsThis) {
+        		candidates = _byParamTypes.get (functionName, CollectionHelper.withoutFirst(paramTypes));
+        	}
+            return candidates;
         } catch (RuntimeException e) {
             ErrorHandler.handle ("Failed to resolve function '" + functionName + "' for parameter types " + paramTypes + ".", e);
             return null; // to make the compiler happy - this is never executed
@@ -187,7 +200,7 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     }
 
     public Function getMatch (ExecutionContext ctx, QualifiedName name, List<BackendType> params) {
-        final Collection<Function> candidates = findFunctionCandidates (name, params);
+        final Collection<Function> candidates = findFunctionCandidates (name, params, false);
         if (candidates.isEmpty())
             return null;
         if (candidates.size() > 1)
@@ -197,7 +210,7 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     }
     
     public boolean hasMatch (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params) {
-        return findFunctionCandidates (functionName, typesForParameters (ctx.getTypesystem(), params)).size() > 0;
+       return findFunctionCandidates (functionName, typesForParameters (ctx.getTypesystem(), params), false).size() > 0;
     }
     
     @Override

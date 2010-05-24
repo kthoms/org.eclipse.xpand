@@ -33,4 +33,8 @@ public class BackendFacade {
 	public static Object invoke (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params) {
 		return ctx.getFunctionDefContext().invoke(ctx, functionName, params);
 	}
+	
+	public static Object invoke (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params, boolean firstParamIsThis) {
+		return ctx.getFunctionDefContext().invoke(ctx, functionName, params, firstParamIsThis);
+	}
 }

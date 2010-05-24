@@ -19,6 +19,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.syslib.CollectionOperations;
 
 
@@ -43,7 +44,10 @@ public final class InvocationOnCollectionExpression extends ExpressionBase {
     @Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final Collection<?> coll = (Collection<?>) _coll.evaluate(ctx);
-        
+        boolean firstParamIsThis = false;
+        if (_params.size() > 0 && _params.get(0) instanceof LocalVarEvalExpression)
+        	if (((LocalVarEvalExpression)_params.get(0)).getLocalVarName().equals(SyntaxConstants.THIS))
+        		firstParamIsThis = true;
         if (coll == null) {
             ctx.logNullDeRef (getPos());
             return null;
@@ -59,7 +63,7 @@ public final class InvocationOnCollectionExpression extends ExpressionBase {
         for (Object o: coll) {
         	params.set (0, o);
 
-        	CollectionOperations.addFlattened (result, ctx.getFunctionDefContext().invoke (ctx, _functionName, params));
+        	CollectionOperations.addFlattened (result, ctx.getFunctionDefContext().invoke (ctx, _functionName, params, firstParamIsThis));
         }
         
         return result;

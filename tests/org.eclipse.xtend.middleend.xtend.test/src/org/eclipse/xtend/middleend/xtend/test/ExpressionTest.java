@@ -12,8 +12,8 @@ package org.eclipse.xtend.middleend.xtend.test;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -27,11 +27,14 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.xpand2.output.Outlet;
+import org.eclipse.xtend.XtendFacade;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.eclipse.xtend.middleend.xtend.XtendComponent;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
+import org.eclipse.xtend.type.impl.java.JavaMetaModel;
+import org.eclipse.xtend.type.impl.java.beans.JavaBeansStrategy;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.util.stdlib.PropertiesReader;
 import org.junit.Before;
@@ -122,5 +125,10 @@ public class ExpressionTest extends JavaXtendTest {
         
         assertNotNull (result);
         assertEquals("testPropertyValue", result);
+	}
+	
+	@Test
+	public void testThisParameter() {
+		assertEquals ("thisthatfirstsecondNULLlast", BackendFacade.invoke (_ctx, new QualifiedName ("testThisParameter"), Arrays.asList ("this")).toString());		
 	}
 }

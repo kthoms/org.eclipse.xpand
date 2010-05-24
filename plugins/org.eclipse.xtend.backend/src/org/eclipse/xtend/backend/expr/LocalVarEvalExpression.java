@@ -32,4 +32,8 @@ public final class LocalVarEvalExpression extends ExpressionBase {
         //expects a static check to have been performed that a local variable of this name exists
         return ctx.getLocalVarContext().getLocalVars().get (_localVarName);
     }
+    
+    public String getLocalVarName () {
+    	return _localVarName;
+    }
 }

@@ -11,8 +11,6 @@
 
 package org.eclipse.xtend.expression;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 
 /**
@@ -141,23 +139,68 @@ public class AnalysationIssue {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (obj == this) {
-			return true;
-		}
-		if (obj.getClass() != getClass()) {
-			return false;
-		}
-		AnalysationIssue rhs = (AnalysationIssue) obj;
-		return new EqualsBuilder().append(analysationIssueType, rhs.analysationIssueType).append(element, rhs.element)
-				.append(message, rhs.message).append(onLine,rhs.getOnLine()).isEquals();
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((analysationIssueType == null) ? 0 : analysationIssueType.hashCode());
+		result = prime * result + ((element == null) ? 0 : element.hashCode());
+		result = prime * result + ((message == null) ? 0 : message.hashCode());
+		result = prime * result + onLine;
+		result = prime * result + ((severity == null) ? 0 : severity.hashCode());
+		return result;
 	}
 
 	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(analysationIssueType).append(element).append(message).append(onLine).toHashCode();
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AnalysationIssue other = (AnalysationIssue) obj;
+		if (analysationIssueType == null) {
+			if (other.analysationIssueType != null)
+				return false;
+		} else if (!analysationIssueType.equals(other.analysationIssueType))
+			return false;
+		if (element == null) {
+			if (other.element != null)
+				return false;
+		} else if (!element.equals(other.element))
+			return false;
+		if (message == null) {
+			if (other.message != null)
+				return false;
+		} else if (!message.equals(other.message))
+			return false;
+		if (onLine != other.onLine)
+			return false;
+		if (severity != other.severity)
+			return false;
+		return true;
 	}
+
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (obj == null) {
+//			return false;
+//		}
+//		if (obj == this) {
+//			return true;
+//		}
+//		if (obj.getClass() != getClass()) {
+//			return false;
+//		}
+//		AnalysationIssue rhs = (AnalysationIssue) obj;
+//		return new EqualsBuilder().append(analysationIssueType, rhs.analysationIssueType).append(element, rhs.element)
+//				.append(message, rhs.message).append(onLine,rhs.getOnLine()).isEquals();
+//	}
+//
+//	@Override
+//	public int hashCode() {
+//		return new HashCodeBuilder().append(analysationIssueType).append(element).append(message).append(onLine).toHashCode();
+//	}
+	
+	
 }

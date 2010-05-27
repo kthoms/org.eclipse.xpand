@@ -8,7 +8,7 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.mwe.core;visibility:=reexport,
  org.antlr.runtime,
  org.eclipse.emf.common,
- com.ibm.icu;bundle-version="4.0.1";resolution:=optional;visibility:=reexport
+ com.ibm.icu;resolution:=optional;visibility:=reexport
 Export-Package: org.eclipse.internal.xtend.check.codeassist,
  org.eclipse.internal.xtend.expression.ast,
  org.eclipse.internal.xtend.expression.codeassist,
@@ -34,5 +34,4 @@ Export-Package: org.eclipse.internal.xtend.check.codeassist,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-BuddyPolicy: dependent
 Import-Package: com.ibm.icu.text,
- org.apache.commons.lang.builder,
  org.apache.commons.logging

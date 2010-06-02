@@ -10,11 +10,20 @@
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Profile Support</h1>
+<div class="section" title="Profile Support">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="uml2example_profiles"/>Profile Support</h2>
+</div>
+</div>
+</div>
 <p>Xpand is shipped with a special <span class="emphasis">
 <em>UML2 profiles</em>
 </span>
-    metamodel implementation. The implementation maps Stereotypes<a name="N12A10" class="indexterm"/> to Types and Tagged Values<a name="N12A14" class="indexterm"/> to simple properties. It also supports
-    Enumerations<a name="N12A18" class="indexterm"/> defined in the profile and Stereotype hierarchies.</p>
+    metamodel implementation. The implementation maps Stereotypes<a name="N12A15" class="indexterm"/> to Types and Tagged Values<a name="N12A19" class="indexterm"/> to simple properties. It also supports
+    Enumerations<a name="N12A1D" class="indexterm"/> defined in the profile and Stereotype hierarchies.</p>
 <div class="section" title="Defining a Profile">
 <div class="titlepage">
 <div>
@@ -151,7 +160,7 @@
 <p>Note that all the stuff above was not in any way related to Xpand,
       it was just the "bare bones" means of creating and applying a profile to
       a UML2 model. Having an UML2 tool capable of storing models as EMF UML2
-      XMI<a name="N12AA0" class="indexterm"/> would make the creation of the model far more easier.
+      XMI<a name="N12AA5" class="indexterm"/> would make the creation of the model far more easier.
       Since we cannot assume which UML2 tool you are using this tutorial shows
       you this way, which would always work without further tooling
       installed.</p>
@@ -187,7 +196,7 @@
       base type (<code class="classname">uml::Class</code>) and the stereotype
       works!</p>
 <p>Adapting the workflow file is also straight forward
-      (<code class="filename">workflowWithProfile.oaw</code>). Here is the modified
+      (<code class="filename">workflowWithProfile.mwe</code>). Here is the modified
       model component with the new model
       <code class="filename">example-profiled.uml</code> and a extended setup:</p>
 <pre class="programlisting">&lt;?xml version="1.0"?&gt;
@@ -220,6 +229,7 @@
 &lt;/workflow&gt;</pre>
 <p>The only thing, we have to do is to add a new metamodel that
       references the profile we just created.</p>
+</div>
 </div>
 </body>
 </html>

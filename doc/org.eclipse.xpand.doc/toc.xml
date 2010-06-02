@@ -146,7 +146,7 @@
 <topic href="help/xpand_reference_introduction.html#xpand_reference_file" label="FILE"/>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_expand" label="EXPAND">
 <topic href="help/xpand_reference_introduction.html#xpand_reference_names" label="Names"/>
-<topic href="help/xpand_reference_introduction.html#N111FC" label="Lazy evaluation"/>
+<topic href="help/xpand_reference_introduction.html#N11201" label="Lazy evaluation"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_for_vs_foreach" label="FOR vs. FOREACH">
 <topic href="help/xpand_reference_introduction.html#xpand_reference_specifying_a_separator" label="Specifying a Separator"/>
@@ -178,7 +178,7 @@
 <topic href="help/xpand_reference_introduction.html#xpand_reference_xmlbeautifier" label="XmlBeautifier"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_protected_region_configuration" label="Protected Region Configuration"/>
-<topic href="help/xpand_reference_introduction.html#N1153A" label="VetoStrategy"/>
+<topic href="help/xpand_reference_introduction.html#N1153F" label="VetoStrategy"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#aop_template_introduction" label="Example for using Aspect-Oriented Programming in Xpand"/>
 <topic href="help/xpand_reference_introduction.html#aop_template_the_problem" label="The Problem"/>
@@ -211,82 +211,82 @@
 <topic href="help/xpand2_Iterator.html.html" label="xpand2::Iterator"/>
 </topic>
 <topic href="help/stdlib_reference.html" label="Stdlib">
-<topic href="help/stdlib_reference.html#N121FF" label="Introduction"/>
+<topic href="help/stdlib_reference.html#N12204" label="Introduction"/>
 <topic href="help/ch04s02.html" label="Stdlib extensions">
-<topic href="help/ch04s02.html#N12214" label="IO extensions">
-<topic href="help/ch04s02.html#N1221F" label="debug (Object o)"/>
-<topic href="help/ch04s02.html#N1222F" label="info (Object o)"/>
-<topic href="help/ch04s02.html#N1223F" label="error (Object o)"/>
-<topic href="help/ch04s02.html#N1224F" label="syserr (Object o)"/>
-<topic href="help/ch04s02.html#N12262" label="syserr (Object o, String prefix)"/>
-<topic href="help/ch04s02.html#N12278" label="syserr (Object o)"/>
-<topic href="help/ch04s02.html#N1228B" label="throwError (Object o)"/>
-<topic href="help/ch04s02.html#N1229B" label="Examples"/>
-<topic href="help/ch04s02.html#N122BE" label="Controlling the log level"/>
+<topic href="help/ch04s02.html#N12219" label="IO extensions">
+<topic href="help/ch04s02.html#N12224" label="debug (Object o)"/>
+<topic href="help/ch04s02.html#N12234" label="info (Object o)"/>
+<topic href="help/ch04s02.html#N12244" label="error (Object o)"/>
+<topic href="help/ch04s02.html#N12254" label="syserr (Object o)"/>
+<topic href="help/ch04s02.html#N12267" label="syserr (Object o, String prefix)"/>
+<topic href="help/ch04s02.html#N1227D" label="syserr (Object o)"/>
+<topic href="help/ch04s02.html#N12290" label="throwError (Object o)"/>
+<topic href="help/ch04s02.html#N122A0" label="Examples"/>
+<topic href="help/ch04s02.html#N122C3" label="Controlling the log level"/>
 </topic>
-<topic href="help/ch04s02.html#N122CF" label="Counter extensions">
-<topic href="help/ch04s02.html#N122D9" label="int counterInc (Object o)"/>
-<topic href="help/ch04s02.html#N122EC" label="int counterDec (Object o)"/>
-<topic href="help/ch04s02.html#N122FF" label="int counterReset (Object o)"/>
-<topic href="help/ch04s02.html#N12312" label="int counterGet (Object o)"/>
-<topic href="help/ch04s02.html#N12325" label="Example"/>
+<topic href="help/ch04s02.html#N122D4" label="Counter extensions">
+<topic href="help/ch04s02.html#N122DE" label="int counterInc (Object o)"/>
+<topic href="help/ch04s02.html#N122F1" label="int counterDec (Object o)"/>
+<topic href="help/ch04s02.html#N12304" label="int counterReset (Object o)"/>
+<topic href="help/ch04s02.html#N12317" label="int counterGet (Object o)"/>
+<topic href="help/ch04s02.html#N1232A" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N1232F" label="Properties extensions">
-<topic href="help/ch04s02.html#N1233D" label="String getProperty (String key)"/>
-<topic href="help/ch04s02.html#N1234F" label="Workflow component"/>
-<topic href="help/ch04s02.html#N1236C" label="Example"/>
+<topic href="help/ch04s02.html#N12334" label="Properties extensions">
+<topic href="help/ch04s02.html#N12342" label="String getProperty (String key)"/>
+<topic href="help/ch04s02.html#N12354" label="Workflow component"/>
+<topic href="help/ch04s02.html#N12371" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N1237D" label="Element properties extensions">
-<topic href="help/ch04s02.html#N12389" label="Void setProperty (Object element, String name, Object value)"/>
-<topic href="help/ch04s02.html#N123A8" label="Object getProperty (Object element, String name)"/>
+<topic href="help/ch04s02.html#N12382" label="Element properties extensions">
+<topic href="help/ch04s02.html#N1238E" label="Void setProperty (Object element, String name, Object value)"/>
+<topic href="help/ch04s02.html#N123AD" label="Object getProperty (Object element, String name)"/>
 </topic>
-<topic href="help/ch04s02.html#N123BF" label="Issues extensions">
-<topic href="help/ch04s02.html#N123CB" label="String reportWarning (String message)"/>
-<topic href="help/ch04s02.html#N123DD" label="String reportWarning (Object object, String message)"/>
-<topic href="help/ch04s02.html#N123F4" label="String reportError (String message)"/>
-<topic href="help/ch04s02.html#N12406" label="String reportError (Object object, String message)"/>
-<topic href="help/ch04s02.html#N1241D" label="Workflow component"/>
-<topic href="help/ch04s02.html#N1242A" label="Example"/>
+<topic href="help/ch04s02.html#N123C4" label="Issues extensions">
+<topic href="help/ch04s02.html#N123D0" label="String reportWarning (String message)"/>
+<topic href="help/ch04s02.html#N123E2" label="String reportWarning (Object object, String message)"/>
+<topic href="help/ch04s02.html#N123F9" label="String reportError (String message)"/>
+<topic href="help/ch04s02.html#N1240B" label="String reportError (Object object, String message)"/>
+<topic href="help/ch04s02.html#N12422" label="Workflow component"/>
+<topic href="help/ch04s02.html#N1242F" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N12439" label="Naming extensions">
-<topic href="help/ch04s02.html#N12446" label="String namespace (Object this)"/>
-<topic href="help/ch04s02.html#N12458" label="String qualifiedName (Object this)"/>
-<topic href="help/ch04s02.html#N1246A" label="String loc (Object this)"/>
-<topic href="help/ch04s02.html#N1247C" label="Object findByName (Collection candidates, String name)"/>
+<topic href="help/ch04s02.html#N1243E" label="Naming extensions">
+<topic href="help/ch04s02.html#N1244B" label="String namespace (Object this)"/>
+<topic href="help/ch04s02.html#N1245D" label="String qualifiedName (Object this)"/>
+<topic href="help/ch04s02.html#N1246F" label="String loc (Object this)"/>
+<topic href="help/ch04s02.html#N12481" label="Object findByName (Collection candidates, String name)"/>
 </topic>
-<topic href="help/ch04s02.html#N12493" label="Globalvar extensions">
-<topic href="help/ch04s02.html#N1249D" label="Example"/>
+<topic href="help/ch04s02.html#N12498" label="Globalvar extensions">
+<topic href="help/ch04s02.html#N124A2" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N124AA" label="Cloning extensions">
-<topic href="help/ch04s02.html#N124C8" label="Object clone (Object original)"/>
-<topic href="help/ch04s02.html#N124DA" label="List clone (List l)"/>
+<topic href="help/ch04s02.html#N124AF" label="Cloning extensions">
+<topic href="help/ch04s02.html#N124CD" label="Object clone (Object original)"/>
+<topic href="help/ch04s02.html#N124DF" label="List clone (List l)"/>
 </topic>
-<topic href="help/ch04s02.html#N124EC" label="Cross references extensions">
-<topic href="help/ch04s02.html#N124F6" label="List[EObject] getReferencingObjects(EObject target)"/>
-<topic href="help/ch04s02.html#N12508" label="Example"/>
+<topic href="help/ch04s02.html#N124F1" label="Cross references extensions">
+<topic href="help/ch04s02.html#N124FB" label="List[EObject] getReferencingObjects(EObject target)"/>
+<topic href="help/ch04s02.html#N1250D" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N12513" label="UID extensions">
-<topic href="help/ch04s02.html#N12520" label="cached String uid( Object o )"/>
-<topic href="help/ch04s02.html#N12532" label="String createUID( Object o )"/>
-<topic href="help/ch04s02.html#N12544" label="String xmlId (ecore::EObject o)"/>
+<topic href="help/ch04s02.html#N12518" label="UID extensions">
+<topic href="help/ch04s02.html#N12525" label="cached String uid( Object o )"/>
+<topic href="help/ch04s02.html#N12537" label="String createUID( Object o )"/>
+<topic href="help/ch04s02.html#N12549" label="String xmlId (ecore::EObject o)"/>
 </topic>
-<topic href="help/ch04s02.html#N12556" label="Mixin extensions">
-<topic href="help/ch04s02.html#N12575" label="Object getMandatoryMixin( Object mixinModel, Object ctx, oaw::Type t )"/>
-<topic href="help/ch04s02.html#N12591" label="Object getOptionalMixin( Object mixinModel, Object ctx, oaw::Type t )"/>
+<topic href="help/ch04s02.html#N1255B" label="Mixin extensions">
+<topic href="help/ch04s02.html#N1257A" label="Object getMandatoryMixin( Object mixinModel, Object ctx, xpand2::Type t )"/>
+<topic href="help/ch04s02.html#N12596" label="Object getOptionalMixin( Object mixinModel, Object ctx, xpand2::Type t )"/>
 </topic>
-<topic href="help/ch04s02.html#N12596" label="Tracing extensions">
-<topic href="help/ch04s02.html#N125A1" label="Void createTrace( Object from, Object to, String kind, String backKind )"/>
-<topic href="help/ch04s02.html#N125C2" label="Void createTrace( Object from, Object to, String kind)"/>
-<topic href="help/ch04s02.html#N125DE" label="Void clearTrace()"/>
-<topic href="help/ch04s02.html#N125EB" label="Object getSingleTraceTarget( Object from, String kind )"/>
-<topic href="help/ch04s02.html#N12602" label="Boolean hasTrace( Object from, String kind )"/>
+<topic href="help/ch04s02.html#N1259B" label="Tracing extensions">
+<topic href="help/ch04s02.html#N125A6" label="Void createTrace( Object from, Object to, String kind, String backKind )"/>
+<topic href="help/ch04s02.html#N125C7" label="Void createTrace( Object from, Object to, String kind)"/>
+<topic href="help/ch04s02.html#N125E3" label="Void clearTrace()"/>
+<topic href="help/ch04s02.html#N125F0" label="Object getSingleTraceTarget( Object from, String kind )"/>
+<topic href="help/ch04s02.html#N12607" label="Boolean hasTrace( Object from, String kind )"/>
 </topic>
 </topic>
 <topic href="help/ch04s03.html" label="Stdlib workflow components">
-<topic href="help/ch04s03.html#N1261E" label="SystemCommand"/>
-<topic href="help/ch04s03.html#N12681" label="SlotCopier"/>
-<topic href="help/ch04s03.html#N126CC" label="SlotListAdder"/>
-<topic href="help/ch04s03.html#N1271B" label="SlotPrinter"/>
+<topic href="help/ch04s03.html#N12623" label="SystemCommand"/>
+<topic href="help/ch04s03.html#N12686" label="SlotCopier"/>
+<topic href="help/ch04s03.html#N126D1" label="SlotListAdder"/>
+<topic href="help/ch04s03.html#N12720" label="SlotPrinter"/>
 </topic>
 </topic>
 <topic href="help/eclipse_integration.html" label="Xpand Eclipse Integration">

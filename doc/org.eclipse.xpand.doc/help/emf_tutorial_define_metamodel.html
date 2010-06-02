@@ -10,6 +10,15 @@
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Defining an EMF metamodel</h1>
+<div class="section" title="Defining an EMF metamodel">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="emf_tutorial_define_metamodel"/>Defining an EMF metamodel</h2>
+</div>
+</div>
+</div>
 <p>To illustrate the metamodel, before we deal with the intricacies of
     EMF, here is the metamodel in UML: </p>
 <div class="figure">
@@ -405,6 +414,38 @@
   &lt;/eClassifiers&gt;
 &lt;/ecore:EPackage&gt;
 </pre>
+</div>
+<div class="footnotes">
+<br/>
+<hr align="left" width="100"/>
+<div class="footnote">
+<p>
+<sup>[<a href="#N100A8" name="ftn.N100A8" class="para">1</a>] </sup>To add children, right-click on the element to which you want
+          to add these children and select the type of the child from the
+          list. To configure the properties, open the properties dialog by
+          selecting <span class="guimenu">Show Properties View</span> at the bottom of
+          any of the context menus. Note that this is not an EMF tutorial. For
+          more details on how to build EMF (meta-)models, please refer to the
+          EMF documentation.</p>
+</div>
+<div class="footnote">
+<p>
+<sup>[<a href="#N100BA" name="ftn.N100BA" class="para">2</a>] </sup>Attributes are children of type
+          <code class="classname">EAttribute</code>. Please fill in the
+          <span class="property">Name</span> and the <span class="property">EType</span>
+          properties.</p>
+</div>
+<div class="footnote">
+<p>
+<sup>[<a href="#N10112" name="ftn.N10112" class="para">3</a>] </sup>Note: there are a couple of <span class="emphasis">
+<em>-1's</em>
+</span> ...
+          don't miss the minus! Also, the containment flag is essential. If
+          containment is <code class="literal">true</code> you will be able to create
+          children of the referenced type, otherwise you can only reference
+          them.</p>
+</div>
+</div>
 </div>
 </body>
 </html>

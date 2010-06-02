@@ -10,6 +10,15 @@
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Stdlib workflow components</h1>
+<div class="section" title="Stdlib workflow components">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="N1261E"/>Stdlib workflow components</h2>
+</div>
+</div>
+</div>
 <p>Besides the extensions described in the previous section Xpand's
     Stdlib provides some workflow components.</p>
 <div class="section" title="SystemCommand">
@@ -17,13 +26,13 @@
 <div>
 <div>
 <h3 class="title">
-<a name="N1261E"/>SystemCommand</h3>
+<a name="N12623"/>SystemCommand</h3>
 </div>
 </div>
 </div>
-<p>This component executes a system command<a name="N12623" class="indexterm"/>.</p>
+<p>This component executes a system command<a name="N12628" class="indexterm"/>.</p>
 <div class="table">
-<a name="N12627"/>
+<a name="N1262C"/>
 <p class="title">
 <b>Table 2. Workflow component
         org.eclipse.xtend.util.stdlib.SystemCommand</b>
@@ -98,7 +107,7 @@
 <p>Windows tip:</p>
 <p>When executing a command on windows this is typically done with
       the cmd as command value. It is important that the command terminates,
-      therefore the argument /c must be appended as arg value.<sup>[<a href="#ftn.N12677" name="N12677" class="footnote">11</a>]</sup>
+      therefore the argument /c must be appended as arg value.<sup>[<a href="#ftn.N1267C" name="N1267C" class="footnote">11</a>]</sup>
 </p>
 </div>
 <div class="section" title="SlotCopier">
@@ -106,7 +115,7 @@
 <div>
 <div>
 <h3 class="title">
-<a name="N12681"/>SlotCopier<a name="N12684" class="indexterm"/>
+<a name="N12686"/>SlotCopier<a name="N12689" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -114,7 +123,7 @@
 <p>This component copies an element from one slot to another. The
       slot content is not cloned.</p>
 <div class="table">
-<a name="N1268A"/>
+<a name="N1268F"/>
 <p class="title">
 <b>Table 3. Workflow component
           org.eclipse.xtend.util.stdlib.SlotCopier</b>
@@ -186,7 +195,7 @@
 <div>
 <div>
 <h3 class="title">
-<a name="N126CC"/>SlotListAdder<a name="N126CF" class="indexterm"/>
+<a name="N126D1"/>SlotListAdder<a name="N126D4" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -194,7 +203,7 @@
 <p>This component copies an element from one slot to a list contained
       in another slot.</p>
 <div class="table">
-<a name="N126D4"/>
+<a name="N126D9"/>
 <p class="title">
 <b>Table 4. Workflow component
         org.eclipse.xtend.util.stdlib.SlotListAdder</b>
@@ -273,7 +282,7 @@ WARN WorkflowRunner 'targetList' is empty, creating a new list.
 <div>
 <div>
 <h3 class="title">
-<a name="N1271B"/>SlotPrinter<a name="N1271E" class="indexterm"/>
+<a name="N12720"/>SlotPrinter<a name="N12723" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -281,7 +290,7 @@ WARN WorkflowRunner 'targetList' is empty, creating a new list.
 <p>This component prints a workflow context slot content to the log.
       This can be useful for debugging purposes.</p>
 <div class="table">
-<a name="N12723"/>
+<a name="N12728"/>
 <p class="title">
 <b>Table 5. Workflow component
         org.eclipse.xtend.util.stdlib.SlotPrinter</b>
@@ -347,6 +356,17 @@ WARN WorkflowRunner 'targetList' is empty, creating a new list.
 <pre class="programlisting">INFO SlotPrinter DUMP: (slot: model)org.eclipse.emf.ecore.impl.DynamicEObjectImpl@d22ddb 
   (eClass: org.eclipse.emf.ecore.impl.EClassImpl@fe0ce9 (name: Model) (instanceClassName: null) 
   (abstract: false, interface: false))</pre>
+</div>
+<div class="footnotes">
+<br/>
+<hr align="left" width="100"/>
+<div class="footnote">
+<p>
+<sup>[<a href="#N1267C" name="ftn.N1267C" class="para">11</a>] </sup>See <a class="ulink" href="http://www.ss64.com/nt/cmd.html" target="_new">http://www.ss64.com/nt/cmd.html</a>,
+          <a class="ulink" href="http://www.java-forum.org/de/viewtopic.php?p=469059" target="_new">http://www.java-forum.org/de/viewtopic.php?p=469059</a>
+</p>
+</div>
+</div>
 </div>
 </body>
 </html>

@@ -10,6 +10,19 @@
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Xtend</h1>
+<div class="section" title="Xtend">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Xtend_language"/>
+<span class="emphasis">
+<em>Xtend</em>
+</span>
+</h2>
+</div>
+</div>
+</div>
 <a name="N10D45" class="indexterm"/>
 <p>Like the expressions sublanguage that summarizes the syntax of
     expressions for all the other textual languages delivered with the
@@ -815,7 +828,13 @@ my::Templ::extension(*) // templ def with any number of parameters
 </div>
 </div>
 </div>
-<p>This example uses Eclipse EMF as the basis <a name="N10FFE" class="indexterm"/>for model-to-model transformations.</p>
+<p>This example uses Eclipse EMF as the basis <a name="N10FFE" class="indexterm"/>for model-to-model transformations. It builds on the
+        <span class="emphasis">
+<em>emfExample</em>
+</span> documented elsewhere. Please read and
+        install the <span class="emphasis">
+<em>emfExample</em>
+</span> first.</p>
 <p>The idea in this example is to transform the data model
         introduced in the EMF example into itself. This might seem boring, but
         the example is in fact quite illustrative.</p>
@@ -869,7 +888,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 </li>
 <li class="listitem">
 <p>and that in turn is in the classpath, in the
-              <span class="package">test</span>. <fo:block font-style="italic" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+              <span class="package">test</span>. <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-style="italic">
 <fo:inline background-color="#FFEE30">
 <span class="remark">
 <span class="author">
@@ -898,13 +917,13 @@ my::Templ::extension(*) // templ def with any number of parameters
         the file.</p>
 <p>So, first we import the metamodel.</p>
 <pre class="programlisting">import data;</pre>
-<p>The next function is a so-called create extension<a name="N1104F" class="indexterm"/>
-<a name="N11054" class="indexterm"/>. Create extensions, as a side effect when called,
+<p>The next function is a so-called create extension<a name="N11054" class="indexterm"/>
+<a name="N11059" class="indexterm"/>. Create extensions, as a side effect when called,
         create an instance of the type given after the
         <code class="classname">create</code> keyword. In our case, the
         <code class="classname">duplicate</code> function creates an instance of
         <code class="classname">DataModel</code>. This newly created object can be
-        referred to in the transformation <a name="N11061" class="indexterm"/>by <code class="classname">this</code> (which is why
+        referred to in the transformation <a name="N11066" class="indexterm"/>by <code class="classname">this</code> (which is why
         <code class="classname">this</code> is specified behind the type). Since
         <code class="classname">this</code> can be omitted, we do not have to mention
         it explicitly in the transformation.</p>
@@ -935,7 +954,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 <pre class="programlisting">create Attribute this duplicate(Attribute old):
    setName(old.name) -&gt;
    setType(old.type);</pre>
-<a name="N11092" class="indexterm"/>
+<a name="N11097" class="indexterm"/>
 <p>... the one for the references is more interesting. Note that a
         reference, while being owned by some <code class="classname">Entity</code>,
         also references another Entity as its target. So, how do you make sure
@@ -967,6 +986,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 <a class="xref" href="Xtend_language.html" title="Xtend">Xtend</a>
 </em>
 </span> reference documentation.</p>
+</div>
 </div>
 </div>
 </body>

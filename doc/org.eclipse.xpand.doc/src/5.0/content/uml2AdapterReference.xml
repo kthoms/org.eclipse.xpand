@@ -50,7 +50,7 @@
     <emphasis>Enable project specific settings</emphasis> and add the
     <emphasis>UML2 profiles</emphasis> metamodel contributor. Use the
     <emphasis>Up</emphasis>-button to push the UML2 profiles contributor to
-    the first position. </para>
+    the first position.</para>
 
     <section id="uml_adapter_setup_profiles">
       <title>Profiles in Eclipse</title>
@@ -117,11 +117,6 @@
 				 class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel"&gt;
 				 &lt;profile value="myProfile.profile.uml2"/&gt;
 			&lt;/metaModel&gt;
-			...
-	 &lt;/component&gt;
-	 &lt;component class="oaw.xpand2.Generator"&gt;
-			&lt;metaModel idRef="uml"/&gt;
-			&lt;metaModel idRef="profile"/&gt;
 			...
 	 &lt;/component&gt;</programlisting>
     </section>

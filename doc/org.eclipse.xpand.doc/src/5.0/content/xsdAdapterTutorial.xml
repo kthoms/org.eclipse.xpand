@@ -16,7 +16,7 @@
 
   <para>This tutorial shows how XML and XML Schemas Definitions (XSD) can be
   used to generate software. It illustrates how XML files are treated as
-  models, XSDs as meta models and how this integrates with oAW. This tutorial
+  models, XSDs as meta models and how this integrates with Xpand. This tutorial
   is an introduction, for in-depth details see <xref
   linkend="xsd_reference" />.</para>
 
@@ -29,7 +29,7 @@
   <section id="xsd_tutorial_setup">
     <title>Setup</title>
 
-    <para>XSD support for oAW comes with oAW 4.3.1 or later. Make sure the
+    <para>XSD support for Xpand comes with Xpand 0.7.2 or later. Make sure the
     following plugins are installed as well:</para>
 
     <itemizedlist>
@@ -40,7 +40,7 @@
       </listitem>
 
       <listitem>
-        <para>Web Tools Platform (WTP) (WTP is not required to use oAW XSD
+        <para>Web Tools Platform (WTP) (WTP is not required to use Xpand XSD
         support, but helpful, as its provides a nice XML Schema editor and a
         schema-aware XML editor. (<ulink
         url="http://www.eclipse.org/webtools/">http://www.eclipse.org/webtools/</ulink>
@@ -79,7 +79,7 @@
     (<classname>org.eclipse.xpand.examples.xsd.m2t.xml2javawizard</classname>)
     which is more comprehensive and recommended for further reading.</para>
 
-    <para>To generate code from XML files with oAW, at least files of the
+    <para>To generate code from XML files with Xpand, at least files of the
     following four types are needed:</para>
 
     <itemizedlist>
@@ -92,16 +92,16 @@
       </listitem>
 
       <listitem>
-        <para>oAW Xpand Template ( <filename>template.xpt</filename> )</para>
+        <para>Xpand Template ( <filename>template.xpt</filename> )</para>
       </listitem>
 
       <listitem>
-        <para>oAW Workflow ( <filename>workflow.oaw</filename> )</para>
+        <para>MWE Workflow ( <filename>workflow.mwe</filename> )</para>
       </listitem>
     </itemizedlist>
 
     <figure id="xsd_tutorial_xsd_project">
-      <title>Minimalistic oAW XSD Project</title>
+      <title>Minimalistic Xpand XSD Project</title>
 
       <mediaobject>
         <imageobject role="fo">
@@ -212,16 +212,16 @@
     contain strings, whereas the string of <classname>startpage</classname>
     must be a valid id of any <classname>ChoicePage</classname> . The complex
     type <classname>ChoicePage</classname> just contains an
-    <classname>id</classname> and a <classname>name</classname> . For oAW it
+    <classname>id</classname> and a <classname>name</classname> . For Xpand it
     does not make any difference if something is modeled as an XML-attribute
-    or XML-element. Just the datafield's type defines how oAW treats the
+    or XML-element. Just the datafield's type defines how Xpand treats the
     value.</para>
 
-    <para>To get an overview how schemas can be used by the oAW XSD Adapter,
+    <para>To get an overview how schemas can be used by the Xpand XSD Adapter,
     see <xref linkend="xsd_reference_declare_xsd" /></para>
 
-    <para>Internally, the oAW XSD Adapter transforms the XSD model to an Ecore
-    model which oAW can use like any other Ecore model. For more information
+    <para>Internally, the Xpand XSD Adapter transforms the XSD model to an Ecore
+    model which Xpand can use like any other Ecore model. For more information
     about that, see <xref linkend="xsd_reference_xsd2ecore" /></para>
 
     <figure id="xsd_tutorial_xsd_editor">
@@ -291,7 +291,7 @@
     <property>xsi:schemaLocation</property>-attribute which tells anyone who
     reads the XML file where the schema file is located. This tutorial does
     not use the <property>xsi:schemaLocation</property>-attribute and
-    introduces the schema file in the oAW workflow instead. For all possible
+    introduces the schema file in the MWE workflow instead. For all possible
     ways see <xref linkend="xsd_reference_declare_xsd" /> . It is important
     that the XML file is located somewhere within the project's
     classpath.</para>
@@ -316,11 +316,11 @@
   <section id="xsd_tutorial_template">
     <title>Step 4: Create a Template using Xpand</title>
 
-    <para>Create an ordinary oAW Xpand file: Being in the Xpand/Xtend
+    <para>Create an ordinary Xpand Template file: Being in the Xpand/Xtend
     perspective, go to <emphasis>"File", "New", "xPand template"</emphasis>.
-    The Xpand language itself is explained by several other oAW documents.
+    The Xpand language itself is explained by several other Xpand documents.
     Having XSD meta model support activated like described in <xref
-    linkend="xsd_tutorial_create_project" /> , oAW scans and watches all it's
+    linkend="xsd_tutorial_create_project" /> , Xpand scans and watches all it's
     projects for suitable meta models. Based on what is found, the Xpand
     editor provides meta model aware code completion.</para>
 
@@ -389,7 +389,7 @@ First Page Title: «choicepage.title»
 
       <listitem>
         <para>Generate Code: This part just does the regular code generation
-        using Xpand and is not specific to the oAW XSD Adapter at all. The
+        using Xpand and is not specific to the Xpand XSD Adapter at all. The
         generator <classname> org.eclipse.xpand2.Generator
         </classname> needs to know which meta model to use. This example
         references the previously declared one. The
@@ -447,7 +447,7 @@ First Page Title: «choicepage.title»
     </figure>
 
     <para>To execute the workflow, click with your right mouse button on the
-    workflow file and choose <emphasis>"Run As", "oAW Workflow"</emphasis>, as
+    workflow file and choose <emphasis>"Run As", "MWE Workflow"</emphasis>, as
     it is shown in <xref linkend="xsd_tutorial_execute_workflow" /> .</para>
 
     <figure id="xsd_tutorial_launch_workflow">
@@ -471,7 +471,7 @@ First Page Title: «choicepage.title»
     "Console"</emphasis>.</para>
 
     <programlisting language="xml">May 25, 2009 3:09:35 PM org.eclipse.emf.mwe.core.WorkflowRunner prepare
-INFO: running workflow: /Users/meysholdt/Eclipse/workspace-3.5-M7/org.eclipse.xpand.examples.xsd.m2t.minimal/src/xsd/m2t/minimal/minimal.oaw
+INFO: running workflow: /Users/meysholdt/Eclipse/workspace-3.5-M7/org.eclipse.xpand.examples.xsd.m2t.minimal/src/xsd/m2t/minimal/minimal.mwe
 May 25, 2009 3:09:35 PM org.eclipse.emf.mwe.core.WorkflowRunner prepare
 INFO: 
 May 25, 2009 3:09:36 PM org.eclipse.xtend.typesystem.xsd.XSDMetaModel addSchemaFile

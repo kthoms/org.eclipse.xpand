@@ -13,7 +13,7 @@
 <chapter id="xsd_reference">
   <title>XSD Adapter</title>
 
-  <para>The XSD Adapter allows oAW to read/write XML files as models and to
+  <para>The XSD Adapter allows Xpand to read/write XML files as models and to
   use XML Schemas (XSDs) as meta models. This reference provides in-depth
   details, for a quick and pragmatic introduction see <xref
   linkend="xsd_tutorial" /> .</para>
@@ -94,7 +94,7 @@
       </title>
 
       <para>The XSDMetaModel loads the specified XSD, transforms them to Ecore
-      models and makes them available for the other oAW components. If XSDs
+      models and makes them available for the other MWE components. If XSDs
       include/import other XSDs or if XML files reference XSDs via
       <property>schemaLocation</property>, theses XSDs are also loaded
       (details: <xref linkend="xsd_reference_declare_xsd" /> ). The most
@@ -299,7 +299,7 @@
           <para><property>uriExpression</property>: required if no
           <property>uri</property> is specified: In the scenario where
           multiple XML files are written, this provides a mechanism to
-          determine the file name for each of them. The oAW-expression
+          determine the file name for each of them. The Xtend-expression
           specified in <classname>expression</classname> is evaluated for each
           file and has to return a file name. The model that is going to be
           written is accessible in the expression via a variable that has the
@@ -412,7 +412,7 @@
     data types are mapped to EClasses, XSD simple data types are mapped to EMF
     data types defined in <classname>
     org.eclipse.emf.ecore.xml.type.XMLTypePackage </classname> and <classname>
-    org.eclipse.xtend.typesystem.xsd.XSDMetaModel </classname> maps them to oAW
+    org.eclipse.xtend.typesystem.xsd.XSDMetaModel </classname> maps them to Xpand
     data types. The document <emphasis><ulink
     url="http://www.eclipse.org/modeling/emf/docs/overviews/XMLSchemaToEcoreMapping.pdf">XML
     Schema to Ecore Mapping</ulink></emphasis> explains the mapping's details.

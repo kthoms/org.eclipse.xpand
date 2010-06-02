@@ -15,7 +15,7 @@
     <title>Stdlib extensions</title>
 
     <para>This section describes the components and extensions provided by
-    Stdlib. We use the shortcut <emphasis>oaw.util.stdlib...</emphasis> for
+    Stdlib. We use the shortcut <emphasis>xpand.util.stdlib...</emphasis> for
     component classes in package
     <package>org.eclipse.xtend.util.stdlib</package> in workflow
     configurations for convenience.</para>
@@ -627,7 +627,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
         <programlisting>&lt;?xml version="1.0"?&gt; 
 &lt;workflow&gt; 
   ... 
-  &lt;component class="oaw.util.stdlib.ExtIssueReporter"/&gt;</programlisting>
+  &lt;component class="xpand.util.stdlib.ExtIssueReporter"/&gt;</programlisting>
 
         <para>Using from Xtend:</para>
 
@@ -643,7 +643,7 @@ issuesExtensionsDemo () :
 
         <para>Console output:</para>
 
-        <programlisting>INFO WorkflowRunner running workflow: workflow/generator.oaw 
+        <programlisting>INFO WorkflowRunner running workflow: workflow/generator.mwe 
 ... 
 ... 
 INFO CompositeComponent ExtIssueReporter: setting up issue logging from 
@@ -777,7 +777,7 @@ demo (Model this) :
 
 globalvarExtensionsDemo1 () : 
     "Storing global var...".info() -&gt; 
-    storeGlobalVar("msg", "oAW is cool stuff!"); 
+    storeGlobalVar("msg", "Xpand is cool stuff!"); 
     
 globalvarExtensionsDemo2 () : 
     ("Getting message from global var: "+getGlobalVar("msg")).info();</programlisting>
@@ -785,7 +785,7 @@ globalvarExtensionsDemo2 () :
         <para>Console output:</para>
 
         <programlisting>INFO IOExtensions Storing global var...
-INFO IOExtensions Getting message from global var: oAW is cool stuff!</programlisting>
+INFO IOExtensions Getting message from global var: Xpand is cool stuff!</programlisting>
 
         <para>This a simple example storing a string, but of course you can
         store the result of any expression this way.</para>
@@ -1019,7 +1019,7 @@ INFO IOExtensions Number of cross references to datatype String:4</programlistin
 
       <section>
         <title>Object getMandatoryMixin( Object mixinModel, Object ctx,
-        oaw::Type t )</title>
+        xpand2::Type t )</title>
 
         <para>Returns the corresponding mixin element for the context object;
         the mixin must be of type t and its name attribute must correspond to
@@ -1050,7 +1050,7 @@ INFO IOExtensions Number of cross references to datatype String:4</programlistin
 
       <section>
         <title>Object getOptionalMixin( Object mixinModel, Object ctx,
-        oaw::Type t )</title>
+        xpand2::Type t )</title>
 
         <para>Same as getMandatoryMixin(), but does not raise an error in case
         nothing is found.</para>

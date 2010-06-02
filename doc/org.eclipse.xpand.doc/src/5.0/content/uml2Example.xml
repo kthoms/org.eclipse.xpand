@@ -390,7 +390,7 @@
       works!</para>
 
       <para>Adapting the workflow file is also straight forward
-      (<filename>workflowWithProfile.oaw</filename>). Here is the modified
+      (<filename>workflowWithProfile.mwe</filename>). Here is the modified
       model component with the new model
       <filename>example-profiled.uml</filename> and a extended setup:</para>
 

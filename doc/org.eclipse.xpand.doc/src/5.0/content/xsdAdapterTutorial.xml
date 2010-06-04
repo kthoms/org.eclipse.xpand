@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- ****************************************************************************
  * Copyright (c) 2005 - 2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
@@ -10,14 +11,13 @@
 @author Moritz Eysholdt - Initial contribution and API
  
 -->
-
 <chapter id="xsd_tutorial">
   <title>XSD Tutorial</title>
 
   <para>This tutorial shows how XML and XML Schemas Definitions (XSD) can be
   used to generate software. It illustrates how XML files are treated as
-  models, XSDs as meta models and how this integrates with Xpand. This tutorial
-  is an introduction, for in-depth details see <xref
+  models, XSDs as meta models and how this integrates with Xpand. This
+  tutorial is an introduction, for in-depth details see <xref
   linkend="xsd_reference" />.</para>
 
   <!-- =========================================================== -->
@@ -58,24 +58,23 @@
   <section id="xsd_tutorial_overview">
     <title>Overview</title>
 
-    <para>This tutorial explains how you can do code generation with
-    Xtend and Xpand, using XML Schema Definitions as meta models and XML
-    files as models. To keep things easy, the introduced example is a
-    minimalistic one. A text file is generated from contents specified in XML.
-    The general concept of models, meta models and why and when code
-    generation is useful, is not explained. At the end, a deeper view under
-    the hood is taken to understand how XML Schemas are transformed to EMF
-    Ecore models, and which flexibilities/restrictions this approach
-    provides.</para>
+    <para>This tutorial explains how you can do code generation with Xtend and
+    Xpand, using XML Schema Definitions as meta models and XML files as
+    models. To keep things easy, the introduced example is a minimalistic one.
+    A text file is generated from contents specified in XML. The general
+    concept of models, meta models and why and when code generation is useful,
+    is not explained. At the end, a deeper view under the hood is taken to
+    understand how XML Schemas are transformed to EMF Ecore models, and which
+    flexibilities/restrictions this approach provides.</para>
 
     <para>All source files listed within this tutorial are also available as
     an example project wich can be imported into the Eclipse workspace by
-    running <emphasis>"File" / "New" / "Example..." / "Xpand/Xtend
-    Examples using an XSD Meta Model" / "M2T custom XML to Text via Xpand
-    (minimal Example)"</emphasis>. This will create the project
-    <classname>org.eclipse.xpand.examples.xsd.m2t.minimal</classname>
-    project in your workspace. This minimal example is based on "<emphasis>M2T
-    custom XML to Java via Xpand</emphasis>"
+    running <emphasis>"File" / "New" / "Example..." / "Xpand/Xtend Examples
+    using an XSD Meta Model" / "M2T custom XML to Text via Xpand (minimal
+    Example)"</emphasis>. This will create the project
+    <classname>org.eclipse.xpand.examples.xsd.m2t.minimal</classname> project
+    in your workspace. This minimal example is based on "<emphasis>M2T custom
+    XML to Java via Xpand</emphasis>"
     (<classname>org.eclipse.xpand.examples.xsd.m2t.xml2javawizard</classname>)
     which is more comprehensive and recommended for further reading.</para>
 
@@ -105,12 +104,11 @@
 
       <mediaobject>
         <imageobject role="fo">
-          <imagedata fileref="images/xsd_tutorial/workspace-minidemo.png"
-                     scale="60" />
+          <imagedata fileref="xsd_tutorial/workspace-minidemo.png" scale="60" />
         </imageobject>
 
         <imageobject role="html">
-          <imagedata fileref="images/xsd_tutorial/workspace-minidemo.png" />
+          <imagedata fileref="xsd_tutorial/workspace-minidemo.png" />
         </imageobject>
       </mediaobject>
     </figure>
@@ -125,11 +123,10 @@
   <section id="xsd_tutorial_create_project">
     <title>Step 1: Create a Project</title>
 
-    <para>To create a Project, create an ordinary
-    Xtend/Xpand-Project. This is done in Eclipse by changing to the
-    Xtend/Xpand perspective and clicking on <emphasis>"File" / "New"
-    / "Xtend/Xpand Project"</emphasis>. After entering a name for the
-    project it is created.</para>
+    <para>To create a Project, create an ordinary Xtend/Xpand-Project. This is
+    done in Eclipse by changing to the Xtend/Xpand perspective and clicking on
+    <emphasis>"File" / "New" / "Xtend/Xpand Project"</emphasis>. After
+    entering a name for the project it is created.</para>
 
     <para>After the project is created, support for XSD meta models needs to
     be activated. Click with your right mouse button on the project and open
@@ -146,22 +143,22 @@
 
       <mediaobject>
         <imageobject role="fo">
-          <imagedata fileref="images/xsd_tutorial/project-properties-mm.png"
+          <imagedata fileref="xsd_tutorial/project-properties-mm.png"
                      scale="60" />
         </imageobject>
 
         <imageobject role="html">
-          <imagedata fileref="images/xsd_tutorial/project-properties-mm.png" />
+          <imagedata fileref="xsd_tutorial/project-properties-mm.png" />
         </imageobject>
       </mediaobject>
     </figure>
 
-    <para>Then, <classname>org.eclipse.xtend.typesystem.xsd</classname> needs to
-    be added to the project's dependencies. To do so open the file
+    <para>Then, <classname>org.eclipse.xtend.typesystem.xsd</classname> needs
+    to be added to the project's dependencies. To do so open the file
     <filename>META-INF/MANIFEST.MF</filename> from your project and navigate
     to the "Dependencies"-tab.
-    <classname>org.eclipse.xtend.typesystem.xsd</classname> needs to be added to
-    the list of "Required Plug-ins", as it is shown in <xref
+    <classname>org.eclipse.xtend.typesystem.xsd</classname> needs to be added
+    to the list of "Required Plug-ins", as it is shown in <xref
     linkend="xsd_tutorial_project_dependencies" /> .</para>
 
     <figure id="xsd_tutorial_project_dependencies">
@@ -169,12 +166,12 @@
 
       <mediaobject>
         <imageobject role="fo">
-          <imagedata fileref="images/xsd_tutorial/project-dependencies.png"
+          <imagedata fileref="xsd_tutorial/project-dependencies.png"
                      scale="48" />
         </imageobject>
 
         <imageobject role="html">
-          <imagedata fileref="images/xsd_tutorial/project-dependencies.png" />
+          <imagedata fileref="xsd_tutorial/project-dependencies.png" />
         </imageobject>
       </mediaobject>
     </figure>
@@ -220,20 +217,21 @@
     <para>To get an overview how schemas can be used by the Xpand XSD Adapter,
     see <xref linkend="xsd_reference_declare_xsd" /></para>
 
-    <para>Internally, the Xpand XSD Adapter transforms the XSD model to an Ecore
-    model which Xpand can use like any other Ecore model. For more information
-    about that, see <xref linkend="xsd_reference_xsd2ecore" /></para>
+    <para>Internally, the Xpand XSD Adapter transforms the XSD model to an
+    Ecore model which Xpand can use like any other Ecore model. For more
+    information about that, see <xref
+    linkend="xsd_reference_xsd2ecore" /></para>
 
     <figure id="xsd_tutorial_xsd_editor">
       <title>WTP Schema Editor</title>
 
       <mediaobject>
         <imageobject role="fo">
-          <imagedata fileref="images/xsd_tutorial/xsd-editor.png" scale="60" />
+          <imagedata fileref="xsd_tutorial/xsd-editor.png" scale="60" />
         </imageobject>
 
         <imageobject role="html">
-          <imagedata fileref="images/xsd_tutorial/xsd-editor.png" />
+          <imagedata fileref="xsd_tutorial/xsd-editor.png" />
         </imageobject>
       </mediaobject>
     </figure>
@@ -320,8 +318,8 @@
     perspective, go to <emphasis>"File", "New", "xPand template"</emphasis>.
     The Xpand language itself is explained by several other Xpand documents.
     Having XSD meta model support activated like described in <xref
-    linkend="xsd_tutorial_create_project" /> , Xpand scans and watches all it's
-    projects for suitable meta models. Based on what is found, the Xpand
+    linkend="xsd_tutorial_create_project" /> , Xpand scans and watches all
+    it's projects for suitable meta models. Based on what is found, the Xpand
     editor provides meta model aware code completion.</para>
 
     <para>This example imports "<classname>metamodel</classname>" at the
@@ -373,9 +371,9 @@ First Page Title: «choicepage.title»
     <orderedlist>
       <listitem>
         <para>Read the Model: This is done by <classname>
-        org.eclipse.xtend.typesystem.xsd.XMLReader </classname> . It needs exactly
-        one <classname>uri</classname> element which defines the XML file. A
-        further nested element of type <classname>
+        org.eclipse.xtend.typesystem.xsd.XMLReader </classname> . It needs
+        exactly one <classname>uri</classname> element which defines the XML
+        file. A further nested element of type <classname>
         org.eclipse.xtend.typesystem.xsd.XSDMetaModel </classname> tells the
         <classname>XMLReader</classname> which metamodel to use.
         <classname>XSDMetaModel</classname> can contain multiple
@@ -390,11 +388,11 @@ First Page Title: «choicepage.title»
       <listitem>
         <para>Generate Code: This part just does the regular code generation
         using Xpand and is not specific to the Xpand XSD Adapter at all. The
-        generator <classname> org.eclipse.xpand2.Generator
-        </classname> needs to know which meta model to use. This example
-        references the previously declared one. The
-        <classname>expand</classname> element tells the generator to call the
-        definition named <methodname>Root</methodname> within file
+        generator <classname> org.eclipse.xpand2.Generator </classname> needs
+        to know which meta model to use. This example references the
+        previously declared one. The <classname>expand</classname> element
+        tells the generator to call the definition named
+        <methodname>Root</methodname> within file
         <filename>template.xpt</filename> using the contents of slot
         <varname>model</varname> as parameter. Element
         <classname>outlet</classname> defines where to store the generates
@@ -437,11 +435,11 @@ First Page Title: «choicepage.title»
 
       <mediaobject>
         <imageobject role="fo">
-          <imagedata fileref="images/xsd_tutorial/minidemo-all.png" scale="41" />
+          <imagedata fileref="xsd_tutorial/minidemo-all.png" scale="41" />
         </imageobject>
 
         <imageobject role="html">
-          <imagedata fileref="images/xsd_tutorial/minidemo-all.png" />
+          <imagedata fileref="xsd_tutorial/minidemo-all.png" />
         </imageobject>
       </mediaobject>
     </figure>
@@ -455,12 +453,12 @@ First Page Title: «choicepage.title»
 
       <mediaobject>
         <imageobject role="fo">
-          <imagedata fileref="images/xsd_tutorial/execute-workflow.png"
+          <imagedata fileref="xsd_tutorial/execute-workflow.png"
                      scale="54" />
         </imageobject>
 
         <imageobject role="html">
-          <imagedata fileref="images/xsd_tutorial/execute-workflow.png" />
+          <imagedata fileref="xsd_tutorial/execute-workflow.png" />
         </imageobject>
       </mediaobject>
     </figure>
@@ -481,7 +479,7 @@ INFO: Creating EPackage 'metamodel' from XSDSchema 'file:/.../bin/xsd/m2t/minima
 May 25, 2009 3:09:37 PM org.eclipse.emf.mwe.core.container.CompositeComponent internalInvoke
 INFO: XMLReader: Loading XML file xsd/m2t/minimal/model.xml
 May 25, 2009 3:09:37 PM org.eclipse.emf.mwe.core.container.CompositeComponent internalInvoke
-INFO: Generator: generating 'xsd::m2t::minimal::template::Root FOR model' => src-gen
+INFO: Generator: generating 'xsd::m2t::minimal::template::Root FOR model' =&gt; src-gen
 May 25, 2009 3:09:38 PM org.eclipse.xpand2.Generator invokeInternal2
 INFO: Written 1 files to outlet [default](src-gen)
 May 25, 2009 3:09:38 PM org.eclipse.emf.mwe.core.WorkflowRunner executeWorkflow

@@ -1,7 +1,7 @@
 <toc topic="help/index.html" label="Xpand Documentation">
 <topic href="help/Getting_Started.html" label="I. Getting Started">
 <topic href="help/getting_started.html" label="Getting Started">
-<topic href="help/getting_started.html#emf_tutorial_installing" label="Installing the pre-built tutorial"/>
+<topic href="help/getting_started.html#emf_tutorial_installing" label="Xpand Setup"/>
 <topic href="help/emf_tutorial_overview.html" label="Tutorial overview"/>
 <topic href="help/emf_tutorial_define_metamodel.html" label="Defining an EMF metamodel">
 <topic href="help/emf_tutorial_define_metamodel.html#emf_tutorial_creating_emf_project" label="Creating an EMF project"/>
@@ -309,8 +309,17 @@
 </topic>
 <topic href="help/eclipse_integration_running_a_workflow.html" label="Running a workflow"/>
 </topic>
+<topic href="help/incrementalGeneration.html" label="Incremental Generation">
+<topic href="help/incrementalGeneration.html#incrementalGeneration_background" label="Technical Background"/>
+<topic href="help/incrementalGeneration_usage.html" label="Using Incremental Generation">
+<topic href="help/incrementalGeneration_usage.html#incrementalGeneration_usage_facade" label="The Incremental Generation Facade"/>
+<topic href="help/incrementalGeneration_usage.html#incrementalGeneration_usage_callback" label="The Incremental Generation Callback"/>
 </topic>
-<topic href="help/Tutorials.html" label="III. Tutorials">
+<topic href="help/incrementalGeneration_notes.html" label="Additional Notes">
+<topic href="help/incrementalGeneration_notes.html#incrementalGeneration_limitations" label="Limitations"/>
+<topic href="help/incrementalGeneration_notes.html#incrementalGeneration_performance" label="Performance Considerations"/>
+</topic>
+</topic>
 <topic href="help/uml_adapter.html" label="UML2 Adapter">
 <topic href="help/uml_adapter.html#uml_adapter_introduction" label="Introduction"/>
 <topic href="help/uml_adapter_installation.html" label="Installation"/>
@@ -321,6 +330,8 @@
 <topic href="help/uml_adapter_runtime_configuration.html#uml_adapter_runtime_workflow" label="Workflow"/>
 </topic>
 </topic>
+</topic>
+<topic href="help/Tutorials.html" label="III. Tutorials">
 <topic href="help/uml2example.html" label="UML2 Example">
 <topic href="help/uml2example.html#uml2example_setup_eclipse" label="Setting up Eclipse"/>
 <topic href="help/uml2example_setup_project.html" label="Setting up the project"/>
@@ -360,15 +371,5 @@
 <topic href="help/xsd_reference_declare_xsd.html" label="How to declare XML Schemas"/>
 </topic>
 </topic>
-<topic href="help/incrementalGeneration.html" label="Incremental Generation">
-<topic href="help/incrementalGeneration.html#incrementalGeneration_background" label="Technical Background"/>
-<topic href="help/incrementalGeneration_usage.html" label="Using Incremental Generation">
-<topic href="help/incrementalGeneration_usage.html#incrementalGeneration_usage_facade" label="The Incremental Generation Facade"/>
-<topic href="help/incrementalGeneration_usage.html#incrementalGeneration_usage_callback" label="The Incremental Generation Callback"/>
-</topic>
-<topic href="help/incrementalGeneration_notes.html" label="Additional Notes">
-<topic href="help/incrementalGeneration_notes.html#incrementalGeneration_limitations" label="Limitations"/>
-<topic href="help/incrementalGeneration_notes.html#incrementalGeneration_performance" label="Performance Considerations"/>
-</topic>
-</topic>
+<topic href="help/ix01.html" label="Index"/>
 </toc>

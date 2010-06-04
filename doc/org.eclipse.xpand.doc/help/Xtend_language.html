@@ -322,22 +322,21 @@ create target::Class duplicate(source::Class):
       qualified way.</p>
 <p>Example:</p>
 <p>If you have defined the following Java extension:</p>
-<pre class="programlisting">Void dump(String s) :
-   JAVA my.Helper.dump(java.lang.String)
-;</pre>
+<pre class="programlisting">String concat (String a, String b):
+  JAVA my.Helper.concat(java.lang.String, java.lang.String);</pre>
 <p>and you have the following Java class:</p>
 <pre class="programlisting">package my;
 
 public class Helper {
-   public final static void dump(String aString) {
-      System.out.println(aString);
-   }
+  public String concat(String a, String b){
+    return a + b;
+  }
 }</pre>
 <p>the expressions</p>
-<pre class="programlisting">dump('Hello world!')
-'Hello World'.dump()</pre>
+<pre class="programlisting">concat('Hello ',"world!")
+"Hello ".concat('world!')</pre>
 <p>both result are invoking the Java method <code class="methodname">void
-      dump(String aString)</code>
+      concat(String a, String b)</code>
 </p>
 <div class="section" title="static vs non-static invocation">
 <div class="titlepage">

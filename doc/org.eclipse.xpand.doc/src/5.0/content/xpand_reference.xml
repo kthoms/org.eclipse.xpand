@@ -2154,27 +2154,26 @@ create target::Class duplicate(source::Class):
 
       <para>If you have defined the following Java extension:</para>
 
-      <programlisting>Void dump(String s) :
-   JAVA my.Helper.dump(java.lang.String)
-;</programlisting>
+      <programlisting>String concat (String a, String b):
+  JAVA my.Helper.concat(java.lang.String, java.lang.String);</programlisting>
 
       <para>and you have the following Java class:</para>
 
       <programlisting>package my;
 
 public class Helper {
-   public final static void dump(String aString) {
-      System.out.println(aString);
-   }
+  public String concat(String a, String b){
+    return a + b;
+  }
 }</programlisting>
 
       <para>the expressions</para>
 
-      <programlisting>dump('Hello world!')
-'Hello World'.dump()</programlisting>
+      <programlisting>concat('Hello ',"world!")
+"Hello ".concat('world!')</programlisting>
 
       <para>both result are invoking the Java method <methodname>void
-      dump(String aString)</methodname></para>
+      concat(String a, String b)</methodname></para>
 
       <section>
         <title>static vs non-static invocation</title>

@@ -32,9 +32,9 @@
 <ol class="orderedlist" type="1">
 <li class="listitem">
 <p>Read the Model: This is done by <code class="classname">
-        org.eclipse.xtend.typesystem.xsd.XMLReader </code> . It needs exactly
-        one <code class="classname">uri</code> element which defines the XML file. A
-        further nested element of type <code class="classname">
+        org.eclipse.xtend.typesystem.xsd.XMLReader </code> . It needs
+        exactly one <code class="classname">uri</code> element which defines the XML
+        file. A further nested element of type <code class="classname">
         org.eclipse.xtend.typesystem.xsd.XSDMetaModel </code> tells the
         <code class="classname">XMLReader</code> which metamodel to use.
         <code class="classname">XSDMetaModel</code> can contain multiple
@@ -48,11 +48,11 @@
 <li class="listitem">
 <p>Generate Code: This part just does the regular code generation
         using Xpand and is not specific to the Xpand XSD Adapter at all. The
-        generator <code class="classname"> org.eclipse.xpand2.Generator
-        </code> needs to know which meta model to use. This example
-        references the previously declared one. The
-        <code class="classname">expand</code> element tells the generator to call the
-        definition named <code class="methodname">Root</code> within file
+        generator <code class="classname"> org.eclipse.xpand2.Generator </code> needs
+        to know which meta model to use. This example references the
+        previously declared one. The <code class="classname">expand</code> element
+        tells the generator to call the definition named
+        <code class="methodname">Root</code> within file
         <code class="filename">template.xpt</code> using the contents of slot
         <code class="varname">model</code> as parameter. Element
         <code class="classname">outlet</code> defines where to store the generates

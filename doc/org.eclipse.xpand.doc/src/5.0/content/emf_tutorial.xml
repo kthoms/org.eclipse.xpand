@@ -28,7 +28,7 @@
   you.</para>
 
   <section id="emf_tutorial_installing">
-    <title>Installing the pre-built tutorial</title>
+    <title>Xpand Setup</title>
 
     <para>Before you can go through the tutorial and execute the examples, you
     need to have Xpand installed. Please consider <ulink
@@ -65,12 +65,12 @@
 
         <mediaobject>
           <imageobject role="fo">
-            <imagedata fileref="images/getting_started/metamodel.gif"
+            <imagedata fileref="images/emf_tutorial/metamodel.gif"
                        scale="70" />
           </imageobject>
 
           <imageobject role="html">
-            <imagedata fileref="images/getting_started/metamodel.gif" />
+            <imagedata fileref="images/emf_tutorial/metamodel.gif" />
           </imageobject>
         </mediaobject>
       </figure></para>
@@ -85,12 +85,12 @@
 
         <mediaobject>
           <imageobject role="fo">
-            <imagedata fileref="images/getting_started/create_emf_project.png"
+            <imagedata fileref="images/emf_tutorial/create_emf_project.png"
                        scale="80" />
           </imageobject>
 
           <imageobject role="html">
-            <imagedata fileref="images/getting_started/create_emf_project.png" />
+            <imagedata fileref="images/emf_tutorial/create_emf_project.png" />
           </imageobject>
         </mediaobject>
       </figure>
@@ -113,7 +113,7 @@
 
           <mediaobject>
             <imageobject role="fo">
-              <imagedata fileref="images/getting_started/create_ecore_model.png"
+              <imagedata fileref="images/emf_tutorial/create_ecore_model.png"
                          scale="80" />
             </imageobject>
 

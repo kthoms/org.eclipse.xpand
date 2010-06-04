@@ -112,24 +112,23 @@ public class XsdTypesystem implements BackendTypesystem {
 	}
 
 	public BackendType findType(Class<?> cls) {
-		// TODO Auto-generated method stub
-		if (cls.isAssignableFrom (FeatureMap.class)) {
+		if (FeatureMap.class.isAssignableFrom (cls)) {
 			//TODO No EClass available
 			return getEFeatureMapType (null);
 		}
-		if (cls.isAssignableFrom(FeatureMap.Entry.class))
+		if (FeatureMap.Entry.class.isAssignableFrom (cls))
 			return getEFeatureMapEntryType();
-		if (cls.isAssignableFrom (EStructuralFeature.class))
+		if (EStructuralFeature.class.isAssignableFrom (cls))
 			return new EFeatureType(EFEATURE, this);
-		if (cls.isAssignableFrom(EMap.class))
+		if (EMap.class.isAssignableFrom (cls))
 			//TODO Not safely qualified to be a relevant EMap
 			//TODO No EClassifier available
 			return getEMapType(null);
-		if (cls.isAssignableFrom(Entry.class))
+		if (Entry.class.isAssignableFrom (cls))
 			//TODO Not safely qualified to be a relevant EMap Entry
 			//TODO No EClassifier available
 			return getEMapEntryType(null);
-		if (cls.isAssignableFrom(QName.class))
+		if (QName.class.isAssignableFrom(cls))
 			return getQNameType();
 		return _emfTypesystem.findType(cls);
 	}

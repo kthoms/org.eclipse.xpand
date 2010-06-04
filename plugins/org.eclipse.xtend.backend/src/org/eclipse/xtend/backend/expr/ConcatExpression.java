@@ -16,6 +16,7 @@ import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Helpers;
+import org.eclipse.xtend.backend.common.FutureResultHolder;
 import org.eclipse.xtend.backend.common.SourcePos;
 
 
@@ -36,8 +37,13 @@ public final class ConcatExpression extends ExpressionBase {
     protected Object evaluateInternal (ExecutionContext ctx) {
         EfficientLazyString result = new EfficientLazyString ();
 
-        for (ExpressionBase expr: _parts) 
-            result = EfficientLazyString.createAppendedString (result, Helpers.overridableToString (ctx, expr.evaluate(ctx)));
+        for (ExpressionBase expr: _parts) {
+        	Object res = expr.evaluate(ctx);
+        	if (res instanceof FutureResultHolder && !((FutureResultHolder)res).isReady())
+        		result = EfficientLazyString.createAppendedString (result, res);
+        	else
+        		result = EfficientLazyString.createAppendedString (result, Helpers.overridableToString (ctx, res));
+        }
 
         return result;
     }

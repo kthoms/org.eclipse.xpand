@@ -16,6 +16,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.xtend.backend.common.FutureResultHolder;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 
@@ -114,6 +115,46 @@ public final class FileIoOperations {
                     ((EfficientLazyString) content).writeTo (w);
                 else 
                     w.write (content.toString()); // content is already a CharSequence --> no handling of overwritten toString() required here
+                
+            } finally {
+                w.close();
+            }
+            
+            for (UriBasedPostprocessor pp: outlet.getUriBasedPostprocessors())
+                pp.process (outlet.createUri (fileName));
+            
+        } catch (IOException exc) {
+            ErrorHandler.handle (exc);
+        }
+    }
+    
+    public void writeToFile (String fileName, FutureResultHolder content) {
+        writeToFile (DEFAULT_OUTLET_NAME, fileName, false, content);
+    }
+        
+    public void writeToFile (String outletName, String fileName, FutureResultHolder content) {
+        writeToFile (outletName, fileName, false, content);
+    }
+    
+    public void writeToFile (String fileName, boolean append, FutureResultHolder content) {
+        writeToFile (DEFAULT_OUTLET_NAME, fileName, append, content);
+    }
+
+    public void writeToFile (String outletName, String fileName, boolean append, FutureResultHolder content) {
+        
+        try {
+            final Outlet outlet = _outlets.get (outletName);
+            CharSequence evaluatedContent = content.toString();
+            if (outlet == null)
+                throw new IllegalArgumentException ("no outlet '" + outletName + "' was registered.");
+
+            for (InMemoryPostprocessor pp: outlet.getInMemoryPostprocessors())
+                evaluatedContent = pp.process (evaluatedContent, outlet.createUri (fileName));
+            
+            final Writer w = outlet.createWriter (fileName, append);
+
+            try {
+                w.write (evaluatedContent.toString());
                 
             } finally {
                 w.close();

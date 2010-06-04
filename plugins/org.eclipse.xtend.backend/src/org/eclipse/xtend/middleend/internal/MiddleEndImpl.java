@@ -10,7 +10,9 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.internal;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -143,10 +145,11 @@ public final class MiddleEndImpl implements MiddleEnd {
         for (NamedFunction f: parseResource (resourceName).getPublicFunctions())
             result.register(f, true);
         
-        _log.debug ("fdc for " + resourceName + ": ");
-        _log.debug ("    reexported: " + reexported);
-        _log.debug ("    public functions: " + result.getPublicFunctions());
-        
+        if (_log.isDebugEnabled()) {
+        	_log.debug ("fdc for " + resourceName + ": ");
+	        _log.debug ("    reexported: " + reexported);
+	        _log.debug ("    public functions: " + result.getPublicFunctions());
+        }
         return result;
     }
     
@@ -164,7 +167,7 @@ public final class MiddleEndImpl implements MiddleEnd {
     }
 
     private void collectReexportedResources (Set<String> result, Set<String> visited, String curResource) {
-        if (visited.contains (curResource))
+    	if (visited.contains (curResource))
             return;
         visited.add (curResource);
         

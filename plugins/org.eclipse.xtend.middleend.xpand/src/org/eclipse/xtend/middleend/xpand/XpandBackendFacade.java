@@ -62,6 +62,7 @@ import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
 import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
+import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendGlobalVarOperations;
 import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;
 import org.eclipse.xtend.typesystem.MetaModel;
 
@@ -130,6 +131,10 @@ public final class XpandBackendFacade {
 
     
     public Object executeStatement (String code, Map<String, Object> variables, List<String> advice, XpandProtectedRegionResolver resolver) {
+    	return executeStatement(code, variables, new HashMap <String, Object>(), advice, resolver);
+    }
+	
+    public Object executeStatement (String code, Map<String, Object> variables, Map<String, Object> globalVars, List<String> advice, XpandProtectedRegionResolver resolver) {
     	if (variables == null)
             variables = new HashMap<String, Object> ();
         if (advice == null)
@@ -160,6 +165,8 @@ public final class XpandBackendFacade {
         _middleEnd.getExecutionContext().getLocalVarContext().getLocalVars().putAll (variables);
         registerOutlets (_middleEnd.getExecutionContext(), _outlets);
         registerProtectedRegionResolver(_middleEnd.getExecutionContext(), resolver);
+        
+        _middleEnd.getExecutionContext().getContributionStateContext().storeState(XtendGlobalVarOperations.GLOBAL_VAR_VALUES_KEY, globalVars);
         
     	Object o=converted.evaluate (_middleEnd.getExecutionContext());
         return o;

@@ -26,8 +26,13 @@ public class EMapEntryType extends AbstractType {
 	public EMapEntryType (final String name, XsdTypesystem ts, EClassifier innerType) {
 		super(name, XsdTypesystem.XSD_TYPE_PREFIX + name);
 		determineTypes(innerType);
+		Class<? extends EClassifier> innerTypeClass = null;
+		if (innerTypeClass != null)
+			innerType.getClass();
+		else
+			innerTypeClass = EClassifier.class;
 		
-		register (new AbstractProperty (this, innerType.getClass(), "value", true, true) {
+		register (new AbstractProperty (this, innerTypeClass, "value", true, true) {
 
 			@Override
 			protected Object getRaw(ExecutionContext ctx, Object target) {
@@ -42,7 +47,7 @@ public class EMapEntryType extends AbstractType {
 			
 		}, _valueType);
 
-		register (new AbstractProperty (this, innerType.getClass(), "key", true, true) {
+		register (new AbstractProperty (this, innerTypeClass, "key", true, true) {
 
 			@Override
 			protected Object getRaw (ExecutionContext ctx, Object target) {
@@ -72,7 +77,7 @@ public class EMapEntryType extends AbstractType {
 
 	private void determineTypes (EClassifier emfType) {
 		EClass str2str = EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY;
-		if (emfType instanceof EClass
+		if (emfType != null && emfType instanceof EClass
 				&& str2str.isSuperTypeOf((EClass) emfType)) {
 			_keyType = StringType.INSTANCE;
 			_valueType = StringType.INSTANCE;

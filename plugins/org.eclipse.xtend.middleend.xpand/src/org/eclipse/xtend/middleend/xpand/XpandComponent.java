@@ -12,17 +12,13 @@ Contributors:
 package org.eclipse.xtend.middleend.xpand;
 
 
-import java.io.File;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
@@ -39,6 +35,7 @@ import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xpand2.output.PostProcessor;
 import org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent;
+import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
 import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
@@ -176,7 +173,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         
         XpandProtectedRegionResolver resolver = new XpandProtectedRegionResolver(_ignoreList, _defaultExcludes, getInitializedOutlets(), _fileEncoding, _useBase64);
         //XpandBackendFacade.executeStatement (code, _fileEncoding, metaModels, variables, _outlets, _advice);
-        bf.executeStatement (code, variables, _advice, resolver);
+        bf.executeStatement (code, variables, getGlobalVarsFromContext(getGlobalVars(wfContext)), _advice, resolver);
     }
 
     public void addOutlet (Outlet outlet) {
@@ -271,6 +268,16 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
                 issues.addError(this, "property 'expand' has wrong syntax : "+e.getMessage());
             }
         }
+    }
+    
+    public Map<String, Object> getGlobalVarsFromContext (Map<String, Variable> globalVars) {
+    	Map <String, Object> vars = new HashMap <String, Object> ();
+    	if (globalVars != null) {
+	    	for (String varName : globalVars.keySet()) {
+				vars.put(varName, globalVars.get(varName).getValue());
+			}
+    	}
+    	return vars;
     }
 }
 

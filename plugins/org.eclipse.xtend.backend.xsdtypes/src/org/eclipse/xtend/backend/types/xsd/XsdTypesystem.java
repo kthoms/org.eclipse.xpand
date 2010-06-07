@@ -1,3 +1,13 @@
+/*
+Copyright (c) 2010 André Arnold and others.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    André Arnold - initial API and implementation
+ */
 package org.eclipse.xtend.backend.types.xsd;
 
 import java.util.HashMap;
@@ -19,6 +29,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.types.builtin.ListType;
+import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.xsd.internal.EFeatureMapEntryType;
 import org.eclipse.xtend.backend.types.xsd.internal.EFeatureType;
@@ -96,8 +107,8 @@ public class XsdTypesystem implements BackendTypesystem {
 			r = getEMapEntryType (i);
 		} else if (o instanceof QName) {
 			r = getQNameType();
-		} else if (o instanceof EClass) {
-			EClass eCls = (EClass) o;
+		} else if (o instanceof EObject) {
+			EClass eCls = ((EObject) o).eClass ();
 			EList<EAnnotation> anns = eCls.getEAnnotations ();
 			for (EAnnotation eAnn : anns) {
 				EMap<String, String> details = eAnn.getDetails ();
@@ -219,6 +230,10 @@ public class XsdTypesystem implements BackendTypesystem {
             return ListType.INSTANCE;
         
         return getTypeForEClassifier (typedElement.getEType());
+    }
+    
+    public EmfTypesystem getEmfTypesystem () {
+    	return _emfTypesystem;
     }
 	
 }

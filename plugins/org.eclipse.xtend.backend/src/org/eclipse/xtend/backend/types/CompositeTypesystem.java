@@ -37,6 +37,7 @@ import org.eclipse.xtend.backend.types.builtin.StaticPropertyType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.builtin.TypeType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
+import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.internal.EClassType;
 import org.eclipse.xtend.backend.types.java.internal.GlobalJavaBeansTypesystem;
 import org.eclipse.xtend.backend.util.Cache;
@@ -144,6 +145,38 @@ public final class CompositeTypesystem implements BackendTypesystem {
         if (ListType.INSTANCE.isAssignableFrom(t2))
         	return t1;
 
+        if (t1.getClass().equals(EClassType.class) && (t2.getClass().getName().endsWith("XMLEClassType")))
+        	return t2;
+        if (t2.getClass().equals(EClassType.class) && (t1.getClass().getName().endsWith("XMLEClassType")))
+        	return t1;
+        if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("EFeatureType")))
+        	return t2;
+        if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("EFeatureType")))
+        	return t1;
+        if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("EFeatureMapType")))
+        	return t2;
+        if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("EFeatureMapType")))
+        	return t1;
+        if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("EFeatureMapEntryType")))
+        	return t2;
+        if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("EFeatureMapEntryType")))
+        	return t1;
+        if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("EMapType")))
+        	return t2;
+        if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("EMapType")))
+        	return t1;
+        if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("EMapEntryType")))
+        	return t2;
+        if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("EMapEntryType")))
+        	return t1;
+        if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("QNameType")))
+        	return t2;
+        if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("QNameType")))
+        	return t1;
+        if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("XMLFeatureMapType")))
+        	return t2;
+        if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("XMLFeatureMapType")))
+        	return t1;
         throw new IllegalArgumentException ("no unique best match for types " + t1 + " and " + t2);
     }
     

@@ -130,7 +130,6 @@ public final class XpandBackendFacade {
 
     
     public Object executeStatement (String code, Map<String, Object> variables, List<String> advice, XpandProtectedRegionResolver resolver) {
-    	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");
     	if (variables == null)
             variables = new HashMap<String, Object> ();
         if (advice == null)
@@ -148,7 +147,7 @@ public final class XpandBackendFacade {
         
         final Set<XpandDefinitionName> referenced = new HashSet<XpandDefinitionName>();
         final OldDefinitionConverter defConverter = new OldDefinitionConverter (ctx, new TypeToBackendType (_middleEnd.getTypesystem(), ctx));
-        final ExpressionBase converted = defConverter.convertStatementSequence (statements, tpl, referenced);
+        final ExpressionBase converted = defConverter.convertStatementSequence (statements, tpl, referenced, null);
 
         final FunctionDefContextInternal fdc = _middleEnd.createEmptyFdc();
         

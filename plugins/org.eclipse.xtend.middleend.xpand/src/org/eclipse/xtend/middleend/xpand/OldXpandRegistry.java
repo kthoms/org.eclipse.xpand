@@ -14,6 +14,8 @@ package org.eclipse.xtend.middleend.xpand;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.internal.xpand2.ast.Advice;
 import org.eclipse.internal.xpand2.ast.Template;
 import org.eclipse.internal.xpand2.model.XpandAdvice;
@@ -41,6 +43,7 @@ import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
  * @author André Arnold
  */
 public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
+    private static final Log _log = LogFactory.getLog (OldXpandRegistry.class);
     private final XpandExecutionContext _ctx;
     private BackendTypesystem _ts;
     private MiddleEnd _middleEnd;

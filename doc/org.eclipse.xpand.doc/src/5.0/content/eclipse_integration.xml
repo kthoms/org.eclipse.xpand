@@ -203,9 +203,9 @@
       <title>Preferences per project</title>
 
       <para>In the project property page there is also an
-      <emphasis>openArchitectureWare</emphasis> section available.</para>
+      <emphasis>Xtend/Xpand</emphasis> section available.</para>
 
-      <para>Therein you can enable the openArchitectureWare nature (see below)
+      <para>Therein you can enable the Xtend/Xpand nature (see below)
       and set project specific metamodel contributor settings. <mediaobject>
           <imageobject role="fo">
             <imagedata fileref="images/eclipse_integration/projectProperties.png"

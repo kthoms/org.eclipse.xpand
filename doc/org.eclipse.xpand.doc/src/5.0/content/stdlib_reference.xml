@@ -410,7 +410,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</programlistin
 
         <table>
           <title>Workflow component
-          org.openarchitectureware.util.stdlib.PropertiesReader</title>
+          org.eclipse.xtend.util.stdlib.PropertiesReader</title>
 
           <tgroup cols="4">
             <tbody>
@@ -530,7 +530,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
       that.</para>
 
       <para><emphasis>Extension:
-      </emphasis><classname>org::openarchitectureware::util::stdlib::issues</classname></para>
+      </emphasis><classname>org::eclipse::xtend::util::stdlib::issues</classname></para>
 
       <section>
         <title>String reportWarning (String message)</title>
@@ -632,7 +632,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</progra
         <para>Using from Xtend:</para>
 
         <programlisting>import metamodel; 
-extension org::openarchitectureware::util::stdlib::issues;
+extension org::eclipse::xtend::util::stdlib::issues;
 
 demo (Model this) : 
   issuesExtensionsDemo() 
@@ -759,7 +759,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</program
       within a transformation process.</para>
 
       <para><emphasis>Extension:</emphasis><classname>
-      org::openarchitectureware::util::stdlib::globalvar</classname></para>
+      org::eclipse::xtend::util::stdlib::globalvar</classname></para>
 
       <section>
         <title>Example</title>
@@ -767,8 +767,8 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</program
         <para>Usage in Xtend:</para>
 
         <programlisting>import metamodel; 
-extension org::openarchitectureware::util::stdlib::io; 
-extension org::openarchitectureware::util::stdlib::globalvar;
+extension org::eclipse::xtend::util::stdlib::io; 
+extension org::eclipse::xtend::util::stdlib::globalvar;
 
 demo (Model this) : 
   globalvarExtensionsDemo1() -&gt; 
@@ -890,7 +890,7 @@ INFO IOExtensions Getting message from global var: Xpand is cool stuff!</program
 
         <para>Usage in Xtend:</para>
 
-        <programlisting>extension org::openarchitectureware::util::stdlib::crossref; 
+        <programlisting>extension org::eclipse::xtend::util::stdlib::crossref; 
 crossRefDemo (Model this) : 
     eAllContents.typeSelect(Datatype).dumpCrossReferences(); 
     
@@ -919,13 +919,14 @@ INFO IOExtensions Number of cross references to datatype String:4</programlistin
       to have unique identifiers that stay the same over every generation run
       (e.g. for Protected Regions Ids) then you need another mechanism.</para>
 
-      <para>If you are loading the model that assigns IDs to EObject (only for
-      EMF based models) the xmlId() function will be useful. Especially when
-      using UML2 models this function will return a unique and non-changing
-      identifier for objects.</para>
+      <para>If you are loading the model that assigns IDs to
+      <classname>EObject</classname> (only for EMF based models) the
+      <methodname>xmlId()</methodname> function will be useful. Especially
+      when using UML2 models this function will return a unique and
+      non-changing identifier for objects.</para>
 
       <para><emphasis>Extension:</emphasis>
-      <classname>org::openarchitectureware::util::stdlib::uid</classname></para>
+      <classname>org::eclipse::xtend::util::stdlib::uid</classname></para>
 
       <section>
         <title>cached String uid( Object o )</title>
@@ -961,7 +962,7 @@ INFO IOExtensions Number of cross references to datatype String:4</programlistin
         object.</para>
       </section>
 
-      <section>
+      <section id="stdlib_uid_xmlid">
         <title>String xmlId (ecore::EObject o)</title>
 
         <para>Retrieves an object's identifier. The object must be read from a
@@ -1066,7 +1067,7 @@ INFO IOExtensions Number of cross references to datatype String:4</programlistin
       explicitly to the transformation code.</para>
 
       <para><emphasis>Extension:</emphasis>
-      <classname>org::openarchitectureware::util::stdlib::tracing</classname></para>
+      <classname>org::eclipse::xtend::util::stdlib::tracing</classname></para>
 
       <section>
         <title>Void createTrace( Object from, Object to, String kind, String

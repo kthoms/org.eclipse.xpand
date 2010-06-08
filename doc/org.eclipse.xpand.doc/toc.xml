@@ -88,14 +88,13 @@
 <topic href="help/r10_expressions_language.html#r10_expressions_if" label="if expression"/>
 <topic href="help/r10_expressions_language.html#r10_expressions_switch" label="switch expression"/>
 <topic href="help/r10_expressions_language.html#r10_expressions_chain" label="Chain expression"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_create" label="create expression"/>
-<topic href="help/r10_expressions_language.html#r10_expressions_let" label="let expression"/>
+<topic href="help/r10_expressions_language.html#r10_expressions_create" label="new expression"/>
 <topic href="help/r10_expressions_language.html#r10_expressions_globalvar" label="'GLOBALVAR' expression">
 <topic href="help/r10_expressions_language.html#r10_expressions_globalvar_workflow" label="Using GLOBALVARS to configure workflows"/>
 </topic>
 <topic href="help/r10_expressions_language.html#r10_expressions_multidispatch" label="Multi methods (multiple dispatch)"/>
 <topic href="help/r10_expressions_language.html#r10_expressions_casting" label="Casting"/>
-<topic href="help/r10_expressions_language.html#N10C58" label="Xpand keywords and metamodel properties"/>
+<topic href="help/r10_expressions_language.html#N10CDA" label="Xpand keywords and metamodel properties"/>
 </topic>
 <topic href="help/Check_language.html" label="Check">
 <topic href="help/Check_language.html#Check_language_description" label="Description of the Check language">
@@ -104,33 +103,33 @@
 <topic href="help/Check_language.html#check_checkcomponent" label="The workflow component CheckComponent"/>
 </topic>
 <topic href="help/Xtend_language.html" label="Xtend">
-<topic href="help/Xtend_language.html#N10D5D" label="Xtend files"/>
-<topic href="help/Xtend_language.html#N10D7B" label="Comments"/>
-<topic href="help/Xtend_language.html#N10D8B" label="Import Statements"/>
-<topic href="help/Xtend_language.html#N10D9C" label="Extension Import Statement">
-<topic href="help/Xtend_language.html#N10DAB" label="Reexporting Extensions"/>
+<topic href="help/Xtend_language.html#N10DEB" label="Xtend files"/>
+<topic href="help/Xtend_language.html#N10E09" label="Comments"/>
+<topic href="help/Xtend_language.html#N10E19" label="Import Statements"/>
+<topic href="help/Xtend_language.html#N10E2A" label="Extension Import Statement">
+<topic href="help/Xtend_language.html#N10E39" label="Reexporting Extensions"/>
 </topic>
-<topic href="help/Xtend_language.html#N10DB6" label="Extensions">
-<topic href="help/Xtend_language.html#N10DC1" label="Extension Invocation"/>
-<topic href="help/Xtend_language.html#N10DD7" label="Type Inference"/>
-<topic href="help/Xtend_language.html#N10E21" label="Recursion"/>
-<topic href="help/Xtend_language.html#N10E33" label="Cached Extensions"/>
-<topic href="help/Xtend_language.html#N10E4E" label="Private Extensions"/>
+<topic href="help/Xtend_language.html#N10E47" label="Extensions">
+<topic href="help/Xtend_language.html#N10E54" label="Extension Invocation"/>
+<topic href="help/Xtend_language.html#N10E6A" label="Type Inference"/>
+<topic href="help/Xtend_language.html#N10EB7" label="Recursion"/>
+<topic href="help/Xtend_language.html#N10EC9" label="Cached Extensions"/>
+<topic href="help/Xtend_language.html#N10EE4" label="Private Extensions"/>
 </topic>
-<topic href="help/Xtend_language.html#N10E5E" label="Java Extensions">
-<topic href="help/Xtend_language.html#N10E86" label="static vs non-static invocation"/>
-<topic href="help/Xtend_language.html#N10E8B" label="IExecutionContextAware"/>
+<topic href="help/Xtend_language.html#N10EF7" label="Java Extensions">
+<topic href="help/Xtend_language.html#N10F21" label="static vs non-static invocation"/>
+<topic href="help/Xtend_language.html#N10F26" label="IExecutionContextAware"/>
 </topic>
-<topic href="help/Xtend_language.html#N10E9C" label="Create Extensions (Model Transformation)"/>
-<topic href="help/Xtend_language.html#N10F11" label="Calling Extensions From Java"/>
-<topic href="help/Xtend_language.html#N10F4F" label="WorkflowComponent"/>
-<topic href="help/Xtend_language.html#N10F66" label="Aspect-Oriented Programming in Xtend">
-<topic href="help/Xtend_language.html#N10F87" label="Join Point and Point Cut Syntax">
-<topic href="help/Xtend_language.html#N10FA5" label="Extensions Name"/>
-<topic href="help/Xtend_language.html#N10FAF" label="Parameter Types"/>
-<topic href="help/Xtend_language.html#N10FBF" label="Proceeding"/>
+<topic href="help/Xtend_language.html#create_extension" label="Create Extensions (Model Transformation)"/>
+<topic href="help/Xtend_language.html#N11027" label="Calling Extensions From Java"/>
+<topic href="help/Xtend_language.html#N1106B" label="WorkflowComponent"/>
+<topic href="help/Xtend_language.html#N11082" label="Aspect-Oriented Programming in Xtend">
+<topic href="help/Xtend_language.html#N110A3" label="Join Point and Point Cut Syntax">
+<topic href="help/Xtend_language.html#N110C1" label="Extensions Name"/>
+<topic href="help/Xtend_language.html#N110CD" label="Parameter Types"/>
+<topic href="help/Xtend_language.html#N110DD" label="Proceeding"/>
 </topic>
-<topic href="help/Xtend_language.html#N10FE0" label="Workflow configuration"/>
+<topic href="help/Xtend_language.html#N110FE" label="Workflow configuration"/>
 <topic href="help/Xtend_language.html#xtend_example_introduction" label="Model-to-Model transformation with Xtend"/>
 <topic href="help/Xtend_language.html#xtend_example_workflow" label="Workflow"/>
 <topic href="help/Xtend_language.html#xtend_example_the_transformation" label="The transformation"/>
@@ -146,7 +145,7 @@
 <topic href="help/xpand_reference_introduction.html#xpand_reference_file" label="FILE"/>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_expand" label="EXPAND">
 <topic href="help/xpand_reference_introduction.html#xpand_reference_names" label="Names"/>
-<topic href="help/xpand_reference_introduction.html#N11201" label="Lazy evaluation"/>
+<topic href="help/xpand_reference_introduction.html#N11322" label="Lazy evaluation"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_for_vs_foreach" label="FOR vs. FOREACH">
 <topic href="help/xpand_reference_introduction.html#xpand_reference_specifying_a_separator" label="Specifying a Separator"/>
@@ -173,12 +172,13 @@
 <topic href="help/xpand_reference_introduction.html#xpand_reference_encoding" label="Encoding"/>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_metamodel" label="Metamodel"/>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_output_configuration" label="Output configuration"/>
-<topic href="help/xpand_reference_introduction.html#xpand_reference_beautifier" label="Beautifier">
+<topic href="help/xpand_reference_introduction.html#xpand_reference_beautifier" label="PostProcessor">
 <topic href="help/xpand_reference_introduction.html#xpand_reference_javabeautifier" label="JavaBeautifier"/>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_xmlbeautifier" label="XmlBeautifier"/>
+<topic href="help/xpand_reference_introduction.html#N1169E" label="CppBeautifier"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#xpand_reference_protected_region_configuration" label="Protected Region Configuration"/>
-<topic href="help/xpand_reference_introduction.html#N1153F" label="VetoStrategy"/>
+<topic href="help/xpand_reference_introduction.html#N116C9" label="VetoStrategy"/>
 </topic>
 <topic href="help/xpand_reference_introduction.html#aop_template_introduction" label="Example for using Aspect-Oriented Programming in Xpand"/>
 <topic href="help/xpand_reference_introduction.html#aop_template_the_problem" label="The Problem"/>
@@ -211,82 +211,82 @@
 <topic href="help/xpand2_Iterator.html.html" label="xpand2::Iterator"/>
 </topic>
 <topic href="help/stdlib_reference.html" label="Stdlib">
-<topic href="help/stdlib_reference.html#N12204" label="Introduction"/>
+<topic href="help/stdlib_reference.html#N1238E" label="Introduction"/>
 <topic href="help/ch04s02.html" label="Stdlib extensions">
-<topic href="help/ch04s02.html#N12219" label="IO extensions">
-<topic href="help/ch04s02.html#N12224" label="debug (Object o)"/>
-<topic href="help/ch04s02.html#N12234" label="info (Object o)"/>
-<topic href="help/ch04s02.html#N12244" label="error (Object o)"/>
-<topic href="help/ch04s02.html#N12254" label="syserr (Object o)"/>
-<topic href="help/ch04s02.html#N12267" label="syserr (Object o, String prefix)"/>
-<topic href="help/ch04s02.html#N1227D" label="syserr (Object o)"/>
-<topic href="help/ch04s02.html#N12290" label="throwError (Object o)"/>
-<topic href="help/ch04s02.html#N122A0" label="Examples"/>
-<topic href="help/ch04s02.html#N122C3" label="Controlling the log level"/>
+<topic href="help/ch04s02.html#N123A3" label="IO extensions">
+<topic href="help/ch04s02.html#N123AE" label="debug (Object o)"/>
+<topic href="help/ch04s02.html#N123BE" label="info (Object o)"/>
+<topic href="help/ch04s02.html#N123CE" label="error (Object o)"/>
+<topic href="help/ch04s02.html#N123DE" label="syserr (Object o)"/>
+<topic href="help/ch04s02.html#N123F1" label="syserr (Object o, String prefix)"/>
+<topic href="help/ch04s02.html#N12407" label="syserr (Object o)"/>
+<topic href="help/ch04s02.html#N1241A" label="throwError (Object o)"/>
+<topic href="help/ch04s02.html#N1242A" label="Examples"/>
+<topic href="help/ch04s02.html#N1244D" label="Controlling the log level"/>
 </topic>
-<topic href="help/ch04s02.html#N122D4" label="Counter extensions">
-<topic href="help/ch04s02.html#N122DE" label="int counterInc (Object o)"/>
-<topic href="help/ch04s02.html#N122F1" label="int counterDec (Object o)"/>
-<topic href="help/ch04s02.html#N12304" label="int counterReset (Object o)"/>
-<topic href="help/ch04s02.html#N12317" label="int counterGet (Object o)"/>
-<topic href="help/ch04s02.html#N1232A" label="Example"/>
+<topic href="help/ch04s02.html#N1245E" label="Counter extensions">
+<topic href="help/ch04s02.html#N12468" label="int counterInc (Object o)"/>
+<topic href="help/ch04s02.html#N1247B" label="int counterDec (Object o)"/>
+<topic href="help/ch04s02.html#N1248E" label="int counterReset (Object o)"/>
+<topic href="help/ch04s02.html#N124A1" label="int counterGet (Object o)"/>
+<topic href="help/ch04s02.html#N124B4" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N12334" label="Properties extensions">
-<topic href="help/ch04s02.html#N12342" label="String getProperty (String key)"/>
-<topic href="help/ch04s02.html#N12354" label="Workflow component"/>
-<topic href="help/ch04s02.html#N12371" label="Example"/>
+<topic href="help/ch04s02.html#N124BE" label="Properties extensions">
+<topic href="help/ch04s02.html#N124CC" label="String getProperty (String key)"/>
+<topic href="help/ch04s02.html#N124DE" label="Workflow component"/>
+<topic href="help/ch04s02.html#N124FB" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N12382" label="Element properties extensions">
-<topic href="help/ch04s02.html#N1238E" label="Void setProperty (Object element, String name, Object value)"/>
-<topic href="help/ch04s02.html#N123AD" label="Object getProperty (Object element, String name)"/>
+<topic href="help/ch04s02.html#N1250C" label="Element properties extensions">
+<topic href="help/ch04s02.html#N12518" label="Void setProperty (Object element, String name, Object value)"/>
+<topic href="help/ch04s02.html#N12537" label="Object getProperty (Object element, String name)"/>
 </topic>
-<topic href="help/ch04s02.html#N123C4" label="Issues extensions">
-<topic href="help/ch04s02.html#N123D0" label="String reportWarning (String message)"/>
-<topic href="help/ch04s02.html#N123E2" label="String reportWarning (Object object, String message)"/>
-<topic href="help/ch04s02.html#N123F9" label="String reportError (String message)"/>
-<topic href="help/ch04s02.html#N1240B" label="String reportError (Object object, String message)"/>
-<topic href="help/ch04s02.html#N12422" label="Workflow component"/>
-<topic href="help/ch04s02.html#N1242F" label="Example"/>
+<topic href="help/ch04s02.html#N1254E" label="Issues extensions">
+<topic href="help/ch04s02.html#N1255A" label="String reportWarning (String message)"/>
+<topic href="help/ch04s02.html#N1256C" label="String reportWarning (Object object, String message)"/>
+<topic href="help/ch04s02.html#N12583" label="String reportError (String message)"/>
+<topic href="help/ch04s02.html#N12595" label="String reportError (Object object, String message)"/>
+<topic href="help/ch04s02.html#N125AC" label="Workflow component"/>
+<topic href="help/ch04s02.html#N125B9" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N1243E" label="Naming extensions">
-<topic href="help/ch04s02.html#N1244B" label="String namespace (Object this)"/>
-<topic href="help/ch04s02.html#N1245D" label="String qualifiedName (Object this)"/>
-<topic href="help/ch04s02.html#N1246F" label="String loc (Object this)"/>
-<topic href="help/ch04s02.html#N12481" label="Object findByName (Collection candidates, String name)"/>
+<topic href="help/ch04s02.html#N125C8" label="Naming extensions">
+<topic href="help/ch04s02.html#N125D5" label="String namespace (Object this)"/>
+<topic href="help/ch04s02.html#N125E7" label="String qualifiedName (Object this)"/>
+<topic href="help/ch04s02.html#N125F9" label="String loc (Object this)"/>
+<topic href="help/ch04s02.html#N1260B" label="Object findByName (Collection candidates, String name)"/>
 </topic>
-<topic href="help/ch04s02.html#N12498" label="Globalvar extensions">
-<topic href="help/ch04s02.html#N124A2" label="Example"/>
+<topic href="help/ch04s02.html#N12622" label="Globalvar extensions">
+<topic href="help/ch04s02.html#N1262C" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N124AF" label="Cloning extensions">
-<topic href="help/ch04s02.html#N124CD" label="Object clone (Object original)"/>
-<topic href="help/ch04s02.html#N124DF" label="List clone (List l)"/>
+<topic href="help/ch04s02.html#N12639" label="Cloning extensions">
+<topic href="help/ch04s02.html#N12657" label="Object clone (Object original)"/>
+<topic href="help/ch04s02.html#N12669" label="List clone (List l)"/>
 </topic>
-<topic href="help/ch04s02.html#N124F1" label="Cross references extensions">
-<topic href="help/ch04s02.html#N124FB" label="List[EObject] getReferencingObjects(EObject target)"/>
-<topic href="help/ch04s02.html#N1250D" label="Example"/>
+<topic href="help/ch04s02.html#N1267B" label="Cross references extensions">
+<topic href="help/ch04s02.html#N12685" label="List[EObject] getReferencingObjects(EObject target)"/>
+<topic href="help/ch04s02.html#N12697" label="Example"/>
 </topic>
-<topic href="help/ch04s02.html#N12518" label="UID extensions">
-<topic href="help/ch04s02.html#N12525" label="cached String uid( Object o )"/>
-<topic href="help/ch04s02.html#N12537" label="String createUID( Object o )"/>
-<topic href="help/ch04s02.html#N12549" label="String xmlId (ecore::EObject o)"/>
+<topic href="help/ch04s02.html#N126A2" label="UID extensions">
+<topic href="help/ch04s02.html#N126B5" label="cached String uid( Object o )"/>
+<topic href="help/ch04s02.html#N126C7" label="String createUID( Object o )"/>
+<topic href="help/ch04s02.html#stdlib_uid_xmlid" label="String xmlId (ecore::EObject o)"/>
 </topic>
-<topic href="help/ch04s02.html#N1255B" label="Mixin extensions">
-<topic href="help/ch04s02.html#N1257A" label="Object getMandatoryMixin( Object mixinModel, Object ctx, xpand2::Type t )"/>
-<topic href="help/ch04s02.html#N12596" label="Object getOptionalMixin( Object mixinModel, Object ctx, xpand2::Type t )"/>
+<topic href="help/ch04s02.html#N126EC" label="Mixin extensions">
+<topic href="help/ch04s02.html#N1270B" label="Object getMandatoryMixin( Object mixinModel, Object ctx, xpand2::Type t )"/>
+<topic href="help/ch04s02.html#N12727" label="Object getOptionalMixin( Object mixinModel, Object ctx, xpand2::Type t )"/>
 </topic>
-<topic href="help/ch04s02.html#N1259B" label="Tracing extensions">
-<topic href="help/ch04s02.html#N125A6" label="Void createTrace( Object from, Object to, String kind, String backKind )"/>
-<topic href="help/ch04s02.html#N125C7" label="Void createTrace( Object from, Object to, String kind)"/>
-<topic href="help/ch04s02.html#N125E3" label="Void clearTrace()"/>
-<topic href="help/ch04s02.html#N125F0" label="Object getSingleTraceTarget( Object from, String kind )"/>
-<topic href="help/ch04s02.html#N12607" label="Boolean hasTrace( Object from, String kind )"/>
+<topic href="help/ch04s02.html#N1272C" label="Tracing extensions">
+<topic href="help/ch04s02.html#N12737" label="Void createTrace( Object from, Object to, String kind, String backKind )"/>
+<topic href="help/ch04s02.html#N12758" label="Void createTrace( Object from, Object to, String kind)"/>
+<topic href="help/ch04s02.html#N12774" label="Void clearTrace()"/>
+<topic href="help/ch04s02.html#N12781" label="Object getSingleTraceTarget( Object from, String kind )"/>
+<topic href="help/ch04s02.html#N12798" label="Boolean hasTrace( Object from, String kind )"/>
 </topic>
 </topic>
 <topic href="help/ch04s03.html" label="Stdlib workflow components">
-<topic href="help/ch04s03.html#N12623" label="SystemCommand"/>
-<topic href="help/ch04s03.html#N12686" label="SlotCopier"/>
-<topic href="help/ch04s03.html#N126D1" label="SlotListAdder"/>
-<topic href="help/ch04s03.html#N12720" label="SlotPrinter"/>
+<topic href="help/ch04s03.html#N127B4" label="SystemCommand"/>
+<topic href="help/ch04s03.html#N12817" label="SlotCopier"/>
+<topic href="help/ch04s03.html#N12862" label="SlotListAdder"/>
+<topic href="help/ch04s03.html#N128B1" label="SlotPrinter"/>
 </topic>
 </topic>
 <topic href="help/eclipse_integration.html" label="Xpand Eclipse Integration">

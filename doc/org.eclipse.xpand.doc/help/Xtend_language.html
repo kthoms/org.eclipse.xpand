@@ -23,7 +23,7 @@
 </div>
 </div>
 </div>
-<a name="N10D45" class="indexterm"/>
+<a name="N10DD3" class="indexterm"/>
 <p>Like the expressions sublanguage that summarizes the syntax of
     expressions for all the other textual languages delivered with the
     <span class="emphasis">
@@ -33,23 +33,23 @@
 <em>Xtend</em>
 </span>.</p>
 <p>This language provides the possibility to define rich libraries of
-    independent operations and non-invasive metamodel extensions<a name="N10D54" class="indexterm"/> based on either Java methods or <span class="emphasis">
+    independent operations and non-invasive metamodel extensions<a name="N10DE2" class="indexterm"/> based on either Java methods or <span class="emphasis">
 <em>Xtend</em>
 </span>
     expressions. Those libraries can be referenced from all other textual
-    languages, that are based on the expressions framework.</p>
+    languages that are based on the expressions framework.</p>
 <div class="section" title="Xtend files">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="N10D5D"/>Xtend files</h3>
+<a name="N10DEB"/>Xtend files</h3>
 </div>
 </div>
 </div>
-<a name="N10D60" class="indexterm"/>
+<a name="N10DEE" class="indexterm"/>
 <p>
-<a name="N10D64" class="indexterm"/>An Xtend file must reside in the Java class path of the
+<a name="N10DF2" class="indexterm"/>An Xtend file must reside in the Java class path of the
       used execution context. File extension must be
       <code class="filename">*.ext</code>. Let us have a look at an Xend file.</p>
 <pre class="programlisting">import my::metamodel;extension other::ExtensionFile;
@@ -88,7 +88,7 @@ String aJavaExtension(String param) : JAVA
 <div>
 <div>
 <h3 class="title">
-<a name="N10D7B"/>Comments<a name="N10D7E" class="indexterm"/>
+<a name="N10E09"/>Comments<a name="N10E0C" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -104,15 +104,15 @@ String aJavaExtension(String param) : JAVA
 <div>
 <div>
 <h3 class="title">
-<a name="N10D8B"/>Import Statements</h3>
+<a name="N10E19"/>Import Statements</h3>
 </div>
 </div>
 </div>
-<p>Using the import<a name="N10D90" class="indexterm"/> statement one can import name spaces of different
+<p>Using the import<a name="N10E1E" class="indexterm"/> statement one can import name spaces of different
       types.(see expressions framework reference documentation).</p>
 <p>Syntax is:</p>
 <pre class="programlisting">import my::imported::namespace;</pre>
-<p>Extend does not support static imports or any similar concept.
+<p>Xtend does not support static imports or any similar concept.
       Therefore, the following is incorrect syntax:</p>
 <pre class="programlisting">import my::imported::namespace::*; // WRONG! import my::Type; // WRONG!</pre>
 </div>
@@ -121,11 +121,11 @@ String aJavaExtension(String param) : JAVA
 <div>
 <div>
 <h3 class="title">
-<a name="N10D9C"/>Extension Import Statement</h3>
+<a name="N10E2A"/>Extension Import Statement</h3>
 </div>
 </div>
 </div>
-<a name="N10D9F" class="indexterm"/>
+<a name="N10E2D" class="indexterm"/>
 <p>You can import another Xtend file using the extension statement.
       The syntax is:</p>
 <pre class="programlisting">extension fully::qualified::ExtensionFileName;</pre>
@@ -136,13 +136,13 @@ String aJavaExtension(String param) : JAVA
 <div>
 <div>
 <h4 class="title">
-<a name="N10DAB"/>Reexporting Extensions</h4>
+<a name="N10E39"/>Reexporting Extensions</h4>
 </div>
 </div>
 </div>
 <p>If you want to export extensions from another extension file
         together with your local extensions, you can add the keyword
-        'reexport' <a name="N10DB0" class="indexterm"/> to the end of the respective extension import
+        <code class="methodname">reexport</code> <a name="N10E41" class="indexterm"/> to the end of the respective extension import
         statement.</p>
 <pre class="programlisting">extension fully::qualified::ExtensionFileName reexport;</pre>
 </div>
@@ -152,20 +152,24 @@ String aJavaExtension(String param) : JAVA
 <div>
 <div>
 <h3 class="title">
-<a name="N10DB6"/>Extensions</h3>
+<a name="N10E47"/>Extensions</h3>
 </div>
 </div>
 </div>
 <p>The syntax of a simple expression extension is as follows:</p>
 <pre class="programlisting">ReturnType extensionName(ParamType1 paramName1, ParamType2...): expression-using-params;</pre>
-<p>Example:</p>
+<p>
+<span class="bold">
+<strong>Example:</strong>
+</span>
+</p>
 <pre class="programlisting">String getterName(NamedElement ele) : 'get'+ele.name.firstUpper();</pre>
 <div class="section" title="Extension Invocation">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="N10DC1"/>Extension Invocation<a name="N10DC4" class="indexterm"/>
+<a name="N10E54"/>Extension Invocation<a name="N10E57" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -191,13 +195,13 @@ String aJavaExtension(String param) : JAVA
 <div>
 <div>
 <h4 class="title">
-<a name="N10DD7"/>Type Inference<a name="N10DDA" class="indexterm"/>
+<a name="N10E6A"/>Type Inference<a name="N10E6D" class="indexterm"/>
 </h4>
 </div>
 </div>
 </div>
 <p>For most extensions, you do not need to specify the return
-        type,<a name="N10DDF" class="indexterm"/> because it can be derived from the specified
+        type,<a name="N10E72" class="indexterm"/> because it can be derived from the specified
         expression. The special thing is, that the static return type of such
         an extension depends on the context of use.</p>
 <p>For instance, if you have the following extension</p>
@@ -216,7 +220,8 @@ String aJavaExtension(String param) : JAVA
         '<code class="classname">Void</code>'.</p>
 <p>See the following example.</p>
 <pre class="programlisting">modelTarget.ownedElements.addAllNotNull(modelSource.contents.duplicate())</pre>
-<p>In this example duplicate() dispatches polymorphically<a name="N10E02" class="indexterm"/>. Two of the extensions might look like:</p>
+<p>In this example <code class="methodname">duplicate()</code> dispatches
+        polymorphically<a name="N10E98" class="indexterm"/>. Two of the extensions might look like:</p>
 <pre class="programlisting">Void duplicate(Realization realization):
    realization.Specifier().duplicate()-&gt;
    realization.Realizer().duplicate()
@@ -245,12 +250,12 @@ create target::Class duplicate(source::Class):
 <div>
 <div>
 <h4 class="title">
-<a name="N10E21"/>Recursion</h4>
+<a name="N10EB7"/>Recursion</h4>
 </div>
 </div>
 </div>
-<p>There is only one exception: For recursive extensions <a name="N10E26" class="indexterm"/>
-<a name="N10E29" class="indexterm"/> the return type cannot be inferred, therefore you need
+<p>There is only one exception: For recursive extensions <a name="N10EBC" class="indexterm"/>
+<a name="N10EBF" class="indexterm"/> the return type cannot be inferred, therefore you need
         to specify it explicitly:</p>
 <pre class="programlisting">String fullyQualifiedName(NamedElement n) : n.parent == null ? n.name :
    fullyQualifiedName(n.parent)+'::'+n.name
@@ -263,7 +268,7 @@ create target::Class duplicate(source::Class):
 <div>
 <div>
 <h4 class="title">
-<a name="N10E33"/>Cached Extensions<a name="N10E36" class="indexterm"/>
+<a name="N10EC9"/>Cached Extensions<a name="N10ECC" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -271,7 +276,7 @@ create target::Class duplicate(source::Class):
 <p>If you call an extension without side effects very often, you
         would like to cache the result for each set of parameters, in order
         improve the performance. You can just add the keyword
-        '<code class="code">cached</code>'<a name="N10E40" class="indexterm"/> to the extension in order to achieve this:</p>
+        '<code class="code">cached</code>'<a name="N10ED6" class="indexterm"/> to the extension in order to achieve this:</p>
 <pre class="programlisting">cached String getterName(NamedElement ele) :
    'get'+ele.name.firstUpper()
 ;</pre>
@@ -283,14 +288,14 @@ create target::Class duplicate(source::Class):
 <div>
 <div>
 <h4 class="title">
-<a name="N10E4E"/>Private Extensions<a name="N10E51" class="indexterm"/>
+<a name="N10EE4"/>Private Extensions<a name="N10EE7" class="indexterm"/>
 </h4>
 </div>
 </div>
 </div>
 <p>By default all extensions are public, i.e. they are visible from
         outside the extension file. If you want to hide extensions you can add
-        the keyword 'private'<a name="N10E58" class="indexterm"/> in front of them:</p>
+        the keyword '<code class="methodname">private</code>'<a name="N10EF1" class="indexterm"/> in front of them:</p>
 <pre class="programlisting">private internalHelper(NamedElement ele) :
    // implementation....
 ;</pre>
@@ -301,13 +306,13 @@ create target::Class duplicate(source::Class):
 <div>
 <div>
 <h3 class="title">
-<a name="N10E5E"/>Java Extensions</h3>
+<a name="N10EF7"/>Java Extensions</h3>
 </div>
 </div>
 </div>
-<p>In some rare cases one does want to call a Java method from inside
-      an expression. This can be done by providing a Java extension<a name="N10E63" class="indexterm"/>
-<a name="N10E66" class="indexterm"/>:</p>
+<p>In some cases one does want to call a Java method from inside an
+      expression. This can be done by providing a Java extension<a name="N10EFC" class="indexterm"/>
+<a name="N10EFF" class="indexterm"/>:</p>
 <pre class="programlisting">Void myJavaExtension(String param) :
    JAVA my.Type.someMethod(java.lang.String)
 ;</pre>
@@ -320,7 +325,11 @@ create target::Class duplicate(source::Class):
 <p>Note that you cannot use any imported namespaces. You have to
       specify the type, its method and the parameter types in a fully
       qualified way.</p>
-<p>Example:</p>
+<p>
+<span class="bold">
+<strong>Example:</strong>
+</span>
+</p>
 <p>If you have defined the following Java extension:</p>
 <pre class="programlisting">String concat (String a, String b):
   JAVA my.Helper.concat(java.lang.String, java.lang.String);</pre>
@@ -336,14 +345,14 @@ public class Helper {
 <pre class="programlisting">concat('Hello ',"world!")
 "Hello ".concat('world!')</pre>
 <p>both result are invoking the Java method <code class="methodname">void
-      concat(String a, String b)</code>
+      concat(String a, String b).</code>
 </p>
 <div class="section" title="static vs non-static invocation">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="N10E86"/>static vs non-static invocation</h4>
+<a name="N10F21"/>static vs non-static invocation</h4>
 </div>
 </div>
 </div>
@@ -357,16 +366,17 @@ public class Helper {
 <div>
 <div>
 <h4 class="title">
-<a name="N10E8B"/>IExecutionContextAware<a name="N10E8E" class="indexterm"/>
+<a name="N10F26"/>IExecutionContextAware<a name="N10F29" class="indexterm"/>
 </h4>
 </div>
 </div>
 </div>
 <p>It is possible with a Java Extension to gain access to the
-        ExecutionContext<a name="N10E93" class="indexterm"/>, which enables to retrieve detailed runtime information
+        ExecutionContext<a name="N10F2E" class="indexterm"/>, which enables to retrieve detailed runtime information
         on invocation. To use the current ExecutionContext in a Java extension
         the class must implement
-        org.eclipse.xtend.expression.IExecutionContextAware</p>
+        <code class="classname">org.eclipse.xtend.expression.IExecutionContextAware</code>
+</p>
 <pre class="programlisting">public interface IExecutionContextAware {
   void setExecutionContext (ExecutionContext ctx);
 }
@@ -379,18 +389,18 @@ public class Helper {
 <div>
 <div>
 <h3 class="title">
-<a name="N10E9C"/>Create Extensions (Model Transformation)</h3>
+<a name="create_extension"/>Create Extensions (Model Transformation)</h3>
 </div>
 </div>
 </div>
-<p>Since Version 4.1 the <span class="emphasis">
+<p>The <span class="emphasis">
 <em>Xtend</em>
-</span> language supports
-      additional support for model transformation<a name="N10EA4" class="indexterm"/>. The new concept is called <span class="emphasis">
+</span> language supports additional
+      support for model transformations<a name="N10F42" class="indexterm"/>. The concept is called <span class="emphasis">
 <em>create
       extension</em>
-</span> and <a name="N10EAB" class="indexterm"/>
-<a name="N10EB0" class="indexterm"/> it is explained a bit more comprehensive as usual.</p>
+</span> and <a name="N10F49" class="indexterm"/>
+<a name="N10F4E" class="indexterm"/> it is explained a bit more comprehensive as usual.</p>
 <p>Elements contained in a model are usually referenced multiple
       times. Consider the following model structure:</p>
 <pre class="programlisting">    P
@@ -399,21 +409,23 @@ public class Helper {
    \ /
     R
 </pre>
-<p>A package P contains two classes C1 and C2. C1 contains a
-      reference R of type C2 (P also references C2).</p>
+<p>A package <code class="varname">P</code> contains two classes
+      <code class="varname">C1</code> and <code class="varname">C2</code>. <code class="varname">C1</code>
+      contains a reference <code class="varname">R</code> of type <code class="varname">C2</code>
+      (<code class="varname">P</code> also references <code class="varname">C2</code>).</p>
 <p>We could write the following extensions in order to transform an
       Ecore (EMF) model to our metamodel (Package, Class, Reference).</p>
-<pre class="programlisting">toPackage(EPackage x) :
+<pre class="programlisting">Package toPackage(EPackage x) :
    let p = new Package :
       p.ownedMember.addAll(x.eClassifiers.toClass()) -&gt;
       p;
 
-toClass(EClass x) :
+Class toClass(EClass x) :
    let c = new Class :
       c.attributes.addAll(x.eReferences.toReference()) -&gt;
       c;
 
-toReference(EReference x) :
+Reference toReference(EReference x) :
    let r = new Reference :
       r.setType(x.eType.toClass()) -&gt;
       r;
@@ -426,10 +438,11 @@ toReference(EReference x) :
   |
   R - C2
 </pre>
-<p>What happened? The C2 class has been created 2 times (one time for
-      the package containment and another time for the reference R that also
-      refers to C2). We can solve the problem by adding the 'cached' keyword
-      <a name="N10EC4" class="indexterm"/> to the second extension:</p>
+<p>What happened? The <code class="varname">C2</code> class has been created 2
+      times (one time for the package containment and another time for the
+      reference <code class="varname">R</code> that also refers to
+      <code class="varname">C2</code>). We can solve the problem by adding the
+      '<code class="methodname">cached</code>' keyword <a name="N10F86" class="indexterm"/> to the second extension:</p>
 <pre class="programlisting">cached toClass(EClass x) :
    let c = new Class :
       c.attributes.addAll(c.eAttributes.toAttribute()) -&gt;
@@ -439,37 +452,45 @@ toReference(EReference x) :
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
 <li class="listitem">
-<p>start create P</p>
+<p>start create <code class="varname">P</code>
+</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="a">
 <li class="listitem">
-<p>start create C1 (contained in P)</p>
+<p>start create <code class="varname">C1</code> (contained in
+              <code class="varname">P</code>)</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="i">
 <li class="listitem">
-<p>start create R (contained in C1)</p>
+<p>start create <code class="varname">R</code> (contained in
+                  <code class="varname">C1</code>)</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="A">
 <li class="listitem">
-<p>start create C2 (referenced from R)</p>
+<p>start create <code class="varname">C2</code> (referenced
+                      from <code class="varname">R</code>)</p>
 </li>
 <li class="listitem">
-<p>end (result C2 is cached)</p>
+<p>end (result <code class="varname">C2</code> is
+                      cached)</p>
 </li>
 </ol>
 </div>
 </li>
 <li class="listitem">
-<p>end R</p>
+<p>end <code class="varname">R</code>
+</p>
 </li>
 </ol>
 </div>
 </li>
 <li class="listitem">
-<p>end C1</p>
+<p>end <code class="varname">C1</code>
+</p>
 </li>
 <li class="listitem">
-<p>start get cached C2 (contained in P)</p>
+<p>start get cached <code class="varname">C2</code> (contained in
+              <code class="varname">P</code>)</p>
 </li>
 </ol>
 </div>
@@ -480,34 +501,40 @@ toReference(EReference x) :
 </ol>
 </div>
 <p>So this works very well. We will get the intended structure. But
-      what about circular dependencies? For instance, C2 could contain a
-      Reference R2 of type C1 (bidirectional references):</p>
+      what about circular dependencies? For instance, <code class="varname">C2</code>
+      could contain a <code class="classname">Reference</code> <code class="varname">R2</code>
+      of type <code class="varname">C1</code> (bidirectional references):</p>
 <p>The transformation would occur like this:</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
 <li class="listitem">
-<p>start create P</p>
+<p>start create <code class="varname">P</code>
+</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="a">
 <li class="listitem">
-<p>start create C1 (contained in P)</p>
+<p>start create <code class="varname">C1</code> (contained in
+              <code class="varname">P</code>)</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="i">
 <li class="listitem">
-<p>start create R (contained in C1)</p>
+<p>start create <code class="varname">R</code> (contained in
+                  <code class="varname">C1</code>)</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="A">
 <li class="listitem">
-<p>start create C2 (referenced from R)</p>
+<p>start create <code class="varname">C2</code> (referenced
+                      from <code class="varname">R</code>)</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="I">
 <li class="listitem">
-<p>start create R2 (contained in C2)</p>
+<p>start create <code class="varname">R2</code> (contained
+                          in <code class="varname">C2</code>)</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
 <li class="listitem">
-<p>start create C1 (referenced from R1)...
-                              OOPS!</p>
+<p>start create <code class="varname">C1</code> (referenced
+                              from <code class="varname">R1</code>)... OOPS!</p>
 </li>
 </ol>
 </div>
@@ -526,10 +553,12 @@ toReference(EReference x) :
 </li>
 </ol>
 </div>
-<p>C1 is already in creation and will not complete until the stack is
-      reduced. Deadlock! The problem is that the cache caches the return
-      value, but C1 was not returned so far, because it is still in
-      construction. The solution: create extensions</p>
+<p>
+<code class="varname">C1</code> is already in creation and will not complete
+      until the stack is reduced. Deadlock! The problem is that the cache
+      caches the return value, but <code class="varname">C1</code> was not returned so
+      far, because it is still in construction. </p>
+<p>The solution: create extensions!</p>
 <p>The syntax is as follows:</p>
 <pre class="programlisting">create Package toPackage(EPackage x) :
    this.classifiers.addAll(x.eClassifiers.toClass());
@@ -550,12 +579,12 @@ create Reference toReference(EReference x) :
 <div>
 <div>
 <h3 class="title">
-<a name="N10F11"/>Calling Extensions From Java</h3>
+<a name="N11027"/>Calling Extensions From Java</h3>
 </div>
 </div>
 </div>
 <p>The previous section showed how to implement Extensions in Java.
-      This section shows how to call Extensions from Java.<a name="N10F16" class="indexterm"/>
+      This section shows how to call Extensions from Java.<a name="N1102C" class="indexterm"/>
 </p>
 <pre class="programlisting">// setup
 XtendFacade f = XtendFacade.create("my::path::MyExtensionFile");
@@ -563,16 +592,17 @@ XtendFacade f = XtendFacade.create("my::path::MyExtensionFile");
 // use
 f.call("sayHello",new Object[]{"World"});
 </pre>
-<p>The called extension file looks like this: <a name="N10F1D" class="indexterm"/>
+<p>The called extension file looks like this: <a name="N11033" class="indexterm"/>
 </p>
 <pre class="programlisting">sayHello(String s) :
    "Hello " + s;</pre>
-<p>This example uses only features of the BuiltinMetaModel, in this
-      case the "<code class="methodname">+</code>" feature from the
-      StringTypeImpl.</p>
+<p>This example uses only features of the
+      <code class="classname">BuiltinMetaModel</code>, in this case the
+      "<code class="methodname">+</code>" feature from the
+      <code class="classname">StringTypeImpl</code>.</p>
 <p>Here is another example, that uses the
       <code class="classname">JavaBeansMetaModel</code>
-<a name="N10F2D" class="indexterm"/> strategy. This strategy provides as additional feature:
+<a name="N11049" class="indexterm"/> strategy. This strategy provides as additional feature:
       the access to properties using the getter and setter methods.</p>
 <p>For more information about type systems, see the <span class="emphasis">
 <em>
@@ -589,9 +619,9 @@ public class MyBeanMetaClass {
 }</pre>
 <p>in addition to the built-in metamodel type system, we register the
       <code class="classname">JavaMetaModel</code>
-<a name="N10F3F" class="indexterm"/> with the
+<a name="N1105B" class="indexterm"/> with the
       <code class="classname">JavaBeansStrategy</code>
-<a name="N10F45" class="indexterm"/> for our facade. Now, we can use also this strategy in our
+<a name="N11061" class="indexterm"/> for our facade. Now, we can use also this strategy in our
       extension:</p>
 <pre class="programlisting">// setup facade
 
@@ -620,7 +650,7 @@ readMyProp(MyBeanMetaClass jb) :
 <div>
 <div>
 <h3 class="title">
-<a name="N10F4F"/>WorkflowComponent<a name="N10F52" class="indexterm"/>
+<a name="N1106B"/>WorkflowComponent<a name="N1106E" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -632,7 +662,7 @@ readMyProp(MyBeanMetaClass jb) :
       workflow configuration of the <span class="emphasis">
 <em>Xtend</em>
 </span> component
-      <a name="N10F5D" class="indexterm"/>looks like this:</p>
+      <a name="N11079" class="indexterm"/>looks like this:</p>
 <pre class="programlisting">&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
    &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"&gt;
       &lt;metaModelFile value="metamodel1.ecore"/&gt;
@@ -652,12 +682,12 @@ readMyProp(MyBeanMetaClass jb) :
 <div>
 <div>
 <h3 class="title">
-<a name="N10F66"/>Aspect-Oriented Programming in
+<a name="N11082"/>Aspect-Oriented Programming in
       <span class="emphasis">
 <em>Xtend</em>
 </span>
-<a name="N10F6B" class="indexterm"/>
-<a name="N10F6E" class="indexterm"/>
+<a name="N11087" class="indexterm"/>
+<a name="N1108A" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -669,20 +699,20 @@ readMyProp(MyBeanMetaClass jb) :
       supported by <span class="emphasis">
 <em>Xtend</em>
 </span>.</p>
-<p>The following advice is weaved<a name="N10F78" class="indexterm"/> around every invocation of an extension whose name starts
+<p>The following advice is weaved<a name="N11094" class="indexterm"/> around every invocation of an extension whose name starts
       with '<span class="package">my::generator::</span>':</p>
 <pre class="programlisting">around my::generator::*(*) :
   log('Invoking ' + ctx.name) -&gt; ctx.proceed()
 ;
 </pre>
-<p>Around advices<a name="N10F83" class="indexterm"/> let you change behaviour in an non-invasive way (you do
+<p>Around advices<a name="N1109F" class="indexterm"/> let you change behaviour in an non-invasive way (you do
       not need to touch the packaged extensions).</p>
 <div class="section" title="Join Point and Point Cut Syntax">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="N10F87"/>Join Point and Point Cut Syntax</h4>
+<a name="N110A3"/>Join Point and Point Cut Syntax</h4>
 </div>
 </div>
 </div>
@@ -700,9 +730,9 @@ readMyProp(MyBeanMetaClass jb) :
         <span class="emphasis">
 <em>Xpand</em>
 </span> documentation).</p>
-<p>One specifies on which join points <a name="N10F9A" class="indexterm"/> the contributed code should be executed by specifying
+<p>One specifies on which join points <a name="N110B6" class="indexterm"/> the contributed code should be executed by specifying
         something like a 'query' on all available join points. Such a query is
-        called a point cut.<a name="N10F9E" class="indexterm"/>
+        called a point cut.<a name="N110BA" class="indexterm"/>
 </p>
 <pre class="programlisting">around [pointcut] :
    expression;</pre>
@@ -713,14 +743,15 @@ readMyProp(MyBeanMetaClass jb) :
 <div>
 <div>
 <h5 class="title">
-<a name="N10FA5"/>Extensions Name</h5>
+<a name="N110C1"/>Extensions Name</h5>
 </div>
 </div>
 </div>
 <p>The extension name part of a point cut must match the fully
           qualified name of the definition of the join point. Such expressions
           are case sensitive. The asterisk character is used to specify
-          wildcards. Some examples:</p>
+          wildcards. </p>
+<p>Some examples:</p>
 <pre class="programlisting">my::Extension::definition // extensions with the specified name
 org::eclipse::xpand2::* //extensions prefixed with 'org::eclipse::xpand2::'
 *Operation* // extensions containing the word 'Operation' in it.
@@ -737,7 +768,7 @@ org::eclipse::xpand2::* //extensions prefixed with 'org::eclipse::xpand2::'
 <div>
 <div>
 <h5 class="title">
-<a name="N10FAF"/>Parameter Types</h5>
+<a name="N110CD"/>Parameter Types</h5>
 </div>
 </div>
 </div>
@@ -748,7 +779,7 @@ org::eclipse::xpand2::* //extensions prefixed with 'org::eclipse::xpand2::'
           the definition to be called.</p>
 <p>Additionally, one can set the wildcard at the end of the
           parameter list, to specify that there might be none or more
-          parameters of any kind.<a name="N10FB6" class="indexterm"/>
+          parameters of any kind.<a name="N110D4" class="indexterm"/>
 </p>
 <p>Some examples:</p>
 <pre class="programlisting">my::Templ::extension() // extension without parameters
@@ -763,7 +794,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 <div>
 <div>
 <h5 class="title">
-<a name="N10FBF"/>Proceeding</h5>
+<a name="N110DD"/>Proceeding</h5>
 </div>
 </div>
 </div>
@@ -771,9 +802,9 @@ my::Templ::extension(*) // templ def with any number of parameters
           definition. This can be done using the implicit variable
           <code class="varname">ctx</code>, which is of the type
           <span class="type">xtend::AdviceContext</span>
-<a name="N10FC9" class="indexterm"/> and provides an operation
+<a name="N110E7" class="indexterm"/> and provides an operation
           <code class="methodname">proceed()</code>
-<a name="N10FCF" class="indexterm"/> which invokes the underlying definition with the
+<a name="N110ED" class="indexterm"/> which invokes the underlying definition with the
           original parameters (Note that you might have changed any mutable
           object in the advice before).</p>
 <p>If you want to control what parameters are to be passed to the
@@ -790,14 +821,14 @@ my::Templ::extension(*) // templ def with any number of parameters
 <div>
 <div>
 <h4 class="title">
-<a name="N10FE0"/>Workflow configuration</h4>
+<a name="N110FE"/>Workflow configuration</h4>
 </div>
 </div>
 </div>
 <p>To weave the defined advices into the different join
-        points<a name="N10FE5" class="indexterm"/>, you need to configure the
+        points<a name="N11103" class="indexterm"/>, you need to configure the
         <code class="classname">XtendComponent</code>
-<a name="N10FEB" class="indexterm"/> with the qualified names of the Extension files
+<a name="N11109" class="indexterm"/> with the qualified names of the Extension files
         containing the advices.</p>
 <p>Example:</p>
 <pre class="programlisting">&lt;component class="org.eclipse.xtend.XtendComponent"&gt;
@@ -827,7 +858,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 </div>
 </div>
 </div>
-<p>This example uses Eclipse EMF as the basis <a name="N10FFE" class="indexterm"/>for model-to-model transformations. It builds on the
+<p>This example uses Eclipse EMF as the basis <a name="N1111C" class="indexterm"/>for model-to-model transformations. It builds on the
         <span class="emphasis">
 <em>emfExample</em>
 </span> documented elsewhere. Please read and
@@ -887,16 +918,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 </li>
 <li class="listitem">
 <p>and that in turn is in the classpath, in the
-              <span class="package">test</span>. <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" font-style="italic">
-<fo:inline background-color="#FFEE30">
-<span class="remark">
-<span class="author">
-<span class="firstname">Rainer</span> <span class="surname">Klute</span>
-</span> I hope this is what is meant here. The former text
-              was broken XML.</span>
-</fo:inline>
-</fo:block>
-</p>
+              <span class="package">test</span>package.</p>
 </li>
 </ul>
 </div>
@@ -916,13 +938,13 @@ my::Templ::extension(*) // templ def with any number of parameters
         the file.</p>
 <p>So, first we import the metamodel.</p>
 <pre class="programlisting">import data;</pre>
-<p>The next function is a so-called create extension<a name="N11054" class="indexterm"/>
-<a name="N11059" class="indexterm"/>. Create extensions, as a side effect when called,
+<p>The next function is a so-called create extension<a name="N1116B" class="indexterm"/>
+<a name="N11170" class="indexterm"/>. Create extensions, as a side effect when called,
         create an instance of the type given after the
         <code class="classname">create</code> keyword. In our case, the
         <code class="classname">duplicate</code> function creates an instance of
         <code class="classname">DataModel</code>. This newly created object can be
-        referred to in the transformation <a name="N11066" class="indexterm"/>by <code class="classname">this</code> (which is why
+        referred to in the transformation <a name="N1117D" class="indexterm"/>by <code class="classname">this</code> (which is why
         <code class="classname">this</code> is specified behind the type). Since
         <code class="classname">this</code> can be omitted, we do not have to mention
         it explicitly in the transformation.</p>
@@ -953,7 +975,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 <pre class="programlisting">create Attribute this duplicate(Attribute old):
    setName(old.name) -&gt;
    setType(old.type);</pre>
-<a name="N11097" class="indexterm"/>
+<a name="N111AE" class="indexterm"/>
 <p>... the one for the references is more interesting. Note that a
         reference, while being owned by some <code class="classname">Entity</code>,
         also references another Entity as its target. So, how do you make sure

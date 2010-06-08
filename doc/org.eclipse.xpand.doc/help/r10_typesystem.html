@@ -44,7 +44,8 @@
 </div>
 <p>Every object (e.g. model elements, values, etc.) has a type. A
       type contains properties and operations. In addition it might inherit
-      from other types (multiple inheritance).</p>
+      from other types (multiple inheritance is also possible, depending on
+      the underlying meta-meta-model).</p>
 <div class="section" title="Type Names">
 <div class="titlepage">
 <div>
@@ -155,7 +156,8 @@ Set[my::Type]
       not document all of the operations here, because the built-in types will
       evolve over time and we want to derive the documentation from the
       implementation (model-driven, of course). For a complete reference,
-      consult the generated API documentation (<a class="ulink" href="http://www.openarchitectureware.org/api/built-ins/" target="_new">http://www.openarchitectureware.org/api/built-ins/</a>).</p>
+      consult the generated <a class="link" href="">API
+      documentation</a>.</p>
 <div class="section" title="Object">
 <div class="titlepage">
 <div>
@@ -170,8 +172,9 @@ Set[my::Type]
 </div>
 <p>
 <code class="classname">Object</code> defines a couple of basic
-        operations, like <code class="methodname">equals()</code>. Every type has to
-        extend <code class="classname">Object</code>.</p>
+        operations, like <code class="methodname">equals()</code>. The property
+        metaType provides access to Xpand's type for that Object. Every type
+        has to extend <code class="classname">Object</code>.</p>
 </div>
 <div class="section" title="Void">
 <div class="titlepage">
@@ -188,7 +191,11 @@ Set[my::Type]
 <p>The <code class="classname">Void</code> type can be specified as the
         return type for operations, although it is not recommended, because
         whenever possible expressions should be free of side effects whenever
-        possible.</p>
+        possible. The only possible value is <code class="varname">null</code>.
+        Sometimes it might be useful to use <code class="classname">Void</code> as an
+        parameter type, if you want to be able to call a function for
+        different argument types and also supply a valid implementation when
+        the function is invoked with <code class="varname">null</code>.</p>
 </div>
 <div class="section" title="Simple types (Data types)">
 <div class="titlepage">
@@ -199,7 +206,7 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N10643" class="indexterm"/>
+<a name="N1064C" class="indexterm"/>
 <p>The type system doesn't have a concept data type. Data types are
         just types. As in OCL, we support the following types:
         <code class="classname">String</code>, <code class="classname">Boolean</code>,
@@ -210,7 +217,7 @@ Set[my::Type]
 <li class="listitem">
 <p>
 <code class="classname">String</code>
-<a name="N1065B" class="indexterm"/>: A rich and convenient
+<a name="N10664" class="indexterm"/>: A rich and convenient
               <code class="classname">String</code> library is especially important
               for code generation. The type system supports the '+' operator
               for concatenation, the usual
@@ -223,14 +230,14 @@ Set[my::Type]
 <li class="listitem">
 <p>
 <code class="classname">Boolean</code>
-<a name="N10672" class="indexterm"/>: <code class="classname">Boolean</code> offers the usual
+<a name="N1067B" class="indexterm"/>: <code class="classname">Boolean</code> offers the usual
               operators (Java syntax): &amp;&amp;, ||, !, etc.</p>
 </li>
 <li class="listitem">
 <p>
 <code class="classname">Integer</code>
-<a name="N1067D" class="indexterm"/> and <code class="classname">Real</code>
-<a name="N10683" class="indexterm"/>: <code class="classname">Integer</code> and
+<a name="N10686" class="indexterm"/> and <code class="classname">Real</code>
+<a name="N1068C" class="indexterm"/>: <code class="classname">Integer</code> and
               <code class="classname">Real</code> offer the usual compare operators
               (&lt;,&gt;,&lt;=,&gt;=) and simple arithmetics (+,-,*,/). Note
               that <span class="emphasis">
@@ -252,13 +259,13 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N10698" class="indexterm"/>
+<a name="N106A1" class="indexterm"/>
 <p>The type system has three different Collection types.
         <code class="classname">Collection</code>
-<a name="N106A1" class="indexterm"/> is the base type, it provides several operations known
+<a name="N106AA" class="indexterm"/> is the base type, it provides several operations known
         from <code class="classname">java.util.Collection</code>. The other two types
         (<code class="classname">List</code>
-<a name="N106AA" class="indexterm"/>, <code class="classname">Set<a name="N106B0" class="indexterm"/>
+<a name="N106B3" class="indexterm"/>, <code class="classname">Set<a name="N106B9" class="indexterm"/>
 </code>) correspond to their
         <span class="package">java.util</span> equivalents, too.</p>
 </div>
@@ -276,7 +283,7 @@ Set[my::Type]
         To avoid confusion with metatypes with the same name (it is not
         unusual to have a metatype called <code class="classname">Operation</code>,
         for instance) we have prefixed all of the types with the namespace
-        <code class="classname">xpand</code>. We have:</p>
+        <code class="classname">xpand2</code>. We have:</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
@@ -306,6 +313,20 @@ Set[my::Type]
 </li>
 </ul>
 </div>
+<p>You should be aware that if you name a type by name in an
+        expression the object you get is in fact an
+        <code class="classname">xpand2::Type</code>. A common use case is to prove
+        that an object is of some type or its subtype, using the
+        <code class="methodname">instanceOf()</code> operation or exactly of one
+        type.</p>
+<pre class="programlisting">// results to true, if the result of someExpression is of type MyType or its subtypes
+MyType.isInstance(someExpression)
+
+// results to true, if the result of someExpression is exactly of type MyType
+someExpression.metaType == MyType</pre>
+<p>Note that this should be
+        only used when really required. The recommended way to handle
+        alternative implementations for a type hierarchy is using <a class="link" href="">Multiple Dispatch</a>.</p>
 </div>
 </div>
 <div class="section" title="Metamodel Implementations (also known as Meta-Metamodels)">
@@ -314,19 +335,22 @@ Set[my::Type]
 <div>
 <h3 class="title">
 <a name="r10_metamodel_implementations"/>Metamodel Implementations (also known as
-      Meta-Metamodels)<a name="N106DC" class="indexterm"/>
+      Meta-Metamodels)<a name="N106F6" class="indexterm"/>
 </h3>
 </div>
 </div>
 </div>
-<p>By default, the type system only knows the built-in types. In
-      order to register your own metatypes (e.g. <code class="classname">Entity</code>
-      or <code class="classname">State</code>), you need to register a respective
+<p>By default, the type system only knows the <a class="link" href="">built-in types</a>. In order to register your own
+      metatypes (e.g. <code class="classname">Entity</code> or
+      <code class="classname">State</code>), you need to register a respective
       metamodel implementation with the type system. Within a metamodel
       implementation the <span class="emphasis">
 <em>Xpand</em>
 </span> type system elements
-      (Type, Property, <a name="N106EA" class="indexterm"/> Operation) <a name="N106EE" class="indexterm"/> are mapped to an arbitrary other type system (Java
+      (<code class="classname">Type</code>, <code class="classname">Property</code>,
+      <a name="N1070E" class="indexterm"/>
+<code class="classname"> Operation) </code>
+<a name="N10713" class="indexterm"/> are mapped to an arbitrary other type system (e.g. Java
       reflections, Ecore or XML Schema).</p>
 <div class="section" title="Example JavaMetaModel">
 <div class="titlepage">
@@ -357,7 +381,7 @@ Set[my::Type]
 }
 </pre>
 <p>You need to use the <code class="classname">JavaMetaModel</code>
-        <a name="N10700" class="indexterm"/> implementation which uses the ordinary Java reflection
+        <a name="N10725" class="indexterm"/> implementation which uses the ordinary Java reflection
         layer in order to map access to the model.</p>
 <p>So, if you have the following expression in e.g.
         <span class="emphasis">
@@ -380,9 +404,9 @@ Set[my::Type]
 <em>Xpand</em>
 </span> can be configured with a strategy
         [GOF95-Pattern] in order to control or change the mapping. For
-        instance, the JavaBeansStrategy maps getter and setter methods to
-        simple properties, so we would use this strategy for the example
-        above.</p>
+        instance, the <code class="classname">JavaBeansStrategy</code> maps getter and
+        setter methods to simple properties, so we would use this strategy for
+        the example above.</p>
 </div>
 <div class="section" title="Eclipse IDE MetaModelContributors">
 <div class="titlepage">
@@ -394,7 +418,7 @@ Set[my::Type]
 </div>
 </div>
 <p>You should know that for each <code class="classname">Metamodel</code>
-        <a name="N1072D" class="indexterm"/>implementation you use at runtime, you need to have a so
+        <a name="N10755" class="indexterm"/>implementation you use at runtime, you need to have a so
         called <code class="classname">MetamodelContributor</code> extension for the
         plugins to work with. If you just use one of the standard metamodel
         implementations (EMF, UML2 or Java) you don't have to worry about it,
@@ -404,7 +428,7 @@ Set[my::Type]
         MetamodelContributors (see the corresponding docs for details). If you
         need to implement your own
         <code class="classname">MetamodelContributor</code>
-<a name="N10739" class="indexterm"/> you should have a look at the Eclipse plug-in reference
+<a name="N10761" class="indexterm"/> you should have a look at the Eclipse plug-in reference
         doc.</p>
 </div>
 <div class="section" title="Configuring Metamodel implementations with the workflow">
@@ -437,14 +461,66 @@ Set[my::Type]
         two metamodels at the same time, both based on EMF. The
         <span class="property">metaModelPackage</span> property is a property that is
         specific to the <code class="classname">EmfMetaModel</code> (located in the
-        <code class="filename">core.emftools</code> project). It points to the
-        generated <code class="classname">EPackages</code> interface. The second meta
-        model is configured using the Ecore file. You do no need to have a
-        generated Ecore model for <span class="emphasis">
+        <code class="filename">org.eclipse.xtend.typesystem.emf</code> plugin). It
+        points to the generated <code class="classname">EPackages</code> interface.
+        The second meta model is configured using the Ecore file. You do no
+        need to have a generated Ecore model for <span class="emphasis">
 <em>Xpand</em>
-</span> in order to work.
-        The <code class="classname">EmfMetaModel</code> works with dynamic EMF models
-        just as it works with generated EMF models.</p>
+</span> in
+        order to work. The <code class="classname">EmfMetaModel</code> works with
+        dynamic EMF models just as it works with generated EMF models.</p>
+<p>Note that is recommended to prefer the
+        <code class="classname">EmfRegistryMetaModel</code> instead of the
+        <code class="classname">EmfMetaModel</code>, although
+        <code class="classname">EmfMetaModel</code> is derived from the
+        <code class="classname">EmfRegistryMetaModel</code>. Further it is recommended
+        to use platform URIs (see <a class="ulink" href="http://help.eclipse.org/galileo/topic/org.eclipse.emf.doc/references/javadoc/org/eclipse/emf/common/util/URI.html" target="_new">API
+        Doc URI</a>) to refer to EMF resources.</p>
+<p>The use of platform URIs in the workflow requires setting up EMF
+        for standalone execution with the
+        <code class="classname">StandaloneSetup</code> class from the
+        <code class="classname">org.eclipse.emf.mwe.utils</code> plugin. Further,
+        StandaloneSetup is used to register known EMF packages. An equivalent
+        workflow configuration for the sample above would look like
+        this:</p>
+<pre class="programlisting">&lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup"&gt;
+  &lt;platformUri value=".."/&gt;
+  &lt;registerGeneratedEPackage value="my.generated.MetaModel1Package"/&gt;
+  &lt;registerEcoreFile value="platform:/resource/my/java/package/metamodel2.ecore"/&gt;
+&lt;/bean&gt;
+...
+&lt;component class="org.eclipse.xpand2.Generator"&gt;
+   &lt;metaModel class="org.eclipse.type.emf.EmfRegistryMetaModel"/&gt;
+   ...
+&lt;/component&gt;
+</pre>
+<p>The <code class="classname">StandaloneSetup</code> is given the path
+        to the platform. This is the path to which platform resource URIs are
+        resolved relative to. It usually points to the workspace or check out
+        location of the plugin project, which is usually one directory above
+        the working directory in which a workflow is executed.</p>
+<p>Metamodel instances are often shared between different
+        components that make use of expressions (most notably the Xpand
+        <code class="classname">Generator</code>,
+        <code class="classname">XtendComponent</code> and
+        <code class="classname">CheckComponent</code>). Normally you don't want that a
+        Metamodel instance configured and instantiated for each workflow
+        component. MWE lets you instantiate a class using the
+        <code class="methodname">&lt;bean&gt;</code> tag and by giving the bean an id
+        value, this same instance can be referred to using the idRef
+        attribute. This would lead to this workflow:</p>
+<pre class="programlisting">&lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup"&gt;
+  &lt;platformUri value=".."/&gt;
+  &lt;registerGeneratedEPackage value="my.generated.MetaModel1Package"/&gt;
+  &lt;registerEcoreFile value="platform:/resource/my/java/package/metamodel2.ecore"/&gt;
+&lt;/bean&gt;
+&lt;bean id="mm_emf" class="org.eclipse.type.emf.EmfRegistryMetaModel"/&gt;
+...
+&lt;component class="org.eclipse.xpand2.Generator"&gt;
+   &lt;metaModel idRef="mm_emf"/&gt;
+   ...
+&lt;/component&gt;
+</pre>
 </div>
 </div>
 <div class="section" title="Using different Metamodel implementations (also known as Meta-Metamodels)">
@@ -457,19 +533,19 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<p>With Xpad you can work on different kinds of Model representations
-      at the same time in a transparent manner. One can work with EMF models,
-      XML DOM models, and simple JavaBeans in the same
+<p>With Xpand you can work on different kinds of Model
+      representations at the same time in a transparent manner. One can work
+      with EMF models, XML DOM models, and simple JavaBeans in the same
       <span class="emphasis">
 <em>Xpand</em>
 </span> template. You just need to configure the
       respective MetaModel implementations.</p>
 <p>If you want to do so you need to know how the type lookup works.
-      Let us assume that we have an EMF metamodel <a name="N10770" class="indexterm"/> and a model based on some Java classes. Then the
+      Let us assume that we have an EMF metamodel <a name="N107CC" class="indexterm"/> and a model based on some Java classes. Then the
       following would be a possible configuration:</p>
 <pre class="programlisting">&lt;component class="org.eclipse.xpand2.Generator"&gt;
    &lt;metaModel class="org.eclipse.internal.xtend.type.impl.java.JavaMetaModel"/&gt;
-   &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"&gt;
+   &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"&gt;
       &lt;metaModelFile value="my/java/package/metamodel.ecore"/&gt;
    &lt;/metaModel&gt;
 
@@ -485,7 +561,7 @@ Set[my::Type]
 <em>three</em>
 </span> Metamodels: </p>
 <div class="orderedlist">
-<a name="N10785" class="indexterm"/>
+<a name="N107E1" class="indexterm"/>
 <ol class="orderedlist" type="1">
 <li class="listitem">
 <p>Built-Ins (always the first one)</p>
@@ -502,7 +578,7 @@ Set[my::Type]
       (not <code class="classname">java.lang.Object</code> but
       <code class="classname">Object</code> of <span class="emphasis">
 <em>Xpand</em>
-</span>). At this
+</span>!). At this
       point the type <code class="classname">Object</code> best fits the request, so
       it will act as the desired type.</p>
 <p>The second metamodel returns a type called
@@ -530,7 +606,7 @@ Set[my::Type]
 
    ...
 &lt;/component&gt;</pre>
-<p>The order of the metamodels is importand for the work within the
+<p>The order of the metamodels is important for the work within the
       Xpand-editors. The metamodels to work with can be configured inside the
       <span class="emphasis">
 <em>Xtend/Xpand</em>
@@ -539,7 +615,10 @@ Set[my::Type]
 <em>Activated metamodel contributors</em>
 </span> table is a ordered
       list. The more specific metamodels have to be placed at the top of the
-      list.</p>
+      list. </p>
+<div class="mediaobject">
+<img src="images/eclipse_integration/projectProperties.png"/>
+</div>
 </div>
 <div class="section" title="Metamodel Reference">
 <div class="titlepage">
@@ -550,7 +629,7 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N107D3" class="indexterm"/>
+<a name="N10839" class="indexterm"/>
 <p>In the following, each of the built-in metamodels that come with
       <span class="emphasis">
 <em>Xpand</em>
@@ -570,7 +649,7 @@ Set[my::Type]
 <strong>Please note that you have to
         execute one of the setup utility classes, <code class="classname">Setup</code>
         or <code class="classname">StandaloneSetup</code>, in your workflow before you
-        can use one of the EMF metamodels</strong>
+        can use one of the EMF metamodels.</strong>
 </span>
 </p>
 <div class="section" title="The EMF Registry Metamodel (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)">
@@ -583,8 +662,8 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N107F0" class="indexterm"/>
-<a name="N107F5" class="indexterm"/>
+<a name="N10856" class="indexterm"/>
+<a name="N1085B" class="indexterm"/>
 <p>This metamodel looks for the referenced metamodels in the
           global EMF model registry. This means, when using this metamodel,
           only models that are registered in this global EMF model registry
@@ -612,7 +691,9 @@ Set[my::Type]
 </thead>
 <tbody>
 <tr>
-<td style="border-right: 2 solid #000000; " align="left">useSingleGlobalResourceSet</td>
+<td style="border-right: 2 solid #000000; " align="left">
+<code class="varname">useSingleGlobalResourceSet</code>
+</td>
 <td style="" align="left">This boolean property determines the way resource
                   sets are used. If set to <span class="emphasis">
 <em>true</em>
@@ -637,8 +718,8 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N10820" class="indexterm"/>
-<a name="N10825" class="indexterm"/>
+<a name="N10887" class="indexterm"/>
+<a name="N1088C" class="indexterm"/>
 <p>This metamodel is a specialized version of the <a class="xref" href="r10_typesystem.html#emfregistry_metamodel" title="The EMF Registry Metamodel (org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel)">EMF registry metamodel</a>. In addition to the features of
           the former, it allows to specify an unregistered model in different
           ways that will be added to the metamodel.</p>
@@ -664,7 +745,9 @@ Set[my::Type]
 </thead>
 <tbody>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">useSingleGlobalResourceSet</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">useSingleGlobalResourceSet</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">This boolean property determines the way resource
                   sets are used. If set to <span class="emphasis">
 <em>true</em>
@@ -674,17 +757,23 @@ Set[my::Type]
                   each model resource.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">metaModelFile</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">metaModelFile</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">Sets the path to the Ecore file that will be added to
                   the metamodel.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">metaModelDescriptor</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">metaModelDescriptor</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">Adds a model to the metamodel by specifying the name
                   of an EPackage descriptor class.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; " align="left">metaModelPackage</td>
+<td style="border-right: 2 solid #000000; " align="left">
+<code class="varname">metaModelPackage</code>
+</td>
 <td style="" align="left">Adds a model to the metamodel by specifying the name
                   of an EPackage.</td>
 </tr>
@@ -726,8 +815,8 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N10871" class="indexterm"/>
-<a name="N10876" class="indexterm"/>
+<a name="N108DC" class="indexterm"/>
+<a name="N108E1" class="indexterm"/>
 <p>This metamodel is a specialized version of the <span class="emphasis">
 <em>
 <a class="xref" href="r10_typesystem.html#emf_metamodel" title="The EMF Metamodel (org.eclipse.xtend.typesystem.emf.EmfMetaModel)">EMF metamodel</a>
@@ -754,7 +843,9 @@ Set[my::Type]
 </thead>
 <tbody>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">useSingleGlobalResourceSet</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">useSingleGlobalResourceSet</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">This boolean property determines the way resource
                   sets are used. If set to <span class="emphasis">
 <em>true</em>
@@ -764,7 +855,9 @@ Set[my::Type]
                   each model resource.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; " align="left">modelFile</td>
+<td style="border-right: 2 solid #000000; " align="left">
+<code class="varname">modelFile</code>
+</td>
 <td style="" align="left">Sets the path to the UML2 model file that will be
                   added to the metamodel.</td>
 </tr>
@@ -773,6 +866,9 @@ Set[my::Type]
 </div>
 </div>
 <br class="table-break"/>
+<p>This implementation will be rarely used, since usually
+          profiled UML models will be used and therefore the Profile Metamodel
+          is.</p>
 </div>
 <div class="section" title="The UML2 Profile Metamodel (org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel)">
 <div class="titlepage">
@@ -784,10 +880,11 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N108A8" class="indexterm"/>
-<a name="N108AD" class="indexterm"/>
-<p>This metamodel allows to apply UML profiles to UML2 models. It
-          has the following configuration properties</p>
+<a name="N10917" class="indexterm"/>
+<a name="N1091C" class="indexterm"/>
+<p>This metamodel allows to apply UML profiles to UML2 models,
+          and extends the UML2 Metamodel. It has the following configuration
+          properties:</p>
 <div class="table">
 <a name="properties_profilemetamodel"/>
 <p class="title">
@@ -809,7 +906,9 @@ Set[my::Type]
 </thead>
 <tbody>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">useSingleGlobalResourceSet</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">useSingleGlobalResourceSet</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">This boolean property determines the way resource
                   sets are used. If set to <span class="emphasis">
 <em>true</em>
@@ -819,14 +918,21 @@ Set[my::Type]
                   each model resource.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">modelFile</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">modelFile</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">Sets the path to the UML2 model file that will be
-                  added to the metamodel.</td>
+                  added to the metamodel. Use resource URIs for the
+                  values.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; " align="left">profile</td>
+<td style="border-right: 2 solid #000000; " align="left">
+<code class="varname">profile</code>
+</td>
 <td style="" align="left">Sets the path to the UML profile that will be applied
-                  to the UML2 model.</td>
+                  to the UML2 model. This property can be used multiple times
+                  if more than one profile is used. Use resource URIs for the
+                  values.</td>
 </tr>
 </tbody>
 </table>
@@ -844,8 +950,8 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N108E0" class="indexterm"/>
-<a name="N108E3" class="indexterm"/>
+<a name="N10952" class="indexterm"/>
+<a name="N10955" class="indexterm"/>
 <p>The XMI reader component is important when working with UML
           models. It allows to read out a model stored in an XMI file and put
           its contents into a model slot.</p>
@@ -917,8 +1023,8 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N10925" class="indexterm"/>
-<a name="N1092A" class="indexterm"/>
+<a name="N10997" class="indexterm"/>
+<a name="N1099C" class="indexterm"/>
 <p>The Java metamodel allows normal Java classes as metatypes for
         your metamodel. The <code class="classname">JavaMetaClass</code> uses the
         strategy pattern to define how the elements are exactly mapped to the
@@ -938,8 +1044,8 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N1093C" class="indexterm"/>
-<a name="N10941" class="indexterm"/>
+<a name="N109AE" class="indexterm"/>
+<a name="N109B3" class="indexterm"/>
 <p>The XSD metamodel provides access to models implemented in the
         XML Schema Definition language. It has the following configuration
         properties:</p>
@@ -963,11 +1069,15 @@ Set[my::Type]
 </thead>
 <tbody>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">id</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">id</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">Sets the ID of the current model.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">registerPackagesGlobally</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">registerPackagesGlobally</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">This boolean property determines if the model packages
                 will be registered globally. If set to
                 <span class="emphasis">
@@ -977,7 +1087,9 @@ Set[my::Type]
                 not be registered.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; " align="left">savePackagesPath</td>
+<td style="border-right: 2 solid #000000; " align="left">
+<code class="varname">savePackagesPath</code>
+</td>
 <td style="" align="left">Sets the path where model packages will be saved (in
                 XMI format).</td>
 </tr>
@@ -996,7 +1108,7 @@ Set[my::Type]
 </div>
 </div>
 </div>
-<a name="N10974" class="indexterm"/>
+<a name="N109E9" class="indexterm"/>
 <p>The <span class="emphasis">
 <em>Xpand</em>
 </span> framework also allows you to

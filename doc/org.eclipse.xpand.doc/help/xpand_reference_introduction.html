@@ -26,7 +26,7 @@
 <p>The <span class="emphasis">
 <em>Xpand</em>
 </span>
-<a name="N110C5" class="indexterm"/> language is used in templates to control the output
+<a name="N111DC" class="indexterm"/> language is used in templates to control the output
     generation. This documentation describes the general syntax and semantics
     of the <span class="emphasis">
 <em>Xpand</em>
@@ -34,8 +34,8 @@
 <p>Typing the <span class="foreignphrase">
 <em class="foreignphrase">guillemets</em>
 </span>
-<a name="N110D2" class="indexterm"/> (« and ») used in the templates is supported by the Eclipse
-    editor: which provides keyboard shortcuts with <span class="keycap">
+<a name="N111E9" class="indexterm"/> (« and ») used in the templates is supported by the Eclipse
+    editor, which provides keyboard shortcuts with <span class="keycap">
 <strong>Ctrl</strong>
 </span>+<span class="keycap">
 <strong>&lt;</strong>
@@ -55,13 +55,13 @@
 </div>
 <p>Templates are stored in files with the extension
       <code class="filename">.xpt</code>
-<a name="N110EC" class="indexterm"/>.<a name="N110F2" class="indexterm"/> Template files<a name="N110F6" class="indexterm"/> must reside on the Java classpath of the generator
+<a name="N11203" class="indexterm"/>.<a name="N11209" class="indexterm"/> Template files<a name="N1120D" class="indexterm"/> must reside on the Java classpath of the generator
       process.</p>
 <p>Almost all characters used in the standard syntax are part of
       <span class="emphasis">
 <em>ASCII</em>
 </span> and should therefore be available in any
-      encoding<a name="N11101" class="indexterm"/>. The only limitation are the tag brackets
+      encoding<a name="N11218" class="indexterm"/>. The only limitation are the tag brackets
       (<span class="emphasis">
 <em>guillemets</em>
 </span>), for which the characters "«" (Unicode
@@ -94,7 +94,7 @@
       }
    «ENDFILE»
 «ENDDEFINE»</pre>
-<p> A template file consists of any number of IMPORT
+<p>A template file consists of any number of IMPORT
       statements, followed by any number of EXTENSION statements, followed by
       one or more DEFINE blocks (called definitions).</p>
 </div>
@@ -114,7 +114,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_import"/>IMPORT<a name="N1112A" class="indexterm"/>
+<a name="xpand_reference_import"/>IMPORT<a name="N11241" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -135,7 +135,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_extension"/>EXTENSION<a name="N1113C" class="indexterm"/>
+<a name="xpand_reference_extension"/>EXTENSION<a name="N11253" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -147,20 +147,19 @@
         metamodel with target platform specific information (e.g. Java type
         names, packages, getter and setter names, etc.).</p>
 <p>Extensions provide a flexible and convenient way of defining
-        additional features of metaclasses. You do this by using the
+        additional features of metaclasses. You do this by using the <a class="link" href="">
+<span class="emphasis">
+<em>Xtend</em>
+</span>
+<a name="N1125E" class="indexterm"/> language</a>.</p>
+<p>An <code class="classname">EXTENSION</code> import points to the
         <span class="emphasis">
 <em>Xtend</em>
-</span>
-<a name="N11145" class="indexterm"/> language. (See the corresponding reference
-        documentation for details)</p>
-<p>An EXTENSION import points to the <span class="emphasis">
-<em>Xtend</em>
-</span>
-        file containing the required extensions: </p>
+</span> file containing the required extensions:
+        </p>
 <pre class="programlisting">«EXTENSION my::ExtensionFile»</pre>
-<p>
-        Note that extension files have to reside on the Java
-        classpath<a name="N11151" class="indexterm"/>, too. Therefore, they use the same namespace mechanism
+<p> Note
+        that extension files have to reside on the Java classpath<a name="N1126E" class="indexterm"/>, too. Therefore, they use the same namespace mechanism
         (and syntax) as types and template files.</p>
 </div>
 <div class="section" title="DEFINE">
@@ -168,7 +167,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_define"/>DEFINE<a name="N11159" class="indexterm"/>
+<a name="xpand_reference_define"/>DEFINE<a name="N11276" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -177,7 +176,7 @@
 <em>Xpand</em>
 </span> is the
         <code class="code">DEFINE</code> block, also called a template. This is the
-        smallest identifiable unit in a template file<a name="N11164" class="indexterm"/>. The tag consists of a name, an optional
+        smallest identifiable unit in a template file<a name="N11281" class="indexterm"/>. The tag consists of a name, an optional
         comma-separated parameter list, as well as the name of the metamodel
         class for which the template is defined. </p>
 <pre class="programlisting">«DEFINE templateName(formalParameterList) FOR MetaClass»
@@ -185,16 +184,14 @@
 «ENDDEFINE»</pre>
 <p>To some extend, templates can be seen as special
         methods of the metaclass. There is always an implicit
-        <span class="emphasis">
-<em>this</em>
-</span> parameter which can be used to address the
+        <code class="varname">this</code> parameter which can be used to address the
         "underlying" model element; in our example above, this model element
-        is "<code class="classname">MetaClass</code>".</p>
+        is of type "<code class="classname">MetaClass</code>".</p>
 <p>As in Java, a formal parameter list entry consists of the type
         followed by the name of that parameter.</p>
 <p>The body of a template can contain a sequence of other
         statements including any text.</p>
-<p>A full parametric polymorphism<a name="N11179" class="indexterm"/> <a name="N1117D" class="indexterm"/> is available for templates. If there are two templates
+<p>A full parametric polymorphism<a name="N11296" class="indexterm"/> <a name="N1129A" class="indexterm"/> is available for templates. If there are two templates
         with the same name that are defined for two metaclasses which inherit
         from the same superclass, <span class="emphasis">
 <em>Xpand</em>
@@ -206,7 +203,7 @@
         the target type is handled as the first parameter.</p>
 <p>So, let us assume you have the following metamodel: </p>
 <div class="figure">
-<a name="N11188"/>
+<a name="N112A5"/>
 <p class="title">
 <b>Figure 1. Sample metamodel</b>
 </p>
@@ -255,7 +252,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_file"/>FILE<a name="N111BA" class="indexterm"/>
+<a name="xpand_reference_file"/>FILE<a name="N112D7" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -271,10 +268,16 @@
         directory for that generator run). The expression for the target
         specification can be a concatenation (using the + operator).
         Additionally, you can specify an identifier (a legal Java identifier)
-        for the name of the outlet<a name="N111C5" class="indexterm"/>. (See the configuration section for a description of
-        outlets).</p>
+        for the name of the outlet<a name="N112E2" class="indexterm"/>. (See the configuration section for a description of
+        outlets). To produce the target file into subdirectories use "/" in
+        the expression result as separator for the directory structure.</p>
 <p>The body of a <code class="varname">FILE</code> statement can contain any
-        other statements. Example: </p>
+        other statements. </p>
+<p>
+<span class="bold">
+<strong>Example: </strong>
+</span>
+</p>
 <pre class="programlisting">«FILE InterfaceName + ".java"»
    package «InterfacePackageName»;
 
@@ -299,7 +302,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_expand"/>EXPAND<a name="N111D4" class="indexterm"/>
+<a name="xpand_reference_expand"/>EXPAND<a name="N112F5" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -332,7 +335,7 @@
           double colon is used to delimit namespaces. </p>
 <pre class="programlisting">«EXPAND TemplateFile::definitionName FOR myModelElement»</pre>
 <p>Note
-          that you would need to import the namespace<a name="N111F3" class="indexterm"/> of the template file (if there is one). For instance,
+          that you would need to import the namespace<a name="N11314" class="indexterm"/> of the template file (if there is one). For instance,
           if the template file resides in the java package
           <code class="varname">my.templates</code>, there are two alternatives. You
           could either write </p>
@@ -349,32 +352,35 @@
 <div>
 <div>
 <h5 class="title">
-<a name="N11201"/>Lazy evaluation</h5>
+<a name="N11322"/>Lazy evaluation</h5>
 </div>
 </div>
 </div>
-<p>Appending the <a name="N11206" class="indexterm"/>ONFILECLOSE statement defers evaluation of the
-          expanded definition until the current file is closed with ENDFILE.
-          This is of use when the state required to create the text is
-          collected during the evaluation of the processed
-          definition.</p>
+<p>Appending the <a name="N11327" class="indexterm"/>
+<code class="classname">ONFILECLOSE</code> statement defers
+          evaluation of the expanded definition until the current file is
+          closed with <code class="classname">ENDFILE</code>. This is of use when the
+          state required to create the text is collected during the evaluation
+          of the processed definition.</p>
 <pre class="programlisting">«FILE ...»
 ...
 «EXPAND LazyEvaluatedDefinition FOREACH myCollection ONFILECLOSE»
 ...
 «ENDFILE» «REM»Now 'LazyEvaluatedDefinition' is called«ENDFILE»</pre>
-<p>A typical example for usage of the ONFILECLOSE statement is
-          when you want to create a list of imports in a Java class, but the
-          types that are used should be added when they are used in the
-          templates later.</p>
+<p>A typical example for usage of the
+          <code class="classname">ONFILECLOSE</code> statement is when you want to
+          create a list of imports in a Java class, but the types that are
+          used should be added when they are used in the templates
+          later.</p>
 <p>The state, usually a collection, that is used for the lazy
           expanded evaluation must be valid until the file is closed. This can
           be achieved in two ways:</p>
 <div class="itemizedlist">
 <ul class="itemizedlist" type="disc">
 <li class="listitem">
-<p>Span a LET statement around the FILE statement that bounds
-              an empty collection</p>
+<p>Span a <code class="classname">LET</code> statement around the
+              <code class="classname">FILE</code> statement that bounds an empty
+              collection</p>
 <pre class="programlisting">«LET (List[MyType]) {} AS importedTypes»
 «FILE ...»
 ...
@@ -386,14 +392,23 @@
 «ENDLET»</pre>
 </li>
 <li class="listitem">
-<p>Use a <span class="emphasis">
-<em>create</em>
-</span> Extension which returns
-              an empty collection and append elements to it. Since it is a
-              create extension the empty collection will be returned on first
-              call and for each subsequent call a reference to this collection
-              will be returned and not a new collection created.</p>
-<p>some/path/InsertionPoints.ext:</p>
+<p>Use a <a class="link" href="Xtend_language.html#create_extension" title="Create Extensions (Model Transformation)">
+<span class="emphasis">
+<em>create
+              extension</em>
+</span>
+</a> which returns an empty collection
+              and append elements to it. Since it is a create extension the
+              empty collection will be returned on first call and for each
+              subsequent call a reference to this collection will be returned
+              and not a new collection created.</p>
+<p>
+<span class="bold">
+<strong>Example:</strong>
+</span>
+</p>
+<p>
+<code class="filename">some/path/InsertionPoints.ext</code>:</p>
 <pre class="programlisting">create List[Type] importedTypes (SomeType context) : (List[Type]) {}; </pre>
 <p>In Xpand use this as follows:</p>
 <pre class="programlisting">«EXTENSION some::path::InsertionPoints»
@@ -415,8 +430,8 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_for_vs_foreach"/>FOR vs. FOREACH<a name="N1122B" class="indexterm"/>
-<a name="N1122E" class="indexterm"/>
+<a name="xpand_reference_for_vs_foreach"/>FOR vs. FOREACH<a name="N11362" class="indexterm"/>
+<a name="N11365" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -434,15 +449,19 @@
 <pre class="programlisting">«EXPAND myDef FOR entity»</pre>
 <p>If
         <code class="varname">FOREACH</code> is specified, the target expression must
-        evaluate to a collection type<a name="N1124B" class="indexterm"/>. In this case, the specified definition is executed for
+        evaluate to a collection type<a name="N11382" class="indexterm"/>. In this case, the specified definition is executed for
         each element of that collection. </p>
 <pre class="programlisting">«EXPAND myDef FOREACH entity.allAttributes»  </pre>
+<p>An <code class="varname">EvaluationException</code> will be thrown if the
+        specified target expression cannot be evaluated to an existing element
+        of the instantiated model or no suitable <code class="varname">DEFINE</code>
+        block can be found.</p>
 <div class="section" title="Specifying a Separator">
 <div class="titlepage">
 <div>
 <div>
 <h5 class="title">
-<a name="xpand_reference_specifying_a_separator"/>Specifying a Separator<a name="N11255" class="indexterm"/>
+<a name="xpand_reference_specifying_a_separator"/>Specifying a Separator<a name="N11394" class="indexterm"/>
 </h5>
 </div>
 </div>
@@ -452,19 +471,15 @@
           <code class="varname">SEPARATOR</code> expression: </p>
 <pre class="programlisting">«EXPAND paramTypeAndName FOREACH params SEPARATOR ','»</pre>
 <p>The
-          result of the separator expression<a name="N11263" class="indexterm"/> will be written to the output between each evaluation
-          of the target definition (not <span class="emphasis">
+          result of the separator expression<a name="N113A2" class="indexterm"/> will be written to the output between each evaluation
+          of the target definition. Not <span class="emphasis">
 <em>after</em>
 </span> each one,
           but rather only in <span class="emphasis">
 <em>between</em>
 </span> two elements. This
           comes in handy for things such as comma-separated parameter
-          lists).</p>
-<p>An <code class="varname">EvaluationException</code> will be thrown if
-          the specified target expression cannot be evaluated to an existing
-          element of the instantiated model or no suitable
-          <code class="varname">DEFINE</code> block can be found.</p>
+          lists.</p>
 </div>
 </div>
 <div class="section" title="FOREACH">
@@ -478,7 +493,7 @@
 </div>
 <p>This statement expands the body of the
         <code class="varname">FOREACH</code> block for each element of the target
-        collection<a name="N11280" class="indexterm"/> that results from the expression. The current element
+        collection<a name="N113B7" class="indexterm"/> that results from the expression. The current element
         is bound to a variable with the specified name in the current context.
         </p>
 <pre class="programlisting">«FOREACH expression AS variableName [ITERATOR iterName] [SEPARATOR expression]»
@@ -487,16 +502,20 @@
 «ENDFOREACH»</pre>
 <p>The body of a <code class="varname">FOREACH</code> block
         can contain any other statements; specifically
-        <code class="varname">FOREACH</code> statements may be nested. If
-        <code class="varname">ITERATOR</code>
-<a name="N1128F" class="indexterm"/> name is specified, an object of the type
-        <span class="emphasis">
-<em>xpand2::Iterator</em>
-</span> (see API doc for details) is
-        accessible using the specified name. The <code class="varname">SEPARATOR</code>
-        expression works in the same way as the one for
-        <code class="varname">EXPAND</code>.</p>
-<p>Example: </p>
+        <code class="varname">FOREACH</code> statements may be nested. </p>
+<p>If <code class="varname">ITERATOR</code>
+<a name="N113C8" class="indexterm"/> name is specified, an object of the type
+        <code class="classname">xpand2::Iterator</code> (see API doc for details) is
+        accessible using the specified name. </p>
+<p>The <code class="varname">SEPARATOR</code> expression works in the same
+        way as the one for <a class="link" href="xpand_reference_introduction.html#xpand_reference_specifying_a_separator" title="Specifying a Separator">
+<code class="varname">EXPAND</code>
+</a>.</p>
+<p>
+<span class="bold">
+<strong>Example: </strong>
+</span>
+</p>
 <pre class="programlisting">«FOREACH {'A','B','C'} AS c ITERATOR iter SEPARATOR ','»
    «iter.counter1» : «c»
 «ENDFOREACH»</pre>
@@ -511,17 +530,17 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_if"/>IF<a name="N112A7" class="indexterm"/>
+<a name="xpand_reference_if"/>IF<a name="N113E6" class="indexterm"/>
 </h4>
 </div>
 </div>
 </div>
 <p>The <code class="varname">IF</code> statement supports conditional
         expansion. Any number of <code class="varname">ELSEIF</code>
-<a name="N112B1" class="indexterm"/> statements are allowed. The <code class="varname">ELSE</code>
+<a name="N113F0" class="indexterm"/> statements is allowed. The <code class="varname">ELSE</code>
         block is optional. Every <code class="varname">IF</code> statement must be
         closed with an <code class="varname">ENDIF</code>
-<a name="N112BD" class="indexterm"/>. The body of an <code class="varname">IF</code> block can contain
+<a name="N113FC" class="indexterm"/>. The body of an <code class="varname">IF</code> block can contain
         any other statement, specifically, <code class="varname">IF</code> statements
         may be nested. </p>
 <pre class="programlisting">«IF expression»
@@ -537,32 +556,42 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_protect"/>PROTECT<a name="N112CD" class="indexterm"/>
+<a name="xpand_reference_protect"/>PROTECT<a name="N1140C" class="indexterm"/>
 </h4>
 </div>
 </div>
 </div>
-<p>Protected Regions<a name="N112D2" class="indexterm"/> are used to mark sections in the generated code that
+<p>Protected Regions<a name="N11411" class="indexterm"/> are used to mark sections in the generated code that
         shall not be overridden again by the subsequent generator run. These
         sections typically contain manually written code. </p>
 <pre class="programlisting">«PROTECT CSTART expression CEND expression ID expression (DISABLE)?»
    a sequence of statements
 «ENDPROTECT»</pre>
-<p> The values of CSTART<a name="N112D9" class="indexterm"/> and CEND<a name="N112DD" class="indexterm"/> expressions are used to enclose the protected regions
+<p>The values of
+        <code class="classname">CSTART</code>
+<a name="N1141A" class="indexterm"/> and <code class="classname">CEND</code>
+<a name="N11420" class="indexterm"/> expressions are used to enclose the protected regions
         marker in the output. They should build valid comment beginning and
-        end strings corresponding to the generated target language (e.g.
-        <span class="emphasis">
+        comment end strings corresponding to the generated target language
+        (e.g. <span class="emphasis">
 <em>"/*"</em>
 </span> and <span class="emphasis">
 <em>"*/"</em>
-</span> for Java). The
-        following is an example for Java: </p>
+</span> for
+        Java). </p>
+<p>The following is an example for Java: </p>
 <pre class="programlisting">«PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueID»
    here goes some content
 «ENDPROTECT»</pre>
 <p>The ID is set by the <code class="varname">ID</code>
-        expression and must be globally unique (at least for one complete pass
-        of the generator).</p>
+        expression and must be <span class="emphasis">
+<em>globally unique</em>
+</span> (at least
+        for one complete pass of the generator). To assure this these IDs are
+        usually concatenated. Some model types (e.g. UML2 models) contain
+        identifiers that could be used, which can be read using the <a class="link" href="ch04s02.html#stdlib_uid_xmlid" title="String xmlId (ecore::EObject o)">
+<code class="methodname">xmlId()</code> function
+        from stdlib</a>. </p>
 <p>Generated target code looks like this: </p>
 <pre class="programlisting">public class Person {
 /*PROTECTED REGION ID(Person) ENABLED START*/
@@ -572,19 +601,26 @@
    remove the whole file :-))
 /*PROTECTED REGION END*/
 }</pre>
-<p> Protected regions are generated in enabled state<a name="N112F2" class="indexterm"/> by default. Unless you manually disable<a name="N112F8" class="indexterm"/> them, by removing the <code class="varname">ENABLED</code>
+<p>Protected regions are generated in enabled state<a name="N11440" class="indexterm"/> by default. Unless you manually disable<a name="N11446" class="indexterm"/> them, by removing the <code class="varname">ENABLED</code>
         keyword, they will always be preserved.</p>
 <p>If you want the generator to generate disabled protected
         regions, you need to add the <code class="varname">DISABLE</code> keyword inside
         the declaration: </p>
 <pre class="programlisting">«PROTECT CSTART '/*' CEND '*/' ID this.name DISABLE»</pre>
+<p>The produced target code won't contain the
+        <code class="classname">ENABLED</code> flag then. In this case
+        <code class="classname">ENABLED</code> has to be added to the target region to
+        activate the protected region. Disabling protected regions by default
+        has the advantage that the protected region default content in the
+        template can be changed and all not yet activated regions would
+        contain the changed code after regeneration.</p>
 </div>
 <div class="section" title="LET">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_let"/>LET<a name="N1130C" class="indexterm"/>
+<a name="xpand_reference_let"/>LET<a name="N11462" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -597,20 +633,26 @@
 «ENDLET»</pre>
 <p>During the expansion of the body of the
         <code class="varname">LET</code>
-<a name="N11318" class="indexterm"/> block, the value of the expression is bound to the
+<a name="N1146E" class="indexterm"/> block, the value of the expression is bound to the
         specified variable. Note that the expression will only be evaluated
         once, independent from the number of usages of the variable within the
-        <code class="varname">LET</code> block. Example: </p>
+        <code class="varname">LET</code> block. </p>
+<p>
+<span class="bold">
+<strong>Example:</strong>
+</span> </p>
 <pre class="programlisting">«LET packageName + "." + className AS fqn»
    the fully qualified name is: «fqn»;
 «ENDLET»</pre>
+<p>The variable value can not be reassigned within a
+        <code class="classname">LET</code> block.</p>
 </div>
 <div class="section" title="ERROR">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_error"/>ERROR<a name="N11325" class="indexterm"/>
+<a name="xpand_reference_error"/>ERROR<a name="N11485" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -618,19 +660,19 @@
 <p>The <code class="varname">ERROR</code> statement aborts the evaluation of
         the templates by throwing an
         <code class="varname">XpandException</code>
-<a name="N1132F" class="indexterm"/> with the specified message. </p>
+<a name="N1148F" class="indexterm"/> with the specified message. </p>
 <pre class="programlisting">«ERROR expression»</pre>
 <p>Note
         that you should use this facility very sparingly, since it is better
         practice to check for invalid models using constraints on the
-        metamodel, and not in the templates.</p>
+        metamodel, and not in the templates!</p>
 </div>
 <div class="section" title="Comments">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_comments"/>Comments<a name="N1133A" class="indexterm"/>
+<a name="xpand_reference_comments"/>Comments<a name="N1149A" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -639,9 +681,13 @@
 <pre class="programlisting">«REM»
    text comment
 «ENDREM»</pre>
-<p>Comments may not contain a REM<a name="N11344" class="indexterm"/> tag, this implies that comments are not nestable. A
-        comment may not have a white space between the REM keyword and its
-        brackets. Example: </p>
+<p>Comments may not contain a REM<a name="N114A4" class="indexterm"/> tag, this implies that comments are not nestable. A
+        comment may not have a white space between the
+        <code class="classname">REM</code> keyword and its brackets. </p>
+<p>
+<span class="bold">
+<strong>Example:</strong>
+</span> </p>
 <pre class="programlisting">«REM»«LET expression AS variableName»«ENDREM»
    a sequence of statements
 «REM»  «variableName.stuff»
@@ -652,7 +698,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_expression_statement"/>Expression Statement<a name="N1134E" class="indexterm"/>
+<a name="xpand_reference_expression_statement"/>Expression Statement<a name="N114B6" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -670,12 +716,12 @@
         (using the <code class="varname">toString()</code> method of
         <code class="varname">java.lang.Object</code>). Example: </p>
 <pre class="programlisting">public class «this.name» {</pre>
-<p>
-        All expressions defined by the oArchitectureWare expressions
-        sublanguage are also available in <span class="emphasis">
+<p>All
+        expressions defined by the expressions sublanguage are also available
+        in <span class="emphasis">
 <em>Xpand</em>
-</span>. You can
-        invoke imported extensions. (See the <span class="emphasis">
+</span>. You can invoke imported extensions.
+        (See the <span class="emphasis">
 <em>
 <a class="xref" href="r10_expressions_language.html" title="Expressions">Expressions</a>
 </em>
@@ -695,8 +741,12 @@
 </div>
 </div>
 <p>If you want to omit the output of superfluous
-        whitespace<a name="N11376" class="indexterm"/> you can add a minus sign just before any closing
-        bracket. Example: </p>
+        whitespace<a name="N114DE" class="indexterm"/> you can add a minus sign just before any closing
+        bracket. </p>
+<p>
+<span class="bold">
+<strong>Example:</strong>
+</span> </p>
 <pre class="programlisting">«FILE InterfaceName + ".java"-»
 «IF hasPackage-»
 package «InterfacePackageName»;
@@ -709,9 +759,10 @@ package «InterfacePackageName»;
         set.</p>
 <p>In general, this mechanism works as follows: If a statement (or
         comment) ends with such a minus all preceding whitespace up to the
-        newline<a name="N11387" class="indexterm"/> character (excluded!) is removed. Additionally all
-        following whitespace including the first newline character (\r\n is
-        handled as one character) is also removed.</p>
+        newline<a name="N114F4" class="indexterm"/> character (excluded!) is removed. Additionally all
+        following whitespace including the first newline character
+        (<code class="varname">\r\n</code> is handled as one character) is also
+        removed.</p>
 </div>
 </div>
 <div class="section" title="Aspect-Oriented Programming in Xpand">
@@ -723,7 +774,7 @@ package «InterfacePackageName»;
       <span class="emphasis">
 <em>Xpand</em>
 </span>
-<a name="N11391" class="indexterm"/>
+<a name="N11501" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -732,14 +783,15 @@ package «InterfacePackageName»;
       (<span class="emphasis">
 <em>e.g.</em>
 </span> zip) a written generator and deliver it as a
-      kind of black box. If you want to use such a generator but need to
-      change some small generation stuff, you can make use of the
+      kind of black box (this is often called a cartridge<a name="N11509" class="indexterm"/>). If you want to use such a generator but need to change
+      some small generation stuff, you can make use of the
       <code class="varname">AROUND</code>
-<a name="N1139B" class="indexterm"/> aspects. </p>
+<a name="N1150F" class="indexterm"/> aspects. </p>
 <pre class="programlisting">«AROUND qualifiedDefinitionName(parameterList)? FOR type»
    a sequence of statements
 «ENDAROUND» </pre>
-<p> <code class="varname">AROUND</code> lets you add templates
+<p>
+<code class="varname">AROUND</code> lets you add templates
       in an non-invasive way (you do not need to touch the generator
       templates). Because aspects are invasive, a template file containing
       <code class="varname">AROUND</code> aspects must be wrapped by configuration (see
@@ -749,9 +801,9 @@ package «InterfacePackageName»;
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_join_point_and_cut_syntax"/>Join Point<a name="N113AC" class="indexterm"/>
-<a name="N113AF" class="indexterm"/> and Point Cut<a name="N113B5" class="indexterm"/>
-<a name="N113B8" class="indexterm"/> Syntax</h4>
+<a name="xpand_reference_join_point_and_cut_syntax"/>Join Point<a name="N1151F" class="indexterm"/>
+<a name="N11522" class="indexterm"/> and Point Cut<a name="N11528" class="indexterm"/>
+<a name="N1152B" class="indexterm"/> Syntax</h4>
 </div>
 </div>
 </div>
@@ -759,20 +811,22 @@ package «InterfacePackageName»;
         the call graph of a software module. Such points are called
         <span class="emphasis">
 <em>Join Points</em>
-</span>. In <span class="emphasis">
+</span>
+<a name="N11535" class="indexterm"/>. In <span class="emphasis">
 <em>Xpand</em>
-</span>, there
-        is only one join point so far: a call to a definition.</p>
+</span>, there is only one join
+        point so far: a call to a definition.</p>
 <p>You specify on which join points the contributed code should be
         executed by specifying something like a 'query' on all available join
         points. Such a query is called a <span class="emphasis">
-<em>point cut</em>
-</span>.
-        </p>
+<em>point
+        cut</em>
+</span>
+<a name="N11540" class="indexterm"/>. </p>
 <pre class="programlisting">«AROUND [pointcut]»
    do stuff
 «ENDAROUND»</pre>
-<p> A pointcut consists of a fully qualified name,
+<p> A point cut consists of a fully qualified name,
         parameter types and the target type.</p>
 <div class="section" title="Definition Name">
 <div class="titlepage">
@@ -785,8 +839,10 @@ package «InterfacePackageName»;
 </div>
 <p>The definition name part of a point cut must match the fully
           qualified name of the join point definition. Such expressions are
-          case sensitive. The asterisk character is used to specify
-          wildcards.</p>
+          <span class="emphasis">
+<em>case sensitive</em>
+</span>. The asterisk character is used
+          to specify wildcards.</p>
 <p>Some examples: </p>
 <pre class="programlisting">my::Template::definition // definitions with the specified name
 org::eclipse::xpand2::* // definitions prefixed with 'org::eclipse::xpand2::'
@@ -849,12 +905,11 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
         <code class="methodname">proceed()</code>that invokes the underlying
         definition with the original parameters (Note that you might have
         changed any mutable object in the advice before).</p>
-<p>If you want to control, what parameters are to be passed to the
-        definition, you can use the operation
-        <code class="methodname">proceed</code>(<code class="classname">Object</code>
-        <code class="varname">target</code>, <code class="classname">List</code>
-        <code class="varname">params</code>). Please keep in mind that no type checking
-        is done in this context.</p>
+<p>If you want to control which parameters are to be passed to the
+        definition, you can use the operation <code class="methodname">proceed</code>
+        (<code class="classname">Object</code> <code class="varname">target</code>,
+        <code class="classname">List</code> <code class="varname">params</code>). Please keep in
+        mind that no type checking is done in this context.</p>
 <p>Additionally, there are some inspection properties (like
         <code class="varname">name</code>, <code class="varname">paramTypes</code>, etc.)
         available.</p>
@@ -865,7 +920,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="xpand_reference_generator_workflow_component"/>Generator Workflow Component<a name="N11418" class="indexterm"/>
+<a name="xpand_reference_generator_workflow_component"/>Generator Workflow Component<a name="N11594" class="indexterm"/>
 </h3>
 </div>
 </div>
@@ -879,18 +934,22 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
    &lt;metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"&gt;
        &lt;metaModelPackage value="org.eclipse.emf.ecore.EcorePackage"/&gt;
    &lt;/metaModel&gt;
-   &lt;expand value="example::Java::all FOR myModel"/&gt;
+   &lt;expand value="somenamespace::example::Java::all FOR myModel"/&gt;
 
    &lt;!-- aop configuration --&gt;
-   &lt;advices value='example::Advices1, example::Advices2'/&gt;
+   &lt;advices value='somenamespace::example::Advices1, example::Advices2'/&gt;
 
    &lt;!--  output configuration --&gt;
-   &lt;outlet path='main/src-gen'/&gt;
-   &lt;outlet name='TO_SRC' path='main/src' overwrite='false'/&gt;
-   &lt;beautifier class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
-   &lt;beautifier class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/&gt;
+   &lt;outlet path='main/src-gen'&gt;
+     &lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
+     &lt;postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/&gt;
+   &lt;/outlet&gt;
+   &lt;outlet name='TO_SRC' path='main/src' overwrite='false'&gt;
+     &lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
+     &lt;postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/&gt;
+   &lt;/outlet&gt;
 
-   &lt;!-- protected regions configuration --&gt;
+   &lt;!-- optional: protected regions configuration --&gt;
    &lt;prSrcPaths value="main/src"/&gt;
    &lt;prDefaultExcludes value="false"/&gt;
    &lt;prExcludes value="*.xml"/&gt;
@@ -921,18 +980,18 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
 <p>For <span class="emphasis">
 <em>Xpand</em>
 </span> it is important to have the file
-        encoding<a name="N11434" class="indexterm"/> in mind because of the
+        encoding<a name="N115B0" class="indexterm"/> in mind because of the
         <span class="foreignphrase">
 <em class="foreignphrase">guillemet</em>
-</span> characters <a name="N1143B" class="indexterm"/> « » used to delimit keywords and property access. The
-        <code class="varname">fileEncoding</code> property<a name="N11442" class="indexterm"/> specifies the file encoding to use for reading the
+</span> characters <a name="N115B7" class="indexterm"/> « » used to delimit keywords and property access. The
+        <code class="varname">fileEncoding</code> property<a name="N115BE" class="indexterm"/> specifies the file encoding to use for reading the
         templates, reading the protected regions and writing the generated
         files. This property defaults to the default file encoding of your
         JVM.</p>
 <p>In a team that uses different operating systems or locales it is
         a good idea to set the file encoding fixed for the Xpand project and
         share the settings. Typical encodings used are UTF-8 or ISO-8859-1,
-        but any encoding having guillemet brackets is fine also.<sup>[<a href="#ftn.N1144A" name="N1144A" class="footnote">9</a>]</sup>
+        but any encoding having guillemet brackets is fine also.<sup>[<a href="#ftn.N115C6" name="N115C6" class="footnote">8</a>]</sup>
 </p>
 </div>
 <div class="section" title="Metamodel">
@@ -945,7 +1004,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
 </div>
 </div>
 <p>The property <code class="varname">metaModel</code>
-<a name="N11455" class="indexterm"/> is used to tell the generator engine on which
+<a name="N115D1" class="indexterm"/> is used to tell the generator engine on which
         metamodels the <span class="emphasis">
 <em>Xpand</em>
 </span> templates should be
@@ -959,9 +1018,7 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
         by <span class="emphasis">
 <em>Xpand2</em>
 </span>. In the example above we configured the
-        Ecore metamodel using the <span class="emphasis">
-<em>EMFMetaModel</em>
-</span>
+        Ecore metamodel using the <code class="classname">EMFMetaModel</code>
         implementation shipped with the core part of the
         <span class="emphasis">
 <em>Xpand</em>
@@ -970,12 +1027,13 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
         property. It expects a syntax similar to that of the
         <code class="varname">EXPAND</code> statement (described above). The only
         difference is that we omit the <code class="varname">EXPAND</code>
-<a name="N11475" class="indexterm"/> keyword. Instead, we specify the name of the property.
-        Examples: </p>
-<pre class="programlisting">&lt;expand value="Template::define FOR mySlot"/&gt;</pre>
+<a name="N115F1" class="indexterm"/> keyword. Instead, we specify the name of the property.
+        </p>
+<p>Examples: </p>
+<pre class="programlisting">&lt;expand value="some::namespace::Template::define FOR mySlot"/&gt;</pre>
 <p>
         or: </p>
-<pre class="programlisting">&lt;expand value="Template::define('foo') FOREACH {mySlot1,mySlot2}"/&gt;</pre>
+<pre class="programlisting">&lt;expand value="some::namespace::Template::define('foo') FOREACH {mySlot1,mySlot2}"/&gt;</pre>
 <p>The
         expressions are evaluated using the workflow context. Each slot is
         mapped to a variable. For the examples above the workflow context
@@ -983,8 +1041,8 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
         <code class="varname">'mySlot1'</code> and <code class="varname">'mySlot2'</code>. It is
         also possible to specify some complex expressions here. If, for
         instance, the slot <code class="varname">myModel</code> contains a collection of
-        model elements one could write:<a name="N1148B" class="indexterm"/> </p>
-<pre class="programlisting">&lt;expand value="Template::define FOREACH myModel.typeSelect(Entity)"/&gt;</pre>
+        model elements one could write:<a name="N11609" class="indexterm"/> </p>
+<pre class="programlisting">&lt;expand value="some::namespace::Template::define FOREACH myModel.typeSelect(Entity)"/&gt;</pre>
 <p>This
         selects all elements of type <span class="emphasis">
 <em>Entity</em>
@@ -1001,9 +1059,10 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
 </div>
 </div>
 <p>The second mandatory configuration is the specification of so
-        called outlets (a concept borrowed from AndroMDA). Outlets<a name="N1149E" class="indexterm"/> are responsible for writing the generated files to
-        disk. Example: </p>
-<pre class="programlisting">&lt;component class="org.eclipse.xpand2.Generator2"&gt;
+        called outlets (a concept borrowed from AndroMDA). Outlets<a name="N1161C" class="indexterm"/> are responsible for writing the generated files to
+        disk. </p>
+<p>Example: </p>
+<pre class="programlisting">&lt;component class="org.eclipse.xpand2.Generator"&gt;
    ...
    &lt;outlet path='main/src-gen'/&gt;
    &lt;outlet name='TO_SRC' path='main/src' overwrite='false'/&gt;
@@ -1036,12 +1095,12 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
         text to an existing file. If <code class="varname">overwrite</code> is set to
         <code class="varname">false</code> this flag has no effect.</p>
 </div>
-<div class="section" title="Beautifier">
+<div class="section" title="PostProcessor">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="xpand_reference_beautifier"/>Beautifier <a name="N114DA" class="indexterm"/>
+<a name="xpand_reference_beautifier"/>PostProcessor <a name="N1165A" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -1060,16 +1119,17 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</pre>
 <em>Xpand</em>
 </span> workflow component can be
         configured with multiple beautifiers:</p>
-<pre class="programlisting">&lt;beautifier
-   class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
-&lt;beautifier
-   class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/&gt;</pre>
-<p>These
-        are the two beautifiers delivered with <span class="emphasis">
+<pre class="programlisting">&lt;outlet ...&gt;
+   &lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/&gt;
+   &lt;postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier"/&gt;
+&lt;/outlet&gt;
+</pre>
+<p>These are the two beautifiers delivered with
+        <span class="emphasis">
 <em>Xpand</em>
-</span>. If
-        you want to use your own beautifier, you would just need to implement
-        the <code class="classname">PostProcessor</code> Java interface<a name="N114ED" class="indexterm"/>: </p>
+</span>. If you want to use your own beautifier,
+        you would just need to implement the
+        <code class="classname">PostProcessor</code> Java interface<a name="N1166D" class="indexterm"/>: </p>
 <pre class="programlisting">package org.eclipse.xpand2.output;
 
 public interface PostProcessor {
@@ -1078,6 +1138,8 @@ public interface PostProcessor {
 }</pre>
 <p>The <code class="varname">beforeWriteAndClose</code> method is called
         for each <code class="varname">ENDFILE</code> statement.</p>
+<p>PostProcessors can also be used for othermeans than formatting,
+        like line counting.</p>
 <div class="section" title="JavaBeautifier">
 <div class="titlepage">
 <div>
@@ -1087,7 +1149,7 @@ public interface PostProcessor {
 </div>
 </div>
 </div>
-<p>The JavaBeautifier<a name="N11500" class="indexterm"/> is based on the Eclipse Java formatter provides base
+<p>The JavaBeautifier<a name="N11682" class="indexterm"/> is based on the Eclipse Java formatter provides base
           beautifying for Java files.</p>
 </div>
 <div class="section" title="XmlBeautifier">
@@ -1107,6 +1169,21 @@ public interface PostProcessor {
           <code class="filename">.wsdd</code>, <code class="filename">.wsdl</code>") used to
           specify which files should be pretty-printed.</p>
 </div>
+<div class="section" title="CppBeautifier">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="N1169E"/>CppBeautifier</h5>
+</div>
+</div>
+</div>
+<p>The CppBeautifier leverages CDT for formatting C/C++ sources.
+          Thus CDT is required to use this code formatter. To use this
+          beautifier the plugin
+          <span class="package">org.eclipse.xpand.support.cdt</span> must be added to
+          the plugin dependencies.</p>
+</div>
 </div>
 <div class="section" title="Protected Region Configuration">
 <div class="titlepage">
@@ -1118,7 +1195,7 @@ public interface PostProcessor {
 </div>
 </div>
 <p>Finally, you need to configure the protected region resolver, if
-        you want to use protected regions<a name="N11522" class="indexterm"/>. </p>
+        you want to use protected regions<a name="N116AC" class="indexterm"/>. </p>
 <pre class="programlisting">&lt;prSrcPaths value="main/src"/&gt;
 &lt;prDefaultExcludes value="false"/&gt;
 &lt;prExcludes value="*.xml"/&gt;</pre>
@@ -1126,7 +1203,7 @@ public interface PostProcessor {
         <span class="emphasis">
 <em>prSrcPaths</em>
 </span>
-<a name="N1152B" class="indexterm"/>property points to a comma-separated list of
+<a name="N116B5" class="indexterm"/>property points to a comma-separated list of
         directories. The protected region resolver will scan these directories
         for files containing activated protected regions.</p>
 <p>There are several file names which are excluded by default:
@@ -1157,7 +1234,7 @@ public interface PostProcessor {
 <div>
 <div>
 <h4 class="title">
-<a name="N1153F"/>VetoStrategy<a name="N11542" class="indexterm"/>
+<a name="N116C9"/>VetoStrategy<a name="N116CC" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -1242,7 +1319,7 @@ public interface PostProcessor {
 <p>One <code class="classname">VetoStrategy</code> is already provided.
         The
         <code class="classname">org.eclipse.xpand2.output.NoChangesVetoStrategy</code>
-        <a name="N11585" class="indexterm"/>is a simple implementation that will compare the
+        <a name="N1170F" class="indexterm"/>is a simple implementation that will compare the
         produced output, after it has been postprocessed, with the target
         file. If the content is identical the strategy vetoes the file
         writing. This strategy is effective, but has two severe
@@ -1289,7 +1366,7 @@ public interface PostProcessor {
 </div>
 </div>
 <p>
-<a name="N115A5" class="indexterm"/>This example shows how to use aspect-oriented programming
+<a name="N1172F" class="indexterm"/>This example shows how to use aspect-oriented programming
       techniques in <span class="emphasis">
 <em>Xpand</em>
 </span> templates. It is applicable to
@@ -1362,7 +1439,7 @@ public interface PostProcessor {
 </div>
 </div>
 </div>
-<p>An AOP system always needs to define a join point<a name="N115DF" class="indexterm"/> model; this is, you have to define, at which locations
+<p>An AOP system always needs to define a join point<a name="N11769" class="indexterm"/> model; this is, you have to define, at which locations
         of a (template) program you can add additional (template) code. In
         <span class="emphasis">
 <em>Xpand</em>
@@ -1373,7 +1450,7 @@ public interface PostProcessor {
         can be declared <span class="emphasis">
 <em>AROUND</em>
 </span>
-<a name="N115EB" class="indexterm"/> previously existing templates. If you take a look at
+<a name="N11775" class="indexterm"/> previously existing templates. If you take a look at
         the <code class="classname">org.eclipse.demo.emf.datamodel.generator</code>
         source folder of the project, you can find the
         <code class="filename">Root.xpt</code> template file. Inside, you can find a
@@ -1428,7 +1505,7 @@ public interface PostProcessor {
 <div>
 <div>
 <h4 class="title">
-<a name="aop_template_example_workflow_file"/>Workflow File<a name="N1161A" class="indexterm"/>
+<a name="aop_template_example_workflow_file"/>Workflow File<a name="N117A4" class="indexterm"/>
 </h4>
 </div>
 </div>
@@ -1514,7 +1591,7 @@ public interface PostProcessor {
       <span class="emphasis">
 <em>AROUND</em>
 </span>
-<a name="N11646" class="indexterm"/> construct is as follows:</p>
+<a name="N117D0" class="indexterm"/> construct is as follows:</p>
 <pre class="programlisting">«AROUND fullyQualifiedDefinitionNameWithWildcards
       (Paramlist (*)?) FOR TypeName»
    do Stuff
@@ -1556,7 +1633,7 @@ public interface PostProcessor {
 <hr align="left" width="100"/>
 <div class="footnote">
 <p>
-<sup>[<a href="#N1144A" name="ftn.N1144A" class="para">9</a>] </sup>On Mac OSX the default encoding is MacRoman, which is not a
+<sup>[<a href="#N115C6" name="ftn.N115C6" class="para">8</a>] </sup>On Mac OSX the default encoding is MacRoman, which is not a
             good choice, since other operating systems are not aware of this
             encoding. It is recommended to set the encoding to some more
             common encoding, e.g. UTF-8, maybe even for the whole

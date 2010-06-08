@@ -38,17 +38,17 @@
 <span class="emphasis">
 <em>Xpand</em>
 </span> also provides a language to specify
-      constraints <a name="N10C7E" class="indexterm"/> that the model has to fulfill in order to be correct.
+      constraints <a name="N10D03" class="indexterm"/> that the model has to fulfill in order to be correct.
       This language is very easy to understand and use. Basically, it is built
       around the expression syntax that has been discussed in detail in the
       previous section. Constraints specified in the
       <span class="emphasis">
 <em>Check</em>
-</span> <a name="N10C85" class="indexterm"/> language have to be stored in files with the file
-      extension <code class="filename">.chk</code> <a name="N10C8E" class="indexterm"/>
-<a name="N10C91" class="indexterm"/>. Furthermore, these files have to be on the Java
+</span> <a name="N10D0A" class="indexterm"/> language have to be stored in files with the file
+      extension <code class="filename">.chk</code> <a name="N10D13" class="indexterm"/>
+<a name="N10D16" class="indexterm"/>. Furthermore, these files have to be on the Java
       classpath, of course, in order to be found. Let us look at an example,
-      in order to understand, what these constraints look like and what they
+      in order to understand what these constraints look like and what they
       do:</p>
 <pre class="programlisting">import data;
 context Attribute ERROR
@@ -69,7 +69,7 @@ context Attribute ERROR
             <code class="code">WARNING</code>, These keywords specify what kind of action
             will be taken in case the constraint fails:</p>
 <div class="table">
-<a name="N10CAB"/>
+<a name="N10D30"/>
 <p class="title">
 <b>Table 7. Types of action for <span class="emphasis">
 <em>Check</em>
@@ -148,7 +148,7 @@ context Attribute ERROR
 </span> language of
         <span class="emphasis">
 <em>Xpand</em>
-</span> also provides so called <a name="N10CE9" class="indexterm"/>. These conditions allow to apply a check constraint
+</span> also provides so called <a name="N10D6E" class="indexterm"/>. These conditions allow to apply a check constraint
         only to model elements that meet certain criteria. Specifying such a
         guard condition is done by adding an <span class="emphasis">
 <em>if</em>
@@ -179,10 +179,9 @@ context Attribute if name.length &gt; 1 ERROR
 </div>
 </div>
 </div>
-<p>The workflow component <span class="emphasis">
-<em>CheckComponent</em>
-</span> allows
-      to integrate model validation constraints using the
+<p>The workflow component
+      <code class="classname">org.eclipse.xtend.check.CheckComponent</code> allows to
+      integrate model validation constraints using the
       <span class="emphasis">
 <em>Check</em>
 </span> into a modeling workflow using MWE.</p>
@@ -207,19 +206,31 @@ context Attribute if name.length &gt; 1 ERROR
 </thead>
 <tbody>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">checkFile</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">checkFile</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">This property allows to add files containing constraints
               written in the <span class="emphasis">
 <em>Check</em>
 </span> language to the
-              validation component. <span class="strong">
-<strong>This property only
-              works in conjunction with EMF based models.</strong>
+              validation component. </td>
+</tr>
+<tr>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">emfAllChildrenSlot</code>
+</td>
+<td style="border-bottom: 2 solid #000000; " align="left">Name of a workflow slot that contains an EMF object,
+              which has to be validated including all child elements that it
+              contains. <span class="emphasis">
+<em>This property only works in conjunction with
+              EMF based models.</em>
 </span>
 </td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">expression</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">expression</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">This property allows to set a check expression for the
               validation component. <span class="strong">
 <strong>This property only
@@ -229,13 +240,17 @@ context Attribute if name.length &gt; 1 ERROR
 </td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">abortOnError</td>
+<td style="border-right: 2 solid #000000; border-bottom: 2 solid #000000; " align="left">
+<code class="varname">abortOnError</code>
+</td>
 <td style="border-bottom: 2 solid #000000; " align="left">This boolean property determines if the workflow will be
               aborted or not if one of the validation constraints
               fails.</td>
 </tr>
 <tr>
-<td style="border-right: 2 solid #000000; " align="left">warnIfNothingChecked</td>
+<td style="border-right: 2 solid #000000; " align="left">
+<code class="varname">warnIfNothingChecked</code>
+</td>
 <td style="" align="left">If this boolean property will be set to
               <span class="emphasis">
 <em>true</em>

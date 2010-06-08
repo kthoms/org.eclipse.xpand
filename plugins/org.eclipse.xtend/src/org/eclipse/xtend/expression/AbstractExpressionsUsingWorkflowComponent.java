@@ -25,6 +25,7 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.util.Pair;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 
 public abstract class AbstractExpressionsUsingWorkflowComponent extends
@@ -180,8 +181,8 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends
 	@Override
 	protected void checkConfigurationInternal(Issues issues) {
 		if (metaModels.isEmpty()) {
-			issues
-					.addWarning("no metamodels specified (use 'metaModel' property)!");
+			log.info("No meta models configured, using JavaBeans as default.");
+			metaModels.add(new JavaBeansMetaModel());
 		}
 	}
 

@@ -46,8 +46,9 @@ public class JdtJavaBeanTypeStrategy implements JdtTypeStrategy {
 	}
 
 	public boolean isAssignable(final IType toAssigTo, final IType assignable) throws JavaModelException {
+		if (toAssigTo==null || assignable == null)
+			return false;
 		return assignable.newSupertypeHierarchy(new NullProgressMonitor()).contains(toAssigTo);
-
 	}
 
 	public boolean isGetter(final IMethod method) {

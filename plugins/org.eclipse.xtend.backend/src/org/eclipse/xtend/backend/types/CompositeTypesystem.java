@@ -169,6 +169,10 @@ public final class CompositeTypesystem implements BackendTypesystem {
         	return t2;
         if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("EMapEntryType")))
         	return t1;
+        if (t1.getClass().equals(EClassType.class) && (t2.getClass().getName().endsWith("EMapEntryType")))
+        	return t2;
+        if (t2.getClass().equals(EClassType.class) && (t1.getClass().getName().endsWith("EMapEntryType")))
+        	return t1;
         if (t1.getClass().equals(EObjectType.class) && (t2.getClass().getName().endsWith("QNameType")))
         	return t2;
         if (t2.getClass().equals(EObjectType.class) && (t1.getClass().getName().endsWith("QNameType")))

@@ -31,7 +31,7 @@ import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
 public class EFeatureMapType extends AbstractType {
 
 	public EFeatureMapType (final String name, EClass owner, XsdTypesystem ts) {
-		super(name, XsdTypesystem.XSD_TYPE_PREFIX + name, Arrays.asList(CollectionType.INSTANCE));
+		super(name, XsdTypesystem.XSD_TYPE_PREFIX + name, Arrays.asList(ListType.INSTANCE));
 	
 		for (final EStructuralFeature f : getMapFeatures()) {
 			register ( new AbstractProperty (this, EStructuralFeature.class, f.getName(), true, f.isChangeable()) {

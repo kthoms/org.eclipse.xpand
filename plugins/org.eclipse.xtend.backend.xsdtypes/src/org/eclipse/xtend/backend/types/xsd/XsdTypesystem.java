@@ -117,8 +117,9 @@ public class XsdTypesystem implements BackendTypesystem {
 					return getTypeForEClassifier (eCls);
 				}
 			}
-		} 
-		r = _emfTypesystem.findType(o);
+		} else {
+			r = _emfTypesystem.findType(o);
+		}
 		return r;
 	}
 

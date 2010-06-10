@@ -15,6 +15,7 @@ import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.types.builtin.BooleanType;
 import org.eclipse.xtend.backend.types.builtin.CollectionType;
+import org.eclipse.xtend.backend.types.builtin.ListType;
 import org.eclipse.xtend.backend.types.builtin.LongType;
 import org.eclipse.xtend.backend.types.builtin.SetType;
 import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
@@ -24,7 +25,7 @@ public class EMapType extends AbstractType {
 	private EMapEntryType _elementType;
 
 	public EMapType(final String name, XsdTypesystem ts, final EClassifier innerType) {
-		super(name, XsdTypesystem.XSD_TYPE_PREFIX + name);
+		super(name, XsdTypesystem.XSD_TYPE_PREFIX + name, ListType.INSTANCE);
 		_elementType = ts.getEMapEntryType(innerType);
 		BackendType valueType = _elementType.getValueType();
 		BackendType keyType   = _elementType.getKeyType();

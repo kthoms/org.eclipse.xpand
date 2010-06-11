@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <book id="xpand_documentation">
 		<title>Xpand Documentation</title>
-		<part id="Getting_Started">
-		<title>Getting Started</title>
+
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/emf_tutorial.xml" />
-		</part>
+
 		<part id="Reference">
 		<title>Reference</title>
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xpand_reference.xml" />

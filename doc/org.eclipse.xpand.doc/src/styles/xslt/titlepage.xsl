@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:exsl="http://exslt.org/common" version="1.0" exclude-result-prefixes="exsl">
   <xsl:template name="article.titlepage.separator">
     <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" space-after.minimum="25pt" space-after.maximum="25pt"/>
@@ -27,8 +27,8 @@
                             </fo:block>
                             <fo:block font-family="Helvetica" font-size="12pt">
                                 <!-- <xsl:value-of select="bookinfo/releaseinfo"/> -->
-                                <xsl:text>Sven Efftinge, Peter Friese, Arno Hase, Dennis Hübner, Clemens Kadura, Bernd Kolb, Jan Köhnlein, 
-                                Dieter Moroff, Karsten Thoms, Markus Völter, Patrick Schönbach, Moritz Eysholdt, Steven Reinisch, Darius Jockel, Andre Arnold and contributors</xsl:text>
+                                <xsl:text>Sven Efftinge, Peter Friese, Arno Hase, Dennis HÃ¼bner, Clemens Kadura, Bernd Kolb, Jan KÃ¶hnlein, 
+                                Dieter Moroff, Karsten Thoms, Markus VÃ¶lter, Patrick SchÃ¶nbach, Moritz Eysholdt, Steven Reinisch, Darius Jockel, Andre Arnold and contributors</xsl:text>
                             </fo:block>
                             <fo:block font-family="Helvetica" font-size="12pt" padding="10mm">
                                 <xsl:text>Copyright 2004 - 2010</xsl:text>

@@ -39,27 +39,27 @@
       metamodel. Inside that template, we iterate over all owned elements of
       type <code class="classname">uml::Package</code> in the model and expand a
       template for the packages defined in it.</p>
-<pre class="programlisting">«DEFINE Root FOR uml::Model»
-  «EXPAND PackageRoot FOREACH allOwnedElements().typeSelect(uml::Package)»
-«ENDDEFINE»
+<pre class="programlisting">Â«DEFINE Root FOR uml::ModelÂ»
+  Â«EXPAND PackageRoot FOREACH allOwnedElements().typeSelect(uml::Package)Â»
+Â«ENDDEFINEÂ»
 </pre>
 <p>In the package template, we again iterate over all owned elements
       and call a template that handles classes. Although we only have classes
       in that package we could not rely on this in general. The package may
       contain any other packageable element, so we need to filter classes
       using <code class="methodname">typeSelect()</code>.</p>
-<pre class="programlisting">«DEFINE PackageRoot FOR uml::Package»
-  «EXPAND ClassRoot FOREACH ownedType.typeSelect(uml::Class)»
-«ENDDEFINE»  
+<pre class="programlisting">Â«DEFINE PackageRoot FOR uml::PackageÂ»
+  Â«EXPAND ClassRoot FOREACH ownedType.typeSelect(uml::Class)Â»
+Â«ENDDEFINEÂ»  
 </pre>
 <p>This template handles classes. It opens a file that has the same
       name as the class, suffixed by <code class="filename">.java</code>. Into that
       file, we generate an empty class body.</p>
-<pre class="programlisting">«DEFINE ClassRoot FOR uml::Class»
-  «FILE name+".java"»
-    public class «name» {}
-  «ENDFILE»
-«ENDDEFINE»</pre>
+<pre class="programlisting">Â«DEFINE ClassRoot FOR uml::ClassÂ»
+  Â«FILE name+".java"Â»
+    public class Â«nameÂ» {}
+  Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»</pre>
 </div>
 <div class="section" title="Defining the workflow">
 <div class="titlepage">
@@ -80,7 +80,7 @@
 <p>You need to setup the UML2 stuff (registering URI maps, Factories,
       etc.). This can be done declaring a bean in before of the
       <code class="classname">XmiReader</code>
-<a name="N12F16" class="indexterm"/> component:</p>
+<a name="N12F12" class="indexterm"/> component:</p>
 <pre class="programlisting">&lt;bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" &gt;
   &lt;platformUri value=".."/&gt;
 &lt;/bean&gt;
@@ -93,12 +93,12 @@
 <p>The <code class="classname">XmiReader</code> reads the model and stores
       the content (a list containing the model element) in a slot named
       '<code class="varname">model</code>'. As usual, you might want to clean the target
-      directory<a name="N12F25" class="indexterm"/>.</p>
+      directory<a name="N12F21" class="indexterm"/>.</p>
 <pre class="programlisting">&lt;component id="dirCleaner"
   class="org.eclipse.emf.mwe.utils.DirectoryCleaner"
   directory="src-gen"/&gt;</pre>
 <p>and in the generator we also configure the UML2
-      metamodel<a name="N12F2E" class="indexterm"/>.</p>
+      metamodel<a name="N12F2A" class="indexterm"/>.</p>
 <pre class="programlisting"> &lt;component id="generator" class="org.eclipse.xpand2.Generator" skipOnErrors="true"&gt;
 	  &lt;metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/&gt;
 	  &lt;expand value="templates::Root::Root FOR model"/&gt;
@@ -109,7 +109,7 @@
 	&lt;/component&gt;
 &lt;/workflow&gt;</pre>
 <p>If you run the workflow (by right clicking on the
-      <code class="filename">.mwe</code> file and select <span class="guiicon">Run As</span> &#8594; <span class="guimenuitem">MWE workflow</span>) the two Java classes should be generated.</p>
+      <code class="filename">.mwe</code> file and select <span class="guiicon">Run As</span> â†’ <span class="guimenuitem">MWE workflow</span>) the two Java classes should be generated.</p>
 </div>
 </div>
 </body>

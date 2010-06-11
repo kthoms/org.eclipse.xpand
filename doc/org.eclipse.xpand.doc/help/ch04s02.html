@@ -15,7 +15,7 @@
 <div>
 <div>
 <h2 class="title" style="clear: both">
-<a name="N12396"/>Stdlib extensions</h2>
+<a name="N12392"/>Stdlib extensions</h2>
 </div>
 </div>
 </div>
@@ -35,7 +35,7 @@
 <div>
 <div>
 <h3 class="title">
-<a name="N123A3"/>IO extensions</h3>
+<a name="N1239F"/>IO extensions</h3>
 </div>
 </div>
 </div>
@@ -54,7 +54,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N123AE"/>debug (Object o)</h4>
+<a name="N123AA"/>debug (Object o)</h4>
 </div>
 </div>
 </div>
@@ -81,7 +81,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N123BE"/>info (Object o)</h4>
+<a name="N123BA"/>info (Object o)</h4>
 </div>
 </div>
 </div>
@@ -108,7 +108,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N123CE"/>error (Object o)</h4>
+<a name="N123CA"/>error (Object o)</h4>
 </div>
 </div>
 </div>
@@ -135,7 +135,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N123DE"/>syserr (Object o)</h4>
+<a name="N123DA"/>syserr (Object o)</h4>
 </div>
 </div>
 </div>
@@ -163,7 +163,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N123F1"/>syserr (Object o, String prefix)</h4>
+<a name="N123ED"/>syserr (Object o, String prefix)</h4>
 </div>
 </div>
 </div>
@@ -194,7 +194,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N12407"/>syserr (Object o)</h4>
+<a name="N12403"/>syserr (Object o)</h4>
 </div>
 </div>
 </div>
@@ -222,7 +222,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N1241A"/>throwError (Object o)</h4>
+<a name="N12416"/>throwError (Object o)</h4>
 </div>
 </div>
 </div>
@@ -250,7 +250,7 @@
 <div>
 <div>
 <h4 class="title">
-<a name="N1242A"/>Examples</h4>
+<a name="N12426"/>Examples</h4>
 </div>
 </div>
 </div>
@@ -279,12 +279,12 @@ create Entity this duplicate(Entity old):
         avoid, so you can use a small trick for this: after calling a log
         function use the chaining operator and let the result of the
         expression be an empty string:</p>
-<pre class="programlisting">«EXTENSION org::eclipse::xtend::util::stdlib::io» 
+<pre class="programlisting">Â«EXTENSION org::eclipse::xtend::util::stdlib::ioÂ» 
 ... 
-«DEFINE javaClass FOR Entity» 
-  «REM»The following expression will dump the feature names without producing output 
-  as side effect«ENDREM» 
-  «features.name.info() -&gt; ""»</pre>
+Â«DEFINE javaClass FOR EntityÂ» 
+  Â«REMÂ»The following expression will dump the feature names without producing output 
+  as side effectÂ«ENDREMÂ» 
+  Â«features.name.info() -&gt; ""Â»</pre>
 <p>This will produce this output on the console:</p>
 <pre class="programlisting">1122 INFO  IOExtensions       - [name, age, address] 
 1740 INFO  IOExtensions       - [street, zip, city]</pre>
@@ -305,7 +305,7 @@ create Entity this duplicate(Entity old):
 <div>
 <div>
 <h4 class="title">
-<a name="N1244D"/>Controlling the log level</h4>
+<a name="N12449"/>Controlling the log level</h4>
 </div>
 </div>
 </div>
@@ -340,7 +340,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N1245E"/>Counter extensions</h3>
+<a name="N1245A"/>Counter extensions</h3>
 </div>
 </div>
 </div>
@@ -359,7 +359,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12468"/>int counterInc (Object o)</h4>
+<a name="N12464"/>int counterInc (Object o)</h4>
 </div>
 </div>
 </div>
@@ -389,7 +389,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N1247B"/>int counterDec (Object o)</h4>
+<a name="N12477"/>int counterDec (Object o)</h4>
 </div>
 </div>
 </div>
@@ -419,7 +419,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N1248E"/>int counterReset (Object o)</h4>
+<a name="N1248A"/>int counterReset (Object o)</h4>
 </div>
 </div>
 </div>
@@ -449,7 +449,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N124A1"/>int counterGet (Object o)</h4>
+<a name="N1249D"/>int counterGet (Object o)</h4>
 </div>
 </div>
 </div>
@@ -477,29 +477,29 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N124B4"/>Example</h4>
+<a name="N124B0"/>Example</h4>
 </div>
 </div>
 </div>
-<pre class="programlisting">«DEFINE CounterExtensionsDemo FOR Object» 
-«FILE "CounterExtensions.txt"» 
+<pre class="programlisting">Â«DEFINE CounterExtensionsDemo FOR ObjectÂ» 
+Â«FILE "CounterExtensions.txt"Â» 
   First counter: 
-  get         : «counterGet()» 
-  inc         : «counterInc()» 
-  inc         : «counterInc()» 
-  inc         : «counterInc()» 
-  dec         : «counterDec()» 
+  get         : Â«counterGet()Â» 
+  inc         : Â«counterInc()Â» 
+  inc         : Â«counterInc()Â» 
+  inc         : Â«counterInc()Â» 
+  dec         : Â«counterDec()Â» 
   Second (named) counter: 
-  inc         : «counterInc("idx")» 
-  inc         : «counterInc("idx")» 
-  inc         : «counterInc("idx")» 
-  reset       : «counterReset("idx")» 
-  inc         : «counterInc("idx")» 
+  inc         : Â«counterInc("idx")Â» 
+  inc         : Â«counterInc("idx")Â» 
+  inc         : Â«counterInc("idx")Â» 
+  reset       : Â«counterReset("idx")Â» 
+  inc         : Â«counterInc("idx")Â» 
   First counter: 
-  inc         : «counterInc()» 
+  inc         : Â«counterInc()Â» 
   
-«ENDFILE» 
-«ENDDEFINE»</pre>
+Â«ENDFILEÂ» 
+Â«ENDDEFINEÂ»</pre>
 <p>This example will create the following output:</p>
 <pre class="programlisting">  First counter: 
   get         : 0 
@@ -522,7 +522,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N124BE"/>Properties extensions</h3>
+<a name="N124BA"/>Properties extensions</h3>
 </div>
 </div>
 </div>
@@ -545,7 +545,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N124CC"/>String getProperty (String key)</h4>
+<a name="N124C8"/>String getProperty (String key)</h4>
 </div>
 </div>
 </div>
@@ -574,7 +574,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N124DE"/>Workflow component</h4>
+<a name="N124DA"/>Workflow component</h4>
 </div>
 </div>
 </div>
@@ -582,9 +582,9 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
         properties files. It is possible to configure multiple properties
         files by adding the propertiesFile tag multiple times.</p>
 <div class="table">
-<a name="N124E3"/>
+<a name="N124DF"/>
 <p class="title">
-<b>Table 1. Workflow component
+<b>TableÂ 1.Â Workflow component
           org.eclipse.xtend.util.stdlib.PropertiesReader</b>
 </p>
 <div class="table-contents">
@@ -619,7 +619,7 @@ log4j.additivity.org.eclipse.xtend.util.stdlib.IOExtensions=false</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N124FB"/>Example</h4>
+<a name="N124F7"/>Example</h4>
 </div>
 </div>
 </div>
@@ -642,7 +642,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N1250C"/>Element properties extensions</h3>
+<a name="N12508"/>Element properties extensions</h3>
 </div>
 </div>
 </div>
@@ -660,7 +660,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12518"/>Void setProperty (Object element, String name, Object
+<a name="N12514"/>Void setProperty (Object element, String name, Object
         value)</h4>
 </div>
 </div>
@@ -697,7 +697,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12537"/>Object getProperty (Object element, String name)</h4>
+<a name="N12533"/>Object getProperty (Object element, String name)</h4>
 </div>
 </div>
 </div>
@@ -730,7 +730,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N1254E"/>Issues extensions</h3>
+<a name="N1254A"/>Issues extensions</h3>
 </div>
 </div>
 </div>
@@ -753,7 +753,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N1255A"/>String reportWarning (String message)</h4>
+<a name="N12556"/>String reportWarning (String message)</h4>
 </div>
 </div>
 </div>
@@ -781,7 +781,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N1256C"/>String reportWarning (Object object, String message)</h4>
+<a name="N12568"/>String reportWarning (Object object, String message)</h4>
 </div>
 </div>
 </div>
@@ -814,7 +814,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12583"/>String reportError (String message)</h4>
+<a name="N1257F"/>String reportError (String message)</h4>
 </div>
 </div>
 </div>
@@ -842,7 +842,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12595"/>String reportError (Object object, String message)</h4>
+<a name="N12591"/>String reportError (Object object, String message)</h4>
 </div>
 </div>
 </div>
@@ -875,7 +875,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N125AC"/>Workflow component</h4>
+<a name="N125A8"/>Workflow component</h4>
 </div>
 </div>
 </div>
@@ -892,7 +892,7 @@ cached List[String] SHAPES () : getProperty("shapes").split(",").trim();</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N125B9"/>Example</h4>
+<a name="N125B5"/>Example</h4>
 </div>
 </div>
 </div>
@@ -926,7 +926,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N125C8"/>Naming extensions</h3>
+<a name="N125C4"/>Naming extensions</h3>
 </div>
 </div>
 </div>
@@ -935,7 +935,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
       defined as the seuqence of primitive names of the containment hierarchy
       of an element, seperated by a dot (e.g. java.lang.String). In order for
       this to work, model elements are expected to have a name attribute of
-      type EString.<sup>[<a href="#ftn.N125CD" name="N125CD" class="footnote">9</a>]</sup>
+      type EString.<sup>[<a href="#ftn.N125C9" name="N125C9" class="footnote">9</a>]</sup>
 </p>
 <p>
 <span class="emphasis">
@@ -950,7 +950,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N125D5"/>String namespace (Object this)</h4>
+<a name="N125D1"/>String namespace (Object this)</h4>
 </div>
 </div>
 </div>
@@ -980,7 +980,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N125E7"/>String qualifiedName (Object this)</h4>
+<a name="N125E3"/>String qualifiedName (Object this)</h4>
 </div>
 </div>
 </div>
@@ -1010,7 +1010,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N125F9"/>String loc (Object this)</h4>
+<a name="N125F5"/>String loc (Object this)</h4>
 </div>
 </div>
 </div>
@@ -1040,7 +1040,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N1260B"/>Object findByName (Collection candidates, String name)</h4>
+<a name="N12607"/>Object findByName (Collection candidates, String name)</h4>
 </div>
 </div>
 </div>
@@ -1077,7 +1077,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N12622"/>Globalvar extensions</h3>
+<a name="N1261E"/>Globalvar extensions</h3>
 </div>
 </div>
 </div>
@@ -1098,7 +1098,7 @@ WARN WorkflowRunner Reporting a warn message from Xtend to the workflow</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N1262C"/>Example</h4>
+<a name="N12628"/>Example</h4>
 </div>
 </div>
 </div>
@@ -1130,7 +1130,7 @@ INFO IOExtensions Getting message from global var: Xpand is cool stuff!</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N12639"/>Cloning extensions</h3>
+<a name="N12635"/>Cloning extensions</h3>
 </div>
 </div>
 </div>
@@ -1168,7 +1168,7 @@ INFO IOExtensions Getting message from global var: Xpand is cool stuff!</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12657"/>Object clone (Object original)</h4>
+<a name="N12653"/>Object clone (Object original)</h4>
 </div>
 </div>
 </div>
@@ -1197,7 +1197,7 @@ INFO IOExtensions Getting message from global var: Xpand is cool stuff!</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12669"/>List clone (List l)</h4>
+<a name="N12665"/>List clone (List l)</h4>
 </div>
 </div>
 </div>
@@ -1226,7 +1226,7 @@ INFO IOExtensions Getting message from global var: Xpand is cool stuff!</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N1267B"/>Cross references extensions</h3>
+<a name="N12677"/>Cross references extensions</h3>
 </div>
 </div>
 </div>
@@ -1245,7 +1245,7 @@ INFO IOExtensions Getting message from global var: Xpand is cool stuff!</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12685"/>List[EObject] getReferencingObjects(EObject target)</h4>
+<a name="N12681"/>List[EObject] getReferencingObjects(EObject target)</h4>
 </div>
 </div>
 </div>
@@ -1274,7 +1274,7 @@ INFO IOExtensions Getting message from global var: Xpand is cool stuff!</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12697"/>Example</h4>
+<a name="N12693"/>Example</h4>
 </div>
 </div>
 </div>
@@ -1298,7 +1298,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N126A2"/>UID extensions</h3>
+<a name="N1269E"/>UID extensions</h3>
 </div>
 </div>
 </div>
@@ -1326,7 +1326,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N126B5"/>cached String uid( Object o )</h4>
+<a name="N126B1"/>cached String uid( Object o )</h4>
 </div>
 </div>
 </div>
@@ -1355,7 +1355,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N126C7"/>String createUID( Object o )</h4>
+<a name="N126C3"/>String createUID( Object o )</h4>
 </div>
 </div>
 </div>
@@ -1415,7 +1415,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N126EC"/>Mixin extensions</h3>
+<a name="N126E8"/>Mixin extensions</h3>
 </div>
 </div>
 </div>
@@ -1427,9 +1427,9 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
       structure: A root element, and then any subtree, where the elements have
       a name attribute. Here's an example:</p>
 <div class="figure">
-<a name="N126F3"/>
+<a name="N126EF"/>
 <p class="title">
-<b>Figure 1. Mixin model example</b>
+<b>FigureÂ 1.Â Mixin model example</b>
 </p>
 <div class="figure-contents">
 <div class="screenshot">
@@ -1454,7 +1454,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N1270B"/>Object getMandatoryMixin( Object mixinModel, Object ctx,
+<a name="N12707"/>Object getMandatoryMixin( Object mixinModel, Object ctx,
         xpand2::Type t )</h4>
 </div>
 </div>
@@ -1497,7 +1497,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12727"/>Object getOptionalMixin( Object mixinModel, Object ctx,
+<a name="N12723"/>Object getOptionalMixin( Object mixinModel, Object ctx,
         xpand2::Type t )</h4>
 </div>
 </div>
@@ -1511,7 +1511,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h3 class="title">
-<a name="N1272C"/>Tracing extensions</h3>
+<a name="N12728"/>Tracing extensions</h3>
 </div>
 </div>
 </div>
@@ -1530,7 +1530,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12737"/>Void createTrace( Object from, Object to, String kind, String
+<a name="N12733"/>Void createTrace( Object from, Object to, String kind, String
         backKind )</h4>
 </div>
 </div>
@@ -1573,7 +1573,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12758"/>Void createTrace( Object from, Object to, String kind)</h4>
+<a name="N12754"/>Void createTrace( Object from, Object to, String kind)</h4>
 </div>
 </div>
 </div>
@@ -1610,7 +1610,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12774"/>Void clearTrace()</h4>
+<a name="N12770"/>Void clearTrace()</h4>
 </div>
 </div>
 </div>
@@ -1629,7 +1629,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12781"/>Object getSingleTraceTarget( Object from, String kind )</h4>
+<a name="N1277D"/>Object getSingleTraceTarget( Object from, String kind )</h4>
 </div>
 </div>
 </div>
@@ -1664,7 +1664,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <div>
 <div>
 <h4 class="title">
-<a name="N12798"/>Boolean hasTrace( Object from, String kind )</h4>
+<a name="N12794"/>Boolean hasTrace( Object from, String kind )</h4>
 </div>
 </div>
 </div>
@@ -1699,7 +1699,7 @@ INFO IOExtensions Number of cross references to datatype String:4</pre>
 <hr align="left" width="100"/>
 <div class="footnote">
 <p>
-<sup>[<a href="#N125CD" name="ftn.N125CD" class="para">9</a>] </sup>It is intended that the uml2ecore utility can add such a name
+<sup>[<a href="#N125C9" name="ftn.N125C9" class="para">9</a>] </sup>It is intended that the uml2ecore utility can add such a name
           attribute to every meta class automatically.</p>
 </div>
 </div>

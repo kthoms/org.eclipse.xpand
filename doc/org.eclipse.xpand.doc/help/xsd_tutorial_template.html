@@ -24,13 +24,13 @@
 <em>"File", "New", "xPand template"</em>
 </span>.
     The Xpand language itself is explained by several other Xpand documents.
-    Having XSD meta model support activated like described in <a class="xref" href="xsd_tutorial_create_project.html" title="Step 1: Create a Project">the section called &#8220;Step 1: Create a Project&#8221;</a> , Xpand scans and watches all
+    Having XSD meta model support activated like described in <a class="xref" href="xsd_tutorial_create_project.html" title="Step 1: Create a Project">the section called â€œStep 1: Create a Projectâ€</a> , Xpand scans and watches all
     it's projects for suitable meta models. Based on what is found, the Xpand
     editor provides meta model aware code completion.</p>
 <p>This example imports "<code class="classname">metamodel</code>" at the
     beginning, which refers to a file called
     <code class="filename">metamodel.xsd</code> that you have created within the
-    project's classpath in <a class="xref" href="xsd_tutorial_metamodel.html" title="Step 2: Define a Meta Model using XML Schema">the section called &#8220;Step 2: Define a Meta Model using XML Schema&#8221;</a> . The
+    project's classpath in <a class="xref" href="xsd_tutorial_metamodel.html" title="Step 2: Define a Meta Model using XML Schema">the section called â€œStep 2: Define a Meta Model using XML Schemaâ€</a> . The
     define-block can be understood as a function named
     "<code class="methodname">Root</code>" which takes one object of type
     <code class="classname">metamodel::Wizard</code> as a parameter. This is the meta
@@ -42,15 +42,15 @@
     in the XSD meta model. Their values are stored within the XML file and
     this templates inserts them into the generated (
     <code class="filename">wizard.txt</code> ) file.</p>
-<pre class="programlisting">«IMPORT metamodel»
+<pre class="programlisting">Â«IMPORT metamodelÂ»
 
-«DEFINE Root FOR metamodel::Wizard»
-«FILE "wizard.txt"»
-Name: «name»
-Welcometext: «welcometext»
-First Page Title: «choicepage.title»
-«ENDFILE»
-«ENDDEFINE»</pre>
+Â«DEFINE Root FOR metamodel::WizardÂ»
+Â«FILE "wizard.txt"Â»
+Name: Â«nameÂ»
+Welcometext: Â«welcometextÂ»
+First Page Title: Â«choicepage.titleÂ»
+Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»</pre>
 </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <link href="book.css" rel="stylesheet" type="text/css"/>
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator"/>
 <link rel="home" href="index.html" title="Xpand Documentation"/>
-<link rel="up" href="getting_started.html" title="Getting Started"/>
+<link rel="up" href="emf_tutorial.html" title="Getting Started"/>
 <link rel="prev" href="emf_tutorial_generate_emf_tooling.html" title="Generating the EMF tooling"/>
 <link rel="next" href="emf_tutorial_defining_sample_model.html" title="Defining an Example Data Model"/>
 </head>
@@ -26,11 +26,11 @@
     Workbench</em>
 </span>. Therefore select the
     <code class="filename">xpand.demo.emf.datamodel.edit</code> project and choose from
-    the context menu <span class="guimenu">Run As</span> &#8594; <span class="guimenuitem">Eclipse Application</span>. </p>
+    the context menu <span class="guimenu">Run As</span> → <span class="guimenuitem">Eclipse Application</span>. </p>
 <div class="figure">
 <a name="emf_tutorial_launch_runtime_platform"/>
 <p class="title">
-<b>Figure�10.�Launch runtime platform</b>
+<b>Figure 10. Launch runtime platform</b>
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
@@ -42,16 +42,16 @@
 <br class="figure-break"/>
 </p>
 <p>If you are using a Mac or *nix you should now open the workspace
-    preference page and change the default encoding<a name="N1028B" class="indexterm"/> to ISO-8859-1.<sup>[<a href="#ftn.N1028F" name="N1028F" class="footnote">4</a>]</sup>Import the <code class="filename">xpand.demo.emf.datamodel</code>
-    project from your original workspace.<sup>[<a href="#ftn.N102A4" name="N102A4" class="footnote">5</a>]</sup> Note that importing the project does not physically move the
-    files,<sup>[<a href="#ftn.N102B0" name="N102B0" class="footnote">6</a>]</sup> so you can have the project be part of both workspaces at
+    preference page and change the default encoding<a name="N10287" class="indexterm"/> to ISO-8859-1.<sup>[<a href="#ftn.N1028B" name="N1028B" class="footnote">4</a>]</sup>Import the <code class="filename">xpand.demo.emf.datamodel</code>
+    project from your original workspace.<sup>[<a href="#ftn.N102A0" name="N102A0" class="footnote">5</a>]</sup> Note that importing the project does not physically move the
+    files,<sup>[<a href="#ftn.N102AC" name="N102AC" class="footnote">6</a>]</sup> so you can have the project be part of both workspaces at
     the same time.</p>
-<p>Create a new Xpand Project<sup>[<a href="#ftn.N102B6" name="N102B6" class="footnote">7</a>]</sup> called <code class="filename">xpand.demo.emf.datamodel.generator</code>. Do not
+<p>Create a new Xpand Project<sup>[<a href="#ftn.N102B2" name="N102B2" class="footnote">7</a>]</sup> called <code class="filename">xpand.demo.emf.datamodel.generator</code>. Do not
     choose the option "Generate a simple example". </p>
 <div class="figure">
 <a name="emf_tutorial_create_new_xpand_project"/>
 <p class="title">
-<b>Figure�11.�Create new Xpand project</b>
+<b>Figure 11. Create new Xpand project</b>
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
@@ -67,7 +67,7 @@
 <div class="figure">
 <a name="emf_tutorial_project_properties"/>
 <p class="title">
-<b>Figure�12.�Project properties</b>
+<b>Figure 12. Project properties</b>
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
@@ -83,27 +83,27 @@
 <hr align="left" width="100"/>
 <div class="footnote">
 <p>
-<sup>[<a href="#N1028F" name="ftn.N1028F" class="para">4</a>] </sup>
-<span class="guimenu">Window</span> &#8594; <span class="guisubmenu">Preferences</span> &#8594; <span class="guisubmenu">General</span> &#8594; <span class="guisubmenu">Workspace</span> &#8594; <span class="guimenuitem">Text file encoding</span>. This is necessary to have the
+<sup>[<a href="#N1028B" name="ftn.N1028B" class="para">4</a>] </sup>
+<span class="guimenu">Window</span> → <span class="guisubmenu">Preferences</span> → <span class="guisubmenu">General</span> → <span class="guisubmenu">Workspace</span> → <span class="guimenuitem">Text file encoding</span>. This is necessary to have the
         <span class="foreignphrase">
 <em class="foreignphrase">guillemet</em>
 </span> brackets available.</p>
 </div>
 <div class="footnote">
 <p>
-<sup>[<a href="#N102A4" name="ftn.N102A4" class="para">5</a>] </sup>
-<span class="guimenu">File</span> &#8594; <span class="guisubmenu">Import</span> &#8594; <span class="guisubmenu">General</span> &#8594; <span class="guimenuitem">Existing Project into Workspace</span>
+<sup>[<a href="#N102A0" name="ftn.N102A0" class="para">5</a>] </sup>
+<span class="guimenu">File</span> → <span class="guisubmenu">Import</span> → <span class="guisubmenu">General</span> → <span class="guimenuitem">Existing Project into Workspace</span>
 </p>
 </div>
 <div class="footnote">
 <p>
-<sup>[<a href="#N102B0" name="ftn.N102B0" class="para">6</a>] </sup>Unless you checked the option "Copy projects into
+<sup>[<a href="#N102AC" name="ftn.N102AC" class="para">6</a>] </sup>Unless you checked the option "Copy projects into
         workspace"</p>
 </div>
 <div class="footnote">
 <p>
-<sup>[<a href="#N102B6" name="ftn.N102B6" class="para">7</a>] </sup>
-<span class="guimenu">File</span> &#8594; <span class="guisubmenu">New</span> &#8594; <span class="guisubmenu">Project</span> &#8594; <span class="guisubmenu">Xpand</span> &#8594; <span class="guimenuitem">Xpand Project</span>
+<sup>[<a href="#N102B2" name="ftn.N102B2" class="para">7</a>] </sup>
+<span class="guimenu">File</span> → <span class="guisubmenu">New</span> → <span class="guisubmenu">Project</span> → <span class="guisubmenu">Xpand</span> → <span class="guimenuitem">Xpand Project</span>
 </p>
 </div>
 </div>

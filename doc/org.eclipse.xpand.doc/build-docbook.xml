@@ -183,7 +183,7 @@
 			<xinclude 
 				in="${src.dir}/${document.name}.xml"
 				out="${build.dir}/${document.name}.xml" 
-				encoding="ISO-8859-1"/>
+				encoding="UTF-8"/>
 		</sequential>
 	</target>
 

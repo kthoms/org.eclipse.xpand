@@ -22,8 +22,8 @@
 <p>Xpand is shipped with a special <span class="emphasis">
 <em>UML2 profiles</em>
 </span>
-    metamodel implementation. The implementation maps Stereotypes<a name="N12F49" class="indexterm"/> to Types and Tagged Values<a name="N12F4D" class="indexterm"/> to simple properties. It also supports
-    Enumerations<a name="N12F51" class="indexterm"/> defined in the profile and Stereotype hierarchies.</p>
+    metamodel implementation. The implementation maps Stereotypes<a name="N12F45" class="indexterm"/> to Types and Tagged Values<a name="N12F49" class="indexterm"/> to simple properties. It also supports
+    Enumerations<a name="N12F4D" class="indexterm"/> defined in the profile and Stereotype hierarchies.</p>
 <div class="section" title="Defining a Profile">
 <div class="titlepage">
 <div>
@@ -54,7 +54,7 @@
 <em>Profile</em>
 </span> we call
       <code class="literal">test</code>. In our case, we want to make the stereotype be
-      applicable to UML classes &#8211; they are defined as part of the UML2
+      applicable to UML classes â€“ they are defined as part of the UML2
       metamodel. So we have to import that metamodel first. So what you do is
       to select your profile object, and then go to the UML2 Editor menu (in
       the Eclipse menu bar) and select <span class="emphasis">
@@ -79,7 +79,7 @@
 <div class="figure">
 <a name="uml2example_profile"/>
 <p class="title">
-<b>Figure 5. Modelling a Profile</b>
+<b>FigureÂ 5.Â Modelling a Profile</b>
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
@@ -106,7 +106,7 @@
 <div class="figure">
 <a name="uml2example_profileApp1"/>
 <p class="title">
-<b>Figure 6. Loading the Profile</b>
+<b>FigureÂ 6.Â Loading the Profile</b>
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
@@ -138,7 +138,7 @@
 <div class="figure">
 <a name="uml2example_profileApp2"/>
 <p class="title">
-<b>Figure 7. Defining the Profile</b>
+<b>FigureÂ 7.Â Defining the Profile</b>
 </p>
 <div class="figure-contents">
 <div class="mediaobject">
@@ -160,7 +160,7 @@
 <p>Note that all the stuff above was not in any way related to Xpand,
       it was just the "bare bones" means of creating and applying a profile to
       a UML2 model. Having an UML2 tool capable of storing models as EMF UML2
-      XMI<a name="N12FD9" class="indexterm"/> would make the creation of the model far more easier.
+      XMI<a name="N12FD5" class="indexterm"/> would make the creation of the model far more easier.
       Since we cannot assume which UML2 tool you are using this tutorial shows
       you this way, which would always work without further tooling
       installed.</p>
@@ -170,25 +170,25 @@
       code if a class has the test stereotype applied. Let us look at the
       second aspect first. Here is the modified template (in
       <code class="filename">RootWithProfile.xpt</code>):</p>
-<pre class="programlisting">«DEFINE Root FOR uml::Model»
-  «EXPAND PackageRoot FOREACH allOwnedElements().typeSelect(uml::Package)»
-«ENDDEFINE»
+<pre class="programlisting">Â«DEFINE Root FOR uml::ModelÂ»
+  Â«EXPAND PackageRoot FOREACH allOwnedElements().typeSelect(uml::Package)Â»
+Â«ENDDEFINEÂ»
  
-«DEFINE PackageRoot FOR uml::Package»
-  «EXPAND ClassRoot FOREACH ownedType.typeSelect(uml::Class)»
-«ENDDEFINE»  
+Â«DEFINE PackageRoot FOR uml::PackageÂ»
+  Â«EXPAND ClassRoot FOREACH ownedType.typeSelect(uml::Class)Â»
+Â«ENDDEFINEÂ»  
     
-«DEFINE ClassRoot FOR uml::Class»
-  «FILE name+".java"»  
-    public class «name» {}
-  «ENDFILE»
-«ENDDEFINE» 
+Â«DEFINE ClassRoot FOR uml::ClassÂ»
+  Â«FILE name+".java"Â»  
+    public class Â«nameÂ» {}
+  Â«ENDFILEÂ»
+Â«ENDDEFINEÂ» 
 
-«DEFINE ClassRoot FOR test::test»
-  «FILE name+".java"»  
-    public class «name» {} // stereotyped
-  «ENDFILE»
-«ENDDEFINE»  </pre>
+Â«DEFINE ClassRoot FOR test::testÂ»
+  Â«FILE name+".java"Â»  
+    public class Â«nameÂ» {} // stereotyped
+  Â«ENDFILEÂ»
+Â«ENDDEFINEÂ»  </pre>
 <p>As you can see, <span class="bold">
 <strong>the stereotype acts just
       like a type</strong>

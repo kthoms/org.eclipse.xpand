@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <book id="xpand_documentation">
 		<title>Xpand Documentation</title>
 		<part id="Getting_Started">
@@ -12,13 +12,14 @@
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/stdlib_reference.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/eclipse_integration.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/incrementalGeneration.xml" />
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/backend.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/uml2AdapterReference.xml" />
+		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterReference.xml" />
 		</part>
 		<part id="Tutorials">
 		<title>Tutorials</title>
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/uml2Example.xml" />
 		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterTutorial.xml" />
-		<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../content/xsdAdapterReference.xml" />
 		</part>
 		
 		<index />

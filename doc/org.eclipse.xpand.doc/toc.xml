@@ -320,6 +320,20 @@
 <topic href="help/incrementalGeneration_notes.html#incrementalGeneration_performance" label="Performance Considerations"/>
 </topic>
 </topic>
+<topic href="help/backend.html" label="Improve performance using the backend">
+<topic href="help/backend.html#backend_background" label="Technical background">
+<topic href="help/backend.html#backend_interpretation_background" label="How it works in interpreted mode"/>
+</topic>
+<topic href="help/backend_usage.html" label="Using the backend">
+<topic href="help/backend_usage.html#backend_quickstart" label="A quickstart"/>
+<topic href="help/backend_usage.html#backend_setup" label="Setting up the backend languages"/>
+<topic href="help/backend_usage.html#xpand_middleend_usage" label="Calling Xpand templates - the generator"/>
+<topic href="help/backend_usage.html#check_middleend_usage" label="Executing Check on the backend"/>
+<topic href="help/backend_usage.html#xtend_middleend_usage" label="Executing Xtend extensions on the backend"/>
+<topic href="help/backend_usage.html#java_middleend" label="Implementing functions in Java - the Java Annotations Middleend"/>
+</topic>
+<topic href="help/call_functions_backend.html" label="Call functions registered at the backend from Java"/>
+</topic>
 <topic href="help/uml_adapter.html" label="UML2 Adapter">
 <topic href="help/uml_adapter.html#uml_adapter_introduction" label="Introduction"/>
 <topic href="help/uml_adapter_installation.html" label="Installation"/>
@@ -329,6 +343,18 @@
 <topic href="help/uml_adapter_runtime_configuration.html" label="Runtime Configuration">
 <topic href="help/uml_adapter_runtime_configuration.html#uml_adapter_runtime_workflow" label="Workflow"/>
 </topic>
+</topic>
+<topic href="help/xsd_reference.html" label="XSD Adapter">
+<topic href="help/xsd_reference.html#xsd_reference_prerequisites" label="Prerequisites"/>
+<topic href="help/xsd_reference_overview.html" label="Overview"/>
+<topic href="help/xsd_reference_workflow_components.html" label="Workflow Components">
+<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xsdmetamodel" label="XSDMetaModel"/>
+<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlreader" label="XMLReader"/>
+<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlwriter" label="XMLWriter"/>
+<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlbeautifier" label="XMLBeautifier"/>
+</topic>
+<topic href="help/xsd_reference_xsd2ecore.html" label="Behind the scenes: Transforming XSD to Ecore"/>
+<topic href="help/xsd_reference_declare_xsd.html" label="How to declare XML Schemas"/>
 </topic>
 </topic>
 <topic href="help/Tutorials.html" label="III. Tutorials">
@@ -357,18 +383,6 @@
 <topic href="help/xsd_tutorial_template.html" label="Step 4: Create a Template using Xpand"/>
 <topic href="help/xsd_tutorial_create_workflow.html" label="Step 5: Create a Workflow"/>
 <topic href="help/xsd_tutorial_execute_workflow.html" label="Step 6: Execute Workflow aka Generate Code"/>
-</topic>
-<topic href="help/xsd_reference.html" label="XSD Adapter">
-<topic href="help/xsd_reference.html#xsd_reference_prerequisites" label="Prerequisites"/>
-<topic href="help/xsd_reference_overview.html" label="Overview"/>
-<topic href="help/xsd_reference_workflow_components.html" label="Workflow Components">
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xsdmetamodel" label="XSDMetaModel"/>
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlreader" label="XMLReader"/>
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlwriter" label="XMLWriter"/>
-<topic href="help/xsd_reference_workflow_components.html#xsd_reference_workflow_components_xmlbeautifier" label="XMLBeautifier"/>
-</topic>
-<topic href="help/xsd_reference_xsd2ecore.html" label="Behind the scenes: Transforming XSD to Ecore"/>
-<topic href="help/xsd_reference_declare_xsd.html" label="How to declare XML Schemas"/>
 </topic>
 </topic>
 <topic href="help/ix01.html" label="Index"/>

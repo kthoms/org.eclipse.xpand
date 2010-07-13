@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
+
+	<cs:dependencies>
+		<cs:dependency name="org.eclipse.xpand.releng" componentType="buckminster" />
+		<cs:dependency name="org.eclipse.xpand.tests" componentType="eclipse.feature" />
+	</cs:dependencies>
+
+	<cs:actions>
+		<cs:private name="site.tp" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="create.target.platform.metadata" />
+			</cs:actorProperties>
+			<cs:products alias="output" base="${buckminster.output}/site.tp/" />
+		</cs:private>
+
+		<cs:public name="package.m2t-xpand-Update" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.site" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="package.name" value="m2t-xpand-Update" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.m2t-xpand-SDK" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius" value="org.eclipse.xpand.all.feature.group" />
+				<cs:property key="package.name" value="m2t-xpand-SDK" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:private name="install.m2t-xpand-runtime.base_1" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="install.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius" value="org.eclipse.xpand,org.eclipse.xpand.activities" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.xtend" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.temp}/m2t-xpand-runtime.base_1" />
+		</cs:private>
+
+		<cs:private name="install.m2t-xpand-runtime.base_0" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="install.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius" value="org.eclipse.xpand.ui.feature.group,org.eclipse.xpand.incremental.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.xtend.ui.feature.group" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+				<cs:attribute name="install.m2t-xpand-runtime.base_1" alias="prerequisites.base" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.temp}/m2t-xpand-runtime.base_0" />
+		</cs:private>
+
+		<cs:public name="package.m2t-xpand-runtime" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.xpand.ui.feature.group,org.eclipse.xpand.incremental.feature.group,org.eclipse.xpand.support.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.xtend.ui.feature.group,org.eclipse.xpand.sdk.feature.group" />
+				<cs:property key="package.name" value="m2t-xpand-runtime" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+				<cs:attribute name="install.m2t-xpand-runtime.base_0" alias="prerequisites.base" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.m2t-xpand-examples" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.xpand.examples.feature.group,org.eclipse.xpand.examples.source.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.xtend.ui.feature.group" />
+				<cs:property key="package.name" value="m2t-xpand-examples" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<!-- <cs:public name="tag" actor="buckminster.tag">
+			<cs:actorProperties>
+				<cs:property key="tag" value="build_${build.id}" />
+				<cs:property key="exclude.0" value="^org\.eclipse\.test$" />
+				<cs:property key="exclude.1" value="^org\.eclipse\.ant\.optional\.junit$" />
+			</cs:actorProperties>
+		</cs:public> -->
+	</cs:actions>
+
+	<cs:groups>
+		<cs:public name="build">
+			<cs:attribute name="package.m2t-xpand-Update" />
+			<cs:attribute name="package.m2t-xpand-SDK" />
+			<cs:attribute name="package.m2t-xpand-runtime" />
+			<cs:attribute name="package.m2t-xpand-examples" />
+		</cs:public>
+	</cs:groups>
+</cs:cspecExtension>

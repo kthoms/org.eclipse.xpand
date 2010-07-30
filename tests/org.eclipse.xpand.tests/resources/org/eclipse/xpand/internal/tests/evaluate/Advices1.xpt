@@ -7,5 +7,6 @@
 «AROUND *test1(Object x,*) FOR String»7«targetDef.proceed()»«ENDAROUND»
 «AROUND *test1(*) FOR String»8«targetDef.proceed()»«ENDAROUND»
 «AROUND *testParamNames(String foo) FOR String»«foo»«targetDef.proceed()»«ENDAROUND»
+«AROUND *testIdenticalAdviceSignature FOR Object»A«targetDef.proceed()»«ENDAROUND»
 
 

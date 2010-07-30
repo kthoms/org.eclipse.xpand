@@ -37,6 +37,7 @@ public class AopFeatureTest extends TestCase {
         // ADDED encoding
         execCtx.getResourceManager().setFileEncoding("ISO-8859-1");
         execCtx.registerAdvices(prefix() + "Advices1");
+        execCtx.registerAdvices(prefix() + "Advices2");
     }
 
     public final void test_test1_Object() {
@@ -83,6 +84,12 @@ public class AopFeatureTest extends TestCase {
     	assertEquals("barbar", out.toString());
     }
 
+    public final void test_testIdenticalAdviceSignature_Object() {
+        final XpandDefinition def = execCtx.findDefinition(prefix() + "Adviced::testIdenticalAdviceSignature", execCtx.getObjectType(), null);
+        def.evaluate(execCtx,"foo");
+        assertEquals("1AB", out.toString());
+    }
+    
     private String prefix() {
         return getClass().getPackage().getName().replaceAll("\\.", SyntaxConstants.NS_DELIM) + SyntaxConstants.NS_DELIM;
     }

@@ -98,4 +98,13 @@ public class Advice extends AbstractDefinition implements XpandAdvice {
 		return _stringRepresentation;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj) && getOwner().getFullyQualifiedName().equals(((Advice)obj).getOwner().getFullyQualifiedName());
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode() + getOwner().getFullyQualifiedName().hashCode();
+	}
 }

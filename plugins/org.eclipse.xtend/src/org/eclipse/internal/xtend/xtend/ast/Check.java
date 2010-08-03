@@ -164,8 +164,7 @@ public class Check extends SyntaxElement {
 								result = constraint.evaluate(ctx);
 							}
 							catch (RuntimeException e) {
-								final String msg = e.getMessage();
-								issues.addError(msg, e);
+								addIssueForException(issues, e, o);
 							}
 
 							// check result must be of Boolean type
@@ -182,8 +181,7 @@ public class Check extends SyntaxElement {
 									msgResult = msg.evaluate(ctx);
 								}
 								catch (RuntimeException e) {
-									final String msg = e.getMessage();
-									issues.addError(msg, e);
+									addIssueForException(issues, e, o);
 								}
 
 								String stringResult = "Message evaluation returned null";
@@ -237,6 +235,10 @@ public class Check extends SyntaxElement {
 				ctx.getCallback().post(this,ctx, null);
 			}
 		}
+	}
+	
+	protected void addIssueForException(Issues issues, Exception exception, Object element) {
+		issues.addError(null, exception.getMessage(), element, exception, Collections.emptyList());
 	}
 
 	private boolean process(final ExecutionContext ctx) {

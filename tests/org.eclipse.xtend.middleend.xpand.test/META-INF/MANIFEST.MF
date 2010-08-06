@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xpand Middleend tests
 Bundle-SymbolicName: org.eclipse.xtend.middleend.xpand.test
-Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.eclipse.xtend.backend,
- org.eclipse.xtend,
- org.eclipse.xpand,
- org.eclipse.emf.mwe.core,
+Bundle-Version: 1.0.1.qualifier
+Require-Bundle: org.eclipse.xtend.backend;bundle-version="1.0.1",
+ org.eclipse.xtend;bundle-version="1.0.1",
+ org.eclipse.xpand;bundle-version="1.0.1",
+ org.eclipse.emf.mwe.core;bundle-version="1.0.0",
  org.junit4,
- org.eclipse.xtend.middleend.xpand,
- org.eclipse.xtend.middleend.xtend,
+ org.eclipse.xtend.middleend.xpand;bundle-version="1.0.1",
+ org.eclipse.xtend.middleend.xtend;bundle-version="1.0.1",
  org.eclipse.emf.common
 Import-Package: org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

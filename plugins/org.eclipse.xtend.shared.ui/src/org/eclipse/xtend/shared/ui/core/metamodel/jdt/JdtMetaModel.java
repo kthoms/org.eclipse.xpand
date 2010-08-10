@@ -62,6 +62,8 @@ public class JdtMetaModel implements MetaModel, IElementChangedListener {
 		if (!changed && project.isOnClasspath(event.getDelta().getElement())) {
 			changed = true;
 		}
+		if (!typeNameCache.isEmpty())
+			typeNameCache.clear();
 	}
 
 	public final static JdtMetaModel create(final String name, final IJavaProject project,

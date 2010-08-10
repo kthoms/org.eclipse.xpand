@@ -41,4 +41,14 @@ public abstract class Cache<K, V> {
 		internal.clear();
 	}
 
+	/**
+	 * @return
+	 * @see java.util.Map#isEmpty()
+	 */
+	public boolean isEmpty() {
+		return internal.isEmpty();
+	}
+	
+	
+
 }

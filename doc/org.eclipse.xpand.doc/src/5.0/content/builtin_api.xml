@@ -985,7 +985,7 @@ none
 						</entry>
 						<entry>
 							<methodname>removeAll</methodname>
-							(<link linkend='Object.html'><classname>Object</classname></link>)
+							(<link linkend='Collection.html'><classname>Collection</classname></link>)
 						</entry>
 						<entry>
 							removes all elements contained in the specified collection from this Collection if contained (modifies it!). returns this Collection.

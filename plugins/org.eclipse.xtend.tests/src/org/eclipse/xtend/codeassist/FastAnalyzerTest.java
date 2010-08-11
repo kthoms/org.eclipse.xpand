@@ -261,6 +261,10 @@ public class FastAnalyzerTest extends TestCase {
         assertTrue(FastAnalyzer.isInsideTypeDeclaration("test (String txt,"));
         assertTrue(FastAnalyzer.isInsideTypeDeclaration("test (S"));
         assertTrue(FastAnalyzer.isInsideTypeDeclaration("test (List[xpand2::Ty"));
+        
+        assertTrue(FastAnalyzer.isInsideTypeDeclaration("Object test ("));
+        assertTrue(FastAnalyzer.isInsideTypeDeclaration("around test ("));
+        assertTrue(FastAnalyzer.isInsideTypeDeclaration("List[Object] test ("));
 
         assertFalse(FastAnalyzer.isInsideTypeDeclaration("test (List[xpand2::Type] t"));
         assertFalse(FastAnalyzer.isInsideTypeDeclaration("test () : test("));

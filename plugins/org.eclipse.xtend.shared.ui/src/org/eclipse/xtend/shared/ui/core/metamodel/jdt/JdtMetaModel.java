@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
@@ -25,6 +28,7 @@ import org.eclipse.internal.xtend.util.Cache;
 import org.eclipse.internal.xtend.util.Pair;
 import org.eclipse.jdt.core.ElementChangedEvent;
 import org.eclipse.jdt.core.IElementChangedListener;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
@@ -36,7 +40,7 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.eclipse.xtend.typesystem.Type;
 
-public class JdtMetaModel implements MetaModel, IElementChangedListener {
+public class JdtMetaModel implements MetaModel, IElementChangedListener , IResourceChangeListener{
 
 	protected TypeSystem typesystem;
 
@@ -62,6 +66,9 @@ public class JdtMetaModel implements MetaModel, IElementChangedListener {
 		if (!changed && project.isOnClasspath(event.getDelta().getElement())) {
 			changed = true;
 		}
+	}
+	
+	public void resourceChanged(IResourceChangeEvent event) {
 		if (!typeNameCache.isEmpty())
 			typeNameCache.clear();
 	}
@@ -75,6 +82,7 @@ public class JdtMetaModel implements MetaModel, IElementChangedListener {
 			}
 			mm = new JdtMetaModel(name, project, strategy);
 			JavaCore.addElementChangedListener(mm);
+			JavaCore.addPreProcessingResourceChangedListener(mm, IResourceChangeEvent.PRE_BUILD);
 			JdtMetaModel.metaModels.put(project.getPath(), mm);
 		}
 		return mm;

@@ -67,7 +67,7 @@ public class FastAnalyzer {
 			.compile("around\\s+([\\w:*]+)\\s*\\(\\s*([\\[\\]:\\w\\s\\,]+)?[\\s,*]*\\)\\s*:\\s*[^;]*\\z");
 
 	private final static Pattern TYPEDECL_PATTERN = Pattern
-			.compile("(;|\\A)\\s*\\w+\\s*\\(([\\[\\]:\\w\\s,]*)\\z");
+			.compile("(;|\\A)\\s*\\w+(\\s*\\[\\w+\\]*)?\\s*\\w+\\s*\\(([\\[\\]:\\w\\s,]*)\\z");
 
 	private final static Pattern TYPEDECL_PARAM_PATTERN = Pattern
 			.compile("(,|\\(|\\A)\\s*[\\[\\]:\\w]*\\z");
@@ -78,7 +78,7 @@ public class FastAnalyzer {
 	public static boolean isInsideTypeDeclaration(final String s) {
 		final Matcher m = TYPEDECL_PATTERN.matcher(s);
 		if (m.find())
-			return TYPEDECL_PARAM_PATTERN.matcher(m.group(2)).find();
+			return TYPEDECL_PARAM_PATTERN.matcher(m.group(3)).find();
 		return false;
 	}
 

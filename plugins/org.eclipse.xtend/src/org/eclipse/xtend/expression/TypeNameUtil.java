@@ -163,10 +163,10 @@ public class TypeNameUtil {
 		return sb.toString();
 	}
 
-	public static Object getPackage(final String insertString) {
+	public static String getPackage(final String insertString) {
 		if (insertString == null || insertString.trim().length() == 0)
 			return null;
-		final int index = insertString.indexOf(SyntaxConstants.NS_DELIM);
+		final int index = insertString.lastIndexOf(SyntaxConstants.NS_DELIM);
 		if (index != -1)
 			return insertString.substring(0, index);
 		return null;

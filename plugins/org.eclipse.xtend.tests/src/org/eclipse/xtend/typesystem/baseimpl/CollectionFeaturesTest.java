@@ -18,6 +18,7 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 
+import org.eclipse.xtend.expression.EvaluationException;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.ExpressionFacade;
 import org.eclipse.xtend.type.impl.java.JavaMetaModel;
@@ -72,6 +73,39 @@ public class CollectionFeaturesTest extends TestCase {
 		final Boolean result = (Boolean) ef.evaluate("vals.containsAll({\"3\",\"4\"})", Collections.singletonMap(
 				"vals", vals));
 		assertTrue(result.booleanValue());
+	}
+	
+	public final void testContainsAllFail() {
+		try {
+			ef.evaluate("vals.containsAll(\"3\")", Collections.singletonMap(
+					"vals", vals));
+			fail();
+		}
+		catch (EvaluationException e) {
+			//Expected exception
+		}
+	}
+	
+	public final void testRemove() {
+		final Collection result = (Collection) ef.evaluate("vals.remove(\"3\").length", Collections.singletonMap("vals", vals));
+		assertEquals(4, result.size());
+	}
+
+	public final void testRemoveAll() {
+		final Collection result = (Collection) ef.evaluate("vals.removeAll({\"3\",\"4\"})", Collections.singletonMap(
+				"vals", vals));
+		assertEquals(3, result.size());
+	}
+	
+	public final void testRemoveAllFail() {
+		try {
+			ef.evaluate("vals.removeAll(\"3\")", Collections.singletonMap(
+					"vals", vals));
+			fail();
+		}
+		catch (EvaluationException e) {
+			//Expected exception
+		}
 	}
 
 	public final void testCollect() {

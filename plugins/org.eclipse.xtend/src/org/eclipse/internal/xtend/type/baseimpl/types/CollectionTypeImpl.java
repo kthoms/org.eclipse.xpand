@@ -241,7 +241,7 @@ public class CollectionTypeImpl extends BuiltinBaseType implements Parameterized
 					}
 				},
 
-				new OperationImpl(this, "removeAll", this, getTypeSystem().getObjectType()) {
+				new OperationImpl(this, "removeAll", this, getTypeSystem().getCollectionType(getTypeSystem().getObjectType())) {
 
 					@Override
 					public String getDocumentation() {

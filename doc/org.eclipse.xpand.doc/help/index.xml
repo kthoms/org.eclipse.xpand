@@ -18,40 +18,40 @@
 <topic href="help/Xtend_language.html#N11087"/>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N114FE"/>
+<topic href="help/xpand_reference_introduction.html#N11505"/>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N1151F"/>
+<topic href="help/xpand_reference_introduction.html#N11526"/>
 <entry keyword="Join point">
-<topic href="help/xpand_reference_introduction.html#N11521"/>
-</entry>
-</entry>
-<entry keyword="AOP">
 <topic href="help/xpand_reference_introduction.html#N11528"/>
+</entry>
+</entry>
+<entry keyword="AOP">
+<topic href="help/xpand_reference_introduction.html#N1152F"/>
 <entry keyword="Point cut">
-<topic href="help/xpand_reference_introduction.html#N1152A"/>
+<topic href="help/xpand_reference_introduction.html#N11531"/>
 </entry>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N117A1"/>
+<topic href="help/xpand_reference_introduction.html#N117E5"/>
 <entry keyword="Workflow">
-<topic href="help/xpand_reference_introduction.html#N117A3"/>
+<topic href="help/xpand_reference_introduction.html#N117E7"/>
 </entry>
 </entry>
 <entry keyword="AOP">
-<topic href="help/xpand_reference_introduction.html#N1172C"/>
+<topic href="help/xpand_reference_introduction.html#N11770"/>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N1172E"/>
-</entry>
-</entry>
-<entry keyword="AROUND">
-<topic href="help/xpand_reference_introduction.html#N1150C"/>
-</entry>
-<entry keyword="AROUND">
 <topic href="help/xpand_reference_introduction.html#N11772"/>
 </entry>
+</entry>
 <entry keyword="AROUND">
-<topic href="help/xpand_reference_introduction.html#N117CD"/>
+<topic href="help/xpand_reference_introduction.html#N11513"/>
+</entry>
+<entry keyword="AROUND">
+<topic href="help/xpand_reference_introduction.html#N117B6"/>
+</entry>
+<entry keyword="AROUND">
+<topic href="help/xpand_reference_introduction.html#N11811"/>
 </entry>
 <entry keyword="Aspect-Oriented Programming">
 <topic href="help/Xtend_language.html#N11084"/>
@@ -102,13 +102,13 @@
 <topic href="help/Xtend_language.html#N10ED3"/>
 </entry>
 <entry keyword="cartridge">
-<topic href="help/xpand_reference_introduction.html#N11506"/>
+<topic href="help/xpand_reference_introduction.html#N1150D"/>
 </entry>
 <entry keyword="Casting">
 <topic href="help/r10_expressions_language.html#N10CCC"/>
 </entry>
 <entry keyword="CEND">
-<topic href="help/xpand_reference_introduction.html#N1141D"/>
+<topic href="help/xpand_reference_introduction.html#N11424"/>
 </entry>
 <entry keyword="Check">
 <topic href="help/Check_language.html#N10D13"/>
@@ -129,7 +129,7 @@
 </entry>
 </entry>
 <entry keyword="Classpath">
-<topic href="help/xpand_reference_introduction.html#N1126B"/>
+<topic href="help/xpand_reference_introduction.html#N11272"/>
 </entry>
 <entry keyword="collect">
 <topic href="help/r10_expressions_language.html#N10B24"/>
@@ -141,10 +141,10 @@
 <topic href="help/r10_typesystem.html#N106A7"/>
 </entry>
 <entry keyword="Collection">
-<topic href="help/xpand_reference_introduction.html#N113B4"/>
+<topic href="help/xpand_reference_introduction.html#N113BB"/>
 </entry>
 <entry keyword="collection type">
-<topic href="help/xpand_reference_introduction.html#N1137F"/>
+<topic href="help/xpand_reference_introduction.html#N11386"/>
 </entry>
 <entry keyword="Collection type">
 <topic href="help/r10_typesystem.html#N105CB"/>
@@ -162,13 +162,13 @@
 <topic href="help/Xtend_language.html#N1116D"/>
 </entry>
 <entry keyword="CSTART">
-<topic href="help/xpand_reference_introduction.html#N11417"/>
+<topic href="help/xpand_reference_introduction.html#N1141E"/>
 </entry>
 <entry keyword="DEFINE">
-<topic href="help/xpand_reference_introduction.html#N11273"/>
+<topic href="help/xpand_reference_introduction.html#N1127A"/>
 </entry>
 <entry keyword="DirectoryCleaner">
-<topic href="help/uml2example_codegen.html#N12F22"/>
+<topic href="help/uml2example_codegen.html#N12F66"/>
 </entry>
 <entry keyword="Dynamic EMF">
 <topic href="help/emf_tutorial_dynamic_emf.html#N10329"/>
@@ -177,7 +177,7 @@
 <topic href="help/r10_typesystem.html#N105BA"/>
 </entry>
 <entry keyword="ELSEIF">
-<topic href="help/xpand_reference_introduction.html#N113ED"/>
+<topic href="help/xpand_reference_introduction.html#N113F4"/>
 </entry>
 <entry keyword="EMF">
 <topic href="help/emf_tutorial.html#N1000E"/>
@@ -207,16 +207,16 @@
 <topic href="help/r10_typesystem.html#N10858"/>
 </entry>
 <entry keyword="EMF UML2 XMI">
-<topic href="help/uml2example_profiles.html#N12FD6"/>
+<topic href="help/uml2example_profiles.html#N1301A"/>
 </entry>
 <entry keyword="Encoding">
 <topic href="help/emf_tutorial_setting_generator_project.html#N10288"/>
 </entry>
-<entry keyword="Encoding">
-<topic href="help/xpand_reference_introduction.html#N11215"/>
+<entry keyword="Encoding (see File encoding)">
+<topic href="help/xpand_reference_introduction.html#N1121A"/>
 </entry>
 <entry keyword="ENDIF">
-<topic href="help/xpand_reference_introduction.html#N113F9"/>
+<topic href="help/xpand_reference_introduction.html#N11400"/>
 </entry>
 <entry keyword="Enumeration">
 <topic href="help/r10_expressions_language.html#N10A75"/>
@@ -225,13 +225,13 @@
 </entry>
 </entry>
 <entry keyword="Enumeration (UML2)">
-<topic href="help/uml2example_profiles.html#N12F4E"/>
+<topic href="help/uml2example_profiles.html#N12F92"/>
 </entry>
 <entry keyword="EPackages">
 <topic href="help/r10_typesystem.html#N105B6"/>
 </entry>
 <entry keyword="ERROR">
-<topic href="help/xpand_reference_introduction.html#N11482"/>
+<topic href="help/xpand_reference_introduction.html#N11489"/>
 </entry>
 <entry keyword="ExecutionContext">
 <topic href="help/Xtend_language.html#N10F2B"/>
@@ -240,10 +240,10 @@
 <topic href="help/r10_expressions_language.html#N10BA5"/>
 </entry>
 <entry keyword="EXPAND">
-<topic href="help/xpand_reference_introduction.html#N112F2"/>
+<topic href="help/xpand_reference_introduction.html#N112F9"/>
 </entry>
 <entry keyword="EXPAND">
-<topic href="help/xpand_reference_introduction.html#N115EE"/>
+<topic href="help/xpand_reference_introduction.html#N1161A"/>
 </entry>
 <entry keyword="Expression">
 <topic href="help/r10_expressions_language.html#N10A0B"/>
@@ -285,9 +285,9 @@
 </entry>
 </entry>
 <entry keyword="Expression">
-<topic href="help/xpand_reference_introduction.html#N1139F"/>
+<topic href="help/xpand_reference_introduction.html#N113A6"/>
 <entry keyword="separator">
-<topic href="help/xpand_reference_introduction.html#N113A1"/>
+<topic href="help/xpand_reference_introduction.html#N113A8"/>
 </entry>
 </entry>
 <entry keyword="Expression">
@@ -348,13 +348,28 @@
 </entry>
 </entry>
 <entry keyword="EXTENSION">
-<topic href="help/xpand_reference_introduction.html#N11250"/>
+<topic href="help/xpand_reference_introduction.html#N11257"/>
 </entry>
 <entry keyword="FILE">
-<topic href="help/xpand_reference_introduction.html#N112D4"/>
+<topic href="help/xpand_reference_introduction.html#N112DB"/>
 </entry>
 <entry keyword="File encoding">
-<topic href="help/xpand_reference_introduction.html#N115AD"/>
+<topic href="help/xpand_reference_introduction.html#N11215"/>
+<entry keyword="encoding">
+<topic href="help/xpand_reference_introduction.html#N11217"/>
+</entry>
+</entry>
+<entry keyword="File encoding">
+<topic href="help/xpand_reference_introduction.html#N115B4"/>
+<entry keyword="encoding">
+<topic href="help/xpand_reference_introduction.html#N115B6"/>
+</entry>
+</entry>
+<entry keyword="File encoding">
+<topic href="help/xpand_reference_introduction.html#N1168B"/>
+<entry keyword="encoding">
+<topic href="help/xpand_reference_introduction.html#N1168D"/>
+</entry>
 </entry>
 <entry keyword="File extension">
 <topic href="help/xpand_reference_introduction.html#N11200"/>
@@ -363,30 +378,30 @@
 </entry>
 </entry>
 <entry keyword="FOR">
-<topic href="help/xpand_reference_introduction.html#N1135F"/>
+<topic href="help/xpand_reference_introduction.html#N11366"/>
 </entry>
 <entry keyword="forAll">
 <topic href="help/r10_expressions_language.html#N10B73"/>
 </entry>
 <entry keyword="FOREACH">
-<topic href="help/xpand_reference_introduction.html#N11362"/>
+<topic href="help/xpand_reference_introduction.html#N11369"/>
 </entry>
 <entry keyword="Generator">
-<topic href="help/xpand_reference_introduction.html#N115BB"/>
+<topic href="help/xpand_reference_introduction.html#N115C4"/>
 <entry keyword="fileEncoding property">
-<topic href="help/xpand_reference_introduction.html#N115BD"/>
+<topic href="help/xpand_reference_introduction.html#N115C6"/>
 </entry>
 </entry>
 <entry keyword="Generator">
-<topic href="help/xpand_reference_introduction.html#N115CE"/>
+<topic href="help/xpand_reference_introduction.html#N115FA"/>
 <entry keyword="Metamodel configuration">
-<topic href="help/xpand_reference_introduction.html#N115D0"/>
+<topic href="help/xpand_reference_introduction.html#N115FC"/>
 </entry>
 </entry>
 <entry keyword="Generator">
-<topic href="help/xpand_reference_introduction.html#N11591"/>
+<topic href="help/xpand_reference_introduction.html#N11598"/>
 <entry keyword="Workflow component">
-<topic href="help/xpand_reference_introduction.html#N11593"/>
+<topic href="help/xpand_reference_introduction.html#N1159A"/>
 </entry>
 </entry>
 <entry keyword="Genmodel">
@@ -408,25 +423,25 @@
 <topic href="help/xpand_reference_introduction.html#N111E6"/>
 </entry>
 <entry keyword="Guillemet">
-<topic href="help/xpand_reference_introduction.html#N115B4"/>
+<topic href="help/xpand_reference_introduction.html#N115BD"/>
 </entry>
 <entry keyword="IExecutionContextAware">
 <topic href="help/Xtend_language.html#N10F26"/>
 </entry>
 <entry keyword="IF">
-<topic href="help/xpand_reference_introduction.html#N113E3"/>
+<topic href="help/xpand_reference_introduction.html#N113EA"/>
 </entry>
 <entry keyword="import">
 <topic href="help/Xtend_language.html#N10E1B"/>
 </entry>
 <entry keyword="IMPORT">
-<topic href="help/xpand_reference_introduction.html#N1123E"/>
+<topic href="help/xpand_reference_introduction.html#N11245"/>
 </entry>
 <entry keyword="Integer type">
 <topic href="help/r10_typesystem.html#N10683"/>
 </entry>
 <entry keyword="ITERATOR">
-<topic href="help/xpand_reference_introduction.html#N113C5"/>
+<topic href="help/xpand_reference_introduction.html#N113CC"/>
 </entry>
 <entry keyword="JavaBeansMetaModel">
 <topic href="help/Xtend_language.html#N11046"/>
@@ -435,7 +450,7 @@
 <topic href="help/Xtend_language.html#N1105E"/>
 </entry>
 <entry keyword="JavaBeautifier">
-<topic href="help/xpand_reference_introduction.html#N1167F"/>
+<topic href="help/xpand_reference_introduction.html#N116C3"/>
 </entry>
 <entry keyword="Java extension">
 <topic href="help/emf_tutorial_extensions.html#N1050A"/>
@@ -453,7 +468,7 @@
 <topic href="help/Xtend_language.html#N11058"/>
 </entry>
 <entry keyword="join point">
-<topic href="help/xpand_reference_introduction.html#N11766"/>
+<topic href="help/xpand_reference_introduction.html#N117AA"/>
 </entry>
 <entry keyword="Join point">
 <topic href="help/Xtend_language.html#N110B3"/>
@@ -462,13 +477,13 @@
 <topic href="help/Xtend_language.html#N11100"/>
 </entry>
 <entry keyword="Join point">
-<topic href="help/xpand_reference_introduction.html#N1151C"/>
+<topic href="help/xpand_reference_introduction.html#N11523"/>
 </entry>
 <entry keyword="Join point">
-<topic href="help/xpand_reference_introduction.html#N11532"/>
+<topic href="help/xpand_reference_introduction.html#N11539"/>
 </entry>
 <entry keyword="Join point">
-<topic href="help/xpand_reference_introduction.html#N1153D"/>
+<topic href="help/xpand_reference_introduction.html#N11544"/>
 </entry>
 <entry keyword="Keyword">
 <topic href="help/r10_expressions_language.html#N10CDA"/>
@@ -477,10 +492,10 @@
 </entry>
 </entry>
 <entry keyword="LET">
-<topic href="help/xpand_reference_introduction.html#N1145F"/>
+<topic href="help/xpand_reference_introduction.html#N11466"/>
 </entry>
 <entry keyword="LET">
-<topic href="help/xpand_reference_introduction.html#N1146B"/>
+<topic href="help/xpand_reference_introduction.html#N11472"/>
 </entry>
 <entry keyword="List">
 <topic href="help/r10_typesystem.html#N106B0"/>
@@ -555,7 +570,7 @@
 <topic href="help/r10_typesystem.html#N1075E"/>
 </entry>
 <entry keyword="Metamodel contributor">
-<topic href="help/uml2example_setup_project.html#N12E71"/>
+<topic href="help/uml2example_setup_project.html#N12EB5"/>
 </entry>
 <entry keyword="Metamodel implementation">
 <topic href="help/r10_typesystem.html#N106F3"/>
@@ -570,49 +585,49 @@
 <topic href="help/r10_expressions_language.html#N10CB2"/>
 </entry>
 <entry keyword="Namespace">
-<topic href="help/xpand_reference_introduction.html#N11311"/>
+<topic href="help/xpand_reference_introduction.html#N11318"/>
 <entry keyword="Import">
-<topic href="help/xpand_reference_introduction.html#N11313"/>
+<topic href="help/xpand_reference_introduction.html#N1131A"/>
 </entry>
 </entry>
 <entry keyword="Newline">
-<topic href="help/xpand_reference_introduction.html#N114F1"/>
+<topic href="help/xpand_reference_introduction.html#N114F8"/>
 </entry>
 <entry keyword="NoChangesVetoStrategy">
-<topic href="help/xpand_reference_introduction.html#N1170C"/>
+<topic href="help/xpand_reference_introduction.html#N11750"/>
 </entry>
 <entry keyword="OCL">
 <topic href="help/r10_expressions_language.html#N10A14"/>
 </entry>
 <entry keyword="ONFILECLOSE">
-<topic href="help/xpand_reference_introduction.html#N11324"/>
+<topic href="help/xpand_reference_introduction.html#N1132B"/>
 </entry>
 <entry keyword="Operation">
 <topic href="help/r10_typesystem.html#N10710"/>
 </entry>
 <entry keyword="Outlet">
-<topic href="help/xpand_reference_introduction.html#N112DF"/>
+<topic href="help/xpand_reference_introduction.html#N112E6"/>
 </entry>
 <entry keyword="Outlet">
-<topic href="help/xpand_reference_introduction.html#N11619"/>
+<topic href="help/xpand_reference_introduction.html#N11646"/>
 </entry>
 <entry keyword="Point cut">
 <topic href="help/Xtend_language.html#N110B7"/>
 </entry>
 <entry keyword="Point cut">
-<topic href="help/xpand_reference_introduction.html#N11525"/>
+<topic href="help/xpand_reference_introduction.html#N1152C"/>
 </entry>
 <entry keyword="Polymorphism">
 <topic href="help/Xtend_language.html#N10E95"/>
 </entry>
 <entry keyword="Polymorphism">
-<topic href="help/xpand_reference_introduction.html#N11293"/>
+<topic href="help/xpand_reference_introduction.html#N1129A"/>
 </entry>
 <entry keyword="PostProcessor">
-<topic href="help/xpand_reference_introduction.html#N11657"/>
+<topic href="help/xpand_reference_introduction.html#N1169B"/>
 </entry>
 <entry keyword="PostProcessor">
-<topic href="help/xpand_reference_introduction.html#N1166A"/>
+<topic href="help/xpand_reference_introduction.html#N116AE"/>
 </entry>
 <entry keyword="private">
 <topic href="help/Xtend_language.html#N10EEE"/>
@@ -627,28 +642,28 @@
 <topic href="help/r10_typesystem.html#N1070B"/>
 </entry>
 <entry keyword="PROTECT">
-<topic href="help/xpand_reference_introduction.html#N11409"/>
+<topic href="help/xpand_reference_introduction.html#N11410"/>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N1140E"/>
+<topic href="help/xpand_reference_introduction.html#N11415"/>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N116A9"/>
+<topic href="help/xpand_reference_introduction.html#N116ED"/>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N11443"/>
+<topic href="help/xpand_reference_introduction.html#N1144A"/>
 <entry keyword="Disable">
-<topic href="help/xpand_reference_introduction.html#N11445"/>
+<topic href="help/xpand_reference_introduction.html#N1144C"/>
 </entry>
 </entry>
 <entry keyword="Protected region">
-<topic href="help/xpand_reference_introduction.html#N1143D"/>
+<topic href="help/xpand_reference_introduction.html#N11444"/>
 <entry keyword="Enable">
-<topic href="help/xpand_reference_introduction.html#N1143F"/>
+<topic href="help/xpand_reference_introduction.html#N11446"/>
 </entry>
 </entry>
 <entry keyword="prSrcPaths">
-<topic href="help/xpand_reference_introduction.html#N116B2"/>
+<topic href="help/xpand_reference_introduction.html#N116F6"/>
 </entry>
 <entry keyword="Real type">
 <topic href="help/r10_typesystem.html#N10689"/>
@@ -663,7 +678,7 @@
 <topic href="help/r10_expressions_language.html#N10B02"/>
 </entry>
 <entry keyword="REM">
-<topic href="help/xpand_reference_introduction.html#N114A1"/>
+<topic href="help/xpand_reference_introduction.html#N114A8"/>
 </entry>
 <entry keyword="Return type">
 <topic href="help/Xtend_language.html#N10E6F"/>
@@ -672,34 +687,34 @@
 <topic href="help/r10_expressions_language.html#N10ACA"/>
 </entry>
 <entry keyword="SEPARATOR">
-<topic href="help/xpand_reference_introduction.html#N11391"/>
+<topic href="help/xpand_reference_introduction.html#N11398"/>
 </entry>
 <entry keyword="Set type">
 <topic href="help/r10_typesystem.html#N106B6"/>
 </entry>
 <entry keyword="SlotCopier">
-<topic href="help/ch04s03.html#N12817"/>
+<topic href="help/ch04s03.html#N1285B"/>
 </entry>
 <entry keyword="SlotListAdder">
-<topic href="help/ch04s03.html#N12862"/>
+<topic href="help/ch04s03.html#N128A6"/>
 </entry>
 <entry keyword="SlotPrinter">
-<topic href="help/ch04s03.html#N128B1"/>
+<topic href="help/ch04s03.html#N128F5"/>
 </entry>
 <entry keyword="sortBy">
 <topic href="help/r10_expressions_language.html#N10BD4"/>
 </entry>
 <entry keyword="Stereotype">
-<topic href="help/uml2example_profiles.html#N12F46"/>
+<topic href="help/uml2example_profiles.html#N12F8A"/>
 </entry>
 <entry keyword="String type">
 <topic href="help/r10_typesystem.html#N10661"/>
 </entry>
 <entry keyword="SystemCommand">
-<topic href="help/ch04s03.html#N127B6"/>
+<topic href="help/ch04s03.html#N127FA"/>
 </entry>
 <entry keyword="Tagged value">
-<topic href="help/uml2example_profiles.html#N12F4A"/>
+<topic href="help/uml2example_profiles.html#N12F8E"/>
 </entry>
 <entry keyword="Template">
 <topic href="help/xpand_reference_introduction.html#N1120A"/>
@@ -708,15 +723,15 @@
 </entry>
 </entry>
 <entry keyword="Template">
-<topic href="help/xpand_reference_introduction.html#N1127E"/>
+<topic href="help/xpand_reference_introduction.html#N11285"/>
 <entry keyword="File">
-<topic href="help/xpand_reference_introduction.html#N11280"/>
+<topic href="help/xpand_reference_introduction.html#N11287"/>
 </entry>
 </entry>
 <entry keyword="Template">
-<topic href="help/xpand_reference_introduction.html#N11297"/>
+<topic href="help/xpand_reference_introduction.html#N1129E"/>
 <entry keyword="Polymorphism">
-<topic href="help/xpand_reference_introduction.html#N11299"/>
+<topic href="help/xpand_reference_introduction.html#N112A0"/>
 </entry>
 </entry>
 <entry keyword="Transformation">
@@ -771,27 +786,27 @@
 <topic href="help/r10_expressions_language.html#N10AEC"/>
 </entry>
 <entry keyword="typeSelect">
-<topic href="help/xpand_reference_introduction.html#N11606"/>
+<topic href="help/xpand_reference_introduction.html#N11632"/>
 </entry>
 <entry keyword="UML2">
-<topic href="help/uml2example.html#N12E58"/>
+<topic href="help/uml2example.html#N12E9C"/>
 </entry>
 <entry keyword="UML2MetaModel">
 <topic href="help/r10_typesystem.html#N108DE"/>
 </entry>
 <entry keyword="UML2MetaModel">
-<topic href="help/uml2example_codegen.html#N12F2B"/>
+<topic href="help/uml2example_codegen.html#N12F6F"/>
 </entry>
 <entry keyword="VetoStrategy">
-<topic href="help/xpand_reference_introduction.html#N116C9"/>
+<topic href="help/xpand_reference_introduction.html#N1170D"/>
 </entry>
 <entry keyword="Weaving advices">
 <topic href="help/Xtend_language.html#N11091"/>
 </entry>
 <entry keyword="Whitespace">
-<topic href="help/xpand_reference_introduction.html#N114DB"/>
+<topic href="help/xpand_reference_introduction.html#N114E2"/>
 <entry keyword="Omit">
-<topic href="help/xpand_reference_introduction.html#N114DD"/>
+<topic href="help/xpand_reference_introduction.html#N114E4"/>
 </entry>
 </entry>
 <entry keyword="WorkflowComponent">
@@ -801,7 +816,7 @@
 <topic href="help/emf_tutorial_define_metamodel.html#N101DA"/>
 </entry>
 <entry keyword="XmiReader">
-<topic href="help/uml2example_codegen.html#N12F13"/>
+<topic href="help/uml2example_codegen.html#N12F57"/>
 </entry>
 <entry keyword="XMIReader">
 <topic href="help/r10_typesystem.html#N10952"/>
@@ -810,15 +825,15 @@
 <topic href="help/r10_typesystem.html#N1094F"/>
 </entry>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N11497"/>
+<topic href="help/xpand_reference_introduction.html#N1149E"/>
 <entry keyword="Comments">
-<topic href="help/xpand_reference_introduction.html#N11499"/>
+<topic href="help/xpand_reference_introduction.html#N114A0"/>
 </entry>
 </entry>
 <entry keyword="Xpand">
-<topic href="help/xpand_reference_introduction.html#N114B3"/>
+<topic href="help/xpand_reference_introduction.html#N114BA"/>
 <entry keyword="Expression statements">
-<topic href="help/xpand_reference_introduction.html#N114B5"/>
+<topic href="help/xpand_reference_introduction.html#N114BC"/>
 </entry>
 </entry>
 <entry keyword="Xpand">
@@ -828,13 +843,13 @@
 </entry>
 </entry>
 <entry keyword="XpandException">
-<topic href="help/xpand_reference_introduction.html#N1148C"/>
+<topic href="help/xpand_reference_introduction.html#N11493"/>
 </entry>
 <entry keyword="XSDMetaModel">
 <topic href="help/r10_typesystem.html#N109B0"/>
 </entry>
 <entry keyword="Xtend">
-<topic href="help/xpand_reference_introduction.html#N1125B"/>
+<topic href="help/xpand_reference_introduction.html#N11262"/>
 </entry>
 <entry keyword="Xtend">
 <topic href="help/Xtend_language.html#N10E09"/>

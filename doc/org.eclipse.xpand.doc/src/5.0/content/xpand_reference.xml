@@ -1525,7 +1525,7 @@ else
 
       <para>The default part is mandatory, because
       <methodname>switch</methodname> is an expression, therefore it needs to
-      evaluate to something in any case. </para>
+      evaluate to something in any case.</para>
 
       <para><emphasis role="bold">Example:</emphasis></para>
 
@@ -1556,8 +1556,8 @@ else
       effects as far as possible. But sometimes there you need invocations
       that do have side effects. In some cases expressions even do not have a
       return type (i.e. the return type is <classname>Void</classname>). If
-      you need to call such operations, you can use the chain expression.
-      </para>
+      you need to call such operations, you can use the chain
+      expression.</para>
 
       <para><emphasis role="bold">Syntax:</emphasis></para>
 
@@ -1873,7 +1873,7 @@ context Attribute if name.length &gt; 1 ERROR
 
               <entry>This property allows to add files containing constraints
               written in the <emphasis>Check</emphasis> language to the
-              validation component. </entry>
+              validation component.</entry>
             </row>
 
             <row>
@@ -2482,7 +2482,7 @@ Reference toReference(EReference x) :
       <para><varname>C1</varname> is already in creation and will not complete
       until the stack is reduced. Deadlock! The problem is that the cache
       caches the return value, but <varname>C1</varname> was not returned so
-      far, because it is still in construction. </para>
+      far, because it is still in construction.</para>
 
       <para>The solution: create extensions!</para>
 
@@ -2673,7 +2673,7 @@ readMyProp(MyBeanMetaClass jb) :
           <para>The extension name part of a point cut must match the fully
           qualified name of the definition of the join point. Such expressions
           are case sensitive. The asterisk character is used to specify
-          wildcards. </para>
+          wildcards.</para>
 
           <para>Some examples:</para>
 
@@ -2972,7 +2972,13 @@ my::Templ::extension(*) // templ def with any number of parameters
       <para>Almost all characters used in the standard syntax are part of
       <emphasis>ASCII</emphasis> and should therefore be available in any
       encoding<indexterm>
+          <primary>File encoding</primary>
+
+          <secondary>encoding</secondary>
+        </indexterm><indexterm>
           <primary>Encoding</primary>
+
+          <see>File encoding</see>
         </indexterm>. The only limitation are the tag brackets
       (<emphasis>guillemets</emphasis>), for which the characters "«" (Unicode
       <varname>00AB</varname>) and "»" (Unicode <varname>00BB</varname>) are
@@ -3152,7 +3158,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         the expression result as separator for the directory structure.</para>
 
         <para>The body of a <varname>FILE</varname> statement can contain any
-        other statements. </para>
+        other statements.</para>
 
         <para><emphasis role="bold">Example: </emphasis><programlisting>«FILE InterfaceName + ".java"»
    package «InterfacePackageName»;
@@ -3341,13 +3347,13 @@ my::Templ::extension(*) // templ def with any number of parameters
    current element of the iteration
 «ENDFOREACH»</programlisting>The body of a <varname>FOREACH</varname> block
         can contain any other statements; specifically
-        <varname>FOREACH</varname> statements may be nested. </para>
+        <varname>FOREACH</varname> statements may be nested.</para>
 
         <para>If <varname>ITERATOR</varname><indexterm>
             <primary>ITERATOR</primary>
           </indexterm> name is specified, an object of the type
         <classname>xpand2::Iterator</classname> (see API doc for details) is
-        accessible using the specified name. </para>
+        accessible using the specified name.</para>
 
         <para>The <varname>SEPARATOR</varname> expression works in the same
         way as the one for <link
@@ -3404,7 +3410,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         marker in the output. They should build valid comment beginning and
         comment end strings corresponding to the generated target language
         (e.g. <emphasis>"/*"</emphasis> and <emphasis>"*/"</emphasis> for
-        Java). </para>
+        Java).</para>
 
         <para>The following is an example for Java: <programlisting>«PROTECT CSTART "/*" CEND "*/" ID ElementsUniqueID»
    here goes some content
@@ -3414,7 +3420,7 @@ my::Templ::extension(*) // templ def with any number of parameters
         usually concatenated. Some model types (e.g. UML2 models) contain
         identifiers that could be used, which can be read using the <link
         linkend="stdlib_uid_xmlid"><methodname>xmlId()</methodname> function
-        from stdlib</link>. </para>
+        from stdlib</link>.</para>
 
         <para>Generated target code looks like this: <programlisting>public class Person {
 /*PROTECTED REGION ID(Person) ENABLED START*/
@@ -3461,7 +3467,7 @@ my::Templ::extension(*) // templ def with any number of parameters
           </indexterm> block, the value of the expression is bound to the
         specified variable. Note that the expression will only be evaluated
         once, independent from the number of usages of the variable within the
-        <varname>LET</varname> block. </para>
+        <varname>LET</varname> block.</para>
 
         <para><emphasis role="bold">Example:</emphasis> <programlisting>«LET packageName + "." + className AS fqn»
    the fully qualified name is: «fqn»;
@@ -3499,7 +3505,7 @@ my::Templ::extension(*) // templ def with any number of parameters
             <primary>REM</primary>
           </indexterm> tag, this implies that comments are not nestable. A
         comment may not have a white space between the
-        <classname>REM</classname> keyword and its brackets. </para>
+        <classname>REM</classname> keyword and its brackets.</para>
 
         <para><emphasis role="bold">Example:</emphasis> <programlisting>«REM»«LET expression AS variableName»«ENDREM»
    a sequence of statements
@@ -3539,7 +3545,7 @@ my::Templ::extension(*) // templ def with any number of parameters
 
             <secondary>Omit</secondary>
           </indexterm> you can add a minus sign just before any closing
-        bracket. </para>
+        bracket.</para>
 
         <para><emphasis role="bold">Example:</emphasis> <programlisting>«FILE InterfaceName + ".java"-»
 «IF hasPackage-»
@@ -3733,6 +3739,8 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         <para>For <emphasis>Xpand</emphasis> it is important to have the file
         encoding<indexterm>
             <primary>File encoding</primary>
+
+            <secondary>encoding</secondary>
           </indexterm> in mind because of the
         <foreignphrase>guillemet</foreignphrase> characters <indexterm>
             <primary>Guillemet</primary>
@@ -3756,6 +3764,49 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
             common encoding, e.g. UTF-8, maybe even for the whole
             workspace.</para>
           </footnote></para>
+
+        <para>An false encoding can result in an error message of the
+        generator during runtime:</para>
+
+        <programlisting>1108 ERROR WorkflowRunner     - [ERROR]: no viable alternative at input 'Â' on line 1</programlisting>
+
+        <para>In this case you have to configure the input encoding. A
+        <interface>ResourceManager</interface> is used to set the input
+        encoding. Use the <code>fileEncoding</code> property of the
+        <code>ResourceManager</code> inside the generator component to
+        configure the encoding of templates and extensions.</para>
+
+        <para>Example for <emphasis>MWE</emphasis>:</para>
+
+        <programlisting>&lt;component class="org.eclipse.xpand2.Generator"&gt;
+ &lt;metaModel idRef="mm_emf"/&gt;
+ &lt;expand
+  value="template::Template::main FOR model" /&gt;
+ &lt;outlet path="${src-gen}" &gt;
+  &lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" /&gt;
+ &lt;/outlet&gt;
+ &lt;resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl"&gt;
+  &lt;fileEncoding value="ISO-8859-1"/&gt;
+ &lt;/resourceManager&gt;
+&lt;/component&gt;</programlisting>
+
+        <para>Example for <emphasis>MWE2</emphasis>:</para>
+
+        <programlisting>component = org.eclipse.xpand2.Generator {
+    metaModel = org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel {}
+    expand = "templates::Template::main FOREACH model"
+    outlet = {
+        path = targetDir
+    }
+    resourceManager = org.eclipse.xtend.expression.ResourceManagerDefaultImpl {
+        fileEncoding = "ISO-8859-1"
+    }
+}
+</programlisting>
+
+        <para>The section <emphasis><xref
+        linkend="xpand_reference_output_configuration" /></emphasis> describes
+        how to configure the encoding of the generated files.</para>
       </section>
 
       <section id="xpand_reference_metamodel">
@@ -3780,8 +3831,8 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         <varname>EXPAND</varname> statement (described above). The only
         difference is that we omit the <varname>EXPAND</varname><indexterm>
             <primary>EXPAND</primary>
-          </indexterm> keyword. Instead, we specify the name of the property.
-        </para>
+          </indexterm> keyword. Instead, we specify the name of the
+        property.</para>
 
         <para>Examples: <programlisting>&lt;expand value="some::namespace::Template::define FOR mySlot"/&gt;</programlisting>
         or: <programlisting>&lt;expand value="some::namespace::Template::define('foo') FOREACH {mySlot1,mySlot2}"/&gt;</programlisting>The
@@ -3798,24 +3849,42 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         the collection stored in the <varname>myModel</varname> slot.</para>
       </section>
 
-      <section id="xpand_reference_output_configuration">
+      <section id="xpand_reference_output_configuration"
+               xreflabel="Output configuration">
         <title>Output configuration</title>
 
         <para>The second mandatory configuration is the specification of so
         called outlets (a concept borrowed from AndroMDA). Outlets<indexterm>
             <primary>Outlet</primary>
           </indexterm> are responsible for writing the generated files to
-        disk. </para>
+        disk.</para>
 
-        <para>Example: <programlisting>&lt;component class="org.eclipse.xpand2.Generator"&gt;
+        <para>Example <emphasis>MWE</emphasis>: <programlisting>&lt;component class="org.eclipse.xpand2.Generator"&gt;
    ...
    &lt;outlet path='main/src-gen'/&gt;
-   &lt;outlet name='TO_SRC' path='main/src' overwrite='false'/&gt;
+   &lt;outlet name='TO_SRC' path='main/src' overwrite='false'&gt;
+      &lt;fileEncoding value='ISO-8859-1'/&gt;
+   &lt;/outlet&gt;
+   &lt;fileEncoding value='ISO-8859-1'/&gt;
    ...
-&lt;/component&gt;</programlisting>In the example there are two outlets
-        configured. The first one has no name and is therefore handled as the
-        default outlet. Default outlets are triggered by omitting an outlet
-        name: <programlisting>«FILE 'test/note.txt'»
+&lt;/component&gt;</programlisting>Example <emphasis>MWE2</emphasis>:
+        <programlisting>component = org.eclipse.xpand2.Generator {
+    metaModel = org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel {}
+    expand = "templates::Template::main FOREACH model"
+    outlet = {path = 'main/src-gen'} 
+    outlet = {
+        name='TO_SRC' 
+        path='main/src' 
+        overwrite= false
+        fileEncoding = 'ISO-8859-1'
+    }
+    fileEncoding = 'ISO-8859-1'
+    ...
+}
+</programlisting>In the examples there are two outlets configured. The first
+        one has no name and is therefore handled as the default outlet.
+        Default outlets are triggered by omitting an outlet name:
+        <programlisting>«FILE 'test/note.txt'»
 # this goes to the default outlet
 «ENDFILE»</programlisting>The configured base path is
         '<filename>main/src-gen</filename>', so the file from above would go
@@ -3834,6 +3903,18 @@ my::Templ::def() FOR Entity// templ def objects of type Entity</programlisting><
         <varname>false</varname>) causes the generator to append the generated
         text to an existing file. If <varname>overwrite</varname> is set to
         <varname>false</varname> this flag has no effect.</para>
+
+        <para>The encoding<indexterm>
+            <primary>File encoding</primary>
+
+            <secondary>encoding</secondary>
+          </indexterm> of the generated files can be configured at two
+        different levels. A file encoding can be defined for the complete
+        generator component. Therefore the <emphasis>fileEncoding</emphasis>
+        property inside the component definition has to be used (see the
+        examples above). You can also define a file encoding at outlet level.
+        Therefore the <emphasis>fileEncoding</emphasis> property inside the
+        outlet definition has to be used.</para>
       </section>
 
       <section id="xpand_reference_beautifier">

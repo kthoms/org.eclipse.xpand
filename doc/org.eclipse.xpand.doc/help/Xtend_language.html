@@ -557,7 +557,7 @@ Reference toReference(EReference x) :
 <code class="varname">C1</code> is already in creation and will not complete
       until the stack is reduced. Deadlock! The problem is that the cache
       caches the return value, but <code class="varname">C1</code> was not returned so
-      far, because it is still in construction. </p>
+      far, because it is still in construction.</p>
 <p>The solution: create extensions!</p>
 <p>The syntax is as follows:</p>
 <pre class="programlisting">create Package toPackage(EPackage x) :
@@ -750,7 +750,7 @@ readMyProp(MyBeanMetaClass jb) :
 <p>The extension name part of a point cut must match the fully
           qualified name of the definition of the join point. Such expressions
           are case sensitive. The asterisk character is used to specify
-          wildcards. </p>
+          wildcards.</p>
 <p>Some examples:</p>
 <pre class="programlisting">my::Extension::definition // extensions with the specified name
 org::eclipse::xpand2::* //extensions prefixed with 'org::eclipse::xpand2::'

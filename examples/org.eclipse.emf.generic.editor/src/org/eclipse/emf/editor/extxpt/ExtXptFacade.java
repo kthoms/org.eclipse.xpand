@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.editor.EEPlugin;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
-import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.internal.xtend.xtend.ast.ExtensionFile;
 import org.eclipse.xtend.check.CheckUtils;
@@ -72,9 +71,7 @@ public class ExtXptFacade {
 
 	private IProject project;
 	private final ExecutionContext context;
-	public static final String CHECK_EXT = "Checks";
-	public static final String STYLE_EXT = "ItemLabelProvider";
-	public static final String PROPOSAL_EXT = "Proposals";
+
 	private static final String XTEND_EXTENSION = "ext";
 
 	public ExtXptFacade(IProject project, ExecutionContext context) {
@@ -83,7 +80,7 @@ public class ExtXptFacade {
 	}
 
 	public Object style(String extension, EObject object) {
-		String extendFile = path(object) + ExtXptFacade.STYLE_EXT;
+		String extendFile = ExtendUtils.appropriateStyleFile(object);
 		return evaluate(extendFile, extension, object);
 	}
 
@@ -122,7 +119,7 @@ public class ExtXptFacade {
 
 	// TODO split method
 	public List<?> proposals(EStructuralFeature feature, EObject ctx, List<?> fromList) {
-		String extFile = path(ctx) + ExtXptFacade.PROPOSAL_EXT;
+		String extFile = ExtendUtils.appropriateProposalsFile(ctx);
 		List<?> retVal = new ArrayList<Object>();
 		Object eval;
 		if (fromList != null) {
@@ -144,7 +141,7 @@ public class ExtXptFacade {
 	}
 
 	public Issues check(EObject rootObject) {
-		String checkFile = path(rootObject) + ExtXptFacade.CHECK_EXT;
+		String checkFile = ExtendUtils.appropriateCheckFile(rootObject);
 		List<EObject> all = new ArrayList<EObject>();
 		all.add(rootObject);
 		EObject rootContainer = EcoreUtil.getRootContainer(rootObject);
@@ -172,10 +169,6 @@ public class ExtXptFacade {
 			EEPlugin.logWarning("Enable Xtend/Xpand-Nature for '" + project.getName() + "' to check models.");
 		}
 		return issuesImpl;
-	}
-
-	private String path(EObject object) {
-		return object.eClass().getEPackage().getName() + SyntaxConstants.NS_DELIM;
 	}
 
 	public IProject getProject() {

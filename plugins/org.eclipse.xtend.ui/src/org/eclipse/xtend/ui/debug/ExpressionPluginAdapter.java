@@ -32,6 +32,7 @@ import org.eclipse.emf.mwe.ui.workflow.util.PluginConfigurationElementUtil;
 import org.eclipse.internal.xtend.expression.ast.BooleanOperation;
 import org.eclipse.internal.xtend.expression.ast.Cast;
 import org.eclipse.internal.xtend.expression.ast.ChainExpression;
+import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.ISyntaxElement;
 import org.eclipse.internal.xtend.expression.ast.IfExpression;
@@ -121,8 +122,7 @@ public class ExpressionPluginAdapter implements PluginAdapter {
 			MWEBreakpoint bp = (MWEBreakpoint) bp1;
 			if (bp.getResource().equals(resource.getFullPath().toString()) 
 					&& bp.getLine() == element.getLine()
-					&& bp.getCharStart() == pres.getStart(element) 
-					&& bp.getCharEnd() == pres.getStartingEndPosition(element))
+					)
 				return bp;
 		}
 		return null;
@@ -280,9 +280,7 @@ public class ExpressionPluginAdapter implements PluginAdapter {
 
 	protected boolean isValidReturnElement(ISyntaxElement se) {
 
-		return (se instanceof OperationCall &&
-		// dirty fix for not creating breakpoints for + - * and so on
-		((OperationCall) se).getName().getValue().length() > 2);
+		return (se instanceof Expression);
 	}
 
 	// -------------------------------------------------------------------------

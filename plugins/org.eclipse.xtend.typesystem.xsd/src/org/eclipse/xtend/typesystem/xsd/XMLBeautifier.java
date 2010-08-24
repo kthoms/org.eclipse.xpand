@@ -15,6 +15,7 @@ package org.eclipse.xtend.typesystem.xsd;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,8 +77,20 @@ public class XMLBeautifier implements PostProcessor {
 		if (!isXML)
 			return;
 
-		ByteArrayInputStream is = new ByteArrayInputStream(impl.getBuffer()
-				.toString().trim().getBytes());
+		ByteArrayInputStream is = null;
+		final String buffer = impl.getBuffer().toString().trim();
+		final String encoding = impl.getFileEncoding();
+		if (encoding == null) {
+			is = new ByteArrayInputStream(buffer.getBytes());
+		} else {
+			try {
+				is = new ByteArrayInputStream(buffer.getBytes(encoding));
+			} catch (final UnsupportedEncodingException e) {
+				log.error(Msg.create("Postprocessing failed for '").uri(u)
+						.txt("'. (Internal Error: ").txt(e.getMessage()).txt(")"));
+				throw new RuntimeException(e);
+			}
+		}
 
 		ResourceSet rs = new ResourceSetImpl();
 		if (uriConverter != null)
@@ -93,8 +106,14 @@ public class XMLBeautifier implements PostProcessor {
 
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
 			r.save(os, saveOptions);
-			impl.setBuffer(os.toString());
-		} catch (IOException e) {
+			if (encoding == null) {
+				impl.setBuffer(os.toString());
+			} else {
+				impl.setBuffer(os.toString(encoding));
+			}
+		} catch (final IOException e) {
+			log.error(Msg.create("Postprocessing failed for '").uri(u)
+					.txt("'. (Internal Error: ").txt(e.getMessage()).txt(")"));
 			throw new RuntimeException(e);
 		}
 	}

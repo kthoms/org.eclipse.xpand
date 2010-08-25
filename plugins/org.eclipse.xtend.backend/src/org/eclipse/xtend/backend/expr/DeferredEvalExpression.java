@@ -25,6 +25,10 @@ public class DeferredEvalExpression extends ExpressionBase {
 		_inner = inner;
 	}
 
+	public ExpressionBase getInnerExpr() {
+		return _inner;
+	}
+
 	@Override
 	protected Object evaluateInternal(ExecutionContext ctx) {
 		_result = new FutureResultHolder();

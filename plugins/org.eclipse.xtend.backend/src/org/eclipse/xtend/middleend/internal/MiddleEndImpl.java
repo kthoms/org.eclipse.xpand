@@ -10,9 +10,7 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.internal;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +30,7 @@ import org.eclipse.xtend.backend.functions.internal.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.syslib.SyslibContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor;
+import org.eclipse.xtend.middleend.plugins.FunctionDefContextProvider;
 import org.eclipse.xtend.middleend.plugins.ImportedResource;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.middleend.plugins.ParsedResource;
@@ -55,6 +54,7 @@ public final class MiddleEndImpl implements MiddleEnd {
     private final Map<String, FunctionDefContext> _fdcs = new HashMap<String, FunctionDefContext> ();
     
     private final List<LanguageSpecificMiddleEnd> _languageHandlers;
+    private final List<FunctionDefContextProvider> _fdcProviders = new ArrayList<FunctionDefContextProvider>();
     private final ExecutionContext _ctx;
     private final BackendTypesystem _ts;
     
@@ -121,6 +121,13 @@ public final class MiddleEndImpl implements MiddleEnd {
     private FunctionDefContext getFdc (String resourceName) {
         if (_fdcs.containsKey (resourceName))
             return _fdcs.get (resourceName);
+        
+        for (FunctionDefContextProvider fdcProv : _fdcProviders) {
+			if (fdcProv.canHandle(resourceName)) {
+				_fdcs.put(resourceName, fdcProv.getFdc(resourceName));
+				return _fdcs.get(resourceName);
+			}
+		}
         
         final FunctionDefContextInternal result = createEmptyFdc();
         _fdcs.put (resourceName, result);

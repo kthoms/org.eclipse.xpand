@@ -41,7 +41,19 @@ public final class InvocationOnCollectionExpression extends ExpressionBase {
         _params = params;
     }
 
-    @Override
+    public ExpressionBase getCollection() {
+		return _coll;
+	}
+
+	public QualifiedName getFunctionName() {
+		return _functionName;
+	}
+
+	public List<ExpressionBase> getParams() {
+		return _params;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final Collection<?> coll = (Collection<?>) _coll.evaluate(ctx);
         boolean firstParamIsThis = false;

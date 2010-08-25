@@ -221,6 +221,16 @@ public final class FunctionDefContextImpl implements FunctionDefContextInternal 
     public Collection<NamedFunction> getPublicFunctions () {
         return _publicFunctions.getFunctions();
     }
+
+	public Collection<NamedFunction> getAllFunctions() {
+		// TODO Auto-generated method stub
+		Collection<DuplicateAwareNamedFunctionCollection> values = _functions.getMap().values();
+		Collection<NamedFunction> functions = new ArrayList<NamedFunction> ();
+		for (DuplicateAwareNamedFunctionCollection v : values) {
+			functions.addAll(v.getFunctions());
+		}
+		return functions;
+	}
 }
 
 

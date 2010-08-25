@@ -47,4 +47,6 @@ public interface FunctionDefContext {
     boolean hasMatch (ExecutionContext ctx, QualifiedName functionName, List<? extends Object> params);
     
     Collection<NamedFunction> getPublicFunctions ();
+
+    Collection<NamedFunction> getAllFunctions ();
 }

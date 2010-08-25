@@ -39,7 +39,19 @@ public final class InitClosureExpression extends ExpressionBase {
         _def = def;
     }
 
-    @Override
+    public List<String> getParamNames() {
+		return _paramNames;
+	}
+
+	public List<? extends BackendType> getParamTypes() {
+		return _paramTypes;
+	}
+
+	public ExpressionBase getDefExpression() {
+		return _def;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         return new Closure (ctx.getLocalVarContext(), ctx.getFunctionDefContext(), _paramNames, _paramTypes, _def);
     }

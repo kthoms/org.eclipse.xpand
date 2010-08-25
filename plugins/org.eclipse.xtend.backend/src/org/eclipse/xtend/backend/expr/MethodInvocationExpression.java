@@ -67,6 +67,18 @@ public class MethodInvocationExpression extends ExpressionBase {
 
 	}
 
+	public Method getMethod() {
+		return _mtd;
+	}
+
+	public List<? extends ExpressionBase> getParams() {
+		return _params;
+	}
+
+	public boolean isNullIfFirstParamIsNull() {
+		return _nullIfFirstParamIsNull;
+	}
+
 	@Override
 	protected Object evaluateInternal(ExecutionContext ctx) {
 		final List<Object> params = new ArrayList<Object>();

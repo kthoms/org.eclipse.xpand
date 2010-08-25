@@ -30,7 +30,15 @@ public final class OrExpression extends ExpressionBase {
         _right = right;
     }
 
-    @Override
+    public ExpressionBase getLeft() {
+		return _left;
+	}
+
+	public ExpressionBase getRight() {
+		return _right;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final Object left = _left.evaluate(ctx);
         if (left == null) {

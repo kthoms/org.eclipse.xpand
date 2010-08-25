@@ -33,7 +33,11 @@ public final class ConcatExpression extends ExpressionBase {
         _parts = parts;
     }
 
-    @Override
+    public List<? extends ExpressionBase> getParts() {
+		return _parts;
+	}
+
+	@Override
     protected Object evaluateInternal (ExecutionContext ctx) {
         EfficientLazyString result = new EfficientLazyString ();
 

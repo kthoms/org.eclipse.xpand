@@ -56,7 +56,19 @@ final class CurriedFunction implements Function {
         return _paramTypes;
     }
 
-    public Object invoke (ExecutionContext ctx, Object[] params) {
+    public Function getInnerFunction() {
+		return _inner;
+	}
+
+	public boolean[] getIsBound() {
+		return _isBound;
+	}
+
+	public Object[] getBoundValue() {
+		return _boundValue;
+	}
+
+	public Object invoke (ExecutionContext ctx, Object[] params) {
         final List<Object> realParams = new ArrayList<Object>();
 
         int j = 0;

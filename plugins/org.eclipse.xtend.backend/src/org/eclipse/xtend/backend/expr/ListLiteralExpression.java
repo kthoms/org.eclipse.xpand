@@ -30,7 +30,11 @@ public final class ListLiteralExpression extends ExpressionBase {
         _inner = inner;
     }
 
-    @Override
+    public List<ExpressionBase> getInnerExpression() {
+		return _inner;
+	}
+
+	@Override
     protected Object evaluateInternal (ExecutionContext ctx) {
         final List<Object> result = new ArrayList<Object>();
         

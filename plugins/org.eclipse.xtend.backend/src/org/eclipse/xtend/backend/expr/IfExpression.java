@@ -30,7 +30,19 @@ public final class IfExpression extends ExpressionBase {
         _else = elseResult;
     }
 
-    @Override
+    public ExpressionBase getCondition() {
+		return _cond;
+	}
+
+	public ExpressionBase getIfPart() {
+		return _if;
+	}
+
+	public ExpressionBase getElsePart() {
+		return _else;
+	}
+
+	@Override
     protected Object evaluateInternal (ExecutionContext ctx) {
         final Object cond = _cond.evaluate(ctx);
         

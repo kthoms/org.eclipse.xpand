@@ -40,7 +40,15 @@ public final class PropertyOnWhateverExpression extends ExpressionBase {
         _propertyName = propertyName;
     }
 
-    @Override
+    public ExpressionBase getInnerExpression() {
+		return _inner;
+	}
+
+	public String getPropertyName() {
+		return _propertyName;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final Object o = _inner.evaluate(ctx);
         if (o == null) {

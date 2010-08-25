@@ -46,7 +46,11 @@ public final class AroundAdvice {
         _isCacheable = isCacheable;
     }
 
-    /**
+    public ExpressionBase getBody() {
+		return _body;
+	}
+
+	/**
      * actually evaluates the advice, regardless of caching - that is context sensitive and must
      *  be taken care of by callers
      */

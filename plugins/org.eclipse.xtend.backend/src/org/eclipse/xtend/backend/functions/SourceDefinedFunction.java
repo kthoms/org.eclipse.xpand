@@ -38,7 +38,7 @@ public final class SourceDefinedFunction extends AbstractFunction {
         _def = def;
     }
 
-    public Object invoke (ExecutionContext ctx, Object[] params) {
+	public Object invoke (ExecutionContext ctx, Object[] params) {
         final LocalVarContext lvc = new LocalVarContext ();
         for (int i=0; i<_paramNames.size(); i++) {
             lvc.getLocalVars().put(_paramNames.get(i), params[i]);
@@ -68,6 +68,10 @@ public final class SourceDefinedFunction extends AbstractFunction {
     public List<String> getParamNames() {
     	return _paramNames;
     }
+
+    public ExpressionBase getDefExpression() {
+		return _def;
+	}
     
     @Override
     public String toString () {

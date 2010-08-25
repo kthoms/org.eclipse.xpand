@@ -33,7 +33,15 @@ public final class PropertyOnCollectionExpression extends ExpressionBase {
         _propertyName = propertyName;
     }
 
-    @Override
+    public ExpressionBase getInnerExpression() {
+		return _inner;
+	}
+
+	public String getPropertyName() {
+		return _propertyName;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final Collection<?> coll = (Collection<?>) _inner.evaluate(ctx);
         if (coll == null) {

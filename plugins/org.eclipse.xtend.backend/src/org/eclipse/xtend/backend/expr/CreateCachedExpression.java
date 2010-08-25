@@ -34,7 +34,15 @@ public final class CreateCachedExpression extends ExpressionBase {
         _paramExpr = paramExpr;
     }
 
-    @Override
+    public BackendType getType() {
+		return _t;
+	}
+
+	public List<ExpressionBase> getParamExpr() {
+		return _paramExpr;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final List<Object> params = new ArrayList<Object>();
         

@@ -28,7 +28,11 @@ public final class CreateUncachedExpression extends ExpressionBase {
         _t = t;
     }
 
-    @Override
+    public BackendType getType() {
+		return _t;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         return _t.create();
     }

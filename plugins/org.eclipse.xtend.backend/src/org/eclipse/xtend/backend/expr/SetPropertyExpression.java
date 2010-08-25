@@ -34,7 +34,19 @@ public final class SetPropertyExpression extends ExpressionBase {
         _valueExpr = valueExpr;
     }
 
-    @Override
+    public ExpressionBase getInnerExpression() {
+		return _inner;
+	}
+
+	public String getPropertyName() {
+		return _propertyName;
+	}
+
+	public ExpressionBase getValueExpr() {
+		return _valueExpr;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final Object o = _inner.evaluate(ctx);
         if (o == null) {

@@ -38,7 +38,15 @@ public final class CurryingExpression extends ExpressionBase{
         _boundParams = boundParams;
     }
 
-    @Override
+    public Function getFunction() {
+		return _function;
+	}
+
+	public List<ExpressionBase> getBoundParams() {
+		return _boundParams;
+	}
+
+	@Override
     protected Object evaluateInternal (ExecutionContext ctx) {
         return new CurriedFunction (_function, _boundParams, ctx);
     }

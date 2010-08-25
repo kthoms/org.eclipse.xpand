@@ -35,7 +35,19 @@ public final class HidingLocalVarDefExpression extends ExpressionBase {
         _inner = inner;
     }
     
-    @Override
+    public String getLocalVarName() {
+		return _localVarName;
+	}
+
+	public ExpressionBase getDefExpression() {
+		return _defExpression;
+	}
+
+	public ExpressionBase getInnerExpression() {
+		return _inner;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final Object oldValue = ctx.getLocalVarContext().getLocalVars().get(_localVarName);
         ctx.getLocalVarContext().getLocalVars().put (_localVarName, _defExpression.evaluate(ctx));

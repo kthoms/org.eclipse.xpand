@@ -35,7 +35,15 @@ public final class RegisterAdviceExpression extends ExpressionBase {
         _inner = inner;
     }
 
-    @Override
+    public AroundAdvice getAdvice() {
+		return _advice;
+	}
+
+	public ExpressionBase getInnerExpression() {
+		return _inner;
+	}
+
+	@Override
     protected Object evaluateInternal (ExecutionContext ctx) {
         final AdviceContext oldContext = ctx.getAdviceContext();
         

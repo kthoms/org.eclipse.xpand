@@ -50,7 +50,19 @@ public final class InvocationOnWhateverExpression extends ExpressionBase {
         _nullIfFirstParamIsNull = nullIfFirstParamIsNull;
     }
     
-    @Override
+    public QualifiedName getFunctionName() {
+		return _functionName;
+	}
+
+	public List<? extends ExpressionBase> getParams() {
+		return _params;
+	}
+
+	public boolean isNullIfFirstParamIsNull() {
+		return _nullIfFirstParamIsNull;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         final List<Object> params = new ArrayList<Object> ();
         boolean firstParamIsThis = false;

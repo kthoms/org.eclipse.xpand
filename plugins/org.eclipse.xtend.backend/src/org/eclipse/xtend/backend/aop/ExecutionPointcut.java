@@ -107,6 +107,18 @@ public final class ExecutionPointcut implements Pointcut {
 	public List<Pair<String, AdviceParamType>> getParamTypes() {
 		return _paramTypes;
 	}
+
+	public String getFunctionNamePattern() {
+		return _functionNamePattern;
+	}
+
+	public boolean isHasVarArgs() {
+		return _hasVarArgs;
+	}
+
+	public AdviceParamType getVarArgsType() {
+		return _varArgsType;
+	}
 }
 
 

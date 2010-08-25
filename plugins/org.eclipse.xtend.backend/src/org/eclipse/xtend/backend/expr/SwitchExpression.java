@@ -39,7 +39,19 @@ public final class SwitchExpression extends ExpressionBase {
         _defaultExpr = defaultExpr;
     }
 
-    @Override
+    public ExpressionBase getSwitchExpr() {
+		return _switchExpr;
+	}
+
+	public List<Pair<ExpressionBase, ExpressionBase>> getCases() {
+		return _cases;
+	}
+
+	public ExpressionBase getDefaultExpr() {
+		return _defaultExpr;
+	}
+
+	@Override
     protected Object evaluateInternal (ExecutionContext ctx) {
         final Object switchVal = _switchExpr.evaluate (ctx);
         

@@ -29,7 +29,11 @@ public final class SequenceExpression extends ExpressionBase {
         _inner = inner;
     }
     
-    @Override
+    public List<? extends ExpressionBase> getInner() {
+		return _inner;
+	}
+
+	@Override
     protected Object evaluateInternal(ExecutionContext ctx) {
         Object result = null;
         

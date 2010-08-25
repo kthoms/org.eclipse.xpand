@@ -39,7 +39,11 @@ public abstract class ExpressionBase {
         _listeners.add (l);
     }
     
-    private void firePreEvent (ExecutionContext ctx) throws EvaluationVetoException {
+    public List<ExecutionListener> getListeners() {
+		return _listeners;
+	}
+
+	private void firePreEvent (ExecutionContext ctx) throws EvaluationVetoException {
         for (ExecutionListener l: ctx.getGlobalExecutionListeners())
             l.preExecute (ctx, this);
         

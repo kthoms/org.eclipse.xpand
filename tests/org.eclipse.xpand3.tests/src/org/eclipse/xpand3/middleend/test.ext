@@ -1,3 +1,0 @@
-foo(Object this, Object that):
-	this.toString()==that.toString(); 
-	

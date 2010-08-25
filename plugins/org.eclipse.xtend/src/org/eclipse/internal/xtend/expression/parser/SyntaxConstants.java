@@ -38,9 +38,4 @@ public interface SyntaxConstants {
 	public static final String DEFAULT_ELE_NAME = "element";
 
 	public static final String TYPE_SELECT = "typeSelect";
-
-	public static final String[] ALLKEYWORDS = new String[] { COLLECT, SELECT, 
-		SELECTFIRST, REJECT, EXISTS, NOT_EXISTS, FOR_ALL, SORT_BY, DEFAULT_ELE_NAME,
-		TYPE_SELECT
-	};
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+	<rm:property key="source.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling" />
+	<rm:locator pattern="^org\.eclipse\.xpand\.releng(?:\..+)?$" searchPathRef="releng" />
+	<rm:locator pattern="^org\.eclipse\.(?:xtend|xpand)(?:\..*)?$" searchPathRef="xpand" />
+	<rm:locator pattern="^org\.eclipse\.(?:m2t\.)common(?:\..*)?$" searchPathRef="xpand" />
+	<rm:locator pattern="^org\.eclipse\.emf\.generic\.editor$" searchPathRef="xpand" />
+
+	<rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipse.test" />
+	<rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="eclipse.test" />
+
+
+	<rm:searchPath name="xpand">
+		<rm:provider componentTypes="osgi.bundle" readerType="git" mutable="false">
+			<rm:uri format="{0}/org.eclipse.xpand.git,plugins/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/m2t/org.eclipse.xpand.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+		<rm:provider componentTypes="eclipse.feature" readerType="git" mutable="false">
+			<rm:uri format="{0}/org.eclipse.xpand.git,features/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/m2t/org.eclipse.xpand.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="git" mutable="false">
+			<rm:uri format="{0}/org.eclipse.xpand.git,doc/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/m2t/org.eclipse.xpand.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+		<rm:provider componentTypes="eclipse.feature" readerType="git" mutable="false">
+			<rm:uri format="{0}/org.eclipse.xpand.git,doc/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/m2t/org.eclipse.xpand.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="git" mutable="false">
+			<rm:uri format="{0}/org.eclipse.xpand.git,examples/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/m2t/org.eclipse.xpand.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+		<rm:provider componentTypes="eclipse.feature" readerType="git" mutable="false">
+			<rm:uri format="{0}/org.eclipse.xpand.git,examples/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/m2t/org.eclipse.xpand.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="git" mutable="false">
+			<rm:uri format="{0}/org.eclipse.xpand.git,tests/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/m2t/org.eclipse.xpand.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="eclipse.test">
+		<rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false">
+			<rm:uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false">
+			<rm:uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,{0}-feature">
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+	</rm:searchPath>
+</rm:rmap>

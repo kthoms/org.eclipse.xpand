@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.cvs.core.cvsnature">
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.emf.generic.editor,org.eclipse.emf.generic.editor"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.emf/org.eclipse.emf.mwe.releng,org.eclipse.emf.mwe.releng"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand,org.eclipse.xpand"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand-feature,org.eclipse.xpand-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand.activities,org.eclipse.xpand.activities"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/doc/org.eclipse.xpand.doc,org.eclipse.xpand.doc"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/doc/org.eclipse.xpand.doc-feature,org.eclipse.xpand.doc-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples,org.eclipse.xpand.examples"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples-feature,org.eclipse.xpand.examples-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples.xsd.m2m.ecore2xsd,org.eclipse.xpand.examples.xsd.m2m.ecore2xsd"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples.xsd.m2m.news2xhtml,org.eclipse.xpand.examples.xsd.m2m.news2xhtml"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples.xsd.m2m.xml2svg,org.eclipse.xpand.examples.xsd.m2m.xml2svg"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples.xsd.m2t.genmodel,org.eclipse.xpand.examples.xsd.m2t.genmodel"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples.xsd.m2t.minimal,org.eclipse.xpand.examples.xsd.m2t.minimal"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples.xsd.m2t.xml2javawizard,org.eclipse.xpand.examples.xsd.m2t.xml2javawizard"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/examples/org.eclipse.xpand.examples.support.cdt,org.eclipse.xpand.examples.support.cdt"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand.incremental,org.eclipse.xpand.incremental"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xpand.incremental.tests,org.eclipse.xpand.incremental.tests"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand.releng,org.eclipse.xpand.releng"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.sdk-feature,org.eclipse.xpand.sdk-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xpand.tests,org.eclipse.xpand.tests"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.tests-feature,org.eclipse.xpand.tests-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand.ui,org.eclipse.xpand.ui"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.ui-feature,org.eclipse.xpand.ui-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend,org.eclipse.xtend"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.profiler,org.eclipse.xtend.profiler"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.profiler.tests,org.eclipse.xtend.profiler.tests"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend-feature,org.eclipse.xtend-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.backend,org.eclipse.xtend.backend"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.backend-feature,org.eclipse.xtend.backend-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.backend.sdk-feature,org.eclipse.xtend.backend.sdk-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.backend.test,org.eclipse.xtend.backend.test"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.backend.uml2types,org.eclipse.xtend.backend.uml2types"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.backend.uml2types-feature,org.eclipse.xtend.backend.uml2types-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.backend.xsdtypes,org.eclipse.xtend.backend.xsdtypes"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.backend.xsdtypes-feature,org.eclipse.xtend.backend.xsdtypes-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.check.ui,org.eclipse.xtend.check.ui"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.dependencies-feature,org.eclipse.xtend.dependencies-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.middleend.xpand,org.eclipse.xtend.middleend.xpand"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.middleend.xpand-feature,org.eclipse.xtend.middleend.xpand-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.middleend.xpand.test,org.eclipse.xtend.middleend.xpand.test"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.middleend.xtend,org.eclipse.xtend.middleend.xtend"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.middleend.xtend-feature,org.eclipse.xtend.middleend.xtend-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.middleend.xtend.test,org.eclipse.xtend.middleend.xtend.test"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.shared.ui,org.eclipse.xtend.shared.ui"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.shared.ui.test,org.eclipse.xtend.shared.ui.test"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.tests,org.eclipse.xtend.tests"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.emf,org.eclipse.xtend.typesystem.emf"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.typesystem.emf-feature,org.eclipse.xtend.typesystem.emf-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.typesystem.emf.tests,org.eclipse.xtend.typesystem.emf.tests"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.emf.ui,org.eclipse.xtend.typesystem.emf.ui"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.uml2,org.eclipse.xtend.typesystem.uml2"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.typesystem.uml2-feature,org.eclipse.xtend.typesystem.uml2-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.uml2.ui,org.eclipse.xtend.typesystem.uml2.ui"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.xsd,org.eclipse.xtend.typesystem.xsd"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.typesystem.xsd-feature,org.eclipse.xtend.typesystem.xsd-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/tests/org.eclipse.xtend.typesystem.xsd.tests,org.eclipse.xtend.typesystem.xsd.tests"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.typesystem.xsd.ui,org.eclipse.xtend.typesystem.xsd.ui"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.ui,org.eclipse.xtend.ui"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xtend.ui-feature,org.eclipse.xtend.ui-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xtend.util.stdlib,org.eclipse.xtend.util.stdlib"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/plugins/org.eclipse.xpand.support.cdt,org.eclipse.xpand.support.cdt"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.all-feature,org.eclipse.xpand.all-feature"/>
+<project reference="1.0,:extssh:proxy.eclipse.org:443:/cvsroot/modeling,org.eclipse.m2t/org.eclipse.xpand/features/org.eclipse.xpand.support-feature,org.eclipse.xpand.support-feature"/>
+</provider>
+
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1250847301352_11" label="xpand plugins" name="xpand plugins">
+<item elementID="=org.eclipse.xtend.shared.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.incremental.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.incremental" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.uml2.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.xsd" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.backend.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.backend.uml2types-feature" type="4"/>
+<item elementID="=org.eclipse.xtend" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.uml2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.xsd.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.middleend.xtend.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.check.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.activities" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.emf.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.emf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.xsd.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.backend.uml2types" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.backend" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.util.stdlib" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.middleend.xpand.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.shared.ui.test" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.typesystem.emf.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.middleend.xpand" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.profiler" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xtend.profiler.tests" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.support.cdt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1250847333703_12" label="xpand features" name="xpand features">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand.all-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand.support-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.dependencies-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.typesystem.uml2-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.typesystem.emf-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand.doc-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.backend-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.typesystem.xsd-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand.sdk-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.middleend.xtend-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand.ui-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand.examples-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xpand.tests-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.ui-feature" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.xtend.middleend.xpand-feature" type="4"/>
+</workingSets>
+
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1250847378294_14" label="xpand samples" name="xpand samples">
+<item elementID="=org.eclipse.xpand.examples" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.examples.xsd.m2t.xml2javawizard" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.examples.xsd.m2t.genmodel" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.examples.xsd.m2m.ecore2xsd" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.examples.xsd.m2t.minimal" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.generic.editor" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.examples.xsd.m2m.news2xhtml" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.examples.xsd.m2m.xml2svg" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.examples.support.cdt" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1250847389703_15" label="xpand build and documentation" name="xpand build and documentation">
+<item elementID="=org.eclipse.xpand.doc" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.xpand.releng" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.eclipse.emf.mwe.releng" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>

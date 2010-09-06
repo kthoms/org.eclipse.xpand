@@ -1,0 +1,44 @@
+«IMPORT org::eclipse::xtend::backend::common»
+«IMPORT org::eclipse::xtend::backend::expr»
+«IMPORT org::eclipse::xtend::backend::functions»
+«IMPORT org::eclipse::xtend::backend::compiler»
+«IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
+
+«DEFINE compileExpression FOR ExpressionBase»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR AndExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR ConcatExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR CreateCachedExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR CreateUncachedExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR CurriedFunction»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR CurryingExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR DeferredEvalExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR HidingLocalVarDefExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR InitClosureExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR InvocationOnCollectionExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR InvocationOnObjectExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression FOR InvocationOnWhateverExpression»
+«ENDDEFINE»

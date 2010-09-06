@@ -105,6 +105,10 @@ public final class JavaDefinedFunction extends AbstractFunction {
     	return _mtd.getName();
     }
     
+    public Method getMethod () {
+    	return _mtd;
+    }
+    
     public Object invoke (ExecutionContext ctx, Object[] params) {
         for (ParameterConverter pc: _parameterConverters)
             pc.convert(params);

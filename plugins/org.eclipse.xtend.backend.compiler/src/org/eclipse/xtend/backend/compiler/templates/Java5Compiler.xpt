@@ -1,0 +1,121 @@
+«IMPORT org::eclipse::xtend::backend::common»
+«IMPORT org::eclipse::xtend::backend::expr»
+«IMPORT org::eclipse::xtend::backend::functions»
+«IMPORT org::eclipse::xtend::backend::compiler»
+«IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
+
+«DEFINE compile(String namespace, String providerName) FOR FdcHolder»
+	«FILE providerName + ".java"»
+		package «namespace»;
+
+		import org.eclipse.xtend.backend.BackendFacade;
+		import org.eclipse.xtend.backend.common.BackendType;
+		import org.eclipse.xtend.backend.common.BackendTypesystem;
+		import org.eclipse.xtend.backend.common.ExecutionContext;
+		import org.eclipse.xtend.backend.common.FunctionDefContext;
+		import org.eclipse.xtend.backend.common.QualifiedName;
+		import org.eclipse.xtend.backend.types.CompositeTypesystem;
+		import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
+		import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
+		import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
+		
+		import java.util.List;
+		import java.util.ArrayList;
+		
+		import «namespace»;
+		
+		public class «providerName» implements FunctionDefContextProvider  {
+			private MiddleEnd _middleEnd;
+			
+			private Map<String, FunctionDefContext> _fdcs;
+			
+			public Java5FunctionDefContextBuilder () {
+				_fdcs.put ("resourceName", SomeResouceNameShrinkedFQN.buildFdc ());
+			}
+		
+			public void setMiddleEnd (MiddleEnd middleEnd) {
+				_middleEnd = middleEnd;
+			}
+		
+			public String getName () {
+				return null;
+			}
+		
+			public boolean canHandle (String resourceName) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		
+			public FunctionDefContext getFdc (String resourceName) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			public static FunctionDefContext createFdc (BackendTypesystem ts, String resource) {
+				FunctionDefContextInternal fdc = (FunctionDefContextInternal) MiddleEndFactory.create (ts, null).createEmptyFdc ();
+				fdc.register (SomeResouceNameShrinkedFQN.buildMyNamedFunction (), true);
+				return fdc;
+			}
+			
+			static class SomeResouceNameShrinkedFQN {
+				public static FunctionDefContext buildFdc () {
+					FunctionDefContextInternal fdc = MiddleEndFactory.create (new CompositeTypesystem (), null).createEmptyFdc ();
+					fdc.register (buildMyNamedFunction (), true);
+					return fdc;
+				}
+				
+				private static NamedFunction buildMyNamedFunction () {
+					ExpressionBase def = new LiteralExpression ("value", new SourcePos("resource", "callableName", 5));
+					List<BackendType> paramTypes = new ArrayList<BackendType>();
+					NamedFunction f = new NamedFunction (new QualifiedName ("",""), new SourceDefinedFunction ( new QualifiedName("ns", "name"), Arrays.asList ("",""), paramTypes, StringType.INSTANCE, def, false, def));
+					//TODO add the ExecutionListeners?
+					return f;
+				}
+			}
+		}					
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE compile(String resource) FOR FunctionDefContext»
+	«FILE resource.replaceAll("::","/") + "FdcBuilder.java"»
+	package «resource»
+	public class SomeResouceNameShrinkedFQN {
+		public static FunctionDefContext buildFdc () {
+			FunctionDefContextInternal fdc = MiddleEndFactory.create (new CompositeTypesystem (), null).createEmptyFdc ();
+		«FOREACH allFunctions AS f»
+			fdc.register (build«f.name.simpleName.toFirstUpper()» (), true);
+		«ENDFOREACH»
+			return fdc;
+		}
+				
+	}
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE compile(String resource) FOR NamedFunction»
+		private static NamedFunction build«name.simpleName.toFirstUpper()» (BackendTypesystem ts) {
+			ExpressionBase def = new LiteralExpression ("value", new SourcePos("«resource»", "callableName", 5));
+			List<BackendType> paramTypes = new ArrayList<BackendType>();
+			«FOREACH function.parameterTypes AS t»
+			paramTypes.add(ts.findType («((BackendType)t).uniqueRepresentation»);
+			«ENDFOREACH»
+			«EXPAND compileFunction(resource, this) FOR function»
+			NamedFunction f = new NamedFunction (new QualifiedName ("",""), new SourceDefinedFunction ( new QualifiedName("«name.nameSpace»", "«name.simpleName»"), Arrays.asList ("",""), paramTypes, «function.returnType», def, false, def));
+			//TODO add the ExecutionListeners?
+			return f;
+		}
+«ENDDEFINE»
+
+«DEFINE compileFunction(String resource, NamedFunction f) FOR Function»
+«ENDDEFINE»
+
+«DEFINE compileFunction(String resource, NamedFunction f) FOR SourceDefinedFunction»
+			NamedFunction f = new NamedFunction (new QualifiedName ("",""), new SourceDefinedFunction ( new QualifiedName("«f.name.nameSpace»", "«f.name.simpleName»"), Arrays.asList («paramNames.toString(", ")»), paramTypes, «returnType», def, false, def));
+«ENDDEFINE»
+
+«DEFINE compileFunction(String resource, NamedFunction f) FOR JavaDefinedFunction»
+	        final Class<?> cls = «method.declaringClass.name0».class;
+	        Method mtd = cls.getMethod(«method.parameterTypes.name.toString(", ")»);
+			NamedFunction f = new NamedFunction (new QualifiedName («f.name.nameSpace»,"«f.name.simpleName»"), new JavaDefinedFunction (mtd, paramTypes, «returnType», null));
+«ENDDEFINE»
+

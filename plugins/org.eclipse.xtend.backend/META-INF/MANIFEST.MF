@@ -22,6 +22,7 @@ Export-Package: org.eclipse.xtend.backend;uses:="org.eclipse.xtend.backend.commo
  org.eclipse.xtend.middleend,
  org.eclipse.xtend.middleend.internal;x-internal:=true,
  org.eclipse.xtend.middleend.javaannotations,
+ org.eclipse.xtend.middleend.javaannotations.internal,
  org.eclipse.xtend.middleend.plugins
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.osgi,

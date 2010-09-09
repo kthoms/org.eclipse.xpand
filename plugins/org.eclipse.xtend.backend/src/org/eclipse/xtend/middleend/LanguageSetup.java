@@ -27,6 +27,10 @@ public class LanguageSetup extends AbstractWorkflowComponent {
 		_middleEndFactories.add(contributorClassName);
 	}
 	
+	public void addCompiledFunctionContributor (String contributorClassName) {
+		_middleEndFactories.add(contributorClassName);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,

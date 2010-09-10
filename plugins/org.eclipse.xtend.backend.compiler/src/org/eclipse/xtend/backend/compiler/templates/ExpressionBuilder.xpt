@@ -4,41 +4,81 @@
 «IMPORT org::eclipse::xtend::backend::compiler»
 «IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
 
-«DEFINE compileExpression FOR ExpressionBase»
+«EXTENSION org::eclipse::xtend::backend::compiler::templates::expressions»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR ExpressionBase»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR AndExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR AndExpression»
+		ExpressionBase «resultVarName» = new AndExpression(«paramNames.get(0)», «paramNames.get(1)», «pos.buildSourcePos()»;
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR ConcatExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR ConcatExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR CreateCachedExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR CreateCachedExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR CreateUncachedExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR CreateUncachedExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR CurriedFunction»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR CurriedFunction»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR CurryingExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR CurryingExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR DeferredEvalExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR DeferredEvalExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR HidingLocalVarDefExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR HidingLocalVarDefExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR InitClosureExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR InitClosureExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR InvocationOnCollectionExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR InvocationOnCollectionExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR InvocationOnObjectExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR InvocationOnObjectExpression»
 «ENDDEFINE»
 
-«DEFINE compileExpression FOR InvocationOnWhateverExpression»
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR InvocationOnWhateverExpression»
 «ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR ListLiteralExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR LocalVarEvalExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR MethodInvocationExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR NewLocalVarDefExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR OrExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR PropertyOnCollectionExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR PropertyOnObjectExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR PropertyOnWhateverExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR RegisterAdviceExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR SequenceExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR SetPropertyExpression»
+«ENDDEFINE»
+
+«DEFINE compileExpression(String resultVarName, List[String] paramNames) FOR SwitchExpression»
+«ENDDEFINE»
+

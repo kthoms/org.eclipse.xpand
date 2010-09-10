@@ -1,0 +1,8 @@
+import org::eclipse::xtend::backend::common;
+import org::eclipse::xtend::backend::expr;
+import org::eclipse::xtend::backend::functions;
+import org::eclipse::xtend::backend::compiler;
+import org::eclipse::xtend::middleend::javaannotations::internal;
+
+String buildSourcePos (SourcePos pos) : 
+	"new SourcePos (\"" + pos.compilationUnit + "\", \"" + pos.callableName + "\", " + pos.lineNumber + ")"; 

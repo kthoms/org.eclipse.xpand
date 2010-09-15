@@ -81,4 +81,13 @@
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
+
+	<rm:searchPath name="releng">
+		<rm:provider componentTypes="buckminster" readerType="local" mutable="false">
+			<rm:uri format="{0}/releng/{1}">
+				<bc:propertyRef key="checkout.location" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+	</rm:searchPath>
 </rm:rmap>

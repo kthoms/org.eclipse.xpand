@@ -14,12 +14,12 @@ import java.util.HashMap;
 
 import junit.framework.TestCase;
 
-import org.eclipse.emf.mwe.core.WorkflowRunner;
+import org.eclipse.emf.mwe.core.WorkflowEngine;
 
 
 public class XtendComponentTest extends TestCase {
     public void testGlobalVarDef () throws Exception {
-        final WorkflowRunner wf = new WorkflowRunner ();
+        final WorkflowEngine wf = new WorkflowEngine ();
         wf.run("org/eclipse/xtend/globalvarTest.oaw", null, new HashMap<String, String>(), new HashMap<String, String> ());
         assertEquals ("Hello", wf.getContext().get("result"));
     }

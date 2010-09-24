@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
-import org.eclipse.emf.mwe.core.WorkflowRunner;
+import org.eclipse.emf.mwe.core.WorkflowEngine;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
@@ -161,7 +161,7 @@ public abstract class AbstractTestCase extends TestCase {
 
 	protected void failWorkflow(String wfFile, String slot,
 			Map<String, String> params) {
-		WorkflowRunner runner = new WorkflowRunner();
+		WorkflowEngine runner = new WorkflowEngine();
 		assertFalse(runner.run(getSrcDir() + "/" + wfFile,
 				new NullProgressMonitor(), params, null));
 	}
@@ -248,7 +248,6 @@ public abstract class AbstractTestCase extends TestCase {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected String objToStr(Object obj, String ident) {
 		String innerIdent = "  " + ident;
 		if (obj instanceof EObject) {
@@ -290,7 +289,7 @@ public abstract class AbstractTestCase extends TestCase {
 		if (obj instanceof Collection) {
 			StringBuffer buf = new StringBuffer();
 			buf.append("[\n");
-			for (Object o : (Collection) obj)
+			for (Object o : (Collection<?>) obj)
 				buf.append(innerIdent + objToStr(o, innerIdent) + "\n");
 			buf.append(ident + "]");
 			return buf.toString();

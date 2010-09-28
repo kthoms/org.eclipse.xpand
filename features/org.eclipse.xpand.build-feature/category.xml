@@ -19,7 +19,7 @@
 		<category name="xpandxtend" />
 	</feature>
 	<feature id="org.eclipse.xpand.support" version="0.0.0">
-		<category name="xpandxtend" />
+		<category name="xpandxtendAdditional" />
 	</feature>
 	<feature id="org.eclipse.xpand.ui" version="0.0.0">
 		<category name="xpandxtend" />
@@ -28,25 +28,25 @@
 		<category name="xpandxtend" />
 	</feature>
 	<feature id="org.eclipse.xtend.backend" version="0.0.0">
-		<category name="xpandxtend" />
+		<category name="xpandxtendAdditional" />
 	</feature>
 	<feature id="org.eclipse.xtend.backend.sdk" version="0.0.0">
-		<category name="xpandxtend" />
+		<category name="xpandxtendAdditional" />
 	</feature>
 	<feature id="org.eclipse.xtend.backend.uml2types" version="0.0.0">
-		<category name="xpandxtend" />
+		<category name="xpandxtendAdditional" />
 	</feature>
 	<feature id="org.eclipse.xtend.backend.xsdtypes" version="0.0.0">
-		<category name="xpandxtend" />
+		<category name="xpandxtendAdditional" />
 	</feature>
 	<feature id="org.eclipse.xtend.dependencies" version="0.0.0">
 		<category name="xpandxtend" />
 	</feature>
 	<feature id="org.eclipse.xtend.middleend.xpand" version="0.0.0">
-		<category name="xpandxtend" />
+		<category name="xpandxtendAdditional" />
 	</feature>
 	<feature id="org.eclipse.xtend.middleend.xtend" version="0.0.0">
-		<category name="xpandxtend" />
+		<category name="xpandxtendAdditional" />
 	</feature>
 	<feature id="org.eclipse.xtend.typesystem.emf" version="0.0.0">
 		<category name="xpandxtend" />
@@ -60,9 +60,14 @@
 	<feature id="org.eclipse.xtend.ui" version="0.0.0">
 		<category name="xpandxtend" />
 	</feature>
-	<category-def name="xpandxtend" label="Xpand/Xtend">
+	<category-def name="xpandxtend" label="M2T Xpand/Xtend">
 		<description>
-			Xpand/Xtend features.
+			M2T Xpand/Xtend features
+      </description>
+	</category-def>
+	<category-def name="xpandxtendAdditional" label="M2T Xpand/Xtend Additional">
+		<description>
+			M2T Xpand/Xtend additional features
       </description>
 	</category-def>
 </site>

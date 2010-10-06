@@ -53,7 +53,7 @@ public abstract class AbstractExpressionsUsingWorkflowComponent extends
 	}
 
 	public void addAdvices(String advice) {
-		addAdvices(advice);
+		addAdvice(advice);
 	}
 
 	public void addExtensionAdvice(String advice) {

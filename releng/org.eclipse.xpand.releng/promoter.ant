@@ -233,7 +233,7 @@
 				<filename name="*-Update*.zip" />
 			</fileset>
 		</unzip>
-		<p2.composite.repository destination="${composite.repository.url}">
+		<p2.composite.repository name="M2T Xpand Update Site (${composite.repository.base})" destination="${composite.repository.url}">
 			<add>
  				<repository location="${saved.build.id}" />
 			</add>

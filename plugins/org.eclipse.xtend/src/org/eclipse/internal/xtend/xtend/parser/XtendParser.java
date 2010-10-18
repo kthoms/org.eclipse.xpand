@@ -51,7 +51,7 @@ public class XtendParser extends Parser {
 
         public XtendParser(TokenStream input) {
             super(input);
-            ruleMemo = new HashMap[40+1];
+            state.ruleMemo = new HashMap[40+1];
          }
         
 
@@ -118,9 +118,9 @@ public class XtendParser extends Parser {
             	    {
             	    pushFollow(FOLLOW_nsImport_in_file51);
             	    nsi=nsImport();
-            	    _fsp--;
-            	    if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      nsimports.add(nsi);
             	    }
 
@@ -149,9 +149,9 @@ public class XtendParser extends Parser {
             	    {
             	    pushFollow(FOLLOW_extImport_in_file61);
             	    exti=extImport();
-            	    _fsp--;
-            	    if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      extimports.add(exti);
             	    }
 
@@ -198,9 +198,9 @@ public class XtendParser extends Parser {
             	    {
             	    pushFollow(FOLLOW_extension_in_file71);
             	    ext=extension();
-            	    _fsp--;
-            	    if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      extensions.add(ext);
             	    }
 
@@ -211,9 +211,9 @@ public class XtendParser extends Parser {
             	    {
             	    pushFollow(FOLLOW_around_in_file81);
             	    a=around();
-            	    _fsp--;
-            	    if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      arounds.add(a);
             	    }
 
@@ -224,9 +224,9 @@ public class XtendParser extends Parser {
             	    {
             	    pushFollow(FOLLOW_check_in_file91);
             	    c=check();
-            	    _fsp--;
-            	    if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      checks.add(c);
             	    }
 
@@ -238,8 +238,8 @@ public class XtendParser extends Parser {
                 }
             } while (true);
 
-            match(input,EOF,FOLLOW_EOF_in_file99); if (failed) return r;
-            if ( backtracking==0 ) {
+            match(input,EOF,FOLLOW_EOF_in_file99); if (state.failed) return r;
+            if ( state.backtracking==0 ) {
                r = factory.createExtensionFile(nsimports,extimports,extensions,arounds,checks);
             }
 
@@ -269,15 +269,15 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:52:47: ( 'import' t= type ';' )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:53:2: 'import' t= type ';'
             {
-            match(input,18,FOLLOW_18_in_nsImport117); if (failed) return r;
+            match(input,18,FOLLOW_18_in_nsImport117); if (state.failed) return r;
             pushFollow(FOLLOW_type_in_nsImport121);
             t=type();
-            _fsp--;
-            if (failed) return r;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return r;
+            if ( state.backtracking==0 ) {
               r = factory.createNsImport(t);
             }
-            match(input,19,FOLLOW_19_in_nsImport125); if (failed) return r;
+            match(input,19,FOLLOW_19_in_nsImport125); if (state.failed) return r;
 
             }
 
@@ -306,11 +306,11 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:56:48: ( 'extension' t= type (exported= 'reexport' )? ';' )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:2: 'extension' t= type (exported= 'reexport' )? ';'
             {
-            match(input,20,FOLLOW_20_in_extImport140); if (failed) return r;
+            match(input,20,FOLLOW_20_in_extImport140); if (state.failed) return r;
             pushFollow(FOLLOW_type_in_extImport144);
             t=type();
-            _fsp--;
-            if (failed) return r;
+            state._fsp--;
+            if (state.failed) return r;
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:21: (exported= 'reexport' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
@@ -323,15 +323,15 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:57:22: exported= 'reexport'
                     {
                     exported=input.LT(1);
-                    match(input,21,FOLLOW_21_in_extImport149); if (failed) return r;
+                    match(input,21,FOLLOW_21_in_extImport149); if (state.failed) return r;
 
                     }
                     break;
 
             }
 
-            match(input,19,FOLLOW_19_in_extImport153); if (failed) return r;
-            if ( backtracking==0 ) {
+            match(input,19,FOLLOW_19_in_extImport153); if (state.failed) return r;
+            if ( state.backtracking==0 ) {
                r = factory.createExtensionFileImport(t,id(exported));
             }
 
@@ -370,11 +370,11 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:60:26: ( 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';' )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:2: 'context' t= type ( '#' f= identifier )? ( 'if' guard= expression )? (sev1= 'ERROR' | 'WARNING' ) msg= expression ':' expr= expression ';'
             {
-            match(input,22,FOLLOW_22_in_check168); if (failed) return ext;
+            match(input,22,FOLLOW_22_in_check168); if (state.failed) return ext;
             pushFollow(FOLLOW_type_in_check172);
             t=type();
-            _fsp--;
-            if (failed) return ext;
+            state._fsp--;
+            if (state.failed) return ext;
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:18: ( '#' f= identifier )?
             int alt5=2;
             int LA5_0 = input.LA(1);
@@ -386,11 +386,11 @@ public class XtendParser extends Parser {
                 case 1 :
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:19: '#' f= identifier
                     {
-                    match(input,23,FOLLOW_23_in_check174); if (failed) return ext;
+                    match(input,23,FOLLOW_23_in_check174); if (state.failed) return ext;
                     pushFollow(FOLLOW_identifier_in_check177);
                     f=identifier();
-                    _fsp--;
-                    if (failed) return ext;
+                    state._fsp--;
+                    if (state.failed) return ext;
 
                     }
                     break;
@@ -408,11 +408,11 @@ public class XtendParser extends Parser {
                 case 1 :
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:38: 'if' guard= expression
                     {
-                    match(input,24,FOLLOW_24_in_check182); if (failed) return ext;
+                    match(input,24,FOLLOW_24_in_check182); if (state.failed) return ext;
                     pushFollow(FOLLOW_expression_in_check186);
                     guard=expression();
-                    _fsp--;
-                    if (failed) return ext;
+                    state._fsp--;
+                    if (state.failed) return ext;
 
                     }
                     break;
@@ -430,7 +430,7 @@ public class XtendParser extends Parser {
                 alt7=2;
             }
             else {
-                if (backtracking>0) {failed=true; return ext;}
+                if (state.backtracking>0) {state.failed=true; return ext;}
                 NoViableAltException nvae =
                     new NoViableAltException("61:62: (sev1= 'ERROR' | 'WARNING' )", 7, 0, input);
 
@@ -441,14 +441,14 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:63: sev1= 'ERROR'
                     {
                     sev1=input.LT(1);
-                    match(input,25,FOLLOW_25_in_check193); if (failed) return ext;
+                    match(input,25,FOLLOW_25_in_check193); if (state.failed) return ext;
 
                     }
                     break;
                 case 2 :
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:61:76: 'WARNING'
                     {
-                    match(input,26,FOLLOW_26_in_check195); if (failed) return ext;
+                    match(input,26,FOLLOW_26_in_check195); if (state.failed) return ext;
 
                     }
                     break;
@@ -457,15 +457,15 @@ public class XtendParser extends Parser {
 
             pushFollow(FOLLOW_expression_in_check200);
             msg=expression();
-            _fsp--;
-            if (failed) return ext;
-            match(input,27,FOLLOW_27_in_check202); if (failed) return ext;
+            state._fsp--;
+            if (state.failed) return ext;
+            match(input,27,FOLLOW_27_in_check202); if (state.failed) return ext;
             pushFollow(FOLLOW_expression_in_check207);
             expr=expression();
-            _fsp--;
-            if (failed) return ext;
-            match(input,19,FOLLOW_19_in_check209); if (failed) return ext;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return ext;
+            match(input,19,FOLLOW_19_in_check209); if (state.failed) return ext;
+            if ( state.backtracking==0 ) {
               ext = factory.createCheck(t, f, guard, sev1!=null, msg, expr);
             }
 
@@ -500,12 +500,12 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:66:28: ( 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';' )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:5: 'around' pc= pointcut '(' (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )? ')' ':' expr= expression ';'
             {
-            match(input,28,FOLLOW_28_in_around230); if (failed) return r;
+            match(input,28,FOLLOW_28_in_around230); if (state.failed) return r;
             pushFollow(FOLLOW_pointcut_in_around234);
             pc=pointcut();
-            _fsp--;
-            if (failed) return r;
-            match(input,29,FOLLOW_29_in_around236); if (failed) return r;
+            state._fsp--;
+            if (state.failed) return r;
+            match(input,29,FOLLOW_29_in_around236); if (state.failed) return r;
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:30: (p= declaredParameterList ( ( ',' )? wildparams= '*' )? | wildparams= '*' )?
             int alt10=3;
             int LA10_0 = input.LA(1);
@@ -522,8 +522,8 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_declaredParameterList_in_around241);
                     p=declaredParameterList();
-                    _fsp--;
-                    if (failed) return r;
+                    state._fsp--;
+                    if (state.failed) return r;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:55: ( ( ',' )? wildparams= '*' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
@@ -546,7 +546,7 @@ public class XtendParser extends Parser {
                                 case 1 :
                                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:56: ','
                                     {
-                                    match(input,30,FOLLOW_30_in_around244); if (failed) return r;
+                                    match(input,30,FOLLOW_30_in_around244); if (state.failed) return r;
 
                                     }
                                     break;
@@ -554,7 +554,7 @@ public class XtendParser extends Parser {
                             }
 
                             wildparams=input.LT(1);
-                            match(input,31,FOLLOW_31_in_around249); if (failed) return r;
+                            match(input,31,FOLLOW_31_in_around249); if (state.failed) return r;
 
                             }
                             break;
@@ -568,21 +568,21 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:67:80: wildparams= '*'
                     {
                     wildparams=input.LT(1);
-                    match(input,31,FOLLOW_31_in_around257); if (failed) return r;
+                    match(input,31,FOLLOW_31_in_around257); if (state.failed) return r;
 
                     }
                     break;
 
             }
 
-            match(input,32,FOLLOW_32_in_around261); if (failed) return r;
-            match(input,27,FOLLOW_27_in_around263); if (failed) return r;
+            match(input,32,FOLLOW_32_in_around261); if (state.failed) return r;
+            match(input,27,FOLLOW_27_in_around263); if (state.failed) return r;
             pushFollow(FOLLOW_expression_in_around272);
             expr=expression();
-            _fsp--;
-            if (failed) return r;
-            match(input,19,FOLLOW_19_in_around274); if (failed) return r;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return r;
+            match(input,19,FOLLOW_19_in_around274); if (state.failed) return r;
+            if ( state.backtracking==0 ) {
                r = factory.createAround(pc,p,wildparams!=null,expr);
             }
 
@@ -628,7 +628,7 @@ public class XtendParser extends Parser {
                 alt11=2;
             }
             else {
-                if (backtracking>0) {failed=true; return r;}
+                if (state.backtracking>0) {state.failed=true; return r;}
                 NoViableAltException nvae =
                     new NoViableAltException("73:2: (a= '*' | b= identifier )", 11, 0, input);
 
@@ -639,8 +639,8 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:73:4: a= '*'
                     {
                     a=input.LT(1);
-                    match(input,31,FOLLOW_31_in_pointcut302); if (failed) return r;
-                    if ( backtracking==0 ) {
+                    match(input,31,FOLLOW_31_in_pointcut302); if (state.failed) return r;
+                    if ( state.backtracking==0 ) {
                       r = id(a);
                     }
 
@@ -651,9 +651,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_identifier_in_pointcut311);
                     b=identifier();
-                    _fsp--;
-                    if (failed) return r;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return r;
+                    if ( state.backtracking==0 ) {
                       r = b;
                     }
 
@@ -690,8 +690,8 @@ public class XtendParser extends Parser {
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:75:6: a1= '*'
             	    {
             	    a1=input.LT(1);
-            	    match(input,31,FOLLOW_31_in_pointcut322); if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    match(input,31,FOLLOW_31_in_pointcut322); if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      if (r!=null)r.append(id(a1));
             	    }
 
@@ -702,9 +702,9 @@ public class XtendParser extends Parser {
             	    {
             	    pushFollow(FOLLOW_identifier_in_pointcut333);
             	    b1=identifier();
-            	    _fsp--;
-            	    if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      if (r!=null)r.append(b1);
             	    }
 
@@ -714,8 +714,8 @@ public class XtendParser extends Parser {
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:77:6: c1= '::'
             	    {
             	    c1=input.LT(1);
-            	    match(input,33,FOLLOW_33_in_pointcut344); if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    match(input,33,FOLLOW_33_in_pointcut344); if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      if (r!=null)r.append(id(c1));
             	    }
 
@@ -783,7 +783,7 @@ public class XtendParser extends Parser {
                     alt23=1;
                 }
                 else {
-                    if (backtracking>0) {failed=true; return r;}
+                    if (state.backtracking>0) {state.failed=true; return r;}
                     NoViableAltException nvae =
                         new NoViableAltException("82:1: extension returns [Extension r] : ( (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' ) | (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';' );", 23, 1, input);
 
@@ -806,7 +806,7 @@ public class XtendParser extends Parser {
                 }
                 break;
             default:
-                if (backtracking>0) {failed=true; return r;}
+                if (state.backtracking>0) {state.failed=true; return r;}
                 NoViableAltException nvae =
                     new NoViableAltException("82:1: extension returns [Extension r] : ( (priv= 'private' )? (cached= 'cached' )? (rType= type )? name= identifier '(' (params= declaredParameterList )? ')' ':' ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' ) | (priv= 'private' )? create= 'create' rType= type (rtn= identifier )? name= identifier '(' (params= declaredParameterList )? ')' ':' expr= expression ';' );", 23, 0, input);
 
@@ -829,7 +829,7 @@ public class XtendParser extends Parser {
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:3: priv= 'private'
                             {
                             priv=input.LT(1);
-                            match(input,34,FOLLOW_34_in_extension372); if (failed) return r;
+                            match(input,34,FOLLOW_34_in_extension372); if (state.failed) return r;
 
                             }
                             break;
@@ -848,7 +848,7 @@ public class XtendParser extends Parser {
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:21: cached= 'cached'
                             {
                             cached=input.LT(1);
-                            match(input,35,FOLLOW_35_in_extension379); if (failed) return r;
+                            match(input,35,FOLLOW_35_in_extension379); if (state.failed) return r;
 
                             }
                             break;
@@ -875,8 +875,8 @@ public class XtendParser extends Parser {
                             {
                             pushFollow(FOLLOW_type_in_extension386);
                             rType=type();
-                            _fsp--;
-                            if (failed) return r;
+                            state._fsp--;
+                            if (state.failed) return r;
 
                             }
                             break;
@@ -885,9 +885,9 @@ public class XtendParser extends Parser {
 
                     pushFollow(FOLLOW_identifier_in_extension392);
                     name=identifier();
-                    _fsp--;
-                    if (failed) return r;
-                    match(input,29,FOLLOW_29_in_extension394); if (failed) return r;
+                    state._fsp--;
+                    if (state.failed) return r;
+                    match(input,29,FOLLOW_29_in_extension394); if (state.failed) return r;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:83:73: (params= declaredParameterList )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
@@ -901,16 +901,16 @@ public class XtendParser extends Parser {
                             {
                             pushFollow(FOLLOW_declaredParameterList_in_extension399);
                             params=declaredParameterList();
-                            _fsp--;
-                            if (failed) return r;
+                            state._fsp--;
+                            if (state.failed) return r;
 
                             }
                             break;
 
                     }
 
-                    match(input,32,FOLLOW_32_in_extension403); if (failed) return r;
-                    match(input,27,FOLLOW_27_in_extension405); if (failed) return r;
+                    match(input,32,FOLLOW_32_in_extension403); if (state.failed) return r;
+                    match(input,27,FOLLOW_27_in_extension405); if (state.failed) return r;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:2: ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' )
                     int alt19=2;
                     int LA19_0 = input.LA(1);
@@ -922,7 +922,7 @@ public class XtendParser extends Parser {
                         alt19=2;
                     }
                     else {
-                        if (backtracking>0) {failed=true; return r;}
+                        if (state.backtracking>0) {state.failed=true; return r;}
                         NoViableAltException nvae =
                             new NoViableAltException("85:2: ( 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';' | expr= expression ';' )", 19, 0, input);
 
@@ -932,17 +932,17 @@ public class XtendParser extends Parser {
                         case 1 :
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:4: 'JAVA' jt= javaType '.' m= identifier '(' (pt= javaType ( ',' pt= javaType )* )? ')' ';'
                             {
-                            match(input,36,FOLLOW_36_in_extension412); if (failed) return r;
+                            match(input,36,FOLLOW_36_in_extension412); if (state.failed) return r;
                             pushFollow(FOLLOW_javaType_in_extension416);
                             jt=javaType();
-                            _fsp--;
-                            if (failed) return r;
-                            match(input,37,FOLLOW_37_in_extension418); if (failed) return r;
+                            state._fsp--;
+                            if (state.failed) return r;
+                            match(input,37,FOLLOW_37_in_extension418); if (state.failed) return r;
                             pushFollow(FOLLOW_identifier_in_extension422);
                             m=identifier();
-                            _fsp--;
-                            if (failed) return r;
-                            match(input,29,FOLLOW_29_in_extension424); if (failed) return r;
+                            state._fsp--;
+                            if (state.failed) return r;
+                            match(input,29,FOLLOW_29_in_extension424); if (state.failed) return r;
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:43: (pt= javaType ( ',' pt= javaType )* )?
                             int alt18=2;
                             int LA18_0 = input.LA(1);
@@ -956,9 +956,9 @@ public class XtendParser extends Parser {
                                     {
                                     pushFollow(FOLLOW_javaType_in_extension428);
                                     pt=javaType();
-                                    _fsp--;
-                                    if (failed) return r;
-                                    if ( backtracking==0 ) {
+                                    state._fsp--;
+                                    if (state.failed) return r;
+                                    if ( state.backtracking==0 ) {
                                       javaParamTypes.add(pt);
                                     }
                                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:81: ( ',' pt= javaType )*
@@ -976,12 +976,12 @@ public class XtendParser extends Parser {
                                     	case 1 :
                                     	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:85:82: ',' pt= javaType
                                     	    {
-                                    	    match(input,30,FOLLOW_30_in_extension432); if (failed) return r;
+                                    	    match(input,30,FOLLOW_30_in_extension432); if (state.failed) return r;
                                     	    pushFollow(FOLLOW_javaType_in_extension436);
                                     	    pt=javaType();
-                                    	    _fsp--;
-                                    	    if (failed) return r;
-                                    	    if ( backtracking==0 ) {
+                                    	    state._fsp--;
+                                    	    if (state.failed) return r;
+                                    	    if ( state.backtracking==0 ) {
                                     	      javaParamTypes.add(pt);
                                     	    }
 
@@ -999,9 +999,9 @@ public class XtendParser extends Parser {
 
                             }
 
-                            match(input,32,FOLLOW_32_in_extension444); if (failed) return r;
-                            match(input,19,FOLLOW_19_in_extension446); if (failed) return r;
-                            if ( backtracking==0 ) {
+                            match(input,32,FOLLOW_32_in_extension444); if (state.failed) return r;
+                            match(input,19,FOLLOW_19_in_extension446); if (state.failed) return r;
+                            if ( state.backtracking==0 ) {
                                r = factory.createJavaExtension(name,rType,params,jt,m,javaParamTypes, id(cached),id(priv));
                             }
 
@@ -1012,10 +1012,10 @@ public class XtendParser extends Parser {
                             {
                             pushFollow(FOLLOW_expression_in_extension456);
                             expr=expression();
-                            _fsp--;
-                            if (failed) return r;
-                            match(input,19,FOLLOW_19_in_extension458); if (failed) return r;
-                            if ( backtracking==0 ) {
+                            state._fsp--;
+                            if (state.failed) return r;
+                            match(input,19,FOLLOW_19_in_extension458); if (state.failed) return r;
+                            if ( state.backtracking==0 ) {
                                r = factory.createExpressionExtension(name,rType,params,expr,  id(cached),id(priv)); 
                             }
 
@@ -1042,7 +1042,7 @@ public class XtendParser extends Parser {
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:4: priv= 'private'
                             {
                             priv=input.LT(1);
-                            match(input,34,FOLLOW_34_in_extension472); if (failed) return r;
+                            match(input,34,FOLLOW_34_in_extension472); if (state.failed) return r;
 
                             }
                             break;
@@ -1050,11 +1050,11 @@ public class XtendParser extends Parser {
                     }
 
                     create=input.LT(1);
-                    match(input,38,FOLLOW_38_in_extension478); if (failed) return r;
+                    match(input,38,FOLLOW_38_in_extension478); if (state.failed) return r;
                     pushFollow(FOLLOW_type_in_extension482);
                     rType=type();
-                    _fsp--;
-                    if (failed) return r;
+                    state._fsp--;
+                    if (state.failed) return r;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:48: (rtn= identifier )?
                     int alt21=2;
                     int LA21_0 = input.LA(1);
@@ -1072,8 +1072,8 @@ public class XtendParser extends Parser {
                             {
                             pushFollow(FOLLOW_identifier_in_extension487);
                             rtn=identifier();
-                            _fsp--;
-                            if (failed) return r;
+                            state._fsp--;
+                            if (state.failed) return r;
 
                             }
                             break;
@@ -1082,9 +1082,9 @@ public class XtendParser extends Parser {
 
                     pushFollow(FOLLOW_identifier_in_extension493);
                     name=identifier();
-                    _fsp--;
-                    if (failed) return r;
-                    match(input,29,FOLLOW_29_in_extension495); if (failed) return r;
+                    state._fsp--;
+                    if (state.failed) return r;
+                    match(input,29,FOLLOW_29_in_extension495); if (state.failed) return r;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:91:86: (params= declaredParameterList )?
                     int alt22=2;
                     int LA22_0 = input.LA(1);
@@ -1098,22 +1098,22 @@ public class XtendParser extends Parser {
                             {
                             pushFollow(FOLLOW_declaredParameterList_in_extension500);
                             params=declaredParameterList();
-                            _fsp--;
-                            if (failed) return r;
+                            state._fsp--;
+                            if (state.failed) return r;
 
                             }
                             break;
 
                     }
 
-                    match(input,32,FOLLOW_32_in_extension504); if (failed) return r;
-                    match(input,27,FOLLOW_27_in_extension506); if (failed) return r;
+                    match(input,32,FOLLOW_32_in_extension504); if (state.failed) return r;
+                    match(input,27,FOLLOW_27_in_extension506); if (state.failed) return r;
                     pushFollow(FOLLOW_expression_in_extension512);
                     expr=expression();
-                    _fsp--;
-                    if (failed) return r;
-                    match(input,19,FOLLOW_19_in_extension514); if (failed) return r;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return r;
+                    match(input,19,FOLLOW_19_in_extension514); if (state.failed) return r;
+                    if ( state.backtracking==0 ) {
                        r = factory.createCreateExtension(id(create),rType,rtn,name,params,expr,id(priv)); 
                     }
 
@@ -1153,9 +1153,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_identifier_in_javaType536);
             i=identifier();
-            _fsp--;
-            if (failed) return r;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return r;
+            if ( state.backtracking==0 ) {
               r = i;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:2: (d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' ) )*
@@ -1189,8 +1189,8 @@ public class XtendParser extends Parser {
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:3: d= '.' (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' )
             	    {
             	    d=input.LT(1);
-            	    match(input,37,FOLLOW_37_in_javaType545); if (failed) return r;
-            	    if ( backtracking==0 ) {
+            	    match(input,37,FOLLOW_37_in_javaType545); if (state.failed) return r;
+            	    if ( state.backtracking==0 ) {
             	      if (r!=null)r.append(id(d));
             	    }
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:41: (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' )
@@ -1217,7 +1217,7 @@ public class XtendParser extends Parser {
             	        }
             	        break;
             	    default:
-            	        if (backtracking>0) {failed=true; return r;}
+            	        if (state.backtracking>0) {state.failed=true; return r;}
             	        NoViableAltException nvae =
             	            new NoViableAltException("99:41: (i1= identifier | i2= 'Collection' | i3= 'List' | i4= 'Set' )", 24, 0, input);
 
@@ -1230,9 +1230,9 @@ public class XtendParser extends Parser {
             	            {
             	            pushFollow(FOLLOW_identifier_in_javaType551);
             	            i1=identifier();
-            	            _fsp--;
-            	            if (failed) return r;
-            	            if ( backtracking==0 ) {
+            	            state._fsp--;
+            	            if (state.failed) return r;
+            	            if ( state.backtracking==0 ) {
             	              if (r!=null)r.append(i1);
             	            }
 
@@ -1242,8 +1242,8 @@ public class XtendParser extends Parser {
             	            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:99:86: i2= 'Collection'
             	            {
             	            i2=input.LT(1);
-            	            match(input,39,FOLLOW_39_in_javaType557); if (failed) return r;
-            	            if ( backtracking==0 ) {
+            	            match(input,39,FOLLOW_39_in_javaType557); if (state.failed) return r;
+            	            if ( state.backtracking==0 ) {
             	              r.append(id(i2));
             	            }
 
@@ -1253,8 +1253,8 @@ public class XtendParser extends Parser {
             	            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:100:2: i3= 'List'
             	            {
             	            i3=input.LT(1);
-            	            match(input,40,FOLLOW_40_in_javaType566); if (failed) return r;
-            	            if ( backtracking==0 ) {
+            	            match(input,40,FOLLOW_40_in_javaType566); if (state.failed) return r;
+            	            if ( state.backtracking==0 ) {
             	              if (r!=null)r.append(id(i3));
             	            }
 
@@ -1264,8 +1264,8 @@ public class XtendParser extends Parser {
             	            // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:100:46: i4= 'Set'
             	            {
             	            i4=input.LT(1);
-            	            match(input,41,FOLLOW_41_in_javaType572); if (failed) return r;
-            	            if ( backtracking==0 ) {
+            	            match(input,41,FOLLOW_41_in_javaType572); if (state.failed) return r;
+            	            if ( state.backtracking==0 ) {
             	              if (r!=null)r.append(id(i4));
             	            }
 
@@ -1312,9 +1312,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_letExpression_in_expression594);
             x=letExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
 
@@ -1358,7 +1358,7 @@ public class XtendParser extends Parser {
                 alt26=2;
             }
             else {
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("110:1: letExpression returns [Expression e] : ( 'let' v= identifier '=' varExpr= castedExpression ':' target= expression | x= castedExpression );", 26, 0, input);
 
@@ -1368,22 +1368,22 @@ public class XtendParser extends Parser {
                 case 1 :
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:111:4: 'let' v= identifier '=' varExpr= castedExpression ':' target= expression
                     {
-                    match(input,42,FOLLOW_42_in_letExpression613); if (failed) return e;
+                    match(input,42,FOLLOW_42_in_letExpression613); if (state.failed) return e;
                     pushFollow(FOLLOW_identifier_in_letExpression617);
                     v=identifier();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,43,FOLLOW_43_in_letExpression619); if (failed) return e;
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,43,FOLLOW_43_in_letExpression619); if (state.failed) return e;
                     pushFollow(FOLLOW_castedExpression_in_letExpression623);
                     varExpr=castedExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,27,FOLLOW_27_in_letExpression625); if (failed) return e;
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,27,FOLLOW_27_in_letExpression625); if (state.failed) return e;
                     pushFollow(FOLLOW_expression_in_letExpression629);
                     target=expression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =factory.createLetExpression(v,varExpr,target);
                     }
 
@@ -1394,9 +1394,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_castedExpression_in_letExpression642);
                     x=castedExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -1434,17 +1434,17 @@ public class XtendParser extends Parser {
                 case 1 :
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:5: ( '(' type ')' castedExpression )=> '(' t= type ')' x= chainExpression
                     {
-                    match(input,29,FOLLOW_29_in_castedExpression673); if (failed) return e;
+                    match(input,29,FOLLOW_29_in_castedExpression673); if (state.failed) return e;
                     pushFollow(FOLLOW_type_in_castedExpression677);
                     t=type();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,32,FOLLOW_32_in_castedExpression679); if (failed) return e;
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,32,FOLLOW_32_in_castedExpression679); if (state.failed) return e;
                     pushFollow(FOLLOW_chainExpression_in_castedExpression683);
                     x=chainExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e = factory.createCast(t,x);
                     }
 
@@ -1455,9 +1455,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_chainExpression_in_castedExpression692);
                     x=chainExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -1493,9 +1493,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_ifExpression_in_chainExpression712);
             x=ifExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:25: ( '->' right= ifExpression )*
@@ -1513,12 +1513,12 @@ public class XtendParser extends Parser {
             	case 1 :
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:124:27: '->' right= ifExpression
             	    {
-            	    match(input,44,FOLLOW_44_in_chainExpression718); if (failed) return e;
+            	    match(input,44,FOLLOW_44_in_chainExpression718); if (state.failed) return e;
             	    pushFollow(FOLLOW_ifExpression_in_chainExpression722);
             	    right=ifExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	      e =factory.createChainExpression(e,right);
             	    }
 
@@ -1571,7 +1571,7 @@ public class XtendParser extends Parser {
                 alt31=2;
             }
             else {
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("127:1: ifExpression returns [Expression e] : (x= switchExpression ( '?' thenPart= switchExpression ':' elsePart= switchExpression )? | 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )? );", 31, 0, input);
 
@@ -1583,9 +1583,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_switchExpression_in_ifExpression743);
                     x=switchExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:28: ( '?' thenPart= switchExpression ':' elsePart= switchExpression )?
@@ -1599,17 +1599,17 @@ public class XtendParser extends Parser {
                         case 1 :
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:128:29: '?' thenPart= switchExpression ':' elsePart= switchExpression
                             {
-                            match(input,45,FOLLOW_45_in_ifExpression747); if (failed) return e;
+                            match(input,45,FOLLOW_45_in_ifExpression747); if (state.failed) return e;
                             pushFollow(FOLLOW_switchExpression_in_ifExpression751);
                             thenPart=switchExpression();
-                            _fsp--;
-                            if (failed) return e;
-                            match(input,27,FOLLOW_27_in_ifExpression753); if (failed) return e;
+                            state._fsp--;
+                            if (state.failed) return e;
+                            match(input,27,FOLLOW_27_in_ifExpression753); if (state.failed) return e;
                             pushFollow(FOLLOW_switchExpression_in_ifExpression757);
                             elsePart=switchExpression();
-                            _fsp--;
-                            if (failed) return e;
-                            if ( backtracking==0 ) {
+                            state._fsp--;
+                            if (state.failed) return e;
+                            if ( state.backtracking==0 ) {
                               e =factory.createIf(e,thenPart,elsePart);
                             }
 
@@ -1624,16 +1624,16 @@ public class XtendParser extends Parser {
                 case 2 :
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:3: 'if' condition= switchExpression 'then' thenPart= switchExpression ( 'else' elsePart= expression )?
                     {
-                    match(input,24,FOLLOW_24_in_ifExpression765); if (failed) return e;
+                    match(input,24,FOLLOW_24_in_ifExpression765); if (state.failed) return e;
                     pushFollow(FOLLOW_switchExpression_in_ifExpression769);
                     condition=switchExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,46,FOLLOW_46_in_ifExpression771); if (failed) return e;
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,46,FOLLOW_46_in_ifExpression771); if (state.failed) return e;
                     pushFollow(FOLLOW_switchExpression_in_ifExpression775);
                     thenPart=switchExpression();
-                    _fsp--;
-                    if (failed) return e;
+                    state._fsp--;
+                    if (state.failed) return e;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:68: ( 'else' elsePart= expression )?
                     int alt30=2;
                     int LA30_0 = input.LA(1);
@@ -1645,18 +1645,18 @@ public class XtendParser extends Parser {
                         case 1 :
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:129:69: 'else' elsePart= expression
                             {
-                            match(input,47,FOLLOW_47_in_ifExpression778); if (failed) return e;
+                            match(input,47,FOLLOW_47_in_ifExpression778); if (state.failed) return e;
                             pushFollow(FOLLOW_expression_in_ifExpression782);
                             elsePart=expression();
-                            _fsp--;
-                            if (failed) return e;
+                            state._fsp--;
+                            if (state.failed) return e;
 
                             }
                             break;
 
                     }
 
-                    if ( backtracking==0 ) {
+                    if ( state.backtracking==0 ) {
                       e =factory.createIf(condition,thenPart,elsePart);
                     }
 
@@ -1705,7 +1705,7 @@ public class XtendParser extends Parser {
                 alt34=2;
             }
             else {
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("133:1: switchExpression returns [Expression e=null] : ( 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}' | x= orExpression );", 34, 0, input);
 
@@ -1715,7 +1715,7 @@ public class XtendParser extends Parser {
                 case 1 :
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:4: 'switch' ( '(' pred= orExpression ')' )? '{' ( 'case' c= orExpression ':' v= orExpression )* 'default' ':' def= orExpression '}'
                     {
-                    match(input,48,FOLLOW_48_in_switchExpression809); if (failed) return e;
+                    match(input,48,FOLLOW_48_in_switchExpression809); if (state.failed) return e;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:13: ( '(' pred= orExpression ')' )?
                     int alt32=2;
                     int LA32_0 = input.LA(1);
@@ -1727,19 +1727,19 @@ public class XtendParser extends Parser {
                         case 1 :
                             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:134:14: '(' pred= orExpression ')'
                             {
-                            match(input,29,FOLLOW_29_in_switchExpression812); if (failed) return e;
+                            match(input,29,FOLLOW_29_in_switchExpression812); if (state.failed) return e;
                             pushFollow(FOLLOW_orExpression_in_switchExpression818);
                             pred=orExpression();
-                            _fsp--;
-                            if (failed) return e;
-                            match(input,32,FOLLOW_32_in_switchExpression820); if (failed) return e;
+                            state._fsp--;
+                            if (state.failed) return e;
+                            match(input,32,FOLLOW_32_in_switchExpression820); if (state.failed) return e;
 
                             }
                             break;
 
                     }
 
-                    match(input,49,FOLLOW_49_in_switchExpression827); if (failed) return e;
+                    match(input,49,FOLLOW_49_in_switchExpression827); if (state.failed) return e;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:136:4: ( 'case' c= orExpression ':' v= orExpression )*
                     loop33:
                     do {
@@ -1755,17 +1755,17 @@ public class XtendParser extends Parser {
                     	case 1 :
                     	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:137:6: 'case' c= orExpression ':' v= orExpression
                     	    {
-                    	    match(input,50,FOLLOW_50_in_switchExpression840); if (failed) return e;
+                    	    match(input,50,FOLLOW_50_in_switchExpression840); if (state.failed) return e;
                     	    pushFollow(FOLLOW_orExpression_in_switchExpression844);
                     	    c=orExpression();
-                    	    _fsp--;
-                    	    if (failed) return e;
-                    	    match(input,27,FOLLOW_27_in_switchExpression847); if (failed) return e;
+                    	    state._fsp--;
+                    	    if (state.failed) return e;
+                    	    match(input,27,FOLLOW_27_in_switchExpression847); if (state.failed) return e;
                     	    pushFollow(FOLLOW_orExpression_in_switchExpression852);
                     	    v=orExpression();
-                    	    _fsp--;
-                    	    if (failed) return e;
-                    	    if ( backtracking==0 ) {
+                    	    state._fsp--;
+                    	    if (state.failed) return e;
+                    	    if ( state.backtracking==0 ) {
                     	      cases.add(factory.createCase(c, v));
                     	    }
 
@@ -1777,14 +1777,14 @@ public class XtendParser extends Parser {
                         }
                     } while (true);
 
-                    match(input,51,FOLLOW_51_in_switchExpression870); if (failed) return e;
-                    match(input,27,FOLLOW_27_in_switchExpression872); if (failed) return e;
+                    match(input,51,FOLLOW_51_in_switchExpression870); if (state.failed) return e;
+                    match(input,27,FOLLOW_27_in_switchExpression872); if (state.failed) return e;
                     pushFollow(FOLLOW_orExpression_in_switchExpression878);
                     def=orExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,52,FOLLOW_52_in_switchExpression883); if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,52,FOLLOW_52_in_switchExpression883); if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e = factory.createSwitchExpression(pred,cases,def);
                     }
 
@@ -1795,9 +1795,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_orExpression_in_switchExpression895);
                     x=orExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -1834,9 +1834,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_andExpression_in_orExpression915);
             x=andExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:28: (name= '||' r= andExpression )*
@@ -1855,12 +1855,12 @@ public class XtendParser extends Parser {
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:147:29: name= '||' r= andExpression
             	    {
             	    name=input.LT(1);
-            	    match(input,53,FOLLOW_53_in_orExpression922); if (failed) return e;
+            	    match(input,53,FOLLOW_53_in_orExpression922); if (state.failed) return e;
             	    pushFollow(FOLLOW_andExpression_in_orExpression926);
             	    r=andExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	      e = factory.createBooleanOperation(id(name),e,r);
             	    }
 
@@ -1904,9 +1904,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_impliesExpression_in_andExpression949);
             x=impliesExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:30: (name= '&&' r= impliesExpression )*
@@ -1925,12 +1925,12 @@ public class XtendParser extends Parser {
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:151:31: name= '&&' r= impliesExpression
             	    {
             	    name=input.LT(1);
-            	    match(input,54,FOLLOW_54_in_andExpression956); if (failed) return e;
+            	    match(input,54,FOLLOW_54_in_andExpression956); if (state.failed) return e;
             	    pushFollow(FOLLOW_impliesExpression_in_andExpression960);
             	    r=impliesExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	      e = factory.createBooleanOperation(id(name),e,r);
             	    }
 
@@ -1974,9 +1974,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_relationalExpression_in_impliesExpression982);
             x=relationalExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:33: (name= 'implies' r= relationalExpression )*
@@ -1995,12 +1995,12 @@ public class XtendParser extends Parser {
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:155:34: name= 'implies' r= relationalExpression
             	    {
             	    name=input.LT(1);
-            	    match(input,55,FOLLOW_55_in_impliesExpression989); if (failed) return e;
+            	    match(input,55,FOLLOW_55_in_impliesExpression989); if (state.failed) return e;
             	    pushFollow(FOLLOW_relationalExpression_in_impliesExpression993);
             	    r=relationalExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	      e = factory.createBooleanOperation(id(name),e,r);
             	    }
 
@@ -2044,9 +2044,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_additiveExpression_in_relationalExpression1017);
             x=additiveExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:161:2: (name= ( '==' | '!=' | '>=' | '<=' | '>' | '<' ) r= additiveExpression )*
@@ -2067,10 +2067,10 @@ public class XtendParser extends Parser {
             	    name=input.LT(1);
             	    if ( (input.LA(1)>=56 && input.LA(1)<=61) ) {
             	        input.consume();
-            	        errorRecovery=false;failed=false;
+            	        state.errorRecovery=false;state.failed=false;
             	    }
             	    else {
-            	        if (backtracking>0) {failed=true; return e;}
+            	        if (state.backtracking>0) {state.failed=true; return e;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
             	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1025);    throw mse;
@@ -2078,9 +2078,9 @@ public class XtendParser extends Parser {
 
             	    pushFollow(FOLLOW_additiveExpression_in_relationalExpression1051);
             	    r=additiveExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	      e = factory.createBinaryOperation(id(name),e,r);
             	    }
 
@@ -2124,9 +2124,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1072);
             x=multiplicativeExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:167:4: (name= ( '+' | '-' ) r= multiplicativeExpression )*
@@ -2147,10 +2147,10 @@ public class XtendParser extends Parser {
             	    name=input.LT(1);
             	    if ( (input.LA(1)>=62 && input.LA(1)<=63) ) {
             	        input.consume();
-            	        errorRecovery=false;failed=false;
+            	        state.errorRecovery=false;state.failed=false;
             	    }
             	    else {
-            	        if (backtracking>0) {failed=true; return e;}
+            	        if (state.backtracking>0) {state.failed=true; return e;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
             	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_additiveExpression1082);    throw mse;
@@ -2158,9 +2158,9 @@ public class XtendParser extends Parser {
 
             	    pushFollow(FOLLOW_multiplicativeExpression_in_additiveExpression1091);
             	    r=multiplicativeExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	      e = factory.createBinaryOperation(id(name),e,r);
             	    }
 
@@ -2204,9 +2204,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1110);
             x=unaryExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:172:2: (name= ( '*' | '/' ) r= unaryExpression )*
@@ -2227,10 +2227,10 @@ public class XtendParser extends Parser {
             	    name=input.LT(1);
             	    if ( input.LA(1)==31||input.LA(1)==64 ) {
             	        input.consume();
-            	        errorRecovery=false;failed=false;
+            	        state.errorRecovery=false;state.failed=false;
             	    }
             	    else {
-            	        if (backtracking>0) {failed=true; return e;}
+            	        if (state.backtracking>0) {state.failed=true; return e;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
             	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_multiplicativeExpression1118);    throw mse;
@@ -2238,9 +2238,9 @@ public class XtendParser extends Parser {
 
             	    pushFollow(FOLLOW_unaryExpression_in_multiplicativeExpression1128);
             	    r=unaryExpression();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	      e = factory.createBinaryOperation(id(name),e,r);
             	    }
 
@@ -2317,7 +2317,7 @@ public class XtendParser extends Parser {
                 }
                 break;
             default:
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("176:1: unaryExpression returns [Expression e] : (x= infixExpression | name= '!' x= infixExpression | name= '-' x= infixExpression );", 41, 0, input);
 
@@ -2330,9 +2330,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_infixExpression_in_unaryExpression1149);
                     x=infixExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2342,12 +2342,12 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:178:3: name= '!' x= infixExpression
                     {
                     name=input.LT(1);
-                    match(input,65,FOLLOW_65_in_unaryExpression1157); if (failed) return e;
+                    match(input,65,FOLLOW_65_in_unaryExpression1157); if (state.failed) return e;
                     pushFollow(FOLLOW_infixExpression_in_unaryExpression1161);
                     x=infixExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e = factory.createOperationCall(id(name),x);
                     }
 
@@ -2357,12 +2357,12 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:179:3: name= '-' x= infixExpression
                     {
                     name=input.LT(1);
-                    match(input,63,FOLLOW_63_in_unaryExpression1169); if (failed) return e;
+                    match(input,63,FOLLOW_63_in_unaryExpression1169); if (state.failed) return e;
                     pushFollow(FOLLOW_infixExpression_in_unaryExpression1173);
                     x=infixExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e = factory.createOperationCall(id(name),x);
                     }
 
@@ -2398,9 +2398,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_primaryExpression_in_infixExpression1191);
             x=primaryExpression();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:30: ( '.' op= featureCall )*
@@ -2418,12 +2418,12 @@ public class XtendParser extends Parser {
             	case 1 :
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:183:32: '.' op= featureCall
             	    {
-            	    match(input,37,FOLLOW_37_in_infixExpression1197); if (failed) return e;
+            	    match(input,37,FOLLOW_37_in_infixExpression1197); if (state.failed) return e;
             	    pushFollow(FOLLOW_featureCall_in_infixExpression1201);
             	    op=featureCall();
-            	    _fsp--;
-            	    if (failed) return e;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return e;
+            	    if ( state.backtracking==0 ) {
             	       if (op!=null) { op.setTarget(e);e =op;}
             	    }
 
@@ -2522,7 +2522,7 @@ public class XtendParser extends Parser {
                 }
                 break;
             default:
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("186:1: primaryExpression returns [Expression e] : (c= StringLiteral | x= featureCall | x= booleanLiteral | x= numberLiteral | x= nullLiteral | x= listLiteral | x= constructorCall | x= globalVarExpression | x= paranthesizedExpression );", 43, 0, input);
 
@@ -2534,8 +2534,8 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:187:4: c= StringLiteral
                     {
                     c=input.LT(1);
-                    match(input,StringLiteral,FOLLOW_StringLiteral_in_primaryExpression1227); if (failed) return e;
-                    if ( backtracking==0 ) {
+                    match(input,StringLiteral,FOLLOW_StringLiteral_in_primaryExpression1227); if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                        e = factory.createStringLiteral(id(c));
                     }
 
@@ -2546,9 +2546,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_featureCall_in_primaryExpression1238);
                     x=featureCall();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2559,9 +2559,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_booleanLiteral_in_primaryExpression1248);
                     x=booleanLiteral();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2572,9 +2572,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_numberLiteral_in_primaryExpression1258);
                     x=numberLiteral();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2585,9 +2585,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_nullLiteral_in_primaryExpression1268);
                     x=nullLiteral();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2598,9 +2598,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_listLiteral_in_primaryExpression1278);
                     x=listLiteral();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2611,9 +2611,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_constructorCall_in_primaryExpression1288);
                     x=constructorCall();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2624,9 +2624,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_globalVarExpression_in_primaryExpression1298);
                     x=globalVarExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2637,9 +2637,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_paranthesizedExpression_in_primaryExpression1308);
                     x=paranthesizedExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2671,13 +2671,13 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:198:48: ( '(' x= expression ')' )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:199:5: '(' x= expression ')'
             {
-            match(input,29,FOLLOW_29_in_paranthesizedExpression1327); if (failed) return e;
+            match(input,29,FOLLOW_29_in_paranthesizedExpression1327); if (state.failed) return e;
             pushFollow(FOLLOW_expression_in_paranthesizedExpression1331);
             x=expression();
-            _fsp--;
-            if (failed) return e;
-            match(input,32,FOLLOW_32_in_paranthesizedExpression1333); if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            match(input,32,FOLLOW_32_in_paranthesizedExpression1333); if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =factory.createParanthesizedExpression(x);
             }
 
@@ -2707,12 +2707,12 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:202:54: ( 'GLOBALVAR' name= identifier )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:203:5: 'GLOBALVAR' name= identifier
             {
-            match(input,66,FOLLOW_66_in_globalVarExpression1353); if (failed) return e;
+            match(input,66,FOLLOW_66_in_globalVarExpression1353); if (state.failed) return e;
             pushFollow(FOLLOW_identifier_in_globalVarExpression1357);
             name=identifier();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e = factory.createGlobalVarExpression(name);
             }
 
@@ -2759,7 +2759,7 @@ public class XtendParser extends Parser {
                     alt45=1;
                 }
                 else {
-                    if (backtracking>0) {failed=true; return e;}
+                    if (state.backtracking>0) {state.failed=true; return e;}
                     NoViableAltException nvae =
                         new NoViableAltException("205:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );", 45, 1, input);
 
@@ -2788,7 +2788,7 @@ public class XtendParser extends Parser {
                 }
                 break;
             default:
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("205:1: featureCall returns [FeatureCall e] : (id1= identifier '(' (l= parameterList )? ')' | t= type | x= collectionExpression );", 45, 0, input);
 
@@ -2801,9 +2801,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_identifier_in_featureCall1375);
                     id1=identifier();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,29,FOLLOW_29_in_featureCall1377); if (failed) return e;
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,29,FOLLOW_29_in_featureCall1377); if (state.failed) return e;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:206:21: (l= parameterList )?
                     int alt44=2;
                     int LA44_0 = input.LA(1);
@@ -2817,16 +2817,16 @@ public class XtendParser extends Parser {
                             {
                             pushFollow(FOLLOW_parameterList_in_featureCall1382);
                             l=parameterList();
-                            _fsp--;
-                            if (failed) return e;
+                            state._fsp--;
+                            if (state.failed) return e;
 
                             }
                             break;
 
                     }
 
-                    match(input,32,FOLLOW_32_in_featureCall1386); if (failed) return e;
-                    if ( backtracking==0 ) {
+                    match(input,32,FOLLOW_32_in_featureCall1386); if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e = factory.createOperationCall(id1,l);
                     }
 
@@ -2837,9 +2837,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_type_in_featureCall1396);
                     t=type();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =factory.createFeatureCall(t,null);
                     }
 
@@ -2850,9 +2850,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_collectionExpression_in_featureCall1407);
                     x=collectionExpression();
-                    _fsp--;
-                    if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =x;
                     }
 
@@ -2884,7 +2884,7 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:211:37: ( '{' (l= parameterList )? '}' )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:2: '{' (l= parameterList )? '}'
             {
-            match(input,49,FOLLOW_49_in_listLiteral1424); if (failed) return e;
+            match(input,49,FOLLOW_49_in_listLiteral1424); if (state.failed) return e;
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:212:6: (l= parameterList )?
             int alt46=2;
             int LA46_0 = input.LA(1);
@@ -2898,16 +2898,16 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_parameterList_in_listLiteral1429);
                     l=parameterList();
-                    _fsp--;
-                    if (failed) return e;
+                    state._fsp--;
+                    if (state.failed) return e;
 
                     }
                     break;
 
             }
 
-            match(input,52,FOLLOW_52_in_listLiteral1433); if (failed) return e;
-            if ( backtracking==0 ) {
+            match(input,52,FOLLOW_52_in_listLiteral1433); if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e =factory.createListLiteral(l);
             }
 
@@ -2937,12 +2937,12 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:215:41: ( 'new' t= simpleType )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:216:2: 'new' t= simpleType
             {
-            match(input,67,FOLLOW_67_in_constructorCall1450); if (failed) return e;
+            match(input,67,FOLLOW_67_in_constructorCall1450); if (state.failed) return e;
             pushFollow(FOLLOW_simpleType_in_constructorCall1454);
             t=simpleType();
-            _fsp--;
-            if (failed) return e;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return e;
+            if ( state.backtracking==0 ) {
               e = factory.createConstructorCall(t);
             }
 
@@ -2971,10 +2971,10 @@ public class XtendParser extends Parser {
             {
             if ( (input.LA(1)>=68 && input.LA(1)<=69) ) {
                 input.consume();
-                errorRecovery=false;failed=false;
+                state.errorRecovery=false;state.failed=false;
             }
             else {
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 recoverFromMismatchedSet(input,mse,FOLLOW_set_in_booleanLiteral0);    throw mse;
@@ -3004,7 +3004,7 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:224:80: ( 'null' )
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:225:2: 'null'
             {
-            match(input,70,FOLLOW_70_in_nullLiteral1489); if (failed) return e;
+            match(input,70,FOLLOW_70_in_nullLiteral1489); if (state.failed) return e;
 
             }
 
@@ -3047,7 +3047,7 @@ public class XtendParser extends Parser {
                         alt47=1;
                     }
                     else {
-                        if (backtracking>0) {failed=true; return e;}
+                        if (state.backtracking>0) {state.failed=true; return e;}
                         NoViableAltException nvae =
                             new NoViableAltException("228:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 47, 2, input);
 
@@ -3058,7 +3058,7 @@ public class XtendParser extends Parser {
                     alt47=1;
                 }
                 else {
-                    if (backtracking>0) {failed=true; return e;}
+                    if (state.backtracking>0) {state.failed=true; return e;}
                     NoViableAltException nvae =
                         new NoViableAltException("228:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 47, 1, input);
 
@@ -3066,7 +3066,7 @@ public class XtendParser extends Parser {
                 }
             }
             else {
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("228:1: numberLiteral returns [Expression e] : (a= IntLiteral | a= IntLiteral b= '.' c= IntLiteral );", 47, 0, input);
 
@@ -3077,8 +3077,8 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:229:4: a= IntLiteral
                     {
                     a=input.LT(1);
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1508); if (failed) return e;
-                    if ( backtracking==0 ) {
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1508); if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =factory.createIntegerLiteral(id(a));
                     }
 
@@ -3088,12 +3088,12 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:230:4: a= IntLiteral b= '.' c= IntLiteral
                     {
                     a=input.LT(1);
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1517); if (failed) return e;
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1517); if (state.failed) return e;
                     b=input.LT(1);
-                    match(input,37,FOLLOW_37_in_numberLiteral1521); if (failed) return e;
+                    match(input,37,FOLLOW_37_in_numberLiteral1521); if (state.failed) return e;
                     c=input.LT(1);
-                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1525); if (failed) return e;
-                    if ( backtracking==0 ) {
+                    match(input,IntLiteral,FOLLOW_IntLiteral_in_numberLiteral1525); if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                       e =factory.createRealLiteral(id(a).append(id(b)).append(id(c)));
                     }
 
@@ -3138,7 +3138,7 @@ public class XtendParser extends Parser {
                 alt49=2;
             }
             else {
-                if (backtracking>0) {failed=true; return e;}
+                if (state.backtracking>0) {state.failed=true; return e;}
                 NoViableAltException nvae =
                     new NoViableAltException("233:1: collectionExpression returns [FeatureCall e] : (name= 'typeSelect' '(' t= type ')' | name= ( 'collect' | 'select' | 'selectFirst' | 'reject' | 'exists' | 'notExists' | 'sortBy' | 'forAll' ) '(' (var= identifier '|' )? x= expression ')' );", 49, 0, input);
 
@@ -3149,14 +3149,14 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:234:3: name= 'typeSelect' '(' t= type ')'
                     {
                     name=input.LT(1);
-                    match(input,71,FOLLOW_71_in_collectionExpression1545); if (failed) return e;
-                    match(input,29,FOLLOW_29_in_collectionExpression1549); if (failed) return e;
+                    match(input,71,FOLLOW_71_in_collectionExpression1545); if (state.failed) return e;
+                    match(input,29,FOLLOW_29_in_collectionExpression1549); if (state.failed) return e;
                     pushFollow(FOLLOW_type_in_collectionExpression1553);
                     t=type();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,32,FOLLOW_32_in_collectionExpression1555); if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,32,FOLLOW_32_in_collectionExpression1555); if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                        e = factory.createTypeSelectExpression(id(name),t);
                     }
 
@@ -3168,16 +3168,16 @@ public class XtendParser extends Parser {
                     name=input.LT(1);
                     if ( (input.LA(1)>=72 && input.LA(1)<=79) ) {
                         input.consume();
-                        errorRecovery=false;failed=false;
+                        state.errorRecovery=false;state.failed=false;
                     }
                     else {
-                        if (backtracking>0) {failed=true; return e;}
+                        if (state.backtracking>0) {state.failed=true; return e;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
                         recoverFromMismatchedSet(input,mse,FOLLOW_set_in_collectionExpression1568);    throw mse;
                     }
 
-                    match(input,29,FOLLOW_29_in_collectionExpression1618); if (failed) return e;
+                    match(input,29,FOLLOW_29_in_collectionExpression1618); if (state.failed) return e;
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:244:19: (var= identifier '|' )?
                     int alt48=2;
                     int LA48_0 = input.LA(1);
@@ -3195,9 +3195,9 @@ public class XtendParser extends Parser {
                             {
                             pushFollow(FOLLOW_identifier_in_collectionExpression1623);
                             var=identifier();
-                            _fsp--;
-                            if (failed) return e;
-                            match(input,80,FOLLOW_80_in_collectionExpression1625); if (failed) return e;
+                            state._fsp--;
+                            if (state.failed) return e;
+                            match(input,80,FOLLOW_80_in_collectionExpression1625); if (state.failed) return e;
 
                             }
                             break;
@@ -3206,10 +3206,10 @@ public class XtendParser extends Parser {
 
                     pushFollow(FOLLOW_expression_in_collectionExpression1631);
                     x=expression();
-                    _fsp--;
-                    if (failed) return e;
-                    match(input,32,FOLLOW_32_in_collectionExpression1633); if (failed) return e;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return e;
+                    match(input,32,FOLLOW_32_in_collectionExpression1633); if (state.failed) return e;
+                    if ( state.backtracking==0 ) {
                        e = factory.createCollectionExpression(id(name),var,x);
                     }
 
@@ -3245,9 +3245,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_declaredParameter_in_declaredParameterList1657);
             dp=declaredParameter();
-            _fsp--;
-            if (failed) return l;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return l;
+            if ( state.backtracking==0 ) {
               l.add(dp);
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:36: ( ',' dp1= declaredParameter )*
@@ -3271,12 +3271,12 @@ public class XtendParser extends Parser {
             	case 1 :
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:251:37: ',' dp1= declaredParameter
             	    {
-            	    match(input,30,FOLLOW_30_in_declaredParameterList1661); if (failed) return l;
+            	    match(input,30,FOLLOW_30_in_declaredParameterList1661); if (state.failed) return l;
             	    pushFollow(FOLLOW_declaredParameter_in_declaredParameterList1665);
             	    dp1=declaredParameter();
-            	    _fsp--;
-            	    if (failed) return l;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return l;
+            	    if ( state.backtracking==0 ) {
             	      l.add(dp1);
             	    }
 
@@ -3319,13 +3319,13 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_type_in_declaredParameter1685);
             t=type();
-            _fsp--;
-            if (failed) return dp;
+            state._fsp--;
+            if (state.failed) return dp;
             pushFollow(FOLLOW_identifier_in_declaredParameter1689);
             name=identifier();
-            _fsp--;
-            if (failed) return dp;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return dp;
+            if ( state.backtracking==0 ) {
               dp = factory.createDeclaredParameter(t,name);
             }
 
@@ -3359,9 +3359,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_expression_in_parameterList1711);
             a=expression();
-            _fsp--;
-            if (failed) return list;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return list;
+            if ( state.backtracking==0 ) {
               list.add(a);
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:34: ( ',' b= expression )*
@@ -3379,12 +3379,12 @@ public class XtendParser extends Parser {
             	case 1 :
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:259:35: ',' b= expression
             	    {
-            	    match(input,30,FOLLOW_30_in_parameterList1716); if (failed) return list;
+            	    match(input,30,FOLLOW_30_in_parameterList1716); if (state.failed) return list;
             	    pushFollow(FOLLOW_expression_in_parameterList1720);
             	    b=expression();
-            	    _fsp--;
-            	    if (failed) return list;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return list;
+            	    if ( state.backtracking==0 ) {
             	      list.add(b);
             	    }
 
@@ -3433,7 +3433,7 @@ public class XtendParser extends Parser {
                 alt52=2;
             }
             else {
-                if (backtracking>0) {failed=true; return id;}
+                if (state.backtracking>0) {state.failed=true; return id;}
                 NoViableAltException nvae =
                     new NoViableAltException("264:1: type returns [Identifier id] : (a= collectionType | b= simpleType );", 52, 0, input);
 
@@ -3445,9 +3445,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_collectionType_in_type1746);
                     a=collectionType();
-                    _fsp--;
-                    if (failed) return id;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return id;
+                    if ( state.backtracking==0 ) {
                       id =a;
                     }
 
@@ -3458,9 +3458,9 @@ public class XtendParser extends Parser {
                     {
                     pushFollow(FOLLOW_simpleType_in_type1756);
                     b=simpleType();
-                    _fsp--;
-                    if (failed) return id;
-                    if ( backtracking==0 ) {
+                    state._fsp--;
+                    if (state.failed) return id;
+                    if ( state.backtracking==0 ) {
                       id =b;
                     }
 
@@ -3498,16 +3498,16 @@ public class XtendParser extends Parser {
             cl=input.LT(1);
             if ( (input.LA(1)>=39 && input.LA(1)<=41) ) {
                 input.consume();
-                errorRecovery=false;failed=false;
+                state.errorRecovery=false;state.failed=false;
             }
             else {
-                if (backtracking>0) {failed=true; return id;}
+                if (state.backtracking>0) {state.failed=true; return id;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 recoverFromMismatchedSet(input,mse,FOLLOW_set_in_collectionType1778);    throw mse;
             }
 
-            if ( backtracking==0 ) {
+            if ( state.backtracking==0 ) {
               id = id(cl);
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:271:3: (b= '[' id1= simpleType c= ']' )?
@@ -3522,14 +3522,14 @@ public class XtendParser extends Parser {
                     // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:271:4: b= '[' id1= simpleType c= ']'
                     {
                     b=input.LT(1);
-                    match(input,81,FOLLOW_81_in_collectionType1799); if (failed) return id;
+                    match(input,81,FOLLOW_81_in_collectionType1799); if (state.failed) return id;
                     pushFollow(FOLLOW_simpleType_in_collectionType1803);
                     id1=simpleType();
-                    _fsp--;
-                    if (failed) return id;
+                    state._fsp--;
+                    if (state.failed) return id;
                     c=input.LT(1);
-                    match(input,82,FOLLOW_82_in_collectionType1807); if (failed) return id;
-                    if ( backtracking==0 ) {
+                    match(input,82,FOLLOW_82_in_collectionType1807); if (state.failed) return id;
+                    if ( state.backtracking==0 ) {
                        id.append(id(b));id.append(id1);id.append(id(c));
                     }
 
@@ -3570,9 +3570,9 @@ public class XtendParser extends Parser {
             {
             pushFollow(FOLLOW_identifier_in_simpleType1827);
             x=identifier();
-            _fsp--;
-            if (failed) return id;
-            if ( backtracking==0 ) {
+            state._fsp--;
+            if (state.failed) return id;
+            if ( state.backtracking==0 ) {
               id =x;
             }
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:276:2: (d= '::' end= identifier )*
@@ -3591,12 +3591,12 @@ public class XtendParser extends Parser {
             	    // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:276:3: d= '::' end= identifier
             	    {
             	    d=input.LT(1);
-            	    match(input,33,FOLLOW_33_in_simpleType1835); if (failed) return id;
+            	    match(input,33,FOLLOW_33_in_simpleType1835); if (state.failed) return id;
             	    pushFollow(FOLLOW_identifier_in_simpleType1839);
             	    end=identifier();
-            	    _fsp--;
-            	    if (failed) return id;
-            	    if ( backtracking==0 ) {
+            	    state._fsp--;
+            	    if (state.failed) return id;
+            	    if ( state.backtracking==0 ) {
             	      id.append(id(d)); id.append(end);
             	    }
 
@@ -3635,8 +3635,8 @@ public class XtendParser extends Parser {
             // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:280:4: x= Identifier
             {
             x=input.LT(1);
-            match(input,Identifier,FOLLOW_Identifier_in_identifier1862); if (failed) return r;
-            if ( backtracking==0 ) {
+            match(input,Identifier,FOLLOW_Identifier_in_identifier1862); if (state.failed) return r;
+            if ( state.backtracking==0 ) {
               r =id(x);
             }
 
@@ -3658,33 +3658,33 @@ public class XtendParser extends Parser {
         // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:5: ( '(' type ')' castedExpression )
         // src/org/eclipse/internal/xtend/xtend/parser/Xtend.g:117:6: '(' type ')' castedExpression
         {
-        match(input,29,FOLLOW_29_in_synpred1662); if (failed) return ;
+        match(input,29,FOLLOW_29_in_synpred1662); if (state.failed) return ;
         pushFollow(FOLLOW_type_in_synpred1664);
         type();
-        _fsp--;
-        if (failed) return ;
-        match(input,32,FOLLOW_32_in_synpred1666); if (failed) return ;
+        state._fsp--;
+        if (state.failed) return ;
+        match(input,32,FOLLOW_32_in_synpred1666); if (state.failed) return ;
         pushFollow(FOLLOW_castedExpression_in_synpred1668);
         castedExpression();
-        _fsp--;
-        if (failed) return ;
+        state._fsp--;
+        if (state.failed) return ;
 
         }
     }
     // $ANTLR end synpred1
 
     public boolean synpred1() {
-        backtracking++;
+        state.backtracking++;
         int start = input.mark();
         try {
             synpred1_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
-        boolean success = !failed;
+        boolean success = !state.failed;
         input.rewind(start);
-        backtracking--;
-        failed=false;
+        state.backtracking--;
+        state.failed=false;
         return success;
     }
 
@@ -4034,7 +4034,7 @@ public class XtendParser extends Parser {
                         if ( s>=0 ) return s;
                         break;
             }
-            if (backtracking>0) {failed=true; return -1;}
+            if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
                 new NoViableAltException(getDescription(), 27, _s, input);
             error(nvae);

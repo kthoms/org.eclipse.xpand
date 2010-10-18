@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.xpand
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.xtend,
  org.eclipse.emf.mwe.core;resolution:=optional,
  org.eclipse.jdt.core;resolution:=optional,
  org.eclipse.text;resolution:=optional,
- org.antlr.runtime;bundle-version="[3.0.0,3.0.1]"
+ org.antlr.runtime;bundle-version="3.2.0"
 Export-Package: 
  org.eclipse.internal.xpand2,
  org.eclipse.internal.xpand2.ast,

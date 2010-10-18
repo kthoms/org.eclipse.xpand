@@ -134,7 +134,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -153,7 +153,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -172,7 +172,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -190,7 +190,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -208,7 +208,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -226,7 +226,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -244,7 +244,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -263,7 +263,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -282,7 +282,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -301,7 +301,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -320,7 +320,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -339,7 +339,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -357,7 +357,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -376,7 +376,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -395,7 +395,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -414,7 +414,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -433,7 +433,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -452,7 +452,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -471,7 +471,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -490,7 +490,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -509,7 +509,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -528,7 +528,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -547,7 +547,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -566,7 +566,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -585,7 +585,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -604,7 +604,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -623,7 +623,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -642,7 +642,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -661,7 +661,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -680,7 +680,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -699,7 +699,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -718,7 +718,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -737,7 +737,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -756,7 +756,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -775,7 +775,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -794,7 +794,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -812,7 +812,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -830,7 +830,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -849,7 +849,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -867,7 +867,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -886,7 +886,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -905,7 +905,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -924,7 +924,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -943,7 +943,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -961,7 +961,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -980,7 +980,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -999,7 +999,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1017,7 +1017,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1036,7 +1036,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1055,7 +1055,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1074,7 +1074,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1093,7 +1093,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1112,7 +1112,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1131,7 +1131,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1150,7 +1150,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1168,7 +1168,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1186,7 +1186,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1204,7 +1204,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1222,7 +1222,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1240,7 +1240,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1258,7 +1258,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1277,7 +1277,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1296,7 +1296,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1315,7 +1315,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1334,7 +1334,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1353,7 +1353,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1372,7 +1372,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1391,7 +1391,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1410,7 +1410,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1429,7 +1429,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1448,7 +1448,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1467,7 +1467,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1486,7 +1486,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1505,7 +1505,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1524,7 +1524,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1542,7 +1542,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1561,7 +1561,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1580,7 +1580,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1599,7 +1599,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1617,7 +1617,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1635,7 +1635,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1711,7 +1711,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -1845,7 +1845,7 @@ public class XpandLexer extends Lexer {
                     break;
 
             }
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -2172,7 +2172,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -2246,11 +2246,11 @@ public class XpandLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            channel=HIDDEN;
+            state.channel=HIDDEN;
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -2305,11 +2305,11 @@ public class XpandLexer extends Lexer {
 
             match("*/"); 
 
-            channel=HIDDEN;
+            state.channel=HIDDEN;
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -2378,11 +2378,11 @@ public class XpandLexer extends Lexer {
             }
 
             match('\n'); 
-            channel=HIDDEN;
+            state.channel=HIDDEN;
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -2400,7 +2400,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -2520,7 +2520,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }
@@ -2590,7 +2590,7 @@ public class XpandLexer extends Lexer {
 
             }
 
-            this.type = _type;
+            this.state.type = _type;
         }
         finally {
         }

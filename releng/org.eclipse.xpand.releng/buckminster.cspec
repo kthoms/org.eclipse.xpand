@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.xpand.releng" componentType="buckminster" version="1.0.0.qualifier">
     <cs:dependencies>
-        <cs:dependency name="org.antlr.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.commons.logging" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.log4j" componentType="osgi.bundle"/>
         <cs:dependency name="org.easymock" componentType="osgi.bundle"/>

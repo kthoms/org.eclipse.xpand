@@ -1,0 +1,5 @@
+String generateVarName (String baseVarName) :
+	JAVA org.eclipse.xtend.backend.compiler.templates.VarNameGeneratorExpressions.generateVarName (java.lang.String);
+	
+int getNextVarIdx () :
+	JAVA org.eclipse.xtend.backend.compiler.templates.VarNameGeneratorExpressions.getNextVarIdx ();

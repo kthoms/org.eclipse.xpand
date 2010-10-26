@@ -31,6 +31,14 @@ public final class Pair<T1, T2> {
     public T2 getSecond() {
         return _o2;
     }
+    
+    public Object getFirstAsObject () {
+    	return _o1;
+    }
+    
+    public Object getSecondAsObject () {
+    	return _o2;
+    }
 
     @Override
     public String toString () {

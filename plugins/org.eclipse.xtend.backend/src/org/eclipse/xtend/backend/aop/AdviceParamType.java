@@ -18,7 +18,8 @@ import org.eclipse.xtend.backend.common.BackendType;
  * @author Arno Haase (http://www.haase-consulting.com)
  */
 public final class AdviceParamType {
-    private final BackendType _type;
+
+	private final BackendType _type;
     private final boolean _includingSubtypes;
     
     public AdviceParamType (BackendType type, boolean includingSubtypes) {
@@ -34,4 +35,13 @@ public final class AdviceParamType {
         else
             return _type.equals (type);
     }
+
+    
+    public BackendType getType() {
+		return _type;
+	}
+
+	public boolean isIncludingSubtypes() {
+		return _includingSubtypes;
+	}
 }

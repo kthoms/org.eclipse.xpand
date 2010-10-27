@@ -4,9 +4,11 @@
 «IMPORT org::eclipse::xtend::backend::compiler»
 «IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
 
-«DEFINE compile(String namespace, String providerName) FOR FdcHolder»
-	«FILE providerName + ".java"»
-		package «namespace»;
+«EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
+
+«DEFINE compile(String middleEndNamespace, String middleEndName) FOR FdcHolder»
+	«FILE middleEndNamespace.replaceAll("\\.", "/") + ".java"»
+		package «middleEndNamespace»;
 
 		import org.eclipse.xtend.backend.BackendFacade;
 		import org.eclipse.xtend.backend.common.BackendType;
@@ -22,15 +24,17 @@
 		import java.util.List;
 		import java.util.ArrayList;
 		
-		import «namespace»;
+		import «middleEndNamespace»;
 		
-		public class «providerName» implements FunctionDefContextProvider  {
+		public class «middleEndName» implements FunctionDefContextProvider  {
 			private MiddleEnd _middleEnd;
 			
 			private Map<String, FunctionDefContext> _fdcs;
 			
 			public Java5FunctionDefContextBuilder () {
-				_fdcs.put ("resourceName", SomeResouceNameShrinkedFQN.buildFdc ());
+				«FOREACH resources AS res»
+				_fdcs.put («res», «res.toQualifiedFdcBuilderClassName()».buildFdc ());
+				«ENDFOREACH»
 			}
 		
 			public void setMiddleEnd (MiddleEnd middleEnd) {
@@ -38,48 +42,29 @@
 			}
 		
 			public String getName () {
-				return null;
+				return «middleEndName»;
 			}
 		
 			public boolean canHandle (String resourceName) {
-				// TODO Auto-generated method stub
+				«FOREACH resources AS resName»
+				if («resName».equals (resourceName))
+					return true;
+				«ENDFOREACH»
 				return false;
 			}
 		
 			public FunctionDefContext getFdc (String resourceName) {
-				// TODO Auto-generated method stub
-				return null;
+				return _fdcs.get (resourceName);
 			}
-			
-			public static FunctionDefContext createFdc (BackendTypesystem ts, String resource) {
-				FunctionDefContextInternal fdc = (FunctionDefContextInternal) MiddleEndFactory.create (ts, null).createEmptyFdc ();
-				fdc.register (SomeResouceNameShrinkedFQN.buildMyNamedFunction (), true);
-				return fdc;
-			}
-			
-			static class SomeResouceNameShrinkedFQN {
-				public static FunctionDefContext buildFdc () {
-					FunctionDefContextInternal fdc = MiddleEndFactory.create (new CompositeTypesystem (), null).createEmptyFdc ();
-					fdc.register (buildMyNamedFunction (), true);
-					return fdc;
-				}
-				
-				private static NamedFunction buildMyNamedFunction () {
-					ExpressionBase def = new LiteralExpression ("value", new SourcePos("resource", "callableName", 5));
-					List<BackendType> paramTypes = new ArrayList<BackendType>();
-					NamedFunction f = new NamedFunction (new QualifiedName ("",""), new SourceDefinedFunction ( new QualifiedName("ns", "name"), Arrays.asList ("",""), paramTypes, StringType.INSTANCE, def, false, def));
-					//TODO add the ExecutionListeners?
-					return f;
-				}
-			}
+						
 		}					
 	«ENDFILE»
 «ENDDEFINE»
 
 «DEFINE compile(String resource) FOR FunctionDefContext»
-	«FILE resource.replaceAll("::","/") + "FdcBuilder.java"»
-	package «resource»
-	public class SomeResouceNameShrinkedFQN {
+	«FILE resource.toFdcBuilderFileName() + "FdcBuilder.java"»
+	package «resource.toFdcBuilderPackage()»
+	public class «resource.toFdcBuilderClassName()» {
 		public static FunctionDefContext buildFdc () {
 			FunctionDefContextInternal fdc = MiddleEndFactory.create (new CompositeTypesystem (), null).createEmptyFdc ();
 		«FOREACH allFunctions AS f»

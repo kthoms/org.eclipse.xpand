@@ -3,3 +3,11 @@ String generateVarName (String baseVarName) :
 	
 int getNextVarIdx () :
 	JAVA org.eclipse.xtend.backend.compiler.templates.VarNameGeneratorExpressions.getNextVarIdx ();
+	
+String toFdcBuilderClassName (String resourceName) : resourceName.split("::").last();
+
+String toQualifiedFdcBuilderClassName (String resourceName) : resourceName.replaceAll("::", ".");
+
+String toFdcBuilderPackage (String resourceName) : resourceName.split("::").withoutLast().toString(".");
+
+String toFdcBuilderFileName (String resourceName) : resourceName.replaceAll("::", "/");

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008 2009 Arno Haase, Andrï¿½ Arnold.
+Copyright (c) 2008 2009 Arno Haase, André Arnold.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -7,7 +7,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
 Contributors:
     Arno Haase - initial API and implementation
-    Andrï¿½ Arnold
+    André Arnold
  */
 package org.eclipse.xtend.middleend.javaannotations;
 
@@ -44,7 +44,7 @@ import org.eclipse.xtend.middleend.plugins.ParsedResource;
  *  For more global sharing of the instance, Contributor instances must be shared. 
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
- * @author Andrï¿½ Arnold
+ * @author André Arnold
  */
 public final class JavaFunctionClassContributor implements LanguageSpecificMiddleEnd {
     public static final String MIDDLE_END_NAME = "JavaAnnotations";

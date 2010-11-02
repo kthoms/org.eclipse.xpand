@@ -177,8 +177,8 @@
 		<echo>Remove existing nightly builds</echo>
 		<delete verbose="true">
 			<fileset dir="${downloads.area}/downloads/drops/${version}/">
+				<include name="N*"/>
 				<type type="dir" />
-				<filename name="N*" />
 			</fileset>
 		</delete>
 

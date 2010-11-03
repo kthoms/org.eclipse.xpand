@@ -1,9 +1,9 @@
 package org.eclipse.xtend.backend.compiler;
 
-import org.eclipse.xtend.backend.common.FunctionDefContext;
+import java.util.Set;
 
 public interface BackendCompilerFacade {
 	
-	public void compile (FunctionDefContext fdc, String resourceName);
+	public void compile (Set<String> resources, String contributorNamespace, String contributorName, String outputDir);
 
 }

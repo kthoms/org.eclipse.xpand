@@ -6,7 +6,7 @@
 
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
 
-«DEFINE compile(String middleEndNamespace, String middleEndName) FOR FdcHolder»
+«DEFINE compile (String middleEndNamespace, String middleEndName) FOR FdcHolder»
 	«FILE middleEndNamespace.replaceAll("\\.", "/") + ".java"»
 		package «middleEndNamespace»;
 
@@ -32,7 +32,8 @@
 			private Map<String, FunctionDefContext> _fdcs;
 			
 			public Java5FunctionDefContextBuilder () {
-				«FOREACH resources AS res»
+				«FOREACH resources AS res-»
+					«EXPAND compile (res) FOR getFdc (res)-»
 				_fdcs.put («res», «res.toQualifiedFdcBuilderClassName()».buildFdc ());
 				«ENDFOREACH»
 			}
@@ -46,7 +47,7 @@
 			}
 		
 			public boolean canHandle (String resourceName) {
-				«FOREACH resources AS resName»
+				«FOREACH resources AS resName-»
 				if («resName».equals (resourceName))
 					return true;
 				«ENDFOREACH»
@@ -61,7 +62,7 @@
 	«ENDFILE»
 «ENDDEFINE»
 
-«DEFINE compile(String resource) FOR FunctionDefContext»
+«DEFINE compile (String resource) FOR FunctionDefContext»
 	«FILE resource.toFdcBuilderFileName() + "FdcBuilder.java"»
 	package «resource.toFdcBuilderPackage()»
 	public class «resource.toFdcBuilderClassName()» {
@@ -77,7 +78,7 @@
 	«ENDFILE»
 «ENDDEFINE»
 
-«DEFINE compile(String resource) FOR NamedFunction»
+«DEFINE compile (String resource) FOR NamedFunction»
 		private static NamedFunction build«name.simpleName.toFirstUpper()» (BackendTypesystem ts) {
 			ExpressionBase def = new LiteralExpression ("value", new SourcePos("«resource»", "callableName", 5));
 			List<BackendType> paramTypes = new ArrayList<BackendType>();

@@ -6,22 +6,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.xpand2.output.Outlet;
-import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.middleend.xpand.XpandBackendFacade;
-import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
 import org.eclipse.xtend.typesystem.MetaModel;
 
-public class BackendJavaCompilerFacade implements BackendCompilerFacade {
+public class BackendJavaCompilerFacade extends AbstractBackendCompilerFacade {
+	
 
-	public void compile(FunctionDefContext fdc, String resourceName) {
-		// TODO Auto-generated method stub
+	protected void compileInternal (FdcHolder fdcs, String contributorNamespace, String contributorName, String outputDir) {
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("resource", resourceName);
-		variables.put("fdc", fdc);
+		variables.put("fdcs", fdcs);
+		variables.put("contributorNamespace", contributorNamespace);
+		variables.put("contributorName", contributorName);
+		
 		Collection<Outlet> outlets = new ArrayList<Outlet>();
-		outlets.add(new Outlet());
+		outlets.add (new Outlet (outputDir));
 		Collection<MetaModel> metamodels = new ArrayList<MetaModel>();
-		XpandBackendFacade.executeStatement("EXPAND org::eclipse::xtend::backend::compiler::templates::Java5Compiler::compile(resource) FOR fdc", metamodels, variables, null, null);
+		
+		XpandBackendFacade.executeStatement("EXPAND org::eclipse::xtend::backend::compiler::templates::Java5Compiler::compile (contributorNamespace, contributorName) FOR fdcs", metamodels, variables, null, null);
 	}
+	
 
 }

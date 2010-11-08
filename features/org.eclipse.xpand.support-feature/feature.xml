@@ -22,7 +22,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.xpand.sdk" version="1.0.1" match="equivalent"/>
+      <import feature="org.eclipse.xpand.sdk" version="1.0.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.cdt.core"/>
    </requires>
 

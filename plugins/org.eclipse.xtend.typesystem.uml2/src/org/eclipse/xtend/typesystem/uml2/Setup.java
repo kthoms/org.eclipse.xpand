@@ -44,47 +44,46 @@ public class Setup extends org.eclipse.xtend.typesystem.emf.Setup {
 	 */
 	public Setup() {
 		addEPackageClass(UMLPackage.eINSTANCE.getClass().getName());
-		doSetup();
 	}
 
 	/**
-	 * @deprecated Not required anymore, since setup is already done on instantiation
+	 * Registers all required UML resources.
+	 *
+	 * @param b
+	 *            Initialization occurs only if <code>true</code> is passed.
 	 */
-	@Deprecated
 	public void setStandardUML2Setup(boolean b) {
-		LOG.warn("The property 'standardUML2Setup' is obsolete. Remove it from your workflow configuration.");
-	}
+		if (b) {
+			addExtensionMap(new Mapping("ecore", "org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl"));
+			addExtensionMap(new Mapping("uml", "org.eclipse.uml2.uml.resource.UMLResource"));
+			addExtensionMap(new Mapping("uml2", "org.eclipse.uml2.uml.resource.UML22UMLResource"));
+			String p = "metamodels/UML.metamodel.uml";
+			URI uri = EcoreUtil2.getURI(p);
+			if (uri != null && !uri.toString().equals(p)) {
+				String path = uri.toString();
+				final int mmIndex = path.lastIndexOf("/metamodels");
+				if (mmIndex < 0)
+					throw new IllegalStateException("Missing required plugin 'org.eclipse.uml2.uml.resources' in classpath.");
 
-	protected void doSetup() {
-		addExtensionMap(new Mapping("ecore", "org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl"));
-		addExtensionMap(new Mapping("uml", "org.eclipse.uml2.uml.resource.UMLResource"));
-		addExtensionMap(new Mapping("uml2", "org.eclipse.uml2.uml.resource.UML22UMLResource"));
-		String p = "metamodels/UML.metamodel.uml";
-		URI uri = EcoreUtil2.getURI(p);
-		if (uri != null && !uri.toString().equals(p)) {
-			String path = uri.toString();
-			final int mmIndex = path.lastIndexOf("/metamodels");
-			if (mmIndex < 0)
+				path = path.substring(0, mmIndex);
+				path = addJarProtocolIfNecessary(path);
+				addUriMap(new Mapping("pathmap://UML_PROFILES/", path + "/profiles/"));
+				addUriMap(new Mapping("pathmap://UML_METAMODELS/", path + "/metamodels/"));
+				addUriMap(new Mapping("pathmap://UML_LIBRARIES/", path + "/libraries/"));
+			} else {
 				throw new IllegalStateException("Missing required plugin 'org.eclipse.uml2.uml.resources' in classpath.");
-
-			path = path.substring(0, mmIndex);
-			path = addJarProtocolIfNecessary(path);
-			addUriMap(new Mapping("pathmap://UML_PROFILES/", path + "/profiles/"));
-			addUriMap(new Mapping("pathmap://UML_METAMODELS/", path + "/metamodels/"));
-			addUriMap(new Mapping("pathmap://UML_LIBRARIES/", path + "/libraries/"));
-		} else {
-			throw new IllegalStateException("Missing required plugin 'org.eclipse.uml2.uml.resources' in classpath.");
-		}
-		// Register old UML2 URIs which is not done in Java Application mode. Running Eclipse this
-		// part is done automatically using the eclipse extension registry and EMF metamodel Extension
-		// which is generated for all EPackages
-		EPackage.Registry.INSTANCE.put(UML2_200_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
-		EPackage.Registry.INSTANCE.put(UML2_210_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
-		Ecore2XMLPackage.eINSTANCE.getEClassifiers();
-		uri = EcoreUtil2.getURI("model/UML2_2_UML.ecore2xml");
-		if (uri != null) {
-			String path = addJarProtocolIfNecessary(uri.toString());
-			addUriMap(new Mapping("platform:/plugin/org.eclipse.uml2.uml/model/UML2_2_UML.ecore2xml", path));
+			}
+			// Register old UML2 URIs which is not done in Java Application mode. Running Eclipse this
+			// part is done automatically using the eclipse extension registry and EMF metamodel Extension
+			// which is generated for all EPackages
+			EPackage.Registry.INSTANCE.put(UML2_200_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
+			EPackage.Registry.INSTANCE.put(UML2_210_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
+			Ecore2XMLPackage.eINSTANCE.getEClassifiers();
+			uri = EcoreUtil2.getURI("model/UML2_2_UML.ecore2xml");
+			if (uri != null) {
+				String path = addJarProtocolIfNecessary(uri.toString());
+				addUriMap(new Mapping("platform:/plugin/org.eclipse.uml2.uml/model/UML2_2_UML.ecore2xml", path));
+			}
 		}
 	}
 

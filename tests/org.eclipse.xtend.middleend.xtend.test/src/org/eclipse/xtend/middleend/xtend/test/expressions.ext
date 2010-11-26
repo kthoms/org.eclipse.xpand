@@ -51,6 +51,7 @@ List testTypeSelectPolymorphism (List p) : p.typeSelect(Person);
 List testTypeSelect (List p) : p.typeSelect(Employee);
 
 List[Person] testSelect (List[Person] p) : p.select (e|e.name.startsWith("D"));
+Person testSelectFirst (List p) : p.typeSelect(Person).selectFirst (e|e.name.startsWith("D"));
 // List[String] testCollect (List[Person] p) : p.collect (e|e.name);
 List[String] testCollect (List[Person] p) : p.name;
 

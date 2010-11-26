@@ -34,6 +34,7 @@ public abstract class JavaXtendTest {
 	protected Person _person;
 	protected Person _testPerson2;
 	protected Person _otherPerson;
+	protected Person _yetAnotherPerson;
 	protected Employee _employee;
 	
 	@Before
@@ -55,6 +56,9 @@ public abstract class JavaXtendTest {
 		_otherPerson = new Person();
 		_otherPerson.setFirstName("Alice");
 		_otherPerson.setName("Dowell");
+		_yetAnotherPerson = new Person();
+		_yetAnotherPerson.setFirstName("Josh");
+		_yetAnotherPerson.setName("Dowell");
 	}
 
 }

@@ -76,6 +76,17 @@ public class CollectionExpressionTest extends JavaXtendTest {
 		Assert.assertTrue(result.contains(_otherPerson));
 	}
 	
+	@Test
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void testSelectFirst() {
+		List persons = new ArrayList();
+		persons.add(_person);
+		persons.add (_otherPerson);
+		persons.add (_yetAnotherPerson);
+		Person result = (Person)BackendFacade.invoke(_ctx, new QualifiedName ("testSelectFirst"), Arrays.asList (persons));
+		Assert.assertEquals(_otherPerson, result);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testCollect() {

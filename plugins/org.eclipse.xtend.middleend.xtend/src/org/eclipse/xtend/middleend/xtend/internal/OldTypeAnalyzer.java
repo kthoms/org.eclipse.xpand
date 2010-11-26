@@ -37,6 +37,7 @@ import org.eclipse.internal.xtend.expression.ast.StringLiteral;
 import org.eclipse.internal.xtend.expression.ast.SwitchExpression;
 import org.eclipse.internal.xtend.expression.ast.TypeSelectExpression;
 import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
+import org.eclipse.internal.xtend.type.baseimpl.types.ObjectTypeImpl;
 import org.eclipse.internal.xtend.xtend.ast.CreateExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.ExpressionExtensionStatement;
 import org.eclipse.internal.xtend.xtend.ast.Extension;
@@ -172,10 +173,16 @@ public final class OldTypeAnalyzer {
     
     private Type analyzeCollectionExpression (ExecutionContext ctx, CollectionExpression expr) {
         if (Arrays.asList (SyntaxConstants.COLLECT, SyntaxConstants.SELECT, SyntaxConstants.REJECT, SyntaxConstants.SORT_BY).contains (expr.getName().getValue()))
-            return analyze (ctx, expr.getTarget());
+        	if (expr.getTarget() != null)
+        		return analyze (ctx, expr.getTarget());
+        	else
+        		return ctx.getObjectType();
 
         if (expr.getName().getValue().equals(SyntaxConstants.SELECTFIRST))
-            return ((ParameterizedType) analyze (ctx, expr.getTarget())).getInnerType();
+        	if (expr.getTarget() != null)
+        		return ((ParameterizedType) analyze (ctx, expr.getTarget())).getInnerType();
+        	else
+        		return ctx.getObjectType();
  
         if (Arrays.asList (SyntaxConstants.EXISTS, SyntaxConstants.NOT_EXISTS, SyntaxConstants.FOR_ALL).contains (expr.getName().getValue()))
             return ctx.getBooleanType();

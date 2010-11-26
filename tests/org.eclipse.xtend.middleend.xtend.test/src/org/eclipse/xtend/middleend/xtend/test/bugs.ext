@@ -1,0 +1,5 @@
+import org::eclipse::xtend::middleend::xtend::test;
+
+create Set testCreateSetWithSelectFirstBug329296(Model m) :
+	add(selectFirst(e|e!= null));
+	

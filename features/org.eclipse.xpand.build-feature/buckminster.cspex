@@ -152,7 +152,6 @@
 			<cs:attribute name="package.m2t-xpand-SDK" />
 			<cs:attribute name="package.m2t-xpand-runtime" />
 			<cs:attribute name="package.m2t-xpand-examples" />
-			<cs:attribute name="package.m2t-xpand-tests" />
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>

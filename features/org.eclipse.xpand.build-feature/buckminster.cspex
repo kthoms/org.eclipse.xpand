@@ -2,8 +2,7 @@
 <cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
 
 	<cs:dependencies>
-		<!-- <cs:dependency name="org.eclipse.xpand.releng" componentType="buckminster" />
-		 -->
+		<!-- <cs:dependency name="org.eclipse.xpand.releng" componentType="buckminster" /> -->
 		<cs:dependency name="org.eclipse.xpand.tests" componentType="eclipse.feature" />
 	</cs:dependencies>
 
@@ -16,6 +15,13 @@
 			<cs:products alias="output" base="${buckminster.output}/site.tp/" />
 		</cs:private>
 
+		<cs:public name="create.category.xml" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="-create.category.xml" />
+			</cs:actorProperties>
+		</cs:public>
+
 		<cs:public name="package.m2t-xpand-Update" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
@@ -25,6 +31,7 @@
 				<cs:property key="package.name" value="m2t-xpand-Update" />
 			</cs:properties>
 			<cs:prerequisites>
+				<cs:attribute name="create.category.xml" alias="create.category" />
 				<cs:attribute name="site.p2" alias="repository" />
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
@@ -68,7 +75,8 @@
 				<cs:property key="targets" value="install.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius" value="org.eclipse.xpand.ui.feature.group,org.eclipse.xpand.incremental.feature.group" />
+				<cs:property key="content.ius"
+					value="org.eclipse.xpand.ui.feature.group,org.eclipse.xpand.incremental.feature.group" />
 				<cs:property key="prerequisite.ius" value="org.eclipse.xtend.ui.feature.group" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -115,14 +123,27 @@
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
-
-		<!-- <cs:public name="tag" actor="buckminster.tag">
+		
+		<cs:public name="package.m2t-xpand-tests" actor="ant">
 			<cs:actorProperties>
-				<cs:property key="tag" value="build_${build.id}" />
-				<cs:property key="exclude.0" value="^org\.eclipse\.test$" />
-				<cs:property key="exclude.1" value="^org\.eclipse\.ant\.optional\.junit$" />
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
-		</cs:public> -->
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.xpand.tests.feature.group,org.eclipse.xpand.tests.source.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.xpand.sdk.feature.group" />
+				<cs:property key="package.name" value="m2t-xpand-Automated-Tests" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+		<!-- <cs:public name="tag" actor="buckminster.tag"> <cs:actorProperties> <cs:property key="tag" value="build_${build.id}" 
+			/> <cs:property key="exclude.0" value="^org\.eclipse\.test$" /> <cs:property key="exclude.1" value="^org\.eclipse\.ant\.optional\.junit$" 
+			/> </cs:actorProperties> </cs:public> -->
 	</cs:actions>
 
 	<cs:groups>
@@ -131,6 +152,7 @@
 			<cs:attribute name="package.m2t-xpand-SDK" />
 			<cs:attribute name="package.m2t-xpand-runtime" />
 			<cs:attribute name="package.m2t-xpand-examples" />
+			<cs:attribute name="package.m2t-xpand-tests" />
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>

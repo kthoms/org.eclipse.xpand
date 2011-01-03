@@ -15,6 +15,7 @@ import java.util.Set;
 
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.xtend.expression.AnalysationIssue;
+import org.eclipse.xtend.expression.AnalysationIssue.AnalysationIssueType;
 import org.eclipse.xtend.expression.Analyzable;
 import org.eclipse.xtend.expression.Evaluatable;
 import org.eclipse.xtend.expression.EvaluationException;
@@ -76,8 +77,14 @@ public abstract class Expression extends SyntaxElement implements Analyzable, Ev
 			val = analyzeInternal(ctx, issues);
 			return val;
 		}
+		//BNI: fix for bug#312425
+		//a nullpointer exception occurred if the parser could not parse the expression, so no errormarkers were created.
 		catch (final RuntimeException ex) {
-			issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, ex.getMessage(), this));
+			if (ex.getMessage()!=null){
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, ex.getMessage(), this));
+			}else {
+				issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, "Syntax Error", this));
+			}
 			return null;
 		}
 		finally {

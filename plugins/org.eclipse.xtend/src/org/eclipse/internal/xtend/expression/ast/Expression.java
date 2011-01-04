@@ -15,7 +15,6 @@ import java.util.Set;
 
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.xtend.expression.AnalysationIssue;
-import org.eclipse.xtend.expression.AnalysationIssue.AnalysationIssueType;
 import org.eclipse.xtend.expression.Analyzable;
 import org.eclipse.xtend.expression.Evaluatable;
 import org.eclipse.xtend.expression.EvaluationException;

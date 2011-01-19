@@ -18,10 +18,6 @@
       %license
    </license>
 
-   <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/m2t/xpand/updates/"/>
-   </url>
-
    <includes
          id="org.eclipse.xpand.all"
          version="0.0.0"/>

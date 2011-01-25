@@ -25,12 +25,18 @@
 		<!-- Prepare dirs -->
 		<delete dir="${output}" />
 		<mkdir dir="${output}" />
+		<fileset id="javadocFileSet" dir="${sourcesLocation}" defaultexcludes="true">
+			<include name="**/*.java" />
+			<exclude name="**/test/**" />
+		</fileset>
 
 		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" useexternalfile="true" author="true" version="true" use="true" windowtitle="${projectName} Documentation">
-			<fileset dir="${sourcesLocation}" defaultexcludes="true">
-				<include name="**/*.java" />
-				<exclude name="**/test/**" />
-			</fileset>
+			<fileset refid="javadocFileSet" />
 		</javadoc>
+
+		<!-- zip javadoc -->
+		<zip destfile="javadoc.zip">
+			<fileset refid="javadocFileSet" />
+		</zip>
 	</target>
 </project>

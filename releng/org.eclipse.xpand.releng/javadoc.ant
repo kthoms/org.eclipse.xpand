@@ -1,0 +1,42 @@
+<project name="javadoc-project">
+	<target name="create.javadoc">
+
+		<property name="projectName" value="Xpand" />
+
+		<!-- workspace defaults -->
+		<property name="output" value="./javadoc" />
+		<property name="checkoutLocation" value="../.." />
+		<property name="targetPlatform" value="${eclipse.home}" />
+
+		<property name="sourcesLocation" value="${checkoutLocation}/plugins/" />
+
+
+		<echo message="Source code location ${sourcesLocation}" />
+		<echo message="Javadoc output location ${output}" />
+		<echo message="Target platform path ${targetPlatform}" />
+
+		<!-- Define classpath -->
+		<path id="javadoc-classpath">
+			<fileset dir="${targetPlatform}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+
+		<!-- Prepare dirs -->
+		<delete dir="${output}" />
+		<mkdir dir="${output}" />
+		<fileset id="javadocFileSet" dir="${sourcesLocation}" defaultexcludes="true">
+			<include name="**/*.java" />
+			<exclude name="**/test/**" />
+		</fileset>
+
+		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" useexternalfile="true" author="true" version="true" use="true" windowtitle="${projectName} Documentation">
+			<fileset refid="javadocFileSet" />
+		</javadoc>
+
+		<!-- zip javadoc -->
+		<zip destfile="javadoc.zip">
+			<fileset refid="javadocFileSet" />
+		</zip>
+	</target>
+</project>

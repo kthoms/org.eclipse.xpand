@@ -17,8 +17,11 @@ import java.util.Map;
 
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.internal.xpand2.pr.ProtectedRegionResolver;
+import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.util.Pair;
 import org.eclipse.xpand2.output.Output;
+import org.eclipse.xtend.expression.ExceptionHandler;
+import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Resource;
 import org.eclipse.xtend.expression.ResourceManager;
 import org.eclipse.xtend.expression.ResourceParser;
@@ -39,7 +42,8 @@ public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecuti
 			TypeSystemImpl typeSystem, Map<String, Variable> vars, Map<String, Variable> globalVars, Output output,
 			ProtectedRegionResolver prs, ProgressMonitor monitor, IXtendXpandProject xp,
 			Map<Pair<String, List<Type>>, Type> extensionsReturnTypeCache) {
-		super(resourceManager, currentResource, typeSystem, vars, globalVars, output, prs, monitor, null, null, null,
+		// to solve bug#312571: added DevNullExceptionHandler Without an ExceptionHandler RuntimeExceptions will cause an abort of analyzing Expressions. 
+		super(resourceManager, currentResource, typeSystem, vars, globalVars, output, prs, monitor, new DevNullExceptionHandler(), null, null,
 				null, null, null, extensionsReturnTypeCache, null);
 		this.project = xp;
 	}
@@ -67,5 +71,20 @@ public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecuti
 
 		public void registerParser(final String template_extension, final ResourceParser parser) {
 		}
+	}
+	
+	/**
+	 * 
+	 * @author Benedikt Niehues - Initial contribution and API
+	 * this ExceptionHandler will do nothing with exceptions.
+	 * 
+	 */
+	private final static class DevNullExceptionHandler implements ExceptionHandler{
+
+		public void handleRuntimeException(RuntimeException ex, SyntaxElement element, ExecutionContext ctx,
+				Map<String, Object> additionalContextInfo) {
+			// Do nothing
+		}
+		
 	}
 }

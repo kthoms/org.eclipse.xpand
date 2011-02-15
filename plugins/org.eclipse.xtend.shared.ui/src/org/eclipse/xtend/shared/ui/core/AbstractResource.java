@@ -81,17 +81,20 @@ public abstract class AbstractResource implements IXtendXpandResource {
 		return getExtXptResource().getImportedExtensions();
 	}
 
-	private boolean hasSemanticErrors = false;
+//	private boolean hasSemanticErrors = false;
 
 	public final void analyze(ExecutionContext ctx) {
 		if (getUnderlyingStorage() instanceof IFile) {
 			IFile f = (IFile) getUnderlyingStorage();
 			final Set<AnalysationIssue> issues = new HashSet<AnalysationIssue>();
 			analyze(ctx, issues);
-			if (hasSemanticErrors) {
-				XtendXpandMarkerManager.deleteMarkers(f);
-			}
-			hasSemanticErrors = !issues.isEmpty();
+			//BNI bug#312569 why should markers be deleted here?
+			//They will be deleted by createion of errorHandler before parsing the file.
+			//if they are deleted here, parser errors will not appear as ErrorMarkers
+//			if (hasSemanticErrors) {
+//				XtendXpandMarkerManager.deleteMarkers(f);
+//			}
+//			hasSemanticErrors = !issues.isEmpty();
 			for (final Iterator<AnalysationIssue> iterator = issues.iterator(); iterator.hasNext();) {
 				XtendXpandMarkerManager.addMarker(f, iterator.next());
 			}

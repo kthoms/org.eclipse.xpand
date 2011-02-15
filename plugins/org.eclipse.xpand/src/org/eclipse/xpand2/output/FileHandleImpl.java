@@ -31,7 +31,7 @@ public class FileHandleImpl implements FileHandle, InsertionPointSupport {
 	private Map<Statement, CharSequence> namedBuffers = new HashMap<Statement, CharSequence>();
 	private CharSequence currentNamedBuffer = null;
 	private CharSequence currentUnnamedBuffer;
-	
+
 	private File targetFile =
 			null;
 
@@ -52,7 +52,21 @@ public class FileHandleImpl implements FileHandle, InsertionPointSupport {
 	}
 
 	public CharSequence getBuffer() {
-		return currentNamedBuffer!=null ? currentNamedBuffer : currentUnnamedBuffer;
+		if (!namedBuffers.isEmpty()) {
+			return currentNamedBuffer!=null ? currentNamedBuffer : currentUnnamedBuffer;
+		} else {
+			if (buffers.size()>1) {
+				// no insertion point used anymore, but multiple buffers available
+				// => compact to one buffer again
+				StringBuilder compacted = new StringBuilder();
+				for (CharSequence cs : buffers) {
+					compacted.append(cs);
+				}
+				buffers.clear();
+				buffers.add(compacted);
+			}
+			return buffers.get(0);
+		}
 	}
 
 	public void setBuffer(final CharSequence newBuffer) {
@@ -81,7 +95,7 @@ public class FileHandleImpl implements FileHandle, InsertionPointSupport {
 	public File getTargetFile() {
 		return targetFile;
 	}
-	
+
 	public String getAbsolutePath() {
 		return getTargetFile().getAbsolutePath();
 	}
@@ -187,6 +201,7 @@ public class FileHandleImpl implements FileHandle, InsertionPointSupport {
 		if (buffer != currentNamedBuffer) {
 			throw new IllegalStateException ("Insertion point "+stmt+" is not the active one!");
 		}
+		namedBuffers.remove(stmt);
 		currentNamedBuffer = null;
 	}
 
@@ -196,9 +211,10 @@ public class FileHandleImpl implements FileHandle, InsertionPointSupport {
 			namedBuffer = new StringBuilder();
 			namedBuffers.put(stmt, namedBuffer);
 		}
-		
+
 		buffers.add(namedBuffer);
 		currentUnnamedBuffer = new StringBuilder();
 		buffers.add(currentUnnamedBuffer);
 	}
+
 }

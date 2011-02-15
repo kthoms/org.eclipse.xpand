@@ -64,6 +64,7 @@ public class FileHandleImpl implements FileHandle, InsertionPointSupport {
 				}
 				buffers.clear();
 				buffers.add(compacted);
+				currentUnnamedBuffer = compacted;
 			}
 			return buffers.get(0);
 		}

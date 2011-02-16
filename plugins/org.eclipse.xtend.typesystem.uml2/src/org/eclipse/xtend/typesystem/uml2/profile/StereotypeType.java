@@ -96,7 +96,7 @@ public class StereotypeType extends AbstractTypeImpl {
                         } else {
                             rt = getTypeSystem().getTypeForName(fqn);
                         }
-                        
+
                         // mapping of multivalued tagged values
                         // see Bug#168076
                         if(p.isMultivalued()){
@@ -114,7 +114,7 @@ public class StereotypeType extends AbstractTypeImpl {
                                         for (Stereotype st : all) {
                                             if (isStereoTypeAssignable(st, StereotypeType.this.stereoType)) {
 												final Object value = ele.getValue(st, getName());
-		
+
 												// custom datatypes
 												// see Bug#185033
 												if (value instanceof EList) {
@@ -130,14 +130,14 @@ public class StereotypeType extends AbstractTypeImpl {
 													if(!values.isEmpty()){
 														return values;
 													}
-													
+
 												}else if (value instanceof EObject) {
 													final Object dynValue = getDynamicValue(value);
 													if(dynValue != null){
 														return dynValue;
 													}
 												}
-												
+
 												return value;
 											}
                                         }
@@ -150,7 +150,7 @@ public class StereotypeType extends AbstractTypeImpl {
 										final EObject dynObject = (EObject) value;
 										final EClass dynClass = dynObject.eClass();
 										final EStructuralFeature baseClassFeature = dynClass.getEStructuralFeature("base_Class");
-										
+
 										if(baseClassFeature != null){
 											return dynObject.eGet(baseClassFeature,true);
 										}
@@ -158,7 +158,7 @@ public class StereotypeType extends AbstractTypeImpl {
 									return null;
 								}
 
-                                
+
                             };
                             features.add(prop);
                         } else {
@@ -182,7 +182,7 @@ public class StereotypeType extends AbstractTypeImpl {
         }
         return false;
     }
-    
+
 	public boolean isInstance(Object o) {
         if (o instanceof Element) {
             Element ele = (Element) o;
@@ -213,7 +213,7 @@ public class StereotypeType extends AbstractTypeImpl {
                 String superTypeName = getFullName(classifier);
                 Type t = getTypeSystem().getTypeForName(superTypeName);
                 if (t == null) {
-                    log.error("Couldn't resolve type " + superTypeName);
+                    log.warn("Couldn't resolve super type " + superTypeName);
                 } else {
                     superTypes.add(t);
                 }
@@ -222,7 +222,7 @@ public class StereotypeType extends AbstractTypeImpl {
         }
         return Collections.unmodifiableSet(superTypes);
     }
-    
+
     public Stereotype getStereoType () {
     	return stereoType;
     }
@@ -262,7 +262,7 @@ public class StereotypeType extends AbstractTypeImpl {
 			return false;
 		}
 	}
-    
+
     protected boolean isCompatible (Type t) {
     	return false;
     }
@@ -283,5 +283,5 @@ public class StereotypeType extends AbstractTypeImpl {
     	}
     	return result.toString();
     }
-    
+
 }

@@ -17,6 +17,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.internal.xpand2.ast.Advice;
 import org.eclipse.internal.xpand2.type.IteratorType;
 import org.eclipse.internal.xtend.expression.ast.BooleanLiteral;
@@ -82,6 +84,7 @@ import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.TypeSystem;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.xtend.internal.types.JavaTypeToBackendTypeMapper;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibNames;
 import org.eclipse.xtend.typesystem.Operation;
 import org.eclipse.xtend.typesystem.StaticProperty;
@@ -95,6 +98,9 @@ import org.eclipse.xtend.typesystem.Type;
  * @author André Arnold
  */
 public final class OldExpressionConverter {
+    
+    private static final Log _log = LogFactory.getLog (OldExpressionConverter.class);
+
     private static final String AROUND_PROCEED = "proceed";
     private static final String XPAND_AROUND_DEF = "targetDef";
 

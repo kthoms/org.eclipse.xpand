@@ -39,7 +39,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 	private List<Around> arounds;
 
 	private List<Check> checks;
-	
+
 	public List<Check> getChecks() {
 		return checks;
 	}
@@ -58,7 +58,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
         	around.setParent(this);
         }
     }
-    
+
     public List<Around> getArounds() {
 		return arounds;
 	}
@@ -82,7 +82,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
         }
         return namespaces.toArray(new String[namespaces.size()]);
     }
-    
+
     public List<String> getImportedNamespacesAsList() {
         return Arrays.asList(getImportedNamespaces());
     }
@@ -100,17 +100,17 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 			for (ExtensionImportStatement imp : extImports) {
 				imp.analyze(ctx, issues);
 			}
-			
+
 			//add error marker for duplicate extension imports
 			Set<Identifier> uniqueNames = new HashSet<Identifier>();
 			for (ExtensionImportStatement imp : extImports) {
 				if (uniqueNames.contains(imp.getImportedId())) {
 					final String msg = "Duplicate extension importing: " + imp.getImportedId().getValue();
 					issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR, msg, imp));
-				}					
+				}
 				uniqueNames.add(imp.getImportedId());
 			}
-			
+
 			for (Extension ext : extensions) {
 				try {
 					ext.analyze(ctx, issues);
@@ -141,7 +141,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
 					ctx.handleRuntimeException(ex, this, null);
 				}
 			}
-			
+
 			// Namespaces can only be checked at last, since all used types
 			// must be accessed first
 			for (NamespaceImportStatement imp : nsImports) {
@@ -172,7 +172,7 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
         }
         return getImportedExtensionsAsList().toArray(new String[namespaces.size()]);
     }
-    
+
     public List<String> getImportedExtensionsAsList () {
         final List<String> namespaces = new ArrayList<String>();
         for (ExtensionImportStatement extImport : extImports) {
@@ -184,14 +184,14 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
     public List<Extension> getPublicExtensions(final ResourceManager rm, ExecutionContext ctx) {
         return getPublicExtensions(rm, ctx, new HashSet<String>());
     }
-        
+
     public List<Extension> getPublicExtensions(final ResourceManager rm, ExecutionContext ctx, Set<String> flowoverCache) {
         if (flowoverCache.contains(getFullyQualifiedName()))
             return new ArrayList<Extension>();
         flowoverCache.add (getFullyQualifiedName());
-        
+
         final List<Extension> result = new ArrayList<Extension>();
-        
+
         for (Extension ext : extensions) {
             if (!ext.isPrivate()) {
                 result.add(ext);
@@ -202,8 +202,8 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
                 final XtendFile xf = (XtendFile) rm.loadResource(imp.getImportedId().getValue(),
                         XtendFile.FILE_EXTENSION);
 				if (xf == null)
-					throw new RuntimeException("Unable rexport extension file " + imp.getImportedId().getValue() + " from " + this.getFullyQualifiedName());
-				
+					throw new RuntimeException("Unable to reexport extension file " + imp.getImportedId().getValue() + " from " + this.getFullyQualifiedName());
+
                 ExecutionContext context = ctx.cloneWithResource(xf);
                 List<Extension> publicExtensions = xf.getPublicExtensions(rm, context, flowoverCache);
                 for (Extension extension : publicExtensions) {
@@ -215,11 +215,16 @@ public class ExtensionFile extends SyntaxElement implements XtendFile {
         }
         return result;
     }
-    
+
     public void check(ExecutionContext ctx, final Collection<?> objects, final Issues issues, boolean warnIfNothingChecked) {
         ctx = ctx.cloneWithResource(this);
         for (final Check check : checks) {
             check.validate(ctx, objects, issues, warnIfNothingChecked);
         }
+    }
+
+    @Override
+    public String toString() {
+    	return getFileName();
     }
 }

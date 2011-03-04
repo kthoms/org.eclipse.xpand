@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.xtend.shared.ui;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -35,7 +36,7 @@ public abstract class ResourceContributorBase implements ResourceContributor {
 
 	protected ErrorHandler getErrorHandler(final IStorage source) {
 		if (source instanceof IFile) {
-			XtendXpandMarkerManager.deleteMarkers((IFile) source);
+//			XtendXpandMarkerManager.deleteMarkers((IFile) source);
 		}
 		return new ErrorHandler() {
 
@@ -43,11 +44,27 @@ public abstract class ResourceContributorBase implements ResourceContributor {
 				// BNI bug#312571
 				// 1. start position can be 0 (missing semicolon at the end of a file)
 				// 2. why should only one error be handled (!hasErrors)
-				if (e.getStart() >= 0) {
-					if (source instanceof IFile) {
-						IFile f = (IFile) source;
-						XtendXpandMarkerManager.addErrorMarker(f, e.getMessage(), IMarker.SEVERITY_ERROR, e.getStart(),
-								e.getEnd());
+				int start = e.getStart();
+				int end = e.getEnd();
+				if (source instanceof IFile) {
+					IFile f = (IFile) source;
+					if (start == 0 && end == 1 && e.getMessage().contains("<EOF>")) {
+						// BNI find the offset of the last charcter!
+						try {
+							Reader reader = createReader(source);
+							while (reader.read() != -1) {
+								start++;
+								end++;
+							}
+							start--;
+							end--;
+						}
+						catch (IOException e2) {
+							logError(e2.getMessage(), e2);
+						}
+					}
+					if (start > 0) {
+						XtendXpandMarkerManager.addErrorMarker(f, e.getMessage(), IMarker.SEVERITY_ERROR, start, end, e.getClass().getName());
 					}
 				}
 			}

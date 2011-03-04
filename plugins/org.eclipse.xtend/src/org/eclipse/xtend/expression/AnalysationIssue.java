@@ -43,12 +43,12 @@ public class AnalysationIssue {
 
 	public final static AnalysationIssueType FEATURE_NOT_FOUND = new AnalysationIssueType("Callable not found");
 
-	public static final AnalysationIssueType TYPE_NOT_FOUND = new AnalysationIssueType("AnalysationIssueType not found");
+	public static final AnalysationIssueType TYPE_NOT_FOUND = new AnalysationIssueType("Type not found");
 
 	public static final AnalysationIssueType INTERNAL_ERROR = new AnalysationIssueType("Internal error");
 
 	public static final AnalysationIssueType JAVA_TYPE_NOT_FOUND = new AnalysationIssueType(
-			"Java AnalysationIssueType not found");
+			"Java Type not found");
 
 	public static final AnalysationIssueType SYNTAX_ERROR = new AnalysationIssueType("Syntax error");
 
@@ -169,6 +169,8 @@ public class AnalysationIssue {
 				return false;
 		} else if (!element.equals(other.element))
 			return false;
+			else if (other.element.getStart() != element.getStart())
+				return false;
 		if (message == null) {
 			if (other.message != null)
 				return false;

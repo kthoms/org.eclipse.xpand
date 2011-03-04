@@ -4,6 +4,7 @@
    <extension-point id="resourceContributor" name="%extension-point.resource.contributor.name" schema="schema/resourceContributor.exsd"/>
    <extension-point id="metamodelContributor" name="%extension-point.metamodel.contributor.name" schema="schema/metamodelContributor.exsd"/>
    <extension-point id="storageFinder" name="%extension-point.storage.finder.name" schema="schema/storageFinder.exsd"/>
+   <extension-point id="markerFactory" name="%extension-point.marker.factory.name" schema="schema/markerFactory.exsd"/>
    
    <extension
          id="xtendXPandNature"

@@ -11,14 +11,18 @@
 
 package org.eclipse.xtend.shared.ui.expression;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.internal.xpand2.pr.ProtectedRegionResolver;
 import org.eclipse.internal.xtend.expression.ast.SyntaxElement;
 import org.eclipse.internal.xtend.util.Pair;
+import org.eclipse.internal.xtend.util.Triplet;
+import org.eclipse.internal.xtend.xtend.ast.Extension;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xtend.expression.ExceptionHandler;
 import org.eclipse.xtend.expression.ExecutionContext;
@@ -28,6 +32,7 @@ import org.eclipse.xtend.expression.ResourceParser;
 import org.eclipse.xtend.expression.TypeSystemImpl;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
+import org.eclipse.xtend.shared.ui.core.internal.BuildState;
 import org.eclipse.xtend.typesystem.Type;
 
 public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecutionContextImpl {
@@ -70,6 +75,37 @@ public class XpandPluginExecutionContext extends org.eclipse.xpand2.XpandExecuti
 		}
 
 		public void registerParser(final String template_extension, final ResourceParser parser) {
+		}
+	}
+
+	@Override
+	public Set<? extends Extension> getAllExtensions() {
+		BuildState buildState = BuildState.get(this);
+		if (buildState!=null) {
+			Set<? extends Extension> allExtensions = buildState.getAllExtensionsPerResource().get(currentResource());
+			if (allExtensions==null) {
+				allExtensions = super.getAllExtensions();
+				buildState.getAllExtensionsPerResource().put(currentResource(), (Set<Extension>) allExtensions);
+			}
+			return allExtensions;
+		} else {
+			return super.getAllExtensions();
+		}
+	}
+	
+	@Override
+	public Extension getExtensionForTypes(String functionName, Type[] parameterTypes) {
+		BuildState buildState = BuildState.get(this);
+		if (buildState!=null) {
+			Triplet<Resource, String, List<Type>> key = new Triplet<Resource, String, List<Type>>(currentResource(),functionName,Arrays.asList(parameterTypes));
+			Extension result = buildState.getExtensionForTypes().get(key);
+			if (result == null) {
+				result = super.getExtensionForTypes(functionName, parameterTypes);
+				buildState.getExtensionForTypes().put(key,result);
+			}
+			return result;
+		} else {
+			return super.getExtensionForTypes(functionName, parameterTypes);
 		}
 	}
 	

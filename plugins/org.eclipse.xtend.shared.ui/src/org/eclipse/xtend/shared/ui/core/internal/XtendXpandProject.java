@@ -36,11 +36,9 @@ import org.eclipse.jdt.core.IJarEntryResource;
 import org.eclipse.jdt.core.IJavaElementDelta;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.ResourceContributor;
-import org.eclipse.xtend.shared.ui.core.AbstractResource;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandBuilder;
@@ -51,13 +49,6 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
 public class XtendXpandProject implements IXtendXpandProject {
 
 	private static final Set<IJavaProject> initializing = new HashSet<IJavaProject>();
-	private static final IXtendXpandResource NULL_RESOURCE = new AbstractResource(null) {
-		public String getFileExtension() { return null; }
-		@Override
-		protected void analyze(ExecutionContext ctx, Set<AnalysationIssue> issues) {}
-		@Override
-		protected boolean internalRefresh() { return false; }
-	};
 
 	final IJavaProject project;
 
@@ -208,8 +199,6 @@ public class XtendXpandProject implements IXtendXpandProject {
 			return null;
 		// for performance reasons ask the cache first
 		IXtendXpandResource res = findCachedXtendXpandResource(fqn, extension);
-		if (res == NULL_RESOURCE)
-			return null;
 		if (res != null)
 			return res;
 		// ask to load the resource without looking into jars
@@ -217,11 +206,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 		if (res != null)
 			return res;
 		// look into jars
-		res = loadXtendXpandResource(fqn, extension, true);
-		if (res == null) {
-			resources.put(new ResourceID(fqn, extension), NULL_RESOURCE);
-		}
-		return res;
+		return loadXtendXpandResource(fqn, extension, true);
 	}
 
 	/**
@@ -235,16 +220,11 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 *         known
 	 */
 	private IXtendXpandResource findCachedXtendXpandResource(String fqn, String extension) {
-		final ResourceID id = new ResourceID(fqn, extension);
-		IXtendXpandResource res = resources.get(id);
-		if (res == null || res == NULL_RESOURCE)
+		IXtendXpandResource res = resources.get(new ResourceID(fqn, extension));
+		if (res == null)
 			return null;
 
-		if (fromJar.contains(id))
-			return res;
-
 		// eliminate stale resources
-
 		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(
 				(res.getUnderlyingStorage().getFullPath()));
 		if (workspaceResource != null && workspaceResource.exists())
@@ -319,11 +299,8 @@ public class XtendXpandProject implements IXtendXpandProject {
 						project);
 				if (extxptp != null) {
 					IXtendXpandResource result = extxptp.loadXtendXpandResource(fqn, extension, searchJars, projects);
-					if (result != null) {
-						// cache this resource
-						resources.put(new ResourceID(fqn, extension), result);
+					if (result != null)
 						return result;
-					}
 				}
 			}
 		}
@@ -354,7 +331,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 				.iterator(); iter.hasNext();) {
 			if (monitor.isCanceled())
 				return;
-
+			
 			IXtendXpandResource resource = iter.next();
 			synchronized (resource) {
 				if (!isInExternalPackageFragmentRoot(resource)) {

@@ -26,8 +26,6 @@ import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Resource;
 import org.eclipse.xtend.expression.ResourceManager;
 import org.eclipse.xtend.shared.ui.core.AbstractResource;
-import org.eclipse.xtend.shared.ui.core.internal.BuildState;
-import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 import org.eclipse.xtend.ui.core.IXtendResource;
 import org.eclipse.xtend.ui.core.internal.builder.XtendResourceParser;
 
@@ -48,22 +46,10 @@ public class XtendResourceImpl extends AbstractResource implements IXtendResourc
 	public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
     	Set<AnalysationIssue> issuesFromThisResource = new HashSet<AnalysationIssue>();
     	try {
-    		BuildState buildState = BuildState.get(ctx);
-			if (buildState != null) {
-				final ResourceID id = new ResourceID(resource().getFullyQualifiedName(), getFileExtension());
-				Set<AnalysationIssue> internalIssues = buildState.getIssuesPerResource().get(id);
-				if (internalIssues == null) {
-					internalIssues = new HashSet<AnalysationIssue>();
-					resource().analyze(ctx, internalIssues);
-					issuesFromThisResource.addAll(internalIssues);
-					buildState.getIssuesPerResource().put(id, internalIssues);
-				}
-			} else {
-	    		resource().analyze(ctx, issuesFromThisResource);
-			}
+    		resource().analyze(ctx, issuesFromThisResource);
     	} catch (Exception e) {
     		// ignore
-    	}
+    	} 
     	// remove tons of annoying errors
     	// filter all the 'Error parsing resource' issues that arised from a broken import
 		Set<AnalysationIssue> issuesToRemove = new HashSet<AnalysationIssue>();
@@ -110,7 +96,7 @@ public class XtendResourceImpl extends AbstractResource implements IXtendResourc
 	public List<Around> getArounds() {
 		return Collections.emptyList(); // arounds are only used at runtime
 	}
-
+	
 	@Override
 	public String toString() {
 		return getFullyQualifiedName();

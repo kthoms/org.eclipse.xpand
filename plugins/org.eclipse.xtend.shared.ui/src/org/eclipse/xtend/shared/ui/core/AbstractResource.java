@@ -89,7 +89,7 @@ public abstract class AbstractResource implements IXtendXpandResource {
 			final Set<AnalysationIssue> issues = new HashSet<AnalysationIssue>();
 			analyze(ctx, issues);
 			//BNI bug#312569 why should markers be deleted here?
-			//They will be deleted by creation of errorHandler before parsing the file.
+			//They will be deleted by createion of errorHandler before parsing the file.
 			//if they are deleted here, parser errors will not appear as ErrorMarkers
 //			if (hasSemanticErrors) {
 //				XtendXpandMarkerManager.deleteMarkers(f);
@@ -97,11 +97,6 @@ public abstract class AbstractResource implements IXtendXpandResource {
 //			hasSemanticErrors = !issues.isEmpty();
 			for (final Iterator<AnalysationIssue> iterator = issues.iterator(); iterator.hasNext();) {
 				XtendXpandMarkerManager.addMarker(f, iterator.next());
-			}
-			//BNI delete markers if no issues were found
-			//if syntax errors were found markers will be added in XtendXpandMarkerManager.finishBuild() after build
-			if (issues.isEmpty()){
-				XtendXpandMarkerManager.deleteMarkers(f);
 			}
 		}
 	}

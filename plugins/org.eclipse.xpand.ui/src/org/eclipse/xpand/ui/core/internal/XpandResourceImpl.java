@@ -11,7 +11,6 @@
 
 package org.eclipse.xpand.ui.core.internal;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IStorage;
@@ -25,8 +24,6 @@ import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Resource;
 import org.eclipse.xtend.shared.ui.core.AbstractResource;
-import org.eclipse.xtend.shared.ui.core.internal.BuildState;
-import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 
 public class XpandResourceImpl extends AbstractResource implements IXpandResource {
 
@@ -44,47 +41,19 @@ public class XpandResourceImpl extends AbstractResource implements IXpandResourc
 
 	@Override
 	public void analyze(final ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-    	Set<AnalysationIssue> issuesFromThisResource = new HashSet<AnalysationIssue>();
 		try {
-    		BuildState buildState = BuildState.get(ctx);
-			if (buildState != null) {
-				final ResourceID id = new ResourceID(resource().getFullyQualifiedName(), getFileExtension());
-				Set<AnalysationIssue> internalIssues = buildState.getIssuesPerResource().get(id);
-				if (internalIssues == null) {
-					internalIssues = new HashSet<AnalysationIssue>();
-					resource().analyze((XpandExecutionContext)ctx, internalIssues);
-					issuesFromThisResource.addAll(internalIssues);
-					buildState.getIssuesPerResource().put(id, internalIssues);
-				}
-			} else {
-	    		resource().analyze((XpandExecutionContext)ctx, issuesFromThisResource);
-			}
+			resource().analyze((XpandExecutionContext) ctx, issues);
 		} catch (Exception e) {
 			// ignore
 		}
-		issues.addAll(issuesFromThisResource);
 	}
 
 	public void analyze(final XpandExecutionContext ctx, final Set<AnalysationIssue> issues) {
-    	Set<AnalysationIssue> issuesFromThisResource = new HashSet<AnalysationIssue>();
 		try {
-    		BuildState buildState = BuildState.get(ctx);
-			if (buildState != null) {
-				final ResourceID id = new ResourceID(resource().getFullyQualifiedName(), getFileExtension());
-				Set<AnalysationIssue> internalIssues = buildState.getIssuesPerResource().get(id);
-				if (internalIssues == null) {
-					internalIssues = new HashSet<AnalysationIssue>();
-					resource().analyze(ctx, internalIssues);
-					issuesFromThisResource.addAll(internalIssues);
-					buildState.getIssuesPerResource().put(id, internalIssues);
-				}
-			} else {
-	    		resource().analyze(ctx, issuesFromThisResource);
-			}
+			resource().analyze(ctx, issues);
 		} catch (Exception e) {
 			// ignore
 		}
-		issues.addAll(issuesFromThisResource);
 	}
 
 	public XpandDefinition[] getDefinitions() {

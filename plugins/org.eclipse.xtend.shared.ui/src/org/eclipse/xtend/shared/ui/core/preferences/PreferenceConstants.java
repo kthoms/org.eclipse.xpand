@@ -26,4 +26,5 @@ public class PreferenceConstants {
 	public static final int INCREMENTAL_ANALYZER_STRATEGY_PROJECT_AND_DEPENDENT = 0;
 	public static final int INCREMENTAL_ANALYZER_STRATEGY_PROJECT = 1;
 	public static final int INCREMENTAL_ANALYZER_STRATEGY_FILE_ONLY = 2;
+	public static final int INCREMENTAL_ANALYZER_STRATEGY_FILE_ONLY_WITH_REVERSE_REFERENCE=3;
 }

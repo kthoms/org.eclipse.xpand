@@ -263,7 +263,8 @@ public class MetamodelContributorsPropertyAndPreferencePage extends PropertyAndP
 			analyzerCombobox.setItems(new String[] {
 					Messages.MetamodelContributorsPropertyAndPreferencePage_CurrentAndDependentProjects,
 					Messages.MetamodelContributorsPropertyAndPreferencePage_WholeProject,
-					Messages.MetamodelContributorsPropertyAndPreferencePage_FileOnly});
+					Messages.MetamodelContributorsPropertyAndPreferencePage_FileOnly,
+					Messages.MetamodelContributorsPropertyAndPreferencePage_FileOnlyReverseReference});
 			new Label(container, SWT.NONE);
 		}
 		

@@ -53,9 +53,9 @@ public class XpandResourceImpl extends AbstractResource implements IXpandResourc
 				if (internalIssues == null) {
 					internalIssues = new HashSet<AnalysationIssue>();
 					resource().analyze((XpandExecutionContext)ctx, internalIssues);
-					issuesFromThisResource.addAll(internalIssues);
 					buildState.getIssuesPerResource().put(id, internalIssues);
 				}
+				issuesFromThisResource.addAll(internalIssues);
 			} else {
 	    		resource().analyze((XpandExecutionContext)ctx, issuesFromThisResource);
 			}

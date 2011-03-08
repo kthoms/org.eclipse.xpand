@@ -55,9 +55,9 @@ public class XtendResourceImpl extends AbstractResource implements IXtendResourc
 				if (internalIssues == null) {
 					internalIssues = new HashSet<AnalysationIssue>();
 					resource().analyze(ctx, internalIssues);
-					issuesFromThisResource.addAll(internalIssues);
 					buildState.getIssuesPerResource().put(id, internalIssues);
 				}
+				issuesFromThisResource.addAll(internalIssues);
 			} else {
 	    		resource().analyze(ctx, issuesFromThisResource);
 			}

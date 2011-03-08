@@ -18,8 +18,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -35,6 +35,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.internal.xtend.xtend.XtendFile;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
@@ -123,6 +124,10 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		return incrementalAnalyzerStrategy == PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY_PROJECT_AND_DEPENDENT;
 	}
 	
+	private boolean analyseReverseReferencedResources(){
+		return incrementalAnalyzerStrategy == PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY_FILE_ONLY_WITH_REVERSE_REFERENCE;
+	}
+	
 	private boolean analyzeWholeProjectWhenIncremental() {
 		switch(incrementalAnalyzerStrategy) {
 			case PreferenceConstants.INCREMENTAL_ANALYZER_STRATEGY_PROJECT:
@@ -177,7 +182,9 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 
 		updateIncrementalAnalyzerStrategy();
 		Map<IXtendXpandProject, ExecutionContext> projects = new HashMap<IXtendXpandProject, ExecutionContext>();
-		
+		if (analyseReverseReferencedResources()&& kind!=CLEAN_BUILD && kind!=FULL_BUILD){
+			fillToAnalyseWithReverseReferencedResources();
+		}
 		for (final Object name : toAnalyze) {
 			if(monitor.isCanceled())
 				break;
@@ -193,6 +200,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 					addProject(projects, xtdxptProject);
 				else
 					res.analyze(Activator.getExecutionContext(JavaCore.create(project)));
+					monitor.worked(1);
 				
 			}
 		}
@@ -202,6 +210,31 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		}
 		XtendXpandMarkerManager.finishBuild();
 		return null;
+	}
+
+	private void fillToAnalyseWithReverseReferencedResources() {
+		Set<IXtendXpandResource> reverseReferences = new HashSet<IXtendXpandResource>();
+		for (final Object name : toAnalyze) {
+			final IXtendXpandResource res = (IXtendXpandResource) name;
+			final IResource resource = (IResource) res.getUnderlyingStorage();
+			final IProject project = resource.getProject();
+			if (!project.isLinked()) {
+				final IXtendXpandProject xtdxptProject = Activator.getExtXptModelManager().findProject(project);
+				IXtendXpandResource[] resources = xtdxptProject.getAllRegisteredResources();
+				for (IXtendXpandResource iXtendXpandResource : resources) {
+					if (iXtendXpandResource != null) {
+						for (String string : iXtendXpandResource.getImportedExtensions()) {
+							IXtendXpandResource importedResource = xtdxptProject.findExtXptResource(string, XtendFile.FILE_EXTENSION);
+							if (importedResource.equals(res)){
+								reverseReferences.add(iXtendXpandResource);
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+		toAnalyze.addAll(reverseReferences);
 	}
 
 	private void addProject(final Map<IXtendXpandProject, ExecutionContext> projects, final IXtendXpandProject xtdxptProject) {

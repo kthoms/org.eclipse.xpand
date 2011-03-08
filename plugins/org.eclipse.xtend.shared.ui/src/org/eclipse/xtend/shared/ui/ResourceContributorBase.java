@@ -35,7 +35,7 @@ public abstract class ResourceContributorBase implements ResourceContributor {
 
 	protected ErrorHandler getErrorHandler(final IStorage source) {
 		if (source instanceof IFile) {
-			XtendXpandMarkerManager.deleteMarkers((IFile) source);
+//			XtendXpandMarkerManager.deleteMarkers((IFile) source);
 		}
 		return new ErrorHandler() {
 

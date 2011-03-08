@@ -79,7 +79,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 				switch (delta.getKind()) {
 					case IResourceDelta.ADDED:
 						// handle added resource
-						XtendXpandMarkerManager.deleteMarkers(resource);
+//						XtendXpandMarkerManager.deleteMarkers(resource);
 						reloadResource((IFile) resource);
 						break;
 					case IResourceDelta.REMOVED:
@@ -189,7 +189,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 			if (!project.isLinked()) {
 				final IXtendXpandProject xtdxptProject = Activator.getExtXptModelManager().findProject(project);
 				
-				if(xtdxptProject!=null && analyzeWholeProjectWhenIncremental())
+				if(xtdxptProject!=null && (kind==CLEAN_BUILD || kind==FULL_BUILD ||analyzeWholeProjectWhenIncremental()))
 					addProject(projects, xtdxptProject);
 				else
 					res.analyze(Activator.getExecutionContext(JavaCore.create(project)));
@@ -200,7 +200,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		for (Entry<IXtendXpandProject, ExecutionContext> e : projects.entrySet()) {
 			e.getKey().analyze(monitor, e.getValue());
 		}
-
+		XtendXpandMarkerManager.finishBuild();
 		return null;
 	}
 

@@ -284,7 +284,15 @@ public class XtendXpandProject implements IXtendXpandProject {
 
 		// Found in this project?
 		if (storage != null && (searchJars || (storage instanceof IFile))) {
-			IXtendXpandResource result = null;
+			//Find out if the storage is already under another key in the cache
+			ResourceID jdtResourceID = JDTUtil.findXtendXpandResourceID(getProject(), storage);
+			IXtendXpandResource result = resources.get(jdtResourceID);
+			//if the storage is already in cache with another resourceID return this xtendXpandResource
+			if (result!=null&&result.getUnderlyingStorage()!=null){
+				resources.put(new ResourceID(fqn, extension), result);
+				return result;
+			}
+			
 			// get the file extension and find the appropriate
 			// ResourceContributor for this
 			// kind of resource (Xpand/Xtend)
@@ -350,8 +358,10 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @see IXtendXpandProject#analyze(IProgressMonitor)
 	 */
 	public void analyze(final IProgressMonitor monitor, ExecutionContext ctx) {
-		for (final Iterator<IXtendXpandResource> iter = new ArrayList<IXtendXpandResource>(resources.values())
-				.iterator(); iter.hasNext();) {
+		Set<IXtendXpandResource> resourceValues = new HashSet<IXtendXpandResource>(resources.values());
+//		monitor.subTask("analyzing project "+this.toString());
+		monitor.beginTask("analyzing project "+this.toString(), resourceValues.size());
+		for (final Iterator<IXtendXpandResource> iter = resourceValues.iterator(); iter.hasNext();) {
 			if (monitor.isCanceled())
 				return;
 

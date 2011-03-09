@@ -60,7 +60,7 @@ import org.osgi.framework.Bundle;
  * It can only be resolved if the referenced resource file can be located. It
  * does not matter if it is contained in a jar or exists as a plain file.
  * 
- * @author koehnlein
+ * @author Jan Koehnlein
  */
 @SuppressWarnings("restriction")
 public class ClasspathUriResolver {

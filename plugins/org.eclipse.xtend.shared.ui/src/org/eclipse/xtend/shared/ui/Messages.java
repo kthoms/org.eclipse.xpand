@@ -37,6 +37,7 @@ public class Messages extends NLS {
 	public static String MetamodelContributorsPropertyAndPreferencePage_CurrentAndDependentProjects;
 	public static String MetamodelContributorsPropertyAndPreferencePage_DownButton;
 	public static String MetamodelContributorsPropertyAndPreferencePage_FileOnly;
+	public static String MetamodelContributorsPropertyAndPreferencePage_FileOnlyReverseReference;
 	public static String MetamodelContributorsPropertyAndPreferencePage_IncrementalAnalysisLabel;
 	public static String MetamodelContributorsPropertyAndPreferencePage_JobName;
 	public static String MetamodelContributorsPropertyAndPreferencePage_UpButton;

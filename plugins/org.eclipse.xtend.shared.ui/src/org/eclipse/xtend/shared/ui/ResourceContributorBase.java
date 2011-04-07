@@ -35,18 +35,19 @@ public abstract class ResourceContributorBase implements ResourceContributor {
 
 	protected ErrorHandler getErrorHandler(final IStorage source) {
 		if (source instanceof IFile) {
-			XtendXpandMarkerManager.deleteMarkers((IFile) source);
+//			XtendXpandMarkerManager.deleteMarkers((IFile) source);
 		}
 		return new ErrorHandler() {
-			private boolean hasErrors = false;
+
 			public void handleError(XtendError e) {
-				if (!hasErrors && e.getStart() > 0) {
+				// BNI bug#312571
+				// 1. start position can be 0 (missing semicolon at the end of a file)
+				// 2. why should only one error be handled (!hasErrors)
+				if (e.getStart() >= 0) {
 					if (source instanceof IFile) {
 						IFile f = (IFile) source;
-						XtendXpandMarkerManager.addErrorMarker(f, e.getMessage(),
-								IMarker.SEVERITY_ERROR, e.getStart(), e
-										.getEnd());
-						hasErrors=true;
+						XtendXpandMarkerManager.addErrorMarker(f, e.getMessage(), IMarker.SEVERITY_ERROR, e.getStart(),
+								e.getEnd());
 					}
 				}
 			}

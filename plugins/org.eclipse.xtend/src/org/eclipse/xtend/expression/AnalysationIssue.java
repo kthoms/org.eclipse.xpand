@@ -169,6 +169,8 @@ public class AnalysationIssue {
 				return false;
 		} else if (!element.equals(other.element))
 			return false;
+			else if (other.element.getStart() != element.getStart())
+				return false;
 		if (message == null) {
 			if (other.message != null)
 				return false;

@@ -248,4 +248,9 @@ public class Template extends SyntaxElement implements XpandResource {
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return getFileName();
+	}
 }

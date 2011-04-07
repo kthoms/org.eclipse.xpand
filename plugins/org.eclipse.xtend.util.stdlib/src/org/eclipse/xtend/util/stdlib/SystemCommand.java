@@ -58,9 +58,9 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
  * <td>(multiple) additional environment entries. Format: [key],[value]</td>
  * </tr>
  * </table>
- * 
+ *
  * <h2>Example</h2>
- * 
+ *
  * <pre>
  * &lt;component class=&quot;org.ecipse.xtend.util.stdlib.SystemCommand&quot;&gt;
  * 	&lt;directory value=&quot;src-gen&quot;/&gt;
@@ -68,7 +68,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
  * 	&lt;arg value=&quot;processdot.sh&quot;/&gt;
  * &lt;/component&gt;
  * </pre>
- * 
+ *
  * @author Karsten Thoms
  * @since 4.3.1
  */
@@ -80,7 +80,7 @@ public class SystemCommand extends AbstractWorkflowComponent2 {
 	 */
 	private String command;
 
-	private File directory;
+	private File directory = new File(".");
 
 	private final boolean inheritEnvironment = false;
 
@@ -160,8 +160,8 @@ public class SystemCommand extends AbstractWorkflowComponent2 {
 		this.command = command;
 	}
 
-	public void setDirectory(final File directory) {
-		this.directory = directory;
+	public void setDirectory(final String directory) {
+		this.directory = new File(directory);
 	}
 
 	public void addArg(final String arg) {

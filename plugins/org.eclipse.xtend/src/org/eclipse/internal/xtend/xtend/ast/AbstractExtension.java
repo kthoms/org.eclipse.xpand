@@ -218,13 +218,16 @@ public abstract class AbstractExtension extends SyntaxElement implements Extensi
 		if (parameterTypes == null) {
 			try {
 				parameterTypes = new ArrayList<Type>();
-				for (final Iterator<DeclaredParameter> iter = getFormalParameters().iterator(); iter.hasNext();) {
+				for (final Iterator<DeclaredParameter> iter = getFormalParameters()
+						.iterator(); iter.hasNext();) {
 					final String name = iter.next().getType().getValue();
 					final Type t = ctx.getTypeForName(name);
-					if (t == null)
-						throw new EvaluationException("Couldn't resolve type for '" + name
-								+ "'. Did you forget to configure the corresponding metamodel?", this, ctx);
-					parameterTypes.add(t);
+					if (t != null) {
+						// bug#312571
+						// BNI if the EvaluationException will not be thrown,
+						// the ContentAssist will work. (Bug#292770)
+						parameterTypes.add(t);
+					}
 				}
 			}
 			catch (final RuntimeException e) {

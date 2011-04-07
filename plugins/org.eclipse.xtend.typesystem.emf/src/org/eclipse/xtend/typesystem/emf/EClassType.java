@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.internal.xtend.type.baseimpl.FeatureImpl;
 import org.eclipse.internal.xtend.type.baseimpl.OperationImpl;
 import org.eclipse.internal.xtend.type.baseimpl.PropertyImpl;
@@ -54,11 +55,14 @@ public class EClassType extends AbstractTypeImpl {
 	public Feature[] getContributedFeatures() {
 		final Set<FeatureImpl> result = new HashSet<FeatureImpl>();
 		// Attributes
-		final List<EStructuralFeature> list = eClass.getEStructuralFeatures();
-		for (final EStructuralFeature feature : list) {
+		for (final EStructuralFeature feature : eClass.getEStructuralFeatures()) {
 			final Type t = emfMetaModel.getTypeForETypedElement(feature);
 			if (t == null) {
-				log.warn("Couldn't resolve type for " + getTypeName(feature.getEType()));
+				if (feature.getEType().eIsProxy()) {
+					log.warn(String.format("Unresolved proxy for type of feature %s::%s, eProxyURI: %s", eClass.getName(), feature.getName(), EcoreUtil.getURI(feature.getEType())));
+				}
+				else
+					log.warn("Couldn't resolve type for " + getTypeName(feature.getEType()));
 			}
 			else {
 				result.add(new PropertyImpl(this, feature.getName(), t) {
@@ -81,6 +85,55 @@ public class EClassType extends AbstractTypeImpl {
 									+ "' is not allowed!");
 					}
 				});
+				// setter
+				if (feature.isChangeable() && !feature.isMany()){ //  && !feature.isDerived()  { !feature.isUnsettable()
+					// &&
+					result.add(new OperationImpl(this, "set" + StringHelper.firstUpper(feature.getName()), this,
+							new Type[] { t }) {
+
+						@Override
+						protected Object evaluateInternal(final Object target, final Object[] params) {
+							Object newValue = params[0];
+							if (newValue != null && feature.getEType() instanceof EDataType
+									&& !(feature.getEType() instanceof EEnum)) {
+								final EDataType dt = (EDataType) feature.getEType();
+								newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
+							}
+							((EObject) target).eSet(feature, newValue);
+							return target;
+						}
+
+					});
+				}
+				else if (feature.isMany()) {
+					result.add(new OperationImpl(this, "set" + StringHelper.firstUpper(feature.getName()), this, new Type[] { t }) {
+						@SuppressWarnings("unchecked")
+						@Override
+						protected Object evaluateInternal(Object target, Object[] params) {
+							if (params != null) {
+								Object newValue = params[0];
+
+								if (newValue != null && feature.getEType() instanceof EDataType
+										&& !(feature.getEType() instanceof EEnum)) {
+									final EDataType dt = (EDataType) feature.getEType();
+									newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
+								}
+
+								EList<Object> newColl = new BasicEList<Object>((List<?>)newValue);
+
+								EObject targetObject = ((EObject) target);
+								EClass targetClass = targetObject.eClass();
+								EStructuralFeature eStructuralFeature = targetClass.getEStructuralFeature(feature.getName());
+
+								EList<Object> coll = (EList<Object>) targetObject.eGet(eStructuralFeature);
+
+								ECollections.setEList(coll, newColl);
+								return target;
+							}
+							return null;
+						}
+					});
+				}
 			}
 		}
 		// Operations
@@ -128,64 +181,6 @@ public class EClassType extends AbstractTypeImpl {
 						}
 					}
 				});
-			}
-		}
-		// setter
-		for (final EStructuralFeature feature : eClass.getEStructuralFeatures()) {
-
-			final Type t = emfMetaModel.getTypeForETypedElement(feature);
-			if (t == null) {
-				log.warn("Couldn't resolve type for " + getTypeName(feature.getEType()));
-			}
-			else {
-				if (feature.isChangeable() && !feature.isMany()){ //  && !feature.isDerived()  { !feature.isUnsettable()
-					// &&
-					result.add(new OperationImpl(this, "set" + StringHelper.firstUpper(feature.getName()), this,
-							new Type[] { t }) {
-
-						@Override
-						protected Object evaluateInternal(final Object target, final Object[] params) {
-							Object newValue = params[0];
-							if (newValue != null && feature.getEType() instanceof EDataType
-									&& !(feature.getEType() instanceof EEnum)) {
-								final EDataType dt = (EDataType) feature.getEType();
-								newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
-							}
-							((EObject) target).eSet(feature, newValue);
-							return target;
-						}
-
-					});
-				}
-				else if (feature.isMany()) {
-					result.add(new OperationImpl(this, "set" + StringHelper.firstUpper(feature.getName()), this, new Type[] { t }) {
-						@SuppressWarnings("unchecked")
-						@Override
-						protected Object evaluateInternal(Object target, Object[] params) {
-							if (params != null) {
-								Object newValue = params[0];
-								
-								if (newValue != null && feature.getEType() instanceof EDataType
-										&& !(feature.getEType() instanceof EEnum)) {
-									final EDataType dt = (EDataType) feature.getEType();
-									newValue = getParameterTypes().get(0).convert(newValue, dt.getInstanceClass());
-								}
-								
-								EList<Object> newColl = new BasicEList<Object>((List<?>)newValue);
-
-								EObject targetObject = ((EObject) target);
-								EClass targetClass = targetObject.eClass();
-								EStructuralFeature eStructuralFeature = targetClass.getEStructuralFeature(feature.getName());
-								
-								EList<Object> coll = (EList<Object>) targetObject.eGet(eStructuralFeature);
-
-								ECollections.setEList(coll, newColl);
-								return target;
-							}
-							return null;
-						}
-					});
-				}
 			}
 		}
 		return result.toArray(new Feature[result.size()]);

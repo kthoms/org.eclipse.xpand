@@ -36,9 +36,11 @@ import org.eclipse.jdt.core.IJarEntryResource;
 import org.eclipse.jdt.core.IJavaElementDelta;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.xtend.expression.AnalysationIssue;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.shared.ui.ResourceContributor;
+import org.eclipse.xtend.shared.ui.core.AbstractResource;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandResource;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandBuilder;
@@ -49,6 +51,13 @@ import org.eclipse.xtend.shared.ui.internal.XtendLog;
 public class XtendXpandProject implements IXtendXpandProject {
 
 	private static final Set<IJavaProject> initializing = new HashSet<IJavaProject>();
+	private static final IXtendXpandResource NULL_RESOURCE = new AbstractResource(null) {
+		public String getFileExtension() { return null; }
+		@Override
+		protected void analyze(ExecutionContext ctx, Set<AnalysationIssue> issues) {}
+		@Override
+		protected boolean internalRefresh() { return false; }
+	};
 
 	final IJavaProject project;
 
@@ -199,6 +208,8 @@ public class XtendXpandProject implements IXtendXpandProject {
 			return null;
 		// for performance reasons ask the cache first
 		IXtendXpandResource res = findCachedXtendXpandResource(fqn, extension);
+		if (res == NULL_RESOURCE)
+			return null;
 		if (res != null)
 			return res;
 		// ask to load the resource without looking into jars
@@ -206,7 +217,11 @@ public class XtendXpandProject implements IXtendXpandProject {
 		if (res != null)
 			return res;
 		// look into jars
-		return loadXtendXpandResource(fqn, extension, true);
+		res = loadXtendXpandResource(fqn, extension, true);
+		if (res == null) {
+			resources.put(new ResourceID(fqn, extension), NULL_RESOURCE);
+		}
+		return res;
 	}
 
 	/**
@@ -220,11 +235,16 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 *         known
 	 */
 	private IXtendXpandResource findCachedXtendXpandResource(String fqn, String extension) {
-		IXtendXpandResource res = resources.get(new ResourceID(fqn, extension));
-		if (res == null)
+		final ResourceID id = new ResourceID(fqn, extension);
+		IXtendXpandResource res = resources.get(id);
+		if (res == null || res == NULL_RESOURCE)
 			return null;
 
+		if (fromJar.contains(id))
+			return res;
+
 		// eliminate stale resources
+
 		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(
 				(res.getUnderlyingStorage().getFullPath()));
 		if (workspaceResource != null && workspaceResource.exists())
@@ -264,7 +284,15 @@ public class XtendXpandProject implements IXtendXpandProject {
 
 		// Found in this project?
 		if (storage != null && (searchJars || (storage instanceof IFile))) {
-			IXtendXpandResource result = null;
+			//Find out if the storage is already under another key in the cache
+			ResourceID jdtResourceID = JDTUtil.findXtendXpandResourceID(getProject(), storage);
+			IXtendXpandResource result = resources.get(jdtResourceID);
+			//if the storage is already in cache with another resourceID return this xtendXpandResource
+			if (result!=null&&result.getUnderlyingStorage()!=null){
+				resources.put(new ResourceID(fqn, extension), result);
+				return result;
+			}
+			
 			// get the file extension and find the appropriate
 			// ResourceContributor for this
 			// kind of resource (Xpand/Xtend)
@@ -299,8 +327,11 @@ public class XtendXpandProject implements IXtendXpandProject {
 						project);
 				if (extxptp != null) {
 					IXtendXpandResource result = extxptp.loadXtendXpandResource(fqn, extension, searchJars, projects);
-					if (result != null)
+					if (result != null) {
+						// cache this resource
+						resources.put(new ResourceID(fqn, extension), result);
 						return result;
+					}
 				}
 			}
 		}
@@ -327,11 +358,13 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @see IXtendXpandProject#analyze(IProgressMonitor)
 	 */
 	public void analyze(final IProgressMonitor monitor, ExecutionContext ctx) {
-		for (final Iterator<IXtendXpandResource> iter = new ArrayList<IXtendXpandResource>(resources.values())
-				.iterator(); iter.hasNext();) {
+		Set<IXtendXpandResource> resourceValues = new HashSet<IXtendXpandResource>(resources.values());
+//		monitor.subTask("analyzing project "+this.toString());
+		monitor.beginTask("analyzing project "+this.toString(), resourceValues.size());
+		for (final Iterator<IXtendXpandResource> iter = resourceValues.iterator(); iter.hasNext();) {
 			if (monitor.isCanceled())
 				return;
-			
+
 			IXtendXpandResource resource = iter.next();
 			synchronized (resource) {
 				if (!isInExternalPackageFragmentRoot(resource)) {

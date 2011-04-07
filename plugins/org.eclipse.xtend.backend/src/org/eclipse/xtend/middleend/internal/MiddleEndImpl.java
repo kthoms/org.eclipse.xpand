@@ -29,6 +29,7 @@ import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.functions.internal.FunctionDefContextImpl;
 import org.eclipse.xtend.backend.syslib.SyslibContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.NoMiddleEndForResourceException;
 import org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor;
 import org.eclipse.xtend.middleend.plugins.FunctionDefContextProvider;
 import org.eclipse.xtend.middleend.plugins.ImportedResource;
@@ -97,7 +98,7 @@ public final class MiddleEndImpl implements MiddleEnd {
         }
 
         _log.warn ("no middle end for  resource " + resourceName);
-        throw new IllegalArgumentException ("no middle end for resource " + resourceName);
+        throw new NoMiddleEndForResourceException ("no middle end for resource " + resourceName);
     }
     
     private ParsedResource parseResource (String resourceName) {
@@ -230,4 +231,8 @@ public final class MiddleEndImpl implements MiddleEnd {
             _isInitializingSyslib = false;
         }
     }
+
+	public Map<String, ParsedResource> getParsedResources() {
+		return _parsedResources;
+	}
 }

@@ -60,7 +60,7 @@ import org.eclipse.xtend.middleend.xpand.internal.OldDefinitionConverter;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
 import org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
-import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
+import org.eclipse.xtend.middleend.xtend.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendGlobalVarOperations;
 import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;

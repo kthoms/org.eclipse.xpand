@@ -40,10 +40,6 @@ public class EmfTypeToBackendTypeMapper extends TypeToBackendTypeMapper {
 	               if (bts instanceof EmfTypesystem)
 	            	   _emfTypes = (EmfTypesystem) bts;
 	            }
-	            if (_emfTypes == null)
-	            	throw new IllegalArgumentException("Not an EmfTypesystem");
-			} else {
-				throw new IllegalArgumentException("Not an EmfTypesystem");
 			}
 		} catch (Exception e) {
 			_log.error("Check project setup for typesystems", e);

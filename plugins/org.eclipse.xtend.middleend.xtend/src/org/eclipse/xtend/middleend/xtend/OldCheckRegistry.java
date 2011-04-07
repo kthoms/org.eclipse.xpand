@@ -22,7 +22,6 @@ import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.plugins.ImportedResource;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.middleend.plugins.ParsedResource;
-import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtend.CheckConverter;
 import org.eclipse.xtend.middleend.xtend.internal.xtend.OldExtensionConverter;

@@ -26,7 +26,6 @@ import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
-import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.xtend.CheckConverter;
 import org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory;
 import org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory;

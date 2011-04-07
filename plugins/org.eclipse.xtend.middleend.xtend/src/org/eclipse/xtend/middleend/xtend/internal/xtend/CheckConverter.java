@@ -40,8 +40,8 @@ import org.eclipse.xtend.backend.types.builtin.CollectionType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtend.middleend.xtend.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.OldExpressionConverter;
-import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 
 

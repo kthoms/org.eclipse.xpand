@@ -40,10 +40,6 @@ public class UmlTypeToBackendTypeMapper extends TypeToBackendTypeMapper {
 	               if (bts instanceof UmlTypesystem)
 	            	   _umlTypes = (UmlTypesystem) bts;
 	            }
-	            if (_umlTypes == null)
-	            	throw new IllegalArgumentException("Not an UmlTypesystem");
-	    	} else {
-				throw new IllegalArgumentException("Not an UmlTypesystem");
 	    	}
     	} catch (Exception e) {
 			_log.error("Check your project setup for typesystems", e);

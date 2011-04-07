@@ -1,0 +1,24 @@
+import org::eclipse::xtend::backend::common;
+import org::eclipse::xtend::backend::types;
+import org::eclipse::xtend::backend::types::builtin;
+
+String toJavaTypeName (Object t) : "Object";
+String toJavaTypeName (BackendType t) : "Object";
+
+String getTypeBuilder (Object t) : null;
+String getTypeBuilder (BackendType t) : "ts.findType (\""+ t.uniqueRepresentation +"\")";
+String getTypeBuilder (BooleanType t) : "BooleanType.INSTANCE";
+String getTypeBuilder (CollectionType t) : "CollectionType.INSTANCE";
+String getTypeBuilder (DoubleType t) : "DoubleType.INSTANCE";
+String getTypeBuilder (FunctionType t) : "FunctionType.INSTANCE";
+String getTypeBuilder (ListType t) : "ListType.INSTANCE";
+String getTypeBuilder (LongType t) : "LongType.INSTANCE";
+String getTypeBuilder (MapType t) : "MapType.INSTANCE";
+String getTypeBuilder (ObjectType t) : "ObjectType.INSTANCE";
+String getTypeBuilder (PropertyType t) : "PropertyType.INSTANCE";
+String getTypeBuilder (SetType t) : "SetType.INSTANCE";
+String getTypeBuilder (StaticPropertyType t) : "StaticPropertyType.INSTANCE";
+String getTypeBuilder (StringType t) : "StringType.INSTANCE";
+String getTypeBuilder (TypeType t) : "TypeType.INSTANCE";
+String getTypeBuilder (VoidType t) : "VoidType.INSTANCE";
+String getTypeBuilder (Void t) : "VoidType.INSTANCE";

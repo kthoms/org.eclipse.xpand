@@ -31,6 +31,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SyntaxConstants;
 import org.eclipse.xtend.backend.expr.CreateCachedExpression;
+import org.eclipse.xtend.backend.expr.CreateUncachedExpression;
 import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.expr.NewLocalVarDefExpression;
 import org.eclipse.xtend.backend.expr.SequenceExpression;
@@ -142,7 +143,13 @@ public final class OldExtensionConverter {
         innerSeq.add (inner);
         innerSeq.add (new LocalVarEvalExpression(createdVarName, inner.getPos()));
         final ExpressionBase body = new SequenceExpression (innerSeq, inner.getPos());
-        final ExpressionBase createExpr = new CreateCachedExpression (_typeConverter.convertToBackendType(createdType), paramExprs, OldExpressionConverter.getSourcePos (extension, extension.getName()));
+        
+        ExpressionBase createExpr = null;
+        if (extension.isCached())
+        	createExpr = new CreateCachedExpression (_typeConverter.convertToBackendType(createdType), paramExprs, OldExpressionConverter.getSourcePos (extension, extension.getName()));
+        else
+        	createExpr = new CreateUncachedExpression (_typeConverter.convertToBackendType(createdType), OldExpressionConverter.getSourcePos (extension, extension.getName()));
+        	
         final ExpressionBase createWrapper = new NewLocalVarDefExpression (createdVarName, createExpr, body, OldExpressionConverter.getSourcePos (extension, extension.getName ()));
 
     	BackendType returnType;

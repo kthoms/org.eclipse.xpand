@@ -1,0 +1,73 @@
+«IMPORT org::eclipse::xtend::backend::aop»
+«IMPORT org::eclipse::xtend::backend::common»
+«IMPORT org::eclipse::xtend::backend::expr»
+«IMPORT org::eclipse::xtend::backend::functions»
+«IMPORT org::eclipse::xtend::middleend::plugins»
+«IMPORT org::eclipse::xtend::backend::compiler»
+«IMPORT org::eclipse::xtend::backend::compiler::model»
+«IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
+
+«EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
+«EXTENSION org::eclipse::xtend::backend::compiler::templates::types»
+
+«DEFINE compile (String resourceName) FOR ParsedResource»
+	«IF !resourceName.endsWith(".class")»
+		«FILE resourceName.toCompiledResourceClassName ()+".java"»
+			package «resourceName.toFdcBuilderPackage()»;
+			
+			import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
+			
+			«EXPAND compileImports FOREACH imports-»
+			public class «resourceName.toCompiledResourceClassName()» extends AbstractExecutionContextAware {
+			
+				«EXPAND compileFunction FOREACH publicFunctions-»
+			
+				«EXPAND compileFunction FOREACH privateFunctions-»
+				
+				«EXPAND compileAdvice FOREACH advice-»
+			
+			}
+		«ENDFILE»
+	«ENDIF»
+«ENDDEFINE»
+
+
+«DEFINE compileImports FOR ImportedResource»
+	@M2tImport (resource="«resourceName»")
+«ENDDEFINE»
+
+
+«DEFINE compileFunction FOR NamedFunction»
+	«IF name.nameSpace != null && name.nameSpace.length > 0-»
+	@M2tQualifiedName
+	«ENDIF-»
+	«IF function.cached-»
+	@M2tCached
+	«ENDIF-»
+	public «function.returnType.toJavaTypeName()» «name.simpleName» («EXPAND parameters FOR function») {
+		«EXPAND compile FOR function-»
+		return returnVar;
+	}
+«ENDDEFINE»
+
+
+«DEFINE compileAdvice FOR AroundAdvice»
+«ENDDEFINE»
+
+
+«DEFINE parameters FOR Function»
+«ENDDEFINE»
+
+«DEFINE parameters FOR SourceDefinedFunction-»
+	«FOREACH parameterTypes AS pt ITERATOR it SEPARATOR ", "-»
+«pt.toJavaTypeName()» «paramNames.get(it.counter0)» 
+	«ENDFOREACH-»
+«ENDDEFINE»
+
+
+«DEFINE compile FOR Function»
+«ENDDEFINE»
+
+«DEFINE compile FOR SourceDefinedFunction»
+	«EXPAND Java5ExpressionCompiler::compileExpression("returnVar") FOR defExpression»
+«ENDDEFINE»

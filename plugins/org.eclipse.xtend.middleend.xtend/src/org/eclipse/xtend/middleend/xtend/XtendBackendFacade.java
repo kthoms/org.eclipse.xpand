@@ -33,7 +33,6 @@ import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
 import org.eclipse.xtend.middleend.xtend.internal.OldExpressionConverter;
-import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendGlobalVarOperations;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;

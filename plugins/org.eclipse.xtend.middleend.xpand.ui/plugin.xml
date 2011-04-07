@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.xtend.backend.ui.MiddleEndConfigurer">
+      <element_1
+            class="org.eclipse.xtend.middleend.xpand.ui.XpandMiddleEndConfigurer">
+      </element_1>
+   </extension>
+
+</plugin>

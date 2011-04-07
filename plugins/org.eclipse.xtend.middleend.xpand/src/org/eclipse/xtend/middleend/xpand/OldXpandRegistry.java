@@ -31,7 +31,7 @@ import org.eclipse.xtend.middleend.plugins.ParsedResource;
 import org.eclipse.xtend.middleend.xpand.internal.OldDefinitionConverter;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.XpandLibContributor;
 import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
-import org.eclipse.xtend.middleend.xtend.internal.OldHelper;
+import org.eclipse.xtend.middleend.xtend.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
 
@@ -70,6 +70,7 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
             return file != null;
         }
         catch (Exception exc) {
+        	_log.debug("Xpand middleend can not handle file " + xpandFile, exc);
             return false;
         }
     }

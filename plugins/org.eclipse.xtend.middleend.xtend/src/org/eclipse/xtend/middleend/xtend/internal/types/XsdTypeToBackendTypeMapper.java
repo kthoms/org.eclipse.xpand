@@ -42,10 +42,6 @@ public class XsdTypeToBackendTypeMapper extends TypeToBackendTypeMapper {
 	               if (bts instanceof XsdTypesystem)
 	            	   _xsdTypes = (XsdTypesystem) bts;
 	            }
-	            if (_xsdTypes == null)
-	            	throw new IllegalArgumentException("Not an XsdTypesystem");
-	    	} else {
-				throw new IllegalArgumentException("Not an XsdTypesystem");
 	    	}
     	} catch (Exception e) {
 			_log.error("Check project setup for typesystems", e);

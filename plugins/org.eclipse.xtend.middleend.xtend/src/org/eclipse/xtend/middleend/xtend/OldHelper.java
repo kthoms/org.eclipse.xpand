@@ -9,7 +9,7 @@ Contributors:
     Arno Haase - initial API and implementation
     André Arnold
  */
-package org.eclipse.xtend.middleend.xtend.internal;
+package org.eclipse.xtend.middleend.xtend;
 
 import java.util.ArrayList;
 import java.util.Collection;

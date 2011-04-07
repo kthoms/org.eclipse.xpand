@@ -2,12 +2,22 @@
 «IMPORT org::eclipse::xtend::backend::expr»
 «IMPORT org::eclipse::xtend::backend::functions»
 «IMPORT org::eclipse::xtend::backend::compiler»
+«IMPORT org::eclipse::xtend::backend::compiler::model»
+«IMPORT org::eclipse::xtend::backend::types»
 «IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
 
+«EXTENSION org::eclipse::xtend::backend::compiler::templates::expressions»
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
+«EXTENSION org::eclipse::xtend::backend::compiler::templates::types»
 
-«DEFINE compile (String middleEndNamespace, String middleEndName) FOR FdcHolder»
-	«FILE middleEndNamespace.replaceAll("\\.", "/") + ".java"»
+«REM»
+Create for a FunctionDefContaxtProfider, i.e. a middleend 
+representing a whole generator cartridge
+«ENDREM»
+«DEFINE compile (BackendTypesystem typesystem, String middleEndNamespace, String middleEndName) FOR org::eclipse::xtend::backend::compiler::FdcHolder»
+	«REM».select(e|!(e.fdc.publicFunctions.function.typeSelect(SourceDefinedFunction).isEmpty))«ENDREM»
+	«EXPAND compile (typesystem) FOREACH compilationUnits-»
+	«FILE middleEndName.toFdcProviderClassFileName (middleEndNamespace) + ".java"»
 		package «middleEndNamespace»;
 
 		import org.eclipse.xtend.backend.BackendFacade;
@@ -19,21 +29,21 @@
 		import org.eclipse.xtend.backend.types.CompositeTypesystem;
 		import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 		import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
+		import org.eclipse.xtend.middleend.MiddleEnd;
 		import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
+		import org.eclipse.xtend.middleend.plugins.FunctionDefContextProvider;
 		
 		import java.util.List;
 		import java.util.ArrayList;
-		
-		import «middleEndNamespace»;
+		import java.util.Map;
 		
 		public class «middleEndName» implements FunctionDefContextProvider  {
 			private MiddleEnd _middleEnd;
 			
 			private Map<String, FunctionDefContext> _fdcs;
 			
-			public Java5FunctionDefContextBuilder () {
+			public «middleEndName» () {
 				«FOREACH resources AS res-»
-					«EXPAND compile (res) FOR getFdc (res)-»
 				_fdcs.put («res», «res.toQualifiedFdcBuilderClassName()».buildFdc ());
 				«ENDFOREACH»
 			}
@@ -43,7 +53,7 @@
 			}
 		
 			public String getName () {
-				return «middleEndName»;
+				return "«middleEndName»";
 			}
 		
 			public boolean canHandle (String resourceName) {
@@ -62,46 +72,100 @@
 	«ENDFILE»
 «ENDDEFINE»
 
-«DEFINE compile (String resource) FOR FunctionDefContext»
+«REM»
+Build a single FDC for a compilation unit
+«ENDREM»
+«DEFINE compile (BackendTypesystem typesystem) FOR org::eclipse::xtend::backend::compiler::CompilationUnit»
 	«FILE resource.toFdcBuilderFileName() + "FdcBuilder.java"»
-	package «resource.toFdcBuilderPackage()»
-	public class «resource.toFdcBuilderClassName()» {
-		public static FunctionDefContext buildFdc () {
-			FunctionDefContextInternal fdc = MiddleEndFactory.create (new CompositeTypesystem (), null).createEmptyFdc ();
-		«FOREACH allFunctions AS f»
-			fdc.register (build«f.name.simpleName.toFirstUpper()» (), true);
+package «resource.toFdcBuilderPackage()»;
+		
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.eclipse.xtend.backend.common.BackendType;
+import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.FunctionDefContext;
+import org.eclipse.xtend.backend.common.NamedFunction;
+import org.eclipse.xtend.backend.common.QualifiedName;
+import org.eclipse.xtend.backend.common.SourcePos;
+import org.eclipse.xtend.backend.expr.LiteralExpression;
+import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
+import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
+import org.eclipse.xtend.backend.types.CompositeTypesystem;
+import org.eclipse.xtend.backend.types.builtin.*;
+import org.eclipse.xtend.middleend.MiddleEndFactory;
+import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
+
+		public class «resource.toFdcBuilderClassName()» {
+			public static FunctionDefContext buildFdc () {
+				FunctionDefContextInternal fdc = MiddleEndFactory.create (new CompositeTypesystem (), null).createEmptyFdc ();
+				«REM».select(e|SourceDefinedFunction.isInstance(e.function))«ENDREM»
+				«EXPAND compileTypesystem FOR typesystem»
+				«FOREACH this.allFunctions AS f ITERATOR it-»
+				fdc.register («f.toBuilderOpName()»_«it.counter1» (bts), true);
+				«ENDFOREACH-»
+				return fdc;
+			}
+					
+		
+		«FOREACH allFunctions AS f ITERATOR it»
+			private static NamedFunction «f.toBuilderOpName()»_«it.counter1» (BackendTypesystem ts) {
+				ExpressionBase def = new LiteralExpression ("value", new SourcePos("«resource»", "callableName", 5));
+				List<BackendType> paramTypes = new ArrayList<BackendType>();
+				«FOREACH f.parameterTypes AS t-»
+				paramTypes.add(«t.getTypeBuilder()»);
+				«ENDFOREACH-»
+				«EXPAND compileFunction(resource, f) FOR f.function-»
+				//TODO add the ExecutionListeners?
+				return f;
+			}
 		«ENDFOREACH»
-			return fdc;
 		}
-				
-	}
+	
 	«ENDFILE»
 «ENDDEFINE»
 
-«DEFINE compile (String resource) FOR NamedFunction»
-		private static NamedFunction build«name.simpleName.toFirstUpper()» (BackendTypesystem ts) {
-			ExpressionBase def = new LiteralExpression ("value", new SourcePos("«resource»", "callableName", 5));
-			List<BackendType> paramTypes = new ArrayList<BackendType>();
-			«FOREACH function.parameterTypes AS t»
-			paramTypes.add(ts.findType («((BackendType)t).uniqueRepresentation»);
-			«ENDFOREACH»
-			«EXPAND compileFunction(resource, this) FOR function»
-			NamedFunction f = new NamedFunction (new QualifiedName ("",""), new SourceDefinedFunction ( new QualifiedName("«name.nameSpace»", "«name.simpleName»"), Arrays.asList ("",""), paramTypes, «function.returnType», def, false, def));
-			//TODO add the ExecutionListeners?
-			return f;
-		}
+
+«DEFINE compileFunction(String resource, NamedFunctionModel f) FOR Function»
 «ENDDEFINE»
 
-«DEFINE compileFunction(String resource, NamedFunction f) FOR Function»
+«DEFINE compileFunction(String resource, NamedFunctionModel f) FOR SourceDefinedFunction»
+	«IF f.function.parameterTypes.isEmpty-»
+			NamedFunction f = new NamedFunction («f.name.getQualifiedNameBuilder()», new SourceDefinedFunction ( «f.name.getQualifiedNameBuilder()», new ArrayList<String> (), paramTypes, «returnType.getTypeBuilder()», def, «cached», null));
+	«ELSE-»
+			NamedFunction f = new NamedFunction («f.name.getQualifiedNameBuilder()», new SourceDefinedFunction ( «f.name.getQualifiedNameBuilder()», Arrays.asList ("«paramNames.toString("\", \"")»"), paramTypes, «returnType.getTypeBuilder()», def, «cached», null));
+	«ENDIF-»
 «ENDDEFINE»
 
-«DEFINE compileFunction(String resource, NamedFunction f) FOR SourceDefinedFunction»
-			NamedFunction f = new NamedFunction (new QualifiedName ("",""), new SourceDefinedFunction ( new QualifiedName("«f.name.nameSpace»", "«f.name.simpleName»"), Arrays.asList («paramNames.toString(", ")»), paramTypes, «returnType», def, false, def));
+«DEFINE compileFunction(String resource, NamedFunctionModel f) FOR JavaDefinedFunction»
+		    NamedFunction f = null;
+		    try {
+		        final Class<?> cls = «method.declaringClass.name».class;
+		        Method mtd = cls.getMethod("«method.name»"«IF method.parameterTypes.size > 0», «method.parameterTypes.getClassBuilder().toString(", ")»«ENDIF»);
+				f = new NamedFunction («f.name.getQualifiedNameBuilder()», new JavaDefinedFunction (mtd, paramTypes, «returnType.getTypeBuilder()», null));
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 «ENDDEFINE»
 
-«DEFINE compileFunction(String resource, NamedFunction f) FOR JavaDefinedFunction»
-	        final Class<?> cls = «method.declaringClass.name0».class;
-	        Method mtd = cls.getMethod(«method.parameterTypes.name.toString(", ")»);
-			NamedFunction f = new NamedFunction (new QualifiedName («f.name.nameSpace»,"«f.name.simpleName»"), new JavaDefinedFunction (mtd, paramTypes, «returnType», null));
+«DEFINE compileTypesystem FOR BackendTypesystem»
+		BackendTypesystem bts = new «metaType»();				
 «ENDDEFINE»
+
+«DEFINE compileTypesystem FOR org::eclipse::xtend::backend::types::CompositeTypesystem»
+		CompositeTypesystem bts = new CompositeTypesystem();
+		«FOREACH inner.reject(e|e.metaType.name.endsWith ("JavaBeansTypesystem")) AS e-»
+		bts.register (new «e.metaType.name.toQualifiedClassName()»());
+		«ENDFOREACH-»		
+«ENDDEFINE»
+
 

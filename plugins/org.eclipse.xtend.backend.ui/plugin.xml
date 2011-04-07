@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="MiddleEndConfigurer" name="Middleend Configurer" schema="schema/MiddleEndConfigurer.exsd"/>
+   <extension
+         id="org.eclipse.xtend.backend.compiler.BackendBuilder"
+         name="M2T Backend Compiler"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="org.eclipse.xtend.backend.ui.compiler.BackendBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="org.eclipse.xtend.backend.BackendNature"
+         name="M2T Backend nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.eclipse.xtend.backend.ui.builder.BackendNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.eclipse.xtend.backend.compiler.BackendBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.xtend.backend.ui.contribution1"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="org.eclipse.xtend.backend.ui.builder.ToggleNatureAction"
+               enablesFor="+"
+               id="org.eclipse.xtend.backend.ui.addRemoveNatureAction"
+               label="Add/Remove M2T Backend"
+               menubarPath="org.eclipse.ui.projectConfigure/additions">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         id="backendProblem"
+         name="M2T Backend compilation problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+
+</plugin>

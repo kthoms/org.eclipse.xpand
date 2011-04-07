@@ -5,39 +5,54 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
+import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
+import org.eclipse.xtend.middleend.NoMiddleEndForResourceException;
 import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 
-public abstract class AbstractBackendCompilerFacade {
+public abstract class AbstractBackendCompilerFacade implements BackendCompilerFacade {
 
-	protected BackendTypesystem ts;
-	protected List<LanguageSpecificMiddleEnd> languageHandlers;
+	private final static Log _log = LogFactory.getLog (AbstractBackendCompilerFacade.class);
 
-	public AbstractBackendCompilerFacade() {
+	protected BackendTypesystem _typeSystem;
+	protected List<LanguageSpecificMiddleEnd> _languageHandlers;
+
+	public AbstractBackendCompilerFacade(BackendTypesystem typeSystem) {
 		super();
+		_typeSystem = typeSystem;
 	}
 
-	public void compile (Set<String> resources, String contributorNamespace, String contributorName, String outputDir) {
-		MiddleEnd me = createMiddleEnd();
+	public void compile (Set<String> resources, String contributorNamespace, String contributorName, String outputDir, Map<Class<?>, Object> specificParams, String fileEncoding) {
+		MiddleEnd me = createMiddleEnd (specificParams);
 		Map<String, FunctionDefContext> fdcs = new HashMap<String, FunctionDefContext>();
 		for (String res : resources) {
-			FunctionDefContext fdc = me.getFunctions(res);
-			fdcs.put(res, fdc);
+			try {
+				_log.debug ("Creating FDC for " + res);
+				FunctionDefContext fdc = me.getFunctions(res);
+				for (NamedFunction f : fdc.getAllFunctions()) {
+					_log.debug ("Function " + f.getName());
+				}
+				fdcs.put(res, fdc);
+			} catch (NoMiddleEndForResourceException e) {
+				// TODO: handle exception
+			}
 		}
 		FdcHolder fdcHolder = new FdcHolder(fdcs);
-		compileInternal (fdcHolder, contributorNamespace, contributorName, outputDir);
+		compileInternal (fdcHolder, _typeSystem, contributorNamespace, contributorName, outputDir, fileEncoding);
 	}
 	
-	protected abstract void compileInternal (FdcHolder fdcs, String contributorNamespace, String contributorName, String outputDir);
+	protected abstract void compileInternal (FdcHolder fdcs, BackendTypesystem bts, String contributorNamespace, String contributorName, String outputDir, String fileEncoding);
 
-	protected MiddleEnd createMiddleEnd () {
+	protected MiddleEnd createMiddleEnd (Map<Class<?>, Object> specificParams) {
 		if (MiddleEndFactory.canCreateFromExtentions()) {
-			return MiddleEndFactory.createFromExtensions(ts, null);
+			return MiddleEndFactory.createFromExtensions(_typeSystem, specificParams);
 		} else {
-			return MiddleEndFactory.create(ts, languageHandlers);
+			return MiddleEndFactory.create(_typeSystem, _languageHandlers);
 		}
 	}
 }

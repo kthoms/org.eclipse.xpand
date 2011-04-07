@@ -37,4 +37,20 @@
          id="org.eclipse.xtend.middleend.xtend.source"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.xtend.middleend.xpand.ui"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.xtend.middleend.xpand.ui.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.xtend.middleend.xtend.ui"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.xtend.middleend.xtend.ui.source"
+         version="0.0.0"/>
+
 </feature>

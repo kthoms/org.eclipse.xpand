@@ -45,4 +45,12 @@
          id="org.eclipse.xtend.backend.xsdtypes.source"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.xtend.backend.ui"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.xtend.backend.ui.source"
+         version="0.0.0"/>
+
 </feature>

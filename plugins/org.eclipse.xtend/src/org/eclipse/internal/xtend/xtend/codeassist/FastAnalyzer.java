@@ -215,7 +215,7 @@ public class FastAnalyzer {
 			final String str, ExecutionContext ctx,
 			final List<Extension> extensions) {
 		final Partition p = computePartition(str);
-		if (p == Partition.EXPRESSION || p == Partition.TYPE_DECLARATION) {
+		if (p == Partition.EXPRESSION || p == Partition.TYPE_DECLARATION || p == Partition.DEFAULT) {
 
 			final List<String> imports = findImports(str);
 			final List<String> extensionImports = findExtensions(str);

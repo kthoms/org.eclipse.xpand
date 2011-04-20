@@ -238,7 +238,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 					if (iXtendXpandResource != null) {
 						for (String string : iXtendXpandResource.getImportedExtensions()) {
 							IXtendXpandResource importedResource = xtdxptProject.findExtXptResource(string, XtendFile.FILE_EXTENSION);
-							if (importedResource.equals(res)){
+							if (importedResource!=null && importedResource.equals(res)){
 								reverseReferences.add(iXtendXpandResource);
 								break;
 							}

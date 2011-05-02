@@ -1,4 +1,4 @@
-package org.eclipse.xtend.backend.compiler;
+package org.eclipse.xtend.backend.compiler.templates.backend;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +17,8 @@ import org.eclipse.xpand2.Generator;
 import org.eclipse.xpand2.output.JavaBeautifier;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
+import org.eclipse.xtend.backend.compiler.AbstractBackendCompilerFacade;
+import org.eclipse.xtend.backend.compiler.FdcHolder;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 
@@ -47,7 +49,7 @@ public class BackendJavaCompilerFacade extends AbstractBackendCompilerFacade {
 		out.addPostprocessor(new JavaBeautifier());
 		gen.addOutlet (out);
 		gen.setFileEncoding (fileEncoding);
-		gen.setExpand ("org::eclipse::xtend::backend::compiler::templates::Java5Compiler::compile (typesystem, contributorNamespace, contributorName) FOR fdcs");
+		gen.setExpand ("org::eclipse::xtend::backend::compiler::templates::backend::Java5Compiler::compile (typesystem, contributorNamespace, contributorName) FOR fdcs");
 		gen.setBeautifier(Arrays.asList(org.eclipse.xpand2.output.JavaBeautifier.class));
 
 		WorkflowContext ctx = new WorkflowContextDefaultImpl();

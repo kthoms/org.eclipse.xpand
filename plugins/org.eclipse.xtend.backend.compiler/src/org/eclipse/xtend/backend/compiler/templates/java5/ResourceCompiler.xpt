@@ -10,12 +10,19 @@
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::types»
 
-«DEFINE compile (String resourceName) FOR ParsedResource»
-	«IF !resourceName.endsWith(".class")»
-		«FILE resourceName.toCompiledResourceClassName ()+".java"»
+«DEFINE compile (BackendTypesystem bts, String resourceName) FOR ParsedResource»
+	«IF !resourceName.endsWith(".class") && publicFunctions.function.typeSelect (SourceDefinedFunction).size > 0»
+		«FILE resourceName.toCompiledResourceFileName() +".java"»
 			package «resourceName.toFdcBuilderPackage()»;
 			
-			import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
+			import java.util.Collection;
+			import java.util.List;
+			import java.util.Set;
+			import org.eclipse.xtend.backend.common.*;
+			import org.eclipse.xtend.backend.functions.*;
+			import org.eclipse.xtend.backend.syslib.*;
+			import org.eclipse.xtend.backend.types.builtin.*;
+			import org.eclipse.xtend.middleend.javaannotations.*;
 			
 			«EXPAND compileImports FOREACH imports-»
 			public class «resourceName.toCompiledResourceClassName()» extends AbstractExecutionContextAware {
@@ -38,6 +45,7 @@
 
 
 «DEFINE compileFunction FOR NamedFunction»
+	«IF SourceDefinedFunction.isInstance (function)-»
 	«IF name.nameSpace != null && name.nameSpace.length > 0-»
 	@M2tQualifiedName
 	«ENDIF-»
@@ -45,10 +53,13 @@
 	@M2tCached
 	«ENDIF-»
 	public «function.returnType.toJavaTypeName()» «name.simpleName» («EXPAND parameters FOR function») {
+		Object returnVar = null;
 		«EXPAND compile FOR function-»
 		return returnVar;
 	}
+	«ENDIF-»
 «ENDDEFINE»
+
 
 
 «DEFINE compileAdvice FOR AroundAdvice»
@@ -60,7 +71,7 @@
 
 «DEFINE parameters FOR SourceDefinedFunction-»
 	«FOREACH parameterTypes AS pt ITERATOR it SEPARATOR ", "-»
-«pt.toJavaTypeName()» «paramNames.get(it.counter0)» 
+«pt.toJavaTypeName()» «paramNames.get(it.counter0).toParameterName()» 
 	«ENDFOREACH-»
 «ENDDEFINE»
 

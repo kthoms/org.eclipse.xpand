@@ -7,6 +7,7 @@
  *******************************************************************************/
 package org.eclipse.xtend.backend.types;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -67,5 +68,40 @@ public class CompositeTypesystemFactory {
         
         return cts;
 	}
+	
+	public CompositeTypesystem createTypesystemFromClass (Set<Class<? extends BackendTypesystem>> typeSystemClasses) {
+		CompositeTypesystem cts = new CompositeTypesystem();
+		for (Class<? extends BackendTypesystem> tsClass : typeSystemClasses) {
+			try {
+				cts.register(tsClass.newInstance());
+			}
+			catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return cts;
+	}
+	
+	public CompositeTypesystem createTypesystemFromClassNames (Set<String> typeSystemClassNames) {
+		Set<Class<? extends BackendTypesystem>> tsClasses = new HashSet<Class<? extends BackendTypesystem>>();
+		try {
+			for (String className : typeSystemClassNames) {
+				Class<? extends BackendTypesystem> tsClass = (Class<? extends BackendTypesystem>) Class
+						.forName(className);
+				tsClasses.add(tsClass);
+			}
+
+		}
+		catch (ClassNotFoundException e) {
+		}
+		return createTypesystemFromClass (tsClasses);
+	}
+	
+	
 
 }

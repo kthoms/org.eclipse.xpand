@@ -113,7 +113,6 @@ import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
 		
 		«FOREACH allFunctions AS f ITERATOR it»
 			private static NamedFunction «f.toBuilderOpName()»_«it.counter1» (BackendTypesystem ts) {
-				ExpressionBase def = new LiteralExpression ("value", new SourcePos("«resource»", "callableName", 5));
 				List<BackendType> paramTypes = new ArrayList<BackendType>();
 				«FOREACH f.parameterTypes AS t-»
 				paramTypes.add(«t.getTypeBuilder()»);
@@ -133,6 +132,8 @@ import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
 «ENDDEFINE»
 
 «DEFINE compileFunction(String resource, NamedFunctionModel f) FOR SourceDefinedFunction»
+			ExpressionBase def = null;
+			«EXPAND Java5FunctionBuilder::compileExpression ("def") FOR defExpression-»
 	«IF f.function.parameterTypes.isEmpty-»
 			NamedFunction f = new NamedFunction («f.name.getQualifiedNameBuilder()», new SourceDefinedFunction ( «f.name.getQualifiedNameBuilder()», new ArrayList<String> (), paramTypes, «returnType.getTypeBuilder()», def, «cached», null));
 	«ELSE-»

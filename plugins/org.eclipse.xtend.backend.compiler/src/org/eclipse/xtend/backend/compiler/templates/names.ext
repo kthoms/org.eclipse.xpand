@@ -11,9 +11,11 @@ String generateVarName (String baseVarName) :
 int getNextVarIdx () :
 	JAVA org.eclipse.xtend.backend.compiler.templates.VarNameGeneratorExpressions.getNextVarIdx ();
 	
-String toCompiledResourceClassName (String resourceName) : (resourceName.stripFilenamePostfix().split("::").split("/").last());
+String toCompiledResourceClassName (String resourceName) : (resourceName.stripFilenamePostfix().replaceAll ("::","/").split("\\/").last());
 
-String toCompiledResourcePackageName (String resourceName) : resourceName.stripFilenamePostfix().split("::").split("/").withoutLast().toString(".");
+String toCompiledResourceFileName (String resourceName) : (resourceName.stripFilenamePostfix().replaceAll ("::","/"));
+
+String toCompiledResourcePackageName (String resourceName) : resourceName.stripFilenamePostfix().split("::").split("\\/").withoutLast().toString(".");
 
 String toFdcBuilderClassName (String resourceName) : (resourceName.stripFilenamePostfix().split("::").split("/").last()) + "FdcBuilder";
 
@@ -36,7 +38,7 @@ String toBuilderOpName (NamedFunctionModel f) :
 			f.getFunctionParameterTypes().metaType.name.split("::").last().toFirstUpper()
 	);
 
-cached String stripFilenamePostfix (String filename) : filename.split("\\.").withoutLast().toString(".");
+String stripFilenamePostfix (String filename) : filename.split("\\.").size > 1 ? filename.split("\\.").withoutLast().toString(".") : filename;
 
 String toFdcProviderClassFileName(String middleEndName, String middleEndNamespace) : 
 	middleEndNamespace != null ?
@@ -50,3 +52,7 @@ String getQualifiedNameBuilder(QualifiedName n) :
 		"new QualifiedName(\""+ n.nameSpace +"\", \"" + n.simpleName +"\")" 
 	:
 		"new QualifiedName(null, \"" + n.simpleName +"\")";
+		
+String toParameterName (String paramName) : javaKeywords().contains (paramName) ? paramName + "_" : paramName;
+	
+cached List javaKeywords () : {"this","class","public","protected","private","abstract","void","boolean", "int", "short", "byte", "long", "double", "float", "transient", "interface", "extends", "implements", "static", "final", "transient", "volatile", "enum", "abstract"};

@@ -88,7 +88,11 @@ public class XtendContentAssistProcessor extends AbstractExtXptContentAssistProc
 			ctx = FastAnalyzer.computeExecutionContext(part, ctx, extensions);
 			proposals = (List<? extends ICompletionProposal>) new NamespaceProposalComputer().computeProposals(part, ctx, factory);
 			
+		} else if (p == Partition.DEFAULT){
+			ctx = FastAnalyzer.computeExecutionContext(part, ctx, extensions);
+			proposals = (List<? extends ICompletionProposal>) new TypeProposalComputer().computeProposals(part, ctx, factory);
 		}
+		
 		Collections.sort(proposals, new ProposalComparator());
 		return proposals.toArray(new ICompletionProposal[proposals.size()]);
 	}

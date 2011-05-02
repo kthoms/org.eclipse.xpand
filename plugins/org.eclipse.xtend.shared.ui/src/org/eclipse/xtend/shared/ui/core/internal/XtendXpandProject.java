@@ -11,7 +11,6 @@
 
 package org.eclipse.xtend.shared.ui.core.internal;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -96,7 +95,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 					final IProject p = project.getProject();
 					if (p.isAccessible() && p.isNatureEnabled(XtendXpandNature.NATURE_ID)) {
 						p.build(IncrementalProjectBuilder.CLEAN_BUILD, XtendXpandBuilder.getBUILDER_ID(),
-								new HashMap<Object, Object>(), monitor);
+								new HashMap<String, String>(), monitor);
 					}
 				}
 				catch (final CoreException e) {

@@ -24,7 +24,7 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.compiler.BackendCompilerFacade;
-import org.eclipse.xtend.backend.compiler.BackendJavaCompilerFacade;
+import org.eclipse.xtend.backend.compiler.templates.java5.Java5CompilerFacade;
 import org.eclipse.xtend.backend.types.CompositeTypesystemFactory;
 import org.eclipse.xtend.backend.ui.Activator;
 import org.eclipse.xtend.backend.ui.middleend.LanguageSpecificMiddleEndConfigurer;
@@ -105,7 +105,7 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 	private void compile(SubMonitor progress, Set<String> resNames,
 			Map<Class<?>, Object> specificParams, BackendTypesystem bts, String fileEncoding)
 			throws CoreException {
-		BackendCompilerFacade compiler = new BackendJavaCompilerFacade (bts);
+		BackendCompilerFacade compiler = new Java5CompilerFacade (bts);
 		final String middleEndPackage = "org.example";
 		final String middleEndName = getMiddleendName();
 		final String outputDir = getOutputFolder (progress).getRawLocation().toOSString();

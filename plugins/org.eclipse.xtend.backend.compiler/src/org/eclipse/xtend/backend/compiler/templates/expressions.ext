@@ -13,3 +13,8 @@ List[BackendType] getFunctionParameterTypes (Function f) : f.parameterTypes;
 List[BackendType] getFunctionParameterTypes (NamedFunctionModel f) : f.parameterTypes;
 
 String getClassBuilder (java::lang::Class f) : f.name + ".class";
+
+String toJavaLiteral(LiteralExpression e) : e.toJavaLiteralInternal();
+
+private String toJavaLiteralInternal(LiteralExpression e) :
+	JAVA org.eclipse.xtend.backend.compiler.util.JavaConverter.toJavaLiteral (org.eclipse.xtend.backend.expr.LiteralExpression);

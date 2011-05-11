@@ -1,4 +1,6 @@
+import org::eclipse::xtend::backend::aop;
 import org::eclipse::xtend::backend::common;
+import org::eclipse::xtend::backend::expr;
 import org::eclipse::xtend::backend::compiler;
 import org::eclipse::xtend::backend::compiler::model;
 import org::eclipse::xtend::backend::functions;
@@ -54,5 +56,16 @@ String getQualifiedNameBuilder(QualifiedName n) :
 		"new QualifiedName(null, \"" + n.simpleName +"\")";
 		
 String toParameterName (String paramName) : javaKeywords().contains (paramName) ? paramName + "_" : paramName;
+
 	
+String getVarName (Object expr, String defaultBaseName, String postfix) : defaultBaseName + postfix;
+
+String getVarName (ExpressionBase expr, String defaultBaseName, String postfix) : defaultBaseName + postfix;
+String getVarName (LocalVarEvalExpression expr, String defaultBaseName, String postfix) : expr.localVarName + postfix;
+
+String getVarName (AroundAdvice adv, String defaultBaseName, String postfix) : defaultBaseName + postfix;
+
+
 cached List javaKeywords () : {"this","class","public","protected","private","abstract","void","boolean", "int", "short", "byte", "long", "double", "float", "transient", "interface", "extends", "implements", "static", "final", "transient", "volatile", "enum", "abstract"};
+
+

@@ -1,7 +1,6 @@
 package org.eclipse.xtend.backend.compiler.templates.java5;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,9 +16,8 @@ import org.eclipse.xpand2.Generator;
 import org.eclipse.xpand2.output.JavaBeautifier;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
-import org.eclipse.xtend.backend.compiler.AbstractBackendCompilerFacade;
 import org.eclipse.xtend.backend.compiler.AbstractBackendResourceCompilerFacade;
-import org.eclipse.xtend.backend.compiler.FdcHolder;
+import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.plugins.ParsedResource;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
@@ -33,7 +31,7 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 	}
 
 	@Override
-	protected void compileInternal(String resourceName, ParsedResource parsedResource, BackendTypesystem bts, String outputDir, String fileEncoding) {
+	protected void compileInternal(String resourceName, ParsedResource parsedResource, MiddleEnd me, BackendTypesystem bts, String outputDir, String fileEncoding) {
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("resource", parsedResource);
 		variables.put("resourceName", resourceName);
@@ -48,7 +46,8 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 		Generator gen = new Generator();
 		gen.addMetaModel(new JavaBeansMetaModel());
 		Outlet out = new Outlet (outputDir);
-		out.addPostprocessor(new JavaBeautifier());
+		JavaBeautifier javaBeautifier = new JavaBeautifier();
+		out.addPostprocessor(javaBeautifier);
 		gen.addOutlet (out);
 		gen.setFileEncoding (fileEncoding);
 		gen.setExpand ("org::eclipse::xtend::backend::compiler::templates::java5::ResourceCompiler::compile (typesystem, resourceName) FOR resource");
@@ -58,6 +57,7 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 		ctx.set ("resource", parsedResource);
 		ctx.set ("resourceName", resourceName);
 		ctx.set ("typesystem", bts);
+		ctx.set ("middleend", me);
 		Issues issues = new IssuesImpl();
 
 		gen.invoke(ctx, new NullProgressMonitor(), issues);

@@ -22,3 +22,7 @@ String getTypeBuilder (StringType t) : "StringType.INSTANCE";
 String getTypeBuilder (TypeType t) : "TypeType.INSTANCE";
 String getTypeBuilder (VoidType t) : "VoidType.INSTANCE";
 String getTypeBuilder (Void t) : "VoidType.INSTANCE";
+
+
+String getResultType (Void t) : "";
+String getResultType (String t) : t; 

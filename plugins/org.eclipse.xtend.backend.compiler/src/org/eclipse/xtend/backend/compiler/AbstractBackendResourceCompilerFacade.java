@@ -39,11 +39,11 @@ public abstract class AbstractBackendResourceCompilerFacade implements BackendCo
 		}
 
 		for (Entry<String, ParsedResource> res : me.getParsedResources().entrySet()) {
-			compileInternal (res.getKey(), res.getValue(), _typeSystem, outputDir, fileEncoding);
+			compileInternal (res.getKey(), res.getValue(), me, _typeSystem, outputDir, fileEncoding);
 		}
 	}
 
-    abstract protected void compileInternal (String resourceName, ParsedResource parsedRes, BackendTypesystem typeSystem, String outputDir, String fileEncoding);
+    abstract protected void compileInternal (String resourceName, ParsedResource parsedRes, MiddleEnd middleend, BackendTypesystem typeSystem, String outputDir, String fileEncoding);
 
 	protected MiddleEnd createMiddleEnd (Map<Class<?>, Object> specificParams) {
 		if (MiddleEndFactory.canCreateFromExtentions()) {

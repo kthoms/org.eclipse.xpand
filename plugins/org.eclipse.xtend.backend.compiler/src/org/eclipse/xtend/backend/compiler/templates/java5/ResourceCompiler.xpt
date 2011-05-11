@@ -6,6 +6,8 @@
 «IMPORT org::eclipse::xtend::backend::compiler»
 «IMPORT org::eclipse::xtend::backend::compiler::model»
 «IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
+«IMPORT org::eclipse::xtend::backend::compiler::templates::java5»
+
 
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::types»
@@ -15,36 +17,41 @@
 		«FILE resourceName.toCompiledResourceFileName() +".java"»
 			package «resourceName.toFdcBuilderPackage()»;
 			
+			import java.util.Arrays;
 			import java.util.Collection;
 			import java.util.List;
+			import java.util.ArrayList;
 			import java.util.Set;
+			import java.util.HashSet;
 			import org.eclipse.xtend.backend.common.*;
 			import org.eclipse.xtend.backend.functions.*;
+			import org.eclipse.xtend.backend.lib.*;
 			import org.eclipse.xtend.backend.syslib.*;
 			import org.eclipse.xtend.backend.types.builtin.*;
 			import org.eclipse.xtend.middleend.javaannotations.*;
 			
-			«EXPAND compileImports FOREACH imports-»
+			«IF ! imports.isEmpty»
+			@M2tImports (imports={
+			«FOREACH imports AS imp SEPARATOR ", "-»
+				@M2tImport (resource="«imp.resourceName»")
+			«ENDFOREACH-»
+			})
+			«ENDIF»
 			public class «resourceName.toCompiledResourceClassName()» extends AbstractExecutionContextAware {
 			
-				«EXPAND compileFunction FOREACH publicFunctions-»
+				«EXPAND compileFunction (this) FOREACH publicFunctions-»
 			
-				«EXPAND compileFunction FOREACH privateFunctions-»
+				«EXPAND compileFunction (this) FOREACH privateFunctions-»
 				
-				«EXPAND compileAdvice FOREACH advice-»
-			
+				«EXPAND compileAdvice (this) FOREACH advice-»
+
 			}
 		«ENDFILE»
 	«ENDIF»
 «ENDDEFINE»
 
 
-«DEFINE compileImports FOR ImportedResource»
-	@M2tImport (resource="«resourceName»")
-«ENDDEFINE»
-
-
-«DEFINE compileFunction FOR NamedFunction»
+«DEFINE compileFunction (ParsedResource resource) FOR NamedFunction»
 	«IF SourceDefinedFunction.isInstance (function)-»
 	«IF name.nameSpace != null && name.nameSpace.length > 0-»
 	@M2tQualifiedName
@@ -53,8 +60,7 @@
 	@M2tCached
 	«ENDIF-»
 	public «function.returnType.toJavaTypeName()» «name.simpleName» («EXPAND parameters FOR function») {
-		Object returnVar = null;
-		«EXPAND compile FOR function-»
+		«EXPAND compile (resource) FOR function-»
 		return returnVar;
 	}
 	«ENDIF-»
@@ -62,7 +68,7 @@
 
 
 
-«DEFINE compileAdvice FOR AroundAdvice»
+«DEFINE compileAdvice (ParsedResource resource) FOR AroundAdvice»
 «ENDDEFINE»
 
 
@@ -76,9 +82,9 @@
 «ENDDEFINE»
 
 
-«DEFINE compile FOR Function»
+«DEFINE compile (ParsedResource resource) FOR Function»
 «ENDDEFINE»
 
-«DEFINE compile FOR SourceDefinedFunction»
-	«EXPAND Java5ExpressionCompiler::compileExpression("returnVar") FOR defExpression»
+«DEFINE compile (ParsedResource resource) FOR SourceDefinedFunction»
+	«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", null, resource) FOR defExpression»
 «ENDDEFINE»

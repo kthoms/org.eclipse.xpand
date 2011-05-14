@@ -85,14 +85,14 @@ TODO
 «DEFINE compileExpression(String resultVarName, String resultType, ParsedResource resource) FOR HidingLocalVarDefExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         final Object oldValue_«varIdx» = _ctx.getLocalVarContext().getLocalVars().get(«localVarName»);
-        «EXPAND compileExpression (getVarName (defExpression, "defExprResult", "_" + varIdx), null, resource) FOR defExpression-» 
-        _ctx.getLocalVarContext().getLocalVars().put («localVarName», defExprResult_«varIdx»);
+        «EXPAND compileExpression (getVarName (defExpression, "defExprResult", "_" + varIdx), "Object", resource) FOR defExpression-» 
+        _ctx.getLocalVarContext().getLocalVars().put («localVarName», «getVarName (defExpression, "defExprResult", "_" + varIdx)»);
 
         if (_ctx.isLogStacktrace())
             _ctx.getStacktrace().add (new StacktraceEntry («pos.buildSourcePos()», _ctx));
 
         try {
-			«EXPAND compileExpression (getVarName (innerExpression, "innerExprVarName", "_" + varIdx), "Object", resource) FOR innerExpression-»
+			«EXPAND compileExpression (resultVarName, "Object", resource) FOR innerExpression-»
         }
         finally {
             _ctx.getStacktrace ().remove (_ctx.getStacktrace().size() - 1);
@@ -229,18 +229,27 @@ TODO
 «REM»FIX THIS«ENDREM»
 «DEFINE compileExpression(String resultVarName, String resultType, ParsedResource resource) FOR MethodInvocationExpression-»
 	«LET getNextVarIdx() AS varIdx-»
+        «IF params.size > 0 && LocalVarEvalExpression.isInstance(params.first())»
+        	«IF (((LocalVarEvalExpression) params.first()).localVarName == "this")-»
+        		boolean firstParamIsThis_«varIdx» = true;
+        	«ELSE-»
+		        boolean firstParamIsThis_«varIdx» = false;	
+        	«ENDIF-»
+        «ELSE»
+	        boolean firstParamIsThis_«varIdx» = false;
+        «ENDIF»
 		Class cls = «method.declaringClass.name».class;
 		«IF method.parameterTypes.size > 0-»
 			Method mtd = cls.getMethod(«method.name», «FOREACH method.parameterTypes AS pt SEPARATOR ", "»«pt.name»«ENDFOREACH»);
 		«ELSE-»
 			Method mtd = cls.getMethod(«method.name»);
 		«ENDIF-»
-		List<? extends ExpressionBase> paramVarName_«varIdx» = new ArrayList<ExpressionBase>();
+		List<Object> «method.name»_params_«varIdx» = new ArrayList<Object>();
 		«FOREACH params.typeSelect(ExpressionBase) AS p ITERATOR it-»
 			«EXPAND compileExpression (getVarName (p, "paramVarName", "_" + varIdx + "_" +it.counter1), "Object", resource) FOR p-»
-			paramVarName.add(paramVarName_«varIdx»_«it.counter1»);
+			«method.name»_params_«varIdx».add(«getVarName (p, "paramVarName", "_" + varIdx + "_" +it.counter1)»);
 		«ENDFOREACH-»
-		//ExpressionBase «resultVarName» = new MethodInvocationExpression (mtd, paramVarName_«varIdx», «nullIfFirstParamIsNull», «pos.buildSourcePos()»);
+		«resultType.getResultType()» «resultVarName» = Invoker.invokeMethod (mtd, «method.name»_params_«varIdx», «static», _ctx, «nullIfFirstParamIsNull», firstParamIsThis_«varIdx», «pos.buildSourcePos()»)
 	«ENDLET-»
 «ENDDEFINE»
 

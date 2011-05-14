@@ -20,6 +20,7 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverter;
+import org.eclipse.xtend.backend.functions.java.internal.JavaBuiltinConverterFactory;
 import org.eclipse.xtend.backend.functions.java.internal.ParameterConverter;
 import org.eclipse.xtend.backend.syslib.CollectionOperations;
 import org.eclipse.xtend.backend.util.ErrorHandler;
@@ -152,7 +153,7 @@ public class Invoker {
 	}
 	
 	
-	public static Object invokeMethod (Method method, List<Object> params, final List<ParameterConverter> parameterConverters, final boolean isStatic, final JavaBuiltinConverter returnValueConverter, ExecutionContext ctx, final boolean nullIfFirstParamIsNull, final boolean firstParamIsThis, final SourcePos pos) {
+	public static Object invokeMethod (Method method, List<Object> params, final boolean isStatic, ExecutionContext ctx, final boolean nullIfFirstParamIsNull, final boolean firstParamIsThis, final SourcePos pos) {
 		// this is for "method-style" invocations: if the first parameter (i.e.
 		// the one "before the dot") is null,
 		// shortcut the evaluation and return null
@@ -167,7 +168,8 @@ public class Invoker {
 		Object[] rawParams = params.toArray(new Object[params.size()]);
 		try {
 			// param Expressions must have been evaluated before method can fully qualified with it's param types
-
+			final List<ParameterConverter> parameterConverters = getParameterConverters(method);
+			final JavaBuiltinConverter returnValueConverter = getReturnValueConverter (method);
 			for (int i = 0; i < parameterConverters.size(); i++) {
 				parameterConverters.get(i).convert(rawParams);
 			}
@@ -195,7 +197,7 @@ public class Invoker {
 			return null; // to make the compiler happy - this is never executed
 		}
 	}
-	
+
 	private static Object getInstance(ExecutionContext ctx, Method method, boolean isStatic) {
 		final Class<?> clazz = method.getDeclaringClass();
 		if (isStatic)
@@ -225,5 +227,19 @@ public class Invoker {
 		return result;
 	}
 
+	private static List<ParameterConverter> getParameterConverters (Method mtd) {
+		List<ParameterConverter> parameterConverters = new ArrayList<ParameterConverter> (mtd.getParameterTypes().length);
+        for (int i=0; i<mtd.getParameterTypes().length; i++) {
+            final ParameterConverter pc = JavaBuiltinConverterFactory.getParameterConverter (mtd.getParameterTypes()[i], i);
+            if (pc != null)
+                parameterConverters.add(pc);
+        }
+		return parameterConverters;
+	}
+	
+	private static JavaBuiltinConverter getReturnValueConverter(Method mtd) {
+		JavaBuiltinConverter converter = JavaBuiltinConverterFactory.getConverter (mtd.getReturnType());
+		return converter;
+	}
 
 }

@@ -160,4 +160,10 @@ public class MethodInvocationExpression extends ExpressionBase {
 		return _mtd.getName();
 	}
 
+	public boolean isStatic() {
+		return _isStatic;
+	}
+	
+	
+
 }

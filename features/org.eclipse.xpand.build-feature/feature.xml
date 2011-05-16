@@ -15,8 +15,8 @@
    </copyright>
 
    <url>
-      <update label="%UpdateSiteName" url="%p2mirrorsURL"/>
-      <discovery label="%UpdateSiteName" url="%p2mirrorsURL"/>
+	<!-- # used by buckminster to append p2.mirrorsURL information to the artifacts xml -->
+      <update label="%UpdateSiteName" url="http://www.eclipse.org/downloads/download.php?file=/modeling/m2t/xpand/updates/releases/&amp;format=xml"/>
    </url>
    
    <license url="%licenseURL">

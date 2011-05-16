@@ -1,5 +1,7 @@
 package org.eclipse.xtend.backend.ui.compiler;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -13,6 +15,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -34,7 +39,53 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 	public static final String BUILDER_ID = "org.eclipse.xtend.backend.compiler.BackendBuilder";
 	
 	private final static Log _log = LogFactory.getLog (BackendBuilder.class);
-	
+
+	class BackendDeltaVisitor implements IResourceDeltaVisitor, IResourceVisitor {
+		private final IProgressMonitor monitor;
+
+		public BackendDeltaVisitor(final IProgressMonitor monitor) {
+			this.monitor = monitor;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 *
+		 * @see
+		 * org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse
+		 * .core.resources.IResourceDelta)
+		 */
+		public boolean visit(final IResourceDelta delta) throws CoreException {
+			final IResource resource = delta.getResource();
+			if (isBackendCompilableResource (resource)) {
+				switch (delta.getKind()) {
+					case IResourceDelta.ADDED:
+						// handle added resource
+						onAddOrUpdate ((IFile) resource, monitor);
+						break;
+					case IResourceDelta.REMOVED:
+						// handle removed resource
+						onRemoval ((IFile) resource, monitor);
+						break;
+					case IResourceDelta.CHANGED:
+						// handle changed resource
+						onAddOrUpdate ((IFile) resource, monitor);
+						break;
+				}
+			}
+			monitor.worked(1);
+			return true;
+		}
+
+		public boolean visit(final IResource resource) {
+			if (isBackendCompilableResource(resource)) {
+				onAddOrUpdate ((IFile) resource, monitor);
+			}
+			monitor.worked(1);
+			return true;
+		}
+
+	}
+
 	@Override
 	protected IProject[] build(int kind, Map args, IProgressMonitor monitor)
 			throws CoreException {
@@ -51,8 +102,14 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 			SubMonitor progress = SubMonitor.convert (monitor, 1);
 			if (kind == FULL_BUILD) {
 				doFullBuild (progress.newChild (1));
-			} else if (kind == INCREMENTAL_BUILD) {
-				// TODO implement incremental compilation
+			} else {
+				final IResourceDelta delta = getDelta(getProject());
+				if (delta == null) {
+					doFullBuild (progress.newChild (1));
+				}
+				else {
+					doIncrementalBuild (delta, progress.newChild (1));
+				}
 			}
 		} finally {
 			if (monitor != null)
@@ -60,7 +117,7 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 		}
 		return null;
 	}
-	
+
 	private void doFullBuild (SubMonitor progress) {
 		try {
 			final IJavaProject jp = JavaCore.create(getProject());
@@ -101,8 +158,13 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 			_log.error (e);
 		}
 	}
+	
+	private void doIncrementalBuild(IResourceDelta delta, SubMonitor newChild) {
+		// TODO Auto-generated method stub
+		
+	}
 
-	private void compile(SubMonitor progress, Set<String> resNames,
+	private void compile (SubMonitor progress, Collection<String> resNames,
 			Map<Class<?>, Object> specificParams, BackendTypesystem bts, String fileEncoding)
 			throws CoreException {
 		BackendCompilerFacade compiler = new Java5CompilerFacade (bts);
@@ -138,10 +200,59 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 	}
 
 	private IFolder getOutputFolder(SubMonitor monitor) throws CoreException {
-		IFolder genFolder = getProject().getFolder("src-gen-m2t");
+		IFolder genFolder = getProject().getFolder("backend-gen");
 		if (! genFolder.exists())
 			genFolder.create(true, true, monitor);
 		return genFolder;
 	}	
+
+	boolean isOnJavaClassPath(final IResource resource) {
+		final IJavaProject jp = JavaCore.create(resource.getProject());
+		if (jp != null)
+			return jp.isOnClasspath(resource);
+		return false;
+	}
+
+	private boolean isBackendCompilableResource(IResource resource) {
+		return true;
+	}
+	
+	void onAddOrUpdate (final IFile resource, IProgressMonitor monitor) {
+		if (resource.exists()) {
+			final IProject project = getProject();
+			if (project != null) {
+				try {
+					final String charset = resource.getCharset();
+					final IJavaProject jp = JavaCore.create(getProject());
+					Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
+					List<LanguageSpecificMiddleEndConfigurer> configurers = Activator.getInstance().getMiddleEndConfigurers();
+					Set<String> btsQualifiers = new HashSet<String> ();
+					for (LanguageSpecificMiddleEndConfigurer c : configurers) {
+						c.getMiddleEndName();
+						Map<Class<?>, Object> params = c.getSpecificParams (jp);
+						specificParams.putAll(params);
+						btsQualifiers.addAll (c.getConfiguredTypeSystems (jp));
+					}
+					
+					BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
+	
+					final Collection<String> resNames = Arrays.asList(resource.getRawLocation().toOSString());
+					if (!resNames .isEmpty()) {
+						if (charset != null)
+							compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, charset);
+						else 
+							compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, getProject().getDefaultCharset());
+					}
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void onRemoval (final IFile resource, IProgressMonitor monitor) {
+	}
+
 
 }

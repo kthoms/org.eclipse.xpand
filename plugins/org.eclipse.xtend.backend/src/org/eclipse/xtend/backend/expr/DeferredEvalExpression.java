@@ -31,14 +31,14 @@ public class DeferredEvalExpression extends ExpressionBase {
 
 	@Override
 	protected Object evaluateInternal(ExecutionContext ctx) {
-		_result = new FutureResultHolder();
+		_result = new FutureResultHolder (_inner);
 		return _result;
 	}
 	
 	public FutureResultHolder evalDeferred (ExecutionContext ctx) {
 		if (_result == null)
 			throw new IllegalStateException(getClass().getSimpleName() + ": FutureResultHolder not initialized, evaluateInternal() must be called first.");
-		_result.setValue(_inner.evaluate(ctx));
+		_result.evaluate (ctx);
 		return _result;
 	}
 

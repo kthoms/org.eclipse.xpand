@@ -71,13 +71,14 @@ TODO Get the function somehow
 	«ENDLET-»
 «ENDDEFINE»
 
-«REM»
-TODO
-«ENDREM»
 «DEFINE compileExpression(String resultVarName, String resultType, ParsedResource resource) FOR DeferredEvalExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-		«EXPAND compileExpression (getVarName(innerExpr, "deferredExprVarName", "_"+varIdx), "Object", resource) FOR innerExpr-»
-		ExpressionBase «resultVarName» = new DeferredEvalExpression (deferredExprVarName_«varIdx», «pos.buildSourcePos()»);
+		«resultType.getResultType()» «resultVarName» = new FutureResultHolder (new AbstractFunction () {
+			public Object invoke (ExecutionContext _ctx, Object[] params) {
+				«EXPAND compileExpression (getVarName(innerExpr, "deferredExprVarName", "_"+varIdx), "Object", resource) FOR innerExpr-»
+				return «getVarName(innerExpr, "deferredExprVarName", "_"+varIdx)»;
+			}
+		});
 	«ENDLET-»
 «ENDDEFINE»
 
@@ -226,7 +227,6 @@ TODO
 		«resultType.getResultType()» «resultVarName» = _ctx.getLocalVarContext().getLocalVars().get ("«localVarName»");
 «ENDDEFINE»
 
-«REM»FIX THIS«ENDREM»
 «DEFINE compileExpression(String resultVarName, String resultType, ParsedResource resource) FOR MethodInvocationExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         «IF params.size > 0 && LocalVarEvalExpression.isInstance(params.first())»

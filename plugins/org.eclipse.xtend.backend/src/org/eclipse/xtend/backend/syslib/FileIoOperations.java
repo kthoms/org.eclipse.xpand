@@ -19,6 +19,7 @@ import java.util.Map;
 import org.eclipse.xtend.backend.common.FutureResultHolder;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
 import org.eclipse.xtend.backend.util.ErrorHandler;
+import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
 
 
 /**
@@ -31,7 +32,7 @@ import org.eclipse.xtend.backend.util.ErrorHandler;
  *  
  * @author Arno Haase (http://www.haase-consulting.com)
  */
-public final class FileIoOperations {
+public final class FileIoOperations extends AbstractExecutionContextAware {
     private Map<String, Outlet> _outlets = new HashMap<String, Outlet>();
 
     public static final String DEFAULT_OUTLET_NAME = "OUT";
@@ -144,7 +145,14 @@ public final class FileIoOperations {
         
         try {
             final Outlet outlet = _outlets.get (outletName);
-            CharSequence evaluatedContent = content.toString();
+            CharSequence evaluatedContent = null;
+            if (content.isReady()) {
+            	evaluatedContent = content.toString();
+            } else {
+            	final Object result = content.evaluate (_ctx);
+            	if (result instanceof CharSequence)
+            		evaluatedContent = (CharSequence) result;
+            }
             if (outlet == null)
                 throw new IllegalArgumentException ("no outlet '" + outletName + "' was registered.");
 
@@ -154,7 +162,8 @@ public final class FileIoOperations {
             final Writer w = outlet.createWriter (fileName, append);
 
             try {
-                w.write (evaluatedContent.toString());
+            	if (evaluatedContent != null)
+            		w.write (evaluatedContent.toString());
                 
             } finally {
                 w.close();

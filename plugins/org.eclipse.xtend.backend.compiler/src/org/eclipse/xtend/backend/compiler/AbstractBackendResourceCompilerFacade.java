@@ -1,9 +1,9 @@
 package org.eclipse.xtend.backend.compiler;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,7 +25,7 @@ public abstract class AbstractBackendResourceCompilerFacade implements BackendCo
 		_typeSystem = ts;
     }
 
-	public void compile(Set<String> resources, String contributorNamespace,
+	public void compile(Collection<String> resources, String contributorNamespace,
 			String contributorName, String outputDir,
 			Map<Class<?>, Object> specificParams, String fileEncoding) {
 		

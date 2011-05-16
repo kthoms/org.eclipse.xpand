@@ -37,7 +37,7 @@
                class="org.eclipse.xtend.backend.ui.builder.ToggleNatureAction"
                enablesFor="+"
                id="org.eclipse.xtend.backend.ui.addRemoveNatureAction"
-               label="Add/Remove M2T Backend"
+               label="Add/Remove M2T Backend Compiler"
                menubarPath="org.eclipse.ui.projectConfigure/additions">
          </action>
       </objectContribution>

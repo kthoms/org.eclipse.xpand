@@ -55,6 +55,10 @@ public class OldCheckRegistry implements LanguageSpecificMiddleEnd {
         }
 	}
 
+	public boolean mayHandle(String resourceName) {
+		return resourceName.endsWith (CheckUtils.FILE_EXTENSION);
+	}
+
 	public String getName() {
 		return "Check";
 	}

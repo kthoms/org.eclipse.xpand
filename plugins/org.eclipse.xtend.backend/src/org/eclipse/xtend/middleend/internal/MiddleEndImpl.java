@@ -235,4 +235,9 @@ public final class MiddleEndImpl implements MiddleEnd {
 	public Map<String, ParsedResource> getParsedResources() {
 		return _parsedResources;
 	}
+
+	public List<LanguageSpecificMiddleEnd> getLanguageSpecificMiddleEnds() {
+		// TODO Auto-generated method stub
+		return _languageHandlers;
+	}
 }

@@ -38,13 +38,13 @@ public class FutureResultHolder {
 	
 	public Object evaluate (ExecutionContext ctx) throws FutureResultNotReadyException {
 		if (_function != null) {
-			return _function.invoke (ctx, new Object[]{});
+			setValue (_function.invoke (ctx, new Object[]{}));
 		} else if (_expression != null) {
-			_expression.evaluate (ctx);
+			setValue ( _expression.evaluate (ctx));
 		} else {
 			throw new FutureResultNotReadyException();
 		}
-		return null;
+		return getValue ();
 	}
 
 	public Object getValue () throws FutureResultNotReadyException {

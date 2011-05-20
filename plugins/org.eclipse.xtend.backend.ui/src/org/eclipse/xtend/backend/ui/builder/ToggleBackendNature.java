@@ -12,7 +12,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class ToggleNatureAction implements IObjectActionDelegate {
+public class ToggleBackendNature implements IObjectActionDelegate {
 
 	private ISelection selection;
 

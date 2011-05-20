@@ -10,12 +10,14 @@ Contributors:
  */
 package org.eclipse.xtend.middleend;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 import org.eclipse.xtend.middleend.plugins.ParsedResource;
 
 
@@ -53,4 +55,6 @@ public interface MiddleEnd {
     FunctionDefContextInternal createEmptyFdc ();
     
     Map<String, ParsedResource> getParsedResources ();
+    
+    List<LanguageSpecificMiddleEnd> getLanguageSpecificMiddleEnds ();
 }

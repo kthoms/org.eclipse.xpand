@@ -11,6 +11,7 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xpand;
 
+import java.awt.image.RescaleOp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -73,6 +74,10 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
         	_log.debug("Xpand middleend can not handle file " + xpandFile, exc);
             return false;
         }
+    }
+
+    public boolean mayHandle (String resourceName) {
+    	return resourceName.endsWith (XpandUtil.TEMPLATE_EXTENSION);
     }
 
     public String getName () {

@@ -36,6 +36,13 @@ public interface LanguageSpecificMiddleEnd {
     boolean canHandle (String resourceName);
     
     /**
+	 * gives the middle end a way to declare if it could possibly handle the given 
+	 *  source file / resource based some weaker checks like filename extensions. There
+	 *  no guarantee the this middleend can actually parse the source file / resource.     
+     */
+    boolean mayHandle (String resourceName);
+    
+    /**
      * This method asks the middle end to parse a resource for which it declared
      *  that it is the appropriate handler, and return the functions contained therein.<br>
      *  

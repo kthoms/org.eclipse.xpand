@@ -17,6 +17,7 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.SourcePos;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
+import org.eclipse.xtend.backend.expr.LocalVarEvalExpression;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
@@ -50,6 +51,10 @@ public class BackendTestHelper {
     
     public static ExpressionBase createLiteral (Object literal) {
         return new LiteralExpression (literal, SOURCE_POS);
+    }
+    
+    public static ExpressionBase createLocalVar (String name) {
+    	return new LocalVarEvalExpression(name, SOURCE_POS);
     }
     
     public static SourcePos createSourcePos () {

@@ -33,21 +33,21 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 	@Override
 	protected void compileInternal(String resourceName, ParsedResource parsedResource, MiddleEnd me, BackendTypesystem bts, String outputDir, String fileEncoding) {
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("resource", parsedResource);
-		variables.put("resourceName", resourceName);
-		variables.put("typesystem", bts);
+		variables.put ("resource", parsedResource);
+		variables.put ("resourceName", resourceName);
+		variables.put ("typesystem", bts);
 		
 		Collection<Outlet> outlets = new ArrayList<Outlet>();
 		outlets.add (new Outlet (outputDir));
 		Collection<MetaModel> metamodels = new ArrayList<MetaModel>();
 		metamodels.add(new JavaBeansMetaModel());
-		_log.info("Compiling resource " + resourceName + " to " + outputDir);
+		_log.debug ("Compiling resource " + resourceName + " to " + outputDir);
 		
 		Generator gen = new Generator();
 		gen.addMetaModel(new JavaBeansMetaModel());
 		Outlet out = new Outlet (outputDir);
 		JavaBeautifier javaBeautifier = new JavaBeautifier();
-		out.addPostprocessor(javaBeautifier);
+		out.addPostprocessor (javaBeautifier);
 		gen.addOutlet (out);
 		gen.setFileEncoding (fileEncoding);
 		gen.setExpand ("org::eclipse::xtend::backend::compiler::templates::java5::ResourceCompiler::compile (typesystem, resourceName) FOR resource");
@@ -61,8 +61,6 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 		Issues issues = new IssuesImpl();
 
 		gen.invoke(ctx, new NullProgressMonitor(), issues);
-		
-		//XpandBackendFacade.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::backend::compiler::templates::Java5Compiler::compile (contributorNamespace, contributorName) FOR fdcs" + XpandTokens.RT, fileEncoding, metamodels, variables, outlets, null);
 	}
 
 }

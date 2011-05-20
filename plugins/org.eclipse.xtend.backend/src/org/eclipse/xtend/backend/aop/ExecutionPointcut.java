@@ -98,8 +98,8 @@ public final class ExecutionPointcut implements Pointcut {
     }
     
     private boolean matchesName (QualifiedName functionName) {
-        if (_hasCompleteName && functionName.getNameSpace() == null)
-            return functionName.getSimpleName().equals (_functionNamePattern);
+        if (_hasCompleteName)
+            return functionName.getFullQualifiedName().equals (_functionNamePattern);
         
         return _namePattern.matcher (functionName.getFullQualifiedName()).matches();
     }

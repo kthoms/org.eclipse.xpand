@@ -63,6 +63,10 @@ public final class JavaFunctionClassContributor implements LanguageSpecificMiddl
         return getCls (resourceName) != null;
     }
 
+	public boolean mayHandle(String resourceName) {
+		return resourceName.endsWith (".class");
+	}
+
     private Class<?> getCls (String resourceName) {
         try {
             return getResourceLoader().loadClass (resourceName.replace('/', '.').replace("::", "."));

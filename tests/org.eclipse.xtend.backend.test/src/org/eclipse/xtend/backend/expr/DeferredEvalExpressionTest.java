@@ -7,57 +7,84 @@
  *******************************************************************************/
 package org.eclipse.xtend.backend.expr;
 
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
 import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
 import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLiteral;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLocalVar;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.xtend.backend.common.EvaluationVetoException;
 import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.common.ExecutionListener;
 import org.eclipse.xtend.backend.common.ExpressionBase;
+import org.eclipse.xtend.backend.common.FutureResultHolder;
 import org.eclipse.xtend.backend.common.FutureResultNotReadyException;
-import org.eclipse.xtend.backend.common.QualifiedName;
-import org.eclipse.xtend.backend.syslib.CollectionOperations;
-import org.eclipse.xtend.backend.syslib.DeferredEvalExecutionListener;
-import org.eclipse.xtend.backend.syslib.SysLibNames;
 import org.junit.Test;
-import static org.junit.Assert.*;
 /**
  * @author André Arnold - Initial contribution and API
  */
 public class DeferredEvalExpressionTest {
+
+	class ResultExtractorListener implements ExecutionListener {
+		
+		private Object intermediateResult;
+
+		public Object getIntermediateResult() {
+			return intermediateResult;
+		}
+
+		public void preExecute(ExecutionContext ctx, ExpressionBase originator) throws EvaluationVetoException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void postExecute(Object result, ExecutionContext ctx, ExpressionBase originator) {
+			intermediateResult = result;			
+		}
+		
+		
+	}
 	
 	@Test
-	public void testWithDeferredEvalExpressionListener () {
+	public void testDeferredEvaluation () {
 		
 		ExecutionContext ctx = createEmptyExecutionContext();
 		ExpressionBase part1 = createLiteral ("First");
+        
+ 		DeferredEvalExpression part2 = new DeferredEvalExpression (createLocalVar ("deferredVar"), null);
 		
-		DeferredEvalExpression part2 = new DeferredEvalExpression (createLiteral("Deferred"), null);
+        final ExpressionBase expr = new NewLocalVarDefExpression ("deferredVar", createLiteral("bValue"), part2, SOURCE_POS);
 		ExpressionBase part3 = createLiteral ("Last");
 
 		List<ExpressionBase> parts = new ArrayList<ExpressionBase> ();
 		parts.add (part1);
+		ResultExtractorListener listener = new ResultExtractorListener();
+		part2.registerExecutionListener (listener);
 		parts.add (part2);
 		parts.add (part3);
 		
-		DeferredEvalExecutionListener listener = new DeferredEvalExecutionListener();
-		listener.registerDeferredEvalExpression(part2);
 		ExpressionBase parentExpr = new ConcatExpression(parts, null);
-		
+		ctx.getLocalVarContext().getLocalVars().get("deferredVar");
+		Object preDefEvalResult = null;
 		try {
-			Object preDefEvalResult = parentExpr.evaluate(ctx);
+			preDefEvalResult = parentExpr.evaluate(ctx);
 			preDefEvalResult.toString();
 			fail();
 		} catch (FutureResultNotReadyException e) {
-			assertTrue(true);
+			assertTrue (true);
 		}
 		
-		parentExpr.registerExecutionListener(listener);
-		
-		Object postDefEvalResult = parentExpr.evaluate(ctx);
-		assertEquals("FirstDeferredLast", postDefEvalResult.toString());
+		ctx.getLocalVarContext().getLocalVars().put ("deferredVar", "Deferred");
+		FutureResultHolder future = (FutureResultHolder) listener.getIntermediateResult();
+		Object o = future.evaluate(ctx);
+		assertEquals("FirstDeferredLast", preDefEvalResult.toString());
 	}
+	
+	
 
 }

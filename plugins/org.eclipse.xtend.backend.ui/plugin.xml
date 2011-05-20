@@ -15,7 +15,7 @@
    </extension>
    <extension
          id="org.eclipse.xtend.backend.BackendNature"
-         name="M2T Backend nature"
+         name="M2T Backend Compiler"
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
@@ -30,16 +30,43 @@
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="true"
-            id="org.eclipse.xtend.backend.ui.contribution1"
+            id="org.eclipse.xtend.backend.ui.AddBackendNature"
             nameFilter="*"
             objectClass="org.eclipse.core.resources.IProject">
          <action
-               class="org.eclipse.xtend.backend.ui.builder.ToggleNatureAction"
+               class="org.eclipse.xtend.backend.ui.builder.ToggleBackendNature"
                enablesFor="+"
                id="org.eclipse.xtend.backend.ui.addRemoveNatureAction"
-               label="Add/Remove M2T Backend Compiler"
+               label="Add M2T Backend Compiler"
                menubarPath="org.eclipse.ui.projectConfigure/additions">
          </action>
+         <visibility>
+         	<not>
+	            <objectState
+    	              name="nature"
+        	          value="org.eclipse.xtend.backend.BackendNature">
+            	</objectState>
+            </not>
+         </visibility>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.xtend.backend.ui.RemoveBackendNature"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="org.eclipse.xtend.backend.ui.builder.ToggleBackendNature"
+               enablesFor="+"
+               id="org.eclipse.xtend.backend.ui.addRemoveNatureAction"
+               label="Remove M2T Backend Compiler"
+               menubarPath="org.eclipse.ui.projectConfigure/additions">
+         </action>
+         <visibility>
+	            <objectState
+    	              name="nature"
+        	          value="org.eclipse.xtend.backend.BackendNature">
+            	</objectState>
+         </visibility>
       </objectContribution>
    </extension>
    <extension

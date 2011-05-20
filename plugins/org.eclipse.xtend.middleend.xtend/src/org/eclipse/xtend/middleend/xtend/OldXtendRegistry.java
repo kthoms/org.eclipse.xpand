@@ -71,6 +71,10 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
         }
     }
 
+    public boolean mayHandle (String resourceName) {
+    	return resourceName.endsWith (XtendFile.FILE_EXTENSION);
+    }
+
     public String getName () {
         return "Xtend";
     }

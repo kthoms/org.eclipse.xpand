@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -33,18 +34,26 @@ import org.eclipse.xtend.backend.compiler.templates.java5.Java5CompilerFacade;
 import org.eclipse.xtend.backend.types.CompositeTypesystemFactory;
 import org.eclipse.xtend.backend.ui.Activator;
 import org.eclipse.xtend.backend.ui.middleend.LanguageSpecificMiddleEndConfigurer;
+import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.MiddleEndFactory;
+import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 
 public class BackendBuilder extends IncrementalProjectBuilder {
+
+	public static final String BACKEND_GEN_FOLDER = "backend-gen";
 
 	public static final String BUILDER_ID = "org.eclipse.xtend.backend.compiler.BackendBuilder";
 	
 	private final static Log _log = LogFactory.getLog (BackendBuilder.class);
+	
+	private List<LanguageSpecificMiddleEnd> middleends;
 
 	class BackendDeltaVisitor implements IResourceDeltaVisitor, IResourceVisitor {
-		private final IProgressMonitor monitor;
+		private final IProgressMonitor _monitor;
+		private List<LanguageSpecificMiddleEnd> _middleends;
 
 		public BackendDeltaVisitor(final IProgressMonitor monitor) {
-			this.monitor = monitor;
+			this._monitor = monitor;
 		}
 
 		/*
@@ -56,33 +65,39 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 		 */
 		public boolean visit(final IResourceDelta delta) throws CoreException {
 			final IResource resource = delta.getResource();
-			if (isBackendCompilableResource (resource)) {
+			if (_middleends == null)
+				_middleends = createMiddleEnd ().getLanguageSpecificMiddleEnds();
+			if (isBackendCompilableResource (resource, _middleends)) {
 				switch (delta.getKind()) {
 					case IResourceDelta.ADDED:
 						// handle added resource
-						onAddOrUpdate ((IFile) resource, monitor);
+						onAddOrUpdate ((IFile) resource, _monitor);
 						break;
 					case IResourceDelta.REMOVED:
 						// handle removed resource
-						onRemoval ((IFile) resource, monitor);
+						onRemoval ((IFile) resource, _monitor);
 						break;
 					case IResourceDelta.CHANGED:
 						// handle changed resource
-						onAddOrUpdate ((IFile) resource, monitor);
+						onAddOrUpdate ((IFile) resource, _monitor);
 						break;
 				}
 			}
-			monitor.worked(1);
+			_monitor.worked(1);
 			return true;
 		}
 
 		public boolean visit(final IResource resource) {
-			if (isBackendCompilableResource(resource)) {
-				onAddOrUpdate ((IFile) resource, monitor);
+			if (_middleends == null)
+				_middleends = createMiddleEnd ().getLanguageSpecificMiddleEnds();
+			if (isBackendCompilableResource (resource, _middleends)) {
+				onAddOrUpdate ((IFile) resource, _monitor);
 			}
-			monitor.worked(1);
+			_monitor.worked(1);
 			return true;
 		}
+		
+		
 
 	}
 
@@ -122,29 +137,25 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 		try {
 			final IJavaProject jp = JavaCore.create(getProject());
 			final IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
-			List<IPath> resources = new LinkedList<IPath> ();
+			Map<IResource, IPath> resources = new HashMap<IResource, IPath> ();
 			String defaultCharset = getProject().getDefaultCharset();
 			for (IPackageFragmentRoot iPackageFragmentRoot : roots) {
 				if (! iPackageFragmentRoot.getPath().equals (getOutputFolder(progress))) {
-					getAllResourcePaths (iPackageFragmentRoot, iPackageFragmentRoot.getResource(), resources);
+					getAllResources (iPackageFragmentRoot, iPackageFragmentRoot.getResource(), resources);
 //					defaultCharset = iPackageFragmentRoot.getResource().getProject().getDefaultCharset();
 				}
 			}
 			Set<String> resNames = new HashSet<String> (resources.size());
-			
-			for (IPath res : resources) {
-				resNames.add (res.toOSString());
+			List<LanguageSpecificMiddleEnd> middleends = createMiddleEnd ().getLanguageSpecificMiddleEnds();
+
+			for (Entry<IResource, IPath> res : resources.entrySet()) {
+				if (isBackendCompilableResource(res.getKey(), middleends))
+				resNames.add (res.getValue().toOSString());
 			}
 
 			Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
-			List<LanguageSpecificMiddleEndConfigurer> configurers = Activator.getInstance().getMiddleEndConfigurers();
 			Set<String> btsQualifiers = new HashSet<String> ();
-			for (LanguageSpecificMiddleEndConfigurer c : configurers) {
-				c.getMiddleEndName();
-				Map<Class<?>, Object> params = c.getSpecificParams (jp);
-				specificParams.putAll(params);
-				btsQualifiers.addAll (c.getConfiguredTypeSystems (jp));
-			}
+			configureMiddleends (jp, specificParams, btsQualifiers);
 			
 			BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
 
@@ -153,15 +164,26 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 			}
 			
 		} catch (CoreException e) {
-			_log.error("Error doing full build", e);
+			_log.error ("Error doing full build ", e);
 		} catch (Exception e) {
 			_log.error (e);
 		}
 	}
+
+	private void configureMiddleends (final IJavaProject project,
+			Map<Class<?>, Object> specificParams, Set<String> btsQualifiers) {
+		List<LanguageSpecificMiddleEndConfigurer> configurers = Activator.getInstance().getMiddleEndConfigurers();
+		for (LanguageSpecificMiddleEndConfigurer c : configurers) {
+			c.getMiddleEndName();
+			Map<Class<?>, Object> params = c.getSpecificParams (project);
+			specificParams.putAll (params);
+			btsQualifiers.addAll (c.getConfiguredTypeSystems (project));
+		}
+	}
 	
-	private void doIncrementalBuild(IResourceDelta delta, SubMonitor newChild) {
-		// TODO Auto-generated method stub
-		
+	private void doIncrementalBuild(IResourceDelta delta, SubMonitor monitor) throws CoreException {
+		final BackendDeltaVisitor visitor = new BackendDeltaVisitor (monitor);
+		delta.accept (visitor);
 	}
 
 	private void compile (SubMonitor progress, Collection<String> resNames,
@@ -171,26 +193,25 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 		final String middleEndPackage = "org.example";
 		final String middleEndName = getMiddleendName();
 		final String outputDir = getOutputFolder (progress).getRawLocation().toOSString();
-		_log.info ("Do a full build for " + resNames.toString());
+		_log.info ("Compiling M2T Backend executable resources " + resNames.toString());
 		compiler.compile (resNames, middleEndPackage, middleEndName, outputDir, specificParams, fileEncoding);
 	}
 	
-
-	private void getAllResourcePaths (IPackageFragmentRoot root, IResource res, List<IPath> resources) {
+	private void getAllResources (IPackageFragmentRoot root, IResource res, Map<IResource, IPath> resources) {
 		if (res instanceof IFile && ! res.isHidden()) {
 			IPath filePath = res.getFullPath();
 			IPath srcRootPath = root.getResource().getFullPath();
 			IPath relFilePath = filePath.makeRelativeTo (srcRootPath);
-			resources.add (relFilePath);
+			resources.put (res, relFilePath);
 		} else if (res instanceof IFolder) {
 			try {
 				for (IResource r : ((IFolder) res).members()) {
-					getAllResourcePaths(root, r, resources);
+					getAllResources(root, r, resources);
 				}
 			} catch (CoreException e) {
-				_log.error("Error collecting resources for full build", e);
+				_log.error ("Error collecting resources for full build", e);
 			} catch (Exception e) {
-				_log.error("Error collecting resources for full build", e);
+				_log.error ("Error collecting resources for full build", e);
 			}
 		}
 	}
@@ -200,7 +221,7 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 	}
 
 	private IFolder getOutputFolder(SubMonitor monitor) throws CoreException {
-		IFolder genFolder = getProject().getFolder("backend-gen");
+		IFolder genFolder = getProject().getFolder (BACKEND_GEN_FOLDER);
 		if (! genFolder.exists())
 			genFolder.create(true, true, monitor);
 		return genFolder;
@@ -213,8 +234,21 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 		return false;
 	}
 
-	private boolean isBackendCompilableResource(IResource resource) {
-		return true;
+	private boolean isBackendCompilableResource(IResource resource, List<LanguageSpecificMiddleEnd> middleends) {
+		final String resourcePath = resource.getLocation().toOSString ();
+		if (resource instanceof IFile && 
+				!(resourcePath.endsWith (".class") || resourcePath.endsWith(".java")) && 
+				isOnJavaClassPath (resource)) 
+		{
+			for (LanguageSpecificMiddleEnd me : middleends) {
+				boolean isCanditate = me.mayHandle (resourcePath);
+				if (isCanditate)
+					return true;
+			}
+			return false;
+		} else {
+			return false;
+		}
 	}
 	
 	void onAddOrUpdate (final IFile resource, IProgressMonitor monitor) {
@@ -225,27 +259,32 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 					final String charset = resource.getCharset();
 					final IJavaProject jp = JavaCore.create(getProject());
 					Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
-					List<LanguageSpecificMiddleEndConfigurer> configurers = Activator.getInstance().getMiddleEndConfigurers();
 					Set<String> btsQualifiers = new HashSet<String> ();
-					for (LanguageSpecificMiddleEndConfigurer c : configurers) {
-						c.getMiddleEndName();
-						Map<Class<?>, Object> params = c.getSpecificParams (jp);
-						specificParams.putAll(params);
-						btsQualifiers.addAll (c.getConfiguredTypeSystems (jp));
-					}
+					configureMiddleends (jp, specificParams, btsQualifiers);
 					
 					BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
-	
-					final Collection<String> resNames = Arrays.asList(resource.getRawLocation().toOSString());
-					if (!resNames .isEmpty()) {
-						if (charset != null)
-							compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, charset);
-						else 
-							compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, getProject().getDefaultCharset());
+
+					IPath resPath = null;
+					final IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
+					for (int i = 0; i < roots.length; i++) {
+						IResource packageRoot = roots[i].getResource();
+						if (resource.getRawLocation().toOSString().startsWith(packageRoot.getRawLocation().toOSString())) {
+							resPath = resource.getFullPath().makeRelativeTo(packageRoot.getFullPath());
+							break;
+						}
+					}
+					
+					if (resPath != null) {
+						final Collection<String> resNames = Arrays.asList(resPath.toOSString());
+						if (!resNames .isEmpty()) {
+							if (charset != null)
+								compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, charset);
+							else 
+								compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, getProject().getDefaultCharset());
+						}
 					}
 				} catch (CoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					_log.error("Error building "+ resource.getLocation().toOSString() + " incrementally", e);
 				}
 			}
 		}
@@ -253,6 +292,21 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 	
 	public void onRemoval (final IFile resource, IProgressMonitor monitor) {
 	}
+	
+	private MiddleEnd createMiddleEnd () {
+		final IJavaProject jp = JavaCore.create(getProject());
+		Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
+		Set<String> btsQualifiers = new HashSet<String> ();
+		configureMiddleends (jp, specificParams, btsQualifiers);		
+		BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
+
+		if (MiddleEndFactory.canCreateFromExtentions()) {
+			return MiddleEndFactory.createFromExtensions(bts, specificParams);
+		}
+		
+		return null;
+	}
+
 
 
 }

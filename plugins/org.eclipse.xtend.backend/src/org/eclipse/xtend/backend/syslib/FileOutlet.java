@@ -30,7 +30,7 @@ import org.eclipse.xtend.backend.util.NullWriter;
 public final class FileOutlet implements Outlet {
     private File _baseDir;
     private String _fileEncoding = System.getProperty ("file.encoding");
-    private boolean _overwrite = false;;
+    private boolean _overwrite = false;
     private boolean _append = false;
 
     private final List<InMemoryPostprocessor> _inMemoryPp = new ArrayList<InMemoryPostprocessor> ();

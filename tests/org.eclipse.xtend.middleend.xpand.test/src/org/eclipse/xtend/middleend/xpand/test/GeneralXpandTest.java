@@ -95,7 +95,7 @@ public class GeneralXpandTest extends AbstractXpandTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::aTemplate", "iso-8859-1", mms, null );
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("element", "world");
-		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::aTemplate::greeting FOR element" + XpandTokens.RT, variables , null, null);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::aTemplate::greeting FOR element" + XpandTokens.RT, variables , null, null, false);
 		
 		assertEquals("\nHello, world: Hallo, world: 27 - imported 99!\n" +
 				"\n  Name: world \n" +
@@ -185,7 +185,7 @@ public class GeneralXpandTest extends AbstractXpandTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::WithFileOutput", "iso-8859-1", mms, outlets );
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("element", "world");
-		bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::WithFileOutput::WithFileOutput FOR element" + XpandTokens.RT, variables , null, null);
+		bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::WithFileOutput::WithFileOutput FOR element" + XpandTokens.RT, variables , null, null, false);
 		
 		File outFile = new File("out", "dummy.txt");
 		assertTrue(outFile.exists());
@@ -207,7 +207,7 @@ public class GeneralXpandTest extends AbstractXpandTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::aTemplate", "iso-8859-1", mms, null );
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("element", 4L);
-		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::aTemplate::testReexport FOR element" + XpandTokens.RT, variables , null, null);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::aTemplate::testReexport FOR element" + XpandTokens.RT, variables , null, null, false);
 		
 		assertEquals("\nResult from reexp: " + 16L +
 				"\n", o.toString());

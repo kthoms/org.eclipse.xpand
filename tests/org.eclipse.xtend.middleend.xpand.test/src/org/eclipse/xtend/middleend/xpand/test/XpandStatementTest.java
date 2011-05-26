@@ -55,15 +55,15 @@ public class XpandStatementTest {
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		
 		variables.put("element", "one");
-		Object res1 = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testIf FOR element" + XpandTokens.RT, variables , null, null);
+		Object res1 = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testIf FOR element" + XpandTokens.RT, variables , null, null, false);
 		assertEquals("\n\nfirst: one\n\n", res1.toString());
 		
 		variables.put("element", "two");
-		Object res2 = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testIf FOR element" + XpandTokens.RT, variables , null, null);
+		Object res2 = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testIf FOR element" + XpandTokens.RT, variables , null, null, false);
 		assertEquals("\n\ntwo\n\n", res2.toString());
 
 		variables.put("element", "three");
-		Object res3 = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testIf FOR element" + XpandTokens.RT, variables , null, null);
+		Object res3 = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testIf FOR element" + XpandTokens.RT, variables , null, null, false);
 		assertEquals("\n\nlast: three\n\n", res3.toString());
 	}
 	
@@ -78,7 +78,7 @@ public class XpandStatementTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::XpandStatements", "iso-8859-1", mms, outlets );
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("elements", Arrays.asList("one", "two" , "three"));
-		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeach FOR elements" + XpandTokens.RT, variables , null, null);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeach FOR elements" + XpandTokens.RT, variables , null, null, false);
 		
 		assertEquals("\n\nelement: one\n\nelement: two\n\nelement: three\n\n", o.toString());
 	}
@@ -94,7 +94,7 @@ public class XpandStatementTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::XpandStatements", "iso-8859-1", mms, outlets );
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("elements", Arrays.asList("one", "two" , "three"));
-		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeachWithSeparator FOR elements" + XpandTokens.RT, variables , null, null);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeachWithSeparator FOR elements" + XpandTokens.RT, variables , null, null, false);
 		
 		assertEquals("\n\nelement: one\n,\nelement: two\n,\nelement: three\n\n", o.toString());
 	}
@@ -110,7 +110,7 @@ public class XpandStatementTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::XpandStatements", "iso-8859-1", mms, outlets );
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("elements", Arrays.asList("one", "two" , "three"));
-		bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeachWithSeparatorAndDelLine FOR elements" + XpandTokens.RT, variables , null, null);
+		bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeachWithSeparatorAndDelLine FOR elements" + XpandTokens.RT, variables , null, null, false);
 		
 		File outFile = new File("out", "output.txt");
 		assertTrue(outFile.exists());
@@ -136,7 +136,7 @@ public class XpandStatementTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::XpandStatements", "iso-8859-1", mms, outlets );
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("elements", Arrays.asList("one", "two" , "three" , "four"));
-		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeachWithIterator FOR elements" + XpandTokens.RT, variables , null, null);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testForeachWithIterator FOR elements" + XpandTokens.RT, variables , null, null, false);
 		
 		assertEquals("\n\n\nfirst: one 4\n\n,\n\ntwo 1 2\n\n,\n\nthree 2 3\n\n,\n\nlast: four\n\n\n", o.toString());
 	}
@@ -155,7 +155,7 @@ public class XpandStatementTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::XpandStatements", "iso-8859-1", mms, outlets );
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("element", p);
-		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testLet FOR element" + XpandTokens.RT, variables , null, null);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testLet FOR element" + XpandTokens.RT, variables , null, null, false);
 		
 		assertEquals("\n\nTester\n\n", o.toString());
 	}
@@ -171,7 +171,7 @@ public class XpandStatementTest {
         XpandBackendFacade bf = XpandBackendFacade.createForFile("org::eclipse::xtend::middleend::xpand::test::XpandStatements", "iso-8859-1", mms, outlets );
 		final Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("element", "one");
-		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testRem FOR element" + XpandTokens.RT, variables , null, null);
+		Object o = bf.executeStatement(XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandStatements::testRem FOR element" + XpandTokens.RT, variables , null, null, false);
 		
 		assertEquals("\n\none\n", o.toString());
 	}
@@ -197,7 +197,7 @@ public class XpandStatementTest {
 		variables.put("element", p);
 		XpandProtectedRegionResolver resolver1 = new XpandProtectedRegionResolver(null, true, outlets, "ISO-8859-1", false);
 		
-		bf.executeStatement (XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandProtectedRegions::testProtect FOR element" + XpandTokens.RT, variables , null, resolver1);
+		bf.executeStatement (XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandProtectedRegions::testProtect FOR element" + XpandTokens.RT, variables , null, resolver1, false);
 		
 		final String initalExpected = "\npackage org.eclipse.xtend.middleend.xpand.test;\n\npublic class Person {\n\npublic void someOperation {\n/*PROTECTED REGION ID(Person_Tester_1) ENABLED START*/\n/* TODO Protected Region 1: Implement this method */\n/*PROTECTED REGION END*/\n}\n\n\npublic void someOtherFunction {\n/*PROTECTED REGION ID(Person_Tester_2) ENABLED START*/\n/* TODO Protected Region 2: Implement this method */\n/*PROTECTED REGION END*/\n}\n\n}\n\n";
 		final String modifiedExpected = "\npackage org.eclipse.xtend.middleend.xpand.test;\n\npublic class Person {\n\npublic void someOperation {\n/*PROTECTED REGION ID(Person_Tester_1) ENABLED START*/\n/* TODO Protected Region 1: Implement this method */\nString value1 = \"value1\"\n/*PROTECTED REGION END*/\n}\n\n\npublic void someOtherFunction {\n/*PROTECTED REGION ID(Person_Tester_2) ENABLED START*/\n/* TODO Protected Region 2: Implement this method */\nString value2 = \"value2\"\n/*PROTECTED REGION END*/\n}\n\n}\n\n";
@@ -208,7 +208,7 @@ public class XpandStatementTest {
 		assertEquals (modifiedExpected, FileHelper.read (out.getPath() + "/Person.java"));
 
 		XpandProtectedRegionResolver resolver2 = new XpandProtectedRegionResolver(null, true, outlets, "ISO-8859-1", false);
-		bf.executeStatement (XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandProtectedRegions::testProtect FOR element" + XpandTokens.RT, variables , null, resolver2);
+		bf.executeStatement (XpandTokens.LT + "EXPAND org::eclipse::xtend::middleend::xpand::test::XpandProtectedRegions::testProtect FOR element" + XpandTokens.RT, variables , null, resolver2, false);
 		String modifiedContent = FileHelper.read (out.getPath() + "/Person.java");
 		assertEquals(modifiedExpected, modifiedContent);
 	}

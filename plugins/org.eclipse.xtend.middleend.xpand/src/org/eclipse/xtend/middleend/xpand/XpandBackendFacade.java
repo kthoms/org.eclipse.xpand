@@ -93,8 +93,8 @@ public final class XpandBackendFacade {
      *  
      * Both the "variables" and "outlets" parameter may be null.
      */
-    public static Object executeStatement (String code, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, XpandProtectedRegionResolver resolver) {
-        return executeStatement (code, null, mms, variables, outlets, resolver);
+    public static Object executeStatement (String code, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, XpandProtectedRegionResolver resolver, boolean isLogStackTrace) {
+        return executeStatement (code, null, mms, variables, outlets, resolver, isLogStackTrace);
     }
     
     /**
@@ -109,8 +109,8 @@ public final class XpandBackendFacade {
      *  
      * Both the "variables" and "outlets" parameter may be null.
      */
-    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, XpandProtectedRegionResolver resolver) {
-        return executeStatement (code, fileEncoding, mms, variables, outlets, null, resolver);
+    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, XpandProtectedRegionResolver resolver, boolean isLogStackTrace) {
+        return executeStatement (code, fileEncoding, mms, variables, outlets, null, resolver, isLogStackTrace);
     }
         
     /**
@@ -125,16 +125,16 @@ public final class XpandBackendFacade {
      *  
      * The "variables", "outlets" and "advice" parameter may be null.
      */
-    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, List<String> advice, XpandProtectedRegionResolver resolver) {
-        return createForFile (null, fileEncoding, mms, outlets).executeStatement (code, variables, advice, resolver);
+    public static Object executeStatement (String code, String fileEncoding, Collection<MetaModel> mms, Map<String, Object> variables, Collection <Outlet> outlets, List<String> advice, XpandProtectedRegionResolver resolver, boolean isLogStackTrace) {
+        return createForFile (null, fileEncoding, mms, outlets).executeStatement (code, variables, advice, resolver, isLogStackTrace);
     }
 
     
-    public Object executeStatement (String code, Map<String, Object> variables, List<String> advice, XpandProtectedRegionResolver resolver) {
-    	return executeStatement(code, variables, new HashMap <String, Object>(), advice, resolver);
+    public Object executeStatement (String code, Map<String, Object> variables, List<String> advice, XpandProtectedRegionResolver resolver, boolean isLogStackTrace) {
+    	return executeStatement(code, variables, new HashMap <String, Object>(), advice, resolver, isLogStackTrace);
     }
 	
-    public Object executeStatement (String code, Map<String, Object> variables, Map<String, Object> globalVars, List<String> advice, XpandProtectedRegionResolver resolver) {
+    public Object executeStatement (String code, Map<String, Object> variables, Map<String, Object> globalVars, List<String> advice, XpandProtectedRegionResolver resolver, boolean isLogStackTrace) {
     	if (variables == null)
             variables = new HashMap<String, Object> ();
         if (advice == null)
@@ -161,7 +161,6 @@ public final class XpandBackendFacade {
                 fdc.register (f, false);
         
         _middleEnd.getExecutionContext().setFunctionDefContext (fdc);
-        //TODO configure isLogStacktrace
         _middleEnd.getExecutionContext().getLocalVarContext().getLocalVars().putAll (variables);
         registerOutlets (_middleEnd.getExecutionContext(), _outlets);
         registerProtectedRegionResolver(_middleEnd.getExecutionContext(), resolver);

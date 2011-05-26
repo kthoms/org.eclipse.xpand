@@ -1,7 +1,7 @@
 package org.eclipse.xtend.backend.ui.builder;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -14,10 +14,13 @@ import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.progress.IProgressService;
 import org.eclipse.xtend.backend.ui.compiler.BackendBuilder;
 
 public class BackendNature implements IProjectNature {
@@ -56,44 +59,35 @@ public class BackendNature implements IProjectNature {
 		final IJavaProject jp = JavaCore.create(getProject());
 		final IFolder backendGenFolder = getProject().getFolder (BackendBuilder.BACKEND_GEN_FOLDER);
 		if (!backendGenFolder.exists()) {
-			final IRunnableWithProgress op = new IRunnableWithProgress() {
-				public void run(final IProgressMonitor monitor) throws InvocationTargetException {
-					try {
-						backendGenFolder.create(true, true, monitor);
-					} catch (CoreException e) {
-						_log.error ("Error creating folder " + backendGenFolder.getLocation().toOSString());
-					}
-					finally {
-						monitor.done();
-					}
-				}
-			};
+			try {
+				backendGenFolder.create(true, true, null);
+			} catch (CoreException e) {
+				_log.error("Error creating folder "
+						+ backendGenFolder.getLocation().toOSString());
+			}
 		}
 		IClasspathEntry srcEntry = JavaCore.newSourceEntry (new Path ("/" + getProject().getName() + "/" + BackendBuilder.BACKEND_GEN_FOLDER));
-		List<IClasspathEntry> entries = Arrays.asList(jp.getRawClasspath()) ;
+		IClasspathEntry[] oldEntries = jp.getRawClasspath();
+		List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>(oldEntries.length + 1);
+		
 		boolean hasBackendGenClasspathEntry =  false;
-		for (IClasspathEntry entry : entries) {
+		for (IClasspathEntry entry : oldEntries) {
+			entries.add (entry);
 			if (entry.getPath().equals (srcEntry.getPath())) { 
 				hasBackendGenClasspathEntry = true;
-				break;
 			}
 		}
 		if (!hasBackendGenClasspathEntry) {
 			entries.add (srcEntry);
 			final IClasspathEntry[] newClasspathEntries = (IClasspathEntry[]) entries.toArray(new IClasspathEntry[entries.size()]);
-			final IRunnableWithProgress cpOp = new IRunnableWithProgress() {
-				public void run(final IProgressMonitor monitor) throws InvocationTargetException {
-					try {
-						jp.setRawClasspath(newClasspathEntries, monitor);
-					} catch (CoreException e) {
-						_log.error ("Error adding " + backendGenFolder.getLocation().toOSString() + " to classpath");
-					}
-					finally {
-						monitor.done();
-					}
-				}
-			};
-			
+			try {
+				jp.setRawClasspath(newClasspathEntries, null);
+			} catch (CoreException e) {
+				_log.error("Error adding "
+						+ backendGenFolder.getLocation().toOSString()
+						+ " to classpath");
+			}
+		
 		}
 	}
 

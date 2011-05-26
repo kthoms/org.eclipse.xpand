@@ -69,6 +69,8 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
 	private boolean _defaultExcludes;
 	private boolean _useBase64;
 	
+	private boolean _logStackTrace;
+	
 	public XpandComponent () {
     	if (LanguageContributor.INSTANCE.getLanguageContributionByName (OldXtendRegistryFactory.LANGUAGE_NAME) == null) {
     		LanguageContributor.INSTANCE.addLanguageContribution (OldXtendRegistryFactory.class);
@@ -143,6 +145,10 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
 	public void setUseBase64(boolean useBase64) {
 		_useBase64 = useBase64;
 	}
+	
+	public void setLogStackTrace (boolean logStackTrace) {
+		_logStackTrace = logStackTrace;
+	}
 
     
     private String fixPath(final String p) {
@@ -173,7 +179,7 @@ public class XpandComponent extends AbstractExpressionsUsingWorkflowComponent {
         
         XpandProtectedRegionResolver resolver = new XpandProtectedRegionResolver(_ignoreList, _defaultExcludes, getInitializedOutlets(), _fileEncoding, _useBase64);
         //XpandBackendFacade.executeStatement (code, _fileEncoding, metaModels, variables, _outlets, _advice);
-        bf.executeStatement (code, variables, getGlobalVarsFromContext(getGlobalVars(wfContext)), _advice, resolver);
+        bf.executeStatement (code, variables, getGlobalVarsFromContext(getGlobalVars(wfContext)), _advice, resolver, _logStackTrace);
     }
 
     public void addOutlet (Outlet outlet) {

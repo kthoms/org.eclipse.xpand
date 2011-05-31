@@ -1,5 +1,10 @@
 package org.eclipse.xtend.backend.ui.compiler;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -104,7 +109,11 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 	@Override
 	protected IProject[] build(int kind, Map args, IProgressMonitor monitor)
 			throws CoreException {
+		ClassLoader origCl = Thread.currentThread ().getContextClassLoader();
 		try {
+			final IJavaProject jp = JavaCore.create (getProject());
+			URLClassLoader backendCl = new URLClassLoader (getBuildClasspath (jp), origCl);
+			Thread.currentThread ().setContextClassLoader (backendCl);
 			if (monitor != null) {
 				final String taskName = "Compiling project " + getProject ().getName();
 				monitor = new ProgressMonitorWrapper (monitor) {
@@ -118,7 +127,7 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 			if (kind == FULL_BUILD) {
 				doFullBuild (progress.newChild (1));
 			} else {
-				final IResourceDelta delta = getDelta(getProject());
+				final IResourceDelta delta = getDelta (getProject());
 				if (delta == null) {
 					doFullBuild (progress.newChild (1));
 				}
@@ -127,20 +136,26 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 				}
 			}
 		} finally {
+			Thread.currentThread ().setContextClassLoader (origCl);
 			if (monitor != null)
-				monitor.done();
+				monitor.done ();
 		}
 		return null;
 	}
 
-	private void doFullBuild (SubMonitor progress) {
+	protected void doFullBuild (SubMonitor progress) {
 		try {
 			final IJavaProject jp = JavaCore.create(getProject());
+			
 			final IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
 			Map<IResource, IPath> resources = new HashMap<IResource, IPath> ();
 			String defaultCharset = getProject().getDefaultCharset();
+			List<String> srcFolders = new ArrayList<String>(roots.length);
 			for (IPackageFragmentRoot iPackageFragmentRoot : roots) {
 				if (! iPackageFragmentRoot.getPath().equals (getOutputFolder(progress))) {
+					if (iPackageFragmentRoot.getResource() != null && ! iPackageFragmentRoot.isArchive()) {
+						srcFolders.add (iPackageFragmentRoot.getResource().getRawLocation().toOSString());
+					}
 					getAllResources (iPackageFragmentRoot, iPackageFragmentRoot.getResource(), resources);
 //					defaultCharset = iPackageFragmentRoot.getResource().getProject().getDefaultCharset();
 				}
@@ -169,6 +184,68 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 			_log.error (e);
 		}
 	}
+	
+	private void doIncrementalBuild(IResourceDelta delta, SubMonitor monitor) throws CoreException {
+		final BackendDeltaVisitor visitor = new BackendDeltaVisitor (monitor);
+		delta.accept (visitor);
+	}
+	
+	protected void onAddOrUpdate (final IFile resource, IProgressMonitor monitor) {
+		if (resource.exists()) {
+			final IProject project = getProject();
+			if (project != null) {
+				try {
+					final String charset = resource.getCharset();
+					final IJavaProject jp = JavaCore.create(getProject());
+					
+					Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
+					Set<String> btsQualifiers = new HashSet<String> ();
+					configureMiddleends (jp, specificParams, btsQualifiers);
+					
+					BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
+
+					IPath resPath = null;
+					final IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
+					for (int i = 0; i < roots.length; i++) {
+						if (roots[i].getResource() != null && ! roots[i].isArchive()) {
+							IResource packageRoot = roots[i].getResource();
+							if (resource.getRawLocation().toOSString().startsWith(packageRoot.getRawLocation().toOSString())) {
+								resPath = resource.getFullPath().makeRelativeTo(packageRoot.getFullPath());
+								break;
+							}
+						}
+
+					}
+					
+					if (resPath != null) {
+						final Collection<String> resNames = Arrays.asList(resPath.toOSString());
+						if (!resNames .isEmpty()) {
+							if (charset != null)
+								compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, charset);
+							else 
+								compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, getProject().getDefaultCharset());
+						}
+					}
+				} catch (CoreException e) {
+					_log.error("Error building "+ resource.getLocation().toOSString() + " incrementally", e);
+				}
+			}
+		}
+	}
+	
+	protected void onRemoval (final IFile resource, IProgressMonitor monitor) {
+	}
+
+	private void compile (SubMonitor progress, Collection<String> resNames, 
+			Map<Class<?>, Object> specificParams, BackendTypesystem bts, String fileEncoding)
+			throws CoreException {
+		BackendCompilerFacade compiler = new Java5CompilerFacade (bts);
+		final String middleEndPackage = "org.example";
+		final String middleEndName = getMiddleendName();
+		final String outputDir = getOutputFolder (progress).getRawLocation().toOSString();
+		_log.info ("Compiling M2T Backend executable resources " + resNames.toString());
+		compiler.compile (resNames, middleEndPackage, middleEndName, outputDir, specificParams, fileEncoding);
+	}
 
 	private void configureMiddleends (final IJavaProject project,
 			Map<Class<?>, Object> specificParams, Set<String> btsQualifiers) {
@@ -181,20 +258,22 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 		}
 	}
 	
-	private void doIncrementalBuild(IResourceDelta delta, SubMonitor monitor) throws CoreException {
-		final BackendDeltaVisitor visitor = new BackendDeltaVisitor (monitor);
-		delta.accept (visitor);
+	private MiddleEnd createMiddleEnd () {
+		final IJavaProject jp = JavaCore.create(getProject());
+		Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
+		Set<String> btsQualifiers = new HashSet<String> ();
+		configureMiddleends (jp, specificParams, btsQualifiers);		
+		BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
+
+		if (MiddleEndFactory.canCreateFromExtentions()) {
+			return MiddleEndFactory.createFromExtensions(bts, specificParams);
+		}
+		
+		return null;
 	}
 
-	private void compile (SubMonitor progress, Collection<String> resNames,
-			Map<Class<?>, Object> specificParams, BackendTypesystem bts, String fileEncoding)
-			throws CoreException {
-		BackendCompilerFacade compiler = new Java5CompilerFacade (bts);
-		final String middleEndPackage = "org.example";
-		final String middleEndName = getMiddleendName();
-		final String outputDir = getOutputFolder (progress).getRawLocation().toOSString();
-		_log.info ("Compiling M2T Backend executable resources " + resNames.toString());
-		compiler.compile (resNames, middleEndPackage, middleEndName, outputDir, specificParams, fileEncoding);
+	private String getMiddleendName() {
+		return NamingHelper.toMiddleEndClassName (getProject ().getName(), null);
 	}
 	
 	private void getAllResources (IPackageFragmentRoot root, IResource res, Map<IResource, IPath> resources) {
@@ -214,10 +293,6 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 				_log.error ("Error collecting resources for full build", e);
 			}
 		}
-	}
-
-	private String getMiddleendName() {
-		return NamingHelper.toMiddleEndClassName (getProject ().getName(), null);
 	}
 
 	private IFolder getOutputFolder(SubMonitor monitor) throws CoreException {
@@ -251,62 +326,50 @@ public class BackendBuilder extends IncrementalProjectBuilder {
 		}
 	}
 	
-	void onAddOrUpdate (final IFile resource, IProgressMonitor monitor) {
-		if (resource.exists()) {
-			final IProject project = getProject();
-			if (project != null) {
-				try {
-					final String charset = resource.getCharset();
-					final IJavaProject jp = JavaCore.create(getProject());
-					Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
-					Set<String> btsQualifiers = new HashSet<String> ();
-					configureMiddleends (jp, specificParams, btsQualifiers);
-					
-					BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
 
-					IPath resPath = null;
-					final IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
-					for (int i = 0; i < roots.length; i++) {
-						IResource packageRoot = roots[i].getResource();
-						if (resource.getRawLocation().toOSString().startsWith(packageRoot.getRawLocation().toOSString())) {
-							resPath = resource.getFullPath().makeRelativeTo(packageRoot.getFullPath());
-							break;
-						}
-					}
-					
-					if (resPath != null) {
-						final Collection<String> resNames = Arrays.asList(resPath.toOSString());
-						if (!resNames .isEmpty()) {
-							if (charset != null)
-								compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, charset);
-							else 
-								compile (SubMonitor.convert (monitor, 1), resNames, specificParams, bts, getProject().getDefaultCharset());
-						}
-					}
-				} catch (CoreException e) {
-					_log.error("Error building "+ resource.getLocation().toOSString() + " incrementally", e);
+	protected URL[] getBuildClasspath (IJavaProject jp) {
+		try {
+			List<String> srcFolders = getSourceFolders(jp.getProject(), new LinkedList<String> ());
+			URL[] srcUrls = getbuildClasspathUrls(srcFolders);
+			return srcUrls;
+		} catch (CoreException e) {
+			_log.error (e);
+		}
+		return null;
+
+	}
+	
+	private List<String> getSourceFolders (IProject project, List<String> srcFolders) throws CoreException {
+		IJavaProject jp = JavaCore.create (project);
+		final IPackageFragmentRoot[] roots = jp.getPackageFragmentRoots();
+		for (IPackageFragmentRoot iPackageFragmentRoot : roots) {
+			if (! iPackageFragmentRoot.getPath().equals (jp.getProject().getFolder (BackendBuilder.BACKEND_GEN_FOLDER))) {
+				if (iPackageFragmentRoot.getResource() != null && ! iPackageFragmentRoot.isArchive()) {
+					srcFolders.add (iPackageFragmentRoot.getResource().getRawLocation().toOSString());
 				}
 			}
 		}
-	}
-	
-	public void onRemoval (final IFile resource, IProgressMonitor monitor) {
-	}
-	
-	private MiddleEnd createMiddleEnd () {
-		final IJavaProject jp = JavaCore.create(getProject());
-		Map<Class<?>, Object> specificParams = new HashMap<Class<?>, Object>();
-		Set<String> btsQualifiers = new HashSet<String> ();
-		configureMiddleends (jp, specificParams, btsQualifiers);		
-		BackendTypesystem bts = CompositeTypesystemFactory.INSTANCE.createTypesystem (btsQualifiers);
-
-		if (MiddleEndFactory.canCreateFromExtentions()) {
-			return MiddleEndFactory.createFromExtensions(bts, specificParams);
+		for (IProject refProject : project.getReferencedProjects()) {
+			getSourceFolders (refProject, srcFolders);
 		}
-		
-		return null;
+		return srcFolders;
 	}
 
+	private URL[] getbuildClasspathUrls(List<String> srcFolders) {
+		URL[] srcUrls = new URL[srcFolders.size()];
+		for (int i = 0; i < srcFolders.size(); i++) {
+			StringBuilder urlBuilder = new StringBuilder("file://");
+			urlBuilder.append(srcFolders.get(i));
+			urlBuilder.append(File.separator);
+			try {
+				URL currUrl = new URL (urlBuilder.toString());
+				srcUrls[i] = currUrl;
+			} catch (MalformedURLException e) {
+				_log.error(e);
+			}
+		}
+		return srcUrls;
+	}
 
 
 }

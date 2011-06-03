@@ -88,7 +88,7 @@ public class OldCheckRegistry implements LanguageSpecificMiddleEnd {
 		result.getPrivateFunctions().addAll(
 				new XtendLibContributor(_middleEnd).getContributedFunctions());
 
-		result.getPrivateFunctions().add(
+		result.getPublicFunctions().add(
 				new CheckConverter(ctx, typeConverter).createCheckFunction(_ts,
 						checkFile));
 

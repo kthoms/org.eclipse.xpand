@@ -141,7 +141,7 @@ public final class OldHelper {
             return null;
         
         checkName = checkName.replace (SyntaxConstants.NS_DELIM, "/");
-        if (checkName.endsWith ("." + XtendFile.FILE_EXTENSION))
+        if (checkName.endsWith ("." + CheckUtils.FILE_EXTENSION))
             checkName = checkName.substring (0, checkName.length() - (CheckUtils.FILE_EXTENSION.length() + 1));
         if (checkName.startsWith("/"))
             checkName = checkName.substring (1);

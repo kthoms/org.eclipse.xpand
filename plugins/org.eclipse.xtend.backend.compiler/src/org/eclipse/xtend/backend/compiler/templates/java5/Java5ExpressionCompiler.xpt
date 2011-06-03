@@ -151,7 +151,7 @@ TODO Get the function somehow
 			«EXPAND compileExpression (getVarName (e, "param", "_"+varIdx), "Object", resource) FOR e-»
 			params_«varIdx».add («getVarName (e, "param", "_"+varIdx)»);        	
 		«ENDFOREACH-»
-		«resultType.getResultType()» «resultVarName» = Invoker.invokeOnCollection(«functionName.getQualifiedNameBuilder()», coll_«varIdx», params_«varIdx», _ctx, firstParamIsThis_«varIdx», SourcePos);
+		«resultType.getResultType()» «resultVarName» = «IF resultType.getResultType() != "Object"»(«resultType.getResultType()») «ENDIF»Invoker.invokeOnCollection(«functionName.getQualifiedNameBuilder()», coll_«varIdx», params_«varIdx», _ctx, firstParamIsThis_«varIdx», SourcePos);
 	«ENDLET-»
 «ENDDEFINE»
 
@@ -174,9 +174,9 @@ TODO Get the function somehow
         	params_«varIdx».add («getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1)»);
         «ENDFOREACH-»
         «IF nullIfFirstParamIsNull && params.size > 0-»
-		«resultType.getResultType()» «resultVarName» = Invoker.invokeOnObjectNullChecked(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
+		«resultType.getResultType()» «resultVarName» = «IF resultType.getResultType() != "Object"»(«resultType.getResultType()») «ENDIF»Invoker.invokeOnObjectNullChecked(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
         «ELSE-»
-		«resultType.getResultType()» «resultVarName» = Invoker.invokeOnObject(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
+		«resultType.getResultType()» «resultVarName» = «IF resultType.getResultType() != "Object"»(«resultType.getResultType()») «ENDIF»Invoker.invokeOnObject(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
         «ENDIF-»
 	«ENDLET-»
 «ENDDEFINE»
@@ -199,9 +199,9 @@ TODO Get the function somehow
         	params_«varIdx».add («getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1)»);
         «ENDFOREACH-»
         «IF nullIfFirstParamIsNull && params.size > 0-»
- 		«resultType.getResultType()» «resultVarName» = Invoker.invokeOnWhatEverNullChecked(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
+ 		«resultType.getResultType()» «resultVarName» = «IF resultType.getResultType() != "Object"»(«resultType.getResultType()») «ENDIF»Invoker.invokeOnWhatEverNullChecked(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
         «ELSE-»
- 		«resultType.getResultType()» «resultVarName» = Invoker.invokeOnWhatEver(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
+ 		«resultType.getResultType()» «resultVarName» = «IF resultType.getResultType() != "Object"»(«resultType.getResultType()») «ENDIF»Invoker.invokeOnWhatEver(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
         «ENDIF-»
 	«ENDLET-»
 «ENDDEFINE»
@@ -320,13 +320,23 @@ TODO Get the function somehow
 
 «DEFINE compileExpression(String resultVarName, String resultType, ParsedResource resource) FOR SequenceExpression»
 	«LET getNextVarIdx() AS varIdx»
-        «FOREACH inner AS e ITERATOR it-»
-        	«IF it.firstIteration-»
-        		«EXPAND compileExpression (resultVarName, resultType, resource) FOR e»
-        	«ELSE-»
-        		«EXPAND compileExpression (resultVarName, null, resource) FOR e»
+		«IF inner.size > 0 -» 
+	        «FOREACH inner AS e ITERATOR it-»
+	        	«IF it.firstIteration-»
+	        		«EXPAND compileExpression (resultVarName, resultType, resource) FOR e»
+	        	«ELSE-»
+	        		«EXPAND compileExpression (resultVarName, null, resource) FOR e»
+	        	«ENDIF-»
+	        «ENDFOREACH»
+        «ELSE-»
+        	«IF resultType == "boolean"-»
+        		boolean «resultVarName» = false;
+        	«ELSEIF resultType == "Boolean" -»
+        		Boolean «resultVarName» = Boolean.FALSE;
+        	«ELSE -»
+        		«resultType.getResultType()» «resultVarName» = null; 
         	«ENDIF-»
-        «ENDFOREACH»
+        «ENDIF-»
 	«ENDLET»
 «ENDDEFINE»
 

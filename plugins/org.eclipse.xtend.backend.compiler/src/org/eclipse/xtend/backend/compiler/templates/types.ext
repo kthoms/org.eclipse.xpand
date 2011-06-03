@@ -25,4 +25,4 @@ String getTypeBuilder (Void t) : "VoidType.INSTANCE";
 
 
 String getResultType (Void t) : "";
-String getResultType (String t) : t; 
+String getResultType (String t) : t;

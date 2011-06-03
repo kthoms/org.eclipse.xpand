@@ -1,5 +1,6 @@
 package org.eclipse.xtend.backend.compiler.util;
 
+import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
 
 public class JavaConverter {
@@ -18,7 +19,13 @@ public class JavaConverter {
 				return "\"false\"";
 			}
 		}
-		return e.getValue().toString();
+		if (e.getValue() instanceof BackendType) {
+			return "_ctx.getTypesystem().findType (\"" + ((BackendType)e.getValue()).getUniqueRepresentation() + "\")";
+		}
+		if (e.getValue() != null)
+			return e.getValue().toString();
+		else
+			return "null";
 	}
 
 }

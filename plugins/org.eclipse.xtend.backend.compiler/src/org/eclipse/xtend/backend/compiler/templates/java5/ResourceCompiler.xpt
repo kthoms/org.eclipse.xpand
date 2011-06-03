@@ -87,8 +87,8 @@
 
 «DEFINE compile (ParsedResource resource) FOR SourceDefinedFunction»
 	«IF returnType != null-»
-		«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", returnType.toJavaTypeName(), resource) FOR defExpression»
+		«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", returnType.toJavaTypeName(), true, resource) FOR defExpression»
 	«ELSE-»
-		«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", "Object", resource) FOR defExpression»
+		«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", "Object", true, resource) FOR defExpression»
 	«ENDIF-»
 «ENDDEFINE»

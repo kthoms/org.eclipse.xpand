@@ -26,3 +26,16 @@ String getTypeBuilder (Void t) : "VoidType.INSTANCE";
 
 String getResultType (Void t) : "";
 String getResultType (String t) : t;
+
+String initializer (String type) :
+	switch (type) {
+		case "boolean": "false"
+		case "Boolean": "Boolean.FALSE"
+		case "int":     "0"
+		case "Integer": "0"
+		case "long":    "0L"
+		case "Long": 	"0L"
+		default:        "null"
+	};
+	
+String cast (String targetType) : targetType != "Object" ? "("+targetType+") " : "";

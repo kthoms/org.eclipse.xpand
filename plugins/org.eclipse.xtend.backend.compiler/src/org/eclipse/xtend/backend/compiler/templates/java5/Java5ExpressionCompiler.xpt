@@ -54,20 +54,17 @@
 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»_ctx.getTypesystem ().findType ("«type.uniqueRepresentation»").create();
 «ENDDEFINE»
 
-«REM»
-TODO Get the function somehow
-«ENDREM»
 «DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR CurryingExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-		«LET getNamedFunction (function) AS f»
-		Function function_«varIdx» = _ctx.getFunctionDefContext().getMatch («f.name.getQualifiedNameBuilder()», «f.function.getFunctionParameterTypes()»);
-		«ENDLET-»
-		List<Object> boundParamVarName_«varIdx» = new ArrayList<Object>();
+		«LET getNamedFunction (function, resource) AS f»
+		Function «getVarName(f.name.simpleName + "UnCurried", f.name.simpleName + "UnCurried", "_" +varIdx)» = _ctx.getFunctionDefContext().getMatch («f.name.getQualifiedNameBuilder()», «f.function.getFunctionParameterTypes()»);
+		List<Object> «getVarName(f.name.simpleName+"BoundParams", "boundParams", "_" + varIdx)» = new ArrayList<Object>();
 		«FOREACH boundParams.typeSelect(ExpressionBase) AS p ITERATOR it-»
 			«EXPAND compileExpression(getVarName(p, "boundParamVarName", "_" + varIdx + "_" + it.counter1), "Object", true, resource) FOR p-»
-			boundParamsVarName.add(boundParamVarName_«varIdx»_«it.counter1»);
+			«getVarName(f.name.simpleName+"BoundParams", "boundParams", "_" + varIdx)».add («getVarName(p, "boundParamVarName", "_" + varIdx + "_" + it.counter1)»);
 		«ENDFOREACH-»
-		Function «resultVarName» = new CurriedFunction (function_«varIdx», boundParamVarName_«varIdx», _ctx); 
+		«IF declareResultVar»Function «ENDIF»«resultVarName» = new CurriedFunction («getVarName(f.name.simpleName + "UnCurried", f.name.simpleName + "UnCurried", "_" +varIdx)», «getVarName(f.name.simpleName+"BoundParams", "boundParams", "_" + varIdx)», _ctx); 
+		«ENDLET-»
 	«ENDLET-»
 «ENDDEFINE»
 
@@ -107,7 +104,7 @@ TODO Get the function somehow
 	«LET getNextVarIdx() AS varIdx»
 		Boolean «getVarName (condition, "condExprVarName", "_" + varIdx)» = Boolean.FALSE;
 		«EXPAND compileExpression (getVarName (condition, "condExprVarName", "_" + varIdx), "Boolean", false, resource) FOR condition-»
-		«EXPAND initVar (resultType) FOR resultVarName»
+		«EXPAND initVar (resultType, declareResultVar) FOR resultVarName»
 		if («getVarName (condition, "condExprVarName", "_" + varIdx)») {
 		«EXPAND compileExpression (resultVarName, resultType, false, resource) FOR ifPart-»
 		} else {
@@ -343,15 +340,15 @@ TODO Get the function somehow
 
 «DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR SetPropertyExpression»
 	«LET getNextVarIdx() AS varIdx»
-		«EXPAND compileExpression (innerExpression. getVarName("innerPropertyExpr", "_" + varIdx), "Object", true, resource) FOR innerExpression»
-        if (innerSetPropertyExpr_«varIdx» == null) {
+		«EXPAND compileExpression (resultVarName+"Inner", "Object", true, resource) FOR innerExpression»
+        if («resultVarName» == null) {
             _ctx.logNullDeRef («pos.buildSourcePos()»);
-            «IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» =  null;
+			«EXPAND initVar (resultType, declareResultVar) FOR resultVarName»
         } else {
-	        final BackendType t_«varIdx» = _ctx.getTypesystem().findType(o);
-			«EXPAND compileExpression (valueExpr.getVarName ("value", "_" + varIdx), "Object", true, resource) FOR valueExpr»
-	        t_«varIdx».setProperty (_ctx, innerSetPropertyExpr_«varIdx», "«propertyName»", value_«varIdx»);
-	        «IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»innerSetPropertyExpr_«varIdx»;
+	        final BackendType «resultVarName»InnerType = _ctx.getTypesystem().findType(«resultVarName»);
+			«EXPAND compileExpression (getVarName (resultVarName+"Inner"+propertyName.toFirstUpper()+"Value", "value", "_" + varIdx), "Object", true, resource) FOR valueExpr»
+	        «resultVarName»InnerType.setProperty (_ctx, «resultVarName»Inner, "«propertyName»", «getVarName (resultVarName+"Inner"+propertyName.toFirstUpper()+"Value", "value", "_" + varIdx)»);
+	        «resultVarName» = «resultVarName»Inner;
         }
 	«ENDLET»
 «ENDDEFINE»
@@ -359,7 +356,7 @@ TODO Get the function somehow
 
 «DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR SwitchExpression»
 	«LET getNextVarIdx() AS varIdx»
-		List<Pair<Function, Function>> cases = new ArrayList<Pair<Function, Function>> ();
+		List<Pair<Function, Function>> «getVarName(resultVarName + "Cases", "cases", "_"+varIdx)» = new ArrayList<Pair<Function, Function>> ();
 		«FOREACH cases AS c ITERATOR it-»
 		Function «resultVarName»_Cond_«it.counter1» = new AbstractClosure(_ctx.getLocalVarContext(), _ctx.getFunctionDefContext(), new ArrayList<String> (), new ArrayList<BackendType>()) {
 			
@@ -378,14 +375,14 @@ TODO Get the function somehow
 			}
 		};
 		Pair<Function, Function> «resultVarName»_Case_«it.counter1» = new Pair<Function, Function> («resultVarName»_Cond_«it.counter1», «resultVarName»_Yield_«it.counter1»);
-		cases.add («resultVarName»_Case_«it.counter1»);
+		«getVarName(resultVarName + "Cases", "cases", "_"+varIdx)».add («resultVarName»_Case_«it.counter1»);
 		«ENDFOREACH-»
-		Object «resultVarName» = null;
-		for (Pair<Function, Function> curCase : cases) {
+		«EXPAND initVar (resultType, declareResultVar) FOR resultVarName»
+		for (Pair<Function, Function> curCase : «getVarName(resultVarName + "Cases", "cases", "_"+varIdx)») {
             final Object curVal = curCase.getFirst().invoke(_ctx, new Object[0]);
             
             if (Helpers.nullSafeEquals (_ctx, «switchExpr.getVarName ("switchExpr", "_" +varIdx)», curVal)) {
-            	«resultVarName» = curCase.getSecond().invoke(_ctx, new Object[0]);
+            	«resultVarName» = «resultType.getResultType().cast()»curCase.getSecond().invoke(_ctx, new Object[0]);
             	break;
             }
 		}
@@ -415,8 +412,8 @@ TODO Get the function somehow
 	«ENDLET»
 «ENDDEFINE»
 
-«DEFINE initVar (String typeName) FOR String-»
-		«typeName.getResultType()» «this» = «typeName.getResultType().initializer()»;
+«DEFINE initVar (String typeName, boolean declareVar) FOR String-»
+		«IF declareVar»«typeName.getResultType()» «ENDIF»«this» = «typeName.getResultType().initializer()»;
 «ENDDEFINE»
 «DEFINE initVar (Void typeName) FOR String-»
 «ENDDEFINE»

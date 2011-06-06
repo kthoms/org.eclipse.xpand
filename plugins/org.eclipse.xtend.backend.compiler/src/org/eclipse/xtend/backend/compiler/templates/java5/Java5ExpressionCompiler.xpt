@@ -356,6 +356,11 @@
 
 «DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR SwitchExpression»
 	«LET getNextVarIdx() AS varIdx»
+		«IF switchExpr != null-»
+        	«EXPAND compileExpression (getVarName (switchExpr, "switchVal", "_" +varIdx), "Object", true, resource) FOR switchExpr»
+        «ELSE-»
+        	Object «getVarName (switchExpr, "switchVal", "_" +varIdx)» = Boolean.TRUE;
+        «ENDIF-»
 		List<Pair<Function, Function>> «getVarName(resultVarName + "Cases", "cases", "_"+varIdx)» = new ArrayList<Pair<Function, Function>> ();
 		«FOREACH cases AS c ITERATOR it-»
 		Function «resultVarName»_Cond_«it.counter1» = new AbstractClosure(_ctx.getLocalVarContext(), _ctx.getFunctionDefContext(), new ArrayList<String> (), new ArrayList<BackendType>()) {
@@ -381,7 +386,7 @@
 		for (Pair<Function, Function> curCase : «getVarName(resultVarName + "Cases", "cases", "_"+varIdx)») {
             final Object curVal = curCase.getFirst().invoke(_ctx, new Object[0]);
             
-            if (Helpers.nullSafeEquals (_ctx, «switchExpr.getVarName ("switchExpr", "_" +varIdx)», curVal)) {
+            if (Helpers.nullSafeEquals (_ctx, «getVarName (switchExpr, "switchVal", "_" +varIdx)», curVal)) {
             	«resultVarName» = «resultType.getResultType().cast()»curCase.getSecond().invoke(_ctx, new Object[0]);
             	break;
             }

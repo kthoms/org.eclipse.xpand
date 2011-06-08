@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<!--
 		***************************************************************************
-		* Copyright (c) 2010 André Arnold and others. * All rights reserved.
+		* Copyright (c) 2010, 2011 André Arnold and others. * All rights reserved.
 		This program and the accompanying materials * are made available under
 		the terms of the Eclipse Public License v1.0 * which accompanies this
 		distribution, and is available at *
@@ -21,40 +21,40 @@
 		transformations that provides:
 		<itemizedlist>
 			<listitem>
-				a foundation for compilation of M2T and M2M languages
-				supported on the backend
+				compilation of M2T and M2M languages
+				supported on the backend by providing a middleend that translates the respective
+				language into a Backend abstract syntax tree. This AST is in turn compiled to Java. The
+				compiler is still experimental.
+      		</listitem>
+			<listitem>
+				Backeend interpreted execution of M2T and M2M languages
+				supported on the backend.
       		</listitem>
 			<listitem>
 				performance improvement employing lazy string concatenation
 				and aggressive caching
       		</listitem>
 			<listitem>
-				language interoperability, e.g. mix Xtend with operational
-				QVT
+				language interoperability, e.g. mix Xpand with Xtend2
       		</listitem>
 		</itemizedlist>
 	</para>
 
 	<para>
-		One missing feature in Xpand / Xtend / Check, is to be able to
-		compile	Xpand templates and Xtend extensions into Java bytecode to speed
-		up generator runs and hence reduce build time. The M2T Backend provides
-		the foundation for compilation of Xpand / Xtend / Check and other
-		languages by providing a common platform just like the JVM is a common
-		platform for multiple languages. Likewise the backend enables language
-		interoperability.
+		The M2T Backend provides a compiler that compiles resources written in Xpand / Xtend / Check and other
+		languages supported on the backend to Java. The backend is used as a common platform just 
+		like the JVM is a common platform for multiple languages. Languages supported on the backend are interoperable
+		in same way as languages supported on the JVM are interoperable.
 		This enables you to import templates, extensions and transformations written 
-		in other languages than Xpand/Xtend/Check and call functions declared in
-		therein, e.g. call an QVT transformation from Xpand.
+		in other languages than Xpand/Xtend/Check and call functions declared 
+		therein, e.g. call an QVT transformation from Xpand. As soon as a middleend for Xtend2 is available, 
+		interoperability with old fashioned Xpand/Xtend/Check will be supported.
 	</para>
 
 	<para>
 		Beginning with the Eclipse Helios release (Eclipse 3.6) the M2T
-		Backend is part	of M2T Xpand. Currently the M2T Backend only runs in
-		interpreted mode and includes translation of Xpand, Xtend and Check
-		resources into backend code. However performance improvements can
-		already be expected when working with large models. A compiler that
-		generates optimized Java code will become available soon.  
+		Backend is part	of M2T Xpand. As of the Eclipse Indigo release 
+		the Backend Compiler has been added.
 	</para>
 
 	<section id="backend_background">
@@ -63,13 +63,14 @@
 			The basic idea behind the <emphasis>M2T Backend</emphasis>
 			is to not build a compiler for every language but use an intermediary
 			"language", i.e. the backend abstract syntax tree, that is compiled
-			into executable code. Xpand, Xtend and Check are translated into a
-			backend AST by so called <emphasis>middleends</emphasis>
+			into executable Java code. Xpand, Xtend and Check are translated into a
+			backend AST by so called <emphasis>middleends</emphasis>.
 			Middleends are specific for each language. Hence, there exists a
 			<emphasis>language specific	middleend</emphasis>
-			for each supported language. If there exists a middleend
-			for a language, it will be compilable into bytecode. Xpand, Xtend and
-			Check are called <emphasis>frontend languages</emphasis>.
+			for each supported language. If a middleend
+			for a certain language is available, it is compilable into Java code and finally to bytecode
+			using a plain Java Compiler or automatically during the build Eclipse JDT Compiler. 
+			In contrast to the backend language, Xpand, Xtend and Check are called <emphasis>frontend languages</emphasis>.
 		</para>
 
 		<para>
@@ -157,10 +158,22 @@
 						Xtend Backend XSDTypes
 					</listitem>
 					<listitem>
+						Xtend Backend Compiler
+					</listitem>
+					<listitem>
+						Xtend Backend UI (only required by the compiler)
+					</listitem>
+					<listitem>
 						Xpand Middleend
 					</listitem>
 					<listitem>
+						Xpand Middleend UI (only required by the compiler)
+					</listitem>
+					<listitem>
 						Xtend Middleend
+					</listitem>
+					<listitem>
+						Xtend Middleend UI (only required by the compiler)
 					</listitem>
 				</itemizedlist>
 				Altenatively you may install the<emphasis>Xtend Backend SDK</emphasis>
@@ -175,94 +188,121 @@
 				ready to use the backend for generation.
 			</para>
 		</section>
-
-		<section id="backend_setup">
-			<title>Setting up the backend languages</title>
+		
+		<section id="backend_compiler">
+			<title>Compiling sources to Java</title>
 			<para>
-				Before you can use a language like Xpand with the backend, the
-				responsible middleend must be registered at the backend. This is done
-				with the <classname>org.eclipse.xtend.middleend.LanguageSetup</classname>.
-				Middleends are being called a <classname>languageContributor</classname>
-				here. You can register any language specific middleend.	Language
-				specific middleend implement the interface 
-				<classname>org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd
-				</classname>. To register the Xpand, Xtend and Check middleends, do the
-				following in the workflow before invoking the middleend component of
-				any of the respective languages:
+				The compiler can be activated as a builder by adding M2T Backend Compiler nature to the project. This is
+				done selecting "Configure" > "Add M2T Backend Compiler" from the context menu of the Xpand project. All 
+				Xpand/Xtend/Check resources will then be compiler to Java source files into the "backend-gen" folder of the 
+				project. When selecting "Clean..." from the project menu the Backend Compiler will do a full build, 
+				while changing a Xpand/Xtend/Check resource will compile this resource incrementally.
 			</para>
-			<programlisting>&lt;component
-				class="org.eclipse.xtend.middleend.LanguageSetup"&gt;
-				&lt;languageContributor
-				value="org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory"/&gt;
-				&lt;languageContributor
-				value="org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory"/&gt;
-				&lt;languageContributor
-				value="org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory"/&gt;
-				&lt;/component&gt;</programlisting>
-				
 			<para>
-				Now that the middleends are registered, you can use the respective middleend 
-				workflow components to use the backend in interpreted mode.
+				The compiler is still experimental.
 			</para>
 		</section>
-
-		<section id="xpand_middleend_usage">
-			<title>Calling Xpand templates - the generator</title>
+		
+		<section id="backend_execution">
+			<title>Executing workflows using the backend</title>
 			<para>
-				The Xpand middleend introduces a new component to be used instead of
-				<classname>org.eclipse.xpand2.Generator</classname>
-				to call Xpand templates from a workflow. The component has the same
-				parameters as the Xpand	<classname>Generator</classname>
-				component. Hence, the following workflow fragment calls the template
-				<classname>template::Template::main</classname>:
+				The backend can execute functions and templates that have been compiled to Java or other resources that
+				can be handled by one of the available middleends. It automatically recognizes compiled resources 
+				if available on the build path and prefers them over native Xpand/Xtend/Check resources.
 			</para>
-			<programlisting>&lt;component class="org.eclipse.xtend.middleend.xpand.XpandComponent"&gt;
-	&lt;metaModel idRef="mm_emf"/&gt;
-	&lt;expand value="template::Template::main FOR model" /&gt;
-	&lt;outlet path="${src-gen}" &gt;
-		&lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" /&gt;
-	&lt;/outlet&gt;
+			<para>
+				The best way to execute compiled functions/templates is to use the XpandComponent or XtendComponent. The
+				name of the function to be called is the same fully qualified name as defined in Xpand/Xtend/Check.
+			</para>
+
+			<section id="backend_setup">
+				<title>Setting up the backend languages</title>
+				<para>
+					Before you can use a language like Xpand with the backend, the
+					responsible middleend must be registered at the backend. This is done
+					with the <classname>org.eclipse.xtend.middleend.LanguageSetup</classname>.
+					Middleends are being called a <classname>languageContributor</classname>
+					here. You can register any language specific middleend.	Language
+					specific middleend implement the interface 
+					<classname>org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd
+					</classname>. To register the Xpand, Xtend and Check middleends, do the
+					following in the workflow before invoking the middleend component of
+					any of the respective languages:
+				</para>
+				<programlisting>&lt;component
+					class="org.eclipse.xtend.middleend.LanguageSetup"&gt;
+					&lt;languageContributor
+					value="org.eclipse.xtend.middleend.xtend.plugin.OldXtendRegistryFactory"/&gt;
+					&lt;languageContributor
+					value="org.eclipse.xtend.middleend.xtend.plugin.OldCheckRegistryFactory"/&gt;
+					&lt;languageContributor
+					value="org.eclipse.xtend.middleend.xpand.plugin.OldXpandRegistryFactory"/&gt;
+					&lt;/component&gt;</programlisting>
+					
+				<para>
+					Now that the middleends are registered, you can use the respective middleend 
+					workflow components to use the backend in interpreted mode.
+				</para>
+			</section>
+	
+			<section id="xpand_middleend_usage">
+				<title>Calling Xpand templates - the generator</title>
+				<para>
+					The Xpand middleend introduces a new component to be used instead of
+					<classname>org.eclipse.xpand2.Generator</classname>
+					to call Xpand templates from a workflow. The component has the same
+					parameters as the Xpand	<classname>Generator</classname>
+					component. Hence, the following workflow fragment calls the template
+					<classname>template::Template::main</classname>:
+				</para>
+				<programlisting>&lt;component class="org.eclipse.xtend.middleend.xpand.XpandComponent"&gt;
+		&lt;metaModel idRef="mm_emf"/&gt;
+		&lt;expand value="template::Template::main FOR model" /&gt;
+		&lt;outlet path="${src-gen}" &gt;
+			&lt;postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" /&gt;
+		&lt;/outlet&gt;
 &lt;/component&gt;</programlisting>
-			<para>
-				The component supports all properties of <classname>Generator</classname>, 
-				except <classname>collectProfileSummary</classname>	and
-				<classname>verboseProfileFilename</classname>
-			</para>
-		</section>
-
-		<section id="check_middleend_usage">
-			<title>Executing Check on the backend</title>
-			<para>
-				Just as the Xpand middleend, the Check middleend also provides a new component
-				to execute checks on the backend. The component
-				<classname>org.eclipse.xtend.check.CheckComponent</classname>
-				has to be replaced with <classname>org.eclipse.xtend.middleend.xtend.CheckComponent
-				</classname>. The new component uses the same properties as
-				<classname>org.eclipse.xtend.check.CheckComponent</classname>. 
-				Hence calling checks using the backend would look like this:
-			</para>
-			<programlisting>&lt;component class="org.eclipse.xtend.middleend.xtend.CheckComponent"&gt;
-	&lt;metaModel idRef="mm_emf"/&gt;
-	&lt;checkFile value="metamodel::Checks" /&gt;
-	&lt;emfAllChildrenSlot value="model"/&gt;
+				<para>
+					The component supports all properties of <classname>Generator</classname>, 
+					except <classname>collectProfileSummary</classname>	and
+					<classname>verboseProfileFilename</classname>
+				</para>
+			</section>
+	
+			<section id="check_middleend_usage">
+				<title>Executing Check on the backend</title>
+				<para>
+					Just as the Xpand middleend, the Check middleend also provides a new component
+					to execute checks on the backend. The component
+					<classname>org.eclipse.xtend.check.CheckComponent</classname>
+					has to be replaced with <classname>org.eclipse.xtend.middleend.xtend.CheckComponent
+					</classname>. The new component uses the same properties as
+					<classname>org.eclipse.xtend.check.CheckComponent</classname>. 
+					Hence calling checks using the backend would look like this:
+				</para>
+				<programlisting>&lt;component class="org.eclipse.xtend.middleend.xtend.CheckComponent"&gt;
+		&lt;metaModel idRef="mm_emf"/&gt;
+		&lt;checkFile value="metamodel::Checks" /&gt;
+		&lt;emfAllChildrenSlot value="model"/&gt;
 &lt;/component&gt; </programlisting>
-		</section>
-
-		<section id="xtend_middleend_usage">
-			<title>Executing Xtend extensions on the backend</title>
-			<para>
-				To invoke Xtend extensions from the workflow, the Xtend middleend
-				introduces the new component 
-				<classname>org.eclipse.xtend.middleend.xtend.XtendComponent
-				</classname>. The new component provides the same configuration
-				properties as the old one. Hence, you may invoke the extension
-				<classname>extensions::modification::modify</classname>
-				using the following workflow fragment:
-			</para>
-			<programlisting>&gt;component class="org.eclipse.xtend.middleend.xtend.XtendComponent"&gt;
-	&gt;metaModel idRef="mm_emf"/&gt;
-	&gt;invoke value="extensions::modification::modify(model)"/&gt;
-&gt;/component&gt; </programlisting>
+			</section>
+	
+			<section id="xtend_middleend_usage">
+				<title>Executing Xtend extensions on the backend</title>
+				<para>
+					To invoke Xtend extensions from the workflow, the Xtend middleend
+					introduces the new component 
+					<classname>org.eclipse.xtend.middleend.xtend.XtendComponent
+					</classname>. The new component provides the same configuration
+					properties as the old one. Hence, you may invoke the extension
+					<classname>extensions::modification::modify</classname>
+					using the following workflow fragment:
+				</para>
+				<programlisting>&gt;component class="org.eclipse.xtend.middleend.xtend.XtendComponent"&gt;
+		&lt;metaModel idRef="mm_emf"/&gt;
+		&lt;invoke value="extensions::modification::modify(model)"/&gt;
+&lt;/component&gt; </programlisting>
+			</section>
 		</section>
 		<section id="java_middleend">
 			<title>Implementing functions in Java - the Java Annotations

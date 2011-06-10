@@ -101,7 +101,7 @@ public final class JavaFunctionClassContributor implements LanguageSpecificMiddl
             final boolean isPublicFunction = (mtd.getAnnotation (M2tPrivateFunction.class) == null && mtd.getAnnotation (M2tAroundAdvice.class) == null) ;
             final boolean isAroundAdvice = (mtd.getAnnotation (M2tAroundAdvice.class) != null) ;
             final QualifiedName functionName = (mtd.getAnnotation (M2tQualifiedName.class) != null) ? 
-               		new QualifiedName (cls.getCanonicalName ().replaceAll (".", SyntaxConstants.NS_DELIM), mtd.getName()) 
+               		new QualifiedName (cls.getCanonicalName ().replaceAll ("\\.", SyntaxConstants.NS_DELIM), mtd.getName()) 
              	: 
                		new QualifiedName (mtd.getName());
             final NamedFunction f = new NamedFunction (functionName, new JavaDefinedFunction (mtd, null, _middleEnd.getTypesystem()));

@@ -32,7 +32,7 @@ public class QualifiedName {
 		}
 	}
 
-	public QualifiedName (String simpleName, String nameSpace) {
+	public QualifiedName (String nameSpace, String simpleName) {
 		super();
 		_simpleName = simpleName;
 		_nameSpace = nameSpace;

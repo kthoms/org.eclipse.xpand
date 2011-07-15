@@ -6,6 +6,7 @@ import org::eclipse::xtend::backend::compiler::model;
 import org::eclipse::xtend::backend::functions;
 
 extension org::eclipse::xtend::backend::compiler::templates::expressions;
+extension org::eclipse::xtend::backend::compiler::templates::functions;
 
 String generateVarName (String baseVarName) :
 	JAVA org.eclipse.xtend.backend.compiler.templates.VarNameGeneratorExpressions.generateVarName (java.lang.String);
@@ -54,6 +55,18 @@ String getQualifiedNameBuilder(QualifiedName n) :
 		"new QualifiedName(\""+ n.nameSpace +"\", \"" + n.simpleName +"\")" 
 	:
 		"new QualifiedName(null, \"" + n.simpleName +"\")";
+		
+String getQualifiedNameBuilder(QualifiedName n, List[NamedParsedResource] res) : 
+	n.nameSpace != null ?
+		((getFunctionNamespace(n, res) == null ?
+			"new QualifiedName(\"" + n.getFunctionNamespace(res) +"\", \"" + n.simpleName +"\")"
+		:
+			"new QualifiedName(null, \"" + n.simpleName +"\")"))
+	:
+		(/*(getFunctionNamespace(n, res) != null ?
+			"new QualifiedName(\"" + n.getFunctionNamespace(res) +"\", \"" + n.simpleName +"\")"
+		:*/
+			"new QualifiedName(null, \"" + n.simpleName +"\")")/*)*/;
 		
 String toParameterName (String paramName) : javaKeywords().contains (paramName) ? paramName + "_" : paramName;
 

@@ -4,9 +4,14 @@ import org::eclipse::xtend::backend::expr;
 import org::eclipse::xtend::backend::functions;
 import org::eclipse::xtend::backend::util;
 import org::eclipse::xtend::backend::compiler;
+import org::eclipse::xtend::backend::compiler::model;
 import org::eclipse::xtend::middleend::javaannotations::internal;
 import org::eclipse::xtend::middleend::plugins;
 
 NamedFunction getNamedFunction (Function f, ParsedResource res) : 
 	res.publicFunctions.union(res.privateFunctions).toList()
 	.select (e|e.function == f).first();
+	
+cached String getFunctionNamespace (QualifiedName f, List[NamedParsedResource] res) :
+	res.resource.publicFunctions.select(e|e.name.simpleName == f.simpleName).first().name.nameSpace;
+	

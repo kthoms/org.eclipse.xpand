@@ -3,7 +3,10 @@ package org.eclipse.xtend.backend.compiler.templates.java5;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,10 +20,14 @@ import org.eclipse.xpand2.output.JavaBeautifier;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.compiler.AbstractBackendResourceCompilerFacade;
+import org.eclipse.xtend.backend.compiler.model.NamedParsedResource;
 import org.eclipse.xtend.middleend.MiddleEnd;
+import org.eclipse.xtend.middleend.plugins.ImportedResource;
 import org.eclipse.xtend.middleend.plugins.ParsedResource;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
+
+import com.google.inject.internal.Iterables;
 
 public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
     private static final Log _log = LogFactory.getLog (Java5CompilerFacade.class);
@@ -31,7 +38,7 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 	}
 
 	@Override
-	protected void compileInternal(String resourceName, ParsedResource parsedResource, MiddleEnd me, BackendTypesystem bts, String outputDir, String fileEncoding) {
+	protected void compileInternal(String resourceName, ParsedResource parsedResource, Map<String, Set<NamedParsedResource>> imports, MiddleEnd me, BackendTypesystem bts, String outputDir, String fileEncoding) {
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put ("resource", parsedResource);
 		variables.put ("resourceName", resourceName);
@@ -50,7 +57,7 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 		out.addPostprocessor (javaBeautifier);
 		gen.addOutlet (out);
 		gen.setFileEncoding (fileEncoding);
-		gen.setExpand ("org::eclipse::xtend::backend::compiler::templates::java5::ResourceCompiler::compile (typesystem, resourceName) FOR resource");
+		gen.setExpand ("org::eclipse::xtend::backend::compiler::templates::java5::ResourceCompiler::compile (typesystem, resourceName, importedResources) FOR resource");
 //		gen.setBeautifier(Arrays.asList(org.eclipse.xpand2.output.JavaBeautifier.class));
 
 		WorkflowContext ctx = new WorkflowContextDefaultImpl();
@@ -58,6 +65,7 @@ public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
 		ctx.set ("resourceName", resourceName);
 		ctx.set ("typesystem", bts);
 		ctx.set ("middleend", me);
+		ctx.set ("importedResources", imports.get (resourceName));
 		Issues issues = new IssuesImpl();
 
 		gen.invoke(ctx, new NullProgressMonitor(), issues);

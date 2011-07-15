@@ -18,3 +18,4 @@ String toJavaLiteral(LiteralExpression e) : e.toJavaLiteralInternal();
 
 private String toJavaLiteralInternal(LiteralExpression e) :
 	JAVA org.eclipse.xtend.backend.compiler.util.JavaConverter.toJavaLiteral (org.eclipse.xtend.backend.expr.LiteralExpression);
+	

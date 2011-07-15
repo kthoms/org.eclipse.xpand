@@ -76,7 +76,7 @@ public final class MiddleEndImpl implements MiddleEnd {
             languageHandlers = new ArrayList<LanguageSpecificMiddleEnd> ();
         
         // this is a "built-in" handler that is, among other things, necessary for the syslib
-        languageHandlers.add (new JavaFunctionClassContributor ());
+        languageHandlers.add (0, new JavaFunctionClassContributor ());
         
         _ts = ts;
         _languageHandlers = languageHandlers;

@@ -5,14 +5,16 @@
 «IMPORT org::eclipse::xtend::middleend::plugins»
 «IMPORT org::eclipse::xtend::backend::compiler»
 «IMPORT org::eclipse::xtend::backend::compiler::model»
+«IMPORT org::eclipse::xtend::middleend»
 «IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
 «IMPORT org::eclipse::xtend::backend::compiler::templates::java5»
 
 
+«EXTENSION org::eclipse::xtend::backend::compiler::templates::expressions»
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::types»
 
-«DEFINE compile (BackendTypesystem bts, String resourceName) FOR ParsedResource»
+«DEFINE compile (BackendTypesystem bts, String resourceName, Set[NamedParsedResource] importedRes) FOR ParsedResource»
 	«IF !resourceName.endsWith(".class") && publicFunctions.function.typeSelect (SourceDefinedFunction).size > 0»
 		«FILE resourceName.toCompiledResourceFileName() +".java"»
 			package «resourceName.toFdcBuilderPackage()»;
@@ -33,17 +35,17 @@
 			«IF ! imports.isEmpty»
 			@M2tImports (imports={
 			«FOREACH imports AS imp SEPARATOR ", "-»
-				@M2tImport (resource="«imp.resourceName»")
+				@M2tImport (resource="«imp.resourceName»" «IF imp.reexported», reexported=true«ENDIF»)
 			«ENDFOREACH-»
 			})
 			«ENDIF»
 			public class «resourceName.toCompiledResourceClassName()» extends AbstractExecutionContextAware {
 			
-				«EXPAND compileFunction (this) FOREACH publicFunctions-»
+				«EXPAND compileFunction (this, importedRes) FOREACH publicFunctions-»
 			
-				«EXPAND compileFunction (this) FOREACH privateFunctions-»
+				«EXPAND compileFunction (this, importedRes) FOREACH privateFunctions-»
 				
-				«EXPAND compileAdvice (this) FOREACH advice-»
+				«EXPAND compileAdvice (this, importedRes) FOREACH advice-»
 
 			}
 		«ENDFILE»
@@ -51,7 +53,7 @@
 «ENDDEFINE»
 
 
-«DEFINE compileFunction (ParsedResource resource) FOR NamedFunction»
+«DEFINE compileFunction (ParsedResource resource, Set[NamedParsedResource] importedRes) FOR NamedFunction»
 	«IF SourceDefinedFunction.isInstance (function)-»
 	«IF name.nameSpace != null && name.nameSpace.length > 0-»
 	@M2tQualifiedName
@@ -60,19 +62,16 @@
 	@M2tCached
 	«ENDIF-»
 	public «function.returnType.toJavaTypeName()» «name.simpleName» («EXPAND parameters FOR function») {
-		«EXPAND compile (resource) FOR function-»
-		return returnVar;
+		«EXPAND compile (resource, importedRes) FOR function-»
 	}
 	«ENDIF-»
 «ENDDEFINE»
 
-
-
-«DEFINE compileAdvice (ParsedResource resource) FOR AroundAdvice»
+«DEFINE compileAdvice (ParsedResource resource, Set[NamedParsedResource] importedRes) FOR AroundAdvice»
 «ENDDEFINE»
 
-
 «DEFINE parameters FOR Function»
+		return null;
 «ENDDEFINE»
 
 «DEFINE parameters FOR SourceDefinedFunction-»
@@ -82,13 +81,33 @@
 «ENDDEFINE»
 
 
-«DEFINE compile (ParsedResource resource) FOR Function»
+«DEFINE compile (ParsedResource resource, Set[NamedParsedResource] importedRes) FOR Function»
 «ENDDEFINE»
 
-«DEFINE compile (ParsedResource resource) FOR SourceDefinedFunction»
-	«IF returnType != null-»
-		«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", returnType.toJavaTypeName(), true, resource) FOR defExpression»
-	«ELSE-»
-		«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", "Object", true, resource) FOR defExpression»
-	«ENDIF-»
+«DEFINE compile (ParsedResource resource, Set[NamedParsedResource] importedRes) FOR SourceDefinedFunction»
+        final LocalVarContext lvc = new LocalVarContext ();
+		«FOREACH paramNames AS paramName-»
+            lvc.getLocalVars().put("«paramName»", «paramName.toParameterName()»);
+		«ENDFOREACH-»
+        
+        final LocalVarContext oldLvc = _ctx.getLocalVarContext();
+        try {
+            _ctx.setLocalVarContext(lvc);
+            
+            if (_ctx.isLogStacktrace())
+                _ctx.getStacktrace().add (new StacktraceEntry («defExpression.pos.buildSourcePos()», _ctx));
+            
+		«IF returnType != null-»
+			«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", returnType.toJavaTypeName(), true, resource, importedRes.toList()) FOR defExpression»
+		«ELSE-»
+			«EXPAND Java5ExpressionCompiler::compileExpression("returnVar", "Object", true, resource, importedRes.toList()) FOR defExpression»
+		«ENDIF-»
+			return returnVar;
+        }
+        finally {
+            if (_ctx.isLogStacktrace())
+                _ctx.getStacktrace().remove (_ctx.getStacktrace().size() - 1);
+            
+            _ctx.setLocalVarContext(oldLvc);
+        }
 «ENDDEFINE»

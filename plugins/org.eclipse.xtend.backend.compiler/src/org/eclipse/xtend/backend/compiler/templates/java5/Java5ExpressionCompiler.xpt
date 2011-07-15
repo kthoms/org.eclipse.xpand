@@ -5,6 +5,7 @@
 «IMPORT org::eclipse::xtend::middleend::plugins»
 «IMPORT org::eclipse::xtend::backend::util»
 «IMPORT org::eclipse::xtend::backend::compiler»
+«IMPORT org::eclipse::xtend::backend::compiler::model»
 «IMPORT org::eclipse::xtend::middleend::javaannotations::internal»
 
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::expressions»
@@ -12,15 +13,15 @@
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::names»
 «EXTENSION org::eclipse::xtend::backend::compiler::templates::types»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR Object»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR Object»
 «ENDDEFINE»
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR ExpressionBase»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR ExpressionBase»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR AndExpression»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR AndExpression»
 	«LET getNextVarIdx() AS varIdx-»
-		«EXPAND compileExpression (getVarName(left, "leftVarName", "_"+varIdx), "Boolean", true, resource) FOR left-»
-		«EXPAND compileExpression (getVarName(right, "rightVarName", "_"+varIdx), "Boolean", true, resource) FOR right-»
+		«EXPAND compileExpression (getVarName(left, "leftVarName", "_"+varIdx), "Boolean", true, resource, importedRes) FOR left-»
+		«EXPAND compileExpression (getVarName(right, "rightVarName", "_"+varIdx), "Boolean", true, resource, importedRes) FOR right-»
 		if («getVarName(left, "leftVarName", "_"+varIdx)» && «getVarName(right, "rightVarName", "_"+varIdx)»)
 			«IF declareResultVar»Boolean «ENDIF»«resultVarName» = Boolean.TRUE;
 		else 
@@ -28,39 +29,39 @@
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR ConcatExpression»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR ConcatExpression»
 	«LET getNextVarIdx() AS varIdx-»
         List<Object> «resultVarName»_Parts = new ArrayList<Object> («parts.size»);
 		«FOREACH parts AS p ITERATOR it-»
-			«EXPAND compileExpression (p.getVarName (resultVarName, "_ConcatPart_" +it.counter1), "Object", true, resource) FOR p-»
+			«EXPAND compileExpression (p.getVarName (resultVarName, "_ConcatPart_" +it.counter1), "Object", true, resource, importedRes) FOR p-»
 			«resultVarName»_Parts.add («p.getVarName (resultVarName, "_ConcatPart_" +it.counter1)»);
 		«ENDFOREACH-»
 		«IF declareResultVar»EfficientLazyString «ENDIF»«resultVarName» = Concatenator.append (_ctx, «resultVarName»_Parts);
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR CreateCachedExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR CreateCachedExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         final List<Object> params_«varIdx» = new ArrayList<Object>();
 		«FOREACH paramExpr AS p ITERATOR it-»
-			«EXPAND compileExpression (getVarName(p, "createParamVarName", "_"+ varIdx + "_" +it.counter1), "Object", true, resource) FOREACH paramExpr-»
+			«EXPAND compileExpression (getVarName(p, "createParamVarName", "_"+ varIdx + "_" +it.counter1), "Object", true, resource, importedRes) FOREACH paramExpr-»
 			params_«varIdx».add ( createParamVarName_«varIdx»_«it.counter0»);
 		«ENDFOREACH-»
         «IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»_ctx.getCreationCache().createRaw (_ctx.getTypesystem ().findType ("«type.uniqueRepresentation»"), params_«varIdx»);
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR CreateUncachedExpression»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR CreateUncachedExpression»
 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»_ctx.getTypesystem ().findType ("«type.uniqueRepresentation»").create();
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR CurryingExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR CurryingExpression-»
 	«LET getNextVarIdx() AS varIdx-»
 		«LET getNamedFunction (function, resource) AS f»
 		Function «getVarName(f.name.simpleName + "UnCurried", f.name.simpleName + "UnCurried", "_" +varIdx)» = _ctx.getFunctionDefContext().getMatch («f.name.getQualifiedNameBuilder()», «f.function.getFunctionParameterTypes()»);
 		List<Object> «getVarName(f.name.simpleName+"BoundParams", "boundParams", "_" + varIdx)» = new ArrayList<Object>();
 		«FOREACH boundParams.typeSelect(ExpressionBase) AS p ITERATOR it-»
-			«EXPAND compileExpression(getVarName(p, "boundParamVarName", "_" + varIdx + "_" + it.counter1), "Object", true, resource) FOR p-»
+			«EXPAND compileExpression(getVarName(p, "boundParamVarName", "_" + varIdx + "_" + it.counter1), "Object", true, resource, importedRes) FOR p-»
 			«getVarName(f.name.simpleName+"BoundParams", "boundParams", "_" + varIdx)».add («getVarName(p, "boundParamVarName", "_" + varIdx + "_" + it.counter1)»);
 		«ENDFOREACH-»
 		«IF declareResultVar»Function «ENDIF»«resultVarName» = new CurriedFunction («getVarName(f.name.simpleName + "UnCurried", f.name.simpleName + "UnCurried", "_" +varIdx)», «getVarName(f.name.simpleName+"BoundParams", "boundParams", "_" + varIdx)», _ctx); 
@@ -68,11 +69,11 @@
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR DeferredEvalExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR DeferredEvalExpression-»
 	«LET getNextVarIdx() AS varIdx-»
 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = new FutureResultHolder (new AbstractFunction () {
 			public Object invoke (ExecutionContext _ctx, Object[] params) {
-				«EXPAND compileExpression (getVarName(innerExpr, "deferredExprVarName", "_"+varIdx), "Object", true, resource) FOR innerExpr-»
+				«EXPAND compileExpression (getVarName(innerExpr, "deferredExprVarName", "_"+varIdx), "Object", true, resource, importedRes) FOR innerExpr-»
 				return «getVarName(innerExpr, "deferredExprVarName", "_"+varIdx)»;
 			}
 		});
@@ -80,17 +81,17 @@
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR HidingLocalVarDefExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR HidingLocalVarDefExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         final Object oldValue_«varIdx» = _ctx.getLocalVarContext().getLocalVars().get(«localVarName»);
-        «EXPAND compileExpression (getVarName (defExpression, "defExprResult", "_" + varIdx), "Object", true, resource) FOR defExpression-» 
+        «EXPAND compileExpression (getVarName (defExpression, "defExprResult", "_" + varIdx), "Object", true, resource, importedRes) FOR defExpression-» 
         _ctx.getLocalVarContext().getLocalVars().put («localVarName», «getVarName (defExpression, "defExprResult", "_" + varIdx)»);
 
         if (_ctx.isLogStacktrace())
             _ctx.getStacktrace().add (new StacktraceEntry («pos.buildSourcePos()», _ctx));
 
         try {
-			«EXPAND compileExpression (resultVarName, "Object", true, resource) FOR innerExpression-»
+			«EXPAND compileExpression (resultVarName, "Object", true, resource, importedRes) FOR innerExpression-»
         }
         finally {
             _ctx.getStacktrace ().remove (_ctx.getStacktrace().size() - 1);
@@ -100,21 +101,21 @@
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR IfExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR IfExpression-»
 	«LET getNextVarIdx() AS varIdx»
 		Boolean «getVarName (condition, "condExprVarName", "_" + varIdx)» = Boolean.FALSE;
-		«EXPAND compileExpression (getVarName (condition, "condExprVarName", "_" + varIdx), "Boolean", false, resource) FOR condition-»
+		«EXPAND compileExpression (getVarName (condition, "condExprVarName", "_" + varIdx), "Boolean", false, resource, importedRes) FOR condition-»
 		«EXPAND initVar (resultType, declareResultVar) FOR resultVarName»
 		if («getVarName (condition, "condExprVarName", "_" + varIdx)») {
-		«EXPAND compileExpression (resultVarName, resultType, false, resource) FOR ifPart-»
+		«EXPAND compileExpression (resultVarName, resultType, false, resource, importedRes) FOR ifPart-»
 		} else {
-		«EXPAND compileExpression (resultVarName, resultType, false, resource) FOR elsePart-»
+		«EXPAND compileExpression (resultVarName, resultType, false, resource, importedRes) FOR elsePart-»
 		}
 	«ENDLET»
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR InitClosureExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR InitClosureExpression-»
 	«LET getNextVarIdx() AS varIdx-»
 		List<String> paramNames_«varIdx» = Arrays.asList («IF !paramNames.isEmpty»"«FOREACH paramNames AS pName SEPARATOR ","»«pName»«ENDFOREACH»"«ENDIF»);
 		List<BackendType> paramTypes_«varIdx» = new ArrayList<BackendType>();
@@ -123,7 +124,7 @@
 		«ENDFOREACH-»
 		Function «resultVarName» = new AbstractClosure (_ctx.getLocalVarContext(), _ctx.getFunctionDefContext(), paramNames_«varIdx», paramTypes_«varIdx») {
 			protected Object apply (ExecutionContext _ctx) {
-				«EXPAND compileExpression (getVarName (defExpression, "defExpr", "_" +varIdx), "Object", true, resource) FOR defExpression-»
+				«EXPAND compileExpression (getVarName (defExpression, "defExpr", "_" +varIdx), "Object", true, resource, importedRes) FOR defExpression-»
 				return «getVarName (defExpression, "defExpr", "_" +varIdx)»;
 			}
 		};
@@ -131,9 +132,9 @@
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR InvocationOnCollectionExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR InvocationOnCollectionExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-        «EXPAND compileExpression (getVarName(collection, "coll", "_" +varIdx), "Collection", true, resource) FOR collection-»
+        «EXPAND compileExpression (getVarName(collection, "coll", "_" +varIdx), "Collection", true, resource, importedRes) FOR collection-»
         «IF params.size > 0 && LocalVarEvalExpression.isInstance(params.first())-»
         	«IF (((LocalVarEvalExpression)params.first()).localVarName == "this")-»
         		boolean firstParamIsThis_«varIdx» = true;
@@ -146,15 +147,15 @@
 	    final List<Object> params_«varIdx» = new ArrayList<Object>();
 	    params_«varIdx».add (null); //placeholder
 		«FOREACH params AS e-»
-			«EXPAND compileExpression (getVarName (e, "param", "_"+varIdx), "Object", true, resource) FOR e-»
+			«EXPAND compileExpression (getVarName (e, "param", "_"+varIdx), "Object", true, resource, importedRes) FOR e-»
 			params_«varIdx».add («getVarName (e, "param", "_"+varIdx)»);        	
 		«ENDFOREACH-»
-		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnCollection(«functionName.getQualifiedNameBuilder()», coll_«varIdx», params_«varIdx», _ctx, firstParamIsThis_«varIdx», SourcePos);
+		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnCollection(«functionName.getQualifiedNameBuilder(importedRes)», coll_«varIdx», params_«varIdx», _ctx, firstParamIsThis_«varIdx», SourcePos);
 	«ENDLET-»
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR InvocationOnObjectExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR InvocationOnObjectExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         «REM»MATCH THE TWO OF THEM«ENDREM» 
         final List<Object> params_«varIdx» = new ArrayList<Object> ();
@@ -168,19 +169,19 @@
 	        boolean firstParamIsThis_«varIdx» = false;
         «ENDIF-»
         «FOREACH params AS e ITERATOR it-»
-        	«EXPAND compileExpression (getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1), "Object", true, resource) FOR e-»
+        	«EXPAND compileExpression (getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1), "Object", true, resource, importedRes) FOR e-»
         	params_«varIdx».add («getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1)»);
         «ENDFOREACH-»
         «IF nullIfFirstParamIsNull && params.size > 0-»
-		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnObjectNullChecked(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
+		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnObjectNullChecked(«functionName.getQualifiedNameBuilder(importedRes)», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
         «ELSE-»
-		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnObject(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
+		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnObject(«functionName.getQualifiedNameBuilder(importedRes)», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
         «ENDIF-»
 	«ENDLET-»
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR InvocationOnWhateverExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR InvocationOnWhateverExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         «IF params.size > 0 && LocalVarEvalExpression.isInstance(params.first())»
         	«IF (((LocalVarEvalExpression) params.first()).localVarName == "this")-»
@@ -193,39 +194,39 @@
         «ENDIF»
         final List<Object> params_«varIdx» = new ArrayList<Object> ();
         «FOREACH params AS e ITERATOR it-»
-        	«EXPAND compileExpression (getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1), "Object", true, resource) FOR e-»
+        	«EXPAND compileExpression (getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1), "Object", true, resource, importedRes) FOR e-»
         	params_«varIdx».add («getVarName (e, "paramExprRes", "_"+varIdx+"_"+it.counter1)»);
         «ENDFOREACH-»
         «IF nullIfFirstParamIsNull && params.size > 0-»
- 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnWhatEverNullChecked(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
+ 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnWhatEverNullChecked(«functionName.getQualifiedNameBuilder(importedRes)», params_«varIdx», _ctx, firstParamIsThis_«varIdx», «pos.buildSourcePos()»);
         «ELSE-»
- 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnWhatEver(«functionName.getQualifiedNameBuilder()», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
+ 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeOnWhatEver(«functionName.getQualifiedNameBuilder(importedRes)», params_«varIdx», _ctx, firstParamIsThis_«varIdx»);
         «ENDIF-»
 	«ENDLET-»
 «ENDDEFINE»
 
 
-«DEFINE compileExpression (String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR ListLiteralExpression-»
+«DEFINE compileExpression (String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR ListLiteralExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         final List<Object> «resultVarName» = new ArrayList<Object>();
         «FOREACH innerExpression AS e ITERATOR it-»
-        	«EXPAND compileExpression (getVarName (e, "exprRes", "_"+ varIdx + "_" + it.counter1), "Object", true, resource) FOR e-»
+        	«EXPAND compileExpression (getVarName (e, "exprRes", "_"+ varIdx + "_" + it.counter1), "Object", true, resource, importedRes) FOR e-»
         	«resultVarName».add (exprRes_«varIdx»);
         «ENDFOREACH-»
 	«ENDLET-»
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR LiteralExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR LiteralExpression-»
 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «this.toJavaLiteral()»;
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR LocalVarEvalExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR LocalVarEvalExpression-»
 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»_ctx.getLocalVarContext().getLocalVars().get ("«localVarName»");
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR MethodInvocationExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR MethodInvocationExpression-»
 	«LET getNextVarIdx() AS varIdx-»
         «IF params.size > 0 && LocalVarEvalExpression.isInstance(params.first())»
         	«IF (((LocalVarEvalExpression) params.first()).localVarName == "this")-»
@@ -244,21 +245,21 @@
 		«ENDIF-»
 		List<Object> «method.name»_params_«varIdx» = new ArrayList<Object>();
 		«FOREACH params.typeSelect(ExpressionBase) AS p ITERATOR it-»
-			«EXPAND compileExpression (getVarName (p, "paramVarName", "_" + varIdx + "_" +it.counter1), "Object", true, resource) FOR p-»
+			«EXPAND compileExpression (getVarName (p, "paramVarName", "_" + varIdx + "_" +it.counter1), "Object", true, resource, importedRes) FOR p-»
 			«method.name»_params_«varIdx».add(«getVarName (p, "paramVarName", "_" + varIdx + "_" +it.counter1)»);
 		«ENDFOREACH-»
 		«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»Invoker.invokeMethod (mtd, «method.name»_params_«varIdx», «static», _ctx, «nullIfFirstParamIsNull», firstParamIsThis_«varIdx», «pos.buildSourcePos()»)
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR NewLocalVarDefExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR NewLocalVarDefExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-		«EXPAND compileExpression (getVarName(defExpression, "varDefExpr", "_" + varIdx), "Object", true, resource) FOR defExpression-»
+		«EXPAND compileExpression (getVarName(defExpression, "varDefExpr", "_" + varIdx), "Object", true, resource, importedRes) FOR defExpression-»
         _ctx.getLocalVarContext().getLocalVars().put («localVarName», «getVarName(defExpression, "varDefExpr", "_" + varIdx)»);
         if (_ctx.isLogStacktrace())
             _ctx.getStacktrace().add (new StacktraceEntry («pos.buildSourcePos()», _ctx));
         try {
-        	«EXPAND compileExpression (getVarName (innerExpression, "newLocalVarDefExpr", "_inner_"+varIdx), "Object", true, resource ) FOR innerExpression-»
+        	«EXPAND compileExpression (getVarName (innerExpression, "newLocalVarDefExpr", "_inner_"+varIdx), "Object", true, resource, importedRes) FOR innerExpression-»
         	«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»«getVarName (innerExpression, "newLocalVarDefExpr", "_inner_"+varIdx)»;
         }
         finally {
@@ -269,10 +270,10 @@
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR OrExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR OrExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-		«EXPAND compileExpression (getVarName (left, "leftVarName", "_" +varIdx), "Boolean", true, resource) FOR left-»
-		«EXPAND compileExpression (getVarName (right, "rightVarName", "_" +varIdx), "Boolean", true, resource) FOR right-»
+		«EXPAND compileExpression (getVarName (left, "leftVarName", "_" +varIdx), "Boolean", true, resource, importedRes) FOR left-»
+		«EXPAND compileExpression (getVarName (right, "rightVarName", "_" +varIdx), "Boolean", true, resource, importedRes) FOR right-»
 		if (leftVarName_«varIdx» || rightVarName_«varIdx»)
 			«IF declareResultVar»Boolean «ENDIF»«resultVarName» = Boolean.TRUE;
 		else
@@ -280,34 +281,34 @@
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR PropertyOnCollectionExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR PropertyOnCollectionExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-        «EXPAND compileExpression (getVarName (innerExpression, "coll", "_"+varIdx), "Object", true, resource ) FOR innerExpression-»
+        «EXPAND compileExpression (getVarName (innerExpression, "coll", "_"+varIdx), "Object", true, resource, importedRes) FOR innerExpression-»
         «IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»PropertyAccessor.propertyOnCollection(«getVarName (innerExpression, "coll", "_"+varIdx)», "«propertyName»", _ctx, «pos.buildSourcePos()»);
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR PropertyOnObjectExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR PropertyOnObjectExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-		«EXPAND compileExpression (innerExpression.getVarName ("innerPropertyOnObjectExpr", "_" + varIdx), "Object", true, resource) FOR innerExpression-»
+		«EXPAND compileExpression (innerExpression.getVarName ("innerPropertyOnObjectExpr", "_" + varIdx), "Object", true, resource, importedRes) FOR innerExpression-»
        	«IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»PropertyAccessor.propertyOnObject(«innerExpression.getVarName ("innerPropertyOnObjectExpr", "_" + varIdx)», "«propertyName»", _ctx, «pos.buildSourcePos()»);
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR PropertyOnWhateverExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR PropertyOnWhateverExpression-»
 	«LET getNextVarIdx() AS varIdx-»
-		«EXPAND compileExpression (innerExpression.getVarName("innerPropertyExpr", "_" + varIdx),"Object", true, resource) FOR innerExpression-»
+		«EXPAND compileExpression (innerExpression.getVarName("innerPropertyExpr", "_" + varIdx),"Object", true, resource, importedRes) FOR innerExpression-»
         «IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»PropertyAccessor.propertyOnWhatever(«innerExpression.getVarName("innerPropertyExpr", "_" + varIdx)», "«propertyName»", _ctx, «pos.buildSourcePos()»);
 	«ENDLET-»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR RegisterAdviceExpression-»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR RegisterAdviceExpression-»
 	«LET getNextVarIdx() AS varIdx»
-		«EXPAND compileAdvice (advice.getVarName ("advVarName", "_" +varIdx), resource) FOR advice»
+		«EXPAND compileAdvice (advice.getVarName ("advVarName", "_" +varIdx), resource, importedRes) FOR advice»
         final AdviceContext oldContext_«varIdx» = _ctx.getAdviceContext();
         _ctx.setAdviceContext (_ctx.getAdviceContext ().copyWithAdvice (_advice));
         try {
-			«EXPAND compileExpression (innerExpression.getVarName("innerRegisterAdviceExpr", "_" + varIdx), "Object", true, resource) FOR innerExpression»
+			«EXPAND compileExpression (innerExpression.getVarName("innerRegisterAdviceExpr", "_" + varIdx), "Object", true, resource, importedRes) FOR innerExpression»
             «IF declareResultVar»«resultType.getResultType()» «ENDIF»«resultVarName» = «resultType.getResultType().cast()»«innerExpression.getVarName("innerRegisterAdviceExpr", "_" + varIdx)»;
         }
         finally {
@@ -316,14 +317,14 @@
 	«ENDLET»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR SequenceExpression»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR SequenceExpression»
 	«LET getNextVarIdx() AS varIdx»
 		«IF inner.size > 0 -» 
 	        «FOREACH inner AS e ITERATOR it-»
 	        	«IF it.firstIteration-»
-	        		«EXPAND compileExpression (resultVarName, resultType, true, resource) FOR e»
+	        		«EXPAND compileExpression (resultVarName, resultType, declareResultVar, resource, importedRes) FOR e»
 	        	«ELSE-»
-	        		«EXPAND compileExpression (resultVarName, resultType, false, resource) FOR e»
+	        		«EXPAND compileExpression (resultVarName, resultType, false, resource, importedRes) FOR e»
 	        	«ENDIF-»
 	        «ENDFOREACH»
         «ELSE-»
@@ -338,15 +339,15 @@
 	«ENDLET»
 «ENDDEFINE»
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR SetPropertyExpression»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR SetPropertyExpression»
 	«LET getNextVarIdx() AS varIdx»
-		«EXPAND compileExpression (resultVarName+"Inner", "Object", true, resource) FOR innerExpression»
+		«EXPAND compileExpression (resultVarName+"Inner", "Object", true, resource, importedRes) FOR innerExpression»
         if («resultVarName» == null) {
             _ctx.logNullDeRef («pos.buildSourcePos()»);
 			«EXPAND initVar (resultType, declareResultVar) FOR resultVarName»
         } else {
 	        final BackendType «resultVarName»InnerType = _ctx.getTypesystem().findType(«resultVarName»);
-			«EXPAND compileExpression (getVarName (resultVarName+"Inner"+propertyName.toFirstUpper()+"Value", "value", "_" + varIdx), "Object", true, resource) FOR valueExpr»
+			«EXPAND compileExpression (getVarName (resultVarName+"Inner"+propertyName.toFirstUpper()+"Value", "value", "_" + varIdx), "Object", true, resource, importedRes) FOR valueExpr»
 	        «resultVarName»InnerType.setProperty (_ctx, «resultVarName»Inner, "«propertyName»", «getVarName (resultVarName+"Inner"+propertyName.toFirstUpper()+"Value", "value", "_" + varIdx)»);
 	        «resultVarName» = «resultVarName»Inner;
         }
@@ -354,10 +355,10 @@
 «ENDDEFINE»
 
 
-«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource) FOR SwitchExpression»
+«DEFINE compileExpression(String resultVarName, String resultType, boolean declareResultVar, ParsedResource resource, List[NamedParsedResource] importedRes) FOR SwitchExpression»
 	«LET getNextVarIdx() AS varIdx»
 		«IF switchExpr != null-»
-        	«EXPAND compileExpression (getVarName (switchExpr, "switchVal", "_" +varIdx), "Object", true, resource) FOR switchExpr»
+        	«EXPAND compileExpression (getVarName (switchExpr, "switchVal", "_" +varIdx), "Object", true, resource, importedRes) FOR switchExpr»
         «ELSE-»
         	Object «getVarName (switchExpr, "switchVal", "_" +varIdx)» = Boolean.TRUE;
         «ENDIF-»
@@ -367,7 +368,7 @@
 			
 			@Override
 			protected Object apply(ExecutionContext ctx) {
-				«EXPAND compileExpression (c.firstAsObject.getVarName (resultVarName + "_CondResult", "_" +it.counter1), "Object", true, resource) FOR c.firstAsObject-»
+				«EXPAND compileExpression (c.firstAsObject.getVarName (resultVarName + "_CondResult", "_" +it.counter1), "Object", true, resource, importedRes) FOR c.firstAsObject-»
 				return «c.firstAsObject.getVarName (resultVarName + "_CondResult", "_" +it.counter1)»;
 			}
 		};
@@ -375,7 +376,7 @@
 			
 			@Override
 			protected Object apply(ExecutionContext ctx) {
-				«EXPAND compileExpression (c.secondAsObject.getVarName (resultVarName + "_YieldResult", "_" +it.counter1), "Object", true, resource) FOR c.secondAsObject-»
+				«EXPAND compileExpression (c.secondAsObject.getVarName (resultVarName + "_YieldResult", "_" +it.counter1), "Object", true, resource, importedRes) FOR c.secondAsObject-»
 				return «c.secondAsObject.getVarName (resultVarName + "_YieldResult", "_" +it.counter1)»;
 			}
 		};
@@ -395,7 +396,7 @@
 «ENDDEFINE»
 
 
-«DEFINE compileAdvice(String resultVarName, ParsedResource resource) FOR AroundAdvice»
+«DEFINE compileAdvice(String resultVarName, ParsedResource resource, List[NamedParsedResource] importedRes) FOR AroundAdvice»
 	«LET getNextVarIdx() AS varIdx»
 		AroundAdvice «resultVarName» = new AroundAdvice (bodyVarName_«varIdx», pointcutVarName_«varIdx», «cacheable»);
 		@M2tAroundAdvice (pointcut=«EXPAND compilePointcut (resource) FOR pointcut»)

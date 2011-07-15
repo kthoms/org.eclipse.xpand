@@ -157,7 +157,7 @@ public final class XpandBackendFacade {
         final FunctionDefContextInternal fdc = _middleEnd.createEmptyFdc();
         
         for (XpandDefinitionName xdn: referenced)
-            for (NamedFunction f: _middleEnd.getFunctions (xdn.getCanonicalTemplateFileName ()).getPublicFunctions())
+            for (NamedFunction f: _middleEnd.getFunctions (OldHelper.normalizeXpandResourceName(xdn.getCanonicalTemplateFileName ())).getPublicFunctions())
                 fdc.register (f, false);
         
         _middleEnd.getExecutionContext().setFunctionDefContext (fdc);

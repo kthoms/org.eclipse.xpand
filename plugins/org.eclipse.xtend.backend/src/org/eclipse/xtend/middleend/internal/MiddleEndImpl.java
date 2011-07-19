@@ -140,9 +140,17 @@ public final class MiddleEndImpl implements MiddleEnd {
             for (NamedFunction f: parseResource (importedReexp).getPublicFunctions())
                 result.register (f, true);
         
+        Set<String> nestedImports = new HashSet<String> ();
         for (ImportedResource ir: parseResource (resourceName).getImports()) {
             if (ir.isReexported())
                 continue;
+            
+            collectReexportedResources (nestedImports, new HashSet<String> (), ir.getResourceName());
+            for (String nestedImp : nestedImports) {
+            	if (! nestedImp.equals (resourceName))
+                    for (NamedFunction f: parseResource (nestedImp).getPublicFunctions ())
+                        result.register (f, false);
+            }
             
             for (NamedFunction f: parseResource (ir.getResourceName ()).getPublicFunctions ())
                 result.register (f, false);
@@ -182,8 +190,8 @@ public final class MiddleEndImpl implements MiddleEnd {
         for (ImportedResource candidate: parseResource (curResource).getImports()) {
             final String candidateName = candidate.getResourceName();
             
-//            if (! candidate.isReexported())
-//                continue;
+            if (! candidate.isReexported())
+                continue;
             
             if (visited.contains (candidateName))
                 continue;

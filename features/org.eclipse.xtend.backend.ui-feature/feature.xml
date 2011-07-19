@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xtend.backend.ui"
       label="M2T Backend UI-feature"
-      version="1.0.1.qualifier"
+      version="1.1.1.qualifier"
       provider-name="Eclipse">
 
    <description url="Eclipse Modeling Project">

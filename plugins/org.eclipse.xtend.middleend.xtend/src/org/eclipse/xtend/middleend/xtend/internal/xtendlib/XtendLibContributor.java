@@ -13,7 +13,9 @@ package org.eclipse.xtend.middleend.xtend.internal.xtendlib;
 
 import static org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor.classAsResource;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.functions.DuplicateAwareNamedFunctionCollection;
@@ -42,5 +44,13 @@ public class XtendLibContributor {
 
     public Collection<NamedFunction> getContributedFunctions () {
         return _functions.getFunctions();
+    }
+    
+	public Collection<String> getContributingResources () {
+    	return Arrays.asList (
+    			classAsResource (XtendBuiltinOperations.class), 
+    			classAsResource (XtendCollectionOperations.class), 
+    			classAsResource (XpandIsDeleteLine.class), 
+    			classAsResource (XtendGlobalVarOperations.class));
     }
 }

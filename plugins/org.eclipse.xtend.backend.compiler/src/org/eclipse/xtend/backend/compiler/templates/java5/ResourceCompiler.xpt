@@ -35,7 +35,7 @@
 			«IF ! imports.isEmpty»
 			@M2tImports (imports={
 			«FOREACH imports AS imp SEPARATOR ", "-»
-				@M2tImport (resource="«imp.resourceName»" «IF imp.reexported», reexported=true«ENDIF»)
+				@M2tImport (resource="«imp.resourceName.replaceAll("\\/","::")»" «IF imp.reexported», reexport=true«ENDIF»)
 			«ENDFOREACH-»
 			})
 			«ENDIF»

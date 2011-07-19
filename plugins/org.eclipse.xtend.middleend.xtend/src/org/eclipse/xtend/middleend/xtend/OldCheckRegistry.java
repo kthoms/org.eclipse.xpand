@@ -85,8 +85,7 @@ public class OldCheckRegistry implements LanguageSpecificMiddleEnd {
 
 		// register the XtendLib. Do this first so the extension can override
 		// functions
-		result.getPrivateFunctions().addAll(
-				new XtendLibContributor(_middleEnd).getContributedFunctions());
+        registerXtendLib (result);
 
 		result.getPublicFunctions().add(
 				new CheckConverter(ctx, typeConverter).createCheckFunction(_ts,
@@ -110,6 +109,14 @@ public class OldCheckRegistry implements LanguageSpecificMiddleEnd {
 			result.getAdvice().add(extensionFactory.create(a));
 
 		return result;
+	}
+
+	private void registerXtendLib(ParsedResource result) {
+		XtendLibContributor xtendLibContrib = new XtendLibContributor (_middleEnd);
+        for (String contrib : xtendLibContrib.getContributingResources())
+        	result.getImports().add (new ImportedResource (contrib, false));
+
+        result.getPrivateFunctions().addAll (xtendLibContrib.getContributedFunctions());
 	}
 
 	public void setMiddleEnd(MiddleEnd middleEnd) {

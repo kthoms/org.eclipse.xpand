@@ -36,6 +36,8 @@ import org.eclipse.xtend.middleend.xtend.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
 
+import static org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor.classAsResource;
+
 
 /**
  * This class manages the interdependent graph of parsed and converted Xpand files, allowing access to them by "compilation unit".
@@ -98,14 +100,8 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
         
         final TypeToBackendType typeConverter = new TypeToBackendType (_ts, ctx);
         final OldDefinitionConverter definitionFactory = new OldDefinitionConverter (ctx, typeConverter);
-        
-        // register the XtendLib. Do this first so the extension can override functions
-        for (NamedFunction f: new XtendLibContributor (_middleEnd).getContributedFunctions())
-            result.getPrivateFunctions().add (f);
-        
-        // register the XpandLib
-        for (NamedFunction f: new XpandLibContributor (_middleEnd).getContributedFunctions())
-        	result.getPrivateFunctions().add (f);
+
+        registerLibs (result);
         
         final Set<XpandDefinitionName> referenced = new HashSet<XpandDefinitionName> ();
         
@@ -129,6 +125,24 @@ public final class OldXpandRegistry implements LanguageSpecificMiddleEnd {
         
         return result;
     }
+
+	private void registerLibs(final ParsedResource result) {
+		// register the XtendLib. Do this first so the extension can override functions
+        XtendLibContributor xtendLibContrib = new XtendLibContributor (_middleEnd);
+        for (String contrib : xtendLibContrib.getContributingResources())
+        	result.getImports().add (new ImportedResource (contrib, false));
+        
+        for (NamedFunction f: xtendLibContrib.getContributedFunctions())
+            result.getPrivateFunctions().add (f);
+
+        // register the XpandLib
+        XpandLibContributor xpandLibContrib = new XpandLibContributor (_middleEnd);
+        for (String contrib : xpandLibContrib.getContributingResources())
+        	result.getImports().add (new ImportedResource (contrib, false));
+        
+        for (NamedFunction f: new XpandLibContributor (_middleEnd).getContributedFunctions())
+        	result.getPrivateFunctions().add (f);
+	}
 }
 
 

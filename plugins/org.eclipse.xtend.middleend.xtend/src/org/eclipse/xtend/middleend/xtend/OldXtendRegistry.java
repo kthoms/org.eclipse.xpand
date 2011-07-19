@@ -97,7 +97,7 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
             ext.init (ctx);
         
         // register the XtendLib. Do this first so the extension can override functions
-        result.getPrivateFunctions().addAll (new XtendLibContributor (_middleEnd).getContributedFunctions());
+        registerXtendLib (result);
         
         result.getPrivateFunctions().add (new CheckConverter (ctx, typeConverter).createCheckFunction(_ts, extensionFile));
         
@@ -117,6 +117,14 @@ public final class OldXtendRegistry implements LanguageSpecificMiddleEnd {
         
         return result;
     }
+
+	private void registerXtendLib(final ParsedResource result) {
+		XtendLibContributor xtendLibContrib = new XtendLibContributor (_middleEnd);
+        for (String contrib : xtendLibContrib.getContributingResources())
+        	result.getImports().add (new ImportedResource (contrib, false));
+
+        result.getPrivateFunctions().addAll (new XtendLibContributor (_middleEnd).getContributedFunctions());
+	}
 }
 
 

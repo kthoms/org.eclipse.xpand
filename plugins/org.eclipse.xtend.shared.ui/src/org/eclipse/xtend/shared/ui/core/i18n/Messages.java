@@ -14,7 +14,7 @@ package org.eclipse.xtend.shared.ui.core.i18n;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.internal.xtend.editor.outlineview.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.xtend.shared.ui.editor.outlineview.messages"; //$NON-NLS-1$
 
 	public static String AbstractXtendXpandContentOutlinePage_1;
 

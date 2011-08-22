@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.xpand.support.cdt;singleton:=true
 Bundle-Version: 1.0.1.qualifier
+Bundle-Localization: plugin
 Import-Package: org.apache.commons.logging,
  org.eclipse.cdt.core.dom.ast,
  org.eclipse.cdt.core.dom.ast.gnu.cpp,

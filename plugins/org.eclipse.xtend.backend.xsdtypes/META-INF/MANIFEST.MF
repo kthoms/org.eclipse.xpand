@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtend Backend XSD types
+Bundle-Name: Xtend Backend XSD Types
 Bundle-SymbolicName: org.eclipse.xtend.backend.xsdtypes
 Bundle-Version: 1.0.1.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

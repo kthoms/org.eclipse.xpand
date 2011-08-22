@@ -1,9 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: M2T Backend UI
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.xtend.backend.ui;singleton:=true
 Bundle-Version: 1.0.1.qualifier
 Bundle-Activator: org.eclipse.xtend.backend.ui.Activator
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.xtend.backend.compiler;bundle-version="0.8.0",
@@ -19,6 +21,5 @@ Require-Bundle: org.eclipse.ui,
  org.junit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Eclipse Modeling Project
 Import-Package: org.apache.commons.logging
 Export-Package: org.eclipse.xtend.backend.ui.middleend

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtend Backend tests
+Bundle-Name: Xtend Backend Tests
 Bundle-SymbolicName: org.eclipse.xtend.backend.test
 Bundle-Version: 1.0.1.qualifier
 Fragment-Host: org.eclipse.xtend.backend

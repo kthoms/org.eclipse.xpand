@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xpand Middleend tests
+Bundle-Name: Xpand Middleend Tests
 Bundle-SymbolicName: org.eclipse.xtend.middleend.xpand.test
 Bundle-Version: 1.0.1.qualifier
 Require-Bundle: org.eclipse.xtend.backend;bundle-version="1.0.1",

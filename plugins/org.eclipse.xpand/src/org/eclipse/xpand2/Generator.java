@@ -69,8 +69,14 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 
 	private boolean automaticHyphens = false;
 
+	/**
+	 * @deprecated
+	 */
 	private String collectProfileSummary = null;
 
+	/**
+	 * @deprecated For profiling use the Profiler Component instead
+	 */
 	private String verboseProfileFilename = null;
 
 	private Output output = null;
@@ -80,6 +86,7 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 	 * 
 	 * @param summary
 	 *            the summary
+	 * @deprecated
 	 */
 	public void setCollectProfileSummary(final String summary) {
 		collectProfileSummary = summary;

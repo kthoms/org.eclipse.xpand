@@ -31,6 +31,7 @@ import org.eclipse.internal.xpand2.ast.Definition;
 import org.eclipse.internal.xpand2.ast.ExpandStatement;
 import org.eclipse.internal.xpand2.ast.Template;
 import org.eclipse.internal.xpand2.parser.XpandParseFacade;
+import org.eclipse.internal.xpand2.pr.ProtectedRegionResolver;
 import org.eclipse.internal.xpand2.pr.ProtectedRegionResolverImpl;
 import org.eclipse.internal.xtend.util.ProfileCollector;
 import org.eclipse.internal.xtend.xtend.parser.ParseException;
@@ -288,14 +289,7 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 			out.addOutlet(outlet);
 		}
 
-		ProtectedRegionResolverImpl prs = null;
-		if (prSrcPaths != null) {
-			prs = new ProtectedRegionResolverImpl();
-			prs.setDefaultExcludes(prDefaultExcludes);
-			prs.setIgnoreList(prExcludes);
-			prs.setSrcPathes(prSrcPaths);
-			prs.setFileEncoding(fileEncoding);
-		}
+		ProtectedRegionResolver prs = getProtectedRegionResolver();
 
 		ResourceManager resourceManager = getResourceManager();
 		
@@ -364,6 +358,18 @@ public class Generator extends AbstractExpressionsUsingWorkflowComponent {
 				log.warn("problem closing profile log file", exc);
 			}
 		}
+	}
+	
+	protected ProtectedRegionResolver getProtectedRegionResolver () {
+		ProtectedRegionResolverImpl prs = null;
+		if (prSrcPaths != null) {
+			prs = new ProtectedRegionResolverImpl();
+			prs.setDefaultExcludes(prDefaultExcludes);
+			prs.setIgnoreList(prExcludes);
+			prs.setSrcPathes(prSrcPaths);
+			prs.setFileEncoding(fileEncoding);
+		}
+		return prs;
 	}
 
 	private final List<Outlet> outlets = new ArrayList<Outlet>(2);

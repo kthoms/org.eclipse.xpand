@@ -25,9 +25,13 @@ import org.eclipse.xtend.typesystem.emf.Mapping;
  * <p>
  *
  * <pre>
+ *  	MWE1:
  *  	&lt;bean class=&quot;org.eclipse.internal.xtend.uml2.Setup&quot;&gt;
  *  		&lt;standardUML2Setup value=&quot;true&quot;/&gt;
  * 	&lt;/bean&gt;
+ * 
+ *  	MWE2
+ *  	bean = org.eclipse.internal.xtend.uml2.Setup { standardUML2Setup = true }
  * </pre>
  *
  * @author Sven Efftinge

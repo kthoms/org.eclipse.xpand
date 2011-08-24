@@ -191,4 +191,13 @@ public class ExtensionParserTest extends TestCase {
 		assertEquals(11,e2.getStart());
 		assertEquals(21,e2.getEnd());
 	}
+	
+	/**
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=345302
+	 */
+	public void testReal () throws Exception {
+		parse("Real real1(): 0.10;");
+		// bug#345302
+		parse("Real real2(): 0.01;");
+	}
 }

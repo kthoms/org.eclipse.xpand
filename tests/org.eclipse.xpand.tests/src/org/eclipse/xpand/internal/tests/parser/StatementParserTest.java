@@ -136,4 +136,17 @@ public class StatementParserTest extends TestCase {
     	assertEquals(defineStart.length()+ifStmnt.length()-1,statement.getEnd());
 	}
 
+	/**
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=345302
+	 */
+    public final void testReal() throws Exception {
+    	StringBuilder b = new StringBuilder();
+    	b.append(tag("DEFINE test FOR ecore::EClass"));
+    	b.append(tag("0.10"));
+    	b.append(tag("0.01"));
+    	b.append(tag("ENDDEFINE"));
+		final Template t = parse(b.toString());
+    	assertEquals(0,t.getStart());
+    	assertEquals(b.length(),t.getEnd());
+    }
 }

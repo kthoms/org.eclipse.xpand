@@ -59,13 +59,13 @@ public class MarkerObject {
 
 	@Override
 	public int hashCode() {
-		final int prime = 15;
+		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result + ((issueType == null) ? 0 : issueType.hashCode());
 		result = prime * result + end;
-		result = prime * result + start;
+		result = prime * result + ((issueType == null) ? 0 : issueType.hashCode());
+		result = prime * result + ((message == null) ? 0 : message.hashCode());
 		result = prime * result + severity;
+		result = prime * result + start;
 		return result;
 	}
 
@@ -73,13 +73,30 @@ public class MarkerObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj instanceof MarkerObject) {
-			MarkerObject other = (MarkerObject) obj;
-			if (other.end == end && other.start == start && other.severity == severity && other.message.equals(message)
-					&& other.issueType.equals(issueType))
-				return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MarkerObject other = (MarkerObject) obj;
+		if (end != other.end)
+			return false;
+		if (issueType == null) {
+			if (other.issueType != null)
+				return false;
 		}
-		return false;
+		else if (!issueType.equals(other.issueType))
+			return false;
+		if (message == null) {
+			if (other.message != null)
+				return false;
+		}
+		else if (!message.equals(other.message))
+			return false;
+		if (severity != other.severity)
+			return false;
+		if (start != other.start)
+			return false;
+		return true;
 	}
 
 	public void setIssueType(String issueType) {

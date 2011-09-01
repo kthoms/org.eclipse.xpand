@@ -370,7 +370,7 @@ identifier returns [Identifier r] :
 	;
 // LEXER
 
-IntLiteral : ('0' | '1'..'9' '0'..'9'*) ;
+IntLiteral : '0'..'9'+ ;
 
 StringLiteral
     :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
@@ -464,7 +464,7 @@ TEXT :
 
 // a dummy rule to force vocabulary to be all characters (except special
 // ones that ANTLR uses internally (0 to 2) and the guillemot characters
-fragment
-VOCAB :
-	('\3'..'\u00aa'|'\u00ac'..'\u00ba'|'\u00bc'..'\ufffe')
-;
+//fragment
+//VOCAB :
+//	('\3'..'\u00aa'|'\u00ac'..'\u00ba'|'\u00bc'..'\ufffe')
+//;

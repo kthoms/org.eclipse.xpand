@@ -23,7 +23,7 @@ import java.util.Stack;
  * This class serves as a ThreadLocal collector for profiling information.
  * 
  * @author arno
- *
+ * @deprecated Will be removed, since Profiler Component can be used instead
  */
 public class ProfileCollector {
     private ProfileCollector () {}

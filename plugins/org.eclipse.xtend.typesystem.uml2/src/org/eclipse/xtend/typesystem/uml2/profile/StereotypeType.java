@@ -149,10 +149,12 @@ public class StereotypeType extends AbstractTypeImpl {
 									if (value instanceof EObject) {
 										final EObject dynObject = (EObject) value;
 										final EClass dynClass = dynObject.eClass();
-										final EStructuralFeature baseClassFeature = dynClass.getEStructuralFeature("base_Class");
-
-										if(baseClassFeature != null){
-											return dynObject.eGet(baseClassFeature,true);
+										final EList<EStructuralFeature> eStructuralFeatures = dynClass.getEAllStructuralFeatures();
+										
+										for (EStructuralFeature feature : eStructuralFeatures) {
+											if(feature.getName().startsWith("base_")) {
+												return dynObject.eGet(feature,true);
+											}
 										}
 									}
 									return null;

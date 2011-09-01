@@ -1,6 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: M2T Xpand Backend Compiler
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.xtend.backend.compiler
 Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.eclipse.xtend.backend.compiler.Activator

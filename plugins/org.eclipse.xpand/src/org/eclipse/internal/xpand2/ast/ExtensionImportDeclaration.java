@@ -50,7 +50,7 @@ public class ExtensionImportDeclaration extends ImportDeclaration {
 				if (!noErrors) {
 					final String msg = "Imported extension resource " + this.getImportString().getValue()
 					+ " has errors.";
-					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this));
+					issues.add(new AnalysationIssue(AnalysationIssue.INTERNAL_ERROR, msg, this, true));
 				}
 			}
 		}

@@ -154,7 +154,11 @@ public final class XpandBackendFacade {
         final OldDefinitionConverter defConverter = new OldDefinitionConverter (ctx, new TypeToBackendType (_middleEnd.getTypesystem(), ctx));
         final ExpressionBase converted = defConverter.convertStatementSequence (statements, tpl, referenced, null);
 
-        final FunctionDefContextInternal fdc = _middleEnd.createEmptyFdc();
+        final FunctionDefContextInternal fdc;
+        if (_middleEnd.getExecutionContext() != null && _middleEnd.getExecutionContext().getFunctionDefContext() != null)
+        	fdc = (FunctionDefContextInternal)_middleEnd.getExecutionContext().getFunctionDefContext();
+        else 
+        	fdc = _middleEnd.createEmptyFdc();
         
         for (XpandDefinitionName xdn: referenced)
             for (NamedFunction f: _middleEnd.getFunctions (OldHelper.normalizeXpandResourceName(xdn.getCanonicalTemplateFileName ())).getPublicFunctions())

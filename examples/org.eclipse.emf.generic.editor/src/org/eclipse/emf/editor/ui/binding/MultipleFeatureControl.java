@@ -89,7 +89,7 @@ public class MultipleFeatureControl extends Composite {
 				//TODO (dennis) load choice of values in a runnable with status bar
 				dialog = new FeatureEditorDialog(parent.getShell(), new CachedLabelProvider(labelProvider), object,
 						feature.getEType(), oldValue, "Display Name", proposalcreator.proposals(feature), false,
-						feature.isOrdered());
+						feature.isOrdered(), feature.isUnique());
 				dialog.setBlockOnOpen(true);
 				if (dialog.open() == Window.OK) {
 					setSelection(new StructuredSelection(dialog.getResult().toArray()));

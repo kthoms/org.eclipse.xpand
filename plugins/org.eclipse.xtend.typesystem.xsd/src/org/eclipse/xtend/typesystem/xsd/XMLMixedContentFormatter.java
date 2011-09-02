@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 public class XMLMixedContentFormatter {
 	protected final static EStructuralFeature XML_COMMENT = XMLTypePackage.Literals.XML_TYPE_DOCUMENT_ROOT__COMMENT;
 	protected final static EStructuralFeature XML_TEXT = XMLTypePackage.Literals.XML_TYPE_DOCUMENT_ROOT__TEXT;
+	private final static String LINESEP = System.getProperty("line.separator");
 
 	protected boolean formatComments = true;
 
@@ -64,7 +65,7 @@ public class XMLMixedContentFormatter {
 
 		if (needsFinal) {
 			int last = map.size() - 1;
-			String pref = "\n" + getPrefix(prefix - 1);
+			String pref = LINESEP + getPrefix(prefix - 1);
 			if (map.get(last).getEStructuralFeature() == XML_TEXT)
 				map.setValue(last, trimRight(map.getValue(last)) + pref);
 			else
@@ -79,7 +80,7 @@ public class XMLMixedContentFormatter {
 					&& e.getValue() instanceof String) {
 				String cmt = beautifyString(e.getValue().toString()).trim();
 				if (needsWrap(prefix, cmt))
-					cmt = wordWrap(prefix + 1, cmt) + "\n" + getPrefix(prefix);
+					cmt = wordWrap(prefix + 1, cmt) + LINESEP + getPrefix(prefix);
 				else
 					cmt = " " + cmt + " ";
 				map.setValue(map.indexOf(e), cmt);
@@ -93,7 +94,7 @@ public class XMLMixedContentFormatter {
 			if (processFeature(e.getEStructuralFeature())
 					&& e.getEStructuralFeature() != XML_TEXT) {
 				if (prefix > 0)
-					insertBefore(map, e, "\n" + getPrefix(prefix));
+					insertBefore(map, e, LINESEP + getPrefix(prefix));
 				needsFinal = true;
 			}
 		}
@@ -207,12 +208,12 @@ public class XMLMixedContentFormatter {
 		int old = 0, pos = width;
 		StringBuffer buf = new StringBuffer();
 		while ((pos = str.indexOf(' ', pos)) > -1) {
-			buf.append("\n" + getPrefix(prefix) + str.substring(old, pos));
+			buf.append(LINESEP + getPrefix(prefix) + str.substring(old, pos));
 			old = pos + 1;
 			pos += width;
 		}
 		if (old < str.length())
-			buf.append("\n" + getPrefix(prefix) + str.substring(old));
+			buf.append(LINESEP + getPrefix(prefix) + str.substring(old));
 		return buf.toString();
 	}
 

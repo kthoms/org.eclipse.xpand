@@ -56,7 +56,7 @@ public class MultipleFeatureControl extends Composite {
 
 	private FeatureEditorDialog dialog;
 	private final ILabelProvider labelProvider;
-	private ISelectionProvider inernalProvider = new InternalSelectionProvider();
+	private ISelectionProvider internalProvider = new InternalSelectionProvider();
 
 	private Label label;
 
@@ -103,7 +103,7 @@ public class MultipleFeatureControl extends Composite {
 	}
 
 	protected void setSelection(ISelection structuredSelection) {
-		this.inernalProvider.setSelection(structuredSelection);
+		this.internalProvider.setSelection(structuredSelection);
 	}
 
 	private List<?> unwrapSelection() {
@@ -121,7 +121,7 @@ public class MultipleFeatureControl extends Composite {
 	}
 
 	private ISelection getSelection() {
-		return this.inernalProvider.getSelection();
+		return this.internalProvider.getSelection();
 	}
 
 	/*
@@ -205,7 +205,7 @@ public class MultipleFeatureControl extends Composite {
 	}
 
 	public ISelectionProvider getInternalSelectionProvider() {
-		return inernalProvider;
+		return internalProvider;
 	}
 
 	public void quietClearSelection() {

@@ -83,13 +83,15 @@ public class MultipleFeatureControl extends Composite {
 		button.setLayoutData(new GridData());
 		button.addSelectionListener(new SelectionAdapter() {
 
+			//We must support emf 2.5 deprecation comes with 2.6
+			@SuppressWarnings("deprecation")
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				List<?> oldValue = unwrapSelection();
 				//TODO (dennis) load choice of values in a runnable with status bar
 				dialog = new FeatureEditorDialog(parent.getShell(), new CachedLabelProvider(labelProvider), object,
 						feature.getEType(), oldValue, "Display Name", proposalcreator.proposals(feature), false,
-						feature.isOrdered(), feature.isUnique());
+						feature.isOrdered());
 				dialog.setBlockOnOpen(true);
 				if (dialog.open() == Window.OK) {
 					setSelection(new StructuredSelection(dialog.getResult().toArray()));

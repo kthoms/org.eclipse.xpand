@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.xtend.typesystem.uml2;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.mapping.ecore2xml.Ecore2XMLPackage;
@@ -38,7 +36,6 @@ import org.eclipse.xtend.typesystem.emf.Mapping;
  * @author Karsten Thoms (docs)
  */
 public class Setup extends org.eclipse.xtend.typesystem.emf.Setup {
-	private static Log LOG = LogFactory.getLog(Setup.class);
 	//
 	private static final String UML2_200_NS_URI = "http://www.eclipse.org/uml2/2.0.0/UML";
 	private static final String UML2_210_NS_URI = "http://www.eclipse.org/uml2/2.1.0/UML";

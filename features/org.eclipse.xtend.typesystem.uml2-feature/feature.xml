@@ -22,10 +22,6 @@
    </url>
 
    <requires>
-      <import plugin="org.eclipse.uml2.uml"/>
-      <import plugin="org.eclipse.uml2.uml.ecore.importer"/>
-      <import plugin="org.eclipse.uml2.uml.resources"/>
-      <import plugin="org.eclipse.emf.mapping.ecore2xml"/>
       <import plugin="org.eclipse.xtend"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.emf.mwe.core"/>
@@ -35,6 +31,10 @@
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.xtend.shared.ui"/>
+      <import plugin="org.eclipse.uml2.uml" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.uml2.uml.ecore.importer" version="2.3.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.uml2.uml.resources" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.mapping.ecore2xml"/>
    </requires>
 
    <plugin

@@ -125,7 +125,7 @@ public class UML2Writer extends AbstractWorkflowComponent {
 				"epx", factory);
 
 		if (slotContent instanceof Collection<?>) {
-			Iterator it = ((Collection) slotContent).iterator();
+			Iterator<?> it = ((Collection<Object>) slotContent).iterator();
 			while (it.hasNext()) {
 				Object o = it.next();
 				if (o instanceof Package) {
@@ -138,7 +138,6 @@ public class UML2Writer extends AbstractWorkflowComponent {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private void saveModel(Package model, ResourceSet rsImpl) {
 		// compute file name, e.g. './src-gen/myModel.uml"
 		String modelFile = destinationFolder + outPath + model.getName() + "."+getUMLFileExtension();
@@ -148,7 +147,7 @@ public class UML2Writer extends AbstractWorkflowComponent {
 		Resource r = rsImpl.createResource(fileURI);
 		r.getContents().add(model);
 		// copy the contents
-		for (Iterator allContents = UML2Util.getAllContents(model, true, false); allContents.hasNext();) {
+		for (Iterator<?> allContents = UML2Util.getAllContents(model, true, false); allContents.hasNext();) {
 			EObject eObject = (EObject) allContents.next();
 			if (eObject instanceof Element) {
 				r.getContents().addAll(((Element) eObject).getStereotypeApplications());

@@ -44,7 +44,7 @@ import org.eclipse.xtend.typesystem.Type;
 
 public class StereotypeType extends AbstractTypeImpl {
 
-    private Log log = LogFactory.getLog(getClass());
+    private static final Log LOG = LogFactory.getLog(StereotypeType.class);
 
     Stereotype stereoType;
 
@@ -71,13 +71,13 @@ public class StereotypeType extends AbstractTypeImpl {
                         type = (org.eclipse.uml2.uml.Type) EcoreUtil.resolve(proxy, p);
 
                         if (type.eIsProxy()) {
-                            log.error("Couldn't resolve proxy under " + uri);
+                            LOG.error("Couldn't resolve proxy under " + uri);
                         }
                     }
                     String fqn = getFullName(type);
                     if (fqn == null) {
-                        log.error("element : " + p.getQualifiedName());
-                        log.error("Type : " + type.getQualifiedName());
+                        LOG.error("element : " + p.getQualifiedName());
+                        LOG.error("Type : " + type.getQualifiedName());
                     }
                     if (fqn != null) {
                         // We cannot use typeSystem.getTypeForName here, since
@@ -118,9 +118,9 @@ public class StereotypeType extends AbstractTypeImpl {
 												// custom datatypes
 												// see Bug#185033
 												if (value instanceof EList) {
-													final EList eList = (EList) value;
+													final EList<Object> eList = (EList<Object>) value;
 													final Collection<Object> values = new ArrayList<Object>();
-													for (Iterator iterator = eList.iterator(); iterator.hasNext();) {
+													for (Iterator<Object> iterator = eList.iterator(); iterator.hasNext();) {
 														final Object dynObject = iterator.next();
 														final Object dynValue = getDynamicValue(dynObject);
 														if(dynValue != null){
@@ -164,7 +164,7 @@ public class StereotypeType extends AbstractTypeImpl {
                             };
                             features.add(prop);
                         } else {
-                            log.error("Couldn't find type for " + fqn);
+                            LOG.error("Couldn't find type for " + fqn);
                         }
                     }
                 }
@@ -215,7 +215,7 @@ public class StereotypeType extends AbstractTypeImpl {
                 String superTypeName = getFullName(classifier);
                 Type t = getTypeSystem().getTypeForName(superTypeName);
                 if (t == null) {
-                    log.warn("Couldn't resolve super type " + superTypeName);
+                    LOG.warn("Couldn't resolve super type " + superTypeName);
                 } else {
                     superTypes.add(t);
                 }
@@ -235,8 +235,8 @@ public class StereotypeType extends AbstractTypeImpl {
         } else if (object instanceof EClassifier) {
             return getFullyQualifiedName((EClassifier) object);
         }
-        if (log.isWarnEnabled()) {
-            log.warn("Cannot resolve names for " + object.getClass().getName());
+        if (LOG.isWarnEnabled()) {
+            LOG.warn("Cannot resolve names for " + object.getClass().getName());
         }
         return null;
     }

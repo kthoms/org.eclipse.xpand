@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.xtend.backend.uml2types
 Bundle-Version: 1.0.1.qualifier
 Require-Bundle: org.eclipse.xtend.backend,
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml;bundle-version="3.0.0"
 Bundle-Localization: plugin
 Import-Package: org.apache.commons.logging
 Export-Package: org.eclipse.xtend.backend.types.uml2,

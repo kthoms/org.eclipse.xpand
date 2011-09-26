@@ -39,6 +39,7 @@ public class Setup extends org.eclipse.xtend.typesystem.emf.Setup {
 	//
 	private static final String UML2_200_NS_URI = "http://www.eclipse.org/uml2/2.0.0/UML";
 	private static final String UML2_210_NS_URI = "http://www.eclipse.org/uml2/2.1.0/UML";
+	private static final String UML2_300_NS_URI = "http://www.eclipse.org/uml2/3.0.0/UML";
 	/**
 	 * Constructor. Registers the UMLPackage.
 	 *
@@ -77,8 +78,15 @@ public class Setup extends org.eclipse.xtend.typesystem.emf.Setup {
 			// Register old UML2 URIs which is not done in Java Application mode. Running Eclipse this
 			// part is done automatically using the eclipse extension registry and EMF metamodel Extension
 			// which is generated for all EPackages
-			EPackage.Registry.INSTANCE.put(UML2_200_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
-			EPackage.Registry.INSTANCE.put(UML2_210_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
+			if (EPackage.Registry.INSTANCE.get(UML2_200_NS_URI)==null) {
+				EPackage.Registry.INSTANCE.put(UML2_200_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
+			}
+			if (EPackage.Registry.INSTANCE.get(UML2_210_NS_URI)==null) {
+				EPackage.Registry.INSTANCE.put(UML2_210_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
+			}
+			if (EPackage.Registry.INSTANCE.get(UML2_300_NS_URI)==null) {
+				EPackage.Registry.INSTANCE.put(UML2_300_NS_URI, EPackage.Registry.INSTANCE.get(UMLPackage.eINSTANCE.getNsURI()));
+			}
 			Ecore2XMLPackage.eINSTANCE.getEClassifiers();
 			uri = EcoreUtil2.getURI("model/UML2_2_UML.ecore2xml");
 			if (uri != null) {

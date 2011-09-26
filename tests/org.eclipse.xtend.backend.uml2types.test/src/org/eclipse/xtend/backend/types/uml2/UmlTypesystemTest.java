@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -28,7 +29,6 @@ import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
-import org.eclipse.xtend.backend.types.builtin.BooleanType;
 import org.eclipse.xtend.backend.types.builtin.ListType;
 import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
@@ -45,12 +45,12 @@ import org.junit.Test;
 
 @SuppressWarnings("restriction")
 public class UmlTypesystemTest {
-
 	private Collection<Profile> _profiles = new ArrayList<Profile> ();
 	private Profile _simpleEntityProfile;
 
 	@Before
 	public void setup () {
+		new Setup().setStandardUML2Setup(true);
 		Profile p = UML2Util2.loadProfile ("model/simpleEntity.profile.uml");
 		p.define ();
 		_profiles.add (p);
@@ -109,9 +109,11 @@ public class UmlTypesystemTest {
 		BackendType fieldType = cts.findType (aField);
 		assertTrue (fieldType instanceof StereotypeType);
 		assertEquals ("simpleEntity::Field", fieldType.getName ());
-		org.eclipse.xtend.backend.common.Property stp = (org.eclipse.xtend.backend.common.Property)fieldType.getProperties (ctx). get("isLazy");
+		
+		org.eclipse.xtend.backend.common.Property stp = (org.eclipse.xtend.backend.common.Property)entityType.getProperties (ctx). get("idGenerator");
 		BackendType stpType = stp.getType (cts);
-		assertTrue (stpType instanceof BooleanType);
+		assertTrue (stpType instanceof EClassType);
+		assertEquals("uml::Enumeration", stpType.getName());
 		
 		BackendType fieldSuperType = fieldType.getSuperTypes ().iterator ().next ();
 		assertTrue (fieldSuperType instanceof EClassType);

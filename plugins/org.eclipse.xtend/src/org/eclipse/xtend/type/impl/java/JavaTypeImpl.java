@@ -17,6 +17,10 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.internal.xtend.type.baseimpl.types.BooleanTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.IntegerTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.RealTypeImpl;
+import org.eclipse.internal.xtend.type.baseimpl.types.StringTypeImpl;
 import org.eclipse.xtend.typesystem.AbstractTypeImpl;
 import org.eclipse.xtend.typesystem.Feature;
 import org.eclipse.xtend.typesystem.Type;
@@ -86,8 +90,17 @@ public class JavaTypeImpl extends AbstractTypeImpl {
 
     @Override
     protected boolean internalIsAssignableFrom(final Type t) {
-        if (t instanceof JavaTypeImpl)
+    	if (t instanceof JavaTypeImpl){
             return clazz.isAssignableFrom(((JavaTypeImpl) t).clazz);
+        }else if (t instanceof StringTypeImpl){
+        	return clazz.isAssignableFrom(String.class);
+        }else if(t instanceof BooleanTypeImpl){
+        	return clazz.isAssignableFrom(Boolean.class);
+        }else if(t instanceof IntegerTypeImpl){
+        	return clazz.isAssignableFrom(Integer.class);
+        }else if(t instanceof RealTypeImpl){
+        	return clazz.isAssignableFrom(Double.class) || clazz.isAssignableFrom(Float.class);
+        }
         return false;
     }
 

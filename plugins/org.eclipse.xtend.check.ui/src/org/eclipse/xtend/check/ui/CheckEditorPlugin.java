@@ -15,6 +15,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.check.ui.editor.PreferencesConstants;
 import org.eclipse.xtend.check.ui.editor.color.ColorProvider;
@@ -54,8 +55,10 @@ public class CheckEditorPlugin extends AbstractUIPlugin {
     @Override
     public void start(final BundleContext context) throws Exception {
         super.start(context);
-        Activator.getDefault();
-        PreferencesConstants.initializeDefaultValues(getPreferenceStore());
+		if (PlatformUI.isWorkbenchRunning()) {
+			Activator.getDefault();
+			PreferencesConstants.initializeDefaultValues(getPreferenceStore());
+		}
     }
 
     /**

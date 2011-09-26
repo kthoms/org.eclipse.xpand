@@ -13,6 +13,7 @@ package org.eclipse.xtend.ui;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.ui.editor.PreferencesConstants;
@@ -39,8 +40,10 @@ public class XtendEditorPlugin extends AbstractUIPlugin {
     @Override
     public void start(final BundleContext context) throws Exception {
         super.start(context);
-        Activator.getDefault();
-        PreferencesConstants.initializeDefaultValues(getPreferenceStore());
+		if (PlatformUI.isWorkbenchRunning()) {
+			Activator.getDefault();
+			PreferencesConstants.initializeDefaultValues(getPreferenceStore());
+		}
     }
 
     /**

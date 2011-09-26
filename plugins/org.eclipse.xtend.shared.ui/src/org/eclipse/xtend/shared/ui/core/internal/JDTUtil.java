@@ -123,6 +123,12 @@ public class JDTUtil {
 				if (root.getPath().isPrefixOf(file.getFullPath())) {
 					IPath shortOne = file.getFullPath().removeFirstSegments(
 							root.getPath().segmentCount());
+					if(shortOne.getDevice() != null){
+						int j = shortOne.toString().indexOf(Path.DEVICE_SEPARATOR);
+						if (j != -1) {
+							shortOne = new Path(shortOne.toString().substring(j + 1, shortOne.toString().length()));
+						}
+					}
 					String ns = shortOne.removeFileExtension().toString();
 					ns = patternSlash.matcher(ns).replaceAll("::");
 					return new ResourceID(ns, shortOne.getFileExtension());

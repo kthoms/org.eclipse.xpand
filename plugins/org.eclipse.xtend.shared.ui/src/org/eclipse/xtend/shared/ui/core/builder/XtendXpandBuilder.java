@@ -99,8 +99,7 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		}
 
 		private boolean isXtendXpandResource(final IResource resource) {
-			return resource instanceof IFile && extensions.contains(((IFile) resource).getFileExtension())
-					&& isOnJavaClassPath(resource);
+			return resource instanceof IFile && extensions.contains(((IFile) resource).getFileExtension());
 		}
 
 		public boolean visit(final IResource resource) {
@@ -139,13 +138,6 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 		}
 	}
 
-	boolean isOnJavaClassPath(final IResource resource) {
-		final IJavaProject jp = JavaCore.create(resource.getProject());
-		if (jp != null)
-			return jp.isOnClasspath(resource);
-		return false;
-	}
-
 	public static final String getBUILDER_ID() {
 		return Activator.getId() + ".xtendBuilder";
 	}
@@ -158,9 +150,8 @@ public class XtendXpandBuilder extends IncrementalProjectBuilder {
 	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int,
 	 * java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	protected IProject[] build(final int kind, final Map args, final IProgressMonitor monitor) throws CoreException {
+	protected IProject[] build(final int kind, @SuppressWarnings("rawtypes") final Map args, final IProgressMonitor monitor) throws CoreException {
 		toAnalyze = new HashSet<IXtendXpandResource>();
 		try {
 			if (kind == FULL_BUILD) {

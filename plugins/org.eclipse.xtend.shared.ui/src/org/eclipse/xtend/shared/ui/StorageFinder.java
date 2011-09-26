@@ -18,6 +18,8 @@ public interface StorageFinder {
 	
 	public int getPriority();
 	
+	public ResourceID findXtendXpandResourceID(IJavaProject project, IStorage file);
+	
 	public IStorage findStorage(IJavaProject project, ResourceID id, boolean searchJars);
 
 }

@@ -11,19 +11,20 @@
 
 package org.eclipse.xtend.shared.ui.core.internal;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -123,11 +124,15 @@ public class XtendXpandProject implements IXtendXpandProject {
 
 	protected void removeResourcesFromJar() {
 		for (ResourceID id : fromJar) {
-			resources.remove(id);
+			for(Map<ResourceID, IXtendXpandResource> values : resources.values()){
+				if(values.remove(id) != null){
+					break;
+				}
+			}
 		}
 	}
 
-	private final Map<ResourceID, IXtendXpandResource> resources = new HashMap<ResourceID, IXtendXpandResource>();
+	private final Map<String, Map<ResourceID, IXtendXpandResource>> resources = new HashMap<String, Map<ResourceID, IXtendXpandResource>>();
 
 	private final Set<ResourceID> fromJar = new HashSet<ResourceID>();
 
@@ -135,7 +140,14 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @see IXtendXpandProject#getRegisteredResources()
 	 */
 	public IXtendXpandResource[] getRegisteredResources() {
-		return resources.values().toArray(new IXtendXpandResource[resources.size()]);
+		List<IXtendXpandResource> result = new ArrayList<IXtendXpandResource>();
+		int size = 0;
+		Collection<Map<ResourceID, IXtendXpandResource>> values = resources.values();
+		for(Map<ResourceID, IXtendXpandResource> value : values){
+			size = size + value.values().size();
+			result.addAll(value.values());
+		}
+		return result.toArray(new IXtendXpandResource[size]);
 	}
 
 	/**
@@ -147,7 +159,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 		for (IXtendXpandProject p : getAllReferencedProjects()) {
 			result.addAll(Arrays.asList(p.getRegisteredResources()));
 		}
-		return result.toArray(new IXtendXpandResource[resources.size()]);
+		return result.toArray(new IXtendXpandResource[result.size()]);
 	}
 
 	/**
@@ -191,9 +203,15 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 */
 	public void unregisterXtendXpandResource(final IXtendXpandResource res) {
 		if (res != null) {
-			if (res.getUnderlyingStorage() instanceof IFile)
-				XtendXpandMarkerManager.deleteMarkers((IFile) res.getUnderlyingStorage());
-			resources.remove(new ResourceID(res.getFullyQualifiedName(), res.getFileExtension()));
+			if (res.getUnderlyingStorage() instanceof IFile){
+				IFile file = (IFile)res.getUnderlyingStorage();
+				XtendXpandMarkerManager.deleteMarkers(file);
+				for(Map<ResourceID, IXtendXpandResource> values : resources.values()){
+					if(values.remove(Activator.findXtendXpandResourceID(project, file)) != null){
+						break;
+					}
+				}
+			}
 		}
 	}
 
@@ -203,22 +221,34 @@ public class XtendXpandProject implements IXtendXpandProject {
 	public IXtendXpandResource findExtXptResource(final String fqn, final String extension) {
 		assert (fqn != null);
 		assert (extension != null);
+		
 		if (Activator.getRegisteredResourceContributorFor(extension) == null)
 			return null;
 		// for performance reasons ask the cache first
 		IXtendXpandResource res = findCachedXtendXpandResource(fqn, extension);
 		if (res == NULL_RESOURCE)
 			return null;
-		if (res != null)
+		if (res != null){
+			// ignore stale resources, i.e., resources corresponding to workspace resources that don't exist anymore  
+			if (res.getUnderlyingStorage() instanceof IFile) {
+				IFile workspaceFile = (IFile)res.getUnderlyingStorage();
+				if (!workspaceFile.exists()) {
+					return null;
+				}
+			}
 			return res;
+		}
 		// ask to load the resource without looking into jars
 		res = loadXtendXpandResource(fqn, extension, false);
 		if (res != null)
 			return res;
 		// look into jars
 		res = loadXtendXpandResource(fqn, extension, true);
+		//caching NULL_RESOURCE
 		if (res == null) {
-			resources.put(new ResourceID(fqn, extension), NULL_RESOURCE);
+			Map<ResourceID, IXtendXpandResource> map = new HashMap<ResourceID, IXtendXpandResource>();
+			map.put(new ResourceID(fqn, extension), NULL_RESOURCE);
+			resources.put(fqn, map);
 		}
 		return res;
 	}
@@ -228,30 +258,37 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @param fqn
 	 *            Full qualified name of the searched resource
 	 * @param extension
-	 * @param visitedProjects
-	 *            For build path cycle detection
 	 * @return The cached resource or <code>null</code> if the resource is not
 	 *         known
 	 */
 	private IXtendXpandResource findCachedXtendXpandResource(String fqn, String extension) {
-		final ResourceID id = new ResourceID(fqn, extension);
-		IXtendXpandResource res = resources.get(id);
-		if (res == null || res == NULL_RESOURCE)
-			return null;
-
-		if (fromJar.contains(id))
-			return res;
-
-		// eliminate stale resources
-
-		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(
-				(res.getUnderlyingStorage().getFullPath()));
-		if (workspaceResource != null && workspaceResource.exists())
-			return res;
-		else {
-			resources.remove(new ResourceID(fqn, extension));
-			return null;
+		// fqn is a simple name
+		Map<ResourceID, IXtendXpandResource> map = resources.get(fqn);
+		if(map != null){
+			if(map.entrySet().size() == 1){
+				return map.values().iterator().next();
+			}else{
+				List<ResourceID> idsWithSameExtension = new ArrayList<ResourceID>();
+				for(ResourceID id : map.keySet()){
+					if(extension.equals(id.extension)){
+						idsWithSameExtension.add(id);
+					}
+				}
+				if(idsWithSameExtension.size() == 1){
+					return map.get(idsWithSameExtension.get(0));
+				}
+				return null;
+			}
 		}
+		
+		// fqn is a qualified name
+		ResourceID searchedID = new ResourceID(fqn, extension);
+		for(Map<ResourceID, IXtendXpandResource> values : resources.values()){
+			if(values.containsKey(searchedID)){
+				return values.get(searchedID);
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -285,17 +322,21 @@ public class XtendXpandProject implements IXtendXpandProject {
 		if (storage != null && (searchJars || (storage instanceof IFile))) {
 			//Find out if the storage is already under another key in the cache
 			ResourceID jdtResourceID = JDTUtil.findXtendXpandResourceID(getProject(), storage);
-			IXtendXpandResource result = resources.get(jdtResourceID);
+			Map<ResourceID, IXtendXpandResource> resourcesWithSameResourceID = resources.get(jdtResourceID);
+			IXtendXpandResource result = null;
+			if (resourcesWithSameResourceID != null){
+				result = resourcesWithSameResourceID.get(jdtResourceID);
+			}
 			//if the storage is already in cache with another resourceID return this xtendXpandResource
 			if (result!=null&&result.getUnderlyingStorage()!=null){
-				resources.put(new ResourceID(fqn, extension), result);
+				cacheXtendXpandResource(storage, result);
 				return result;
 			}
 			
 			// get the file extension and find the appropriate
 			// ResourceContributor for this
 			// kind of resource (Xpand/Xtend)
-			String fileExtension = storage.getName().substring(storage.getName().lastIndexOf(".") + 1);
+			String fileExtension = storage.getFullPath().getFileExtension();
 			final ResourceContributor contr = Activator.getRegisteredResourceContributorFor(fileExtension);
 
 			// we have a registered contributor for this resource
@@ -304,7 +345,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 				result = contr.create(storage, fqn);
 				if (result != null) {
 					// cache this resource
-					resources.put(new ResourceID(fqn, extension), result);
+					cacheXtendXpandResource(storage, result);
 					// remember, because we need to clean the cache, if
 					// a jar has been removed
 					if (!(storage instanceof IFile)) {
@@ -328,7 +369,7 @@ public class XtendXpandProject implements IXtendXpandProject {
 					IXtendXpandResource result = extxptp.loadXtendXpandResource(fqn, extension, searchJars, projects);
 					if (result != null) {
 						// cache this resource
-						resources.put(new ResourceID(fqn, extension), result);
+						cacheXtendXpandResource(storage, result);
 						return result;
 					}
 				}
@@ -339,14 +380,26 @@ public class XtendXpandProject implements IXtendXpandProject {
 		}
 		return null;
 	}
-
+	
+	private void cacheXtendXpandResource(IStorage storage, IXtendXpandResource result) {
+		String baseName = storage.getName().substring(0, storage.getName().lastIndexOf("."));
+		Map<ResourceID, IXtendXpandResource> resourcesWithSameBaseName = resources.get(baseName);
+		if (resourcesWithSameBaseName == null) {
+			resourcesWithSameBaseName = new HashMap<ResourceID, IXtendXpandResource>();
+			resources.put(baseName, resourcesWithSameBaseName);
+		}
+		resourcesWithSameBaseName.put(Activator.findXtendXpandResourceID(project, storage), result);
+	}
+	
 	/**
 	 * @see IXtendXpandProject#findExtXptResource(IPath, boolean)
 	 */
 	public IXtendXpandResource findXtendXpandResource(final IStorage file) {
 		if (file == null)
 			return null;
-		ResourceID id = JDTUtil.findXtendXpandResourceID(project, file);
+		
+		// search the resource ID using storage finders. New resource finders can be registered using the extension point org.eclipse.xtend.shared.ui.storageFinder
+		ResourceID id =  Activator.findXtendXpandResourceID(project, file);
 		if (id == null) {
 			return null;
 		}
@@ -357,10 +410,15 @@ public class XtendXpandProject implements IXtendXpandProject {
 	 * @see IXtendXpandProject#analyze(IProgressMonitor)
 	 */
 	public void analyze(final IProgressMonitor monitor, ExecutionContext ctx) {
-		Set<IXtendXpandResource> resourceValues = new HashSet<IXtendXpandResource>(resources.values());
+		int size = 0;
+		Collection<Map<ResourceID, IXtendXpandResource>> resourceValues = resources.values();
+		for(Map<ResourceID, IXtendXpandResource> value : resourceValues){
+			size = size + value.values().size();
+		}
 //		monitor.subTask("analyzing project "+this.toString());
-		monitor.beginTask("analyzing project "+this.toString(), resourceValues.size());
-		for (final Iterator<IXtendXpandResource> iter = resourceValues.iterator(); iter.hasNext();) {
+		monitor.beginTask("analyzing project "+this.toString(), size);
+		for (final Iterator<IXtendXpandResource> iter = Arrays.asList(getRegisteredResources())
+				.iterator(); iter.hasNext();) {
 			if (monitor.isCanceled())
 				return;
 

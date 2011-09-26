@@ -15,6 +15,10 @@ import org.eclipse.xtend.shared.ui.StorageFinder;
  * @author jockel - Initial contribution and API
  */
 public class JDTStorageFinder implements StorageFinder {
+	
+	public ResourceID findXtendXpandResourceID(IJavaProject project, IStorage file) {
+		return JDTUtil.findXtendXpandResourceID(project, file);
+	}
 
 	public IStorage findStorage(IJavaProject project, ResourceID id, boolean searchJars) {
 		return JDTUtil.findStorage(project, id, searchJars);

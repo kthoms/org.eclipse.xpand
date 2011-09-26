@@ -243,6 +243,18 @@ public class Activator extends AbstractUIPlugin {
 		return storage;
 	}
 
+	public static ResourceID findXtendXpandResourceID(IJavaProject project, IStorage file){
+		List<StorageFinder> stoFinders = getRegisteredStorageFinder();
+		ResourceID resourceID = null;
+		if (stoFinders != null)
+			for (StorageFinder stoFinder: stoFinders) {
+				resourceID = stoFinder.findXtendXpandResourceID(project, file);
+				if (resourceID != null)
+					return resourceID;
+			}
+		return resourceID;
+	}
+
 	public static IModelManager getExtXptModelManager() {
 		return getDefault().modelManager;
 	}

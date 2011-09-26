@@ -29,8 +29,8 @@
       <import plugin="org.eclipse.xtend"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.emf.mwe.core"/>
-      <import plugin="org.eclipse.jdt.core" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.text" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.jdt.core" version="3.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.text" version="3.2.0" match="greaterOrEqual"/>
       <import plugin="org.antlr.runtime"/>
    </requires>
 

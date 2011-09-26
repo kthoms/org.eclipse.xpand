@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xtend Middleend
 Bundle-SymbolicName: org.eclipse.xtend.middleend.xtend;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Export-Package: org.eclipse.xtend.middleend.xtend,
  org.eclipse.xtend.middleend.xtend.internal;x-friends:="org.eclipse.xtend.middleend.xpand",
  org.eclipse.xtend.middleend.xtend.internal.xtend;x-internal:=true,

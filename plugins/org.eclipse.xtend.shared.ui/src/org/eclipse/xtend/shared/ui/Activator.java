@@ -46,6 +46,7 @@ import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.shared.ui.core.IModelManager;
 import org.eclipse.xtend.shared.ui.core.IXtendXpandProject;
 import org.eclipse.xtend.shared.ui.core.builder.XtendXpandNature;
+import org.eclipse.xtend.shared.ui.core.internal.JDTUtil;
 import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 import org.eclipse.xtend.shared.ui.core.internal.XtendXpandModelManager;
 import org.eclipse.xtend.shared.ui.core.metamodel.Contributor;
@@ -247,10 +248,17 @@ public class Activator extends AbstractUIPlugin {
 		List<StorageFinder> stoFinders = getRegisteredStorageFinder();
 		ResourceID resourceID = null;
 		if (stoFinders != null)
-			for (StorageFinder stoFinder: stoFinders) {
-				resourceID = stoFinder.findXtendXpandResourceID(project, file);
-				if (resourceID != null)
-					return resourceID;
+			for (StorageFinder stoFinder : stoFinders) {
+				if (stoFinder instanceof StorageFinder2) {
+					resourceID = ((StorageFinder2)stoFinder).findXtendXpandResourceID(project, file);
+					if (resourceID != null)
+						return resourceID;
+				}else {
+					resourceID = JDTUtil.findXtendXpandResourceID(project, file);
+					if (resourceID != null){
+						return resourceID;
+					}
+				}
 			}
 		return resourceID;
 	}

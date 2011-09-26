@@ -10,11 +10,12 @@ package org.eclipse.xtend.shared.ui.core.internal;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.xtend.shared.ui.StorageFinder;
+import org.eclipse.xtend.shared.ui.StorageFinder2;
 
 /**
  * @author jockel - Initial contribution and API
  */
-public class JDTStorageFinder implements StorageFinder {
+public class JDTStorageFinder implements StorageFinder2 {
 	
 	public ResourceID findXtendXpandResourceID(IJavaProject project, IStorage file) {
 		return JDTUtil.findXtendXpandResourceID(project, file);

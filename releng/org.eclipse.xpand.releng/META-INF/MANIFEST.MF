@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Xpand Releng
-Bundle-SymbolicName: org.eclipse.xpand.releng;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5

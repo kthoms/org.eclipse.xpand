@@ -22,12 +22,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.mwe.core.WorkflowContext;
+import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
-import org.eclipse.emf.mwe.internal.core.WorkflowContextDefaultImpl;
-import org.eclipse.internal.xtend.type.impl.java.JavaBeansMetaModel;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
+import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.middleend.xpand.XpandBackendFacade;
 import org.eclipse.xtend.middleend.xpand.XpandComponent;
@@ -66,7 +67,7 @@ public class GeneralTest {
         		"  This is a message from another package!\n" + 
         		"\n" + 
         		"\n" + 
-        		"", BackendFacade.invoke (ctx, "org/eclipse/xtend/middleend/old/aTemplate/greeting", Arrays.asList("Arno")).toString());
+        		"", BackendFacade.invoke (ctx, new QualifiedName("org/eclipse/xtend/middleend/old/aTemplate/greeting"), Arrays.asList("Arno")).toString());
     }
 
     @Test
@@ -77,7 +78,6 @@ public class GeneralTest {
         final List<MetaModel> mms = new ArrayList<MetaModel> ();
         mms.add (new JavaBeansMetaModel ());
         
-        final CompositeTypesystem ts = new CompositeTypesystem ();
         
         final XpandComponent xwc = new XpandComponent ();
         xwc.setExpand ("org::eclipse::xtend::middleend::old::WithFileOutput::WithFileOutput FOR toBeGreeted");
@@ -112,15 +112,15 @@ public class GeneralTest {
         final XtendBackendFacade bc = XtendBackendFacade.createForFile ("org::eclipse::xtend::middleend::old::first", "iso-8859-1", mms);
         final ExecutionContext ctx = BackendFacade.createExecutionContext (bc.getFunctionDefContext(), ts, true);
 
-        assertEquals ("Hallo, Arno: 27 - imported 99!", BackendFacade.invoke (ctx, "test", Arrays.asList ("Arno")).toString());
-        assertEquals ("[a Hallo b]", BackendFacade.invoke (ctx, "testColl", Arrays.asList (Arrays.asList (1L, "Hallo"))).toString());
-        assertEquals (10L, BackendFacade.invoke (ctx, "reexp", Arrays.asList (2L)));
+        assertEquals ("Hallo, Arno: 27 - imported 99!", BackendFacade.invoke (ctx, new QualifiedName("test"), Arrays.asList ("Arno")).toString());
+        assertEquals ("[a Hallo b]", BackendFacade.invoke (ctx, new QualifiedName("testColl"), Arrays.asList (Arrays.asList (1L, "Hallo"))).toString());
+        assertEquals (10L, BackendFacade.invoke (ctx, new QualifiedName("reexp"), Arrays.asList (2L)));
 
         final Person p = new Person ();
         p.setFirstName ("Testa");
         p.setName ("Testarossa");
 
-        assertEquals ("[Testa Testarossa] - Testa Testarossa - Testa Testarossa - Testa", BackendFacade.invoke (ctx, "testPerson", Arrays.asList(p)).toString());
+        assertEquals ("[Testa Testarossa] - Testa Testarossa - Testa Testarossa - Testa", BackendFacade.invoke (ctx, new QualifiedName("testPerson"), Arrays.asList(p)).toString());
     }
     
     @Test
@@ -128,7 +128,7 @@ public class GeneralTest {
         final List<MetaModel> mms = new ArrayList<MetaModel> ();
         mms.add (new JavaBeansMetaModel ());
         
-        assertEquals ("Hallo, Arno: 27 - imported 99!", XtendBackendFacade.invokeXtendFunction ("org::eclipse::xtend::middleend::old::first", null, mms, "test", "Arno").toString());
+        assertEquals ("Hallo, Arno: 27 - imported 99!", XtendBackendFacade.invokeXtendFunction ("org::eclipse::xtend::middleend::old::first", null, mms, new QualifiedName("test"), "Arno").toString());
         assertEquals (7L, XtendBackendFacade.evaluateExpression ("1 + 2 + \"asdf\".length", null, null));
         assertEquals (33L, XtendBackendFacade.evaluateExpression ("1 + 2 + test(\"Arno\").length", "org::eclipse::xtend::middleend::old::first", null, mms, null));
     }

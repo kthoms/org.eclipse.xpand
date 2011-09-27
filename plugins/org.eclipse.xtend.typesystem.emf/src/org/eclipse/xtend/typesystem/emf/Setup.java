@@ -62,16 +62,15 @@ public class Setup {
 	 * <li> The inner factory class for the extension cannot be found
 	 * </ul>
 	 */
-	@SuppressWarnings("unchecked")
 	public void addExtensionMap(final Mapping m) throws ConfigurationException {
 		try {
 			// locate the factory class of the extension
-			Class factoryClass = ResourceLoaderFactory.createResourceLoader().loadClass(m.getTo());
+			Class<?> factoryClass = ResourceLoaderFactory.createResourceLoader().loadClass(m.getTo());
 			if (factoryClass == null)
 				throw new ConfigurationException("cannot find class " + m.getTo() + " for extension " + m.getFrom());
 			Object factoryInstance = null;
 			if (factoryClass.isInterface()) {
-				final Class[] innerClasses = factoryClass.getDeclaredClasses();
+				final Class<?>[] innerClasses = factoryClass.getDeclaredClasses();
 				factoryClass = null;
 				for (int j = 0; j < innerClasses.length; j++) {
 					if (Resource.Factory.class.isAssignableFrom(innerClasses[j])) {

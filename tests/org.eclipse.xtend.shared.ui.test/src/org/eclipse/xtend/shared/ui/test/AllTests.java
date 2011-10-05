@@ -20,6 +20,7 @@ public class AllTests {
       suite.addTestSuite(org.eclipse.xtend.shared.ui.test.xpand2.core.SimpleProjectTest.class);
       suite.addTestSuite(org.eclipse.xtend.shared.ui.test.xpand2.core.XtendXpandProjectTest.class);
       suite.addTestSuite(org.eclipse.xtend.shared.ui.test.xpand2.emf.EmfXpandTest.class);
+      suite.addTestSuite(org.eclipse.xtend.shared.ui.test.xpand2.core.ReferencedProjectTest.class);
       return suite;
    }
 }

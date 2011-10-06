@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.xpand.ui.core.IXpandResource;
 import org.eclipse.xtend.shared.ui.Activator;
 import org.eclipse.xtend.ui.core.IXtendResource;
-import org.junit.Test;
 
 /**
  * @author niehues - Initial contribution and API
@@ -37,7 +36,6 @@ public class ReferencedProjectTest extends XpandCoreTestBase {
 		super.tearDown();
 	}
 
-	@Test
 	public void testReferencedProjectWorkspace() throws InterruptedException, CoreException {
 		env.openEmptyWorkspace();
 		InputStream stream = getClass().getClassLoader().getResourceAsStream("/resources/testProjects.zip");

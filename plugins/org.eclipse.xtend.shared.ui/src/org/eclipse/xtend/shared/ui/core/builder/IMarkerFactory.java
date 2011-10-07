@@ -118,11 +118,8 @@ public interface IMarkerFactory {
 		public IMarker createMarker(IResource resource, String message, int severity, int start, int end, int line,
 				String location, String issueType) throws CoreException {
 			IMarker marker = resource.createMarker(XtendXpandMarkerManager.getMARKER_TYPE());
-			if (issueType!=null){
-				marker.setAttribute(IMarker.MESSAGE, issueType+":"+message);
-			}else{
-				marker.setAttribute(IMarker.MESSAGE, message);
-			}
+			marker.setAttribute(IMarker.MESSAGE, message);
+
 			marker.setAttribute(IMarker.SEVERITY, severity);
 			marker.setAttribute("issueType", issueType);
 			int s = start;

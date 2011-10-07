@@ -26,9 +26,7 @@ import java.util.List;
 public class FSIO {
     private static final char[] FILE_DELIMITER = { '\\', '/' };
 
-    private static int cvNumerOfFilesRead = 1;
-
-    private static int cvSize = 2000;
+    private final static int bufferSize = 0xffff;
 
     private static void getAllFilesInternal(final File aPath, final FilenameFilter aFilter, final List<File> aList) {
         final File[] allFiles = aPath.listFiles(aFilter);
@@ -64,12 +62,9 @@ public class FSIO {
                 aFileReader = new InputStreamReader(new FileInputStream(aFile), fileEncoding);
             }
         }
-        final int size = (int) Math.floor((double) cvSize / (double) cvNumerOfFilesRead);
-        cvNumerOfFilesRead++;
-        final char[] chars = new char[size];
+        final char[] chars = new char[bufferSize];
         int len;
         while ((len = aFileReader.read(chars)) != -1) {
-            cvSize += len;
             aString.append(chars, 0, len);
         }
         aFileReader.close();
@@ -90,12 +85,9 @@ public class FSIO {
 
         final StringBuffer aString = new StringBuffer();
 
-        final int size = (int) Math.floor((double) cvSize / (double) cvNumerOfFilesRead);
-        cvNumerOfFilesRead++;
-        final char[] chars = new char[size];
+        final char[] chars = new char[bufferSize];
         int len;
         while ((len = aReader.read(chars)) != -1) {
-            cvSize += len;
             aString.append(chars, 0, len);
         }
         aReader.close();
@@ -132,7 +124,6 @@ public class FSIO {
         final char[] chars = new char[4096];
         int len;
         while ((len = aReader.read(chars)) != -1) {
-            cvSize += len;
             aWriter.write(chars, 0, len);
         }
         aReader.close();

@@ -59,11 +59,16 @@ public class LetExpression extends Expression {
 
     @Override
 	public Type analyzeInternal(ExecutionContext ctx, final Set<AnalysationIssue> issues) {
-        final Type t = varExpression.analyze(ctx, issues);
-        if (t == null)
-            return null;
-        ctx = ctx.cloneWithVariable(new Variable(varName.getValue(), t));
-        return targetExpression.analyze(ctx, issues);
+    	if (varExpression == null || targetExpression == null) {
+			issues.add(new AnalysationIssue(AnalysationIssue.SYNTAX_ERROR,"Syntax error in expression",this));
+			return null;
+		} else {
+			final Type t = varExpression.analyze(ctx, issues);
+			if (t == null)
+				return null;
+			ctx = ctx.cloneWithVariable(new Variable(varName.getValue(), t));
+			return targetExpression.analyze(ctx, issues);
+		} 
     }
 
     @Override

@@ -115,7 +115,7 @@ public class SimpleProjectTest extends XpandCoreTestBase {
         assertEquals ("one error marker expected", 1, env.getMarkersFor(tpl).length);
         IMarker marker = env.getMarkersFor(tpl)[0];
         String errMsg = (String) marker.getAttribute("message");
-        assertEquals("Error message 'java.text not found' indicates Bug#134626!", "Type not found: java.text",errMsg);
+        assertEquals("Error message 'java.text not found' indicates Bug#134626!", "java.text not found",errMsg);
         dumpMarkers(tpl);
     }
     

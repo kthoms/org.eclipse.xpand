@@ -39,7 +39,7 @@ public abstract class PluginTestBase  extends TestCase {
         final IMarker[] markers = env.getMarkersFor(tpl);
         for (IMarker marker : markers) {
         	try {
-        		if (marker.isSubtypeOf(IMarker.PROBLEM)) {
+        		if (marker.isSubtypeOf(IMarker.PROBLEM) && marker.getAttribute(IMarker.SEVERITY,-1)==IMarker.SEVERITY_ERROR) {
         			fail(getDescription(marker));
         		}
 			} catch (CoreException e) {
@@ -65,7 +65,6 @@ public abstract class PluginTestBase  extends TestCase {
      * @param marker The marker instance
      * @return Readable description of the marker
      */
-	@SuppressWarnings("unchecked")
 	protected String getDescription (IMarker marker) {
     	try {
 	    	HashMap<String, Object> map = new HashMap<String, Object>();

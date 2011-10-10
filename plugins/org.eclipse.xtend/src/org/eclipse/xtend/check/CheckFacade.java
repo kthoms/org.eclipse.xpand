@@ -23,15 +23,39 @@ import org.eclipse.xtend.expression.ExecutionContext;
 
 public class CheckFacade {
 
+	/**
+	 * Invokes Check validation on a set of objects.
+	 * @param checkFile Qualified name of the check file (qualified with '::')
+	 * @param toCheck A collection of objects to perform the validation on
+	 * @param ctx Execution context to use for evaluating the Check rules
+	 * @param issues Issues instance to collect detected problems in
+	 */
 	public final static void checkAll(final String checkFile, final Collection<?> toCheck, final ExecutionContext ctx, final Issues issues) {
 		checkAll(checkFile, toCheck, ctx, issues, false);
 	}
 
+	/**
+	 * Invokes Check validation on a set of objects.
+	 * @param checkFile Qualified name of the check file (qualified with '::')
+	 * @param in The InputStream to use to load checkFile
+	 * @param toCheck A collection of objects to perform the validation on
+	 * @param ctx Execution context to use for evaluating the Check rules
+	 * @param issues Issues instance to collect detected problems in
+	 */
 	public final static void checkAll(final String checkFile, final InputStream in, final Collection<?> toCheck, final ExecutionContext ctx,
 			final Issues issues) {
 		checkAll(checkFile,in, toCheck, ctx, issues, false);
 	}
 	
+	/**
+	 * Invokes Check validation on a set of objects.
+	 * @param checkFile Qualified name of the check file (qualified with '::')
+	 * @param in The InputStream to use to load checkFile
+	 * @param toCheck A collection of objects to perform the validation on
+	 * @param ctx Execution context to use for evaluating the Check rules
+	 * @param issues Issues instance to collect detected problems in
+	 * @param warnIfNothingChecked When set a warning will be raised if no validation rule was executed
+	 */
 	public final static void checkAll(final String checkFile, final InputStream in, final Collection<?> toCheck, final ExecutionContext ctx,
 			final Issues issues, boolean warnIfNothingChecked) {
 		if (in == null)
@@ -40,6 +64,14 @@ public class CheckFacade {
 		file.check(ctx, toCheck, issues, warnIfNothingChecked);
 	}
 
+	/**
+	 * Invokes Check validation on a set of objects.
+	 * @param checkFile Qualified name of the check file (qualified with '::')
+	 * @param toCheck A collection of objects to perform the validation on
+	 * @param ctx Execution context to use for evaluating the Check rules
+	 * @param issues Issues instance to collect detected problems in
+	 * @param warnIfNothingChecked When set a warning will be raised if no validation rule was executed
+	 */
 	public final static void checkAll(final String checkFile, final Collection<?> toCheck, final ExecutionContext ctx, final Issues issues,
 			boolean warnIfNothingChecked) {
 		ExtensionFile file =  (ExtensionFile) ctx.getResourceManager().loadResource(checkFile, "chk");

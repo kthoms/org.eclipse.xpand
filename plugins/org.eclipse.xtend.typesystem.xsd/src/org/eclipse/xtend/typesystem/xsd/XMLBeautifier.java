@@ -68,9 +68,9 @@ public class XMLBeautifier implements PostProcessor {
 
 		if (log.isInfoEnabled()) {
 			if (isXML)
-				log.info(Msg.create("Beautifying ").uri(u));
+				log.debug(Msg.create("Beautifying ").uri(u));
 			else
-				log.info(Msg.create("Ignoring ").uri(u).txt(
+				log.debug(Msg.create("Ignoring ").uri(u).txt(
 						" since the file extension does "
 								+ "not match the filter."));
 		}

@@ -1,0 +1,19 @@
+setpref targetPlatformPath="${WORKSPACE}/buildroot/target.platform"
+
+import -Declipse.download="file:/home/data/httpd/download.eclipse.org" "${checkout.location}/releng/org.eclipse.xpand.releng/releng/xpand-platform.mspec"
+
+resolve "${checkout.location}/releng/org.eclipse.xpand.releng/releng/xpand.cquery"
+
+build
+
+junit --launch "org.eclipse.xpand.build-feature/org.eclipse.xpand.incremental.tests.launch" --flatXML --output "${WORKSPACE}/xpand.test.results/xml/org.eclipse.xpand.incremental.tests.xml"
+junit --launch "org.eclipse.xpand.build-feature/org.eclipse.xpand.tests.launch" --flatXML --output "${WORKSPACE}/xpand.test.results/xml/org.eclipse.xpand.tests.xml"
+junit --launch "org.eclipse.xpand.build-feature/org.eclipse.xtend.profiler.tests.launch" --flatXML --output "${WORKSPACE}/xpand.test.results/xml/org.eclipse.xtend.profiler.tests.xml"
+junit --launch "org.eclipse.xpand.build-feature/org.eclipse.xtend.tests.launch" --flatXML --output "${WORKSPACE}/xpand.test.results/xml/org.eclipse.xtend.tests.xml"
+junit --launch "org.eclipse.xpand.build-feature/org.eclipse.xtend.typesystem.emf.tests.launch" --flatXML --output "${WORKSPACE}/xpand.test.results/xml/org.eclipse.xtend.typesystem.emf.tests.xml"
+junit --launch "org.eclipse.xtend.shared.ui.test/org.eclipse.xtend.shared.ui.test.launch" --flatXML --output "${WORKSPACE}/xpand.test.results/xml/org.eclipse.xtend.shared.ui.test.xml"
+
+perform -DtargetPlatformPath="${WORKSPACE}/buildroot/target.platform" --properties "${WORKSPACE}/buildroot/build.properties" "org.eclipse.xpand.releng#create.javadoc"
+
+perform --properties "${WORKSPACE}/buildroot/build.properties" -Dbuckminster.reference.repository="${REFERENCE_REPOSITORY}"  "org.eclipse.xpand.build#build"
+perform --properties "${WORKSPACE}/buildroot/build.properties" "org.eclipse.xpand.releng#setup.promoter"

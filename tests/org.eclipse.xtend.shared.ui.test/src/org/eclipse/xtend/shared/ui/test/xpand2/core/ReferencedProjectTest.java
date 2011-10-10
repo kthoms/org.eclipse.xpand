@@ -9,9 +9,7 @@ package org.eclipse.xtend.shared.ui.test.xpand2.core;
 
 
 import java.io.InputStream;
-import java.util.List;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -26,20 +24,18 @@ public class ReferencedProjectTest extends XpandCoreTestBase {
 
 	@Override
 	public void setUp() throws Exception {
-		// TODO Auto-generated method stub
 		super.setUp();
 	}
 
 	@Override
 	public void tearDown() throws Exception {
-		// TODO Auto-generated method stub
 		super.tearDown();
 	}
 
 	public void testReferencedProjectWorkspace() throws InterruptedException, CoreException {
 		env.openEmptyWorkspace();
 		InputStream stream = getClass().getClassLoader().getResourceAsStream("/resources/testProjects.zip");
-		List<IProject> projects = env.importZippedProject(stream);
+		env.importZippedProject(stream);
 		IPath templateP1 = new Path("/my.generator.project/src/template/Template.xpt");
         env.fullBuild();
         //Checking Errors of templateP1_1

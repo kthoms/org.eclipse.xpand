@@ -11,7 +11,6 @@ package org.eclipse.xtend.shared.ui.test.core;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-import org.eclipse.core.internal.utils.FileUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -100,7 +99,7 @@ public class BuilderTest extends XpandCoreTestBase {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(path);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
-			FileUtil.transferStreams(is, os, path, new NullProgressMonitor());
+			org.eclipse.core.internal.utils.FileUtil.transferStreams(is, os, path, new NullProgressMonitor());
 		} catch (CoreException e) {
 			fail(e.getMessage());
 		}

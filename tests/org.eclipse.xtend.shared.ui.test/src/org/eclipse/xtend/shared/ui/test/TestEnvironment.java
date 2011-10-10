@@ -52,8 +52,6 @@ import org.eclipse.jdt.core.IJavaModelMarker;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.internal.core.ClasspathEntry;
-import org.eclipse.jdt.internal.core.JavaProject;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 import org.eclipse.ui.wizards.datatransfer.ZipFileStructureProvider;
@@ -83,11 +81,9 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Adds a binary class with the given contents to the given package in the
-	 * workspace. The package is created if necessary. If a class with the same
-	 * name already exists, it is replaced. A workspace must be open, and the
-	 * given class name must not end with ".class". Returns the path of the
-	 * added class.
+	 * Adds a binary class with the given contents to the given package in the workspace. The package is created if
+	 * necessary. If a class with the same name already exists, it is replaced. A workspace must be open, and the given
+	 * class name must not end with ".class". Returns the path of the added class.
 	 */
 	public IPath addBinaryClass(final IPath packagePath, final String className, final byte[] contents) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -97,11 +93,9 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Adds a binary class with the given contents to the given package in the
-	 * workspace. The package is created if necessary. If a class with the same
-	 * name already exists, it is replaced. A workspace must be open, and the
-	 * given class name must not end with ".class". Returns the path of the
-	 * added class.
+	 * Adds a binary class with the given contents to the given package in the workspace. The package is created if
+	 * necessary. If a class with the same name already exists, it is replaced. A workspace must be open, and the given
+	 * class name must not end with ".class". Returns the path of the added class.
 	 */
 	public IPath addBinaryClass(final IPath packageFragmentRootPath, final String packageName, final String className,
 			final byte[] contents) {
@@ -116,11 +110,9 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Adds a class with the given contents to the given package in the
-	 * workspace. The package is created if necessary. If a class with the same
-	 * name already exists, it is replaced. A workspace must be open, and the
-	 * given class name must not end with ".java". Returns the path of the added
-	 * class.
+	 * Adds a class with the given contents to the given package in the workspace. The package is created if necessary.
+	 * If a class with the same name already exists, it is replaced. A workspace must be open, and the given class name
+	 * must not end with ".java". Returns the path of the added class.
 	 */
 	public IPath addClass(final IPath packagePath, final String className, final String contents) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -130,11 +122,9 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Adds a class with the given contents to the given package in the
-	 * workspace. The package is created if necessary. If a class with the same
-	 * name already exists, it is replaced. A workspace must be open, and the
-	 * given class name must not end with ".java". Returns the path of the added
-	 * class.
+	 * Adds a class with the given contents to the given package in the workspace. The package is created if necessary.
+	 * If a class with the same name already exists, it is replaced. A workspace must be open, and the given class name
+	 * must not end with ".java". Returns the path of the added class.
 	 */
 	public IPath addClass(final IPath packageFragmentRootPath, final String packageName, final String className,
 			final String contents) {
@@ -148,10 +138,9 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Adds a package to the given package fragment root in the workspace. The
-	 * package fragment root is created if necessary. If a package with the same
-	 * name already exists, it is not replaced. A workspace must be open.
-	 * Returns the path of the added package.
+	 * Adds a package to the given package fragment root in the workspace. The package fragment root is created if
+	 * necessary. If a package with the same name already exists, it is not replaced. A workspace must be open. Returns
+	 * the path of the added package.
 	 */
 	public IPath addPackage(final IPath packageFragmentRootPath, final String packageName) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -166,9 +155,8 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Adds a package fragment root to the workspace. If a package fragment root
-	 * with the same name already exists, it is not replaced. A workspace must
-	 * be open. Returns the path of the added package fragment root.
+	 * Adds a package fragment root to the workspace. If a package fragment root with the same name already exists, it
+	 * is not replaced. A workspace must be open. Returns the path of the added package fragment root.
 	 */
 	public IPath addPackageFragmentRoot(final IPath projectPath, final String sourceFolderName,
 			final IPath[] exclusionPatterns, final String specificOutputLocation) throws JavaModelException {
@@ -211,7 +199,8 @@ public class TestEnvironment {
 			final IPath[] accessibleFiles, final IPath[] nonAccessibleFiles, final boolean isExported)
 			throws JavaModelException {
 		checkAssertion("required project must not be in project", !projectPath.isPrefixOf(requiredProjectPath)); //$NON-NLS-1$
-		final IAccessRule[] accessRules = ClasspathEntry.getAccessRules(accessibleFiles, nonAccessibleFiles);
+		final IAccessRule[] accessRules = org.eclipse.jdt.internal.core.ClasspathEntry.getAccessRules(accessibleFiles,
+				nonAccessibleFiles);
 		addEntry(projectPath, JavaCore.newProjectEntry(requiredProjectPath, accessRules, true,
 				new IClasspathAttribute[0], isExported));
 	}
@@ -225,8 +214,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Add the given folder to the list of source folders in the given Java
-	 * Projekt
+	 * Add the given folder to the list of source folders in the given Java Projekt
 	 * 
 	 * @param projectPath
 	 *            Project to modify
@@ -281,7 +269,8 @@ public class TestEnvironment {
 	public IClasspathEntry[] getClasspath(final IPath projectPath) {
 		try {
 			checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
-			final JavaProject javaProject = (JavaProject) JavaCore.create(getProject(projectPath));
+			final org.eclipse.jdt.internal.core.JavaProject javaProject = (org.eclipse.jdt.internal.core.JavaProject) JavaCore
+					.create(getProject(projectPath));
 			return javaProject.getExpandedClasspath();
 		}
 		catch (final JavaModelException e) {
@@ -317,10 +306,9 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Adds a jar with the given contents to the the workspace. If a jar with
-	 * the same name already exists, it is replaced. A workspace must be open,
-	 * and the given zip name must end with ".zip" or ".jar". Returns the path
-	 * of the added jar.
+	 * Adds a jar with the given contents to the the workspace. If a jar with the same name already exists, it is
+	 * replaced. A workspace must be open, and the given zip name must end with ".zip" or ".jar". Returns the path of
+	 * the added jar.
 	 */
 	public IPath addInternalJar(final IPath projectPath, final String zipName, final byte[] contents,
 			final boolean isExported) throws JavaModelException {
@@ -342,8 +330,8 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Closes the testing environment and frees up any resources. Once the
-	 * testing environment is closed, it shouldn't be used any more.
+	 * Closes the testing environment and frees up any resources. Once the testing environment is closed, it shouldn't
+	 * be used any more.
 	 */
 	public void close() {
 		try {
@@ -583,8 +571,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Return the path of the package with the given name. A workspace must be
-	 * open, and the package must exist.
+	 * Return the path of the package with the given name. A workspace must be open, and the package must exist.
 	 */
 	public IPath getPackagePath(final IPath root, final String packageName) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -594,8 +581,8 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Return the path of the package fragment root with the given name. A
-	 * workspace must be open, and the package fragment root must exist.
+	 * Return the path of the package fragment root with the given name. A workspace must be open, and the package
+	 * fragment root must exist.
 	 */
 	public IPath getPackageFragmentRootPath(final IPath projectPath, final String name) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -709,7 +696,7 @@ public class TestEnvironment {
 	public void openEmptyWorkspace() {
 		close();
 		openWorkspace();
-		fProjects = new Hashtable<String,IProject>(10);
+		fProjects = new Hashtable<String, IProject>(10);
 		setup();
 	}
 
@@ -743,8 +730,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Renames a compilation unit int the given package in the workspace. A
-	 * workspace must be open.
+	 * Renames a compilation unit int the given package in the workspace. A workspace must be open.
 	 */
 	public void renameCU(final IPath packagePath, final String cuName, final String newName) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -758,9 +744,8 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Removes a binary class from the given package in the workspace. A
-	 * workspace must be open, and the given class name must not end with
-	 * ".class".
+	 * Removes a binary class from the given package in the workspace. A workspace must be open, and the given class
+	 * name must not end with ".class".
 	 */
 	public void removeBinaryClass(final IPath packagePath, String className) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -775,8 +760,8 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Removes a class from the given package in the workspace. A workspace must
-	 * be open, and the given class name must not end with ".java".
+	 * Removes a class from the given package in the workspace. A workspace must be open, and the given class name must
+	 * not end with ".java".
 	 */
 	public void removeClass(final IPath packagePath, String className) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -791,8 +776,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Removes a package from the given package fragment root in the workspace.
-	 * A workspace must be open.
+	 * Removes a package from the given package fragment root in the workspace. A workspace must be open.
 	 */
 	public void removePackage(final IPath packageFragmentRootPath, final String packageName) {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -807,8 +791,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Removes the given package fragment root from the the workspace. A
-	 * workspace must be open.
+	 * Removes the given package fragment root from the the workspace. A workspace must be open.
 	 */
 	public void removePackageFragmentRoot(final IPath projectPath, final String packageFragmentRootName)
 			throws JavaModelException {
@@ -851,8 +834,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Search the user hard-drive for a Java class library. Returns null if none
-	 * could be found.
+	 * Search the user hard-drive for a Java class library. Returns null if none could be found.
 	 * 
 	 * Example of use: [org.eclipse.jdt.core.tests.util.Util.getJavaClassLib()]
 	 */
@@ -875,8 +857,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Returns the JRE directory this tests are running on. Returns null if none
-	 * could be found.
+	 * Returns the JRE directory this tests are running on. Returns null if none could be found.
 	 * 
 	 * Example of use: [org.eclipse.jdt.core.tests.util.Util.getJREDirectory()]
 	 */
@@ -885,8 +866,8 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Makes the given path a path using native path separators as returned by
-	 * File.getPath() and trimming any extra slash.
+	 * Makes the given path a path using native path separators as returned by File.getPath() and trimming any extra
+	 * slash.
 	 */
 	public String toNativePath(final String path) {
 		final String nativePath = path.replace('\\', File.separatorChar).replace('/', File.separatorChar);
@@ -938,8 +919,7 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Removes the given internal jar from the workspace. A workspace must be
-	 * open.
+	 * Removes the given internal jar from the workspace. A workspace must be open.
 	 */
 	public void removeInternalJar(final IPath projectPath, final String zipName) throws JavaModelException {
 		checkAssertion("a workspace must be open", fIsOpen); //$NON-NLS-1$
@@ -1123,9 +1103,8 @@ public class TestEnvironment {
 	}
 
 	/**
-	 * Imports one or more zipped projects into the workspace. The workspace
-	 * must be opened before invoking this method. The Zip file is assumed to
-	 * have the following structure:
+	 * Imports one or more zipped projects into the workspace. The workspace must be opened before invoking this method.
+	 * The Zip file is assumed to have the following structure:
 	 * 
 	 * <pre>
 	 * /           Zip Root

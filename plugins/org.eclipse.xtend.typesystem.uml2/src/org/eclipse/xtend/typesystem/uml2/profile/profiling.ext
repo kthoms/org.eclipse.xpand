@@ -4,12 +4,12 @@ import uml;
 Standard UML2 Extensions for Profile support.
 */
 
-Profile applyProfile (Model model, String uri) :
+Profile applyProfile (Package pck, String uri) :
 	JAVA org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.applyProfile(org.eclipse.uml2.uml.Package, java.lang.String);
 
 	
-cached Stereotype getStereotype (Model m, String stereotype) :
-	m.getAppliedProfiles().allOwnedElements().typeSelect(Stereotype).select(st|st.qualifiedName==stereotype).first();
+cached Stereotype getStereotype (Package pck, String stereotype) :
+	pck.getAppliedProfiles().allOwnedElements().typeSelect(Stereotype).select(st|st.qualifiedName==stereotype).first();
 
 // allOwnedElements().getApplicableStereotypes()
 Void setTaggedValue (Element elem, String stereotypeName, String taggedValueName, Object value) :

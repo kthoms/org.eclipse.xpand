@@ -5,7 +5,7 @@ Standard UML2 Extensions for Profile support.
 */
 
 Profile applyProfile (Model model, String uri) :
-	JAVA org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.applyProfile(org.eclipse.uml2.uml.Model, java.lang.String);
+	JAVA org.eclipse.xtend.typesystem.uml2.profile.ProfilingExtensions.applyProfile(org.eclipse.uml2.uml.Package, java.lang.String);
 
 	
 cached Stereotype getStereotype (Model m, String stereotype) :

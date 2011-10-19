@@ -75,12 +75,12 @@ public class ProfilingExtensions {
 	}
 	
 	/**
-	 * Applies a profile to a Model.
-	 * @param model The Model instance.
+	 * Applies a profile to a Package (or Model).
+	 * @param model The UML Package instance.
 	 * @param uri Resource Path to the .profile.uml/.profile.uml2 file.  
 	 * @return The loaded Profile
 	 */
-	public static Profile applyProfile (Model model, String uri) {
+	public static Profile applyProfile (org.eclipse.uml2.uml.Package pck, String uri) {
 		new Setup().setStandardUML2Setup(true);//setup pathmap
 		if (!uri.endsWith(".profile.uml2") && !uri.endsWith(".profile.uml")) {
 			uri += ".profile.uml";
@@ -89,7 +89,7 @@ public class ProfilingExtensions {
 		if (profile==null) {
 			throw new NullPointerException("Profile '"+uri+"' not loaded.");
 		}
-		model.applyProfile(profile);
+		pck.applyProfile(profile);
 		return profile;
 	}
 	

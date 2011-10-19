@@ -18,13 +18,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
@@ -61,6 +61,7 @@ public class ProfilingExtensions {
 	        }
 	        final URI fileURI = URI.createFileURI(f.getAbsolutePath());
 
+        	Element result = null;
 	        final Resource r = new ResourceSetImpl().createResource(fileURI);
 	        try {
 	            r.load(null);
@@ -70,7 +71,13 @@ public class ProfilingExtensions {
 	        if (AnyType.class.isAssignableFrom(r.getContents().get(0).getClass())) {
 	        	throw new ConfigurationException("Profile not loaded correctly. Root element is of type AnyType - could not be instantiated as Profile.");
 	        }
-	        return (Element) r.getContents().get(0);
+	        result = (Element) r.getContents().get(0);
+	        
+        	// unload the resource when it was loaded in a new ResourceSet
+        	// otherwise this leads to memory leak, see Bug#361382
+        	r.unload();
+
+	        return result;
 		}
 	}
 	

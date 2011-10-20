@@ -5,7 +5,7 @@ Bundle-Name: %pluginName
 Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
-Require-Bundle: org.junit,
- org.eclipse.emf.generic.editor;bundle-version="1.0.0",
+Require-Bundle: org.eclipse.emf.generic.editor;bundle-version="1.0.0",
  org.eclipse.emf.ecore;bundle-version="2.5.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: junit.framework;version="[3.8.2,4.0.0)"

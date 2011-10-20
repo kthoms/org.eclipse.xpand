@@ -6,7 +6,6 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.junit,
  org.eclipse.jdt.core,
  org.eclipse.xtend,
  org.eclipse.xpand,
@@ -22,4 +21,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.xtend.shared.ui.test,
  org.eclipse.xtend.shared.ui.test.xpand2.core
-
+Import-Package: junit.framework;version="[3.8.2,4.0.0)"

@@ -219,6 +219,10 @@ public class ProfileMetaModel implements MetaModel {
 	}
 
 	public String getFullName(final org.eclipse.uml2.uml.Type type) {
+		if (type == null) {
+			// Bug 361457 - Xtend: NPE when creating a UML EnumerationLiteral
+			return null;
+		}
 		return normalizedName(type.getQualifiedName());
 	}
 

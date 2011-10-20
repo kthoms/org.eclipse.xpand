@@ -136,6 +136,9 @@ public class UML2Writer extends AbstractWorkflowComponent {
 		} else if (slotContent instanceof Package){
 			saveModel((Package)slotContent, rsImpl);
 		}
+		for (Resource resource: rsImpl.getResources()) {
+			resource.unload();
+		}
 	}
 
 	private void saveModel(Package model, ResourceSet rsImpl) {
@@ -157,6 +160,9 @@ public class UML2Writer extends AbstractWorkflowComponent {
 			r.save(null);
 		} catch (IOException e) {
 			LOG.debug(e.getMessage());
+		}
+		for (Resource resource: rsImpl.getResources()) {
+			resource.unload();
 		}
 	}
 	

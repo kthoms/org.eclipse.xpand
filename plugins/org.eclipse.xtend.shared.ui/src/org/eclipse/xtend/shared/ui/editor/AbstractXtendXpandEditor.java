@@ -23,11 +23,15 @@ import org.eclipse.jdt.ui.actions.JdtActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModelExtension2;
+import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -40,6 +44,7 @@ import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
+import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.xtend.shared.ui.Activator;
@@ -57,8 +62,11 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 	private BreakpointActionGroup bpActionGroup;
 
 	private ISelectionChangedListener selectionChangedListener;
+	
+	public final static String XTEND_MATCHING_BRACKETS = "xtendMatchingBrackets";
+	public final static String XTEND_MATCHING_BRACKETS_COLOR= "xtendMatchingBracketsColor";
 
-   private IPropertyChangeListener preferencesChangedListener;
+    private IPropertyChangeListener preferencesChangedListener;
 
 	/**
 	 * @see org.eclipse.ui.texteditor.AbstractDecoratedTextEditor#createPartControl(org.eclipse.swt.widgets.Composite)
@@ -217,6 +225,23 @@ public abstract class AbstractXtendXpandEditor extends TextEditor {
 		// debug
 		bpActionGroup = new BreakpointActionGroup(this);
 	}
+	
+	 @Override
+	            protected void configureSourceViewerDecorationSupport (SourceViewerDecorationSupport support) {
+	                super.configureSourceViewerDecorationSupport(support);          
+	             
+	                char[] matchChars = {'(', ')', '[', ']', '{', '}'};             
+	                ICharacterPairMatcher matcher = new DefaultCharacterPairMatcher(matchChars ,
+	                                IDocumentExtension3.DEFAULT_PARTITIONING);
+	                support.setCharacterPairMatcher(matcher);
+	                support.setMatchingCharacterPainterPreferenceKeys(XTEND_MATCHING_BRACKETS,XTEND_MATCHING_BRACKETS_COLOR);
+	             
+	               //Enable bracket highlighting in the preference store
+	                IPreferenceStore store = getPreferenceStore();
+	                store.setDefault(XTEND_MATCHING_BRACKETS, true);
+	                store.setDefault(XTEND_MATCHING_BRACKETS_COLOR, "192,192,192");
+	            }
+
 
 	@Override
 	protected void rulerContextMenuAboutToShow(final IMenuManager menu) {

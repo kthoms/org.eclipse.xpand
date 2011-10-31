@@ -20,9 +20,14 @@ import org.eclipse.jdt.ui.actions.IJavaEditorActionDefinitionIds;
 import org.eclipse.jdt.ui.actions.JdtActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.IDocumentExtension3;
+import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
+import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.actions.ActionGroup;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
+import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.xpand.ui.editor.actions.InsertTextAction;
 import org.eclipse.xpand.ui.editor.outline.XpandContentOutlinePage;
 import org.eclipse.xpand.ui.refactoring.actions.RefactorActionGroup;
@@ -34,6 +39,11 @@ import org.eclipse.xtend.shared.ui.editor.outlineview.AbstractExtXptContentOutli
  */
 public class XpandEditor extends AbstractXtendXpandEditor {
 
+    public final static String XPAND_MATCHING_BRACKETS = "xpandMatchingBrackets";
+    public final static String XPAND_MATCHING_BRACKETS_COLOR= "xpandMatchingBracketsColor";
+
+
+	
 	private ActionGroup contextMenuRefactoringGroup;
 
 	public XpandEditor() {
@@ -97,4 +107,22 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 	protected void initializeKeyBindingScopes() {
 		setKeyBindingScopes(new String[] { "org.eclipse.xpand.ui.XpandEditorScope" }); //$NON-NLS-1$
 	}
+
+	@Override
+	protected void configureSourceViewerDecorationSupport(SourceViewerDecorationSupport support) {
+		super.configureSourceViewerDecorationSupport(support);
+
+		char[] matchChars = { '«', '»' };
+		ICharacterPairMatcher matcher = new DefaultCharacterPairMatcher(matchChars,
+				IDocumentExtension3.DEFAULT_PARTITIONING);
+		support.setCharacterPairMatcher(matcher);
+		support.setMatchingCharacterPainterPreferenceKeys("xpandBrackets", "xpandBracketsColor");
+
+		//Enable bracket highlighting in the preference store
+		IPreferenceStore store = getPreferenceStore();
+		store.setDefault("xpandBrackets", true);
+		store.setDefault("xpandBracketsColor", "192,192,192");
+
+	}
+
 }

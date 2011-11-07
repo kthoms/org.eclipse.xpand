@@ -71,10 +71,9 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 		super.createActions();
 		final ResourceBundle rb = new ResourceBundle() {
 
-			@SuppressWarnings("unchecked")
 			@Override
-			public Enumeration getKeys() {
-				return new Vector().elements();
+			public Enumeration<String> getKeys() {
+				return new Vector<String>().elements();
 			}
 
 			@Override
@@ -112,7 +111,7 @@ public class XpandEditor extends AbstractXtendXpandEditor {
 	protected void configureSourceViewerDecorationSupport(SourceViewerDecorationSupport support) {
 		super.configureSourceViewerDecorationSupport(support);
 
-		char[] matchChars = { '«', '»' };
+		char[] matchChars = { XpandTokens.LT_CHAR, XpandTokens.RT_CHAR };
 		ICharacterPairMatcher matcher = new DefaultCharacterPairMatcher(matchChars,
 				IDocumentExtension3.DEFAULT_PARTITIONING);
 		support.setCharacterPairMatcher(matcher);

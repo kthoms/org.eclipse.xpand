@@ -3,6 +3,9 @@
 	<feature id="org.eclipse.xpand" version="0.0.0">
 		<category name="xpandxtend${package.qualifier}" />
 	</feature>
+	<feature id="org.eclipse.xpand.all" version="0.0.0">
+		<category name="xpandxtendAdditional${package.qualifier}" />
+	</feature>
 	<feature id="org.eclipse.xpand.doc" version="0.0.0">
 		<category name="xpandxtend${package.qualifier}" />
 	</feature>

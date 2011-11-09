@@ -49,7 +49,7 @@ import org.eclipse.xtend.typesystem.emf.EmfMetaModel;
  * Check files can be added with reparse option. If true, the check files are
  * reparse on each validation.
  * 
- * @author Jan Köhnlein
+ * @author Jan Kï¿½hnlein
  */
 public class CheckEValidatorAdapter implements EValidator {
 
@@ -175,7 +175,7 @@ public class CheckEValidatorAdapter implements EValidator {
 						checkFile, resourceManager);
 				runOawCheck(parsedCheckFile, allElements, diagnostics,
 						executionContext);
-				isValid &= issues.hasErrors();
+				isValid &= !issues.hasErrors();
 			}
 		} finally {
 			ResourceLoaderFactory.setCurrentThreadResourceLoader(current);

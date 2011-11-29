@@ -3,10 +3,8 @@ package org.eclipse.xtend.backend.compiler.templates.java5;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,12 +20,10 @@ import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.compiler.AbstractBackendResourceCompilerFacade;
 import org.eclipse.xtend.backend.compiler.model.NamedParsedResource;
 import org.eclipse.xtend.middleend.MiddleEnd;
-import org.eclipse.xtend.middleend.plugins.ImportedResource;
 import org.eclipse.xtend.middleend.plugins.ParsedResource;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 
-import com.google.inject.internal.Iterables;
 
 public class Java5CompilerFacade extends AbstractBackendResourceCompilerFacade {
     private static final Log _log = LogFactory.getLog (Java5CompilerFacade.class);

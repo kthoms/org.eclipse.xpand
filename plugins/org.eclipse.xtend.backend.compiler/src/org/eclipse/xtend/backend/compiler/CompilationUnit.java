@@ -1,6 +1,5 @@
 package org.eclipse.xtend.backend.compiler;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.xtend.backend.common.FunctionDefContext;

@@ -139,8 +139,6 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(final BundleContext context) throws Exception {
 		super.stop(context);
 		getPreferenceStore().removePropertyChangeListener(listener);
-		//FIXME (dhuebner) all the jobs like "Analyzing accessible EMF metamodels" should be stopped here too,
-		// because they access plugin reference which is set to <code>null</code> here. NPE is thrown in getExtXptModelManager
 		plugin = null;
 	}
 
@@ -269,6 +267,9 @@ public class Activator extends AbstractUIPlugin {
 		return resourceID;
 	}
 
+	/**
+	 * Can return <code>null</code> if plugin is stopped.
+	 */
 	public static IModelManager getExtXptModelManager() {
 		Activator activator = getDefault();
 		if (activator != null) {

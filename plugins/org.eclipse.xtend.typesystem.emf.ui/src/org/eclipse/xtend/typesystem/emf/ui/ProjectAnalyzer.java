@@ -43,6 +43,7 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.internal.core.ExternalPackageFragmentRoot;
 import org.eclipse.jdt.internal.core.JarPackageFragmentRoot;
 import org.eclipse.xtend.shared.ui.Activator;
+import org.eclipse.xtend.shared.ui.core.IModelManager;
 import org.eclipse.xtend.shared.ui.core.internal.JDTUtil;
 import org.eclipse.xtend.shared.ui.core.internal.ResourceID;
 import org.eclipse.xtend.typesystem.emf.ui.internal.EmfToolsLog;
@@ -70,7 +71,8 @@ final class ProjectAnalyzer extends Job {
 	private Map<String, EPackage> packages;
 
 	public ProjectAnalyzer(final IJavaProject project) {
-		super(Messages.ProjectAnalyzer_AnalysingPrompt + project.getProject().getProject().getName());
+		super(Messages.ProjectAnalyzer_AnalysingPrompt
+				+ project.getProject().getProject().getName());
 		// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=268516
 		setRule(project.getProject().getWorkspace().getRoot());
 		this.project = project;
@@ -79,112 +81,131 @@ final class ProjectAnalyzer extends Job {
 	@Override
 	protected IStatus run(final IProgressMonitor monitor) {
 		if (EmfToolsPlugin.trace) {
-			System.out.println(Messages.ProjectAnalyzer_1 + project.getProject().getProject().getName());
+			System.out.println(Messages.ProjectAnalyzer_1
+					+ project.getProject().getProject().getName());
 		}
 
 		// load models
 		rs = ConverterUtil.createResourceSet();
 		mapping = new HashMap<IStorage, Resource>();
-		// TODO: ensure that the packages map contains the ePackages from reexported projects as well
+		// TODO: ensure that the packages map contains the ePackages from
+		// reexported projects as well
 		packages = new HashMap<String, EPackage>();
 		loadMetamodelsForProject(project, rs, monitor);
 		// always add ecore
 		packages.put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
-		
-		EPackage.Registry registry = new EPackageRegistryImpl(rs.getPackageRegistry());
+
+		EPackage.Registry registry = new EPackageRegistryImpl(
+				rs.getPackageRegistry());
 		registry.putAll(packages);
 		rs.setPackageRegistry(registry);
-		
+
 		// done. now trigger build for the project.
 		// only do this if it is an Xpand project
 		// do not build referencing projects. the EmfToolsPlugin will take care
 		// of this
-		if (Activator.getExtXptModelManager().findProject(project.getProject()) != null) {
+		IModelManager extXptModelManager = Activator.getExtXptModelManager();
+		if (extXptModelManager != null
+				&& extXptModelManager.findProject(project.getProject()) != null) {
 			new BuildJob(project.getProject(), null).schedule();
 		}
 
 		return Status.OK_STATUS;
 	}
 
-	private void loadMetamodelsForProject(final IJavaProject javaProject, final ResourceSet rs,
-			final IProgressMonitor monitor) {
+	private void loadMetamodelsForProject(final IJavaProject javaProject,
+			final ResourceSet rs, final IProgressMonitor monitor) {
 		try {
 			final String ext = Messages.ProjectAnalyzer_2;
 			if (!javaProject.exists())
 				return;
-			for (final IPackageFragmentRoot root : javaProject.getPackageFragmentRoots()) {
+			for (final IPackageFragmentRoot root : javaProject
+					.getPackageFragmentRoots()) {
 				if (!root.isArchive()) {
 					IResource rootResource = null;
 					if (root instanceof ExternalPackageFragmentRoot) {
-						rootResource = ((ExternalPackageFragmentRoot) root).resource();
-					}
-					else {
+						rootResource = ((ExternalPackageFragmentRoot) root)
+								.resource();
+					} else {
 						rootResource = root.getUnderlyingResource();
 					}
 					if (rootResource != null) {
 						try {
-							if (!rootResource.exists() || !rootResource.isAccessible())
-								rootResource.refreshLocal(IResource.DEPTH_INFINITE, monitor);
+							if (!rootResource.exists()
+									|| !rootResource.isAccessible())
+								rootResource.refreshLocal(
+										IResource.DEPTH_INFINITE, monitor);
 							rootResource.accept(new IResourceVisitor() {
-								public boolean visit(final IResource resource) throws CoreException {
-									if (resource instanceof IFile && ext.equals(((IFile) resource).getFileExtension())) {
-										loadModelFromStorage(rs, (IFile) resource);
+								public boolean visit(final IResource resource)
+										throws CoreException {
+									if (resource instanceof IFile
+											&& ext.equals(((IFile) resource)
+													.getFileExtension())) {
+										loadModelFromStorage(rs,
+												(IFile) resource);
 									}
 									return true;
 								}
 							});
-						}
-						catch (final CoreException e) {
+						} catch (final CoreException e) {
 							EmfToolsLog.logError(e);
 						}
 					}
-				}
-				else {
+				} else {
 					// skip JRE jars
-					if (((JarPackageFragmentRoot) root).getPath().toString().contains(Messages.ProjectAnalyzer_3)) {
+					if (((JarPackageFragmentRoot) root).getPath().toString()
+							.contains(Messages.ProjectAnalyzer_3)) {
 						if (EmfToolsPlugin.trace) {
-							System.out.println(Messages.ProjectAnalyzer_4 + ((JarPackageFragmentRoot) root).getPath().toString());
+							System.out.println(Messages.ProjectAnalyzer_4
+									+ ((JarPackageFragmentRoot) root).getPath()
+											.toString());
 						}
 						continue;
 					}
 
 					root.open(monitor);
 					try {
-						final ZipFile zip = ((JarPackageFragmentRoot) root).getJar();
+						final ZipFile zip = ((JarPackageFragmentRoot) root)
+								.getJar();
 
-						final Enumeration<? extends ZipEntry> entries = zip.entries();
+						final Enumeration<? extends ZipEntry> entries = zip
+								.entries();
 						while (entries.hasMoreElements()) {
 							final ZipEntry entry = entries.nextElement();
 							final String name = entry.getName();
 							if (name.endsWith(ext)) {
-								final String fqn = name.substring(0, name.length() - ext.length() - 1).replaceAll(Messages.ProjectAnalyzer_5,
-										Messages.ProjectAnalyzer_6);
-								final ResourceID resourceID = new ResourceID(fqn, ext);
-								final IStorage findStorage = JDTUtil.loadFromJar(resourceID, root);
+								final String fqn = name.substring(0,
+										name.length() - ext.length() - 1)
+										.replaceAll(Messages.ProjectAnalyzer_5,
+												Messages.ProjectAnalyzer_6);
+								final ResourceID resourceID = new ResourceID(
+										fqn, ext);
+								final IStorage findStorage = JDTUtil
+										.loadFromJar(resourceID, root);
 								if (findStorage != null) {
 									loadModelFromStorage(rs, findStorage);
 								}
 							}
 						}
-					}
-					catch (final CoreException e) {
+					} catch (final CoreException e) {
 						EmfToolsLog.logError(e);
-					}
-					finally {
+					} finally {
 						root.close();
 					}
 				}
 			}
-		}
-		catch (final JavaModelException e) {
+		} catch (final JavaModelException e) {
 			EmfToolsLog.logError(e);
 		}
 	}
 
-	private void loadModelFromStorage(final ResourceSet rs, final IStorage storage) {
-		final URI uri = URI.createPlatformResourceURI(storage.getFullPath().toString(), true);
+	private void loadModelFromStorage(final ResourceSet rs,
+			final IStorage storage) {
+		final URI uri = URI.createPlatformResourceURI(storage.getFullPath()
+				.toString(), true);
 		if (EmfToolsPlugin.trace) {
-			System.out.println(Messages.ProjectAnalyzer_7 + storage.getFullPath().toString());
+			System.out.println(Messages.ProjectAnalyzer_7
+					+ storage.getFullPath().toString());
 		}
 
 		final Resource r = rs.createResource(uri);
@@ -194,27 +215,26 @@ final class ProjectAnalyzer extends Job {
 			r.load(storage.getContents(), Collections.EMPTY_MAP);
 			mapping.put(storage, r);
 			registerEPackages(rs, r, false);
-		}
-		catch (final IOException e) {
+		} catch (final IOException e) {
 			EmfToolsLog.logError(Messages.ProjectAnalyzer_8 + uri, e);
-		}
-		catch (final CoreException e) {
+		} catch (final CoreException e) {
 			EmfToolsLog.logError(Messages.ProjectAnalyzer_9 + uri, e);
-		}
-		catch (final RuntimeException e) {
+		} catch (final RuntimeException e) {
 			EmfToolsLog.logError(Messages.ProjectAnalyzer_10 + uri, e);
 		}
 	}
 
-	private void registerEPackages(final ResourceSet rs, final Resource r, boolean overwrite) {
-		final Collection<EPackage> packages = EcoreUtil.getObjectsByType(r.getContents(),
-				EcorePackage.Literals.EPACKAGE);
+	private void registerEPackages(final ResourceSet rs, final Resource r,
+			boolean overwrite) {
+		final Collection<EPackage> packages = EcoreUtil.getObjectsByType(
+				r.getContents(), EcorePackage.Literals.EPACKAGE);
 		for (final EPackage pack : packages) {
 			registerPackage(pack, rs, overwrite);
 		}
 	}
 
-	private void registerPackage(final EPackage pack, ResourceSet rs, boolean overwrite) {
+	private void registerPackage(final EPackage pack, ResourceSet rs,
+			boolean overwrite) {
 		// finding duplicates by nsURI is better than by name since package
 		// names may be used across MMs
 		if (!overwrite && packages.containsKey(pack.getNsURI())) {
@@ -222,8 +242,7 @@ final class ProjectAnalyzer extends Job {
 				System.out.println(Messages.ProjectAnalyzer_11 + pack.getName()
 						+ Messages.ProjectAnalyzer_12);
 			}
-		}
-		else {
+		} else {
 			packages.put(pack.getNsURI(), pack);
 		}
 		// recurse into subpackages

@@ -63,8 +63,8 @@ public class Activator extends AbstractUIPlugin {
 
 	private static final String RESOURCE_CONTRIBUTOR_ID = "org.eclipse.xtend.shared.ui.resourceContributor";
 	private static final String STORAGE_FINDER_ID = "org.eclipse.xtend.shared.ui.storageFinder";
-	
-	public static final String PLUGIN_ID = "org.eclipse.xtend.shared.ui"; 	
+
+	public static final String PLUGIN_ID = "org.eclipse.xtend.shared.ui";
 
 	public static final String getNatureId() {
 		return XtendXpandNature.NATURE_ID;
@@ -96,14 +96,16 @@ public class Activator extends AbstractUIPlugin {
 					try {
 						new WorkspaceModifyOperation() {
 							@Override
-							protected void execute(IProgressMonitor monitor) throws CoreException, java.lang.reflect.InvocationTargetException,
-									InterruptedException {
+							protected void execute(IProgressMonitor monitor) throws CoreException,
+									java.lang.reflect.InvocationTargetException, InterruptedException {
 								Activator.getExtXptModelManager().analyze(monitor);
 							}
 						}.run(monitor);
-					} catch (InvocationTargetException e) {
+					}
+					catch (InvocationTargetException e) {
 						XtendLog.logError(e);
-					} catch (InterruptedException e) {
+					}
+					catch (InterruptedException e) {
 						XtendLog.logError(e);
 					}
 					return Status.OK_STATUS;
@@ -123,8 +125,9 @@ public class Activator extends AbstractUIPlugin {
 		getPreferenceStore().addPropertyChangeListener(listener);
 
 		// initialize mm contributors
-		Map<String, Contributor> registeredMetamodelContributors = MetamodelContributorRegistry.getRegisteredMetamodelContributors();
-		for (Contributor c  : registeredMetamodelContributors.values()) {
+		Map<String, Contributor> registeredMetamodelContributors = MetamodelContributorRegistry
+				.getRegisteredMetamodelContributors();
+		for (Contributor c : registeredMetamodelContributors.values()) {
 			c.getMetaModelContributor();
 		}
 	}
@@ -136,6 +139,8 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(final BundleContext context) throws Exception {
 		super.stop(context);
 		getPreferenceStore().removePropertyChangeListener(listener);
+		//FIXME (dhuebner) all the jobs like "Analyzing accessible EMF metamodels" should be stopped here too,
+		// because they access plugin reference which is set to <code>null</code> here. NPE is thrown in getExtXptModelManager
 		plugin = null;
 	}
 
@@ -147,8 +152,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in
-	 * relative path.
+	 * Returns an image descriptor for the image file at the given plug-in relative path.
 	 * 
 	 * @param path
 	 *            the path
@@ -159,9 +163,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns the standard display to be used. The method first checks, if the
-	 * thread calling this method has an associated display. If so, this display
-	 * is returned. Otherwise the method returns the default display.
+	 * Returns the standard display to be used. The method first checks, if the thread calling this method has an
+	 * associated display. If so, this display is returned. Otherwise the method returns the default display.
 	 */
 	public static Display getStandardDisplay() {
 		Display display = Display.getCurrent();
@@ -188,7 +191,8 @@ public class Activator extends AbstractUIPlugin {
 					final IConfigurationElement element = configs[j];
 					try {
 						contrs.add((ResourceContributor) element.createExecutableExtension("class"));
-					} catch (final CoreException e) {
+					}
+					catch (final CoreException e) {
 						XtendLog.logError(e);
 					}
 				}
@@ -196,7 +200,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 		return contrs.toArray(new ResourceContributor[contrs.size()]);
 	}
-	
+
 	public static List<StorageFinder> getRegisteredStorageFinder() {
 		if (storageFinder == null) {
 			storageFinder = new ArrayList<StorageFinder>();
@@ -211,32 +215,33 @@ public class Activator extends AbstractUIPlugin {
 						final IConfigurationElement element = configs[j];
 						try {
 							storageFinder.add((StorageFinder) element.createExecutableExtension("class"));
-						} catch (final CoreException e) {
+						}
+						catch (final CoreException e) {
 							XtendLog.logError(e);
 						}
 					}
 				}
 			}
-			Collections.sort(storageFinder, new Comparator<StorageFinder>(){
-				public int compare(StorageFinder stoFinder1, StorageFinder stoFinder2){
+			Collections.sort(storageFinder, new Comparator<StorageFinder>() {
+				public int compare(StorageFinder stoFinder1, StorageFinder stoFinder2) {
 					if (stoFinder1 == null)
 						return 1;
 					if (stoFinder2 == null)
 						return -1;
-					if (stoFinder1.getPriority() == stoFinder2. getPriority())
+					if (stoFinder1.getPriority() == stoFinder2.getPriority())
 						return 0;
-					return stoFinder1.getPriority() >= stoFinder2.getPriority() ? -1: 1;
+					return stoFinder1.getPriority() >= stoFinder2.getPriority() ? -1 : 1;
 				}
 			});
 		}
 		return storageFinder;
 	}
-	
-	public static IStorage findStorage(IJavaProject project, ResourceID id, boolean searchJars){
+
+	public static IStorage findStorage(IJavaProject project, ResourceID id, boolean searchJars) {
 		List<StorageFinder> stoFinders = getRegisteredStorageFinder();
 		IStorage storage = null;
 		if (stoFinders != null)
-			for (StorageFinder stoFinder: stoFinders) {
+			for (StorageFinder stoFinder : stoFinders) {
 				storage = stoFinder.findStorage(project, id, searchJars);
 				if (storage != null)
 					return storage;
@@ -244,18 +249,19 @@ public class Activator extends AbstractUIPlugin {
 		return storage;
 	}
 
-	public static ResourceID findXtendXpandResourceID(IJavaProject project, IStorage file){
+	public static ResourceID findXtendXpandResourceID(IJavaProject project, IStorage file) {
 		List<StorageFinder> stoFinders = getRegisteredStorageFinder();
 		ResourceID resourceID = null;
 		if (stoFinders != null)
 			for (StorageFinder stoFinder : stoFinders) {
 				if (stoFinder instanceof StorageFinder2) {
-					resourceID = ((StorageFinder2)stoFinder).findXtendXpandResourceID(project, file);
+					resourceID = ((StorageFinder2) stoFinder).findXtendXpandResourceID(project, file);
 					if (resourceID != null)
 						return resourceID;
-				}else {
+				}
+				else {
 					resourceID = JDTUtil.findXtendXpandResourceID(project, file);
-					if (resourceID != null){
+					if (resourceID != null) {
 						return resourceID;
 					}
 				}
@@ -264,14 +270,19 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	public static IModelManager getExtXptModelManager() {
-		return getDefault().modelManager;
+		Activator activator = getDefault();
+		if (activator != null) {
+			return activator.modelManager;
+		}
+		return null;
 	}
 
 	public static ExecutionContext getExecutionContext(final IJavaProject project) {
 		final IXtendXpandProject xp = Activator.getExtXptModelManager().findProject(project.getPath());
 		final ExecutionContextImpl ctx = new XpandPluginExecutionContext(xp);
 
-		final List<? extends MetamodelContributor> contr = MetamodelContributorRegistry.getActiveMetamodelContributors(project);
+		final List<? extends MetamodelContributor> contr = MetamodelContributorRegistry
+				.getActiveMetamodelContributors(project);
 		for (MetamodelContributor contributor : contr) {
 			final MetaModel[] metamodels = contributor.getMetamodels(project, ctx);
 			for (int i = 0; i < metamodels.length; i++) {
@@ -299,7 +310,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	public static void logError(String string, Exception e) {
-		getDefault().getLog().log(new Status(IStatus.ERROR,PLUGIN_ID, string,e));
-		
+		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, string, e));
+
 	}
 }

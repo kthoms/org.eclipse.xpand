@@ -4,6 +4,7 @@
 	<cs:dependencies>
 		<cs:dependency name="org.apache.commons.logging" componentType="osgi.bundle" />
 		<cs:dependency name="org.apache.log4j" componentType="osgi.bundle" />
+		<cs:dependency name="com.google.collect" componentType="osgi.bundle" />
 		<cs:dependency name="org.easymock" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.cdt.core" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.emf.compare.sdk" componentType="eclipse.feature"

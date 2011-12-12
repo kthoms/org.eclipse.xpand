@@ -12,12 +12,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.mwe.core;bundle-version="0.7.0",
  org.eclipse.xtend.middleend.xpand;bundle-version="1.0.0",
  org.eclipse.xpand;bundle-version="1.0.0",
- org.eclipse.xtend;bundle-version="1.0.0",
- com.google.collect;bundle-version="0.8.0",
- com.google.inject;bundle-version="2.0.0"
+ org.eclipse.xtend;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.xtend.backend.compiler,
  org.eclipse.xtend.backend.compiler.templates.backend,
  org.eclipse.xtend.backend.compiler.templates.java5
-Import-Package: org.apache.commons.logging
+Import-Package: com.google.common.base;version="1.0.0",
+ com.google.common.collect;version="1.0.0",
+ org.apache.commons.logging

@@ -6,7 +6,7 @@
   <rm:locator pattern="^org\.eclipse\.xpand\.releng$" searchPathRef="local.releng"/>
   <rm:locator pattern="^org\.eclipse\.emf\.(?:mwe2\.runtime|mwe2\.lib|mwe2\.runtime\.sdk|mwe)(?:\..+)?$" searchPathRef="mwe"/>
   <rm:locator pattern="^com\.google\.(?:inject|collect)(?:\..+)?$" searchPathRef="orbit"/>
-  <rm:locator pattern="^org\.aopalliance(?:\..+)?$" searchPathRef="mwe"/>
+  <rm:locator pattern="^org\.aopalliance(?:\..+)?$" searchPathRef="orbit"/>
   <rm:locator pattern="^org\.eclipse\.emf\.compare?(?:\..+)?$" searchPathRef="emf.composite"/>
   <rm:locator pattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?$" searchPathRef="emf.composite"/>
   <rm:locator pattern="^org\.eclipse\.uml2(?:\..+)?$" searchPathRef="mdt"/>

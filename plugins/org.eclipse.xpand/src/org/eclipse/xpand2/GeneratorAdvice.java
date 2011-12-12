@@ -83,7 +83,7 @@ public class GeneratorAdvice extends AbstractWorkflowAdvice {
      * Sets the file encoding to use for the target generator.
      * @param fileEncoding Encoding string, e.g. 'ISO-8859-1'
      * @since 4.2
-     * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=195042
+     * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=195042">Bug 195042</a>
      */
 	public void setFileEncoding(String fileEncoding) {
 		this.fileEncoding = fileEncoding;

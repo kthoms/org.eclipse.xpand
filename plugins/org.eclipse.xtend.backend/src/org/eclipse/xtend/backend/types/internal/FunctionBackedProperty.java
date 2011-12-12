@@ -18,7 +18,6 @@ import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.Property;
 import org.eclipse.xtend.backend.common.QualifiedName;
-import org.eclipse.xtend.backend.types.builtin.ObjectType;
 
 
 /**

@@ -10,13 +10,13 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xtend.test;
 
+import static junit.framework.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import static junit.framework.Assert.assertEquals;
 
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.eclipse.xtend.type.impl.java.JavaMetaModel;

@@ -10,11 +10,11 @@
  *******************************************************************************/
 package org.eclipse.xtend.middleend.xtend.test;
 
+import junit.framework.JUnit4TestAdapter;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
-
-import junit.framework.JUnit4TestAdapter;
 
 @RunWith(Suite.class)
 @SuiteClasses( { GeneralXtendTest.class, ExpressionTest.class,

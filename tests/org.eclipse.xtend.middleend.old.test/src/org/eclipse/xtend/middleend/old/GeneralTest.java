@@ -24,7 +24,6 @@ import java.util.List;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
-import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.ExecutionContext;
@@ -33,6 +32,7 @@ import org.eclipse.xtend.backend.types.CompositeTypesystem;
 import org.eclipse.xtend.middleend.xpand.XpandBackendFacade;
 import org.eclipse.xtend.middleend.xpand.XpandComponent;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
+import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.MetaModel;
 import org.junit.Test;
 

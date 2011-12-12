@@ -18,7 +18,6 @@ import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
-import org.eclipse.xtend.backend.types.builtin.ObjectType;
 
 
 /**

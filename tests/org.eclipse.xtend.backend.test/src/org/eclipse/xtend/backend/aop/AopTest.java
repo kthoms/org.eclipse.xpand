@@ -30,7 +30,6 @@ import org.eclipse.xtend.backend.common.NamedFunction;
 import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.expr.ConcatExpression;
 import org.eclipse.xtend.backend.expr.InvocationOnObjectExpression;
-import org.eclipse.xtend.backend.expr.ListLiteralExpression;
 import org.eclipse.xtend.backend.expr.LiteralExpression;
 import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.functions.FunctionDefContextInternal;

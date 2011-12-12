@@ -11,7 +11,6 @@ Contributors:
 
 package org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr;
 
-import java.io.IOException;
 
 public class XpandProtectedRegionSyntaxException extends Exception {
 

@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.mwe.core.WorkflowContext;
+import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
-import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xtend.middleend.xpand.XpandComponent;
 import org.junit.Test;

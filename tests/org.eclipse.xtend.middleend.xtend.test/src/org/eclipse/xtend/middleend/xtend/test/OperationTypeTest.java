@@ -1,16 +1,13 @@
 package org.eclipse.xtend.middleend.xtend.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.xtend.backend.BackendFacade;
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.QualifiedName;
-import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.junit.Before;
 import org.junit.Test;

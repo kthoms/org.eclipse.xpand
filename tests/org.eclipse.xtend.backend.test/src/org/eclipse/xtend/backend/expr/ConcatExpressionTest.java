@@ -11,7 +11,10 @@ Contributors:
  */
 package org.eclipse.xtend.backend.expr;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyFdc;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLiteral;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;

@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.xtend.backend.common.BackendType;
 import org.eclipse.xtend.backend.common.ExecutionContext;
-import org.eclipse.xtend.backend.common.ExpressionBase;
 import org.eclipse.xtend.backend.common.FunctionDefContext;
 import org.eclipse.xtend.backend.common.LocalVarContext;
 import org.eclipse.xtend.backend.functions.AbstractFunction;

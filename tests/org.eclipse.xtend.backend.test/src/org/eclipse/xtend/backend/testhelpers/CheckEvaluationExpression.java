@@ -11,7 +11,7 @@ Contributors:
  */
 package org.eclipse.xtend.backend.testhelpers;
 
-import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.*;
+import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;

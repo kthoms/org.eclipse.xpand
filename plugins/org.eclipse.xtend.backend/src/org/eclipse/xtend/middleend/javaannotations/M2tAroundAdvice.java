@@ -15,8 +15,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.eclipse.xtend.backend.aop.Pointcut;
-
 
 /**
  * Methods marked with this annotation are treated as "around" advice

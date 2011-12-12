@@ -22,7 +22,6 @@ import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.common.StaticProperty;
 import org.eclipse.xtend.backend.functions.SourceDefinedFunction;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
-import org.eclipse.xtend.middleend.javaannotations.internal.JavaDefinedFunction;
 
 
 /**

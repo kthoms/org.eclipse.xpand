@@ -13,11 +13,10 @@ package org.eclipse.xtend.middleend.xpand.internal.xpandlib;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
-import org.eclipse.xtend.backend.common.Function;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver;
-import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionSyntaxException;
 import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionResolver.XpandProtectedRegion;
+import org.eclipse.xtend.middleend.xpand.internal.xpandlib.pr.XpandProtectedRegionSyntaxException;
 
 /**
  * This class is a library of functions provided by the XpandLib

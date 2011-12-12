@@ -29,7 +29,6 @@ import org.eclipse.xtend.backend.types.AbstractType;
 import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.types.builtin.VoidType;
 import org.eclipse.xtend.backend.types.emf.EObjectType;
-import org.eclipse.xtend.backend.types.emf.EmfTypesystem;
 import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
 import org.eclipse.xtend.backend.util.CollectionHelper;
 import org.eclipse.xtend.backend.util.ErrorHandler;

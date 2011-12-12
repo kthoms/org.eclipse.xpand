@@ -11,27 +11,16 @@ Contributors:
 */
 package org.eclipse.xtend.middleend.xpand.plugin;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import org.eclipse.internal.xpand2.model.AdvicedDefinition;
-import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
-import org.eclipse.internal.xpand2.model.XpandResource;
 import org.eclipse.internal.xtend.expression.ast.Expression;
 import org.eclipse.internal.xtend.expression.ast.FeatureCall;
 import org.eclipse.internal.xtend.expression.ast.Identifier;
-import org.eclipse.internal.xtend.expression.parser.SyntaxConstants;
-import org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver;
 import org.eclipse.xpand2.XpandExecutionContext;
-import org.eclipse.xpand2.XpandExecutionContextImpl.DefinitionOperationAdapter;
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.middleend.xpand.internal.XpandConverterUtil;
 import org.eclipse.xtend.middleend.xtend.internal.OldTypeAnalyzer;
-import org.eclipse.xtend.typesystem.Callable;
 import org.eclipse.xtend.typesystem.Type;
 
 

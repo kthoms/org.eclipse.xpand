@@ -1,10 +1,5 @@
 package org.eclipse.xtend.backend.types.xsd.internal;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.xtend.backend.common.BackendType;
@@ -12,7 +7,6 @@ import org.eclipse.xtend.backend.common.BackendTypesystem;
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
-import org.eclipse.xtend.backend.types.emf.EObjectType;
 import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
 
 public class EFeatureMapEntryType extends AbstractType {

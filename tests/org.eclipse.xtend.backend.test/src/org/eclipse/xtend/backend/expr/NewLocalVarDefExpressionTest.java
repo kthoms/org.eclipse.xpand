@@ -14,7 +14,8 @@ package org.eclipse.xtend.backend.expr;
 import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.SOURCE_POS;
 import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createEmptyExecutionContext;
 import static org.eclipse.xtend.backend.testhelpers.BackendTestHelper.createLiteral;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.eclipse.xtend.backend.common.ExecutionContext;
 import org.eclipse.xtend.backend.common.ExpressionBase;

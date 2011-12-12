@@ -1,8 +1,6 @@
 package org.eclipse.xtend.backend.types.xsd.internal;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.backend.common.BackendType;
@@ -12,7 +10,6 @@ import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.backend.functions.AbstractFunction;
 import org.eclipse.xtend.backend.types.AbstractProperty;
 import org.eclipse.xtend.backend.types.AbstractType;
-import org.eclipse.xtend.backend.types.builtin.ObjectType;
 import org.eclipse.xtend.backend.types.builtin.StringType;
 import org.eclipse.xtend.backend.types.xsd.XsdTypesystem;
 

@@ -21,7 +21,6 @@ import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.middleend.LanguageContributor;
 import org.eclipse.xtend.middleend.MiddleEnd;
 import org.eclipse.xtend.middleend.MiddleEndFactory;
-import org.eclipse.xtend.middleend.plugins.LanguageSpecificMiddleEnd;
 
 public class JavaAnnotationBackendFacade {
 

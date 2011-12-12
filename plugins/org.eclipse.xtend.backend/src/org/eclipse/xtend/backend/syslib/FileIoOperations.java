@@ -16,8 +16,8 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.xtend.backend.common.FutureResultHolder;
 import org.eclipse.xtend.backend.common.EfficientLazyString;
+import org.eclipse.xtend.backend.common.FutureResultHolder;
 import org.eclipse.xtend.backend.util.ErrorHandler;
 import org.eclipse.xtend.middleend.javaannotations.AbstractExecutionContextAware;
 

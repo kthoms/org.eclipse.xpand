@@ -11,7 +11,6 @@ Contributors:
  */
 package org.eclipse.xtend.middleend.xpand;
 
-import java.awt.image.RescaleOp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,8 +34,6 @@ import org.eclipse.xtend.middleend.xpand.plugin.XpandDefinitionName;
 import org.eclipse.xtend.middleend.xtend.OldHelper;
 import org.eclipse.xtend.middleend.xtend.internal.TypeToBackendType;
 import org.eclipse.xtend.middleend.xtend.internal.xtendlib.XtendLibContributor;
-
-import static org.eclipse.xtend.middleend.javaannotations.JavaFunctionClassContributor.classAsResource;
 
 
 /**

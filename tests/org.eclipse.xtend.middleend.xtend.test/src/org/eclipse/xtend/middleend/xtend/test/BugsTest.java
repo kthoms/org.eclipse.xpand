@@ -7,6 +7,8 @@
  *******************************************************************************/
 package org.eclipse.xtend.middleend.xtend.test;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.Arrays;
 
 import org.eclipse.xtend.backend.BackendFacade;
@@ -14,7 +16,6 @@ import org.eclipse.xtend.backend.common.QualifiedName;
 import org.eclipse.xtend.middleend.xtend.XtendBackendFacade;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 
 /**

@@ -30,7 +30,6 @@ import org.eclipse.internal.xpand2.ast.LetStatement;
 import org.eclipse.internal.xpand2.ast.ProtectStatement;
 import org.eclipse.internal.xpand2.ast.Statement;
 import org.eclipse.internal.xpand2.ast.TextStatement;
-import org.eclipse.internal.xpand2.model.XpandAdvice;
 import org.eclipse.internal.xpand2.model.XpandDefinition;
 import org.eclipse.internal.xpand2.type.IteratorType;
 import org.eclipse.internal.xtend.expression.ast.DeclaredParameter;

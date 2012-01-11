@@ -291,7 +291,7 @@
 				 -->
 		<property name="build.repository.directory" location="${composite.repository.directory}" />
 
-		<deltree dir="${build.repository.directory}" />
+		<delete dir="${build.repository.directory}" />
 
 		<unzip dest="${build.repository.directory}">
 			<fileset dir="${packages.directory}">

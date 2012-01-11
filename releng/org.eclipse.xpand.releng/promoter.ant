@@ -174,16 +174,13 @@
 	</target>
 
 	<target name="publish" unless="alreadyPromoted">
+		<echo>Remove old  nightly builds</echo>
+		<antcall target="-cleanup.nightly">
+			<param name="working_dir" value="${downloads.area}/downloads/drops/${version}/" />
+		</antcall>
+
 		<!-- will fail if already exists -->
 		<mkdir dir="${build.drop.directory}" />
-
-		<echo>Remove existing nightly builds</echo>
-		<delete verbose="true">
-			<fileset dir="${downloads.area}/downloads/drops/${version}/">
-				<include name="N*" />
-				<type type="dir" />
-			</fileset>
-		</delete>
 
 		<!-- copy zip packages -->
 		<copy todir="${build.drop.directory}">
@@ -240,6 +237,49 @@
 
 		<antcall target="-publish.build.repository" inheritall="true" />
 	</target>
+
+	<target name="-cleanup.nightly" if="working_dir">
+		<property name="delete_pattern" value="N*" />
+		<property name="keep_count" value="4" />
+		<echo>Keep ${keep_count} most recent builds</echo>
+
+		<!-- add newest (sorted by name) folderst to keep.dirs.res_id resources collection -->
+		<resources id="keep.dirs.res_id">
+			<first count="${keep_count}">
+				<sort>
+					<dirset dir="${working_dir}" includes="${delete_pattern}" />
+					<name />
+				</sort>
+			</first>
+		</resources>
+
+		<!-- keep only last segment (flatten),
+					convert to comma separated string with trailing slash (regexpmapper)
+					 N201101012335/,N201101012336/-->
+		<pathconvert property="keep.dirs.paths" pathsep="," refid="keep.dirs.res_id">
+			<chainedmapper>
+				<flattenmapper />
+				<regexpmapper from="^(.*)$$" to="\1/" />
+			</chainedmapper>
+		</pathconvert>
+		<echo>Excluded from cleanup: ${keep.dirs.paths}</echo>
+
+		<condition property="hasFoldersToKeep" value="true">
+			<not>
+				<equals arg1="${keep.dirs.paths}" arg2="" />
+			</not>
+		</condition>
+		<antcall target="-doDelete" inheritall="true" inheritrefs="true" />
+	</target>
+
+	<!-- recursive delete folders -->
+	<target name="-doDelete" if="hasFoldersToKeep">
+		<echo>Deleting all ${delete_pattern} but: ${keep.dirs.paths}</echo>
+		<delete includeemptydirs="true">
+			<fileset dir="${working_dir}" includes="${delete_pattern}/" excludes="${keep.dirs.paths}" />
+		</delete>
+	</target>
+
 
 	<target name="-publish.build.repository" if="composite.repository.base">
 

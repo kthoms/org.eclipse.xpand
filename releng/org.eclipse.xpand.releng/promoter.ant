@@ -203,13 +203,14 @@
 			</fileset>
 		</copy>
 
-		<!-- copy javadoc -->
-		<mkdir dir="${build.drop.directory}/javadoc" />
-		<copy todir="${build.drop.directory}/javadoc">
-			<fileset dir="${testresults.directory}">
-				<filename name="**/*" />
-			</fileset>
-		</copy>
+		<condition property="build.stable" value="true">
+			<matches string="${saved.build.id}" pattern="[S|R](d)*" />
+		</condition>
+
+		<!-- strip the micro version and anything following it -->
+		<buckminster.substitute value="${version}" pattern="^(\d+\.\d+)\.\d+.*$" replacement="$$1" property="base.version" />
+		<!-- javadoc -->
+		<antcall target="-publish.javadoc" inheritall="true" />
 
 		<fileset id="drop.resources" dir="${build.drop.directory}">
 			<or>
@@ -222,9 +223,6 @@
 		<antcall target="-change.group.owner" inheritall="true">
 			<reference refid="drop.resources" torefid="change.group.owner.resources" />
 		</antcall>
-
-		<!-- strip the micro version and anything following it -->
-		<buckminster.substitute value="${version}" pattern="^(\d+\.\d+)\.\d+.*$" replacement="$$1" property="base.version" />
 
 		<!-- setup composite.repository.base appropriate to the build type -->
 		<condition property="composite.repository.base" value="nightly">
@@ -320,6 +318,16 @@
 		<antcall target="-change.group.owner" inheritall="true">
 			<reference refid="repository.resources" torefid="change.group.owner.resources" />
 		</antcall>
+	</target>
+
+	<target name="-publish.javadoc" if="build.stable">
+		<!-- copy javadoc -->
+		<echo>Unzipping javadoc</echo>
+		<unzip dest="${downloads.area}/javadoc/${base.version}" overwrite="true">
+			<fileset dir="${javadoc.directory}">
+				<filename name="javadoc.zip" />
+			</fileset>
+		</unzip>
 	</target>
 
 	<target name="-change.group.owner" if="group.owner">

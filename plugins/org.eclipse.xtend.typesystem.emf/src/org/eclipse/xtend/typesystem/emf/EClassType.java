@@ -217,4 +217,18 @@ public class EClassType extends AbstractTypeImpl {
 		return eClass.isAbstract();
 	}
 
+	@Override
+	protected boolean internalIsAssignableFrom(Type t) {
+		if (super.internalIsAssignableFrom(t))
+			return true;
+		// 
+		if (getName().equals("ecore::EObject")) {
+	        final Set<? extends Type> superTypes = t.getSuperTypes();
+	        for (Type type : superTypes) {
+	            if (type instanceof EObjectType)
+	                return true;
+	        }
+		}
+		return false;
+	}
 }

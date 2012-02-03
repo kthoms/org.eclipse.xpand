@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.xtend.expression.ExecutionContextImpl;
 import org.eclipse.xtend.expression.ExpressionFacade;
+import org.eclipse.xtend.expression.TypeSystemImpl;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtend.typesystem.Operation;
@@ -264,6 +265,28 @@ public class EmfMetaModelTest extends TestCase {
 		map.put("val", myCustomValue);
 		facade.evaluate("foo.setAProp(val)", map);
 		assertSame(myCustomValue, myEObject.eGet(attr));
+	}
+	
+	public final void testIsAssignableFrom () {
+		final EmfRegistryMetaModel mm = new EmfRegistryMetaModel() {
+			@Override
+			protected EPackage[] allPackages() {
+				return new EPackage[] { EcorePackage.eINSTANCE };
+			}
+		};
+		mm.setTypeSystem(new TypeSystemImpl());
+		final Type typeEObject = mm.getTypeForName("ecore::EObject");
+		final Type typeEClass = mm.getTypeForName("ecore::EClass");
+		final Type typeEAttribute = mm.getTypeForName("ecore::EAttribute");
+		// positive tests
+		assertTrue(typeEObject.isAssignableFrom(typeEClass));
+		assertTrue(typeEObject.isAssignableFrom(typeEAttribute));
+		// negative tests
+		assertFalse(typeEClass.isAssignableFrom(typeEObject));
+		assertFalse(typeEAttribute.isAssignableFrom(typeEObject));
+		assertFalse(typeEClass.isAssignableFrom(typeEAttribute));
+		assertFalse(typeEAttribute.isAssignableFrom(typeEClass));
+		
 	}
 
 }
